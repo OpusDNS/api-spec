@@ -18,6 +18,7 @@ jobs:
           repo: OpusDNS/opusdns-api
           name: openapi-spec
           path: ./src/openapi.json
+          github_token: ${{secrets.GH_PAT_OPENAPI_OPUSDNS_API}}
 
       - name: Install Dependencies
         run: npm install
