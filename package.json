@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "openapi-typescript": "^7.6.1",
+    "typescript": "^5.8.2"
+  },
+  "name": "opusdns-api-types",
+  "version": "0.0.1",
+  "description": "TypeScript types for the OpusDNS OpenAPI specification",
+  "main": "src/schema.d.ts",
+  "types": "src/schema.d.ts",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpusDNS/api-spec.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OpusDNS/api-spec/issues"
+  },
+  "homepage": "https://github.com/OpusDNS/api-spec#readme"
+}
