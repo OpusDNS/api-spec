@@ -17,8 +17,11 @@ jobs:
           workflow: generate-openapi-spec.yaml
           repo: OpusDNS/opusdns-api
           name: openapi-spec
-          path: ./src/openapi.json
           github_token: ${{secrets.GH_PAT_OPENAPI_OPUSDNS_API}}
+
+      - name: Override OpenAPI spec
+        run: |
+          mv openapi.json src/openapi.json
 
       - name: Install Dependencies
         run: npm install
