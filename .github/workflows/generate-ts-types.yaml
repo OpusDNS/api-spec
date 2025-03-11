@@ -6,7 +6,7 @@ on:
 
 jobs:
   generate_types:
-    runs-on: self-runner
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
