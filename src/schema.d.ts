@@ -89,6 +89,75 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/availability/dns": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Bulk Dns Check Domain Availability */
+        post: operations["bulk_dns_check_domain_availability_v1_availability_dns_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/availability/rdap": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Bulk Rdap Check Domain Availability */
+        post: operations["bulk_rdap_check_domain_availability_v1_availability_rdap_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/dns": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Zone */
+        post: operations["create_zone_v1_dns_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/dns/{zone_name}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Zone */
+        get: operations["get_zone_v1_dns__zone_name__get"];
+        put?: never;
+        post?: never;
+        /** Delete Zone */
+        delete: operations["delete_zone_v1_dns__zone_name__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/email-forwards": {
         parameters: {
             query?: never;
@@ -394,6 +463,11 @@ export interface components {
              */
             api_key: string;
         };
+        /**
+         * AuditLogEntity
+         * @enum {string}
+         */
+        AuditLogEntity: "user" | "organization" | "system";
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
             /**
@@ -452,6 +526,170 @@ export interface components {
          * @enum {string}
          */
         Currency: "USD" | "EUR";
+        /** DnsChange */
+        DnsChange: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /**
+             * Changeset Id
+             * Format: uuid
+             */
+            changeset_id: string;
+            entity_type?: components["schemas"]["AuditLogEntity"] | null;
+            /** Entity Id */
+            entity_id?: string | null;
+            action: components["schemas"]["DnsChangeAction"];
+            /** Zone Name */
+            zone_name: string;
+            /** Rrset Name */
+            rrset_name?: string | null;
+            rrset_type?: components["schemas"]["DnsRrsetType"] | null;
+            /** Record Data */
+            record_data?: string | null;
+            /** Ttl */
+            ttl?: number | null;
+            /**
+             * Applied To Server
+             * @default false
+             */
+            applied_to_server: boolean;
+        };
+        /**
+         * DnsChangeAction
+         * @enum {string}
+         */
+        DnsChangeAction: "create_zone" | "delete_zone" | "create_record" | "delete_record" | "enable_dnssec" | "disable_dnssec";
+        /**
+         * DnsProvider
+         * @enum {string}
+         */
+        DnsProvider: "power_dns" | "rcode_zero";
+        /** DnsRecord */
+        DnsRecord: {
+            /** Rdata */
+            rdata: string;
+            /** Dns Rrset Id */
+            dns_rrset_id: number;
+            /** Dns Record Id */
+            dns_record_id: number;
+        };
+        /** DnsRecordCreate */
+        DnsRecordCreate: {
+            /** Rdata */
+            rdata: string;
+        };
+        /** DnsRrset */
+        DnsRrset: {
+            /** Name */
+            name: string;
+            type: components["schemas"]["DnsRrsetType"];
+            /** Ttl */
+            ttl: number;
+            /** Dns Zone Id */
+            dns_zone_id: number;
+            /** Dns Rrset Id */
+            dns_rrset_id: number;
+            /** @default user_managed */
+            mutability: components["schemas"]["DnsRrsetMutability"];
+            /**
+             * Records
+             * @default []
+             */
+            records: components["schemas"]["DnsRecord"][];
+        };
+        /** DnsRrsetCreate */
+        DnsRrsetCreate: {
+            /** Name */
+            name: string;
+            type: components["schemas"]["DnsRrsetType"];
+            /** Ttl */
+            ttl: number;
+            /**
+             * Records
+             * @default []
+             */
+            records: components["schemas"]["DnsRecordCreate"][];
+        };
+        /**
+         * DnsRrsetMutability
+         * @enum {string}
+         */
+        DnsRrsetMutability: "system_managed" | "user_managed" | "user_toggleable";
+        /**
+         * DnsRrsetType
+         * @enum {string}
+         */
+        DnsRrsetType: "A" | "AAAA" | "ALIAS" | "CAA" | "CNAME" | "DNSKEY" | "DS" | "MX" | "NS" | "PTR" | "TXT" | "SOA" | "SRV";
+        /** DnsZone */
+        DnsZone: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /** Name */
+            name: string;
+            /** @default active */
+            status: components["schemas"]["DnsZoneStatus"];
+            /** @default disabled */
+            dnssec_status: components["schemas"]["DnssecStatus"];
+            dns_provider: components["schemas"]["DnsProvider"];
+            /** Dns Zone Id */
+            dns_zone_id: number;
+            /**
+             * Rrsets
+             * @default []
+             */
+            rrsets: components["schemas"]["DnsRrset"][];
+        };
+        /** DnsZoneCreate */
+        DnsZoneCreate: {
+            /** Name */
+            name: string;
+            /** @default active */
+            status: components["schemas"]["DnsZoneStatus"];
+            /** @default disabled */
+            dnssec_status: components["schemas"]["DnssecStatus"];
+            /**
+             * Rrsets
+             * @default []
+             */
+            rrsets: components["schemas"]["DnsRrsetCreate"][];
+            dns_provider?: components["schemas"]["DnsProvider"] | null;
+        };
+        /**
+         * DnsZoneStatus
+         * @enum {string}
+         */
+        DnsZoneStatus: "pending" | "active" | "inactive" | "deleted";
+        /**
+         * DnssecStatus
+         * @enum {string}
+         */
+        DnssecStatus: "enabled" | "disabled";
+        /** DomainAvailabilityData */
+        DomainAvailabilityData: {
+            /** Domain */
+            domain: string;
+            /** Available */
+            available: boolean;
+        };
+        /** DomainsRequest */
+        DomainsRequest: {
+            /** Domains */
+            domains: string[];
+        };
         /** EmailForward */
         EmailForward: {
             /**
@@ -1448,6 +1686,165 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["OrganizationTokenResponse"] | components["schemas"]["UserTokenResponse"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_dns_check_domain_availability_v1_availability_dns_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainsRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainAvailabilityData"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_rdap_check_domain_availability_v1_availability_rdap_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainsRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainAvailabilityData"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_zone_v1_dns_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DnsZoneCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsChange"][] | null;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_zone_v1_dns__zone_name__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsZone"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_zone_v1_dns__zone_name__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
