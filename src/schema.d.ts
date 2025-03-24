@@ -158,6 +158,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/dns/{zone_name}/rrsets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update Zone */
+        put: operations["update_zone_v1_dns__zone_name__rrsets_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/email-forwards": {
         parameters: {
             query?: never;
@@ -463,11 +480,6 @@ export interface components {
              */
             api_key: string;
         };
-        /**
-         * AuditLogEntity
-         * @enum {string}
-         */
-        AuditLogEntity: "user" | "organization" | "system";
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
             /**
@@ -526,80 +538,47 @@ export interface components {
          * @enum {string}
          */
         Currency: "USD" | "EUR";
-        /** DnsChange */
-        DnsChange: {
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: string;
-            /**
-             * Changeset Id
-             * Format: uuid
-             */
-            changeset_id: string;
-            entity_type?: components["schemas"]["AuditLogEntity"] | null;
-            /** Entity Id */
-            entity_id?: string | null;
-            action: components["schemas"]["DnsChangeAction"];
-            /** Zone Name */
-            zone_name: string;
-            /** Rrset Name */
-            rrset_name?: string | null;
-            rrset_type?: components["schemas"]["DnsRrsetType"] | null;
-            /** Record Data */
-            record_data?: string | null;
-            /** Ttl */
-            ttl?: number | null;
-            /**
-             * Applied To Server
-             * @default false
-             */
-            applied_to_server: boolean;
-        };
         /**
          * DnsChangeAction
          * @enum {string}
          */
         DnsChangeAction: "create_zone" | "delete_zone" | "create_record" | "delete_record" | "enable_dnssec" | "disable_dnssec";
+        /** DnsChangeResponse */
+        DnsChangeResponse: {
+            action: components["schemas"]["DnsChangeAction"];
+            /** Rrset Name */
+            rrset_name: string | null;
+            rrset_type: components["schemas"]["DnsRrsetType"] | null;
+            /** Record Data */
+            record_data: string | null;
+            /** Ttl */
+            ttl: number | null;
+        };
+        /** DnsChangesResponse */
+        DnsChangesResponse: {
+            /** Zone Name */
+            zone_name: string;
+            /** Changeset Id */
+            changeset_id: string | null;
+            /** Num Changes */
+            num_changes: number;
+            /** Changes */
+            changes: components["schemas"]["DnsChangeResponse"][];
+        };
         /**
          * DnsProvider
          * @enum {string}
          */
         DnsProvider: "power_dns" | "rcode_zero";
-        /** DnsRecord */
-        DnsRecord: {
-            /** Rdata */
-            rdata: string;
-            /** Dns Rrset Id */
-            dns_rrset_id: number;
-            /** Dns Record Id */
-            dns_record_id: number;
-        };
         /** DnsRecordCreate */
         DnsRecordCreate: {
             /** Rdata */
             rdata: string;
         };
-        /** DnsRrset */
-        DnsRrset: {
-            /** Name */
-            name: string;
-            type: components["schemas"]["DnsRrsetType"];
-            /** Ttl */
-            ttl: number;
-            /** Dns Zone Id */
-            dns_zone_id: number;
-            /** Dns Rrset Id */
-            dns_rrset_id: number;
-            /** @default user_managed */
-            mutability: components["schemas"]["DnsRrsetMutability"];
-            /**
-             * Records
-             * @default []
-             */
-            records: components["schemas"]["DnsRecord"][];
+        /** DnsRecordResponse */
+        DnsRecordResponse: {
+            /** Rdata */
+            rdata: string;
         };
         /** DnsRrsetCreate */
         DnsRrsetCreate: {
@@ -614,59 +593,60 @@ export interface components {
              */
             records: components["schemas"]["DnsRecordCreate"][];
         };
-        /**
-         * DnsRrsetMutability
-         * @enum {string}
-         */
-        DnsRrsetMutability: "system_managed" | "user_managed" | "user_toggleable";
+        /** DnsRrsetResponse */
+        DnsRrsetResponse: {
+            /** Name */
+            name: string;
+            type: components["schemas"]["DnsRrsetType"];
+            /** Ttl */
+            ttl: number;
+            /**
+             * Records
+             * @default []
+             */
+            records: components["schemas"]["DnsRecordResponse"][];
+        };
         /**
          * DnsRrsetType
          * @enum {string}
          */
         DnsRrsetType: "A" | "AAAA" | "ALIAS" | "CAA" | "CNAME" | "DNSKEY" | "DS" | "MX" | "NS" | "PTR" | "TXT" | "SOA" | "SRV";
-        /** DnsZone */
-        DnsZone: {
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: string;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: string;
-            /** Name */
-            name: string;
-            /** @default active */
-            status: components["schemas"]["DnsZoneStatus"];
-            /** @default disabled */
-            dnssec_status: components["schemas"]["DnssecStatus"];
-            dns_provider: components["schemas"]["DnsProvider"];
-            /** Dns Zone Id */
-            dns_zone_id: number;
-            /**
-             * Rrsets
-             * @default []
-             */
-            rrsets: components["schemas"]["DnsRrset"][];
-        };
         /** DnsZoneCreate */
         DnsZoneCreate: {
-            /** Name */
-            name: string;
-            /** @default active */
-            status: components["schemas"]["DnsZoneStatus"];
-            /** @default disabled */
-            dnssec_status: components["schemas"]["DnssecStatus"];
             /**
              * Rrsets
              * @default []
              */
             rrsets: components["schemas"]["DnsRrsetCreate"][];
+            /** Name */
+            name: string;
+            /** @default active */
+            status: components["schemas"]["DnsZoneStatus"];
+            /** @default disabled */
+            dnssec_status: components["schemas"]["DnssecStatus"];
             dns_provider?: components["schemas"]["DnsProvider"] | null;
+        };
+        /** DnsZoneResponse */
+        DnsZoneResponse: {
+            /** Name */
+            name: string;
+            /** @default active */
+            status: components["schemas"]["DnsZoneStatus"];
+            /** @default disabled */
+            dnssec_status: components["schemas"]["DnssecStatus"];
+            /**
+             * Rrsets
+             * @default []
+             */
+            rrsets: components["schemas"]["DnsRrsetResponse"][];
+        };
+        /** DnsZoneRrsetsCreate */
+        DnsZoneRrsetsCreate: {
+            /**
+             * Rrsets
+             * @default []
+             */
+            rrsets: components["schemas"]["DnsRrsetCreate"][];
         };
         /**
          * DnsZoneStatus
@@ -1783,7 +1763,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DnsChange"][] | null;
+                    "application/json": components["schemas"]["DnsChangesResponse"] | null;
                 };
             };
             /** @description Validation Error */
@@ -1814,7 +1794,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DnsZone"];
+                    "application/json": components["schemas"]["DnsZoneResponse"];
                 };
             };
             /** @description Validation Error */
@@ -1845,6 +1825,41 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_zone_v1_dns__zone_name__rrsets_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DnsZoneRrsetsCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsChangesResponse"];
+                };
             };
             /** @description Validation Error */
             422: {
