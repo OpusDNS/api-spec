@@ -565,11 +565,6 @@ export interface components {
             /** Changes */
             changes: components["schemas"]["DnsChangeResponse"][];
         };
-        /**
-         * DnsProvider
-         * @enum {string}
-         */
-        DnsProvider: "power_dns" | "rcode_zero";
         /** DnsRecordCreate */
         DnsRecordCreate: {
             /** Rdata */
@@ -624,7 +619,6 @@ export interface components {
             status: components["schemas"]["DnsZoneStatus"];
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
-            dns_provider?: components["schemas"]["DnsProvider"] | null;
         };
         /** DnsZoneResponse */
         DnsZoneResponse: {
