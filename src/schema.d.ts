@@ -516,11 +516,8 @@ export interface components {
         };
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
-            /**
-             * Grant Type
-             * @description The grant type for the authentication request.
-             */
-            grant_type?: string | null;
+            /** @description The grant type for the authentication request. */
+            grant_type?: components["schemas"]["GrantType"];
             /**
              * Client Id
              * @description The Client ID associated with the credentials.
@@ -808,6 +805,11 @@ export interface components {
             /** @description Current status of the email forward rule */
             status?: components["schemas"]["EmailForwardStatus"] | null;
         };
+        /**
+         * GrantType
+         * @enum {string}
+         */
+        GrantType: "client_credentials" | "password" | "refresh_token";
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
