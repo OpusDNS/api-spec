@@ -647,8 +647,6 @@ export interface components {
             rrsets: components["schemas"]["DnsRrsetCreate"][];
             /** Name */
             name: string;
-            /** @default active */
-            status: components["schemas"]["DnsZoneStatus"];
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
         };
@@ -656,8 +654,6 @@ export interface components {
         DnsZoneResponse: {
             /** Name */
             name: string;
-            /** @default active */
-            status: components["schemas"]["DnsZoneStatus"];
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
             /**
@@ -674,11 +670,6 @@ export interface components {
              */
             rrsets: components["schemas"]["DnsRrsetCreate"][];
         };
-        /**
-         * DnsZoneStatus
-         * @enum {string}
-         */
-        DnsZoneStatus: "pending" | "active" | "inactive" | "deleted";
         /**
          * DnssecStatus
          * @enum {string}
