@@ -130,7 +130,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** List Zones */
+        get: operations["list_zones_v1_dns_get"];
         put?: never;
         /** Create Zone */
         post: operations["create_zone_v1_dns_post"];
@@ -1255,6 +1256,12 @@ export interface components {
             /** Has Previous Page */
             has_previous_page: boolean;
         };
+        /** Pagination[DnsZoneResponse] */
+        Pagination_DnsZoneResponse_: {
+            /** Results */
+            results: components["schemas"]["DnsZoneResponse"][];
+            pagination: components["schemas"]["PaginationMetadata"];
+        };
         /** Pagination[EmailForward] */
         Pagination_EmailForward_: {
             /** Results */
@@ -1610,7 +1617,10 @@ export interface operations {
     };
     logout_v1_auth_logout_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1624,11 +1634,23 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     issue_api_key_v1_auth_client_credentials_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1644,11 +1666,23 @@ export interface operations {
                     "application/json": components["schemas"]["APIKeyResponse"];
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     delete_api_key_v1_auth_client_credentials__api_key_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 api_key_id: string;
@@ -1677,7 +1711,10 @@ export interface operations {
     };
     signup_v1_auth_signup_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1710,7 +1747,10 @@ export interface operations {
     };
     bulk_dns_check_domain_availability_v1_availability_dns_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1743,7 +1783,10 @@ export interface operations {
     };
     bulk_rdap_check_domain_availability_v1_availability_rdap_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1774,9 +1817,44 @@ export interface operations {
             };
         };
     };
+    list_zones_v1_dns_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_DnsZoneResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     create_zone_v1_dns_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1809,7 +1887,10 @@ export interface operations {
     };
     get_zone_v1_dns__zone_name__get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -1840,7 +1921,10 @@ export interface operations {
     };
     delete_zone_v1_dns__zone_name__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -1869,7 +1953,10 @@ export interface operations {
     };
     update_zone_v1_dns__zone_name__rrsets_put: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -1904,7 +1991,10 @@ export interface operations {
     };
     enable_dnssec_v1_dns__zone_name__dnssec_enable_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -1935,7 +2025,10 @@ export interface operations {
     };
     disable_dnssec_v1_dns__zone_name__dnssec_disable_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -1973,6 +2066,8 @@ export interface operations {
                 source_address?: string | null;
                 /** @description Optional target address to filter the results */
                 target_address?: string | null;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -2002,7 +2097,10 @@ export interface operations {
     };
     create_email_forward_v1_email_forwards_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2035,7 +2133,10 @@ export interface operations {
     };
     get_email_forward_v1_email_forwards__email_forward_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 email_forward_id: string;
@@ -2066,7 +2167,10 @@ export interface operations {
     };
     delete_email_forward_v1_email_forwards__email_forward_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 email_forward_id: string;
@@ -2095,7 +2199,10 @@ export interface operations {
     };
     update_email_forward_v1_email_forwards__email_forward_id__patch: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 email_forward_id: string;
@@ -2130,7 +2237,10 @@ export interface operations {
     };
     bulk_update_email_forwards_v1_email_forwards_bulk_update_patch: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2163,7 +2273,10 @@ export interface operations {
     };
     bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2397,6 +2510,8 @@ export interface operations {
             query?: {
                 /** @description Optional status to filter the results */
                 status?: components["schemas"]["OrganizationStatus"] | null;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -2426,7 +2541,10 @@ export interface operations {
     };
     create_organization_v1_organizations_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2459,7 +2577,10 @@ export interface operations {
     };
     list_users_v1_organizations_users_get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2475,11 +2596,23 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_UserSchema_"];
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     get_organization_v1_organizations__organization_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 organization_id: string;
@@ -2510,7 +2643,10 @@ export interface operations {
     };
     delete_user_v1_organizations__organization_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 organization_id: string;
@@ -2539,7 +2675,10 @@ export interface operations {
     };
     update_organization_v1_organizations__organization_id__patch: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 organization_id: string;
@@ -2574,7 +2713,10 @@ export interface operations {
     };
     not_found_v1_rdap_host__name__get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2588,13 +2730,25 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
     };
     not_found_v1_rdap_contact__name__get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2608,13 +2762,25 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
     };
     not_found_v1_rdap_domain__name__get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2630,11 +2796,23 @@ export interface operations {
                     "application/json": unknown;
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     create_user_v1_users_post: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2667,7 +2845,10 @@ export interface operations {
     };
     get_current_user_v1_users_me_get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2683,11 +2864,23 @@ export interface operations {
                     "application/json": components["schemas"]["User"];
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     get_user_v1_users__user_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 user_id: string;
@@ -2718,7 +2911,10 @@ export interface operations {
     };
     delete_user_v1_users__user_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 user_id: string;
@@ -2747,7 +2943,10 @@ export interface operations {
     };
     update_user_v1_users__user_id__patch: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path: {
                 user_id: string;
