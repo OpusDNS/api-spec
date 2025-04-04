@@ -657,7 +657,7 @@ export interface components {
             /** Name */
             name: string;
             /** @default {} */
-            domain_parts: components["schemas"]["DomainParts"];
+            domain_parts: components["schemas"]["DomainNameParts"];
             /**
              * Rrsets
              * @default []
@@ -684,8 +684,8 @@ export interface components {
             /** Available */
             available: boolean;
         };
-        /** DomainParts */
-        DomainParts: {
+        /** DomainNameParts */
+        DomainNameParts: {
             /** Subdomain */
             subdomain?: string | null;
             /** Domain */
