@@ -645,17 +645,19 @@ export interface components {
              * @default []
              */
             rrsets: components["schemas"]["DnsRrsetCreate"][];
-            /** Name */
-            name: string;
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
+            /** Name */
+            name: string;
         };
         /** DnsZoneResponse */
         DnsZoneResponse: {
-            /** Name */
-            name: string;
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
+            /** Name */
+            name: string;
+            /** @default {} */
+            domain_parts: components["schemas"]["DomainParts"];
             /**
              * Rrsets
              * @default []
@@ -681,6 +683,15 @@ export interface components {
             domain: string;
             /** Available */
             available: boolean;
+        };
+        /** DomainParts */
+        DomainParts: {
+            /** Subdomain */
+            subdomain?: string | null;
+            /** Domain */
+            domain?: string | null;
+            /** Suffix */
+            suffix?: string | null;
         };
         /** DomainsRequest */
         DomainsRequest: {
@@ -1774,7 +1785,10 @@ export interface operations {
     };
     list_zones_v1_dns_get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1788,6 +1802,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_DnsZoneResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
