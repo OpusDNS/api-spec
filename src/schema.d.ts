@@ -1929,7 +1929,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DnsChangesResponse"];
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
