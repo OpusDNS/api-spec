@@ -681,9 +681,14 @@ export interface components {
         DomainAvailabilityData: {
             /** Domain */
             domain: string;
-            /** Available */
-            available: boolean;
+            available: components["schemas"]["DomainAvailabilityStatus"];
+            error?: components["schemas"]["ErrorResponse"] | null;
         };
+        /**
+         * DomainAvailabilityStatus
+         * @enum {string}
+         */
+        DomainAvailabilityStatus: "available" | "unavailable" | "error";
         /** DomainNameParts */
         DomainNameParts: {
             /** Subdomain */
@@ -807,6 +812,15 @@ export interface components {
             target_address?: string | null;
             /** @description Current status of the email forward rule */
             status?: components["schemas"]["EmailForwardStatus"] | null;
+        };
+        /** ErrorResponse */
+        ErrorResponse: {
+            /** Error Type */
+            error_type: string;
+            /** Message */
+            message?: string | null;
+            /** Details */
+            details?: string | null;
         };
         /**
          * GrantType
