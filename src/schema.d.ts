@@ -832,6 +832,7 @@ export interface components {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
+        JsonValue: unknown;
         /** Notification */
         Notification: {
             /**
@@ -1579,6 +1580,69 @@ export interface components {
              * @description The user's locale
              */
             locale?: string | null;
+        };
+        /** UserWithAttributes */
+        UserWithAttributes: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
+            /**
+             * First Name
+             * @description The user's first name
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The user's last name
+             */
+            last_name: string;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
+            /**
+             * Phone
+             * @description The user's phone number
+             */
+            phone?: string | null;
+            /**
+             * @description The user's status
+             * @default active
+             */
+            status: components["schemas"]["UserStatus"];
+            /**
+             * Locale
+             * @description The locale
+             */
+            locale: string;
+            /**
+             * Organization Id
+             * @description The user's organization id
+             * @default None
+             */
+            organization_id: string;
+            /** User Id */
+            user_id?: string;
+            /** User Attributes */
+            user_attributes?: {
+                [key: string]: components["schemas"]["JsonValue"];
+            } | null;
         };
         /** ValidationError */
         ValidationError: {
@@ -2722,7 +2786,9 @@ export interface operations {
     };
     get_current_user_v1_users_me_get: {
         parameters: {
-            query?: never;
+            query?: {
+                attributes?: string[] | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2735,14 +2801,25 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["User"];
+                    "application/json": components["schemas"]["UserWithAttributes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
     };
     get_user_v1_users__user_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                attributes?: string[] | null;
+            };
             header?: never;
             path: {
                 user_id: string;
