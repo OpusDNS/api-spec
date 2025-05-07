@@ -2837,7 +2837,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["User"];
+                    "application/json": components["schemas"]["UserWithAttributes"];
                 };
             };
             /** @description Validation Error */
