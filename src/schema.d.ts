@@ -1369,6 +1369,16 @@ export interface components {
             /** User Id */
             user_id?: string;
         };
+        /** UserAttributeUpdate */
+        UserAttributeUpdate: {
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+        };
         /** UserCreate */
         UserCreate: {
             /**
@@ -1580,6 +1590,11 @@ export interface components {
              * @description The user's locale
              */
             locale?: string | null;
+            /**
+             * User Attributes
+             * @description User attributes
+             */
+            user_attributes?: components["schemas"]["UserAttributeUpdate"][] | null;
         };
         /** UserWithAttributes */
         UserWithAttributes: {
@@ -2901,7 +2916,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["User"];
+                    "application/json": components["schemas"]["UserWithAttributes"];
                 };
             };
             /** @description Validation Error */
