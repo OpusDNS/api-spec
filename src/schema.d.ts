@@ -1639,10 +1639,13 @@ export interface components {
             organization_id: string;
             /** User Id */
             user_id?: string;
-            /** User Attributes */
-            user_attributes?: {
+            /**
+             * User Attributes List
+             * @default {}
+             */
+            user_attributes_list: {
                 [key: string]: components["schemas"]["JsonValue"];
-            } | null;
+            };
         };
         /** ValidationError */
         ValidationError: {
