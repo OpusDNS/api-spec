@@ -1640,10 +1640,10 @@ export interface components {
             /** User Id */
             user_id?: string;
             /**
-             * User Attributes List
+             * User Attributes
              * @default {}
              */
-            user_attributes_list: {
+            user_attributes: {
                 [key: string]: components["schemas"]["JsonValue"];
             };
         };
