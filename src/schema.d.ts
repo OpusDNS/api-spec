@@ -1555,6 +1555,8 @@ export interface components {
             expires_in: number;
             /** Refresh Token */
             refresh_token: string;
+            /** Refresh Expires In */
+            refresh_expires_in: number;
         };
         /** UserUpdate */
         UserUpdate: {
