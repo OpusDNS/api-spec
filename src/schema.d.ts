@@ -370,6 +370,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/organizations/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Roles */
+        get: operations["list_roles_v1_organizations_roles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations/{organization_id}": {
         parameters: {
             query?: never;
@@ -387,6 +404,42 @@ export interface paths {
         head?: never;
         /** Update Organization */
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
+        trace?: never;
+    };
+    "/v1/organizations/roles/{user_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List User Roles */
+        get: operations["list_user_roles_v1_organizations_roles__user_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update User Relations */
+        patch: operations["update_user_relations_v1_organizations_roles__user_id__patch"];
+        trace?: never;
+    };
+    "/v1/organizations/roles/{organization_id}/{user_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List User Roles For Org */
+        get: operations["list_user_roles_for_org_v1_organizations_roles__organization_id___user_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update User Org Relations */
+        patch: operations["update_user_org_relations_v1_organizations_roles__organization_id___user_id__patch"];
         trace?: never;
     };
     "/v1/rdap/host/{name}": {
@@ -457,6 +510,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/users/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Roles */
+        get: operations["list_roles_v1_users_roles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/users/me": {
         parameters: {
             query?: never;
@@ -468,6 +538,23 @@ export interface paths {
         get: operations["get_current_user_v1_users_me_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/users/accept-tos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Tos Sign */
+        post: operations["tos_sign_v1_users_accept_tos_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1309,6 +1396,24 @@ export interface components {
             user: components["schemas"]["UserCreate"];
             /** @description Organization signup. */
             organization: components["schemas"]["OrganizationCreate"];
+        };
+        /** SpiceDbRelationshipUpdate */
+        SpiceDbRelationshipUpdate: {
+            /**
+             * Add
+             * @default []
+             */
+            add: string[];
+            /**
+             * Remove
+             * @default []
+             */
+            remove: string[];
+        };
+        /** TermsOfServiceAccept */
+        TermsOfServiceAccept: {
+            /** Accepted */
+            accepted: boolean;
         };
         /** User */
         User: {
@@ -2536,6 +2641,8 @@ export interface operations {
             query?: {
                 /** @description Optional status to filter the results */
                 status?: components["schemas"]["OrganizationStatus"] | null;
+                user_id?: string | null;
+                organization_id?: string | null;
             };
             header?: never;
             path?: never;
@@ -2565,7 +2672,10 @@ export interface operations {
     };
     create_organization_v1_organizations_post: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2598,7 +2708,10 @@ export interface operations {
     };
     list_users_v1_organizations_users_get: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2614,14 +2727,57 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_UserSchema_"];
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_roles_v1_organizations_roles_get: {
+        parameters: {
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     get_organization_v1_organizations__organization_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+            };
             header?: never;
             path: {
-                organization_id: string;
+                organization_id: string | null;
             };
             cookie?: never;
         };
@@ -2649,10 +2805,12 @@ export interface operations {
     };
     delete_user_v1_organizations__organization_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+            };
             header?: never;
             path: {
-                organization_id: string;
+                organization_id: string | null;
             };
             cookie?: never;
         };
@@ -2678,10 +2836,12 @@ export interface operations {
     };
     update_organization_v1_organizations__organization_id__patch: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+            };
             header?: never;
             path: {
-                organization_id: string;
+                organization_id: string | null;
             };
             cookie?: never;
         };
@@ -2698,6 +2858,144 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_user_roles_v1_organizations_roles__user_id__get: {
+        parameters: {
+            query?: {
+                organization_id?: string | null;
+            };
+            header?: never;
+            path: {
+                user_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_user_relations_v1_organizations_roles__user_id__patch: {
+        parameters: {
+            query?: {
+                organization_id?: string | null;
+            };
+            header?: never;
+            path: {
+                user_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_user_roles_for_org_v1_organizations_roles__organization_id___user_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string | null;
+                user_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_user_org_relations_v1_organizations_roles__organization_id___user_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string | null;
+                user_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
@@ -2773,7 +3071,10 @@ export interface operations {
     };
     create_user_v1_users_post: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2804,10 +3105,44 @@ export interface operations {
             };
         };
     };
+    list_roles_v1_users_roles_get: {
+        parameters: {
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_current_user_v1_users_me_get: {
         parameters: {
             query?: {
                 attributes?: string[] | null;
+                user_id?: string | null;
+                organization_id?: string | null;
             };
             header?: never;
             path?: never;
@@ -2823,6 +3158,40 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["UserWithAttributes"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    tos_sign_v1_users_accept_tos_post: {
+        parameters: {
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TermsOfServiceAccept"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
@@ -2870,10 +3239,12 @@ export interface operations {
     };
     delete_user_v1_users__user_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                organization_id?: string | null;
+            };
             header?: never;
             path: {
-                user_id: string;
+                user_id: string | null;
             };
             cookie?: never;
         };
@@ -2899,10 +3270,12 @@ export interface operations {
     };
     update_user_v1_users__user_id__patch: {
         parameters: {
-            query?: never;
+            query?: {
+                organization_id?: string | null;
+            };
             header?: never;
             path: {
-                user_id: string;
+                user_id: string | null;
             };
             cookie?: never;
         };
