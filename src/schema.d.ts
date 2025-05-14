@@ -584,31 +584,13 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** APIKeyResponse */
-        APIKeyResponse: {
-            /**
-             * Organization Id
-             * @description The organization ID associated with the API Key.
-             */
-            organization_id: string;
-            /**
-             * Api Key Id
-             * @description The unique identifier of the API key.
-             */
-            api_key_id: string;
-            /**
-             * Api Key
-             * @description The plaintext API key for the organization.
-             */
-            api_key: string;
-        };
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
             /** @description The grant type for the authentication request. */
             grant_type?: components["schemas"]["GrantType"];
             /**
              * Client Id
-             * @description The Client ID associated with the credentials.
+             * @description The organization ID associated with the credentials.
              */
             client_id?: string | null;
             /**
@@ -1264,6 +1246,45 @@ export interface components {
              */
             users: components["schemas"]["UserCreate"][];
         };
+        /** OrganizationCredentialCreated */
+        OrganizationCredentialCreated: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /**
+             * Client Id
+             * @default None
+             */
+            client_id: string;
+            /**
+             * Api Key
+             * @description Unique identifier of the organization credential.
+             */
+            api_key: string;
+            /**
+             * @description Status of the organization credential.
+             * @default active
+             */
+            status: components["schemas"]["OrganizationCredentialStatus"];
+            /**
+             * Last Used On
+             * @description Timestamp of the last usage.
+             */
+            last_used_on?: string | null;
+            /**
+             * Client Secret
+             * @description Plaintext secret to be hashed (not stored directly in the DB).
+             */
+            client_secret?: string | null;
+        };
+        /**
+         * OrganizationCredentialStatus
+         * @enum {string}
+         */
+        OrganizationCredentialStatus: "active" | "revoked";
         /**
          * OrganizationStatus
          * @enum {string}
@@ -1853,7 +1874,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["APIKeyResponse"];
+                    "application/json": components["schemas"]["OrganizationCredentialCreated"];
                 };
             };
         };
