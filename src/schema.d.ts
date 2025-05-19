@@ -1249,6 +1249,16 @@ export interface components {
         /** OrganizationCredentialCreated */
         OrganizationCredentialCreated: {
             /**
+             * Api Key Name
+             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+             */
+            api_key_name?: string | null;
+            /**
+             * Api Key Description
+             * @description Description of the organization credential.
+             */
+            api_key_description?: string | null;
+            /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
@@ -1279,6 +1289,24 @@ export interface components {
              * @description Plaintext secret to be hashed (not stored directly in the DB).
              */
             client_secret?: string | null;
+        };
+        /** OrganizationCredentialExtra */
+        OrganizationCredentialExtra: {
+            /**
+             * Api Key Name
+             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+             */
+            api_key_name?: string | null;
+            /**
+             * Api Key Description
+             * @description Description of the organization credential.
+             */
+            api_key_description?: string | null;
+            /**
+             * Expires At
+             * @description The date and time the credential expiration.
+             */
+            expires_at?: string | null;
         };
         /**
          * OrganizationCredentialStatus
@@ -1822,7 +1850,11 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationCredentialExtra"];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -1831,6 +1863,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OrganizationCredentialCreated"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
