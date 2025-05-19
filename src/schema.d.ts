@@ -1845,7 +1845,10 @@ export interface operations {
     };
     issue_api_key_v1_auth_client_credentials_post: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -3222,10 +3225,11 @@ export interface operations {
         parameters: {
             query?: {
                 attributes?: string[] | null;
+                organization_id?: string | null;
             };
             header?: never;
             path: {
-                user_id: string;
+                user_id: string | null;
             };
             cookie?: never;
         };
