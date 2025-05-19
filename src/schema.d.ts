@@ -1405,10 +1405,10 @@ export interface components {
             results: components["schemas"]["UserNotificationSummary"][];
             pagination: components["schemas"]["PaginationMetadata"];
         };
-        /** Pagination[UserSchema] */
-        Pagination_UserSchema_: {
+        /** Pagination[User] */
+        Pagination_User_: {
             /** Results */
-            results: components["schemas"]["UserSchema"][];
+            results: components["schemas"]["User"][];
             pagination: components["schemas"]["PaginationMetadata"];
         };
         /** SignupCreate */
@@ -1598,70 +1598,6 @@ export interface components {
              */
             status: components["schemas"]["UserNotificationStatus"];
             notification: components["schemas"]["NotificationSummary"];
-        };
-        /** UserSchema */
-        UserSchema: {
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: string;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: string;
-            /**
-             * Username
-             * @description The user's unique username
-             */
-            username: string;
-            /**
-             * First Name
-             * @description The user's first name
-             */
-            first_name: string;
-            /**
-             * Last Name
-             * @description The user's last name
-             */
-            last_name: string;
-            /**
-             * Email
-             * Format: email
-             * @description The user's email address
-             */
-            email: string;
-            /**
-             * Phone
-             * @description The user's phone number
-             */
-            phone?: string | null;
-            /**
-             * @description The user's status
-             * @default active
-             */
-            status: components["schemas"]["UserStatus"];
-            /**
-             * Locale
-             * @description The locale
-             */
-            locale: string;
-            /**
-             * Organization Id
-             * @description The user's organization id
-             * @default None
-             */
-            organization_id: string;
-            /** User Id */
-            user_id?: string;
-            /**
-             * Password Hash
-             * @description Password hash
-             */
-            password_hash: string;
         };
         /**
          * UserStatus
@@ -2761,7 +2697,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_UserSchema_"];
+                    "application/json": components["schemas"]["Pagination_User_"];
                 };
             };
             /** @description Validation Error */
