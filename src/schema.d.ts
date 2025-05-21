@@ -45,7 +45,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** List Api Keys */
+        get: operations["list_api_keys_v1_auth_client_credentials_get"];
         put?: never;
         /** Issue Api Key */
         post: operations["issue_api_key_v1_auth_client_credentials_post"];
@@ -1838,6 +1839,42 @@ export interface components {
              */
             users: components["schemas"]["UserCreate"][];
         };
+        /** OrganizationCredential */
+        OrganizationCredential: {
+            /**
+             * Api Key Name
+             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+             */
+            api_key_name?: string | null;
+            /**
+             * Api Key Description
+             * @description Description of the organization credential.
+             */
+            api_key_description?: string | null;
+            /**
+             * Last Used On
+             * @description The date/time the entry was deleted on
+             */
+            last_used_on?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /**
+             * Organization Id
+             * @default None
+             */
+            organization_id: string;
+            /**
+             * Api Key Id
+             * @description Unique identifier of the organization credential.
+             */
+            api_key_id: string;
+            /** @description The status of the organization credential. */
+            readonly status: components["schemas"]["OrganizationCredentialStatus"];
+        };
         /** OrganizationCredentialCreated */
         OrganizationCredentialCreated: {
             /**
@@ -1850,6 +1887,11 @@ export interface components {
              * @description Description of the organization credential.
              */
             api_key_description?: string | null;
+            /**
+             * Last Used On
+             * @description The date/time the entry was deleted on
+             */
+            last_used_on?: string | null;
             /**
              * Created On
              * Format: date-time
@@ -1867,20 +1909,12 @@ export interface components {
              */
             api_key: string;
             /**
-             * @description Status of the organization credential.
-             * @default active
-             */
-            status: components["schemas"]["OrganizationCredentialStatus"];
-            /**
-             * Last Used On
-             * @description Timestamp of the last usage.
-             */
-            last_used_on?: string | null;
-            /**
              * Client Secret
              * @description Plaintext secret to be hashed (not stored directly in the DB).
              */
             client_secret?: string | null;
+            /** @description The status of the organization credential. */
+            readonly status: components["schemas"]["OrganizationCredentialStatus"];
         };
         /** OrganizationCredentialExtra */
         OrganizationCredentialExtra: {
@@ -2017,6 +2051,12 @@ export interface components {
         Pagination_EmailForward_: {
             /** Results */
             results: components["schemas"]["EmailForward"][];
+            pagination: components["schemas"]["PaginationMetadata"];
+        };
+        /** Pagination[OrganizationCredential] */
+        Pagination_OrganizationCredential_: {
+            /** Results */
+            results: components["schemas"]["OrganizationCredential"][];
             pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[Organization] */
@@ -2443,6 +2483,40 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    list_api_keys_v1_auth_client_credentials_get: {
+        parameters: {
+            query?: {
+                /** @description Optional status to filter the results */
+                status?: components["schemas"]["OrganizationCredentialStatus"] | null;
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_OrganizationCredential_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
             };
         };
     };
