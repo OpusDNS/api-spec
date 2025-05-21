@@ -580,6 +580,290 @@ export interface paths {
         patch: operations["update_user_v1_users__user_id__patch"];
         trace?: never;
     };
+    "/v1/domains": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Domains */
+        get: operations["get_domains_v1_domains_get"];
+        put?: never;
+        /** Create Domain */
+        post: operations["create_domain_v1_domains_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/batch": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Batch Create Domains */
+        post: operations["batch_create_domains_v1_domains_batch_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Batch Update Domains */
+        patch: operations["batch_update_domains_v1_domains_batch_patch"];
+        trace?: never;
+    };
+    "/v1/domains/{domain}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Domain */
+        get: operations["get_domain_v1_domains__domain__get"];
+        put?: never;
+        post?: never;
+        /** Delete Domain */
+        delete: operations["delete_domain_v1_domains__domain__delete"];
+        options?: never;
+        head?: never;
+        /** Update Domain */
+        patch: operations["update_domain_v1_domains__domain__patch"];
+        trace?: never;
+    };
+    "/v1/domains/renew/batch": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Batch Renew Domains */
+        post: operations["batch_renew_domains_v1_domains_renew_batch_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/transfer/batch": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Batch Transfer Domains */
+        post: operations["batch_transfer_domains_v1_domains_transfer_batch_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/restore/batch": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Batch Restore Domains */
+        post: operations["batch_restore_domains_v1_domains_restore_batch_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/push/batch": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Batch Push Domains */
+        post: operations["batch_push_domains_v1_domains_push_batch_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_name}/renew": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Renew Domain */
+        post: operations["renew_domain_v1_domains__domain_name__renew_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_name}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore Domain */
+        post: operations["restore_domain_v1_domains__domain_name__restore_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_name}/transfer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Transfer Domain */
+        get: operations["transfer_domain_v1_domains__domain_name__transfer_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_name}/push": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Push Domain */
+        post: operations["push_domain_v1_domains__domain_name__push_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_name}/dnssec": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Dnssec */
+        get: operations["get_dnssec_v1_domains__domain_name__dnssec_get"];
+        /** Create Or Update Dnssec */
+        put: operations["create_or_update_dnssec_v1_domains__domain_name__dnssec_put"];
+        post?: never;
+        /** Delete Dnssec */
+        delete: operations["delete_dnssec_v1_domains__domain_name__dnssec_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/system-status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get System Status */
+        get: operations["get_system_status_v1_domains_system_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Contacts */
+        get: operations["get_contacts_v1_contacts_get"];
+        put?: never;
+        /** Create Contact */
+        post: operations["create_contact_v1_contacts_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/{contact_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Contact */
+        get: operations["get_contact_v1_contacts__contact_id__get"];
+        /** Update Contact */
+        put: operations["update_contact_v1_contacts__contact_id__put"];
+        post?: never;
+        /** Delete Contact */
+        delete: operations["delete_contact_v1_contacts__contact_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/{contact_id}/verification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Contact Verification Status */
+        get: operations["get_contact_verification_status_v1_contacts__contact_id__verification_get"];
+        /** Verify Contact */
+        put: operations["verify_contact_v1_contacts__contact_id__verification_put"];
+        /** Init Contact Verification */
+        post: operations["init_contact_verification_v1_contacts__contact_id__verification_post"];
+        /** Delete Contact Verification */
+        delete: operations["delete_contact_verification_v1_contacts__contact_id__verification_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -634,6 +918,245 @@ export interface components {
          * @enum {string}
          */
         BulkOperationStatus: "success" | "failed";
+        /** ContactCreate */
+        ContactCreate: {
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title: string | null;
+            /**
+             * First Name
+             * @description The first name of the contact
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The last name of the contact
+             */
+            last_name: string;
+            /**
+             * Org
+             * @description The organization of the contact
+             */
+            org: string | null;
+            /**
+             * Email
+             * Format: email
+             * @description The email of the contact
+             */
+            email: string;
+            /**
+             * Phone
+             * Format: phone
+             * @description The phone number of the contact
+             */
+            phone: string;
+            /**
+             * Fax
+             * @description The fax number of the contact
+             */
+            fax: string | null;
+            /**
+             * Street
+             * @description The address of the contact
+             */
+            street: string;
+            /**
+             * City
+             * @description The city of the contact
+             */
+            city: string;
+            /**
+             * State
+             * @description The state of the contact
+             */
+            state: string | null;
+            /**
+             * Postal Code
+             * @description The postal code of the contact
+             */
+            postal_code: string;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country: string;
+        };
+        /** ContactSchema */
+        ContactSchema: {
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title: string | null;
+            /**
+             * First Name
+             * @description The first name of the contact
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The last name of the contact
+             */
+            last_name: string;
+            /**
+             * Org
+             * @description The organization of the contact
+             */
+            org: string | null;
+            /**
+             * Email
+             * Format: email
+             * @description The email of the contact
+             */
+            email: string;
+            /**
+             * Phone
+             * Format: phone
+             * @description The phone number of the contact
+             */
+            phone: string;
+            /**
+             * Fax
+             * @description The fax number of the contact
+             */
+            fax: string | null;
+            /**
+             * Street
+             * @description The address of the contact
+             */
+            street: string;
+            /**
+             * City
+             * @description The city of the contact
+             */
+            city: string;
+            /**
+             * State
+             * @description The state of the contact
+             */
+            state: string | null;
+            /**
+             * Postal Code
+             * @description The postal code of the contact
+             */
+            postal_code: string;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country: string;
+            /** Contact Id */
+            contact_id?: string;
+            /**
+             * Organization Id
+             * @description The organization that owns the domain
+             * @default None
+             */
+            organization_id: string;
+        };
+        /** ContactUpdate */
+        ContactUpdate: {
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title?: string | null;
+            /**
+             * First Name
+             * @description The first name of the contact
+             */
+            first_name?: string | null;
+            /**
+             * Last Name
+             * @description The last name of the contact
+             */
+            last_name?: string | null;
+            /**
+             * Org
+             * @description The organization of the contact
+             */
+            org?: string | null;
+            /**
+             * Email
+             * @description The email of the contact
+             */
+            email?: string | null;
+            /**
+             * Phone
+             * @description The phone number of the contact
+             */
+            phone?: string | null;
+            /**
+             * Fax
+             * @description The fax number of the contact
+             */
+            fax?: string | null;
+            /**
+             * Street
+             * @description The address of the contact
+             */
+            street?: string | null;
+            /**
+             * City
+             * @description The city of the contact
+             */
+            city?: string | null;
+            /**
+             * State
+             * @description The state of the contact
+             */
+            state?: string | null;
+            /**
+             * Postal Code
+             * @description The postal code of the contact
+             */
+            postal_code?: string | null;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country?: string | null;
+        };
+        /** ContactVerificationResponse */
+        ContactVerificationResponse: {
+            /**
+             * Contact Id
+             * @description The id of the contact being verified
+             */
+            contact_id: string;
+            /** @description The status of the verification */
+            status: components["schemas"]["ContactVerificationStatus"];
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date the verification was created
+             */
+            created_on: string;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date the verification was updated
+             */
+            updated_on: string;
+        };
+        /**
+         * ContactVerificationStatus
+         * @enum {string}
+         */
+        ContactVerificationStatus: "pending" | "verified" | "canceled";
         /**
          * Currency
          * @enum {string}
@@ -766,6 +1289,75 @@ export interface components {
             domain?: string | null;
             /** Suffix */
             suffix?: string | null;
+        };
+        /** DomainResponse */
+        DomainResponse: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /**
+             * Sld
+             * @description The subdomain of the domain
+             */
+            sld: string;
+            /**
+             * Tld
+             * @description The top level domain of the domain
+             */
+            tld: string;
+            /**
+             * Ro Id
+             * @description The registry object id of the domain
+             */
+            ro_id: string;
+            /** @description The renewal mode of the domain */
+            renewal_mode?: components["schemas"]["RenewalMode"];
+            /**
+             * Auth Code
+             * @description The auth code for the domain
+             */
+            auth_code: string;
+            /**
+             * Auth Code Expires On
+             * Format: date-time
+             * @description When the auth code expires
+             */
+            auth_code_expires_on: string;
+            /**
+             * Transfer Lock
+             * @description Whether the domain is locked for transfer
+             * @default false
+             */
+            transfer_lock: boolean;
+            /**
+             * Expires On
+             * Format: date-time
+             * @description When the domain expires
+             */
+            expires_on: string;
+            /**
+             * Created Registry
+             * Format: date-time
+             * @description When the domain was registered
+             */
+            created_registry: string;
+            /** Domain Id */
+            domain_id?: string;
+            /**
+             * Owner Id
+             * @description The organization that owns the domain
+             * @default None
+             */
+            owner_id: string;
         };
         /** DomainsRequest */
         DomainsRequest: {
@@ -1409,6 +2001,12 @@ export interface components {
             /** Has Previous Page */
             has_previous_page: boolean;
         };
+        /** Pagination[ContactSchema] */
+        Pagination_ContactSchema_: {
+            /** Results */
+            results: components["schemas"]["ContactSchema"][];
+            pagination: components["schemas"]["PaginationMetadata"];
+        };
         /** Pagination[DnsZoneResponse] */
         Pagination_DnsZoneResponse_: {
             /** Results */
@@ -1439,6 +2037,11 @@ export interface components {
             results: components["schemas"]["User"][];
             pagination: components["schemas"]["PaginationMetadata"];
         };
+        /**
+         * RenewalMode
+         * @enum {integer}
+         */
+        RenewalMode: 1 | 2 | 3;
         /** SignupCreate */
         SignupCreate: {
             /** @description User signup to platform. */
@@ -3310,6 +3913,813 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UserWithAttributes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_domains_v1_domains_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    create_domain_v1_domains_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    batch_create_domains_v1_domains_batch_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    batch_update_domains_v1_domains_batch_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    get_domain_v1_domains__domain__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_domain_v1_domains__domain__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_domain_v1_domains__domain__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    batch_renew_domains_v1_domains_renew_batch_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    batch_transfer_domains_v1_domains_transfer_batch_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    batch_restore_domains_v1_domains_restore_batch_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    batch_push_domains_v1_domains_push_batch_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    renew_domain_v1_domains__domain_name__renew_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restore_domain_v1_domains__domain_name__restore_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    transfer_domain_v1_domains__domain_name__transfer_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    push_domain_v1_domains__domain_name__push_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_dnssec_v1_domains__domain_name__dnssec_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_or_update_dnssec_v1_domains__domain_name__dnssec_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_dnssec_v1_domains__domain_name__dnssec_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_system_status_v1_domains_system_status_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    get_contacts_v1_contacts_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_ContactSchema_"];
+                };
+            };
+        };
+    };
+    create_contact_v1_contacts_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactSchema"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_contact_v1_contacts__contact_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactSchema"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_contact_v1_contacts__contact_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactSchema"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_contact_v1_contacts__contact_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_contact_verification_status_v1_contacts__contact_id__verification_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactVerificationResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    verify_contact_v1_contacts__contact_id__verification_put: {
+        parameters: {
+            query: {
+                verification_token: string;
+            };
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    init_contact_verification_v1_contacts__contact_id__verification_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactVerificationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_contact_verification_v1_contacts__contact_id__verification_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
