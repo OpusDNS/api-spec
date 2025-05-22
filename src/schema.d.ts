@@ -1852,6 +1852,11 @@ export interface components {
              */
             api_key_description?: string | null;
             /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: string | null;
+            /**
              * Last Used On
              * @description The date/time the entry was deleted on
              */
@@ -1887,6 +1892,11 @@ export interface components {
              * @description Description of the organization credential.
              */
             api_key_description?: string | null;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: string | null;
             /**
              * Last Used On
              * @description The date/time the entry was deleted on
