@@ -371,6 +371,42 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/organizations/attributes/{organization_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Attributes */
+        get: operations["get_attributes_v1_organizations_attributes__organization_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Attributes */
+        patch: operations["update_attributes_v1_organizations_attributes__organization_id__patch"];
+        trace?: never;
+    };
+    "/v1/organizations/attributes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Attributes */
+        get: operations["get_attributes_v1_organizations_attributes_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Attributes */
+        patch: operations["update_attributes_v1_organizations_attributes_patch"];
+        trace?: never;
+    };
     "/v1/organizations/roles": {
         parameters: {
             query?: never;
@@ -1762,6 +1798,121 @@ export interface components {
              * @default []
              */
             users: components["schemas"]["User"][];
+            /**
+             * Attributes
+             * @default []
+             */
+            attributes: components["schemas"]["OrganizationAttribute"][];
+        };
+        /** OrganizationAttribute */
+        OrganizationAttribute: {
+            /**
+             * Private
+             * @description When true, the attribute is private and not visible to users.
+             * @default false
+             */
+            private: boolean;
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /** Organization Attribute Id */
+            organization_attribute_id: number;
+        };
+        /** OrganizationAttributeCreate */
+        OrganizationAttributeCreate: {
+            /**
+             * Private
+             * @description When true, the attribute is private and not visible to users.
+             * @default false
+             */
+            private: boolean;
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
+        };
+        /** OrganizationAttributeResponse */
+        OrganizationAttributeResponse: {
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: string;
+            /** Organization Attribute Id */
+            organization_attribute_id: number;
+        };
+        /** OrganizationAttributeUpdate */
+        OrganizationAttributeUpdate: {
+            /**
+             * Private
+             * @description When true, the attribute is private and not visible to users.
+             * @default false
+             */
+            private: boolean;
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
         };
         /** OrganizationCreate */
         OrganizationCreate: {
@@ -1838,6 +1989,12 @@ export interface components {
              * @default []
              */
             users: components["schemas"]["UserCreate"][];
+            /**
+             * Attributes
+             * @description List of attributes for the organization.
+             * @default []
+             */
+            attributes: components["schemas"]["OrganizationAttributeCreate"][];
         };
         /** OrganizationCredential */
         OrganizationCredential: {
@@ -3429,6 +3586,148 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_User_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_attributes_v1_organizations_attributes__organization_id__get: {
+        parameters: {
+            query?: {
+                /** @description Optional list of attribute keys to filter */
+                keys?: string[] | null;
+                user_id?: string | null;
+            };
+            header?: never;
+            path: {
+                organization_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_attributes_v1_organizations_attributes__organization_id__patch: {
+        parameters: {
+            query?: {
+                user_id?: string | null;
+            };
+            header?: never;
+            path: {
+                organization_id: string | null;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationAttributeUpdate"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_attributes_v1_organizations_attributes_get: {
+        parameters: {
+            query?: {
+                organization_id?: string | null;
+                /** @description Optional list of attribute keys to filter */
+                keys?: string[] | null;
+                user_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_attributes_v1_organizations_attributes_patch: {
+        parameters: {
+            query?: {
+                organization_id?: string | null;
+                user_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationAttributeUpdate"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
                 };
             };
             /** @description Validation Error */
