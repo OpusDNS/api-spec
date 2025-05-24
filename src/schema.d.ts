@@ -2245,6 +2245,11 @@ export interface components {
             pagination: components["schemas"]["PaginationMetadata"];
         };
         /**
+         * Relation
+         * @enum {string}
+         */
+        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "domain_manager" | "email_forward_manager" | "member" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "self" | "special_relation";
+        /**
          * RenewalMode
          * @enum {integer}
          */
@@ -2256,18 +2261,18 @@ export interface components {
             /** @description Organization signup. */
             organization: components["schemas"]["OrganizationCreate"];
         };
+        /** SpiceDbRelationSet */
+        SpiceDbRelationSet: {
+            /**
+             * Relation Set
+             * @default []
+             */
+            relation_set: components["schemas"]["Relation"][];
+        };
         /** SpiceDbRelationshipUpdate */
         SpiceDbRelationshipUpdate: {
-            /**
-             * Add
-             * @default []
-             */
-            add: string[];
-            /**
-             * Remove
-             * @default []
-             */
-            remove: string[];
+            add: components["schemas"]["SpiceDbRelationSet"];
+            remove: components["schemas"]["SpiceDbRelationSet"];
         };
         /** TermsOfServiceAccept */
         TermsOfServiceAccept: {
