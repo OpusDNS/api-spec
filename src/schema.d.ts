@@ -1730,7 +1730,7 @@ export interface components {
              * Address 1
              * @description First line of the organization's address.
              */
-            address_1: string;
+            address_1?: string | null;
             /**
              * Address 2
              * @description Second line of the organization's address.
@@ -1740,7 +1740,7 @@ export interface components {
              * City
              * @description City of the organization's address.
              */
-            city: string;
+            city?: string | null;
             /**
              * State Or Province
              * @description State or province of the organization's address.
@@ -1755,7 +1755,7 @@ export interface components {
              * Country Code
              * @description ISO 3166-1 alpha-2 country code.
              */
-            country_code: string;
+            country_code?: string | null;
             /**
              * Tax Id
              * @description Tax ID of the organization.
@@ -1772,17 +1772,12 @@ export interface components {
              */
             tax_rate?: string | null;
             /** @description The currency used by the organization. */
-            currency: components["schemas"]["Currency"];
+            currency?: components["schemas"]["Currency"] | null;
             /**
              * Default Locale
              * @description Default locale for the organization.
              */
-            default_locale: string;
-            /**
-             * @description Status of the organization.
-             * @default active
-             */
-            status: components["schemas"]["OrganizationStatus"];
+            default_locale?: string | null;
             /**
              * Organization Id
              * @description Unique identifier for the organization.
@@ -1793,6 +1788,11 @@ export interface components {
              * @description ID of the parent organization.
              */
             parent_organization_id?: string | null;
+            /**
+             * @description Status of the organization.
+             * @default active
+             */
+            status: components["schemas"]["OrganizationStatus"];
             /**
              * Users
              * @default []
@@ -1925,7 +1925,7 @@ export interface components {
              * Address 1
              * @description First line of the organization's address.
              */
-            address_1: string;
+            address_1?: string | null;
             /**
              * Address 2
              * @description Second line of the organization's address.
@@ -1935,7 +1935,7 @@ export interface components {
              * City
              * @description City of the organization's address.
              */
-            city: string;
+            city?: string | null;
             /**
              * State Or Province
              * @description State or province of the organization's address.
@@ -1950,7 +1950,7 @@ export interface components {
              * Country Code
              * @description ISO 3166-1 alpha-2 country code.
              */
-            country_code: string;
+            country_code?: string | null;
             /**
              * Tax Id
              * @description Tax ID of the organization.
@@ -1967,17 +1967,12 @@ export interface components {
              */
             tax_rate?: number | string | null;
             /** @description The currency used by the organization. */
-            currency: components["schemas"]["Currency"];
+            currency?: components["schemas"]["Currency"] | null;
             /**
              * Default Locale
              * @description Default locale for the organization.
              */
-            default_locale: string;
-            /**
-             * @description Status of the organization.
-             * @default active
-             */
-            status: components["schemas"]["OrganizationStatus"];
+            default_locale?: string | null;
             /**
              * Parent Organization Id
              * @description ID of the parent organization.
@@ -2181,11 +2176,6 @@ export interface components {
             default_locale?: string | null;
             /** @description Status of the organization. */
             status?: components["schemas"]["OrganizationStatus"] | null;
-            /**
-             * Parent Organization Id
-             * @description ID of the parent organization.
-             */
-            parent_organization_id?: string | null;
         };
         /** PaginationMetadata */
         PaginationMetadata: {
