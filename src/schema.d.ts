@@ -635,22 +635,21 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/domains/batch": {
+    "/v1/domains/{domain_id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Get Domain */
+        get: operations["get_domain_v1_domains__domain_id__get"];
         put?: never;
-        /** Batch Create Domains */
-        post: operations["batch_create_domains_v1_domains_batch_post"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        /** Batch Update Domains */
-        patch: operations["batch_update_domains_v1_domains_batch_patch"];
+        patch?: never;
         trace?: never;
     };
     "/v1/domains/{domain}": {
@@ -660,8 +659,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Domain */
-        get: operations["get_domain_v1_domains__domain__get"];
+        get?: never;
         put?: never;
         post?: never;
         /** Delete Domain */
@@ -670,74 +668,6 @@ export interface paths {
         head?: never;
         /** Update Domain */
         patch: operations["update_domain_v1_domains__domain__patch"];
-        trace?: never;
-    };
-    "/v1/domains/renew/batch": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Batch Renew Domains */
-        post: operations["batch_renew_domains_v1_domains_renew_batch_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/transfer/batch": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Batch Transfer Domains */
-        post: operations["batch_transfer_domains_v1_domains_transfer_batch_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/restore/batch": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Batch Restore Domains */
-        post: operations["batch_restore_domains_v1_domains_restore_batch_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/push/batch": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Batch Push Domains */
-        post: operations["batch_push_domains_v1_domains_push_batch_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
         trace?: never;
     };
     "/v1/domains/{domain_name}/renew": {
@@ -985,15 +915,14 @@ export interface components {
             email: string;
             /**
              * Phone
-             * Format: phone
-             * @description The phone number of the contact
+             * @description The contact'sphone number
              */
-            phone: string;
+            phone?: string | null;
             /**
              * Fax
-             * @description The fax number of the contact
+             * @description The contacts's fax number
              */
-            fax: string | null;
+            fax?: string | null;
             /**
              * Street
              * @description The address of the contact
@@ -1019,6 +948,11 @@ export interface components {
              * @description The country of the contact
              */
             country: string;
+            /**
+             * Disclose
+             * @description Whether the contact should be disclosed
+             */
+            disclose: boolean;
         };
         /** ContactSchema */
         ContactSchema: {
@@ -1061,15 +995,14 @@ export interface components {
             email: string;
             /**
              * Phone
-             * Format: phone
-             * @description The phone number of the contact
+             * @description The contact'sphone number
              */
-            phone: string;
+            phone?: string | null;
             /**
              * Fax
-             * @description The fax number of the contact
+             * @description The contacts's fax number
              */
-            fax: string | null;
+            fax?: string | null;
             /**
              * Street
              * @description The address of the contact
@@ -1095,6 +1028,11 @@ export interface components {
              * @description The country of the contact
              */
             country: string;
+            /**
+             * Disclose
+             * @description Whether the contact should be disclosed
+             */
+            disclose: boolean;
             /** Contact Id */
             contact_id?: string;
             /**
@@ -1133,12 +1071,12 @@ export interface components {
             email?: string | null;
             /**
              * Phone
-             * @description The phone number of the contact
+             * @description The contact's phone number
              */
             phone?: string | null;
             /**
              * Fax
-             * @description The fax number of the contact
+             * @description The contact's fax number
              */
             fax?: string | null;
             /**
@@ -1318,17 +1256,42 @@ export interface components {
          * @enum {string}
          */
         DomainAvailabilityStatus: "available" | "unavailable" | "error";
-        /** DomainNameParts */
-        DomainNameParts: {
-            /** Subdomain */
-            subdomain?: string | null;
-            /** Domain */
-            domain?: string | null;
-            /** Suffix */
-            suffix?: string | null;
+        /**
+         * DomainContactType
+         * @enum {string}
+         */
+        DomainContactType: "registrant" | "admin" | "tech" | "billing";
+        /** DomainCreate */
+        DomainCreate: {
+            /**
+             * Domain
+             * @description The domain to be created
+             */
+            domain: string;
+            /** @description How long the domain should be registered for */
+            period: components["schemas"]["DomainPeriod"];
+            /**
+             * Registrant Contact
+             * @description The contact id of the registrant
+             */
+            registrant_contact: string;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: {
+                [key: string]: string;
+            };
+            /**
+             * Name Servers
+             * @description The name servers for the domain
+             */
+            name_servers?: components["schemas"]["NameServer"][] | null;
+            /** @description The renewal mode of the domain */
+            renewal_mode?: components["schemas"]["RenewalMode"];
         };
-        /** DomainResponse */
-        DomainResponse: {
+        /** DomainModel */
+        DomainModel: {
             /**
              * Updated On
              * Format: date-time
@@ -1352,23 +1315,22 @@ export interface components {
              */
             tld: string;
             /**
-             * Ro Id
+             * Roid
              * @description The registry object id of the domain
              */
-            ro_id: string;
+            roid: string;
             /** @description The renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"];
             /**
              * Auth Code
              * @description The auth code for the domain
              */
-            auth_code: string;
+            auth_code?: string | null;
             /**
              * Auth Code Expires On
-             * Format: date-time
              * @description When the auth code expires
              */
-            auth_code_expires_on: string;
+            auth_code_expires_on?: string | null;
             /**
              * Transfer Lock
              * @description Whether the domain is locked for transfer
@@ -1377,16 +1339,14 @@ export interface components {
             transfer_lock: boolean;
             /**
              * Expires On
-             * Format: date-time
              * @description When the domain expires
              */
-            expires_on: string;
+            expires_on?: string | null;
             /**
              * Created Registry
-             * Format: date-time
              * @description When the domain was registered
              */
-            created_registry: string;
+            created_registry?: string | null;
             /** Domain Id */
             domain_id?: string;
             /**
@@ -1395,6 +1355,58 @@ export interface components {
              * @default None
              */
             owner_id: string;
+        };
+        /** DomainNameParts */
+        DomainNameParts: {
+            /** Subdomain */
+            subdomain?: string | null;
+            /** Domain */
+            domain?: string | null;
+            /** Suffix */
+            suffix?: string | null;
+        };
+        /** DomainPeriod */
+        DomainPeriod: {
+            /**
+             * Value
+             * @description The period of the domain
+             */
+            value: number;
+            /** @description The unit of the period */
+            unit: components["schemas"]["DomainPeriodUnit"];
+        };
+        /**
+         * DomainPeriodUnit
+         * @enum {string}
+         */
+        DomainPeriodUnit: "y" | "m" | "d";
+        /** DomainUpdate */
+        DomainUpdate: {
+            /**
+             * Registrant Contact Id
+             * @description The contact id of the registrant
+             */
+            registrant_contact_id?: string | null;
+            /**
+             * Admin Contact Id
+             * @description The contact id of the admin
+             */
+            admin_contact_id?: string | null;
+            /**
+             * Tech Contact Id
+             * @description The contact id of the tech
+             */
+            tech_contact_id?: string | null;
+            /**
+             * Billing Contact Id
+             * @description The contact id of the billing
+             */
+            billing_contact_id?: string | null;
+            /**
+             * Name Servers
+             * @description The name servers for the domain
+             */
+            name_servers?: components["schemas"]["NameServer"][] | null;
         };
         /** DomainsRequest */
         DomainsRequest: {
@@ -1536,6 +1548,20 @@ export interface components {
             errors: components["schemas"]["ValidationError"][];
         };
         JsonValue: unknown;
+        /** NameServer */
+        NameServer: {
+            /**
+             * Name Server
+             * @description The name server of the domain
+             */
+            name_server: string;
+            /**
+             * Ip Address
+             * Format: ipvanyaddress
+             * @description The ip address of the name server
+             */
+            ip_address: string;
+        };
         /** Notification */
         Notification: {
             /**
@@ -2241,9 +2267,9 @@ export interface components {
         Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "domain_manager" | "email_forward_manager" | "member" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "self" | "special_relation";
         /**
          * RenewalMode
-         * @enum {integer}
+         * @enum {string}
          */
-        RenewalMode: 1 | 2 | 3;
+        RenewalMode: "renew" | "expire" | "delete";
         /** SignupCreate */
         SignupCreate: {
             /** @description User signup to platform. */
@@ -4388,7 +4414,11 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainCreate"];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -4396,57 +4426,26 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["DomainModel"];
                 };
             };
-        };
-    };
-    batch_create_domains_v1_domains_batch_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
+            /** @description Validation Error */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
     };
-    batch_update_domains_v1_domains_batch_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-        };
-    };
-    get_domain_v1_domains__domain__get: {
+    get_domain_v1_domains__domain_id__get: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                domain: string;
+                domain_id: string;
             };
             cookie?: never;
         };
@@ -4458,7 +4457,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DomainResponse"];
+                    "application/json": components["schemas"]["DomainModel"];
                 };
             };
             /** @description Validation Error */
@@ -4512,7 +4511,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainUpdate"];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -4530,86 +4533,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    batch_renew_domains_v1_domains_renew_batch_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-        };
-    };
-    batch_transfer_domains_v1_domains_transfer_batch_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-        };
-    };
-    batch_restore_domains_v1_domains_restore_batch_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-        };
-    };
-    batch_push_domains_v1_domains_push_batch_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
                 };
             };
         };
