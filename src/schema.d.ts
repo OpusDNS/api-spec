@@ -955,13 +955,13 @@ export interface components {
              * Deleted On
              * @description The date/time the entry was deleted on
              */
-            deleted_on?: string | null;
+            deleted_on?: Date | null;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Title
              * @description The title of the contact
@@ -1114,13 +1114,13 @@ export interface components {
              * Format: date-time
              * @description The date the verification was created
              */
-            created_on: string;
+            created_on: Date;
             /**
              * Updated On
              * Format: date-time
              * @description The date the verification was updated
              */
-            updated_on: string;
+            updated_on: Date;
         };
         /**
          * ContactVerificationStatus
@@ -1292,13 +1292,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Sld
              * @description The subdomain of the domain
@@ -1325,7 +1325,7 @@ export interface components {
              * Auth Code Expires On
              * @description When the auth code expires
              */
-            auth_code_expires_on?: string | null;
+            auth_code_expires_on?: Date | null;
             /**
              * Transfer Lock
              * @description Whether the domain is locked for transfer
@@ -1336,12 +1336,12 @@ export interface components {
              * Expires On
              * @description When the domain expires
              */
-            expires_on?: string | null;
+            expires_on?: Date | null;
             /**
              * Created Registry
              * @description When the domain was registered
              */
-            created_registry?: string | null;
+            created_registry?: Date | null;
             /** Domain Id */
             domain_id?: string;
             /**
@@ -1415,13 +1415,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Source Address
              * Format: email
@@ -1564,13 +1564,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Subject
              * @description The subject of the notification
@@ -1581,7 +1581,7 @@ export interface components {
              * Format: date-time
              * @description The date/time the notification is to be published
              */
-            publish_date?: string;
+            publish_date?: Date;
             /**
              * Type
              * @description The type of notification
@@ -1622,7 +1622,7 @@ export interface components {
              * Format: date-time
              * @description The date/time the notification is to be published
              */
-            publish_date?: string;
+            publish_date?: Date;
             /**
              * Type
              * @description The type of notification
@@ -1661,7 +1661,7 @@ export interface components {
              * Format: date-time
              * @description The date/time the notification is to be published
              */
-            publish_date?: string;
+            publish_date?: Date;
             /**
              * Type
              * @description The type of notification
@@ -1702,7 +1702,7 @@ export interface components {
              * Format: date-time
              * @description The date/time the notification is to be published
              */
-            publish_date?: string;
+            publish_date?: Date;
             /**
              * Type
              * @description The type of notification
@@ -1735,13 +1735,13 @@ export interface components {
              * Deleted On
              * @description The date/time the entry was deleted on
              */
-            deleted_on?: string | null;
+            deleted_on?: Date | null;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Organization Name
              * @description Name of the organization.
@@ -1851,13 +1851,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /** Organization Attribute Id */
             organization_attribute_id: number;
         };
@@ -1903,13 +1903,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /** Organization Attribute Id */
             organization_attribute_id: number;
         };
@@ -2028,18 +2028,18 @@ export interface components {
              * Deleted On
              * @description The date/time the entry was deleted on
              */
-            deleted_on?: string | null;
+            deleted_on?: Date | null;
             /**
              * Last Used On
              * @description The date/time the entry was deleted on
              */
-            last_used_on?: string | null;
+            last_used_on?: Date | null;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Organization Id
              * @default None
@@ -2069,18 +2069,18 @@ export interface components {
              * Deleted On
              * @description The date/time the entry was deleted on
              */
-            deleted_on?: string | null;
+            deleted_on?: Date | null;
             /**
              * Last Used On
              * @description The date/time the entry was deleted on
              */
-            last_used_on?: string | null;
+            last_used_on?: Date | null;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Client Id
              * @default None
@@ -2115,7 +2115,7 @@ export interface components {
              * Expires At
              * @description The date and time the credential expiration.
              */
-            expires_at?: string | null;
+            expires_at?: Date | null;
         };
         /**
          * OrganizationCredentialStatus
@@ -2297,13 +2297,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Username
              * @description The user's unique username
@@ -2410,13 +2410,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /** User Notification Id */
             user_notification_id?: string;
             /**
@@ -2521,13 +2521,13 @@ export interface components {
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
-            updated_on?: string;
+            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
-            created_on?: string;
+            created_on?: Date;
             /**
              * Username
              * @description The user's unique username
