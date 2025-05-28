@@ -2747,7 +2747,10 @@ export interface operations {
     };
     delete_api_key_v1_auth_client_credentials__api_key_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: string | null;
+                organization_id?: string | null;
+            };
             header?: never;
             path: {
                 api_key_id: string;
