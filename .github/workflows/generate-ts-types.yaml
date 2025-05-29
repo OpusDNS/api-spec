@@ -38,11 +38,11 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add src/openapi.json
           git add src/schema.d.ts
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
+          git add src/openapi.json
             git commit -m "Update OpenAPI spec and types"
             git push
           fi
