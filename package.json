@@ -9,7 +9,9 @@
   "main": "src/schema.d.ts",
   "types": "src/schema.d.ts",
   "type": "module",
-  "dependencies": {},
+  "dependencies": {
+    "typeid-js": "^1.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OpusDNS/api-spec.git"
