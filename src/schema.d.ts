@@ -3037,6 +3037,7 @@ export interface operations {
                 status?: components["schemas"]["OrganizationCredentialStatus"] | null;
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                api_key_id?: TypeID<"api_key"> | null;
             };
             header?: never;
             path?: never;
@@ -3078,6 +3079,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                api_key_id?: TypeID<"api_key"> | null;
             };
             header?: never;
             path?: never;
@@ -3126,7 +3128,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                api_key_id: TypeID<"api_key">;
+                api_key_id: TypeID<"api_key"> | null;
             };
             cookie?: never;
         };
@@ -4538,6 +4540,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                api_key_id?: TypeID<"api_key"> | null;
             };
             header?: never;
             path?: never;
@@ -4571,6 +4574,7 @@ export interface operations {
                 attributes?: string[] | null;
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                api_key_id?: TypeID<"api_key"> | null;
             };
             header?: never;
             path?: never;
@@ -4634,6 +4638,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                api_key_id?: TypeID<"api_key"> | null;
             };
             header?: never;
             path?: never;
