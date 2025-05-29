@@ -1082,10 +1082,14 @@ export interface components {
              * @description Whether the contact should be disclosed
              */
             disclose: boolean;
-            /** Contact Id */
+            /**
+             * Contact Id
+             * Format: typeid
+             */
             contact_id?: string;
             /**
              * Organization Id
+             * Format: typeid
              * @description The organization that owns the domain
              * @default None
              */
@@ -1190,10 +1194,14 @@ export interface components {
              * @description The date the verification was cancelled
              */
             canceled_on?: Date | null;
-            /** Contact Verification Id */
+            /**
+             * Contact Verification Id
+             * Format: typeid
+             */
             contact_verification_id?: string;
             /**
              * Contact Id
+             * Format: typeid
              * @description The contact that is being verified
              * @default None
              */
@@ -1230,10 +1238,14 @@ export interface components {
              * @description The date the verification was cancelled
              */
             canceled_on?: Date | null;
-            /** Contact Verification Id */
+            /**
+             * Contact Verification Id
+             * Format: typeid
+             */
             contact_verification_id?: string;
             /**
              * Contact Id
+             * Format: typeid
              * @description The contact that is being verified
              * @default None
              */
@@ -1270,10 +1282,14 @@ export interface components {
              * @description The date the verification was cancelled
              */
             canceled_on?: Date | null;
-            /** Contact Verification Id */
+            /**
+             * Contact Verification Id
+             * Format: typeid
+             */
             contact_verification_id?: string;
             /**
              * Contact Id
+             * Format: typeid
              * @description The contact that is being verified
              * @default None
              */
@@ -1419,6 +1435,7 @@ export interface components {
             period: components["schemas"]["DomainPeriod"];
             /**
              * Registrant Contact
+             * Format: typeid
              * @description The contact id of the registrant
              */
             registrant_contact: string;
@@ -1494,10 +1511,14 @@ export interface components {
              * @description When the domain was registered
              */
             created_registry?: Date | null;
-            /** Domain Id */
+            /**
+             * Domain Id
+             * Format: typeid
+             */
             domain_id?: string;
             /**
              * Owner Id
+             * Format: typeid
              * @description The organization that owns the domain
              * @default None
              */
@@ -1591,7 +1612,10 @@ export interface components {
              * @default active
              */
             status: components["schemas"]["EmailForwardStatus"];
-            /** Email Forward Id */
+            /**
+             * Email Forward Id
+             * Format: typeid
+             */
             email_forward_id?: string;
         };
         /** EmailForwardBulkDelete */
@@ -1626,6 +1650,7 @@ export interface components {
             status?: components["schemas"]["EmailForwardStatus"] | null;
             /**
              * Email Forward Id
+             * Format: typeid
              * @description Unique identifier for the email forward
              */
             email_forward_id: string;
@@ -1764,7 +1789,10 @@ export interface components {
              * @description Target audience (broadcast, account, user)
              */
             target: string;
-            /** Notification Id */
+            /**
+             * Notification Id
+             * Format: typeid
+             */
             notification_id?: string;
         };
         /** NotificationCreate */
@@ -1844,7 +1872,10 @@ export interface components {
              * @description Target audience (broadcast, account, user)
              */
             target: string;
-            /** Notification Id */
+            /**
+             * Notification Id
+             * Format: typeid
+             */
             notification_id?: string;
         };
         /** NotificationUpdate */
@@ -1958,6 +1989,7 @@ export interface components {
             default_locale?: string | null;
             /**
              * Organization Id
+             * Format: typeid
              * @description Unique identifier for the organization.
              */
             organization_id?: string;
@@ -2199,11 +2231,13 @@ export interface components {
             created_on?: Date;
             /**
              * Organization Id
+             * Format: typeid
              * @default None
              */
             organization_id: string;
             /**
              * Api Key Id
+             * Format: typeid
              * @description Unique identifier of the organization credential.
              */
             api_key_id: string;
@@ -2240,11 +2274,13 @@ export interface components {
             created_on?: Date;
             /**
              * Client Id
+             * Format: typeid
              * @default None
              */
             client_id: string;
             /**
              * Api Key
+             * Format: typeid
              * @description Unique identifier of the organization credential.
              */
             api_key: string;
@@ -2499,11 +2535,15 @@ export interface components {
             locale: string;
             /**
              * Organization Id
+             * Format: typeid
              * @description The user's organization id
              * @default None
              */
             organization_id: string;
-            /** User Id */
+            /**
+             * User Id
+             * Format: typeid
+             */
             user_id?: string;
         };
         /** UserAttributeUpdate */
@@ -2574,7 +2614,10 @@ export interface components {
              * @description The date/time the entry was created on
              */
             created_on?: Date;
-            /** User Notification Id */
+            /**
+             * User Notification Id
+             * Format: typeid
+             */
             user_notification_id?: string;
             /**
              * @description Whether the user has read the notification
@@ -2583,11 +2626,13 @@ export interface components {
             status: components["schemas"]["UserNotificationStatus"];
             /**
              * User Id
+             * Format: typeid
              * @default None
              */
             user_id: string;
             /**
              * Notification Id
+             * Format: typeid
              * @description Unique identifier for the notification
              * @default None
              */
@@ -2601,7 +2646,10 @@ export interface components {
         UserNotificationStatus: "read" | "unread";
         /** UserNotificationSummary */
         UserNotificationSummary: {
-            /** User Notification Id */
+            /**
+             * User Notification Id
+             * Format: typeid
+             */
             user_notification_id?: string;
             /**
              * @description Whether the user has read the notification
@@ -2707,10 +2755,14 @@ export interface components {
              * @description The date the verification was cancelled
              */
             canceled_on?: Date | null;
-            /** User Verification Id */
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
             user_verification_id?: string;
             /**
              * User Id
+             * Format: typeid
              * @description The user's id
              * @default None
              */
@@ -2747,10 +2799,14 @@ export interface components {
              * @description The date the verification was cancelled
              */
             canceled_on?: Date | null;
-            /** User Verification Id */
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
             user_verification_id?: string;
             /**
              * User Id
+             * Format: typeid
              * @description The user's id
              * @default None
              */
@@ -2787,10 +2843,14 @@ export interface components {
              * @description The date the verification was cancelled
              */
             canceled_on?: Date | null;
-            /** User Verification Id */
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
             user_verification_id?: string;
             /**
              * User Id
+             * Format: typeid
              * @description The user's id
              * @default None
              */
@@ -2848,11 +2908,15 @@ export interface components {
             locale: string;
             /**
              * Organization Id
+             * Format: typeid
              * @description The user's organization id
              * @default None
              */
             organization_id: string;
-            /** User Id */
+            /**
+             * User Id
+             * Format: typeid
+             */
             user_id?: string;
             /**
              * User Attributes
