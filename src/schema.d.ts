@@ -576,6 +576,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/users/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Redirect Verify User */
+        get: operations["redirect_verify_user_v1_users_verify_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/users/accept-tos": {
         parameters: {
             query?: never;
@@ -610,6 +627,26 @@ export interface paths {
         head?: never;
         /** Update User */
         patch: operations["update_user_v1_users__user_id__patch"];
+        trace?: never;
+    };
+    "/v1/users/{user_id}/verification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Verification Status */
+        get: operations["get_verification_status_v1_users__user_id__verification_get"];
+        /** Update Verification */
+        put: operations["update_verification_v1_users__user_id__verification_put"];
+        /** Create Verification */
+        post: operations["create_verification_v1_users__user_id__verification_post"];
+        /** Cancel Verification */
+        delete: operations["cancel_verification_v1_users__user_id__verification_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/domains": {
@@ -813,14 +850,31 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Contact Verification Status */
-        get: operations["get_contact_verification_status_v1_contacts__contact_id__verification_get"];
-        /** Verify Contact */
-        put: operations["verify_contact_v1_contacts__contact_id__verification_put"];
-        /** Init Contact Verification */
-        post: operations["init_contact_verification_v1_contacts__contact_id__verification_post"];
-        /** Delete Contact Verification */
-        delete: operations["delete_contact_verification_v1_contacts__contact_id__verification_delete"];
+        /** Get Verification Status */
+        get: operations["get_verification_status_v1_contacts__contact_id__verification_get"];
+        /** Update Verification */
+        put: operations["update_verification_v1_contacts__contact_id__verification_put"];
+        /** Start Contact Verification */
+        post: operations["start_contact_verification_v1_contacts__contact_id__verification_post"];
+        /** Cancel Verification */
+        delete: operations["cancel_verification_v1_contacts__contact_id__verification_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/{contact_id}/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Email Verify Contact */
+        get: operations["email_verify_contact_v1_contacts__contact_id__verify_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -1100,33 +1154,131 @@ export interface components {
              */
             country?: string | null;
         };
-        /** ContactVerificationResponse */
-        ContactVerificationResponse: {
+        /** ContactVerificationApiResponse */
+        ContactVerificationApiResponse: {
             /**
-             * Contact Id
-             * @description The id of the contact being verified
+             * Token
+             * @description The token to verify the email address
              */
-            contact_id: string;
-            /** @description The status of the verification */
-            status: components["schemas"]["ContactVerificationStatus"];
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date the verification was created
-             */
-            created_on: Date;
+            token: string;
             /**
              * Updated On
              * Format: date-time
-             * @description The date the verification was updated
+             * @description The date/time the entry was last updated on
              */
-            updated_on: Date;
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /** Contact Verification Id */
+            contact_verification_id?: string;
+            /**
+             * Contact Id
+             * @description The contact that is being verified
+             * @default None
+             */
+            contact_id: string;
         };
-        /**
-         * ContactVerificationStatus
-         * @enum {string}
-         */
-        ContactVerificationStatus: "pending" | "verified" | "canceled";
+        /** ContactVerificationEmailResponse */
+        ContactVerificationEmailResponse: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /** Contact Verification Id */
+            contact_verification_id?: string;
+            /**
+             * Contact Id
+             * @description The contact that is being verified
+             * @default None
+             */
+            contact_id: string;
+        };
+        /** ContactVerificationResponse */
+        ContactVerificationResponse: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /** Contact Verification Id */
+            contact_verification_id?: string;
+            /**
+             * Contact Id
+             * @description The contact that is being verified
+             * @default None
+             */
+            contact_id: string;
+        };
         /**
          * Currency
          * @enum {string}
@@ -1518,6 +1670,11 @@ export interface components {
             /** @description Current status of the email forward rule */
             status?: components["schemas"]["EmailForwardStatus"] | null;
         };
+        /**
+         * EmailVerificationStatus
+         * @enum {string}
+         */
+        EmailVerificationStatus: "verified" | "pending" | "canceled";
         /** ErrorResponse */
         ErrorResponse: {
             /** Error Type */
@@ -2514,6 +2671,131 @@ export interface components {
              */
             user_attributes?: components["schemas"]["UserAttributeUpdate"][] | null;
         };
+        /** UserVerificationApiResponse */
+        UserVerificationApiResponse: {
+            /**
+             * Token
+             * @description The token to verify the email address
+             */
+            token: string;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /** User Verification Id */
+            user_verification_id?: string;
+            /**
+             * User Id
+             * @description The user's id
+             * @default None
+             */
+            user_id: string;
+        };
+        /** UserVerificationEmailResponse */
+        UserVerificationEmailResponse: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /** User Verification Id */
+            user_verification_id?: string;
+            /**
+             * User Id
+             * @description The user's id
+             * @default None
+             */
+            user_id: string;
+        };
+        /** UserVerificationResponse */
+        UserVerificationResponse: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /** User Verification Id */
+            user_verification_id?: string;
+            /**
+             * User Id
+             * @description The user's id
+             * @default None
+             */
+            user_id: string;
+        };
         /** UserWithAttributes */
         UserWithAttributes: {
             /**
@@ -2589,6 +2871,11 @@ export interface components {
             /** Error Type */
             type: string;
         };
+        /**
+         * VerificationType
+         * @enum {string}
+         */
+        VerificationType: "api" | "email";
         /** Problem */
         Problem: {
             /** Problem Title */
@@ -4246,6 +4533,37 @@ export interface operations {
             };
         };
     };
+    redirect_verify_user_v1_users_verify_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     tos_sign_v1_users_accept_tos_post: {
         parameters: {
             query?: {
@@ -4369,6 +4687,193 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UserWithAttributes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_verification_status_v1_users__user_id__verification_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserVerificationResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_verification_v1_users__user_id__verification_put: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Conflict */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_verification_v1_users__user_id__verification_post: {
+        parameters: {
+            query: {
+                type: components["schemas"]["VerificationType"];
+            };
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserVerificationEmailResponse"] | components["schemas"]["UserVerificationApiResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_verification_v1_users__user_id__verification_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -4944,7 +5449,7 @@ export interface operations {
             };
         };
     };
-    get_contact_verification_status_v1_contacts__contact_id__verification_get: {
+    get_verification_status_v1_contacts__contact_id__verification_get: {
         parameters: {
             query?: never;
             header?: never;
@@ -4962,6 +5467,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ContactVerificationResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Not Found */
@@ -4984,10 +5498,10 @@ export interface operations {
             };
         };
     };
-    verify_contact_v1_contacts__contact_id__verification_put: {
+    update_verification_v1_contacts__contact_id__verification_put: {
         parameters: {
             query: {
-                verification_token: string;
+                token: string;
             };
             header?: never;
             path: {
@@ -4998,12 +5512,37 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Successful Response */
-            200: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Conflict */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -5017,9 +5556,11 @@ export interface operations {
             };
         };
     };
-    init_contact_verification_v1_contacts__contact_id__verification_post: {
+    start_contact_verification_v1_contacts__contact_id__verification_post: {
         parameters: {
-            query?: never;
+            query: {
+                type: components["schemas"]["VerificationType"];
+            };
             header?: never;
             path: {
                 contact_id: string;
@@ -5034,7 +5575,25 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ContactVerificationResponse"];
+                    "application/json": components["schemas"]["ContactVerificationEmailResponse"] | components["schemas"]["ContactVerificationApiResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -5048,7 +5607,7 @@ export interface operations {
             };
         };
     };
-    delete_contact_verification_v1_contacts__contact_id__verification_delete: {
+    cancel_verification_v1_contacts__contact_id__verification_delete: {
         parameters: {
             query?: never;
             header?: never;
@@ -5066,6 +5625,15 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Not Found */
             404: {
                 headers: {
@@ -5073,6 +5641,39 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    email_verify_contact_v1_contacts__contact_id__verify_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path: {
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
