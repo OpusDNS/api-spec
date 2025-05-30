@@ -1,0 +1,32 @@
+name: Update docs on Theneo
+
+on:
+  push:
+    paths:
+      - 'src/openapi.json'
+  workflow_dispatch:
+
+jobs:
+  generate_types:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Update Documentation on Theneo
+        uses: Theneo-Inc/api-documentation@1.8.0
+        with:
+          FILE_PATH: src/openapi.json
+          PROJECT_SLUG: api
+          VERSION_SLUG: v1
+          WORKSPACE_SLUG: opusdns
+          SECRET: ${{secrets.THENEO_API_KEY}}
+          AUTO_PUBLISH: true
+          IMPORT_OPTION: merge
+          PARAMETER_DESCRIPTION_MERGE_STRATEGY: keep_new
+          SECTION_DESCRIPTION_MERGE_STRATEGY: keep_old
+          INCLUDE_GITHUB_METADATA: true
