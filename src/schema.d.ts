@@ -2507,6 +2507,11 @@ export interface components {
         /** User */
         User: {
             /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
              * Updated On
              * Format: date-time
              * @description The date/time the entry was last updated on
@@ -2879,6 +2884,11 @@ export interface components {
         };
         /** UserWithAttributes */
         UserWithAttributes: {
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
             /**
              * Updated On
              * Format: date-time
