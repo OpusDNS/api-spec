@@ -2340,7 +2340,7 @@ export interface components {
          * OrganizationStatus
          * @enum {string}
          */
-        OrganizationStatus: "active" | "inactive" | "pending_verification" | "suspended" | "archived";
+        OrganizationStatus: "active" | "inactive";
         /** OrganizationTokenResponse */
         OrganizationTokenResponse: {
             /** Access Token */
@@ -2409,8 +2409,6 @@ export interface components {
              * @description Default locale for the organization.
              */
             default_locale?: string | null;
-            /** @description Status of the organization. */
-            status?: components["schemas"]["OrganizationStatus"] | null;
         };
         /** PaginationMetadata */
         PaginationMetadata: {
@@ -2688,7 +2686,7 @@ export interface components {
          * UserStatus
          * @enum {string}
          */
-        UserStatus: "active" | "inactive" | "pending_verification" | "suspended" | "archived";
+        UserStatus: "active" | "inactive";
         /** UserTokenResponse */
         UserTokenResponse: {
             /** Access Token */
@@ -3957,8 +3955,6 @@ export interface operations {
     list_organizations_v1_organizations_get: {
         parameters: {
             query?: {
-                /** @description Optional status to filter the results */
-                status?: components["schemas"]["OrganizationStatus"] | null;
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
             };
