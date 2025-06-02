@@ -2027,6 +2027,11 @@ export interface components {
              */
             tax_id_type?: string | null;
             /**
+             * Business Number
+             * @description Government issued business identifier for the organization issued.
+             */
+            business_number?: string | null;
+            /**
              * Tax Rate
              * @description Tax rate for the organization.
              */
@@ -2222,6 +2227,11 @@ export interface components {
              * @description Type of tax ID for the organization.
              */
             tax_id_type?: string | null;
+            /**
+             * Business Number
+             * @description Government issued business identifier for the organization issued.
+             */
+            business_number?: string | null;
             /**
              * Tax Rate
              * @description Tax rate for the organization.
