@@ -901,6 +901,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domain-search/suggest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Suggest Domains */
+        get: operations["suggest_domains_v1_domain_search_suggest_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1569,6 +1586,19 @@ export interface components {
          * @enum {string}
          */
         DomainPeriodUnit: "y" | "m" | "d";
+        /** DomainSuggestionBase */
+        DomainSuggestionBase: {
+            /**
+             * Domain
+             * @description The domain name suggestion
+             */
+            domain: string;
+            /**
+             * Score
+             * @description The score of the domain
+             */
+            score: number;
+        };
         /** DomainUpdate */
         DomainUpdate: {
             /**
@@ -2496,6 +2526,14 @@ export interface components {
         SpiceDbRelationshipUpdate: {
             add: components["schemas"]["SpiceDbRelationSet"];
             remove: components["schemas"]["SpiceDbRelationSet"];
+        };
+        /** SuggestResponse */
+        SuggestResponse: {
+            /**
+             * Domains
+             * @default []
+             */
+            domains: components["schemas"]["DomainSuggestionBase"][];
         };
         /** TermsOfServiceAccept */
         TermsOfServiceAccept: {
@@ -5931,6 +5969,42 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    suggest_domains_v1_domain_search_suggest_get: {
+        parameters: {
+            query: {
+                /** @description The primary keyword or phrase for the domain search */
+                query: string;
+                /** @description The TLDs to include in the search */
+                tlds?: string[] | null;
+                /** @description The maximum number of domain suggestions to return */
+                limit?: number | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SuggestResponse"];
                 };
             };
             /** @description Validation Error */
