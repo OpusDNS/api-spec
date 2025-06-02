@@ -2442,6 +2442,11 @@ export interface components {
              * @description Tax rate for the organization.
              */
             tax_rate?: number | string | null;
+            /**
+             * Business Number
+             * @description Government issued business identifier for the organization issued.
+             */
+            business_number?: string | null;
             /** @description The currency used by the organization. */
             currency?: components["schemas"]["Currency"] | null;
             /**
