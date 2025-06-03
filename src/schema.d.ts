@@ -2583,11 +2583,6 @@ export interface components {
              */
             phone?: string | null;
             /**
-             * @description The user's status
-             * @default active
-             */
-            status: components["schemas"]["UserStatus"];
-            /**
              * Locale
              * @description The locale
              */
@@ -2604,6 +2599,7 @@ export interface components {
              * Format: typeid
              */
             user_id?: TypeID<"user">;
+            readonly status: components["schemas"]["UserStatus"];
         };
         /** UserAttributeUpdate */
         UserAttributeUpdate: {
@@ -2643,11 +2639,6 @@ export interface components {
              * @description The user's phone number
              */
             phone?: string | null;
-            /**
-             * @description The user's status
-             * @default active
-             */
-            status: components["schemas"]["UserStatus"];
             /**
              * Locale
              * @description The locale
@@ -2765,8 +2756,6 @@ export interface components {
              * @description The user's phone number
              */
             phone?: string | null;
-            /** @description The user's status */
-            status?: components["schemas"]["UserStatus"] | null;
             /**
              * Locale
              * @description The user's locale
@@ -2961,11 +2950,6 @@ export interface components {
              */
             phone?: string | null;
             /**
-             * @description The user's status
-             * @default active
-             */
-            status: components["schemas"]["UserStatus"];
-            /**
              * Locale
              * @description The locale
              */
@@ -2989,6 +2973,7 @@ export interface components {
             user_attributes: {
                 [key: string]: components["schemas"]["JsonValue"];
             };
+            readonly status: components["schemas"]["UserStatus"];
         };
         /** UserWithRelationPermissions */
         UserWithRelationPermissions: {
@@ -3036,11 +3021,6 @@ export interface components {
              */
             phone?: string | null;
             /**
-             * @description The user's status
-             * @default active
-             */
-            status: components["schemas"]["UserStatus"];
-            /**
              * Locale
              * @description The locale
              */
@@ -3068,6 +3048,7 @@ export interface components {
             relations?: components["schemas"]["Relation"][] | null;
             /** Permissions */
             permissions?: components["schemas"]["Permission"][] | null;
+            readonly status: components["schemas"]["UserStatus"];
         };
         /** ValidationError */
         ValidationError: {
