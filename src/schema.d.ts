@@ -2528,6 +2528,8 @@ export interface components {
             user: components["schemas"]["UserCreate"];
             /** @description Organization signup. */
             organization: components["schemas"]["OrganizationCreate"];
+            /** @description Optional terms of service acceptance. */
+            terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
         };
         /** SpiceDbRelationSet */
         SpiceDbRelationSet: {
