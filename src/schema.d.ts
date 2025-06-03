@@ -403,6 +403,75 @@ export interface paths {
         patch: operations["update_attributes_v1_organizations_attributes_patch"];
         trace?: never;
     };
+    "/v1/organizations/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Roles */
+        get: operations["list_roles_v1_organizations_roles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/ip-restrictions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Ip Restrictions
+         * @description Get all IP restrictions for the organization
+         */
+        get: operations["list_ip_restrictions_v1_organizations_ip_restrictions_get"];
+        put?: never;
+        /**
+         * Create Ip Restriction
+         * @description Create a new IP restriction for the organization
+         */
+        post: operations["create_ip_restriction_v1_organizations_ip_restrictions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/ip-restrictions/{ip_restriction_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Ip Restriction
+         * @description Get a specific IP restriction by ID
+         */
+        get: operations["get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete Ip Restriction
+         * @description Delete an IP restriction
+         */
+        delete: operations["delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update Ip Restriction
+         * @description Update an IP restriction
+         */
+        patch: operations["update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch"];
+        trace?: never;
+    };
     "/v1/organizations/{organization_id}": {
         parameters: {
             query?: never;
@@ -1739,6 +1808,55 @@ export interface components {
             /** Status code */
             status: number;
             errors: components["schemas"]["ValidationError"][];
+        };
+        /** IpRestrictionCreate */
+        IpRestrictionCreate: {
+            /**
+             * Organization Id
+             * Format: typeid
+             */
+            organization_id?: TypeID<"organization">;
+            /**
+             * Ip Network
+             * Format: ipvanynetwork
+             * @description IP address or CIDR range for the restriction.
+             */
+            ip_network: string;
+        };
+        /** IpRestrictionResponse */
+        IpRestrictionResponse: {
+            /** Ip Restriction Id */
+            ip_restriction_id: number;
+            /**
+             * Organization Id
+             * Format: typeid
+             */
+            organization_id: TypeID<"organization">;
+            /**
+             * Ip Network
+             * Format: ipvanynetwork
+             */
+            ip_network: string;
+            /**
+             * Created On
+             * Format: date-time
+             */
+            created_on: Date;
+            /** Last Used On */
+            last_used_on?: Date | null;
+        };
+        /** IpRestrictionUpdate */
+        IpRestrictionUpdate: {
+            /**
+             * Ip Network
+             * @description IP address or CIDR range for the restriction.
+             */
+            ip_network?: string | null;
+            /**
+             * Last Used On
+             * @description Timestamp of the last usage.
+             */
+            last_used_on?: Date | null;
         };
         JsonValue: unknown;
         /** NameServer */
@@ -4276,6 +4394,210 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_roles_v1_organizations_roles_get: {
+        parameters: {
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_ip_restrictions_v1_organizations_ip_restrictions_get: {
+        parameters: {
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IpRestrictionResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_ip_restriction_v1_organizations_ip_restrictions_post: {
+        parameters: {
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["IpRestrictionCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IpRestrictionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get: {
+        parameters: {
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path: {
+                ip_restriction_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IpRestrictionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete: {
+        parameters: {
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path: {
+                ip_restriction_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch: {
+        parameters: {
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path: {
+                ip_restriction_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["IpRestrictionUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IpRestrictionResponse"];
                 };
             };
             /** @description Validation Error */
