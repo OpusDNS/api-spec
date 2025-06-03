@@ -403,23 +403,6 @@ export interface paths {
         patch: operations["update_attributes_v1_organizations_attributes_patch"];
         trace?: never;
     };
-    "/v1/organizations/roles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List Roles */
-        get: operations["list_roles_v1_organizations_roles_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/organizations/{organization_id}": {
         parameters: {
             query?: never;
@@ -437,42 +420,6 @@ export interface paths {
         head?: never;
         /** Update Organization */
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
-        trace?: never;
-    };
-    "/v1/organizations/roles/{user_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List User Roles */
-        get: operations["list_user_roles_v1_organizations_roles__user_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Update User Relations */
-        patch: operations["update_user_relations_v1_organizations_roles__user_id__patch"];
-        trace?: never;
-    };
-    "/v1/organizations/roles/{organization_id}/{user_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List User Roles For Org */
-        get: operations["list_user_roles_for_org_v1_organizations_roles__organization_id___user_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Update User Org Relations */
-        patch: operations["update_user_org_relations_v1_organizations_roles__organization_id___user_id__patch"];
         trace?: never;
     };
     "/v1/rdap/host/{name}": {
@@ -537,23 +484,6 @@ export interface paths {
         put?: never;
         /** Create User */
         post: operations["create_user_v1_users_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/users/roles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List Roles */
-        get: operations["list_roles_v1_users_roles_get"];
-        put?: never;
-        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -630,6 +560,23 @@ export interface paths {
         patch: operations["update_user_v1_users__user_id__patch"];
         trace?: never;
     };
+    "/v1/users/{user_id}/permissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get User Permissions */
+        get: operations["get_user_permissions_v1_users__user_id__permissions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/users/me/verification": {
         parameters: {
             query?: never;
@@ -668,6 +615,24 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/v1/users/{user_id}/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Roles */
+        get: operations["list_roles_v1_users__user_id__roles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update User Relations */
+        patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
         trace?: never;
     };
     "/v1/domains": {
@@ -2513,10 +2478,31 @@ export interface components {
             pagination: components["schemas"]["PaginationMetadata"];
         };
         /**
+         * Permission
+         * @enum {string}
+         */
+        Permission: "acknowledge" | "create" | "delete" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_dns_zones" | "manage_domain_contacts" | "manage_domains" | "manage_email_forwards" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "transfer_trade" | "update" | "view" | "view_audit_logs";
+        /** PermissionSet */
+        PermissionSet: {
+            /**
+             * Permissions
+             * @default []
+             */
+            permissions: components["schemas"]["Permission"][];
+        };
+        /**
          * Relation
          * @enum {string}
          */
         Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "domain_manager" | "email_forward_manager" | "member" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "self" | "special_relation";
+        /** RelationSet */
+        RelationSet: {
+            /**
+             * Relations
+             * @default []
+             */
+            relations: components["schemas"]["Relation"][];
+        };
         /**
          * RenewalMode
          * @enum {string}
@@ -2531,18 +2517,12 @@ export interface components {
             /** @description Optional terms of service acceptance. */
             terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
         };
-        /** SpiceDbRelationSet */
-        SpiceDbRelationSet: {
-            /**
-             * Relation Set
-             * @default []
-             */
-            relation_set: components["schemas"]["Relation"][];
-        };
         /** SpiceDbRelationshipUpdate */
         SpiceDbRelationshipUpdate: {
-            add: components["schemas"]["SpiceDbRelationSet"];
-            remove: components["schemas"]["SpiceDbRelationSet"];
+            /** Add */
+            add?: components["schemas"]["Relation"][] | null;
+            /** Remove */
+            remove?: components["schemas"]["Relation"][] | null;
         };
         /** SuggestResponse */
         SuggestResponse: {
@@ -3009,6 +2989,85 @@ export interface components {
             user_attributes: {
                 [key: string]: components["schemas"]["JsonValue"];
             };
+        };
+        /** UserWithRelationPermissions */
+        UserWithRelationPermissions: {
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
+            /**
+             * First Name
+             * @description The user's first name
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The user's last name
+             */
+            last_name: string;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
+            /**
+             * Phone
+             * @description The user's phone number
+             */
+            phone?: string | null;
+            /**
+             * @description The user's status
+             * @default active
+             */
+            status: components["schemas"]["UserStatus"];
+            /**
+             * Locale
+             * @description The locale
+             */
+            locale: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The user's organization id
+             * @default None
+             */
+            organization_id: TypeID<"organization">;
+            /**
+             * User Id
+             * Format: typeid
+             */
+            user_id?: TypeID<"user">;
+            /**
+             * User Attributes
+             * @default {}
+             */
+            user_attributes: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+            /** Relations */
+            relations?: components["schemas"]["Relation"][] | null;
+            /** Permissions */
+            permissions?: components["schemas"]["Permission"][] | null;
         };
         /** ValidationError */
         ValidationError: {
@@ -4249,38 +4308,6 @@ export interface operations {
             };
         };
     };
-    list_roles_v1_organizations_roles_get: {
-        parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     get_organization_v1_organizations__organization_id__get: {
         parameters: {
             query?: {
@@ -4369,144 +4396,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_user_roles_v1_organizations_roles__user_id__get: {
-        parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-            };
-            header?: never;
-            path: {
-                user_id: TypeID<"user"> | null;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_user_relations_v1_organizations_roles__user_id__patch: {
-        parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-            };
-            header?: never;
-            path: {
-                user_id: TypeID<"user"> | null;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_user_roles_for_org_v1_organizations_roles__organization_id___user_id__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeID<"organization"> | null;
-                user_id: TypeID<"user"> | null;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_user_org_relations_v1_organizations_roles__organization_id___user_id__patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeID<"organization"> | null;
-                user_id: TypeID<"user"> | null;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
@@ -4616,39 +4505,6 @@ export interface operations {
             };
         };
     };
-    list_roles_v1_users_roles_get: {
-        parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                api_key_id?: TypeID<"api_key"> | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     get_current_user_v1_users_me_get: {
         parameters: {
             query?: {
@@ -4669,7 +4525,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithAttributes"];
+                    "application/json": components["schemas"]["UserWithRelationPermissions"];
                 };
             };
             /** @description Validation Error */
@@ -4838,6 +4694,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UserWithAttributes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_user_permissions_v1_users__user_id__permissions_get: {
+        parameters: {
+            query?: {
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path: {
+                user_id: TypeID<"user"> | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PermissionSet"];
                 };
             };
             /** @description Validation Error */
@@ -5204,6 +5093,76 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_roles_v1_users__user_id__roles_get: {
+        parameters: {
+            query?: {
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path: {
+                user_id: TypeID<"user"> | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RelationSet"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_user_relations_v1_users__user_id__roles_patch: {
+        parameters: {
+            query?: {
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path: {
+                user_id: TypeID<"user"> | null;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RelationSet"];
                 };
             };
             /** @description Validation Error */
