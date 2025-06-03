@@ -4896,7 +4896,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Conflict */
+            /** @description Bad Request */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -4965,6 +4965,15 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -5070,7 +5079,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Conflict */
+            /** @description Bad Request */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -5141,6 +5150,15 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -5828,7 +5846,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Conflict */
+            /** @description Bad Request */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -5899,6 +5917,15 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
                 headers: {
                     [name: string]: unknown;
                 };
