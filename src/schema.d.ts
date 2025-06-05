@@ -1468,6 +1468,8 @@ export interface components {
             domain: string;
             available: components["schemas"]["DomainAvailabilityStatus"];
             error?: components["schemas"]["ErrorResponse"] | null;
+            /** Source */
+            source?: string | null;
         };
         /**
          * DomainAvailabilityStatus
