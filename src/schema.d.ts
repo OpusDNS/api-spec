@@ -2599,7 +2599,7 @@ export interface components {
          * Permission
          * @enum {string}
          */
-        Permission: "acknowledge" | "create" | "delete" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_dns_zones" | "manage_domain_contacts" | "manage_domains" | "manage_email_forwards" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "transfer_trade" | "update" | "view" | "view_audit_logs";
+        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "transfer_trade" | "update" | "verify_contact" | "view" | "view_audit_logs";
         /** PermissionSet */
         PermissionSet: {
             /**
@@ -2612,7 +2612,7 @@ export interface components {
          * Relation
          * @enum {string}
          */
-        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "domain_manager" | "email_forward_manager" | "member" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "self" | "special_relation";
+        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_manager" | "email_forward_manager" | "member" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "self" | "special_relation";
         /** RelationSet */
         RelationSet: {
             /**
@@ -5868,7 +5868,10 @@ export interface operations {
     };
     get_contacts_v1_contacts_get: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -5884,11 +5887,23 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_ContactSchema_"];
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     create_contact_v1_contacts_post: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -5921,7 +5936,10 @@ export interface operations {
     };
     get_contact_v1_contacts__contact_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
             header?: never;
             path: {
                 contact_id: TypeID<"contact">;
@@ -5961,7 +5979,10 @@ export interface operations {
     };
     update_contact_v1_contacts__contact_id__put: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
             header?: never;
             path: {
                 contact_id: TypeID<"contact">;
@@ -6005,7 +6026,10 @@ export interface operations {
     };
     delete_contact_v1_contacts__contact_id__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
             header?: never;
             path: {
                 contact_id: TypeID<"contact">;
@@ -6043,7 +6067,10 @@ export interface operations {
     };
     get_verification_status_v1_contacts__contact_id__verification_get: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
             header?: never;
             path: {
                 contact_id: TypeID<"contact">;
@@ -6094,6 +6121,8 @@ export interface operations {
         parameters: {
             query: {
                 token: string;
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
             };
             header?: never;
             path: {
@@ -6152,6 +6181,8 @@ export interface operations {
         parameters: {
             query: {
                 type: components["schemas"]["VerificationType"];
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
             };
             header?: never;
             path: {
@@ -6210,7 +6241,10 @@ export interface operations {
     };
     cancel_verification_v1_contacts__contact_id__verification_delete: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+            };
             header?: never;
             path: {
                 contact_id: TypeID<"contact">;
