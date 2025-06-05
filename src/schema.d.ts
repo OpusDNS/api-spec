@@ -3507,6 +3507,9 @@ export interface operations {
     list_zones_v1_dns_get: {
         parameters: {
             query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
                 page?: number;
                 page_size?: number;
             };
@@ -3538,7 +3541,11 @@ export interface operations {
     };
     create_zone_v1_dns_post: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -3571,7 +3578,11 @@ export interface operations {
     };
     get_zone_v1_dns__zone_name__get: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -3602,7 +3613,11 @@ export interface operations {
     };
     delete_zone_v1_dns__zone_name__delete: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -3631,7 +3646,11 @@ export interface operations {
     };
     update_zone_v1_dns__zone_name__rrsets_put: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -3666,7 +3685,11 @@ export interface operations {
     };
     enable_dnssec_v1_dns__zone_name__dnssec_enable_post: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
+            };
             header?: never;
             path: {
                 zone_name: string;
@@ -3697,7 +3720,11 @@ export interface operations {
     };
     disable_dnssec_v1_dns__zone_name__dnssec_disable_post: {
         parameters: {
-            query?: never;
+            query?: {
+                user_id?: TypeID<"user"> | null;
+                organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
+            };
             header?: never;
             path: {
                 zone_name: string;
