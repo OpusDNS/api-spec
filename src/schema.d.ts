@@ -4170,6 +4170,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4202,6 +4203,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4238,6 +4240,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4271,6 +4274,7 @@ export interface operations {
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
                 user_id?: TypeID<"user"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4304,6 +4308,7 @@ export interface operations {
         parameters: {
             query?: {
                 user_id?: TypeID<"user"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4344,6 +4349,7 @@ export interface operations {
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
                 user_id?: TypeID<"user"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4376,6 +4382,7 @@ export interface operations {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
                 user_id?: TypeID<"user"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4412,6 +4419,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4444,6 +4452,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4476,6 +4485,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4512,6 +4522,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4546,6 +4557,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4578,6 +4590,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4615,6 +4628,7 @@ export interface operations {
         parameters: {
             query?: {
                 user_id?: TypeID<"user"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4648,6 +4662,7 @@ export interface operations {
         parameters: {
             query?: {
                 user_id?: TypeID<"user"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4679,6 +4694,7 @@ export interface operations {
         parameters: {
             query?: {
                 user_id?: TypeID<"user"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4777,6 +4793,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -4913,6 +4930,7 @@ export interface operations {
             query?: {
                 attributes?: string[] | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4946,6 +4964,7 @@ export interface operations {
         parameters: {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -4977,6 +4996,7 @@ export interface operations {
         parameters: {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -5014,6 +5034,7 @@ export interface operations {
         parameters: {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -5413,6 +5434,7 @@ export interface operations {
         parameters: {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -5446,6 +5468,7 @@ export interface operations {
         parameters: {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path: {
@@ -5871,6 +5894,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -5903,6 +5927,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                contact_id?: TypeID<"contact"> | null;
             };
             header?: never;
             path?: never;
@@ -5942,7 +5967,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeID<"contact"> | null;
             };
             cookie?: never;
         };
@@ -5985,7 +6010,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeID<"contact"> | null;
             };
             cookie?: never;
         };
@@ -6032,7 +6057,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeID<"contact"> | null;
             };
             cookie?: never;
         };
@@ -6073,7 +6098,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeID<"contact"> | null;
             };
             cookie?: never;
         };
@@ -6126,7 +6151,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeID<"contact"> | null;
             };
             cookie?: never;
         };
@@ -6186,7 +6211,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeID<"contact"> | null;
             };
             cookie?: never;
         };
@@ -6247,7 +6272,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeID<"contact"> | null;
             };
             cookie?: never;
         };
