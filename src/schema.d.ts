@@ -1476,6 +1476,51 @@ export interface components {
          * @enum {string}
          */
         DomainAvailabilityStatus: "available" | "unavailable" | "error";
+        /** DomainContactSchema */
+        DomainContactSchema: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /** @description The type of contact */
+            contact_type: components["schemas"]["DomainContactType"];
+            /**
+             * Registry Handle Id
+             * @description The registry handle id of the contact
+             */
+            registry_handle_id?: string | null;
+            /**
+             * Rdds Opt Out
+             * @description Whether the contact is opted out of rdds
+             * @default false
+             */
+            rdds_opt_out: boolean;
+            /**
+             * Domain Contact Id
+             * Format: typeid
+             */
+            domain_contact_id?: TypeID<"domain_contact">;
+            /**
+             * Domain Id
+             * Format: typeid
+             * @default None
+             */
+            domain_id: TypeID<"domain">;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @default None
+             */
+            contact_id: TypeID<"contact">;
+        };
         /**
          * DomainContactType
          * @enum {string}
@@ -1484,18 +1529,12 @@ export interface components {
         /** DomainCreate */
         DomainCreate: {
             /**
-             * Domain
+             * Name
              * @description The domain to be created
              */
-            domain: string;
+            name: string;
             /** @description How long the domain should be registered for */
             period: components["schemas"]["DomainPeriod"];
-            /**
-             * Registrant Contact
-             * Format: typeid
-             * @description The contact id of the registrant
-             */
-            registrant_contact: TypeID<"contact">;
             /**
              * Contacts
              * @description The contacts of the domain
@@ -1504,15 +1543,39 @@ export interface components {
                 [key: string]: TypeID<"contact">;
             };
             /**
-             * Name Servers
+             * Nameservers
              * @description The name servers for the domain
              */
-            name_servers?: components["schemas"]["NameServer"][] | null;
+            nameservers?: components["schemas"]["Nameserver"][] | null;
             /** @description The renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"];
         };
-        /** DomainModel */
-        DomainModel: {
+        /** DomainNameParts */
+        DomainNameParts: {
+            /** Subdomain */
+            subdomain?: string | null;
+            /** Domain */
+            domain?: string | null;
+            /** Suffix */
+            suffix?: string | null;
+        };
+        /** DomainPeriod */
+        DomainPeriod: {
+            /**
+             * Value
+             * @description The period of the domain
+             */
+            value: number;
+            /** @description The unit of the period */
+            unit: components["schemas"]["DomainPeriodUnit"];
+        };
+        /**
+         * DomainPeriodUnit
+         * @enum {string}
+         */
+        DomainPeriodUnit: "y" | "m" | "d";
+        /** DomainResponse */
+        DomainResponse: {
             /**
              * Updated On
              * Format: date-time
@@ -1526,8 +1589,13 @@ export interface components {
              */
             created_on?: Date;
             /**
+             * Name
+             * @description The domain name
+             */
+            name: string;
+            /**
              * Sld
-             * @description The subdomain of the domain
+             * @description The second level domain
              */
             sld: string;
             /**
@@ -1580,31 +1648,17 @@ export interface components {
              * @default None
              */
             owner_id: TypeID<"organization">;
-        };
-        /** DomainNameParts */
-        DomainNameParts: {
-            /** Subdomain */
-            subdomain?: string | null;
-            /** Domain */
-            domain?: string | null;
-            /** Suffix */
-            suffix?: string | null;
-        };
-        /** DomainPeriod */
-        DomainPeriod: {
             /**
-             * Value
-             * @description The period of the domain
+             * Contacts
+             * @default []
              */
-            value: number;
-            /** @description The unit of the period */
-            unit: components["schemas"]["DomainPeriodUnit"];
+            contacts: components["schemas"]["DomainContactSchema"][];
+            /**
+             * Nameservers
+             * @default []
+             */
+            nameservers: components["schemas"]["HostSchema"][];
         };
-        /**
-         * DomainPeriodUnit
-         * @enum {string}
-         */
-        DomainPeriodUnit: "y" | "m" | "d";
         /** DomainSuggestionBase */
         DomainSuggestionBase: {
             /**
@@ -1641,10 +1695,10 @@ export interface components {
              */
             billing_contact_id?: TypeID<"contact"> | null;
             /**
-             * Name Servers
+             * Nameservers
              * @description The name servers for the domain
              */
-            name_servers?: components["schemas"]["NameServer"][] | null;
+            nameservers?: components["schemas"]["Nameserver"][] | null;
         };
         /** DomainsRequest */
         DomainsRequest: {
@@ -1794,6 +1848,38 @@ export interface components {
             status: number;
             errors: components["schemas"]["ValidationError"][];
         };
+        /** HostSchema */
+        HostSchema: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Hostname
+             * @description Hostname of the host object
+             */
+            hostname: string;
+            /**
+             * Host Id
+             * Format: typeid
+             */
+            host_id?: TypeID<"host">;
+            /**
+             * Domain Id
+             * Format: typeid
+             * @description The domain that the host object belongs to
+             * @default None
+             */
+            domain_id: TypeID<"domain">;
+        };
         /** IpRestrictionCreate */
         IpRestrictionCreate: {
             /**
@@ -1844,19 +1930,18 @@ export interface components {
             last_used_on?: Date | null;
         };
         JsonValue: unknown;
-        /** NameServer */
-        NameServer: {
+        /** Nameserver */
+        Nameserver: {
             /**
-             * Name Server
+             * Host Name
              * @description The name server of the domain
              */
-            name_server: string;
+            host_name: string;
             /**
-             * Ip Address
-             * Format: ipvanyaddress
+             * Ip Addresses
              * @description The ip address of the name server
              */
-            ip_address: string;
+            ip_addresses?: string[] | null;
         };
         /** Notification */
         Notification: {
@@ -2548,6 +2633,12 @@ export interface components {
         Pagination_DnsZoneResponse_: {
             /** Results */
             results: components["schemas"]["DnsZoneResponse"][];
+            pagination: components["schemas"]["PaginationMetadata"];
+        };
+        /** Pagination[DomainResponse] */
+        Pagination_DomainResponse_: {
+            /** Results */
+            results: components["schemas"]["DomainResponse"][];
             pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[EmailForward] */
@@ -5529,7 +5620,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["Pagination_DomainResponse_"];
                 };
             };
         };
@@ -5553,7 +5644,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DomainModel"];
+                    "application/json": components["schemas"]["DomainResponse"];
                 };
             };
             /** @description Validation Error */
@@ -5584,7 +5675,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DomainModel"];
+                    "application/json": components["schemas"]["DomainResponse"];
                 };
             };
             /** @description Validation Error */
