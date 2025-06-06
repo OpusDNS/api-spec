@@ -3601,6 +3601,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
                 page?: number;
                 page_size?: number;
             };
@@ -3636,6 +3637,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -3676,7 +3678,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                zone_name: string;
+                zone_name: string | null;
             };
             cookie?: never;
         };
@@ -3711,7 +3713,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                zone_name: string;
+                zone_name: string | null;
             };
             cookie?: never;
         };
@@ -3744,7 +3746,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                zone_name: string;
+                zone_name: string | null;
             };
             cookie?: never;
         };
@@ -3783,7 +3785,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                zone_name: string;
+                zone_name: string | null;
             };
             cookie?: never;
         };
@@ -3818,7 +3820,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                zone_name: string;
+                zone_name: string | null;
             };
             cookie?: never;
         };
@@ -4274,6 +4276,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4307,6 +4310,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4344,6 +4348,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4378,6 +4383,7 @@ export interface operations {
                 keys?: string[] | null;
                 user_id?: TypeID<"user"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4412,6 +4418,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4453,6 +4460,7 @@ export interface operations {
                 keys?: string[] | null;
                 user_id?: TypeID<"user"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4486,6 +4494,7 @@ export interface operations {
                 organization_id?: TypeID<"organization"> | null;
                 user_id?: TypeID<"user"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4523,6 +4532,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4556,6 +4566,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4589,6 +4600,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4626,6 +4638,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4661,6 +4674,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4694,6 +4708,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4732,6 +4747,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4766,6 +4782,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4798,6 +4815,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4897,6 +4915,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -5034,6 +5053,7 @@ export interface operations {
                 attributes?: string[] | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -5068,6 +5088,7 @@ export interface operations {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -5100,6 +5121,7 @@ export interface operations {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -5138,6 +5160,7 @@ export interface operations {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -5538,6 +5561,7 @@ export interface operations {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -5572,6 +5596,7 @@ export interface operations {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -5978,6 +6003,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -6011,6 +6037,7 @@ export interface operations {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
                 contact_id?: TypeID<"contact"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -6047,6 +6074,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -6090,6 +6118,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -6137,6 +6166,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -6178,6 +6208,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -6231,6 +6262,7 @@ export interface operations {
                 token: string;
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -6291,6 +6323,7 @@ export interface operations {
                 type: components["schemas"]["VerificationType"];
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -6352,6 +6385,7 @@ export interface operations {
             query?: {
                 user_id?: TypeID<"user"> | null;
                 organization_id?: TypeID<"organization"> | null;
+                zone_name?: string | null;
             };
             header?: never;
             path: {
