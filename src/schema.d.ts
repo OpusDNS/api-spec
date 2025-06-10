@@ -2776,10 +2776,7 @@ export interface components {
              * @description The user's phone number
              */
             phone?: string | null;
-            /**
-             * Locale
-             * @description The locale
-             */
+            /** Locale */
             locale: string;
             /**
              * Organization Id
@@ -2833,10 +2830,7 @@ export interface components {
              * @description The user's phone number
              */
             phone?: string | null;
-            /**
-             * Locale
-             * @description The locale
-             */
+            /** Locale */
             locale: string;
             /**
              * Password
@@ -3143,10 +3137,7 @@ export interface components {
              * @description The user's phone number
              */
             phone?: string | null;
-            /**
-             * Locale
-             * @description The locale
-             */
+            /** Locale */
             locale: string;
             /**
              * Organization Id
@@ -3214,10 +3205,7 @@ export interface components {
              * @description The user's phone number
              */
             phone?: string | null;
-            /**
-             * Locale
-             * @description The locale
-             */
+            /** Locale */
             locale: string;
             /**
              * Organization Id
