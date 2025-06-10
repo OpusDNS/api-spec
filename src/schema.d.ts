@@ -3352,9 +3352,6 @@ export interface operations {
             query?: {
                 /** @description Optional status to filter the results */
                 status?: components["schemas"]["OrganizationCredentialStatus"] | null;
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                api_key_id?: TypeID<"api_key"> | null;
             };
             header?: never;
             path?: never;
@@ -3393,11 +3390,7 @@ export interface operations {
     };
     issue_api_key_v1_auth_client_credentials_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                api_key_id?: TypeID<"api_key"> | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -3439,13 +3432,10 @@ export interface operations {
     };
     delete_api_key_v1_auth_client_credentials__api_key_id__delete: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                api_key_id: TypeID<"api_key"> | null;
+                api_key_id: TypeID<"api_key">;
             };
             cookie?: never;
         };
@@ -3598,10 +3588,6 @@ export interface operations {
     list_zones_v1_dns_get: {
         parameters: {
             query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
                 page?: number;
                 page_size?: number;
             };
@@ -3633,12 +3619,7 @@ export interface operations {
     };
     create_zone_v1_dns_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -3671,14 +3652,10 @@ export interface operations {
     };
     get_zone_v1_dns__zone_name__get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                zone_name: string | null;
+                zone_name: string;
             };
             cookie?: never;
         };
@@ -3706,14 +3683,10 @@ export interface operations {
     };
     delete_zone_v1_dns__zone_name__delete: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                zone_name: string | null;
+                zone_name: string;
             };
             cookie?: never;
         };
@@ -3739,14 +3712,10 @@ export interface operations {
     };
     update_zone_v1_dns__zone_name__rrsets_put: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                zone_name: string | null;
+                zone_name: string;
             };
             cookie?: never;
         };
@@ -3778,14 +3747,10 @@ export interface operations {
     };
     enable_dnssec_v1_dns__zone_name__dnssec_enable_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                zone_name: string | null;
+                zone_name: string;
             };
             cookie?: never;
         };
@@ -3813,14 +3778,10 @@ export interface operations {
     };
     disable_dnssec_v1_dns__zone_name__dnssec_disable_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                zone_name: string | null;
+                zone_name: string;
             };
             cookie?: never;
         };
@@ -4272,12 +4233,7 @@ export interface operations {
     };
     list_organizations_v1_organizations_get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -4293,25 +4249,11 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_Organization_"];
                 };
             };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
         };
     };
     create_organization_v1_organizations_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -4344,12 +4286,7 @@ export interface operations {
     };
     list_users_v1_organizations_users_get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -4365,15 +4302,6 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_User_"];
                 };
             };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
         };
     };
     get_attributes_v1_organizations_attributes__organization_id__get: {
@@ -4381,9 +4309,6 @@ export interface operations {
             query?: {
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
-                user_id?: TypeID<"user"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
             };
             header?: never;
             path: {
@@ -4415,11 +4340,7 @@ export interface operations {
     };
     update_attributes_v1_organizations_attributes__organization_id__patch: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
                 organization_id: TypeID<"organization"> | null;
@@ -4458,9 +4379,6 @@ export interface operations {
                 organization_id?: TypeID<"organization"> | null;
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
-                user_id?: TypeID<"user"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4492,9 +4410,6 @@ export interface operations {
         parameters: {
             query?: {
                 organization_id?: TypeID<"organization"> | null;
-                user_id?: TypeID<"user"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
             };
             header?: never;
             path?: never;
@@ -4528,12 +4443,7 @@ export interface operations {
     };
     list_roles_v1_organizations_roles_get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -4549,25 +4459,11 @@ export interface operations {
                     "application/json": unknown;
                 };
             };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
         };
     };
     list_ip_restrictions_v1_organizations_ip_restrictions_get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -4583,25 +4479,11 @@ export interface operations {
                     "application/json": components["schemas"]["IpRestrictionResponse"][];
                 };
             };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
         };
     };
     create_ip_restriction_v1_organizations_ip_restrictions_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -4634,12 +4516,7 @@ export interface operations {
     };
     get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
                 ip_restriction_id: number;
@@ -4670,12 +4547,7 @@ export interface operations {
     };
     delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
                 ip_restriction_id: number;
@@ -4704,12 +4576,7 @@ export interface operations {
     };
     update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
                 ip_restriction_id: number;
@@ -4744,14 +4611,10 @@ export interface operations {
     };
     get_organization_v1_organizations__organization_id__get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization"> | null;
+                organization_id: TypeID<"organization">;
             };
             cookie?: never;
         };
@@ -4779,14 +4642,10 @@ export interface operations {
     };
     delete_user_v1_organizations__organization_id__delete: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization"> | null;
+                organization_id: TypeID<"organization">;
             };
             cookie?: never;
         };
@@ -4812,14 +4671,10 @@ export interface operations {
     };
     update_organization_v1_organizations__organization_id__patch: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization"> | null;
+                organization_id: TypeID<"organization">;
             };
             cookie?: never;
         };
@@ -4944,12 +4799,7 @@ export interface operations {
     };
     create_user_v1_users_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -4984,9 +4834,6 @@ export interface operations {
         parameters: {
             query?: {
                 attributes?: string[] | null;
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                api_key_id?: TypeID<"api_key"> | null;
             };
             header?: never;
             path?: never;
@@ -5047,11 +4894,7 @@ export interface operations {
     };
     tos_sign_v1_users_accept_tos_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                api_key_id?: TypeID<"api_key"> | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -5084,13 +4927,10 @@ export interface operations {
         parameters: {
             query?: {
                 attributes?: string[] | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
             };
             header?: never;
             path: {
-                user_id: TypeID<"user"> | null;
+                user_id: TypeID<"user">;
             };
             cookie?: never;
         };
@@ -5118,14 +4958,10 @@ export interface operations {
     };
     delete_user_v1_users__user_id__delete: {
         parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user"> | null;
+                user_id: TypeID<"user">;
             };
             cookie?: never;
         };
@@ -5151,14 +4987,10 @@ export interface operations {
     };
     update_user_v1_users__user_id__patch: {
         parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user"> | null;
+                user_id: TypeID<"user">;
             };
             cookie?: never;
         };
@@ -5190,14 +5022,10 @@ export interface operations {
     };
     get_user_permissions_v1_users__user_id__permissions_get: {
         parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user"> | null;
+                user_id: TypeID<"user">;
             };
             cookie?: never;
         };
@@ -5591,14 +5419,10 @@ export interface operations {
     };
     list_roles_v1_users__user_id__roles_get: {
         parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user"> | null;
+                user_id: TypeID<"user">;
             };
             cookie?: never;
         };
@@ -5626,14 +5450,10 @@ export interface operations {
     };
     update_user_relations_v1_users__user_id__roles_patch: {
         parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user"> | null;
+                user_id: TypeID<"user">;
             };
             cookie?: never;
         };
@@ -6032,12 +5852,7 @@ export interface operations {
     };
     get_contacts_v1_contacts_get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -6053,25 +5868,11 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_ContactSchema_"];
                 };
             };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
         };
     };
     create_contact_v1_contacts_post: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                contact_id?: TypeID<"contact"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -6104,14 +5905,10 @@ export interface operations {
     };
     get_contact_v1_contacts__contact_id__get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact"> | null;
+                contact_id: TypeID<"contact">;
             };
             cookie?: never;
         };
@@ -6148,14 +5945,10 @@ export interface operations {
     };
     update_contact_v1_contacts__contact_id__put: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact"> | null;
+                contact_id: TypeID<"contact">;
             };
             cookie?: never;
         };
@@ -6196,14 +5989,10 @@ export interface operations {
     };
     delete_contact_v1_contacts__contact_id__delete: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact"> | null;
+                contact_id: TypeID<"contact">;
             };
             cookie?: never;
         };
@@ -6238,14 +6027,10 @@ export interface operations {
     };
     get_verification_status_v1_contacts__contact_id__verification_get: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact"> | null;
+                contact_id: TypeID<"contact">;
             };
             cookie?: never;
         };
@@ -6293,13 +6078,10 @@ export interface operations {
         parameters: {
             query: {
                 token: string;
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                zone_name?: string | null;
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact"> | null;
+                contact_id: TypeID<"contact">;
             };
             cookie?: never;
         };
@@ -6354,13 +6136,10 @@ export interface operations {
         parameters: {
             query: {
                 type: components["schemas"]["VerificationType"];
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                zone_name?: string | null;
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact"> | null;
+                contact_id: TypeID<"contact">;
             };
             cookie?: never;
         };
@@ -6415,14 +6194,10 @@ export interface operations {
     };
     cancel_verification_v1_contacts__contact_id__verification_delete: {
         parameters: {
-            query?: {
-                user_id?: TypeID<"user"> | null;
-                organization_id?: TypeID<"organization"> | null;
-                zone_name?: string | null;
-            };
+            query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact"> | null;
+                contact_id: TypeID<"contact">;
             };
             cookie?: never;
         };
