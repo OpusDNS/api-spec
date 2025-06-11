@@ -1458,6 +1458,21 @@ export interface components {
             rrsets: components["schemas"]["DnsRrsetCreate"][];
         };
         /**
+         * DnssecAlgorithm
+         * @enum {integer}
+         */
+        DnssecAlgorithm: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 | 12 | 13 | 14 | 15 | 16 | 17 | 23;
+        /**
+         * DnssecDigestType
+         * @enum {integer}
+         */
+        DnssecDigestType: 1 | 2 | 3 | 4 | 5 | 6;
+        /**
+         * DnssecRecordType
+         * @enum {string}
+         */
+        DnssecRecordType: "ds_data" | "key_data";
+        /**
          * DnssecStatus
          * @enum {string}
          */
@@ -1549,6 +1564,98 @@ export interface components {
             nameservers?: components["schemas"]["Nameserver"][] | null;
             /** @description The renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"];
+        };
+        /** DomainDnssecDataCreate */
+        DomainDnssecDataCreate: {
+            /**
+             * Flags
+             * @description DNSKEY flags for key records
+             */
+            flags?: number | null;
+            /**
+             * Protocol
+             * @description Protocol field for key records (typically 3)
+             */
+            protocol?: number | null;
+            /**
+             * Public Key
+             * @description Base64-encoded public key for key records
+             */
+            public_key?: string | null;
+            /**
+             * Key Tag
+             * @description Key tag for DS records
+             */
+            key_tag?: number | null;
+            /** @description Digest type for DS records */
+            digest_type?: components["schemas"]["DnssecDigestType"] | null;
+            /**
+             * Digest
+             * @description Digest value for DS records
+             */
+            digest?: string | null;
+            /** @description Type of DNSSEC record (DS or Key) */
+            record_type: components["schemas"]["DnssecRecordType"];
+            /** @description DNSSEC algorithm used */
+            algorithm: components["schemas"]["DnssecAlgorithm"];
+        };
+        /** DomainDnssecDataResponse */
+        DomainDnssecDataResponse: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Flags
+             * @description DNSKEY flags for key records
+             */
+            flags?: number | null;
+            /**
+             * Protocol
+             * @description Protocol field for key records (typically 3)
+             */
+            protocol?: number | null;
+            /**
+             * Public Key
+             * @description Base64-encoded public key for key records
+             */
+            public_key?: string | null;
+            /**
+             * Key Tag
+             * @description Key tag for DS records
+             */
+            key_tag?: number | null;
+            /** @description Digest type for DS records */
+            digest_type?: components["schemas"]["DnssecDigestType"] | null;
+            /**
+             * Digest
+             * @description Digest value for DS records
+             */
+            digest?: string | null;
+            /** @description Type of DNSSEC record (DS or Key) */
+            record_type: components["schemas"]["DnssecRecordType"];
+            /** @description DNSSEC algorithm used */
+            algorithm: components["schemas"]["DnssecAlgorithm"];
+            /**
+             * Domain Dnssec Data Id
+             * Format: typeid
+             */
+            domain_dnssec_data_id?: TypeID<"domain_dnssec">;
+            /**
+             * Domain Id
+             * Format: typeid
+             * @description The domain this DNSSEC record belongs to
+             * @default None
+             */
+            domain_id: TypeID<"domain">;
         };
         /** DomainNameParts */
         DomainNameParts: {
@@ -5762,7 +5869,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
                 };
             };
             /** @description Validation Error */
@@ -5785,7 +5892,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainDnssecDataCreate"][];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -5793,7 +5904,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
                 };
             };
             /** @description Validation Error */
@@ -5819,13 +5930,11 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Successful Response */
-            200: {
+            204: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": unknown;
-                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
