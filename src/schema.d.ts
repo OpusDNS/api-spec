@@ -792,7 +792,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/domains/{domain_name}/dnssec": {
+    "/v1/domains/{domain_reference}/dnssec": {
         parameters: {
             query?: never;
             header?: never;
@@ -800,12 +800,12 @@ export interface paths {
             cookie?: never;
         };
         /** Get Dnssec */
-        get: operations["get_dnssec_v1_domains__domain_name__dnssec_get"];
+        get: operations["get_dnssec_v1_domains__domain_reference__dnssec_get"];
         /** Create Or Update Dnssec */
-        put: operations["create_or_update_dnssec_v1_domains__domain_name__dnssec_put"];
+        put: operations["create_or_update_dnssec_v1_domains__domain_reference__dnssec_put"];
         post?: never;
         /** Delete Dnssec */
-        delete: operations["delete_dnssec_v1_domains__domain_name__dnssec_delete"];
+        delete: operations["delete_dnssec_v1_domains__domain_reference__dnssec_delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -5806,12 +5806,12 @@ export interface operations {
             };
         };
     };
-    get_dnssec_v1_domains__domain_name__dnssec_get: {
+    get_dnssec_v1_domains__domain_reference__dnssec_get: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                domain_name: string;
+                domain_reference: TypeID<"domain"> | string;
             };
             cookie?: never;
         };
@@ -5837,12 +5837,12 @@ export interface operations {
             };
         };
     };
-    create_or_update_dnssec_v1_domains__domain_name__dnssec_put: {
+    create_or_update_dnssec_v1_domains__domain_reference__dnssec_put: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                domain_name: string;
+                domain_reference: TypeID<"domain"> | string;
             };
             cookie?: never;
         };
@@ -5872,12 +5872,12 @@ export interface operations {
             };
         };
     };
-    delete_dnssec_v1_domains__domain_name__dnssec_delete: {
+    delete_dnssec_v1_domains__domain_reference__dnssec_delete: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                domain_name: string;
+                domain_reference: TypeID<"domain"> | string;
             };
             cookie?: never;
         };
