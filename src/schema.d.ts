@@ -704,6 +704,25 @@ export interface paths {
         patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
         trace?: never;
     };
+    "/v1/domains/{domain_reference}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Domain */
+        get: operations["get_domain_v1_domains__domain_reference__get"];
+        put?: never;
+        post?: never;
+        /** Delete Domain */
+        delete: operations["delete_domain_v1_domains__domain_reference__delete"];
+        options?: never;
+        head?: never;
+        /** Update Domain */
+        patch: operations["update_domain_v1_domains__domain_reference__patch"];
+        trace?: never;
+    };
     "/v1/domains": {
         parameters: {
             query?: never;
@@ -722,42 +741,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/domains/{domain_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Domain */
-        get: operations["get_domain_v1_domains__domain_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/{domain}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Delete Domain */
-        delete: operations["delete_domain_v1_domains__domain__delete"];
-        options?: never;
-        head?: never;
-        /** Update Domain */
-        patch: operations["update_domain_v1_domains__domain__patch"];
-        trace?: never;
-    };
-    "/v1/domains/{domain_name}/renew": {
+    "/v1/domains/{domain_reference}/renew": {
         parameters: {
             query?: never;
             header?: never;
@@ -767,7 +751,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Renew Domain */
-        post: operations["renew_domain_v1_domains__domain_name__renew_post"];
+        post: operations["renew_domain_v1_domains__domain_reference__renew_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -802,23 +786,6 @@ export interface paths {
         get: operations["transfer_domain_v1_domains__domain_name__transfer_get"];
         put?: never;
         post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/{domain_name}/push": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Push Domain */
-        post: operations["push_domain_v1_domains__domain_name__push_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1734,15 +1701,25 @@ export interface components {
              */
             transfer_lock: boolean;
             /**
+             * Canceled On
+             * @description When the domain was deleted
+             */
+            canceled_on?: Date | null;
+            /**
              * Expires On
              * @description When the domain expires
              */
             expires_on?: Date | null;
             /**
-             * Created Registry
+             * Registered On
              * @description When the domain was registered
              */
-            created_registry?: Date | null;
+            registered_on?: Date | null;
+            /**
+             * Deleted On
+             * @description When the domain will be deleted
+             */
+            deleted_on?: Date | null;
             /**
              * Domain Id
              * Format: typeid
@@ -1756,6 +1733,12 @@ export interface components {
              */
             owner_id: TypeID<"organization">;
             /**
+             * Registry Account Id
+             * Format: typeid
+             * @default None
+             */
+            registry_account_id: TypeID<"registry_account">;
+            /**
              * Contacts
              * @default []
              */
@@ -1766,6 +1749,11 @@ export interface components {
              */
             nameservers: components["schemas"]["HostSchema"][];
         };
+        /**
+         * DomainStatusType
+         * @enum {string}
+         */
+        DomainStatusType: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
         /** DomainSuggestionBase */
         DomainSuggestionBase: {
             /**
@@ -1782,30 +1770,27 @@ export interface components {
         /** DomainUpdate */
         DomainUpdate: {
             /**
-             * Registrant Contact Id
-             * @description The contact id of the registrant
+             * Status
+             * @description The new status of the domain
              */
-            registrant_contact_id?: TypeID<"contact"> | null;
-            /**
-             * Admin Contact Id
-             * @description The contact id of the admin
-             */
-            admin_contact_id?: TypeID<"contact"> | null;
-            /**
-             * Tech Contact Id
-             * @description The contact id of the tech
-             */
-            tech_contact_id?: TypeID<"contact"> | null;
-            /**
-             * Billing Contact Id
-             * @description The contact id of the billing
-             */
-            billing_contact_id?: TypeID<"contact"> | null;
+            status?: components["schemas"]["DomainStatusType"][] | null;
             /**
              * Nameservers
-             * @description The name servers for the domain
+             * @description The new name servers for the domain
              */
             nameservers?: components["schemas"]["Nameserver"][] | null;
+            /**
+             * Contacts
+             * @description The new contacts of the domain
+             */
+            contacts: {
+                [key: string]: TypeID<"contact">;
+            } | null;
+            /**
+             * Auth Code
+             * @description The new auth code for the domain
+             */
+            auth_code?: string | null;
         };
         /** DomainsRequest */
         DomainsRequest: {
@@ -2046,9 +2031,9 @@ export interface components {
             host_name: string;
             /**
              * Ip Addresses
-             * @description The ip address of the name server
+             * @description The ip addresses of the name server
              */
-            ip_addresses?: string[] | null;
+            ip_addresses?: string[];
         };
         /** Notification */
         Notification: {
@@ -5578,6 +5563,103 @@ export interface operations {
             };
         };
     };
+    get_domain_v1_domains__domain_reference__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_domain_v1_domains__domain_reference__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_domain_v1_domains__domain_reference__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_domains_v1_domains_get: {
         parameters: {
             query?: never;
@@ -5631,109 +5713,12 @@ export interface operations {
             };
         };
     };
-    get_domain_v1_domains__domain_id__get: {
+    renew_domain_v1_domains__domain_reference__renew_post: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                domain_id: TypeID<"domain">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_domain_v1_domains__domain__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_domain_v1_domains__domain__patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    renew_domain_v1_domains__domain_name__renew_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_name: string;
+                domain_reference: TypeID<"domain"> | string;
             };
             cookie?: never;
         };
@@ -5761,11 +5746,11 @@ export interface operations {
     };
     restore_domain_v1_domains__domain_name__restore_post: {
         parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_name: string;
+            query: {
+                domain_reference: TypeID<"domain"> | string;
             };
+            header?: never;
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -5792,42 +5777,11 @@ export interface operations {
     };
     transfer_domain_v1_domains__domain_name__transfer_get: {
         parameters: {
-            query?: never;
+            query: {
+                domain_reference: TypeID<"domain"> | string;
+            };
             header?: never;
-            path: {
-                domain_name: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    push_domain_v1_domains__domain_name__push_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_name: string;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
