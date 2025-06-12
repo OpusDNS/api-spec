@@ -1747,7 +1747,7 @@ export interface components {
              * Nameservers
              * @default []
              */
-            nameservers: components["schemas"]["HostSchema"][];
+            nameservers: components["schemas"]["HostResponse"][];
         };
         /**
          * DomainStatusType
@@ -1783,7 +1783,7 @@ export interface components {
              * Contacts
              * @description The new contacts of the domain
              */
-            contacts: {
+            contacts?: {
                 [key: string]: TypeID<"contact">;
             } | null;
             /**
@@ -1940,8 +1940,42 @@ export interface components {
             status: number;
             errors: components["schemas"]["ValidationError"][];
         };
-        /** HostSchema */
-        HostSchema: {
+        /** HostIpSchema */
+        HostIpSchema: {
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Address
+             * Format: ipvanyaddress
+             * @description IP address of the host object
+             */
+            address: string;
+            /** @description IP address type */
+            type: components["schemas"]["IPAddressType"];
+            /**
+             * Host Ip Id
+             * Format: typeid
+             */
+            host_ip_id?: TypeID<"host_ip">;
+            /**
+             * Host Id
+             * Format: typeid
+             * @default None
+             */
+            host_id: TypeID<"host">;
+        };
+        /** HostResponse */
+        HostResponse: {
             /**
              * Updated On
              * Format: date-time
@@ -1971,7 +2005,17 @@ export interface components {
              * @default None
              */
             domain_id: TypeID<"domain">;
+            /**
+             * Host Ips
+             * @default []
+             */
+            host_ips: components["schemas"]["HostIpSchema"][];
         };
+        /**
+         * IPAddressType
+         * @enum {string}
+         */
+        IPAddressType: "v4" | "v6";
         /** IpRestrictionCreate */
         IpRestrictionCreate: {
             /**
@@ -2025,10 +2069,10 @@ export interface components {
         /** Nameserver */
         Nameserver: {
             /**
-             * Host Name
+             * Hostname
              * @description The name server of the domain
              */
-            host_name: string;
+            hostname: string;
             /**
              * Ip Addresses
              * @description The ip addresses of the name server
