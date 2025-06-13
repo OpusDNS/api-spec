@@ -1458,50 +1458,26 @@ export interface components {
          * @enum {string}
          */
         DomainAvailabilityStatus: "available" | "unavailable" | "error";
-        /** DomainContactSchema */
-        DomainContactSchema: {
+        /**
+         * DomainClientStatus
+         * @enum {string}
+         */
+        DomainClientStatus: "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        /** DomainContactResponse */
+        DomainContactResponse: {
             /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
+             * Contact Id
+             * Format: typeid
+             * @description The contact id of the contact
              */
-            updated_on?: Date;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /** @description The type of contact */
-            contact_type: components["schemas"]["DomainContactType"];
+            contact_id: TypeID<"contact">;
             /**
              * Registry Handle Id
              * @description The registry handle id of the contact
              */
             registry_handle_id?: string | null;
-            /**
-             * Rdds Opt Out
-             * @description Whether the contact is opted out of rdds
-             * @default false
-             */
-            rdds_opt_out: boolean;
-            /**
-             * Domain Contact Id
-             * Format: typeid
-             */
-            domain_contact_id?: TypeID<"domain_contact">;
-            /**
-             * Domain Id
-             * Format: typeid
-             * @default None
-             */
-            domain_id: TypeID<"domain">;
-            /**
-             * Contact Id
-             * Format: typeid
-             * @default None
-             */
-            contact_id: TypeID<"contact">;
+            /** @description The type of contact */
+            contact_type: components["schemas"]["DomainContactType"];
         };
         /**
          * DomainContactType
@@ -1742,7 +1718,12 @@ export interface components {
              * Contacts
              * @default []
              */
-            contacts: components["schemas"]["DomainContactSchema"][];
+            contacts: components["schemas"]["DomainContactResponse"][];
+            /**
+             * Registry Statuses
+             * @default []
+             */
+            registry_statuses: components["schemas"]["DomainStatus"][];
             /**
              * Nameservers
              * @default []
@@ -1750,10 +1731,10 @@ export interface components {
             nameservers: components["schemas"]["HostResponse"][];
         };
         /**
-         * DomainStatusType
+         * DomainStatus
          * @enum {string}
          */
-        DomainStatusType: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
         /** DomainSuggestionBase */
         DomainSuggestionBase: {
             /**
@@ -1770,10 +1751,10 @@ export interface components {
         /** DomainUpdate */
         DomainUpdate: {
             /**
-             * Status
-             * @description The new status of the domain
+             * Statuses
+             * @description The new statuses of the domain
              */
-            status?: components["schemas"]["DomainStatusType"][] | null;
+            statuses?: components["schemas"]["DomainClientStatus"][] | null;
             /**
              * Nameservers
              * @description The new name servers for the domain
@@ -1940,76 +1921,27 @@ export interface components {
             status: number;
             errors: components["schemas"]["ValidationError"][];
         };
-        /** HostIpSchema */
-        HostIpSchema: {
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
+        /** HostIpResponse */
+        HostIpResponse: {
             /**
              * Address
              * Format: ipvanyaddress
-             * @description IP address of the host object
              */
             address: string;
-            /** @description IP address type */
             type: components["schemas"]["IPAddressType"];
-            /**
-             * Host Ip Id
-             * Format: typeid
-             */
-            host_ip_id?: TypeID<"host_ip">;
-            /**
-             * Host Id
-             * Format: typeid
-             * @default None
-             */
-            host_id: TypeID<"host">;
         };
         /** HostResponse */
         HostResponse: {
             /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
              * Hostname
-             * @description Hostname of the host object
+             * @description The hostname of the associated nameserver
              */
             hostname: string;
             /**
-             * Host Id
-             * Format: typeid
-             */
-            host_id?: TypeID<"host">;
-            /**
-             * Domain Id
-             * Format: typeid
-             * @description The domain that the host object belongs to
-             * @default None
-             */
-            domain_id: TypeID<"domain">;
-            /**
              * Host Ips
-             * @default []
+             * @description The ip addresses of the nameserver
              */
-            host_ips: components["schemas"]["HostIpSchema"][];
+            host_ips?: components["schemas"]["HostIpResponse"][];
         };
         /**
          * IPAddressType
