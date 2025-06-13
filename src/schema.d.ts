@@ -2811,7 +2811,7 @@ export interface components {
          * Permission
          * @enum {string}
          */
-        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "transfer_trade" | "update" | "verify_contact" | "view" | "view_audit_logs";
+        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
         /** PermissionSet */
         PermissionSet: {
             /**
