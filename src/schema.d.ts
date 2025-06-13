@@ -704,6 +704,23 @@ export interface paths {
         patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
         trace?: never;
     };
+    "/v1/domains/check": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Check Domain */
+        post: operations["check_domain_v1_domains_check_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/{domain_reference}": {
         parameters: {
             query?: never;
@@ -1453,11 +1470,30 @@ export interface components {
             /** Source */
             source?: string | null;
         };
+        /** DomainAvailabilityResponse */
+        DomainAvailabilityResponse: {
+            /** Domain Name */
+            domain_name: string;
+            /** Available */
+            available: boolean;
+            /** Reason */
+            reason: string | null;
+        };
         /**
          * DomainAvailabilityStatus
          * @enum {string}
          */
         DomainAvailabilityStatus: "available" | "unavailable" | "error";
+        /** DomainCheck */
+        DomainCheck: {
+            /** Domain Names */
+            domain_names: string[];
+        };
+        /** DomainCheckResponse */
+        DomainCheckResponse: {
+            /** Results */
+            results: components["schemas"]["DomainAvailabilityResponse"][];
+        };
         /**
          * DomainClientStatus
          * @enum {string}
@@ -5526,6 +5562,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["RelationSet"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    check_domain_v1_domains_check_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainCheck"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainCheckResponse"];
                 };
             };
             /** @description Validation Error */
