@@ -855,8 +855,7 @@ export interface paths {
         };
         /** Get Contact */
         get: operations["get_contact_v1_contacts__contact_id__get"];
-        /** Update Contact */
-        put: operations["update_contact_v1_contacts__contact_id__put"];
+        put?: never;
         post?: never;
         /** Delete Contact */
         delete: operations["delete_contact_v1_contacts__contact_id__delete"];
@@ -1133,69 +1132,6 @@ export interface components {
              * @default None
              */
             organization_id: TypeID<"organization">;
-        };
-        /** ContactUpdate */
-        ContactUpdate: {
-            /**
-             * Title
-             * @description The title of the contact
-             */
-            title?: string | null;
-            /**
-             * First Name
-             * @description The first name of the contact
-             */
-            first_name?: string | null;
-            /**
-             * Last Name
-             * @description The last name of the contact
-             */
-            last_name?: string | null;
-            /**
-             * Org
-             * @description The organization of the contact
-             */
-            org?: string | null;
-            /**
-             * Email
-             * @description The email of the contact
-             */
-            email?: string | null;
-            /**
-             * Phone
-             * @description The contact's phone number
-             */
-            phone?: string | null;
-            /**
-             * Fax
-             * @description The contact's fax number
-             */
-            fax?: string | null;
-            /**
-             * Street
-             * @description The address of the contact
-             */
-            street?: string | null;
-            /**
-             * City
-             * @description The city of the contact
-             */
-            city?: string | null;
-            /**
-             * State
-             * @description The state of the contact
-             */
-            state?: string | null;
-            /**
-             * Postal Code
-             * @description The postal code of the contact
-             */
-            postal_code?: string | null;
-            /**
-             * Country
-             * @description The country of the contact
-             */
-            country?: string | null;
         };
         /** ContactVerificationApiResponse */
         ContactVerificationApiResponse: {
@@ -6012,50 +5948,6 @@ export interface operations {
         responses: {
             /** @description Successful Response */
             200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ContactSchema"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_contact_v1_contacts__contact_id__put: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                contact_id: TypeID<"contact">;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ContactUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
                 headers: {
                     [name: string]: unknown;
                 };
