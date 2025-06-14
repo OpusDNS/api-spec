@@ -1596,6 +1596,33 @@ export interface components {
          * @enum {string}
          */
         DomainPeriodUnit: "y" | "m" | "d";
+        /** DomainRenewRequest */
+        DomainRenewRequest: {
+            /** @description How long to extend the domain registration */
+            period: components["schemas"]["DomainPeriod"];
+            /**
+             * Current Expiry Date
+             * Format: date-time
+             * @description Current expiration date of the domain for validation
+             */
+            current_expiry_date: Date;
+        };
+        /** DomainRenewResponse */
+        DomainRenewResponse: {
+            /**
+             * Name
+             * @description The domain name that was renewed
+             */
+            name: string;
+            /**
+             * New Expiry Date
+             * Format: date-time
+             * @description New expiration date after renewal
+             */
+            new_expiry_date: Date;
+            /** @description The period by which the domain was extended */
+            period_extended: components["schemas"]["DomainPeriod"];
+        };
         /** DomainResponse */
         DomainResponse: {
             /**
@@ -5703,7 +5730,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainRenewRequest"];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -5711,7 +5742,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["DomainRenewResponse"];
                 };
             };
             /** @description Validation Error */
