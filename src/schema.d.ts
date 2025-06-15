@@ -908,8 +908,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Suggest Domains */
-        get: operations["suggest_domains_v1_domain_search_suggest_get"];
+        /** Suggest */
+        get: operations["suggest_v1_domain_search_suggest_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1729,24 +1729,33 @@ export interface components {
              */
             nameservers: components["schemas"]["HostResponse"][];
         };
+        /** DomainSearchMeta */
+        DomainSearchMeta: {
+            /** Total */
+            total: number;
+            /** Processing Time Ms */
+            processing_time_ms: number;
+        };
+        /** DomainSearchResponse */
+        DomainSearchResponse: {
+            meta: components["schemas"]["DomainSearchMeta"];
+            /** Data */
+            data: components["schemas"]["DomainSearchSuggestion"][];
+        };
+        /** DomainSearchSuggestion */
+        DomainSearchSuggestion: {
+            /** Domain */
+            domain: string;
+            /** Available */
+            available: boolean;
+            /** Premium */
+            premium: boolean;
+        };
         /**
          * DomainStatus
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
-        /** DomainSuggestionBase */
-        DomainSuggestionBase: {
-            /**
-             * Domain
-             * @description The domain name suggestion
-             */
-            domain: string;
-            /**
-             * Score
-             * @description The score of the domain
-             */
-            score: number;
-        };
         /** DomainUpdate */
         DomainUpdate: {
             /**
@@ -2784,14 +2793,6 @@ export interface components {
             add?: components["schemas"]["Relation"][] | null;
             /** Remove */
             remove?: components["schemas"]["Relation"][] | null;
-        };
-        /** SuggestResponse */
-        SuggestResponse: {
-            /**
-             * Domains
-             * @default []
-             */
-            domains: components["schemas"]["DomainSuggestionBase"][];
         };
         /** TermsOfServiceAccept */
         TermsOfServiceAccept: {
@@ -6291,7 +6292,7 @@ export interface operations {
             };
         };
     };
-    suggest_domains_v1_domain_search_suggest_get: {
+    suggest_v1_domain_search_suggest_get: {
         parameters: {
             query: {
                 /** @description The primary keyword or phrase for the domain search */
@@ -6300,6 +6301,8 @@ export interface operations {
                 tlds?: string[] | null;
                 /** @description The maximum number of domain suggestions to return */
                 limit?: number | null;
+                /** @description Whether to include premium domains in the suggestions */
+                premium?: boolean | null;
             };
             header?: never;
             path?: never;
@@ -6313,7 +6316,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["SuggestResponse"];
+                    "application/json": components["schemas"]["DomainSearchResponse"];
                 };
             };
             /** @description Validation Error */
