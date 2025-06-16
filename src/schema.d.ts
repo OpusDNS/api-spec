@@ -3408,6 +3408,8 @@ export interface operations {
             query?: {
                 /** @description Optional status to filter the results */
                 status?: components["schemas"]["OrganizationCredentialStatus"] | null;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -3872,6 +3874,8 @@ export interface operations {
                 source_address?: string | null;
                 /** @description Optional target address to filter the results */
                 target_address?: string | null;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -4097,6 +4101,8 @@ export interface operations {
         parameters: {
             query: {
                 user_id: TypeID<"user">;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -4289,7 +4295,10 @@ export interface operations {
     };
     list_organizations_v1_organizations_get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -4303,6 +4312,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_Organization_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -4342,7 +4360,10 @@ export interface operations {
     };
     list_users_v1_organizations_users_get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -4356,6 +4377,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_User_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -5669,7 +5699,10 @@ export interface operations {
     };
     get_domains_v1_domains_get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -5683,6 +5716,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_DomainResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -5914,7 +5956,10 @@ export interface operations {
     };
     get_contacts_v1_contacts_get: {
         parameters: {
-            query?: never;
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -5928,6 +5973,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_ContactSchema_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
