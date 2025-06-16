@@ -1401,7 +1401,7 @@ export interface components {
         DomainAvailabilityData: {
             /** Domain */
             domain: string;
-            available: components["schemas"]["DomainAvailabilityStatus"];
+            status: components["schemas"]["DomainAvailabilityStatus"];
             error?: components["schemas"]["ErrorResponse"] | null;
             /** Source */
             source?: string | null;
@@ -1419,7 +1419,7 @@ export interface components {
          * DomainAvailabilityStatus
          * @enum {string}
          */
-        DomainAvailabilityStatus: "available" | "unavailable" | "error";
+        DomainAvailabilityStatus: "available" | "unavailable" | "market_available" | "tmch_claim" | "error";
         /** DomainCheck */
         DomainCheck: {
             /** Domain Names */
