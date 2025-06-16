@@ -792,17 +792,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/domains/{domain_name}/transfer": {
+    "/v1/domains/transfer": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Transfer Domain */
-        get: operations["transfer_domain_v1_domains__domain_name__transfer_get"];
+        get?: never;
         put?: never;
-        post?: never;
+        /** Transfer Domain */
+        post: operations["transfer_domain_v1_domains_transfer_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1443,11 +1443,6 @@ export interface components {
              * @description The contact id of the contact
              */
             contact_id: TypeID<"contact">;
-            /**
-             * Registry Handle Id
-             * @description The registry handle id of the contact
-             */
-            registry_handle_id?: string | null;
             /** @description The type of contact */
             contact_type: components["schemas"]["DomainContactType"];
         };
@@ -1756,6 +1751,18 @@ export interface components {
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        /** DomainTransferIn */
+        DomainTransferIn: {
+            /** Name */
+            name: string;
+            /** Auth Code */
+            auth_code: string;
+            /** Contacts */
+            contacts: {
+                [key: string]: TypeID<"contact">;
+            };
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
         /** DomainUpdate */
         DomainUpdate: {
             /**
@@ -1780,6 +1787,8 @@ export interface components {
              * @description The new auth code for the domain
              */
             auth_code?: string | null;
+            /** @description The new renewal mode of the domain */
+            renewal_mode?: components["schemas"]["RenewalMode"] | null;
         };
         /** DomainsRequest */
         DomainsRequest: {
@@ -5828,16 +5837,18 @@ export interface operations {
             };
         };
     };
-    transfer_domain_v1_domains__domain_name__transfer_get: {
+    transfer_domain_v1_domains_transfer_post: {
         parameters: {
-            query: {
-                domain_reference: TypeID<"domain"> | string;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainTransferIn"];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -5845,7 +5856,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["DomainResponse"];
                 };
             };
             /** @description Validation Error */
