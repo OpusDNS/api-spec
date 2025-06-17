@@ -793,40 +793,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/domains/{domain_name}/restore": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Restore Domain */
-        post: operations["restore_domain_v1_domains__domain_name__restore_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/transfer": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Transfer Domain */
-        post: operations["transfer_domain_v1_domains_transfer_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/domains/{domain_reference}/dnssec": {
         parameters: {
             query?: never;
@@ -1058,6 +1024,9 @@ export interface components {
              * @description Whether the contact should be disclosed
              */
             disclose: boolean;
+        };
+        ContactIdList: {
+            [key: string]: TypeID<"contact">;
         };
         /** ContactSchema */
         ContactSchema: {
@@ -1460,13 +1429,8 @@ export interface components {
             name: string;
             /** @description How long the domain should be registered for */
             period: components["schemas"]["DomainPeriod"];
-            /**
-             * Contacts
-             * @description The contacts of the domain
-             */
-            contacts: {
-                [key: string]: TypeID<"contact">;
-            };
+            /** @description The contacts of the domain */
+            contacts: components["schemas"]["ContactIdList"];
             /**
              * Nameservers
              * @description The name servers for the domain
@@ -1580,17 +1544,12 @@ export interface components {
         DomainPeriod: {
             /**
              * Value
-             * @description The period of the domain
+             * @description Amount of time in the unit
              */
             value: number;
             /** @description The unit of the period */
-            unit: components["schemas"]["DomainPeriodUnit"];
+            unit: components["schemas"]["PeriodUnit"];
         };
-        /**
-         * DomainPeriodUnit
-         * @enum {string}
-         */
-        DomainPeriodUnit: "y" | "m" | "d";
         /** DomainRenewRequest */
         DomainRenewRequest: {
             /** @description How long to extend the domain registration */
@@ -1751,27 +1710,6 @@ export interface components {
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
-        /** DomainTransferIn */
-        DomainTransferIn: {
-            /**
-             * Name
-             * @description The domain name
-             */
-            name: string;
-            /**
-             * Auth Code
-             * @description The auth code for the domain
-             */
-            auth_code: string;
-            /**
-             * Contacts
-             * @description The contacts of the domain
-             */
-            contacts?: {
-                [key: string]: TypeID<"contact">;
-            };
-            renewal_mode: components["schemas"]["RenewalMode"];
-        };
         /** DomainUpdate */
         DomainUpdate: {
             /**
@@ -2812,6 +2750,11 @@ export interface components {
             results: components["schemas"]["User"][];
             pagination: components["schemas"]["PaginationMetadata"];
         };
+        /**
+         * PeriodUnit
+         * @enum {string}
+         */
+        PeriodUnit: "y" | "m" | "d";
         /**
          * Permission
          * @enum {string}
@@ -5984,70 +5927,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainRenewResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    restore_domain_v1_domains__domain_name__restore_post: {
-        parameters: {
-            query: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    transfer_domain_v1_domains_transfer_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainTransferIn"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainResponse"];
                 };
             };
             /** @description Validation Error */
