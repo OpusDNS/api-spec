@@ -6592,7 +6592,9 @@ export interface operations {
             query: {
                 /** @description The primary keyword or phrase for the domain search */
                 query: string;
-                /** @description The TLDs to include in the search */
+                /** @description
+                 *     Specify one or more TLDs to include in the search. You can provide TLDs as a comma-separated list `?tlds=com,net` or as multiple query parameters `?tlds=com&tlds=net`.
+                 *      */
                 tlds?: string[] | null;
                 /** @description The maximum number of domain suggestions to return */
                 limit?: number | null;
@@ -6614,6 +6616,15 @@ export interface operations {
                     "application/json": components["schemas"]["DomainSearchResponse"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -6621,6 +6632,15 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
