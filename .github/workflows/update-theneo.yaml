@@ -1,11 +1,8 @@
 name: Update docs on Theneo
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - src/openapi.json
+  repository_dispatch:
+    types: [openapi_spec_updated]
   workflow_dispatch:
 
 jobs:
