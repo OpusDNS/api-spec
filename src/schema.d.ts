@@ -1020,7 +1020,7 @@ export interface components {
             email: string;
             /**
              * Phone
-             * @description The contact'sphone number
+             * @description The contact's phone number
              */
             phone?: string | null;
             /**
@@ -1100,7 +1100,7 @@ export interface components {
             email: string;
             /**
              * Phone
-             * @description The contact'sphone number
+             * @description The contact's phone number
              */
             phone?: string | null;
             /**
@@ -1337,11 +1337,8 @@ export interface components {
             type: components["schemas"]["DnsRrsetType"];
             /** Ttl */
             ttl: number;
-            /**
-             * Records
-             * @default []
-             */
-            records: components["schemas"]["DnsRecordCreate"][];
+            /** Records */
+            records?: components["schemas"]["DnsRecordCreate"][];
         };
         /** DnsRrsetResponse */
         DnsRrsetResponse: {
@@ -1350,11 +1347,8 @@ export interface components {
             type: components["schemas"]["DnsRrsetType"];
             /** Ttl */
             ttl: number;
-            /**
-             * Records
-             * @default []
-             */
-            records: components["schemas"]["DnsRecordResponse"][];
+            /** Records */
+            records?: components["schemas"]["DnsRecordResponse"][];
         };
         /**
          * DnsRrsetType
@@ -1363,11 +1357,8 @@ export interface components {
         DnsRrsetType: "A" | "AAAA" | "ALIAS" | "CAA" | "CNAME" | "DNSKEY" | "DS" | "MX" | "NS" | "PTR" | "TXT" | "SOA" | "SRV";
         /** DnsZoneCreate */
         DnsZoneCreate: {
-            /**
-             * Rrsets
-             * @default []
-             */
-            rrsets: components["schemas"]["DnsRrsetCreate"][];
+            /** Rrsets */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][];
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
             /** Name */
@@ -1379,21 +1370,14 @@ export interface components {
             dnssec_status: components["schemas"]["DnssecStatus"];
             /** Name */
             name: string;
-            /** @default {} */
-            domain_parts: components["schemas"]["DomainNameParts"];
-            /**
-             * Rrsets
-             * @default []
-             */
-            rrsets: components["schemas"]["DnsRrsetResponse"][];
+            domain_parts?: components["schemas"]["DomainNameParts"];
+            /** Rrsets */
+            rrsets?: components["schemas"]["DnsRrsetResponse"][];
         };
         /** DnsZoneRrsetsCreate */
         DnsZoneRrsetsCreate: {
-            /**
-             * Rrsets
-             * @default []
-             */
-            rrsets: components["schemas"]["DnsRrsetCreate"][];
+            /** Rrsets */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][];
         };
         /**
          * DnssecAlgorithm
@@ -1435,8 +1419,11 @@ export interface components {
         DomainAvailabilityStatus: "available" | "unavailable" | "market_available" | "tmch_claim" | "error";
         /** DomainCheck */
         DomainCheck: {
-            /** Domain Names */
-            domain_names: string[];
+            /**
+             * Domain Names
+             * @description The domain names to check for
+             */
+            domain_names?: string[];
         };
         /** DomainCheckResponse */
         DomainCheckResponse: {
@@ -1723,19 +1710,19 @@ export interface components {
             registry_account_id: TypeID<"registry_account">;
             /**
              * Contacts
-             * @default []
+             * @description The contacts of the domain
              */
-            contacts: components["schemas"]["DomainContactResponse"][];
+            contacts?: components["schemas"]["DomainContactResponse"][];
             /**
              * Registry Statuses
-             * @default []
+             * @description All the domain statuses
              */
-            registry_statuses: components["schemas"]["DomainStatus"][];
+            registry_statuses?: components["schemas"]["DomainStatus"][];
             /**
              * Nameservers
-             * @default []
+             * @description The nameservers of the domain
              */
-            nameservers: components["schemas"]["HostResponse"][];
+            nameservers?: components["schemas"]["HostResponse"][];
         };
         /** DomainSearchMeta */
         DomainSearchMeta: {
@@ -1766,12 +1753,21 @@ export interface components {
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
         /** DomainTransferIn */
         DomainTransferIn: {
-            /** Name */
+            /**
+             * Name
+             * @description The domain name
+             */
             name: string;
-            /** Auth Code */
+            /**
+             * Auth Code
+             * @description The auth code for the domain
+             */
             auth_code: string;
-            /** Contacts */
-            contacts: {
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts?: {
                 [key: string]: TypeID<"contact">;
             };
             renewal_mode: components["schemas"]["RenewalMode"];
@@ -2002,8 +1998,10 @@ export interface components {
             /**
              * Address
              * Format: ipvanyaddress
+             * @description The ip address of the host
              */
             address: string;
+            /** @description The type of the ip address */
             type: components["schemas"]["IPAddressType"];
         };
         /** HostResponse */
@@ -2050,6 +2048,7 @@ export interface components {
             /**
              * Ip Network
              * Format: ipvanynetwork
+             * @description IP address or CIDR range for the restriction.
              */
             ip_network: string;
             /**
@@ -2356,16 +2355,10 @@ export interface components {
              * @default active
              */
             status: components["schemas"]["OrganizationStatus"];
-            /**
-             * Users
-             * @default []
-             */
-            users: components["schemas"]["User"][];
-            /**
-             * Attributes
-             * @default []
-             */
-            attributes: components["schemas"]["OrganizationAttribute"][];
+            /** Users */
+            users?: components["schemas"]["User"][];
+            /** Attributes */
+            attributes?: components["schemas"]["OrganizationAttribute"][];
         };
         /** OrganizationAttribute */
         OrganizationAttribute: {
@@ -2549,15 +2542,13 @@ export interface components {
             /**
              * Users
              * @description List of users that needs to be created with the organization.
-             * @default []
              */
-            users: components["schemas"]["UserCreate"][];
+            users?: components["schemas"]["UserCreate"][];
             /**
              * Attributes
              * @description List of attributes for the organization.
-             * @default []
              */
-            attributes: components["schemas"]["OrganizationAttributeCreate"][];
+            attributes?: components["schemas"]["OrganizationAttributeCreate"][];
         };
         /** OrganizationCredential */
         OrganizationCredential: {
@@ -2828,11 +2819,8 @@ export interface components {
         Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
         /** PermissionSet */
         PermissionSet: {
-            /**
-             * Permissions
-             * @default []
-             */
-            permissions: components["schemas"]["Permission"][];
+            /** Permissions */
+            permissions?: components["schemas"]["Permission"][];
         };
         /**
          * Relation
@@ -2841,11 +2829,8 @@ export interface components {
         Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_manager" | "email_forward_manager" | "member" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "self" | "special_relation";
         /** RelationSet */
         RelationSet: {
-            /**
-             * Relations
-             * @default []
-             */
-            relations: components["schemas"]["Relation"][];
+            /** Relations */
+            relations?: components["schemas"]["Relation"][];
         };
         /**
          * RenewalMode
@@ -3295,9 +3280,9 @@ export interface components {
             user_id?: TypeID<"user">;
             /**
              * User Attributes
-             * @default {}
+             * @description All of the user attributes
              */
-            user_attributes: {
+            user_attributes?: {
                 [key: string]: components["schemas"]["JsonValue"];
             };
             readonly status: components["schemas"]["UserStatus"];
@@ -3363,9 +3348,9 @@ export interface components {
             user_id?: TypeID<"user">;
             /**
              * User Attributes
-             * @default {}
+             * @description All of the user attributes
              */
-            user_attributes: {
+            user_attributes?: {
                 [key: string]: components["schemas"]["JsonValue"];
             };
             /** Relations */
@@ -3396,7 +3381,10 @@ export interface components {
         };
         /** DomainAvailabilityResponse */
         common__models__domain__domain__DomainAvailabilityResponse: {
-            /** Domain Name */
+            /**
+             * Domain Name
+             * @description The domain name
+             */
             domain_name: string;
             /** Available */
             available: boolean;
