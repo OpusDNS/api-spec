@@ -86,34 +86,34 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/availability/dns": {
+    "/v1/availability": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Bulk Availability */
+        get: operations["bulk_availability_v1_availability_get"];
         put?: never;
-        /** Bulk Dns Check Domain Availability */
-        post: operations["bulk_dns_check_domain_availability_v1_availability_dns_post"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/availability/rdap": {
+    "/v1/availability/stream": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Stream Availability */
+        get: operations["stream_availability_v1_availability_stream_get"];
         put?: never;
-        /** Bulk Rdap Check Domain Availability */
-        post: operations["bulk_rdap_check_domain_availability_v1_availability_rdap_post"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -276,6 +276,41 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/v1/event": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Events */
+        get: operations["get_events_v1_event_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/event/{event_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Event */
+        get: operations["get_event_v1_event__event_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Acknowledge Event */
+        patch: operations["acknowledge_event_v1_event__event_id__patch"];
         trace?: never;
     };
     "/v1/notifications": {
@@ -1397,23 +1432,18 @@ export interface components {
          * @enum {string}
          */
         DnssecStatus: "enabled" | "disabled";
-        /** DomainAvailabilityData */
-        DomainAvailabilityData: {
+        /** DomainAvailability */
+        DomainAvailability: {
             /** Domain */
             domain: string;
             status: components["schemas"]["DomainAvailabilityStatus"];
-            error?: components["schemas"]["ErrorResponse"] | null;
-            /** Source */
-            source?: string | null;
         };
-        /** DomainAvailabilityResponse */
-        DomainAvailabilityResponse: {
-            /** Domain Name */
-            domain_name: string;
-            /** Available */
-            available: boolean;
-            /** Reason */
-            reason: string | null;
+        /** DomainAvailabilityMeta */
+        DomainAvailabilityMeta: {
+            /** Total */
+            total: number;
+            /** Processing Time Ms */
+            processing_time_ms: number;
         };
         /**
          * DomainAvailabilityStatus
@@ -1428,7 +1458,7 @@ export interface components {
         /** DomainCheckResponse */
         DomainCheckResponse: {
             /** Results */
-            results: components["schemas"]["DomainAvailabilityResponse"][];
+            results: components["schemas"]["common__models__domain__domain__DomainAvailabilityResponse"][];
         };
         /**
          * DomainClientStatus
@@ -1790,11 +1820,6 @@ export interface components {
             /** @description The new renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"] | null;
         };
-        /** DomainsRequest */
-        DomainsRequest: {
-            /** Domains */
-            domains: string[];
-        };
         /** EmailForward */
         EmailForward: {
             /**
@@ -1914,15 +1939,66 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
-        /** ErrorResponse */
-        ErrorResponse: {
-            /** Error Type */
-            error_type: string;
-            /** Message */
-            message?: string | null;
-            /** Details */
-            details?: string | null;
+        /**
+         * EventObjectType
+         * @enum {string}
+         */
+        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "RAW";
+        /** EventSchema */
+        EventSchema: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /** @description Additional details about the action */
+            event_data: components["schemas"]["JsonValue"];
+            /**
+             * Object Id
+             * @description The id of the object that the event is about
+             */
+            object_id?: string | null;
+            /**
+             * @description The type of object that the event is about
+             * @default RAW
+             */
+            object_type: components["schemas"]["EventObjectType"];
+            /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
+            type?: components["schemas"]["EventType"] | null;
+            /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
+            subtype?: components["schemas"]["EventSubtype"] | null;
+            /**
+             * Acknowledged On
+             * @description The date/time the event was acknowledged
+             */
+            acknowledged_on?: Date | null;
+            /**
+             * Source
+             * @description The source of the event
+             */
+            source: string;
+            /**
+             * Target
+             * @description The target of the event
+             */
+            target?: TypeID<"organization"> | null;
+            /**
+             * Event Id
+             * Format: typeid
+             */
+            event_id?: TypeID<"epp_event">;
         };
+        /**
+         * EventSubtype
+         * @enum {string}
+         */
+        EventSubtype: "NOTIFICATION" | "SUCCESS" | "FAILURE";
+        /**
+         * EventType
+         * @enum {string}
+         */
+        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER";
         /**
          * GrantType
          * @enum {string}
@@ -2732,6 +2808,12 @@ export interface components {
             results: components["schemas"]["EmailForward"][];
             pagination: components["schemas"]["PaginationMetadata"];
         };
+        /** Pagination[EventSchema] */
+        Pagination_EventSchema_: {
+            /** Results */
+            results: components["schemas"]["EventSchema"][];
+            pagination: components["schemas"]["PaginationMetadata"];
+        };
         /** Pagination[OrganizationCredential] */
         Pagination_OrganizationCredential_: {
             /** Results */
@@ -3323,6 +3405,21 @@ export interface components {
          * @enum {string}
          */
         VerificationType: "api" | "email";
+        /** DomainAvailabilityResponse */
+        common__models__availability__datasource__DomainAvailabilityResponse: {
+            meta: components["schemas"]["DomainAvailabilityMeta"];
+            /** Data */
+            data: components["schemas"]["DomainAvailability"][];
+        };
+        /** DomainAvailabilityResponse */
+        common__models__domain__domain__DomainAvailabilityResponse: {
+            /** Domain Name */
+            domain_name: string;
+            /** Available */
+            available: boolean;
+            /** Reason */
+            reason: string | null;
+        };
         /** Problem */
         Problem: {
             /** Problem Title */
@@ -3586,18 +3683,17 @@ export interface operations {
             };
         };
     };
-    bulk_dns_check_domain_availability_v1_availability_dns_post: {
+    bulk_availability_v1_availability_get: {
         parameters: {
-            query?: never;
+            query: {
+                /** @description Comma-separated list of domains to check availability */
+                domains: string[];
+            };
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainsRequest"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {
@@ -3605,7 +3701,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DomainAvailabilityData"][];
+                    "application/json": components["schemas"]["common__models__availability__datasource__DomainAvailabilityResponse"];
                 };
             };
             /** @description Validation Error */
@@ -3619,18 +3715,17 @@ export interface operations {
             };
         };
     };
-    bulk_rdap_check_domain_availability_v1_availability_rdap_post: {
+    stream_availability_v1_availability_stream_get: {
         parameters: {
-            query?: never;
+            query: {
+                /** @description Comma-separated list of domains to check availability */
+                domains: string[];
+            };
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainsRequest"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {
@@ -3638,7 +3733,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DomainAvailabilityData"][];
+                    "application/json": components["schemas"]["DomainAvailability"];
                 };
             };
             /** @description Validation Error */
@@ -4093,6 +4188,143 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["BulkOperationResponse_EmailForwardBulkDeleteResult_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_events_v1_event_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_EventSchema_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_event_v1_event__event_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                event_id: TypeID<"epp_event">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EventSchema"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    acknowledge_event_v1_event__event_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                event_id: TypeID<"epp_event">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
