@@ -103,23 +103,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/availability/stream": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Stream Availability */
-        get: operations["stream_availability_v1_availability_stream_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/dns": {
         parameters: {
             query?: never;
@@ -3686,7 +3669,9 @@ export interface operations {
     bulk_availability_v1_availability_get: {
         parameters: {
             query: {
-                /** @description Comma-separated list of domains to check availability */
+                /** @description
+                 *     Specify one or more domains to check for availability.
+                 *      */
                 domains: string[];
             };
             header?: never;
@@ -3704,36 +3689,13 @@ export interface operations {
                     "application/json": components["schemas"]["common__models__availability__datasource__DomainAvailabilityResponse"];
                 };
             };
-            /** @description Validation Error */
-            422: {
+            /** @description Unauthorized */
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    stream_availability_v1_availability_stream_get: {
-        parameters: {
-            query: {
-                /** @description Comma-separated list of domains to check availability */
-                domains: string[];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainAvailability"];
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -3743,6 +3705,15 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -6593,7 +6564,7 @@ export interface operations {
                 /** @description The primary keyword or phrase for the domain search */
                 query: string;
                 /** @description
-                 *     Specify one or more TLDs to include in the search. You can provide TLDs as a comma-separated list `?tlds=com,net` or as multiple query parameters `?tlds=com&tlds=net`.
+                 *     Specify one or more TLDs to include in the search.
                  *      */
                 tlds?: string[] | null;
                 /** @description The maximum number of domain suggestions to return */
