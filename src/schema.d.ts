@@ -680,7 +680,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Check Domain */
+        /** Check domain availability */
         post: operations["check_domain_v1_domains_check_post"];
         delete?: never;
         options?: never;
@@ -695,15 +695,30 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Domain */
+        /**
+         * Retrieve a domain
+         * @description Get a single domain by its reference
+         *
+         *     Retrieves detailed information about a specific domain using its unique reference.
+         *     The domain reference can be either the domain name or its internal ID.
+         */
         get: operations["get_domain_v1_domains__domain_reference__get"];
         put?: never;
         post?: never;
-        /** Delete Domain */
+        /**
+         * Delete a domain
+         * @description Initiates the deletion process for a domain. The domain will be marked for deletion
+         *     and will enter a redemption period during which it may be restored.
+         */
         delete: operations["delete_domain_v1_domains__domain_reference__delete"];
         options?: never;
         head?: never;
-        /** Update Domain */
+        /**
+         * Update a domain
+         * @description Updates various attributes of an existing domain. Only the fields provided in the request
+         *     will be updated; all other fields will remain unchanged.
+         *     Providing `clientTransferProhibited` as a status will set the `transfer_lock` property
+         */
         patch: operations["update_domain_v1_domains__domain_reference__patch"];
         trace?: never;
     };
@@ -714,10 +729,16 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Domains */
+        /**
+         * List all domains
+         * @description Retrieves a paginated list of all domains
+         */
         get: operations["get_domains_v1_domains_get"];
         put?: never;
-        /** Create Domain */
+        /**
+         * Create a domain
+         * @description This endpoint registers a new domain with the specified configuration.
+         */
         post: operations["create_domain_v1_domains_post"];
         delete?: never;
         options?: never;
@@ -734,7 +755,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Renew Domain */
+        /**
+         * Renew a domain
+         * @description Extends the registration period of an existing domain. The renewal period is added
+         *     to the current expiration date of the domain.
+         */
         post: operations["renew_domain_v1_domains__domain_reference__renew_post"];
         delete?: never;
         options?: never;
@@ -749,12 +774,21 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Dnssec */
+        /**
+         * Retrieve DNSSEC data
+         * @description Fetches all DNSSEC records associated with the specified domain.
+         */
         get: operations["get_dnssec_v1_domains__domain_reference__dnssec_get"];
-        /** Create Or Update Dnssec */
+        /**
+         * Update DNSSEC data
+         * @description Replaces all existing DNSSEC records for the domain with the provided records.
+         */
         put: operations["create_or_update_dnssec_v1_domains__domain_reference__dnssec_put"];
         post?: never;
-        /** Delete Dnssec */
+        /**
+         * Delete DNSSEC data
+         * @description Remove all DNSSEC data for a domain
+         */
         delete: operations["delete_dnssec_v1_domains__domain_reference__dnssec_delete"];
         options?: never;
         head?: never;
@@ -5621,6 +5655,15 @@ export interface operations {
                     "application/json": components["schemas"]["DomainResponse"];
                 };
             };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -5649,6 +5692,24 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -5683,6 +5744,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -5742,12 +5812,39 @@ export interface operations {
         };
         responses: {
             /** @description Successful Response */
-            200: {
+            201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -5816,6 +5913,15 @@ export interface operations {
                     "application/json": components["schemas"]["DomainDnssecDataResponse"][];
                 };
             };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -5851,6 +5957,15 @@ export interface operations {
                     "application/json": components["schemas"]["DomainDnssecDataResponse"][];
                 };
             };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -5879,6 +5994,15 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -6016,6 +6140,15 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };
