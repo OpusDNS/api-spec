@@ -1,39 +1,5 @@
 import { TypeID } from "typeid-js";
 export interface paths {
-    "/v1/auth/token": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Issue Organization Token */
-        post: operations["issue_organization_token_v1_auth_token_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/auth/logout": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Logout */
-        post: operations["logout_v1_auth_logout_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/auth/client_credentials": {
         parameters: {
             query?: never;
@@ -69,6 +35,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Logout */
+        post: operations["logout_v1_auth_logout_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/auth/signup": {
         parameters: {
             query?: never;
@@ -86,6 +69,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/auth/token": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Issue Organization Token */
+        post: operations["issue_organization_token_v1_auth_token_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/availability": {
         parameters: {
             query?: never;
@@ -93,11 +93,82 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Bulk Availability */
+        /**
+         * Bulk Availability
+         * @description Check the availability of one or more domains.
+         */
         get: operations["bulk_availability_v1_availability_get"];
         put?: never;
         post?: never;
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/availability/stream": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Stream Availability
+         * @description Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
+         */
+        get: operations["stream_availability_v1_availability_stream_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Contacts
+         * @description List all contacts
+         */
+        get: operations["get_contacts_v1_contacts_get"];
+        put?: never;
+        /**
+         * Create Contact
+         * @description Create a contact
+         */
+        post: operations["create_contact_v1_contacts_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/{contact_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Contact
+         * @description Retrieve a contact
+         */
+        get: operations["get_contact_v1_contacts__contact_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete Contact
+         * @description Delete a contact
+         */
+        delete: operations["delete_contact_v1_contacts__contact_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -139,7 +210,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/dns/{zone_name}/rrsets": {
+    "/v1/dns/{zone_name}/dnssec/disable": {
         parameters: {
             query?: never;
             header?: never;
@@ -147,9 +218,9 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** Update Zone */
-        put: operations["update_zone_v1_dns__zone_name__rrsets_put"];
-        post?: never;
+        put?: never;
+        /** Disable Dnssec */
+        post: operations["disable_dnssec_v1_dns__zone_name__dnssec_disable_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -173,7 +244,65 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/dns/{zone_name}/dnssec/disable": {
+    "/v1/dns/{zone_name}/rrsets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update Zone */
+        put: operations["update_zone_v1_dns__zone_name__rrsets_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-search/suggest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Suggest */
+        get: operations["suggest_v1_domain_search_suggest_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List all domains
+         * @description Retrieves a paginated list of all domains
+         */
+        get: operations["get_domains_v1_domains_get"];
+        put?: never;
+        /**
+         * Create a domain
+         * @description Registers a new domain
+         */
+        post: operations["create_domain_v1_domains_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/check": {
         parameters: {
             query?: never;
             header?: never;
@@ -182,8 +311,88 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Disable Dnssec */
-        post: operations["disable_dnssec_v1_dns__zone_name__dnssec_disable_post"];
+        /** Check domain availability */
+        post: operations["check_domain_v1_domains_check_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_reference}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve a domain
+         * @description Retrieves a single domain by either its name or id
+         */
+        get: operations["get_domain_v1_domains__domain_reference__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a domain
+         * @description Initiates the deletion process for a domain. The domain will be marked for deletion
+         *     and will enter a redemption period during which it may be restored.
+         */
+        delete: operations["delete_domain_v1_domains__domain_reference__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update a domain
+         * @description Updates various attributes of an existing domain. Only the fields provided in the request
+         *     will be updated; all other fields will remain unchanged. <br>
+         *     Providing `clientTransferProhibited` as a status will set the `transfer_lock` property
+         */
+        patch: operations["update_domain_v1_domains__domain_reference__patch"];
+        trace?: never;
+    };
+    "/v1/domains/{domain_reference}/dnssec": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve DNSSEC data
+         * @description Fetches all DNSSEC records associated with the specified domain.
+         */
+        get: operations["get_dnssec_v1_domains__domain_reference__dnssec_get"];
+        /**
+         * Update DNSSEC data
+         * @description Replaces all existing DNSSEC records for the domain with the provided records.
+         */
+        put: operations["create_or_update_dnssec_v1_domains__domain_reference__dnssec_put"];
+        post?: never;
+        /**
+         * Delete DNSSEC data
+         * @description Removes all DNSSEC data for a domain
+         */
+        delete: operations["delete_dnssec_v1_domains__domain_reference__dnssec_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_reference}/renew": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Renew a domain
+         * @description Extends the registration period of an existing domain. The renewal period is added
+         *     to the current expiration date of the domain.
+         */
+        post: operations["renew_domain_v1_domains__domain_reference__renew_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -208,23 +417,21 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/email-forwards/{email_forward_id}": {
+    "/v1/email-forwards/bulk-delete": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get Email Forward */
-        get: operations["get_email_forward_v1_email_forwards__email_forward_id__get"];
+        get?: never;
         put?: never;
-        post?: never;
-        /** Delete Email Forward */
-        delete: operations["delete_email_forward_v1_email_forwards__email_forward_id__delete"];
+        /** Bulk Delete Email Forwards */
+        post: operations["bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post"];
+        delete?: never;
         options?: never;
         head?: never;
-        /** Update Email Forward */
-        patch: operations["update_email_forward_v1_email_forwards__email_forward_id__patch"];
+        patch?: never;
         trace?: never;
     };
     "/v1/email-forwards/bulk-update": {
@@ -244,21 +451,23 @@ export interface paths {
         patch: operations["bulk_update_email_forwards_v1_email_forwards_bulk_update_patch"];
         trace?: never;
     };
-    "/v1/email-forwards/bulk-delete": {
+    "/v1/email-forwards/{email_forward_id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Get Email Forward */
+        get: operations["get_email_forward_v1_email_forwards__email_forward_id__get"];
         put?: never;
-        /** Bulk Delete Email Forwards */
-        post: operations["bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post"];
-        delete?: never;
+        post?: never;
+        /** Delete Email Forward */
+        delete: operations["delete_email_forward_v1_email_forwards__email_forward_id__delete"];
         options?: never;
         head?: never;
-        patch?: never;
+        /** Update Email Forward */
+        patch: operations["update_email_forward_v1_email_forwards__email_forward_id__patch"];
         trace?: never;
     };
     "/v1/event": {
@@ -368,41 +577,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/organizations/users": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List Users */
-        get: operations["list_users_v1_organizations_users_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/attributes/{organization_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Attributes */
-        get: operations["get_attributes_v1_organizations_attributes__organization_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Update Attributes */
-        patch: operations["update_attributes_v1_organizations_attributes__organization_id__patch"];
-        trace?: never;
-    };
     "/v1/organizations/attributes": {
         parameters: {
             query?: never;
@@ -421,21 +595,22 @@ export interface paths {
         patch: operations["update_attributes_v1_organizations_attributes_patch"];
         trace?: never;
     };
-    "/v1/organizations/roles": {
+    "/v1/organizations/attributes/{organization_id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List Roles */
-        get: operations["list_roles_v1_organizations_roles_get"];
+        /** Get Attributes */
+        get: operations["get_attributes_v1_organizations_attributes__organization_id__get"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /** Update Attributes */
+        patch: operations["update_attributes_v1_organizations_attributes__organization_id__patch"];
         trace?: never;
     };
     "/v1/organizations/ip-restrictions": {
@@ -490,6 +665,40 @@ export interface paths {
         patch: operations["update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch"];
         trace?: never;
     };
+    "/v1/organizations/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Roles */
+        get: operations["list_roles_v1_organizations_roles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Users */
+        get: operations["list_users_v1_organizations_users_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations/{organization_id}": {
         parameters: {
             query?: never;
@@ -526,6 +735,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/users/accept-tos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Tos Sign */
+        post: operations["tos_sign_v1_users_accept_tos_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/users/me": {
         parameters: {
             query?: never;
@@ -543,6 +769,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/users/me/verification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Verification Status Me */
+        get: operations["get_verification_status_me_v1_users_me_verification_get"];
+        /** Update Verification Me */
+        put: operations["update_verification_me_v1_users_me_verification_put"];
+        /** Create Verification Me */
+        post: operations["create_verification_me_v1_users_me_verification_post"];
+        /** Cancel Verification Me */
+        delete: operations["cancel_verification_me_v1_users_me_verification_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/users/verify": {
         parameters: {
             query?: never;
@@ -554,23 +800,6 @@ export interface paths {
         get: operations["redirect_verify_user_v1_users_verify_get"];
         put?: never;
         post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/users/accept-tos": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Tos Sign */
-        post: operations["tos_sign_v1_users_accept_tos_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -613,24 +842,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/users/me/verification": {
+    "/v1/users/{user_id}/roles": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get Verification Status Me */
-        get: operations["get_verification_status_me_v1_users_me_verification_get"];
-        /** Update Verification Me */
-        put: operations["update_verification_me_v1_users_me_verification_put"];
-        /** Create Verification Me */
-        post: operations["create_verification_me_v1_users_me_verification_post"];
-        /** Cancel Verification Me */
-        delete: operations["cancel_verification_me_v1_users_me_verification_delete"];
+        /** List Roles */
+        get: operations["list_roles_v1_users__user_id__roles_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /** Update User Relations */
+        patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
         trace?: never;
     };
     "/v1/users/{user_id}/verification": {
@@ -653,218 +880,12 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/users/{user_id}/roles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List Roles */
-        get: operations["list_roles_v1_users__user_id__roles_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Update User Relations */
-        patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
-        trace?: never;
-    };
-    "/v1/domains/check": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Check domain availability */
-        post: operations["check_domain_v1_domains_check_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/{domain_reference}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Retrieve a domain
-         * @description Retrieves a single domain by either its name or id
-         */
-        get: operations["get_domain_v1_domains__domain_reference__get"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete a domain
-         * @description Initiates the deletion process for a domain. The domain will be marked for deletion
-         *     and will enter a redemption period during which it may be restored.
-         */
-        delete: operations["delete_domain_v1_domains__domain_reference__delete"];
-        options?: never;
-        head?: never;
-        /**
-         * Update a domain
-         * @description Updates various attributes of an existing domain. Only the fields provided in the request
-         *     will be updated; all other fields will remain unchanged. <br>
-         *     Providing `clientTransferProhibited` as a status will set the `transfer_lock` property
-         */
-        patch: operations["update_domain_v1_domains__domain_reference__patch"];
-        trace?: never;
-    };
-    "/v1/domains": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List all domains
-         * @description Retrieves a paginated list of all domains
-         */
-        get: operations["get_domains_v1_domains_get"];
-        put?: never;
-        /**
-         * Create a domain
-         * @description Registers a new domain
-         */
-        post: operations["create_domain_v1_domains_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/{domain_reference}/renew": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Renew a domain
-         * @description Extends the registration period of an existing domain. The renewal period is added
-         *     to the current expiration date of the domain.
-         */
-        post: operations["renew_domain_v1_domains__domain_reference__renew_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domains/{domain_reference}/dnssec": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Retrieve DNSSEC data
-         * @description Fetches all DNSSEC records associated with the specified domain.
-         */
-        get: operations["get_dnssec_v1_domains__domain_reference__dnssec_get"];
-        /**
-         * Update DNSSEC data
-         * @description Replaces all existing DNSSEC records for the domain with the provided records.
-         */
-        put: operations["create_or_update_dnssec_v1_domains__domain_reference__dnssec_put"];
-        post?: never;
-        /**
-         * Delete DNSSEC data
-         * @description Removes all DNSSEC data for a domain
-         */
-        delete: operations["delete_dnssec_v1_domains__domain_reference__dnssec_delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/contacts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get Contacts
-         * @description List all contacts
-         */
-        get: operations["get_contacts_v1_contacts_get"];
-        put?: never;
-        /**
-         * Create Contact
-         * @description Create a contact
-         */
-        post: operations["create_contact_v1_contacts_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/contacts/{contact_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get Contact
-         * @description Retrieve a contact
-         */
-        get: operations["get_contact_v1_contacts__contact_id__get"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete Contact
-         * @description Delete a contact
-         */
-        delete: operations["delete_contact_v1_contacts__contact_id__delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/domain-search/suggest": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Suggest */
-        get: operations["suggest_v1_domain_search_suggest_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
-            /** @description The grant type for the authentication request. */
-            grant_type?: components["schemas"]["GrantType"];
             /**
              * Client Id
              * @description The organization ID associated with the credentials.
@@ -875,16 +896,18 @@ export interface components {
              * @description Client secret for authentication.
              */
             client_secret?: string | null;
-            /**
-             * Username
-             * @description Username for authentication.
-             */
-            username?: string | null;
+            /** @description The grant type for the authentication request. */
+            grant_type?: components["schemas"]["GrantType"];
             /**
              * Password
              * @description Password for the user.
              */
             password?: string | null;
+            /**
+             * Username
+             * @description Username for authentication.
+             */
+            username?: string | null;
         };
         /** BulkOperationResponse[EmailForwardBulkDeleteResult] */
         BulkOperationResponse_EmailForwardBulkDeleteResult_: {
@@ -898,13 +921,13 @@ export interface components {
         };
         /** BulkOperationResult */
         BulkOperationResult: {
-            /** @description Status of performed operation */
-            status: components["schemas"]["BulkOperationStatus"];
             /**
              * Error Message
              * @description Error message if operation failed
              */
             error_message?: string | null;
+            /** @description Status of performed operation */
+            status: components["schemas"]["BulkOperationStatus"];
         };
         /**
          * BulkOperationStatus
@@ -914,10 +937,31 @@ export interface components {
         /** ContactCreate */
         ContactCreate: {
             /**
-             * Title
-             * @description The title of the contact
+             * City
+             * @description The city of the contact
              */
-            title: string | null;
+            city: string;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country: string;
+            /**
+             * Disclose
+             * @description Whether the contact should be disclosed
+             */
+            disclose: boolean;
+            /**
+             * Email
+             * Format: email
+             * @description The email of the contact
+             */
+            email: string;
+            /**
+             * Fax
+             * @description The contacts's fax number
+             */
+            fax?: string | null;
             /**
              * First Name
              * @description The first name of the contact
@@ -934,51 +978,30 @@ export interface components {
              */
             org: string | null;
             /**
-             * Email
-             * Format: email
-             * @description The email of the contact
-             */
-            email: string;
-            /**
              * Phone
              * @description The contact's phone number
              */
             phone?: string | null;
-            /**
-             * Fax
-             * @description The contacts's fax number
-             */
-            fax?: string | null;
-            /**
-             * Street
-             * @description The address of the contact
-             */
-            street: string;
-            /**
-             * City
-             * @description The city of the contact
-             */
-            city: string;
-            /**
-             * State
-             * @description The state of the contact
-             */
-            state: string | null;
             /**
              * Postal Code
              * @description The postal code of the contact
              */
             postal_code: string;
             /**
-             * Country
-             * @description The country of the contact
+             * State
+             * @description The state of the contact
              */
-            country: string;
+            state: string | null;
             /**
-             * Disclose
-             * @description Whether the contact should be disclosed
+             * Street
+             * @description The address of the contact
              */
-            disclose: boolean;
+            street: string;
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title: string | null;
         };
         ContactIdList: {
             [key: string]: TypeID<"contact">;
@@ -986,10 +1009,20 @@ export interface components {
         /** ContactSchema */
         ContactSchema: {
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
+             * City
+             * @description The city of the contact
              */
-            deleted_on?: Date | null;
+            city: string;
+            /**
+             * Contact Id
+             * Format: typeid
+             */
+            contact_id?: TypeID<"contact">;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country: string;
             /**
              * Created On
              * Format: date-time
@@ -997,10 +1030,26 @@ export interface components {
              */
             created_on?: Date;
             /**
-             * Title
-             * @description The title of the contact
+             * Deleted On
+             * @description The date/time the entry was deleted on
              */
-            title: string | null;
+            deleted_on?: Date | null;
+            /**
+             * Disclose
+             * @description Whether the contact should be disclosed
+             */
+            disclose: boolean;
+            /**
+             * Email
+             * Format: email
+             * @description The email of the contact
+             */
+            email: string;
+            /**
+             * Fax
+             * @description The contacts's fax number
+             */
+            fax?: string | null;
             /**
              * First Name
              * @description The first name of the contact
@@ -1017,63 +1066,37 @@ export interface components {
              */
             org: string | null;
             /**
-             * Email
-             * Format: email
-             * @description The email of the contact
-             */
-            email: string;
-            /**
-             * Phone
-             * @description The contact's phone number
-             */
-            phone?: string | null;
-            /**
-             * Fax
-             * @description The contacts's fax number
-             */
-            fax?: string | null;
-            /**
-             * Street
-             * @description The address of the contact
-             */
-            street: string;
-            /**
-             * City
-             * @description The city of the contact
-             */
-            city: string;
-            /**
-             * State
-             * @description The state of the contact
-             */
-            state: string | null;
-            /**
-             * Postal Code
-             * @description The postal code of the contact
-             */
-            postal_code: string;
-            /**
-             * Country
-             * @description The country of the contact
-             */
-            country: string;
-            /**
-             * Disclose
-             * @description Whether the contact should be disclosed
-             */
-            disclose: boolean;
-            /**
-             * Contact Id
-             * Format: typeid
-             */
-            contact_id?: TypeID<"contact">;
-            /**
              * Organization Id
              * Format: typeid
              * @description The organization that owns the domain
              * @default None
              */
             organization_id: TypeID<"organization">;
+            /**
+             * Phone
+             * @description The contact's phone number
+             */
+            phone?: string | null;
+            /**
+             * Postal Code
+             * @description The postal code of the contact
+             */
+            postal_code: string;
+            /**
+             * State
+             * @description The state of the contact
+             */
+            state: string | null;
+            /**
+             * Street
+             * @description The address of the contact
+             */
+            street: string;
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title: string | null;
         };
         /**
          * Currency
@@ -1088,24 +1111,24 @@ export interface components {
         /** DnsChangeResponse */
         DnsChangeResponse: {
             action: components["schemas"]["DnsChangeAction"];
+            /** Record Data */
+            record_data: string | null;
             /** Rrset Name */
             rrset_name: string | null;
             rrset_type: components["schemas"]["DnsRrsetType"] | null;
-            /** Record Data */
-            record_data: string | null;
             /** Ttl */
             ttl: number | null;
         };
         /** DnsChangesResponse */
         DnsChangesResponse: {
-            /** Zone Name */
-            zone_name: string;
+            /** Changes */
+            changes: components["schemas"]["DnsChangeResponse"][];
             /** Changeset Id */
             changeset_id: string | null;
             /** Num Changes */
             num_changes: number;
-            /** Changes */
-            changes: components["schemas"]["DnsChangeResponse"][];
+            /** Zone Name */
+            zone_name: string;
         };
         /** DnsRecordCreate */
         DnsRecordCreate: {
@@ -1121,21 +1144,21 @@ export interface components {
         DnsRrsetCreate: {
             /** Name */
             name: string;
-            type: components["schemas"]["DnsRrsetType"];
-            /** Ttl */
-            ttl: number;
             /** Records */
             records?: components["schemas"]["DnsRecordCreate"][];
+            /** Ttl */
+            ttl: number;
+            type: components["schemas"]["DnsRrsetType"];
         };
         /** DnsRrsetResponse */
         DnsRrsetResponse: {
             /** Name */
             name: string;
-            type: components["schemas"]["DnsRrsetType"];
-            /** Ttl */
-            ttl: number;
             /** Records */
             records?: components["schemas"]["DnsRecordResponse"][];
+            /** Ttl */
+            ttl: number;
+            type: components["schemas"]["DnsRrsetType"];
         };
         /**
          * DnsRrsetType
@@ -1144,20 +1167,20 @@ export interface components {
         DnsRrsetType: "A" | "AAAA" | "ALIAS" | "CAA" | "CNAME" | "DNSKEY" | "DS" | "MX" | "NS" | "PTR" | "TXT" | "SOA" | "SRV";
         /** DnsZoneCreate */
         DnsZoneCreate: {
-            /** Rrsets */
-            rrsets?: components["schemas"]["DnsRrsetCreate"][];
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
             /** Name */
             name: string;
+            /** Rrsets */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][];
         };
         /** DnsZoneResponse */
         DnsZoneResponse: {
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
+            domain_parts?: components["schemas"]["DomainNameParts"];
             /** Name */
             name: string;
-            domain_parts?: components["schemas"]["DomainNameParts"];
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetResponse"][];
         };
@@ -1194,10 +1217,10 @@ export interface components {
         };
         /** DomainAvailabilityMeta */
         DomainAvailabilityMeta: {
-            /** Total */
-            total: number;
             /** Processing Time Ms */
             processing_time_ms: number;
+            /** Total */
+            total: number;
         };
         /**
          * DomainAvailabilityStatus
@@ -1240,30 +1263,44 @@ export interface components {
         DomainContactType: "registrant" | "admin" | "tech" | "billing";
         /** DomainCreate */
         DomainCreate: {
+            /** @description The contacts of the domain */
+            contacts: components["schemas"]["ContactIdList"];
             /**
              * Name
              * @description The domain to be created
              */
             name: string;
-            /** @description How long the domain should be registered for */
-            period: components["schemas"]["DomainPeriod"];
-            /** @description The contacts of the domain */
-            contacts: components["schemas"]["ContactIdList"];
             /**
              * Nameservers
              * @description The name servers for the domain
              */
             nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description How long the domain should be registered for */
+            period: components["schemas"]["DomainPeriod"];
             /** @description The renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"];
         };
         /** DomainDnssecDataCreate */
         DomainDnssecDataCreate: {
+            /** @description DNSSEC algorithm used */
+            algorithm: components["schemas"]["DnssecAlgorithm"];
+            /**
+             * Digest
+             * @description Digest value for DS records
+             */
+            digest?: string | null;
+            /** @description Digest type for DS records */
+            digest_type?: components["schemas"]["DnssecDigestType"] | null;
             /**
              * Flags
              * @description DNSKEY flags for key records
              */
             flags?: number | null;
+            /**
+             * Key Tag
+             * @description Key tag for DS records
+             */
+            key_tag?: number | null;
             /**
              * Protocol
              * @description Protocol field for key records (typically 3)
@@ -1274,31 +1311,13 @@ export interface components {
              * @description Base64-encoded public key for key records
              */
             public_key?: string | null;
-            /**
-             * Key Tag
-             * @description Key tag for DS records
-             */
-            key_tag?: number | null;
-            /** @description Digest type for DS records */
-            digest_type?: components["schemas"]["DnssecDigestType"] | null;
-            /**
-             * Digest
-             * @description Digest value for DS records
-             */
-            digest?: string | null;
             /** @description Type of DNSSEC record (DS or Key) */
             record_type: components["schemas"]["DnssecRecordType"];
-            /** @description DNSSEC algorithm used */
-            algorithm: components["schemas"]["DnssecAlgorithm"];
         };
         /** DomainDnssecDataResponse */
         DomainDnssecDataResponse: {
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
+            /** @description DNSSEC algorithm used */
+            algorithm: components["schemas"]["DnssecAlgorithm"];
             /**
              * Created On
              * Format: date-time
@@ -1306,36 +1325,12 @@ export interface components {
              */
             created_on?: Date;
             /**
-             * Flags
-             * @description DNSKEY flags for key records
-             */
-            flags?: number | null;
-            /**
-             * Protocol
-             * @description Protocol field for key records (typically 3)
-             */
-            protocol?: number | null;
-            /**
-             * Public Key
-             * @description Base64-encoded public key for key records
-             */
-            public_key?: string | null;
-            /**
-             * Key Tag
-             * @description Key tag for DS records
-             */
-            key_tag?: number | null;
-            /** @description Digest type for DS records */
-            digest_type?: components["schemas"]["DnssecDigestType"] | null;
-            /**
              * Digest
              * @description Digest value for DS records
              */
             digest?: string | null;
-            /** @description Type of DNSSEC record (DS or Key) */
-            record_type: components["schemas"]["DnssecRecordType"];
-            /** @description DNSSEC algorithm used */
-            algorithm: components["schemas"]["DnssecAlgorithm"];
+            /** @description Digest type for DS records */
+            digest_type?: components["schemas"]["DnssecDigestType"] | null;
             /**
              * Domain Dnssec Data Id
              * Format: typeid
@@ -1348,36 +1343,64 @@ export interface components {
              * @default None
              */
             domain_id: TypeID<"domain">;
+            /**
+             * Flags
+             * @description DNSKEY flags for key records
+             */
+            flags?: number | null;
+            /**
+             * Key Tag
+             * @description Key tag for DS records
+             */
+            key_tag?: number | null;
+            /**
+             * Protocol
+             * @description Protocol field for key records (typically 3)
+             */
+            protocol?: number | null;
+            /**
+             * Public Key
+             * @description Base64-encoded public key for key records
+             */
+            public_key?: string | null;
+            /** @description Type of DNSSEC record (DS or Key) */
+            record_type: components["schemas"]["DnssecRecordType"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
         };
         /** DomainNameParts */
         DomainNameParts: {
-            /** Subdomain */
-            subdomain?: string | null;
             /** Domain */
             domain?: string | null;
+            /** Subdomain */
+            subdomain?: string | null;
             /** Suffix */
             suffix?: string | null;
         };
         /** DomainPeriod */
         DomainPeriod: {
+            /** @description The unit of the period */
+            unit: components["schemas"]["PeriodUnit"];
             /**
              * Value
              * @description Amount of time in the unit
              */
             value: number;
-            /** @description The unit of the period */
-            unit: components["schemas"]["PeriodUnit"];
         };
         /** DomainRenewRequest */
         DomainRenewRequest: {
-            /** @description How long to extend the domain registration */
-            period: components["schemas"]["DomainPeriod"];
             /**
              * Current Expiry Date
              * Format: date-time
              * @description Current expiration date of the domain for validation
              */
             current_expiry_date: Date;
+            /** @description How long to extend the domain registration */
+            period: components["schemas"]["DomainPeriod"];
         };
         /** DomainRenewResponse */
         DomainRenewResponse: {
@@ -1398,40 +1421,6 @@ export interface components {
         /** DomainResponse */
         DomainResponse: {
             /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Name
-             * @description The domain name
-             */
-            name: string;
-            /**
-             * Sld
-             * @description The second level domain
-             */
-            sld: string;
-            /**
-             * Tld
-             * @description The top level domain of the domain
-             */
-            tld: string;
-            /**
-             * Roid
-             * @description The registry object id of the domain
-             */
-            roid: string;
-            /** @description The renewal mode of the domain */
-            renewal_mode?: components["schemas"]["RenewalMode"];
-            /**
              * Auth Code
              * @description The auth code for the domain
              */
@@ -1442,26 +1431,21 @@ export interface components {
              */
             auth_code_expires_on?: Date | null;
             /**
-             * Transfer Lock
-             * @description Whether the domain is locked for transfer
-             * @default false
-             */
-            transfer_lock: boolean;
-            /**
              * Canceled On
              * @description When the domain was deleted
              */
             canceled_on?: Date | null;
             /**
-             * Expires On
-             * @description When the domain expires
+             * Contacts
+             * @description The contacts of the domain
              */
-            expires_on?: Date | null;
+            contacts?: components["schemas"]["DomainContactResponse"][];
             /**
-             * Registered On
-             * @description When the domain was registered
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
              */
-            registered_on?: Date | null;
+            created_on?: Date;
             /**
              * Deleted On
              * @description When the domain will be deleted
@@ -1473,6 +1457,21 @@ export interface components {
              */
             domain_id?: TypeID<"domain">;
             /**
+             * Expires On
+             * @description When the domain expires
+             */
+            expires_on?: Date | null;
+            /**
+             * Name
+             * @description The domain name
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description The nameservers of the domain
+             */
+            nameservers?: components["schemas"]["HostResponse"][];
+            /**
              * Owner Id
              * Format: typeid
              * @description The organization that owns the domain
@@ -1480,46 +1479,70 @@ export interface components {
              */
             owner_id: TypeID<"organization">;
             /**
+             * Registered On
+             * @description When the domain was registered
+             */
+            registered_on?: Date | null;
+            /**
              * Registry Account Id
              * Format: typeid
              * @default None
              */
             registry_account_id: TypeID<"registry_account">;
             /**
-             * Contacts
-             * @description The contacts of the domain
-             */
-            contacts?: components["schemas"]["DomainContactResponse"][];
-            /**
              * Registry Statuses
              * @description All the domain statuses
              */
             registry_statuses?: components["schemas"]["DomainStatus"][];
+            /** @description The renewal mode of the domain */
+            renewal_mode?: components["schemas"]["RenewalMode"];
             /**
-             * Nameservers
-             * @description The nameservers of the domain
+             * Roid
+             * @description The registry object id of the domain
              */
-            nameservers?: components["schemas"]["HostResponse"][];
+            roid: string;
+            /**
+             * Sld
+             * @description The second level domain
+             */
+            sld: string;
+            /**
+             * Tld
+             * @description The top level domain of the domain
+             */
+            tld: string;
+            /**
+             * Transfer Lock
+             * @description Whether the domain is locked for transfer
+             * @default false
+             */
+            transfer_lock: boolean;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
         };
         /** DomainSearchMeta */
         DomainSearchMeta: {
-            /** Total */
-            total: number;
             /** Processing Time Ms */
             processing_time_ms: number;
+            /** Total */
+            total: number;
         };
         /** DomainSearchResponse */
         DomainSearchResponse: {
-            meta: components["schemas"]["DomainSearchMeta"];
             /** Data */
             data: components["schemas"]["DomainSearchSuggestion"][];
+            meta: components["schemas"]["DomainSearchMeta"];
         };
         /** DomainSearchSuggestion */
         DomainSearchSuggestion: {
-            /** Domain */
-            domain: string;
             /** Available */
             available: boolean;
+            /** Domain */
+            domain: string;
             /** Premium */
             premium: boolean;
         };
@@ -1531,15 +1554,10 @@ export interface components {
         /** DomainUpdate */
         DomainUpdate: {
             /**
-             * Statuses
-             * @description The new statuses of the domain
+             * Auth Code
+             * @description The new auth code for the domain
              */
-            statuses?: components["schemas"]["DomainClientStatus"][] | null;
-            /**
-             * Nameservers
-             * @description The new name servers for the domain
-             */
-            nameservers?: components["schemas"]["Nameserver"][] | null;
+            auth_code?: string | null;
             /**
              * Contacts
              * @description The new contacts of the domain
@@ -1548,21 +1566,20 @@ export interface components {
                 [key: string]: TypeID<"contact">;
             } | null;
             /**
-             * Auth Code
-             * @description The new auth code for the domain
+             * Nameservers
+             * @description The new name servers for the domain
              */
-            auth_code?: string | null;
+            nameservers?: components["schemas"]["Nameserver"][] | null;
             /** @description The new renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"] | null;
+            /**
+             * Statuses
+             * @description The new statuses of the domain
+             */
+            statuses?: components["schemas"]["DomainClientStatus"][] | null;
         };
         /** EmailForward */
         EmailForward: {
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
@@ -1570,11 +1587,21 @@ export interface components {
              */
             created_on?: Date;
             /**
+             * Email Forward Id
+             * Format: typeid
+             */
+            email_forward_id?: TypeID<"email_forward">;
+            /**
              * Source Address
              * Format: email
              * @description The source email address to forward from
              */
             source_address: string;
+            /**
+             * @description Current status of the email forward rule
+             * @default active
+             */
+            status: components["schemas"]["EmailForwardStatus"];
             /**
              * Target Address
              * Format: email
@@ -1582,15 +1609,11 @@ export interface components {
              */
             target_address: string;
             /**
-             * @description Current status of the email forward rule
-             * @default active
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
              */
-            status: components["schemas"]["EmailForwardStatus"];
-            /**
-             * Email Forward Id
-             * Format: typeid
-             */
-            email_forward_id?: TypeID<"email_forward">;
+            updated_on?: Date;
         };
         /** EmailForwardBulkDelete */
         EmailForwardBulkDelete: {
@@ -1611,23 +1634,23 @@ export interface components {
         /** EmailForwardBulkUpdateItem */
         EmailForwardBulkUpdateItem: {
             /**
-             * Source Address
-             * @description The source email address to forward from
-             */
-            source_address?: string | null;
-            /**
-             * Target Address
-             * @description The target email address to forward to
-             */
-            target_address?: string | null;
-            /** @description Current status of the email forward rule */
-            status?: components["schemas"]["EmailForwardStatus"] | null;
-            /**
              * Email Forward Id
              * Format: typeid
              * @description Unique identifier for the email forward
              */
             email_forward_id: TypeID<"email_forward">;
+            /**
+             * Source Address
+             * @description The source email address to forward from
+             */
+            source_address?: string | null;
+            /** @description Current status of the email forward rule */
+            status?: components["schemas"]["EmailForwardStatus"] | null;
+            /**
+             * Target Address
+             * @description The target email address to forward to
+             */
+            target_address?: string | null;
         };
         /** EmailForwardCreate */
         EmailForwardCreate: {
@@ -1638,16 +1661,16 @@ export interface components {
              */
             source_address: string;
             /**
+             * @description Current status of the email forward rule
+             * @default active
+             */
+            status: components["schemas"]["EmailForwardStatus"];
+            /**
              * Target Address
              * Format: email
              * @description The target email address to forward to
              */
             target_address: string;
-            /**
-             * @description Current status of the email forward rule
-             * @default active
-             */
-            status: components["schemas"]["EmailForwardStatus"];
         };
         /**
          * EmailForwardStatus
@@ -1661,13 +1684,13 @@ export interface components {
              * @description The source email address to forward from
              */
             source_address?: string | null;
+            /** @description Current status of the email forward rule */
+            status?: components["schemas"]["EmailForwardStatus"] | null;
             /**
              * Target Address
              * @description The target email address to forward to
              */
             target_address?: string | null;
-            /** @description Current status of the email forward rule */
-            status?: components["schemas"]["EmailForwardStatus"] | null;
         };
         /**
          * EmailVerificationStatus
@@ -1682,6 +1705,11 @@ export interface components {
         /** EventSchema */
         EventSchema: {
             /**
+             * Acknowledged On
+             * @description The date/time the event was acknowledged
+             */
+            acknowledged_on?: Date | null;
+            /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
@@ -1689,6 +1717,11 @@ export interface components {
             created_on?: Date;
             /** @description Additional details about the action */
             event_data: components["schemas"]["JsonValue"];
+            /**
+             * Event Id
+             * Format: typeid
+             */
+            event_id?: TypeID<"epp_event">;
             /**
              * Object Id
              * @description The id of the object that the event is about
@@ -1699,30 +1732,20 @@ export interface components {
              * @default RAW
              */
             object_type: components["schemas"]["EventObjectType"];
-            /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
-            type?: components["schemas"]["EventType"] | null;
-            /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
-            subtype?: components["schemas"]["EventSubtype"] | null;
-            /**
-             * Acknowledged On
-             * @description The date/time the event was acknowledged
-             */
-            acknowledged_on?: Date | null;
             /**
              * Source
              * @description The source of the event
              */
             source: string;
+            /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
+            subtype?: components["schemas"]["EventSubtype"] | null;
             /**
              * Target
              * @description The target of the event
              */
             target?: TypeID<"organization"> | null;
-            /**
-             * Event Id
-             * Format: typeid
-             */
-            event_id?: TypeID<"epp_event">;
+            /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
+            type?: components["schemas"]["EventType"] | null;
         };
         /**
          * EventSubtype
@@ -1741,13 +1764,13 @@ export interface components {
         GrantType: "client_credentials" | "password" | "refresh_token";
         /** RequestValidationError */
         HTTPValidationError: {
+            errors: components["schemas"]["ValidationError"][];
+            /** Status code */
+            status: number;
             /** Problem Title */
             title: string;
             /** Problem type */
             type: string;
-            /** Status code */
-            status: number;
-            errors: components["schemas"]["ValidationError"][];
         };
         /** HostIpResponse */
         HostIpResponse: {
@@ -1763,15 +1786,15 @@ export interface components {
         /** HostResponse */
         HostResponse: {
             /**
-             * Hostname
-             * @description The hostname of the associated nameserver
-             */
-            hostname: string;
-            /**
              * Host Ips
              * @description The ip addresses of the nameserver
              */
             host_ips?: components["schemas"]["HostIpResponse"][];
+            /**
+             * Hostname
+             * @description The hostname of the associated nameserver
+             */
+            hostname: string;
         };
         /**
          * IPAddressType
@@ -1781,39 +1804,39 @@ export interface components {
         /** IpRestrictionCreate */
         IpRestrictionCreate: {
             /**
+             * Ip Network
+             * Format: ipvanynetwork
+             * @description IP address or CIDR range for the restriction.
+             */
+            ip_network: string;
+            /**
              * Organization Id
              * Format: typeid
              */
             organization_id?: TypeID<"organization">;
-            /**
-             * Ip Network
-             * Format: ipvanynetwork
-             * @description IP address or CIDR range for the restriction.
-             */
-            ip_network: string;
         };
         /** IpRestrictionResponse */
         IpRestrictionResponse: {
-            /** Ip Restriction Id */
-            ip_restriction_id: number;
-            /**
-             * Organization Id
-             * Format: typeid
-             */
-            organization_id: TypeID<"organization">;
-            /**
-             * Ip Network
-             * Format: ipvanynetwork
-             * @description IP address or CIDR range for the restriction.
-             */
-            ip_network: string;
             /**
              * Created On
              * Format: date-time
              */
             created_on: Date;
+            /**
+             * Ip Network
+             * Format: ipvanynetwork
+             * @description IP address or CIDR range for the restriction.
+             */
+            ip_network: string;
+            /** Ip Restriction Id */
+            ip_restriction_id: number;
             /** Last Used On */
             last_used_on?: Date | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             */
+            organization_id: TypeID<"organization">;
         };
         /** IpRestrictionUpdate */
         IpRestrictionUpdate: {
@@ -1845,66 +1868,71 @@ export interface components {
         /** Notification */
         Notification: {
             /**
+             * Author
+             * @description The user or system that created the notification
+             */
+            author: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Message
+             * @description The message content of the notification
+             */
+            message: string;
+            /**
+             * Notification Id
+             * Format: typeid
+             */
+            notification_id?: TypeID<"notification">;
+            /**
+             * Publish Date
+             * Format: date-time
+             * @description The date/time the notification is to be published
+             */
+            publish_date?: Date;
+            /**
+             * Source
+             * @description Source of the notification
+             */
+            source: string;
+            /**
+             * Subject
+             * @description The subject of the notification
+             */
+            subject: string;
+            /**
+             * Target
+             * @description Target audience (broadcast, account, user)
+             */
+            target: string;
+            /**
+             * Type
+             * @description The type of notification
+             */
+            type: string;
+            /**
              * Updated On
              * Format: date-time
              * @description The date/time the entry was last updated on
              */
             updated_on?: Date;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Subject
-             * @description The subject of the notification
-             */
-            subject: string;
-            /**
-             * Publish Date
-             * Format: date-time
-             * @description The date/time the notification is to be published
-             */
-            publish_date?: Date;
-            /**
-             * Type
-             * @description The type of notification
-             */
-            type: string;
-            /**
-             * Source
-             * @description Source of the notification
-             */
-            source: string;
-            /**
-             * Message
-             * @description The message content of the notification
-             */
-            message: string;
-            /**
-             * Author
-             * @description The user or system that created the notification
-             */
-            author: string;
-            /**
-             * Target
-             * @description Target audience (broadcast, account, user)
-             */
-            target: string;
-            /**
-             * Notification Id
-             * Format: typeid
-             */
-            notification_id?: TypeID<"notification">;
         };
         /** NotificationCreate */
         NotificationCreate: {
             /**
-             * Subject
-             * @description The subject of the notification
+             * Author
+             * @description The user or system that created the notification
              */
-            subject: string;
+            author: string;
+            /**
+             * Message
+             * @description The message content of the notification
+             */
+            message: string;
             /**
              * Publish Date
              * Format: date-time
@@ -1912,82 +1940,43 @@ export interface components {
              */
             publish_date?: Date;
             /**
-             * Type
-             * @description The type of notification
-             */
-            type: string;
-            /**
              * Source
              * @description Source of the notification
              */
             source: string;
             /**
-             * Message
-             * @description The message content of the notification
+             * Subject
+             * @description The subject of the notification
              */
-            message: string;
-            /**
-             * Author
-             * @description The user or system that created the notification
-             */
-            author: string;
+            subject: string;
             /**
              * Target
              * @description Target audience (broadcast, account, user)
              */
             target: string;
+            /**
+             * Type
+             * @description The type of notification
+             */
+            type: string;
         };
         /** NotificationSummary */
         NotificationSummary: {
             /**
-             * Subject
-             * @description The subject of the notification
-             */
-            subject: string;
-            /**
-             * Publish Date
-             * Format: date-time
-             * @description The date/time the notification is to be published
-             */
-            publish_date?: Date;
-            /**
-             * Type
-             * @description The type of notification
-             */
-            type: string;
-            /**
-             * Source
-             * @description Source of the notification
-             */
-            source: string;
-            /**
-             * Message
-             * @description The message content of the notification
-             */
-            message: string;
-            /**
              * Author
              * @description The user or system that created the notification
              */
             author: string;
             /**
-             * Target
-             * @description Target audience (broadcast, account, user)
+             * Message
+             * @description The message content of the notification
              */
-            target: string;
+            message: string;
             /**
              * Notification Id
              * Format: typeid
              */
             notification_id?: TypeID<"notification">;
-        };
-        /** NotificationUpdate */
-        NotificationUpdate: {
-            /**
-             * Subject
-             * @description The subject of the notification
-             */
-            subject: string;
             /**
              * Publish Date
              * Format: date-time
@@ -1995,49 +1984,67 @@ export interface components {
              */
             publish_date?: Date;
             /**
-             * Type
-             * @description The type of notification
-             */
-            type: string;
-            /**
              * Source
              * @description Source of the notification
              */
             source: string;
             /**
-             * Message
-             * @description The message content of the notification
+             * Subject
+             * @description The subject of the notification
              */
-            message: string;
+            subject: string;
+            /**
+             * Target
+             * @description Target audience (broadcast, account, user)
+             */
+            target: string;
+            /**
+             * Type
+             * @description The type of notification
+             */
+            type: string;
+        };
+        /** NotificationUpdate */
+        NotificationUpdate: {
             /**
              * Author
              * @description The user or system that created the notification
              */
             author: string;
             /**
+             * Message
+             * @description The message content of the notification
+             */
+            message: string;
+            /**
+             * Publish Date
+             * Format: date-time
+             * @description The date/time the notification is to be published
+             */
+            publish_date?: Date;
+            /**
+             * Source
+             * @description Source of the notification
+             */
+            source: string;
+            /**
+             * Subject
+             * @description The subject of the notification
+             */
+            subject: string;
+            /**
              * Target
              * @description Target audience (broadcast, account, user)
              */
             target: string;
+            /**
+             * Type
+             * @description The type of notification
+             */
+            type: string;
         };
         /** Organization */
         Organization: {
-            /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Organization Name
-             * @description Name of the organization.
-             */
-            organization_name: string;
             /**
              * Address 1
              * @description First line of the organization's address.
@@ -2048,46 +2055,29 @@ export interface components {
              * @description Second line of the organization's address.
              */
             address_2?: string | null;
-            /**
-             * City
-             * @description City of the organization's address.
-             */
-            city?: string | null;
-            /**
-             * State Or Province
-             * @description State or province of the organization's address.
-             */
-            state_or_province?: string | null;
-            /**
-             * Postal Code
-             * @description Postal code of the organization's address.
-             */
-            postal_code?: string | null;
-            /**
-             * Country Code
-             * @description ISO 3166-1 alpha-2 country code.
-             */
-            country_code?: string | null;
-            /**
-             * Tax Id
-             * @description Tax ID of the organization.
-             */
-            tax_id?: string | null;
-            /**
-             * Tax Id Type
-             * @description Type of tax ID for the organization.
-             */
-            tax_id_type?: string | null;
+            /** Attributes */
+            attributes?: components["schemas"]["OrganizationAttribute"][];
             /**
              * Business Number
              * @description Government issued business identifier for the organization issued.
              */
             business_number?: string | null;
             /**
-             * Tax Rate
-             * @description Tax rate for the organization.
+             * City
+             * @description City of the organization's address.
              */
-            tax_rate?: string | null;
+            city?: string | null;
+            /**
+             * Country Code
+             * @description ISO 3166-1 alpha-2 country code.
+             */
+            country_code?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
             /** @description The currency used by the organization. */
             currency?: components["schemas"]["Currency"] | null;
             /**
@@ -2095,6 +2085,11 @@ export interface components {
              * @description Default locale for the organization.
              */
             default_locale?: string | null;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
             /**
              * Organization Id
              * Format: typeid
@@ -2102,167 +2097,30 @@ export interface components {
              */
             organization_id?: TypeID<"organization">;
             /**
-             * Parent Organization Id
-             * @description ID of the parent organization.
-             */
-            parent_organization_id?: TypeID<"organization"> | null;
-            /**
-             * @description Status of the organization.
-             * @default active
-             */
-            status: components["schemas"]["OrganizationStatus"];
-            /** Users */
-            users?: components["schemas"]["User"][];
-            /** Attributes */
-            attributes?: components["schemas"]["OrganizationAttribute"][];
-        };
-        /** OrganizationAttribute */
-        OrganizationAttribute: {
-            /**
-             * Private
-             * @description When true, the attribute is private and not visible to users.
-             * @default false
-             */
-            private: boolean;
-            /**
-             * Key
-             * @description Key of the attribute.
-             */
-            key: string;
-            /** @description Value of the attribute. */
-            value?: components["schemas"]["JsonValue"] | null;
-            /**
-             * Protected
-             * @description When true, the attribute is protected and cannot be modified by users.
-             * @default false
-             */
-            protected: boolean;
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /** Organization Attribute Id */
-            organization_attribute_id: number;
-        };
-        /** OrganizationAttributeCreate */
-        OrganizationAttributeCreate: {
-            /**
-             * Private
-             * @description When true, the attribute is private and not visible to users.
-             * @default false
-             */
-            private: boolean;
-            /**
-             * Key
-             * @description Key of the attribute.
-             */
-            key: string;
-            /** @description Value of the attribute. */
-            value?: components["schemas"]["JsonValue"] | null;
-            /**
-             * Protected
-             * @description When true, the attribute is protected and cannot be modified by users.
-             * @default false
-             */
-            protected: boolean;
-        };
-        /** OrganizationAttributeResponse */
-        OrganizationAttributeResponse: {
-            /**
-             * Key
-             * @description Key of the attribute.
-             */
-            key: string;
-            /** @description Value of the attribute. */
-            value?: components["schemas"]["JsonValue"] | null;
-            /**
-             * Protected
-             * @description When true, the attribute is protected and cannot be modified by users.
-             * @default false
-             */
-            protected: boolean;
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /** Organization Attribute Id */
-            organization_attribute_id: number;
-        };
-        /** OrganizationAttributeUpdate */
-        OrganizationAttributeUpdate: {
-            /**
-             * Private
-             * @description When true, the attribute is private and not visible to users.
-             * @default false
-             */
-            private: boolean;
-            /**
-             * Key
-             * @description Key of the attribute.
-             */
-            key: string;
-            /** @description Value of the attribute. */
-            value?: components["schemas"]["JsonValue"] | null;
-            /**
-             * Protected
-             * @description When true, the attribute is protected and cannot be modified by users.
-             * @default false
-             */
-            protected: boolean;
-        };
-        /** OrganizationCreate */
-        OrganizationCreate: {
-            /**
              * Organization Name
              * @description Name of the organization.
              */
             organization_name: string;
             /**
-             * Address 1
-             * @description First line of the organization's address.
+             * Parent Organization Id
+             * @description ID of the parent organization.
              */
-            address_1?: string | null;
-            /**
-             * Address 2
-             * @description Second line of the organization's address.
-             */
-            address_2?: string | null;
-            /**
-             * City
-             * @description City of the organization's address.
-             */
-            city?: string | null;
-            /**
-             * State Or Province
-             * @description State or province of the organization's address.
-             */
-            state_or_province?: string | null;
+            parent_organization_id?: TypeID<"organization"> | null;
             /**
              * Postal Code
              * @description Postal code of the organization's address.
              */
             postal_code?: string | null;
             /**
-             * Country Code
-             * @description ISO 3166-1 alpha-2 country code.
+             * State Or Province
+             * @description State or province of the organization's address.
              */
-            country_code?: string | null;
+            state_or_province?: string | null;
+            /**
+             * @description Status of the organization.
+             * @default active
+             */
+            status: components["schemas"]["OrganizationStatus"];
             /**
              * Tax Id
              * @description Tax ID of the organization.
@@ -2274,15 +2132,155 @@ export interface components {
              */
             tax_id_type?: string | null;
             /**
+             * Tax Rate
+             * @description Tax rate for the organization.
+             */
+            tax_rate?: string | null;
+            /** Users */
+            users?: components["schemas"]["User"][];
+        };
+        /** OrganizationAttribute */
+        OrganizationAttribute: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** Organization Attribute Id */
+            organization_attribute_id: number;
+            /**
+             * Private
+             * @description When true, the attribute is private and not visible to users.
+             * @default false
+             */
+            private: boolean;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+        };
+        /** OrganizationAttributeCreate */
+        OrganizationAttributeCreate: {
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /**
+             * Private
+             * @description When true, the attribute is private and not visible to users.
+             * @default false
+             */
+            private: boolean;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+        };
+        /** OrganizationAttributeResponse */
+        OrganizationAttributeResponse: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** Organization Attribute Id */
+            organization_attribute_id: number;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+        };
+        /** OrganizationAttributeUpdate */
+        OrganizationAttributeUpdate: {
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /**
+             * Private
+             * @description When true, the attribute is private and not visible to users.
+             * @default false
+             */
+            private: boolean;
+            /**
+             * Protected
+             * @description When true, the attribute is protected and cannot be modified by users.
+             * @default false
+             */
+            protected: boolean;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+        };
+        /** OrganizationCreate */
+        OrganizationCreate: {
+            /**
+             * Address 1
+             * @description First line of the organization's address.
+             */
+            address_1?: string | null;
+            /**
+             * Address 2
+             * @description Second line of the organization's address.
+             */
+            address_2?: string | null;
+            /**
+             * Attributes
+             * @description List of attributes for the organization.
+             */
+            attributes?: components["schemas"]["OrganizationAttributeCreate"][];
+            /**
              * Business Number
              * @description Government issued business identifier for the organization issued.
              */
             business_number?: string | null;
             /**
-             * Tax Rate
-             * @description Tax rate for the organization.
+             * City
+             * @description City of the organization's address.
              */
-            tax_rate?: number | string | null;
+            city?: string | null;
+            /**
+             * Country Code
+             * @description ISO 3166-1 alpha-2 country code.
+             */
+            country_code?: string | null;
             /** @description The currency used by the organization. */
             currency?: components["schemas"]["Currency"] | null;
             /**
@@ -2291,76 +2289,70 @@ export interface components {
              */
             default_locale?: string | null;
             /**
+             * Organization Name
+             * @description Name of the organization.
+             */
+            organization_name: string;
+            /**
              * Parent Organization Id
              * @description ID of the parent organization.
              */
             parent_organization_id?: TypeID<"organization"> | null;
             /**
+             * Postal Code
+             * @description Postal code of the organization's address.
+             */
+            postal_code?: string | null;
+            /**
+             * State Or Province
+             * @description State or province of the organization's address.
+             */
+            state_or_province?: string | null;
+            /**
+             * Tax Id
+             * @description Tax ID of the organization.
+             */
+            tax_id?: string | null;
+            /**
+             * Tax Id Type
+             * @description Type of tax ID for the organization.
+             */
+            tax_id_type?: string | null;
+            /**
+             * Tax Rate
+             * @description Tax rate for the organization.
+             */
+            tax_rate?: number | string | null;
+            /**
              * Users
              * @description List of users that needs to be created with the organization.
              */
             users?: components["schemas"]["UserCreate"][];
-            /**
-             * Attributes
-             * @description List of attributes for the organization.
-             */
-            attributes?: components["schemas"]["OrganizationAttributeCreate"][];
         };
         /** OrganizationCredential */
         OrganizationCredential: {
-            /**
-             * Api Key Name
-             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
-             */
-            api_key_name?: string | null;
             /**
              * Api Key Description
              * @description Description of the organization credential.
              */
             api_key_description?: string | null;
-            /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
-             * Last Used On
-             * @description The date/time the entry was deleted on
-             */
-            last_used_on?: Date | null;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Organization Id
-             * Format: typeid
-             * @default None
-             */
-            organization_id: TypeID<"organization">;
             /**
              * Api Key Id
              * Format: typeid
              * @description Unique identifier of the organization credential.
              */
             api_key_id: TypeID<"api_key">;
-            /** @description The status of the organization credential. */
-            readonly status: components["schemas"]["OrganizationCredentialStatus"];
-        };
-        /** OrganizationCredentialCreated */
-        OrganizationCredentialCreated: {
             /**
              * Api Key Name
              * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
              */
             api_key_name?: string | null;
             /**
-             * Api Key Description
-             * @description Description of the organization credential.
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
              */
-            api_key_description?: string | null;
+            created_on?: Date;
             /**
              * Deleted On
              * @description The date/time the entry was deleted on
@@ -2372,17 +2364,16 @@ export interface components {
              */
             last_used_on?: Date | null;
             /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Client Id
+             * Organization Id
              * Format: typeid
              * @default None
              */
-            client_id: TypeID<"organization">;
+            organization_id: TypeID<"organization">;
+            /** @description The status of the organization credential. */
+            readonly status: components["schemas"]["OrganizationCredentialStatus"];
+        };
+        /** OrganizationCredentialCreated */
+        OrganizationCredentialCreated: {
             /**
              * Api Key
              * Format: typeid
@@ -2390,25 +2381,57 @@ export interface components {
              */
             api_key: TypeID<"api_key">;
             /**
-             * Client Secret
-             * @description Plaintext secret to be hashed (not stored directly in the DB).
+             * Api Key Description
+             * @description Description of the organization credential.
              */
-            client_secret?: string | null;
-            /** @description The status of the organization credential. */
-            readonly status: components["schemas"]["OrganizationCredentialStatus"];
-        };
-        /** OrganizationCredentialExtra */
-        OrganizationCredentialExtra: {
+            api_key_description?: string | null;
             /**
              * Api Key Name
              * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
              */
             api_key_name?: string | null;
             /**
+             * Client Id
+             * Format: typeid
+             * @default None
+             */
+            client_id: TypeID<"organization">;
+            /**
+             * Client Secret
+             * @description Plaintext secret to be hashed (not stored directly in the DB).
+             */
+            client_secret?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
+             * Last Used On
+             * @description The date/time the entry was deleted on
+             */
+            last_used_on?: Date | null;
+            /** @description The status of the organization credential. */
+            readonly status: components["schemas"]["OrganizationCredentialStatus"];
+        };
+        /** OrganizationCredentialExtra */
+        OrganizationCredentialExtra: {
+            /**
              * Api Key Description
              * @description Description of the organization credential.
              */
             api_key_description?: string | null;
+            /**
+             * Api Key Name
+             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+             */
+            api_key_name?: string | null;
             /**
              * Expires At
              * @description The date and time the credential expiration.
@@ -2429,21 +2452,16 @@ export interface components {
         OrganizationTokenResponse: {
             /** Access Token */
             access_token: string;
+            /** Expires In */
+            expires_in: number;
             /**
              * Token Type
              * @default Bearer
              */
             token_type: string;
-            /** Expires In */
-            expires_in: number;
         };
         /** OrganizationUpdate */
         OrganizationUpdate: {
-            /**
-             * Organization Name
-             * @description Name of the organization.
-             */
-            organization_name?: string | null;
             /**
              * Address 1
              * @description First line of the organization's address.
@@ -2455,22 +2473,39 @@ export interface components {
              */
             address_2?: string | null;
             /**
+             * Business Number
+             * @description Government issued business identifier for the organization issued.
+             */
+            business_number?: string | null;
+            /**
              * City
              * @description City of the organization's address.
              */
             city?: string | null;
+            /** Country Code */
+            country_code?: string | null;
+            /** @description The currency used by the organization. */
+            currency?: components["schemas"]["Currency"] | null;
             /**
-             * State Or Province
-             * @description State or province of the organization's address.
+             * Default Locale
+             * @description Default locale for the organization.
              */
-            state_or_province?: string | null;
+            default_locale?: string | null;
+            /**
+             * Organization Name
+             * @description Name of the organization.
+             */
+            organization_name?: string | null;
             /**
              * Postal Code
              * @description Postal code of the organization's address.
              */
             postal_code?: string | null;
-            /** Country Code */
-            country_code?: string | null;
+            /**
+             * State Or Province
+             * @description State or province of the organization's address.
+             */
+            state_or_province?: string | null;
             /**
              * Tax Id
              * @description Tax ID of the organization.
@@ -2486,87 +2521,75 @@ export interface components {
              * @description Tax rate for the organization.
              */
             tax_rate?: number | string | null;
-            /**
-             * Business Number
-             * @description Government issued business identifier for the organization issued.
-             */
-            business_number?: string | null;
-            /** @description The currency used by the organization. */
-            currency?: components["schemas"]["Currency"] | null;
-            /**
-             * Default Locale
-             * @description Default locale for the organization.
-             */
-            default_locale?: string | null;
         };
         /** PaginationMetadata */
         PaginationMetadata: {
-            /** Total Pages */
-            total_pages: number;
-            /** Total Items */
-            total_items: number;
             /** Current Page */
             current_page: number;
-            /** Page Size */
-            page_size: number;
             /** Has Next Page */
             has_next_page: boolean;
             /** Has Previous Page */
             has_previous_page: boolean;
+            /** Page Size */
+            page_size: number;
+            /** Total Items */
+            total_items: number;
+            /** Total Pages */
+            total_pages: number;
         };
         /** Pagination[ContactSchema] */
         Pagination_ContactSchema_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["ContactSchema"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[DnsZoneResponse] */
         Pagination_DnsZoneResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["DnsZoneResponse"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[DomainResponse] */
         Pagination_DomainResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["DomainResponse"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[EmailForward] */
         Pagination_EmailForward_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["EmailForward"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[EventSchema] */
         Pagination_EventSchema_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["EventSchema"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[OrganizationCredential] */
         Pagination_OrganizationCredential_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["OrganizationCredential"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[Organization] */
         Pagination_Organization_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["Organization"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[UserNotificationSummary] */
         Pagination_UserNotificationSummary_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["UserNotificationSummary"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /** Pagination[User] */
         Pagination_User_: {
+            pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["User"][];
-            pagination: components["schemas"]["PaginationMetadata"];
         };
         /**
          * PeriodUnit
@@ -2582,6 +2605,17 @@ export interface components {
         PermissionSet: {
             /** Permissions */
             permissions?: components["schemas"]["Permission"][];
+        };
+        /** Problem */
+        Problem: {
+            /** Problem detail */
+            detail: string | null;
+            /** Status code */
+            status: number;
+            /** Problem Title */
+            title: string;
+            /** Problem type */
+            type: string;
         };
         /**
          * Relation
@@ -2600,12 +2634,12 @@ export interface components {
         RenewalMode: "renew" | "expire" | "delete";
         /** SignupCreate */
         SignupCreate: {
-            /** @description User signup to platform. */
-            user: components["schemas"]["UserCreate"];
             /** @description Organization signup. */
             organization: components["schemas"]["OrganizationCreate"];
             /** @description Optional terms of service acceptance. */
             terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
+            /** @description User signup to platform. */
+            user: components["schemas"]["UserCreate"];
         };
         /** SpiceDbRelationshipUpdate */
         SpiceDbRelationshipUpdate: {
@@ -2622,27 +2656,22 @@ export interface components {
         /** User */
         User: {
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
             created_on?: Date;
             /**
-             * Username
-             * @description The user's unique username
+             * Deleted On
+             * @description The date/time the entry was deleted on
              */
-            username: string;
+            deleted_on?: Date | null;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
             /**
              * First Name
              * @description The user's first name
@@ -2653,17 +2682,6 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /**
-             * Email
-             * Format: email
-             * @description The user's email address
-             */
-            email: string;
-            /**
-             * Phone
-             * @description The user's phone number
-             */
-            phone?: string | null;
             /** Locale */
             locale: string;
             /**
@@ -2674,11 +2692,27 @@ export interface components {
              */
             organization_id: TypeID<"organization">;
             /**
+             * Phone
+             * @description The user's phone number
+             */
+            phone?: string | null;
+            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
              * User Id
              * Format: typeid
              */
             user_id?: TypeID<"user">;
-            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
         };
         /** UserAttributeUpdate */
         UserAttributeUpdate: {
@@ -2693,10 +2727,11 @@ export interface components {
         /** UserCreate */
         UserCreate: {
             /**
-             * Username
-             * @description The user's unique username
+             * Email
+             * Format: email
+             * @description The user's email address
              */
-            username: string;
+            email: string;
             /**
              * First Name
              * @description The user's first name
@@ -2707,17 +2742,6 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /**
-             * Email
-             * Format: email
-             * @description The user's email address
-             */
-            email: string;
-            /**
-             * Phone
-             * @description The user's phone number
-             */
-            phone?: string | null;
             /** Locale */
             locale: string;
             /**
@@ -2725,37 +2749,26 @@ export interface components {
              * @description Plaintext password for hashing during creation
              */
             password: string;
+            /**
+             * Phone
+             * @description The user's phone number
+             */
+            phone?: string | null;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
         };
         /** UserNotification */
         UserNotification: {
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
             /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
             created_on?: Date;
-            /**
-             * User Notification Id
-             * Format: typeid
-             */
-            user_notification_id?: TypeID<"user_notification">;
-            /**
-             * @description Whether the user has read the notification
-             * @default unread
-             */
-            status: components["schemas"]["UserNotificationStatus"];
-            /**
-             * User Id
-             * Format: typeid
-             * @default None
-             */
-            user_id: TypeID<"user">;
+            notification: components["schemas"]["Notification"];
             /**
              * Notification Id
              * Format: typeid
@@ -2763,7 +2776,28 @@ export interface components {
              * @default None
              */
             notification_id: TypeID<"notification">;
-            notification: components["schemas"]["Notification"];
+            /**
+             * @description Whether the user has read the notification
+             * @default unread
+             */
+            status: components["schemas"]["UserNotificationStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * User Id
+             * Format: typeid
+             * @default None
+             */
+            user_id: TypeID<"user">;
+            /**
+             * User Notification Id
+             * Format: typeid
+             */
+            user_notification_id?: TypeID<"user_notification">;
         };
         /**
          * UserNotificationStatus
@@ -2772,17 +2806,17 @@ export interface components {
         UserNotificationStatus: "read" | "unread";
         /** UserNotificationSummary */
         UserNotificationSummary: {
-            /**
-             * User Notification Id
-             * Format: typeid
-             */
-            user_notification_id?: TypeID<"user_notification">;
+            notification: components["schemas"]["NotificationSummary"];
             /**
              * @description Whether the user has read the notification
              * @default unread
              */
             status: components["schemas"]["UserNotificationStatus"];
-            notification: components["schemas"]["NotificationSummary"];
+            /**
+             * User Notification Id
+             * Format: typeid
+             */
+            user_notification_id?: TypeID<"user_notification">;
         };
         /**
          * UserStatus
@@ -2793,25 +2827,25 @@ export interface components {
         UserTokenResponse: {
             /** Access Token */
             access_token: string;
+            /** Expires In */
+            expires_in: number;
+            /** Refresh Expires In */
+            refresh_expires_in: number;
+            /** Refresh Token */
+            refresh_token: string;
             /**
              * Token Type
              * @default Bearer
              */
             token_type: string;
-            /** Expires In */
-            expires_in: number;
-            /** Refresh Token */
-            refresh_token: string;
-            /** Refresh Expires In */
-            refresh_expires_in: number;
         };
         /** UserUpdate */
         UserUpdate: {
             /**
-             * Username
-             * @description The user's unique username
+             * Email
+             * @description The user's email address
              */
-            username?: string | null;
+            email?: string | null;
             /**
              * First Name
              * @description The user's first name
@@ -2823,33 +2857,51 @@ export interface components {
              */
             last_name?: string | null;
             /**
-             * Email
-             * @description The user's email address
-             */
-            email?: string | null;
-            /**
-             * Phone
-             * @description The user's phone number
-             */
-            phone?: string | null;
-            /**
              * Locale
              * @description The user's locale
              */
             locale?: string | null;
             /**
+             * Phone
+             * @description The user's phone number
+             */
+            phone?: string | null;
+            /**
              * User Attributes
              * @description User attributes
              */
             user_attributes?: components["schemas"]["UserAttributeUpdate"][] | null;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username?: string | null;
         };
         /** UserVerificationApiResponse */
         UserVerificationApiResponse: {
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
             /**
              * Token
              * @description The token to verify the email address
              */
             token: string;
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
             /**
              * Updated On
              * Format: date-time
@@ -2857,49 +2909,30 @@ export interface components {
              */
             updated_on?: Date;
             /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * @description Current status of the email verification
-             * @default pending
-             */
-            status: components["schemas"]["EmailVerificationStatus"];
-            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
-            type: components["schemas"]["VerificationType"];
-            /**
-             * Verified On
-             * @description The date the verification was verified
-             */
-            verified_on?: Date | null;
-            /**
-             * Canceled On
-             * @description The date the verification was cancelled
-             */
-            canceled_on?: Date | null;
-            /**
-             * User Verification Id
-             * Format: typeid
-             */
-            user_verification_id?: TypeID<"user_verification">;
-            /**
              * User Id
              * Format: typeid
              * @description The user's id
              * @default None
              */
             user_id: TypeID<"user">;
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
+            user_verification_id?: TypeID<"user_verification">;
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
         };
         /** UserVerificationEmailResponse */
         UserVerificationEmailResponse: {
             /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
+             * Canceled On
+             * @description The date the verification was cancelled
              */
-            updated_on?: Date;
+            canceled_on?: Date | null;
             /**
              * Created On
              * Format: date-time
@@ -2914,20 +2947,11 @@ export interface components {
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
             type: components["schemas"]["VerificationType"];
             /**
-             * Verified On
-             * @description The date the verification was verified
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
              */
-            verified_on?: Date | null;
-            /**
-             * Canceled On
-             * @description The date the verification was cancelled
-             */
-            canceled_on?: Date | null;
-            /**
-             * User Verification Id
-             * Format: typeid
-             */
-            user_verification_id?: TypeID<"user_verification">;
+            updated_on?: Date;
             /**
              * User Id
              * Format: typeid
@@ -2935,15 +2959,24 @@ export interface components {
              * @default None
              */
             user_id: TypeID<"user">;
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
+            user_verification_id?: TypeID<"user_verification">;
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
         };
         /** UserVerificationResponse */
         UserVerificationResponse: {
             /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
+             * Canceled On
+             * @description The date the verification was cancelled
              */
-            updated_on?: Date;
+            canceled_on?: Date | null;
             /**
              * Created On
              * Format: date-time
@@ -2958,20 +2991,11 @@ export interface components {
             /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
             type: components["schemas"]["VerificationType"];
             /**
-             * Verified On
-             * @description The date the verification was verified
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
              */
-            verified_on?: Date | null;
-            /**
-             * Canceled On
-             * @description The date the verification was cancelled
-             */
-            canceled_on?: Date | null;
-            /**
-             * User Verification Id
-             * Format: typeid
-             */
-            user_verification_id?: TypeID<"user_verification">;
+            updated_on?: Date;
             /**
              * User Id
              * Format: typeid
@@ -2979,31 +3003,36 @@ export interface components {
              * @default None
              */
             user_id: TypeID<"user">;
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
+            user_verification_id?: TypeID<"user_verification">;
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
         };
         /** UserWithAttributes */
         UserWithAttributes: {
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
             created_on?: Date;
             /**
-             * Username
-             * @description The user's unique username
+             * Deleted On
+             * @description The date/time the entry was deleted on
              */
-            username: string;
+            deleted_on?: Date | null;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
             /**
              * First Name
              * @description The user's first name
@@ -3014,17 +3043,6 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /**
-             * Email
-             * Format: email
-             * @description The user's email address
-             */
-            email: string;
-            /**
-             * Phone
-             * @description The user's phone number
-             */
-            phone?: string | null;
             /** Locale */
             locale: string;
             /**
@@ -3035,10 +3053,17 @@ export interface components {
              */
             organization_id: TypeID<"organization">;
             /**
-             * User Id
-             * Format: typeid
+             * Phone
+             * @description The user's phone number
              */
-            user_id?: TypeID<"user">;
+            phone?: string | null;
+            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
             /**
              * User Attributes
              * @description All of the user attributes
@@ -3046,32 +3071,36 @@ export interface components {
             user_attributes?: {
                 [key: string]: components["schemas"]["JsonValue"];
             };
-            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * User Id
+             * Format: typeid
+             */
+            user_id?: TypeID<"user">;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
         };
         /** UserWithRelationPermissions */
         UserWithRelationPermissions: {
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
              * Created On
              * Format: date-time
              * @description The date/time the entry was created on
              */
             created_on?: Date;
             /**
-             * Username
-             * @description The user's unique username
+             * Deleted On
+             * @description The date/time the entry was deleted on
              */
-            username: string;
+            deleted_on?: Date | null;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
             /**
              * First Name
              * @description The user's first name
@@ -3082,17 +3111,6 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /**
-             * Email
-             * Format: email
-             * @description The user's email address
-             */
-            email: string;
-            /**
-             * Phone
-             * @description The user's phone number
-             */
-            phone?: string | null;
             /** Locale */
             locale: string;
             /**
@@ -3102,11 +3120,22 @@ export interface components {
              * @default None
              */
             organization_id: TypeID<"organization">;
+            /** Permissions */
+            permissions?: components["schemas"]["Permission"][] | null;
             /**
-             * User Id
-             * Format: typeid
+             * Phone
+             * @description The user's phone number
              */
-            user_id?: TypeID<"user">;
+            phone?: string | null;
+            /** Relations */
+            relations?: components["schemas"]["Relation"][] | null;
+            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
             /**
              * User Attributes
              * @description All of the user attributes
@@ -3114,11 +3143,16 @@ export interface components {
             user_attributes?: {
                 [key: string]: components["schemas"]["JsonValue"];
             };
-            /** Relations */
-            relations?: components["schemas"]["Relation"][] | null;
-            /** Permissions */
-            permissions?: components["schemas"]["Permission"][] | null;
-            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * User Id
+             * Format: typeid
+             */
+            user_id?: TypeID<"user">;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
         };
         /** ValidationError */
         ValidationError: {
@@ -3136,32 +3170,21 @@ export interface components {
         VerificationType: "api" | "email";
         /** DomainAvailabilityResponse */
         common__models__availability__datasource__DomainAvailabilityResponse: {
-            meta: components["schemas"]["DomainAvailabilityMeta"];
             /** Data */
             data: components["schemas"]["DomainAvailability"][];
+            meta: components["schemas"]["DomainAvailabilityMeta"];
         };
         /** DomainAvailabilityResponse */
         common__models__domain__domain__DomainAvailabilityResponse: {
+            /** Available */
+            available: boolean;
             /**
              * Domain Name
              * @description The domain name
              */
             domain_name: string;
-            /** Available */
-            available: boolean;
             /** Reason */
             reason: string | null;
-        };
-        /** Problem */
-        Problem: {
-            /** Problem Title */
-            title: string;
-            /** Problem type */
-            type: string;
-            /** Status code */
-            status: number;
-            /** Problem detail */
-            detail: string | null;
         };
     };
     responses: never;
@@ -3172,75 +3195,6 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    issue_organization_token_v1_auth_token_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["Body_issue_organization_token_v1_auth_token_post"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationTokenResponse"] | components["schemas"]["UserTokenResponse"];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    logout_v1_auth_logout_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
     list_api_keys_v1_auth_client_credentials_get: {
         parameters: {
             query?: {
@@ -3373,6 +3327,33 @@ export interface operations {
             };
         };
     };
+    logout_v1_auth_logout_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     signup_v1_auth_signup_post: {
         parameters: {
             query?: never;
@@ -3397,6 +3378,48 @@ export interface operations {
             };
             /** @description Conflict */
             409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    issue_organization_token_v1_auth_token_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/x-www-form-urlencoded": components["schemas"]["Body_issue_organization_token_v1_auth_token_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationTokenResponse"] | components["schemas"]["UserTokenResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -3463,6 +3486,210 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    stream_availability_v1_availability_stream_get: {
+        parameters: {
+            query: {
+                /** @description
+                 *     Specify one or more domains to check for availability.
+                 *      */
+                domains: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/event-stream": string;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_contacts_v1_contacts_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_ContactSchema_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_contact_v1_contacts_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactSchema"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_contact_v1_contacts__contact_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: TypeID<"contact">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactSchema"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_contact_v1_contacts__contact_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: TypeID<"contact">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -3592,7 +3819,7 @@ export interface operations {
             };
         };
     };
-    update_zone_v1_dns__zone_name__rrsets_put: {
+    disable_dnssec_v1_dns__zone_name__dnssec_disable_post: {
         parameters: {
             query?: never;
             header?: never;
@@ -3601,11 +3828,7 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DnsZoneRrsetsCreate"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {
@@ -3613,7 +3836,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["DnsChangesResponse"];
                 };
             };
             /** @description Validation Error */
@@ -3658,12 +3881,230 @@ export interface operations {
             };
         };
     };
-    disable_dnssec_v1_dns__zone_name__dnssec_disable_post: {
+    update_zone_v1_dns__zone_name__rrsets_put: {
         parameters: {
             query?: never;
             header?: never;
             path: {
                 zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DnsZoneRrsetsCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    suggest_v1_domain_search_suggest_get: {
+        parameters: {
+            query: {
+                /** @description The primary keyword or phrase for the domain search */
+                query: string;
+                /** @description
+                 *     Specify one or more TLDs to include in the search.
+                 *      */
+                tlds?: string[] | null;
+                /** @description The maximum number of domain suggestions to return */
+                limit?: number | null;
+                /** @description Whether to include premium domains in the suggestions */
+                premium?: boolean | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainSearchResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_domains_v1_domains_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_DomainResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_domain_v1_domains_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    check_domain_v1_domains_check_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainCheck"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainCheckResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_domain_v1_domains__domain_reference__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
             };
             cookie?: never;
         };
@@ -3675,7 +4116,264 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DnsChangesResponse"];
+                    "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_domain_v1_domains__domain_reference__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_domain_v1_domains__domain_reference__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_dnssec_v1_domains__domain_reference__dnssec_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_or_update_dnssec_v1_domains__domain_reference__dnssec_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainDnssecDataCreate"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_dnssec_v1_domains__domain_reference__dnssec_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    renew_domain_v1_domains__domain_reference__renew_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainRenewRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainRenewResponse"];
                 };
             };
             /** @description Validation Error */
@@ -3747,6 +4445,72 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["EmailForward"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmailForwardBulkDelete"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkOperationResponse_EmailForwardBulkDeleteResult_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_update_email_forwards_v1_email_forwards_bulk_update_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmailForwardBulkUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkOperationResponse_EmailForwardBulkUpdateResult_"];
                 };
             };
             /** @description Validation Error */
@@ -3842,72 +4606,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["EmailForward"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    bulk_update_email_forwards_v1_email_forwards_bulk_update_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailForwardBulkUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["BulkOperationResponse_EmailForwardBulkUpdateResult_"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailForwardBulkDelete"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["BulkOperationResponse_EmailForwardBulkDeleteResult_"];
                 };
             };
             /** @description Validation Error */
@@ -4319,11 +5017,12 @@ export interface operations {
             };
         };
     };
-    list_users_v1_organizations_users_get: {
+    get_attributes_v1_organizations_attributes_get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
+                organization_id?: TypeID<"organization"> | null;
+                /** @description Optional list of attribute keys to filter */
+                keys?: string[] | null;
             };
             header?: never;
             path?: never;
@@ -4337,7 +5036,42 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_User_"];
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_attributes_v1_organizations_attributes_patch: {
+        parameters: {
+            query?: {
+                organization_id?: TypeID<"organization"> | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationAttributeUpdate"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
                 };
             };
             /** @description Validation Error */
@@ -4416,94 +5150,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_attributes_v1_organizations_attributes_get: {
-        parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-                /** @description Optional list of attribute keys to filter */
-                keys?: string[] | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_attributes_v1_organizations_attributes_patch: {
-        parameters: {
-            query?: {
-                organization_id?: TypeID<"organization"> | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OrganizationAttributeUpdate"][];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_roles_v1_organizations_roles_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
                 };
             };
         };
@@ -4656,6 +5302,58 @@ export interface operations {
             };
         };
     };
+    list_roles_v1_organizations_roles_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    list_users_v1_organizations_users_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_User_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_organization_v1_organizations__organization_id__get: {
         parameters: {
             query?: never;
@@ -4784,68 +5482,6 @@ export interface operations {
             };
         };
     };
-    get_current_user_v1_users_me_get: {
-        parameters: {
-            query?: {
-                attributes?: string[] | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserWithRelationPermissions"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    redirect_verify_user_v1_users_verify_get: {
-        parameters: {
-            query: {
-                token: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     tos_sign_v1_users_accept_tos_post: {
         parameters: {
             query?: never;
@@ -4877,15 +5513,13 @@ export interface operations {
             };
         };
     };
-    get_user_v1_users__user_id__get: {
+    get_current_user_v1_users_me_get: {
         parameters: {
             query?: {
                 attributes?: string[] | null;
             };
             header?: never;
-            path: {
-                user_id: TypeID<"user">;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -4896,102 +5530,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithAttributes"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_user_v1_users__user_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                user_id: TypeID<"user">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_user_v1_users__user_id__patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                user_id: TypeID<"user">;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UserUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserWithAttributes"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_user_permissions_v1_users__user_id__permissions_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                user_id: TypeID<"user">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PermissionSet"];
+                    "application/json": components["schemas"]["UserWithRelationPermissions"];
                 };
             };
             /** @description Validation Error */
@@ -5171,6 +5710,231 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    redirect_verify_user_v1_users_verify_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_user_v1_users__user_id__get: {
+        parameters: {
+            query?: {
+                attributes?: string[] | null;
+            };
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserWithAttributes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_user_v1_users__user_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_user_v1_users__user_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserWithAttributes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_user_permissions_v1_users__user_id__permissions_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PermissionSet"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_roles_v1_users__user_id__roles_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RelationSet"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_user_relations_v1_users__user_id__roles_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RelationSet"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -5367,695 +6131,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_roles_v1_users__user_id__roles_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                user_id: TypeID<"user">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RelationSet"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_user_relations_v1_users__user_id__roles_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                user_id: TypeID<"user">;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RelationSet"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    check_domain_v1_domains_check_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainCheck"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainCheckResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_domain_v1_domains__domain_reference__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainResponse"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_domain_v1_domains__domain_reference__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_domain_v1_domains__domain_reference__patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainResponse"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_domains_v1_domains_get: {
-        parameters: {
-            query?: {
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Pagination_DomainResponse_"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    create_domain_v1_domains_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainCreate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainResponse"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    renew_domain_v1_domains__domain_reference__renew_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainRenewRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainRenewResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_dnssec_v1_domains__domain_reference__dnssec_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    create_or_update_dnssec_v1_domains__domain_reference__dnssec_put: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainDnssecDataCreate"][];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_dnssec_v1_domains__domain_reference__dnssec_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                domain_reference: TypeID<"domain"> | string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_contacts_v1_contacts_get: {
-        parameters: {
-            query?: {
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Pagination_ContactSchema_"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    create_contact_v1_contacts_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ContactCreate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ContactSchema"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_contact_v1_contacts__contact_id__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                contact_id: TypeID<"contact">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ContactSchema"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_contact_v1_contacts__contact_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                contact_id: TypeID<"contact">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    suggest_v1_domain_search_suggest_get: {
-        parameters: {
-            query: {
-                /** @description The primary keyword or phrase for the domain search */
-                query: string;
-                /** @description
-                 *     Specify one or more TLDs to include in the search.
-                 *      */
-                tlds?: string[] | null;
-                /** @description The maximum number of domain suggestions to return */
-                limit?: number | null;
-                /** @description Whether to include premium domains in the suggestions */
-                premium?: boolean | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainSearchResponse"];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Bad Gateway */
-            502: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
