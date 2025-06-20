@@ -16,7 +16,7 @@ function getTypeIdPrefix(schemaObject) {
 	return schemaObject["x-typeid-prefix"];
 }
 
-const schemaPath = new URL("../src/openapi.json", import.meta.url)
+const schemaPath = new URL("../src/openapi.yaml", import.meta.url)
 const ast = await openapiTS(schemaPath, {
 	transform(schemaObject, metadata) {
 		switch (schemaObject.format) {

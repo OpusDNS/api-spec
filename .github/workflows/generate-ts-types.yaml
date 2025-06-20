@@ -22,7 +22,7 @@ jobs:
 
       - name: Override OpenAPI spec
         run: |
-          mv openapi.json src/openapi.json
+          mv openapi.yaml src/openapi.yaml
 
       - uses: actions/setup-node@v4
         with:
@@ -42,7 +42,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git add src/openapi.json
+            git add src/openapi.yaml
             git commit -m "Update OpenAPI spec and types"
             git push
           fi
