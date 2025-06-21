@@ -5,9 +5,18 @@
   <title>Opus DNS API Reference</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" media="all">
 </head>
 
 <body>
+  <header class="custom-header scalar-app">
+    <img src="https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg" alt="OpusDNS logo"
+      height="45px">
+    <nav>
+      <a href="https://kb.opusdns.com/">Knowledgebase</a>
+      <a href="https://www.opusdns.com/">Main website</a>
+    </nav>
+  </header>
   <div id="app"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
@@ -15,6 +24,9 @@
   <script>
     Scalar.createApiReference('#app', {
       url: 'https://raw.githubusercontent.com/OpusDNS/api-spec/refs/heads/main/src/openapi.yaml',
+      hideModels: true,
+      favicon: "https://d24lr4zqs1tgqh.cloudfront.net/651c70e0-ee3b-4951-8778-ef1c4901b59a.png",
+      hideTestRequestButton: true,
     })
   </script>
 </body>

@@ -662,6 +662,7 @@ components:
       - name
       - period
       - contacts
+      - renewal_mode
       title: DomainCreate
       type: object
     DomainDnssecDataCreate:
@@ -3499,10 +3500,47 @@ components:
           tokenUrl: token
       type: oauth2
 info:
-  description: OpusDNS Backend API
+  description: '# Authentication
+
+
+    Describes authentication approach.
+
+
+
+    # Resource IDs
+
+
+    The API uses extensively [Type IDs](https://github.com/jetify-com/typeid): type-safe,
+    K-sortable, globally unique identifier inspired by Stripe IDs. They can be easily
+    identified with a format like `prefix_01jxe1nzrmf78scaqbkjx0va0f`. The `prefix`
+    gives context to the ID - some examples include `user`, `organization`, `domain`.
+    The rest of the ID is a 128-bit UUIDv7 encoded as a 26-character string using
+    a modified base32 encoding. See [formal specification for details](https://github.com/jetify-com/typeid/tree/main/spec).
+
+
+    This approach allows using unique IDs (UUIDv7), preventing iteration attacks,
+    while also easily identifying the "namespace" of the ID. `01975c1f-a15a-7f6c-a5ce-b75fe33de079`
+    is hardly distuingishable from `01975c1f-f120-7874-8dc2-de7d728bf261` by humans
+    on first glance. However, when represented as Type IDs, they could be represented
+    as `user_01jxe1z8atfxpabknqbzhkvr3s` and `domain_01jxe1zw90f1t8vgpyfns8qwk1`,
+    immediately making it easier to differentiate between them.
+
+
+    Additionally, this gives type safety and additional validation that can be done.
+    There''s [libraries available for many languages to make handling Type IDs easier](https://github.com/jetify-com/typeid?tab=readme-ov-file#official-implementations-by-jetify).
+    We''re using them ourselves on the backend to quickly catch mistakes like passing
+    the wrong Type ID (passing a user ID like `user_01jxe1z8atfxpabknqbzhkvr3s` where
+    a domain ID `domain_01jxe1zw90f1t8vgpyfns8qwk1` was expected).
+
+
+
+    '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-20-113253
+  version: 2025-06-21-001540
+  x-logo:
+    altText: OpusDNS API Reference
+    url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
 openapi: 3.1.0
 paths:
   /v1/auth/client_credentials:
@@ -3564,6 +3602,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Api Keys
+      tags:
+      - authentication
     post:
       operationId: issue_api_key_v1_auth_client_credentials_post
       requestBody:
@@ -3600,6 +3640,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Issue Api Key
+      tags:
+      - authentication
   /v1/auth/client_credentials/{api_key_id}:
     delete:
       operationId: delete_api_key_v1_auth_client_credentials__api_key_id__delete
@@ -3653,6 +3695,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Api Key
+      tags:
+      - authentication
   /v1/auth/logout:
     post:
       operationId: logout_v1_auth_logout_post
@@ -3674,6 +3718,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Logout
+      tags:
+      - authentication
   /v1/auth/signup:
     post:
       operationId: signup_v1_auth_signup_post
@@ -3713,6 +3759,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
       summary: Signup
+      tags:
+      - authentication
   /v1/auth/token:
     post:
       operationId: issue_organization_token_v1_auth_token_post
@@ -3753,6 +3801,8 @@ paths:
       - APIKeyHeader: []
       - OAuth2PasswordBearer: []
       summary: Issue Organization Token
+      tags:
+      - authentication
   /v1/availability:
     get:
       description: Check the availability of one or more domains.
@@ -3822,6 +3872,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Bulk Availability
+      tags:
+      - availability
   /v1/availability/stream:
     get:
       description: Stream domain availability results using Server-Sent Events (SSE)
@@ -3901,6 +3953,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Stream Availability
+      tags:
+      - availability
   /v1/contacts:
     get:
       description: List all contacts
@@ -3939,6 +3993,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Contacts
+      tags:
+      - contact
     post:
       description: Create a contact
       operationId: create_contact_v1_contacts_post
@@ -3964,6 +4020,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Contact
+      tags:
+      - contact
   /v1/contacts/{contact_id}:
     delete:
       description: Delete a contact
@@ -4043,6 +4101,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Contact
+      tags:
+      - contact
     get:
       description: Retrieve a contact
       operationId: get_contact_v1_contacts__contact_id__get
@@ -4087,6 +4147,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Contact
+      tags:
+      - contact
   /v1/dns:
     get:
       operationId: list_zones_v1_dns_get
@@ -4124,6 +4186,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Zones
+      tags:
+      - dns
     post:
       operationId: create_zone_v1_dns_post
       requestBody:
@@ -4151,6 +4215,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Zone
+      tags:
+      - dns
   /v1/dns/{zone_name}:
     delete:
       operationId: delete_zone_v1_dns__zone_name__delete
@@ -4173,6 +4239,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Zone
+      tags:
+      - dns
     get:
       operationId: get_zone_v1_dns__zone_name__get
       parameters:
@@ -4198,6 +4266,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Zone
+      tags:
+      - dns
   /v1/dns/{zone_name}/dnssec/disable:
     post:
       operationId: disable_dnssec_v1_dns__zone_name__dnssec_disable_post
@@ -4224,6 +4294,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Disable Dnssec
+      tags:
+      - dns
   /v1/dns/{zone_name}/dnssec/enable:
     post:
       operationId: enable_dnssec_v1_dns__zone_name__dnssec_enable_post
@@ -4250,6 +4322,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Enable Dnssec
+      tags:
+      - dns
   /v1/dns/{zone_name}/rrsets:
     put:
       operationId: update_zone_v1_dns__zone_name__rrsets_put
@@ -4281,6 +4355,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Zone
+      tags:
+      - dns
   /v1/domain-search/suggest:
     get:
       operationId: suggest_v1_domain_search_suggest_get
@@ -4382,6 +4458,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Suggest
+      tags:
+      - domain_search
   /v1/domains:
     get:
       description: Retrieves a paginated list of all domains
@@ -4420,6 +4498,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List all domains
+      tags:
+      - domain
     post:
       description: Registers a new domain
       operationId: create_domain_v1_domains_post
@@ -4484,6 +4564,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create a domain
+      tags:
+      - domain
   /v1/domains/check:
     post:
       operationId: check_domain_v1_domains_check_post
@@ -4509,6 +4591,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Check domain availability
+      tags:
+      - domain
   /v1/domains/{domain_reference}:
     delete:
       description: 'Initiates the deletion process for a domain. The domain will be
@@ -4569,6 +4653,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete a domain
+      tags:
+      - domain
     get:
       description: Retrieves a single domain by either its name or id
       operationId: get_domain_v1_domains__domain_reference__get
@@ -4615,6 +4701,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Retrieve a domain
+      tags:
+      - domain
     patch:
       description: 'Updates various attributes of an existing domain. Only the fields
         provided in the request
@@ -4683,6 +4771,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update a domain
+      tags:
+      - domain
   /v1/domains/{domain_reference}/dnssec:
     delete:
       description: Removes all DNSSEC data for a domain
@@ -4726,6 +4816,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete DNSSEC data
+      tags:
+      - domain
     get:
       description: Fetches all DNSSEC records associated with the specified domain.
       operationId: get_dnssec_v1_domains__domain_reference__dnssec_get
@@ -4775,6 +4867,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Retrieve DNSSEC data
+      tags:
+      - domain
     put:
       description: Replaces all existing DNSSEC records for the domain with the provided
         records.
@@ -4835,6 +4929,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update DNSSEC data
+      tags:
+      - domain
   /v1/domains/{domain_reference}/renew:
     post:
       description: 'Extends the registration period of an existing domain. The renewal
@@ -4878,6 +4974,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Renew a domain
+      tags:
+      - domain
   /v1/email-forwards:
     get:
       operationId: list_email_forwards_v1_email_forwards_get
@@ -4945,6 +5043,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Email Forwards
+      tags:
+      - email_forward
     post:
       operationId: create_email_forward_v1_email_forwards_post
       requestBody:
@@ -4969,6 +5069,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Email Forward
+      tags:
+      - email_forward
   /v1/email-forwards/bulk-delete:
     post:
       operationId: bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post
@@ -4994,6 +5096,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Bulk Delete Email Forwards
+      tags:
+      - email_forward
   /v1/email-forwards/bulk-update:
     patch:
       operationId: bulk_update_email_forwards_v1_email_forwards_bulk_update_patch
@@ -5019,6 +5123,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Bulk Update Email Forwards
+      tags:
+      - email_forward
   /v1/email-forwards/{email_forward_id}:
     delete:
       operationId: delete_email_forward_v1_email_forwards__email_forward_id__delete
@@ -5046,6 +5152,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Email Forward
+      tags:
+      - email_forward
     get:
       operationId: get_email_forward_v1_email_forwards__email_forward_id__get
       parameters:
@@ -5076,6 +5184,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Email Forward
+      tags:
+      - email_forward
     patch:
       operationId: update_email_forward_v1_email_forwards__email_forward_id__patch
       parameters:
@@ -5112,6 +5222,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Email Forward
+      tags:
+      - email_forward
   /v1/event:
     get:
       operationId: get_events_v1_event_get
@@ -5161,6 +5273,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Events
+      tags:
+      - event
   /v1/event/{event_id}:
     get:
       operationId: get_event_v1_event__event_id__get
@@ -5217,6 +5331,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Event
+      tags:
+      - event
     patch:
       operationId: acknowledge_event_v1_event__event_id__patch
       parameters:
@@ -5268,6 +5384,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Acknowledge Event
+      tags:
+      - event
   /v1/notifications:
     get:
       operationId: list_notifications_v1_notifications_get
@@ -5316,6 +5434,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Notifications
+      tags:
+      - notification
     post:
       operationId: create_notification_v1_notifications_post
       requestBody:
@@ -5340,6 +5460,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Notification
+      tags:
+      - notification
   /v1/notifications/{notification_id}:
     delete:
       operationId: delete_notification_v1_notifications__notification_id__delete
@@ -5370,6 +5492,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Notification
+      tags:
+      - notification
     get:
       operationId: get_notification_v1_notifications__notification_id__get
       parameters:
@@ -5411,6 +5535,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Notification
+      tags:
+      - notification
     put:
       operationId: update_notification_v1_notifications__notification_id__put
       parameters:
@@ -5447,6 +5573,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Notification
+      tags:
+      - notification
   /v1/notifications/{notification_id}/read:
     patch:
       operationId: update_notification_read_v1_notifications__notification_id__read_patch
@@ -5477,6 +5605,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Notification Read
+      tags:
+      - notification
   /v1/organizations:
     get:
       operationId: list_organizations_v1_organizations_get
@@ -5514,6 +5644,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Organizations
+      tags:
+      - organization
     post:
       operationId: create_organization_v1_organizations_post
       requestBody:
@@ -5538,6 +5670,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Organization
+      tags:
+      - organization
   /v1/organizations/attributes:
     get:
       operationId: get_attributes_v1_organizations_attributes_get
@@ -5586,6 +5720,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Attributes
+      tags:
+      - organization
     patch:
       operationId: update_attributes_v1_organizations_attributes_patch
       parameters:
@@ -5630,6 +5766,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Attributes
+      tags:
+      - organization
   /v1/organizations/attributes/{organization_id}:
     get:
       operationId: get_attributes_v1_organizations_attributes__organization_id__get
@@ -5679,6 +5817,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Attributes
+      tags:
+      - organization
     patch:
       operationId: update_attributes_v1_organizations_attributes__organization_id__patch
       parameters:
@@ -5724,6 +5864,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Attributes
+      tags:
+      - organization
   /v1/organizations/ip-restrictions:
     get:
       description: Get all IP restrictions for the organization
@@ -5742,6 +5884,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Ip Restrictions
+      tags:
+      - organization
     post:
       description: Create a new IP restriction for the organization
       operationId: create_ip_restriction_v1_organizations_ip_restrictions_post
@@ -5767,6 +5911,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Ip Restriction
+      tags:
+      - organization
   /v1/organizations/ip-restrictions/{ip_restriction_id}:
     delete:
       description: Delete an IP restriction
@@ -5790,6 +5936,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Ip Restriction
+      tags:
+      - organization
     get:
       description: Get a specific IP restriction by ID
       operationId: get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get
@@ -5816,6 +5964,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Ip Restriction
+      tags:
+      - organization
     patch:
       description: Update an IP restriction
       operationId: update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch
@@ -5848,6 +5998,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Ip Restriction
+      tags:
+      - organization
   /v1/organizations/roles:
     get:
       operationId: list_roles_v1_organizations_roles_get
@@ -5860,6 +6012,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Roles
+      tags:
+      - organization
   /v1/organizations/users:
     get:
       operationId: list_users_v1_organizations_users_get
@@ -5897,6 +6051,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Users
+      tags:
+      - organization
   /v1/organizations/{organization_id}:
     delete:
       operationId: delete_user_v1_organizations__organization_id__delete
@@ -5924,6 +6080,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete User
+      tags:
+      - organization
     get:
       operationId: get_organization_v1_organizations__organization_id__get
       parameters:
@@ -5954,6 +6112,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Organization
+      tags:
+      - organization
     patch:
       operationId: update_organization_v1_organizations__organization_id__patch
       parameters:
@@ -5990,6 +6150,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Organization
+      tags:
+      - organization
   /v1/users:
     post:
       operationId: create_user_v1_users_post
@@ -6015,6 +6177,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create User
+      tags:
+      - user
   /v1/users/accept-tos:
     post:
       operationId: tos_sign_v1_users_accept_tos_post
@@ -6036,6 +6200,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Tos Sign
+      tags:
+      - user
   /v1/users/me:
     get:
       operationId: get_current_user_v1_users_me_get
@@ -6066,6 +6232,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Current User
+      tags:
+      - user
   /v1/users/me/verification:
     delete:
       operationId: cancel_verification_me_v1_users_me_verification_delete
@@ -6087,6 +6255,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Cancel Verification Me
+      tags:
+      - user
     get:
       operationId: get_verification_status_me_v1_users_me_verification_get
       responses:
@@ -6111,6 +6281,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Verification Status Me
+      tags:
+      - user
     post:
       operationId: create_verification_me_v1_users_me_verification_post
       parameters:
@@ -6174,6 +6346,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Verification Me
+      tags:
+      - user
     put:
       operationId: update_verification_me_v1_users_me_verification_put
       parameters:
@@ -6234,6 +6408,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Verification Me
+      tags:
+      - user
   /v1/users/verify:
     get:
       operationId: redirect_verify_user_v1_users_verify_get
@@ -6257,6 +6433,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
       summary: Redirect Verify User
+      tags:
+      - user
   /v1/users/{user_id}:
     delete:
       operationId: delete_user_v1_users__user_id__delete
@@ -6284,6 +6462,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete User
+      tags:
+      - user
     get:
       operationId: get_user_v1_users__user_id__get
       parameters:
@@ -6324,6 +6504,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get User
+      tags:
+      - user
     patch:
       operationId: update_user_v1_users__user_id__patch
       parameters:
@@ -6360,6 +6542,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update User
+      tags:
+      - user
   /v1/users/{user_id}/permissions:
     get:
       operationId: get_user_permissions_v1_users__user_id__permissions_get
@@ -6391,6 +6575,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get User Permissions
+      tags:
+      - user
   /v1/users/{user_id}/roles:
     get:
       operationId: list_roles_v1_users__user_id__roles_get
@@ -6422,6 +6608,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List Roles
+      tags:
+      - user
     patch:
       operationId: update_user_relations_v1_users__user_id__roles_patch
       parameters:
@@ -6458,6 +6646,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update User Relations
+      tags:
+      - user
   /v1/users/{user_id}/verification:
     delete:
       operationId: cancel_verification_v1_users__user_id__verification_delete
@@ -6497,6 +6687,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Cancel Verification
+      tags:
+      - user
     get:
       operationId: get_verification_status_v1_users__user_id__verification_get
       parameters:
@@ -6539,6 +6731,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Verification Status
+      tags:
+      - user
     post:
       operationId: create_verification_v1_users__user_id__verification_post
       parameters:
@@ -6614,6 +6808,8 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Verification
+      tags:
+      - user
     put:
       operationId: update_verification_v1_users__user_id__verification_put
       parameters:
@@ -6685,257 +6881,100 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Verification
-x-theneo-metadata:
-  menu:
-  - description: Intro to REST API
-    isHeader: true
-    name: REST API Documentation
-    subSections:
-    - description: '
+      tags:
+      - user
+servers:
+- description: Production environment
+  url: https://api.opusdns.com
+- description: Sandbox environment
+  url: https://api.sandbox.opusdns.com
+tags:
+- description: 'Endpoints for authentication.
 
-        Endpoints for authentication
+    '
+  name: authentication
+  x-displayName: Authentication
+- description: 'Endpoints for checking domain availability.
 
-        '
-      isHeader: true
-      name: Authentication
-      subSections:
-      - name: Issue Organization Token
-        operationId: issue_organization_token_v1_auth_token_post
-      - name: Logout
-        operationId: logout_v1_auth_logout_post
-      - name: Issue Api Key
-        operationId: issue_api_key_v1_auth_client_credentials_post
-      - name: List Api Keys
-        operationId: list_api_keys_v1_auth_client_credentials_get
-      - name: Delete Api Key
-        operationId: delete_api_key_v1_auth_client_credentials__api_key_id__delete
-      - name: Signup
-        operationId: signup_v1_auth_signup_post
-    - description: '
+    '
+  name: availability
+  x-displayName: Availability
+- description: 'Endpoints for creating and managing contacts.
 
-        Endpoints for checking domain availability
+    '
+  name: contact
+  x-displayName: Contacts
+- description: 'Endpoints for managing DNS records.
 
-        '
-      isHeader: true
-      name: Availability
-      subSections:
-      - name: Bulk Availability
-        operationId: bulk_availability_v1_availability_get
-      - name: Stream Availability
-        operationId: stream_availability_v1_availability_stream_get
-    - description: '
+    '
+  name: dns
+  x-displayName: DNS Management
+- description: 'Endpoints for creating and managing domains.
 
-        Endpoints for managing DNS records
+    '
+  name: domain
+  x-displayName: Domain management
+- description: 'Endpoints for searching domains.
 
-        '
-      isHeader: true
-      name: DNS Management
-      subSections:
-      - name: Create Zone
-        operationId: create_zone_v1_dns_post
-      - name: List Zones
-        operationId: list_zones_v1_dns_get
-      - name: Get Zone
-        operationId: get_zone_v1_dns__zone_name__get
-      - name: Delete Zone
-        operationId: delete_zone_v1_dns__zone_name__delete
-      - name: Update Zone
-        operationId: update_zone_v1_dns__zone_name__rrsets_put
-      - name: Enable Dnssec
-        operationId: enable_dnssec_v1_dns__zone_name__dnssec_enable_post
-      - name: Disable Dnssec
-        operationId: disable_dnssec_v1_dns__zone_name__dnssec_disable_post
-    - description: '
+    '
+  name: domain_search
+  x-displayName: Domain search
+- description: 'Endpoints for creating and managing email forwards.
 
-        Endpoints for creating and managing email forwards
+    '
+  name: email_forward
+  x-displayName: Email forwards
+- description: 'Endpoints for interacting with events.
 
-        '
-      isHeader: true
-      name: Email forwards
-      subSections:
-      - name: Create Email Forward
-        operationId: create_email_forward_v1_email_forwards_post
-      - name: List Email Forwards
-        operationId: list_email_forwards_v1_email_forwards_get
-      - name: Get Email Forward
-        operationId: get_email_forward_v1_email_forwards__email_forward_id__get
-      - name: Delete Email Forward
-        operationId: delete_email_forward_v1_email_forwards__email_forward_id__delete
-      - name: Update Email Forward
-        operationId: update_email_forward_v1_email_forwards__email_forward_id__patch
-      - name: Bulk Update Email Forwards
-        operationId: bulk_update_email_forwards_v1_email_forwards_bulk_update_patch
-      - name: Bulk Delete Email Forwards
-        operationId: bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post
-    - description: '
+    '
+  name: event
+  x-displayName: Event handling
+- description: 'Endpoints for managing nameservers.
 
-        Endpoints for interacting with events
+    '
+  name: nameserver
+  x-displayName: Nameservers
+- description: 'Endpoints for creating and managing notifications.
 
-        '
-      isHeader: true
-      name: Events
-      subSections:
-      - name: Get Events
-        operationId: get_events_v1_event_get
-      - name: Get Event
-        operationId: get_event_v1_event__event_id__get
-      - name: Acknowledge Event
-        operationId: acknowledge_event_v1_event__event_id__patch
-    - description: '
+    '
+  name: notification
+  x-displayName: Notifications
+- description: 'Endpoints for creating and managing organizations.
 
-        Endpoints for creating and managing notifications
+    '
+  name: organization
+  x-displayName: Organizations
+- description: 'Endpoints for RDAP.
 
-        '
-      isHeader: true
-      name: Notifications
-      subSections:
-      - name: List Notifications
-        operationId: list_notifications_v1_notifications_get
-      - name: Create Notification
-        operationId: create_notification_v1_notifications_post
-      - name: Get Notification
-        operationId: get_notification_v1_notifications__notification_id__get
-      - name: Update Notification
-        operationId: update_notification_v1_notifications__notification_id__put
-      - name: Delete Notification
-        operationId: delete_notification_v1_notifications__notification_id__delete
-      - name: Update Notification Read
-        operationId: update_notification_read_v1_notifications__notification_id__read_patch
-    - description: '
+    '
+  name: rdap
+  x-displayName: RDAP
+- description: 'Endpoints for retrieving TLD specifications.
 
-        Endpoints for creating and managing organizations
-
-        '
-      isHeader: true
-      name: Organizations
-      subSections:
-      - name: Create Organization
-        operationId: create_organization_v1_organizations_post
-      - name: List Organizations
-        operationId: list_organizations_v1_organizations_get
-      - name: List Users
-        operationId: list_users_v1_organizations_users_get
-      - name: Get Attributes
-        operationId: get_attributes_v1_organizations_attributes__organization_id__get
-      - name: Update Attributes
-        operationId: update_attributes_v1_organizations_attributes__organization_id__patch
-      - name: Get Attributes
-        operationId: get_attributes_v1_organizations_attributes_get
-      - name: Update Attributes
-        operationId: update_attributes_v1_organizations_attributes_patch
-      - name: List Roles
-        operationId: list_roles_v1_organizations_roles_get
-      - name: List Ip Restrictions
-        operationId: list_ip_restrictions_v1_organizations_ip_restrictions_get
-      - name: Create Ip Restriction
-        operationId: create_ip_restriction_v1_organizations_ip_restrictions_post
-      - name: Get Ip Restriction
-        operationId: get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get
-      - name: Update Ip Restriction
-        operationId: update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch
-      - name: Delete Ip Restriction
-        operationId: delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete
-      - name: Get Organization
-        operationId: get_organization_v1_organizations__organization_id__get
-      - name: Delete User
-        operationId: delete_user_v1_organizations__organization_id__delete
-      - name: Update Organization
-        operationId: update_organization_v1_organizations__organization_id__patch
-    - description: '
-
-        Endpoints for creating and managing users
-
-        '
-      isHeader: true
-      name: Users
-      subSections:
-      - name: Create User
-        operationId: create_user_v1_users_post
-      - name: Get Current User
-        operationId: get_current_user_v1_users_me_get
-      - name: Redirect Verify User
-        operationId: redirect_verify_user_v1_users_verify_get
-      - name: Tos Sign
-        operationId: tos_sign_v1_users_accept_tos_post
-      - name: Get User
-        operationId: get_user_v1_users__user_id__get
-      - name: Delete User
-        operationId: delete_user_v1_users__user_id__delete
-      - name: Update User
-        operationId: update_user_v1_users__user_id__patch
-      - name: Get User Permissions
-        operationId: get_user_permissions_v1_users__user_id__permissions_get
-      - name: Create Verification Me
-        operationId: create_verification_me_v1_users_me_verification_post
-      - name: Update Verification Me
-        operationId: update_verification_me_v1_users_me_verification_put
-      - name: Get Verification Status Me
-        operationId: get_verification_status_me_v1_users_me_verification_get
-      - name: Cancel Verification Me
-        operationId: cancel_verification_me_v1_users_me_verification_delete
-      - name: Create Verification
-        operationId: create_verification_v1_users__user_id__verification_post
-      - name: Update Verification
-        operationId: update_verification_v1_users__user_id__verification_put
-      - name: Get Verification Status
-        operationId: get_verification_status_v1_users__user_id__verification_get
-      - name: Cancel Verification
-        operationId: cancel_verification_v1_users__user_id__verification_delete
-      - name: List Roles
-        operationId: list_roles_v1_users__user_id__roles_get
-      - name: Update User Relations
-        operationId: update_user_relations_v1_users__user_id__roles_patch
-    - description: '
-
-        Endpoints for creating and managing domains
-
-        '
-      isHeader: true
-      name: Domains
-      subSections:
-      - name: Check domain availability
-        operationId: check_domain_v1_domains_check_post
-      - name: Retrieve a domain
-        operationId: get_domain_v1_domains__domain_reference__get
-      - name: Update a domain
-        operationId: update_domain_v1_domains__domain_reference__patch
-      - name: Delete a domain
-        operationId: delete_domain_v1_domains__domain_reference__delete
-      - name: List all domains
-        operationId: get_domains_v1_domains_get
-      - name: Create a domain
-        operationId: create_domain_v1_domains_post
-      - name: Renew a domain
-        operationId: renew_domain_v1_domains__domain_reference__renew_post
-      - name: Retrieve DNSSEC data
-        operationId: get_dnssec_v1_domains__domain_reference__dnssec_get
-      - name: Update DNSSEC data
-        operationId: create_or_update_dnssec_v1_domains__domain_reference__dnssec_put
-      - name: Delete DNSSEC data
-        operationId: delete_dnssec_v1_domains__domain_reference__dnssec_delete
-    - description: '
-
-        Endpoints for creating and managing contacts
-
-        '
-      isHeader: true
-      name: Contacts
-      subSections:
-      - name: Get Contacts
-        operationId: get_contacts_v1_contacts_get
-      - name: Create Contact
-        operationId: create_contact_v1_contacts_post
-      - name: Get Contact
-        operationId: get_contact_v1_contacts__contact_id__get
-      - name: Delete Contact
-        operationId: delete_contact_v1_contacts__contact_id__delete
-    - description: '
-
-        Endpoints for searching domains
-
-        '
-      isHeader: true
-      name: Domains search
-      subSections:
-      - name: Suggest
-        operationId: suggest_v1_domain_search_suggest_get
+    '
+  name: tld
+  x-displayName: TLD specification
+- description: "Some requirements for users:\n - A user must belong to one and only\
+    \ one organization.\n - Both their email address and username must be unique within\
+    \ the whole system.\n"
+  name: user
+  x-displayName: Users
+x-tagGroups:
+- name: Account management
+  tags:
+  - authentication
+  - user
+  - organization
+- name: Domains
+  tags:
+  - domain
+  - contact
+  - event
+  - availability
+- name: Services
+  tags:
+  - dns
+  - email_forward
+  - rdap
+  - domain_search
+  - notification
