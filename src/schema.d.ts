@@ -319,6 +319,28 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/transfer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Transfer a domain
+         * @description Start the transfer process for a domain <br>
+         *     The domain will be in state `pending_transfer` until the transfer is completed.
+         *     This process can take up to 5 days, until the transfer is approved
+         */
+        post: operations["transfer_domain_v1_domains_transfer_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/{domain_reference}": {
         parameters: {
             query?: never;
@@ -394,6 +416,26 @@ export interface paths {
          */
         post: operations["renew_domain_v1_domains__domain_reference__renew_post"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_reference}/transfer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Cancel a domain transfer
+         * @description This will cancel the in-progress domain transfer and delete the domain object
+         */
+        delete: operations["cancel_domain_transfer_v1_domains__domain_reference__transfer_delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1103,6 +1145,10 @@ export interface components {
          * @enum {string}
          */
         Currency: "USD" | "EUR";
+        /** DeletedEvent */
+        DeletedEvent: {
+            date: components["schemas"]["EppDateTime"];
+        };
         /**
          * DnsChangeAction
          * @enum {string}
@@ -1278,7 +1324,7 @@ export interface components {
             /** @description How long the domain should be registered for */
             period: components["schemas"]["DomainPeriod"];
             /** @description The renewal mode of the domain */
-            renewal_mode?: components["schemas"]["RenewalMode"];
+            renewal_mode: components["schemas"]["RenewalMode"];
         };
         /** DomainDnssecDataCreate */
         DomainDnssecDataCreate: {
@@ -1551,6 +1597,27 @@ export interface components {
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        /** DomainTransferIn */
+        DomainTransferIn: {
+            /**
+             * Auth Code
+             * @description The auth code for the domain
+             */
+            auth_code: string;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts?: {
+                [key: string]: TypeID<"contact">;
+            };
+            /**
+             * Name
+             * @description The domain name
+             */
+            name: string;
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
         /** DomainUpdate */
         DomainUpdate: {
             /**
@@ -1697,11 +1764,36 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
+        EppDateTime: Date | string;
         /**
          * EventObjectType
          * @enum {string}
          */
         EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "RAW";
+        /** EventResponse */
+        EventResponse: {
+            /** Event Data */
+            event_data: components["schemas"]["TransferEvent"] | components["schemas"]["DeletedEvent"];
+            /**
+             * Event Id
+             * Format: typeid
+             */
+            event_id?: TypeID<"epp_event">;
+            /**
+             * Object Id
+             * @description The id of the object that the event is about
+             */
+            object_id?: string | null;
+            /**
+             * @description The type of object that the event is about
+             * @default RAW
+             */
+            object_type: components["schemas"]["EventObjectType"];
+            /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
+            subtype?: components["schemas"]["EventSubtype"] | null;
+            /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
+            type?: components["schemas"]["EventType"] | null;
+        };
         /** EventSchema */
         EventSchema: {
             /**
@@ -1751,7 +1843,7 @@ export interface components {
          * EventSubtype
          * @enum {string}
          */
-        EventSubtype: "NOTIFICATION" | "SUCCESS" | "FAILURE";
+        EventSubtype: "NOTIFICATION" | "SUCCESS" | "FAILURE" | "CANCELED";
         /**
          * EventType
          * @enum {string}
@@ -2484,8 +2576,6 @@ export interface components {
             city?: string | null;
             /** Country Code */
             country_code?: string | null;
-            /** @description The currency used by the organization. */
-            currency?: components["schemas"]["Currency"] | null;
             /**
              * Default Locale
              * @description Default locale for the organization.
@@ -2561,11 +2651,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["EmailForward"][];
         };
-        /** Pagination[EventSchema] */
-        Pagination_EventSchema_: {
+        /** Pagination[EventResponse] */
+        Pagination_EventResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["EventSchema"][];
+            results: components["schemas"]["EventResponse"][];
         };
         /** Pagination[OrganizationCredential] */
         Pagination_OrganizationCredential_: {
@@ -2652,6 +2742,17 @@ export interface components {
         TermsOfServiceAccept: {
             /** Accepted */
             accepted: boolean;
+        };
+        /** TransferEvent */
+        TransferEvent: {
+            /** Current Registrar */
+            current_registrar: string;
+            execution_date: components["schemas"]["EppDateTime"];
+            expiration_date: components["schemas"]["EppDateTime"] | null;
+            /** Message */
+            message: string;
+            /** Requesting Registrar */
+            requesting_registrar: string;
         };
         /** User */
         User: {
@@ -3764,6 +3865,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
+                /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
             };
             cookie?: never;
@@ -3795,6 +3897,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
+                /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
             };
             cookie?: never;
@@ -3824,6 +3927,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
+                /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
             };
             cookie?: never;
@@ -3855,6 +3959,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
+                /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
             };
             cookie?: never;
@@ -3886,6 +3991,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
+                /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
             };
             cookie?: never;
@@ -4095,6 +4201,66 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    transfer_domain_v1_domains_transfer_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainTransferIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -4387,6 +4553,53 @@ export interface operations {
             };
         };
     };
+    cancel_domain_transfer_v1_domains__domain_reference__transfer_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Bad Request */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_email_forwards_v1_email_forwards_get: {
         parameters: {
             query?: {
@@ -4637,7 +4850,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_EventSchema_"];
+                    "application/json": components["schemas"]["Pagination_EventResponse_"];
                 };
             };
             /** @description Unauthorized */

@@ -310,6 +310,14 @@ components:
       - EUR
       title: Currency
       type: string
+    DeletedEvent:
+      properties:
+        date:
+          $ref: '#/components/schemas/EppDateTime'
+      required:
+      - date
+      title: DeletedEvent
+      type: object
     DnsChangeAction:
       enum:
       - create_zone
@@ -1076,6 +1084,44 @@ components:
       - clientHold
       title: DomainStatus
       type: string
+    DomainTransferIn:
+      properties:
+        auth_code:
+          description: The auth code for the domain
+          title: Auth Code
+          type: string
+        contacts:
+          additionalProperties:
+            examples:
+            - contact_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: contact
+          description: The contacts of the domain
+          examples:
+          - admin: contact_01h45ytscbebyvny4gc8cr8ma2
+            billing: contact_01h45ytscbebyvny4gc8cr8ma2
+            registrant: contact_01h45ytscbebyvny4gc8cr8ma2
+            tech: contact_01h45ytscbebyvny4gc8cr8ma2
+          propertyNames:
+            $ref: '#/components/schemas/DomainContactType'
+          title: Contacts
+          type: object
+        name:
+          description: The domain name
+          examples:
+          - example.com
+          title: Name
+          type: string
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+      required:
+      - name
+      - auth_code
+      - renewal_mode
+      title: DomainTransferIn
+      type: object
     DomainUpdate:
       properties:
         auth_code:
@@ -1292,6 +1338,11 @@ components:
       - canceled
       title: EmailVerificationStatus
       type: string
+    EppDateTime:
+      anyOf:
+      - format: date-time
+        type: string
+      - type: string
     EventObjectType:
       enum:
       - DOMAIN
@@ -1300,6 +1351,48 @@ components:
       - RAW
       title: EventObjectType
       type: string
+    EventResponse:
+      properties:
+        event_data:
+          anyOf:
+          - $ref: '#/components/schemas/TransferEvent'
+          - $ref: '#/components/schemas/DeletedEvent'
+          title: Event Data
+        event_id:
+          examples:
+          - epp_event_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Event Id
+          type: string
+          x-typeid-prefix: epp_event
+        object_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The id of the object that the event is about
+          title: Object Id
+        object_type:
+          $ref: '#/components/schemas/EventObjectType'
+          default: RAW
+          description: The type of object that the event is about
+        subtype:
+          anyOf:
+          - $ref: '#/components/schemas/EventSubtype'
+          - type: 'null'
+          description: The specific type/result of operation (considering the type
+            property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION'
+            class)
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/EventType'
+          - type: 'null'
+          description: The type of the event - indicates the kind of operation occurring
+            (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION')
+      required:
+      - event_data
+      title: EventResponse
+      type: object
     EventSchema:
       properties:
         acknowledged_on:
@@ -1374,6 +1467,7 @@ components:
       - NOTIFICATION
       - SUCCESS
       - FAILURE
+      - CANCELED
       title: EventSubtype
       type: string
     EventType:
@@ -2365,11 +2459,6 @@ components:
             type: string
           - type: 'null'
           title: Country Code
-        currency:
-          anyOf:
-          - $ref: '#/components/schemas/Currency'
-          - type: 'null'
-          description: The currency used by the organization.
         default_locale:
           anyOf:
           - examples:
@@ -2507,19 +2596,19 @@ components:
       - pagination
       title: Pagination[EmailForward]
       type: object
-    Pagination_EventSchema_:
+    Pagination_EventResponse_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/EventSchema'
+            $ref: '#/components/schemas/EventResponse'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[EventSchema]
+      title: Pagination[EventResponse]
       type: object
     Pagination_OrganizationCredential_:
       properties:
@@ -2729,6 +2818,31 @@ components:
       required:
       - accepted
       title: TermsOfServiceAccept
+      type: object
+    TransferEvent:
+      properties:
+        current_registrar:
+          title: Current Registrar
+          type: string
+        execution_date:
+          $ref: '#/components/schemas/EppDateTime'
+        expiration_date:
+          anyOf:
+          - $ref: '#/components/schemas/EppDateTime'
+          - type: 'null'
+        message:
+          title: Message
+          type: string
+        requesting_registrar:
+          title: Requesting Registrar
+          type: string
+      required:
+      - execution_date
+      - message
+      - requesting_registrar
+      - current_registrar
+      - expiration_date
+      title: TransferEvent
       type: object
     User:
       properties:
@@ -3537,7 +3651,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-21-001540
+  version: 2025-06-23-144146
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -4221,10 +4335,12 @@ paths:
     delete:
       operationId: delete_zone_v1_dns__zone_name__delete
       parameters:
-      - in: path
+      - description: DNS zone name (trailing dot optional)
+        in: path
         name: zone_name
         required: true
         schema:
+          description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
       responses:
@@ -4244,10 +4360,12 @@ paths:
     get:
       operationId: get_zone_v1_dns__zone_name__get
       parameters:
-      - in: path
+      - description: DNS zone name (trailing dot optional)
+        in: path
         name: zone_name
         required: true
         schema:
+          description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
       responses:
@@ -4272,10 +4390,12 @@ paths:
     post:
       operationId: disable_dnssec_v1_dns__zone_name__dnssec_disable_post
       parameters:
-      - in: path
+      - description: DNS zone name (trailing dot optional)
+        in: path
         name: zone_name
         required: true
         schema:
+          description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
       responses:
@@ -4300,10 +4420,12 @@ paths:
     post:
       operationId: enable_dnssec_v1_dns__zone_name__dnssec_enable_post
       parameters:
-      - in: path
+      - description: DNS zone name (trailing dot optional)
+        in: path
         name: zone_name
         required: true
         schema:
+          description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
       responses:
@@ -4328,10 +4450,12 @@ paths:
     put:
       operationId: update_zone_v1_dns__zone_name__rrsets_put
       parameters:
-      - in: path
+      - description: DNS zone name (trailing dot optional)
+        in: path
         name: zone_name
         required: true
         schema:
+          description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
       requestBody:
@@ -4591,6 +4715,84 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Check domain availability
+      tags:
+      - domain
+  /v1/domains/transfer:
+    post:
+      description: 'Start the transfer process for a domain <br>
+
+        The domain will be in state `pending_transfer` until the transfer is completed.
+
+        This process can take up to 5 days, until the transfer is approved'
+      operationId: transfer_domain_v1_domains_transfer_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainTransferIn'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainResponse'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_TLD_NOT_AVAILABLE
+                    detail: This TLD is not available
+                    status: 400
+                    title: Domain Management Error
+                    tld: Additional error context.
+                    type: domain-tld-not-available
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_NOT_FOUND
+                contact_id: Additional error context.
+                detail: Contact not found
+                status: 404
+                title: Contact Management Error
+                type: contact-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_EXISTS
+                detail: Domain already exists
+                domain_name: Additional error context.
+                status: 409
+                title: Domain Management Error
+                type: domain-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              example:
+                detail: Additional error context.
+                status: 422
+                title: Policy Validation Error
+                type: policy-validation-error
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Transfer a domain
       tags:
       - domain
   /v1/domains/{domain_reference}:
@@ -4976,6 +5178,66 @@ paths:
       summary: Renew a domain
       tags:
       - domain
+  /v1/domains/{domain_reference}/transfer:
+    delete:
+      description: This will cancel the in-progress domain transfer and delete the
+        domain object
+      operationId: cancel_domain_transfer_v1_domains__domain_reference__transfer_delete
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_TRANSFER
+                detail: There was an error transferring the domain
+                domain_name: Additional error context.
+                reason: There was an error transferring the domain
+                status: 400
+                title: Domain Management Error
+                type: domain-transfer
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Cancel a domain transfer
+      tags:
+      - domain
   /v1/email-forwards:
     get:
       operationId: list_email_forwards_v1_email_forwards_get
@@ -5250,7 +5512,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_EventSchema_'
+                $ref: '#/components/schemas/Pagination_EventResponse_'
           description: Successful Response
         '401':
           content:
