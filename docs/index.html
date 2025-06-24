@@ -10,17 +10,21 @@
 
 <body>
   <header class="custom-header scalar-app">
-    <img src="https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg" alt="OpusDNS logo"
-      height="45px">
+    <img id="logo" src="https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg" alt="OpusDNS logo"
+      width="180px">
     <nav>
-      <a href="https://kb.opusdns.com/">Knowledgebase</a>
-      <a href="https://www.opusdns.com/">Main website</a>
+	  <a href="https://help.opusdns.com/">Knowledgebase</a>
+      <a href="https://support.opusdns.com/">Support Center</a>
+      <a href="https://status.opusdns.com/">Status Page</a>	
+      <a href="https://app.opusdns.com/">Dashboard</a>
+      <a href="https://opusdns.com/">OpusDNS Homepage</a>
     </nav>
+	<div class="utilities-div"></div>
   </header>
   <div id="app"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
-
+  
   <script>
     Scalar.createApiReference('#app', {
       url: 'https://raw.githubusercontent.com/OpusDNS/api-spec/refs/heads/main/src/openapi.yaml',
@@ -29,6 +33,76 @@
       hideTestRequestButton: true,
     })
   </script>
+
+<!-- shift image and buttons --!>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('header.custom-header.scalar-app');
+  const utilities = document.querySelector('.utilities-div');
+  let lastThemeWasDark = null;
+
+  function updateLogoSource() {
+    const img = document.getElementById('logo');
+    const isDark = document.body.classList.contains('dark-mode');
+
+    if (img && lastThemeWasDark !== isDark) {
+      img.src = isDark
+        ? 'https://d24lr4zqs1tgqh.cloudfront.net/35b6d0a7-b268-4500-b6e1-e084a7f70dad.jpg'
+        : 'https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg';
+      lastThemeWasDark = isDark;
+    }
+  }
+
+  // Suche + Button dynamisch einfügen, sobald sie auftauchen
+  const insertElements = () => {
+   // const button = document.querySelector('button[aria-pressed="true"]');
+   	  const button = document.querySelector('.brightness-lifted'); 
+	  const suche = document.querySelector('.scalar-api-references-standalone-search');
+
+    if (header && button && suche && utilities) {
+      if (!header.contains(suche)) utilities.appendChild(suche); // zuerst Suche
+      if (!header.contains(button)) utilities.appendChild(button); // dann Toggle
+      return true;
+    }
+    return false;
+  };
+
+  // Wiederholt prüfen, bis Elemente da sind
+  const retryInterval = setInterval(() => {
+    const ready = insertElements();
+    if (ready) clearInterval(retryInterval);
+  }, 300);
+
+  // Theme-Klasse dauerhaft beobachten
+  const classObserver = new MutationObserver(() => {
+    updateLogoSource();
+  });
+
+  classObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+
+  // Poll-Fallback falls MutationObserver versagt
+  setInterval(updateLogoSource, 1000);
+
+  updateLogoSource(); // Initial ausführen
+});
+
+</script>
+	
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TN9Z6BHR');</script>
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TN9Z6BHR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 </body>
 
 </html>
