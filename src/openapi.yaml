@@ -158,14 +158,11 @@ components:
           description: The title of the contact
           title: Title
       required:
-      - title
       - first_name
       - last_name
-      - org
       - email
       - street
       - city
-      - state
       - postal_code
       - country
       - disclose
@@ -291,14 +288,11 @@ components:
           description: The title of the contact
           title: Title
       required:
-      - title
       - first_name
       - last_name
-      - org
       - email
       - street
       - city
-      - state
       - postal_code
       - country
       - disclose
@@ -3651,7 +3645,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-23-144146
+  version: 2025-06-24-001344
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

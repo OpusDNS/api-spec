@@ -1018,7 +1018,7 @@ export interface components {
              * Org
              * @description The organization of the contact
              */
-            org: string | null;
+            org?: string | null;
             /**
              * Phone
              * @description The contact's phone number
@@ -1033,7 +1033,7 @@ export interface components {
              * State
              * @description The state of the contact
              */
-            state: string | null;
+            state?: string | null;
             /**
              * Street
              * @description The address of the contact
@@ -1043,7 +1043,7 @@ export interface components {
              * Title
              * @description The title of the contact
              */
-            title: string | null;
+            title?: string | null;
         };
         ContactIdList: {
             [key: string]: TypeID<"contact">;
@@ -1106,7 +1106,7 @@ export interface components {
              * Org
              * @description The organization of the contact
              */
-            org: string | null;
+            org?: string | null;
             /**
              * Organization Id
              * Format: typeid
@@ -1128,7 +1128,7 @@ export interface components {
              * State
              * @description The state of the contact
              */
-            state: string | null;
+            state?: string | null;
             /**
              * Street
              * @description The address of the contact
@@ -1138,7 +1138,7 @@ export interface components {
              * Title
              * @description The title of the contact
              */
-            title: string | null;
+            title?: string | null;
         };
         /**
          * Currency
