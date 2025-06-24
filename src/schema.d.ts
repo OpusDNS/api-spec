@@ -1815,6 +1815,11 @@ export interface components {
              */
             event_id?: TypeID<"epp_event">;
             /**
+             * Message Queue Id
+             * @description The message queue ID from the registry poll message
+             */
+            message_queue_id?: string | null;
+            /**
              * Object Id
              * @description The id of the object that the event is about
              */
@@ -1829,6 +1834,11 @@ export interface components {
              * @description The source of the event
              */
             source: string;
+            /**
+             * Source Event Id
+             * @description The reference of the original registry event (if any) that triggered this customer-facing event
+             */
+            source_event_id?: TypeID<"epp_event"> | null;
             /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
             subtype?: components["schemas"]["EventSubtype"] | null;
             /**

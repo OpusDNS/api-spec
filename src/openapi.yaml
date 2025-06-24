@@ -1412,6 +1412,12 @@ components:
           title: Event Id
           type: string
           x-typeid-prefix: epp_event
+        message_queue_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The message queue ID from the registry poll message
+          title: Message Queue Id
         object_id:
           anyOf:
           - type: string
@@ -1427,6 +1433,18 @@ components:
           maxLength: 64
           title: Source
           type: string
+        source_event_id:
+          anyOf:
+          - examples:
+            - epp_event_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: epp_event
+          - type: 'null'
+          description: The reference of the original registry event (if any) that
+            triggered this customer-facing event
+          title: Source Event Id
         subtype:
           anyOf:
           - $ref: '#/components/schemas/EventSubtype'
@@ -3645,7 +3663,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-24-001344
+  version: 2025-06-24-011922
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
