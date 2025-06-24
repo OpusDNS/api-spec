@@ -46,10 +46,3 @@ jobs:
             git commit -m "Update OpenAPI spec and types"
             git push
           fi
-
-      - name: Trigger update of Theneo docs
-        run: |
-          curl -X POST -H 'Authorization: Bearer ${{ secrets.GH_PAT_OPENAPI_API_SPEC }}' \
-          -H 'Accept: application/vnd.github+json' \
-          -d '{"event_type": "openapi_spec_updated"}' \
-          https://api.github.com/repos/${{ github.repository }}/dispatches
