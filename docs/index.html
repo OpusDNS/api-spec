@@ -6,21 +6,57 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" media="all">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	
+<!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+     })(window,document,'script','dataLayer','GTM-TN9Z6BHR');</script>
+     <!-- End Google Tag Manager -->
+  </script>
+
 </head>
 
 <body>
   <header class="custom-header scalar-app">
-    <img id="logo" src="https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg" alt="OpusDNS logo"
+	<a href="https://developers.opusdns.com" rel="noopener noreferrer" target="_blank">
+	  <img id="logo" src="https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/685bdd5ec6e44758a8d86216_api_reference_w.png" alt="OpusDNS logo"
       width="180px">
-    <nav>
-	  <a href="https://help.opusdns.com/">Knowledgebase</a>
-      <a href="https://support.opusdns.com/">Support Center</a>
-      <a href="https://status.opusdns.com/">Status Page</a>	
-      <a href="https://app.opusdns.com/">Dashboard</a>
-      <a href="https://opusdns.com/">OpusDNS Homepage</a>
-    </nav>
-	<div class="utilities-div"></div>
+	</a>
+    
+  	
+	<button class="menu-toggle" aria-label="Toggle Menu">
+    	&#9776; 
+  	</button>	
+	
+	<div class="nav-menu">
+		<nav>
+	  		<a href="https://help.opusdns.com/" target="_blank">Knowledgebase</a>
+      		<a href="https://support.opusdns.com/" target="_blank">Support Center</a>
+      		<a href="https://status.opusdns.com/" target="_blank">Status Page</a>	
+      		<a href="https://app.opusdns.com/" target="_blank">Dashboard</a>
+      		<a href="https://opusdns.com/" target="blank">OpusDNS Homepage</a>
+    	</nav>
+	
+		<div class="utilities-div">
+    		<a href="https://app.opusdns.com/signup" target="_blank" class="signup-button">
+        		Sign up
+        		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px;">
+            		<polyline points="9 18 15 12 9 6"></polyline>
+        		</svg>
+    		</a>
+		</div>
+	</div>
+
   </header>
+  
+  <script>
+  	document.querySelector(".menu-toggle").addEventListener("click", function () {
+    document.querySelector(".nav-menu").classList.toggle("active");});
+  </script>
+
   <div id="app"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
@@ -34,70 +70,62 @@
     })
   </script>
 
-<!-- shift image and buttons --!>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const header = document.querySelector('header.custom-header.scalar-app');
-  const utilities = document.querySelector('.utilities-div');
-  let lastThemeWasDark = null;
+<script> //shift image and buttons
+	document.addEventListener('DOMContentLoaded', () => {
+  		const header = document.querySelector('header.custom-header.scalar-app');
+  		const utilities = document.querySelector('.utilities-div');
+  		let lastThemeWasDark = null;
 
-  function updateLogoSource() {
-    const img = document.getElementById('logo');
-    const isDark = document.body.classList.contains('dark-mode');
+  	function updateLogoSource() {
+    	const img = document.getElementById('logo');
+    	const isDark = document.body.classList.contains('dark-mode');
 
     if (img && lastThemeWasDark !== isDark) {
       img.src = isDark
-        ? 'https://d24lr4zqs1tgqh.cloudfront.net/35b6d0a7-b268-4500-b6e1-e084a7f70dad.jpg'
-        : 'https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg';
+        ? 'https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/685bdc38e9470b4b98233c16_api_reference_b.png'
+        : 'https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/685bdd5ec6e44758a8d86216_api_reference_w.png';
       lastThemeWasDark = isDark;
     }
-  }
+  	}
 
-  // Suche + Button dynamisch einfügen, sobald sie auftauchen
-  const insertElements = () => {
-   // const button = document.querySelector('button[aria-pressed="true"]');
-   	  const button = document.querySelector('.brightness-lifted'); 
-	  const suche = document.querySelector('.scalar-api-references-standalone-search');
+  	// Suche + Button dynamisch einfügen, sobald sie auftauchen
+  	const insertElements = () => {
+   		// const button = document.querySelector('button[aria-pressed="true"]');
+   	  	const button = document.querySelector('.brightness-lifted'); 
+	  	const suche = document.querySelector('.scalar-api-references-standalone-search');
 
-    if (header && button && suche && utilities) {
-      if (!header.contains(suche)) utilities.appendChild(suche); // zuerst Suche
-      if (!header.contains(button)) utilities.appendChild(button); // dann Toggle
-      return true;
-    }
-    return false;
-  };
+    	if (header && button && suche && utilities) {
+      		if (!header.contains(suche)) utilities.appendChild(suche); // zuerst Suche
+      		if (!header.contains(button)) utilities.appendChild(button); // dann Toggle
+      		return true;
+    	}
+    	return false;
+  	};
 
-  // Wiederholt prüfen, bis Elemente da sind
-  const retryInterval = setInterval(() => {
+  	// Wiederholt prüfen, bis Elemente da sind
+  	const retryInterval = setInterval(() => {
     const ready = insertElements();
     if (ready) clearInterval(retryInterval);
-  }, 300);
+  	}, 300);
 
-  // Theme-Klasse dauerhaft beobachten
-  const classObserver = new MutationObserver(() => {
-    updateLogoSource();
-  });
+  	// Theme-Klasse dauerhaft beobachten
+  	const classObserver = new MutationObserver(() => {
+    	updateLogoSource();
+  	});
 
-  classObserver.observe(document.body, {
-    attributes: true,
-    attributeFilter: ['class']
-  });
+  	classObserver.observe(document.body, {
+    	attributes: true,
+    	attributeFilter: ['class']
+  	});
 
-  // Poll-Fallback falls MutationObserver versagt
-  setInterval(updateLogoSource, 1000);
+  	// Poll-Fallback falls MutationObserver versagt
+  	setInterval(updateLogoSource, 1000);
 
-  updateLogoSource(); // Initial ausführen
-});
+  	updateLogoSource(); // Initial ausführen
+	});
 
 </script>
-	
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TN9Z6BHR');</script>
-<!-- End Google Tag Manager -->
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TN9Z6BHR"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
