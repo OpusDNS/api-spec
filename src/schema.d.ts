@@ -319,28 +319,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/domains/transfer": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Transfer a domain
-         * @description Start the transfer process for a domain <br>
-         *     The domain will be in state `pending_transfer` until the transfer is completed.
-         *     This process can take up to 5 days, until the transfer is approved
-         */
-        post: operations["transfer_domain_v1_domains_transfer_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/domains/{domain_reference}": {
         parameters: {
             query?: never;
@@ -1597,27 +1575,6 @@ export interface components {
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
-        /** DomainTransferIn */
-        DomainTransferIn: {
-            /**
-             * Auth Code
-             * @description The auth code for the domain
-             */
-            auth_code: string;
-            /**
-             * Contacts
-             * @description The contacts of the domain
-             */
-            contacts?: {
-                [key: string]: TypeID<"contact">;
-            };
-            /**
-             * Name
-             * @description The domain name
-             */
-            name: string;
-            renewal_mode: components["schemas"]["RenewalMode"];
-        };
         /** DomainUpdate */
         DomainUpdate: {
             /**
@@ -4211,66 +4168,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    transfer_domain_v1_domains_transfer_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainTransferIn"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainResponse"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Unprocessable Content */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
