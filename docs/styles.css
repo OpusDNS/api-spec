@@ -1,3 +1,11 @@
+@font-face {
+	font-family: 'Opus Pro Webfont';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/opus_pro-regular-webfont.woff') format('woff');
+}
+
+
 :root {
 	--scalar-custom-header-height: 50px;
 	--scalar-font: 'Open Sans', sans-serif;
@@ -25,4 +33,23 @@
 
 .custom-header a:hover {
 	color: var(--scalar-color-2);
+}
+
+.light-mode {
+	--scalar-color-1: black;
+	--scalar-color-2: #3C3C3C;
+	--scalar-color-3: #919191;
+	--scalar-color-accent: #2665c4;
+	--scalar-border-color: #b5b5b5;
+}
+
+.dark-mode {
+	--scalar-color-accent: #2665c4;
+	--scalar-border-color: #575757;
+}
+
+h1,
+h2,
+h3 {
+	font-family: "Opus Pro Webfont", "Open Sans", sans-serif;
 }
