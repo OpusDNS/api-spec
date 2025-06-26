@@ -38,14 +38,23 @@
 .light-mode {
 	--scalar-color-1: black;
 	--scalar-color-2: #3C3C3C;
-	--scalar-color-3: #919191;
+	--scalar-color-3: #C81E78;
 	--scalar-color-accent: #2665c4;
 	--scalar-border-color: #b5b5b5;
+
+	.sidebar-heading-chevron {
+		--scalar-color-3: #faa436;
+	}
 }
 
 .dark-mode {
+	--scalar-color-3: #6ecdeb;
 	--scalar-color-accent: #2665c4;
 	--scalar-border-color: #575757;
+
+	.sidebar-heading-chevron {
+		--scalar-color-3: #fae64b;
+	}
 }
 
 h1,
