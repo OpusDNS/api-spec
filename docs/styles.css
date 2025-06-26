@@ -9,6 +9,10 @@
 :root {
 	--scalar-custom-header-height: 50px;
 	--scalar-font: 'Open Sans', sans-serif;
+
+	--opusdns-yellow: #fae64b;
+	--opusdns-orange: #faa436;
+	--opusdns-pink: #C81E78;
 }
 
 .custom-header {
@@ -22,28 +26,46 @@
 	justify-content: space-between;
 	top: 0;
 	z-index: 100;
+
+	&,
+	nav {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+		opacity: 0.8;
+	}
 }
 
-.custom-header,
-.custom-header nav {
+.signup-button {
+	padding: 7px 10px 10px 13px;
+	background: var(--opusdns-yellow);
+	color: black;
+	border-radius: 30px;
 	display: flex;
-	align-items: center;
-	gap: 18px;
+
+	svg {
+		margin-top: 2px;
+		margin-left: 6px;
+	}
 }
 
-.custom-header a:hover {
-	color: var(--scalar-color-2);
-}
 
 .light-mode {
 	--scalar-color-1: black;
 	--scalar-color-2: #3C3C3C;
-	--scalar-color-3: #C81E78;
+	--scalar-color-3: var(--opusdns-pink);
 	--scalar-color-accent: #2665c4;
 	--scalar-border-color: #b5b5b5;
 
 	.sidebar-heading-chevron {
-		--scalar-color-3: #faa436;
+		--scalar-color-3: var(--opusdns-orange);
 	}
 }
 
@@ -53,7 +75,7 @@
 	--scalar-border-color: #575757;
 
 	.sidebar-heading-chevron {
-		--scalar-color-3: #fae64b;
+		--scalar-color-3: var(--opusdns-yellow);
 	}
 }
 
