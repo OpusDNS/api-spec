@@ -8,7 +8,7 @@
 
 :root {
 	--scalar-custom-header-height: 50px;
-	--scalar-font: 'Open Sans', sans-serif;
+	--scalar-font: 'Onest', sans-serif;
 	--scalar-heading-1: 28px;
 
 	--opusdns-yellow: #fae64b;
@@ -95,5 +95,5 @@
 h1,
 h2,
 h3 {
-	font-family: "Opus Pro Webfont", "Open Sans", sans-serif;
+	font-family: "Opus Pro Webfont", "Onest", sans-serif;
 }
