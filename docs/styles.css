@@ -97,3 +97,89 @@ h2,
 h3 {
 	font-family: "Opus Pro Webfont", "Onest", sans-serif;
 }
+
+.footer {
+	padding: 50px 25px 25px 25px;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto auto;
+	align-items: start;
+	gap: 2rem;
+	background: black;
+
+	.footer-logo {
+		display: flex;
+		justify-content: center;
+
+
+		img {
+			width: 150px;
+			max-width: 150px;
+			height: auto;
+			padding: 20px;
+		}
+	}
+
+	.footer-links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 2rem;
+
+		.link-column {
+			width: 150px;
+			flex-shrink: 0;
+
+			h4 {
+				margin-bottom: 0.5rem;
+				font-size: 1.1rem;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+			}
+
+			a {
+				display: block;
+				color: var(--scalar-color-2);
+				text-decoration: none;
+				margin-top: 13px;
+			}
+
+			a:hover {
+				color: #fff;
+			}
+		}
+
+		.icann-logo {
+			margin-top: 15px;
+			width: 100px;
+		}
+	}
+
+	.footer-bottom {
+		grid-column: 1 / -1;
+		text-align: center;
+		font-size: 0.9rem;
+
+		p {
+			color: var(--scalar-color-2);
+			font-weight: 100;
+		}
+	}
+}
+
+
+
+@media (max-width: 768px) {
+	.footer {
+		grid-template-columns: 1fr;
+
+		.footer-links {
+			justify-content: center;
+
+			.link-column {
+				width: 45%;
+				max-width: 150px;
+			}
+		}
+	}
+}
