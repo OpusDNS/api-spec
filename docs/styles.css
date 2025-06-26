@@ -11,6 +11,9 @@
 	--scalar-font: 'Onest', sans-serif;
 	--scalar-heading-1: 28px;
 
+	--opusdns-dark-gray: #3C3C3C;
+	--opusdns-light-blue: #6ecdeb;
+	--opusdns-dark-blue: #5f87c3;
 	--opusdns-yellow: #fae64b;
 	--opusdns-orange: #faa436;
 	--opusdns-pink: #C81E78;
@@ -18,9 +21,9 @@
 
 .light-mode {
 	--scalar-color-1: black;
-	--scalar-color-2: #3C3C3C;
+	--scalar-color-2: var(--opusdns-dark-gray);
 	--scalar-color-3: var(--opusdns-pink);
-	--scalar-color-accent: #2665c4;
+	--scalar-color-accent: var(--opusdns-dark-blue);
 	--scalar-border-color: #b5b5b5;
 
 	.sidebar-heading-chevron {
@@ -33,8 +36,8 @@
 }
 
 .dark-mode {
-	--scalar-color-3: #6ecdeb;
-	--scalar-color-accent: #2665c4;
+	--scalar-color-3: var(--opusdns-light-blue);
+	--scalar-color-accent: var(--opusdns-dark-blue);
 	--scalar-border-color: #575757;
 
 	.sidebar-heading-chevron {
