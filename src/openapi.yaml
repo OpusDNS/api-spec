@@ -3800,7 +3800,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-26-160325
+  version: 2025-06-26-161249
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -4261,14 +4261,6 @@ paths:
     post:
       description: Create a contact
       operationId: create_contact_v1_contacts_post
-      parameters:
-      - in: query
-        name: verified_by_reseller
-        required: false
-        schema:
-          default: false
-          title: Verified By Reseller
-          type: boolean
       requestBody:
         content:
           application/json:

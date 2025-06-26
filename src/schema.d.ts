@@ -3830,9 +3830,7 @@ export interface operations {
     };
     create_contact_v1_contacts_post: {
         parameters: {
-            query?: {
-                verified_by_reseller?: boolean;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
