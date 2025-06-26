@@ -41,6 +41,10 @@
 	a:hover {
 		opacity: 0.8;
 	}
+
+	.opusdns-logo {
+		height: 45px;
+	}
 }
 
 .signup-button {
@@ -67,6 +71,10 @@
 	.sidebar-heading-chevron {
 		--scalar-color-3: var(--opusdns-orange);
 	}
+
+	#dark-logo {
+		display: none;
+	}
 }
 
 .dark-mode {
@@ -76,6 +84,10 @@
 
 	.sidebar-heading-chevron {
 		--scalar-color-3: var(--opusdns-yellow);
+	}
+
+	#light-logo {
+		display: none;
 	}
 }
 
