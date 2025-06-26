@@ -16,52 +16,6 @@
 	--opusdns-pink: #C81E78;
 }
 
-.custom-header {
-	height: var(--scalar-custom-header-height);
-	background-color: var(--scalar-background-1);
-	box-shadow: inset 0 -1px 0 var(--scalar-border-color);
-	color: var(--scalar-color-1);
-	font-size: var(--scalar-font-size-2);
-	padding: 0 18px;
-	position: sticky;
-	justify-content: space-between;
-	top: 0;
-	z-index: 100;
-
-	&,
-	nav {
-		display: flex;
-		align-items: center;
-		gap: 18px;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	a:hover {
-		opacity: 0.8;
-	}
-
-	.opusdns-logo {
-		height: 45px;
-	}
-}
-
-.signup-button {
-	padding: 7px 10px 10px 13px;
-	background: var(--opusdns-yellow);
-	color: black;
-	border-radius: 30px;
-	display: flex;
-
-	svg {
-		margin-top: 2px;
-		margin-left: 6px;
-	}
-}
-
-
 .light-mode {
 	--scalar-color-1: black;
 	--scalar-color-2: #3C3C3C;
@@ -98,6 +52,87 @@ h3 {
 	font-family: "Opus Pro Webfont", "Onest", sans-serif;
 }
 
+header {
+	height: var(--scalar-custom-header-height);
+	box-shadow: inset 0 -1px 0 var(--scalar-border-color);
+	background-color: var(--scalar-background-1);
+	color: var(--scalar-color-1);
+	font-size: var(--scalar-font-size-2);
+	padding: 0 18px 0 4px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: sticky;
+	top: 0;
+	z-index: 9999;
+
+	.opusdns-logo {
+		height: 45px;
+		margin-top: -2px;
+	}
+
+	.burger {
+		display: none;
+		font-size: 2rem;
+		cursor: pointer;
+	}
+
+	.menu-toggle {
+		display: none;
+	}
+
+	nav {
+		background-color: var(--scalar-background-1);
+		align-items: center;
+		gap: 18px;
+		z-index: 9999;
+		display: flex;
+
+		.signup-button {
+			padding: 10px 15px;
+			background: var(--opusdns-yellow);
+			color: black;
+			border-radius: 30px;
+			display: flex;
+
+			svg {
+				margin-top: 2px;
+				margin-left: 6px;
+			}
+		}
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+		opacity: 0.8;
+	}
+
+	@media (max-width: 1000px) {
+		.burger {
+			display: block;
+		}
+
+		nav {
+			position: absolute;
+			top: 100%;
+			right: 0;
+			flex-direction: column;
+			align-items: flex-start;
+			width: 100%;
+			padding: 1rem 2rem;
+			display: none;
+			box-shadow: inset 0 -1px 0 var(--scalar-border-color);
+		}
+
+		.menu-toggle:checked+.burger+nav {
+			display: flex;
+		}
+	}
+}
+
 .footer {
 	padding: 50px 25px 25px 25px;
 	display: grid;
@@ -113,9 +148,7 @@ h3 {
 
 
 		img {
-			width: 150px;
-			max-width: 150px;
-			height: auto;
+			width: 186px;
 			padding: 20px;
 		}
 	}
@@ -166,8 +199,6 @@ h3 {
 		}
 	}
 }
-
-
 
 @media (max-width: 768px) {
 	.footer {
