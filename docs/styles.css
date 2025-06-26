@@ -1,5 +1,6 @@
 :root {
 	--scalar-custom-header-height: 50px;
+	--scalar-font: 'Open Sans', sans-serif;
 }
 
 .custom-header {
