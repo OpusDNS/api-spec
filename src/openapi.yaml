@@ -298,6 +298,181 @@ components:
       - disclose
       title: ContactSchema
       type: object
+    ContactVerificationApiResponse:
+      properties:
+        canceled_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date the verification was cancelled
+          title: Canceled On
+        contact_id:
+          default: None
+          description: The contact that is being verified
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+        contact_verification_id:
+          examples:
+          - contact_verification_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_verification_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Verification Id
+          type: string
+          x-typeid-prefix: contact_verification
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        status:
+          $ref: '#/components/schemas/EmailVerificationStatus'
+          default: pending
+          description: Current status of the email verification
+        token:
+          description: The token to verify the email address
+          maxLength: 256
+          minLength: 35
+          title: Token
+          type: string
+        type:
+          $ref: '#/components/schemas/VerificationType'
+          description: 'The type of verification: ''api'' for retrieving token via
+            API, ''email'' for retrieving via email'
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+        verified_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date the verification was verified
+          title: Verified On
+      required:
+      - token
+      - type
+      title: ContactVerificationApiResponse
+      type: object
+    ContactVerificationEmailResponse:
+      properties:
+        canceled_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date the verification was cancelled
+          title: Canceled On
+        contact_id:
+          default: None
+          description: The contact that is being verified
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+        contact_verification_id:
+          examples:
+          - contact_verification_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_verification_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Verification Id
+          type: string
+          x-typeid-prefix: contact_verification
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        status:
+          $ref: '#/components/schemas/EmailVerificationStatus'
+          default: pending
+          description: Current status of the email verification
+        type:
+          $ref: '#/components/schemas/VerificationType'
+          description: 'The type of verification: ''api'' for retrieving token via
+            API, ''email'' for retrieving via email'
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+        verified_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date the verification was verified
+          title: Verified On
+      required:
+      - type
+      title: ContactVerificationEmailResponse
+      type: object
+    ContactVerificationResponse:
+      properties:
+        canceled_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date the verification was cancelled
+          title: Canceled On
+        contact_id:
+          default: None
+          description: The contact that is being verified
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+        contact_verification_id:
+          examples:
+          - contact_verification_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_verification_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Verification Id
+          type: string
+          x-typeid-prefix: contact_verification
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        status:
+          $ref: '#/components/schemas/EmailVerificationStatus'
+          default: pending
+          description: Current status of the email verification
+        type:
+          $ref: '#/components/schemas/VerificationType'
+          description: 'The type of verification: ''api'' for retrieving token via
+            API, ''email'' for retrieving via email'
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+        verified_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date the verification was verified
+          title: Verified On
+      required:
+      - type
+      title: ContactVerificationResponse
+      type: object
     Currency:
       enum:
       - USD
@@ -3625,7 +3800,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-25-003700
+  version: 2025-06-26-160325
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -4086,6 +4261,14 @@ paths:
     post:
       description: Create a contact
       operationId: create_contact_v1_contacts_post
+      parameters:
+      - in: query
+        name: verified_by_reseller
+        required: false
+        schema:
+          default: false
+          title: Verified By Reseller
+          type: boolean
       requestBody:
         content:
           application/json:
@@ -4235,6 +4418,309 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Contact
+      tags:
+      - contact
+  /v1/contacts/{contact_id}/verification:
+    delete:
+      description: Delete contact verification
+      operationId: cancel_verification_v1_contacts__contact_id__verification_delete
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_NOT_FOUND
+                contact_id: Additional error context.
+                detail: No contact verification found
+                status: 404
+                title: Contact Management Error
+                type: contact-verification-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Cancel Verification
+      tags:
+      - contact
+    get:
+      description: Retrieve contact verification
+      operationId: get_verification_status_v1_contacts__contact_id__verification_get
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactVerificationResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_NOT_FOUND
+                contact_id: Additional error context.
+                detail: No contact verification found
+                status: 404
+                title: Contact Management Error
+                type: contact-verification-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Verification Status
+      tags:
+      - contact
+    post:
+      description: Start contact verification
+      operationId: start_contact_verification_v1_contacts__contact_id__verification_post
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      - in: query
+        name: type
+        required: true
+        schema:
+          $ref: '#/components/schemas/VerificationType'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ContactVerificationEmailResponse'
+                - $ref: '#/components/schemas/ContactVerificationApiResponse'
+                title: Response Start Contact Verification V1 Contacts  Contact Id  Verification
+                  Post
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_NOT_FOUND
+                contact_id: Additional error context.
+                detail: Contact not found
+                status: 404
+                title: Contact Management Error
+                type: contact-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '405':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_INVALID_TYPE
+                detail: 'Invalid verification type: Additional error context.'
+                status: 405
+                title: Contact Management Error
+                type: contact-verification-type-invalid
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Method Not Allowed
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Start Contact Verification
+      tags:
+      - contact
+    put:
+      description: Complete contact verification
+      operationId: update_verification_v1_contacts__contact_id__verification_put
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      - in: query
+        name: token
+        required: true
+        schema:
+          title: Token
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              examples:
+                Contact Management Error:
+                  value:
+                    code: ERROR_INVALID_VERIFICATION_TOKEN
+                    contact_id: Additional error context.
+                    detail: Invalid verification token
+                    status: 400
+                    title: Contact Management Error
+                    type: contact-verification-token-invalid
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_NOT_FOUND
+                contact_id: Additional error context.
+                detail: No contact verification found
+                status: 404
+                title: Contact Management Error
+                type: contact-verification-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Update Verification
+      tags:
+      - contact
+  /v1/contacts/{contact_id}/verify:
+    get:
+      operationId: email_verify_contact_v1_contacts__contact_id__verify_get
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      - in: query
+        name: token
+        required: true
+        schema:
+          title: Token
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Email Verify Contact
       tags:
       - contact
   /v1/dns:
