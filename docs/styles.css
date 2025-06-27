@@ -7,7 +7,7 @@
 
 
 :root {
-	--scalar-custom-header-height: 50px;
+	--scalar-custom-header-height: 75px;
 	--scalar-font: 'open-sans', sans-serif;
 	--scalar-heading-1: 28px;
 
@@ -70,7 +70,7 @@ header {
 	z-index: 9999;
 
 	.opusdns-logo {
-		height: 45px;
+		height: 75px;
 		margin-top: -2px;
 	}
 
