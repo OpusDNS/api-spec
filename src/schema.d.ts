@@ -2002,7 +2002,7 @@ export interface components {
             event_id?: TypeID<"epp_event">;
             /**
              * Message Queue Id
-             * @description The message queue ID from the registry poll message
+             * @description A composite key with the registry account + message queue ID from the poll operation.
              */
             message_queue_id?: string | null;
             /**

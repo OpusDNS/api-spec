@@ -1591,7 +1591,8 @@ components:
           anyOf:
           - type: string
           - type: 'null'
-          description: The message queue ID from the registry poll message
+          description: A composite key with the registry account + message queue ID
+            from the poll operation.
           title: Message Queue Id
         object_id:
           anyOf:
@@ -3838,7 +3839,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-26-194219
+  version: 2025-06-27-203011
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
