@@ -1,14 +1,14 @@
 @font-face {
-	font-family: 'Opus Pro Webfont';
-	font-style: normal;
-	font-weight: 400;
-	src: url('fonts/opus_pro-regular-webfont.woff') format('woff');
+	font-family: 'open-sans';
+        src: url('fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
 }
 
 
 :root {
 	--scalar-custom-header-height: 50px;
-	--scalar-font: 'Onest', sans-serif;
+	--scalar-font: 'open-sans', sans-serif;
 	--scalar-heading-1: 28px;
 
 	--opusdns-dark-gray: #3C3C3C;
@@ -52,7 +52,7 @@
 h1,
 h2,
 h3 {
-	font-family: "Opus Pro Webfont", "Onest", sans-serif;
+	font-family: 'open-sans';
 }
 
 header {
