@@ -814,6 +814,14 @@ components:
       type: string
     DomainCreate:
       properties:
+        auth_code:
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
+          description: The auth code used for the domain
+          title: Auth Code
         contacts:
           $ref: '#/components/schemas/ContactIdList'
           description: The contacts of the domain
@@ -3839,7 +3847,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-06-27-203011
+  version: 2025-07-02-134038
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -4046,11 +4054,11 @@ paths:
             application/problem+json:
               example:
                 code: ERROR_USER_EXISTS
-                detail: User with username already exists
+                detail: User with username or email already exists
                 status: 409
                 title: User Management Error
                 type: user-already-present
-                username: Additional error context.
+                user: Additional error context.
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict

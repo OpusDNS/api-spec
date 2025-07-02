@@ -1495,6 +1495,11 @@ export interface components {
         DomainContactType: "registrant" | "admin" | "tech" | "billing";
         /** DomainCreate */
         DomainCreate: {
+            /**
+             * Auth Code
+             * @description The auth code used for the domain
+             */
+            auth_code?: string | null;
             /** @description The contacts of the domain */
             contacts: components["schemas"]["ContactIdList"];
             /**
