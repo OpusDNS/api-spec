@@ -150,6 +150,47 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/contacts/verification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Verification By Token
+         * @description Retrieve contact verification
+         */
+        get: operations["get_verification_by_token_v1_contacts_verification_get"];
+        /**
+         * Update Verification By Token
+         * @description Complete contact verification
+         */
+        put: operations["update_verification_by_token_v1_contacts_verification_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Email Verify Contact */
+        get: operations["email_verify_contact_v1_contacts_verify_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/contacts/{contact_id}": {
         parameters: {
             query?: never;
@@ -201,23 +242,6 @@ export interface paths {
          * @description Delete contact verification
          */
         delete: operations["cancel_verification_v1_contacts__contact_id__verification_delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/contacts/{contact_id}/verify": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Email Verify Contact */
-        get: operations["email_verify_contact_v1_contacts__contact_id__verify_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -1096,6 +1120,75 @@ export interface components {
         };
         ContactIdList: {
             [key: string]: TypeID<"contact">;
+        };
+        /** ContactResponse */
+        ContactResponse: {
+            /**
+             * City
+             * @description The city of the contact
+             */
+            city: string;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country: string;
+            /**
+             * Disclose
+             * @description Whether the contact should be disclosed
+             */
+            disclose: boolean;
+            /**
+             * Email
+             * Format: email
+             * @description The email of the contact
+             */
+            email: string;
+            /**
+             * Fax
+             * @description The contacts's fax number
+             */
+            fax?: string | null;
+            /**
+             * First Name
+             * @description The first name of the contact
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The last name of the contact
+             */
+            last_name: string;
+            /**
+             * Org
+             * @description The organization of the contact
+             */
+            org?: string | null;
+            /**
+             * Phone
+             * @description The contact's phone number
+             */
+            phone?: string | null;
+            /**
+             * Postal Code
+             * @description The postal code of the contact
+             */
+            postal_code: string;
+            /**
+             * State
+             * @description The state of the contact
+             */
+            state?: string | null;
+            /**
+             * Street
+             * @description The address of the contact
+             */
+            street: string;
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title?: string | null;
         };
         /** ContactSchema */
         ContactSchema: {
@@ -3909,6 +4002,142 @@ export interface operations {
             };
         };
     };
+    get_verification_by_token_v1_contacts_verification_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_verification_by_token_v1_contacts_verification_put: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    email_verify_contact_v1_contacts_verify_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_contact_v1_contacts__contact_id__get: {
         parameters: {
             query?: never;
@@ -4197,39 +4426,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    email_verify_contact_v1_contacts__contact_id__verify_get: {
-        parameters: {
-            query: {
-                token: string;
-            };
-            header?: never;
-            path: {
-                contact_id: TypeID<"contact">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
