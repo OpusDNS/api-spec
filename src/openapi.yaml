@@ -2796,6 +2796,154 @@ components:
           title: Tax Rate
       title: OrganizationUpdate
       type: object
+    OrganizationWithPlan:
+      properties:
+        address_1:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: First line of the organization's address.
+          title: Address 1
+        address_2:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Second line of the organization's address.
+          title: Address 2
+        attributes:
+          items:
+            $ref: '#/components/schemas/OrganizationAttribute'
+          title: Attributes
+          type: array
+        business_number:
+          anyOf:
+          - maxLength: 100
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Government issued business identifier for the organization
+            issued.
+          title: Business Number
+        city:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: City of the organization's address.
+          title: City
+        country_code:
+          anyOf:
+          - maxLength: 2
+            pattern: ^\w{2}$
+            type: string
+          - type: 'null'
+          description: ISO 3166-1 alpha-2 country code.
+          title: Country Code
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        currency:
+          anyOf:
+          - $ref: '#/components/schemas/Currency'
+          - type: 'null'
+          description: The currency used by the organization.
+        default_locale:
+          anyOf:
+          - examples:
+            - en_US
+            type: string
+          - type: 'null'
+          description: Default locale for the organization.
+          title: Default Locale
+        deleted_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date/time the entry was deleted on
+          title: Deleted On
+        organization_id:
+          description: Unique identifier for the organization.
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        organization_name:
+          description: Name of the organization.
+          minLength: 1
+          title: Organization Name
+          type: string
+        parent_organization_id:
+          anyOf:
+          - examples:
+            - organization_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: organization
+          - type: 'null'
+          description: ID of the parent organization.
+          title: Parent Organization Id
+        plan:
+          $ref: '#/components/schemas/PlanRelation'
+          default: basic_plan
+        postal_code:
+          anyOf:
+          - maxLength: 20
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Postal code of the organization's address.
+          title: Postal Code
+        state_or_province:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: State or province of the organization's address.
+          title: State Or Province
+        status:
+          $ref: '#/components/schemas/OrganizationStatus'
+          default: active
+          description: Status of the organization.
+        tax_id:
+          anyOf:
+          - maxLength: 50
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Tax ID of the organization.
+          title: Tax Id
+        tax_id_type:
+          anyOf:
+          - maxLength: 50
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Type of tax ID for the organization.
+          title: Tax Id Type
+        tax_rate:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Tax rate for the organization.
+          title: Tax Rate
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          title: Users
+          type: array
+      required:
+      - organization_name
+      title: OrganizationWithPlan
+      type: object
     PaginationMetadata:
       properties:
         current_page:
@@ -2968,6 +3116,7 @@ components:
       - bulk_update
       - create
       - delete
+      - enterprise
       - manage_api_keys
       - manage_billing
       - manage_cms_content
@@ -2975,13 +3124,17 @@ components:
       - manage_dns_zones
       - manage_domains
       - manage_email_forwards
+      - manage_opusdns_api_keys
       - manage_products
       - manage_reseller
       - manage_user_relations
       - manage_users
+      - plan_manager
+      - premium
       - premium_reseller
       - renew_expire
       - sign_org_tos
+      - starter
       - transfer_trade
       - update
       - verify
@@ -2997,6 +3150,21 @@ components:
           title: Permissions
           type: array
       title: PermissionSet
+      type: object
+    PlanRelation:
+      enum:
+      - basic_plan
+      - enterprise_plan
+      - premium_plan
+      - starter_plan
+      title: PlanRelation
+      type: string
+    PlanUpdate:
+      properties:
+        plan:
+          $ref: '#/components/schemas/PlanRelation'
+          default: basic_plan
+      title: PlanUpdate
       type: object
     Problem:
       properties:
@@ -3033,14 +3201,15 @@ components:
       - domain_manager
       - email_forward_manager
       - member
+      - opusdns_internal_api_key
       - organization_manager
       - owner
       - parent
       - product_manager
       - recipient
       - reseller_manager
+      - root_admin
       - self
-      - special_relation
       title: Relation
       type: string
     RelationSet:
@@ -3936,7 +4105,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-03-135543
+  version: 2025-07-05-181646
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7054,7 +7223,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organization'
+                $ref: '#/components/schemas/OrganizationWithPlan'
           description: Successful Response
         '422':
           content:
@@ -7103,6 +7272,45 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Organization
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/plan:
+    patch:
+      operationId: change_plan_v1_organizations__organization_id__plan_patch
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanUpdate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationWithPlan'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Change Plan
       tags:
       - organization
   /v1/users:

@@ -833,6 +833,23 @@ export interface paths {
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
         trace?: never;
     };
+    "/v1/organizations/{organization_id}/plan": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Change Plan */
+        patch: operations["change_plan_v1_organizations__organization_id__plan_patch"];
+        trace?: never;
+    };
     "/v1/users": {
         parameters: {
             query?: never;
@@ -2906,6 +2923,104 @@ export interface components {
              */
             tax_rate?: number | string | null;
         };
+        /** OrganizationWithPlan */
+        OrganizationWithPlan: {
+            /**
+             * Address 1
+             * @description First line of the organization's address.
+             */
+            address_1?: string | null;
+            /**
+             * Address 2
+             * @description Second line of the organization's address.
+             */
+            address_2?: string | null;
+            /** Attributes */
+            attributes?: components["schemas"]["OrganizationAttribute"][];
+            /**
+             * Business Number
+             * @description Government issued business identifier for the organization issued.
+             */
+            business_number?: string | null;
+            /**
+             * City
+             * @description City of the organization's address.
+             */
+            city?: string | null;
+            /**
+             * Country Code
+             * @description ISO 3166-1 alpha-2 country code.
+             */
+            country_code?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /** @description The currency used by the organization. */
+            currency?: components["schemas"]["Currency"] | null;
+            /**
+             * Default Locale
+             * @description Default locale for the organization.
+             */
+            default_locale?: string | null;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description Unique identifier for the organization.
+             */
+            organization_id?: TypeID<"organization">;
+            /**
+             * Organization Name
+             * @description Name of the organization.
+             */
+            organization_name: string;
+            /**
+             * Parent Organization Id
+             * @description ID of the parent organization.
+             */
+            parent_organization_id?: TypeID<"organization"> | null;
+            /** @default basic_plan */
+            plan: components["schemas"]["PlanRelation"];
+            /**
+             * Postal Code
+             * @description Postal code of the organization's address.
+             */
+            postal_code?: string | null;
+            /**
+             * State Or Province
+             * @description State or province of the organization's address.
+             */
+            state_or_province?: string | null;
+            /**
+             * @description Status of the organization.
+             * @default active
+             */
+            status: components["schemas"]["OrganizationStatus"];
+            /**
+             * Tax Id
+             * @description Tax ID of the organization.
+             */
+            tax_id?: string | null;
+            /**
+             * Tax Id Type
+             * @description Type of tax ID for the organization.
+             */
+            tax_id_type?: string | null;
+            /**
+             * Tax Rate
+             * @description Tax rate for the organization.
+             */
+            tax_rate?: string | null;
+            /** Users */
+            users?: components["schemas"]["User"][];
+        };
         /** PaginationMetadata */
         PaginationMetadata: {
             /** Current Page */
@@ -2984,11 +3099,21 @@ export interface components {
          * Permission
          * @enum {string}
          */
-        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
+        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "enterprise" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "plan_manager" | "premium" | "premium_reseller" | "renew_expire" | "sign_org_tos" | "starter" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
         /** PermissionSet */
         PermissionSet: {
             /** Permissions */
             permissions?: components["schemas"]["Permission"][];
+        };
+        /**
+         * PlanRelation
+         * @enum {string}
+         */
+        PlanRelation: "basic_plan" | "enterprise_plan" | "premium_plan" | "starter_plan";
+        /** PlanUpdate */
+        PlanUpdate: {
+            /** @default basic_plan */
+            plan: components["schemas"]["PlanRelation"];
         };
         /** Problem */
         Problem: {
@@ -3005,7 +3130,7 @@ export interface components {
          * Relation
          * @enum {string}
          */
-        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_manager" | "email_forward_manager" | "member" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "self" | "special_relation";
+        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_manager" | "email_forward_manager" | "member" | "opusdns_internal_api_key" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "root_admin" | "self";
         /** RelationSet */
         RelationSet: {
             /** Relations */
@@ -6228,7 +6353,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Organization"];
+                    "application/json": components["schemas"]["OrganizationWithPlan"];
                 };
             };
             /** @description Validation Error */
@@ -6293,6 +6418,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    change_plan_v1_organizations__organization_id__plan_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeID<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlanUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationWithPlan"];
                 };
             };
             /** @description Validation Error */
