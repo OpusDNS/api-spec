@@ -125,14 +125,12 @@ components:
           description: The organization of the contact
           title: Org
         phone:
-          anyOf:
-          - format: phone
-            type: string
-          - type: 'null'
           description: The contact's phone number
           examples:
           - '+1.2125552368'
+          format: phone
           title: Phone
+          type: string
         postal_code:
           description: The postal code of the contact
           minLength: 1
@@ -161,6 +159,7 @@ components:
       - first_name
       - last_name
       - email
+      - phone
       - street
       - city
       - postal_code
@@ -225,14 +224,12 @@ components:
           description: The organization of the contact
           title: Org
         phone:
-          anyOf:
-          - format: phone
-            type: string
-          - type: 'null'
           description: The contact's phone number
           examples:
           - '+1.2125552368'
+          format: phone
           title: Phone
+          type: string
         postal_code:
           description: The postal code of the contact
           minLength: 1
@@ -261,6 +258,7 @@ components:
       - first_name
       - last_name
       - email
+      - phone
       - street
       - city
       - postal_code
@@ -344,14 +342,12 @@ components:
           type: string
           x-typeid-prefix: organization
         phone:
-          anyOf:
-          - format: phone
-            type: string
-          - type: 'null'
           description: The contact's phone number
           examples:
           - '+1.2125552368'
+          format: phone
           title: Phone
+          type: string
         postal_code:
           description: The postal code of the contact
           minLength: 1
@@ -380,6 +376,7 @@ components:
       - first_name
       - last_name
       - email
+      - phone
       - street
       - city
       - postal_code
@@ -3930,7 +3927,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-07-133350
+  version: 2025-07-08-094139
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -1054,9 +1054,10 @@ export interface components {
             org?: string | null;
             /**
              * Phone
+             * Format: phone
              * @description The contact's phone number
              */
-            phone?: string | null;
+            phone: string;
             /**
              * Postal Code
              * @description The postal code of the contact
@@ -1126,9 +1127,10 @@ export interface components {
             org?: string | null;
             /**
              * Phone
+             * Format: phone
              * @description The contact's phone number
              */
-            phone?: string | null;
+            phone: string;
             /**
              * Postal Code
              * @description The postal code of the contact
@@ -1218,9 +1220,10 @@ export interface components {
             organization_id: TypeID<"organization">;
             /**
              * Phone
+             * Format: phone
              * @description The contact's phone number
              */
-            phone?: string | null;
+            phone: string;
             /**
              * Postal Code
              * @description The postal code of the contact
