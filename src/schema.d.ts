@@ -2016,7 +2016,7 @@ export interface components {
          * EventObjectType
          * @enum {string}
          */
-        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "RAW";
+        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "RAW" | "UNKNOWN";
         /** EventResponse */
         EventResponse: {
             /** Event Data */
