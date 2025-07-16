@@ -3244,6 +3244,12 @@ components:
       - organization
       title: SignupCreate
       type: object
+    SortOrder:
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+      type: string
     SpiceDbRelationshipUpdate:
       properties:
         add:
@@ -3842,6 +3848,14 @@ components:
       - email
       title: VerificationType
       type: string
+    ZoneSortField:
+      enum:
+      - name
+      - created_on
+      - updated_on
+      - dnssec_status
+      title: ZoneSortField
+      type: string
     common__models__availability__datasource__DomainAvailabilityResponse:
       properties:
         data:
@@ -3928,7 +3942,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-16-093947
+  version: 2025-07-16-145131
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -4980,6 +4994,86 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/ZoneSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: dnssec_status
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/DnssecStatus'
+          - type: 'null'
+          title: Dnssec Status
+      - in: query
+        name: name
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      - in: query
+        name: search
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+      - in: query
+        name: suffix
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Suffix
+      - in: query
+        name: created_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created After
+      - in: query
+        name: created_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created Before
+      - in: query
+        name: updated_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Updated After
+      - in: query
+        name: updated_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Updated Before
       responses:
         '200':
           content:

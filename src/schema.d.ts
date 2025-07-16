@@ -3096,6 +3096,11 @@ export interface components {
             /** @description User signup to platform. */
             user: components["schemas"]["UserCreate"];
         };
+        /**
+         * SortOrder
+         * @enum {string}
+         */
+        SortOrder: "asc" | "desc";
         /** SpiceDbRelationshipUpdate */
         SpiceDbRelationshipUpdate: {
             /** Add */
@@ -3497,6 +3502,11 @@ export interface components {
          * @enum {string}
          */
         VerificationType: "api" | "email";
+        /**
+         * ZoneSortField
+         * @enum {string}
+         */
+        ZoneSortField: "name" | "created_on" | "updated_on" | "dnssec_status";
         /** DomainAvailabilityResponse */
         common__models__availability__datasource__DomainAvailabilityResponse: {
             /** Data */
@@ -4387,6 +4397,16 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                sort_by?: components["schemas"]["ZoneSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                dnssec_status?: components["schemas"]["DnssecStatus"] | null;
+                name?: string | null;
+                search?: string | null;
+                suffix?: string | null;
+                created_after?: Date | null;
+                created_before?: Date | null;
+                updated_after?: Date | null;
+                updated_before?: Date | null;
             };
             header?: never;
             path?: never;
