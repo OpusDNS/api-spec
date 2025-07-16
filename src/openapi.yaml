@@ -3928,7 +3928,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-08-200945
+  version: 2025-07-16-093947
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -4922,6 +4922,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_MISSING_PERMISSIONS
+                detail: Missing permissions to verify contact as type Additional error
+                  context.
+                status: 403
+                title: Contact Management Error
+                type: contact-verification-type-missing-permissions
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '404':
           content:
             application/problem+json:
