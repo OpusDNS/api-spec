@@ -44,5 +44,6 @@ jobs:
           else
             git add src/openapi.yaml
             git commit -m "Update OpenAPI spec and types"
+            npm version minor
             git push
           fi
