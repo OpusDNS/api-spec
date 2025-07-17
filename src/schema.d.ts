@@ -436,7 +436,12 @@ export interface paths {
         delete: operations["delete_domain_v1_domains__domain_reference__delete"];
         options?: never;
         head?: never;
-        /** Update a domain */
+        /**
+         * Update a domain
+         * @description Updates various attributes of an existing domain. Only the fields provided in the request
+         *     will be updated; all other fields will remain unchanged. <br>
+         *     Providing `clientTransferProhibited` as a status will set the `transfer_lock` property
+         */
         patch: operations["update_domain_v1_domains__domain_reference__patch"];
         trace?: never;
     };
