@@ -31,8 +31,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Generate TypeScript Types
-        run: npm run generate:types
+      - name: Generate TypeScript API Schema
+        run: npm run generate:schema
 
       - name: Commit & Push Changes
         run: |

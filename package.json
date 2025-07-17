@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^4.1.0",
     "openapi-typescript": "^7.6.1",
     "typescript": "^5.8.2"
   },
@@ -17,12 +19,12 @@
     "url": "git+https://github.com/OpusDNS/api-spec.git"
   },
   "author": "",
-  "license": "MIT",
+  "license": "LGPL 3.0",
   "bugs": {
     "url": "https://github.com/OpusDNS/api-spec/issues"
   },
   "homepage": "https://github.com/OpusDNS/api-spec#readme",
   "scripts": {
-    "generate:types": "node scripts/generate-types.js"
+    "generate:schema": "node scripts/generate-schema.js"
   }
 }
