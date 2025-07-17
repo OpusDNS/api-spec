@@ -11,13 +11,10 @@ function createBaseTypesFile(typesFilePath: string): void {
  * Type definitions for OpusDNS API response objects and parameters.
  *
  * This file is auto-generated from the OpenAPI specification.
- * Do not edit manually. To regenerate, run:
- *   npx tsx scripts/opus-apis/generate-all.ts
- *
- * Generated from: node_modules/opusdns-api-types/src/openapi.yaml
+ * Do not edit manually.
  */
 
-import { components, operations } from 'opusdns-api-types';
+import { components, operations } from '../schema';
 
 `;
 
@@ -35,35 +32,35 @@ async function main(): Promise<{
   try {
     const typesFilePath = path.join(
       process.cwd(),
-      'src/types/opus-api/types.ts',
+      'src/types/types.ts',
     );
 
     // Step 0: Create base types file with imports
-    console.log('📝 Step 0: Creating base types file...');
+    console.log('📝 Creating base types file...');
     createBaseTypesFile(typesFilePath);
 
     // Step 1: Generate response data types
-    console.log('📝 Step 1: Generating response types...');
-    const responseTypesCount = await generateResponseTypes();
+    console.log('📝 Generating response types...');
+    const responseTypesCount = generateResponseTypes();
     console.log(
       `   Generated ${responseTypesCount} response data type definitions\n`,
     );
 
     // Step 2: Generate parameter types
-    console.log('🔧 Step 2: Generating parameter types...');
-    const paramCount = await generateParamTypes();
+    console.log('🔧 Generating parameter types...');
+    const paramCount = generateParamTypes();
     console.log(`   Generated ${paramCount} parameter type definitions\n`);
 
     // Step 3: Generate response types
-    console.log('📝 Step 3: Generating response data types...');
-    const responseDataTypesCount = await generateResponseDataTypes();
+    console.log('📝 Generating response data types...');
+    const responseDataTypesCount = generateResponseDataTypes();
     console.log(
       `   Generated ${responseDataTypesCount} response type definitions\n`,
     );
 
     console.log('✅ All OpusDNS API types generated successfully!');
     console.log('\nGenerated file:');
-    console.log('   📄 src/types/opus-api/types.ts');
+    console.log('   📄 src/types/types.ts');
 
     return {
       responseTypesCount,

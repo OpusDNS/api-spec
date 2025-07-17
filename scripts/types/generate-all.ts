@@ -38,12 +38,6 @@ async function main() {
     console.log('   Generated index file with all exports\n');
 
     console.log('✅ All OpusDNS API code generation completed successfully!');
-    console.log('\nGenerated files:');
-    console.log('   📄 src/types/opus-api/types.ts');
-    console.log('   📄 src/types/opus-api/paths.ts');
-    console.log('   📄 src/types/opus-api/keys.ts');
-    console.log('   📄 src/types/opus-api/constants.ts');
-    console.log('   📄 src/types/opus-api/index.ts');
   } catch (error) {
     console.error('❌ Error during code generation:', error);
     process.exit(1);
@@ -51,4 +45,4 @@ async function main() {
 }
 
 // Run the script
-main();
+await main();

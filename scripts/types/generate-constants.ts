@@ -3,6 +3,7 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
+import { OPEN_API_SCHEMA_PATH } from '../constants';
 
 interface EnumDefinition {
   name: string;
@@ -31,8 +32,8 @@ function convertToUpperCase(name: string): string {
     .replace(/_+$/, '');
 }
 
-function extractEnumsFromOpenAPI(openAPIPath: string): EnumDefinition[] {
-  const content = fs.readFileSync(openAPIPath, 'utf-8');
+function extractEnumsFromOpenAPI(): EnumDefinition[] {
+  const content = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
   const openAPI = yaml.load(content) as OpenAPISchema;
   const enums: EnumDefinition[] = [];
 
@@ -99,21 +100,13 @@ function generateConstantsFile(enums: EnumDefinition[]): string {
 
 function main() {
   try {
-    const openAPIPath = path.join(
-      process.cwd(),
-      'node_modules/opusdns-api-types/src/openapi.yaml',
-    );
     const outputPath = path.join(
       process.cwd(),
-      'src/types/opus-api/constants.ts',
+      'src/types/constants.ts',
     );
 
-    if (!fs.existsSync(openAPIPath)) {
-      throw new Error(`OpenAPI file not found: ${openAPIPath}`);
-    }
-
     console.log('Extracting enums from OpenAPI spec...');
-    const enums = extractEnumsFromOpenAPI(openAPIPath);
+    const enums = extractEnumsFromOpenAPI();
 
     console.log(`Found ${enums.length} enums:`);
     enums.forEach((enumDef) => {

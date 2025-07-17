@@ -9,10 +9,7 @@ function generateIndexFile(): string {
     ' * Index file for OpusDNS API types and constants.',
     ' *',
     ' * This file is auto-generated from the OpenAPI specification.',
-    ' * Do not edit manually. To regenerate, run:',
-    ' *   npx tsx scripts/opus-apis/generate-index.ts',
-    ' *',
-    ' * Generated from: node_modules/opusdns-api-types/src/openapi.yaml',
+    ' * Do not edit manually.',
     ' */',
     '',
     "export * from './constants';",
@@ -31,7 +28,7 @@ function main() {
     const indexContent = generateIndexFile();
     const indexOutputPath = path.join(
       process.cwd(),
-      'src/types/opus-api/index.ts',
+      'src/types/index.ts',
     );
     fs.writeFileSync(indexOutputPath, indexContent);
 

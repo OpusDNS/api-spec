@@ -1,8 +1,10 @@
 {
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.0.14",
     "js-yaml": "^4.1.0",
     "openapi-typescript": "^7.6.1",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.2"
   },
   "name": "@opusdns/api",
@@ -25,6 +27,7 @@
   },
   "homepage": "https://github.com/OpusDNS/api-spec#readme",
   "scripts": {
-    "generate:schema": "node scripts/generate-schema.js"
+    "generate:schema": "tsx scripts/generate-schema.ts",
+    "generate:types": "tsx scripts/types/generate-all.ts"
   }
 }

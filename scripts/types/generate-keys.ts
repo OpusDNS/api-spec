@@ -3,6 +3,7 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
+import { OPEN_API_SCHEMA_PATH } from '../constants';
 
 interface SchemaInfo {
   name: string;
@@ -28,7 +29,7 @@ function resolveSchemaRef(ref: string, spec: any): any {
 }
 
 function extractExistingTypes(validSchemas: Set<string>): TypeInfo[] {
-  const typesPath = path.join(process.cwd(), 'src/types/opus-api/types.ts');
+  const typesPath = path.join(process.cwd(), 'src/types/types.ts');
   const typesContent = fs.readFileSync(typesPath, 'utf8');
 
   const types: TypeInfo[] = [];
@@ -124,10 +125,7 @@ function generateKeysFile(
     ' * Key constants for OpusDNS API response objects.',
     ' *',
     ' * This file is auto-generated from the OpenAPI specification.',
-    ' * Do not edit manually. To regenerate, run:',
-    ' *   npx tsx scripts/opus-apis/generate-index.ts',
-    ' *',
-    ' * Generated from: node_modules/opusdns-api-types/src/openapi.yaml',
+    ' * Do not edit manually.',
     ' */',
     '',
   ];
@@ -185,18 +183,7 @@ function generateKeysFile(
 }
 
 function main() {
-  const openAPIPath = path.join(
-    process.cwd(),
-    'node_modules/opusdns-api-types/src/openapi.yaml',
-  );
-  const outputPath = path.join(process.cwd(), 'src/types/opus-api/keys.ts');
-
-  if (!fs.existsSync(openAPIPath)) {
-    console.error('❌ OpenAPI specification not found at:', openAPIPath);
-    process.exit(1);
-  }
-
-  const openAPIContent = fs.readFileSync(openAPIPath, 'utf8');
+  const openAPIContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf8');
   const schemas = extractSchemasFromOpenAPI(openAPIContent);
 
   if (schemas.length === 0) {
@@ -216,14 +203,13 @@ function main() {
   }
 
   const keysContent = generateKeysFile(existingTypes, schemas);
+  const outputPath = path.join(process.cwd(), 'src/types/keys.ts');
   fs.writeFileSync(outputPath, keysContent);
 
   console.log(
     `✅ Generated key constants for ${existingTypes.length} existing types in ${outputPath}`,
   );
 }
-
-main();
 
 // Run the script if it's the main module
 if (import.meta.url === `file://${process.argv[1]}`) {

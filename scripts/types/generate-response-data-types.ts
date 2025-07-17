@@ -3,6 +3,7 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
+import { OPEN_API_SCHEMA_PATH } from '../constants';
 
 interface SchemaInfo {
   name: string;
@@ -201,21 +202,14 @@ function generateResponseDataTypesContent(schemas: SchemaInfo[]): string {
 
 function main() {
   try {
-    // Read the OpenAPI file
-    const openAPIPath = path.join(
-      process.cwd(),
-      'node_modules/opusdns-api-types/src/openapi.yaml',
-    );
-    const openAPIContent = fs.readFileSync(openAPIPath, 'utf-8');
-
-    // Extract schemas
+    const openAPIContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
     const schemas = extractSchemasFromOpenAPI(openAPIContent);
 
     // Generate response types content
     const responseTypesContent = generateResponseDataTypesContent(schemas);
     const typesOutputPath = path.join(
       process.cwd(),
-      'src/types/opus-api/types.ts',
+      'src/types/types.ts',
     );
 
     // Append response types to the existing file

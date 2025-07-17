@@ -1,15 +1,16 @@
 import fs from "node:fs";
 import ts from "typescript";
 import openapiTS, { astToString } from "openapi-typescript";
+import type { SchemaObject, TransformObject } from "openapi-typescript";
 
 const DATE = ts.factory.createTypeReferenceNode(ts.factory.createIdentifier("Date"));
 const NULL = ts.factory.createLiteralTypeNode(ts.factory.createNull());
 
-function getTypeIdPrefix(schemaObject) {
-	if (! "format" in schemaObject) {
+function getTypeIdPrefix(schemaObject: SchemaObject) {
+	if (!("format" in schemaObject)) {
 		return null;
 	}
-	if (! "x-typeid-prefix" in schemaObject) {
+	if (!("x-typeid-prefix" in schemaObject)) {
 		return null;
 	}
 
@@ -18,7 +19,7 @@ function getTypeIdPrefix(schemaObject) {
 
 const schemaPath = new URL("../src/openapi.yaml", import.meta.url)
 const ast = await openapiTS(schemaPath, {
-	transform(schemaObject, metadata) {
+	transform(schemaObject: SchemaObject): ts.TypeNode | TransformObject | undefined {
 		switch (schemaObject.format) {
 			case "date-time":
 				return schemaObject.nullable
@@ -28,7 +29,7 @@ const ast = await openapiTS(schemaPath, {
 			case "typeid":
 				const typeIdPrefix = getTypeIdPrefix(schemaObject);
 				if (!typeIdPrefix) {
-					return null;
+					return undefined;
 				}
 
 				const typeIdType = ts.factory.createTypeReferenceNode(
@@ -42,7 +43,7 @@ const ast = await openapiTS(schemaPath, {
 				return typeIdType;
 
 			default:
-				return null;
+				return undefined;
 		}
 	},
 	inject: "import { TypeID } from 'typeid-js';",

@@ -3,6 +3,7 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
+import { OPEN_API_SCHEMA_PATH } from '../constants';
 
 interface ParameterInfo {
   operationName: string;
@@ -234,14 +235,10 @@ function appendParameterTypesToFile(
 
 function main() {
   try {
-    const openapiPath = path.join(
-      process.cwd(),
-      'node_modules/opusdns-api-types/src/openapi.yaml',
-    );
-    const openapiContent = fs.readFileSync(openapiPath, 'utf-8');
+    const openapiContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
     const typesFilePath = path.join(
       process.cwd(),
-      'src/types/opus-api/types.ts',
+      'src/types/types.ts',
     );
 
     console.log('Extracting parameter types from OpenAPI spec...');

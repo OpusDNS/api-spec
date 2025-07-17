@@ -3,6 +3,7 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 import path from 'path';
+import { OPEN_API_SCHEMA_PATH } from '../constants';
 
 function generateConstantName(apiPath: string): string {
   let name = apiPath.replace(/^\//, '');
@@ -23,10 +24,7 @@ function generatePathsFile(paths: Record<string, unknown>): string {
     ' * API path constants for OpusDNS API.',
     ' *',
     ' * This file is auto-generated from the OpenAPI specification.',
-    ' * Do not edit manually. To regenerate, run:',
-    ' *   npx tsx scripts/opus-apis/generate-index.ts',
-    ' *',
-    ' * Generated from: node_modules/opusdns-api-types/src/openapi.yaml',
+    ' * Do not edit manually.',
     ' */',
     '',
   ];
@@ -44,11 +42,7 @@ function generatePathsFile(paths: Record<string, unknown>): string {
 
 function main() {
   try {
-    const openapiPath = path.join(
-      process.cwd(),
-      'node_modules/opusdns-api-types/src/openapi.yaml',
-    );
-    const openapiContent = fs.readFileSync(openapiPath, 'utf-8');
+    const openapiContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const openapi = yaml.load(openapiContent) as any;
 
@@ -61,7 +55,7 @@ function main() {
     const pathsContent = generatePathsFile(paths);
     const pathsOutputPath = path.join(
       process.cwd(),
-      'src/types/opus-api/paths.ts',
+      'src/types/paths.ts',
     );
     fs.writeFileSync(pathsOutputPath, pathsContent);
 
