@@ -384,6 +384,14 @@ components:
       - disclose
       title: ContactSchema
       type: object
+    ContactSortField:
+      enum:
+      - first_name
+      - last_name
+      - email
+      - created_on
+      title: ContactSortField
+      type: string
     ContactVerificationApiResponse:
       properties:
         canceled_on:
@@ -3942,7 +3950,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-16-145131
+  version: 2025-07-17-022939
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -4382,6 +4390,76 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/ContactSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: first_name
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: First Name
+      - in: query
+        name: last_name
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Name
+      - in: query
+        name: email
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+      - in: query
+        name: search
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+      - in: query
+        name: country
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+      - in: query
+        name: created_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created After
+      - in: query
+        name: created_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created Before
       responses:
         '200':
           content:

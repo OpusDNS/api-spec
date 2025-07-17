@@ -1245,6 +1245,11 @@ export interface components {
              */
             title?: string | null;
         };
+        /**
+         * ContactSortField
+         * @enum {string}
+         */
+        ContactSortField: "first_name" | "last_name" | "email" | "created_on";
         /** ContactVerificationApiResponse */
         ContactVerificationApiResponse: {
             /**
@@ -3886,6 +3891,15 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                sort_by?: components["schemas"]["ContactSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                first_name?: string | null;
+                last_name?: string | null;
+                email?: string | null;
+                search?: string | null;
+                country?: string | null;
+                created_after?: Date | null;
+                created_before?: Date | null;
             };
             header?: never;
             path?: never;
