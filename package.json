@@ -29,5 +29,9 @@
   "scripts": {
     "generate:schema": "tsx scripts/generate-schema.ts",
     "generate:types": "tsx scripts/types/generate-all.ts"
-  }
+  },
+  "files": [
+    "package.json",
+    "src/"
+  ]
 }
