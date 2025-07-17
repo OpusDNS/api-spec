@@ -8,7 +8,7 @@
     "typescript": "^5.8.2"
   },
   "name": "@opusdns/api",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "TypeScript types for the OpusDNS OpenAPI specification",
   "main": "src/schema.d.ts",
   "types": "src/schema.d.ts",
