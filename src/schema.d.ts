@@ -382,10 +382,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
-        put?: never;
         /** Check domain availability */
-        post: operations["check_domain_v1_domains_check_post"];
+        get: operations["epp_check_domain_v1_domains_check_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1515,14 +1515,6 @@ export interface components {
          * @enum {string}
          */
         DomainAvailabilityStatus: "available" | "unavailable" | "market_available" | "tmch_claim" | "error";
-        /** DomainCheck */
-        DomainCheck: {
-            /**
-             * Domain Names
-             * @description The domain names to check for
-             */
-            domain_names?: string[];
-        };
         /** DomainCheckResponse */
         DomainCheckResponse: {
             /** Results */
@@ -1826,9 +1818,9 @@ export interface components {
         };
         /** DomainSearchResponse */
         DomainSearchResponse: {
-            /** Data */
-            data: components["schemas"]["DomainSearchSuggestion"][];
             meta: components["schemas"]["DomainSearchMeta"];
+            /** Results */
+            results: components["schemas"]["DomainSearchSuggestion"][];
         };
         /** DomainSearchSuggestion */
         DomainSearchSuggestion: {
@@ -3509,19 +3501,19 @@ export interface components {
         ZoneSortField: "name" | "created_on" | "updated_on" | "dnssec_status";
         /** DomainAvailabilityResponse */
         common__models__availability__datasource__DomainAvailabilityResponse: {
-            /** Data */
-            data: components["schemas"]["DomainAvailability"][];
             meta: components["schemas"]["DomainAvailabilityMeta"];
+            /** Results */
+            results: components["schemas"]["DomainAvailability"][];
         };
         /** DomainAvailabilityResponse */
         common__models__domain__domain__DomainAvailabilityResponse: {
             /** Available */
             available: boolean;
             /**
-             * Domain Name
+             * Domain
              * @description The domain name
              */
-            domain_name: string;
+            domain: string;
             /** Reason */
             reason: string | null;
         };
@@ -4788,18 +4780,19 @@ export interface operations {
             };
         };
     };
-    check_domain_v1_domains_check_post: {
+    epp_check_domain_v1_domains_check_get: {
         parameters: {
-            query?: never;
+            query: {
+                /** @description
+                 *     Specify one or more domains to check for availability.
+                 *      */
+                domains: string[];
+            };
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainCheck"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {

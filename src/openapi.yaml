@@ -846,19 +846,6 @@ components:
       - error
       title: DomainAvailabilityStatus
       type: string
-    DomainCheck:
-      properties:
-        domain_names:
-          description: The domain names to check for
-          examples:
-          - - example.com
-            - example.net
-          items:
-            type: string
-          title: Domain Names
-          type: array
-      title: DomainCheck
-      type: object
     DomainCheckResponse:
       properties:
         results:
@@ -1298,16 +1285,16 @@ components:
       type: object
     DomainSearchResponse:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/DomainSearchSuggestion'
-          title: Data
-          type: array
         meta:
           $ref: '#/components/schemas/DomainSearchMeta'
+        results:
+          items:
+            $ref: '#/components/schemas/DomainSearchSuggestion'
+          title: Results
+          type: array
       required:
       - meta
-      - data
+      - results
       title: DomainSearchResponse
       type: object
     DomainSearchSuggestion:
@@ -3866,16 +3853,16 @@ components:
       type: string
     common__models__availability__datasource__DomainAvailabilityResponse:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/DomainAvailability'
-          title: Data
-          type: array
         meta:
           $ref: '#/components/schemas/DomainAvailabilityMeta'
+        results:
+          items:
+            $ref: '#/components/schemas/DomainAvailability'
+          title: Results
+          type: array
       required:
       - meta
-      - data
+      - results
       title: DomainAvailabilityResponse
       type: object
     common__models__domain__domain__DomainAvailabilityResponse:
@@ -3883,11 +3870,11 @@ components:
         available:
           title: Available
           type: boolean
-        domain_name:
+        domain:
           description: The domain name
           examples:
           - example.com
-          title: Domain Name
+          title: Domain
           type: string
         reason:
           anyOf:
@@ -3895,7 +3882,7 @@ components:
           - type: 'null'
           title: Reason
       required:
-      - domain_name
+      - domain
       - available
       - reason
       title: DomainAvailabilityResponse
@@ -3950,7 +3937,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-17-092345
+  version: 2025-07-17-093508
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5559,14 +5546,33 @@ paths:
       tags:
       - domain
   /v1/domains/check:
-    post:
-      operationId: check_domain_v1_domains_check_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DomainCheck'
+    get:
+      operationId: epp_check_domain_v1_domains_check_get
+      parameters:
+      - description: '
+
+          Specify one or more domains to check for availability.
+
+          '
+        examples:
+          list:
+            summary: A list of domains
+            value:
+            - example.com
+            - example.org
+        in: query
+        name: domains
         required: true
+        schema:
+          description: '
+
+            Specify one or more domains to check for availability.
+
+            '
+          items:
+            type: string
+          title: Domains
+          type: array
       responses:
         '200':
           content:
