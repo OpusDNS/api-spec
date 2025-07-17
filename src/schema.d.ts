@@ -2445,16 +2445,16 @@ export interface components {
              */
             deleted_on?: Date | null;
             /**
+             * Name
+             * @description Name of the organization.
+             */
+            name: string;
+            /**
              * Organization Id
              * Format: typeid
              * @description Unique identifier for the organization.
              */
             organization_id?: TypeID<"organization">;
-            /**
-             * Organization Name
-             * @description Name of the organization.
-             */
-            organization_name: string;
             /**
              * Parent Organization Id
              * @description ID of the parent organization.
@@ -2466,10 +2466,10 @@ export interface components {
              */
             postal_code?: string | null;
             /**
-             * State Or Province
+             * State
              * @description State or province of the organization's address.
              */
-            state_or_province?: string | null;
+            state?: string | null;
             /**
              * @description Status of the organization.
              * @default active
@@ -2643,10 +2643,10 @@ export interface components {
              */
             default_locale?: string | null;
             /**
-             * Organization Name
+             * Name
              * @description Name of the organization.
              */
-            organization_name: string;
+            name: string;
             /**
              * Parent Organization Id
              * @description ID of the parent organization.
@@ -2658,10 +2658,10 @@ export interface components {
              */
             postal_code?: string | null;
             /**
-             * State Or Province
+             * State
              * @description State or province of the organization's address.
              */
-            state_or_province?: string | null;
+            state?: string | null;
             /**
              * Tax Id
              * @description Tax ID of the organization.
@@ -2844,20 +2844,20 @@ export interface components {
              */
             default_locale?: string | null;
             /**
-             * Organization Name
+             * Name
              * @description Name of the organization.
              */
-            organization_name?: string | null;
+            name?: string | null;
             /**
              * Postal Code
              * @description Postal code of the organization's address.
              */
             postal_code?: string | null;
             /**
-             * State Or Province
+             * State
              * @description State or province of the organization's address.
              */
-            state_or_province?: string | null;
+            state?: string | null;
             /**
              * Tax Id
              * @description Tax ID of the organization.
@@ -2922,16 +2922,16 @@ export interface components {
              */
             deleted_on?: Date | null;
             /**
+             * Name
+             * @description Name of the organization.
+             */
+            name: string;
+            /**
              * Organization Id
              * Format: typeid
              * @description Unique identifier for the organization.
              */
             organization_id?: TypeID<"organization">;
-            /**
-             * Organization Name
-             * @description Name of the organization.
-             */
-            organization_name: string;
             /**
              * Parent Organization Id
              * @description ID of the parent organization.
@@ -2945,10 +2945,10 @@ export interface components {
              */
             postal_code?: string | null;
             /**
-             * State Or Province
+             * State
              * @description State or province of the organization's address.
              */
-            state_or_province?: string | null;
+            state?: string | null;
             /**
              * @description Status of the organization.
              * @default active

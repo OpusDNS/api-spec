@@ -2199,6 +2199,11 @@ components:
           - type: 'null'
           description: The date/time the entry was deleted on
           title: Deleted On
+        name:
+          description: Name of the organization.
+          minLength: 1
+          title: Name
+          type: string
         organization_id:
           description: Unique identifier for the organization.
           examples:
@@ -2208,11 +2213,6 @@ components:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
-        organization_name:
-          description: Name of the organization.
-          minLength: 1
-          title: Organization Name
-          type: string
         parent_organization_id:
           anyOf:
           - examples:
@@ -2232,13 +2232,13 @@ components:
           - type: 'null'
           description: Postal code of the organization's address.
           title: Postal Code
-        state_or_province:
+        state:
           anyOf:
           - minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
-          title: State Or Province
+          title: State
         status:
           $ref: '#/components/schemas/OrganizationStatus'
           default: active
@@ -2271,7 +2271,7 @@ components:
           title: Users
           type: array
       required:
-      - organization_name
+      - name
       title: Organization
       type: object
     OrganizationAttribute:
@@ -2464,10 +2464,10 @@ components:
           - type: 'null'
           description: Default locale for the organization.
           title: Default Locale
-        organization_name:
+        name:
           description: Name of the organization.
           minLength: 1
-          title: Organization Name
+          title: Name
           type: string
         parent_organization_id:
           anyOf:
@@ -2488,13 +2488,13 @@ components:
           - type: 'null'
           description: Postal code of the organization's address.
           title: Postal Code
-        state_or_province:
+        state:
           anyOf:
           - minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
-          title: State Or Province
+          title: State
         tax_id:
           anyOf:
           - maxLength: 50
@@ -2525,7 +2525,7 @@ components:
           title: Users
           type: array
       required:
-      - organization_name
+      - name
       title: OrganizationCreate
       type: object
     OrganizationCredential:
@@ -2758,13 +2758,13 @@ components:
           - type: 'null'
           description: Default locale for the organization.
           title: Default Locale
-        organization_name:
+        name:
           anyOf:
           - minLength: 1
             type: string
           - type: 'null'
           description: Name of the organization.
-          title: Organization Name
+          title: Name
         postal_code:
           anyOf:
           - minLength: 1
@@ -2772,13 +2772,13 @@ components:
           - type: 'null'
           description: Postal code of the organization's address.
           title: Postal Code
-        state_or_province:
+        state:
           anyOf:
           - minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
-          title: State Or Province
+          title: State
         tax_id:
           anyOf:
           - minLength: 1
@@ -2872,6 +2872,11 @@ components:
           - type: 'null'
           description: The date/time the entry was deleted on
           title: Deleted On
+        name:
+          description: Name of the organization.
+          minLength: 1
+          title: Name
+          type: string
         organization_id:
           description: Unique identifier for the organization.
           examples:
@@ -2881,11 +2886,6 @@ components:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
-        organization_name:
-          description: Name of the organization.
-          minLength: 1
-          title: Organization Name
-          type: string
         parent_organization_id:
           anyOf:
           - examples:
@@ -2908,13 +2908,13 @@ components:
           - type: 'null'
           description: Postal code of the organization's address.
           title: Postal Code
-        state_or_province:
+        state:
           anyOf:
           - minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
-          title: State Or Province
+          title: State
         status:
           $ref: '#/components/schemas/OrganizationStatus'
           default: active
@@ -2947,7 +2947,7 @@ components:
           title: Users
           type: array
       required:
-      - organization_name
+      - name
       title: OrganizationWithPlan
       type: object
     PaginationMetadata:
@@ -3950,7 +3950,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-17-022939
+  version: 2025-07-17-081611
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
