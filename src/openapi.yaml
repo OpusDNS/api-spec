@@ -1193,9 +1193,9 @@ components:
           title: Name
           type: string
         nameservers:
-          description: The nameservers of the domain
+          description: All the domain statuses
           items:
-            $ref: '#/components/schemas/HostResponse'
+            $ref: '#/components/schemas/Nameserver'
           title: Nameservers
           type: array
         owner_id:
@@ -1787,48 +1787,6 @@ components:
       - status
       title: RequestValidationError
       type: object
-    HostIpResponse:
-      properties:
-        address:
-          description: The ip address of the host
-          examples:
-          - 0.0.0.0
-          - 127.0.0.1
-          format: ipvanyaddress
-          title: Address
-          type: string
-        type:
-          $ref: '#/components/schemas/IPAddressType'
-          description: The type of the ip address
-      required:
-      - address
-      - type
-      title: HostIpResponse
-      type: object
-    HostResponse:
-      properties:
-        host_ips:
-          description: The ip addresses of the nameserver
-          items:
-            $ref: '#/components/schemas/HostIpResponse'
-          title: Host Ips
-          type: array
-        hostname:
-          description: The hostname of the associated nameserver
-          examples:
-          - ns1.example.com
-          title: Hostname
-          type: string
-      required:
-      - hostname
-      title: HostResponse
-      type: object
-    IPAddressType:
-      enum:
-      - v4
-      - v6
-      title: IPAddressType
-      type: string
     IpRestrictionCreate:
       properties:
         ip_network:
@@ -3937,7 +3895,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-17-093508
+  version: 2025-07-17-111526
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

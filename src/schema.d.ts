@@ -1753,9 +1753,9 @@ export interface components {
             name: string;
             /**
              * Nameservers
-             * @description The nameservers of the domain
+             * @description All the domain statuses
              */
-            nameservers?: components["schemas"]["HostResponse"][];
+            nameservers?: components["schemas"]["Nameserver"][];
             /**
              * Owner Id
              * Format: typeid
@@ -2113,35 +2113,6 @@ export interface components {
             /** Problem type */
             type: string;
         };
-        /** HostIpResponse */
-        HostIpResponse: {
-            /**
-             * Address
-             * Format: ipvanyaddress
-             * @description The ip address of the host
-             */
-            address: string;
-            /** @description The type of the ip address */
-            type: components["schemas"]["IPAddressType"];
-        };
-        /** HostResponse */
-        HostResponse: {
-            /**
-             * Host Ips
-             * @description The ip addresses of the nameserver
-             */
-            host_ips?: components["schemas"]["HostIpResponse"][];
-            /**
-             * Hostname
-             * @description The hostname of the associated nameserver
-             */
-            hostname: string;
-        };
-        /**
-         * IPAddressType
-         * @enum {string}
-         */
-        IPAddressType: "v4" | "v6";
         /** IpRestrictionCreate */
         IpRestrictionCreate: {
             /**
