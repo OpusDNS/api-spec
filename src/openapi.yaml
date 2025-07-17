@@ -3950,7 +3950,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-17-081611
+  version: 2025-07-17-092345
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5774,13 +5774,6 @@ paths:
       tags:
       - domain
     patch:
-      description: 'Updates various attributes of an existing domain. Only the fields
-        provided in the request
-
-        will be updated; all other fields will remain unchanged. <br>
-
-        Providing `clientTransferProhibited` as a status will set the `transfer_lock`
-        property'
       operationId: update_domain_v1_domains__domain_reference__patch
       parameters:
       - in: path
