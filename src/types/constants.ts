@@ -1,6 +1,6 @@
 /**
  * Auto-generated enums from OpenAPI schema
- * Generated on: 2025-07-17T22:54:52.868Z
+ * Generated on: 2025-07-18T23:11:55.928Z
  */
 
 /**
@@ -120,6 +120,17 @@ export enum DOMAIN_CONTACT_TYPE {
   ADMIN = "admin",
   TECH = "tech",
   BILLING = "billing",
+}
+
+/**
+ * DOMAIN_SORT_FIELD
+ */
+export enum DOMAIN_SORT_FIELD {
+  NAME = "name",
+  CREATED_ON = "created_on",
+  UPDATED_ON = "updated_on",
+  EXPIRES_ON = "expires_on",
+  REGISTERED_ON = "registered_on",
 }
 
 /**

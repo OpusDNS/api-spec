@@ -1837,6 +1837,11 @@ export interface components {
             premium: boolean;
         };
         /**
+         * DomainSortField
+         * @enum {string}
+         */
+        DomainSortField: "name" | "created_on" | "updated_on" | "expires_on" | "registered_on";
+        /**
          * DomainStatus
          * @enum {string}
          */
@@ -4669,6 +4674,21 @@ export interface operations {
             query?: {
                 page?: number;
                 page_size?: number;
+                sort_by?: components["schemas"]["DomainSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                name?: string | null;
+                search?: string | null;
+                tld?: string | null;
+                sld?: string | null;
+                transfer_lock?: boolean | null;
+                created_after?: Date | null;
+                created_before?: Date | null;
+                updated_after?: Date | null;
+                updated_before?: Date | null;
+                expires_after?: Date | null;
+                expires_before?: Date | null;
+                registered_after?: Date | null;
+                registered_before?: Date | null;
             };
             header?: never;
             path?: never;
