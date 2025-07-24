@@ -190,11 +190,27 @@ function generateGroupedRequestTypesContent(groupedRequests: GroupedRequests): s
   return content;
 }
 
+// Helper: Build a map of OpenAPI schema names to TypeScript aliases from schemas.ts
+function getSchemaAliasMap(): Record<string, string> {
+  const schemasFile = path.join(process.cwd(), 'src/helpers/schemas.ts');
+  const content = fs.readFileSync(schemasFile, 'utf8');
+  const aliasMap: Record<string, string> = {};
+  const regex = /export type (\w+) = components\['schemas'\]\['([^']+)'\];/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    const alias = match[1];
+    const schema = match[2];
+    aliasMap[schema] = alias;
+  }
+  return aliasMap;
+}
+
 function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests, operationIdMap: Record<string, string>, openAPIContent: string): string {
   const lines: string[] = [];
   const sortedPaths = Object.keys(groupedRequests).sort();
-  // Parse the OpenAPI YAML to get the full spec
   const spec = yaml.load(openAPIContent) as any;
+  const schemaAliasMap = getSchemaAliasMap();
+  const usedAliases = new Set<string>();
   
   // Create reverse mapping from pathName to actual path
   const pathNameToPathMap: Record<string, string> = {};
@@ -263,6 +279,16 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
           const paramTypes = ['query', 'header', 'path', 'cookie'];
           for (const paramType of paramTypes) {
             if (opObj.parameters.some((p: any) => p.in === paramType)) {
+              // If the parameter type is a schema, use the alias if available
+              const paramSchema = opObj.parameters.find((p: any) => p.in === paramType && p.schema && p.schema.$ref);
+              if (paramSchema && paramSchema.schema && paramSchema.schema.$ref) {
+                const schemaName = paramSchema.schema.$ref.replace('#/components/schemas/', '');
+                if (schemaAliasMap[schemaName]) {
+                  usedAliases.add(schemaAliasMap[schemaName]);
+                  paramKeys.push(`    ${paramType}: ${schemaAliasMap[schemaName]};`);
+                  continue;
+                }
+              }
               paramKeys.push(`    ${paramType}: operations['${operationId}']['parameters']['${paramType}'];`);
             }
           }
@@ -273,7 +299,12 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
           const schema = opObj.requestBody.content['application/json'].schema;
           if (schema.$ref) {
             const schemaRef = schema.$ref.replace('#/components/schemas/', '');
-            requestBodyType = `components["schemas"]["${schemaRef}"]`;
+            if (schemaAliasMap[schemaRef]) {
+              usedAliases.add(schemaAliasMap[schemaRef]);
+              requestBodyType = schemaAliasMap[schemaRef];
+            } else {
+              requestBodyType = `components["schemas"]["${schemaRef}"]`;
+            }
           } else {
             requestBodyType = 'unknown';
           }
@@ -314,6 +345,10 @@ export type ${typeBase}_Parameters = ${typeBase}['parameters'];`);
       }
       lines.push('');
     }
+  }
+  // Emit import for all used aliases
+  if (usedAliases.size > 0) {
+    lines.unshift(`import { ${Array.from(usedAliases).join(', ')} } from './schemas';\n`);
   }
   return lines.join('\n');
 }

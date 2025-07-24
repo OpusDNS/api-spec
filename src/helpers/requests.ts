@@ -9,6 +9,8 @@
 
 import { operations, components } from '../schema';
 
+import { OrganizationCredentialExtra, SignupCreate, ContactSortField, ContactCreate, VerificationType, ZoneSortField, DnsZoneCreate, DnsZoneRrsetsCreate, DomainSortField, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardCreate, EmailForwardBulkDelete, EmailForwardBulkUpdate, EmailForwardUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, TermsOfServiceAccept, UserUpdate, SpiceDbRelationshipUpdate } from './schemas';
+
 /**
  * Request type for GET AuthClientCredentials endpoint
  * 
@@ -30,7 +32,7 @@ export type GET_AuthClientCredentials_V1_Request_Parameters_Query = GET_AuthClie
  * @path /v1/auth/client_credentials
  */
 export type POST_AuthClientCredentials_V1_Request = {
-  requestBody: components["schemas"]["OrganizationCredentialExtra"];
+  requestBody: OrganizationCredentialExtra;
 }
 export type POST_AuthClientCredentials_V1_Request_RequestBody = POST_AuthClientCredentials_V1_Request['requestBody'];
 
@@ -62,7 +64,7 @@ export type POST_AuthLogout_V1_Request = {
  * @path /v1/auth/signup
  */
 export type POST_AuthSignup_V1_Request = {
-  requestBody: components["schemas"]["SignupCreate"];
+  requestBody: SignupCreate;
 }
 export type POST_AuthSignup_V1_Request_RequestBody = POST_AuthSignup_V1_Request['requestBody'];
 
@@ -115,7 +117,7 @@ export type GET_AvailabilityStream_V1_Request_Parameters_Query = GET_Availabilit
  */
 export type GET_Contacts_V1_Request = {
   parameters: {
-    query: operations['get_contacts_v1_contacts_get']['parameters']['query'];
+    query: ContactSortField;
   };
 }
 
@@ -128,7 +130,7 @@ export type GET_Contacts_V1_Request_Parameters_Query = GET_Contacts_V1_Request['
  * @path /v1/contacts
  */
 export type POST_Contacts_V1_Request = {
-  requestBody: components["schemas"]["ContactCreate"];
+  requestBody: ContactCreate;
 }
 export type POST_Contacts_V1_Request_RequestBody = POST_Contacts_V1_Request['requestBody'];
 
@@ -195,7 +197,7 @@ export type GET_ContactsContactIdVerification_V1_Request_Parameters_Path = GET_C
  */
 export type POST_ContactsContactIdVerification_V1_Request = {
   parameters: {
-    query: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['query'];
+    query: VerificationType;
     path: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['path'];
   };
 }
@@ -269,7 +271,7 @@ export type GET_ContactsVerify_V1_Request_Parameters_Query = GET_ContactsVerify_
  */
 export type GET_Dns_V1_Request = {
   parameters: {
-    query: operations['list_zones_v1_dns_get']['parameters']['query'];
+    query: ZoneSortField;
   };
 }
 
@@ -282,7 +284,7 @@ export type GET_Dns_V1_Request_Parameters_Query = GET_Dns_V1_Request['parameters
  * @path /v1/dns
  */
 export type POST_Dns_V1_Request = {
-  requestBody: components["schemas"]["DnsZoneCreate"];
+  requestBody: DnsZoneCreate;
 }
 export type POST_Dns_V1_Request_RequestBody = POST_Dns_V1_Request['requestBody'];
 
@@ -356,7 +358,7 @@ export type PUT_DnsZoneNameRrsets_V1_Request = {
   parameters: {
     path: operations['update_zone_v1_dns__zone_name__rrsets_put']['parameters']['path'];
   };
-  requestBody: components["schemas"]["DnsZoneRrsetsCreate"];
+  requestBody: DnsZoneRrsetsCreate;
 }
 
 export type PUT_DnsZoneNameRrsets_V1_Request_Parameters = PUT_DnsZoneNameRrsets_V1_Request['parameters'];
@@ -390,7 +392,7 @@ export type GET_DomainSearchSuggest_V1_Request_Parameters_Query = GET_DomainSear
  */
 export type GET_Domains_V1_Request = {
   parameters: {
-    query: operations['get_domains_v1_domains_get']['parameters']['query'];
+    query: DomainSortField;
   };
 }
 
@@ -403,7 +405,7 @@ export type GET_Domains_V1_Request_Parameters_Query = GET_Domains_V1_Request['pa
  * @path /v1/domains
  */
 export type POST_Domains_V1_Request = {
-  requestBody: components["schemas"]["DomainCreate"];
+  requestBody: DomainCreate;
 }
 export type POST_Domains_V1_Request_RequestBody = POST_Domains_V1_Request['requestBody'];
 
@@ -461,7 +463,7 @@ export type PATCH_DomainsDomainReference_V1_Request = {
   parameters: {
     path: operations['update_domain_v1_domains__domain_reference__patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["DomainUpdate"];
+  requestBody: DomainUpdate;
 }
 
 export type PATCH_DomainsDomainReference_V1_Request_Parameters = PATCH_DomainsDomainReference_V1_Request['parameters'];
@@ -521,7 +523,7 @@ export type POST_DomainsDomainReferenceRenew_V1_Request = {
   parameters: {
     path: operations['renew_domain_v1_domains__domain_reference__renew_post']['parameters']['path'];
   };
-  requestBody: components["schemas"]["DomainRenewRequest"];
+  requestBody: DomainRenewRequest;
 }
 
 export type POST_DomainsDomainReferenceRenew_V1_Request_Parameters = POST_DomainsDomainReferenceRenew_V1_Request['parameters'];
@@ -548,7 +550,7 @@ export type DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Path = D
  * @path /v1/domains/transfer
  */
 export type POST_DomainsTransfer_V1_Request = {
-  requestBody: components["schemas"]["DomainTransferIn"];
+  requestBody: DomainTransferIn;
 }
 export type POST_DomainsTransfer_V1_Request_RequestBody = POST_DomainsTransfer_V1_Request['requestBody'];
 
@@ -575,7 +577,7 @@ export type GET_EmailForwards_V1_Request_Parameters_Query = GET_EmailForwards_V1
  * @path /v1/email-forwards
  */
 export type POST_EmailForwards_V1_Request = {
-  requestBody: components["schemas"]["EmailForwardCreate"];
+  requestBody: EmailForwardCreate;
 }
 export type POST_EmailForwards_V1_Request_RequestBody = POST_EmailForwards_V1_Request['requestBody'];
 
@@ -585,7 +587,7 @@ export type POST_EmailForwards_V1_Request_RequestBody = POST_EmailForwards_V1_Re
  * @path /v1/email-forwards/bulk-delete
  */
 export type POST_EmailForwardsBulkDelete_V1_Request = {
-  requestBody: components["schemas"]["EmailForwardBulkDelete"];
+  requestBody: EmailForwardBulkDelete;
 }
 export type POST_EmailForwardsBulkDelete_V1_Request_RequestBody = POST_EmailForwardsBulkDelete_V1_Request['requestBody'];
 
@@ -595,7 +597,7 @@ export type POST_EmailForwardsBulkDelete_V1_Request_RequestBody = POST_EmailForw
  * @path /v1/email-forwards/bulk-update
  */
 export type PATCH_EmailForwardsBulkUpdate_V1_Request = {
-  requestBody: components["schemas"]["EmailForwardBulkUpdate"];
+  requestBody: EmailForwardBulkUpdate;
 }
 export type PATCH_EmailForwardsBulkUpdate_V1_Request_RequestBody = PATCH_EmailForwardsBulkUpdate_V1_Request['requestBody'];
 
@@ -636,7 +638,7 @@ export type PATCH_EmailForwardsEmailForwardId_V1_Request = {
   parameters: {
     path: operations['update_email_forward_v1_email_forwards__email_forward_id__patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["EmailForwardUpdate"];
+  requestBody: EmailForwardUpdate;
 }
 
 export type PATCH_EmailForwardsEmailForwardId_V1_Request_Parameters = PATCH_EmailForwardsEmailForwardId_V1_Request['parameters'];
@@ -705,7 +707,7 @@ export type GET_Notifications_V1_Request_Parameters_Query = GET_Notifications_V1
  * @path /v1/notifications
  */
 export type POST_Notifications_V1_Request = {
-  requestBody: components["schemas"]["NotificationCreate"];
+  requestBody: NotificationCreate;
 }
 export type POST_Notifications_V1_Request_RequestBody = POST_Notifications_V1_Request['requestBody'];
 
@@ -748,7 +750,7 @@ export type PUT_NotificationsNotificationId_V1_Request = {
   parameters: {
     path: operations['update_notification_v1_notifications__notification_id__put']['parameters']['path'];
   };
-  requestBody: components["schemas"]["NotificationUpdate"];
+  requestBody: NotificationUpdate;
 }
 
 export type PUT_NotificationsNotificationId_V1_Request_Parameters = PUT_NotificationsNotificationId_V1_Request['parameters'];
@@ -789,7 +791,7 @@ export type GET_Organizations_V1_Request_Parameters_Query = GET_Organizations_V1
  * @path /v1/organizations
  */
 export type POST_Organizations_V1_Request = {
-  requestBody: components["schemas"]["OrganizationCreate"];
+  requestBody: OrganizationCreate;
 }
 export type POST_Organizations_V1_Request_RequestBody = POST_Organizations_V1_Request['requestBody'];
 
@@ -871,7 +873,7 @@ export type GET_OrganizationsIpRestrictions_V1_Request = {
  * @path /v1/organizations/ip-restrictions
  */
 export type POST_OrganizationsIpRestrictions_V1_Request = {
-  requestBody: components["schemas"]["IpRestrictionCreate"];
+  requestBody: IpRestrictionCreate;
 }
 export type POST_OrganizationsIpRestrictions_V1_Request_RequestBody = POST_OrganizationsIpRestrictions_V1_Request['requestBody'];
 
@@ -912,7 +914,7 @@ export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
   parameters: {
     path: operations['update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["IpRestrictionUpdate"];
+  requestBody: IpRestrictionUpdate;
 }
 
 export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters = PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters'];
@@ -956,7 +958,7 @@ export type PATCH_OrganizationsOrganizationId_V1_Request = {
   parameters: {
     path: operations['update_organization_v1_organizations__organization_id__patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["OrganizationUpdate"];
+  requestBody: OrganizationUpdate;
 }
 
 export type PATCH_OrganizationsOrganizationId_V1_Request_Parameters = PATCH_OrganizationsOrganizationId_V1_Request['parameters'];
@@ -972,7 +974,7 @@ export type PATCH_OrganizationsOrganizationIdPlan_V1_Request = {
   parameters: {
     path: operations['change_plan_v1_organizations__organization_id__plan_patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["PlanUpdate"];
+  requestBody: PlanUpdate;
 }
 
 export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_Parameters = PATCH_OrganizationsOrganizationIdPlan_V1_Request['parameters'];
@@ -1007,7 +1009,7 @@ export type GET_OrganizationsUsers_V1_Request_Parameters_Query = GET_Organizatio
  * @path /v1/users
  */
 export type POST_Users_V1_Request = {
-  requestBody: components["schemas"]["UserCreate"];
+  requestBody: UserCreate;
 }
 export type POST_Users_V1_Request_RequestBody = POST_Users_V1_Request['requestBody'];
 
@@ -1017,7 +1019,7 @@ export type POST_Users_V1_Request_RequestBody = POST_Users_V1_Request['requestBo
  * @path /v1/users/accept-tos
  */
 export type POST_UsersAcceptTos_V1_Request = {
-  requestBody: components["schemas"]["TermsOfServiceAccept"];
+  requestBody: TermsOfServiceAccept;
 }
 export type POST_UsersAcceptTos_V1_Request_RequestBody = POST_UsersAcceptTos_V1_Request['requestBody'];
 
@@ -1074,7 +1076,7 @@ export type PATCH_UsersUserId_V1_Request = {
   parameters: {
     path: operations['update_user_v1_users__user_id__patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["UserUpdate"];
+  requestBody: UserUpdate;
 }
 
 export type PATCH_UsersUserId_V1_Request_Parameters = PATCH_UsersUserId_V1_Request['parameters'];
@@ -1118,7 +1120,7 @@ export type PATCH_UsersUserIdRoles_V1_Request = {
   parameters: {
     path: operations['update_user_relations_v1_users__user_id__roles_patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["SpiceDbRelationshipUpdate"];
+  requestBody: SpiceDbRelationshipUpdate;
 }
 
 export type PATCH_UsersUserIdRoles_V1_Request_Parameters = PATCH_UsersUserIdRoles_V1_Request['parameters'];
