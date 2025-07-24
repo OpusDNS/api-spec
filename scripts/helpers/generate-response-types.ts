@@ -173,7 +173,7 @@ function main() {
 
     const typesOutputPath = path.join(
       process.cwd(),
-      'src/types/types.ts',
+      'src/helpers/types.ts',
     );
 
     // Append response data types to the existing file

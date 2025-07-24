@@ -29,7 +29,7 @@ function resolveSchemaRef(ref: string, spec: any): any {
 }
 
 function extractExistingTypes(validSchemas: Set<string>): TypeInfo[] {
-  const typesPath = path.join(process.cwd(), 'src/types/types.ts');
+  const typesPath = path.join(process.cwd(), 'src/helpers/types.ts');
   const typesContent = fs.readFileSync(typesPath, 'utf8');
 
   const types: TypeInfo[] = [];
@@ -203,7 +203,7 @@ function main() {
   }
 
   const keysContent = generateKeysFile(existingTypes, schemas);
-  const outputPath = path.join(process.cwd(), 'src/types/keys.ts');
+  const outputPath = path.join(process.cwd(), 'src/helpers/keys.ts');
   fs.writeFileSync(outputPath, keysContent);
 
   console.log(

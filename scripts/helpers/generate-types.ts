@@ -32,7 +32,7 @@ async function main(): Promise<{
   try {
     const typesFilePath = path.join(
       process.cwd(),
-      'src/types/types.ts',
+      'src/helpers/types.ts',
     );
 
     // Step 0: Create base types file with imports
@@ -60,7 +60,7 @@ async function main(): Promise<{
 
     console.log('✅ All OpusDNS API types generated successfully!');
     console.log('\nGenerated file:');
-    console.log('   📄 src/types/types.ts');
+    console.log('   📄 src/helpers/types.ts');
 
     return {
       responseTypesCount,
