@@ -1,6 +1,6 @@
 /**
  * Auto-generated enums from OpenAPI schema
- * Generated on: 2025-07-18T23:11:55.928Z
+ * Generated on: 2025-07-24T07:50:32.358Z
  */
 
 /**
@@ -236,6 +236,14 @@ export enum ORGANIZATION_CREDENTIAL_STATUS {
 export enum ORGANIZATION_STATUS {
   ACTIVE = "active",
   INACTIVE = "inactive",
+}
+
+/**
+ * PATCH_OP
+ */
+export enum PATCH_OP {
+  UPSERT = "upsert",
+  REMOVE = "remove",
 }
 
 /**

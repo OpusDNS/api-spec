@@ -317,6 +317,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/dns/{zone_name}/records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Patch Zone Records */
+        patch: operations["patch_zone_records_v1_dns__zone_name__records_patch"];
+        trace?: never;
+    };
     "/v1/dns/{zone_name}/rrsets": {
         parameters: {
             query?: never;
@@ -325,13 +342,14 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** Update Zone */
-        put: operations["update_zone_v1_dns__zone_name__rrsets_put"];
+        /** Update Zone Rrsets */
+        put: operations["update_zone_rrsets_v1_dns__zone_name__rrsets_put"];
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /** Patch Zone Rrsets */
+        patch: operations["patch_zone_rrsets_v1_dns__zone_name__rrsets_patch"];
         trace?: never;
     };
     "/v1/domain-search/suggest": {
@@ -1428,6 +1446,11 @@ export interface components {
             /** Rdata */
             rdata: string;
         };
+        /** DnsRecordPatchOp */
+        DnsRecordPatchOp: {
+            op: components["schemas"]["PatchOp"];
+            record: components["schemas"]["DnsRrsetWithOneRecordPatch"];
+        };
         /** DnsRecordResponse */
         DnsRecordResponse: {
             /** Rdata */
@@ -1438,10 +1461,25 @@ export interface components {
             /** Name */
             name: string;
             /** Records */
-            records?: components["schemas"]["DnsRecordCreate"][];
+            records: components["schemas"]["DnsRecordCreate"][];
             /** Ttl */
             ttl: number;
             type: components["schemas"]["DnsRrsetType"];
+        };
+        /** DnsRrsetPatch */
+        DnsRrsetPatch: {
+            /** Name */
+            name: string;
+            /** Records */
+            records: components["schemas"]["DnsRecordCreate"][];
+            /** Ttl */
+            ttl: number;
+            type: components["schemas"]["DnsRrsetType"];
+        };
+        /** DnsRrsetPatchOp */
+        DnsRrsetPatchOp: {
+            op: components["schemas"]["PatchOp"];
+            rrset: components["schemas"]["DnsRrsetPatch"];
         };
         /** DnsRrsetResponse */
         DnsRrsetResponse: {
@@ -1458,6 +1496,16 @@ export interface components {
          * @enum {string}
          */
         DnsRrsetType: "A" | "AAAA" | "ALIAS" | "CAA" | "CNAME" | "DNSKEY" | "DS" | "MX" | "NS" | "PTR" | "TXT" | "SOA" | "SRV";
+        /** DnsRrsetWithOneRecordPatch */
+        DnsRrsetWithOneRecordPatch: {
+            /** Name */
+            name: string;
+            /** Rdata */
+            rdata: string;
+            /** Ttl */
+            ttl: number;
+            type: components["schemas"]["DnsRrsetType"];
+        };
         /** DnsZoneCreate */
         DnsZoneCreate: {
             /** @default disabled */
@@ -1466,6 +1514,11 @@ export interface components {
             name: string;
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetCreate"][];
+        };
+        /** DnsZoneRecordsPatchOps */
+        DnsZoneRecordsPatchOps: {
+            /** Ops */
+            ops: components["schemas"]["DnsRecordPatchOp"][];
         };
         /** DnsZoneResponse */
         DnsZoneResponse: {
@@ -1481,6 +1534,11 @@ export interface components {
         DnsZoneRrsetsCreate: {
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetCreate"][];
+        };
+        /** DnsZoneRrsetsPatchOps */
+        DnsZoneRrsetsPatchOps: {
+            /** Ops */
+            ops: components["schemas"]["DnsRrsetPatchOp"][];
         };
         /**
          * DnssecAlgorithm
@@ -3009,6 +3067,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["User"][];
         };
+        /**
+         * PatchOp
+         * @enum {string}
+         */
+        PatchOp: "upsert" | "remove";
         /**
          * PeriodUnit
          * @enum {string}
@@ -4575,7 +4638,41 @@ export interface operations {
             };
         };
     };
-    update_zone_v1_dns__zone_name__rrsets_put: {
+    patch_zone_records_v1_dns__zone_name__records_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DnsZoneRecordsPatchOps"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_zone_rrsets_v1_dns__zone_name__rrsets_put: {
         parameters: {
             query?: never;
             header?: never;
@@ -4592,13 +4689,45 @@ export interface operations {
         };
         responses: {
             /** @description Successful Response */
-            200: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
+            };
+        };
+    };
+    patch_zone_rrsets_v1_dns__zone_name__rrsets_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DnsZoneRrsetsPatchOps"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {

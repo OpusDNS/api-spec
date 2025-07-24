@@ -657,6 +657,17 @@ components:
       - rdata
       title: DnsRecordCreate
       type: object
+    DnsRecordPatchOp:
+      properties:
+        op:
+          $ref: '#/components/schemas/PatchOp'
+        record:
+          $ref: '#/components/schemas/DnsRrsetWithOneRecordPatch'
+      required:
+      - op
+      - record
+      title: DnsRecordPatchOp
+      type: object
     DnsRecordResponse:
       properties:
         rdata:
@@ -685,7 +696,41 @@ components:
       - name
       - type
       - ttl
+      - records
       title: DnsRrsetCreate
+      type: object
+    DnsRrsetPatch:
+      properties:
+        name:
+          title: Name
+          type: string
+        records:
+          items:
+            $ref: '#/components/schemas/DnsRecordCreate'
+          title: Records
+          type: array
+        ttl:
+          title: Ttl
+          type: integer
+        type:
+          $ref: '#/components/schemas/DnsRrsetType'
+      required:
+      - name
+      - type
+      - ttl
+      - records
+      title: DnsRrsetPatch
+      type: object
+    DnsRrsetPatchOp:
+      properties:
+        op:
+          $ref: '#/components/schemas/PatchOp'
+        rrset:
+          $ref: '#/components/schemas/DnsRrsetPatch'
+      required:
+      - op
+      - rrset
+      title: DnsRrsetPatchOp
       type: object
     DnsRrsetResponse:
       properties:
@@ -725,6 +770,26 @@ components:
       - SRV
       title: DnsRrsetType
       type: string
+    DnsRrsetWithOneRecordPatch:
+      properties:
+        name:
+          title: Name
+          type: string
+        rdata:
+          title: Rdata
+          type: string
+        ttl:
+          title: Ttl
+          type: integer
+        type:
+          $ref: '#/components/schemas/DnsRrsetType'
+      required:
+      - rdata
+      - name
+      - type
+      - ttl
+      title: DnsRrsetWithOneRecordPatch
+      type: object
     DnsZoneCreate:
       properties:
         dnssec_status:
@@ -741,6 +806,17 @@ components:
       required:
       - name
       title: DnsZoneCreate
+      type: object
+    DnsZoneRecordsPatchOps:
+      properties:
+        ops:
+          items:
+            $ref: '#/components/schemas/DnsRecordPatchOp'
+          title: Ops
+          type: array
+      required:
+      - ops
+      title: DnsZoneRecordsPatchOps
       type: object
     DnsZoneResponse:
       properties:
@@ -769,6 +845,17 @@ components:
           title: Rrsets
           type: array
       title: DnsZoneRrsetsCreate
+      type: object
+    DnsZoneRrsetsPatchOps:
+      properties:
+        ops:
+          items:
+            $ref: '#/components/schemas/DnsRrsetPatchOp'
+          title: Ops
+          type: array
+      required:
+      - ops
+      title: DnsZoneRrsetsPatchOps
       type: object
     DnssecAlgorithm:
       enum:
@@ -3059,6 +3146,12 @@ components:
       - pagination
       title: Pagination[User]
       type: object
+    PatchOp:
+      enum:
+      - upsert
+      - remove
+      title: PatchOp
+      type: string
     PeriodUnit:
       enum:
       - y
@@ -3904,7 +3997,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-18-231116
+  version: 2025-07-24-074916
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5268,9 +5361,72 @@ paths:
       summary: Enable Dnssec
       tags:
       - dns
+  /v1/dns/{zone_name}/records:
+    patch:
+      operationId: patch_zone_records_v1_dns__zone_name__records_patch
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DnsZoneRecordsPatchOps'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Patch Zone Records
+      tags:
+      - dns
   /v1/dns/{zone_name}/rrsets:
+    patch:
+      operationId: patch_zone_rrsets_v1_dns__zone_name__rrsets_patch
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DnsZoneRrsetsPatchOps'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Patch Zone Rrsets
+      tags:
+      - dns
     put:
-      operationId: update_zone_v1_dns__zone_name__rrsets_put
+      operationId: update_zone_rrsets_v1_dns__zone_name__rrsets_put
       parameters:
       - description: DNS zone name (trailing dot optional)
         in: path
@@ -5287,10 +5443,7 @@ paths:
               $ref: '#/components/schemas/DnsZoneRrsetsCreate'
         required: true
       responses:
-        '200':
-          content:
-            application/json:
-              schema: {}
+        '204':
           description: Successful Response
         '422':
           content:
@@ -5300,7 +5453,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Zone
+      summary: Update Zone Rrsets
       tags:
       - dns
   /v1/domain-search/suggest:
