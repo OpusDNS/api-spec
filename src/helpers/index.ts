@@ -1,13 +1,19 @@
 /**
- * Index file for OpusDNS API types and constants.
+ * OpusDNS API Type Index
+ *
+ *
+ * - keys: Key constants for API response objects
+ * - requests: Request parameter types for all endpoints
+ * - schemas: Direct type aliases for OpenAPI schemas
+ * - schemas-arrays: Array type aliases for OpenAPI schemas that are arrays
+ * - enums: All enums used in the API
  *
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
 
-export * from './constants';
 export * from './keys';
 export * from './requests';
 export * from './schemas';
-export * from './schema-arrays';
+export * from './schemas-arrays';
 export * from './enums';

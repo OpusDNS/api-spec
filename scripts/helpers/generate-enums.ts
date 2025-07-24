@@ -10,6 +10,7 @@ interface EnumInfo {
   values: Record<string, string | number>;
   description?: string;
   type: 'string' | 'integer';
+  valueDescriptions?: string[];
 }
 
 function convertToUpperCase(name: string): string {
@@ -34,29 +35,16 @@ function extractEnumsFromOpenAPI(): EnumInfo[] {
 
   for (const [name, schemaDef] of Object.entries(schema.components.schemas)) {
     const def = schemaDef as any;
-    
     // Check if it's an enum
     if (def.enum && Array.isArray(def.enum)) {
       const values: Record<string, string | number> = {};
       const enumType = def.type || 'string';
-      
-      def.enum.forEach((value: string | number, index: number) => {
-        // Use x-enum-varnames if available, otherwise generate from value
-        let key: string;
-        if (def['x-enum-varnames'] && def['x-enum-varnames'][index]) {
-          key = def['x-enum-varnames'][index].toUpperCase();
-        } else {
-          // Generate key from value (convert to UPPER_SNAKE_CASE)
-          key = String(value).toUpperCase().replace(/[^A-Z0-9]/g, '_');
-        }
-        values[key] = value;
-      });
-      
       enums.push({
         name: convertToUpperCase(name),
         values,
-        description: def.description || `Auto-generated enum for ${name}`,
-        type: enumType as 'string' | 'integer'
+        description: (def.title ? `${def.title}. ` : '') + (def.description || `Auto-generated enum for ${name}`),
+        type: enumType as 'string' | 'integer',
+        valueDescriptions: def['x-enum-descriptions'] || []
       });
     }
   }
@@ -68,6 +56,8 @@ function generateEnumFile(enums: EnumInfo[]): string {
   let content = `/**
  * Auto-generated enums from OpenAPI specification
  * Generated on: ${new Date().toISOString()}
+ *
+ * Each enum is derived from the OpenAPI schema and includes descriptions for better developer understanding.
  */
 
 `;
@@ -75,29 +65,25 @@ function generateEnumFile(enums: EnumInfo[]): string {
   enums.forEach(enumInfo => {
     if (enumInfo.description) {
       content += `/**
- * ${enumInfo.name}
+ * ${enumInfo.description}
  */
 `;
     }
-    
     if (enumInfo.type === 'string') {
-      // For string enums, use regular enum
       content += `export enum ${enumInfo.name} {\n`;
-      Object.entries(enumInfo.values).forEach(([key, value]) => {
+      Object.entries(enumInfo.values).forEach(([key, value], idx) => {
         const valueStr = typeof value === 'string' ? `"${value}"` : value;
-        content += `  ${key} = ${valueStr},\n`;
+        const valueDesc = enumInfo.valueDescriptions && enumInfo.valueDescriptions[idx] ? ` // ${enumInfo.valueDescriptions[idx]}` : '';
+        content += `  ${key} = ${valueStr},${valueDesc}\n`;
       });
       content += `}\n\n`;
     } else {
-      // For integer enums, use const array with union type (like the old constants.ts)
-      const originalName = enumInfo.name.replace(/_/g, ''); // Remove underscores for const name
+      const originalName = enumInfo.name.replace(/_/g, '');
       const pascalCaseName = originalName.charAt(0).toUpperCase() + originalName.slice(1).toLowerCase();
-      
       content += `export const ${originalName} = [${Object.values(enumInfo.values).join(', ')}] as const;\n\n`;
       content += `export type ${pascalCaseName} = typeof ${originalName}[number];\n\n`;
     }
   });
-
   return content;
 }
 

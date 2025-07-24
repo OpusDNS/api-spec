@@ -291,6 +291,8 @@ function generateResponsesFile(groupedResponses: GroupedResponses, openAPIConten
   const content = `/**
  * Response types for OpusDNS API endpoints.
  *
+ * Each type is derived from the OpenAPI operation and includes endpoint, summary, and response descriptions for better developer understanding.
+ *
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
@@ -301,7 +303,6 @@ ${generateIndividualResponseTypesContent(groupedResponses, openAPIContent)}
 
 ${generateGroupedResponseTypesContent(groupedResponses)}
 `;
-
   return content;
 }
 
