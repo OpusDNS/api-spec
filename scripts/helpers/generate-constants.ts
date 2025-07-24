@@ -102,7 +102,7 @@ function main() {
   try {
     const outputPath = path.join(
       process.cwd(),
-      'src/types/constants.ts',
+      'src/helpers/constants.ts',
     );
 
     console.log('Extracting enums from OpenAPI spec...');

@@ -238,7 +238,7 @@ function main() {
     const openapiContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
     const typesFilePath = path.join(
       process.cwd(),
-      'src/types/types.ts',
+      'src/helpers/types.ts',
     );
 
     console.log('Extracting parameter types from OpenAPI spec...');
