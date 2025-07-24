@@ -167,14 +167,15 @@ function findArrayUsagesInSchemaDts(): ArrayUsage[] {
 }
 
 function generateSchemasArraysContent(arrayUsages: ArrayUsage[]): string {
+  const openAPIContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
+  const spec = yaml.load(openAPIContent) as any;
   const lines: string[] = [];
   lines.push('/**');
   lines.push(' * Array type aliases for OpenAPI schemas.');
+  lines.push(' * Each array type includes a description from the OpenAPI schema for better developer understanding.');
   lines.push(' * This file is auto-generated from the OpenAPI specification.');
   lines.push(' * Do not edit manually.');
   lines.push(' */');
-  lines.push("import { schemas } from './schemas';");
-  lines.push('');
 
   // Track used type names to avoid duplicates
   const usedTypeNames = new Set<string>();
@@ -187,10 +188,12 @@ function generateSchemasArraysContent(arrayUsages: ArrayUsage[]): string {
     }
   });
 
-  // Generate array types
+  // Collect all type names for import
+  const typeNames: string[] = [];
   for (const [schemaName, usage] of uniqueUsages) {
     let typeName = toTypeName(schemaName);
-    
+    // Special case: if typeName is 'Event', use 'EventResponse' instead
+    if (typeName === 'Event') typeName = 'EventResponse';
     // Ensure uniqueness
     const originalTypeName = typeName;
     let i = 2;
@@ -199,11 +202,38 @@ function generateSchemasArraysContent(arrayUsages: ArrayUsage[]): string {
       i++;
     }
     usedTypeNames.add(typeName);
+    typeNames.push(typeName);
+  }
+  // Emit named import for all used types
+  lines.push(`import { ${typeNames.join(', ')} } from './schemas';`);
+  lines.push('');
 
-    // Generate the array type
+  // Now emit the array types with comments
+  usedTypeNames.clear();
+  for (const [schemaName, usage] of uniqueUsages) {
+    let typeName = toTypeName(schemaName);
+    // Special case: if typeName is 'Event', use 'EventResponse' instead
+    if (typeName === 'Event') typeName = 'EventResponse';
+    // Ensure uniqueness
+    const originalTypeName = typeName;
+    let i = 2;
+    while (usedTypeNames.has(typeName)) {
+      typeName = `${originalTypeName}${i}`;
+      i++;
+    }
+    usedTypeNames.add(typeName);
+    let desc = '';
+    if (spec.components && spec.components.schemas && spec.components.schemas[schemaName]) {
+      const sch = spec.components.schemas[schemaName];
+      const title = sch.title ? `${sch.title}. ` : '';
+      const description = sch.description || '';
+      desc = title + description;
+    }
+    if (desc) {
+      lines.push(`/** ${desc} */`);
+    }
     lines.push(`export type ${typeName}Array = ${typeName}[];`);
   }
-
   return lines.join('\n');
 }
 

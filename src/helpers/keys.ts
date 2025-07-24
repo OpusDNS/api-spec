@@ -48,7 +48,7 @@ import { EmailForwardBulkUpdate } from './schemas';
 import { EmailForwardBulkUpdateItem } from './schemas';
 import { EmailForwardCreate } from './schemas';
 import { EmailForwardUpdate } from './schemas';
-import { Event } from './schemas';
+import { EventResponse } from './schemas';
 import { EventSchema } from './schemas';
 import { HTTPValidationError } from './schemas';
 import { IpRestrictionCreate } from './schemas';
@@ -669,12 +669,12 @@ export const EMAIL_FORWARD_UPDATE_KEYS = [
   EMAIL_FORWARD_UPDATE_KEY_TARGET_ADDRESS,
 ] as const;
 
-export const EVENT_KEY_EVENT_DATA = 'event_data' as keyof Event;
-export const EVENT_KEY_EVENT_ID = 'event_id' as keyof Event;
-export const EVENT_KEY_OBJECT_ID = 'object_id' as keyof Event;
-export const EVENT_KEY_OBJECT_TYPE = 'object_type' as keyof Event;
-export const EVENT_KEY_SUBTYPE = 'subtype' as keyof Event;
-export const EVENT_KEY_TYPE = 'type' as keyof Event;
+export const EVENT_KEY_EVENT_DATA = 'event_data' as keyof EventResponse;
+export const EVENT_KEY_EVENT_ID = 'event_id' as keyof EventResponse;
+export const EVENT_KEY_OBJECT_ID = 'object_id' as keyof EventResponse;
+export const EVENT_KEY_OBJECT_TYPE = 'object_type' as keyof EventResponse;
+export const EVENT_KEY_SUBTYPE = 'subtype' as keyof EventResponse;
+export const EVENT_KEY_TYPE = 'type' as keyof EventResponse;
 
 export const EVENT_KEYS = [
   EVENT_KEY_EVENT_DATA,
