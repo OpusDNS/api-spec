@@ -97,6 +97,8 @@ function generateKeysFile(
     '/**',
     ' * Key constants for OpusDNS API response objects.',
     ' *',
+    ' * Each key is derived from the OpenAPI schema property and includes descriptions for better developer understanding.',
+    ' *',
     ' * This file is auto-generated from the OpenAPI specification.',
     ' * Do not edit manually.',
     ' */',
@@ -117,6 +119,10 @@ function generateKeysFile(
 
   // Generate imports for types with properties only
   const imports = typesWithProperties.map((type) => {
+    // Special case: if type.name === 'Event', import 'EventResponse' instead
+    if (type.name === 'Event') {
+      return `import { EventResponse } from './schemas';`;
+    }
     return `import { ${type.name} } from './schemas';`;
   });
 
@@ -139,9 +145,18 @@ function generateKeysFile(
       .replace(/__+/g, '_'); // Replace multiple underscores with single underscore
 
     // Generate individual key constants
-    const keyConstants = Object.keys(properties).map((prop) => {
+    Object.entries(properties).forEach(([prop, propDef]) => {
       const keyName = prop.toUpperCase();
-      return `export const ${typeNameUpper}_KEY_${keyName} = '${prop}' as keyof ${type.name};`;
+      let desc = '';
+      if (propDef && typeof propDef === 'object') {
+        const title = (propDef as any).title ? `${(propDef as any).title}. ` : '';
+        const description = (propDef as any).description || '';
+        desc = title + description;
+      }
+      if (desc) {
+        lines.push(`/** ${desc} */`);
+      }
+      lines.push(`export const ${typeNameUpper}_KEY_${keyName} = '${prop}' as keyof ${type.name};`);
     });
 
     // Generate keys array
@@ -150,7 +165,6 @@ function generateKeysFile(
       return `  ${typeNameUpper}_KEY_${keyName},`;
     });
 
-    lines.push(...keyConstants);
     lines.push('');
     lines.push(`export const ${typeNameUpper}_KEYS = [`);
     lines.push(...keysArray);

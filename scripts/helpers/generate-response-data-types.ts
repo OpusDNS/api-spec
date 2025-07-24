@@ -8,6 +8,7 @@ import { OPEN_API_SCHEMA_PATH } from '../constants';
 interface SchemaInfo {
   name: string;
   title: string;
+  description?: string;
   properties: Record<string, unknown>;
   required?: string[];
   path: string;
@@ -90,6 +91,7 @@ function extractSchemasFromOpenAPI(openAPIContent: string): SchemaInfo[] {
             schemas.push({
               name: schemaName,
               title: schemaObj.title || '',
+              description: schemaObj.description || '',
               properties: schemaObj.properties,
               required: schemaObj.required || [],
               path: pathKey,
@@ -109,6 +111,10 @@ function extractSchemasFromOpenAPI(openAPIContent: string): SchemaInfo[] {
 
 function generateTypeContent(schema: SchemaInfo, typeName: string): string {
   const properties = schema.properties as Record<string, unknown>;
+  let desc = '';
+  if (schema.title || schema.description) {
+    desc = `/** ${(schema.title ? schema.title + '. ' : '') + (schema.description || '')} */\n`;
+  }
 
   // Check if this is a pagination type (name starts with 'Pagination_' and has 'results' property of type 'array')
   const isPaginationType = typeName.startsWith('Pagination_');
@@ -124,11 +130,11 @@ function generateTypeContent(schema: SchemaInfo, typeName: string): string {
     // Find the corresponding response type name
     const responseTypeName = findResponseTypeName(schema.name);
     if (responseTypeName) {
-      return `export type ${resultsTypeName}Array = ${responseTypeName}['results'];`;
+      return `${desc}export type ${resultsTypeName}Array = ${responseTypeName}['results'];`;
     }
 
     // Fallback to direct schema reference if no response type found
-    return `export type ${resultsTypeName}Array = components['schemas']['${schema.name}']['results'];`;
+    return `${desc}export type ${resultsTypeName}Array = components['schemas']['${schema.name}']['results'];`;
   }
 
   // For non-pagination types, check if they have array properties
@@ -141,17 +147,16 @@ function generateTypeContent(schema: SchemaInfo, typeName: string): string {
   );
 
   if (arrayProperties.length > 0) {
-    const typeContent = `export type ${typeName} = components['schemas']['${schema.name}'];`;
     const arrayTypes = arrayProperties
       .map(([propName]) => {
         const arrayTypeName = `${typeName}${propName.charAt(0).toUpperCase() + propName.slice(1)}Array`;
         return `export type ${arrayTypeName} = ${typeName}['${propName}'];`;
       })
       .join('\n');
-    return `${typeContent}\n${arrayTypes}`;
+    return `${desc}export type ${typeName} = components['schemas']['${schema.name}'];\n${arrayTypes}`;
   }
 
-  return `export type ${typeName} = components['schemas']['${schema.name}'];`;
+  return `${desc}export type ${typeName} = components['schemas']['${schema.name}'];`;
 }
 
 // Helper function to find the corresponding response type name for a pagination schema
