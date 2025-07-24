@@ -55,7 +55,7 @@ function main() {
     const pathsContent = generatePathsFile(paths);
     const pathsOutputPath = path.join(
       process.cwd(),
-      'src/types/paths.ts',
+      'src/helpers/paths.ts',
     );
     fs.writeFileSync(pathsOutputPath, pathsContent);
 

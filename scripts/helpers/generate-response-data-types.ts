@@ -209,7 +209,7 @@ function main() {
     const responseTypesContent = generateResponseDataTypesContent(schemas);
     const typesOutputPath = path.join(
       process.cwd(),
-      'src/types/types.ts',
+      'src/helpers/types.ts',
     );
 
     // Append response types to the existing file
