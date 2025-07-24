@@ -1,8 +1,6 @@
 /**
- * Key constants for OpusDNS API response objects.
- *
- * This file is auto-generated from the OpenAPI specification.
- * Do not edit manually.
+ * @deprecated This file is deprecated and will be removed in a future release.
+ * All key constants have moved to src/helpers/keys.ts.  Please update your imports to use @/helpers or @/helpers/enums.
  */
 
 import { Get_AuthClientCredentials_Response_V1 } from './types';
