@@ -1,10 +1,17 @@
 /**
+ * @deprecated This file is deprecated and will be removed in a future release.
+ * All enums and constants have moved to src/helpers/enums.ts. Please update your imports to use @/helpers or @/helpers/enums.
+ */
+/**
  * Auto-generated enums from OpenAPI schema
  * Generated on: 2025-07-25T14:03:33.604Z
  */
 
 /**
  * BULK_OPERATION_STATUS
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum BULK_OPERATION_STATUS {
   SUCCESS = "success",
@@ -13,6 +20,9 @@ export enum BULK_OPERATION_STATUS {
 
 /**
  * CONTACT_SORT_FIELD
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum CONTACT_SORT_FIELD {
   FIRST_NAME = "first_name",
@@ -24,6 +34,9 @@ export enum CONTACT_SORT_FIELD {
 /**
  * CURRENCY
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum CURRENCY {
   USD = "USD",
   EUR = "EUR",
@@ -31,6 +44,9 @@ export enum CURRENCY {
 
 /**
  * DNS_CHANGE_ACTION
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum DNS_CHANGE_ACTION {
   CREATE_ZONE = "create_zone",
@@ -43,6 +59,9 @@ export enum DNS_CHANGE_ACTION {
 
 /**
  * DNS_RRSET_TYPE
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum DNS_RRSET_TYPE {
   A = "A",
@@ -63,19 +82,34 @@ export enum DNS_RRSET_TYPE {
 /**
  * DNSSEC_ALGORITHM
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export const DNSSECALGORITHM = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 23] as const;
 
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export type Dnssecalgorithm = typeof DNSSECALGORITHM[number];
 
 /**
  * DNSSEC_DIGEST_TYPE
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export const DNSSECDIGESTTYPE = [1, 2, 3, 4, 5, 6] as const;
 
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export type Dnssecdigesttype = typeof DNSSECDIGESTTYPE[number];
 
 /**
  * DNSSEC_RECORD_TYPE
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum DNSSEC_RECORD_TYPE {
   DS_DATA = "ds_data",
@@ -85,6 +119,9 @@ export enum DNSSEC_RECORD_TYPE {
 /**
  * DNSSEC_STATUS
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum DNSSEC_STATUS {
   ENABLED = "enabled",
   DISABLED = "disabled",
@@ -92,6 +129,9 @@ export enum DNSSEC_STATUS {
 
 /**
  * DOMAIN_AVAILABILITY_STATUS
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum DOMAIN_AVAILABILITY_STATUS {
   AVAILABLE = "available",
@@ -104,6 +144,9 @@ export enum DOMAIN_AVAILABILITY_STATUS {
 /**
  * DOMAIN_CLIENT_STATUS
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum DOMAIN_CLIENT_STATUS {
   CLIENTTRANSFERPROHIBITED = "clientTransferProhibited",
   CLIENTUPDATEPROHIBITED = "clientUpdateProhibited",
@@ -115,6 +158,9 @@ export enum DOMAIN_CLIENT_STATUS {
 /**
  * DOMAIN_CONTACT_TYPE
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum DOMAIN_CONTACT_TYPE {
   REGISTRANT = "registrant",
   ADMIN = "admin",
@@ -124,6 +170,9 @@ export enum DOMAIN_CONTACT_TYPE {
 
 /**
  * DOMAIN_SORT_FIELD
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum DOMAIN_SORT_FIELD {
   NAME = "name",
@@ -135,6 +184,9 @@ export enum DOMAIN_SORT_FIELD {
 
 /**
  * DOMAIN_STATUS
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum DOMAIN_STATUS {
   OK = "ok",
@@ -166,6 +218,9 @@ export enum DOMAIN_STATUS {
 /**
  * EMAIL_FORWARD_STATUS
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum EMAIL_FORWARD_STATUS {
   ACTIVE = "active",
   INACTIVE = "inactive",
@@ -173,6 +228,9 @@ export enum EMAIL_FORWARD_STATUS {
 
 /**
  * EMAIL_VERIFICATION_STATUS
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum EMAIL_VERIFICATION_STATUS {
   VERIFIED = "verified",
@@ -182,6 +240,9 @@ export enum EMAIL_VERIFICATION_STATUS {
 
 /**
  * EVENT_OBJECT_TYPE
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum EVENT_OBJECT_TYPE {
   DOMAIN = "DOMAIN",
@@ -194,6 +255,9 @@ export enum EVENT_OBJECT_TYPE {
 /**
  * EVENT_SUBTYPE
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum EVENT_SUBTYPE {
   NOTIFICATION = "NOTIFICATION",
   SUCCESS = "SUCCESS",
@@ -203,6 +267,9 @@ export enum EVENT_SUBTYPE {
 
 /**
  * EVENT_TYPE
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum EVENT_TYPE {
   REGISTRATION = "REGISTRATION",
@@ -216,6 +283,9 @@ export enum EVENT_TYPE {
 /**
  * GRANT_TYPE
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum GRANT_TYPE {
   CLIENT_CREDENTIALS = "client_credentials",
   PASSWORD = "password",
@@ -225,6 +295,9 @@ export enum GRANT_TYPE {
 /**
  * ORGANIZATION_CREDENTIAL_STATUS
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum ORGANIZATION_CREDENTIAL_STATUS {
   ACTIVE = "active",
   REVOKED = "revoked",
@@ -232,6 +305,9 @@ export enum ORGANIZATION_CREDENTIAL_STATUS {
 
 /**
  * ORGANIZATION_STATUS
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum ORGANIZATION_STATUS {
   ACTIVE = "active",
@@ -241,6 +317,9 @@ export enum ORGANIZATION_STATUS {
 /**
  * PATCH_OP
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum PATCH_OP {
   UPSERT = "upsert",
   REMOVE = "remove",
@@ -248,6 +327,9 @@ export enum PATCH_OP {
 
 /**
  * PERIOD_UNIT
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum PERIOD_UNIT {
   Y = "y",
@@ -257,6 +339,9 @@ export enum PERIOD_UNIT {
 
 /**
  * PERMISSION
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum PERMISSION {
   ACKNOWLEDGE = "acknowledge",
@@ -296,6 +381,9 @@ export enum PERMISSION {
 /**
  * PLAN_RELATION
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum PLAN_RELATION {
   BASIC_PLAN = "basic_plan",
   ENTERPRISE_PLAN = "enterprise_plan",
@@ -305,6 +393,9 @@ export enum PLAN_RELATION {
 
 /**
  * RELATION
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum RELATION {
   ACCEPTED_TOS = "accepted_tos",
@@ -331,6 +422,9 @@ export enum RELATION {
 /**
  * RENEWAL_MODE
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum RENEWAL_MODE {
   RENEW = "renew",
   EXPIRE = "expire",
@@ -340,6 +434,9 @@ export enum RENEWAL_MODE {
 /**
  * SORT_ORDER
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum SORT_ORDER {
   ASC = "asc",
   DESC = "desc",
@@ -347,6 +444,9 @@ export enum SORT_ORDER {
 
 /**
  * USER_NOTIFICATION_STATUS
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum USER_NOTIFICATION_STATUS {
   READ = "read",
@@ -356,6 +456,9 @@ export enum USER_NOTIFICATION_STATUS {
 /**
  * USER_STATUS
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum USER_STATUS {
   ACTIVE = "active",
   INACTIVE = "inactive",
@@ -364,6 +467,9 @@ export enum USER_STATUS {
 /**
  * VERIFICATION_TYPE
  */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
+ */
 export enum VERIFICATION_TYPE {
   API = "api",
   EMAIL = "email",
@@ -371,6 +477,9 @@ export enum VERIFICATION_TYPE {
 
 /**
  * ZONE_SORT_FIELD
+ */
+/**
+ * @deprecated Use the corresponding type from @/helpers instead.
  */
 export enum ZONE_SORT_FIELD {
   NAME = "name",
