@@ -161,28 +161,6 @@ function extractResponseTypesFromOpenAPI(
   }
 }
 
-function generateGroupedResponseTypesContent(groupedResponses: GroupedResponses): string {
-  let content = '\n/**\n * Grouped response types by endpoint\n */\n\n';
-
-  for (const [pathKey, methods] of Object.entries(groupedResponses)) {
-    const typeName = pathKey.replace(/_/g, '');
-    content += `/**\n * Response types for ${pathKey.replace(/_/g, ' ')}\n */\n`;
-    content += `export type ${typeName}_V1_Responses = {\n`;
-
-    for (const [method, responses] of Object.entries(methods)) {
-      content += `  ${method}: {\n`;
-      for (const [code, schema] of Object.entries(responses)) {
-        content += `    ${code}: components["schemas"]["${schema}"]\n`;
-      }
-      content += `  }\n`;
-    }
-
-    content += `}\n\n`;
-  }
-
-  return content;
-}
-
 // Helper: Build a map of OpenAPI schema names to TypeScript aliases from schemas.ts
 function getSchemaAliasMap(): Record<string, string> {
   const schemasFile = path.join(process.cwd(), 'src/helpers/schemas.ts');
@@ -328,8 +306,6 @@ function generateResponsesFile(groupedResponses: GroupedResponses, openAPIConten
 import { components } from '../schema';
 
 ${generateIndividualResponseTypesContent(groupedResponses, openAPIContent)}
-
-${generateGroupedResponseTypesContent(groupedResponses)}
 `;
   return content;
 }
