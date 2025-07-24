@@ -9,7 +9,7 @@
 
 import { operations, components } from '../schema';
 
-import { OrganizationCredentialExtra, SignupCreate, ContactSortField, ContactCreate, VerificationType, ZoneSortField, DnsZoneCreate, DnsZoneRrsetsCreate, DomainSortField, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardCreate, EmailForwardBulkDelete, EmailForwardBulkUpdate, EmailForwardUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, TermsOfServiceAccept, UserUpdate, SpiceDbRelationshipUpdate } from './schemas';
+import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardCreate, EmailForwardBulkDelete, EmailForwardBulkUpdate, EmailForwardUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, TermsOfServiceAccept, UserUpdate, SpiceDbRelationshipUpdate } from './schemas';
 
 /**
  * Request type for GET AuthClientCredentials endpoint
@@ -22,8 +22,11 @@ export type GET_AuthClientCredentials_V1_Request = {
     query: operations['list_api_keys_v1_auth_client_credentials_get']['parameters']['query'];
   };
 }
-
-export type GET_AuthClientCredentials_V1_Request_Parameters = GET_AuthClientCredentials_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/auth/client_credentials
+ * @path /v1/auth/client_credentials
+ * @param status (query) - Optional status to filter the results
+ */
 export type GET_AuthClientCredentials_V1_Request_Parameters_Query = GET_AuthClientCredentials_V1_Request['parameters']['query'];
 
 /**
@@ -34,6 +37,10 @@ export type GET_AuthClientCredentials_V1_Request_Parameters_Query = GET_AuthClie
 export type POST_AuthClientCredentials_V1_Request = {
   requestBody: OrganizationCredentialExtra;
 }
+/**
+ * Request body for POST /v1/auth/client_credentials
+ * @path /v1/auth/client_credentials
+ */
 export type POST_AuthClientCredentials_V1_Request_RequestBody = POST_AuthClientCredentials_V1_Request['requestBody'];
 
 /**
@@ -46,8 +53,10 @@ export type DELETE_AuthClientCredentialsApiKeyId_V1_Request = {
     path: operations['delete_api_key_v1_auth_client_credentials__api_key_id__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_AuthClientCredentialsApiKeyId_V1_Request_Parameters = DELETE_AuthClientCredentialsApiKeyId_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/auth/client_credentials/{api_key_id}
+ * @path /v1/auth/client_credentials/{api_key_id}
+ */
 export type DELETE_AuthClientCredentialsApiKeyId_V1_Request_Parameters_Path = DELETE_AuthClientCredentialsApiKeyId_V1_Request['parameters']['path'];
 
 /**
@@ -66,6 +75,10 @@ export type POST_AuthLogout_V1_Request = {
 export type POST_AuthSignup_V1_Request = {
   requestBody: SignupCreate;
 }
+/**
+ * Request body for POST /v1/auth/signup
+ * @path /v1/auth/signup
+ */
 export type POST_AuthSignup_V1_Request_RequestBody = POST_AuthSignup_V1_Request['requestBody'];
 
 /**
@@ -89,8 +102,13 @@ export type GET_Availability_V1_Request = {
     query: operations['bulk_availability_v1_availability_get']['parameters']['query'];
   };
 }
+/**
+ * Query parameters for GET /v1/availability
+ * @path /v1/availability
+ * @param domains (query) - 
+Specify one or more domains to check for availability.
 
-export type GET_Availability_V1_Request_Parameters = GET_Availability_V1_Request['parameters'];
+ */
 export type GET_Availability_V1_Request_Parameters_Query = GET_Availability_V1_Request['parameters']['query'];
 
 /**
@@ -106,8 +124,13 @@ export type GET_AvailabilityStream_V1_Request = {
     query: operations['stream_availability_v1_availability_stream_get']['parameters']['query'];
   };
 }
+/**
+ * Query parameters for GET /v1/availability/stream
+ * @path /v1/availability/stream
+ * @param domains (query) - 
+Specify one or more domains to check for availability.
 
-export type GET_AvailabilityStream_V1_Request_Parameters = GET_AvailabilityStream_V1_Request['parameters'];
+ */
 export type GET_AvailabilityStream_V1_Request_Parameters_Query = GET_AvailabilityStream_V1_Request['parameters']['query'];
 
 /**
@@ -117,11 +140,13 @@ export type GET_AvailabilityStream_V1_Request_Parameters_Query = GET_Availabilit
  */
 export type GET_Contacts_V1_Request = {
   parameters: {
-    query: ContactSortField;
+    query: operations['get_contacts_v1_contacts_get']['parameters']['query'];
   };
 }
-
-export type GET_Contacts_V1_Request_Parameters = GET_Contacts_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/contacts
+ * @path /v1/contacts
+ */
 export type GET_Contacts_V1_Request_Parameters_Query = GET_Contacts_V1_Request['parameters']['query'];
 
 /**
@@ -132,6 +157,10 @@ export type GET_Contacts_V1_Request_Parameters_Query = GET_Contacts_V1_Request['
 export type POST_Contacts_V1_Request = {
   requestBody: ContactCreate;
 }
+/**
+ * Request body for POST /v1/contacts
+ * @path /v1/contacts
+ */
 export type POST_Contacts_V1_Request_RequestBody = POST_Contacts_V1_Request['requestBody'];
 
 /**
@@ -144,8 +173,10 @@ export type DELETE_ContactsContactId_V1_Request = {
     path: operations['delete_contact_v1_contacts__contact_id__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_ContactsContactId_V1_Request_Parameters = DELETE_ContactsContactId_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/contacts/{contact_id}
+ * @path /v1/contacts/{contact_id}
+ */
 export type DELETE_ContactsContactId_V1_Request_Parameters_Path = DELETE_ContactsContactId_V1_Request['parameters']['path'];
 
 /**
@@ -158,8 +189,10 @@ export type GET_ContactsContactId_V1_Request = {
     path: operations['get_contact_v1_contacts__contact_id__get']['parameters']['path'];
   };
 }
-
-export type GET_ContactsContactId_V1_Request_Parameters = GET_ContactsContactId_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/contacts/{contact_id}
+ * @path /v1/contacts/{contact_id}
+ */
 export type GET_ContactsContactId_V1_Request_Parameters_Path = GET_ContactsContactId_V1_Request['parameters']['path'];
 
 /**
@@ -172,8 +205,10 @@ export type DELETE_ContactsContactIdVerification_V1_Request = {
     path: operations['cancel_verification_v1_contacts__contact_id__verification_delete']['parameters']['path'];
   };
 }
-
-export type DELETE_ContactsContactIdVerification_V1_Request_Parameters = DELETE_ContactsContactIdVerification_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/contacts/{contact_id}/verification
+ * @path /v1/contacts/{contact_id}/verification
+ */
 export type DELETE_ContactsContactIdVerification_V1_Request_Parameters_Path = DELETE_ContactsContactIdVerification_V1_Request['parameters']['path'];
 
 /**
@@ -186,8 +221,10 @@ export type GET_ContactsContactIdVerification_V1_Request = {
     path: operations['get_verification_status_v1_contacts__contact_id__verification_get']['parameters']['path'];
   };
 }
-
-export type GET_ContactsContactIdVerification_V1_Request_Parameters = GET_ContactsContactIdVerification_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/contacts/{contact_id}/verification
+ * @path /v1/contacts/{contact_id}/verification
+ */
 export type GET_ContactsContactIdVerification_V1_Request_Parameters_Path = GET_ContactsContactIdVerification_V1_Request['parameters']['path'];
 
 /**
@@ -197,13 +234,19 @@ export type GET_ContactsContactIdVerification_V1_Request_Parameters_Path = GET_C
  */
 export type POST_ContactsContactIdVerification_V1_Request = {
   parameters: {
-    query: VerificationType;
+    query: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['query'];
     path: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['path'];
   };
 }
-
-export type POST_ContactsContactIdVerification_V1_Request_Parameters = POST_ContactsContactIdVerification_V1_Request['parameters'];
+/**
+ * Query parameters for POST /v1/contacts/{contact_id}/verification
+ * @path /v1/contacts/{contact_id}/verification
+ */
 export type POST_ContactsContactIdVerification_V1_Request_Parameters_Query = POST_ContactsContactIdVerification_V1_Request['parameters']['query'];
+/**
+ * Path parameters for POST /v1/contacts/{contact_id}/verification
+ * @path /v1/contacts/{contact_id}/verification
+ */
 export type POST_ContactsContactIdVerification_V1_Request_Parameters_Path = POST_ContactsContactIdVerification_V1_Request['parameters']['path'];
 
 /**
@@ -217,9 +260,15 @@ export type PUT_ContactsContactIdVerification_V1_Request = {
     path: operations['update_verification_v1_contacts__contact_id__verification_put']['parameters']['path'];
   };
 }
-
-export type PUT_ContactsContactIdVerification_V1_Request_Parameters = PUT_ContactsContactIdVerification_V1_Request['parameters'];
+/**
+ * Query parameters for PUT /v1/contacts/{contact_id}/verification
+ * @path /v1/contacts/{contact_id}/verification
+ */
 export type PUT_ContactsContactIdVerification_V1_Request_Parameters_Query = PUT_ContactsContactIdVerification_V1_Request['parameters']['query'];
+/**
+ * Path parameters for PUT /v1/contacts/{contact_id}/verification
+ * @path /v1/contacts/{contact_id}/verification
+ */
 export type PUT_ContactsContactIdVerification_V1_Request_Parameters_Path = PUT_ContactsContactIdVerification_V1_Request['parameters']['path'];
 
 /**
@@ -232,8 +281,10 @@ export type GET_ContactsVerification_V1_Request = {
     query: operations['get_verification_by_token_v1_contacts_verification_get']['parameters']['query'];
   };
 }
-
-export type GET_ContactsVerification_V1_Request_Parameters = GET_ContactsVerification_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/contacts/verification
+ * @path /v1/contacts/verification
+ */
 export type GET_ContactsVerification_V1_Request_Parameters_Query = GET_ContactsVerification_V1_Request['parameters']['query'];
 
 /**
@@ -246,8 +297,10 @@ export type PUT_ContactsVerification_V1_Request = {
     query: operations['update_verification_by_token_v1_contacts_verification_put']['parameters']['query'];
   };
 }
-
-export type PUT_ContactsVerification_V1_Request_Parameters = PUT_ContactsVerification_V1_Request['parameters'];
+/**
+ * Query parameters for PUT /v1/contacts/verification
+ * @path /v1/contacts/verification
+ */
 export type PUT_ContactsVerification_V1_Request_Parameters_Query = PUT_ContactsVerification_V1_Request['parameters']['query'];
 
 /**
@@ -260,8 +313,10 @@ export type GET_ContactsVerify_V1_Request = {
     query: operations['email_verify_contact_v1_contacts_verify_get']['parameters']['query'];
   };
 }
-
-export type GET_ContactsVerify_V1_Request_Parameters = GET_ContactsVerify_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/contacts/verify
+ * @path /v1/contacts/verify
+ */
 export type GET_ContactsVerify_V1_Request_Parameters_Query = GET_ContactsVerify_V1_Request['parameters']['query'];
 
 /**
@@ -271,11 +326,13 @@ export type GET_ContactsVerify_V1_Request_Parameters_Query = GET_ContactsVerify_
  */
 export type GET_Dns_V1_Request = {
   parameters: {
-    query: ZoneSortField;
+    query: operations['list_zones_v1_dns_get']['parameters']['query'];
   };
 }
-
-export type GET_Dns_V1_Request_Parameters = GET_Dns_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/dns
+ * @path /v1/dns
+ */
 export type GET_Dns_V1_Request_Parameters_Query = GET_Dns_V1_Request['parameters']['query'];
 
 /**
@@ -286,6 +343,10 @@ export type GET_Dns_V1_Request_Parameters_Query = GET_Dns_V1_Request['parameters
 export type POST_Dns_V1_Request = {
   requestBody: DnsZoneCreate;
 }
+/**
+ * Request body for POST /v1/dns
+ * @path /v1/dns
+ */
 export type POST_Dns_V1_Request_RequestBody = POST_Dns_V1_Request['requestBody'];
 
 /**
@@ -299,8 +360,11 @@ export type DELETE_DnsZoneName_V1_Request = {
     path: operations['delete_zone_v1_dns__zone_name__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_DnsZoneName_V1_Request_Parameters = DELETE_DnsZoneName_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/dns/{zone_name}
+ * @path /v1/dns/{zone_name}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ */
 export type DELETE_DnsZoneName_V1_Request_Parameters_Path = DELETE_DnsZoneName_V1_Request['parameters']['path'];
 
 /**
@@ -314,8 +378,11 @@ export type GET_DnsZoneName_V1_Request = {
     path: operations['get_zone_v1_dns__zone_name__get']['parameters']['path'];
   };
 }
-
-export type GET_DnsZoneName_V1_Request_Parameters = GET_DnsZoneName_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/dns/{zone_name}
+ * @path /v1/dns/{zone_name}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ */
 export type GET_DnsZoneName_V1_Request_Parameters_Path = GET_DnsZoneName_V1_Request['parameters']['path'];
 
 /**
@@ -329,8 +396,11 @@ export type POST_DnsZoneNameDnssecDisable_V1_Request = {
     path: operations['disable_dnssec_v1_dns__zone_name__dnssec_disable_post']['parameters']['path'];
   };
 }
-
-export type POST_DnsZoneNameDnssecDisable_V1_Request_Parameters = POST_DnsZoneNameDnssecDisable_V1_Request['parameters'];
+/**
+ * Path parameters for POST /v1/dns/{zone_name}/dnssec/disable
+ * @path /v1/dns/{zone_name}/dnssec/disable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ */
 export type POST_DnsZoneNameDnssecDisable_V1_Request_Parameters_Path = POST_DnsZoneNameDnssecDisable_V1_Request['parameters']['path'];
 
 /**
@@ -344,8 +414,11 @@ export type POST_DnsZoneNameDnssecEnable_V1_Request = {
     path: operations['enable_dnssec_v1_dns__zone_name__dnssec_enable_post']['parameters']['path'];
   };
 }
-
-export type POST_DnsZoneNameDnssecEnable_V1_Request_Parameters = POST_DnsZoneNameDnssecEnable_V1_Request['parameters'];
+/**
+ * Path parameters for POST /v1/dns/{zone_name}/dnssec/enable
+ * @path /v1/dns/{zone_name}/dnssec/enable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ */
 export type POST_DnsZoneNameDnssecEnable_V1_Request_Parameters_Path = POST_DnsZoneNameDnssecEnable_V1_Request['parameters']['path'];
 
 /**
@@ -360,9 +433,16 @@ export type PUT_DnsZoneNameRrsets_V1_Request = {
   };
   requestBody: DnsZoneRrsetsCreate;
 }
-
-export type PUT_DnsZoneNameRrsets_V1_Request_Parameters = PUT_DnsZoneNameRrsets_V1_Request['parameters'];
+/**
+ * Path parameters for PUT /v1/dns/{zone_name}/rrsets
+ * @path /v1/dns/{zone_name}/rrsets
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ */
 export type PUT_DnsZoneNameRrsets_V1_Request_Parameters_Path = PUT_DnsZoneNameRrsets_V1_Request['parameters']['path'];
+/**
+ * Request body for PUT /v1/dns/{zone_name}/rrsets
+ * @path /v1/dns/{zone_name}/rrsets
+ */
 export type PUT_DnsZoneNameRrsets_V1_Request_RequestBody = PUT_DnsZoneNameRrsets_V1_Request['requestBody'];
 
 /**
@@ -381,8 +461,16 @@ export type GET_DomainSearchSuggest_V1_Request = {
     query: operations['suggest_v1_domain_search_suggest_get']['parameters']['query'];
   };
 }
+/**
+ * Query parameters for GET /v1/domain-search/suggest
+ * @path /v1/domain-search/suggest
+ * @param query (query) - The primary keyword or phrase for the domain search
+ * @param tlds (query) - 
+Specify one or more TLDs to include in the search.
 
-export type GET_DomainSearchSuggest_V1_Request_Parameters = GET_DomainSearchSuggest_V1_Request['parameters'];
+ * @param limit (query) - The maximum number of domain suggestions to return
+ * @param premium (query) - Whether to include premium domains in the suggestions
+ */
 export type GET_DomainSearchSuggest_V1_Request_Parameters_Query = GET_DomainSearchSuggest_V1_Request['parameters']['query'];
 
 /**
@@ -392,11 +480,13 @@ export type GET_DomainSearchSuggest_V1_Request_Parameters_Query = GET_DomainSear
  */
 export type GET_Domains_V1_Request = {
   parameters: {
-    query: DomainSortField;
+    query: operations['get_domains_v1_domains_get']['parameters']['query'];
   };
 }
-
-export type GET_Domains_V1_Request_Parameters = GET_Domains_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/domains
+ * @path /v1/domains
+ */
 export type GET_Domains_V1_Request_Parameters_Query = GET_Domains_V1_Request['parameters']['query'];
 
 /**
@@ -407,6 +497,10 @@ export type GET_Domains_V1_Request_Parameters_Query = GET_Domains_V1_Request['pa
 export type POST_Domains_V1_Request = {
   requestBody: DomainCreate;
 }
+/**
+ * Request body for POST /v1/domains
+ * @path /v1/domains
+ */
 export type POST_Domains_V1_Request_RequestBody = POST_Domains_V1_Request['requestBody'];
 
 /**
@@ -422,8 +516,13 @@ export type GET_DomainsCheck_V1_Request = {
     query: operations['epp_check_domain_v1_domains_check_get']['parameters']['query'];
   };
 }
+/**
+ * Query parameters for GET /v1/domains/check
+ * @path /v1/domains/check
+ * @param domains (query) - 
+Specify one or more domains to check for availability.
 
-export type GET_DomainsCheck_V1_Request_Parameters = GET_DomainsCheck_V1_Request['parameters'];
+ */
 export type GET_DomainsCheck_V1_Request_Parameters_Query = GET_DomainsCheck_V1_Request['parameters']['query'];
 
 /**
@@ -436,8 +535,10 @@ export type DELETE_DomainsDomainReference_V1_Request = {
     path: operations['delete_domain_v1_domains__domain_reference__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_DomainsDomainReference_V1_Request_Parameters = DELETE_DomainsDomainReference_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/domains/{domain_reference}
+ * @path /v1/domains/{domain_reference}
+ */
 export type DELETE_DomainsDomainReference_V1_Request_Parameters_Path = DELETE_DomainsDomainReference_V1_Request['parameters']['path'];
 
 /**
@@ -450,8 +551,10 @@ export type GET_DomainsDomainReference_V1_Request = {
     path: operations['get_domain_v1_domains__domain_reference__get']['parameters']['path'];
   };
 }
-
-export type GET_DomainsDomainReference_V1_Request_Parameters = GET_DomainsDomainReference_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/domains/{domain_reference}
+ * @path /v1/domains/{domain_reference}
+ */
 export type GET_DomainsDomainReference_V1_Request_Parameters_Path = GET_DomainsDomainReference_V1_Request['parameters']['path'];
 
 /**
@@ -465,9 +568,15 @@ export type PATCH_DomainsDomainReference_V1_Request = {
   };
   requestBody: DomainUpdate;
 }
-
-export type PATCH_DomainsDomainReference_V1_Request_Parameters = PATCH_DomainsDomainReference_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/domains/{domain_reference}
+ * @path /v1/domains/{domain_reference}
+ */
 export type PATCH_DomainsDomainReference_V1_Request_Parameters_Path = PATCH_DomainsDomainReference_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/domains/{domain_reference}
+ * @path /v1/domains/{domain_reference}
+ */
 export type PATCH_DomainsDomainReference_V1_Request_RequestBody = PATCH_DomainsDomainReference_V1_Request['requestBody'];
 
 /**
@@ -480,8 +589,10 @@ export type DELETE_DomainsDomainReferenceDnssec_V1_Request = {
     path: operations['delete_dnssec_v1_domains__domain_reference__dnssec_delete']['parameters']['path'];
   };
 }
-
-export type DELETE_DomainsDomainReferenceDnssec_V1_Request_Parameters = DELETE_DomainsDomainReferenceDnssec_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/domains/{domain_reference}/dnssec
+ * @path /v1/domains/{domain_reference}/dnssec
+ */
 export type DELETE_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = DELETE_DomainsDomainReferenceDnssec_V1_Request['parameters']['path'];
 
 /**
@@ -494,8 +605,10 @@ export type GET_DomainsDomainReferenceDnssec_V1_Request = {
     path: operations['get_dnssec_v1_domains__domain_reference__dnssec_get']['parameters']['path'];
   };
 }
-
-export type GET_DomainsDomainReferenceDnssec_V1_Request_Parameters = GET_DomainsDomainReferenceDnssec_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/domains/{domain_reference}/dnssec
+ * @path /v1/domains/{domain_reference}/dnssec
+ */
 export type GET_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = GET_DomainsDomainReferenceDnssec_V1_Request['parameters']['path'];
 
 /**
@@ -507,11 +620,17 @@ export type PUT_DomainsDomainReferenceDnssec_V1_Request = {
   parameters: {
     path: operations['create_or_update_dnssec_v1_domains__domain_reference__dnssec_put']['parameters']['path'];
   };
-  requestBody: unknown;
+  requestBody: components["schemas"]["object"];
 }
-
-export type PUT_DomainsDomainReferenceDnssec_V1_Request_Parameters = PUT_DomainsDomainReferenceDnssec_V1_Request['parameters'];
+/**
+ * Path parameters for PUT /v1/domains/{domain_reference}/dnssec
+ * @path /v1/domains/{domain_reference}/dnssec
+ */
 export type PUT_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = PUT_DomainsDomainReferenceDnssec_V1_Request['parameters']['path'];
+/**
+ * Request body for PUT /v1/domains/{domain_reference}/dnssec
+ * @path /v1/domains/{domain_reference}/dnssec
+ */
 export type PUT_DomainsDomainReferenceDnssec_V1_Request_RequestBody = PUT_DomainsDomainReferenceDnssec_V1_Request['requestBody'];
 
 /**
@@ -525,9 +644,15 @@ export type POST_DomainsDomainReferenceRenew_V1_Request = {
   };
   requestBody: DomainRenewRequest;
 }
-
-export type POST_DomainsDomainReferenceRenew_V1_Request_Parameters = POST_DomainsDomainReferenceRenew_V1_Request['parameters'];
+/**
+ * Path parameters for POST /v1/domains/{domain_reference}/renew
+ * @path /v1/domains/{domain_reference}/renew
+ */
 export type POST_DomainsDomainReferenceRenew_V1_Request_Parameters_Path = POST_DomainsDomainReferenceRenew_V1_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/domains/{domain_reference}/renew
+ * @path /v1/domains/{domain_reference}/renew
+ */
 export type POST_DomainsDomainReferenceRenew_V1_Request_RequestBody = POST_DomainsDomainReferenceRenew_V1_Request['requestBody'];
 
 /**
@@ -540,8 +665,10 @@ export type DELETE_DomainsDomainReferenceTransfer_V1_Request = {
     path: operations['cancel_domain_transfer_v1_domains__domain_reference__transfer_delete']['parameters']['path'];
   };
 }
-
-export type DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters = DELETE_DomainsDomainReferenceTransfer_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/domains/{domain_reference}/transfer
+ * @path /v1/domains/{domain_reference}/transfer
+ */
 export type DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Path = DELETE_DomainsDomainReferenceTransfer_V1_Request['parameters']['path'];
 
 /**
@@ -552,6 +679,10 @@ export type DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Path = D
 export type POST_DomainsTransfer_V1_Request = {
   requestBody: DomainTransferIn;
 }
+/**
+ * Request body for POST /v1/domains/transfer
+ * @path /v1/domains/transfer
+ */
 export type POST_DomainsTransfer_V1_Request_RequestBody = POST_DomainsTransfer_V1_Request['requestBody'];
 
 /**
@@ -567,8 +698,13 @@ export type GET_EmailForwards_V1_Request = {
     query: operations['list_email_forwards_v1_email_forwards_get']['parameters']['query'];
   };
 }
-
-export type GET_EmailForwards_V1_Request_Parameters = GET_EmailForwards_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/email-forwards
+ * @path /v1/email-forwards
+ * @param status (query) - Optional status to filter the results
+ * @param source_address (query) - Optional source address to filter the results
+ * @param target_address (query) - Optional target address to filter the results
+ */
 export type GET_EmailForwards_V1_Request_Parameters_Query = GET_EmailForwards_V1_Request['parameters']['query'];
 
 /**
@@ -579,6 +715,10 @@ export type GET_EmailForwards_V1_Request_Parameters_Query = GET_EmailForwards_V1
 export type POST_EmailForwards_V1_Request = {
   requestBody: EmailForwardCreate;
 }
+/**
+ * Request body for POST /v1/email-forwards
+ * @path /v1/email-forwards
+ */
 export type POST_EmailForwards_V1_Request_RequestBody = POST_EmailForwards_V1_Request['requestBody'];
 
 /**
@@ -589,6 +729,10 @@ export type POST_EmailForwards_V1_Request_RequestBody = POST_EmailForwards_V1_Re
 export type POST_EmailForwardsBulkDelete_V1_Request = {
   requestBody: EmailForwardBulkDelete;
 }
+/**
+ * Request body for POST /v1/email-forwards/bulk-delete
+ * @path /v1/email-forwards/bulk-delete
+ */
 export type POST_EmailForwardsBulkDelete_V1_Request_RequestBody = POST_EmailForwardsBulkDelete_V1_Request['requestBody'];
 
 /**
@@ -599,6 +743,10 @@ export type POST_EmailForwardsBulkDelete_V1_Request_RequestBody = POST_EmailForw
 export type PATCH_EmailForwardsBulkUpdate_V1_Request = {
   requestBody: EmailForwardBulkUpdate;
 }
+/**
+ * Request body for PATCH /v1/email-forwards/bulk-update
+ * @path /v1/email-forwards/bulk-update
+ */
 export type PATCH_EmailForwardsBulkUpdate_V1_Request_RequestBody = PATCH_EmailForwardsBulkUpdate_V1_Request['requestBody'];
 
 /**
@@ -611,8 +759,10 @@ export type DELETE_EmailForwardsEmailForwardId_V1_Request = {
     path: operations['delete_email_forward_v1_email_forwards__email_forward_id__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_EmailForwardsEmailForwardId_V1_Request_Parameters = DELETE_EmailForwardsEmailForwardId_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{email_forward_id}
+ */
 export type DELETE_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = DELETE_EmailForwardsEmailForwardId_V1_Request['parameters']['path'];
 
 /**
@@ -625,8 +775,10 @@ export type GET_EmailForwardsEmailForwardId_V1_Request = {
     path: operations['get_email_forward_v1_email_forwards__email_forward_id__get']['parameters']['path'];
   };
 }
-
-export type GET_EmailForwardsEmailForwardId_V1_Request_Parameters = GET_EmailForwardsEmailForwardId_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{email_forward_id}
+ */
 export type GET_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = GET_EmailForwardsEmailForwardId_V1_Request['parameters']['path'];
 
 /**
@@ -640,9 +792,15 @@ export type PATCH_EmailForwardsEmailForwardId_V1_Request = {
   };
   requestBody: EmailForwardUpdate;
 }
-
-export type PATCH_EmailForwardsEmailForwardId_V1_Request_Parameters = PATCH_EmailForwardsEmailForwardId_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{email_forward_id}
+ */
 export type PATCH_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = PATCH_EmailForwardsEmailForwardId_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{email_forward_id}
+ */
 export type PATCH_EmailForwardsEmailForwardId_V1_Request_RequestBody = PATCH_EmailForwardsEmailForwardId_V1_Request['requestBody'];
 
 /**
@@ -655,8 +813,10 @@ export type GET_Event_V1_Request = {
     query: operations['get_events_v1_event_get']['parameters']['query'];
   };
 }
-
-export type GET_Event_V1_Request_Parameters = GET_Event_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/event
+ * @path /v1/event
+ */
 export type GET_Event_V1_Request_Parameters_Query = GET_Event_V1_Request['parameters']['query'];
 
 /**
@@ -669,8 +829,10 @@ export type GET_EventEventId_V1_Request = {
     path: operations['get_event_v1_event__event_id__get']['parameters']['path'];
   };
 }
-
-export type GET_EventEventId_V1_Request_Parameters = GET_EventEventId_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/event/{event_id}
+ * @path /v1/event/{event_id}
+ */
 export type GET_EventEventId_V1_Request_Parameters_Path = GET_EventEventId_V1_Request['parameters']['path'];
 
 /**
@@ -683,8 +845,10 @@ export type PATCH_EventEventId_V1_Request = {
     path: operations['acknowledge_event_v1_event__event_id__patch']['parameters']['path'];
   };
 }
-
-export type PATCH_EventEventId_V1_Request_Parameters = PATCH_EventEventId_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/event/{event_id}
+ * @path /v1/event/{event_id}
+ */
 export type PATCH_EventEventId_V1_Request_Parameters_Path = PATCH_EventEventId_V1_Request['parameters']['path'];
 
 /**
@@ -697,8 +861,10 @@ export type GET_Notifications_V1_Request = {
     query: operations['list_notifications_v1_notifications_get']['parameters']['query'];
   };
 }
-
-export type GET_Notifications_V1_Request_Parameters = GET_Notifications_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/notifications
+ * @path /v1/notifications
+ */
 export type GET_Notifications_V1_Request_Parameters_Query = GET_Notifications_V1_Request['parameters']['query'];
 
 /**
@@ -709,6 +875,10 @@ export type GET_Notifications_V1_Request_Parameters_Query = GET_Notifications_V1
 export type POST_Notifications_V1_Request = {
   requestBody: NotificationCreate;
 }
+/**
+ * Request body for POST /v1/notifications
+ * @path /v1/notifications
+ */
 export type POST_Notifications_V1_Request_RequestBody = POST_Notifications_V1_Request['requestBody'];
 
 /**
@@ -721,8 +891,10 @@ export type DELETE_NotificationsNotificationId_V1_Request = {
     path: operations['delete_notification_v1_notifications__notification_id__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_NotificationsNotificationId_V1_Request_Parameters = DELETE_NotificationsNotificationId_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/notifications/{notification_id}
+ * @path /v1/notifications/{notification_id}
+ */
 export type DELETE_NotificationsNotificationId_V1_Request_Parameters_Path = DELETE_NotificationsNotificationId_V1_Request['parameters']['path'];
 
 /**
@@ -736,9 +908,15 @@ export type GET_NotificationsNotificationId_V1_Request = {
     path: operations['get_notification_v1_notifications__notification_id__get']['parameters']['path'];
   };
 }
-
-export type GET_NotificationsNotificationId_V1_Request_Parameters = GET_NotificationsNotificationId_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/notifications/{notification_id}
+ * @path /v1/notifications/{notification_id}
+ */
 export type GET_NotificationsNotificationId_V1_Request_Parameters_Query = GET_NotificationsNotificationId_V1_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/notifications/{notification_id}
+ * @path /v1/notifications/{notification_id}
+ */
 export type GET_NotificationsNotificationId_V1_Request_Parameters_Path = GET_NotificationsNotificationId_V1_Request['parameters']['path'];
 
 /**
@@ -752,9 +930,15 @@ export type PUT_NotificationsNotificationId_V1_Request = {
   };
   requestBody: NotificationUpdate;
 }
-
-export type PUT_NotificationsNotificationId_V1_Request_Parameters = PUT_NotificationsNotificationId_V1_Request['parameters'];
+/**
+ * Path parameters for PUT /v1/notifications/{notification_id}
+ * @path /v1/notifications/{notification_id}
+ */
 export type PUT_NotificationsNotificationId_V1_Request_Parameters_Path = PUT_NotificationsNotificationId_V1_Request['parameters']['path'];
+/**
+ * Request body for PUT /v1/notifications/{notification_id}
+ * @path /v1/notifications/{notification_id}
+ */
 export type PUT_NotificationsNotificationId_V1_Request_RequestBody = PUT_NotificationsNotificationId_V1_Request['requestBody'];
 
 /**
@@ -767,8 +951,10 @@ export type PATCH_NotificationsNotificationIdRead_V1_Request = {
     path: operations['update_notification_read_v1_notifications__notification_id__read_patch']['parameters']['path'];
   };
 }
-
-export type PATCH_NotificationsNotificationIdRead_V1_Request_Parameters = PATCH_NotificationsNotificationIdRead_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/notifications/{notification_id}/read
+ * @path /v1/notifications/{notification_id}/read
+ */
 export type PATCH_NotificationsNotificationIdRead_V1_Request_Parameters_Path = PATCH_NotificationsNotificationIdRead_V1_Request['parameters']['path'];
 
 /**
@@ -781,8 +967,10 @@ export type GET_Organizations_V1_Request = {
     query: operations['list_organizations_v1_organizations_get']['parameters']['query'];
   };
 }
-
-export type GET_Organizations_V1_Request_Parameters = GET_Organizations_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/organizations
+ * @path /v1/organizations
+ */
 export type GET_Organizations_V1_Request_Parameters_Query = GET_Organizations_V1_Request['parameters']['query'];
 
 /**
@@ -793,6 +981,10 @@ export type GET_Organizations_V1_Request_Parameters_Query = GET_Organizations_V1
 export type POST_Organizations_V1_Request = {
   requestBody: OrganizationCreate;
 }
+/**
+ * Request body for POST /v1/organizations
+ * @path /v1/organizations
+ */
 export type POST_Organizations_V1_Request_RequestBody = POST_Organizations_V1_Request['requestBody'];
 
 /**
@@ -806,8 +998,11 @@ export type GET_OrganizationsAttributes_V1_Request = {
     query: operations['get_attributes_v1_organizations_attributes_get']['parameters']['query'];
   };
 }
-
-export type GET_OrganizationsAttributes_V1_Request_Parameters = GET_OrganizationsAttributes_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/organizations/attributes
+ * @path /v1/organizations/attributes
+ * @param keys (query) - Optional list of attribute keys to filter
+ */
 export type GET_OrganizationsAttributes_V1_Request_Parameters_Query = GET_OrganizationsAttributes_V1_Request['parameters']['query'];
 
 /**
@@ -819,11 +1014,17 @@ export type PATCH_OrganizationsAttributes_V1_Request = {
   parameters: {
     query: operations['update_attributes_v1_organizations_attributes_patch']['parameters']['query'];
   };
-  requestBody: unknown;
+  requestBody: components["schemas"]["object"];
 }
-
-export type PATCH_OrganizationsAttributes_V1_Request_Parameters = PATCH_OrganizationsAttributes_V1_Request['parameters'];
+/**
+ * Query parameters for PATCH /v1/organizations/attributes
+ * @path /v1/organizations/attributes
+ */
 export type PATCH_OrganizationsAttributes_V1_Request_Parameters_Query = PATCH_OrganizationsAttributes_V1_Request['parameters']['query'];
+/**
+ * Request body for PATCH /v1/organizations/attributes
+ * @path /v1/organizations/attributes
+ */
 export type PATCH_OrganizationsAttributes_V1_Request_RequestBody = PATCH_OrganizationsAttributes_V1_Request['requestBody'];
 
 /**
@@ -838,9 +1039,16 @@ export type GET_OrganizationsAttributesOrganizationId_V1_Request = {
     path: operations['get_attributes_v1_organizations_attributes__organization_id__get']['parameters']['path'];
   };
 }
-
-export type GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters = GET_OrganizationsAttributesOrganizationId_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/organizations/attributes/{organization_id}
+ * @path /v1/organizations/attributes/{organization_id}
+ * @param keys (query) - Optional list of attribute keys to filter
+ */
 export type GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Query = GET_OrganizationsAttributesOrganizationId_V1_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/organizations/attributes/{organization_id}
+ * @path /v1/organizations/attributes/{organization_id}
+ */
 export type GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Path = GET_OrganizationsAttributesOrganizationId_V1_Request['parameters']['path'];
 
 /**
@@ -852,11 +1060,17 @@ export type PATCH_OrganizationsAttributesOrganizationId_V1_Request = {
   parameters: {
     path: operations['update_attributes_v1_organizations_attributes__organization_id__patch']['parameters']['path'];
   };
-  requestBody: unknown;
+  requestBody: components["schemas"]["object"];
 }
-
-export type PATCH_OrganizationsAttributesOrganizationId_V1_Request_Parameters = PATCH_OrganizationsAttributesOrganizationId_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/organizations/attributes/{organization_id}
+ * @path /v1/organizations/attributes/{organization_id}
+ */
 export type PATCH_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Path = PATCH_OrganizationsAttributesOrganizationId_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/organizations/attributes/{organization_id}
+ * @path /v1/organizations/attributes/{organization_id}
+ */
 export type PATCH_OrganizationsAttributesOrganizationId_V1_Request_RequestBody = PATCH_OrganizationsAttributesOrganizationId_V1_Request['requestBody'];
 
 /**
@@ -875,6 +1089,10 @@ export type GET_OrganizationsIpRestrictions_V1_Request = {
 export type POST_OrganizationsIpRestrictions_V1_Request = {
   requestBody: IpRestrictionCreate;
 }
+/**
+ * Request body for POST /v1/organizations/ip-restrictions
+ * @path /v1/organizations/ip-restrictions
+ */
 export type POST_OrganizationsIpRestrictions_V1_Request_RequestBody = POST_OrganizationsIpRestrictions_V1_Request['requestBody'];
 
 /**
@@ -887,8 +1105,10 @@ export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
     path: operations['delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters = DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/organizations/ip-restrictions/{ip_restriction_id}
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ */
 export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path = DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters']['path'];
 
 /**
@@ -901,8 +1121,10 @@ export type GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
     path: operations['get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get']['parameters']['path'];
   };
 }
-
-export type GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters = GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/organizations/ip-restrictions/{ip_restriction_id}
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ */
 export type GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path = GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters']['path'];
 
 /**
@@ -916,9 +1138,15 @@ export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
   };
   requestBody: IpRestrictionUpdate;
 }
-
-export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters = PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/organizations/ip-restrictions/{ip_restriction_id}
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ */
 export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path = PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/organizations/ip-restrictions/{ip_restriction_id}
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ */
 export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_RequestBody = PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['requestBody'];
 
 /**
@@ -931,8 +1159,10 @@ export type DELETE_OrganizationsOrganizationId_V1_Request = {
     path: operations['delete_user_v1_organizations__organization_id__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_OrganizationsOrganizationId_V1_Request_Parameters = DELETE_OrganizationsOrganizationId_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/organizations/{organization_id}
+ * @path /v1/organizations/{organization_id}
+ */
 export type DELETE_OrganizationsOrganizationId_V1_Request_Parameters_Path = DELETE_OrganizationsOrganizationId_V1_Request['parameters']['path'];
 
 /**
@@ -945,8 +1175,10 @@ export type GET_OrganizationsOrganizationId_V1_Request = {
     path: operations['get_organization_v1_organizations__organization_id__get']['parameters']['path'];
   };
 }
-
-export type GET_OrganizationsOrganizationId_V1_Request_Parameters = GET_OrganizationsOrganizationId_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/organizations/{organization_id}
+ * @path /v1/organizations/{organization_id}
+ */
 export type GET_OrganizationsOrganizationId_V1_Request_Parameters_Path = GET_OrganizationsOrganizationId_V1_Request['parameters']['path'];
 
 /**
@@ -960,9 +1192,15 @@ export type PATCH_OrganizationsOrganizationId_V1_Request = {
   };
   requestBody: OrganizationUpdate;
 }
-
-export type PATCH_OrganizationsOrganizationId_V1_Request_Parameters = PATCH_OrganizationsOrganizationId_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/organizations/{organization_id}
+ * @path /v1/organizations/{organization_id}
+ */
 export type PATCH_OrganizationsOrganizationId_V1_Request_Parameters_Path = PATCH_OrganizationsOrganizationId_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/organizations/{organization_id}
+ * @path /v1/organizations/{organization_id}
+ */
 export type PATCH_OrganizationsOrganizationId_V1_Request_RequestBody = PATCH_OrganizationsOrganizationId_V1_Request['requestBody'];
 
 /**
@@ -976,9 +1214,15 @@ export type PATCH_OrganizationsOrganizationIdPlan_V1_Request = {
   };
   requestBody: PlanUpdate;
 }
-
-export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_Parameters = PATCH_OrganizationsOrganizationIdPlan_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/organizations/{organization_id}/plan
+ * @path /v1/organizations/{organization_id}/plan
+ */
 export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_Parameters_Path = PATCH_OrganizationsOrganizationIdPlan_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/organizations/{organization_id}/plan
+ * @path /v1/organizations/{organization_id}/plan
+ */
 export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_RequestBody = PATCH_OrganizationsOrganizationIdPlan_V1_Request['requestBody'];
 
 /**
@@ -999,8 +1243,10 @@ export type GET_OrganizationsUsers_V1_Request = {
     query: operations['list_users_v1_organizations_users_get']['parameters']['query'];
   };
 }
-
-export type GET_OrganizationsUsers_V1_Request_Parameters = GET_OrganizationsUsers_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/organizations/users
+ * @path /v1/organizations/users
+ */
 export type GET_OrganizationsUsers_V1_Request_Parameters_Query = GET_OrganizationsUsers_V1_Request['parameters']['query'];
 
 /**
@@ -1011,6 +1257,10 @@ export type GET_OrganizationsUsers_V1_Request_Parameters_Query = GET_Organizatio
 export type POST_Users_V1_Request = {
   requestBody: UserCreate;
 }
+/**
+ * Request body for POST /v1/users
+ * @path /v1/users
+ */
 export type POST_Users_V1_Request_RequestBody = POST_Users_V1_Request['requestBody'];
 
 /**
@@ -1021,6 +1271,10 @@ export type POST_Users_V1_Request_RequestBody = POST_Users_V1_Request['requestBo
 export type POST_UsersAcceptTos_V1_Request = {
   requestBody: TermsOfServiceAccept;
 }
+/**
+ * Request body for POST /v1/users/accept-tos
+ * @path /v1/users/accept-tos
+ */
 export type POST_UsersAcceptTos_V1_Request_RequestBody = POST_UsersAcceptTos_V1_Request['requestBody'];
 
 /**
@@ -1033,8 +1287,10 @@ export type GET_UsersMe_V1_Request = {
     query: operations['get_current_user_v1_users_me_get']['parameters']['query'];
   };
 }
-
-export type GET_UsersMe_V1_Request_Parameters = GET_UsersMe_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/users/me
+ * @path /v1/users/me
+ */
 export type GET_UsersMe_V1_Request_Parameters_Query = GET_UsersMe_V1_Request['parameters']['query'];
 
 /**
@@ -1047,8 +1303,10 @@ export type DELETE_UsersUserId_V1_Request = {
     path: operations['delete_user_v1_users__user_id__delete']['parameters']['path'];
   };
 }
-
-export type DELETE_UsersUserId_V1_Request_Parameters = DELETE_UsersUserId_V1_Request['parameters'];
+/**
+ * Path parameters for DELETE /v1/users/{user_id}
+ * @path /v1/users/{user_id}
+ */
 export type DELETE_UsersUserId_V1_Request_Parameters_Path = DELETE_UsersUserId_V1_Request['parameters']['path'];
 
 /**
@@ -1062,9 +1320,15 @@ export type GET_UsersUserId_V1_Request = {
     path: operations['get_user_v1_users__user_id__get']['parameters']['path'];
   };
 }
-
-export type GET_UsersUserId_V1_Request_Parameters = GET_UsersUserId_V1_Request['parameters'];
+/**
+ * Query parameters for GET /v1/users/{user_id}
+ * @path /v1/users/{user_id}
+ */
 export type GET_UsersUserId_V1_Request_Parameters_Query = GET_UsersUserId_V1_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/users/{user_id}
+ * @path /v1/users/{user_id}
+ */
 export type GET_UsersUserId_V1_Request_Parameters_Path = GET_UsersUserId_V1_Request['parameters']['path'];
 
 /**
@@ -1078,9 +1342,15 @@ export type PATCH_UsersUserId_V1_Request = {
   };
   requestBody: UserUpdate;
 }
-
-export type PATCH_UsersUserId_V1_Request_Parameters = PATCH_UsersUserId_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/users/{user_id}
+ * @path /v1/users/{user_id}
+ */
 export type PATCH_UsersUserId_V1_Request_Parameters_Path = PATCH_UsersUserId_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/users/{user_id}
+ * @path /v1/users/{user_id}
+ */
 export type PATCH_UsersUserId_V1_Request_RequestBody = PATCH_UsersUserId_V1_Request['requestBody'];
 
 /**
@@ -1093,8 +1363,10 @@ export type GET_UsersUserIdPermissions_V1_Request = {
     path: operations['get_user_permissions_v1_users__user_id__permissions_get']['parameters']['path'];
   };
 }
-
-export type GET_UsersUserIdPermissions_V1_Request_Parameters = GET_UsersUserIdPermissions_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/users/{user_id}/permissions
+ * @path /v1/users/{user_id}/permissions
+ */
 export type GET_UsersUserIdPermissions_V1_Request_Parameters_Path = GET_UsersUserIdPermissions_V1_Request['parameters']['path'];
 
 /**
@@ -1107,8 +1379,10 @@ export type GET_UsersUserIdRoles_V1_Request = {
     path: operations['list_roles_v1_users__user_id__roles_get']['parameters']['path'];
   };
 }
-
-export type GET_UsersUserIdRoles_V1_Request_Parameters = GET_UsersUserIdRoles_V1_Request['parameters'];
+/**
+ * Path parameters for GET /v1/users/{user_id}/roles
+ * @path /v1/users/{user_id}/roles
+ */
 export type GET_UsersUserIdRoles_V1_Request_Parameters_Path = GET_UsersUserIdRoles_V1_Request['parameters']['path'];
 
 /**
@@ -1122,8 +1396,14 @@ export type PATCH_UsersUserIdRoles_V1_Request = {
   };
   requestBody: SpiceDbRelationshipUpdate;
 }
-
-export type PATCH_UsersUserIdRoles_V1_Request_Parameters = PATCH_UsersUserIdRoles_V1_Request['parameters'];
+/**
+ * Path parameters for PATCH /v1/users/{user_id}/roles
+ * @path /v1/users/{user_id}/roles
+ */
 export type PATCH_UsersUserIdRoles_V1_Request_Parameters_Path = PATCH_UsersUserIdRoles_V1_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/users/{user_id}/roles
+ * @path /v1/users/{user_id}/roles
+ */
 export type PATCH_UsersUserIdRoles_V1_Request_RequestBody = PATCH_UsersUserIdRoles_V1_Request['requestBody'];
 
