@@ -1,4 +1,8 @@
 /**
+ * @deprecated This file is deprecated and will be removed in a future release.
+ * All enums and constants have moved to src/helpers/enums.ts. Please update your imports to use @/helpers or @/helpers/enums.
+ */
+/**
  * Auto-generated enums from OpenAPI schema
  * Generated on: 2025-07-24T07:50:32.358Z
  */
