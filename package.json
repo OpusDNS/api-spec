@@ -28,7 +28,7 @@
   "homepage": "https://github.com/OpusDNS/api-spec#readme",
   "scripts": {
     "generate:schema": "tsx scripts/generate-schema.ts",
-    "generate:types": "tsx scripts/types/generate-all.ts"
+    "generate:types": "tsx scripts/helpers/generate-all.ts"
   },
   "files": [
     "package.json",
