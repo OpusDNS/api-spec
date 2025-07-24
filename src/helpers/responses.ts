@@ -9,6 +9,8 @@
 
 import { components } from '../schema';
 
+import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray } from './schemas-arrays';
+
 import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas';
 
 /**
@@ -1067,9 +1069,17 @@ export type DELETE_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationE
  * @path /v1/domains/{domain_reference}/dnssec
  */
 export type GET_DomainsByDomainReferenceDnssec = {
+  200: DomainDnssecDataArray
   404: Problem
   422: HTTPValidationError
 }
+
+/**
+ * 200 response for GET DomainsByDomainReferenceDnssec endpoint
+ * 
+ * @path /v1/domains/{domain_reference}/dnssec
+ */
+export type GET_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataArray
 
 /**
  * 404 response for GET DomainsByDomainReferenceDnssec endpoint
@@ -1091,9 +1101,17 @@ export type GET_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationErro
  * @path /v1/domains/{domain_reference}/dnssec
  */
 export type PUT_DomainsByDomainReferenceDnssec = {
+  200: DomainDnssecDataArray
   404: Problem
   422: HTTPValidationError
 }
+
+/**
+ * 200 response for PUT DomainsByDomainReferenceDnssec endpoint
+ * 
+ * @path /v1/domains/{domain_reference}/dnssec
+ */
+export type PUT_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataArray
 
 /**
  * 404 response for PUT DomainsByDomainReferenceDnssec endpoint
@@ -1702,8 +1720,17 @@ export type POST_Organizations_Response_422 = HTTPValidationError
  * @param keys (query) - Optional list of attribute keys to filter
  */
 export type GET_OrganizationsAttributes = {
+  200: OrganizationAttribute2Array
   422: HTTPValidationError
 }
+
+/**
+ * 200 response for GET OrganizationsAttributes endpoint
+ * 
+ * @path /v1/organizations/attributes
+ * @param keys (query) - Optional list of attribute keys to filter
+ */
+export type GET_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for GET OrganizationsAttributes endpoint
@@ -1719,8 +1746,16 @@ export type GET_OrganizationsAttributes_Response_422 = HTTPValidationError
  * @path /v1/organizations/attributes
  */
 export type PATCH_OrganizationsAttributes = {
+  200: OrganizationAttribute2Array
   422: HTTPValidationError
 }
+
+/**
+ * 200 response for PATCH OrganizationsAttributes endpoint
+ * 
+ * @path /v1/organizations/attributes
+ */
+export type PATCH_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for PATCH OrganizationsAttributes endpoint
@@ -1736,8 +1771,17 @@ export type PATCH_OrganizationsAttributes_Response_422 = HTTPValidationError
  * @param keys (query) - Optional list of attribute keys to filter
  */
 export type GET_OrganizationsAttributesByOrganizationId = {
+  200: OrganizationAttribute2Array
   422: HTTPValidationError
 }
+
+/**
+ * 200 response for GET OrganizationsAttributesByOrganizationId endpoint
+ * 
+ * @path /v1/organizations/attributes/{organization_id}
+ * @param keys (query) - Optional list of attribute keys to filter
+ */
+export type GET_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for GET OrganizationsAttributesByOrganizationId endpoint
@@ -1753,8 +1797,16 @@ export type GET_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValid
  * @path /v1/organizations/attributes/{organization_id}
  */
 export type PATCH_OrganizationsAttributesByOrganizationId = {
+  200: OrganizationAttribute2Array
   422: HTTPValidationError
 }
+
+/**
+ * 200 response for PATCH OrganizationsAttributesByOrganizationId endpoint
+ * 
+ * @path /v1/organizations/attributes/{organization_id}
+ */
+export type PATCH_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for PATCH OrganizationsAttributesByOrganizationId endpoint
@@ -1857,7 +1909,15 @@ export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidatio
  * @path /v1/organizations/ip-restrictions
  */
 export type GET_OrganizationsIpRestrictions = {
+  200: IpRestrictionArray
 }
+
+/**
+ * 200 response for GET OrganizationsIpRestrictions endpoint
+ * 
+ * @path /v1/organizations/ip-restrictions
+ */
+export type GET_OrganizationsIpRestrictions_Response_200 = IpRestrictionArray
 
 /**
  * Response types for POST OrganizationsIpRestrictions endpoint

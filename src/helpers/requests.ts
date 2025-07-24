@@ -9,6 +9,8 @@
 
 import { operations, components } from '../schema';
 
+import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays';
+
 import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardCreate, EmailForwardBulkDelete, EmailForwardBulkUpdate, EmailForwardUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, TermsOfServiceAccept, UserUpdate, SpiceDbRelationshipUpdate } from './schemas';
 
 /**
@@ -620,7 +622,7 @@ export type PUT_DomainsDomainReferenceDnssec_V1_Request = {
   parameters: {
     path: operations['create_or_update_dnssec_v1_domains__domain_reference__dnssec_put']['parameters']['path'];
   };
-  requestBody: components["schemas"]["object"];
+  requestBody: DomainDnssecDataCreateArray;
 }
 /**
  * Path parameters for PUT /v1/domains/{domain_reference}/dnssec
@@ -1014,7 +1016,7 @@ export type PATCH_OrganizationsAttributes_V1_Request = {
   parameters: {
     query: operations['update_attributes_v1_organizations_attributes_patch']['parameters']['query'];
   };
-  requestBody: components["schemas"]["object"];
+  requestBody: OrganizationAttributeUpdateArray;
 }
 /**
  * Query parameters for PATCH /v1/organizations/attributes
@@ -1060,7 +1062,7 @@ export type PATCH_OrganizationsAttributesOrganizationId_V1_Request = {
   parameters: {
     path: operations['update_attributes_v1_organizations_attributes__organization_id__patch']['parameters']['path'];
   };
-  requestBody: components["schemas"]["object"];
+  requestBody: OrganizationAttributeUpdateArray;
 }
 /**
  * Path parameters for PATCH /v1/organizations/attributes/{organization_id}

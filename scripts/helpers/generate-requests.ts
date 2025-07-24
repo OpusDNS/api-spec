@@ -195,12 +195,27 @@ function getSchemaAliasMap(): Record<string, string> {
   const schemasFile = path.join(process.cwd(), 'src/helpers/schemas.ts');
   const content = fs.readFileSync(schemasFile, 'utf8');
   const aliasMap: Record<string, string> = {};
-  const regex = /export type (\w+) = components\['schemas'\]\['([^']+)'\];/g;
+  const regex = /export type (\w+) = components\['schemas'\]\['(\w+)'\];/g;
   let match;
   while ((match = regex.exec(content)) !== null) {
     const alias = match[1];
-    const schema = match[2];
-    aliasMap[schema] = alias;
+    const openapiName = match[2];
+    aliasMap[openapiName] = alias;
+  }
+  return aliasMap;
+}
+
+// Helper: Build a map of TypeScript element aliases to array aliases from schemas-arrays.ts
+function getArrayAliasMap(): Record<string, string> {
+  const arraysFile = path.join(process.cwd(), 'src/helpers/schemas-arrays.ts');
+  const content = fs.readFileSync(arraysFile, 'utf8');
+  const aliasMap: Record<string, string> = {};
+  const regex = /export type (\w+Array) = (\w+)\[\];/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    const arrayAlias = match[1];
+    const elementAlias = match[2];
+    aliasMap[elementAlias] = arrayAlias;
   }
   return aliasMap;
 }
@@ -210,7 +225,9 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
   const sortedPaths = Object.keys(groupedRequests).sort();
   const spec = yaml.load(openAPIContent) as any;
   const schemaAliasMap = getSchemaAliasMap();
+  const arrayAliasMap = getArrayAliasMap();
   const usedAliases = new Set<string>();
+  const usedArrayAliases = new Set<string>();
   const emittedTypes = new Set<string>();
   
   // Create reverse mapping from pathName to actual path
@@ -284,13 +301,45 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
       }
       // Build requestBody type (actual schema if possible)
       let requestBodyType = '';
-      if (methodRequests.body) {
-        const schemaRef = methodRequests.body;
-        if (schemaAliasMap[schemaRef]) {
-          usedAliases.add(schemaAliasMap[schemaRef]);
-          requestBodyType = schemaAliasMap[schemaRef];
+      // Find the OpenAPI operation object for this method/path
+      let opObj: any = null;
+      for (const [pathKey, pathObj] of Object.entries(spec.paths)) {
+        for (const m of Object.keys(pathObj as any)) {
+          const op = (pathObj as any)[m];
+          if (op && op.operationId === operationId) {
+            opObj = op;
+            break;
+          }
+        }
+        if (opObj) break;
+      }
+      if (opObj && opObj.requestBody && opObj.requestBody.content && opObj.requestBody.content['application/json'] && opObj.requestBody.content['application/json'].schema) {
+        const schema = opObj.requestBody.content['application/json'].schema;
+        if (schema.type === 'array' && schema.items && schema.items.$ref) {
+          const itemRef = schema.items.$ref.replace('#/components/schemas/', '');
+          const tsAlias = schemaAliasMap[itemRef] || itemRef;
+          if (arrayAliasMap[tsAlias]) {
+            const arrayAliasName = arrayAliasMap[tsAlias];
+            usedArrayAliases.add(arrayAliasName);
+            requestBodyType = arrayAliasName;
+          } else if (schemaAliasMap[itemRef]) {
+            usedAliases.add(schemaAliasMap[itemRef]);
+            requestBodyType = schemaAliasMap[itemRef] + '[]';
+          } else {
+            requestBodyType = 'unknown[]';
+          }
+        } else if (schema.$ref) {
+          const ref = schema.$ref.replace('#/components/schemas/', '');
+          if (schemaAliasMap[ref]) {
+            usedAliases.add(schemaAliasMap[ref]);
+            requestBodyType = schemaAliasMap[ref];
+          } else {
+            requestBodyType = 'unknown';
+          }
+        } else if (schema.type === 'object' || !schema) {
+          requestBodyType = 'Record<string, unknown>';
         } else {
-          requestBodyType = `components["schemas"]["${schemaRef}"]`;
+          requestBodyType = 'unknown';
         }
         lines.push(`  requestBody: ${requestBodyType};`);
       }
@@ -334,6 +383,9 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
   // Emit import for all used aliases
   if (usedAliases.size > 0) {
     lines.unshift(`import { ${Array.from(usedAliases).join(', ')} } from './schemas';\n`);
+  }
+  if (usedArrayAliases.size > 0) {
+    lines.unshift(`import { ${Array.from(usedArrayAliases).join(', ')} } from './schemas-arrays';\n`);
   }
   return lines.join('\n');
 }
@@ -384,18 +436,13 @@ function main() {
     const requestsContent = generateRequestsFile(groupedRequests, operationIdMap, openAPIContent);
     fs.writeFileSync(requestsOutputPath, requestsContent);
     console.log(
-      `✅ Generated request parameter types in ${requestsOutputPath}`,
+      `✅ Generated request parameter types in ${requestsOutputPath}`
     );
     return Object.keys(groupedRequests).length;
   } catch (error) {
     console.error('❌ Error generating request parameter types:', error);
     process.exit(1);
   }
-}
-
-// Run the script if it's the main module
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main();
 }
 
 export { main as generateRequests };

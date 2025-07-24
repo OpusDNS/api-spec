@@ -131,20 +131,29 @@ function extractResponseTypesFromOpenAPI(
                   const content = contentObj as any;
                   
                   if (content.schema) {
-                    let schemaRef: string;
+                    let schemaRef: string | undefined;
 
-                    // Handle $ref
+                    // Handle $ref (object)
                     if (content.schema.$ref) {
                       schemaRef = content.schema.$ref.replace(
                         '#/components/schemas/',
                         '',
                       );
+                    }
+                    // Handle array of $ref
+                    else if (content.schema.type === 'array' && content.schema.items && content.schema.items.$ref) {
+                      schemaRef = content.schema.items.$ref.replace(
+                        '#/components/schemas/',
+                        '',
+                      ) + '[]';
                     } else {
                       // Skip inline schemas that don't have proper $ref values
                       continue;
                     }
 
-                    groupedResponses[pathName][method.toUpperCase()][responseCode] = schemaRef;
+                    if (schemaRef !== undefined) {
+                      groupedResponses[pathName][method.toUpperCase()][responseCode] = schemaRef;
+                    }
                   }
                 }
               }
@@ -166,12 +175,27 @@ function getSchemaAliasMap(): Record<string, string> {
   const schemasFile = path.join(process.cwd(), 'src/helpers/schemas.ts');
   const content = fs.readFileSync(schemasFile, 'utf8');
   const aliasMap: Record<string, string> = {};
-  const regex = /export type (\w+) = components\['schemas'\]\['([^']+)'\];/g;
+  const regex = /export type (\w+) = components\['schemas'\]\['(\w+)'\];/g;
   let match;
   while ((match = regex.exec(content)) !== null) {
     const alias = match[1];
-    const schema = match[2];
-    aliasMap[schema] = alias;
+    const openapiName = match[2];
+    aliasMap[openapiName] = alias;
+  }
+  return aliasMap;
+}
+
+// Helper: Build a map of TypeScript element aliases to array aliases from schemas-arrays.ts
+function getArrayAliasMap(): Record<string, string> {
+  const arraysFile = path.join(process.cwd(), 'src/helpers/schemas-arrays.ts');
+  const content = fs.readFileSync(arraysFile, 'utf8');
+  const aliasMap: Record<string, string> = {};
+  const regex = /export type (\w+Array) = (\w+)\[\];/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    const arrayAlias = match[1];
+    const elementAlias = match[2];
+    aliasMap[elementAlias] = arrayAlias;
   }
   return aliasMap;
 }
@@ -181,7 +205,9 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
   const sortedPaths = Object.keys(groupedResponses).sort();
   const spec = yaml.load(openAPIContent) as any;
   const schemaAliasMap = getSchemaAliasMap();
+  const arrayAliasMap = getArrayAliasMap();
   const usedAliases = new Set<string>();
+  const usedArrayAliases = new Set<string>();
   const importLines: string[] = [];
 
   // Create reverse mapping from pathName to actual path
@@ -253,12 +279,33 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
       const sortedCodes = Object.keys(methodResponses).sort((a, b) => parseInt(a) - parseInt(b));
       
       for (const responseCode of sortedCodes) {
-        const schemaRef = methodResponses[responseCode];
-        if (schemaAliasMap[schemaRef]) {
-          usedAliases.add(schemaAliasMap[schemaRef]);
-          lines.push(`  ${responseCode}: ${schemaAliasMap[schemaRef]}`);
+        let schemaRef = methodResponses[responseCode];
+        let isArray = false;
+        if (schemaRef.endsWith('[]')) {
+          isArray = true;
+          schemaRef = schemaRef.slice(0, -2);
+        }
+        if (isArray) {
+          // Map OpenAPI schema name to TypeScript alias
+          const tsAlias = schemaAliasMap[schemaRef] || schemaRef;
+          // Now look up the array alias
+          if (arrayAliasMap[tsAlias]) {
+            const arrayAliasName = arrayAliasMap[tsAlias];
+            usedArrayAliases.add(arrayAliasName);
+            lines.push(`  ${responseCode}: ${arrayAliasName}`);
+          } else if (schemaAliasMap[schemaRef]) {
+            usedAliases.add(schemaAliasMap[schemaRef]);
+            lines.push(`  ${responseCode}: ${schemaAliasMap[schemaRef]}[]`);
+          } else {
+            lines.push(`  ${responseCode}: unknown[]`);
+          }
         } else {
-          lines.push(`  ${responseCode}: components["schemas"]["${schemaRef}"]`);
+          if (schemaAliasMap[schemaRef]) {
+            usedAliases.add(schemaAliasMap[schemaRef]);
+            lines.push(`  ${responseCode}: ${schemaAliasMap[schemaRef]}`);
+          } else {
+            lines.push(`  ${responseCode}: unknown`);
+          }
         }
       }
       
@@ -267,7 +314,12 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
       
       // Generate individual response types for each status code
       for (const responseCode of sortedCodes) {
-        const schemaRef = methodResponses[responseCode];
+        let schemaRef = methodResponses[responseCode];
+        let isArray = false;
+        if (schemaRef.endsWith('[]')) {
+          isArray = true;
+          schemaRef = schemaRef.slice(0, -2);
+        }
         const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
         
         lines.push(`/**
@@ -275,11 +327,25 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
  * 
  * @path ${actualPath}${parameterDescriptions}
  */`);
-        if (schemaAliasMap[schemaRef]) {
-          usedAliases.add(schemaAliasMap[schemaRef]);
-          lines.push(`export type ${individualTypeName} = ${schemaAliasMap[schemaRef]}`);
+        if (isArray) {
+          const tsAlias = schemaAliasMap[schemaRef] || schemaRef;
+          if (arrayAliasMap[tsAlias]) {
+            const arrayAliasName = arrayAliasMap[tsAlias];
+            usedArrayAliases.add(arrayAliasName);
+            lines.push(`export type ${individualTypeName} = ${arrayAliasName}`);
+          } else if (schemaAliasMap[schemaRef]) {
+            usedAliases.add(schemaAliasMap[schemaRef]);
+            lines.push(`export type ${individualTypeName} = ${schemaAliasMap[schemaRef]}[]`);
+          } else {
+            lines.push(`export type ${individualTypeName} = unknown[]`);
+          }
         } else {
-          lines.push(`export type ${individualTypeName} = ${responseTypeName}["${responseCode}"]`);
+          if (schemaAliasMap[schemaRef]) {
+            usedAliases.add(schemaAliasMap[schemaRef]);
+            lines.push(`export type ${individualTypeName} = ${schemaAliasMap[schemaRef]}`);
+          } else {
+            lines.push(`export type ${individualTypeName} = ${responseTypeName}["${responseCode}"]`);
+          }
         }
         lines.push(``);
       }
@@ -289,7 +355,9 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
   if (usedAliases.size > 0) {
     lines.unshift(`import { ${Array.from(usedAliases).join(', ')} } from './schemas';\n`);
   }
-
+  if (usedArrayAliases.size > 0) {
+    lines.unshift(`import { ${Array.from(usedArrayAliases).join(', ')} } from './schemas-arrays';\n`);
+  }
   return lines.join('\n');
 }
 
