@@ -55,7 +55,6 @@ function extractEnumsFromOpenAPI(): EnumInfo[] {
 function generateEnumFile(enums: EnumInfo[]): string {
   let content = `/**
  * Auto-generated enums from OpenAPI specification
- * Generated on: ${new Date().toISOString()}
  *
  * Each enum is derived from the OpenAPI schema and includes descriptions for better developer understanding.
  */
