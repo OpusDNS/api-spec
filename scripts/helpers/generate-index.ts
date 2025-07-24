@@ -14,8 +14,10 @@ function generateIndexFile(): string {
     '',
     "export * from './constants';",
     "export * from './keys';",
-    "export * from './paths';",
-    "export * from './types';",
+    "export * from './requests';",
+    "export * from './schemas';",
+    "export * from './schema-arrays';",
+    "export * from './enums';",
     '',
   ];
 
@@ -28,7 +30,7 @@ function main() {
     const indexContent = generateIndexFile();
     const indexOutputPath = path.join(
       process.cwd(),
-      'src/types/index.ts',
+      'src/helpers/index.ts',
     );
     fs.writeFileSync(indexOutputPath, indexContent);
 

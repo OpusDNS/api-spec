@@ -43,7 +43,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            npm run generate:types
+            npm run generate:helpers
             git add src/openapi.yaml
             git add src/types
             git commit -m "Update OpenAPI spec and types"
