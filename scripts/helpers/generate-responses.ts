@@ -183,15 +183,29 @@ function generateGroupedResponseTypesContent(groupedResponses: GroupedResponses)
   return content;
 }
 
+// Helper: Build a map of OpenAPI schema names to TypeScript aliases from schemas.ts
+function getSchemaAliasMap(): Record<string, string> {
+  const schemasFile = path.join(process.cwd(), 'src/helpers/schemas.ts');
+  const content = fs.readFileSync(schemasFile, 'utf8');
+  const aliasMap: Record<string, string> = {};
+  const regex = /export type (\w+) = components\['schemas'\]\['([^']+)'\];/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    const alias = match[1];
+    const schema = match[2];
+    aliasMap[schema] = alias;
+  }
+  return aliasMap;
+}
+
 function generateIndividualResponseTypesContent(groupedResponses: GroupedResponses, openAPIContent: string): string {
   const lines: string[] = [];
-
-  // Sort paths alphabetically
   const sortedPaths = Object.keys(groupedResponses).sort();
-  
-  // Parse the OpenAPI YAML to get the full spec for path mapping
   const spec = yaml.load(openAPIContent) as any;
-  
+  const schemaAliasMap = getSchemaAliasMap();
+  const usedAliases = new Set<string>();
+  const importLines: string[] = [];
+
   // Create reverse mapping from pathName to actual path
   const pathNameToPathMap: Record<string, string> = {};
   // Create operationId mapping
@@ -262,7 +276,12 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
       
       for (const responseCode of sortedCodes) {
         const schemaRef = methodResponses[responseCode];
-        lines.push(`  ${responseCode}: components["schemas"]["${schemaRef}"]`);
+        if (schemaAliasMap[schemaRef]) {
+          usedAliases.add(schemaAliasMap[schemaRef]);
+          lines.push(`  ${responseCode}: ${schemaAliasMap[schemaRef]}`);
+        } else {
+          lines.push(`  ${responseCode}: components["schemas"]["${schemaRef}"]`);
+        }
       }
       
       lines.push(`}`);
@@ -278,10 +297,19 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
  * 
  * @path ${actualPath}${parameterDescriptions}
  */`);
-        lines.push(`export type ${individualTypeName} = ${responseTypeName}["${responseCode}"]`);
+        if (schemaAliasMap[schemaRef]) {
+          usedAliases.add(schemaAliasMap[schemaRef]);
+          lines.push(`export type ${individualTypeName} = ${schemaAliasMap[schemaRef]}`);
+        } else {
+          lines.push(`export type ${individualTypeName} = ${responseTypeName}["${responseCode}"]`);
+        }
         lines.push(``);
       }
     }
+  }
+  // Emit import for all used aliases
+  if (usedAliases.size > 0) {
+    lines.unshift(`import { ${Array.from(usedAliases).join(', ')} } from './schemas';\n`);
   }
 
   return lines.join('\n');

@@ -9,6 +9,8 @@
 
 import { components } from '../schema';
 
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas';
+
 /**
  * Response types for GET AuthClientCredentials endpoint
  * 
@@ -16,9 +18,9 @@ import { components } from '../schema';
  * @param status (query) - Optional status to filter the results
  */
 export type GET_AuthClientCredentials = {
-  200: components["schemas"]["Pagination_OrganizationCredential_"]
-  401: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_OrganizationCredential
+  401: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -27,7 +29,7 @@ export type GET_AuthClientCredentials = {
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  */
-export type GET_AuthClientCredentials_Response_200 = GET_AuthClientCredentials["200"]
+export type GET_AuthClientCredentials_Response_200 = Pagination_OrganizationCredential
 
 /**
  * 401 response for GET AuthClientCredentials endpoint
@@ -35,7 +37,7 @@ export type GET_AuthClientCredentials_Response_200 = GET_AuthClientCredentials["
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  */
-export type GET_AuthClientCredentials_Response_401 = GET_AuthClientCredentials["401"]
+export type GET_AuthClientCredentials_Response_401 = Problem
 
 /**
  * 422 response for GET AuthClientCredentials endpoint
@@ -43,7 +45,7 @@ export type GET_AuthClientCredentials_Response_401 = GET_AuthClientCredentials["
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  */
-export type GET_AuthClientCredentials_Response_422 = GET_AuthClientCredentials["422"]
+export type GET_AuthClientCredentials_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST AuthClientCredentials endpoint
@@ -51,9 +53,9 @@ export type GET_AuthClientCredentials_Response_422 = GET_AuthClientCredentials["
  * @path /v1/auth/client_credentials
  */
 export type POST_AuthClientCredentials = {
-  200: components["schemas"]["OrganizationCredentialCreated"]
-  401: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: OrganizationCredentialCreated
+  401: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -61,21 +63,21 @@ export type POST_AuthClientCredentials = {
  * 
  * @path /v1/auth/client_credentials
  */
-export type POST_AuthClientCredentials_Response_200 = POST_AuthClientCredentials["200"]
+export type POST_AuthClientCredentials_Response_200 = OrganizationCredentialCreated
 
 /**
  * 401 response for POST AuthClientCredentials endpoint
  * 
  * @path /v1/auth/client_credentials
  */
-export type POST_AuthClientCredentials_Response_401 = POST_AuthClientCredentials["401"]
+export type POST_AuthClientCredentials_Response_401 = Problem
 
 /**
  * 422 response for POST AuthClientCredentials endpoint
  * 
  * @path /v1/auth/client_credentials
  */
-export type POST_AuthClientCredentials_Response_422 = POST_AuthClientCredentials["422"]
+export type POST_AuthClientCredentials_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE AuthClientCredentialsByApiKeyId endpoint
@@ -83,9 +85,9 @@ export type POST_AuthClientCredentials_Response_422 = POST_AuthClientCredentials
  * @path /v1/auth/client_credentials/{api_key_id}
  */
 export type DELETE_AuthClientCredentialsByApiKeyId = {
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  401: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -93,21 +95,21 @@ export type DELETE_AuthClientCredentialsByApiKeyId = {
  * 
  * @path /v1/auth/client_credentials/{api_key_id}
  */
-export type DELETE_AuthClientCredentialsByApiKeyId_Response_401 = DELETE_AuthClientCredentialsByApiKeyId["401"]
+export type DELETE_AuthClientCredentialsByApiKeyId_Response_401 = Problem
 
 /**
  * 404 response for DELETE AuthClientCredentialsByApiKeyId endpoint
  * 
  * @path /v1/auth/client_credentials/{api_key_id}
  */
-export type DELETE_AuthClientCredentialsByApiKeyId_Response_404 = DELETE_AuthClientCredentialsByApiKeyId["404"]
+export type DELETE_AuthClientCredentialsByApiKeyId_Response_404 = Problem
 
 /**
  * 422 response for DELETE AuthClientCredentialsByApiKeyId endpoint
  * 
  * @path /v1/auth/client_credentials/{api_key_id}
  */
-export type DELETE_AuthClientCredentialsByApiKeyId_Response_422 = DELETE_AuthClientCredentialsByApiKeyId["422"]
+export type DELETE_AuthClientCredentialsByApiKeyId_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST AuthLogout endpoint
@@ -115,7 +117,7 @@ export type DELETE_AuthClientCredentialsByApiKeyId_Response_422 = DELETE_AuthCli
  * @path /v1/auth/logout
  */
 export type POST_AuthLogout = {
-  401: components["schemas"]["Problem"]
+  401: Problem
 }
 
 /**
@@ -123,7 +125,7 @@ export type POST_AuthLogout = {
  * 
  * @path /v1/auth/logout
  */
-export type POST_AuthLogout_Response_401 = POST_AuthLogout["401"]
+export type POST_AuthLogout_Response_401 = Problem
 
 /**
  * Response types for POST AuthSignup endpoint
@@ -131,8 +133,8 @@ export type POST_AuthLogout_Response_401 = POST_AuthLogout["401"]
  * @path /v1/auth/signup
  */
 export type POST_AuthSignup = {
-  409: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  409: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -140,14 +142,14 @@ export type POST_AuthSignup = {
  * 
  * @path /v1/auth/signup
  */
-export type POST_AuthSignup_Response_409 = POST_AuthSignup["409"]
+export type POST_AuthSignup_Response_409 = Problem
 
 /**
  * 422 response for POST AuthSignup endpoint
  * 
  * @path /v1/auth/signup
  */
-export type POST_AuthSignup_Response_422 = POST_AuthSignup["422"]
+export type POST_AuthSignup_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST AuthToken endpoint
@@ -155,8 +157,8 @@ export type POST_AuthSignup_Response_422 = POST_AuthSignup["422"]
  * @path /v1/auth/token
  */
 export type POST_AuthToken = {
-  401: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  401: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -164,14 +166,14 @@ export type POST_AuthToken = {
  * 
  * @path /v1/auth/token
  */
-export type POST_AuthToken_Response_401 = POST_AuthToken["401"]
+export type POST_AuthToken_Response_401 = Problem
 
 /**
  * 422 response for POST AuthToken endpoint
  * 
  * @path /v1/auth/token
  */
-export type POST_AuthToken_Response_422 = POST_AuthToken["422"]
+export type POST_AuthToken_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Availability endpoint
@@ -182,10 +184,10 @@ Specify one or more domains to check for availability.
 
  */
 export type GET_Availability = {
-  200: components["schemas"]["common__models__availability__datasource__DomainAvailabilityResponse"]
-  401: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
-  502: components["schemas"]["Problem"]
+  200: DomainAvailabilityList
+  401: Problem
+  422: HTTPValidationError
+  502: Problem
 }
 
 /**
@@ -196,7 +198,7 @@ export type GET_Availability = {
 Specify one or more domains to check for availability.
 
  */
-export type GET_Availability_Response_200 = GET_Availability["200"]
+export type GET_Availability_Response_200 = DomainAvailabilityList
 
 /**
  * 401 response for GET Availability endpoint
@@ -206,7 +208,7 @@ export type GET_Availability_Response_200 = GET_Availability["200"]
 Specify one or more domains to check for availability.
 
  */
-export type GET_Availability_Response_401 = GET_Availability["401"]
+export type GET_Availability_Response_401 = Problem
 
 /**
  * 422 response for GET Availability endpoint
@@ -216,7 +218,7 @@ export type GET_Availability_Response_401 = GET_Availability["401"]
 Specify one or more domains to check for availability.
 
  */
-export type GET_Availability_Response_422 = GET_Availability["422"]
+export type GET_Availability_Response_422 = HTTPValidationError
 
 /**
  * 502 response for GET Availability endpoint
@@ -226,7 +228,7 @@ export type GET_Availability_Response_422 = GET_Availability["422"]
 Specify one or more domains to check for availability.
 
  */
-export type GET_Availability_Response_502 = GET_Availability["502"]
+export type GET_Availability_Response_502 = Problem
 
 /**
  * Response types for GET AvailabilityStream endpoint
@@ -237,9 +239,9 @@ Specify one or more domains to check for availability.
 
  */
 export type GET_AvailabilityStream = {
-  401: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
-  502: components["schemas"]["Problem"]
+  401: Problem
+  422: HTTPValidationError
+  502: Problem
 }
 
 /**
@@ -250,7 +252,7 @@ export type GET_AvailabilityStream = {
 Specify one or more domains to check for availability.
 
  */
-export type GET_AvailabilityStream_Response_401 = GET_AvailabilityStream["401"]
+export type GET_AvailabilityStream_Response_401 = Problem
 
 /**
  * 422 response for GET AvailabilityStream endpoint
@@ -260,7 +262,7 @@ export type GET_AvailabilityStream_Response_401 = GET_AvailabilityStream["401"]
 Specify one or more domains to check for availability.
 
  */
-export type GET_AvailabilityStream_Response_422 = GET_AvailabilityStream["422"]
+export type GET_AvailabilityStream_Response_422 = HTTPValidationError
 
 /**
  * 502 response for GET AvailabilityStream endpoint
@@ -270,7 +272,7 @@ export type GET_AvailabilityStream_Response_422 = GET_AvailabilityStream["422"]
 Specify one or more domains to check for availability.
 
  */
-export type GET_AvailabilityStream_Response_502 = GET_AvailabilityStream["502"]
+export type GET_AvailabilityStream_Response_502 = Problem
 
 /**
  * Response types for GET Contacts endpoint
@@ -278,8 +280,8 @@ export type GET_AvailabilityStream_Response_502 = GET_AvailabilityStream["502"]
  * @path /v1/contacts
  */
 export type GET_Contacts = {
-  200: components["schemas"]["Pagination_ContactSchema_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_ContactSchema
+  422: HTTPValidationError
 }
 
 /**
@@ -287,14 +289,14 @@ export type GET_Contacts = {
  * 
  * @path /v1/contacts
  */
-export type GET_Contacts_Response_200 = GET_Contacts["200"]
+export type GET_Contacts_Response_200 = Pagination_ContactSchema
 
 /**
  * 422 response for GET Contacts endpoint
  * 
  * @path /v1/contacts
  */
-export type GET_Contacts_Response_422 = GET_Contacts["422"]
+export type GET_Contacts_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Contacts endpoint
@@ -302,8 +304,8 @@ export type GET_Contacts_Response_422 = GET_Contacts["422"]
  * @path /v1/contacts
  */
 export type POST_Contacts = {
-  201: components["schemas"]["ContactSchema"]
-  422: components["schemas"]["HTTPValidationError"]
+  201: ContactSchema
+  422: HTTPValidationError
 }
 
 /**
@@ -311,14 +313,14 @@ export type POST_Contacts = {
  * 
  * @path /v1/contacts
  */
-export type POST_Contacts_Response_201 = POST_Contacts["201"]
+export type POST_Contacts_Response_201 = ContactSchema
 
 /**
  * 422 response for POST Contacts endpoint
  * 
  * @path /v1/contacts
  */
-export type POST_Contacts_Response_422 = POST_Contacts["422"]
+export type POST_Contacts_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE ContactsByContactId endpoint
@@ -326,9 +328,9 @@ export type POST_Contacts_Response_422 = POST_Contacts["422"]
  * @path /v1/contacts/{contact_id}
  */
 export type DELETE_ContactsByContactId = {
-  404: components["schemas"]["Problem"]
-  409: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  404: Problem
+  409: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -336,21 +338,21 @@ export type DELETE_ContactsByContactId = {
  * 
  * @path /v1/contacts/{contact_id}
  */
-export type DELETE_ContactsByContactId_Response_404 = DELETE_ContactsByContactId["404"]
+export type DELETE_ContactsByContactId_Response_404 = Problem
 
 /**
  * 409 response for DELETE ContactsByContactId endpoint
  * 
  * @path /v1/contacts/{contact_id}
  */
-export type DELETE_ContactsByContactId_Response_409 = DELETE_ContactsByContactId["409"]
+export type DELETE_ContactsByContactId_Response_409 = Problem
 
 /**
  * 422 response for DELETE ContactsByContactId endpoint
  * 
  * @path /v1/contacts/{contact_id}
  */
-export type DELETE_ContactsByContactId_Response_422 = DELETE_ContactsByContactId["422"]
+export type DELETE_ContactsByContactId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsByContactId endpoint
@@ -358,9 +360,9 @@ export type DELETE_ContactsByContactId_Response_422 = DELETE_ContactsByContactId
  * @path /v1/contacts/{contact_id}
  */
 export type GET_ContactsByContactId = {
-  200: components["schemas"]["ContactSchema"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: ContactSchema
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -368,21 +370,21 @@ export type GET_ContactsByContactId = {
  * 
  * @path /v1/contacts/{contact_id}
  */
-export type GET_ContactsByContactId_Response_200 = GET_ContactsByContactId["200"]
+export type GET_ContactsByContactId_Response_200 = ContactSchema
 
 /**
  * 404 response for GET ContactsByContactId endpoint
  * 
  * @path /v1/contacts/{contact_id}
  */
-export type GET_ContactsByContactId_Response_404 = GET_ContactsByContactId["404"]
+export type GET_ContactsByContactId_Response_404 = Problem
 
 /**
  * 422 response for GET ContactsByContactId endpoint
  * 
  * @path /v1/contacts/{contact_id}
  */
-export type GET_ContactsByContactId_Response_422 = GET_ContactsByContactId["422"]
+export type GET_ContactsByContactId_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE ContactsByContactIdVerification endpoint
@@ -390,9 +392,9 @@ export type GET_ContactsByContactId_Response_422 = GET_ContactsByContactId["422"
  * @path /v1/contacts/{contact_id}/verification
  */
 export type DELETE_ContactsByContactIdVerification = {
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  401: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -400,21 +402,21 @@ export type DELETE_ContactsByContactIdVerification = {
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type DELETE_ContactsByContactIdVerification_Response_401 = DELETE_ContactsByContactIdVerification["401"]
+export type DELETE_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 404 response for DELETE ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type DELETE_ContactsByContactIdVerification_Response_404 = DELETE_ContactsByContactIdVerification["404"]
+export type DELETE_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 422 response for DELETE ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type DELETE_ContactsByContactIdVerification_Response_422 = DELETE_ContactsByContactIdVerification["422"]
+export type DELETE_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsByContactIdVerification endpoint
@@ -422,10 +424,10 @@ export type DELETE_ContactsByContactIdVerification_Response_422 = DELETE_Contact
  * @path /v1/contacts/{contact_id}/verification
  */
 export type GET_ContactsByContactIdVerification = {
-  200: components["schemas"]["ContactVerificationResponse"]
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: ContactVerification
+  401: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -433,28 +435,28 @@ export type GET_ContactsByContactIdVerification = {
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type GET_ContactsByContactIdVerification_Response_200 = GET_ContactsByContactIdVerification["200"]
+export type GET_ContactsByContactIdVerification_Response_200 = ContactVerification
 
 /**
  * 401 response for GET ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type GET_ContactsByContactIdVerification_Response_401 = GET_ContactsByContactIdVerification["401"]
+export type GET_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 404 response for GET ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type GET_ContactsByContactIdVerification_Response_404 = GET_ContactsByContactIdVerification["404"]
+export type GET_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 422 response for GET ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type GET_ContactsByContactIdVerification_Response_422 = GET_ContactsByContactIdVerification["422"]
+export type GET_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST ContactsByContactIdVerification endpoint
@@ -462,10 +464,10 @@ export type GET_ContactsByContactIdVerification_Response_422 = GET_ContactsByCon
  * @path /v1/contacts/{contact_id}/verification
  */
 export type POST_ContactsByContactIdVerification = {
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  405: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  401: Problem
+  404: Problem
+  405: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -473,28 +475,28 @@ export type POST_ContactsByContactIdVerification = {
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type POST_ContactsByContactIdVerification_Response_401 = POST_ContactsByContactIdVerification["401"]
+export type POST_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 404 response for POST ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type POST_ContactsByContactIdVerification_Response_404 = POST_ContactsByContactIdVerification["404"]
+export type POST_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 405 response for POST ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type POST_ContactsByContactIdVerification_Response_405 = POST_ContactsByContactIdVerification["405"]
+export type POST_ContactsByContactIdVerification_Response_405 = Problem
 
 /**
  * 422 response for POST ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type POST_ContactsByContactIdVerification_Response_422 = POST_ContactsByContactIdVerification["422"]
+export type POST_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT ContactsByContactIdVerification endpoint
@@ -502,11 +504,11 @@ export type POST_ContactsByContactIdVerification_Response_422 = POST_ContactsByC
  * @path /v1/contacts/{contact_id}/verification
  */
 export type PUT_ContactsByContactIdVerification = {
-  400: components["schemas"]["Problem"]
-  401: components["schemas"]["Problem"]
-  403: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  400: Problem
+  401: Problem
+  403: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -514,35 +516,35 @@ export type PUT_ContactsByContactIdVerification = {
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type PUT_ContactsByContactIdVerification_Response_400 = PUT_ContactsByContactIdVerification["400"]
+export type PUT_ContactsByContactIdVerification_Response_400 = Problem
 
 /**
  * 401 response for PUT ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type PUT_ContactsByContactIdVerification_Response_401 = PUT_ContactsByContactIdVerification["401"]
+export type PUT_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 403 response for PUT ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type PUT_ContactsByContactIdVerification_Response_403 = PUT_ContactsByContactIdVerification["403"]
+export type PUT_ContactsByContactIdVerification_Response_403 = Problem
 
 /**
  * 404 response for PUT ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type PUT_ContactsByContactIdVerification_Response_404 = PUT_ContactsByContactIdVerification["404"]
+export type PUT_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 422 response for PUT ContactsByContactIdVerification endpoint
  * 
  * @path /v1/contacts/{contact_id}/verification
  */
-export type PUT_ContactsByContactIdVerification_Response_422 = PUT_ContactsByContactIdVerification["422"]
+export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsVerification endpoint
@@ -550,10 +552,10 @@ export type PUT_ContactsByContactIdVerification_Response_422 = PUT_ContactsByCon
  * @path /v1/contacts/verification
  */
 export type GET_ContactsVerification = {
-  200: components["schemas"]["ContactResponse"]
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Contact
+  401: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -561,28 +563,28 @@ export type GET_ContactsVerification = {
  * 
  * @path /v1/contacts/verification
  */
-export type GET_ContactsVerification_Response_200 = GET_ContactsVerification["200"]
+export type GET_ContactsVerification_Response_200 = Contact
 
 /**
  * 401 response for GET ContactsVerification endpoint
  * 
  * @path /v1/contacts/verification
  */
-export type GET_ContactsVerification_Response_401 = GET_ContactsVerification["401"]
+export type GET_ContactsVerification_Response_401 = Problem
 
 /**
  * 404 response for GET ContactsVerification endpoint
  * 
  * @path /v1/contacts/verification
  */
-export type GET_ContactsVerification_Response_404 = GET_ContactsVerification["404"]
+export type GET_ContactsVerification_Response_404 = Problem
 
 /**
  * 422 response for GET ContactsVerification endpoint
  * 
  * @path /v1/contacts/verification
  */
-export type GET_ContactsVerification_Response_422 = GET_ContactsVerification["422"]
+export type GET_ContactsVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT ContactsVerification endpoint
@@ -590,10 +592,10 @@ export type GET_ContactsVerification_Response_422 = GET_ContactsVerification["42
  * @path /v1/contacts/verification
  */
 export type PUT_ContactsVerification = {
-  400: components["schemas"]["Problem"]
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  400: Problem
+  401: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -601,28 +603,28 @@ export type PUT_ContactsVerification = {
  * 
  * @path /v1/contacts/verification
  */
-export type PUT_ContactsVerification_Response_400 = PUT_ContactsVerification["400"]
+export type PUT_ContactsVerification_Response_400 = Problem
 
 /**
  * 401 response for PUT ContactsVerification endpoint
  * 
  * @path /v1/contacts/verification
  */
-export type PUT_ContactsVerification_Response_401 = PUT_ContactsVerification["401"]
+export type PUT_ContactsVerification_Response_401 = Problem
 
 /**
  * 404 response for PUT ContactsVerification endpoint
  * 
  * @path /v1/contacts/verification
  */
-export type PUT_ContactsVerification_Response_404 = PUT_ContactsVerification["404"]
+export type PUT_ContactsVerification_Response_404 = Problem
 
 /**
  * 422 response for PUT ContactsVerification endpoint
  * 
  * @path /v1/contacts/verification
  */
-export type PUT_ContactsVerification_Response_422 = PUT_ContactsVerification["422"]
+export type PUT_ContactsVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsVerify endpoint
@@ -630,7 +632,7 @@ export type PUT_ContactsVerification_Response_422 = PUT_ContactsVerification["42
  * @path /v1/contacts/verify
  */
 export type GET_ContactsVerify = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -638,7 +640,7 @@ export type GET_ContactsVerify = {
  * 
  * @path /v1/contacts/verify
  */
-export type GET_ContactsVerify_Response_422 = GET_ContactsVerify["422"]
+export type GET_ContactsVerify_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Dns endpoint
@@ -646,8 +648,8 @@ export type GET_ContactsVerify_Response_422 = GET_ContactsVerify["422"]
  * @path /v1/dns
  */
 export type GET_Dns = {
-  200: components["schemas"]["Pagination_DnsZoneResponse_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_DnsZone
+  422: HTTPValidationError
 }
 
 /**
@@ -655,14 +657,14 @@ export type GET_Dns = {
  * 
  * @path /v1/dns
  */
-export type GET_Dns_Response_200 = GET_Dns["200"]
+export type GET_Dns_Response_200 = Pagination_DnsZone
 
 /**
  * 422 response for GET Dns endpoint
  * 
  * @path /v1/dns
  */
-export type GET_Dns_Response_422 = GET_Dns["422"]
+export type GET_Dns_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Dns endpoint
@@ -670,7 +672,7 @@ export type GET_Dns_Response_422 = GET_Dns["422"]
  * @path /v1/dns
  */
 export type POST_Dns = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -678,7 +680,7 @@ export type POST_Dns = {
  * 
  * @path /v1/dns
  */
-export type POST_Dns_Response_422 = POST_Dns["422"]
+export type POST_Dns_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DnsByZoneName endpoint
@@ -687,7 +689,7 @@ export type POST_Dns_Response_422 = POST_Dns["422"]
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type DELETE_DnsByZoneName = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -696,7 +698,7 @@ export type DELETE_DnsByZoneName = {
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type DELETE_DnsByZoneName_Response_422 = DELETE_DnsByZoneName["422"]
+export type DELETE_DnsByZoneName_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DnsByZoneName endpoint
@@ -705,8 +707,8 @@ export type DELETE_DnsByZoneName_Response_422 = DELETE_DnsByZoneName["422"]
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type GET_DnsByZoneName = {
-  200: components["schemas"]["DnsZoneResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: DnsZone
+  422: HTTPValidationError
 }
 
 /**
@@ -715,7 +717,7 @@ export type GET_DnsByZoneName = {
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type GET_DnsByZoneName_Response_200 = GET_DnsByZoneName["200"]
+export type GET_DnsByZoneName_Response_200 = DnsZone
 
 /**
  * 422 response for GET DnsByZoneName endpoint
@@ -723,7 +725,7 @@ export type GET_DnsByZoneName_Response_200 = GET_DnsByZoneName["200"]
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type GET_DnsByZoneName_Response_422 = GET_DnsByZoneName["422"]
+export type GET_DnsByZoneName_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DnsByZoneNameDnssecDisable endpoint
@@ -732,8 +734,8 @@ export type GET_DnsByZoneName_Response_422 = GET_DnsByZoneName["422"]
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type POST_DnsByZoneNameDnssecDisable = {
-  200: components["schemas"]["DnsChangesResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: DnsChanges
+  422: HTTPValidationError
 }
 
 /**
@@ -742,7 +744,7 @@ export type POST_DnsByZoneNameDnssecDisable = {
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type POST_DnsByZoneNameDnssecDisable_Response_200 = POST_DnsByZoneNameDnssecDisable["200"]
+export type POST_DnsByZoneNameDnssecDisable_Response_200 = DnsChanges
 
 /**
  * 422 response for POST DnsByZoneNameDnssecDisable endpoint
@@ -750,7 +752,7 @@ export type POST_DnsByZoneNameDnssecDisable_Response_200 = POST_DnsByZoneNameDns
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type POST_DnsByZoneNameDnssecDisable_Response_422 = POST_DnsByZoneNameDnssecDisable["422"]
+export type POST_DnsByZoneNameDnssecDisable_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DnsByZoneNameDnssecEnable endpoint
@@ -759,8 +761,8 @@ export type POST_DnsByZoneNameDnssecDisable_Response_422 = POST_DnsByZoneNameDns
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type POST_DnsByZoneNameDnssecEnable = {
-  200: components["schemas"]["DnsChangesResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: DnsChanges
+  422: HTTPValidationError
 }
 
 /**
@@ -769,7 +771,7 @@ export type POST_DnsByZoneNameDnssecEnable = {
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type POST_DnsByZoneNameDnssecEnable_Response_200 = POST_DnsByZoneNameDnssecEnable["200"]
+export type POST_DnsByZoneNameDnssecEnable_Response_200 = DnsChanges
 
 /**
  * 422 response for POST DnsByZoneNameDnssecEnable endpoint
@@ -777,7 +779,7 @@ export type POST_DnsByZoneNameDnssecEnable_Response_200 = POST_DnsByZoneNameDnss
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type POST_DnsByZoneNameDnssecEnable_Response_422 = POST_DnsByZoneNameDnssecEnable["422"]
+export type POST_DnsByZoneNameDnssecEnable_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT DnsByZoneNameRrsets endpoint
@@ -786,7 +788,7 @@ export type POST_DnsByZoneNameDnssecEnable_Response_422 = POST_DnsByZoneNameDnss
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type PUT_DnsByZoneNameRrsets = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -795,7 +797,7 @@ export type PUT_DnsByZoneNameRrsets = {
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type PUT_DnsByZoneNameRrsets_Response_422 = PUT_DnsByZoneNameRrsets["422"]
+export type PUT_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainSearchSuggest endpoint
@@ -809,10 +811,10 @@ Specify one or more TLDs to include in the search.
  * @param premium (query) - Whether to include premium domains in the suggestions
  */
 export type GET_DomainSearchSuggest = {
-  200: components["schemas"]["DomainSearchResponse"]
-  401: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
-  502: components["schemas"]["Problem"]
+  200: DomainSearch
+  401: Problem
+  422: HTTPValidationError
+  502: Problem
 }
 
 /**
@@ -826,7 +828,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  */
-export type GET_DomainSearchSuggest_Response_200 = GET_DomainSearchSuggest["200"]
+export type GET_DomainSearchSuggest_Response_200 = DomainSearch
 
 /**
  * 401 response for GET DomainSearchSuggest endpoint
@@ -839,7 +841,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  */
-export type GET_DomainSearchSuggest_Response_401 = GET_DomainSearchSuggest["401"]
+export type GET_DomainSearchSuggest_Response_401 = Problem
 
 /**
  * 422 response for GET DomainSearchSuggest endpoint
@@ -852,7 +854,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  */
-export type GET_DomainSearchSuggest_Response_422 = GET_DomainSearchSuggest["422"]
+export type GET_DomainSearchSuggest_Response_422 = HTTPValidationError
 
 /**
  * 502 response for GET DomainSearchSuggest endpoint
@@ -865,7 +867,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  */
-export type GET_DomainSearchSuggest_Response_502 = GET_DomainSearchSuggest["502"]
+export type GET_DomainSearchSuggest_Response_502 = Problem
 
 /**
  * Response types for GET Domains endpoint
@@ -873,8 +875,8 @@ export type GET_DomainSearchSuggest_Response_502 = GET_DomainSearchSuggest["502"
  * @path /v1/domains
  */
 export type GET_Domains = {
-  200: components["schemas"]["Pagination_DomainResponse_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_Domain
+  422: HTTPValidationError
 }
 
 /**
@@ -882,14 +884,14 @@ export type GET_Domains = {
  * 
  * @path /v1/domains
  */
-export type GET_Domains_Response_200 = GET_Domains["200"]
+export type GET_Domains_Response_200 = Pagination_Domain
 
 /**
  * 422 response for GET Domains endpoint
  * 
  * @path /v1/domains
  */
-export type GET_Domains_Response_422 = GET_Domains["422"]
+export type GET_Domains_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Domains endpoint
@@ -897,11 +899,11 @@ export type GET_Domains_Response_422 = GET_Domains["422"]
  * @path /v1/domains
  */
 export type POST_Domains = {
-  201: components["schemas"]["DomainResponse"]
-  400: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  409: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  201: Domain
+  400: Problem
+  404: Problem
+  409: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -909,35 +911,35 @@ export type POST_Domains = {
  * 
  * @path /v1/domains
  */
-export type POST_Domains_Response_201 = POST_Domains["201"]
+export type POST_Domains_Response_201 = Domain
 
 /**
  * 400 response for POST Domains endpoint
  * 
  * @path /v1/domains
  */
-export type POST_Domains_Response_400 = POST_Domains["400"]
+export type POST_Domains_Response_400 = Problem
 
 /**
  * 404 response for POST Domains endpoint
  * 
  * @path /v1/domains
  */
-export type POST_Domains_Response_404 = POST_Domains["404"]
+export type POST_Domains_Response_404 = Problem
 
 /**
  * 409 response for POST Domains endpoint
  * 
  * @path /v1/domains
  */
-export type POST_Domains_Response_409 = POST_Domains["409"]
+export type POST_Domains_Response_409 = Problem
 
 /**
  * 422 response for POST Domains endpoint
  * 
  * @path /v1/domains
  */
-export type POST_Domains_Response_422 = POST_Domains["422"]
+export type POST_Domains_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainsByDomainReference endpoint
@@ -945,9 +947,9 @@ export type POST_Domains_Response_422 = POST_Domains["422"]
  * @path /v1/domains/{domain_reference}
  */
 export type DELETE_DomainsByDomainReference = {
-  404: components["schemas"]["Problem"]
-  409: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  404: Problem
+  409: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -955,21 +957,21 @@ export type DELETE_DomainsByDomainReference = {
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type DELETE_DomainsByDomainReference_Response_404 = DELETE_DomainsByDomainReference["404"]
+export type DELETE_DomainsByDomainReference_Response_404 = Problem
 
 /**
  * 409 response for DELETE DomainsByDomainReference endpoint
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type DELETE_DomainsByDomainReference_Response_409 = DELETE_DomainsByDomainReference["409"]
+export type DELETE_DomainsByDomainReference_Response_409 = Problem
 
 /**
  * 422 response for DELETE DomainsByDomainReference endpoint
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type DELETE_DomainsByDomainReference_Response_422 = DELETE_DomainsByDomainReference["422"]
+export type DELETE_DomainsByDomainReference_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainsByDomainReference endpoint
@@ -977,9 +979,9 @@ export type DELETE_DomainsByDomainReference_Response_422 = DELETE_DomainsByDomai
  * @path /v1/domains/{domain_reference}
  */
 export type GET_DomainsByDomainReference = {
-  200: components["schemas"]["DomainResponse"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Domain
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -987,21 +989,21 @@ export type GET_DomainsByDomainReference = {
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type GET_DomainsByDomainReference_Response_200 = GET_DomainsByDomainReference["200"]
+export type GET_DomainsByDomainReference_Response_200 = Domain
 
 /**
  * 404 response for GET DomainsByDomainReference endpoint
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type GET_DomainsByDomainReference_Response_404 = GET_DomainsByDomainReference["404"]
+export type GET_DomainsByDomainReference_Response_404 = Problem
 
 /**
  * 422 response for GET DomainsByDomainReference endpoint
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type GET_DomainsByDomainReference_Response_422 = GET_DomainsByDomainReference["422"]
+export type GET_DomainsByDomainReference_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH DomainsByDomainReference endpoint
@@ -1009,9 +1011,9 @@ export type GET_DomainsByDomainReference_Response_422 = GET_DomainsByDomainRefer
  * @path /v1/domains/{domain_reference}
  */
 export type PATCH_DomainsByDomainReference = {
-  200: components["schemas"]["DomainResponse"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Domain
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1019,21 +1021,21 @@ export type PATCH_DomainsByDomainReference = {
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type PATCH_DomainsByDomainReference_Response_200 = PATCH_DomainsByDomainReference["200"]
+export type PATCH_DomainsByDomainReference_Response_200 = Domain
 
 /**
  * 404 response for PATCH DomainsByDomainReference endpoint
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type PATCH_DomainsByDomainReference_Response_404 = PATCH_DomainsByDomainReference["404"]
+export type PATCH_DomainsByDomainReference_Response_404 = Problem
 
 /**
  * 422 response for PATCH DomainsByDomainReference endpoint
  * 
  * @path /v1/domains/{domain_reference}
  */
-export type PATCH_DomainsByDomainReference_Response_422 = PATCH_DomainsByDomainReference["422"]
+export type PATCH_DomainsByDomainReference_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainsByDomainReferenceDnssec endpoint
@@ -1041,8 +1043,8 @@ export type PATCH_DomainsByDomainReference_Response_422 = PATCH_DomainsByDomainR
  * @path /v1/domains/{domain_reference}/dnssec
  */
 export type DELETE_DomainsByDomainReferenceDnssec = {
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1050,14 +1052,14 @@ export type DELETE_DomainsByDomainReferenceDnssec = {
  * 
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type DELETE_DomainsByDomainReferenceDnssec_Response_404 = DELETE_DomainsByDomainReferenceDnssec["404"]
+export type DELETE_DomainsByDomainReferenceDnssec_Response_404 = Problem
 
 /**
  * 422 response for DELETE DomainsByDomainReferenceDnssec endpoint
  * 
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type DELETE_DomainsByDomainReferenceDnssec_Response_422 = DELETE_DomainsByDomainReferenceDnssec["422"]
+export type DELETE_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainsByDomainReferenceDnssec endpoint
@@ -1065,8 +1067,8 @@ export type DELETE_DomainsByDomainReferenceDnssec_Response_422 = DELETE_DomainsB
  * @path /v1/domains/{domain_reference}/dnssec
  */
 export type GET_DomainsByDomainReferenceDnssec = {
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1074,14 +1076,14 @@ export type GET_DomainsByDomainReferenceDnssec = {
  * 
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type GET_DomainsByDomainReferenceDnssec_Response_404 = GET_DomainsByDomainReferenceDnssec["404"]
+export type GET_DomainsByDomainReferenceDnssec_Response_404 = Problem
 
 /**
  * 422 response for GET DomainsByDomainReferenceDnssec endpoint
  * 
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type GET_DomainsByDomainReferenceDnssec_Response_422 = GET_DomainsByDomainReferenceDnssec["422"]
+export type GET_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT DomainsByDomainReferenceDnssec endpoint
@@ -1089,8 +1091,8 @@ export type GET_DomainsByDomainReferenceDnssec_Response_422 = GET_DomainsByDomai
  * @path /v1/domains/{domain_reference}/dnssec
  */
 export type PUT_DomainsByDomainReferenceDnssec = {
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1098,14 +1100,14 @@ export type PUT_DomainsByDomainReferenceDnssec = {
  * 
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type PUT_DomainsByDomainReferenceDnssec_Response_404 = PUT_DomainsByDomainReferenceDnssec["404"]
+export type PUT_DomainsByDomainReferenceDnssec_Response_404 = Problem
 
 /**
  * 422 response for PUT DomainsByDomainReferenceDnssec endpoint
  * 
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type PUT_DomainsByDomainReferenceDnssec_Response_422 = PUT_DomainsByDomainReferenceDnssec["422"]
+export type PUT_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DomainsByDomainReferenceRenew endpoint
@@ -1113,8 +1115,8 @@ export type PUT_DomainsByDomainReferenceDnssec_Response_422 = PUT_DomainsByDomai
  * @path /v1/domains/{domain_reference}/renew
  */
 export type POST_DomainsByDomainReferenceRenew = {
-  200: components["schemas"]["DomainRenewResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: DomainRenew
+  422: HTTPValidationError
 }
 
 /**
@@ -1122,14 +1124,14 @@ export type POST_DomainsByDomainReferenceRenew = {
  * 
  * @path /v1/domains/{domain_reference}/renew
  */
-export type POST_DomainsByDomainReferenceRenew_Response_200 = POST_DomainsByDomainReferenceRenew["200"]
+export type POST_DomainsByDomainReferenceRenew_Response_200 = DomainRenew
 
 /**
  * 422 response for POST DomainsByDomainReferenceRenew endpoint
  * 
  * @path /v1/domains/{domain_reference}/renew
  */
-export type POST_DomainsByDomainReferenceRenew_Response_422 = POST_DomainsByDomainReferenceRenew["422"]
+export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainsByDomainReferenceTransfer endpoint
@@ -1137,9 +1139,9 @@ export type POST_DomainsByDomainReferenceRenew_Response_422 = POST_DomainsByDoma
  * @path /v1/domains/{domain_reference}/transfer
  */
 export type DELETE_DomainsByDomainReferenceTransfer = {
-  404: components["schemas"]["Problem"]
-  409: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  404: Problem
+  409: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1147,21 +1149,21 @@ export type DELETE_DomainsByDomainReferenceTransfer = {
  * 
  * @path /v1/domains/{domain_reference}/transfer
  */
-export type DELETE_DomainsByDomainReferenceTransfer_Response_404 = DELETE_DomainsByDomainReferenceTransfer["404"]
+export type DELETE_DomainsByDomainReferenceTransfer_Response_404 = Problem
 
 /**
  * 409 response for DELETE DomainsByDomainReferenceTransfer endpoint
  * 
  * @path /v1/domains/{domain_reference}/transfer
  */
-export type DELETE_DomainsByDomainReferenceTransfer_Response_409 = DELETE_DomainsByDomainReferenceTransfer["409"]
+export type DELETE_DomainsByDomainReferenceTransfer_Response_409 = Problem
 
 /**
  * 422 response for DELETE DomainsByDomainReferenceTransfer endpoint
  * 
  * @path /v1/domains/{domain_reference}/transfer
  */
-export type DELETE_DomainsByDomainReferenceTransfer_Response_422 = DELETE_DomainsByDomainReferenceTransfer["422"]
+export type DELETE_DomainsByDomainReferenceTransfer_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainsCheck endpoint
@@ -1172,8 +1174,8 @@ Specify one or more domains to check for availability.
 
  */
 export type GET_DomainsCheck = {
-  200: components["schemas"]["DomainCheckResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: DomainCheck
+  422: HTTPValidationError
 }
 
 /**
@@ -1184,7 +1186,7 @@ export type GET_DomainsCheck = {
 Specify one or more domains to check for availability.
 
  */
-export type GET_DomainsCheck_Response_200 = GET_DomainsCheck["200"]
+export type GET_DomainsCheck_Response_200 = DomainCheck
 
 /**
  * 422 response for GET DomainsCheck endpoint
@@ -1194,7 +1196,7 @@ export type GET_DomainsCheck_Response_200 = GET_DomainsCheck["200"]
 Specify one or more domains to check for availability.
 
  */
-export type GET_DomainsCheck_Response_422 = GET_DomainsCheck["422"]
+export type GET_DomainsCheck_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DomainsTransfer endpoint
@@ -1202,11 +1204,11 @@ export type GET_DomainsCheck_Response_422 = GET_DomainsCheck["422"]
  * @path /v1/domains/transfer
  */
 export type POST_DomainsTransfer = {
-  201: components["schemas"]["DomainResponse"]
-  400: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  409: components["schemas"]["Problem"]
-  422: components["schemas"]["Problem"]
+  201: Domain
+  400: Problem
+  404: Problem
+  409: Problem
+  422: Problem
 }
 
 /**
@@ -1214,35 +1216,35 @@ export type POST_DomainsTransfer = {
  * 
  * @path /v1/domains/transfer
  */
-export type POST_DomainsTransfer_Response_201 = POST_DomainsTransfer["201"]
+export type POST_DomainsTransfer_Response_201 = Domain
 
 /**
  * 400 response for POST DomainsTransfer endpoint
  * 
  * @path /v1/domains/transfer
  */
-export type POST_DomainsTransfer_Response_400 = POST_DomainsTransfer["400"]
+export type POST_DomainsTransfer_Response_400 = Problem
 
 /**
  * 404 response for POST DomainsTransfer endpoint
  * 
  * @path /v1/domains/transfer
  */
-export type POST_DomainsTransfer_Response_404 = POST_DomainsTransfer["404"]
+export type POST_DomainsTransfer_Response_404 = Problem
 
 /**
  * 409 response for POST DomainsTransfer endpoint
  * 
  * @path /v1/domains/transfer
  */
-export type POST_DomainsTransfer_Response_409 = POST_DomainsTransfer["409"]
+export type POST_DomainsTransfer_Response_409 = Problem
 
 /**
  * 422 response for POST DomainsTransfer endpoint
  * 
  * @path /v1/domains/transfer
  */
-export type POST_DomainsTransfer_Response_422 = POST_DomainsTransfer["422"]
+export type POST_DomainsTransfer_Response_422 = Problem
 
 /**
  * Response types for GET EmailForwards endpoint
@@ -1253,8 +1255,8 @@ export type POST_DomainsTransfer_Response_422 = POST_DomainsTransfer["422"]
  * @param target_address (query) - Optional target address to filter the results
  */
 export type GET_EmailForwards = {
-  200: components["schemas"]["Pagination_EmailForward_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_EmailForward
+  422: HTTPValidationError
 }
 
 /**
@@ -1265,7 +1267,7 @@ export type GET_EmailForwards = {
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
  */
-export type GET_EmailForwards_Response_200 = GET_EmailForwards["200"]
+export type GET_EmailForwards_Response_200 = Pagination_EmailForward
 
 /**
  * 422 response for GET EmailForwards endpoint
@@ -1275,7 +1277,7 @@ export type GET_EmailForwards_Response_200 = GET_EmailForwards["200"]
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
  */
-export type GET_EmailForwards_Response_422 = GET_EmailForwards["422"]
+export type GET_EmailForwards_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST EmailForwards endpoint
@@ -1283,8 +1285,8 @@ export type GET_EmailForwards_Response_422 = GET_EmailForwards["422"]
  * @path /v1/email-forwards
  */
 export type POST_EmailForwards = {
-  201: components["schemas"]["EmailForward"]
-  422: components["schemas"]["HTTPValidationError"]
+  201: EmailForward
+  422: HTTPValidationError
 }
 
 /**
@@ -1292,14 +1294,14 @@ export type POST_EmailForwards = {
  * 
  * @path /v1/email-forwards
  */
-export type POST_EmailForwards_Response_201 = POST_EmailForwards["201"]
+export type POST_EmailForwards_Response_201 = EmailForward
 
 /**
  * 422 response for POST EmailForwards endpoint
  * 
  * @path /v1/email-forwards
  */
-export type POST_EmailForwards_Response_422 = POST_EmailForwards["422"]
+export type POST_EmailForwards_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST EmailForwardsBulkDelete endpoint
@@ -1307,8 +1309,8 @@ export type POST_EmailForwards_Response_422 = POST_EmailForwards["422"]
  * @path /v1/email-forwards/bulk-delete
  */
 export type POST_EmailForwardsBulkDelete = {
-  200: components["schemas"]["BulkOperationResponse_EmailForwardBulkDeleteResult_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: EmailForwardBulkDeleteResult
+  422: HTTPValidationError
 }
 
 /**
@@ -1316,14 +1318,14 @@ export type POST_EmailForwardsBulkDelete = {
  * 
  * @path /v1/email-forwards/bulk-delete
  */
-export type POST_EmailForwardsBulkDelete_Response_200 = POST_EmailForwardsBulkDelete["200"]
+export type POST_EmailForwardsBulkDelete_Response_200 = EmailForwardBulkDeleteResult
 
 /**
  * 422 response for POST EmailForwardsBulkDelete endpoint
  * 
  * @path /v1/email-forwards/bulk-delete
  */
-export type POST_EmailForwardsBulkDelete_Response_422 = POST_EmailForwardsBulkDelete["422"]
+export type POST_EmailForwardsBulkDelete_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH EmailForwardsBulkUpdate endpoint
@@ -1331,8 +1333,8 @@ export type POST_EmailForwardsBulkDelete_Response_422 = POST_EmailForwardsBulkDe
  * @path /v1/email-forwards/bulk-update
  */
 export type PATCH_EmailForwardsBulkUpdate = {
-  200: components["schemas"]["BulkOperationResponse_EmailForwardBulkUpdateResult_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: EmailForwardBulkUpdateResult
+  422: HTTPValidationError
 }
 
 /**
@@ -1340,14 +1342,14 @@ export type PATCH_EmailForwardsBulkUpdate = {
  * 
  * @path /v1/email-forwards/bulk-update
  */
-export type PATCH_EmailForwardsBulkUpdate_Response_200 = PATCH_EmailForwardsBulkUpdate["200"]
+export type PATCH_EmailForwardsBulkUpdate_Response_200 = EmailForwardBulkUpdateResult
 
 /**
  * 422 response for PATCH EmailForwardsBulkUpdate endpoint
  * 
  * @path /v1/email-forwards/bulk-update
  */
-export type PATCH_EmailForwardsBulkUpdate_Response_422 = PATCH_EmailForwardsBulkUpdate["422"]
+export type PATCH_EmailForwardsBulkUpdate_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE EmailForwardsByEmailForwardId endpoint
@@ -1355,7 +1357,7 @@ export type PATCH_EmailForwardsBulkUpdate_Response_422 = PATCH_EmailForwardsBulk
  * @path /v1/email-forwards/{email_forward_id}
  */
 export type DELETE_EmailForwardsByEmailForwardId = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1363,7 +1365,7 @@ export type DELETE_EmailForwardsByEmailForwardId = {
  * 
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type DELETE_EmailForwardsByEmailForwardId_Response_422 = DELETE_EmailForwardsByEmailForwardId["422"]
+export type DELETE_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET EmailForwardsByEmailForwardId endpoint
@@ -1371,8 +1373,8 @@ export type DELETE_EmailForwardsByEmailForwardId_Response_422 = DELETE_EmailForw
  * @path /v1/email-forwards/{email_forward_id}
  */
 export type GET_EmailForwardsByEmailForwardId = {
-  200: components["schemas"]["EmailForward"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: EmailForward
+  422: HTTPValidationError
 }
 
 /**
@@ -1380,14 +1382,14 @@ export type GET_EmailForwardsByEmailForwardId = {
  * 
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type GET_EmailForwardsByEmailForwardId_Response_200 = GET_EmailForwardsByEmailForwardId["200"]
+export type GET_EmailForwardsByEmailForwardId_Response_200 = EmailForward
 
 /**
  * 422 response for GET EmailForwardsByEmailForwardId endpoint
  * 
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type GET_EmailForwardsByEmailForwardId_Response_422 = GET_EmailForwardsByEmailForwardId["422"]
+export type GET_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH EmailForwardsByEmailForwardId endpoint
@@ -1395,8 +1397,8 @@ export type GET_EmailForwardsByEmailForwardId_Response_422 = GET_EmailForwardsBy
  * @path /v1/email-forwards/{email_forward_id}
  */
 export type PATCH_EmailForwardsByEmailForwardId = {
-  200: components["schemas"]["EmailForward"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: EmailForward
+  422: HTTPValidationError
 }
 
 /**
@@ -1404,14 +1406,14 @@ export type PATCH_EmailForwardsByEmailForwardId = {
  * 
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type PATCH_EmailForwardsByEmailForwardId_Response_200 = PATCH_EmailForwardsByEmailForwardId["200"]
+export type PATCH_EmailForwardsByEmailForwardId_Response_200 = EmailForward
 
 /**
  * 422 response for PATCH EmailForwardsByEmailForwardId endpoint
  * 
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type PATCH_EmailForwardsByEmailForwardId_Response_422 = PATCH_EmailForwardsByEmailForwardId["422"]
+export type PATCH_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Event endpoint
@@ -1419,9 +1421,9 @@ export type PATCH_EmailForwardsByEmailForwardId_Response_422 = PATCH_EmailForwar
  * @path /v1/event
  */
 export type GET_Event = {
-  200: components["schemas"]["Pagination_EventResponse_"]
-  401: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_Event
+  401: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1429,21 +1431,21 @@ export type GET_Event = {
  * 
  * @path /v1/event
  */
-export type GET_Event_Response_200 = GET_Event["200"]
+export type GET_Event_Response_200 = Pagination_Event
 
 /**
  * 401 response for GET Event endpoint
  * 
  * @path /v1/event
  */
-export type GET_Event_Response_401 = GET_Event["401"]
+export type GET_Event_Response_401 = Problem
 
 /**
  * 422 response for GET Event endpoint
  * 
  * @path /v1/event
  */
-export type GET_Event_Response_422 = GET_Event["422"]
+export type GET_Event_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET EventByEventId endpoint
@@ -1451,10 +1453,10 @@ export type GET_Event_Response_422 = GET_Event["422"]
  * @path /v1/event/{event_id}
  */
 export type GET_EventByEventId = {
-  200: components["schemas"]["EventSchema"]
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: EventSchema
+  401: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1462,28 +1464,28 @@ export type GET_EventByEventId = {
  * 
  * @path /v1/event/{event_id}
  */
-export type GET_EventByEventId_Response_200 = GET_EventByEventId["200"]
+export type GET_EventByEventId_Response_200 = EventSchema
 
 /**
  * 401 response for GET EventByEventId endpoint
  * 
  * @path /v1/event/{event_id}
  */
-export type GET_EventByEventId_Response_401 = GET_EventByEventId["401"]
+export type GET_EventByEventId_Response_401 = Problem
 
 /**
  * 404 response for GET EventByEventId endpoint
  * 
  * @path /v1/event/{event_id}
  */
-export type GET_EventByEventId_Response_404 = GET_EventByEventId["404"]
+export type GET_EventByEventId_Response_404 = Problem
 
 /**
  * 422 response for GET EventByEventId endpoint
  * 
  * @path /v1/event/{event_id}
  */
-export type GET_EventByEventId_Response_422 = GET_EventByEventId["422"]
+export type GET_EventByEventId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH EventByEventId endpoint
@@ -1491,9 +1493,9 @@ export type GET_EventByEventId_Response_422 = GET_EventByEventId["422"]
  * @path /v1/event/{event_id}
  */
 export type PATCH_EventByEventId = {
-  401: components["schemas"]["Problem"]
-  404: components["schemas"]["Problem"]
-  422: components["schemas"]["HTTPValidationError"]
+  401: Problem
+  404: Problem
+  422: HTTPValidationError
 }
 
 /**
@@ -1501,21 +1503,21 @@ export type PATCH_EventByEventId = {
  * 
  * @path /v1/event/{event_id}
  */
-export type PATCH_EventByEventId_Response_401 = PATCH_EventByEventId["401"]
+export type PATCH_EventByEventId_Response_401 = Problem
 
 /**
  * 404 response for PATCH EventByEventId endpoint
  * 
  * @path /v1/event/{event_id}
  */
-export type PATCH_EventByEventId_Response_404 = PATCH_EventByEventId["404"]
+export type PATCH_EventByEventId_Response_404 = Problem
 
 /**
  * 422 response for PATCH EventByEventId endpoint
  * 
  * @path /v1/event/{event_id}
  */
-export type PATCH_EventByEventId_Response_422 = PATCH_EventByEventId["422"]
+export type PATCH_EventByEventId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Notifications endpoint
@@ -1523,8 +1525,8 @@ export type PATCH_EventByEventId_Response_422 = PATCH_EventByEventId["422"]
  * @path /v1/notifications
  */
 export type GET_Notifications = {
-  200: components["schemas"]["Pagination_UserNotificationSummary_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_UserNotificationSummary
+  422: HTTPValidationError
 }
 
 /**
@@ -1532,14 +1534,14 @@ export type GET_Notifications = {
  * 
  * @path /v1/notifications
  */
-export type GET_Notifications_Response_200 = GET_Notifications["200"]
+export type GET_Notifications_Response_200 = Pagination_UserNotificationSummary
 
 /**
  * 422 response for GET Notifications endpoint
  * 
  * @path /v1/notifications
  */
-export type GET_Notifications_Response_422 = GET_Notifications["422"]
+export type GET_Notifications_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Notifications endpoint
@@ -1547,8 +1549,8 @@ export type GET_Notifications_Response_422 = GET_Notifications["422"]
  * @path /v1/notifications
  */
 export type POST_Notifications = {
-  201: components["schemas"]["Notification"]
-  422: components["schemas"]["HTTPValidationError"]
+  201: Notification
+  422: HTTPValidationError
 }
 
 /**
@@ -1556,14 +1558,14 @@ export type POST_Notifications = {
  * 
  * @path /v1/notifications
  */
-export type POST_Notifications_Response_201 = POST_Notifications["201"]
+export type POST_Notifications_Response_201 = Notification
 
 /**
  * 422 response for POST Notifications endpoint
  * 
  * @path /v1/notifications
  */
-export type POST_Notifications_Response_422 = POST_Notifications["422"]
+export type POST_Notifications_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE NotificationsByNotificationId endpoint
@@ -1571,7 +1573,7 @@ export type POST_Notifications_Response_422 = POST_Notifications["422"]
  * @path /v1/notifications/{notification_id}
  */
 export type DELETE_NotificationsByNotificationId = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1579,7 +1581,7 @@ export type DELETE_NotificationsByNotificationId = {
  * 
  * @path /v1/notifications/{notification_id}
  */
-export type DELETE_NotificationsByNotificationId_Response_422 = DELETE_NotificationsByNotificationId["422"]
+export type DELETE_NotificationsByNotificationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET NotificationsByNotificationId endpoint
@@ -1587,8 +1589,8 @@ export type DELETE_NotificationsByNotificationId_Response_422 = DELETE_Notificat
  * @path /v1/notifications/{notification_id}
  */
 export type GET_NotificationsByNotificationId = {
-  200: components["schemas"]["UserNotification"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: UserNotification
+  422: HTTPValidationError
 }
 
 /**
@@ -1596,14 +1598,14 @@ export type GET_NotificationsByNotificationId = {
  * 
  * @path /v1/notifications/{notification_id}
  */
-export type GET_NotificationsByNotificationId_Response_200 = GET_NotificationsByNotificationId["200"]
+export type GET_NotificationsByNotificationId_Response_200 = UserNotification
 
 /**
  * 422 response for GET NotificationsByNotificationId endpoint
  * 
  * @path /v1/notifications/{notification_id}
  */
-export type GET_NotificationsByNotificationId_Response_422 = GET_NotificationsByNotificationId["422"]
+export type GET_NotificationsByNotificationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT NotificationsByNotificationId endpoint
@@ -1611,8 +1613,8 @@ export type GET_NotificationsByNotificationId_Response_422 = GET_NotificationsBy
  * @path /v1/notifications/{notification_id}
  */
 export type PUT_NotificationsByNotificationId = {
-  200: components["schemas"]["Notification"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Notification
+  422: HTTPValidationError
 }
 
 /**
@@ -1620,14 +1622,14 @@ export type PUT_NotificationsByNotificationId = {
  * 
  * @path /v1/notifications/{notification_id}
  */
-export type PUT_NotificationsByNotificationId_Response_200 = PUT_NotificationsByNotificationId["200"]
+export type PUT_NotificationsByNotificationId_Response_200 = Notification
 
 /**
  * 422 response for PUT NotificationsByNotificationId endpoint
  * 
  * @path /v1/notifications/{notification_id}
  */
-export type PUT_NotificationsByNotificationId_Response_422 = PUT_NotificationsByNotificationId["422"]
+export type PUT_NotificationsByNotificationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH NotificationsByNotificationIdRead endpoint
@@ -1635,7 +1637,7 @@ export type PUT_NotificationsByNotificationId_Response_422 = PUT_NotificationsBy
  * @path /v1/notifications/{notification_id}/read
  */
 export type PATCH_NotificationsByNotificationIdRead = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1643,7 +1645,7 @@ export type PATCH_NotificationsByNotificationIdRead = {
  * 
  * @path /v1/notifications/{notification_id}/read
  */
-export type PATCH_NotificationsByNotificationIdRead_Response_422 = PATCH_NotificationsByNotificationIdRead["422"]
+export type PATCH_NotificationsByNotificationIdRead_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Organizations endpoint
@@ -1651,8 +1653,8 @@ export type PATCH_NotificationsByNotificationIdRead_Response_422 = PATCH_Notific
  * @path /v1/organizations
  */
 export type GET_Organizations = {
-  200: components["schemas"]["Pagination_Organization_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_Organization
+  422: HTTPValidationError
 }
 
 /**
@@ -1660,14 +1662,14 @@ export type GET_Organizations = {
  * 
  * @path /v1/organizations
  */
-export type GET_Organizations_Response_200 = GET_Organizations["200"]
+export type GET_Organizations_Response_200 = Pagination_Organization
 
 /**
  * 422 response for GET Organizations endpoint
  * 
  * @path /v1/organizations
  */
-export type GET_Organizations_Response_422 = GET_Organizations["422"]
+export type GET_Organizations_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Organizations endpoint
@@ -1675,8 +1677,8 @@ export type GET_Organizations_Response_422 = GET_Organizations["422"]
  * @path /v1/organizations
  */
 export type POST_Organizations = {
-  200: components["schemas"]["Organization"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Organization
+  422: HTTPValidationError
 }
 
 /**
@@ -1684,14 +1686,14 @@ export type POST_Organizations = {
  * 
  * @path /v1/organizations
  */
-export type POST_Organizations_Response_200 = POST_Organizations["200"]
+export type POST_Organizations_Response_200 = Organization
 
 /**
  * 422 response for POST Organizations endpoint
  * 
  * @path /v1/organizations
  */
-export type POST_Organizations_Response_422 = POST_Organizations["422"]
+export type POST_Organizations_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsAttributes endpoint
@@ -1700,7 +1702,7 @@ export type POST_Organizations_Response_422 = POST_Organizations["422"]
  * @param keys (query) - Optional list of attribute keys to filter
  */
 export type GET_OrganizationsAttributes = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1709,7 +1711,7 @@ export type GET_OrganizationsAttributes = {
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
  */
-export type GET_OrganizationsAttributes_Response_422 = GET_OrganizationsAttributes["422"]
+export type GET_OrganizationsAttributes_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsAttributes endpoint
@@ -1717,7 +1719,7 @@ export type GET_OrganizationsAttributes_Response_422 = GET_OrganizationsAttribut
  * @path /v1/organizations/attributes
  */
 export type PATCH_OrganizationsAttributes = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1725,7 +1727,7 @@ export type PATCH_OrganizationsAttributes = {
  * 
  * @path /v1/organizations/attributes
  */
-export type PATCH_OrganizationsAttributes_Response_422 = PATCH_OrganizationsAttributes["422"]
+export type PATCH_OrganizationsAttributes_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsAttributesByOrganizationId endpoint
@@ -1734,7 +1736,7 @@ export type PATCH_OrganizationsAttributes_Response_422 = PATCH_OrganizationsAttr
  * @param keys (query) - Optional list of attribute keys to filter
  */
 export type GET_OrganizationsAttributesByOrganizationId = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1743,7 +1745,7 @@ export type GET_OrganizationsAttributesByOrganizationId = {
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
  */
-export type GET_OrganizationsAttributesByOrganizationId_Response_422 = GET_OrganizationsAttributesByOrganizationId["422"]
+export type GET_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsAttributesByOrganizationId endpoint
@@ -1751,7 +1753,7 @@ export type GET_OrganizationsAttributesByOrganizationId_Response_422 = GET_Organ
  * @path /v1/organizations/attributes/{organization_id}
  */
 export type PATCH_OrganizationsAttributesByOrganizationId = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1759,7 +1761,7 @@ export type PATCH_OrganizationsAttributesByOrganizationId = {
  * 
  * @path /v1/organizations/attributes/{organization_id}
  */
-export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = PATCH_OrganizationsAttributesByOrganizationId["422"]
+export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE OrganizationsByOrganizationId endpoint
@@ -1767,7 +1769,7 @@ export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = PATCH_O
  * @path /v1/organizations/{organization_id}
  */
 export type DELETE_OrganizationsByOrganizationId = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1775,7 +1777,7 @@ export type DELETE_OrganizationsByOrganizationId = {
  * 
  * @path /v1/organizations/{organization_id}
  */
-export type DELETE_OrganizationsByOrganizationId_Response_422 = DELETE_OrganizationsByOrganizationId["422"]
+export type DELETE_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsByOrganizationId endpoint
@@ -1783,8 +1785,8 @@ export type DELETE_OrganizationsByOrganizationId_Response_422 = DELETE_Organizat
  * @path /v1/organizations/{organization_id}
  */
 export type GET_OrganizationsByOrganizationId = {
-  200: components["schemas"]["OrganizationWithPlan"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: OrganizationWithPlan
+  422: HTTPValidationError
 }
 
 /**
@@ -1792,14 +1794,14 @@ export type GET_OrganizationsByOrganizationId = {
  * 
  * @path /v1/organizations/{organization_id}
  */
-export type GET_OrganizationsByOrganizationId_Response_200 = GET_OrganizationsByOrganizationId["200"]
+export type GET_OrganizationsByOrganizationId_Response_200 = OrganizationWithPlan
 
 /**
  * 422 response for GET OrganizationsByOrganizationId endpoint
  * 
  * @path /v1/organizations/{organization_id}
  */
-export type GET_OrganizationsByOrganizationId_Response_422 = GET_OrganizationsByOrganizationId["422"]
+export type GET_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsByOrganizationId endpoint
@@ -1807,8 +1809,8 @@ export type GET_OrganizationsByOrganizationId_Response_422 = GET_OrganizationsBy
  * @path /v1/organizations/{organization_id}
  */
 export type PATCH_OrganizationsByOrganizationId = {
-  200: components["schemas"]["Organization"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Organization
+  422: HTTPValidationError
 }
 
 /**
@@ -1816,14 +1818,14 @@ export type PATCH_OrganizationsByOrganizationId = {
  * 
  * @path /v1/organizations/{organization_id}
  */
-export type PATCH_OrganizationsByOrganizationId_Response_200 = PATCH_OrganizationsByOrganizationId["200"]
+export type PATCH_OrganizationsByOrganizationId_Response_200 = Organization
 
 /**
  * 422 response for PATCH OrganizationsByOrganizationId endpoint
  * 
  * @path /v1/organizations/{organization_id}
  */
-export type PATCH_OrganizationsByOrganizationId_Response_422 = PATCH_OrganizationsByOrganizationId["422"]
+export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsByOrganizationIdPlan endpoint
@@ -1831,8 +1833,8 @@ export type PATCH_OrganizationsByOrganizationId_Response_422 = PATCH_Organizatio
  * @path /v1/organizations/{organization_id}/plan
  */
 export type PATCH_OrganizationsByOrganizationIdPlan = {
-  200: components["schemas"]["OrganizationWithPlan"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: OrganizationWithPlan
+  422: HTTPValidationError
 }
 
 /**
@@ -1840,14 +1842,14 @@ export type PATCH_OrganizationsByOrganizationIdPlan = {
  * 
  * @path /v1/organizations/{organization_id}/plan
  */
-export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = PATCH_OrganizationsByOrganizationIdPlan["200"]
+export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationWithPlan
 
 /**
  * 422 response for PATCH OrganizationsByOrganizationIdPlan endpoint
  * 
  * @path /v1/organizations/{organization_id}/plan
  */
-export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = PATCH_OrganizationsByOrganizationIdPlan["422"]
+export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsIpRestrictions endpoint
@@ -1863,8 +1865,8 @@ export type GET_OrganizationsIpRestrictions = {
  * @path /v1/organizations/ip-restrictions
  */
 export type POST_OrganizationsIpRestrictions = {
-  200: components["schemas"]["IpRestrictionResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: IpRestriction
+  422: HTTPValidationError
 }
 
 /**
@@ -1872,14 +1874,14 @@ export type POST_OrganizationsIpRestrictions = {
  * 
  * @path /v1/organizations/ip-restrictions
  */
-export type POST_OrganizationsIpRestrictions_Response_200 = POST_OrganizationsIpRestrictions["200"]
+export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction
 
 /**
  * 422 response for POST OrganizationsIpRestrictions endpoint
  * 
  * @path /v1/organizations/ip-restrictions
  */
-export type POST_OrganizationsIpRestrictions_Response_422 = POST_OrganizationsIpRestrictions["422"]
+export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -1887,7 +1889,7 @@ export type POST_OrganizationsIpRestrictions_Response_422 = POST_OrganizationsIp
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
 export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -1895,7 +1897,7 @@ export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId = {
  * 
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = DELETE_OrganizationsIpRestrictionsByIpRestrictionId["422"]
+export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -1903,8 +1905,8 @@ export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = D
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId = {
-  200: components["schemas"]["IpRestrictionResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: IpRestriction
+  422: HTTPValidationError
 }
 
 /**
@@ -1912,14 +1914,14 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId = {
  * 
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = GET_OrganizationsIpRestrictionsByIpRestrictionId["200"]
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
 
 /**
  * 422 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
  * 
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = GET_OrganizationsIpRestrictionsByIpRestrictionId["422"]
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -1927,8 +1929,8 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = GET_
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId = {
-  200: components["schemas"]["IpRestrictionResponse"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: IpRestriction
+  422: HTTPValidationError
 }
 
 /**
@@ -1936,14 +1938,14 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId = {
  * 
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = PATCH_OrganizationsIpRestrictionsByIpRestrictionId["200"]
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
 
 /**
  * 422 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
  * 
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = PATCH_OrganizationsIpRestrictionsByIpRestrictionId["422"]
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsRoles endpoint
@@ -1959,8 +1961,8 @@ export type GET_OrganizationsRoles = {
  * @path /v1/organizations/users
  */
 export type GET_OrganizationsUsers = {
-  200: components["schemas"]["Pagination_User_"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: Pagination_User
+  422: HTTPValidationError
 }
 
 /**
@@ -1968,14 +1970,14 @@ export type GET_OrganizationsUsers = {
  * 
  * @path /v1/organizations/users
  */
-export type GET_OrganizationsUsers_Response_200 = GET_OrganizationsUsers["200"]
+export type GET_OrganizationsUsers_Response_200 = Pagination_User
 
 /**
  * 422 response for GET OrganizationsUsers endpoint
  * 
  * @path /v1/organizations/users
  */
-export type GET_OrganizationsUsers_Response_422 = GET_OrganizationsUsers["422"]
+export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Users endpoint
@@ -1983,8 +1985,8 @@ export type GET_OrganizationsUsers_Response_422 = GET_OrganizationsUsers["422"]
  * @path /v1/users
  */
 export type POST_Users = {
-  200: components["schemas"]["User"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: User
+  422: HTTPValidationError
 }
 
 /**
@@ -1992,14 +1994,14 @@ export type POST_Users = {
  * 
  * @path /v1/users
  */
-export type POST_Users_Response_200 = POST_Users["200"]
+export type POST_Users_Response_200 = User
 
 /**
  * 422 response for POST Users endpoint
  * 
  * @path /v1/users
  */
-export type POST_Users_Response_422 = POST_Users["422"]
+export type POST_Users_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST UsersAcceptTos endpoint
@@ -2007,7 +2009,7 @@ export type POST_Users_Response_422 = POST_Users["422"]
  * @path /v1/users/accept-tos
  */
 export type POST_UsersAcceptTos = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -2015,7 +2017,7 @@ export type POST_UsersAcceptTos = {
  * 
  * @path /v1/users/accept-tos
  */
-export type POST_UsersAcceptTos_Response_422 = POST_UsersAcceptTos["422"]
+export type POST_UsersAcceptTos_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE UsersByUserId endpoint
@@ -2023,7 +2025,7 @@ export type POST_UsersAcceptTos_Response_422 = POST_UsersAcceptTos["422"]
  * @path /v1/users/{user_id}
  */
 export type DELETE_UsersByUserId = {
-  422: components["schemas"]["HTTPValidationError"]
+  422: HTTPValidationError
 }
 
 /**
@@ -2031,7 +2033,7 @@ export type DELETE_UsersByUserId = {
  * 
  * @path /v1/users/{user_id}
  */
-export type DELETE_UsersByUserId_Response_422 = DELETE_UsersByUserId["422"]
+export type DELETE_UsersByUserId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersByUserId endpoint
@@ -2039,8 +2041,8 @@ export type DELETE_UsersByUserId_Response_422 = DELETE_UsersByUserId["422"]
  * @path /v1/users/{user_id}
  */
 export type GET_UsersByUserId = {
-  200: components["schemas"]["UserWithAttributes"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: UserWithAttributes
+  422: HTTPValidationError
 }
 
 /**
@@ -2048,14 +2050,14 @@ export type GET_UsersByUserId = {
  * 
  * @path /v1/users/{user_id}
  */
-export type GET_UsersByUserId_Response_200 = GET_UsersByUserId["200"]
+export type GET_UsersByUserId_Response_200 = UserWithAttributes
 
 /**
  * 422 response for GET UsersByUserId endpoint
  * 
  * @path /v1/users/{user_id}
  */
-export type GET_UsersByUserId_Response_422 = GET_UsersByUserId["422"]
+export type GET_UsersByUserId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH UsersByUserId endpoint
@@ -2063,8 +2065,8 @@ export type GET_UsersByUserId_Response_422 = GET_UsersByUserId["422"]
  * @path /v1/users/{user_id}
  */
 export type PATCH_UsersByUserId = {
-  200: components["schemas"]["UserWithAttributes"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: UserWithAttributes
+  422: HTTPValidationError
 }
 
 /**
@@ -2072,14 +2074,14 @@ export type PATCH_UsersByUserId = {
  * 
  * @path /v1/users/{user_id}
  */
-export type PATCH_UsersByUserId_Response_200 = PATCH_UsersByUserId["200"]
+export type PATCH_UsersByUserId_Response_200 = UserWithAttributes
 
 /**
  * 422 response for PATCH UsersByUserId endpoint
  * 
  * @path /v1/users/{user_id}
  */
-export type PATCH_UsersByUserId_Response_422 = PATCH_UsersByUserId["422"]
+export type PATCH_UsersByUserId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersByUserIdPermissions endpoint
@@ -2087,8 +2089,8 @@ export type PATCH_UsersByUserId_Response_422 = PATCH_UsersByUserId["422"]
  * @path /v1/users/{user_id}/permissions
  */
 export type GET_UsersByUserIdPermissions = {
-  200: components["schemas"]["PermissionSet"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: PermissionSet
+  422: HTTPValidationError
 }
 
 /**
@@ -2096,14 +2098,14 @@ export type GET_UsersByUserIdPermissions = {
  * 
  * @path /v1/users/{user_id}/permissions
  */
-export type GET_UsersByUserIdPermissions_Response_200 = GET_UsersByUserIdPermissions["200"]
+export type GET_UsersByUserIdPermissions_Response_200 = PermissionSet
 
 /**
  * 422 response for GET UsersByUserIdPermissions endpoint
  * 
  * @path /v1/users/{user_id}/permissions
  */
-export type GET_UsersByUserIdPermissions_Response_422 = GET_UsersByUserIdPermissions["422"]
+export type GET_UsersByUserIdPermissions_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersByUserIdRoles endpoint
@@ -2111,8 +2113,8 @@ export type GET_UsersByUserIdPermissions_Response_422 = GET_UsersByUserIdPermiss
  * @path /v1/users/{user_id}/roles
  */
 export type GET_UsersByUserIdRoles = {
-  200: components["schemas"]["RelationSet"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: RelationSet
+  422: HTTPValidationError
 }
 
 /**
@@ -2120,14 +2122,14 @@ export type GET_UsersByUserIdRoles = {
  * 
  * @path /v1/users/{user_id}/roles
  */
-export type GET_UsersByUserIdRoles_Response_200 = GET_UsersByUserIdRoles["200"]
+export type GET_UsersByUserIdRoles_Response_200 = RelationSet
 
 /**
  * 422 response for GET UsersByUserIdRoles endpoint
  * 
  * @path /v1/users/{user_id}/roles
  */
-export type GET_UsersByUserIdRoles_Response_422 = GET_UsersByUserIdRoles["422"]
+export type GET_UsersByUserIdRoles_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH UsersByUserIdRoles endpoint
@@ -2135,8 +2137,8 @@ export type GET_UsersByUserIdRoles_Response_422 = GET_UsersByUserIdRoles["422"]
  * @path /v1/users/{user_id}/roles
  */
 export type PATCH_UsersByUserIdRoles = {
-  200: components["schemas"]["RelationSet"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: RelationSet
+  422: HTTPValidationError
 }
 
 /**
@@ -2144,14 +2146,14 @@ export type PATCH_UsersByUserIdRoles = {
  * 
  * @path /v1/users/{user_id}/roles
  */
-export type PATCH_UsersByUserIdRoles_Response_200 = PATCH_UsersByUserIdRoles["200"]
+export type PATCH_UsersByUserIdRoles_Response_200 = RelationSet
 
 /**
  * 422 response for PATCH UsersByUserIdRoles endpoint
  * 
  * @path /v1/users/{user_id}/roles
  */
-export type PATCH_UsersByUserIdRoles_Response_422 = PATCH_UsersByUserIdRoles["422"]
+export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersMe endpoint
@@ -2159,8 +2161,8 @@ export type PATCH_UsersByUserIdRoles_Response_422 = PATCH_UsersByUserIdRoles["42
  * @path /v1/users/me
  */
 export type GET_UsersMe = {
-  200: components["schemas"]["UserWithRelationPermissions"]
-  422: components["schemas"]["HTTPValidationError"]
+  200: UserWithRelationPermissions
+  422: HTTPValidationError
 }
 
 /**
@@ -2168,14 +2170,14 @@ export type GET_UsersMe = {
  * 
  * @path /v1/users/me
  */
-export type GET_UsersMe_Response_200 = GET_UsersMe["200"]
+export type GET_UsersMe_Response_200 = UserWithRelationPermissions
 
 /**
  * 422 response for GET UsersMe endpoint
  * 
  * @path /v1/users/me
  */
-export type GET_UsersMe_Response_422 = GET_UsersMe["422"]
+export type GET_UsersMe_Response_422 = HTTPValidationError
 
 
 
