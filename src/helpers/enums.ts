@@ -1,6 +1,6 @@
 /**
  * Auto-generated enums from OpenAPI specification
- * Generated on: 2025-07-24T06:53:28.583Z
+ * Generated on: 2025-07-24T07:17:27.580Z
  *
  * Each enum is derived from the OpenAPI schema and includes descriptions for better developer understanding.
  */
