@@ -1,6 +1,6 @@
 /**
  * Auto-generated enums from OpenAPI schema
- * Generated on: 2025-07-24T07:50:32.358Z
+ * Generated on: 2025-07-25T14:03:33.604Z
  */
 
 /**

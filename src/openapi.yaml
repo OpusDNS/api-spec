@@ -1438,6 +1438,53 @@ components:
       - clientHold
       title: DomainStatus
       type: string
+    DomainSummaryData:
+      properties:
+        by_status:
+          additionalProperties:
+            type: integer
+          description: 'Domain counts by status (status: count)'
+          title: By Status
+          type: object
+        by_tld:
+          additionalProperties:
+            type: integer
+          description: 'Domain counts by TLD (tld: count)'
+          title: By Tld
+          type: object
+        expiring_soon:
+          $ref: '#/components/schemas/DomainsExpiringSoon'
+          description: Domains expiring soon
+        total_count:
+          description: Total number of domains
+          title: Total Count
+          type: integer
+      required:
+      - total_count
+      - by_status
+      - by_tld
+      - expiring_soon
+      title: DomainSummaryData
+      type: object
+    DomainSummaryResponse:
+      properties:
+        domains:
+          $ref: '#/components/schemas/DomainSummaryData'
+          description: Domain summary data
+        organization_id:
+          description: The organization ID
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      required:
+      - organization_id
+      - domains
+      title: DomainSummaryResponse
+      type: object
     DomainTransferIn:
       properties:
         auth_code:
@@ -1527,6 +1574,26 @@ components:
           description: The new statuses of the domain
           title: Statuses
       title: DomainUpdate
+      type: object
+    DomainsExpiringSoon:
+      properties:
+        next_30_days:
+          description: Number of domains expiring in the next 30 days
+          title: Next 30 Days
+          type: integer
+        next_60_days:
+          description: Number of domains expiring in the next 60 days
+          title: Next 60 Days
+          type: integer
+        next_90_days:
+          description: Number of domains expiring in the next 90 days
+          title: Next 90 Days
+          type: integer
+      required:
+      - next_30_days
+      - next_60_days
+      - next_90_days
+      title: DomainsExpiringSoon
       type: object
     EmailForward:
       properties:
@@ -3997,7 +4064,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-24-074916
+  version: 2025-07-25-140023
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5833,6 +5900,23 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Check domain availability
+      tags:
+      - domain
+  /v1/domains/summary:
+    get:
+      description: Retrieves a summary of domains including counts by status, TLD,
+        and expiration timeframes
+      operationId: get_domain_summary_v1_domains_summary_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainSummaryResponse'
+          description: Successful Response
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get domain summary
       tags:
       - domain
   /v1/domains/transfer:

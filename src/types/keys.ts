@@ -17,6 +17,7 @@ import { Get_Domains_Response_V1 } from './types';
 import { Get_DomainsBydomainReference_Response_V1 } from './types';
 import { Get_DomainsCheck_Response_V1 } from './types';
 import { Get_DomainSearchSuggest_Response_V1 } from './types';
+import { Get_DomainsSummary_Response_V1 } from './types';
 import { Get_EmailForwards_Response_V1 } from './types';
 import { Get_EmailForwardsByemailForwardId_Response_V1 } from './types';
 import { Get_Event_Response_V1 } from './types';
@@ -50,6 +51,7 @@ import { DnsZone } from './types';
 import { DomainCheck } from './types';
 import { Domain } from './types';
 import { DomainSearch } from './types';
+import { DomainSummary } from './types';
 import { EmailForward } from './types';
 import { EventSchema } from './types';
 import { IpRestriction } from './types';
@@ -256,6 +258,14 @@ export const GET_DOMAIN_SEARCH_SUGGEST_RESPONSE_V1_KEY_RESULTS = 'results' as ke
 export const GET_DOMAIN_SEARCH_SUGGEST_RESPONSE_V1_KEYS = [
   GET_DOMAIN_SEARCH_SUGGEST_RESPONSE_V1_KEY_META,
   GET_DOMAIN_SEARCH_SUGGEST_RESPONSE_V1_KEY_RESULTS,
+] as const;
+
+export const GET_DOMAINS_SUMMARY_RESPONSE_V1_KEY_DOMAINS = 'domains' as keyof Get_DomainsSummary_Response_V1;
+export const GET_DOMAINS_SUMMARY_RESPONSE_V1_KEY_ORGANIZATION_ID = 'organization_id' as keyof Get_DomainsSummary_Response_V1;
+
+export const GET_DOMAINS_SUMMARY_RESPONSE_V1_KEYS = [
+  GET_DOMAINS_SUMMARY_RESPONSE_V1_KEY_DOMAINS,
+  GET_DOMAINS_SUMMARY_RESPONSE_V1_KEY_ORGANIZATION_ID,
 ] as const;
 
 export const GET_EMAIL_FORWARDS_RESPONSE_V1_KEY_PAGINATION = 'pagination' as keyof Get_EmailForwards_Response_V1;
@@ -972,6 +982,14 @@ export const DOMAIN_SEARCH_KEY_RESULTS = 'results' as keyof DomainSearch;
 export const DOMAIN_SEARCH_KEYS = [
   DOMAIN_SEARCH_KEY_META,
   DOMAIN_SEARCH_KEY_RESULTS,
+] as const;
+
+export const DOMAIN_SUMMARY_KEY_DOMAINS = 'domains' as keyof DomainSummary;
+export const DOMAIN_SUMMARY_KEY_ORGANIZATION_ID = 'organization_id' as keyof DomainSummary;
+
+export const DOMAIN_SUMMARY_KEYS = [
+  DOMAIN_SUMMARY_KEY_DOMAINS,
+  DOMAIN_SUMMARY_KEY_ORGANIZATION_ID,
 ] as const;
 
 export const EMAIL_FORWARD_KEY_CREATED_ON = 'created_on' as keyof EmailForward;

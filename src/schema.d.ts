@@ -410,6 +410,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get domain summary
+         * @description Retrieves a summary of domains including counts by status, TLD, and expiration timeframes
+         */
+        get: operations["get_domain_summary_v1_domains_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/transfer": {
         parameters: {
             query?: never;
@@ -1904,6 +1924,41 @@ export interface components {
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        /** DomainSummaryData */
+        DomainSummaryData: {
+            /**
+             * By Status
+             * @description Domain counts by status (status: count)
+             */
+            by_status: {
+                [key: string]: number;
+            };
+            /**
+             * By Tld
+             * @description Domain counts by TLD (tld: count)
+             */
+            by_tld: {
+                [key: string]: number;
+            };
+            /** @description Domains expiring soon */
+            expiring_soon: components["schemas"]["DomainsExpiringSoon"];
+            /**
+             * Total Count
+             * @description Total number of domains
+             */
+            total_count: number;
+        };
+        /** DomainSummaryResponse */
+        DomainSummaryResponse: {
+            /** @description Domain summary data */
+            domains: components["schemas"]["DomainSummaryData"];
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization ID
+             */
+            organization_id: TypeID<"organization">;
+        };
         /** DomainTransferIn */
         DomainTransferIn: {
             /**
@@ -1951,6 +2006,24 @@ export interface components {
              * @description The new statuses of the domain
              */
             statuses?: components["schemas"]["DomainClientStatus"][] | null;
+        };
+        /** DomainsExpiringSoon */
+        DomainsExpiringSoon: {
+            /**
+             * Next 30 Days
+             * @description Number of domains expiring in the next 30 days
+             */
+            next_30_days: number;
+            /**
+             * Next 60 Days
+             * @description Number of domains expiring in the next 60 days
+             */
+            next_60_days: number;
+            /**
+             * Next 90 Days
+             * @description Number of domains expiring in the next 90 days
+             */
+            next_90_days: number;
         };
         /** EmailForward */
         EmailForward: {
@@ -4935,6 +5008,26 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_domain_summary_v1_domains_summary_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainSummaryResponse"];
                 };
             };
         };
