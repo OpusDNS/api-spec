@@ -6,7 +6,7 @@ import { generateResponses } from './generate-responses';
 import { generateRequests } from './generate-requests';
 import { generateSchemas } from './generate-schemas';
 import { generateSchemasArrays } from './generate-schemas-arrays';
-import { generateKeys } from './generate-schema-keys';
+import { generateKeys } from './generate-keys';
 
 async function main() {
   console.log('🚀 Starting OpusDNS API code generation...\n');

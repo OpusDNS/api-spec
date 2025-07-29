@@ -156,17 +156,17 @@ function generateKeysFile(
       if (desc) {
         lines.push(`/** ${desc} */`);
       }
-      lines.push(`export const ${typeNameUpper}_KEY_${keyName} = '${prop}' as keyof ${type.name};`);
+      lines.push(`export const KEY_${typeNameUpper}_${keyName} = '${prop}' as keyof ${type.name};`);
     });
 
     // Generate keys array
     const keysArray = Object.keys(properties).map((prop) => {
       const keyName = prop.toUpperCase();
-      return `  ${typeNameUpper}_KEY_${keyName},`;
+      return `  KEY_${typeNameUpper}_${keyName},`;
     });
 
     lines.push('');
-    lines.push(`export const ${typeNameUpper}_KEYS = [`);
+    lines.push(`export const KEYS_${typeNameUpper} = [`);
     lines.push(...keysArray);
     lines.push('] as const;');
     lines.push('');
@@ -195,13 +195,27 @@ function main() {
     process.exit(1);
   }
 
+  // Create a map of schema names to their properties
+  const schemaPropertiesMap = new Map<string, Record<string, unknown>>();
+  schemas.forEach((schema) => {
+    schemaPropertiesMap.set(schema.name, schema.properties);
+  });
+
+  // Filter types to only include those that have properties (object schemas)
+  const typesWithProperties = existingTypes.filter((type) => {
+    const properties = schemaPropertiesMap.get(type.schemaName);
+    return properties && Object.keys(properties).length > 0;
+  });
+
   const keysContent = generateKeysFile(existingTypes, schemas);
   const outputPath = path.join(process.cwd(), 'src/helpers/keys.ts');
   fs.writeFileSync(outputPath, keysContent);
 
   console.log(
-    `✅ Generated key constants for ${existingTypes.length} existing types in ${outputPath}`,
+    `✅ Generated key constants for ${typesWithProperties.length} types with properties in ${outputPath}`,
   );
+
+  return typesWithProperties.length;
 }
 
 // Run the script if it's the main module
