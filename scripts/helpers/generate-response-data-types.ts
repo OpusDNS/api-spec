@@ -8,6 +8,7 @@ import { OPEN_API_SCHEMA_PATH } from '../constants';
 interface SchemaInfo {
   name: string;
   title: string;
+  description?: string;
   properties: Record<string, unknown>;
   required?: string[];
   path: string;
@@ -90,6 +91,7 @@ function extractSchemasFromOpenAPI(openAPIContent: string): SchemaInfo[] {
             schemas.push({
               name: schemaName,
               title: schemaObj.title || '',
+              description: schemaObj.description || '',
               properties: schemaObj.properties,
               required: schemaObj.required || [],
               path: pathKey,
@@ -109,6 +111,10 @@ function extractSchemasFromOpenAPI(openAPIContent: string): SchemaInfo[] {
 
 function generateTypeContent(schema: SchemaInfo, typeName: string): string {
   const properties = schema.properties as Record<string, unknown>;
+  let desc = '';
+  if (schema.title || schema.description) {
+    desc = `/** ${(schema.title ? schema.title + '. ' : '') + (schema.description || '')} */\n`;
+  }
 
   // Check if this is a pagination type (name starts with 'Pagination_' and has 'results' property of type 'array')
   const isPaginationType = typeName.startsWith('Pagination_');
@@ -124,11 +130,11 @@ function generateTypeContent(schema: SchemaInfo, typeName: string): string {
     // Find the corresponding response type name
     const responseTypeName = findResponseTypeName(schema.name);
     if (responseTypeName) {
-      return `export type ${resultsTypeName}Array = ${responseTypeName}['results'];`;
+      return `${desc}export type ${resultsTypeName}Array = ${responseTypeName}['results'];`;
     }
 
     // Fallback to direct schema reference if no response type found
-    return `export type ${resultsTypeName}Array = components['schemas']['${schema.name}']['results'];`;
+    return `${desc}export type ${resultsTypeName}Array = components['schemas']['${schema.name}']['results'];`;
   }
 
   // For non-pagination types, check if they have array properties
@@ -141,17 +147,16 @@ function generateTypeContent(schema: SchemaInfo, typeName: string): string {
   );
 
   if (arrayProperties.length > 0) {
-    const typeContent = `export type ${typeName} = components['schemas']['${schema.name}'];`;
     const arrayTypes = arrayProperties
       .map(([propName]) => {
         const arrayTypeName = `${typeName}${propName.charAt(0).toUpperCase() + propName.slice(1)}Array`;
         return `export type ${arrayTypeName} = ${typeName}['${propName}'];`;
       })
       .join('\n');
-    return `${typeContent}\n${arrayTypes}`;
+    return `${desc}export type ${typeName} = components['schemas']['${schema.name}'];\n${arrayTypes}`;
   }
 
-  return `export type ${typeName} = components['schemas']['${schema.name}'];`;
+  return `${desc}export type ${typeName} = components['schemas']['${schema.name}'];`;
 }
 
 // Helper function to find the corresponding response type name for a pagination schema
@@ -200,6 +205,77 @@ function generateResponseDataTypesContent(schemas: SchemaInfo[]): string {
   return lines.join('\n');
 }
 
+function toTypeName(schemaName: string, schema?: any): string {
+  // Remove trailing underscores
+  let name = schemaName.replace(/_+$/, '');
+  // Remove 'BulkOperationResponse_' prefix
+  name = name.replace(/^BulkOperationResponse_/, '');
+  
+  // If name contains double underscores, use the last PascalCase segment
+  if (name.includes('__')) {
+    const parts = name.split('__');
+    // Find the last part that looks like PascalCase
+    for (let i = parts.length - 1; i >= 0; i--) {
+      if (/^[A-Z][a-zA-Z0-9]*$/.test(parts[i])) {
+        name = parts[i];
+        break;
+      }
+    }
+    // Fallback: use last segment
+    if (!/^[A-Z][a-zA-Z0-9]*$/.test(name)) {
+      name = parts[parts.length - 1];
+    }
+  }
+  
+  // Special handling for EventResponse to avoid conflict with native Event type
+  if (name === 'EventResponse') {
+    return name; // Keep Response suffix to avoid conflict
+  }
+  
+  // Remove only 'Response' from the end, keep 'Request' and 'Create'
+  name = name.replace(/Response$/, '');
+  
+  // Special handling for DomainAvailability duplicates (after Response removal)
+  if (name === 'DomainAvailability') {
+    // Check the path context to create meaningful names
+    if (schemaName.includes('availability__datasource')) {
+      name = 'DomainAvailabilityList'; // Has meta and results (list response)
+    } else if (schemaName.includes('domain__domain')) {
+      name = 'DomainAvailabilityCheck'; // Has available, domain, reason (single check)
+    }
+  }
+  
+  return name;
+}
+
+function generateDirectSchemaAliases(openAPIContent: string): string {
+  // Parse the OpenAPI YAML
+  const spec = yaml.load(openAPIContent) as any;
+  const schemas = spec.components?.schemas || {};
+  const lines: string[] = [];
+  lines.push('/**');
+  lines.push(' * Direct type aliases for OpenAPI schemas.');
+  lines.push(' * This file is auto-generated from the OpenAPI specification.');
+  lines.push(' * Do not edit manually.');
+  lines.push(' */');
+  lines.push("import { components } from '../schema';\n");
+  // Track used type names to avoid duplicates
+  const usedTypeNames = new Set<string>();
+  Object.keys(schemas).sort().forEach((schemaName) => {
+    let typeName = toTypeName(schemaName);
+    // Ensure uniqueness
+    const originalTypeName = typeName;
+    let i = 2;
+    while (usedTypeNames.has(typeName)) {
+      typeName = `${originalTypeName}${i}`;
+      i++;
+    }
+    usedTypeNames.add(typeName);
+    lines.push(`export type ${typeName} = components['schemas']['${schemaName}'];`);
+  });
+  return lines.join('\n');
+}
+
 function main() {
   try {
     const openAPIContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
@@ -209,7 +285,7 @@ function main() {
     const responseTypesContent = generateResponseDataTypesContent(schemas);
     const typesOutputPath = path.join(
       process.cwd(),
-      'src/types/types.ts',
+      'src/helpers/schemas.ts',
     );
 
     // Append response types to the existing file
@@ -220,8 +296,15 @@ function main() {
       responseTypesContent;
     fs.writeFileSync(typesOutputPath, newContent);
 
+    // --- NEW: Generate direct schema aliases ---
+    const directAliasesContent = generateDirectSchemaAliases(openAPIContent);
+    const directAliasesPath = path.join(process.cwd(), 'src/helpers/schemas.ts');
+    fs.writeFileSync(directAliasesPath, directAliasesContent);
     console.log(
       `✅ Generated ${schemas.length} GET response type definitions and appended to ${typesOutputPath}`,
+    );
+    console.log(
+      `✅ Generated direct schema aliases for ${Object.keys((yaml.load(openAPIContent) as any).components?.schemas || {}).length} schemas in ${directAliasesPath}`,
     );
 
     return schemas.length;
@@ -236,4 +319,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 }
 
-export { main as generateResponseDataTypes };
+export { main as generateSchemas };

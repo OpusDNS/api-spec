@@ -29,15 +29,15 @@ function resolveSchemaRef(ref: string, spec: any): any {
 }
 
 function extractExistingTypes(validSchemas: Set<string>): TypeInfo[] {
-  const typesPath = path.join(process.cwd(), 'src/types/types.ts');
-  const typesContent = fs.readFileSync(typesPath, 'utf8');
+  const schemasPath = path.join(process.cwd(), 'src/helpers/schemas.ts');
+  const schemasContent = fs.readFileSync(schemasPath, 'utf8');
 
   const types: TypeInfo[] = [];
   const exportTypeRegex =
     /export type (\w+) = components\['schemas'\]\['([^']+)'\];/g;
 
   let match;
-  while ((match = exportTypeRegex.exec(typesContent)) !== null) {
+  while ((match = exportTypeRegex.exec(schemasContent)) !== null) {
     const typeName = match[1];
     const schemaName = match[2];
 
@@ -59,53 +59,26 @@ function extractSchemasFromOpenAPI(openAPIContent: string): SchemaInfo[] {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const spec = yaml.load(openAPIContent) as any;
 
-    if (!spec.paths) {
-      throw new Error('No paths found in OpenAPI specification');
+    if (!spec.components?.schemas) {
+      throw new Error('No schemas found in OpenAPI specification');
     }
 
     const schemas: SchemaInfo[] = [];
-    const processedSchemas = new Set<string>();
 
-    // Iterate through all paths
-    for (const [pathKey, pathObj] of Object.entries(spec.paths)) {
+    // Extract all schemas from components.schemas
+    for (const [schemaName, schemaObj] of Object.entries(spec.components.schemas)) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const path = pathObj as any;
-
-      // Check for GET operations
-      if (path.get && path.get.responses && path.get.responses['200']) {
-        const response = path.get.responses['200'];
-        let schema = null;
-
-        if (response.content && response.content['application/json']) {
-          schema = response.content['application/json'].schema;
-        } else if (response.schema) {
-          schema = response.schema;
-        }
-
-        if (schema) {
-          let schemaObj = null;
-          let schemaName = '';
-
-          if (schema.$ref) {
-            schemaObj = resolveSchemaRef(schema.$ref, spec);
-            schemaName = schema.$ref.replace('#/components/schemas/', '');
-          } else {
-            schemaObj = schema;
-            schemaName = `Response_${pathKey.replace(/\//g, '_').replace(/[^a-zA-Z0-9_]/g, '')}`;
-          }
-
-          if (schemaObj && !processedSchemas.has(schemaName)) {
-            processedSchemas.add(schemaName);
-            schemas.push({
-              name: schemaName,
-              title: schemaObj.title || '',
-              properties: schemaObj.properties || {},
-              required: schemaObj.required || [],
-              path: pathKey,
-              operation: 'GET',
-            });
-          }
-        }
+      const schema = schemaObj as any;
+      
+      if (schema && typeof schema === 'object') {
+        schemas.push({
+          name: schemaName,
+          title: schema.title || '',
+          properties: schema.properties || {},
+          required: schema.required || [],
+          path: '', // Not applicable for all schemas
+          operation: '', // Not applicable for all schemas
+        });
       }
     }
 
@@ -124,6 +97,8 @@ function generateKeysFile(
     '/**',
     ' * Key constants for OpusDNS API response objects.',
     ' *',
+    ' * Each key is derived from the OpenAPI schema property and includes descriptions for better developer understanding.',
+    ' *',
     ' * This file is auto-generated from the OpenAPI specification.',
     ' * Do not edit manually.',
     ' */',
@@ -136,16 +111,26 @@ function generateKeysFile(
     schemaPropertiesMap.set(schema.name, schema.properties);
   });
 
-  // Generate imports for existing types only
-  const imports = existingTypes.map((type) => {
-    return `import { ${type.name} } from './types';`;
+  // Filter types to only include those that have properties (object schemas)
+  const typesWithProperties = existingTypes.filter((type) => {
+    const properties = schemaPropertiesMap.get(type.schemaName);
+    return properties && Object.keys(properties).length > 0;
+  });
+
+  // Generate imports for types with properties only
+  const imports = typesWithProperties.map((type) => {
+    // Special case: if type.name === 'Event', import 'EventResponse' instead
+    if (type.name === 'Event') {
+      return `import { EventResponse } from './schemas';`;
+    }
+    return `import { ${type.name} } from './schemas';`;
   });
 
   lines.push(...imports);
   lines.push('');
 
-  // Generate keys for each existing type
-  existingTypes.forEach((type) => {
+  // Generate keys for each type with properties
+  typesWithProperties.forEach((type) => {
     const properties = schemaPropertiesMap.get(type.schemaName);
 
     if (!properties) {
@@ -160,9 +145,18 @@ function generateKeysFile(
       .replace(/__+/g, '_'); // Replace multiple underscores with single underscore
 
     // Generate individual key constants
-    const keyConstants = Object.keys(properties).map((prop) => {
+    Object.entries(properties).forEach(([prop, propDef]) => {
       const keyName = prop.toUpperCase();
-      return `export const ${typeNameUpper}_KEY_${keyName} = '${prop}' as keyof ${type.name};`;
+      let desc = '';
+      if (propDef && typeof propDef === 'object') {
+        const title = (propDef as any).title ? `${(propDef as any).title}. ` : '';
+        const description = (propDef as any).description || '';
+        desc = title + description;
+      }
+      if (desc) {
+        lines.push(`/** ${desc} */`);
+      }
+      lines.push(`export const ${typeNameUpper}_KEY_${keyName} = '${prop}' as keyof ${type.name};`);
     });
 
     // Generate keys array
@@ -171,7 +165,6 @@ function generateKeysFile(
       return `  ${typeNameUpper}_KEY_${keyName},`;
     });
 
-    lines.push(...keyConstants);
     lines.push('');
     lines.push(`export const ${typeNameUpper}_KEYS = [`);
     lines.push(...keysArray);
@@ -194,16 +187,16 @@ function main() {
   // Create a set of valid schema names
   const validSchemas = new Set(schemas.map((schema) => schema.name));
 
-  // Extract existing types from types.ts file, filtering for valid schemas
+  // Extract existing types from schemas.ts file, filtering for valid schemas
   const existingTypes = extractExistingTypes(validSchemas);
 
   if (existingTypes.length === 0) {
-    console.error('❌ No valid types found in types.ts file');
+    console.error('❌ No valid types found in schemas.ts file');
     process.exit(1);
   }
 
   const keysContent = generateKeysFile(existingTypes, schemas);
-  const outputPath = path.join(process.cwd(), 'src/types/keys.ts');
+  const outputPath = path.join(process.cwd(), 'src/helpers/keys.ts');
   fs.writeFileSync(outputPath, keysContent);
 
   console.log(
