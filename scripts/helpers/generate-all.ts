@@ -5,6 +5,7 @@ import { generateIndex } from './generate-index';
 import { generateResponses } from './generate-responses';
 import { generateRequests } from './generate-requests';
 import { generateSchemas } from './generate-schemas';
+import { generateSchemasArrays } from './generate-schemas-arrays';
 
 async function main() {
   console.log('🚀 Starting OpusDNS API code generation...\n');
@@ -15,23 +16,28 @@ async function main() {
     const schemaCount = generateSchemas();
     console.log(`   Generated ${schemaCount} direct schema aliases\n`);
 
-    // Step 2: Generate response types
-    console.log('📝 Step 2: Generating API responses...');
+    // Step 2: Generate schema arrays
+    console.log('📊 Step 2: Generating schema arrays...');
+    const arraysCount = generateSchemasArrays();
+    console.log(`   Generated ${arraysCount} schema arrays\n`);
+
+    // Step 3: Generate response types
+    console.log('📝 Step 3: Generating API responses...');
     const responseTypeCount = await generateResponses();
     console.log(`   Generated ${responseTypeCount} response types\n`);
 
-    // Step 3: Generate request types
-    console.log('📤 Step 3: Generating API requests...');
+    // Step 4: Generate request types
+    console.log('📤 Step 4: Generating API requests...');
     const requestTypeCount = await generateRequests();
     console.log(`   Generated ${requestTypeCount} request types\n`);
 
-    // Step 4: Generate enums
-    console.log('📊 Step 4: Generating enums...');
+    // Step 5: Generate enums
+    console.log('📊 Step 5: Generating enums...');
     const constantsCount = generateEnums();
     console.log(`   Generated ${constantsCount} enums\n`);
 
-    // Step 5: Generate index file
-    console.log('📋 Step 5: Generating index file...');
+    // Step 6: Generate index file
+    console.log('📋 Step 6: Generating index file...');
     await generateIndex();
     console.log('   Generated index file with all exports\n');
 

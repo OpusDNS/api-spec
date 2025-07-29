@@ -4,7 +4,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, BulkOperationResult, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRrset, DomainAvailabilityCheck, Nameserver, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, EmailForwardBulkUpdateItem, ValidationError, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForward, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Permission, Relation, UserAttributeUpdate, DomainAvailability } from './schemas';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, BulkOperationResult, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, EmailForwardBulkUpdateItem, ValidationError, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForward, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Permission, Relation, UserAttributeUpdate, DomainAvailability } from './schemas';
 
 /** DomainDnssecDataResponse.  */
 export type DomainDnssecDataArray = DomainDnssecData[];
@@ -26,8 +26,12 @@ export type DnsRecordCreateArray = DnsRecordCreate[];
 export type DnsRecordArray = DnsRecord[];
 /** DnsRrsetCreate.  */
 export type DnsRrsetCreateArray = DnsRrsetCreate[];
+/** DnsRecordPatchOp.  */
+export type DnsRecordPatchOpArray = DnsRecordPatchOp[];
 /** DnsRrsetResponse.  */
 export type DnsRrsetArray = DnsRrset[];
+/** DnsRrsetPatchOp.  */
+export type DnsRrsetPatchOpArray = DnsRrsetPatchOp[];
 /** DomainAvailabilityResponse.  */
 export type DomainAvailabilityCheckArray = DomainAvailabilityCheck[];
 /** Nameserver.  */
