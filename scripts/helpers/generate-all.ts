@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 
-import { generateEnums } from './generate-enums';
+import { generateConstants } from './generate-constants';
 import { generateIndex } from './generate-index';
 import { generateResponses } from './generate-responses';
 import { generateRequests } from './generate-requests';
@@ -37,10 +37,10 @@ async function main() {
     const requestTypeCount = await generateRequests();
     console.log(`   Generated ${requestTypeCount} request types\n`);
 
-    // Step 6: Generate enums
-    console.log('📊 Step 6: Generating enums...');
-    const constantsCount = generateEnums();
-    console.log(`   Generated ${constantsCount} enums\n`);
+    // Step 6: Generate constants
+    console.log('📊 Step 6: Generating constants...');
+    const constantsCount = generateConstants();
+    console.log(`   Generated ${constantsCount} constants\n`);
 
     // Step 7: Generate index file
     console.log('📋 Step 7: Generating index file...');
