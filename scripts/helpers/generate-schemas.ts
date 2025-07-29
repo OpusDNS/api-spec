@@ -272,30 +272,31 @@ function main() {
     const openAPIContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
     const schemas = extractSchemasFromOpenAPI(openAPIContent);
 
+    // Generate direct schema aliases first
+    const directAliasesContent = generateDirectSchemaAliases(openAPIContent);
+    
     // Generate response types content
     const responseTypesContent = generateResponseDataTypesContent(schemas);
-    const typesOutputPath = path.join(
-      process.cwd(),
-      'src/helpers/schemas.ts',
-    );
-
-    // Append response types to the existing file
-    const existingContent = fs.readFileSync(typesOutputPath, 'utf-8');
-    const newContent =
-      existingContent +
-      '\n/** \n * Response Data Types\n*/\n' +
-      responseTypesContent;
-    fs.writeFileSync(typesOutputPath, newContent);
-
-    // --- NEW: Generate direct schema aliases ---
-    const directAliasesContent = generateDirectSchemaAliases(openAPIContent);
-    const directAliasesPath = path.join(process.cwd(), 'src/helpers/schemas.ts');
-    fs.writeFileSync(directAliasesPath, directAliasesContent);
+    
+    // Combine both contents
+    const combinedContent = directAliasesContent + '\n' + responseTypesContent;
+    
+    // Write the combined content to the file
+    const outputPath = path.join(process.cwd(), 'src/helpers/schemas.ts');
+    
+    // Ensure the directory exists
+    const outputDir = path.dirname(outputPath);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    
+    fs.writeFileSync(outputPath, combinedContent);
+    
     console.log(
-      `✅ Generated ${schemas.length} GET response type definitions and appended to ${typesOutputPath}`,
+      `✅ Generated ${schemas.length} GET response type definitions in ${outputPath}`,
     );
     console.log(
-      `✅ Generated direct schema aliases for ${Object.keys((yaml.load(openAPIContent) as any).components?.schemas || {}).length} schemas in ${directAliasesPath}`,
+      `✅ Generated direct schema aliases for ${Object.keys((yaml.load(openAPIContent) as any).components?.schemas || {}).length} schemas in ${outputPath}`,
     );
 
     return schemas.length;
