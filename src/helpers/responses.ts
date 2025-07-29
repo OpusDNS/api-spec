@@ -1,7 +1,30 @@
 /**
- * Response types for OpusDNS API endpoints.
+ * Response types for OpusDNS API endpoints
  *
- * Each type is derived from the OpenAPI operation and includes endpoint, summary, and response descriptions for better developer understanding.
+ * This file contains TypeScript types for API response structures and status codes.
+ * Each type is derived from the OpenAPI operation specification and provides type safety for API responses.
+ * These types ensure that response handling matches the expected API contract.
+ *
+ * @remarks
+ * - Response types follow the pattern: `METHOD_EndpointName` for grouped responses
+ * - Individual response types follow: `METHOD_EndpointName_Response_STATUSCODE`
+ * - All response types include comprehensive descriptions from the OpenAPI specification
+ * - These types ensure type safety when handling API responses
+ * - Response types cover all possible HTTP status codes for each endpoint
+ *
+ * @example
+ * ```typescript
+ * // Using response types for API handling
+ * const response: GET_Domains_Response_200 = await api.getDomains();
+ * const domains = response.results;
+ * 
+ * // Handling different status codes
+ * if (response.status === 200) {
+ *   const data: GET_Domains_Response_200 = response.data;
+ * } else if (response.status === 422) {
+ *   const error: GET_Domains_Response_422 = response.data;
+ * }
+ * ```
  *
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
@@ -15,795 +38,1947 @@ import { Pagination_OrganizationCredential, Problem, HTTPValidationError, Organi
 
 /**
  * Response types for GET AuthClientCredentials endpoint
- * 
+ *
+ * List Api Keys
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AuthClientCredentials endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
+ *
+ * @see {@link GET_AuthClientCredentials_Response_200} - 200 response type
+ * @see {@link GET_AuthClientCredentials_Response_401} - 401 response type
+ * @see {@link GET_AuthClientCredentials_Response_422} - 422 response type
+ *
+
  */
 export type GET_AuthClientCredentials = {
-  200: Pagination_OrganizationCredential
-  401: Problem
-  422: HTTPValidationError
+  200: GET_AuthClientCredentials_Response_200
+  401: GET_AuthClientCredentials_Response_401
+  422: GET_AuthClientCredentials_Response_422
 }
 
 /**
  * 200 response for GET AuthClientCredentials endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AuthClientCredentials endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
+ *
+ * @see {@link GET_AuthClientCredentials} - The main response type definition
+ * @see {@link Pagination_OrganizationCredential} - The actual schema type definition
  */
 export type GET_AuthClientCredentials_Response_200 = Pagination_OrganizationCredential
 
 /**
  * 401 response for GET AuthClientCredentials endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AuthClientCredentials endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
+ *
+ * @see {@link GET_AuthClientCredentials} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_AuthClientCredentials_Response_401 = Problem
 
 /**
  * 422 response for GET AuthClientCredentials endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AuthClientCredentials endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
+ *
+ * @see {@link GET_AuthClientCredentials} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_AuthClientCredentials_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST AuthClientCredentials endpoint
- * 
+ *
+ * Issue Api Key
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AuthClientCredentials endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/auth/client_credentials
+ *
+ * @see {@link POST_AuthClientCredentials_Response_200} - 200 response type
+ * @see {@link POST_AuthClientCredentials_Response_401} - 401 response type
+ * @see {@link POST_AuthClientCredentials_Response_422} - 422 response type
+ *
+
  */
 export type POST_AuthClientCredentials = {
-  200: OrganizationCredentialCreated
-  401: Problem
-  422: HTTPValidationError
+  200: POST_AuthClientCredentials_Response_200
+  401: POST_AuthClientCredentials_Response_401
+  422: POST_AuthClientCredentials_Response_422
 }
 
 /**
  * 200 response for POST AuthClientCredentials endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST AuthClientCredentials endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials
+ *
+ * @see {@link POST_AuthClientCredentials} - The main response type definition
+ * @see {@link OrganizationCredentialCreated} - The actual schema type definition
  */
 export type POST_AuthClientCredentials_Response_200 = OrganizationCredentialCreated
 
 /**
  * 401 response for POST AuthClientCredentials endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AuthClientCredentials endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials
+ *
+ * @see {@link POST_AuthClientCredentials} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthClientCredentials_Response_401 = Problem
 
 /**
  * 422 response for POST AuthClientCredentials endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AuthClientCredentials endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials
+ *
+ * @see {@link POST_AuthClientCredentials} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_AuthClientCredentials_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE AuthClientCredentialsByApiKeyId endpoint
- * 
+ *
+ * Delete Api Key
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE AuthClientCredentialsByApiKeyId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/auth/client_credentials/{api_key_id}
+ *
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId_Response_401} - 401 response type
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId_Response_404} - 404 response type
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_AuthClientCredentialsByApiKeyId = {
-  401: Problem
-  404: Problem
-  422: HTTPValidationError
+  401: DELETE_AuthClientCredentialsByApiKeyId_Response_401
+  404: DELETE_AuthClientCredentialsByApiKeyId_Response_404
+  422: DELETE_AuthClientCredentialsByApiKeyId_Response_422
 }
 
 /**
  * 401 response for DELETE AuthClientCredentialsByApiKeyId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE AuthClientCredentialsByApiKeyId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials/{api_key_id}
+ *
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_AuthClientCredentialsByApiKeyId_Response_401 = Problem
 
 /**
  * 404 response for DELETE AuthClientCredentialsByApiKeyId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE AuthClientCredentialsByApiKeyId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials/{api_key_id}
+ *
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_AuthClientCredentialsByApiKeyId_Response_404 = Problem
 
 /**
  * 422 response for DELETE AuthClientCredentialsByApiKeyId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE AuthClientCredentialsByApiKeyId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/client_credentials/{api_key_id}
+ *
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_AuthClientCredentialsByApiKeyId_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST AuthLogout endpoint
- * 
+ *
+ * Logout
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AuthLogout endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/auth/logout
+ *
+ * @see {@link POST_AuthLogout_Response_401} - 401 response type
+ *
+
  */
 export type POST_AuthLogout = {
-  401: Problem
+  401: POST_AuthLogout_Response_401
 }
 
 /**
  * 401 response for POST AuthLogout endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AuthLogout endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/logout
+ *
+ * @see {@link POST_AuthLogout} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthLogout_Response_401 = Problem
 
 /**
  * Response types for POST AuthSignup endpoint
- * 
+ *
+ * Signup
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AuthSignup endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/auth/signup
+ *
+ * @see {@link POST_AuthSignup_Response_409} - 409 response type
+ * @see {@link POST_AuthSignup_Response_422} - 422 response type
+ *
+
  */
 export type POST_AuthSignup = {
-  409: Problem
-  422: HTTPValidationError
+  409: POST_AuthSignup_Response_409
+  422: POST_AuthSignup_Response_422
 }
 
 /**
  * 409 response for POST AuthSignup endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST AuthSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/signup
+ *
+ * @see {@link POST_AuthSignup} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthSignup_Response_409 = Problem
 
 /**
  * 422 response for POST AuthSignup endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AuthSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/signup
+ *
+ * @see {@link POST_AuthSignup} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_AuthSignup_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST AuthToken endpoint
- * 
+ *
+ * Issue Organization Token
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AuthToken endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/auth/token
+ *
+ * @see {@link POST_AuthToken_Response_401} - 401 response type
+ * @see {@link POST_AuthToken_Response_422} - 422 response type
+ *
+
  */
 export type POST_AuthToken = {
-  401: Problem
-  422: HTTPValidationError
+  401: POST_AuthToken_Response_401
+  422: POST_AuthToken_Response_422
 }
 
 /**
  * 401 response for POST AuthToken endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AuthToken endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/token
+ *
+ * @see {@link POST_AuthToken} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthToken_Response_401 = Problem
 
 /**
  * 422 response for POST AuthToken endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AuthToken endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/auth/token
+ *
+ * @see {@link POST_AuthToken} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_AuthToken_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Availability endpoint
- * 
+ *
+ * Bulk Availability
+ * Check the availability of one or more domains.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Availability endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/availability
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_Availability_Response_200} - 200 response type
+ * @see {@link GET_Availability_Response_401} - 401 response type
+ * @see {@link GET_Availability_Response_422} - 422 response type
+ * @see {@link GET_Availability_Response_502} - 502 response type
+ *
+
  */
 export type GET_Availability = {
-  200: DomainAvailabilityList
-  401: Problem
-  422: HTTPValidationError
-  502: Problem
+  200: GET_Availability_Response_200
+  401: GET_Availability_Response_401
+  422: GET_Availability_Response_422
+  502: GET_Availability_Response_502
 }
 
 /**
  * 200 response for GET Availability endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Availability endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/availability
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_Availability} - The main response type definition
+ * @see {@link DomainAvailabilityList} - The actual schema type definition
  */
 export type GET_Availability_Response_200 = DomainAvailabilityList
 
 /**
  * 401 response for GET Availability endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET Availability endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/availability
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_Availability} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_Availability_Response_401 = Problem
 
 /**
  * 422 response for GET Availability endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Availability endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/availability
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_Availability} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Availability_Response_422 = HTTPValidationError
 
 /**
  * 502 response for GET Availability endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET Availability endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/availability
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_Availability} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_Availability_Response_502 = Problem
 
 /**
  * Response types for GET AvailabilityStream endpoint
- * 
+ *
+ * Stream Availability
+ * Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AvailabilityStream endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/availability/stream
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_AvailabilityStream_Response_401} - 401 response type
+ * @see {@link GET_AvailabilityStream_Response_422} - 422 response type
+ * @see {@link GET_AvailabilityStream_Response_502} - 502 response type
+ *
+
  */
 export type GET_AvailabilityStream = {
-  401: Problem
-  422: HTTPValidationError
-  502: Problem
+  401: GET_AvailabilityStream_Response_401
+  422: GET_AvailabilityStream_Response_422
+  502: GET_AvailabilityStream_Response_502
 }
 
 /**
  * 401 response for GET AvailabilityStream endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AvailabilityStream endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/availability/stream
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_AvailabilityStream} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_AvailabilityStream_Response_401 = Problem
 
 /**
  * 422 response for GET AvailabilityStream endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AvailabilityStream endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/availability/stream
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_AvailabilityStream} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_AvailabilityStream_Response_422 = HTTPValidationError
 
 /**
  * 502 response for GET AvailabilityStream endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AvailabilityStream endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/availability/stream
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_AvailabilityStream} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_AvailabilityStream_Response_502 = Problem
 
 /**
  * Response types for GET Contacts endpoint
- * 
+ *
+ * Get Contacts
+ * List all contacts
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Contacts endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts
+ *
+ * @see {@link GET_Contacts_Response_200} - 200 response type
+ * @see {@link GET_Contacts_Response_422} - 422 response type
+ *
+
  */
 export type GET_Contacts = {
-  200: Pagination_ContactSchema
-  422: HTTPValidationError
+  200: GET_Contacts_Response_200
+  422: GET_Contacts_Response_422
 }
 
 /**
  * 200 response for GET Contacts endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Contacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts
+ *
+ * @see {@link GET_Contacts} - The main response type definition
+ * @see {@link Pagination_ContactSchema} - The actual schema type definition
  */
 export type GET_Contacts_Response_200 = Pagination_ContactSchema
 
 /**
  * 422 response for GET Contacts endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Contacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts
+ *
+ * @see {@link GET_Contacts} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Contacts_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Contacts endpoint
- * 
+ *
+ * Create Contact
+ * Create a contact
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Contacts endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts
+ *
+ * @see {@link POST_Contacts_Response_201} - 201 response type
+ * @see {@link POST_Contacts_Response_422} - 422 response type
+ *
+
  */
 export type POST_Contacts = {
-  201: ContactSchema
-  422: HTTPValidationError
+  201: POST_Contacts_Response_201
+  422: POST_Contacts_Response_422
 }
 
 /**
  * 201 response for POST Contacts endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST Contacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts
+ *
+ * @see {@link POST_Contacts} - The main response type definition
+ * @see {@link ContactSchema} - The actual schema type definition
  */
 export type POST_Contacts_Response_201 = ContactSchema
 
 /**
  * 422 response for POST Contacts endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Contacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts
+ *
+ * @see {@link POST_Contacts} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Contacts_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE ContactsByContactId endpoint
- * 
+ *
+ * Delete Contact
+ * Delete a contact
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE ContactsByContactId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link DELETE_ContactsByContactId_Response_404} - 404 response type
+ * @see {@link DELETE_ContactsByContactId_Response_409} - 409 response type
+ * @see {@link DELETE_ContactsByContactId_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_ContactsByContactId = {
-  404: Problem
-  409: Problem
-  422: HTTPValidationError
+  404: DELETE_ContactsByContactId_Response_404
+  409: DELETE_ContactsByContactId_Response_409
+  422: DELETE_ContactsByContactId_Response_422
 }
 
 /**
  * 404 response for DELETE ContactsByContactId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE ContactsByContactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link DELETE_ContactsByContactId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactId_Response_404 = Problem
 
 /**
  * 409 response for DELETE ContactsByContactId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the DELETE ContactsByContactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link DELETE_ContactsByContactId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactId_Response_409 = Problem
 
 /**
  * 422 response for DELETE ContactsByContactId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE ContactsByContactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link DELETE_ContactsByContactId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_ContactsByContactId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsByContactId endpoint
- * 
+ *
+ * Get Contact
+ * Retrieve a contact
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ContactsByContactId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link GET_ContactsByContactId_Response_200} - 200 response type
+ * @see {@link GET_ContactsByContactId_Response_404} - 404 response type
+ * @see {@link GET_ContactsByContactId_Response_422} - 422 response type
+ *
+
  */
 export type GET_ContactsByContactId = {
-  200: ContactSchema
-  404: Problem
-  422: HTTPValidationError
+  200: GET_ContactsByContactId_Response_200
+  404: GET_ContactsByContactId_Response_404
+  422: GET_ContactsByContactId_Response_422
 }
 
 /**
  * 200 response for GET ContactsByContactId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ContactsByContactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link GET_ContactsByContactId} - The main response type definition
+ * @see {@link ContactSchema} - The actual schema type definition
  */
 export type GET_ContactsByContactId_Response_200 = ContactSchema
 
 /**
  * 404 response for GET ContactsByContactId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET ContactsByContactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link GET_ContactsByContactId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsByContactId_Response_404 = Problem
 
 /**
  * 422 response for GET ContactsByContactId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ContactsByContactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}
+ *
+ * @see {@link GET_ContactsByContactId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsByContactId_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE ContactsByContactIdVerification endpoint
- * 
+ *
+ * Cancel Verification
+ * Delete contact verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE ContactsByContactIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link DELETE_ContactsByContactIdVerification_Response_401} - 401 response type
+ * @see {@link DELETE_ContactsByContactIdVerification_Response_404} - 404 response type
+ * @see {@link DELETE_ContactsByContactIdVerification_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_ContactsByContactIdVerification = {
-  401: Problem
-  404: Problem
-  422: HTTPValidationError
+  401: DELETE_ContactsByContactIdVerification_Response_401
+  404: DELETE_ContactsByContactIdVerification_Response_404
+  422: DELETE_ContactsByContactIdVerification_Response_422
 }
 
 /**
  * 401 response for DELETE ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link DELETE_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 404 response for DELETE ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link DELETE_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 422 response for DELETE ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link DELETE_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsByContactIdVerification endpoint
- * 
+ *
+ * Get Verification Status
+ * Retrieve contact verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ContactsByContactIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link GET_ContactsByContactIdVerification_Response_200} - 200 response type
+ * @see {@link GET_ContactsByContactIdVerification_Response_401} - 401 response type
+ * @see {@link GET_ContactsByContactIdVerification_Response_404} - 404 response type
+ * @see {@link GET_ContactsByContactIdVerification_Response_422} - 422 response type
+ *
+
  */
 export type GET_ContactsByContactIdVerification = {
-  200: ContactVerification
-  401: Problem
-  404: Problem
-  422: HTTPValidationError
+  200: GET_ContactsByContactIdVerification_Response_200
+  401: GET_ContactsByContactIdVerification_Response_401
+  404: GET_ContactsByContactIdVerification_Response_404
+  422: GET_ContactsByContactIdVerification_Response_422
 }
 
 /**
  * 200 response for GET ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link ContactVerification} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_200 = ContactVerification
 
 /**
  * 401 response for GET ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 404 response for GET ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 422 response for GET ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST ContactsByContactIdVerification endpoint
- * 
+ *
+ * Start Contact Verification
+ * Start contact verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST ContactsByContactIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link POST_ContactsByContactIdVerification_Response_401} - 401 response type
+ * @see {@link POST_ContactsByContactIdVerification_Response_404} - 404 response type
+ * @see {@link POST_ContactsByContactIdVerification_Response_405} - 405 response type
+ * @see {@link POST_ContactsByContactIdVerification_Response_422} - 422 response type
+ *
+
  */
 export type POST_ContactsByContactIdVerification = {
-  401: Problem
-  404: Problem
-  405: Problem
-  422: HTTPValidationError
+  401: POST_ContactsByContactIdVerification_Response_401
+  404: POST_ContactsByContactIdVerification_Response_404
+  405: POST_ContactsByContactIdVerification_Response_405
+  422: POST_ContactsByContactIdVerification_Response_422
 }
 
 /**
  * 401 response for POST ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 404 response for POST ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 405 response for POST ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 405 status code
+ * of the POST ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_405 = Problem
 
 /**
  * 422 response for POST ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT ContactsByContactIdVerification endpoint
- * 
+ *
+ * Update Verification
+ * Complete contact verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the PUT ContactsByContactIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link PUT_ContactsByContactIdVerification_Response_400} - 400 response type
+ * @see {@link PUT_ContactsByContactIdVerification_Response_401} - 401 response type
+ * @see {@link PUT_ContactsByContactIdVerification_Response_403} - 403 response type
+ * @see {@link PUT_ContactsByContactIdVerification_Response_404} - 404 response type
+ * @see {@link PUT_ContactsByContactIdVerification_Response_422} - 422 response type
+ *
+
  */
 export type PUT_ContactsByContactIdVerification = {
-  400: Problem
-  401: Problem
-  403: Problem
-  404: Problem
-  422: HTTPValidationError
+  400: PUT_ContactsByContactIdVerification_Response_400
+  401: PUT_ContactsByContactIdVerification_Response_401
+  403: PUT_ContactsByContactIdVerification_Response_403
+  404: PUT_ContactsByContactIdVerification_Response_404
+  422: PUT_ContactsByContactIdVerification_Response_422
 }
 
 /**
  * 400 response for PUT ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PUT ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_400 = Problem
 
 /**
  * 401 response for PUT ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PUT ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_401 = Problem
 
 /**
  * 403 response for PUT ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PUT ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_403 = Problem
 
 /**
  * 404 response for PUT ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PUT ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_404 = Problem
 
 /**
  * 422 response for PUT ContactsByContactIdVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PUT ContactsByContactIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/{contact_id}/verification
+ *
+ * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsVerification endpoint
- * 
+ *
+ * Get Verification By Token
+ * Retrieve contact verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ContactsVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link GET_ContactsVerification_Response_200} - 200 response type
+ * @see {@link GET_ContactsVerification_Response_401} - 401 response type
+ * @see {@link GET_ContactsVerification_Response_404} - 404 response type
+ * @see {@link GET_ContactsVerification_Response_422} - 422 response type
+ *
+
  */
 export type GET_ContactsVerification = {
-  200: Contact
-  401: Problem
-  404: Problem
-  422: HTTPValidationError
+  200: GET_ContactsVerification_Response_200
+  401: GET_ContactsVerification_Response_401
+  404: GET_ContactsVerification_Response_404
+  422: GET_ContactsVerification_Response_422
 }
 
 /**
  * 200 response for GET ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link Contact} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_200 = Contact
 
 /**
  * 401 response for GET ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_401 = Problem
 
 /**
  * 404 response for GET ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_404 = Problem
 
 /**
  * 422 response for GET ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT ContactsVerification endpoint
- * 
+ *
+ * Update Verification By Token
+ * Complete contact verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the PUT ContactsVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link PUT_ContactsVerification_Response_400} - 400 response type
+ * @see {@link PUT_ContactsVerification_Response_401} - 401 response type
+ * @see {@link PUT_ContactsVerification_Response_404} - 404 response type
+ * @see {@link PUT_ContactsVerification_Response_422} - 422 response type
+ *
+
  */
 export type PUT_ContactsVerification = {
-  400: Problem
-  401: Problem
-  404: Problem
-  422: HTTPValidationError
+  400: PUT_ContactsVerification_Response_400
+  401: PUT_ContactsVerification_Response_401
+  404: PUT_ContactsVerification_Response_404
+  422: PUT_ContactsVerification_Response_422
 }
 
 /**
  * 400 response for PUT ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PUT ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_400 = Problem
 
 /**
  * 401 response for PUT ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PUT ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_401 = Problem
 
 /**
  * 404 response for PUT ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PUT ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_404 = Problem
 
 /**
  * 422 response for PUT ContactsVerification endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PUT ContactsVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verification
+ *
+ * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ContactsVerify endpoint
- * 
+ *
+ * Email Verify Contact
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ContactsVerify endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/contacts/verify
+ *
+ * @see {@link GET_ContactsVerify_Response_422} - 422 response type
+ *
+
  */
 export type GET_ContactsVerify = {
-  422: HTTPValidationError
+  422: GET_ContactsVerify_Response_422
 }
 
 /**
  * 422 response for GET ContactsVerify endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ContactsVerify endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/contacts/verify
+ *
+ * @see {@link GET_ContactsVerify} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsVerify_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Dns endpoint
- * 
+ *
+ * List Zones
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Dns endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/dns
+ *
+ * @see {@link GET_Dns_Response_200} - 200 response type
+ * @see {@link GET_Dns_Response_422} - 422 response type
+ *
+
  */
 export type GET_Dns = {
-  200: Pagination_DnsZone
-  422: HTTPValidationError
+  200: GET_Dns_Response_200
+  422: GET_Dns_Response_422
 }
 
 /**
  * 200 response for GET Dns endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Dns endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns
+ *
+ * @see {@link GET_Dns} - The main response type definition
+ * @see {@link Pagination_DnsZone} - The actual schema type definition
  */
 export type GET_Dns_Response_200 = Pagination_DnsZone
 
 /**
  * 422 response for GET Dns endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Dns endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns
+ *
+ * @see {@link GET_Dns} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Dns_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Dns endpoint
- * 
+ *
+ * Create Zone
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Dns endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/dns
+ *
+ * @see {@link POST_Dns_Response_422} - 422 response type
+ *
+
  */
 export type POST_Dns = {
-  422: HTTPValidationError
+  422: POST_Dns_Response_422
 }
 
 /**
  * 422 response for POST Dns endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Dns endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns
+ *
+ * @see {@link POST_Dns} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Dns_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DnsByZoneName endpoint
- * 
+ *
+ * Delete Zone
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE DnsByZoneName endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link DELETE_DnsByZoneName_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_DnsByZoneName = {
-  422: HTTPValidationError
+  422: DELETE_DnsByZoneName_Response_422
 }
 
 /**
  * 422 response for DELETE DnsByZoneName endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE DnsByZoneName endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link DELETE_DnsByZoneName} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DnsByZoneName_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DnsByZoneName endpoint
- * 
+ *
+ * Get Zone
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DnsByZoneName endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneName_Response_200} - 200 response type
+ * @see {@link GET_DnsByZoneName_Response_422} - 422 response type
+ *
+
  */
 export type GET_DnsByZoneName = {
-  200: DnsZone
-  422: HTTPValidationError
+  200: GET_DnsByZoneName_Response_200
+  422: GET_DnsByZoneName_Response_422
 }
 
 /**
  * 200 response for GET DnsByZoneName endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DnsByZoneName endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneName} - The main response type definition
+ * @see {@link DnsZone} - The actual schema type definition
  */
 export type GET_DnsByZoneName_Response_200 = DnsZone
 
 /**
  * 422 response for GET DnsByZoneName endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DnsByZoneName endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneName} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DnsByZoneName_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DnsByZoneNameDnssecDisable endpoint
- * 
+ *
+ * Disable Dnssec
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DnsByZoneNameDnssecDisable endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecDisable_Response_200} - 200 response type
+ * @see {@link POST_DnsByZoneNameDnssecDisable_Response_422} - 422 response type
+ *
+
  */
 export type POST_DnsByZoneNameDnssecDisable = {
-  200: DnsChanges
-  422: HTTPValidationError
+  200: POST_DnsByZoneNameDnssecDisable_Response_200
+  422: POST_DnsByZoneNameDnssecDisable_Response_422
 }
 
 /**
  * 200 response for POST DnsByZoneNameDnssecDisable endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST DnsByZoneNameDnssecDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecDisable} - The main response type definition
+ * @see {@link DnsChanges} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecDisable_Response_200 = DnsChanges
 
 /**
  * 422 response for POST DnsByZoneNameDnssecDisable endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DnsByZoneNameDnssecDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecDisable} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecDisable_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DnsByZoneNameDnssecEnable endpoint
- * 
+ *
+ * Enable Dnssec
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DnsByZoneNameDnssecEnable endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecEnable_Response_200} - 200 response type
+ * @see {@link POST_DnsByZoneNameDnssecEnable_Response_422} - 422 response type
+ *
+
  */
 export type POST_DnsByZoneNameDnssecEnable = {
-  200: DnsChanges
-  422: HTTPValidationError
+  200: POST_DnsByZoneNameDnssecEnable_Response_200
+  422: POST_DnsByZoneNameDnssecEnable_Response_422
 }
 
 /**
  * 200 response for POST DnsByZoneNameDnssecEnable endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST DnsByZoneNameDnssecEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecEnable} - The main response type definition
+ * @see {@link DnsChanges} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecEnable_Response_200 = DnsChanges
 
 /**
  * 422 response for POST DnsByZoneNameDnssecEnable endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DnsByZoneNameDnssecEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecEnable} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecEnable_Response_422 = HTTPValidationError
 
 /**
- * Response types for PUT DnsByZoneNameRrsets endpoint
- * 
+ * Response types for PATCH DnsByZoneNameRecords endpoint
+ *
+ * Patch Zone Records
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH DnsByZoneNameRecords endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/records
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PATCH_DnsByZoneNameRecords_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_DnsByZoneNameRecords = {
+  422: PATCH_DnsByZoneNameRecords_Response_422
+}
+
+/**
+ * 422 response for PATCH DnsByZoneNameRecords endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH DnsByZoneNameRecords endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/records
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PATCH_DnsByZoneNameRecords} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_DnsByZoneNameRecords_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH DnsByZoneNameRrsets endpoint
+ *
+ * Patch Zone Rrsets
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH DnsByZoneNameRrsets endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PATCH_DnsByZoneNameRrsets_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_DnsByZoneNameRrsets = {
+  422: PATCH_DnsByZoneNameRrsets_Response_422
+}
+
+/**
+ * 422 response for PATCH DnsByZoneNameRrsets endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH DnsByZoneNameRrsets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/rrsets
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PATCH_DnsByZoneNameRrsets} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PUT DnsByZoneNameRrsets endpoint
+ *
+ * Update Zone Rrsets
+ *
+ * @remarks
+ * This type defines all possible response structures for the PUT DnsByZoneNameRrsets endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/rrsets
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PUT_DnsByZoneNameRrsets_Response_422} - 422 response type
+ *
+
  */
 export type PUT_DnsByZoneNameRrsets = {
-  422: HTTPValidationError
+  422: PUT_DnsByZoneNameRrsets_Response_422
 }
 
 /**
  * 422 response for PUT DnsByZoneNameRrsets endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PUT DnsByZoneNameRrsets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PUT_DnsByZoneNameRrsets} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainSearchSuggest endpoint
- * 
+ *
+ * Suggest
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainSearchSuggest endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
  * @param tlds (query) - 
@@ -811,17 +1986,31 @@ Specify one or more TLDs to include in the search.
 
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
+ *
+ * @see {@link GET_DomainSearchSuggest_Response_200} - 200 response type
+ * @see {@link GET_DomainSearchSuggest_Response_401} - 401 response type
+ * @see {@link GET_DomainSearchSuggest_Response_422} - 422 response type
+ * @see {@link GET_DomainSearchSuggest_Response_502} - 502 response type
+ *
+
  */
 export type GET_DomainSearchSuggest = {
-  200: DomainSearch
-  401: Problem
-  422: HTTPValidationError
-  502: Problem
+  200: GET_DomainSearchSuggest_Response_200
+  401: GET_DomainSearchSuggest_Response_401
+  422: GET_DomainSearchSuggest_Response_422
+  502: GET_DomainSearchSuggest_Response_502
 }
 
 /**
  * 200 response for GET DomainSearchSuggest endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainSearchSuggest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
  * @param tlds (query) - 
@@ -829,12 +2018,22 @@ Specify one or more TLDs to include in the search.
 
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
+ *
+ * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link DomainSearch} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_200 = DomainSearch
 
 /**
  * 401 response for GET DomainSearchSuggest endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainSearchSuggest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
  * @param tlds (query) - 
@@ -842,12 +2041,22 @@ Specify one or more TLDs to include in the search.
 
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
+ *
+ * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_401 = Problem
 
 /**
  * 422 response for GET DomainSearchSuggest endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainSearchSuggest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
  * @param tlds (query) - 
@@ -855,12 +2064,22 @@ Specify one or more TLDs to include in the search.
 
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
+ *
+ * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_422 = HTTPValidationError
 
 /**
  * 502 response for GET DomainSearchSuggest endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET DomainSearchSuggest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
  * @param tlds (query) - 
@@ -868,1374 +2087,3302 @@ Specify one or more TLDs to include in the search.
 
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
+ *
+ * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_502 = Problem
 
 /**
  * Response types for GET Domains endpoint
- * 
+ *
+ * List all domains
+ * Retrieves a paginated list of all domains
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Domains endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link GET_Domains_Response_200} - 200 response type
+ * @see {@link GET_Domains_Response_422} - 422 response type
+ *
+
  */
 export type GET_Domains = {
-  200: Pagination_Domain
-  422: HTTPValidationError
+  200: GET_Domains_Response_200
+  422: GET_Domains_Response_422
 }
 
 /**
  * 200 response for GET Domains endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link GET_Domains} - The main response type definition
+ * @see {@link Pagination_Domain} - The actual schema type definition
  */
 export type GET_Domains_Response_200 = Pagination_Domain
 
 /**
  * 422 response for GET Domains endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link GET_Domains} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Domains_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Domains endpoint
- * 
+ *
+ * Create a domain
+ * Registers a new domain
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Domains endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link POST_Domains_Response_201} - 201 response type
+ * @see {@link POST_Domains_Response_400} - 400 response type
+ * @see {@link POST_Domains_Response_404} - 404 response type
+ * @see {@link POST_Domains_Response_409} - 409 response type
+ * @see {@link POST_Domains_Response_422} - 422 response type
+ *
+
  */
 export type POST_Domains = {
-  201: Domain
-  400: Problem
-  404: Problem
-  409: Problem
-  422: HTTPValidationError
+  201: POST_Domains_Response_201
+  400: POST_Domains_Response_400
+  404: POST_Domains_Response_404
+  409: POST_Domains_Response_409
+  422: POST_Domains_Response_422
 }
 
 /**
  * 201 response for POST Domains endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link POST_Domains} - The main response type definition
+ * @see {@link Domain} - The actual schema type definition
  */
 export type POST_Domains_Response_201 = Domain
 
 /**
  * 400 response for POST Domains endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link POST_Domains} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_Domains_Response_400 = Problem
 
 /**
  * 404 response for POST Domains endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link POST_Domains} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_Domains_Response_404 = Problem
 
 /**
  * 409 response for POST Domains endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link POST_Domains} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_Domains_Response_409 = Problem
 
 /**
  * 422 response for POST Domains endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains
+ *
+ * @see {@link POST_Domains} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Domains_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainsByDomainReference endpoint
- * 
+ *
+ * Delete a domain
+ * Initiates the deletion process for a domain. The domain will be marked for deletion
+and will enter a redemption period during which it may be restored.
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE DomainsByDomainReference endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link DELETE_DomainsByDomainReference_Response_404} - 404 response type
+ * @see {@link DELETE_DomainsByDomainReference_Response_409} - 409 response type
+ * @see {@link DELETE_DomainsByDomainReference_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_DomainsByDomainReference = {
-  404: Problem
-  409: Problem
-  422: HTTPValidationError
+  404: DELETE_DomainsByDomainReference_Response_404
+  409: DELETE_DomainsByDomainReference_Response_409
+  422: DELETE_DomainsByDomainReference_Response_422
 }
 
 /**
  * 404 response for DELETE DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link DELETE_DomainsByDomainReference} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReference_Response_404 = Problem
 
 /**
  * 409 response for DELETE DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the DELETE DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link DELETE_DomainsByDomainReference} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReference_Response_409 = Problem
 
 /**
  * 422 response for DELETE DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link DELETE_DomainsByDomainReference} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReference_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainsByDomainReference endpoint
- * 
+ *
+ * Retrieve a domain
+ * Retrieves a single domain by either its name or id
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainsByDomainReference endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link GET_DomainsByDomainReference_Response_200} - 200 response type
+ * @see {@link GET_DomainsByDomainReference_Response_404} - 404 response type
+ * @see {@link GET_DomainsByDomainReference_Response_422} - 422 response type
+ *
+
  */
 export type GET_DomainsByDomainReference = {
-  200: Domain
-  404: Problem
-  422: HTTPValidationError
+  200: GET_DomainsByDomainReference_Response_200
+  404: GET_DomainsByDomainReference_Response_404
+  422: GET_DomainsByDomainReference_Response_422
 }
 
 /**
  * 200 response for GET DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link GET_DomainsByDomainReference} - The main response type definition
+ * @see {@link Domain} - The actual schema type definition
  */
 export type GET_DomainsByDomainReference_Response_200 = Domain
 
 /**
  * 404 response for GET DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link GET_DomainsByDomainReference} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainsByDomainReference_Response_404 = Problem
 
 /**
  * 422 response for GET DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link GET_DomainsByDomainReference} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsByDomainReference_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH DomainsByDomainReference endpoint
- * 
+ *
+ * Update a domain
+ * Updates various attributes of an existing domain. Only the fields provided in the request
+will be updated; all other fields will remain unchanged. <br>
+Providing `clientTransferProhibited` as a status will set the `transfer_lock` property
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH DomainsByDomainReference endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link PATCH_DomainsByDomainReference_Response_200} - 200 response type
+ * @see {@link PATCH_DomainsByDomainReference_Response_404} - 404 response type
+ * @see {@link PATCH_DomainsByDomainReference_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_DomainsByDomainReference = {
-  200: Domain
-  404: Problem
-  422: HTTPValidationError
+  200: PATCH_DomainsByDomainReference_Response_200
+  404: PATCH_DomainsByDomainReference_Response_404
+  422: PATCH_DomainsByDomainReference_Response_422
 }
 
 /**
  * 200 response for PATCH DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link PATCH_DomainsByDomainReference} - The main response type definition
+ * @see {@link Domain} - The actual schema type definition
  */
 export type PATCH_DomainsByDomainReference_Response_200 = Domain
 
 /**
  * 404 response for PATCH DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link PATCH_DomainsByDomainReference} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PATCH_DomainsByDomainReference_Response_404 = Problem
 
 /**
  * 422 response for PATCH DomainsByDomainReference endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH DomainsByDomainReference endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}
+ *
+ * @see {@link PATCH_DomainsByDomainReference} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_DomainsByDomainReference_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * Delete DNSSEC data
+ * Removes all DNSSEC data for a domain
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE DomainsByDomainReferenceDnssec endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link DELETE_DomainsByDomainReferenceDnssec_Response_404} - 404 response type
+ * @see {@link DELETE_DomainsByDomainReferenceDnssec_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_DomainsByDomainReferenceDnssec = {
-  404: Problem
-  422: HTTPValidationError
+  404: DELETE_DomainsByDomainReferenceDnssec_Response_404
+  422: DELETE_DomainsByDomainReferenceDnssec_Response_422
 }
 
 /**
  * 404 response for DELETE DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link DELETE_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceDnssec_Response_404 = Problem
 
 /**
  * 422 response for DELETE DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link DELETE_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * Retrieve DNSSEC data
+ * Fetches all DNSSEC records associated with the specified domain.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainsByDomainReferenceDnssec endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link GET_DomainsByDomainReferenceDnssec_Response_200} - 200 response type
+ * @see {@link GET_DomainsByDomainReferenceDnssec_Response_404} - 404 response type
+ * @see {@link GET_DomainsByDomainReferenceDnssec_Response_422} - 422 response type
+ *
+
  */
 export type GET_DomainsByDomainReferenceDnssec = {
-  200: DomainDnssecDataArray
-  404: Problem
-  422: HTTPValidationError
+  200: GET_DomainsByDomainReferenceDnssec_Response_200
+  404: GET_DomainsByDomainReferenceDnssec_Response_404
+  422: GET_DomainsByDomainReferenceDnssec_Response_422
 }
 
 /**
  * 200 response for GET DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link GET_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link DomainDnssecData} - The actual schema type definition
  */
 export type GET_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataArray
 
 /**
  * 404 response for GET DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link GET_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainsByDomainReferenceDnssec_Response_404 = Problem
 
 /**
  * 422 response for GET DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link GET_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * Update DNSSEC data
+ * Replaces all existing DNSSEC records for the domain with the provided records.
+ *
+ * @remarks
+ * This type defines all possible response structures for the PUT DomainsByDomainReferenceDnssec endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link PUT_DomainsByDomainReferenceDnssec_Response_200} - 200 response type
+ * @see {@link PUT_DomainsByDomainReferenceDnssec_Response_404} - 404 response type
+ * @see {@link PUT_DomainsByDomainReferenceDnssec_Response_422} - 422 response type
+ *
+
  */
 export type PUT_DomainsByDomainReferenceDnssec = {
-  200: DomainDnssecDataArray
-  404: Problem
-  422: HTTPValidationError
+  200: PUT_DomainsByDomainReferenceDnssec_Response_200
+  404: PUT_DomainsByDomainReferenceDnssec_Response_404
+  422: PUT_DomainsByDomainReferenceDnssec_Response_422
 }
 
 /**
  * 200 response for PUT DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PUT DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link PUT_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link DomainDnssecData} - The actual schema type definition
  */
 export type PUT_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataArray
 
 /**
  * 404 response for PUT DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PUT DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link PUT_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_DomainsByDomainReferenceDnssec_Response_404 = Problem
 
 /**
  * 422 response for PUT DomainsByDomainReferenceDnssec endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PUT DomainsByDomainReferenceDnssec endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/dnssec
+ *
+ * @see {@link PUT_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DomainsByDomainReferenceRenew endpoint
- * 
+ *
+ * Renew a domain
+ * Extends the registration period of an existing domain. The renewal period is added
+to the current expiration date of the domain.
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainsByDomainReferenceRenew endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/renew
+ *
+ * @see {@link POST_DomainsByDomainReferenceRenew_Response_200} - 200 response type
+ * @see {@link POST_DomainsByDomainReferenceRenew_Response_422} - 422 response type
+ *
+
  */
 export type POST_DomainsByDomainReferenceRenew = {
-  200: DomainRenew
-  422: HTTPValidationError
+  200: POST_DomainsByDomainReferenceRenew_Response_200
+  422: POST_DomainsByDomainReferenceRenew_Response_422
 }
 
 /**
  * 200 response for POST DomainsByDomainReferenceRenew endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST DomainsByDomainReferenceRenew endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/renew
+ *
+ * @see {@link POST_DomainsByDomainReferenceRenew} - The main response type definition
+ * @see {@link DomainRenew} - The actual schema type definition
  */
 export type POST_DomainsByDomainReferenceRenew_Response_200 = DomainRenew
 
 /**
  * 422 response for POST DomainsByDomainReferenceRenew endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainsByDomainReferenceRenew endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/renew
+ *
+ * @see {@link POST_DomainsByDomainReferenceRenew} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainsByDomainReferenceTransfer endpoint
- * 
+ *
+ * Cancel a domain transfer
+ * This will cancel the in-progress domain transfer and delete the domain object
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE DomainsByDomainReferenceTransfer endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/transfer
+ *
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer_Response_404} - 404 response type
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer_Response_409} - 409 response type
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_DomainsByDomainReferenceTransfer = {
-  404: Problem
-  409: Problem
-  422: HTTPValidationError
+  404: DELETE_DomainsByDomainReferenceTransfer_Response_404
+  409: DELETE_DomainsByDomainReferenceTransfer_Response_409
+  422: DELETE_DomainsByDomainReferenceTransfer_Response_422
 }
 
 /**
  * 404 response for DELETE DomainsByDomainReferenceTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE DomainsByDomainReferenceTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/transfer
+ *
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceTransfer_Response_404 = Problem
 
 /**
  * 409 response for DELETE DomainsByDomainReferenceTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the DELETE DomainsByDomainReferenceTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/transfer
+ *
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceTransfer_Response_409 = Problem
 
 /**
  * 422 response for DELETE DomainsByDomainReferenceTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE DomainsByDomainReferenceTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/{domain_reference}/transfer
+ *
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceTransfer_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainsCheck endpoint
- * 
+ *
+ * Check domain availability
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainsCheck endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/check
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_DomainsCheck_Response_200} - 200 response type
+ * @see {@link GET_DomainsCheck_Response_422} - 422 response type
+ *
+
  */
 export type GET_DomainsCheck = {
-  200: DomainCheck
-  422: HTTPValidationError
+  200: GET_DomainsCheck_Response_200
+  422: GET_DomainsCheck_Response_422
 }
 
 /**
  * 200 response for GET DomainsCheck endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainsCheck endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/check
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_DomainsCheck} - The main response type definition
+ * @see {@link DomainCheck} - The actual schema type definition
  */
 export type GET_DomainsCheck_Response_200 = DomainCheck
 
 /**
  * 422 response for GET DomainsCheck endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainsCheck endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/check
  * @param domains (query) - 
 Specify one or more domains to check for availability.
 
+ *
+ * @see {@link GET_DomainsCheck} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsCheck_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DomainsTransfer endpoint
- * 
+ *
+ * Transfer a domain
+ * Start the transfer process for a domain <br>
+The domain will be in state `pending_transfer` until the transfer is completed.
+This process can take up to 5 days, until the transfer is approved
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainsTransfer endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/domains/transfer
+ *
+ * @see {@link POST_DomainsTransfer_Response_201} - 201 response type
+ * @see {@link POST_DomainsTransfer_Response_400} - 400 response type
+ * @see {@link POST_DomainsTransfer_Response_404} - 404 response type
+ * @see {@link POST_DomainsTransfer_Response_409} - 409 response type
+ * @see {@link POST_DomainsTransfer_Response_422} - 422 response type
+ *
+
  */
 export type POST_DomainsTransfer = {
-  201: Domain
-  400: Problem
-  404: Problem
-  409: Problem
-  422: Problem
+  201: POST_DomainsTransfer_Response_201
+  400: POST_DomainsTransfer_Response_400
+  404: POST_DomainsTransfer_Response_404
+  409: POST_DomainsTransfer_Response_409
+  422: POST_DomainsTransfer_Response_422
 }
 
 /**
  * 201 response for POST DomainsTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST DomainsTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/transfer
+ *
+ * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link Domain} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_201 = Domain
 
 /**
  * 400 response for POST DomainsTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST DomainsTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/transfer
+ *
+ * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_400 = Problem
 
 /**
  * 404 response for POST DomainsTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainsTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/transfer
+ *
+ * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_404 = Problem
 
 /**
  * 409 response for POST DomainsTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST DomainsTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/transfer
+ *
+ * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_409 = Problem
 
 /**
  * 422 response for POST DomainsTransfer endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainsTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/domains/transfer
+ *
+ * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_422 = Problem
 
 /**
  * Response types for GET EmailForwards endpoint
- * 
+ *
+ * List Email Forwards
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET EmailForwards endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/email-forwards
  * @param status (query) - Optional status to filter the results
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
+ *
+ * @see {@link GET_EmailForwards_Response_200} - 200 response type
+ * @see {@link GET_EmailForwards_Response_422} - 422 response type
+ *
+
  */
 export type GET_EmailForwards = {
-  200: Pagination_EmailForward
-  422: HTTPValidationError
+  200: GET_EmailForwards_Response_200
+  422: GET_EmailForwards_Response_422
 }
 
 /**
  * 200 response for GET EmailForwards endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET EmailForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards
  * @param status (query) - Optional status to filter the results
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
+ *
+ * @see {@link GET_EmailForwards} - The main response type definition
+ * @see {@link Pagination_EmailForward} - The actual schema type definition
  */
 export type GET_EmailForwards_Response_200 = Pagination_EmailForward
 
 /**
  * 422 response for GET EmailForwards endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET EmailForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards
  * @param status (query) - Optional status to filter the results
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
+ *
+ * @see {@link GET_EmailForwards} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_EmailForwards_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST EmailForwards endpoint
- * 
+ *
+ * Create Email Forward
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST EmailForwards endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/email-forwards
+ *
+ * @see {@link POST_EmailForwards_Response_201} - 201 response type
+ * @see {@link POST_EmailForwards_Response_422} - 422 response type
+ *
+
  */
 export type POST_EmailForwards = {
-  201: EmailForward
-  422: HTTPValidationError
+  201: POST_EmailForwards_Response_201
+  422: POST_EmailForwards_Response_422
 }
 
 /**
  * 201 response for POST EmailForwards endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST EmailForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards
+ *
+ * @see {@link POST_EmailForwards} - The main response type definition
+ * @see {@link EmailForward} - The actual schema type definition
  */
 export type POST_EmailForwards_Response_201 = EmailForward
 
 /**
  * 422 response for POST EmailForwards endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST EmailForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards
+ *
+ * @see {@link POST_EmailForwards} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_EmailForwards_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST EmailForwardsBulkDelete endpoint
- * 
+ *
+ * Bulk Delete Email Forwards
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST EmailForwardsBulkDelete endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/email-forwards/bulk-delete
+ *
+ * @see {@link POST_EmailForwardsBulkDelete_Response_200} - 200 response type
+ * @see {@link POST_EmailForwardsBulkDelete_Response_422} - 422 response type
+ *
+
  */
 export type POST_EmailForwardsBulkDelete = {
-  200: EmailForwardBulkDeleteResult
-  422: HTTPValidationError
+  200: POST_EmailForwardsBulkDelete_Response_200
+  422: POST_EmailForwardsBulkDelete_Response_422
 }
 
 /**
  * 200 response for POST EmailForwardsBulkDelete endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST EmailForwardsBulkDelete endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/bulk-delete
+ *
+ * @see {@link POST_EmailForwardsBulkDelete} - The main response type definition
+ * @see {@link EmailForwardBulkDeleteResult} - The actual schema type definition
  */
 export type POST_EmailForwardsBulkDelete_Response_200 = EmailForwardBulkDeleteResult
 
 /**
  * 422 response for POST EmailForwardsBulkDelete endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST EmailForwardsBulkDelete endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/bulk-delete
+ *
+ * @see {@link POST_EmailForwardsBulkDelete} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_EmailForwardsBulkDelete_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH EmailForwardsBulkUpdate endpoint
- * 
+ *
+ * Bulk Update Email Forwards
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH EmailForwardsBulkUpdate endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/email-forwards/bulk-update
+ *
+ * @see {@link PATCH_EmailForwardsBulkUpdate_Response_200} - 200 response type
+ * @see {@link PATCH_EmailForwardsBulkUpdate_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_EmailForwardsBulkUpdate = {
-  200: EmailForwardBulkUpdateResult
-  422: HTTPValidationError
+  200: PATCH_EmailForwardsBulkUpdate_Response_200
+  422: PATCH_EmailForwardsBulkUpdate_Response_422
 }
 
 /**
  * 200 response for PATCH EmailForwardsBulkUpdate endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH EmailForwardsBulkUpdate endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/bulk-update
+ *
+ * @see {@link PATCH_EmailForwardsBulkUpdate} - The main response type definition
+ * @see {@link EmailForwardBulkUpdateResult} - The actual schema type definition
  */
 export type PATCH_EmailForwardsBulkUpdate_Response_200 = EmailForwardBulkUpdateResult
 
 /**
  * 422 response for PATCH EmailForwardsBulkUpdate endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH EmailForwardsBulkUpdate endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/bulk-update
+ *
+ * @see {@link PATCH_EmailForwardsBulkUpdate} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_EmailForwardsBulkUpdate_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * Delete Email Forward
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE EmailForwardsByEmailForwardId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link DELETE_EmailForwardsByEmailForwardId_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_EmailForwardsByEmailForwardId = {
-  422: HTTPValidationError
+  422: DELETE_EmailForwardsByEmailForwardId_Response_422
 }
 
 /**
  * 422 response for DELETE EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE EmailForwardsByEmailForwardId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link DELETE_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * Get Email Forward
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET EmailForwardsByEmailForwardId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link GET_EmailForwardsByEmailForwardId_Response_200} - 200 response type
+ * @see {@link GET_EmailForwardsByEmailForwardId_Response_422} - 422 response type
+ *
+
  */
 export type GET_EmailForwardsByEmailForwardId = {
-  200: EmailForward
-  422: HTTPValidationError
+  200: GET_EmailForwardsByEmailForwardId_Response_200
+  422: GET_EmailForwardsByEmailForwardId_Response_422
 }
 
 /**
  * 200 response for GET EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET EmailForwardsByEmailForwardId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link GET_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link EmailForward} - The actual schema type definition
  */
 export type GET_EmailForwardsByEmailForwardId_Response_200 = EmailForward
 
 /**
  * 422 response for GET EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET EmailForwardsByEmailForwardId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link GET_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * Update Email Forward
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH EmailForwardsByEmailForwardId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link PATCH_EmailForwardsByEmailForwardId_Response_200} - 200 response type
+ * @see {@link PATCH_EmailForwardsByEmailForwardId_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_EmailForwardsByEmailForwardId = {
-  200: EmailForward
-  422: HTTPValidationError
+  200: PATCH_EmailForwardsByEmailForwardId_Response_200
+  422: PATCH_EmailForwardsByEmailForwardId_Response_422
 }
 
 /**
  * 200 response for PATCH EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH EmailForwardsByEmailForwardId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link PATCH_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link EmailForward} - The actual schema type definition
  */
 export type PATCH_EmailForwardsByEmailForwardId_Response_200 = EmailForward
 
 /**
  * 422 response for PATCH EmailForwardsByEmailForwardId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH EmailForwardsByEmailForwardId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/email-forwards/{email_forward_id}
+ *
+ * @see {@link PATCH_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Event endpoint
- * 
+ *
+ * Get Events
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Event endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/event
+ *
+ * @see {@link GET_Event_Response_200} - 200 response type
+ * @see {@link GET_Event_Response_401} - 401 response type
+ * @see {@link GET_Event_Response_422} - 422 response type
+ *
+
  */
 export type GET_Event = {
-  200: Pagination_Event
-  401: Problem
-  422: HTTPValidationError
+  200: GET_Event_Response_200
+  401: GET_Event_Response_401
+  422: GET_Event_Response_422
 }
 
 /**
  * 200 response for GET Event endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Event endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event
+ *
+ * @see {@link GET_Event} - The main response type definition
+ * @see {@link Pagination_Event} - The actual schema type definition
  */
 export type GET_Event_Response_200 = Pagination_Event
 
 /**
  * 401 response for GET Event endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET Event endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event
+ *
+ * @see {@link GET_Event} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_Event_Response_401 = Problem
 
 /**
  * 422 response for GET Event endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Event endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event
+ *
+ * @see {@link GET_Event} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Event_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET EventByEventId endpoint
- * 
+ *
+ * Get Event
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET EventByEventId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link GET_EventByEventId_Response_200} - 200 response type
+ * @see {@link GET_EventByEventId_Response_401} - 401 response type
+ * @see {@link GET_EventByEventId_Response_404} - 404 response type
+ * @see {@link GET_EventByEventId_Response_422} - 422 response type
+ *
+
  */
 export type GET_EventByEventId = {
-  200: EventSchema
-  401: Problem
-  404: Problem
-  422: HTTPValidationError
+  200: GET_EventByEventId_Response_200
+  401: GET_EventByEventId_Response_401
+  404: GET_EventByEventId_Response_404
+  422: GET_EventByEventId_Response_422
 }
 
 /**
  * 200 response for GET EventByEventId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET EventByEventId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link EventSchema} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_200 = EventSchema
 
 /**
  * 401 response for GET EventByEventId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET EventByEventId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_401 = Problem
 
 /**
  * 404 response for GET EventByEventId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET EventByEventId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_404 = Problem
 
 /**
  * 422 response for GET EventByEventId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET EventByEventId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH EventByEventId endpoint
- * 
+ *
+ * Acknowledge Event
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH EventByEventId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link PATCH_EventByEventId_Response_401} - 401 response type
+ * @see {@link PATCH_EventByEventId_Response_404} - 404 response type
+ * @see {@link PATCH_EventByEventId_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_EventByEventId = {
-  401: Problem
-  404: Problem
-  422: HTTPValidationError
+  401: PATCH_EventByEventId_Response_401
+  404: PATCH_EventByEventId_Response_404
+  422: PATCH_EventByEventId_Response_422
 }
 
 /**
  * 401 response for PATCH EventByEventId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH EventByEventId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link PATCH_EventByEventId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PATCH_EventByEventId_Response_401 = Problem
 
 /**
  * 404 response for PATCH EventByEventId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH EventByEventId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link PATCH_EventByEventId} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
 export type PATCH_EventByEventId_Response_404 = Problem
 
 /**
  * 422 response for PATCH EventByEventId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH EventByEventId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/event/{event_id}
+ *
+ * @see {@link PATCH_EventByEventId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_EventByEventId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Notifications endpoint
- * 
+ *
+ * List Notifications
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Notifications endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/notifications
+ *
+ * @see {@link GET_Notifications_Response_200} - 200 response type
+ * @see {@link GET_Notifications_Response_422} - 422 response type
+ *
+
  */
 export type GET_Notifications = {
-  200: Pagination_UserNotificationSummary
-  422: HTTPValidationError
+  200: GET_Notifications_Response_200
+  422: GET_Notifications_Response_422
 }
 
 /**
  * 200 response for GET Notifications endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Notifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications
+ *
+ * @see {@link GET_Notifications} - The main response type definition
+ * @see {@link Pagination_UserNotificationSummary} - The actual schema type definition
  */
 export type GET_Notifications_Response_200 = Pagination_UserNotificationSummary
 
 /**
  * 422 response for GET Notifications endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Notifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications
+ *
+ * @see {@link GET_Notifications} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Notifications_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Notifications endpoint
- * 
+ *
+ * Create Notification
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Notifications endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/notifications
+ *
+ * @see {@link POST_Notifications_Response_201} - 201 response type
+ * @see {@link POST_Notifications_Response_422} - 422 response type
+ *
+
  */
 export type POST_Notifications = {
-  201: Notification
-  422: HTTPValidationError
+  201: POST_Notifications_Response_201
+  422: POST_Notifications_Response_422
 }
 
 /**
  * 201 response for POST Notifications endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST Notifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications
+ *
+ * @see {@link POST_Notifications} - The main response type definition
+ * @see {@link Notification} - The actual schema type definition
  */
 export type POST_Notifications_Response_201 = Notification
 
 /**
  * 422 response for POST Notifications endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Notifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications
+ *
+ * @see {@link POST_Notifications} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Notifications_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE NotificationsByNotificationId endpoint
- * 
+ *
+ * Delete Notification
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE NotificationsByNotificationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link DELETE_NotificationsByNotificationId_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_NotificationsByNotificationId = {
-  422: HTTPValidationError
+  422: DELETE_NotificationsByNotificationId_Response_422
 }
 
 /**
  * 422 response for DELETE NotificationsByNotificationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE NotificationsByNotificationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link DELETE_NotificationsByNotificationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_NotificationsByNotificationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET NotificationsByNotificationId endpoint
- * 
+ *
+ * Get Notification
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET NotificationsByNotificationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link GET_NotificationsByNotificationId_Response_200} - 200 response type
+ * @see {@link GET_NotificationsByNotificationId_Response_422} - 422 response type
+ *
+
  */
 export type GET_NotificationsByNotificationId = {
-  200: UserNotification
-  422: HTTPValidationError
+  200: GET_NotificationsByNotificationId_Response_200
+  422: GET_NotificationsByNotificationId_Response_422
 }
 
 /**
  * 200 response for GET NotificationsByNotificationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET NotificationsByNotificationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link GET_NotificationsByNotificationId} - The main response type definition
+ * @see {@link UserNotification} - The actual schema type definition
  */
 export type GET_NotificationsByNotificationId_Response_200 = UserNotification
 
 /**
  * 422 response for GET NotificationsByNotificationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET NotificationsByNotificationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link GET_NotificationsByNotificationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_NotificationsByNotificationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PUT NotificationsByNotificationId endpoint
- * 
+ *
+ * Update Notification
+ *
+ * @remarks
+ * This type defines all possible response structures for the PUT NotificationsByNotificationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link PUT_NotificationsByNotificationId_Response_200} - 200 response type
+ * @see {@link PUT_NotificationsByNotificationId_Response_422} - 422 response type
+ *
+
  */
 export type PUT_NotificationsByNotificationId = {
-  200: Notification
-  422: HTTPValidationError
+  200: PUT_NotificationsByNotificationId_Response_200
+  422: PUT_NotificationsByNotificationId_Response_422
 }
 
 /**
  * 200 response for PUT NotificationsByNotificationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PUT NotificationsByNotificationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link PUT_NotificationsByNotificationId} - The main response type definition
+ * @see {@link Notification} - The actual schema type definition
  */
 export type PUT_NotificationsByNotificationId_Response_200 = Notification
 
 /**
  * 422 response for PUT NotificationsByNotificationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PUT NotificationsByNotificationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}
+ *
+ * @see {@link PUT_NotificationsByNotificationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_NotificationsByNotificationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH NotificationsByNotificationIdRead endpoint
- * 
+ *
+ * Update Notification Read
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH NotificationsByNotificationIdRead endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}/read
+ *
+ * @see {@link PATCH_NotificationsByNotificationIdRead_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_NotificationsByNotificationIdRead = {
-  422: HTTPValidationError
+  422: PATCH_NotificationsByNotificationIdRead_Response_422
 }
 
 /**
  * 422 response for PATCH NotificationsByNotificationIdRead endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH NotificationsByNotificationIdRead endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/notifications/{notification_id}/read
+ *
+ * @see {@link PATCH_NotificationsByNotificationIdRead} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_NotificationsByNotificationIdRead_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Organizations endpoint
- * 
+ *
+ * List Organizations
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Organizations endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations
+ *
+ * @see {@link GET_Organizations_Response_200} - 200 response type
+ * @see {@link GET_Organizations_Response_422} - 422 response type
+ *
+
  */
 export type GET_Organizations = {
-  200: Pagination_Organization
-  422: HTTPValidationError
+  200: GET_Organizations_Response_200
+  422: GET_Organizations_Response_422
 }
 
 /**
  * 200 response for GET Organizations endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations
+ *
+ * @see {@link GET_Organizations} - The main response type definition
+ * @see {@link Pagination_Organization} - The actual schema type definition
  */
 export type GET_Organizations_Response_200 = Pagination_Organization
 
 /**
  * 422 response for GET Organizations endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations
+ *
+ * @see {@link GET_Organizations} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Organizations_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Organizations endpoint
- * 
+ *
+ * Create Organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Organizations endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations
+ *
+ * @see {@link POST_Organizations_Response_200} - 200 response type
+ * @see {@link POST_Organizations_Response_422} - 422 response type
+ *
+
  */
 export type POST_Organizations = {
-  200: Organization
-  422: HTTPValidationError
+  200: POST_Organizations_Response_200
+  422: POST_Organizations_Response_422
 }
 
 /**
  * 200 response for POST Organizations endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations
+ *
+ * @see {@link POST_Organizations} - The main response type definition
+ * @see {@link Organization} - The actual schema type definition
  */
 export type POST_Organizations_Response_200 = Organization
 
 /**
  * 422 response for POST Organizations endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations
+ *
+ * @see {@link POST_Organizations} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Organizations_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsAttributes endpoint
- * 
+ *
+ * Get Attributes
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsAttributes endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributes_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsAttributes_Response_422} - 422 response type
+ *
+
  */
 export type GET_OrganizationsAttributes = {
-  200: OrganizationAttribute2Array
-  422: HTTPValidationError
+  200: GET_OrganizationsAttributes_Response_200
+  422: GET_OrganizationsAttributes_Response_422
 }
 
 /**
  * 200 response for GET OrganizationsAttributes endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributes} - The main response type definition
+ * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type GET_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for GET OrganizationsAttributes endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributes} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsAttributes_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsAttributes endpoint
- * 
+ *
+ * Update Attributes
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH OrganizationsAttributes endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/attributes
+ *
+ * @see {@link PATCH_OrganizationsAttributes_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsAttributes_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_OrganizationsAttributes = {
-  200: OrganizationAttribute2Array
-  422: HTTPValidationError
+  200: PATCH_OrganizationsAttributes_Response_200
+  422: PATCH_OrganizationsAttributes_Response_422
 }
 
 /**
  * 200 response for PATCH OrganizationsAttributes endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes
+ *
+ * @see {@link PATCH_OrganizationsAttributes} - The main response type definition
+ * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for PATCH OrganizationsAttributes endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes
+ *
+ * @see {@link PATCH_OrganizationsAttributes} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributes_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsAttributesByOrganizationId endpoint
- * 
+ *
+ * Get Attributes
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsAttributesByOrganizationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response_422} - 422 response type
+ *
+
  */
 export type GET_OrganizationsAttributesByOrganizationId = {
-  200: OrganizationAttribute2Array
-  422: HTTPValidationError
+  200: GET_OrganizationsAttributesByOrganizationId_Response_200
+  422: GET_OrganizationsAttributesByOrganizationId_Response_422
 }
 
 /**
  * 200 response for GET OrganizationsAttributesByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type GET_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for GET OrganizationsAttributesByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsAttributesByOrganizationId endpoint
- * 
+ *
+ * Update Attributes
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH OrganizationsAttributesByOrganizationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/attributes/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_OrganizationsAttributesByOrganizationId = {
-  200: OrganizationAttribute2Array
-  422: HTTPValidationError
+  200: PATCH_OrganizationsAttributesByOrganizationId_Response_200
+  422: PATCH_OrganizationsAttributesByOrganizationId_Response_422
 }
 
 /**
  * 200 response for PATCH OrganizationsAttributesByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
 
 /**
  * 422 response for PATCH OrganizationsAttributesByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/attributes/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE OrganizationsByOrganizationId endpoint
- * 
+ *
+ * Delete User
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE OrganizationsByOrganizationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link DELETE_OrganizationsByOrganizationId_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_OrganizationsByOrganizationId = {
-  422: HTTPValidationError
+  422: DELETE_OrganizationsByOrganizationId_Response_422
 }
 
 /**
  * 422 response for DELETE OrganizationsByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link DELETE_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsByOrganizationId endpoint
- * 
+ *
+ * Get Organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsByOrganizationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationId_Response_422} - 422 response type
+ *
+
  */
 export type GET_OrganizationsByOrganizationId = {
-  200: OrganizationWithPlan
-  422: HTTPValidationError
+  200: GET_OrganizationsByOrganizationId_Response_200
+  422: GET_OrganizationsByOrganizationId_Response_422
 }
 
 /**
  * 200 response for GET OrganizationsByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link OrganizationWithPlan} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationId_Response_200 = OrganizationWithPlan
 
 /**
  * 422 response for GET OrganizationsByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsByOrganizationId endpoint
- * 
+ *
+ * Update Organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH OrganizationsByOrganizationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_OrganizationsByOrganizationId = {
-  200: Organization
-  422: HTTPValidationError
+  200: PATCH_OrganizationsByOrganizationId_Response_200
+  422: PATCH_OrganizationsByOrganizationId_Response_422
 }
 
 /**
  * 200 response for PATCH OrganizationsByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link Organization} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationId_Response_200 = Organization
 
 /**
  * 422 response for PATCH OrganizationsByOrganizationId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsByOrganizationIdPlan endpoint
- * 
+ *
+ * Change Plan
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH OrganizationsByOrganizationIdPlan endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}/plan
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_OrganizationsByOrganizationIdPlan = {
-  200: OrganizationWithPlan
-  422: HTTPValidationError
+  200: PATCH_OrganizationsByOrganizationIdPlan_Response_200
+  422: PATCH_OrganizationsByOrganizationIdPlan_Response_422
 }
 
 /**
  * 200 response for PATCH OrganizationsByOrganizationIdPlan endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH OrganizationsByOrganizationIdPlan endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}/plan
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationIdPlan} - The main response type definition
+ * @see {@link OrganizationWithPlan} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationWithPlan
 
 /**
  * 422 response for PATCH OrganizationsByOrganizationIdPlan endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH OrganizationsByOrganizationIdPlan endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/{organization_id}/plan
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationIdPlan} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsIpRestrictions endpoint
- * 
+ *
+ * List Ip Restrictions
+ * Get all IP restrictions for the organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsIpRestrictions endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link GET_OrganizationsIpRestrictions_Response_200} - 200 response type
+ *
+
  */
 export type GET_OrganizationsIpRestrictions = {
-  200: IpRestrictionArray
+  200: GET_OrganizationsIpRestrictions_Response_200
 }
 
 /**
  * 200 response for GET OrganizationsIpRestrictions endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link GET_OrganizationsIpRestrictions} - The main response type definition
+ * @see {@link IpRestriction} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictions_Response_200 = IpRestrictionArray
 
 /**
  * Response types for POST OrganizationsIpRestrictions endpoint
- * 
+ *
+ * Create Ip Restriction
+ * Create a new IP restriction for the organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST OrganizationsIpRestrictions endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link POST_OrganizationsIpRestrictions_Response_200} - 200 response type
+ * @see {@link POST_OrganizationsIpRestrictions_Response_422} - 422 response type
+ *
+
  */
 export type POST_OrganizationsIpRestrictions = {
-  200: IpRestriction
-  422: HTTPValidationError
+  200: POST_OrganizationsIpRestrictions_Response_200
+  422: POST_OrganizationsIpRestrictions_Response_422
 }
 
 /**
  * 200 response for POST OrganizationsIpRestrictions endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link POST_OrganizationsIpRestrictions} - The main response type definition
+ * @see {@link IpRestriction} - The actual schema type definition
  */
 export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction
 
 /**
  * 422 response for POST OrganizationsIpRestrictions endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link POST_OrganizationsIpRestrictions} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * Delete Ip Restriction
+ * Delete an IP restriction
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId = {
-  422: HTTPValidationError
+  422: DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422
 }
 
 /**
  * 422 response for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * Get Ip Restriction
+ * Get a specific IP restriction by ID
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422} - 422 response type
+ *
+
  */
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId = {
-  200: IpRestriction
-  422: HTTPValidationError
+  200: GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200
+  422: GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422
 }
 
 /**
  * 200 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link IpRestriction} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
 
 /**
  * 422 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * Update Ip Restriction
+ * Update an IP restriction
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId = {
-  200: IpRestriction
-  422: HTTPValidationError
+  200: PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200
+  422: PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422
 }
 
 /**
  * 200 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link IpRestriction} - The actual schema type definition
  */
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
 
 /**
  * 422 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsRoles endpoint
- * 
+ *
+ * List Roles
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsRoles endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/roles
+ *
+
+ *
+
  */
 export type GET_OrganizationsRoles = {
 }
 
 /**
  * Response types for GET OrganizationsUsers endpoint
- * 
+ *
+ * List Users
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsUsers endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/organizations/users
+ *
+ * @see {@link GET_OrganizationsUsers_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsUsers_Response_422} - 422 response type
+ *
+
  */
 export type GET_OrganizationsUsers = {
-  200: Pagination_User
-  422: HTTPValidationError
+  200: GET_OrganizationsUsers_Response_200
+  422: GET_OrganizationsUsers_Response_422
 }
 
 /**
  * 200 response for GET OrganizationsUsers endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsUsers endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/users
+ *
+ * @see {@link GET_OrganizationsUsers} - The main response type definition
+ * @see {@link Pagination_User} - The actual schema type definition
  */
 export type GET_OrganizationsUsers_Response_200 = Pagination_User
 
 /**
  * 422 response for GET OrganizationsUsers endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsUsers endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/organizations/users
+ *
+ * @see {@link GET_OrganizationsUsers} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Users endpoint
- * 
+ *
+ * Create User
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Users endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users
+ *
+ * @see {@link POST_Users_Response_200} - 200 response type
+ * @see {@link POST_Users_Response_422} - 422 response type
+ *
+
  */
 export type POST_Users = {
-  200: User
-  422: HTTPValidationError
+  200: POST_Users_Response_200
+  422: POST_Users_Response_422
 }
 
 /**
  * 200 response for POST Users endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST Users endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users
+ *
+ * @see {@link POST_Users} - The main response type definition
+ * @see {@link User} - The actual schema type definition
  */
 export type POST_Users_Response_200 = User
 
 /**
  * 422 response for POST Users endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Users endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users
+ *
+ * @see {@link POST_Users} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Users_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST UsersAcceptTos endpoint
- * 
+ *
+ * Tos Sign
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST UsersAcceptTos endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/accept-tos
+ *
+ * @see {@link POST_UsersAcceptTos_Response_422} - 422 response type
+ *
+
  */
 export type POST_UsersAcceptTos = {
-  422: HTTPValidationError
+  422: POST_UsersAcceptTos_Response_422
 }
 
 /**
  * 422 response for POST UsersAcceptTos endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST UsersAcceptTos endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/accept-tos
+ *
+ * @see {@link POST_UsersAcceptTos} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_UsersAcceptTos_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE UsersByUserId endpoint
- * 
+ *
+ * Delete User
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE UsersByUserId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link DELETE_UsersByUserId_Response_422} - 422 response type
+ *
+
  */
 export type DELETE_UsersByUserId = {
-  422: HTTPValidationError
+  422: DELETE_UsersByUserId_Response_422
 }
 
 /**
  * 422 response for DELETE UsersByUserId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE UsersByUserId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link DELETE_UsersByUserId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_UsersByUserId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersByUserId endpoint
- * 
+ *
+ * Get User
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET UsersByUserId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link GET_UsersByUserId_Response_200} - 200 response type
+ * @see {@link GET_UsersByUserId_Response_422} - 422 response type
+ *
+
  */
 export type GET_UsersByUserId = {
-  200: UserWithAttributes
-  422: HTTPValidationError
+  200: GET_UsersByUserId_Response_200
+  422: GET_UsersByUserId_Response_422
 }
 
 /**
  * 200 response for GET UsersByUserId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET UsersByUserId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link GET_UsersByUserId} - The main response type definition
+ * @see {@link UserWithAttributes} - The actual schema type definition
  */
 export type GET_UsersByUserId_Response_200 = UserWithAttributes
 
 /**
  * 422 response for GET UsersByUserId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET UsersByUserId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link GET_UsersByUserId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersByUserId_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH UsersByUserId endpoint
- * 
+ *
+ * Update User
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH UsersByUserId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link PATCH_UsersByUserId_Response_200} - 200 response type
+ * @see {@link PATCH_UsersByUserId_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_UsersByUserId = {
-  200: UserWithAttributes
-  422: HTTPValidationError
+  200: PATCH_UsersByUserId_Response_200
+  422: PATCH_UsersByUserId_Response_422
 }
 
 /**
  * 200 response for PATCH UsersByUserId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH UsersByUserId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link PATCH_UsersByUserId} - The main response type definition
+ * @see {@link UserWithAttributes} - The actual schema type definition
  */
 export type PATCH_UsersByUserId_Response_200 = UserWithAttributes
 
 /**
  * 422 response for PATCH UsersByUserId endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH UsersByUserId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}
+ *
+ * @see {@link PATCH_UsersByUserId} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_UsersByUserId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersByUserIdPermissions endpoint
- * 
+ *
+ * Get User Permissions
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET UsersByUserIdPermissions endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/{user_id}/permissions
+ *
+ * @see {@link GET_UsersByUserIdPermissions_Response_200} - 200 response type
+ * @see {@link GET_UsersByUserIdPermissions_Response_422} - 422 response type
+ *
+
  */
 export type GET_UsersByUserIdPermissions = {
-  200: PermissionSet
-  422: HTTPValidationError
+  200: GET_UsersByUserIdPermissions_Response_200
+  422: GET_UsersByUserIdPermissions_Response_422
 }
 
 /**
  * 200 response for GET UsersByUserIdPermissions endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET UsersByUserIdPermissions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}/permissions
+ *
+ * @see {@link GET_UsersByUserIdPermissions} - The main response type definition
+ * @see {@link PermissionSet} - The actual schema type definition
  */
 export type GET_UsersByUserIdPermissions_Response_200 = PermissionSet
 
 /**
  * 422 response for GET UsersByUserIdPermissions endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET UsersByUserIdPermissions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}/permissions
+ *
+ * @see {@link GET_UsersByUserIdPermissions} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersByUserIdPermissions_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersByUserIdRoles endpoint
- * 
+ *
+ * List Roles
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET UsersByUserIdRoles endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/{user_id}/roles
+ *
+ * @see {@link GET_UsersByUserIdRoles_Response_200} - 200 response type
+ * @see {@link GET_UsersByUserIdRoles_Response_422} - 422 response type
+ *
+
  */
 export type GET_UsersByUserIdRoles = {
-  200: RelationSet
-  422: HTTPValidationError
+  200: GET_UsersByUserIdRoles_Response_200
+  422: GET_UsersByUserIdRoles_Response_422
 }
 
 /**
  * 200 response for GET UsersByUserIdRoles endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET UsersByUserIdRoles endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}/roles
+ *
+ * @see {@link GET_UsersByUserIdRoles} - The main response type definition
+ * @see {@link RelationSet} - The actual schema type definition
  */
 export type GET_UsersByUserIdRoles_Response_200 = RelationSet
 
 /**
  * 422 response for GET UsersByUserIdRoles endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET UsersByUserIdRoles endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}/roles
+ *
+ * @see {@link GET_UsersByUserIdRoles} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersByUserIdRoles_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH UsersByUserIdRoles endpoint
- * 
+ *
+ * Update User Relations
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH UsersByUserIdRoles endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/{user_id}/roles
+ *
+ * @see {@link PATCH_UsersByUserIdRoles_Response_200} - 200 response type
+ * @see {@link PATCH_UsersByUserIdRoles_Response_422} - 422 response type
+ *
+
  */
 export type PATCH_UsersByUserIdRoles = {
-  200: RelationSet
-  422: HTTPValidationError
+  200: PATCH_UsersByUserIdRoles_Response_200
+  422: PATCH_UsersByUserIdRoles_Response_422
 }
 
 /**
  * 200 response for PATCH UsersByUserIdRoles endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH UsersByUserIdRoles endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}/roles
+ *
+ * @see {@link PATCH_UsersByUserIdRoles} - The main response type definition
+ * @see {@link RelationSet} - The actual schema type definition
  */
 export type PATCH_UsersByUserIdRoles_Response_200 = RelationSet
 
 /**
  * 422 response for PATCH UsersByUserIdRoles endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH UsersByUserIdRoles endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/{user_id}/roles
+ *
+ * @see {@link PATCH_UsersByUserIdRoles} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET UsersMe endpoint
- * 
+ *
+ * Get Current User
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET UsersMe endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path /v1/users/me
+ *
+ * @see {@link GET_UsersMe_Response_200} - 200 response type
+ * @see {@link GET_UsersMe_Response_422} - 422 response type
+ *
+
  */
 export type GET_UsersMe = {
-  200: UserWithRelationPermissions
-  422: HTTPValidationError
+  200: GET_UsersMe_Response_200
+  422: GET_UsersMe_Response_422
 }
 
 /**
  * 200 response for GET UsersMe endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET UsersMe endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/me
+ *
+ * @see {@link GET_UsersMe} - The main response type definition
+ * @see {@link UserWithRelationPermissions} - The actual schema type definition
  */
 export type GET_UsersMe_Response_200 = UserWithRelationPermissions
 
 /**
  * 422 response for GET UsersMe endpoint
- * 
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET UsersMe endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path /v1/users/me
+ *
+ * @see {@link GET_UsersMe} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersMe_Response_422 = HTTPValidationError
 
