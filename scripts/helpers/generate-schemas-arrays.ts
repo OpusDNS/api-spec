@@ -171,8 +171,25 @@ function generateSchemasArraysContent(arrayUsages: ArrayUsage[]): string {
   const spec = yaml.load(openAPIContent) as any;
   const lines: string[] = [];
   lines.push('/**');
-  lines.push(' * Array type aliases for OpenAPI schemas.');
-  lines.push(' * Each array type includes a description from the OpenAPI schema for better developer understanding.');
+  lines.push(' * Array type aliases for OpenAPI schemas');
+  lines.push(' *');
+  lines.push(' * This file contains TypeScript array type aliases for OpenAPI schema objects.');
+  lines.push(' * Each array type represents a collection of the corresponding schema type.');
+  lines.push(' * These types are used throughout the API for request/response arrays.');
+  lines.push(' *');
+  lines.push(' * @remarks');
+  lines.push(' * - All array types follow the pattern: `TypeNameArray = TypeName[]`');
+  lines.push(' * - Array types are automatically generated from OpenAPI schema references');
+  lines.push(' * - Each type includes documentation from the original OpenAPI schema');
+  lines.push(' * - These types ensure type safety when working with API arrays');
+  lines.push(' *');
+  lines.push(' * @example');
+  lines.push(' * ```typescript');
+  lines.push(' * // Using array types for API responses');
+  lines.push(' * const domains: DomainArray = await api.getDomains();');
+  lines.push(' * const contacts: ContactSchemaArray = await api.getContacts();');
+  lines.push(' * ```');
+  lines.push(' *');
   lines.push(' * This file is auto-generated from the OpenAPI specification.');
   lines.push(' * Do not edit manually.');
   lines.push(' */');
@@ -223,15 +240,30 @@ function generateSchemasArraysContent(arrayUsages: ArrayUsage[]): string {
     }
     usedTypeNames.add(typeName);
     let desc = '';
+    let title = '';
     if (spec.components && spec.components.schemas && spec.components.schemas[schemaName]) {
       const sch = spec.components.schemas[schemaName];
-      const title = sch.title ? `${sch.title}. ` : '';
+      title = sch.title || typeName;
       const description = sch.description || '';
-      desc = title + description;
+      desc = title + (description ? `. ${description}` : '');
+    } else {
+      title = typeName;
+      desc = `${typeName} array type`;
     }
-    if (desc) {
-      lines.push(`/** ${desc} */`);
-    }
+    
+    lines.push(`/**`);
+    lines.push(` * ${desc}`);
+    lines.push(` *`);
+    lines.push(` * @remarks`);
+    lines.push(` * Array type for ${title} objects. Used when the API returns a collection of ${title} instances.`);
+    lines.push(` *`);
+    lines.push(` * @example`);
+    lines.push(` * \`\`\`typescript`);
+    lines.push(` * const items: ${typeName}Array = await api.get${typeName}s();`);
+    lines.push(` * \`\`\``);
+    lines.push(` *`);
+    lines.push(` * @see {@link ${typeName}} - The individual ${title} type definition`);
+    lines.push(` */`);
     lines.push(`export type ${typeName}Array = ${typeName}[];`);
   }
   return lines.join('\n');

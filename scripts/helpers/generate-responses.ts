@@ -240,6 +240,8 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
       
       // Extract parameter descriptions from the OpenAPI spec
       let parameterDescriptions = '';
+      let operationSummary = '';
+      let operationDescription = '';
       const operationId = operationIdMap[`${pathName}|${method.toUpperCase()}`];
       if (operationId) {
         // Find the OpenAPI operation object
@@ -255,23 +257,48 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
           if (opObj) break;
         }
         
-        if (opObj && opObj.parameters) {
-          const paramDescs: string[] = [];
-          for (const param of opObj.parameters) {
-            if (param.description) {
-              paramDescs.push(` * @param ${param.name} (${param.in}) - ${param.description}`);
+        if (opObj) {
+          // Extract operation summary and description
+          operationSummary = opObj.summary || '';
+          operationDescription = opObj.description || '';
+          
+          // Extract parameter descriptions
+          if (opObj.parameters) {
+            const paramDescs: string[] = [];
+            for (const param of opObj.parameters) {
+              if (param.description) {
+                paramDescs.push(` * @param ${param.name} (${param.in}) - ${param.description}`);
+              }
             }
-          }
-          if (paramDescs.length > 0) {
-            parameterDescriptions = '\n' + paramDescs.join('\n');
+            if (paramDescs.length > 0) {
+              parameterDescriptions = '\n' + paramDescs.join('\n');
+            }
           }
         }
       }
       
+      // Generate @see tags for individual response types
+      const seeTags = Object.keys(methodResponses).map(responseCode => {
+        const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
+        return ` * @see {@link ${individualTypeName}} - ${responseCode} response type`;
+      }).join('\n');
+      
       lines.push(`/**
- * Response types for ${method} ${pathName} endpoint
- * 
+ * Response types for ${method.toUpperCase()} ${pathName} endpoint
+ *${operationSummary ? `\n * ${operationSummary}` : ''}${operationDescription ? `\n * ${operationDescription}` : ''}
+ *
+ * @remarks
+ * This type defines all possible response structures for the ${method.toUpperCase()} ${pathName} endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
  * @path ${actualPath}${parameterDescriptions}
+ *
+${seeTags}
+ *
+
  */`);
       lines.push(`export type ${responseTypeName} = {`);
       
@@ -279,34 +306,8 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
       const sortedCodes = Object.keys(methodResponses).sort((a, b) => parseInt(a) - parseInt(b));
       
       for (const responseCode of sortedCodes) {
-        let schemaRef = methodResponses[responseCode];
-        let isArray = false;
-        if (schemaRef.endsWith('[]')) {
-          isArray = true;
-          schemaRef = schemaRef.slice(0, -2);
-        }
-        if (isArray) {
-          // Map OpenAPI schema name to TypeScript alias
-          const tsAlias = schemaAliasMap[schemaRef] || schemaRef;
-          // Now look up the array alias
-          if (arrayAliasMap[tsAlias]) {
-            const arrayAliasName = arrayAliasMap[tsAlias];
-            usedArrayAliases.add(arrayAliasName);
-            lines.push(`  ${responseCode}: ${arrayAliasName}`);
-          } else if (schemaAliasMap[schemaRef]) {
-            usedAliases.add(schemaAliasMap[schemaRef]);
-            lines.push(`  ${responseCode}: ${schemaAliasMap[schemaRef]}[]`);
-          } else {
-            lines.push(`  ${responseCode}: unknown[]`);
-          }
-        } else {
-          if (schemaAliasMap[schemaRef]) {
-            usedAliases.add(schemaAliasMap[schemaRef]);
-            lines.push(`  ${responseCode}: ${schemaAliasMap[schemaRef]}`);
-          } else {
-            lines.push(`  ${responseCode}: unknown`);
-          }
-        }
+        const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
+        lines.push(`  ${responseCode}: ${individualTypeName}`);
       }
       
       lines.push(`}`);
@@ -323,9 +324,19 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
         const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
         
         lines.push(`/**
- * ${responseCode} response for ${method} ${pathName} endpoint
- * 
+ * ${responseCode} response for ${method.toUpperCase()} ${pathName} endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the ${responseCode} status code
+ * of the ${method.toUpperCase()} ${pathName} endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
  * @path ${actualPath}${parameterDescriptions}
+ *
+ * @see {@link ${responseTypeName}} - The main response type definition
+ * @see {@link ${schemaAliasMap[schemaRef] || schemaRef}} - The actual schema type definition
  */`);
         if (isArray) {
           const tsAlias = schemaAliasMap[schemaRef] || schemaRef;
@@ -363,9 +374,32 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
 
 function generateResponsesFile(groupedResponses: GroupedResponses, openAPIContent: string): string {
   const content = `/**
- * Response types for OpusDNS API endpoints.
+ * Response types for OpusDNS API endpoints
  *
- * Each type is derived from the OpenAPI operation and includes endpoint, summary, and response descriptions for better developer understanding.
+ * This file contains TypeScript types for API response structures and status codes.
+ * Each type is derived from the OpenAPI operation specification and provides type safety for API responses.
+ * These types ensure that response handling matches the expected API contract.
+ *
+ * @remarks
+ * - Response types follow the pattern: \`METHOD_EndpointName\` for grouped responses
+ * - Individual response types follow: \`METHOD_EndpointName_Response_STATUSCODE\`
+ * - All response types include comprehensive descriptions from the OpenAPI specification
+ * - These types ensure type safety when handling API responses
+ * - Response types cover all possible HTTP status codes for each endpoint
+ *
+ * @example
+ * \`\`\`typescript
+ * // Using response types for API handling
+ * const response: GET_Domains_Response_200 = await api.getDomains();
+ * const domains = response.results;
+ * 
+ * // Handling different status codes
+ * if (response.status === 200) {
+ *   const data: GET_Domains_Response_200 = response.data;
+ * } else if (response.status === 422) {
+ *   const error: GET_Domains_Response_422 = response.data;
+ * }
+ * \`\`\`
  *
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.

@@ -249,9 +249,12 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
       // Extract parameter descriptions from the OpenAPI spec
       let parameterDescriptions = '';
       let paramDescMap: Record<string, { in: string; desc: string }> = {};
+      let opObj: any = null;
+      let operationSummary = '';
+      let operationDescription = '';
+      
       if (operationId) {
         // Find the OpenAPI operation object
-        let opObj: any = null;
         for (const [pathKey, pathObj] of Object.entries(spec.paths)) {
           for (const m of Object.keys(pathObj as any)) {
             const op = (pathObj as any)[m];
@@ -262,21 +265,47 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
           }
           if (opObj) break;
         }
-        if (opObj && opObj.parameters) {
-          const paramDescs: string[] = [];
-          for (const param of opObj.parameters) {
-            if (param.description) {
-              paramDescs.push(` * @param ${param.name} (${param.in}) - ${param.description}`);
-              paramDescMap[`${param.in}:${param.name}`] = { in: param.in, desc: param.description };
+        
+        if (opObj) {
+          // Extract operation summary and description
+          operationSummary = opObj.summary || '';
+          operationDescription = opObj.description || '';
+          
+          // Extract parameter descriptions
+          if (opObj.parameters) {
+            const paramDescs: string[] = [];
+            for (const param of opObj.parameters) {
+              if (param.description) {
+                paramDescs.push(` * @param ${param.name} (${param.in}) - ${param.description}`);
+                paramDescMap[`${param.in}:${param.name}`] = { in: param.in, desc: param.description };
+              }
             }
-          }
-          if (paramDescs.length > 0) {
-            parameterDescriptions = '\n' + paramDescs.join('\n');
+            if (paramDescs.length > 0) {
+              parameterDescriptions = '\n' + paramDescs.join('\n');
+            }
           }
         }
       }
+      
       // Parent type TSDoc
-      lines.push(`/**\n * Request type for ${method} ${pathName} endpoint\n * \n * @path ${actualPath}${parameterDescriptions}\n */`);
+      lines.push(`/**
+ * Request type for ${method.toUpperCase()} ${pathName} endpoint
+ *${operationSummary ? `\n * ${operationSummary}` : ''}${operationDescription ? `\n * ${operationDescription}` : ''}
+ *
+ * @remarks
+ * This type defines the complete request structure for the ${method.toUpperCase()} ${pathName} endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path ${actualPath}${parameterDescriptions}
+ *
+ * @see {@link ${typeBase}_Parameters_Query} - Query parameters type
+ * @see {@link ${typeBase}_Parameters_Path} - Path parameters type
+ * @see {@link ${typeBase}_RequestBody} - Request body type
+ */`);
       // Build parameters object
       const paramKeys: string[] = [];
       const paramTypes: string[] = [];
@@ -301,18 +330,7 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
       }
       // Build requestBody type (actual schema if possible)
       let requestBodyType = '';
-      // Find the OpenAPI operation object for this method/path
-      let opObj: any = null;
-      for (const [pathKey, pathObj] of Object.entries(spec.paths)) {
-        for (const m of Object.keys(pathObj as any)) {
-          const op = (pathObj as any)[m];
-          if (op && op.operationId === operationId) {
-            opObj = op;
-            break;
-          }
-        }
-        if (opObj) break;
-      }
+      // Use the already found opObj from above
       if (opObj && opObj.requestBody && opObj.requestBody.content && opObj.requestBody.content['application/json'] && opObj.requestBody.content['application/json'].schema) {
         const schema = opObj.requestBody.content['application/json'].schema;
         if (schema.type === 'array' && schema.items && schema.items.$ref) {
@@ -350,7 +368,17 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
           const typeName = `${typeBase}_Parameters_${paramType.charAt(0).toUpperCase() + paramType.slice(1)}`;
           if (!emittedTypes.has(typeName)) {
             // Compose TSDoc
-            let paramDoc = `/**\n * ${paramType.charAt(0).toUpperCase() + paramType.slice(1)} parameters for ${method.toUpperCase()} ${actualPath}\n * @path ${actualPath}`;
+            let paramDoc = `/**
+ * ${paramType.charAt(0).toUpperCase() + paramType.slice(1)} parameters for ${method.toUpperCase()} ${actualPath}
+ *
+ * @remarks
+ * This type defines the ${paramType} parameters for the ${method.toUpperCase()} ${actualPath} endpoint.
+ * It provides type safety for all ${paramType} parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for ${paramType} parameters.
+ *
+ * @path ${actualPath}`;
             // Add @param descriptions for this paramType
             if (methodRequests[paramType] && typeof methodRequests[paramType] === 'object') {
               for (const paramName of Object.keys(methodRequests[paramType])) {
@@ -370,8 +398,18 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
       if (requestBodyType) {
         const typeName = `${typeBase}_RequestBody`;
         if (!emittedTypes.has(typeName)) {
-          let paramDoc = `/**\n * Request body for ${method.toUpperCase()} ${actualPath}\n * @path ${actualPath}`;
-          paramDoc += '\n */';
+          let paramDoc = `/**
+ * Request body for ${method.toUpperCase()} ${actualPath}
+ *
+ * @remarks
+ * This type defines the request body structure for the ${method.toUpperCase()} ${actualPath} endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path ${actualPath}
+ */`;
           lines.push(paramDoc);
           lines.push(`export type ${typeName} = ${typeBase}['requestBody'];`);
           emittedTypes.add(typeName);
@@ -408,9 +446,32 @@ function extractOperationIdMap(openAPIContent: string): Record<string, string> {
 
 function generateRequestsFile(groupedRequests: GroupedRequests, operationIdMap: Record<string, string>, openAPIContent: string): string {
   const content = `/**
- * Request parameter types for OpusDNS API endpoints.
+ * Request parameter types for OpusDNS API endpoints
  *
- * Each type is derived from the OpenAPI operation and includes endpoint, summary, and parameter descriptions for better developer understanding.
+ * This file contains TypeScript types for API request parameters, bodies, and path parameters.
+ * Each type is derived from the OpenAPI operation specification and provides type safety for API calls.
+ * These types ensure that request parameters match the expected API contract.
+ *
+ * @remarks
+ * - Request types follow the pattern: \`METHOD_EndpointName_V1_Request\`
+ * - Parameter types are available as: \`METHOD_EndpointName_V1_Request_Parameters_Query\`, \`METHOD_EndpointName_V1_Request_Parameters_Path\`
+ * - Request body types are available as: \`METHOD_EndpointName_V1_Request_RequestBody\`
+ * - All types include comprehensive parameter descriptions from the OpenAPI specification
+ * - These types ensure type safety when making API requests
+ *
+ * @example
+ * \`\`\`typescript
+ * // Using request types for API calls
+ * const params: GET_Domains_V1_Request_Parameters_Query = {
+ *   limit: 10,
+ *   offset: 0
+ * };
+ * 
+ * const body: POST_Domains_V1_Request_RequestBody = {
+ *   domain: 'example.com',
+ *   period: 1
+ * };
+ * \`\`\`
  *
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.

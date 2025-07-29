@@ -95,9 +95,31 @@ function generateKeysFile(
 ): string {
   const lines: string[] = [
     '/**',
-    ' * Key constants for OpusDNS API response objects.',
+    ' * Key constants for OpusDNS API response objects',
     ' *',
-    ' * Each key is derived from the OpenAPI schema property and includes descriptions for better developer understanding.',
+    ' * This file contains TypeScript constants for API response object property keys.',
+    ' * Each key constant provides a type-safe way to access properties of API response objects.',
+    ' * These constants are derived from OpenAPI schema properties and include comprehensive descriptions.',
+    ' *',
+    ' * @remarks',
+    ' * - Individual key constants follow the pattern: \`KEY_TYPE_NAME_PROPERTY_NAME\`',
+    ' * - Key arrays follow the pattern: \`KEYS_TYPE_NAME\` and are typed as \`readonly (keyof TypeName)[]\`',
+    ' * - All keys are typed with \`as keyof TypeName\` for type safety',
+    ' * - Key constants include descriptions from the OpenAPI schema',
+    ' * - These constants ensure type safety when accessing response object properties',
+    ' *',
+    ' * @example',
+    ' * \`\`\`typescript',
+    ' * // Using key constants for type-safe property access',
+    ' * const domainName = domain[KEY_DOMAIN_NAME];',
+    ' * const domainStatus = domain[KEY_DOMAIN_STATUS];',
+    ' *',
+    ' * // Using key arrays for iteration',
+    ' * const allKeys = KEYS_DOMAIN;',
+    ' * for (const key of allKeys) {',
+    ' *   console.log(domain[key]);',
+    ' * }',
+    ' * \`\`\`',
     ' *',
     ' * This file is auto-generated from the OpenAPI specification.',
     ' * Do not edit manually.',
@@ -147,16 +169,44 @@ function generateKeysFile(
     // Generate individual key constants
     Object.entries(properties).forEach(([prop, propDef]) => {
       const keyName = prop.toUpperCase();
-      let desc = '';
+      let title = '';
+      let description = '';
+      let propType = '';
+      let required = false;
+      
       if (propDef && typeof propDef === 'object') {
-        const title = (propDef as any).title ? `${(propDef as any).title}. ` : '';
-        const description = (propDef as any).description || '';
-        desc = title + description;
+        const propObj = propDef as any;
+        title = propObj.title || '';
+        description = propObj.description || '';
+        propType = propObj.type || '';
+        required = Array.isArray(properties.required) && properties.required.includes(prop);
       }
-      if (desc) {
-        lines.push(`/** ${desc} */`);
-      }
-      lines.push(`export const KEY_${typeNameUpper}_${keyName} = '${prop}' as keyof ${type.name};`);
+      
+      // Generate comprehensive TSDoc comment
+      lines.push(`/**
+ * ${title || `${prop} property`}
+ *${description ? `\n * ${description}` : ''}
+ *${propType ? `\n * @type {${propType}}` : ''}
+ *${required ? '\n * @required' : ''}
+ *
+ * @remarks
+ * This key constant provides type-safe access to the \`${prop}\` property of ${type.name} objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * \`\`\`typescript
+ * // Direct property access
+ * const value = ${type.name.toLowerCase()}[KEY_${typeNameUpper}_${keyName}];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_${typeNameUpper}_${keyName};
+ * const value = ${type.name.toLowerCase()}[propertyName];
+ * \`\`\`
+ *
+ * @see {@link ${type.name}} - The TypeScript type definition
+ * @see {@link KEYS_${typeNameUpper}} - Array of all keys for this type
+ */
+export const KEY_${typeNameUpper}_${keyName} = '${prop}' as keyof ${type.name};`);
     });
 
     // Generate keys array
@@ -166,7 +216,27 @@ function generateKeysFile(
     });
 
     lines.push('');
-    lines.push(`export const KEYS_${typeNameUpper} = [`);
+    lines.push(`/**
+ * Array of all ${type.name} property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ${type.name} objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * \`\`\`typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_${typeNameUpper}) {
+ *   console.log(\`Property: \${key}, Value: \${${type.name.toLowerCase()}[key]}\`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_${typeNameUpper}.includes(someKey);
+ * \`\`\`
+ *
+ * @see {@link ${type.name}} - The TypeScript type definition
+ */
+export const KEYS_${typeNameUpper}: readonly (keyof ${type.name})[] = [`);
     lines.push(...keysArray);
     lines.push('] as const;');
     lines.push('');
