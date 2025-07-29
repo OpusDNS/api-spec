@@ -8,7 +8,7 @@
  * @remarks
  * - String enums generate both objects and arrays with proper type annotations
  * - Integer enums generate typed arrays only
- * - All constants are readonly and use 'as const' for maximum type safety
+ * - All constants use 'as const' for maximum type safety
  * - Keys follow SCREAMING_SNAKE_CASE convention for consistency
  *
  * @example
@@ -51,7 +51,7 @@ export const BULK_OPERATION_STATUS = {
  * Array of all BulkOperationStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid BulkOperationStatus enum values.
+ * This constant provides a array containing all valid BulkOperationStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -68,7 +68,7 @@ export const BULK_OPERATION_STATUS = {
  * @see {@link BulkOperationStatus} - The TypeScript type definition
  * @see {@link BULK_OPERATION_STATUS} - The object form of this enum
  */
-export const BULK_OPERATION_STATUS_VALUES: readonly BulkOperationStatus[] = ["success", "failed"] as const;
+export const BULK_OPERATION_STATUS_VALUES: BulkOperationStatus[] = ["success", "failed"] as const;
 
 /**
  * ContactSortField. Auto-generated enum for ContactSortField
@@ -100,7 +100,7 @@ export const CONTACT_SORT_FIELD = {
  * Array of all ContactSortField enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid ContactSortField enum values.
+ * This constant provides a array containing all valid ContactSortField enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -117,7 +117,7 @@ export const CONTACT_SORT_FIELD = {
  * @see {@link ContactSortField} - The TypeScript type definition
  * @see {@link CONTACT_SORT_FIELD} - The object form of this enum
  */
-export const CONTACT_SORT_FIELD_VALUES: readonly ContactSortField[] = ["first_name", "last_name", "email", "created_on"] as const;
+export const CONTACT_SORT_FIELD_VALUES: ContactSortField[] = ["first_name", "last_name", "email", "created_on"] as const;
 
 /**
  * Currency. Auto-generated enum for Currency
@@ -147,7 +147,7 @@ export const CURRENCY = {
  * Array of all Currency enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid Currency enum values.
+ * This constant provides a array containing all valid Currency enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -164,7 +164,7 @@ export const CURRENCY = {
  * @see {@link Currency} - The TypeScript type definition
  * @see {@link CURRENCY} - The object form of this enum
  */
-export const CURRENCY_VALUES: readonly Currency[] = ["USD", "EUR"] as const;
+export const CURRENCY_VALUES: Currency[] = ["USD", "EUR"] as const;
 
 /**
  * DnsChangeAction. Auto-generated enum for DnsChangeAction
@@ -198,7 +198,7 @@ export const DNS_CHANGE_ACTION = {
  * Array of all DnsChangeAction enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DnsChangeAction enum values.
+ * This constant provides a array containing all valid DnsChangeAction enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -215,7 +215,7 @@ export const DNS_CHANGE_ACTION = {
  * @see {@link DnsChangeAction} - The TypeScript type definition
  * @see {@link DNS_CHANGE_ACTION} - The object form of this enum
  */
-export const DNS_CHANGE_ACTION_VALUES: readonly DnsChangeAction[] = ["create_zone", "delete_zone", "create_record", "delete_record", "enable_dnssec", "disable_dnssec"] as const;
+export const DNS_CHANGE_ACTION_VALUES: DnsChangeAction[] = ["create_zone", "delete_zone", "create_record", "delete_record", "enable_dnssec", "disable_dnssec"] as const;
 
 /**
  * DnsRrsetType. Auto-generated enum for DnsRrsetType
@@ -256,7 +256,7 @@ export const DNS_RRSET_TYPE = {
  * Array of all DnsRrsetType enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DnsRrsetType enum values.
+ * This constant provides a array containing all valid DnsRrsetType enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -273,7 +273,7 @@ export const DNS_RRSET_TYPE = {
  * @see {@link DnsRrsetType} - The TypeScript type definition
  * @see {@link DNS_RRSET_TYPE} - The object form of this enum
  */
-export const DNS_RRSET_TYPE_VALUES: readonly DnsRrsetType[] = ["A", "AAAA", "ALIAS", "CAA", "CNAME", "DNSKEY", "DS", "MX", "NS", "PTR", "TXT", "SOA", "SRV"] as const;
+export const DNS_RRSET_TYPE_VALUES: DnsRrsetType[] = ["A", "AAAA", "ALIAS", "CAA", "CNAME", "DNSKEY", "DS", "MX", "NS", "PTR", "TXT", "SOA", "SRV"] as const;
 
 /**
  * DnssecAlgorithm. Auto-generated enum for DnssecAlgorithm
@@ -291,7 +291,7 @@ export const DNS_RRSET_TYPE_VALUES: readonly DnsRrsetType[] = ["A", "AAAA", "ALI
  *
  * @see {@link DnssecAlgorithm} - The TypeScript type definition
  */
-export const DNSSEC_ALGORITHM: readonly DnssecAlgorithm[] = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 23] as const;
+export const DNSSEC_ALGORITHM: DnssecAlgorithm[] = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 23] as const;
 
 /**
  * DnssecDigestType. Auto-generated enum for DnssecDigestType
@@ -309,7 +309,7 @@ export const DNSSEC_ALGORITHM: readonly DnssecAlgorithm[] = [1, 2, 3, 4, 5, 6, 7
  *
  * @see {@link DnssecDigestType} - The TypeScript type definition
  */
-export const DNSSEC_DIGEST_TYPE: readonly DnssecDigestType[] = [1, 2, 3, 4, 5, 6] as const;
+export const DNSSEC_DIGEST_TYPE: DnssecDigestType[] = [1, 2, 3, 4, 5, 6] as const;
 
 /**
  * DnssecRecordType. Auto-generated enum for DnssecRecordType
@@ -339,7 +339,7 @@ export const DNSSEC_RECORD_TYPE = {
  * Array of all DnssecRecordType enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DnssecRecordType enum values.
+ * This constant provides a array containing all valid DnssecRecordType enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -356,7 +356,7 @@ export const DNSSEC_RECORD_TYPE = {
  * @see {@link DnssecRecordType} - The TypeScript type definition
  * @see {@link DNSSEC_RECORD_TYPE} - The object form of this enum
  */
-export const DNSSEC_RECORD_TYPE_VALUES: readonly DnssecRecordType[] = ["ds_data", "key_data"] as const;
+export const DNSSEC_RECORD_TYPE_VALUES: DnssecRecordType[] = ["ds_data", "key_data"] as const;
 
 /**
  * DnssecStatus. Auto-generated enum for DnssecStatus
@@ -386,7 +386,7 @@ export const DNSSEC_STATUS = {
  * Array of all DnssecStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DnssecStatus enum values.
+ * This constant provides a array containing all valid DnssecStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -403,7 +403,7 @@ export const DNSSEC_STATUS = {
  * @see {@link DnssecStatus} - The TypeScript type definition
  * @see {@link DNSSEC_STATUS} - The object form of this enum
  */
-export const DNSSEC_STATUS_VALUES: readonly DnssecStatus[] = ["enabled", "disabled"] as const;
+export const DNSSEC_STATUS_VALUES: DnssecStatus[] = ["enabled", "disabled"] as const;
 
 /**
  * DomainAvailabilityStatus. Auto-generated enum for DomainAvailabilityStatus
@@ -436,7 +436,7 @@ export const DOMAIN_AVAILABILITY_STATUS = {
  * Array of all DomainAvailabilityStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DomainAvailabilityStatus enum values.
+ * This constant provides a array containing all valid DomainAvailabilityStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -453,7 +453,7 @@ export const DOMAIN_AVAILABILITY_STATUS = {
  * @see {@link DomainAvailabilityStatus} - The TypeScript type definition
  * @see {@link DOMAIN_AVAILABILITY_STATUS} - The object form of this enum
  */
-export const DOMAIN_AVAILABILITY_STATUS_VALUES: readonly DomainAvailabilityStatus[] = ["available", "unavailable", "market_available", "tmch_claim", "error"] as const;
+export const DOMAIN_AVAILABILITY_STATUS_VALUES: DomainAvailabilityStatus[] = ["available", "unavailable", "market_available", "tmch_claim", "error"] as const;
 
 /**
  * DomainClientStatus. Auto-generated enum for DomainClientStatus
@@ -486,7 +486,7 @@ export const DOMAIN_CLIENT_STATUS = {
  * Array of all DomainClientStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DomainClientStatus enum values.
+ * This constant provides a array containing all valid DomainClientStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -503,7 +503,7 @@ export const DOMAIN_CLIENT_STATUS = {
  * @see {@link DomainClientStatus} - The TypeScript type definition
  * @see {@link DOMAIN_CLIENT_STATUS} - The object form of this enum
  */
-export const DOMAIN_CLIENT_STATUS_VALUES: readonly DomainClientStatus[] = ["clientTransferProhibited", "clientUpdateProhibited", "clientDeleteProhibited", "clientRenewProhibited", "clientHold"] as const;
+export const DOMAIN_CLIENT_STATUS_VALUES: DomainClientStatus[] = ["clientTransferProhibited", "clientUpdateProhibited", "clientDeleteProhibited", "clientRenewProhibited", "clientHold"] as const;
 
 /**
  * DomainContactType. Auto-generated enum for DomainContactType
@@ -535,7 +535,7 @@ export const DOMAIN_CONTACT_TYPE = {
  * Array of all DomainContactType enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DomainContactType enum values.
+ * This constant provides a array containing all valid DomainContactType enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -552,7 +552,7 @@ export const DOMAIN_CONTACT_TYPE = {
  * @see {@link DomainContactType} - The TypeScript type definition
  * @see {@link DOMAIN_CONTACT_TYPE} - The object form of this enum
  */
-export const DOMAIN_CONTACT_TYPE_VALUES: readonly DomainContactType[] = ["registrant", "admin", "tech", "billing"] as const;
+export const DOMAIN_CONTACT_TYPE_VALUES: DomainContactType[] = ["registrant", "admin", "tech", "billing"] as const;
 
 /**
  * DomainSortField. Auto-generated enum for DomainSortField
@@ -585,7 +585,7 @@ export const DOMAIN_SORT_FIELD = {
  * Array of all DomainSortField enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DomainSortField enum values.
+ * This constant provides a array containing all valid DomainSortField enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -602,7 +602,7 @@ export const DOMAIN_SORT_FIELD = {
  * @see {@link DomainSortField} - The TypeScript type definition
  * @see {@link DOMAIN_SORT_FIELD} - The object form of this enum
  */
-export const DOMAIN_SORT_FIELD_VALUES: readonly DomainSortField[] = ["name", "created_on", "updated_on", "expires_on", "registered_on"] as const;
+export const DOMAIN_SORT_FIELD_VALUES: DomainSortField[] = ["name", "created_on", "updated_on", "expires_on", "registered_on"] as const;
 
 /**
  * DomainStatus. Auto-generated enum for DomainStatus
@@ -654,7 +654,7 @@ export const DOMAIN_STATUS = {
  * Array of all DomainStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid DomainStatus enum values.
+ * This constant provides a array containing all valid DomainStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -671,7 +671,7 @@ export const DOMAIN_STATUS = {
  * @see {@link DomainStatus} - The TypeScript type definition
  * @see {@link DOMAIN_STATUS} - The object form of this enum
  */
-export const DOMAIN_STATUS_VALUES: readonly DomainStatus[] = ["ok", "serverTransferProhibited", "serverUpdateProhibited", "serverDeleteProhibited", "serverRenewProhibited", "serverHold", "transferPeriod", "renewPeriod", "redemptionPeriod", "pendingUpdate", "pendingTransfer", "pendingRestore", "pendingRenew", "pendingDelete", "pendingCreate", "inactive", "autoRenewPeriod", "addPeriod", "deleted", "clientTransferProhibited", "clientUpdateProhibited", "clientDeleteProhibited", "clientRenewProhibited", "clientHold"] as const;
+export const DOMAIN_STATUS_VALUES: DomainStatus[] = ["ok", "serverTransferProhibited", "serverUpdateProhibited", "serverDeleteProhibited", "serverRenewProhibited", "serverHold", "transferPeriod", "renewPeriod", "redemptionPeriod", "pendingUpdate", "pendingTransfer", "pendingRestore", "pendingRenew", "pendingDelete", "pendingCreate", "inactive", "autoRenewPeriod", "addPeriod", "deleted", "clientTransferProhibited", "clientUpdateProhibited", "clientDeleteProhibited", "clientRenewProhibited", "clientHold"] as const;
 
 /**
  * EmailForwardStatus. Auto-generated enum for EmailForwardStatus
@@ -701,7 +701,7 @@ export const EMAIL_FORWARD_STATUS = {
  * Array of all EmailForwardStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid EmailForwardStatus enum values.
+ * This constant provides a array containing all valid EmailForwardStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -718,7 +718,7 @@ export const EMAIL_FORWARD_STATUS = {
  * @see {@link EmailForwardStatus} - The TypeScript type definition
  * @see {@link EMAIL_FORWARD_STATUS} - The object form of this enum
  */
-export const EMAIL_FORWARD_STATUS_VALUES: readonly EmailForwardStatus[] = ["active", "inactive"] as const;
+export const EMAIL_FORWARD_STATUS_VALUES: EmailForwardStatus[] = ["active", "inactive"] as const;
 
 /**
  * EmailVerificationStatus. Auto-generated enum for EmailVerificationStatus
@@ -749,7 +749,7 @@ export const EMAIL_VERIFICATION_STATUS = {
  * Array of all EmailVerificationStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid EmailVerificationStatus enum values.
+ * This constant provides a array containing all valid EmailVerificationStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -766,7 +766,7 @@ export const EMAIL_VERIFICATION_STATUS = {
  * @see {@link EmailVerificationStatus} - The TypeScript type definition
  * @see {@link EMAIL_VERIFICATION_STATUS} - The object form of this enum
  */
-export const EMAIL_VERIFICATION_STATUS_VALUES: readonly EmailVerificationStatus[] = ["verified", "pending", "canceled"] as const;
+export const EMAIL_VERIFICATION_STATUS_VALUES: EmailVerificationStatus[] = ["verified", "pending", "canceled"] as const;
 
 /**
  * EventObjectType. Auto-generated enum for EventObjectType
@@ -799,7 +799,7 @@ export const EVENT_OBJECT_TYPE = {
  * Array of all EventObjectType enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid EventObjectType enum values.
+ * This constant provides a array containing all valid EventObjectType enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -816,7 +816,7 @@ export const EVENT_OBJECT_TYPE = {
  * @see {@link EventObjectType} - The TypeScript type definition
  * @see {@link EVENT_OBJECT_TYPE} - The object form of this enum
  */
-export const EVENT_OBJECT_TYPE_VALUES: readonly EventObjectType[] = ["DOMAIN", "CONTACT", "HOST", "RAW", "UNKNOWN"] as const;
+export const EVENT_OBJECT_TYPE_VALUES: EventObjectType[] = ["DOMAIN", "CONTACT", "HOST", "RAW", "UNKNOWN"] as const;
 
 /**
  * EventSubtype. Auto-generated enum for EventSubtype
@@ -848,7 +848,7 @@ export const EVENT_SUBTYPE = {
  * Array of all EventSubtype enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid EventSubtype enum values.
+ * This constant provides a array containing all valid EventSubtype enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -865,7 +865,7 @@ export const EVENT_SUBTYPE = {
  * @see {@link EventSubtype} - The TypeScript type definition
  * @see {@link EVENT_SUBTYPE} - The object form of this enum
  */
-export const EVENT_SUBTYPE_VALUES: readonly EventSubtype[] = ["NOTIFICATION", "SUCCESS", "FAILURE", "CANCELED"] as const;
+export const EVENT_SUBTYPE_VALUES: EventSubtype[] = ["NOTIFICATION", "SUCCESS", "FAILURE", "CANCELED"] as const;
 
 /**
  * EventType. Auto-generated enum for EventType
@@ -899,7 +899,7 @@ export const EVENT_TYPE = {
  * Array of all EventType enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid EventType enum values.
+ * This constant provides a array containing all valid EventType enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -916,7 +916,7 @@ export const EVENT_TYPE = {
  * @see {@link EventType} - The TypeScript type definition
  * @see {@link EVENT_TYPE} - The object form of this enum
  */
-export const EVENT_TYPE_VALUES: readonly EventType[] = ["REGISTRATION", "RENEWAL", "MODIFICATION", "DELETION", "INBOUND_TRANSFER", "OUTBOUND_TRANSFER"] as const;
+export const EVENT_TYPE_VALUES: EventType[] = ["REGISTRATION", "RENEWAL", "MODIFICATION", "DELETION", "INBOUND_TRANSFER", "OUTBOUND_TRANSFER"] as const;
 
 /**
  * GrantType. Auto-generated enum for GrantType
@@ -947,7 +947,7 @@ export const GRANT_TYPE = {
  * Array of all GrantType enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid GrantType enum values.
+ * This constant provides a array containing all valid GrantType enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -964,7 +964,7 @@ export const GRANT_TYPE = {
  * @see {@link GrantType} - The TypeScript type definition
  * @see {@link GRANT_TYPE} - The object form of this enum
  */
-export const GRANT_TYPE_VALUES: readonly GrantType[] = ["client_credentials", "password", "refresh_token"] as const;
+export const GRANT_TYPE_VALUES: GrantType[] = ["client_credentials", "password", "refresh_token"] as const;
 
 /**
  * OrganizationCredentialStatus. Auto-generated enum for OrganizationCredentialStatus
@@ -994,7 +994,7 @@ export const ORGANIZATION_CREDENTIAL_STATUS = {
  * Array of all OrganizationCredentialStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid OrganizationCredentialStatus enum values.
+ * This constant provides a array containing all valid OrganizationCredentialStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1011,7 +1011,7 @@ export const ORGANIZATION_CREDENTIAL_STATUS = {
  * @see {@link OrganizationCredentialStatus} - The TypeScript type definition
  * @see {@link ORGANIZATION_CREDENTIAL_STATUS} - The object form of this enum
  */
-export const ORGANIZATION_CREDENTIAL_STATUS_VALUES: readonly OrganizationCredentialStatus[] = ["active", "revoked"] as const;
+export const ORGANIZATION_CREDENTIAL_STATUS_VALUES: OrganizationCredentialStatus[] = ["active", "revoked"] as const;
 
 /**
  * OrganizationStatus. Auto-generated enum for OrganizationStatus
@@ -1041,7 +1041,7 @@ export const ORGANIZATION_STATUS = {
  * Array of all OrganizationStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid OrganizationStatus enum values.
+ * This constant provides a array containing all valid OrganizationStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1058,7 +1058,7 @@ export const ORGANIZATION_STATUS = {
  * @see {@link OrganizationStatus} - The TypeScript type definition
  * @see {@link ORGANIZATION_STATUS} - The object form of this enum
  */
-export const ORGANIZATION_STATUS_VALUES: readonly OrganizationStatus[] = ["active", "inactive"] as const;
+export const ORGANIZATION_STATUS_VALUES: OrganizationStatus[] = ["active", "inactive"] as const;
 
 /**
  * PatchOp. Auto-generated enum for PatchOp
@@ -1088,7 +1088,7 @@ export const PATCH_OP = {
  * Array of all PatchOp enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid PatchOp enum values.
+ * This constant provides a array containing all valid PatchOp enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1105,7 +1105,7 @@ export const PATCH_OP = {
  * @see {@link PatchOp} - The TypeScript type definition
  * @see {@link PATCH_OP} - The object form of this enum
  */
-export const PATCH_OP_VALUES: readonly PatchOp[] = ["upsert", "remove"] as const;
+export const PATCH_OP_VALUES: PatchOp[] = ["upsert", "remove"] as const;
 
 /**
  * PeriodUnit. Auto-generated enum for PeriodUnit
@@ -1136,7 +1136,7 @@ export const PERIOD_UNIT = {
  * Array of all PeriodUnit enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid PeriodUnit enum values.
+ * This constant provides a array containing all valid PeriodUnit enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1153,7 +1153,7 @@ export const PERIOD_UNIT = {
  * @see {@link PeriodUnit} - The TypeScript type definition
  * @see {@link PERIOD_UNIT} - The object form of this enum
  */
-export const PERIOD_UNIT_VALUES: readonly PeriodUnit[] = ["y", "m", "d"] as const;
+export const PERIOD_UNIT_VALUES: PeriodUnit[] = ["y", "m", "d"] as const;
 
 /**
  * Permission. Auto-generated enum for Permission
@@ -1213,7 +1213,7 @@ export const PERMISSION = {
  * Array of all Permission enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid Permission enum values.
+ * This constant provides a array containing all valid Permission enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1230,7 +1230,7 @@ export const PERMISSION = {
  * @see {@link Permission} - The TypeScript type definition
  * @see {@link PERMISSION} - The object form of this enum
  */
-export const PERMISSION_VALUES: readonly Permission[] = ["acknowledge", "bulk_create", "bulk_delete", "bulk_renew_expire", "bulk_transfer_trade", "bulk_update", "create", "delete", "enterprise", "manage_api_keys", "manage_billing", "manage_cms_content", "manage_contacts", "manage_dns_zones", "manage_domains", "manage_email_forwards", "manage_opusdns_api_keys", "manage_products", "manage_reseller", "manage_user_relations", "manage_users", "plan_manager", "premium", "premium_reseller", "renew_expire", "sign_org_tos", "starter", "transfer_trade", "update", "verify", "view", "view_audit_logs"] as const;
+export const PERMISSION_VALUES: Permission[] = ["acknowledge", "bulk_create", "bulk_delete", "bulk_renew_expire", "bulk_transfer_trade", "bulk_update", "create", "delete", "enterprise", "manage_api_keys", "manage_billing", "manage_cms_content", "manage_contacts", "manage_dns_zones", "manage_domains", "manage_email_forwards", "manage_opusdns_api_keys", "manage_products", "manage_reseller", "manage_user_relations", "manage_users", "plan_manager", "premium", "premium_reseller", "renew_expire", "sign_org_tos", "starter", "transfer_trade", "update", "verify", "view", "view_audit_logs"] as const;
 
 /**
  * PlanRelation. Auto-generated enum for PlanRelation
@@ -1262,7 +1262,7 @@ export const PLAN_RELATION = {
  * Array of all PlanRelation enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid PlanRelation enum values.
+ * This constant provides a array containing all valid PlanRelation enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1279,7 +1279,7 @@ export const PLAN_RELATION = {
  * @see {@link PlanRelation} - The TypeScript type definition
  * @see {@link PLAN_RELATION} - The object form of this enum
  */
-export const PLAN_RELATION_VALUES: readonly PlanRelation[] = ["basic_plan", "enterprise_plan", "premium_plan", "starter_plan"] as const;
+export const PLAN_RELATION_VALUES: PlanRelation[] = ["basic_plan", "enterprise_plan", "premium_plan", "starter_plan"] as const;
 
 /**
  * Relation. Auto-generated enum for Relation
@@ -1326,7 +1326,7 @@ export const RELATION = {
  * Array of all Relation enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid Relation enum values.
+ * This constant provides a array containing all valid Relation enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1343,7 +1343,7 @@ export const RELATION = {
  * @see {@link Relation} - The TypeScript type definition
  * @see {@link RELATION} - The object form of this enum
  */
-export const RELATION_VALUES: readonly Relation[] = ["accepted_tos", "admin", "api_admin", "billing_manager", "client_api_key", "cms_content_editor", "contact_manager", "domain_manager", "email_forward_manager", "member", "opusdns_internal_api_key", "organization_manager", "owner", "parent", "product_manager", "recipient", "reseller_manager", "root_admin", "self"] as const;
+export const RELATION_VALUES: Relation[] = ["accepted_tos", "admin", "api_admin", "billing_manager", "client_api_key", "cms_content_editor", "contact_manager", "domain_manager", "email_forward_manager", "member", "opusdns_internal_api_key", "organization_manager", "owner", "parent", "product_manager", "recipient", "reseller_manager", "root_admin", "self"] as const;
 
 /**
  * RenewalMode. Auto-generated enum for RenewalMode
@@ -1374,7 +1374,7 @@ export const RENEWAL_MODE = {
  * Array of all RenewalMode enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid RenewalMode enum values.
+ * This constant provides a array containing all valid RenewalMode enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1391,7 +1391,7 @@ export const RENEWAL_MODE = {
  * @see {@link RenewalMode} - The TypeScript type definition
  * @see {@link RENEWAL_MODE} - The object form of this enum
  */
-export const RENEWAL_MODE_VALUES: readonly RenewalMode[] = ["renew", "expire", "delete"] as const;
+export const RENEWAL_MODE_VALUES: RenewalMode[] = ["renew", "expire", "delete"] as const;
 
 /**
  * SortOrder. Auto-generated enum for SortOrder
@@ -1421,7 +1421,7 @@ export const SORT_ORDER = {
  * Array of all SortOrder enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid SortOrder enum values.
+ * This constant provides a array containing all valid SortOrder enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1438,7 +1438,7 @@ export const SORT_ORDER = {
  * @see {@link SortOrder} - The TypeScript type definition
  * @see {@link SORT_ORDER} - The object form of this enum
  */
-export const SORT_ORDER_VALUES: readonly SortOrder[] = ["asc", "desc"] as const;
+export const SORT_ORDER_VALUES: SortOrder[] = ["asc", "desc"] as const;
 
 /**
  * UserNotificationStatus. Auto-generated enum for UserNotificationStatus
@@ -1468,7 +1468,7 @@ export const USER_NOTIFICATION_STATUS = {
  * Array of all UserNotificationStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid UserNotificationStatus enum values.
+ * This constant provides a array containing all valid UserNotificationStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1485,7 +1485,7 @@ export const USER_NOTIFICATION_STATUS = {
  * @see {@link UserNotificationStatus} - The TypeScript type definition
  * @see {@link USER_NOTIFICATION_STATUS} - The object form of this enum
  */
-export const USER_NOTIFICATION_STATUS_VALUES: readonly UserNotificationStatus[] = ["read", "unread"] as const;
+export const USER_NOTIFICATION_STATUS_VALUES: UserNotificationStatus[] = ["read", "unread"] as const;
 
 /**
  * UserStatus. Auto-generated enum for UserStatus
@@ -1515,7 +1515,7 @@ export const USER_STATUS = {
  * Array of all UserStatus enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid UserStatus enum values.
+ * This constant provides a array containing all valid UserStatus enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1532,7 +1532,7 @@ export const USER_STATUS = {
  * @see {@link UserStatus} - The TypeScript type definition
  * @see {@link USER_STATUS} - The object form of this enum
  */
-export const USER_STATUS_VALUES: readonly UserStatus[] = ["active", "inactive"] as const;
+export const USER_STATUS_VALUES: UserStatus[] = ["active", "inactive"] as const;
 
 /**
  * VerificationType. Auto-generated enum for VerificationType
@@ -1562,7 +1562,7 @@ export const VERIFICATION_TYPE = {
  * Array of all VerificationType enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid VerificationType enum values.
+ * This constant provides a array containing all valid VerificationType enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1579,7 +1579,7 @@ export const VERIFICATION_TYPE = {
  * @see {@link VerificationType} - The TypeScript type definition
  * @see {@link VERIFICATION_TYPE} - The object form of this enum
  */
-export const VERIFICATION_TYPE_VALUES: readonly VerificationType[] = ["api", "email"] as const;
+export const VERIFICATION_TYPE_VALUES: VerificationType[] = ["api", "email"] as const;
 
 /**
  * ZoneSortField. Auto-generated enum for ZoneSortField
@@ -1611,7 +1611,7 @@ export const ZONE_SORT_FIELD = {
  * Array of all ZoneSortField enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid ZoneSortField enum values.
+ * This constant provides a array containing all valid ZoneSortField enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -1628,5 +1628,5 @@ export const ZONE_SORT_FIELD = {
  * @see {@link ZoneSortField} - The TypeScript type definition
  * @see {@link ZONE_SORT_FIELD} - The object form of this enum
  */
-export const ZONE_SORT_FIELD_VALUES: readonly ZoneSortField[] = ["name", "created_on", "updated_on", "dnssec_status"] as const;
+export const ZONE_SORT_FIELD_VALUES: ZoneSortField[] = ["name", "created_on", "updated_on", "dnssec_status"] as const;
 

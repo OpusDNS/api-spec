@@ -80,7 +80,7 @@ function generateEnumFile(enums: EnumInfo[]): string {
  * @remarks
  * - String enums generate both objects and arrays with proper type annotations
  * - Integer enums generate typed arrays only
- * - All constants are readonly and use 'as const' for maximum type safety
+ * - All constants use 'as const' for maximum type safety
  * - Keys follow SCREAMING_SNAKE_CASE convention for consistency
  *
  * @example
@@ -134,7 +134,7 @@ import { ${enums.map(e => e.originalName).join(', ')} } from './schemas';
     if (enumInfo.type === 'integer') {
       // Generate array for integer enums
       const values = Object.values(enumInfo.values);
-      content += `export const ${enumInfo.name}: readonly ${typeName}[] = [${values.join(', ')}] as const;\n\n`;
+      content += `export const ${enumInfo.name}: ${typeName}[] = [${values.join(', ')}] as const;\n\n`;
     } else {
       // Generate const object for string enums
       content += `export const ${enumInfo.name} = {\n`;
@@ -152,7 +152,7 @@ import { ${enums.map(e => e.originalName).join(', ')} } from './schemas';
  * Array of all ${typeName} enum values
  *
  * @remarks
- * This constant provides a readonly array containing all valid ${typeName} enum values.
+ * This constant provides a array containing all valid ${typeName} enum values.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
@@ -169,7 +169,7 @@ import { ${enums.map(e => e.originalName).join(', ')} } from './schemas';
  * @see {@link ${typeName}} - The TypeScript type definition
  * @see {@link ${enumInfo.name}} - The object form of this enum
  */
-export const ${enumInfo.name}_VALUES: readonly ${typeName}[] = [${stringValues.join(', ')}] as const;\n\n`;
+export const ${enumInfo.name}_VALUES: ${typeName}[] = [${stringValues.join(', ')}] as const;\n\n`;
     }
   });
   return content;
