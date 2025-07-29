@@ -168,11 +168,8 @@ function findResponseTypeName(schemaName: string): string | null {
   return responseTypeMap[schemaName] || null;
 }
 
-function generateResponseDataTypesContent(schemas: SchemaInfo[]): string {
+function generateResponseDataTypesContent(schemas: SchemaInfo[], usedTypeNames: Set<string> = new Set()): string {
   const lines: string[] = [];
-
-  // Track used type names to avoid duplicates
-  const usedTypeNames = new Set<string>();
 
   schemas.forEach(({ name, title, properties }) => {
     let typeName = generateResponseDataTypeName(name, title);
@@ -185,12 +182,18 @@ function generateResponseDataTypesContent(schemas: SchemaInfo[]): string {
     }
     usedTypeNames.add(typeName);
 
-    lines.push(
-      generateTypeContent(
-        { name, title, properties, required: [], path: '', operation: '' },
-        typeName,
-      ),
-    );
+    // Only generate if this is a pagination type (has 'results' property)
+    const propertiesObj = properties as Record<string, unknown>;
+    if (propertiesObj.results && typeof propertiesObj.results === 'object') {
+      const resultsTypeName = typeName
+        .replace(/^Pagination_/, '')
+        .replace(/Response$/, '');
+      
+      lines.push(
+        `/** ${title || name} */`,
+        `export type ${resultsTypeName}Array = components['schemas']['${name}']['results'];`
+      );
+    }
   });
 
   return lines.join('\n');
@@ -270,18 +273,11 @@ function generateDirectSchemaAliases(openAPIContent: string): string {
 function main() {
   try {
     const openAPIContent = fs.readFileSync(OPEN_API_SCHEMA_PATH, 'utf-8');
-    const schemas = extractSchemasFromOpenAPI(openAPIContent);
 
-    // Generate direct schema aliases first
+    // Generate direct schema aliases only
     const directAliasesContent = generateDirectSchemaAliases(openAPIContent);
     
-    // Generate response types content
-    const responseTypesContent = generateResponseDataTypesContent(schemas);
-    
-    // Combine both contents
-    const combinedContent = directAliasesContent + '\n' + responseTypesContent;
-    
-    // Write the combined content to the file
+    // Write the direct aliases content to the file
     const outputPath = path.join(process.cwd(), 'src/helpers/schemas.ts');
     
     // Ensure the directory exists
@@ -290,18 +286,15 @@ function main() {
       fs.mkdirSync(outputDir, { recursive: true });
     }
     
-    fs.writeFileSync(outputPath, combinedContent);
+    fs.writeFileSync(outputPath, directAliasesContent);
     
-    console.log(
-      `✅ Generated ${schemas.length} GET response type definitions in ${outputPath}`,
-    );
     console.log(
       `✅ Generated direct schema aliases for ${Object.keys((yaml.load(openAPIContent) as any).components?.schemas || {}).length} schemas in ${outputPath}`,
     );
 
-    return schemas.length;
+    return Object.keys((yaml.load(openAPIContent) as any).components?.schemas || {}).length;
   } catch (error) {
-    console.error('❌ Error generating response types:', error);
+    console.error('❌ Error generating schema aliases:', error);
     process.exit(1);
   }
 }
