@@ -1,5 +1,29 @@
 /**
- * Key constants for OpusDNS API response objects.
+ * Key constants for OpusDNS API response objects
+ *
+ * This file contains TypeScript constants for API response object property keys.
+ * Each key constant provides a type-safe way to access properties of API response objects.
+ * These constants are derived from OpenAPI schema properties and include comprehensive descriptions.
+ *
+ * @remarks
+ * - Individual key constants follow the pattern: `KEY_TYPE_NAME_PROPERTY_NAME`
+ * - Key arrays follow the pattern: `KEYS_TYPE_NAME` and are typed as `readonly (keyof TypeName)[]`
+ * - All keys are typed with `as keyof TypeName` for type safety
+ * - Key constants include descriptions from the OpenAPI schema
+ * - These constants ensure type safety when accessing response object properties
+ *
+ * @example
+ * ```typescript
+ * // Using key constants for type-safe property access
+ * const domainName = domain[KEY_DOMAIN_NAME];
+ * const domainStatus = domain[KEY_DOMAIN_STATUS];
+ *
+ * // Using key arrays for iteration
+ * const allKeys = KEYS_DOMAIN;
+ * for (const key of allKeys) {
+ *   console.log(domain[key]);
+ * }
+ * ```
  *
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
@@ -19,12 +43,18 @@ import { DeletedEvent } from './schemas';
 import { DnsChange } from './schemas';
 import { DnsChanges } from './schemas';
 import { DnsRecordCreate } from './schemas';
+import { DnsRecordPatchOp } from './schemas';
 import { DnsRecord } from './schemas';
 import { DnsRrsetCreate } from './schemas';
+import { DnsRrsetPatch } from './schemas';
+import { DnsRrsetPatchOp } from './schemas';
 import { DnsRrset } from './schemas';
+import { DnsRrsetWithOneRecordPatch } from './schemas';
 import { DnsZoneCreate } from './schemas';
+import { DnsZoneRecordsPatchOps } from './schemas';
 import { DnsZone } from './schemas';
 import { DnsZoneRrsetsCreate } from './schemas';
+import { DnsZoneRrsetsPatchOps } from './schemas';
 import { DomainAvailability } from './schemas';
 import { DomainAvailabilityMeta } from './schemas';
 import { DomainCheck } from './schemas';
@@ -93,1316 +123,15281 @@ import { ValidationError } from './schemas';
 import { DomainAvailabilityList } from './schemas';
 import { DomainAvailabilityCheck } from './schemas';
 
-export const BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_CLIENT_ID = 'client_id' as keyof Body_issue_organization_token_v1_auth_token_post;
-export const BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_CLIENT_SECRET = 'client_secret' as keyof Body_issue_organization_token_v1_auth_token_post;
-export const BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_GRANT_TYPE = 'grant_type' as keyof Body_issue_organization_token_v1_auth_token_post;
-export const BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_PASSWORD = 'password' as keyof Body_issue_organization_token_v1_auth_token_post;
-export const BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_USERNAME = 'username' as keyof Body_issue_organization_token_v1_auth_token_post;
-
-export const BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEYS = [
-  BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_CLIENT_ID,
-  BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_CLIENT_SECRET,
-  BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_GRANT_TYPE,
-  BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_PASSWORD,
-  BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_KEY_USERNAME,
-] as const;
-
-export const EMAIL_FORWARD_BULK_DELETE_RESULT_KEY_RESULTS = 'results' as keyof EmailForwardBulkDeleteResult;
-
-export const EMAIL_FORWARD_BULK_DELETE_RESULT_KEYS = [
-  EMAIL_FORWARD_BULK_DELETE_RESULT_KEY_RESULTS,
-] as const;
-
-export const EMAIL_FORWARD_BULK_UPDATE_RESULT_KEY_RESULTS = 'results' as keyof EmailForwardBulkUpdateResult;
-
-export const EMAIL_FORWARD_BULK_UPDATE_RESULT_KEYS = [
-  EMAIL_FORWARD_BULK_UPDATE_RESULT_KEY_RESULTS,
-] as const;
-
-export const BULK_OPERATION_RESULT_KEY_ERROR_MESSAGE = 'error_message' as keyof BulkOperationResult;
-export const BULK_OPERATION_RESULT_KEY_STATUS = 'status' as keyof BulkOperationResult;
-
-export const BULK_OPERATION_RESULT_KEYS = [
-  BULK_OPERATION_RESULT_KEY_ERROR_MESSAGE,
-  BULK_OPERATION_RESULT_KEY_STATUS,
-] as const;
-
-export const CONTACT_CREATE_KEY_CITY = 'city' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_COUNTRY = 'country' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_DISCLOSE = 'disclose' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_EMAIL = 'email' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_FAX = 'fax' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_FIRST_NAME = 'first_name' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_LAST_NAME = 'last_name' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_ORG = 'org' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_PHONE = 'phone' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_POSTAL_CODE = 'postal_code' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_STATE = 'state' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_STREET = 'street' as keyof ContactCreate;
-export const CONTACT_CREATE_KEY_TITLE = 'title' as keyof ContactCreate;
-
-export const CONTACT_CREATE_KEYS = [
-  CONTACT_CREATE_KEY_CITY,
-  CONTACT_CREATE_KEY_COUNTRY,
-  CONTACT_CREATE_KEY_DISCLOSE,
-  CONTACT_CREATE_KEY_EMAIL,
-  CONTACT_CREATE_KEY_FAX,
-  CONTACT_CREATE_KEY_FIRST_NAME,
-  CONTACT_CREATE_KEY_LAST_NAME,
-  CONTACT_CREATE_KEY_ORG,
-  CONTACT_CREATE_KEY_PHONE,
-  CONTACT_CREATE_KEY_POSTAL_CODE,
-  CONTACT_CREATE_KEY_STATE,
-  CONTACT_CREATE_KEY_STREET,
-  CONTACT_CREATE_KEY_TITLE,
-] as const;
-
-export const CONTACT_KEY_CITY = 'city' as keyof Contact;
-export const CONTACT_KEY_COUNTRY = 'country' as keyof Contact;
-export const CONTACT_KEY_DISCLOSE = 'disclose' as keyof Contact;
-export const CONTACT_KEY_EMAIL = 'email' as keyof Contact;
-export const CONTACT_KEY_FAX = 'fax' as keyof Contact;
-export const CONTACT_KEY_FIRST_NAME = 'first_name' as keyof Contact;
-export const CONTACT_KEY_LAST_NAME = 'last_name' as keyof Contact;
-export const CONTACT_KEY_ORG = 'org' as keyof Contact;
-export const CONTACT_KEY_PHONE = 'phone' as keyof Contact;
-export const CONTACT_KEY_POSTAL_CODE = 'postal_code' as keyof Contact;
-export const CONTACT_KEY_STATE = 'state' as keyof Contact;
-export const CONTACT_KEY_STREET = 'street' as keyof Contact;
-export const CONTACT_KEY_TITLE = 'title' as keyof Contact;
-
-export const CONTACT_KEYS = [
-  CONTACT_KEY_CITY,
-  CONTACT_KEY_COUNTRY,
-  CONTACT_KEY_DISCLOSE,
-  CONTACT_KEY_EMAIL,
-  CONTACT_KEY_FAX,
-  CONTACT_KEY_FIRST_NAME,
-  CONTACT_KEY_LAST_NAME,
-  CONTACT_KEY_ORG,
-  CONTACT_KEY_PHONE,
-  CONTACT_KEY_POSTAL_CODE,
-  CONTACT_KEY_STATE,
-  CONTACT_KEY_STREET,
-  CONTACT_KEY_TITLE,
-] as const;
-
-export const CONTACT_SCHEMA_KEY_CITY = 'city' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_CONTACT_ID = 'contact_id' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_COUNTRY = 'country' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_CREATED_ON = 'created_on' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_DELETED_ON = 'deleted_on' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_DISCLOSE = 'disclose' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_EMAIL = 'email' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_FAX = 'fax' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_FIRST_NAME = 'first_name' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_LAST_NAME = 'last_name' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_ORG = 'org' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_ORGANIZATION_ID = 'organization_id' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_PHONE = 'phone' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_POSTAL_CODE = 'postal_code' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_STATE = 'state' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_STREET = 'street' as keyof ContactSchema;
-export const CONTACT_SCHEMA_KEY_TITLE = 'title' as keyof ContactSchema;
-
-export const CONTACT_SCHEMA_KEYS = [
-  CONTACT_SCHEMA_KEY_CITY,
-  CONTACT_SCHEMA_KEY_CONTACT_ID,
-  CONTACT_SCHEMA_KEY_COUNTRY,
-  CONTACT_SCHEMA_KEY_CREATED_ON,
-  CONTACT_SCHEMA_KEY_DELETED_ON,
-  CONTACT_SCHEMA_KEY_DISCLOSE,
-  CONTACT_SCHEMA_KEY_EMAIL,
-  CONTACT_SCHEMA_KEY_FAX,
-  CONTACT_SCHEMA_KEY_FIRST_NAME,
-  CONTACT_SCHEMA_KEY_LAST_NAME,
-  CONTACT_SCHEMA_KEY_ORG,
-  CONTACT_SCHEMA_KEY_ORGANIZATION_ID,
-  CONTACT_SCHEMA_KEY_PHONE,
-  CONTACT_SCHEMA_KEY_POSTAL_CODE,
-  CONTACT_SCHEMA_KEY_STATE,
-  CONTACT_SCHEMA_KEY_STREET,
-  CONTACT_SCHEMA_KEY_TITLE,
-] as const;
-
-export const CONTACT_VERIFICATION_API_KEY_CANCELED_ON = 'canceled_on' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_CONTACT_ID = 'contact_id' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_CREATED_ON = 'created_on' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_STATUS = 'status' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_TOKEN = 'token' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_TYPE = 'type' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_UPDATED_ON = 'updated_on' as keyof ContactVerificationApi;
-export const CONTACT_VERIFICATION_API_KEY_VERIFIED_ON = 'verified_on' as keyof ContactVerificationApi;
-
-export const CONTACT_VERIFICATION_API_KEYS = [
-  CONTACT_VERIFICATION_API_KEY_CANCELED_ON,
-  CONTACT_VERIFICATION_API_KEY_CONTACT_ID,
-  CONTACT_VERIFICATION_API_KEY_CONTACT_VERIFICATION_ID,
-  CONTACT_VERIFICATION_API_KEY_CREATED_ON,
-  CONTACT_VERIFICATION_API_KEY_STATUS,
-  CONTACT_VERIFICATION_API_KEY_TOKEN,
-  CONTACT_VERIFICATION_API_KEY_TYPE,
-  CONTACT_VERIFICATION_API_KEY_UPDATED_ON,
-  CONTACT_VERIFICATION_API_KEY_VERIFIED_ON,
-] as const;
-
-export const CONTACT_VERIFICATION_EMAIL_KEY_CANCELED_ON = 'canceled_on' as keyof ContactVerificationEmail;
-export const CONTACT_VERIFICATION_EMAIL_KEY_CONTACT_ID = 'contact_id' as keyof ContactVerificationEmail;
-export const CONTACT_VERIFICATION_EMAIL_KEY_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerificationEmail;
-export const CONTACT_VERIFICATION_EMAIL_KEY_CREATED_ON = 'created_on' as keyof ContactVerificationEmail;
-export const CONTACT_VERIFICATION_EMAIL_KEY_STATUS = 'status' as keyof ContactVerificationEmail;
-export const CONTACT_VERIFICATION_EMAIL_KEY_TYPE = 'type' as keyof ContactVerificationEmail;
-export const CONTACT_VERIFICATION_EMAIL_KEY_UPDATED_ON = 'updated_on' as keyof ContactVerificationEmail;
-export const CONTACT_VERIFICATION_EMAIL_KEY_VERIFIED_ON = 'verified_on' as keyof ContactVerificationEmail;
-
-export const CONTACT_VERIFICATION_EMAIL_KEYS = [
-  CONTACT_VERIFICATION_EMAIL_KEY_CANCELED_ON,
-  CONTACT_VERIFICATION_EMAIL_KEY_CONTACT_ID,
-  CONTACT_VERIFICATION_EMAIL_KEY_CONTACT_VERIFICATION_ID,
-  CONTACT_VERIFICATION_EMAIL_KEY_CREATED_ON,
-  CONTACT_VERIFICATION_EMAIL_KEY_STATUS,
-  CONTACT_VERIFICATION_EMAIL_KEY_TYPE,
-  CONTACT_VERIFICATION_EMAIL_KEY_UPDATED_ON,
-  CONTACT_VERIFICATION_EMAIL_KEY_VERIFIED_ON,
-] as const;
-
-export const CONTACT_VERIFICATION_KEY_CANCELED_ON = 'canceled_on' as keyof ContactVerification;
-export const CONTACT_VERIFICATION_KEY_CONTACT_ID = 'contact_id' as keyof ContactVerification;
-export const CONTACT_VERIFICATION_KEY_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerification;
-export const CONTACT_VERIFICATION_KEY_CREATED_ON = 'created_on' as keyof ContactVerification;
-export const CONTACT_VERIFICATION_KEY_STATUS = 'status' as keyof ContactVerification;
-export const CONTACT_VERIFICATION_KEY_TYPE = 'type' as keyof ContactVerification;
-export const CONTACT_VERIFICATION_KEY_UPDATED_ON = 'updated_on' as keyof ContactVerification;
-export const CONTACT_VERIFICATION_KEY_VERIFIED_ON = 'verified_on' as keyof ContactVerification;
-
-export const CONTACT_VERIFICATION_KEYS = [
-  CONTACT_VERIFICATION_KEY_CANCELED_ON,
-  CONTACT_VERIFICATION_KEY_CONTACT_ID,
-  CONTACT_VERIFICATION_KEY_CONTACT_VERIFICATION_ID,
-  CONTACT_VERIFICATION_KEY_CREATED_ON,
-  CONTACT_VERIFICATION_KEY_STATUS,
-  CONTACT_VERIFICATION_KEY_TYPE,
-  CONTACT_VERIFICATION_KEY_UPDATED_ON,
-  CONTACT_VERIFICATION_KEY_VERIFIED_ON,
-] as const;
-
-export const DELETED_EVENT_KEY_DATE = 'date' as keyof DeletedEvent;
-
-export const DELETED_EVENT_KEYS = [
-  DELETED_EVENT_KEY_DATE,
-] as const;
-
-export const DNS_CHANGE_KEY_ACTION = 'action' as keyof DnsChange;
-export const DNS_CHANGE_KEY_RECORD_DATA = 'record_data' as keyof DnsChange;
-export const DNS_CHANGE_KEY_RRSET_NAME = 'rrset_name' as keyof DnsChange;
-export const DNS_CHANGE_KEY_RRSET_TYPE = 'rrset_type' as keyof DnsChange;
-export const DNS_CHANGE_KEY_TTL = 'ttl' as keyof DnsChange;
-
-export const DNS_CHANGE_KEYS = [
-  DNS_CHANGE_KEY_ACTION,
-  DNS_CHANGE_KEY_RECORD_DATA,
-  DNS_CHANGE_KEY_RRSET_NAME,
-  DNS_CHANGE_KEY_RRSET_TYPE,
-  DNS_CHANGE_KEY_TTL,
-] as const;
-
-export const DNS_CHANGES_KEY_CHANGES = 'changes' as keyof DnsChanges;
-export const DNS_CHANGES_KEY_CHANGESET_ID = 'changeset_id' as keyof DnsChanges;
-export const DNS_CHANGES_KEY_NUM_CHANGES = 'num_changes' as keyof DnsChanges;
-export const DNS_CHANGES_KEY_ZONE_NAME = 'zone_name' as keyof DnsChanges;
-
-export const DNS_CHANGES_KEYS = [
-  DNS_CHANGES_KEY_CHANGES,
-  DNS_CHANGES_KEY_CHANGESET_ID,
-  DNS_CHANGES_KEY_NUM_CHANGES,
-  DNS_CHANGES_KEY_ZONE_NAME,
-] as const;
-
-export const DNS_RECORD_CREATE_KEY_RDATA = 'rdata' as keyof DnsRecordCreate;
-
-export const DNS_RECORD_CREATE_KEYS = [
-  DNS_RECORD_CREATE_KEY_RDATA,
-] as const;
-
-export const DNS_RECORD_KEY_RDATA = 'rdata' as keyof DnsRecord;
-
-export const DNS_RECORD_KEYS = [
-  DNS_RECORD_KEY_RDATA,
-] as const;
-
-export const DNS_RRSET_CREATE_KEY_NAME = 'name' as keyof DnsRrsetCreate;
-export const DNS_RRSET_CREATE_KEY_RECORDS = 'records' as keyof DnsRrsetCreate;
-export const DNS_RRSET_CREATE_KEY_TTL = 'ttl' as keyof DnsRrsetCreate;
-export const DNS_RRSET_CREATE_KEY_TYPE = 'type' as keyof DnsRrsetCreate;
-
-export const DNS_RRSET_CREATE_KEYS = [
-  DNS_RRSET_CREATE_KEY_NAME,
-  DNS_RRSET_CREATE_KEY_RECORDS,
-  DNS_RRSET_CREATE_KEY_TTL,
-  DNS_RRSET_CREATE_KEY_TYPE,
-] as const;
-
-export const DNS_RRSET_KEY_NAME = 'name' as keyof DnsRrset;
-export const DNS_RRSET_KEY_RECORDS = 'records' as keyof DnsRrset;
-export const DNS_RRSET_KEY_TTL = 'ttl' as keyof DnsRrset;
-export const DNS_RRSET_KEY_TYPE = 'type' as keyof DnsRrset;
-
-export const DNS_RRSET_KEYS = [
-  DNS_RRSET_KEY_NAME,
-  DNS_RRSET_KEY_RECORDS,
-  DNS_RRSET_KEY_TTL,
-  DNS_RRSET_KEY_TYPE,
-] as const;
-
-export const DNS_ZONE_CREATE_KEY_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZoneCreate;
-export const DNS_ZONE_CREATE_KEY_NAME = 'name' as keyof DnsZoneCreate;
-export const DNS_ZONE_CREATE_KEY_RRSETS = 'rrsets' as keyof DnsZoneCreate;
-
-export const DNS_ZONE_CREATE_KEYS = [
-  DNS_ZONE_CREATE_KEY_DNSSEC_STATUS,
-  DNS_ZONE_CREATE_KEY_NAME,
-  DNS_ZONE_CREATE_KEY_RRSETS,
-] as const;
-
-export const DNS_ZONE_KEY_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZone;
-export const DNS_ZONE_KEY_DOMAIN_PARTS = 'domain_parts' as keyof DnsZone;
-export const DNS_ZONE_KEY_NAME = 'name' as keyof DnsZone;
-export const DNS_ZONE_KEY_RRSETS = 'rrsets' as keyof DnsZone;
-
-export const DNS_ZONE_KEYS = [
-  DNS_ZONE_KEY_DNSSEC_STATUS,
-  DNS_ZONE_KEY_DOMAIN_PARTS,
-  DNS_ZONE_KEY_NAME,
-  DNS_ZONE_KEY_RRSETS,
-] as const;
-
-export const DNS_ZONE_RRSETS_CREATE_KEY_RRSETS = 'rrsets' as keyof DnsZoneRrsetsCreate;
-
-export const DNS_ZONE_RRSETS_CREATE_KEYS = [
-  DNS_ZONE_RRSETS_CREATE_KEY_RRSETS,
-] as const;
-
-export const DOMAIN_AVAILABILITY_KEY_DOMAIN = 'domain' as keyof DomainAvailability;
-export const DOMAIN_AVAILABILITY_KEY_STATUS = 'status' as keyof DomainAvailability;
-
-export const DOMAIN_AVAILABILITY_KEYS = [
-  DOMAIN_AVAILABILITY_KEY_DOMAIN,
-  DOMAIN_AVAILABILITY_KEY_STATUS,
-] as const;
-
-export const DOMAIN_AVAILABILITY_META_KEY_PROCESSING_TIME_MS = 'processing_time_ms' as keyof DomainAvailabilityMeta;
-export const DOMAIN_AVAILABILITY_META_KEY_TOTAL = 'total' as keyof DomainAvailabilityMeta;
-
-export const DOMAIN_AVAILABILITY_META_KEYS = [
-  DOMAIN_AVAILABILITY_META_KEY_PROCESSING_TIME_MS,
-  DOMAIN_AVAILABILITY_META_KEY_TOTAL,
-] as const;
-
-export const DOMAIN_CHECK_KEY_RESULTS = 'results' as keyof DomainCheck;
-
-export const DOMAIN_CHECK_KEYS = [
-  DOMAIN_CHECK_KEY_RESULTS,
-] as const;
-
-export const DOMAIN_CONTACT_KEY_CONTACT_ID = 'contact_id' as keyof DomainContact;
-export const DOMAIN_CONTACT_KEY_CONTACT_TYPE = 'contact_type' as keyof DomainContact;
-
-export const DOMAIN_CONTACT_KEYS = [
-  DOMAIN_CONTACT_KEY_CONTACT_ID,
-  DOMAIN_CONTACT_KEY_CONTACT_TYPE,
-] as const;
-
-export const DOMAIN_CREATE_KEY_AUTH_CODE = 'auth_code' as keyof DomainCreate;
-export const DOMAIN_CREATE_KEY_CONTACTS = 'contacts' as keyof DomainCreate;
-export const DOMAIN_CREATE_KEY_NAME = 'name' as keyof DomainCreate;
-export const DOMAIN_CREATE_KEY_NAMESERVERS = 'nameservers' as keyof DomainCreate;
-export const DOMAIN_CREATE_KEY_PERIOD = 'period' as keyof DomainCreate;
-export const DOMAIN_CREATE_KEY_RENEWAL_MODE = 'renewal_mode' as keyof DomainCreate;
-
-export const DOMAIN_CREATE_KEYS = [
-  DOMAIN_CREATE_KEY_AUTH_CODE,
-  DOMAIN_CREATE_KEY_CONTACTS,
-  DOMAIN_CREATE_KEY_NAME,
-  DOMAIN_CREATE_KEY_NAMESERVERS,
-  DOMAIN_CREATE_KEY_PERIOD,
-  DOMAIN_CREATE_KEY_RENEWAL_MODE,
-] as const;
-
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_ALGORITHM = 'algorithm' as keyof DomainDnssecDataCreate;
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_DIGEST = 'digest' as keyof DomainDnssecDataCreate;
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_DIGEST_TYPE = 'digest_type' as keyof DomainDnssecDataCreate;
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_FLAGS = 'flags' as keyof DomainDnssecDataCreate;
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_KEY_TAG = 'key_tag' as keyof DomainDnssecDataCreate;
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_PROTOCOL = 'protocol' as keyof DomainDnssecDataCreate;
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_PUBLIC_KEY = 'public_key' as keyof DomainDnssecDataCreate;
-export const DOMAIN_DNSSEC_DATA_CREATE_KEY_RECORD_TYPE = 'record_type' as keyof DomainDnssecDataCreate;
-
-export const DOMAIN_DNSSEC_DATA_CREATE_KEYS = [
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_ALGORITHM,
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_DIGEST,
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_DIGEST_TYPE,
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_FLAGS,
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_KEY_TAG,
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_PROTOCOL,
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_PUBLIC_KEY,
-  DOMAIN_DNSSEC_DATA_CREATE_KEY_RECORD_TYPE,
-] as const;
-
-export const DOMAIN_DNSSEC_DATA_KEY_ALGORITHM = 'algorithm' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_CREATED_ON = 'created_on' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_DIGEST = 'digest' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_DIGEST_TYPE = 'digest_type' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_DOMAIN_DNSSEC_DATA_ID = 'domain_dnssec_data_id' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_DOMAIN_ID = 'domain_id' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_FLAGS = 'flags' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_KEY_TAG = 'key_tag' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_PROTOCOL = 'protocol' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_PUBLIC_KEY = 'public_key' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_RECORD_TYPE = 'record_type' as keyof DomainDnssecData;
-export const DOMAIN_DNSSEC_DATA_KEY_UPDATED_ON = 'updated_on' as keyof DomainDnssecData;
-
-export const DOMAIN_DNSSEC_DATA_KEYS = [
-  DOMAIN_DNSSEC_DATA_KEY_ALGORITHM,
-  DOMAIN_DNSSEC_DATA_KEY_CREATED_ON,
-  DOMAIN_DNSSEC_DATA_KEY_DIGEST,
-  DOMAIN_DNSSEC_DATA_KEY_DIGEST_TYPE,
-  DOMAIN_DNSSEC_DATA_KEY_DOMAIN_DNSSEC_DATA_ID,
-  DOMAIN_DNSSEC_DATA_KEY_DOMAIN_ID,
-  DOMAIN_DNSSEC_DATA_KEY_FLAGS,
-  DOMAIN_DNSSEC_DATA_KEY_KEY_TAG,
-  DOMAIN_DNSSEC_DATA_KEY_PROTOCOL,
-  DOMAIN_DNSSEC_DATA_KEY_PUBLIC_KEY,
-  DOMAIN_DNSSEC_DATA_KEY_RECORD_TYPE,
-  DOMAIN_DNSSEC_DATA_KEY_UPDATED_ON,
-] as const;
-
-export const DOMAIN_NAME_PARTS_KEY_DOMAIN = 'domain' as keyof DomainNameParts;
-export const DOMAIN_NAME_PARTS_KEY_SUBDOMAIN = 'subdomain' as keyof DomainNameParts;
-export const DOMAIN_NAME_PARTS_KEY_SUFFIX = 'suffix' as keyof DomainNameParts;
-
-export const DOMAIN_NAME_PARTS_KEYS = [
-  DOMAIN_NAME_PARTS_KEY_DOMAIN,
-  DOMAIN_NAME_PARTS_KEY_SUBDOMAIN,
-  DOMAIN_NAME_PARTS_KEY_SUFFIX,
-] as const;
-
-export const DOMAIN_PERIOD_KEY_UNIT = 'unit' as keyof DomainPeriod;
-export const DOMAIN_PERIOD_KEY_VALUE = 'value' as keyof DomainPeriod;
-
-export const DOMAIN_PERIOD_KEYS = [
-  DOMAIN_PERIOD_KEY_UNIT,
-  DOMAIN_PERIOD_KEY_VALUE,
-] as const;
-
-export const DOMAIN_RENEW_REQUEST_KEY_CURRENT_EXPIRY_DATE = 'current_expiry_date' as keyof DomainRenewRequest;
-export const DOMAIN_RENEW_REQUEST_KEY_PERIOD = 'period' as keyof DomainRenewRequest;
-
-export const DOMAIN_RENEW_REQUEST_KEYS = [
-  DOMAIN_RENEW_REQUEST_KEY_CURRENT_EXPIRY_DATE,
-  DOMAIN_RENEW_REQUEST_KEY_PERIOD,
-] as const;
-
-export const DOMAIN_RENEW_KEY_NAME = 'name' as keyof DomainRenew;
-export const DOMAIN_RENEW_KEY_NEW_EXPIRY_DATE = 'new_expiry_date' as keyof DomainRenew;
-export const DOMAIN_RENEW_KEY_PERIOD_EXTENDED = 'period_extended' as keyof DomainRenew;
-
-export const DOMAIN_RENEW_KEYS = [
-  DOMAIN_RENEW_KEY_NAME,
-  DOMAIN_RENEW_KEY_NEW_EXPIRY_DATE,
-  DOMAIN_RENEW_KEY_PERIOD_EXTENDED,
-] as const;
-
-export const DOMAIN_KEY_AUTH_CODE = 'auth_code' as keyof Domain;
-export const DOMAIN_KEY_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' as keyof Domain;
-export const DOMAIN_KEY_CANCELED_ON = 'canceled_on' as keyof Domain;
-export const DOMAIN_KEY_CONTACTS = 'contacts' as keyof Domain;
-export const DOMAIN_KEY_CREATED_ON = 'created_on' as keyof Domain;
-export const DOMAIN_KEY_DELETED_ON = 'deleted_on' as keyof Domain;
-export const DOMAIN_KEY_DOMAIN_ID = 'domain_id' as keyof Domain;
-export const DOMAIN_KEY_EXPIRES_ON = 'expires_on' as keyof Domain;
-export const DOMAIN_KEY_NAME = 'name' as keyof Domain;
-export const DOMAIN_KEY_NAMESERVERS = 'nameservers' as keyof Domain;
-export const DOMAIN_KEY_OWNER_ID = 'owner_id' as keyof Domain;
-export const DOMAIN_KEY_REGISTERED_ON = 'registered_on' as keyof Domain;
-export const DOMAIN_KEY_REGISTRY_ACCOUNT_ID = 'registry_account_id' as keyof Domain;
-export const DOMAIN_KEY_REGISTRY_STATUSES = 'registry_statuses' as keyof Domain;
-export const DOMAIN_KEY_RENEWAL_MODE = 'renewal_mode' as keyof Domain;
-export const DOMAIN_KEY_ROID = 'roid' as keyof Domain;
-export const DOMAIN_KEY_SLD = 'sld' as keyof Domain;
-export const DOMAIN_KEY_TLD = 'tld' as keyof Domain;
-export const DOMAIN_KEY_TRANSFER_LOCK = 'transfer_lock' as keyof Domain;
-export const DOMAIN_KEY_UPDATED_ON = 'updated_on' as keyof Domain;
-
-export const DOMAIN_KEYS = [
-  DOMAIN_KEY_AUTH_CODE,
-  DOMAIN_KEY_AUTH_CODE_EXPIRES_ON,
-  DOMAIN_KEY_CANCELED_ON,
-  DOMAIN_KEY_CONTACTS,
-  DOMAIN_KEY_CREATED_ON,
-  DOMAIN_KEY_DELETED_ON,
-  DOMAIN_KEY_DOMAIN_ID,
-  DOMAIN_KEY_EXPIRES_ON,
-  DOMAIN_KEY_NAME,
-  DOMAIN_KEY_NAMESERVERS,
-  DOMAIN_KEY_OWNER_ID,
-  DOMAIN_KEY_REGISTERED_ON,
-  DOMAIN_KEY_REGISTRY_ACCOUNT_ID,
-  DOMAIN_KEY_REGISTRY_STATUSES,
-  DOMAIN_KEY_RENEWAL_MODE,
-  DOMAIN_KEY_ROID,
-  DOMAIN_KEY_SLD,
-  DOMAIN_KEY_TLD,
-  DOMAIN_KEY_TRANSFER_LOCK,
-  DOMAIN_KEY_UPDATED_ON,
-] as const;
-
-export const DOMAIN_SEARCH_META_KEY_PROCESSING_TIME_MS = 'processing_time_ms' as keyof DomainSearchMeta;
-export const DOMAIN_SEARCH_META_KEY_TOTAL = 'total' as keyof DomainSearchMeta;
-
-export const DOMAIN_SEARCH_META_KEYS = [
-  DOMAIN_SEARCH_META_KEY_PROCESSING_TIME_MS,
-  DOMAIN_SEARCH_META_KEY_TOTAL,
-] as const;
-
-export const DOMAIN_SEARCH_KEY_META = 'meta' as keyof DomainSearch;
-export const DOMAIN_SEARCH_KEY_RESULTS = 'results' as keyof DomainSearch;
-
-export const DOMAIN_SEARCH_KEYS = [
-  DOMAIN_SEARCH_KEY_META,
-  DOMAIN_SEARCH_KEY_RESULTS,
-] as const;
-
-export const DOMAIN_SEARCH_SUGGESTION_KEY_AVAILABLE = 'available' as keyof DomainSearchSuggestion;
-export const DOMAIN_SEARCH_SUGGESTION_KEY_DOMAIN = 'domain' as keyof DomainSearchSuggestion;
-export const DOMAIN_SEARCH_SUGGESTION_KEY_PREMIUM = 'premium' as keyof DomainSearchSuggestion;
-
-export const DOMAIN_SEARCH_SUGGESTION_KEYS = [
-  DOMAIN_SEARCH_SUGGESTION_KEY_AVAILABLE,
-  DOMAIN_SEARCH_SUGGESTION_KEY_DOMAIN,
-  DOMAIN_SEARCH_SUGGESTION_KEY_PREMIUM,
-] as const;
-
-export const DOMAIN_TRANSFER_IN_KEY_AUTH_CODE = 'auth_code' as keyof DomainTransferIn;
-export const DOMAIN_TRANSFER_IN_KEY_CONTACTS = 'contacts' as keyof DomainTransferIn;
-export const DOMAIN_TRANSFER_IN_KEY_NAME = 'name' as keyof DomainTransferIn;
-export const DOMAIN_TRANSFER_IN_KEY_RENEWAL_MODE = 'renewal_mode' as keyof DomainTransferIn;
-
-export const DOMAIN_TRANSFER_IN_KEYS = [
-  DOMAIN_TRANSFER_IN_KEY_AUTH_CODE,
-  DOMAIN_TRANSFER_IN_KEY_CONTACTS,
-  DOMAIN_TRANSFER_IN_KEY_NAME,
-  DOMAIN_TRANSFER_IN_KEY_RENEWAL_MODE,
-] as const;
-
-export const DOMAIN_UPDATE_KEY_AUTH_CODE = 'auth_code' as keyof DomainUpdate;
-export const DOMAIN_UPDATE_KEY_CONTACTS = 'contacts' as keyof DomainUpdate;
-export const DOMAIN_UPDATE_KEY_NAMESERVERS = 'nameservers' as keyof DomainUpdate;
-export const DOMAIN_UPDATE_KEY_RENEWAL_MODE = 'renewal_mode' as keyof DomainUpdate;
-export const DOMAIN_UPDATE_KEY_STATUSES = 'statuses' as keyof DomainUpdate;
-
-export const DOMAIN_UPDATE_KEYS = [
-  DOMAIN_UPDATE_KEY_AUTH_CODE,
-  DOMAIN_UPDATE_KEY_CONTACTS,
-  DOMAIN_UPDATE_KEY_NAMESERVERS,
-  DOMAIN_UPDATE_KEY_RENEWAL_MODE,
-  DOMAIN_UPDATE_KEY_STATUSES,
-] as const;
-
-export const EMAIL_FORWARD_KEY_CREATED_ON = 'created_on' as keyof EmailForward;
-export const EMAIL_FORWARD_KEY_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForward;
-export const EMAIL_FORWARD_KEY_SOURCE_ADDRESS = 'source_address' as keyof EmailForward;
-export const EMAIL_FORWARD_KEY_STATUS = 'status' as keyof EmailForward;
-export const EMAIL_FORWARD_KEY_TARGET_ADDRESS = 'target_address' as keyof EmailForward;
-export const EMAIL_FORWARD_KEY_UPDATED_ON = 'updated_on' as keyof EmailForward;
-
-export const EMAIL_FORWARD_KEYS = [
-  EMAIL_FORWARD_KEY_CREATED_ON,
-  EMAIL_FORWARD_KEY_EMAIL_FORWARD_ID,
-  EMAIL_FORWARD_KEY_SOURCE_ADDRESS,
-  EMAIL_FORWARD_KEY_STATUS,
-  EMAIL_FORWARD_KEY_TARGET_ADDRESS,
-  EMAIL_FORWARD_KEY_UPDATED_ON,
-] as const;
-
-export const EMAIL_FORWARD_BULK_DELETE_KEY_EMAIL_FORWARD_IDS = 'email_forward_ids' as keyof EmailForwardBulkDelete;
-
-export const EMAIL_FORWARD_BULK_DELETE_KEYS = [
-  EMAIL_FORWARD_BULK_DELETE_KEY_EMAIL_FORWARD_IDS,
-] as const;
-
-export const EMAIL_FORWARD_BULK_UPDATE_KEY_EMAIL_FORWARDS = 'email_forwards' as keyof EmailForwardBulkUpdate;
-
-export const EMAIL_FORWARD_BULK_UPDATE_KEYS = [
-  EMAIL_FORWARD_BULK_UPDATE_KEY_EMAIL_FORWARDS,
-] as const;
-
-export const EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForwardBulkUpdateItem;
-export const EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardBulkUpdateItem;
-export const EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_STATUS = 'status' as keyof EmailForwardBulkUpdateItem;
-export const EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_TARGET_ADDRESS = 'target_address' as keyof EmailForwardBulkUpdateItem;
-
-export const EMAIL_FORWARD_BULK_UPDATE_ITEM_KEYS = [
-  EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_EMAIL_FORWARD_ID,
-  EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_SOURCE_ADDRESS,
-  EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_STATUS,
-  EMAIL_FORWARD_BULK_UPDATE_ITEM_KEY_TARGET_ADDRESS,
-] as const;
-
-export const EMAIL_FORWARD_CREATE_KEY_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardCreate;
-export const EMAIL_FORWARD_CREATE_KEY_STATUS = 'status' as keyof EmailForwardCreate;
-export const EMAIL_FORWARD_CREATE_KEY_TARGET_ADDRESS = 'target_address' as keyof EmailForwardCreate;
-
-export const EMAIL_FORWARD_CREATE_KEYS = [
-  EMAIL_FORWARD_CREATE_KEY_SOURCE_ADDRESS,
-  EMAIL_FORWARD_CREATE_KEY_STATUS,
-  EMAIL_FORWARD_CREATE_KEY_TARGET_ADDRESS,
-] as const;
-
-export const EMAIL_FORWARD_UPDATE_KEY_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardUpdate;
-export const EMAIL_FORWARD_UPDATE_KEY_STATUS = 'status' as keyof EmailForwardUpdate;
-export const EMAIL_FORWARD_UPDATE_KEY_TARGET_ADDRESS = 'target_address' as keyof EmailForwardUpdate;
-
-export const EMAIL_FORWARD_UPDATE_KEYS = [
-  EMAIL_FORWARD_UPDATE_KEY_SOURCE_ADDRESS,
-  EMAIL_FORWARD_UPDATE_KEY_STATUS,
-  EMAIL_FORWARD_UPDATE_KEY_TARGET_ADDRESS,
-] as const;
-
-export const EVENT_KEY_EVENT_DATA = 'event_data' as keyof EventResponse;
-export const EVENT_KEY_EVENT_ID = 'event_id' as keyof EventResponse;
-export const EVENT_KEY_OBJECT_ID = 'object_id' as keyof EventResponse;
-export const EVENT_KEY_OBJECT_TYPE = 'object_type' as keyof EventResponse;
-export const EVENT_KEY_SUBTYPE = 'subtype' as keyof EventResponse;
-export const EVENT_KEY_TYPE = 'type' as keyof EventResponse;
-
-export const EVENT_KEYS = [
-  EVENT_KEY_EVENT_DATA,
-  EVENT_KEY_EVENT_ID,
-  EVENT_KEY_OBJECT_ID,
-  EVENT_KEY_OBJECT_TYPE,
-  EVENT_KEY_SUBTYPE,
-  EVENT_KEY_TYPE,
-] as const;
-
-export const EVENT_SCHEMA_KEY_ACKNOWLEDGED_ON = 'acknowledged_on' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_CREATED_ON = 'created_on' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_EVENT_DATA = 'event_data' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_EVENT_ID = 'event_id' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_MESSAGE_QUEUE_ID = 'message_queue_id' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_OBJECT_ID = 'object_id' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_OBJECT_TYPE = 'object_type' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_SOURCE = 'source' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_SOURCE_EVENT_ID = 'source_event_id' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_SUBTYPE = 'subtype' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_TARGET = 'target' as keyof EventSchema;
-export const EVENT_SCHEMA_KEY_TYPE = 'type' as keyof EventSchema;
-
-export const EVENT_SCHEMA_KEYS = [
-  EVENT_SCHEMA_KEY_ACKNOWLEDGED_ON,
-  EVENT_SCHEMA_KEY_CREATED_ON,
-  EVENT_SCHEMA_KEY_EVENT_DATA,
-  EVENT_SCHEMA_KEY_EVENT_ID,
-  EVENT_SCHEMA_KEY_MESSAGE_QUEUE_ID,
-  EVENT_SCHEMA_KEY_OBJECT_ID,
-  EVENT_SCHEMA_KEY_OBJECT_TYPE,
-  EVENT_SCHEMA_KEY_SOURCE,
-  EVENT_SCHEMA_KEY_SOURCE_EVENT_ID,
-  EVENT_SCHEMA_KEY_SUBTYPE,
-  EVENT_SCHEMA_KEY_TARGET,
-  EVENT_SCHEMA_KEY_TYPE,
-] as const;
-
-export const H_T_T_P_VALIDATION_ERROR_KEY_ERRORS = 'errors' as keyof HTTPValidationError;
-export const H_T_T_P_VALIDATION_ERROR_KEY_STATUS = 'status' as keyof HTTPValidationError;
-export const H_T_T_P_VALIDATION_ERROR_KEY_TITLE = 'title' as keyof HTTPValidationError;
-export const H_T_T_P_VALIDATION_ERROR_KEY_TYPE = 'type' as keyof HTTPValidationError;
-
-export const H_T_T_P_VALIDATION_ERROR_KEYS = [
-  H_T_T_P_VALIDATION_ERROR_KEY_ERRORS,
-  H_T_T_P_VALIDATION_ERROR_KEY_STATUS,
-  H_T_T_P_VALIDATION_ERROR_KEY_TITLE,
-  H_T_T_P_VALIDATION_ERROR_KEY_TYPE,
-] as const;
-
-export const IP_RESTRICTION_CREATE_KEY_IP_NETWORK = 'ip_network' as keyof IpRestrictionCreate;
-export const IP_RESTRICTION_CREATE_KEY_ORGANIZATION_ID = 'organization_id' as keyof IpRestrictionCreate;
-
-export const IP_RESTRICTION_CREATE_KEYS = [
-  IP_RESTRICTION_CREATE_KEY_IP_NETWORK,
-  IP_RESTRICTION_CREATE_KEY_ORGANIZATION_ID,
-] as const;
-
-export const IP_RESTRICTION_KEY_CREATED_ON = 'created_on' as keyof IpRestriction;
-export const IP_RESTRICTION_KEY_IP_NETWORK = 'ip_network' as keyof IpRestriction;
-export const IP_RESTRICTION_KEY_IP_RESTRICTION_ID = 'ip_restriction_id' as keyof IpRestriction;
-export const IP_RESTRICTION_KEY_LAST_USED_ON = 'last_used_on' as keyof IpRestriction;
-export const IP_RESTRICTION_KEY_ORGANIZATION_ID = 'organization_id' as keyof IpRestriction;
-
-export const IP_RESTRICTION_KEYS = [
-  IP_RESTRICTION_KEY_CREATED_ON,
-  IP_RESTRICTION_KEY_IP_NETWORK,
-  IP_RESTRICTION_KEY_IP_RESTRICTION_ID,
-  IP_RESTRICTION_KEY_LAST_USED_ON,
-  IP_RESTRICTION_KEY_ORGANIZATION_ID,
-] as const;
-
-export const IP_RESTRICTION_UPDATE_KEY_IP_NETWORK = 'ip_network' as keyof IpRestrictionUpdate;
-export const IP_RESTRICTION_UPDATE_KEY_LAST_USED_ON = 'last_used_on' as keyof IpRestrictionUpdate;
-
-export const IP_RESTRICTION_UPDATE_KEYS = [
-  IP_RESTRICTION_UPDATE_KEY_IP_NETWORK,
-  IP_RESTRICTION_UPDATE_KEY_LAST_USED_ON,
-] as const;
-
-export const NAMESERVER_KEY_HOSTNAME = 'hostname' as keyof Nameserver;
-export const NAMESERVER_KEY_IP_ADDRESSES = 'ip_addresses' as keyof Nameserver;
-
-export const NAMESERVER_KEYS = [
-  NAMESERVER_KEY_HOSTNAME,
-  NAMESERVER_KEY_IP_ADDRESSES,
-] as const;
-
-export const NOTIFICATION_KEY_AUTHOR = 'author' as keyof Notification;
-export const NOTIFICATION_KEY_CREATED_ON = 'created_on' as keyof Notification;
-export const NOTIFICATION_KEY_MESSAGE = 'message' as keyof Notification;
-export const NOTIFICATION_KEY_NOTIFICATION_ID = 'notification_id' as keyof Notification;
-export const NOTIFICATION_KEY_PUBLISH_DATE = 'publish_date' as keyof Notification;
-export const NOTIFICATION_KEY_SOURCE = 'source' as keyof Notification;
-export const NOTIFICATION_KEY_SUBJECT = 'subject' as keyof Notification;
-export const NOTIFICATION_KEY_TARGET = 'target' as keyof Notification;
-export const NOTIFICATION_KEY_TYPE = 'type' as keyof Notification;
-export const NOTIFICATION_KEY_UPDATED_ON = 'updated_on' as keyof Notification;
-
-export const NOTIFICATION_KEYS = [
-  NOTIFICATION_KEY_AUTHOR,
-  NOTIFICATION_KEY_CREATED_ON,
-  NOTIFICATION_KEY_MESSAGE,
-  NOTIFICATION_KEY_NOTIFICATION_ID,
-  NOTIFICATION_KEY_PUBLISH_DATE,
-  NOTIFICATION_KEY_SOURCE,
-  NOTIFICATION_KEY_SUBJECT,
-  NOTIFICATION_KEY_TARGET,
-  NOTIFICATION_KEY_TYPE,
-  NOTIFICATION_KEY_UPDATED_ON,
-] as const;
-
-export const NOTIFICATION_CREATE_KEY_AUTHOR = 'author' as keyof NotificationCreate;
-export const NOTIFICATION_CREATE_KEY_MESSAGE = 'message' as keyof NotificationCreate;
-export const NOTIFICATION_CREATE_KEY_PUBLISH_DATE = 'publish_date' as keyof NotificationCreate;
-export const NOTIFICATION_CREATE_KEY_SOURCE = 'source' as keyof NotificationCreate;
-export const NOTIFICATION_CREATE_KEY_SUBJECT = 'subject' as keyof NotificationCreate;
-export const NOTIFICATION_CREATE_KEY_TARGET = 'target' as keyof NotificationCreate;
-export const NOTIFICATION_CREATE_KEY_TYPE = 'type' as keyof NotificationCreate;
-
-export const NOTIFICATION_CREATE_KEYS = [
-  NOTIFICATION_CREATE_KEY_AUTHOR,
-  NOTIFICATION_CREATE_KEY_MESSAGE,
-  NOTIFICATION_CREATE_KEY_PUBLISH_DATE,
-  NOTIFICATION_CREATE_KEY_SOURCE,
-  NOTIFICATION_CREATE_KEY_SUBJECT,
-  NOTIFICATION_CREATE_KEY_TARGET,
-  NOTIFICATION_CREATE_KEY_TYPE,
-] as const;
-
-export const NOTIFICATION_SUMMARY_KEY_AUTHOR = 'author' as keyof NotificationSummary;
-export const NOTIFICATION_SUMMARY_KEY_MESSAGE = 'message' as keyof NotificationSummary;
-export const NOTIFICATION_SUMMARY_KEY_NOTIFICATION_ID = 'notification_id' as keyof NotificationSummary;
-export const NOTIFICATION_SUMMARY_KEY_PUBLISH_DATE = 'publish_date' as keyof NotificationSummary;
-export const NOTIFICATION_SUMMARY_KEY_SOURCE = 'source' as keyof NotificationSummary;
-export const NOTIFICATION_SUMMARY_KEY_SUBJECT = 'subject' as keyof NotificationSummary;
-export const NOTIFICATION_SUMMARY_KEY_TARGET = 'target' as keyof NotificationSummary;
-export const NOTIFICATION_SUMMARY_KEY_TYPE = 'type' as keyof NotificationSummary;
-
-export const NOTIFICATION_SUMMARY_KEYS = [
-  NOTIFICATION_SUMMARY_KEY_AUTHOR,
-  NOTIFICATION_SUMMARY_KEY_MESSAGE,
-  NOTIFICATION_SUMMARY_KEY_NOTIFICATION_ID,
-  NOTIFICATION_SUMMARY_KEY_PUBLISH_DATE,
-  NOTIFICATION_SUMMARY_KEY_SOURCE,
-  NOTIFICATION_SUMMARY_KEY_SUBJECT,
-  NOTIFICATION_SUMMARY_KEY_TARGET,
-  NOTIFICATION_SUMMARY_KEY_TYPE,
-] as const;
-
-export const NOTIFICATION_UPDATE_KEY_AUTHOR = 'author' as keyof NotificationUpdate;
-export const NOTIFICATION_UPDATE_KEY_MESSAGE = 'message' as keyof NotificationUpdate;
-export const NOTIFICATION_UPDATE_KEY_PUBLISH_DATE = 'publish_date' as keyof NotificationUpdate;
-export const NOTIFICATION_UPDATE_KEY_SOURCE = 'source' as keyof NotificationUpdate;
-export const NOTIFICATION_UPDATE_KEY_SUBJECT = 'subject' as keyof NotificationUpdate;
-export const NOTIFICATION_UPDATE_KEY_TARGET = 'target' as keyof NotificationUpdate;
-export const NOTIFICATION_UPDATE_KEY_TYPE = 'type' as keyof NotificationUpdate;
-
-export const NOTIFICATION_UPDATE_KEYS = [
-  NOTIFICATION_UPDATE_KEY_AUTHOR,
-  NOTIFICATION_UPDATE_KEY_MESSAGE,
-  NOTIFICATION_UPDATE_KEY_PUBLISH_DATE,
-  NOTIFICATION_UPDATE_KEY_SOURCE,
-  NOTIFICATION_UPDATE_KEY_SUBJECT,
-  NOTIFICATION_UPDATE_KEY_TARGET,
-  NOTIFICATION_UPDATE_KEY_TYPE,
-] as const;
-
-export const ORGANIZATION_KEY_ADDRESS_1 = 'address_1' as keyof Organization;
-export const ORGANIZATION_KEY_ADDRESS_2 = 'address_2' as keyof Organization;
-export const ORGANIZATION_KEY_ATTRIBUTES = 'attributes' as keyof Organization;
-export const ORGANIZATION_KEY_BUSINESS_NUMBER = 'business_number' as keyof Organization;
-export const ORGANIZATION_KEY_CITY = 'city' as keyof Organization;
-export const ORGANIZATION_KEY_COUNTRY_CODE = 'country_code' as keyof Organization;
-export const ORGANIZATION_KEY_CREATED_ON = 'created_on' as keyof Organization;
-export const ORGANIZATION_KEY_CURRENCY = 'currency' as keyof Organization;
-export const ORGANIZATION_KEY_DEFAULT_LOCALE = 'default_locale' as keyof Organization;
-export const ORGANIZATION_KEY_DELETED_ON = 'deleted_on' as keyof Organization;
-export const ORGANIZATION_KEY_NAME = 'name' as keyof Organization;
-export const ORGANIZATION_KEY_ORGANIZATION_ID = 'organization_id' as keyof Organization;
-export const ORGANIZATION_KEY_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof Organization;
-export const ORGANIZATION_KEY_POSTAL_CODE = 'postal_code' as keyof Organization;
-export const ORGANIZATION_KEY_STATE = 'state' as keyof Organization;
-export const ORGANIZATION_KEY_STATUS = 'status' as keyof Organization;
-export const ORGANIZATION_KEY_TAX_ID = 'tax_id' as keyof Organization;
-export const ORGANIZATION_KEY_TAX_ID_TYPE = 'tax_id_type' as keyof Organization;
-export const ORGANIZATION_KEY_TAX_RATE = 'tax_rate' as keyof Organization;
-export const ORGANIZATION_KEY_USERS = 'users' as keyof Organization;
-
-export const ORGANIZATION_KEYS = [
-  ORGANIZATION_KEY_ADDRESS_1,
-  ORGANIZATION_KEY_ADDRESS_2,
-  ORGANIZATION_KEY_ATTRIBUTES,
-  ORGANIZATION_KEY_BUSINESS_NUMBER,
-  ORGANIZATION_KEY_CITY,
-  ORGANIZATION_KEY_COUNTRY_CODE,
-  ORGANIZATION_KEY_CREATED_ON,
-  ORGANIZATION_KEY_CURRENCY,
-  ORGANIZATION_KEY_DEFAULT_LOCALE,
-  ORGANIZATION_KEY_DELETED_ON,
-  ORGANIZATION_KEY_NAME,
-  ORGANIZATION_KEY_ORGANIZATION_ID,
-  ORGANIZATION_KEY_PARENT_ORGANIZATION_ID,
-  ORGANIZATION_KEY_POSTAL_CODE,
-  ORGANIZATION_KEY_STATE,
-  ORGANIZATION_KEY_STATUS,
-  ORGANIZATION_KEY_TAX_ID,
-  ORGANIZATION_KEY_TAX_ID_TYPE,
-  ORGANIZATION_KEY_TAX_RATE,
-  ORGANIZATION_KEY_USERS,
-] as const;
-
-export const ORGANIZATION_ATTRIBUTE_KEY_CREATED_ON = 'created_on' as keyof OrganizationAttribute;
-export const ORGANIZATION_ATTRIBUTE_KEY_KEY = 'key' as keyof OrganizationAttribute;
-export const ORGANIZATION_ATTRIBUTE_KEY_ORGANIZATION_ATTRIBUTE_ID = 'organization_attribute_id' as keyof OrganizationAttribute;
-export const ORGANIZATION_ATTRIBUTE_KEY_PRIVATE = 'private' as keyof OrganizationAttribute;
-export const ORGANIZATION_ATTRIBUTE_KEY_PROTECTED = 'protected' as keyof OrganizationAttribute;
-export const ORGANIZATION_ATTRIBUTE_KEY_UPDATED_ON = 'updated_on' as keyof OrganizationAttribute;
-export const ORGANIZATION_ATTRIBUTE_KEY_VALUE = 'value' as keyof OrganizationAttribute;
-
-export const ORGANIZATION_ATTRIBUTE_KEYS = [
-  ORGANIZATION_ATTRIBUTE_KEY_CREATED_ON,
-  ORGANIZATION_ATTRIBUTE_KEY_KEY,
-  ORGANIZATION_ATTRIBUTE_KEY_ORGANIZATION_ATTRIBUTE_ID,
-  ORGANIZATION_ATTRIBUTE_KEY_PRIVATE,
-  ORGANIZATION_ATTRIBUTE_KEY_PROTECTED,
-  ORGANIZATION_ATTRIBUTE_KEY_UPDATED_ON,
-  ORGANIZATION_ATTRIBUTE_KEY_VALUE,
-] as const;
-
-export const ORGANIZATION_ATTRIBUTE_CREATE_KEY_KEY = 'key' as keyof OrganizationAttributeCreate;
-export const ORGANIZATION_ATTRIBUTE_CREATE_KEY_PRIVATE = 'private' as keyof OrganizationAttributeCreate;
-export const ORGANIZATION_ATTRIBUTE_CREATE_KEY_PROTECTED = 'protected' as keyof OrganizationAttributeCreate;
-export const ORGANIZATION_ATTRIBUTE_CREATE_KEY_VALUE = 'value' as keyof OrganizationAttributeCreate;
-
-export const ORGANIZATION_ATTRIBUTE_CREATE_KEYS = [
-  ORGANIZATION_ATTRIBUTE_CREATE_KEY_KEY,
-  ORGANIZATION_ATTRIBUTE_CREATE_KEY_PRIVATE,
-  ORGANIZATION_ATTRIBUTE_CREATE_KEY_PROTECTED,
-  ORGANIZATION_ATTRIBUTE_CREATE_KEY_VALUE,
-] as const;
-
-export const ORGANIZATION_ATTRIBUTE2_KEY_CREATED_ON = 'created_on' as keyof OrganizationAttribute2;
-export const ORGANIZATION_ATTRIBUTE2_KEY_KEY = 'key' as keyof OrganizationAttribute2;
-export const ORGANIZATION_ATTRIBUTE2_KEY_ORGANIZATION_ATTRIBUTE_ID = 'organization_attribute_id' as keyof OrganizationAttribute2;
-export const ORGANIZATION_ATTRIBUTE2_KEY_PROTECTED = 'protected' as keyof OrganizationAttribute2;
-export const ORGANIZATION_ATTRIBUTE2_KEY_UPDATED_ON = 'updated_on' as keyof OrganizationAttribute2;
-export const ORGANIZATION_ATTRIBUTE2_KEY_VALUE = 'value' as keyof OrganizationAttribute2;
-
-export const ORGANIZATION_ATTRIBUTE2_KEYS = [
-  ORGANIZATION_ATTRIBUTE2_KEY_CREATED_ON,
-  ORGANIZATION_ATTRIBUTE2_KEY_KEY,
-  ORGANIZATION_ATTRIBUTE2_KEY_ORGANIZATION_ATTRIBUTE_ID,
-  ORGANIZATION_ATTRIBUTE2_KEY_PROTECTED,
-  ORGANIZATION_ATTRIBUTE2_KEY_UPDATED_ON,
-  ORGANIZATION_ATTRIBUTE2_KEY_VALUE,
-] as const;
-
-export const ORGANIZATION_ATTRIBUTE_UPDATE_KEY_KEY = 'key' as keyof OrganizationAttributeUpdate;
-export const ORGANIZATION_ATTRIBUTE_UPDATE_KEY_PRIVATE = 'private' as keyof OrganizationAttributeUpdate;
-export const ORGANIZATION_ATTRIBUTE_UPDATE_KEY_PROTECTED = 'protected' as keyof OrganizationAttributeUpdate;
-export const ORGANIZATION_ATTRIBUTE_UPDATE_KEY_VALUE = 'value' as keyof OrganizationAttributeUpdate;
-
-export const ORGANIZATION_ATTRIBUTE_UPDATE_KEYS = [
-  ORGANIZATION_ATTRIBUTE_UPDATE_KEY_KEY,
-  ORGANIZATION_ATTRIBUTE_UPDATE_KEY_PRIVATE,
-  ORGANIZATION_ATTRIBUTE_UPDATE_KEY_PROTECTED,
-  ORGANIZATION_ATTRIBUTE_UPDATE_KEY_VALUE,
-] as const;
-
-export const ORGANIZATION_CREATE_KEY_ADDRESS_1 = 'address_1' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_ADDRESS_2 = 'address_2' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_ATTRIBUTES = 'attributes' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_BUSINESS_NUMBER = 'business_number' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_CITY = 'city' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_COUNTRY_CODE = 'country_code' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_CURRENCY = 'currency' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_NAME = 'name' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_POSTAL_CODE = 'postal_code' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_STATE = 'state' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_TAX_ID = 'tax_id' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_TAX_RATE = 'tax_rate' as keyof OrganizationCreate;
-export const ORGANIZATION_CREATE_KEY_USERS = 'users' as keyof OrganizationCreate;
-
-export const ORGANIZATION_CREATE_KEYS = [
-  ORGANIZATION_CREATE_KEY_ADDRESS_1,
-  ORGANIZATION_CREATE_KEY_ADDRESS_2,
-  ORGANIZATION_CREATE_KEY_ATTRIBUTES,
-  ORGANIZATION_CREATE_KEY_BUSINESS_NUMBER,
-  ORGANIZATION_CREATE_KEY_CITY,
-  ORGANIZATION_CREATE_KEY_COUNTRY_CODE,
-  ORGANIZATION_CREATE_KEY_CURRENCY,
-  ORGANIZATION_CREATE_KEY_DEFAULT_LOCALE,
-  ORGANIZATION_CREATE_KEY_NAME,
-  ORGANIZATION_CREATE_KEY_PARENT_ORGANIZATION_ID,
-  ORGANIZATION_CREATE_KEY_POSTAL_CODE,
-  ORGANIZATION_CREATE_KEY_STATE,
-  ORGANIZATION_CREATE_KEY_TAX_ID,
-  ORGANIZATION_CREATE_KEY_TAX_ID_TYPE,
-  ORGANIZATION_CREATE_KEY_TAX_RATE,
-  ORGANIZATION_CREATE_KEY_USERS,
-] as const;
-
-export const ORGANIZATION_CREDENTIAL_KEY_API_KEY_DESCRIPTION = 'api_key_description' as keyof OrganizationCredential;
-export const ORGANIZATION_CREDENTIAL_KEY_API_KEY_ID = 'api_key_id' as keyof OrganizationCredential;
-export const ORGANIZATION_CREDENTIAL_KEY_API_KEY_NAME = 'api_key_name' as keyof OrganizationCredential;
-export const ORGANIZATION_CREDENTIAL_KEY_CREATED_ON = 'created_on' as keyof OrganizationCredential;
-export const ORGANIZATION_CREDENTIAL_KEY_DELETED_ON = 'deleted_on' as keyof OrganizationCredential;
-export const ORGANIZATION_CREDENTIAL_KEY_LAST_USED_ON = 'last_used_on' as keyof OrganizationCredential;
-export const ORGANIZATION_CREDENTIAL_KEY_ORGANIZATION_ID = 'organization_id' as keyof OrganizationCredential;
-export const ORGANIZATION_CREDENTIAL_KEY_STATUS = 'status' as keyof OrganizationCredential;
-
-export const ORGANIZATION_CREDENTIAL_KEYS = [
-  ORGANIZATION_CREDENTIAL_KEY_API_KEY_DESCRIPTION,
-  ORGANIZATION_CREDENTIAL_KEY_API_KEY_ID,
-  ORGANIZATION_CREDENTIAL_KEY_API_KEY_NAME,
-  ORGANIZATION_CREDENTIAL_KEY_CREATED_ON,
-  ORGANIZATION_CREDENTIAL_KEY_DELETED_ON,
-  ORGANIZATION_CREDENTIAL_KEY_LAST_USED_ON,
-  ORGANIZATION_CREDENTIAL_KEY_ORGANIZATION_ID,
-  ORGANIZATION_CREDENTIAL_KEY_STATUS,
-] as const;
-
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_API_KEY = 'api_key' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_API_KEY_DESCRIPTION = 'api_key_description' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_API_KEY_NAME = 'api_key_name' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_CLIENT_ID = 'client_id' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_CLIENT_SECRET = 'client_secret' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_CREATED_ON = 'created_on' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_DELETED_ON = 'deleted_on' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_LAST_USED_ON = 'last_used_on' as keyof OrganizationCredentialCreated;
-export const ORGANIZATION_CREDENTIAL_CREATED_KEY_STATUS = 'status' as keyof OrganizationCredentialCreated;
-
-export const ORGANIZATION_CREDENTIAL_CREATED_KEYS = [
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_API_KEY,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_API_KEY_DESCRIPTION,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_API_KEY_NAME,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_CLIENT_ID,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_CLIENT_SECRET,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_CREATED_ON,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_DELETED_ON,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_LAST_USED_ON,
-  ORGANIZATION_CREDENTIAL_CREATED_KEY_STATUS,
-] as const;
-
-export const ORGANIZATION_CREDENTIAL_EXTRA_KEY_API_KEY_DESCRIPTION = 'api_key_description' as keyof OrganizationCredentialExtra;
-export const ORGANIZATION_CREDENTIAL_EXTRA_KEY_API_KEY_NAME = 'api_key_name' as keyof OrganizationCredentialExtra;
-export const ORGANIZATION_CREDENTIAL_EXTRA_KEY_EXPIRES_AT = 'expires_at' as keyof OrganizationCredentialExtra;
-
-export const ORGANIZATION_CREDENTIAL_EXTRA_KEYS = [
-  ORGANIZATION_CREDENTIAL_EXTRA_KEY_API_KEY_DESCRIPTION,
-  ORGANIZATION_CREDENTIAL_EXTRA_KEY_API_KEY_NAME,
-  ORGANIZATION_CREDENTIAL_EXTRA_KEY_EXPIRES_AT,
-] as const;
-
-export const ORGANIZATION_TOKEN_KEY_ACCESS_TOKEN = 'access_token' as keyof OrganizationToken;
-export const ORGANIZATION_TOKEN_KEY_EXPIRES_IN = 'expires_in' as keyof OrganizationToken;
-export const ORGANIZATION_TOKEN_KEY_TOKEN_TYPE = 'token_type' as keyof OrganizationToken;
-
-export const ORGANIZATION_TOKEN_KEYS = [
-  ORGANIZATION_TOKEN_KEY_ACCESS_TOKEN,
-  ORGANIZATION_TOKEN_KEY_EXPIRES_IN,
-  ORGANIZATION_TOKEN_KEY_TOKEN_TYPE,
-] as const;
-
-export const ORGANIZATION_UPDATE_KEY_ADDRESS_1 = 'address_1' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_ADDRESS_2 = 'address_2' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_BUSINESS_NUMBER = 'business_number' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_CITY = 'city' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_COUNTRY_CODE = 'country_code' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_NAME = 'name' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_POSTAL_CODE = 'postal_code' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_STATE = 'state' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_TAX_ID = 'tax_id' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationUpdate;
-export const ORGANIZATION_UPDATE_KEY_TAX_RATE = 'tax_rate' as keyof OrganizationUpdate;
-
-export const ORGANIZATION_UPDATE_KEYS = [
-  ORGANIZATION_UPDATE_KEY_ADDRESS_1,
-  ORGANIZATION_UPDATE_KEY_ADDRESS_2,
-  ORGANIZATION_UPDATE_KEY_BUSINESS_NUMBER,
-  ORGANIZATION_UPDATE_KEY_CITY,
-  ORGANIZATION_UPDATE_KEY_COUNTRY_CODE,
-  ORGANIZATION_UPDATE_KEY_DEFAULT_LOCALE,
-  ORGANIZATION_UPDATE_KEY_NAME,
-  ORGANIZATION_UPDATE_KEY_POSTAL_CODE,
-  ORGANIZATION_UPDATE_KEY_STATE,
-  ORGANIZATION_UPDATE_KEY_TAX_ID,
-  ORGANIZATION_UPDATE_KEY_TAX_ID_TYPE,
-  ORGANIZATION_UPDATE_KEY_TAX_RATE,
-] as const;
-
-export const ORGANIZATION_WITH_PLAN_KEY_ADDRESS_1 = 'address_1' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_ADDRESS_2 = 'address_2' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_ATTRIBUTES = 'attributes' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_BUSINESS_NUMBER = 'business_number' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_CITY = 'city' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_COUNTRY_CODE = 'country_code' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_CREATED_ON = 'created_on' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_CURRENCY = 'currency' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_DELETED_ON = 'deleted_on' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_NAME = 'name' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_ORGANIZATION_ID = 'organization_id' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_PLAN = 'plan' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_POSTAL_CODE = 'postal_code' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_STATE = 'state' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_STATUS = 'status' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_TAX_ID = 'tax_id' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_TAX_RATE = 'tax_rate' as keyof OrganizationWithPlan;
-export const ORGANIZATION_WITH_PLAN_KEY_USERS = 'users' as keyof OrganizationWithPlan;
-
-export const ORGANIZATION_WITH_PLAN_KEYS = [
-  ORGANIZATION_WITH_PLAN_KEY_ADDRESS_1,
-  ORGANIZATION_WITH_PLAN_KEY_ADDRESS_2,
-  ORGANIZATION_WITH_PLAN_KEY_ATTRIBUTES,
-  ORGANIZATION_WITH_PLAN_KEY_BUSINESS_NUMBER,
-  ORGANIZATION_WITH_PLAN_KEY_CITY,
-  ORGANIZATION_WITH_PLAN_KEY_COUNTRY_CODE,
-  ORGANIZATION_WITH_PLAN_KEY_CREATED_ON,
-  ORGANIZATION_WITH_PLAN_KEY_CURRENCY,
-  ORGANIZATION_WITH_PLAN_KEY_DEFAULT_LOCALE,
-  ORGANIZATION_WITH_PLAN_KEY_DELETED_ON,
-  ORGANIZATION_WITH_PLAN_KEY_NAME,
-  ORGANIZATION_WITH_PLAN_KEY_ORGANIZATION_ID,
-  ORGANIZATION_WITH_PLAN_KEY_PARENT_ORGANIZATION_ID,
-  ORGANIZATION_WITH_PLAN_KEY_PLAN,
-  ORGANIZATION_WITH_PLAN_KEY_POSTAL_CODE,
-  ORGANIZATION_WITH_PLAN_KEY_STATE,
-  ORGANIZATION_WITH_PLAN_KEY_STATUS,
-  ORGANIZATION_WITH_PLAN_KEY_TAX_ID,
-  ORGANIZATION_WITH_PLAN_KEY_TAX_ID_TYPE,
-  ORGANIZATION_WITH_PLAN_KEY_TAX_RATE,
-  ORGANIZATION_WITH_PLAN_KEY_USERS,
-] as const;
-
-export const PAGINATION_METADATA_KEY_CURRENT_PAGE = 'current_page' as keyof PaginationMetadata;
-export const PAGINATION_METADATA_KEY_HAS_NEXT_PAGE = 'has_next_page' as keyof PaginationMetadata;
-export const PAGINATION_METADATA_KEY_HAS_PREVIOUS_PAGE = 'has_previous_page' as keyof PaginationMetadata;
-export const PAGINATION_METADATA_KEY_PAGE_SIZE = 'page_size' as keyof PaginationMetadata;
-export const PAGINATION_METADATA_KEY_TOTAL_ITEMS = 'total_items' as keyof PaginationMetadata;
-export const PAGINATION_METADATA_KEY_TOTAL_PAGES = 'total_pages' as keyof PaginationMetadata;
-
-export const PAGINATION_METADATA_KEYS = [
-  PAGINATION_METADATA_KEY_CURRENT_PAGE,
-  PAGINATION_METADATA_KEY_HAS_NEXT_PAGE,
-  PAGINATION_METADATA_KEY_HAS_PREVIOUS_PAGE,
-  PAGINATION_METADATA_KEY_PAGE_SIZE,
-  PAGINATION_METADATA_KEY_TOTAL_ITEMS,
-  PAGINATION_METADATA_KEY_TOTAL_PAGES,
-] as const;
-
-export const PERMISSION_SET_KEY_PERMISSIONS = 'permissions' as keyof PermissionSet;
-
-export const PERMISSION_SET_KEYS = [
-  PERMISSION_SET_KEY_PERMISSIONS,
-] as const;
-
-export const PLAN_UPDATE_KEY_PLAN = 'plan' as keyof PlanUpdate;
-
-export const PLAN_UPDATE_KEYS = [
-  PLAN_UPDATE_KEY_PLAN,
-] as const;
-
-export const PROBLEM_KEY_DETAIL = 'detail' as keyof Problem;
-export const PROBLEM_KEY_STATUS = 'status' as keyof Problem;
-export const PROBLEM_KEY_TITLE = 'title' as keyof Problem;
-export const PROBLEM_KEY_TYPE = 'type' as keyof Problem;
-
-export const PROBLEM_KEYS = [
-  PROBLEM_KEY_DETAIL,
-  PROBLEM_KEY_STATUS,
-  PROBLEM_KEY_TITLE,
-  PROBLEM_KEY_TYPE,
-] as const;
-
-export const RELATION_SET_KEY_RELATIONS = 'relations' as keyof RelationSet;
-
-export const RELATION_SET_KEYS = [
-  RELATION_SET_KEY_RELATIONS,
-] as const;
-
-export const SIGNUP_CREATE_KEY_ORGANIZATION = 'organization' as keyof SignupCreate;
-export const SIGNUP_CREATE_KEY_TERMS_OF_SERVICE = 'terms_of_service' as keyof SignupCreate;
-export const SIGNUP_CREATE_KEY_USER = 'user' as keyof SignupCreate;
-
-export const SIGNUP_CREATE_KEYS = [
-  SIGNUP_CREATE_KEY_ORGANIZATION,
-  SIGNUP_CREATE_KEY_TERMS_OF_SERVICE,
-  SIGNUP_CREATE_KEY_USER,
-] as const;
-
-export const SPICE_DB_RELATIONSHIP_UPDATE_KEY_ADD = 'add' as keyof SpiceDbRelationshipUpdate;
-export const SPICE_DB_RELATIONSHIP_UPDATE_KEY_REMOVE = 'remove' as keyof SpiceDbRelationshipUpdate;
-
-export const SPICE_DB_RELATIONSHIP_UPDATE_KEYS = [
-  SPICE_DB_RELATIONSHIP_UPDATE_KEY_ADD,
-  SPICE_DB_RELATIONSHIP_UPDATE_KEY_REMOVE,
-] as const;
-
-export const TERMS_OF_SERVICE_ACCEPT_KEY_ACCEPTED = 'accepted' as keyof TermsOfServiceAccept;
-
-export const TERMS_OF_SERVICE_ACCEPT_KEYS = [
-  TERMS_OF_SERVICE_ACCEPT_KEY_ACCEPTED,
-] as const;
-
-export const TRANSFER_EVENT_KEY_CURRENT_REGISTRAR = 'current_registrar' as keyof TransferEvent;
-export const TRANSFER_EVENT_KEY_EXECUTION_DATE = 'execution_date' as keyof TransferEvent;
-export const TRANSFER_EVENT_KEY_EXPIRATION_DATE = 'expiration_date' as keyof TransferEvent;
-export const TRANSFER_EVENT_KEY_MESSAGE = 'message' as keyof TransferEvent;
-export const TRANSFER_EVENT_KEY_REQUESTING_REGISTRAR = 'requesting_registrar' as keyof TransferEvent;
-
-export const TRANSFER_EVENT_KEYS = [
-  TRANSFER_EVENT_KEY_CURRENT_REGISTRAR,
-  TRANSFER_EVENT_KEY_EXECUTION_DATE,
-  TRANSFER_EVENT_KEY_EXPIRATION_DATE,
-  TRANSFER_EVENT_KEY_MESSAGE,
-  TRANSFER_EVENT_KEY_REQUESTING_REGISTRAR,
-] as const;
-
-export const USER_KEY_CREATED_ON = 'created_on' as keyof User;
-export const USER_KEY_DELETED_ON = 'deleted_on' as keyof User;
-export const USER_KEY_EMAIL = 'email' as keyof User;
-export const USER_KEY_FIRST_NAME = 'first_name' as keyof User;
-export const USER_KEY_LAST_NAME = 'last_name' as keyof User;
-export const USER_KEY_LOCALE = 'locale' as keyof User;
-export const USER_KEY_ORGANIZATION_ID = 'organization_id' as keyof User;
-export const USER_KEY_PHONE = 'phone' as keyof User;
-export const USER_KEY_STATUS = 'status' as keyof User;
-export const USER_KEY_UPDATED_ON = 'updated_on' as keyof User;
-export const USER_KEY_USER_ID = 'user_id' as keyof User;
-export const USER_KEY_USERNAME = 'username' as keyof User;
-
-export const USER_KEYS = [
-  USER_KEY_CREATED_ON,
-  USER_KEY_DELETED_ON,
-  USER_KEY_EMAIL,
-  USER_KEY_FIRST_NAME,
-  USER_KEY_LAST_NAME,
-  USER_KEY_LOCALE,
-  USER_KEY_ORGANIZATION_ID,
-  USER_KEY_PHONE,
-  USER_KEY_STATUS,
-  USER_KEY_UPDATED_ON,
-  USER_KEY_USER_ID,
-  USER_KEY_USERNAME,
-] as const;
-
-export const USER_ATTRIBUTE_UPDATE_KEY_KEY = 'key' as keyof UserAttributeUpdate;
-export const USER_ATTRIBUTE_UPDATE_KEY_VALUE = 'value' as keyof UserAttributeUpdate;
-
-export const USER_ATTRIBUTE_UPDATE_KEYS = [
-  USER_ATTRIBUTE_UPDATE_KEY_KEY,
-  USER_ATTRIBUTE_UPDATE_KEY_VALUE,
-] as const;
-
-export const USER_CREATE_KEY_EMAIL = 'email' as keyof UserCreate;
-export const USER_CREATE_KEY_FIRST_NAME = 'first_name' as keyof UserCreate;
-export const USER_CREATE_KEY_LAST_NAME = 'last_name' as keyof UserCreate;
-export const USER_CREATE_KEY_LOCALE = 'locale' as keyof UserCreate;
-export const USER_CREATE_KEY_PASSWORD = 'password' as keyof UserCreate;
-export const USER_CREATE_KEY_PHONE = 'phone' as keyof UserCreate;
-export const USER_CREATE_KEY_USERNAME = 'username' as keyof UserCreate;
-
-export const USER_CREATE_KEYS = [
-  USER_CREATE_KEY_EMAIL,
-  USER_CREATE_KEY_FIRST_NAME,
-  USER_CREATE_KEY_LAST_NAME,
-  USER_CREATE_KEY_LOCALE,
-  USER_CREATE_KEY_PASSWORD,
-  USER_CREATE_KEY_PHONE,
-  USER_CREATE_KEY_USERNAME,
-] as const;
-
-export const USER_NOTIFICATION_KEY_CREATED_ON = 'created_on' as keyof UserNotification;
-export const USER_NOTIFICATION_KEY_NOTIFICATION = 'notification' as keyof UserNotification;
-export const USER_NOTIFICATION_KEY_NOTIFICATION_ID = 'notification_id' as keyof UserNotification;
-export const USER_NOTIFICATION_KEY_STATUS = 'status' as keyof UserNotification;
-export const USER_NOTIFICATION_KEY_UPDATED_ON = 'updated_on' as keyof UserNotification;
-export const USER_NOTIFICATION_KEY_USER_ID = 'user_id' as keyof UserNotification;
-export const USER_NOTIFICATION_KEY_USER_NOTIFICATION_ID = 'user_notification_id' as keyof UserNotification;
-
-export const USER_NOTIFICATION_KEYS = [
-  USER_NOTIFICATION_KEY_CREATED_ON,
-  USER_NOTIFICATION_KEY_NOTIFICATION,
-  USER_NOTIFICATION_KEY_NOTIFICATION_ID,
-  USER_NOTIFICATION_KEY_STATUS,
-  USER_NOTIFICATION_KEY_UPDATED_ON,
-  USER_NOTIFICATION_KEY_USER_ID,
-  USER_NOTIFICATION_KEY_USER_NOTIFICATION_ID,
-] as const;
-
-export const USER_NOTIFICATION_SUMMARY_KEY_NOTIFICATION = 'notification' as keyof UserNotificationSummary;
-export const USER_NOTIFICATION_SUMMARY_KEY_STATUS = 'status' as keyof UserNotificationSummary;
-export const USER_NOTIFICATION_SUMMARY_KEY_USER_NOTIFICATION_ID = 'user_notification_id' as keyof UserNotificationSummary;
-
-export const USER_NOTIFICATION_SUMMARY_KEYS = [
-  USER_NOTIFICATION_SUMMARY_KEY_NOTIFICATION,
-  USER_NOTIFICATION_SUMMARY_KEY_STATUS,
-  USER_NOTIFICATION_SUMMARY_KEY_USER_NOTIFICATION_ID,
-] as const;
-
-export const USER_TOKEN_KEY_ACCESS_TOKEN = 'access_token' as keyof UserToken;
-export const USER_TOKEN_KEY_EXPIRES_IN = 'expires_in' as keyof UserToken;
-export const USER_TOKEN_KEY_REFRESH_EXPIRES_IN = 'refresh_expires_in' as keyof UserToken;
-export const USER_TOKEN_KEY_REFRESH_TOKEN = 'refresh_token' as keyof UserToken;
-export const USER_TOKEN_KEY_TOKEN_TYPE = 'token_type' as keyof UserToken;
-
-export const USER_TOKEN_KEYS = [
-  USER_TOKEN_KEY_ACCESS_TOKEN,
-  USER_TOKEN_KEY_EXPIRES_IN,
-  USER_TOKEN_KEY_REFRESH_EXPIRES_IN,
-  USER_TOKEN_KEY_REFRESH_TOKEN,
-  USER_TOKEN_KEY_TOKEN_TYPE,
-] as const;
-
-export const USER_UPDATE_KEY_EMAIL = 'email' as keyof UserUpdate;
-export const USER_UPDATE_KEY_FIRST_NAME = 'first_name' as keyof UserUpdate;
-export const USER_UPDATE_KEY_LAST_NAME = 'last_name' as keyof UserUpdate;
-export const USER_UPDATE_KEY_LOCALE = 'locale' as keyof UserUpdate;
-export const USER_UPDATE_KEY_PHONE = 'phone' as keyof UserUpdate;
-export const USER_UPDATE_KEY_USER_ATTRIBUTES = 'user_attributes' as keyof UserUpdate;
-export const USER_UPDATE_KEY_USERNAME = 'username' as keyof UserUpdate;
-
-export const USER_UPDATE_KEYS = [
-  USER_UPDATE_KEY_EMAIL,
-  USER_UPDATE_KEY_FIRST_NAME,
-  USER_UPDATE_KEY_LAST_NAME,
-  USER_UPDATE_KEY_LOCALE,
-  USER_UPDATE_KEY_PHONE,
-  USER_UPDATE_KEY_USER_ATTRIBUTES,
-  USER_UPDATE_KEY_USERNAME,
-] as const;
-
-export const USER_WITH_ATTRIBUTES_KEY_CREATED_ON = 'created_on' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_DELETED_ON = 'deleted_on' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_EMAIL = 'email' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_FIRST_NAME = 'first_name' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_LAST_NAME = 'last_name' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_LOCALE = 'locale' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_ORGANIZATION_ID = 'organization_id' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_PHONE = 'phone' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_STATUS = 'status' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_UPDATED_ON = 'updated_on' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_USER_ATTRIBUTES = 'user_attributes' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_USER_ID = 'user_id' as keyof UserWithAttributes;
-export const USER_WITH_ATTRIBUTES_KEY_USERNAME = 'username' as keyof UserWithAttributes;
-
-export const USER_WITH_ATTRIBUTES_KEYS = [
-  USER_WITH_ATTRIBUTES_KEY_CREATED_ON,
-  USER_WITH_ATTRIBUTES_KEY_DELETED_ON,
-  USER_WITH_ATTRIBUTES_KEY_EMAIL,
-  USER_WITH_ATTRIBUTES_KEY_FIRST_NAME,
-  USER_WITH_ATTRIBUTES_KEY_LAST_NAME,
-  USER_WITH_ATTRIBUTES_KEY_LOCALE,
-  USER_WITH_ATTRIBUTES_KEY_ORGANIZATION_ID,
-  USER_WITH_ATTRIBUTES_KEY_PHONE,
-  USER_WITH_ATTRIBUTES_KEY_STATUS,
-  USER_WITH_ATTRIBUTES_KEY_UPDATED_ON,
-  USER_WITH_ATTRIBUTES_KEY_USER_ATTRIBUTES,
-  USER_WITH_ATTRIBUTES_KEY_USER_ID,
-  USER_WITH_ATTRIBUTES_KEY_USERNAME,
-] as const;
-
-export const USER_WITH_RELATION_PERMISSIONS_KEY_CREATED_ON = 'created_on' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_DELETED_ON = 'deleted_on' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_EMAIL = 'email' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_FIRST_NAME = 'first_name' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_LAST_NAME = 'last_name' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_LOCALE = 'locale' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_ORGANIZATION_ID = 'organization_id' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_PERMISSIONS = 'permissions' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_PHONE = 'phone' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_RELATIONS = 'relations' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_STATUS = 'status' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_UPDATED_ON = 'updated_on' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_USER_ATTRIBUTES = 'user_attributes' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_USER_ID = 'user_id' as keyof UserWithRelationPermissions;
-export const USER_WITH_RELATION_PERMISSIONS_KEY_USERNAME = 'username' as keyof UserWithRelationPermissions;
-
-export const USER_WITH_RELATION_PERMISSIONS_KEYS = [
-  USER_WITH_RELATION_PERMISSIONS_KEY_CREATED_ON,
-  USER_WITH_RELATION_PERMISSIONS_KEY_DELETED_ON,
-  USER_WITH_RELATION_PERMISSIONS_KEY_EMAIL,
-  USER_WITH_RELATION_PERMISSIONS_KEY_FIRST_NAME,
-  USER_WITH_RELATION_PERMISSIONS_KEY_LAST_NAME,
-  USER_WITH_RELATION_PERMISSIONS_KEY_LOCALE,
-  USER_WITH_RELATION_PERMISSIONS_KEY_ORGANIZATION_ID,
-  USER_WITH_RELATION_PERMISSIONS_KEY_PERMISSIONS,
-  USER_WITH_RELATION_PERMISSIONS_KEY_PHONE,
-  USER_WITH_RELATION_PERMISSIONS_KEY_RELATIONS,
-  USER_WITH_RELATION_PERMISSIONS_KEY_STATUS,
-  USER_WITH_RELATION_PERMISSIONS_KEY_UPDATED_ON,
-  USER_WITH_RELATION_PERMISSIONS_KEY_USER_ATTRIBUTES,
-  USER_WITH_RELATION_PERMISSIONS_KEY_USER_ID,
-  USER_WITH_RELATION_PERMISSIONS_KEY_USERNAME,
-] as const;
-
-export const VALIDATION_ERROR_KEY_LOC = 'loc' as keyof ValidationError;
-export const VALIDATION_ERROR_KEY_MSG = 'msg' as keyof ValidationError;
-export const VALIDATION_ERROR_KEY_TYPE = 'type' as keyof ValidationError;
-
-export const VALIDATION_ERROR_KEYS = [
-  VALIDATION_ERROR_KEY_LOC,
-  VALIDATION_ERROR_KEY_MSG,
-  VALIDATION_ERROR_KEY_TYPE,
-] as const;
-
-export const DOMAIN_AVAILABILITY_LIST_KEY_META = 'meta' as keyof DomainAvailabilityList;
-export const DOMAIN_AVAILABILITY_LIST_KEY_RESULTS = 'results' as keyof DomainAvailabilityList;
-
-export const DOMAIN_AVAILABILITY_LIST_KEYS = [
-  DOMAIN_AVAILABILITY_LIST_KEY_META,
-  DOMAIN_AVAILABILITY_LIST_KEY_RESULTS,
-] as const;
-
-export const DOMAIN_AVAILABILITY_CHECK_KEY_AVAILABLE = 'available' as keyof DomainAvailabilityCheck;
-export const DOMAIN_AVAILABILITY_CHECK_KEY_DOMAIN = 'domain' as keyof DomainAvailabilityCheck;
-export const DOMAIN_AVAILABILITY_CHECK_KEY_REASON = 'reason' as keyof DomainAvailabilityCheck;
-
-export const DOMAIN_AVAILABILITY_CHECK_KEYS = [
-  DOMAIN_AVAILABILITY_CHECK_KEY_AVAILABLE,
-  DOMAIN_AVAILABILITY_CHECK_KEY_DOMAIN,
-  DOMAIN_AVAILABILITY_CHECK_KEY_REASON,
+/**
+ * Client Id
+ *
+ * The organization ID associated with the credentials.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `client_id` property of Body_issue_organization_token_v1_auth_token_post objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = body_issue_organization_token_v1_auth_token_post[KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_ID;
+ * const value = body_issue_organization_token_v1_auth_token_post[propertyName];
+ * ```
+ *
+ * @see {@link Body_issue_organization_token_v1_auth_token_post} - The TypeScript type definition
+ * @see {@link KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST} - Array of all keys for this type
+ */
+export const KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_ID = 'client_id' as keyof Body_issue_organization_token_v1_auth_token_post;
+/**
+ * Client Secret
+ *
+ * Client secret for authentication.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `client_secret` property of Body_issue_organization_token_v1_auth_token_post objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = body_issue_organization_token_v1_auth_token_post[KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_SECRET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_SECRET;
+ * const value = body_issue_organization_token_v1_auth_token_post[propertyName];
+ * ```
+ *
+ * @see {@link Body_issue_organization_token_v1_auth_token_post} - The TypeScript type definition
+ * @see {@link KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST} - Array of all keys for this type
+ */
+export const KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_SECRET = 'client_secret' as keyof Body_issue_organization_token_v1_auth_token_post;
+/**
+ * grant_type property
+ *
+ * The grant type for the authentication request.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `grant_type` property of Body_issue_organization_token_v1_auth_token_post objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = body_issue_organization_token_v1_auth_token_post[KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_GRANT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_GRANT_TYPE;
+ * const value = body_issue_organization_token_v1_auth_token_post[propertyName];
+ * ```
+ *
+ * @see {@link Body_issue_organization_token_v1_auth_token_post} - The TypeScript type definition
+ * @see {@link KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST} - Array of all keys for this type
+ */
+export const KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_GRANT_TYPE = 'grant_type' as keyof Body_issue_organization_token_v1_auth_token_post;
+/**
+ * Password
+ *
+ * Password for the user.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `password` property of Body_issue_organization_token_v1_auth_token_post objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = body_issue_organization_token_v1_auth_token_post[KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD;
+ * const value = body_issue_organization_token_v1_auth_token_post[propertyName];
+ * ```
+ *
+ * @see {@link Body_issue_organization_token_v1_auth_token_post} - The TypeScript type definition
+ * @see {@link KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST} - Array of all keys for this type
+ */
+export const KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD = 'password' as keyof Body_issue_organization_token_v1_auth_token_post;
+/**
+ * Username
+ *
+ * Username for authentication.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of Body_issue_organization_token_v1_auth_token_post objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = body_issue_organization_token_v1_auth_token_post[KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME;
+ * const value = body_issue_organization_token_v1_auth_token_post[propertyName];
+ * ```
+ *
+ * @see {@link Body_issue_organization_token_v1_auth_token_post} - The TypeScript type definition
+ * @see {@link KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST} - Array of all keys for this type
+ */
+export const KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME = 'username' as keyof Body_issue_organization_token_v1_auth_token_post;
+
+/**
+ * Array of all Body_issue_organization_token_v1_auth_token_post property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Body_issue_organization_token_v1_auth_token_post objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST) {
+ *   console.log(`Property: ${key}, Value: ${body_issue_organization_token_v1_auth_token_post[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST.includes(someKey);
+ * ```
+ *
+ * @see {@link Body_issue_organization_token_v1_auth_token_post} - The TypeScript type definition
+ */
+export const KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST: readonly (keyof Body_issue_organization_token_v1_auth_token_post)[] = [
+  KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_ID,
+  KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_SECRET,
+  KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_GRANT_TYPE,
+  KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD,
+  KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME,
+] as const;
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of EmailForwardBulkDeleteResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkdeleteresult[KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS;
+ * const value = emailforwardbulkdeleteresult[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkDeleteResult} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS = 'results' as keyof EmailForwardBulkDeleteResult;
+
+/**
+ * Array of all EmailForwardBulkDeleteResult property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardBulkDeleteResult objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardbulkdeleteresult[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardBulkDeleteResult} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT: readonly (keyof EmailForwardBulkDeleteResult)[] = [
+  KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS,
+] as const;
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of EmailForwardBulkUpdateResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkupdateresult[KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS;
+ * const value = emailforwardbulkupdateresult[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdateResult} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS = 'results' as keyof EmailForwardBulkUpdateResult;
+
+/**
+ * Array of all EmailForwardBulkUpdateResult property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardBulkUpdateResult objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardbulkupdateresult[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdateResult} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT: readonly (keyof EmailForwardBulkUpdateResult)[] = [
+  KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS,
+] as const;
+
+/**
+ * Error Message
+ *
+ * Error message if operation failed
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `error_message` property of BulkOperationResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = bulkoperationresult[KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE;
+ * const value = bulkoperationresult[propertyName];
+ * ```
+ *
+ * @see {@link BulkOperationResult} - The TypeScript type definition
+ * @see {@link KEYS_BULK_OPERATION_RESULT} - Array of all keys for this type
+ */
+export const KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE = 'error_message' as keyof BulkOperationResult;
+/**
+ * status property
+ *
+ * Status of performed operation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of BulkOperationResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = bulkoperationresult[KEY_BULK_OPERATION_RESULT_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BULK_OPERATION_RESULT_STATUS;
+ * const value = bulkoperationresult[propertyName];
+ * ```
+ *
+ * @see {@link BulkOperationResult} - The TypeScript type definition
+ * @see {@link KEYS_BULK_OPERATION_RESULT} - Array of all keys for this type
+ */
+export const KEY_BULK_OPERATION_RESULT_STATUS = 'status' as keyof BulkOperationResult;
+
+/**
+ * Array of all BulkOperationResult property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for BulkOperationResult objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_BULK_OPERATION_RESULT) {
+ *   console.log(`Property: ${key}, Value: ${bulkoperationresult[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_BULK_OPERATION_RESULT.includes(someKey);
+ * ```
+ *
+ * @see {@link BulkOperationResult} - The TypeScript type definition
+ */
+export const KEYS_BULK_OPERATION_RESULT: readonly (keyof BulkOperationResult)[] = [
+  KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE,
+  KEY_BULK_OPERATION_RESULT_STATUS,
+] as const;
+
+/**
+ * City
+ *
+ * The city of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_CITY;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_CITY = 'city' as keyof ContactCreate;
+/**
+ * Country
+ *
+ * The country of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_COUNTRY;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_COUNTRY = 'country' as keyof ContactCreate;
+/**
+ * Disclose
+ *
+ * Whether the contact should be disclosed
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disclose` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_DISCLOSE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_DISCLOSE;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_DISCLOSE = 'disclose' as keyof ContactCreate;
+/**
+ * Email
+ *
+ * The email of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_EMAIL;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_EMAIL = 'email' as keyof ContactCreate;
+/**
+ * Fax
+ *
+ * The contacts's fax number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fax` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_FAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_FAX;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_FAX = 'fax' as keyof ContactCreate;
+/**
+ * First Name
+ *
+ * The first name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_FIRST_NAME;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_FIRST_NAME = 'first_name' as keyof ContactCreate;
+/**
+ * Last Name
+ *
+ * The last name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_LAST_NAME;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_LAST_NAME = 'last_name' as keyof ContactCreate;
+/**
+ * Org
+ *
+ * The organization of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `org` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_ORG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_ORG;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_ORG = 'org' as keyof ContactCreate;
+/**
+ * Phone
+ *
+ * The contact's phone number
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PHONE;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PHONE = 'phone' as keyof ContactCreate;
+/**
+ * Postal Code
+ *
+ * The postal code of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_POSTAL_CODE;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_POSTAL_CODE = 'postal_code' as keyof ContactCreate;
+/**
+ * State
+ *
+ * The state of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_STATE;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_STATE = 'state' as keyof ContactCreate;
+/**
+ * Street
+ *
+ * The address of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `street` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_STREET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_STREET;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_STREET = 'street' as keyof ContactCreate;
+/**
+ * Title
+ *
+ * The title of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ContactCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreate[KEY_CONTACT_CREATE_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_TITLE;
+ * const value = contactcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_TITLE = 'title' as keyof ContactCreate;
+
+/**
+ * Array of all ContactCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${contactcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreate} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE: readonly (keyof ContactCreate)[] = [
+  KEY_CONTACT_CREATE_CITY,
+  KEY_CONTACT_CREATE_COUNTRY,
+  KEY_CONTACT_CREATE_DISCLOSE,
+  KEY_CONTACT_CREATE_EMAIL,
+  KEY_CONTACT_CREATE_FAX,
+  KEY_CONTACT_CREATE_FIRST_NAME,
+  KEY_CONTACT_CREATE_LAST_NAME,
+  KEY_CONTACT_CREATE_ORG,
+  KEY_CONTACT_CREATE_PHONE,
+  KEY_CONTACT_CREATE_POSTAL_CODE,
+  KEY_CONTACT_CREATE_STATE,
+  KEY_CONTACT_CREATE_STREET,
+  KEY_CONTACT_CREATE_TITLE,
+] as const;
+
+/**
+ * City
+ *
+ * The city of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CITY;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CITY = 'city' as keyof Contact;
+/**
+ * Country
+ *
+ * The country of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_COUNTRY;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_COUNTRY = 'country' as keyof Contact;
+/**
+ * Disclose
+ *
+ * Whether the contact should be disclosed
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disclose` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_DISCLOSE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DISCLOSE;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DISCLOSE = 'disclose' as keyof Contact;
+/**
+ * Email
+ *
+ * The email of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_EMAIL;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_EMAIL = 'email' as keyof Contact;
+/**
+ * Fax
+ *
+ * The contacts's fax number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fax` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_FAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_FAX;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_FAX = 'fax' as keyof Contact;
+/**
+ * First Name
+ *
+ * The first name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_FIRST_NAME;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_FIRST_NAME = 'first_name' as keyof Contact;
+/**
+ * Last Name
+ *
+ * The last name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_LAST_NAME;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_LAST_NAME = 'last_name' as keyof Contact;
+/**
+ * Org
+ *
+ * The organization of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `org` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_ORG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ORG;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ORG = 'org' as keyof Contact;
+/**
+ * Phone
+ *
+ * The contact's phone number
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_PHONE;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_PHONE = 'phone' as keyof Contact;
+/**
+ * Postal Code
+ *
+ * The postal code of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_POSTAL_CODE;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_POSTAL_CODE = 'postal_code' as keyof Contact;
+/**
+ * State
+ *
+ * The state of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_STATE;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_STATE = 'state' as keyof Contact;
+/**
+ * Street
+ *
+ * The address of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `street` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_STREET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_STREET;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_STREET = 'street' as keyof Contact;
+/**
+ * Title
+ *
+ * The title of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_TITLE;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_TITLE = 'title' as keyof Contact;
+
+/**
+ * Array of all Contact property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Contact objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT) {
+ *   console.log(`Property: ${key}, Value: ${contact[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT.includes(someKey);
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ */
+export const KEYS_CONTACT: readonly (keyof Contact)[] = [
+  KEY_CONTACT_CITY,
+  KEY_CONTACT_COUNTRY,
+  KEY_CONTACT_DISCLOSE,
+  KEY_CONTACT_EMAIL,
+  KEY_CONTACT_FAX,
+  KEY_CONTACT_FIRST_NAME,
+  KEY_CONTACT_LAST_NAME,
+  KEY_CONTACT_ORG,
+  KEY_CONTACT_PHONE,
+  KEY_CONTACT_POSTAL_CODE,
+  KEY_CONTACT_STATE,
+  KEY_CONTACT_STREET,
+  KEY_CONTACT_TITLE,
+] as const;
+
+/**
+ * City
+ *
+ * The city of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_CITY;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_CITY = 'city' as keyof ContactSchema;
+/**
+ * Contact Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_CONTACT_ID;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_CONTACT_ID = 'contact_id' as keyof ContactSchema;
+/**
+ * Country
+ *
+ * The country of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_COUNTRY;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_COUNTRY = 'country' as keyof ContactSchema;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_CREATED_ON;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_CREATED_ON = 'created_on' as keyof ContactSchema;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_DELETED_ON;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_DELETED_ON = 'deleted_on' as keyof ContactSchema;
+/**
+ * Disclose
+ *
+ * Whether the contact should be disclosed
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disclose` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_DISCLOSE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_DISCLOSE;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_DISCLOSE = 'disclose' as keyof ContactSchema;
+/**
+ * Email
+ *
+ * The email of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_EMAIL;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_EMAIL = 'email' as keyof ContactSchema;
+/**
+ * Fax
+ *
+ * The contacts's fax number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fax` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_FAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_FAX;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_FAX = 'fax' as keyof ContactSchema;
+/**
+ * First Name
+ *
+ * The first name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_FIRST_NAME;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_FIRST_NAME = 'first_name' as keyof ContactSchema;
+/**
+ * Last Name
+ *
+ * The last name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_LAST_NAME;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_LAST_NAME = 'last_name' as keyof ContactSchema;
+/**
+ * Org
+ *
+ * The organization of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `org` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_ORG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_ORG;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_ORG = 'org' as keyof ContactSchema;
+/**
+ * Organization Id
+ *
+ * The organization that owns the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_ORGANIZATION_ID;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_ORGANIZATION_ID = 'organization_id' as keyof ContactSchema;
+/**
+ * Phone
+ *
+ * The contact's phone number
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_PHONE;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_PHONE = 'phone' as keyof ContactSchema;
+/**
+ * Postal Code
+ *
+ * The postal code of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_POSTAL_CODE;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_POSTAL_CODE = 'postal_code' as keyof ContactSchema;
+/**
+ * State
+ *
+ * The state of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_STATE;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_STATE = 'state' as keyof ContactSchema;
+/**
+ * Street
+ *
+ * The address of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `street` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_STREET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_STREET;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_STREET = 'street' as keyof ContactSchema;
+/**
+ * Title
+ *
+ * The title of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ContactSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactschema[KEY_CONTACT_SCHEMA_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_SCHEMA_TITLE;
+ * const value = contactschema[propertyName];
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_SCHEMA_TITLE = 'title' as keyof ContactSchema;
+
+/**
+ * Array of all ContactSchema property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactSchema objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_SCHEMA) {
+ *   console.log(`Property: ${key}, Value: ${contactschema[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_SCHEMA.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactSchema} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_SCHEMA: readonly (keyof ContactSchema)[] = [
+  KEY_CONTACT_SCHEMA_CITY,
+  KEY_CONTACT_SCHEMA_CONTACT_ID,
+  KEY_CONTACT_SCHEMA_COUNTRY,
+  KEY_CONTACT_SCHEMA_CREATED_ON,
+  KEY_CONTACT_SCHEMA_DELETED_ON,
+  KEY_CONTACT_SCHEMA_DISCLOSE,
+  KEY_CONTACT_SCHEMA_EMAIL,
+  KEY_CONTACT_SCHEMA_FAX,
+  KEY_CONTACT_SCHEMA_FIRST_NAME,
+  KEY_CONTACT_SCHEMA_LAST_NAME,
+  KEY_CONTACT_SCHEMA_ORG,
+  KEY_CONTACT_SCHEMA_ORGANIZATION_ID,
+  KEY_CONTACT_SCHEMA_PHONE,
+  KEY_CONTACT_SCHEMA_POSTAL_CODE,
+  KEY_CONTACT_SCHEMA_STATE,
+  KEY_CONTACT_SCHEMA_STREET,
+  KEY_CONTACT_SCHEMA_TITLE,
+] as const;
+
+/**
+ * Canceled On
+ *
+ * The date the verification was cancelled
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `canceled_on` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_CANCELED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_CANCELED_ON;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_CANCELED_ON = 'canceled_on' as keyof ContactVerificationApi;
+/**
+ * Contact Id
+ *
+ * The contact that is being verified
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_CONTACT_ID;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_CONTACT_ID = 'contact_id' as keyof ContactVerificationApi;
+/**
+ * Contact Verification Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_verification_id` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerificationApi;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_CREATED_ON;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_CREATED_ON = 'created_on' as keyof ContactVerificationApi;
+/**
+ * status property
+ *
+ * Current status of the email verification
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_STATUS;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_STATUS = 'status' as keyof ContactVerificationApi;
+/**
+ * Token
+ *
+ * The token to verify the email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `token` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_TOKEN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_TOKEN;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_TOKEN = 'token' as keyof ContactVerificationApi;
+/**
+ * type property
+ *
+ * The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_TYPE;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_TYPE = 'type' as keyof ContactVerificationApi;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_UPDATED_ON;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_UPDATED_ON = 'updated_on' as keyof ContactVerificationApi;
+/**
+ * Verified On
+ *
+ * The date the verification was verified
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verified_on` property of ContactVerificationApi objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationapi[KEY_CONTACT_VERIFICATION_API_VERIFIED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_API_VERIFIED_ON;
+ * const value = contactverificationapi[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_API_VERIFIED_ON = 'verified_on' as keyof ContactVerificationApi;
+
+/**
+ * Array of all ContactVerificationApi property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactVerificationApi objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_VERIFICATION_API) {
+ *   console.log(`Property: ${key}, Value: ${contactverificationapi[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_VERIFICATION_API.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactVerificationApi} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_VERIFICATION_API: readonly (keyof ContactVerificationApi)[] = [
+  KEY_CONTACT_VERIFICATION_API_CANCELED_ON,
+  KEY_CONTACT_VERIFICATION_API_CONTACT_ID,
+  KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID,
+  KEY_CONTACT_VERIFICATION_API_CREATED_ON,
+  KEY_CONTACT_VERIFICATION_API_STATUS,
+  KEY_CONTACT_VERIFICATION_API_TOKEN,
+  KEY_CONTACT_VERIFICATION_API_TYPE,
+  KEY_CONTACT_VERIFICATION_API_UPDATED_ON,
+  KEY_CONTACT_VERIFICATION_API_VERIFIED_ON,
+] as const;
+
+/**
+ * Canceled On
+ *
+ * The date the verification was cancelled
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `canceled_on` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON = 'canceled_on' as keyof ContactVerificationEmail;
+/**
+ * Contact Id
+ *
+ * The contact that is being verified
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID = 'contact_id' as keyof ContactVerificationEmail;
+/**
+ * Contact Verification Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_verification_id` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerificationEmail;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_CREATED_ON;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_CREATED_ON = 'created_on' as keyof ContactVerificationEmail;
+/**
+ * status property
+ *
+ * Current status of the email verification
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_STATUS;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_STATUS = 'status' as keyof ContactVerificationEmail;
+/**
+ * type property
+ *
+ * The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_TYPE;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_TYPE = 'type' as keyof ContactVerificationEmail;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON = 'updated_on' as keyof ContactVerificationEmail;
+/**
+ * Verified On
+ *
+ * The date the verification was verified
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verified_on` property of ContactVerificationEmail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationemail[KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON;
+ * const value = contactverificationemail[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON = 'verified_on' as keyof ContactVerificationEmail;
+
+/**
+ * Array of all ContactVerificationEmail property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactVerificationEmail objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_VERIFICATION_EMAIL) {
+ *   console.log(`Property: ${key}, Value: ${contactverificationemail[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_VERIFICATION_EMAIL.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactVerificationEmail} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_VERIFICATION_EMAIL: readonly (keyof ContactVerificationEmail)[] = [
+  KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON,
+  KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID,
+  KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID,
+  KEY_CONTACT_VERIFICATION_EMAIL_CREATED_ON,
+  KEY_CONTACT_VERIFICATION_EMAIL_STATUS,
+  KEY_CONTACT_VERIFICATION_EMAIL_TYPE,
+  KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON,
+  KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON,
+] as const;
+
+/**
+ * Canceled On
+ *
+ * The date the verification was cancelled
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `canceled_on` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_CANCELED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_CANCELED_ON;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_CANCELED_ON = 'canceled_on' as keyof ContactVerification;
+/**
+ * Contact Id
+ *
+ * The contact that is being verified
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_CONTACT_ID;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_CONTACT_ID = 'contact_id' as keyof ContactVerification;
+/**
+ * Contact Verification Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_verification_id` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerification;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_CREATED_ON;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_CREATED_ON = 'created_on' as keyof ContactVerification;
+/**
+ * status property
+ *
+ * Current status of the email verification
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS = 'status' as keyof ContactVerification;
+/**
+ * type property
+ *
+ * The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_TYPE;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_TYPE = 'type' as keyof ContactVerification;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_UPDATED_ON;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_UPDATED_ON = 'updated_on' as keyof ContactVerification;
+/**
+ * Verified On
+ *
+ * The date the verification was verified
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verified_on` property of ContactVerification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverification[KEY_CONTACT_VERIFICATION_VERIFIED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_VERIFIED_ON;
+ * const value = contactverification[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_VERIFIED_ON = 'verified_on' as keyof ContactVerification;
+
+/**
+ * Array of all ContactVerification property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactVerification objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_VERIFICATION) {
+ *   console.log(`Property: ${key}, Value: ${contactverification[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_VERIFICATION.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactVerification} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_VERIFICATION: readonly (keyof ContactVerification)[] = [
+  KEY_CONTACT_VERIFICATION_CANCELED_ON,
+  KEY_CONTACT_VERIFICATION_CONTACT_ID,
+  KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID,
+  KEY_CONTACT_VERIFICATION_CREATED_ON,
+  KEY_CONTACT_VERIFICATION_STATUS,
+  KEY_CONTACT_VERIFICATION_TYPE,
+  KEY_CONTACT_VERIFICATION_UPDATED_ON,
+  KEY_CONTACT_VERIFICATION_VERIFIED_ON,
+] as const;
+
+/**
+ * date property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `date` property of DeletedEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = deletedevent[KEY_DELETED_EVENT_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DELETED_EVENT_DATE;
+ * const value = deletedevent[propertyName];
+ * ```
+ *
+ * @see {@link DeletedEvent} - The TypeScript type definition
+ * @see {@link KEYS_DELETED_EVENT} - Array of all keys for this type
+ */
+export const KEY_DELETED_EVENT_DATE = 'date' as keyof DeletedEvent;
+
+/**
+ * Array of all DeletedEvent property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DeletedEvent objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DELETED_EVENT) {
+ *   console.log(`Property: ${key}, Value: ${deletedevent[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DELETED_EVENT.includes(someKey);
+ * ```
+ *
+ * @see {@link DeletedEvent} - The TypeScript type definition
+ */
+export const KEYS_DELETED_EVENT: readonly (keyof DeletedEvent)[] = [
+  KEY_DELETED_EVENT_DATE,
+] as const;
+
+/**
+ * action property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `action` property of DnsChange objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschange[KEY_DNS_CHANGE_ACTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGE_ACTION;
+ * const value = dnschange[propertyName];
+ * ```
+ *
+ * @see {@link DnsChange} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGE_ACTION = 'action' as keyof DnsChange;
+/**
+ * Record Data
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `record_data` property of DnsChange objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschange[KEY_DNS_CHANGE_RECORD_DATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGE_RECORD_DATA;
+ * const value = dnschange[propertyName];
+ * ```
+ *
+ * @see {@link DnsChange} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGE_RECORD_DATA = 'record_data' as keyof DnsChange;
+/**
+ * Rrset Name
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrset_name` property of DnsChange objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschange[KEY_DNS_CHANGE_RRSET_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGE_RRSET_NAME;
+ * const value = dnschange[propertyName];
+ * ```
+ *
+ * @see {@link DnsChange} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGE_RRSET_NAME = 'rrset_name' as keyof DnsChange;
+/**
+ * rrset_type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrset_type` property of DnsChange objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschange[KEY_DNS_CHANGE_RRSET_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGE_RRSET_TYPE;
+ * const value = dnschange[propertyName];
+ * ```
+ *
+ * @see {@link DnsChange} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGE_RRSET_TYPE = 'rrset_type' as keyof DnsChange;
+/**
+ * Ttl
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ttl` property of DnsChange objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschange[KEY_DNS_CHANGE_TTL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGE_TTL;
+ * const value = dnschange[propertyName];
+ * ```
+ *
+ * @see {@link DnsChange} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGE_TTL = 'ttl' as keyof DnsChange;
+
+/**
+ * Array of all DnsChange property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsChange objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_CHANGE) {
+ *   console.log(`Property: ${key}, Value: ${dnschange[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_CHANGE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsChange} - The TypeScript type definition
+ */
+export const KEYS_DNS_CHANGE: readonly (keyof DnsChange)[] = [
+  KEY_DNS_CHANGE_ACTION,
+  KEY_DNS_CHANGE_RECORD_DATA,
+  KEY_DNS_CHANGE_RRSET_NAME,
+  KEY_DNS_CHANGE_RRSET_TYPE,
+  KEY_DNS_CHANGE_TTL,
+] as const;
+
+/**
+ * Changes
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `changes` property of DnsChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschanges[KEY_DNS_CHANGES_CHANGES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGES_CHANGES;
+ * const value = dnschanges[propertyName];
+ * ```
+ *
+ * @see {@link DnsChanges} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGES_CHANGES = 'changes' as keyof DnsChanges;
+/**
+ * Changeset Id
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `changeset_id` property of DnsChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschanges[KEY_DNS_CHANGES_CHANGESET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGES_CHANGESET_ID;
+ * const value = dnschanges[propertyName];
+ * ```
+ *
+ * @see {@link DnsChanges} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGES_CHANGESET_ID = 'changeset_id' as keyof DnsChanges;
+/**
+ * Num Changes
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `num_changes` property of DnsChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschanges[KEY_DNS_CHANGES_NUM_CHANGES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGES_NUM_CHANGES;
+ * const value = dnschanges[propertyName];
+ * ```
+ *
+ * @see {@link DnsChanges} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGES_NUM_CHANGES = 'num_changes' as keyof DnsChanges;
+/**
+ * Zone Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_name` property of DnsChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnschanges[KEY_DNS_CHANGES_ZONE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CHANGES_ZONE_NAME;
+ * const value = dnschanges[propertyName];
+ * ```
+ *
+ * @see {@link DnsChanges} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
+ */
+export const KEY_DNS_CHANGES_ZONE_NAME = 'zone_name' as keyof DnsChanges;
+
+/**
+ * Array of all DnsChanges property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsChanges objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_CHANGES) {
+ *   console.log(`Property: ${key}, Value: ${dnschanges[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_CHANGES.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsChanges} - The TypeScript type definition
+ */
+export const KEYS_DNS_CHANGES: readonly (keyof DnsChanges)[] = [
+  KEY_DNS_CHANGES_CHANGES,
+  KEY_DNS_CHANGES_CHANGESET_ID,
+  KEY_DNS_CHANGES_NUM_CHANGES,
+  KEY_DNS_CHANGES_ZONE_NAME,
+] as const;
+
+/**
+ * Rdata
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rdata` property of DnsRecordCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrecordcreate[KEY_DNS_RECORD_CREATE_RDATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RECORD_CREATE_RDATA;
+ * const value = dnsrecordcreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsRecordCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RECORD_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_RECORD_CREATE_RDATA = 'rdata' as keyof DnsRecordCreate;
+
+/**
+ * Array of all DnsRecordCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRecordCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RECORD_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${dnsrecordcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RECORD_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRecordCreate} - The TypeScript type definition
+ */
+export const KEYS_DNS_RECORD_CREATE: readonly (keyof DnsRecordCreate)[] = [
+  KEY_DNS_RECORD_CREATE_RDATA,
+] as const;
+
+/**
+ * op property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `op` property of DnsRecordPatchOp objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrecordpatchop[KEY_DNS_RECORD_PATCH_OP_OP];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RECORD_PATCH_OP_OP;
+ * const value = dnsrecordpatchop[propertyName];
+ * ```
+ *
+ * @see {@link DnsRecordPatchOp} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RECORD_PATCH_OP} - Array of all keys for this type
+ */
+export const KEY_DNS_RECORD_PATCH_OP_OP = 'op' as keyof DnsRecordPatchOp;
+/**
+ * record property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `record` property of DnsRecordPatchOp objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrecordpatchop[KEY_DNS_RECORD_PATCH_OP_RECORD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RECORD_PATCH_OP_RECORD;
+ * const value = dnsrecordpatchop[propertyName];
+ * ```
+ *
+ * @see {@link DnsRecordPatchOp} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RECORD_PATCH_OP} - Array of all keys for this type
+ */
+export const KEY_DNS_RECORD_PATCH_OP_RECORD = 'record' as keyof DnsRecordPatchOp;
+
+/**
+ * Array of all DnsRecordPatchOp property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRecordPatchOp objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RECORD_PATCH_OP) {
+ *   console.log(`Property: ${key}, Value: ${dnsrecordpatchop[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RECORD_PATCH_OP.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRecordPatchOp} - The TypeScript type definition
+ */
+export const KEYS_DNS_RECORD_PATCH_OP: readonly (keyof DnsRecordPatchOp)[] = [
+  KEY_DNS_RECORD_PATCH_OP_OP,
+  KEY_DNS_RECORD_PATCH_OP_RECORD,
+] as const;
+
+/**
+ * Rdata
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rdata` property of DnsRecord objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrecord[KEY_DNS_RECORD_RDATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RECORD_RDATA;
+ * const value = dnsrecord[propertyName];
+ * ```
+ *
+ * @see {@link DnsRecord} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RECORD} - Array of all keys for this type
+ */
+export const KEY_DNS_RECORD_RDATA = 'rdata' as keyof DnsRecord;
+
+/**
+ * Array of all DnsRecord property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRecord objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RECORD) {
+ *   console.log(`Property: ${key}, Value: ${dnsrecord[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RECORD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRecord} - The TypeScript type definition
+ */
+export const KEYS_DNS_RECORD: readonly (keyof DnsRecord)[] = [
+  KEY_DNS_RECORD_RDATA,
+] as const;
+
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsRrsetCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetcreate[KEY_DNS_RRSET_CREATE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_CREATE_NAME;
+ * const value = dnsrrsetcreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_CREATE_NAME = 'name' as keyof DnsRrsetCreate;
+/**
+ * Records
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `records` property of DnsRrsetCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetcreate[KEY_DNS_RRSET_CREATE_RECORDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_CREATE_RECORDS;
+ * const value = dnsrrsetcreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_CREATE_RECORDS = 'records' as keyof DnsRrsetCreate;
+/**
+ * Ttl
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ttl` property of DnsRrsetCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetcreate[KEY_DNS_RRSET_CREATE_TTL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_CREATE_TTL;
+ * const value = dnsrrsetcreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_CREATE_TTL = 'ttl' as keyof DnsRrsetCreate;
+/**
+ * type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsRrsetCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetcreate[KEY_DNS_RRSET_CREATE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_CREATE_TYPE;
+ * const value = dnsrrsetcreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_CREATE_TYPE = 'type' as keyof DnsRrsetCreate;
+
+/**
+ * Array of all DnsRrsetCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRrsetCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RRSET_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${dnsrrsetcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RRSET_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRrsetCreate} - The TypeScript type definition
+ */
+export const KEYS_DNS_RRSET_CREATE: readonly (keyof DnsRrsetCreate)[] = [
+  KEY_DNS_RRSET_CREATE_NAME,
+  KEY_DNS_RRSET_CREATE_RECORDS,
+  KEY_DNS_RRSET_CREATE_TTL,
+  KEY_DNS_RRSET_CREATE_TYPE,
+] as const;
+
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsRrsetPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetpatch[KEY_DNS_RRSET_PATCH_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_PATCH_NAME;
+ * const value = dnsrrsetpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_PATCH_NAME = 'name' as keyof DnsRrsetPatch;
+/**
+ * Records
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `records` property of DnsRrsetPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetpatch[KEY_DNS_RRSET_PATCH_RECORDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_PATCH_RECORDS;
+ * const value = dnsrrsetpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_PATCH_RECORDS = 'records' as keyof DnsRrsetPatch;
+/**
+ * Ttl
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ttl` property of DnsRrsetPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetpatch[KEY_DNS_RRSET_PATCH_TTL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_PATCH_TTL;
+ * const value = dnsrrsetpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_PATCH_TTL = 'ttl' as keyof DnsRrsetPatch;
+/**
+ * type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsRrsetPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetpatch[KEY_DNS_RRSET_PATCH_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_PATCH_TYPE;
+ * const value = dnsrrsetpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_PATCH_TYPE = 'type' as keyof DnsRrsetPatch;
+
+/**
+ * Array of all DnsRrsetPatch property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRrsetPatch objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RRSET_PATCH) {
+ *   console.log(`Property: ${key}, Value: ${dnsrrsetpatch[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RRSET_PATCH.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRrsetPatch} - The TypeScript type definition
+ */
+export const KEYS_DNS_RRSET_PATCH: readonly (keyof DnsRrsetPatch)[] = [
+  KEY_DNS_RRSET_PATCH_NAME,
+  KEY_DNS_RRSET_PATCH_RECORDS,
+  KEY_DNS_RRSET_PATCH_TTL,
+  KEY_DNS_RRSET_PATCH_TYPE,
+] as const;
+
+/**
+ * op property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `op` property of DnsRrsetPatchOp objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetpatchop[KEY_DNS_RRSET_PATCH_OP_OP];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_PATCH_OP_OP;
+ * const value = dnsrrsetpatchop[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetPatchOp} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_PATCH_OP} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_PATCH_OP_OP = 'op' as keyof DnsRrsetPatchOp;
+/**
+ * rrset property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrset` property of DnsRrsetPatchOp objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetpatchop[KEY_DNS_RRSET_PATCH_OP_RRSET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_PATCH_OP_RRSET;
+ * const value = dnsrrsetpatchop[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetPatchOp} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_PATCH_OP} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_PATCH_OP_RRSET = 'rrset' as keyof DnsRrsetPatchOp;
+
+/**
+ * Array of all DnsRrsetPatchOp property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRrsetPatchOp objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RRSET_PATCH_OP) {
+ *   console.log(`Property: ${key}, Value: ${dnsrrsetpatchop[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RRSET_PATCH_OP.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRrsetPatchOp} - The TypeScript type definition
+ */
+export const KEYS_DNS_RRSET_PATCH_OP: readonly (keyof DnsRrsetPatchOp)[] = [
+  KEY_DNS_RRSET_PATCH_OP_OP,
+  KEY_DNS_RRSET_PATCH_OP_RRSET,
+] as const;
+
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsRrset objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrset[KEY_DNS_RRSET_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_NAME;
+ * const value = dnsrrset[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrset} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_NAME = 'name' as keyof DnsRrset;
+/**
+ * Records
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `records` property of DnsRrset objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrset[KEY_DNS_RRSET_RECORDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_RECORDS;
+ * const value = dnsrrset[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrset} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_RECORDS = 'records' as keyof DnsRrset;
+/**
+ * Ttl
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ttl` property of DnsRrset objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrset[KEY_DNS_RRSET_TTL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_TTL;
+ * const value = dnsrrset[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrset} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_TTL = 'ttl' as keyof DnsRrset;
+/**
+ * type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsRrset objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrset[KEY_DNS_RRSET_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_TYPE;
+ * const value = dnsrrset[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrset} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_TYPE = 'type' as keyof DnsRrset;
+
+/**
+ * Array of all DnsRrset property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRrset objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RRSET) {
+ *   console.log(`Property: ${key}, Value: ${dnsrrset[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RRSET.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRrset} - The TypeScript type definition
+ */
+export const KEYS_DNS_RRSET: readonly (keyof DnsRrset)[] = [
+  KEY_DNS_RRSET_NAME,
+  KEY_DNS_RRSET_RECORDS,
+  KEY_DNS_RRSET_TTL,
+  KEY_DNS_RRSET_TYPE,
+] as const;
+
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsRrsetWithOneRecordPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetwithonerecordpatch[KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME;
+ * const value = dnsrrsetwithonerecordpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME = 'name' as keyof DnsRrsetWithOneRecordPatch;
+/**
+ * Rdata
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rdata` property of DnsRrsetWithOneRecordPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetwithonerecordpatch[KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA;
+ * const value = dnsrrsetwithonerecordpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA = 'rdata' as keyof DnsRrsetWithOneRecordPatch;
+/**
+ * Ttl
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ttl` property of DnsRrsetWithOneRecordPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetwithonerecordpatch[KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL;
+ * const value = dnsrrsetwithonerecordpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL = 'ttl' as keyof DnsRrsetWithOneRecordPatch;
+/**
+ * type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsRrsetWithOneRecordPatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrsetwithonerecordpatch[KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE;
+ * const value = dnsrrsetwithonerecordpatch[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE = 'type' as keyof DnsRrsetWithOneRecordPatch;
+
+/**
+ * Array of all DnsRrsetWithOneRecordPatch property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsRrsetWithOneRecordPatch objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH) {
+ *   console.log(`Property: ${key}, Value: ${dnsrrsetwithonerecordpatch[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
+ */
+export const KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH: readonly (keyof DnsRrsetWithOneRecordPatch)[] = [
+  KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME,
+  KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA,
+  KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL,
+  KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE,
+] as const;
+
+/**
+ * dnssec_status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZoneCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreate[KEY_DNS_ZONE_CREATE_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_DNSSEC_STATUS;
+ * const value = dnszonecreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZoneCreate;
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsZoneCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreate[KEY_DNS_ZONE_CREATE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_NAME;
+ * const value = dnszonecreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_NAME = 'name' as keyof DnsZoneCreate;
+/**
+ * Rrsets
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreate[KEY_DNS_ZONE_CREATE_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_RRSETS;
+ * const value = dnszonecreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_RRSETS = 'rrsets' as keyof DnsZoneCreate;
+
+/**
+ * Array of all DnsZoneCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreate} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE: readonly (keyof DnsZoneCreate)[] = [
+  KEY_DNS_ZONE_CREATE_DNSSEC_STATUS,
+  KEY_DNS_ZONE_CREATE_NAME,
+  KEY_DNS_ZONE_CREATE_RRSETS,
+] as const;
+
+/**
+ * Ops
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ops` property of DnsZoneRecordsPatchOps objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonerecordspatchops[KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS;
+ * const value = dnszonerecordspatchops[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneRecordsPatchOps} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_RECORDS_PATCH_OPS} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS = 'ops' as keyof DnsZoneRecordsPatchOps;
+
+/**
+ * Array of all DnsZoneRecordsPatchOps property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneRecordsPatchOps objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_RECORDS_PATCH_OPS) {
+ *   console.log(`Property: ${key}, Value: ${dnszonerecordspatchops[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_RECORDS_PATCH_OPS.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneRecordsPatchOps} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_RECORDS_PATCH_OPS: readonly (keyof DnsZoneRecordsPatchOps)[] = [
+  KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS,
+] as const;
+
+/**
+ * dnssec_status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszone[KEY_DNS_ZONE_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_DNSSEC_STATUS;
+ * const value = dnszone[propertyName];
+ * ```
+ *
+ * @see {@link DnsZone} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZone;
+/**
+ * domain_parts property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_parts` property of DnsZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszone[KEY_DNS_ZONE_DOMAIN_PARTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_DOMAIN_PARTS;
+ * const value = dnszone[propertyName];
+ * ```
+ *
+ * @see {@link DnsZone} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_DOMAIN_PARTS = 'domain_parts' as keyof DnsZone;
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszone[KEY_DNS_ZONE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_NAME;
+ * const value = dnszone[propertyName];
+ * ```
+ *
+ * @see {@link DnsZone} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_NAME = 'name' as keyof DnsZone;
+/**
+ * Rrsets
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszone[KEY_DNS_ZONE_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_RRSETS;
+ * const value = dnszone[propertyName];
+ * ```
+ *
+ * @see {@link DnsZone} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_RRSETS = 'rrsets' as keyof DnsZone;
+
+/**
+ * Array of all DnsZone property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZone objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE) {
+ *   console.log(`Property: ${key}, Value: ${dnszone[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZone} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE: readonly (keyof DnsZone)[] = [
+  KEY_DNS_ZONE_DNSSEC_STATUS,
+  KEY_DNS_ZONE_DOMAIN_PARTS,
+  KEY_DNS_ZONE_NAME,
+  KEY_DNS_ZONE_RRSETS,
+] as const;
+
+/**
+ * Rrsets
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneRrsetsCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonerrsetscreate[KEY_DNS_ZONE_RRSETS_CREATE_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_RRSETS_CREATE_RRSETS;
+ * const value = dnszonerrsetscreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneRrsetsCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_RRSETS_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_RRSETS_CREATE_RRSETS = 'rrsets' as keyof DnsZoneRrsetsCreate;
+
+/**
+ * Array of all DnsZoneRrsetsCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneRrsetsCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_RRSETS_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${dnszonerrsetscreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_RRSETS_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneRrsetsCreate} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_RRSETS_CREATE: readonly (keyof DnsZoneRrsetsCreate)[] = [
+  KEY_DNS_ZONE_RRSETS_CREATE_RRSETS,
+] as const;
+
+/**
+ * Ops
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ops` property of DnsZoneRrsetsPatchOps objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonerrsetspatchops[KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS;
+ * const value = dnszonerrsetspatchops[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneRrsetsPatchOps} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_RRSETS_PATCH_OPS} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS = 'ops' as keyof DnsZoneRrsetsPatchOps;
+
+/**
+ * Array of all DnsZoneRrsetsPatchOps property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneRrsetsPatchOps objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_RRSETS_PATCH_OPS) {
+ *   console.log(`Property: ${key}, Value: ${dnszonerrsetspatchops[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_RRSETS_PATCH_OPS.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneRrsetsPatchOps} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_RRSETS_PATCH_OPS: readonly (keyof DnsZoneRrsetsPatchOps)[] = [
+  KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS,
+] as const;
+
+/**
+ * Domain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of DomainAvailability objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailability[KEY_DOMAIN_AVAILABILITY_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_DOMAIN;
+ * const value = domainavailability[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailability} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' as keyof DomainAvailability;
+/**
+ * status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of DomainAvailability objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailability[KEY_DOMAIN_AVAILABILITY_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_STATUS;
+ * const value = domainavailability[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailability} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_STATUS = 'status' as keyof DomainAvailability;
+
+/**
+ * Array of all DomainAvailability property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainAvailability objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_AVAILABILITY) {
+ *   console.log(`Property: ${key}, Value: ${domainavailability[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_AVAILABILITY.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainAvailability} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_AVAILABILITY: readonly (keyof DomainAvailability)[] = [
+  KEY_DOMAIN_AVAILABILITY_DOMAIN,
+  KEY_DOMAIN_AVAILABILITY_STATUS,
+] as const;
+
+/**
+ * Processing Time Ms
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `processing_time_ms` property of DomainAvailabilityMeta objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitymeta[KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS;
+ * const value = domainavailabilitymeta[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityMeta} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_META} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS = 'processing_time_ms' as keyof DomainAvailabilityMeta;
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of DomainAvailabilityMeta objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitymeta[KEY_DOMAIN_AVAILABILITY_META_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_META_TOTAL;
+ * const value = domainavailabilitymeta[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityMeta} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_META} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_META_TOTAL = 'total' as keyof DomainAvailabilityMeta;
+
+/**
+ * Array of all DomainAvailabilityMeta property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainAvailabilityMeta objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_AVAILABILITY_META) {
+ *   console.log(`Property: ${key}, Value: ${domainavailabilitymeta[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_AVAILABILITY_META.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainAvailabilityMeta} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_AVAILABILITY_META: readonly (keyof DomainAvailabilityMeta)[] = [
+  KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS,
+  KEY_DOMAIN_AVAILABILITY_META_TOTAL,
+] as const;
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainCheck objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincheck[KEY_DOMAIN_CHECK_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CHECK_RESULTS;
+ * const value = domaincheck[propertyName];
+ * ```
+ *
+ * @see {@link DomainCheck} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CHECK} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CHECK_RESULTS = 'results' as keyof DomainCheck;
+
+/**
+ * Array of all DomainCheck property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCheck objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CHECK) {
+ *   console.log(`Property: ${key}, Value: ${domaincheck[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CHECK.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCheck} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CHECK: readonly (keyof DomainCheck)[] = [
+  KEY_DOMAIN_CHECK_RESULTS,
+] as const;
+
+/**
+ * Contact Id
+ *
+ * The contact id of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of DomainContact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincontact[KEY_DOMAIN_CONTACT_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CONTACT_CONTACT_ID;
+ * const value = domaincontact[propertyName];
+ * ```
+ *
+ * @see {@link DomainContact} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CONTACT} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CONTACT_CONTACT_ID = 'contact_id' as keyof DomainContact;
+/**
+ * contact_type property
+ *
+ * The type of contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_type` property of DomainContact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincontact[KEY_DOMAIN_CONTACT_CONTACT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CONTACT_CONTACT_TYPE;
+ * const value = domaincontact[propertyName];
+ * ```
+ *
+ * @see {@link DomainContact} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CONTACT} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CONTACT_CONTACT_TYPE = 'contact_type' as keyof DomainContact;
+
+/**
+ * Array of all DomainContact property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainContact objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CONTACT) {
+ *   console.log(`Property: ${key}, Value: ${domaincontact[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CONTACT.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainContact} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CONTACT: readonly (keyof DomainContact)[] = [
+  KEY_DOMAIN_CONTACT_CONTACT_ID,
+  KEY_DOMAIN_CONTACT_CONTACT_TYPE,
+] as const;
+
+/**
+ * Auth Code
+ *
+ * The auth code used for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_AUTH_CODE;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_AUTH_CODE = 'auth_code' as keyof DomainCreate;
+/**
+ * contacts property
+ *
+ * The contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_CONTACTS;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_CONTACTS = 'contacts' as keyof DomainCreate;
+/**
+ * Name
+ *
+ * The domain to be created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_NAME;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_NAME = 'name' as keyof DomainCreate;
+/**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_NAMESERVERS;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_NAMESERVERS = 'nameservers' as keyof DomainCreate;
+/**
+ * period property
+ *
+ * How long the domain should be registered for
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PERIOD;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PERIOD = 'period' as keyof DomainCreate;
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_RENEWAL_MODE;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_RENEWAL_MODE = 'renewal_mode' as keyof DomainCreate;
+
+/**
+ * Array of all DomainCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${domaincreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE: readonly (keyof DomainCreate)[] = [
+  KEY_DOMAIN_CREATE_AUTH_CODE,
+  KEY_DOMAIN_CREATE_CONTACTS,
+  KEY_DOMAIN_CREATE_NAME,
+  KEY_DOMAIN_CREATE_NAMESERVERS,
+  KEY_DOMAIN_CREATE_PERIOD,
+  KEY_DOMAIN_CREATE_RENEWAL_MODE,
+] as const;
+
+/**
+ * algorithm property
+ *
+ * DNSSEC algorithm used
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `algorithm` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM = 'algorithm' as keyof DomainDnssecDataCreate;
+/**
+ * Digest
+ *
+ * Digest value for DS records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `digest` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST = 'digest' as keyof DomainDnssecDataCreate;
+/**
+ * digest_type property
+ *
+ * Digest type for DS records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `digest_type` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE = 'digest_type' as keyof DomainDnssecDataCreate;
+/**
+ * Flags
+ *
+ * DNSKEY flags for key records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `flags` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_FLAGS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_FLAGS;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_FLAGS = 'flags' as keyof DomainDnssecDataCreate;
+/**
+ * Key Tag
+ *
+ * Key tag for DS records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key_tag` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_KEY_TAG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_KEY_TAG;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_KEY_TAG = 'key_tag' as keyof DomainDnssecDataCreate;
+/**
+ * Protocol
+ *
+ * Protocol field for key records (typically 3)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protocol` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL = 'protocol' as keyof DomainDnssecDataCreate;
+/**
+ * Public Key
+ *
+ * Base64-encoded public key for key records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `public_key` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY = 'public_key' as keyof DomainDnssecDataCreate;
+/**
+ * record_type property
+ *
+ * Type of DNSSEC record (DS or Key)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `record_type` property of DomainDnssecDataCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdatacreate[KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE;
+ * const value = domaindnssecdatacreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE = 'record_type' as keyof DomainDnssecDataCreate;
+
+/**
+ * Array of all DomainDnssecDataCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainDnssecDataCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_DNSSEC_DATA_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${domaindnssecdatacreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_DNSSEC_DATA_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_DNSSEC_DATA_CREATE: readonly (keyof DomainDnssecDataCreate)[] = [
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM,
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST,
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE,
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_FLAGS,
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_KEY_TAG,
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL,
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY,
+  KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE,
+] as const;
+
+/**
+ * algorithm property
+ *
+ * DNSSEC algorithm used
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `algorithm` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_ALGORITHM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_ALGORITHM;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_ALGORITHM = 'algorithm' as keyof DomainDnssecData;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_CREATED_ON;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_CREATED_ON = 'created_on' as keyof DomainDnssecData;
+/**
+ * Digest
+ *
+ * Digest value for DS records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `digest` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_DIGEST];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_DIGEST;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_DIGEST = 'digest' as keyof DomainDnssecData;
+/**
+ * digest_type property
+ *
+ * Digest type for DS records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `digest_type` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_DIGEST_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_DIGEST_TYPE;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_DIGEST_TYPE = 'digest_type' as keyof DomainDnssecData;
+/**
+ * Domain Dnssec Data Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_dnssec_data_id` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_DOMAIN_DNSSEC_DATA_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_DOMAIN_DNSSEC_DATA_ID;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_DNSSEC_DATA_ID = 'domain_dnssec_data_id' as keyof DomainDnssecData;
+/**
+ * Domain Id
+ *
+ * The domain this DNSSEC record belongs to
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_id` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_DOMAIN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_DOMAIN_ID;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_ID = 'domain_id' as keyof DomainDnssecData;
+/**
+ * Flags
+ *
+ * DNSKEY flags for key records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `flags` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_FLAGS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_FLAGS;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_FLAGS = 'flags' as keyof DomainDnssecData;
+/**
+ * Key Tag
+ *
+ * Key tag for DS records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key_tag` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_KEY_TAG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_KEY_TAG;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_KEY_TAG = 'key_tag' as keyof DomainDnssecData;
+/**
+ * Protocol
+ *
+ * Protocol field for key records (typically 3)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protocol` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_PROTOCOL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_PROTOCOL;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_PROTOCOL = 'protocol' as keyof DomainDnssecData;
+/**
+ * Public Key
+ *
+ * Base64-encoded public key for key records
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `public_key` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY = 'public_key' as keyof DomainDnssecData;
+/**
+ * record_type property
+ *
+ * Type of DNSSEC record (DS or Key)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `record_type` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE = 'record_type' as keyof DomainDnssecData;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of DomainDnssecData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaindnssecdata[KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON;
+ * const value = domaindnssecdata[propertyName];
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON = 'updated_on' as keyof DomainDnssecData;
+
+/**
+ * Array of all DomainDnssecData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainDnssecData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_DNSSEC_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domaindnssecdata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_DNSSEC_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainDnssecData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_DNSSEC_DATA: readonly (keyof DomainDnssecData)[] = [
+  KEY_DOMAIN_DNSSEC_DATA_ALGORITHM,
+  KEY_DOMAIN_DNSSEC_DATA_CREATED_ON,
+  KEY_DOMAIN_DNSSEC_DATA_DIGEST,
+  KEY_DOMAIN_DNSSEC_DATA_DIGEST_TYPE,
+  KEY_DOMAIN_DNSSEC_DATA_DOMAIN_DNSSEC_DATA_ID,
+  KEY_DOMAIN_DNSSEC_DATA_DOMAIN_ID,
+  KEY_DOMAIN_DNSSEC_DATA_FLAGS,
+  KEY_DOMAIN_DNSSEC_DATA_KEY_TAG,
+  KEY_DOMAIN_DNSSEC_DATA_PROTOCOL,
+  KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY,
+  KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE,
+  KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON,
+] as const;
+
+/**
+ * Domain
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of DomainNameParts objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainnameparts[KEY_DOMAIN_NAME_PARTS_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_NAME_PARTS_DOMAIN;
+ * const value = domainnameparts[propertyName];
+ * ```
+ *
+ * @see {@link DomainNameParts} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_NAME_PARTS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_NAME_PARTS_DOMAIN = 'domain' as keyof DomainNameParts;
+/**
+ * Subdomain
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subdomain` property of DomainNameParts objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainnameparts[KEY_DOMAIN_NAME_PARTS_SUBDOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_NAME_PARTS_SUBDOMAIN;
+ * const value = domainnameparts[propertyName];
+ * ```
+ *
+ * @see {@link DomainNameParts} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_NAME_PARTS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_NAME_PARTS_SUBDOMAIN = 'subdomain' as keyof DomainNameParts;
+/**
+ * Suffix
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `suffix` property of DomainNameParts objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainnameparts[KEY_DOMAIN_NAME_PARTS_SUFFIX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_NAME_PARTS_SUFFIX;
+ * const value = domainnameparts[propertyName];
+ * ```
+ *
+ * @see {@link DomainNameParts} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_NAME_PARTS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_NAME_PARTS_SUFFIX = 'suffix' as keyof DomainNameParts;
+
+/**
+ * Array of all DomainNameParts property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainNameParts objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_NAME_PARTS) {
+ *   console.log(`Property: ${key}, Value: ${domainnameparts[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_NAME_PARTS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainNameParts} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_NAME_PARTS: readonly (keyof DomainNameParts)[] = [
+  KEY_DOMAIN_NAME_PARTS_DOMAIN,
+  KEY_DOMAIN_NAME_PARTS_SUBDOMAIN,
+  KEY_DOMAIN_NAME_PARTS_SUFFIX,
+] as const;
+
+/**
+ * unit property
+ *
+ * The unit of the period
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unit` property of DomainPeriod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainperiod[KEY_DOMAIN_PERIOD_UNIT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_PERIOD_UNIT;
+ * const value = domainperiod[propertyName];
+ * ```
+ *
+ * @see {@link DomainPeriod} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_PERIOD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_PERIOD_UNIT = 'unit' as keyof DomainPeriod;
+/**
+ * Value
+ *
+ * Amount of time in the unit
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of DomainPeriod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainperiod[KEY_DOMAIN_PERIOD_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_PERIOD_VALUE;
+ * const value = domainperiod[propertyName];
+ * ```
+ *
+ * @see {@link DomainPeriod} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_PERIOD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_PERIOD_VALUE = 'value' as keyof DomainPeriod;
+
+/**
+ * Array of all DomainPeriod property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainPeriod objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_PERIOD) {
+ *   console.log(`Property: ${key}, Value: ${domainperiod[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_PERIOD.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainPeriod} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_PERIOD: readonly (keyof DomainPeriod)[] = [
+  KEY_DOMAIN_PERIOD_UNIT,
+  KEY_DOMAIN_PERIOD_VALUE,
+] as const;
+
+/**
+ * Current Expiry Date
+ *
+ * Current expiration date of the domain for validation
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `current_expiry_date` property of DomainRenewRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrenewrequest[KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE;
+ * const value = domainrenewrequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainRenewRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RENEW_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE = 'current_expiry_date' as keyof DomainRenewRequest;
+/**
+ * period property
+ *
+ * How long to extend the domain registration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainRenewRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrenewrequest[KEY_DOMAIN_RENEW_REQUEST_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEW_REQUEST_PERIOD;
+ * const value = domainrenewrequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainRenewRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RENEW_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEW_REQUEST_PERIOD = 'period' as keyof DomainRenewRequest;
+
+/**
+ * Array of all DomainRenewRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainRenewRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_RENEW_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${domainrenewrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_RENEW_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainRenewRequest} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_RENEW_REQUEST: readonly (keyof DomainRenewRequest)[] = [
+  KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE,
+  KEY_DOMAIN_RENEW_REQUEST_PERIOD,
+] as const;
+
+/**
+ * Name
+ *
+ * The domain name that was renewed
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainRenew objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrenew[KEY_DOMAIN_RENEW_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEW_NAME;
+ * const value = domainrenew[propertyName];
+ * ```
+ *
+ * @see {@link DomainRenew} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RENEW} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEW_NAME = 'name' as keyof DomainRenew;
+/**
+ * New Expiry Date
+ *
+ * New expiration date after renewal
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `new_expiry_date` property of DomainRenew objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrenew[KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE;
+ * const value = domainrenew[propertyName];
+ * ```
+ *
+ * @see {@link DomainRenew} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RENEW} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE = 'new_expiry_date' as keyof DomainRenew;
+/**
+ * period_extended property
+ *
+ * The period by which the domain was extended
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period_extended` property of DomainRenew objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrenew[KEY_DOMAIN_RENEW_PERIOD_EXTENDED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEW_PERIOD_EXTENDED;
+ * const value = domainrenew[propertyName];
+ * ```
+ *
+ * @see {@link DomainRenew} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RENEW} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEW_PERIOD_EXTENDED = 'period_extended' as keyof DomainRenew;
+
+/**
+ * Array of all DomainRenew property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainRenew objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_RENEW) {
+ *   console.log(`Property: ${key}, Value: ${domainrenew[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_RENEW.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainRenew} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_RENEW: readonly (keyof DomainRenew)[] = [
+  KEY_DOMAIN_RENEW_NAME,
+  KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE,
+  KEY_DOMAIN_RENEW_PERIOD_EXTENDED,
+] as const;
+
+/**
+ * Auth Code
+ *
+ * The auth code for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AUTH_CODE;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AUTH_CODE = 'auth_code' as keyof Domain;
+/**
+ * Auth Code Expires On
+ *
+ * When the auth code expires
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code_expires_on` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_AUTH_CODE_EXPIRES_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AUTH_CODE_EXPIRES_ON;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' as keyof Domain;
+/**
+ * Canceled On
+ *
+ * When the domain was deleted
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `canceled_on` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_CANCELED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CANCELED_ON;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CANCELED_ON = 'canceled_on' as keyof Domain;
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CONTACTS;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CONTACTS = 'contacts' as keyof Domain;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATED_ON;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATED_ON = 'created_on' as keyof Domain;
+/**
+ * Deleted On
+ *
+ * When the domain will be deleted
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DELETED_ON;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DELETED_ON = 'deleted_on' as keyof Domain;
+/**
+ * Domain Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_id` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_DOMAIN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_DOMAIN_ID;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_DOMAIN_ID = 'domain_id' as keyof Domain;
+/**
+ * Expires On
+ *
+ * When the domain expires
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expires_on` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_EXPIRES_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_EXPIRES_ON;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_EXPIRES_ON = 'expires_on' as keyof Domain;
+/**
+ * Name
+ *
+ * The domain name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_NAME;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_NAME = 'name' as keyof Domain;
+/**
+ * Nameservers
+ *
+ * All the domain statuses
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_NAMESERVERS;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_NAMESERVERS = 'nameservers' as keyof Domain;
+/**
+ * Owner Id
+ *
+ * The organization that owns the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `owner_id` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_OWNER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_OWNER_ID;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_OWNER_ID = 'owner_id' as keyof Domain;
+/**
+ * Registered On
+ *
+ * When the domain was registered
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registered_on` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_REGISTERED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_REGISTERED_ON;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' as keyof Domain;
+/**
+ * Registry Account Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registry_account_id` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_REGISTRY_ACCOUNT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_REGISTRY_ACCOUNT_ID;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' as keyof Domain;
+/**
+ * Registry Statuses
+ *
+ * All the domain statuses
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registry_statuses` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_REGISTRY_STATUSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_REGISTRY_STATUSES;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' as keyof Domain;
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEWAL_MODE;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEWAL_MODE = 'renewal_mode' as keyof Domain;
+/**
+ * Roid
+ *
+ * The registry object id of the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `roid` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_ROID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_ROID;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_ROID = 'roid' as keyof Domain;
+/**
+ * Sld
+ *
+ * The second level domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `sld` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_SLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SLD;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SLD = 'sld' as keyof Domain;
+/**
+ * Tld
+ *
+ * The top level domain of the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tld` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_TLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TLD;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TLD = 'tld' as keyof Domain;
+/**
+ * Transfer Lock
+ *
+ * Whether the domain is locked for transfer
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_lock` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_TRANSFER_LOCK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_LOCK;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_LOCK = 'transfer_lock' as keyof Domain;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATED_ON;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATED_ON = 'updated_on' as keyof Domain;
+
+/**
+ * Array of all Domain property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Domain objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN) {
+ *   console.log(`Property: ${key}, Value: ${domain[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN.includes(someKey);
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN: readonly (keyof Domain)[] = [
+  KEY_DOMAIN_AUTH_CODE,
+  KEY_DOMAIN_AUTH_CODE_EXPIRES_ON,
+  KEY_DOMAIN_CANCELED_ON,
+  KEY_DOMAIN_CONTACTS,
+  KEY_DOMAIN_CREATED_ON,
+  KEY_DOMAIN_DELETED_ON,
+  KEY_DOMAIN_DOMAIN_ID,
+  KEY_DOMAIN_EXPIRES_ON,
+  KEY_DOMAIN_NAME,
+  KEY_DOMAIN_NAMESERVERS,
+  KEY_DOMAIN_OWNER_ID,
+  KEY_DOMAIN_REGISTERED_ON,
+  KEY_DOMAIN_REGISTRY_ACCOUNT_ID,
+  KEY_DOMAIN_REGISTRY_STATUSES,
+  KEY_DOMAIN_RENEWAL_MODE,
+  KEY_DOMAIN_ROID,
+  KEY_DOMAIN_SLD,
+  KEY_DOMAIN_TLD,
+  KEY_DOMAIN_TRANSFER_LOCK,
+  KEY_DOMAIN_UPDATED_ON,
+] as const;
+
+/**
+ * Processing Time Ms
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `processing_time_ms` property of DomainSearchMeta objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchmeta[KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS;
+ * const value = domainsearchmeta[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchMeta} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_META} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS = 'processing_time_ms' as keyof DomainSearchMeta;
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of DomainSearchMeta objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchmeta[KEY_DOMAIN_SEARCH_META_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_META_TOTAL;
+ * const value = domainsearchmeta[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchMeta} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_META} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_META_TOTAL = 'total' as keyof DomainSearchMeta;
+
+/**
+ * Array of all DomainSearchMeta property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainSearchMeta objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_SEARCH_META) {
+ *   console.log(`Property: ${key}, Value: ${domainsearchmeta[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_SEARCH_META.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainSearchMeta} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_SEARCH_META: readonly (keyof DomainSearchMeta)[] = [
+  KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS,
+  KEY_DOMAIN_SEARCH_META_TOTAL,
+] as const;
+
+/**
+ * meta property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `meta` property of DomainSearch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearch[KEY_DOMAIN_SEARCH_META];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_META;
+ * const value = domainsearch[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearch} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_META = 'meta' as keyof DomainSearch;
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainSearch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearch[KEY_DOMAIN_SEARCH_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_RESULTS;
+ * const value = domainsearch[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearch} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_RESULTS = 'results' as keyof DomainSearch;
+
+/**
+ * Array of all DomainSearch property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainSearch objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_SEARCH) {
+ *   console.log(`Property: ${key}, Value: ${domainsearch[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_SEARCH.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainSearch} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_SEARCH: readonly (keyof DomainSearch)[] = [
+  KEY_DOMAIN_SEARCH_META,
+  KEY_DOMAIN_SEARCH_RESULTS,
+] as const;
+
+/**
+ * Available
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `available` property of DomainSearchSuggestion objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestion[KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE;
+ * const value = domainsearchsuggestion[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestion} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE = 'available' as keyof DomainSearchSuggestion;
+/**
+ * Domain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of DomainSearchSuggestion objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestion[KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN;
+ * const value = domainsearchsuggestion[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestion} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN = 'domain' as keyof DomainSearchSuggestion;
+/**
+ * Premium
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `premium` property of DomainSearchSuggestion objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestion[KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM;
+ * const value = domainsearchsuggestion[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestion} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM = 'premium' as keyof DomainSearchSuggestion;
+
+/**
+ * Array of all DomainSearchSuggestion property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainSearchSuggestion objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_SEARCH_SUGGESTION) {
+ *   console.log(`Property: ${key}, Value: ${domainsearchsuggestion[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_SEARCH_SUGGESTION.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainSearchSuggestion} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_SEARCH_SUGGESTION: readonly (keyof DomainSearchSuggestion)[] = [
+  KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE,
+  KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN,
+  KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM,
+] as const;
+
+/**
+ * Auth Code
+ *
+ * The auth code for the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_AUTH_CODE;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_AUTH_CODE = 'auth_code' as keyof DomainTransferIn;
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_CONTACTS;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_CONTACTS = 'contacts' as keyof DomainTransferIn;
+/**
+ * Name
+ *
+ * The domain name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_NAME;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_NAME = 'name' as keyof DomainTransferIn;
+/**
+ * renewal_mode property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE = 'renewal_mode' as keyof DomainTransferIn;
+
+/**
+ * Array of all DomainTransferIn property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferIn objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_IN) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferin[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_IN.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_IN: readonly (keyof DomainTransferIn)[] = [
+  KEY_DOMAIN_TRANSFER_IN_AUTH_CODE,
+  KEY_DOMAIN_TRANSFER_IN_CONTACTS,
+  KEY_DOMAIN_TRANSFER_IN_NAME,
+  KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,
+] as const;
+
+/**
+ * Auth Code
+ *
+ * The new auth code for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdate[KEY_DOMAIN_UPDATE_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_AUTH_CODE;
+ * const value = domainupdate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_AUTH_CODE = 'auth_code' as keyof DomainUpdate;
+/**
+ * Contacts
+ *
+ * The new contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdate[KEY_DOMAIN_UPDATE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_CONTACTS;
+ * const value = domainupdate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_CONTACTS = 'contacts' as keyof DomainUpdate;
+/**
+ * Nameservers
+ *
+ * The new name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdate[KEY_DOMAIN_UPDATE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_NAMESERVERS;
+ * const value = domainupdate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_NAMESERVERS = 'nameservers' as keyof DomainUpdate;
+/**
+ * renewal_mode property
+ *
+ * The new renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdate[KEY_DOMAIN_UPDATE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_RENEWAL_MODE;
+ * const value = domainupdate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_RENEWAL_MODE = 'renewal_mode' as keyof DomainUpdate;
+/**
+ * Statuses
+ *
+ * The new statuses of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `statuses` property of DomainUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdate[KEY_DOMAIN_UPDATE_STATUSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_STATUSES;
+ * const value = domainupdate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_STATUSES = 'statuses' as keyof DomainUpdate;
+
+/**
+ * Array of all DomainUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${domainupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdate} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE: readonly (keyof DomainUpdate)[] = [
+  KEY_DOMAIN_UPDATE_AUTH_CODE,
+  KEY_DOMAIN_UPDATE_CONTACTS,
+  KEY_DOMAIN_UPDATE_NAMESERVERS,
+  KEY_DOMAIN_UPDATE_RENEWAL_MODE,
+  KEY_DOMAIN_UPDATE_STATUSES,
+] as const;
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATED_ON;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATED_ON = 'created_on' as keyof EmailForward;
+/**
+ * Email Forward Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email_forward_id` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForward;
+/**
+ * Source Address
+ *
+ * The source email address to forward from
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source_address` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_SOURCE_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_SOURCE_ADDRESS;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_SOURCE_ADDRESS = 'source_address' as keyof EmailForward;
+/**
+ * status property
+ *
+ * Current status of the email forward rule
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_STATUS;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_STATUS = 'status' as keyof EmailForward;
+/**
+ * Target Address
+ *
+ * The target email address to forward to
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_address` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_TARGET_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_TARGET_ADDRESS;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_TARGET_ADDRESS = 'target_address' as keyof EmailForward;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_UPDATED_ON;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_UPDATED_ON = 'updated_on' as keyof EmailForward;
+
+/**
+ * Array of all EmailForward property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForward objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD) {
+ *   console.log(`Property: ${key}, Value: ${emailforward[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD: readonly (keyof EmailForward)[] = [
+  KEY_EMAIL_FORWARD_CREATED_ON,
+  KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID,
+  KEY_EMAIL_FORWARD_SOURCE_ADDRESS,
+  KEY_EMAIL_FORWARD_STATUS,
+  KEY_EMAIL_FORWARD_TARGET_ADDRESS,
+  KEY_EMAIL_FORWARD_UPDATED_ON,
+] as const;
+
+/**
+ * Email Forward Ids
+ *
+ * List of email forward ids to delete
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email_forward_ids` property of EmailForwardBulkDelete objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkdelete[KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS;
+ * const value = emailforwardbulkdelete[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkDelete} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_DELETE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS = 'email_forward_ids' as keyof EmailForwardBulkDelete;
+
+/**
+ * Array of all EmailForwardBulkDelete property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardBulkDelete objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_BULK_DELETE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardbulkdelete[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_BULK_DELETE.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardBulkDelete} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_BULK_DELETE: readonly (keyof EmailForwardBulkDelete)[] = [
+  KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS,
+] as const;
+
+/**
+ * Email Forwards
+ *
+ * List of email forwards data to update
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email_forwards` property of EmailForwardBulkUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkupdate[KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS;
+ * const value = emailforwardbulkupdate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS = 'email_forwards' as keyof EmailForwardBulkUpdate;
+
+/**
+ * Array of all EmailForwardBulkUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardBulkUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_BULK_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardbulkupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_BULK_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdate} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_BULK_UPDATE: readonly (keyof EmailForwardBulkUpdate)[] = [
+  KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS,
+] as const;
+
+/**
+ * Email Forward Id
+ *
+ * Unique identifier for the email forward
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email_forward_id` property of EmailForwardBulkUpdateItem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID;
+ * const value = emailforwardbulkupdateitem[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForwardBulkUpdateItem;
+/**
+ * Source Address
+ *
+ * The source email address to forward from
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source_address` property of EmailForwardBulkUpdateItem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS;
+ * const value = emailforwardbulkupdateitem[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardBulkUpdateItem;
+/**
+ * status property
+ *
+ * Current status of the email forward rule
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of EmailForwardBulkUpdateItem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS;
+ * const value = emailforwardbulkupdateitem[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS = 'status' as keyof EmailForwardBulkUpdateItem;
+/**
+ * Target Address
+ *
+ * The target email address to forward to
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_address` property of EmailForwardBulkUpdateItem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS;
+ * const value = emailforwardbulkupdateitem[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS = 'target_address' as keyof EmailForwardBulkUpdateItem;
+
+/**
+ * Array of all EmailForwardBulkUpdateItem property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardBulkUpdateItem objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardbulkupdateitem[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM: readonly (keyof EmailForwardBulkUpdateItem)[] = [
+  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID,
+  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS,
+  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS,
+  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS,
+] as const;
+
+/**
+ * Source Address
+ *
+ * The source email address to forward from
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source_address` property of EmailForwardCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS;
+ * const value = emailforwardcreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardCreate;
+/**
+ * status property
+ *
+ * Current status of the email forward rule
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of EmailForwardCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATE_STATUS;
+ * const value = emailforwardcreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATE_STATUS = 'status' as keyof EmailForwardCreate;
+/**
+ * Target Address
+ *
+ * The target email address to forward to
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_address` property of EmailForwardCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS;
+ * const value = emailforwardcreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS = 'target_address' as keyof EmailForwardCreate;
+
+/**
+ * Array of all EmailForwardCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_CREATE: readonly (keyof EmailForwardCreate)[] = [
+  KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS,
+  KEY_EMAIL_FORWARD_CREATE_STATUS,
+  KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS,
+] as const;
+
+/**
+ * Source Address
+ *
+ * The source email address to forward from
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source_address` property of EmailForwardUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardupdate[KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS;
+ * const value = emailforwardupdate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardUpdate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_UPDATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardUpdate;
+/**
+ * status property
+ *
+ * Current status of the email forward rule
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of EmailForwardUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardupdate[KEY_EMAIL_FORWARD_UPDATE_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_UPDATE_STATUS;
+ * const value = emailforwardupdate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardUpdate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_UPDATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_UPDATE_STATUS = 'status' as keyof EmailForwardUpdate;
+/**
+ * Target Address
+ *
+ * The target email address to forward to
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_address` property of EmailForwardUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardupdate[KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS;
+ * const value = emailforwardupdate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardUpdate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_UPDATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS = 'target_address' as keyof EmailForwardUpdate;
+
+/**
+ * Array of all EmailForwardUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardUpdate} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_UPDATE: readonly (keyof EmailForwardUpdate)[] = [
+  KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS,
+  KEY_EMAIL_FORWARD_UPDATE_STATUS,
+  KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS,
+] as const;
+
+/**
+ * Event Data
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `event_data` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_EVENT_DATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_EVENT_DATA;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_EVENT_DATA = 'event_data' as keyof EventResponse;
+/**
+ * Event Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `event_id` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_EVENT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_EVENT_ID;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_EVENT_ID = 'event_id' as keyof EventResponse;
+/**
+ * Object Id
+ *
+ * The id of the object that the event is about
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_id` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_OBJECT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_OBJECT_ID;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_OBJECT_ID = 'object_id' as keyof EventResponse;
+/**
+ * object_type property
+ *
+ * The type of object that the event is about
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_type` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_OBJECT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_OBJECT_TYPE;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_OBJECT_TYPE = 'object_type' as keyof EventResponse;
+/**
+ * subtype property
+ *
+ * The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subtype` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_SUBTYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_SUBTYPE;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_SUBTYPE = 'subtype' as keyof EventResponse;
+/**
+ * type property
+ *
+ * The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION')
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_TYPE;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_TYPE = 'type' as keyof EventResponse;
+
+/**
+ * Array of all EventResponse property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EventResponse objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EVENT_RESPONSE) {
+ *   console.log(`Property: ${key}, Value: ${eventresponse[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EVENT_RESPONSE.includes(someKey);
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ */
+export const KEYS_EVENT_RESPONSE: readonly (keyof EventResponse)[] = [
+  KEY_EVENT_RESPONSE_EVENT_DATA,
+  KEY_EVENT_RESPONSE_EVENT_ID,
+  KEY_EVENT_RESPONSE_OBJECT_ID,
+  KEY_EVENT_RESPONSE_OBJECT_TYPE,
+  KEY_EVENT_RESPONSE_SUBTYPE,
+  KEY_EVENT_RESPONSE_TYPE,
+] as const;
+
+/**
+ * Acknowledged On
+ *
+ * The date/time the event was acknowledged
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `acknowledged_on` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON = 'acknowledged_on' as keyof EventSchema;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_CREATED_ON;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_CREATED_ON = 'created_on' as keyof EventSchema;
+/**
+ * event_data property
+ *
+ * Additional details about the action
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `event_data` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_EVENT_DATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_EVENT_DATA;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_EVENT_DATA = 'event_data' as keyof EventSchema;
+/**
+ * Event Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `event_id` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_EVENT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_EVENT_ID;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_EVENT_ID = 'event_id' as keyof EventSchema;
+/**
+ * Message Queue Id
+ *
+ * A composite key with the registry account + message queue ID from the poll operation.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message_queue_id` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID = 'message_queue_id' as keyof EventSchema;
+/**
+ * Object Id
+ *
+ * The id of the object that the event is about
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_id` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_OBJECT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_OBJECT_ID;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_OBJECT_ID = 'object_id' as keyof EventSchema;
+/**
+ * object_type property
+ *
+ * The type of object that the event is about
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_type` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_OBJECT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_OBJECT_TYPE;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_OBJECT_TYPE = 'object_type' as keyof EventSchema;
+/**
+ * Source
+ *
+ * The source of the event
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_SOURCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_SOURCE;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_SOURCE = 'source' as keyof EventSchema;
+/**
+ * Source Event Id
+ *
+ * The reference of the original registry event (if any) that triggered this customer-facing event
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source_event_id` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_SOURCE_EVENT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_SOURCE_EVENT_ID;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_SOURCE_EVENT_ID = 'source_event_id' as keyof EventSchema;
+/**
+ * subtype property
+ *
+ * The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subtype` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_SUBTYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_SUBTYPE;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_SUBTYPE = 'subtype' as keyof EventSchema;
+/**
+ * Target
+ *
+ * The target of the event
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_TARGET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_TARGET;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_TARGET = 'target' as keyof EventSchema;
+/**
+ * type property
+ *
+ * The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION')
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of EventSchema objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventschema[KEY_EVENT_SCHEMA_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_SCHEMA_TYPE;
+ * const value = eventschema[propertyName];
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
+ */
+export const KEY_EVENT_SCHEMA_TYPE = 'type' as keyof EventSchema;
+
+/**
+ * Array of all EventSchema property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EventSchema objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EVENT_SCHEMA) {
+ *   console.log(`Property: ${key}, Value: ${eventschema[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EVENT_SCHEMA.includes(someKey);
+ * ```
+ *
+ * @see {@link EventSchema} - The TypeScript type definition
+ */
+export const KEYS_EVENT_SCHEMA: readonly (keyof EventSchema)[] = [
+  KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON,
+  KEY_EVENT_SCHEMA_CREATED_ON,
+  KEY_EVENT_SCHEMA_EVENT_DATA,
+  KEY_EVENT_SCHEMA_EVENT_ID,
+  KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID,
+  KEY_EVENT_SCHEMA_OBJECT_ID,
+  KEY_EVENT_SCHEMA_OBJECT_TYPE,
+  KEY_EVENT_SCHEMA_SOURCE,
+  KEY_EVENT_SCHEMA_SOURCE_EVENT_ID,
+  KEY_EVENT_SCHEMA_SUBTYPE,
+  KEY_EVENT_SCHEMA_TARGET,
+  KEY_EVENT_SCHEMA_TYPE,
+] as const;
+
+/**
+ * errors property
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `errors` property of HTTPValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = httpvalidationerror[KEY_H_T_T_P_VALIDATION_ERROR_ERRORS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_H_T_T_P_VALIDATION_ERROR_ERRORS;
+ * const value = httpvalidationerror[propertyName];
+ * ```
+ *
+ * @see {@link HTTPValidationError} - The TypeScript type definition
+ * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_H_T_T_P_VALIDATION_ERROR_ERRORS = 'errors' as keyof HTTPValidationError;
+/**
+ * Status code
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of HTTPValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = httpvalidationerror[KEY_H_T_T_P_VALIDATION_ERROR_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_H_T_T_P_VALIDATION_ERROR_STATUS;
+ * const value = httpvalidationerror[propertyName];
+ * ```
+ *
+ * @see {@link HTTPValidationError} - The TypeScript type definition
+ * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_H_T_T_P_VALIDATION_ERROR_STATUS = 'status' as keyof HTTPValidationError;
+/**
+ * Problem Title
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of HTTPValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = httpvalidationerror[KEY_H_T_T_P_VALIDATION_ERROR_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_H_T_T_P_VALIDATION_ERROR_TITLE;
+ * const value = httpvalidationerror[propertyName];
+ * ```
+ *
+ * @see {@link HTTPValidationError} - The TypeScript type definition
+ * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_H_T_T_P_VALIDATION_ERROR_TITLE = 'title' as keyof HTTPValidationError;
+/**
+ * Problem type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of HTTPValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = httpvalidationerror[KEY_H_T_T_P_VALIDATION_ERROR_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_H_T_T_P_VALIDATION_ERROR_TYPE;
+ * const value = httpvalidationerror[propertyName];
+ * ```
+ *
+ * @see {@link HTTPValidationError} - The TypeScript type definition
+ * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_H_T_T_P_VALIDATION_ERROR_TYPE = 'type' as keyof HTTPValidationError;
+
+/**
+ * Array of all HTTPValidationError property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for HTTPValidationError objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_H_T_T_P_VALIDATION_ERROR) {
+ *   console.log(`Property: ${key}, Value: ${httpvalidationerror[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_H_T_T_P_VALIDATION_ERROR.includes(someKey);
+ * ```
+ *
+ * @see {@link HTTPValidationError} - The TypeScript type definition
+ */
+export const KEYS_H_T_T_P_VALIDATION_ERROR: readonly (keyof HTTPValidationError)[] = [
+  KEY_H_T_T_P_VALIDATION_ERROR_ERRORS,
+  KEY_H_T_T_P_VALIDATION_ERROR_STATUS,
+  KEY_H_T_T_P_VALIDATION_ERROR_TITLE,
+  KEY_H_T_T_P_VALIDATION_ERROR_TYPE,
+] as const;
+
+/**
+ * Ip Network
+ *
+ * IP address or CIDR range for the restriction.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ip_network` property of IpRestrictionCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestrictioncreate[KEY_IP_RESTRICTION_CREATE_IP_NETWORK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_CREATE_IP_NETWORK;
+ * const value = iprestrictioncreate[propertyName];
+ * ```
+ *
+ * @see {@link IpRestrictionCreate} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION_CREATE} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_CREATE_IP_NETWORK = 'ip_network' as keyof IpRestrictionCreate;
+/**
+ * Organization Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of IpRestrictionCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestrictioncreate[KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID;
+ * const value = iprestrictioncreate[propertyName];
+ * ```
+ *
+ * @see {@link IpRestrictionCreate} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION_CREATE} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID = 'organization_id' as keyof IpRestrictionCreate;
+
+/**
+ * Array of all IpRestrictionCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for IpRestrictionCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_IP_RESTRICTION_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${iprestrictioncreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_IP_RESTRICTION_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link IpRestrictionCreate} - The TypeScript type definition
+ */
+export const KEYS_IP_RESTRICTION_CREATE: readonly (keyof IpRestrictionCreate)[] = [
+  KEY_IP_RESTRICTION_CREATE_IP_NETWORK,
+  KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID,
+] as const;
+
+/**
+ * Created On
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of IpRestriction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestriction[KEY_IP_RESTRICTION_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_CREATED_ON;
+ * const value = iprestriction[propertyName];
+ * ```
+ *
+ * @see {@link IpRestriction} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_CREATED_ON = 'created_on' as keyof IpRestriction;
+/**
+ * Ip Network
+ *
+ * IP address or CIDR range for the restriction.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ip_network` property of IpRestriction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestriction[KEY_IP_RESTRICTION_IP_NETWORK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_IP_NETWORK;
+ * const value = iprestriction[propertyName];
+ * ```
+ *
+ * @see {@link IpRestriction} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_IP_NETWORK = 'ip_network' as keyof IpRestriction;
+/**
+ * Ip Restriction Id
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ip_restriction_id` property of IpRestriction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestriction[KEY_IP_RESTRICTION_IP_RESTRICTION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_IP_RESTRICTION_ID;
+ * const value = iprestriction[propertyName];
+ * ```
+ *
+ * @see {@link IpRestriction} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_IP_RESTRICTION_ID = 'ip_restriction_id' as keyof IpRestriction;
+/**
+ * Last Used On
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_used_on` property of IpRestriction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestriction[KEY_IP_RESTRICTION_LAST_USED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_LAST_USED_ON;
+ * const value = iprestriction[propertyName];
+ * ```
+ *
+ * @see {@link IpRestriction} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_LAST_USED_ON = 'last_used_on' as keyof IpRestriction;
+/**
+ * Organization Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of IpRestriction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestriction[KEY_IP_RESTRICTION_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_ORGANIZATION_ID;
+ * const value = iprestriction[propertyName];
+ * ```
+ *
+ * @see {@link IpRestriction} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_ORGANIZATION_ID = 'organization_id' as keyof IpRestriction;
+
+/**
+ * Array of all IpRestriction property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for IpRestriction objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_IP_RESTRICTION) {
+ *   console.log(`Property: ${key}, Value: ${iprestriction[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_IP_RESTRICTION.includes(someKey);
+ * ```
+ *
+ * @see {@link IpRestriction} - The TypeScript type definition
+ */
+export const KEYS_IP_RESTRICTION: readonly (keyof IpRestriction)[] = [
+  KEY_IP_RESTRICTION_CREATED_ON,
+  KEY_IP_RESTRICTION_IP_NETWORK,
+  KEY_IP_RESTRICTION_IP_RESTRICTION_ID,
+  KEY_IP_RESTRICTION_LAST_USED_ON,
+  KEY_IP_RESTRICTION_ORGANIZATION_ID,
+] as const;
+
+/**
+ * Ip Network
+ *
+ * IP address or CIDR range for the restriction.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ip_network` property of IpRestrictionUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestrictionupdate[KEY_IP_RESTRICTION_UPDATE_IP_NETWORK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_UPDATE_IP_NETWORK;
+ * const value = iprestrictionupdate[propertyName];
+ * ```
+ *
+ * @see {@link IpRestrictionUpdate} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_UPDATE_IP_NETWORK = 'ip_network' as keyof IpRestrictionUpdate;
+/**
+ * Last Used On
+ *
+ * Timestamp of the last usage.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_used_on` property of IpRestrictionUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = iprestrictionupdate[KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON;
+ * const value = iprestrictionupdate[propertyName];
+ * ```
+ *
+ * @see {@link IpRestrictionUpdate} - The TypeScript type definition
+ * @see {@link KEYS_IP_RESTRICTION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON = 'last_used_on' as keyof IpRestrictionUpdate;
+
+/**
+ * Array of all IpRestrictionUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for IpRestrictionUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_IP_RESTRICTION_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${iprestrictionupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_IP_RESTRICTION_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link IpRestrictionUpdate} - The TypeScript type definition
+ */
+export const KEYS_IP_RESTRICTION_UPDATE: readonly (keyof IpRestrictionUpdate)[] = [
+  KEY_IP_RESTRICTION_UPDATE_IP_NETWORK,
+  KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON,
+] as const;
+
+/**
+ * Hostname
+ *
+ * The name server of the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `hostname` property of Nameserver objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = nameserver[KEY_NAMESERVER_HOSTNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NAMESERVER_HOSTNAME;
+ * const value = nameserver[propertyName];
+ * ```
+ *
+ * @see {@link Nameserver} - The TypeScript type definition
+ * @see {@link KEYS_NAMESERVER} - Array of all keys for this type
+ */
+export const KEY_NAMESERVER_HOSTNAME = 'hostname' as keyof Nameserver;
+/**
+ * Ip Addresses
+ *
+ * The ip addresses of the name server
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ip_addresses` property of Nameserver objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = nameserver[KEY_NAMESERVER_IP_ADDRESSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NAMESERVER_IP_ADDRESSES;
+ * const value = nameserver[propertyName];
+ * ```
+ *
+ * @see {@link Nameserver} - The TypeScript type definition
+ * @see {@link KEYS_NAMESERVER} - Array of all keys for this type
+ */
+export const KEY_NAMESERVER_IP_ADDRESSES = 'ip_addresses' as keyof Nameserver;
+
+/**
+ * Array of all Nameserver property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Nameserver objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_NAMESERVER) {
+ *   console.log(`Property: ${key}, Value: ${nameserver[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_NAMESERVER.includes(someKey);
+ * ```
+ *
+ * @see {@link Nameserver} - The TypeScript type definition
+ */
+export const KEYS_NAMESERVER: readonly (keyof Nameserver)[] = [
+  KEY_NAMESERVER_HOSTNAME,
+  KEY_NAMESERVER_IP_ADDRESSES,
+] as const;
+
+/**
+ * Author
+ *
+ * The user or system that created the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `author` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_AUTHOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_AUTHOR;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_AUTHOR = 'author' as keyof Notification;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATED_ON;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATED_ON = 'created_on' as keyof Notification;
+/**
+ * Message
+ *
+ * The message content of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_MESSAGE;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_MESSAGE = 'message' as keyof Notification;
+/**
+ * Notification Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `notification_id` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_NOTIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_NOTIFICATION_ID;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_NOTIFICATION_ID = 'notification_id' as keyof Notification;
+/**
+ * Publish Date
+ *
+ * The date/time the notification is to be published
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `publish_date` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_PUBLISH_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_PUBLISH_DATE;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_PUBLISH_DATE = 'publish_date' as keyof Notification;
+/**
+ * Source
+ *
+ * Source of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_SOURCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SOURCE;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SOURCE = 'source' as keyof Notification;
+/**
+ * Subject
+ *
+ * The subject of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subject` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_SUBJECT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUBJECT;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUBJECT = 'subject' as keyof Notification;
+/**
+ * Target
+ *
+ * Target audience (broadcast, account, user)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_TARGET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_TARGET;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_TARGET = 'target' as keyof Notification;
+/**
+ * Type
+ *
+ * The type of notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_TYPE;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_TYPE = 'type' as keyof Notification;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of Notification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notification[KEY_NOTIFICATION_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATED_ON;
+ * const value = notification[propertyName];
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATED_ON = 'updated_on' as keyof Notification;
+
+/**
+ * Array of all Notification property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Notification objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_NOTIFICATION) {
+ *   console.log(`Property: ${key}, Value: ${notification[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_NOTIFICATION.includes(someKey);
+ * ```
+ *
+ * @see {@link Notification} - The TypeScript type definition
+ */
+export const KEYS_NOTIFICATION: readonly (keyof Notification)[] = [
+  KEY_NOTIFICATION_AUTHOR,
+  KEY_NOTIFICATION_CREATED_ON,
+  KEY_NOTIFICATION_MESSAGE,
+  KEY_NOTIFICATION_NOTIFICATION_ID,
+  KEY_NOTIFICATION_PUBLISH_DATE,
+  KEY_NOTIFICATION_SOURCE,
+  KEY_NOTIFICATION_SUBJECT,
+  KEY_NOTIFICATION_TARGET,
+  KEY_NOTIFICATION_TYPE,
+  KEY_NOTIFICATION_UPDATED_ON,
+] as const;
+
+/**
+ * Author
+ *
+ * The user or system that created the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `author` property of NotificationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationcreate[KEY_NOTIFICATION_CREATE_AUTHOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATE_AUTHOR;
+ * const value = notificationcreate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATE_AUTHOR = 'author' as keyof NotificationCreate;
+/**
+ * Message
+ *
+ * The message content of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of NotificationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationcreate[KEY_NOTIFICATION_CREATE_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATE_MESSAGE;
+ * const value = notificationcreate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATE_MESSAGE = 'message' as keyof NotificationCreate;
+/**
+ * Publish Date
+ *
+ * The date/time the notification is to be published
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `publish_date` property of NotificationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationcreate[KEY_NOTIFICATION_CREATE_PUBLISH_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATE_PUBLISH_DATE;
+ * const value = notificationcreate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATE_PUBLISH_DATE = 'publish_date' as keyof NotificationCreate;
+/**
+ * Source
+ *
+ * Source of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source` property of NotificationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationcreate[KEY_NOTIFICATION_CREATE_SOURCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATE_SOURCE;
+ * const value = notificationcreate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATE_SOURCE = 'source' as keyof NotificationCreate;
+/**
+ * Subject
+ *
+ * The subject of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subject` property of NotificationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationcreate[KEY_NOTIFICATION_CREATE_SUBJECT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATE_SUBJECT;
+ * const value = notificationcreate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATE_SUBJECT = 'subject' as keyof NotificationCreate;
+/**
+ * Target
+ *
+ * Target audience (broadcast, account, user)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target` property of NotificationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationcreate[KEY_NOTIFICATION_CREATE_TARGET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATE_TARGET;
+ * const value = notificationcreate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATE_TARGET = 'target' as keyof NotificationCreate;
+/**
+ * Type
+ *
+ * The type of notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of NotificationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationcreate[KEY_NOTIFICATION_CREATE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_CREATE_TYPE;
+ * const value = notificationcreate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_CREATE_TYPE = 'type' as keyof NotificationCreate;
+
+/**
+ * Array of all NotificationCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for NotificationCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_NOTIFICATION_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${notificationcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_NOTIFICATION_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link NotificationCreate} - The TypeScript type definition
+ */
+export const KEYS_NOTIFICATION_CREATE: readonly (keyof NotificationCreate)[] = [
+  KEY_NOTIFICATION_CREATE_AUTHOR,
+  KEY_NOTIFICATION_CREATE_MESSAGE,
+  KEY_NOTIFICATION_CREATE_PUBLISH_DATE,
+  KEY_NOTIFICATION_CREATE_SOURCE,
+  KEY_NOTIFICATION_CREATE_SUBJECT,
+  KEY_NOTIFICATION_CREATE_TARGET,
+  KEY_NOTIFICATION_CREATE_TYPE,
+] as const;
+
+/**
+ * Author
+ *
+ * The user or system that created the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `author` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_AUTHOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_AUTHOR;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_AUTHOR = 'author' as keyof NotificationSummary;
+/**
+ * Message
+ *
+ * The message content of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_MESSAGE;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_MESSAGE = 'message' as keyof NotificationSummary;
+/**
+ * Notification Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `notification_id` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_NOTIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_NOTIFICATION_ID;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_NOTIFICATION_ID = 'notification_id' as keyof NotificationSummary;
+/**
+ * Publish Date
+ *
+ * The date/time the notification is to be published
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `publish_date` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_PUBLISH_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_PUBLISH_DATE;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_PUBLISH_DATE = 'publish_date' as keyof NotificationSummary;
+/**
+ * Source
+ *
+ * Source of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_SOURCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_SOURCE;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_SOURCE = 'source' as keyof NotificationSummary;
+/**
+ * Subject
+ *
+ * The subject of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subject` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_SUBJECT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_SUBJECT;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_SUBJECT = 'subject' as keyof NotificationSummary;
+/**
+ * Target
+ *
+ * Target audience (broadcast, account, user)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_TARGET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_TARGET;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_TARGET = 'target' as keyof NotificationSummary;
+/**
+ * Type
+ *
+ * The type of notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of NotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationsummary[KEY_NOTIFICATION_SUMMARY_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_SUMMARY_TYPE;
+ * const value = notificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_SUMMARY_TYPE = 'type' as keyof NotificationSummary;
+
+/**
+ * Array of all NotificationSummary property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for NotificationSummary objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_NOTIFICATION_SUMMARY) {
+ *   console.log(`Property: ${key}, Value: ${notificationsummary[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_NOTIFICATION_SUMMARY.includes(someKey);
+ * ```
+ *
+ * @see {@link NotificationSummary} - The TypeScript type definition
+ */
+export const KEYS_NOTIFICATION_SUMMARY: readonly (keyof NotificationSummary)[] = [
+  KEY_NOTIFICATION_SUMMARY_AUTHOR,
+  KEY_NOTIFICATION_SUMMARY_MESSAGE,
+  KEY_NOTIFICATION_SUMMARY_NOTIFICATION_ID,
+  KEY_NOTIFICATION_SUMMARY_PUBLISH_DATE,
+  KEY_NOTIFICATION_SUMMARY_SOURCE,
+  KEY_NOTIFICATION_SUMMARY_SUBJECT,
+  KEY_NOTIFICATION_SUMMARY_TARGET,
+  KEY_NOTIFICATION_SUMMARY_TYPE,
+] as const;
+
+/**
+ * Author
+ *
+ * The user or system that created the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `author` property of NotificationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationupdate[KEY_NOTIFICATION_UPDATE_AUTHOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATE_AUTHOR;
+ * const value = notificationupdate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATE_AUTHOR = 'author' as keyof NotificationUpdate;
+/**
+ * Message
+ *
+ * The message content of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of NotificationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationupdate[KEY_NOTIFICATION_UPDATE_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATE_MESSAGE;
+ * const value = notificationupdate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATE_MESSAGE = 'message' as keyof NotificationUpdate;
+/**
+ * Publish Date
+ *
+ * The date/time the notification is to be published
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `publish_date` property of NotificationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationupdate[KEY_NOTIFICATION_UPDATE_PUBLISH_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATE_PUBLISH_DATE;
+ * const value = notificationupdate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATE_PUBLISH_DATE = 'publish_date' as keyof NotificationUpdate;
+/**
+ * Source
+ *
+ * Source of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source` property of NotificationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationupdate[KEY_NOTIFICATION_UPDATE_SOURCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATE_SOURCE;
+ * const value = notificationupdate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATE_SOURCE = 'source' as keyof NotificationUpdate;
+/**
+ * Subject
+ *
+ * The subject of the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subject` property of NotificationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationupdate[KEY_NOTIFICATION_UPDATE_SUBJECT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATE_SUBJECT;
+ * const value = notificationupdate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATE_SUBJECT = 'subject' as keyof NotificationUpdate;
+/**
+ * Target
+ *
+ * Target audience (broadcast, account, user)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target` property of NotificationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationupdate[KEY_NOTIFICATION_UPDATE_TARGET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATE_TARGET;
+ * const value = notificationupdate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATE_TARGET = 'target' as keyof NotificationUpdate;
+/**
+ * Type
+ *
+ * The type of notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of NotificationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = notificationupdate[KEY_NOTIFICATION_UPDATE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_NOTIFICATION_UPDATE_TYPE;
+ * const value = notificationupdate[propertyName];
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_NOTIFICATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_NOTIFICATION_UPDATE_TYPE = 'type' as keyof NotificationUpdate;
+
+/**
+ * Array of all NotificationUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for NotificationUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_NOTIFICATION_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${notificationupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_NOTIFICATION_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link NotificationUpdate} - The TypeScript type definition
+ */
+export const KEYS_NOTIFICATION_UPDATE: readonly (keyof NotificationUpdate)[] = [
+  KEY_NOTIFICATION_UPDATE_AUTHOR,
+  KEY_NOTIFICATION_UPDATE_MESSAGE,
+  KEY_NOTIFICATION_UPDATE_PUBLISH_DATE,
+  KEY_NOTIFICATION_UPDATE_SOURCE,
+  KEY_NOTIFICATION_UPDATE_SUBJECT,
+  KEY_NOTIFICATION_UPDATE_TARGET,
+  KEY_NOTIFICATION_UPDATE_TYPE,
+] as const;
+
+/**
+ * Address 1
+ *
+ * First line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_1` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_ADDRESS_1];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ADDRESS_1;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ADDRESS_1 = 'address_1' as keyof Organization;
+/**
+ * Address 2
+ *
+ * Second line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_2` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_ADDRESS_2];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ADDRESS_2;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ADDRESS_2 = 'address_2' as keyof Organization;
+/**
+ * Attributes
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTES;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTES = 'attributes' as keyof Organization;
+/**
+ * Business Number
+ *
+ * Government issued business identifier for the organization issued.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `business_number` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_BUSINESS_NUMBER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_BUSINESS_NUMBER;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_BUSINESS_NUMBER = 'business_number' as keyof Organization;
+/**
+ * City
+ *
+ * City of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CITY;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CITY = 'city' as keyof Organization;
+/**
+ * Country Code
+ *
+ * ISO 3166-1 alpha-2 country code.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country_code` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_COUNTRY_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_COUNTRY_CODE;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_COUNTRY_CODE = 'country_code' as keyof Organization;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATED_ON;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATED_ON = 'created_on' as keyof Organization;
+/**
+ * currency property
+ *
+ * The currency used by the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CURRENCY;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CURRENCY = 'currency' as keyof Organization;
+/**
+ * Default Locale
+ *
+ * Default locale for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `default_locale` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_DEFAULT_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_DEFAULT_LOCALE;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_DEFAULT_LOCALE = 'default_locale' as keyof Organization;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_DELETED_ON;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_DELETED_ON = 'deleted_on' as keyof Organization;
+/**
+ * Name
+ *
+ * Name of the organization.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_NAME;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_NAME = 'name' as keyof Organization;
+/**
+ * Organization Id
+ *
+ * Unique identifier for the organization.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ORGANIZATION_ID;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ORGANIZATION_ID = 'organization_id' as keyof Organization;
+/**
+ * Parent Organization Id
+ *
+ * ID of the parent organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parent_organization_id` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_PARENT_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_PARENT_ORGANIZATION_ID;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof Organization;
+/**
+ * Postal Code
+ *
+ * Postal code of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_POSTAL_CODE;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_POSTAL_CODE = 'postal_code' as keyof Organization;
+/**
+ * State
+ *
+ * State or province of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_STATE;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_STATE = 'state' as keyof Organization;
+/**
+ * status property
+ *
+ * Status of the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_STATUS;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_STATUS = 'status' as keyof Organization;
+/**
+ * Tax Id
+ *
+ * Tax ID of the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_TAX_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_TAX_ID;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_TAX_ID = 'tax_id' as keyof Organization;
+/**
+ * Tax Id Type
+ *
+ * Type of tax ID for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id_type` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_TAX_ID_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_TAX_ID_TYPE;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_TAX_ID_TYPE = 'tax_id_type' as keyof Organization;
+/**
+ * Tax Rate
+ *
+ * Tax rate for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_rate` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_TAX_RATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_TAX_RATE;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_TAX_RATE = 'tax_rate' as keyof Organization;
+/**
+ * Users
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `users` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_USERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_USERS;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_USERS = 'users' as keyof Organization;
+
+/**
+ * Array of all Organization property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Organization objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION) {
+ *   console.log(`Property: ${key}, Value: ${organization[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION.includes(someKey);
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION: readonly (keyof Organization)[] = [
+  KEY_ORGANIZATION_ADDRESS_1,
+  KEY_ORGANIZATION_ADDRESS_2,
+  KEY_ORGANIZATION_ATTRIBUTES,
+  KEY_ORGANIZATION_BUSINESS_NUMBER,
+  KEY_ORGANIZATION_CITY,
+  KEY_ORGANIZATION_COUNTRY_CODE,
+  KEY_ORGANIZATION_CREATED_ON,
+  KEY_ORGANIZATION_CURRENCY,
+  KEY_ORGANIZATION_DEFAULT_LOCALE,
+  KEY_ORGANIZATION_DELETED_ON,
+  KEY_ORGANIZATION_NAME,
+  KEY_ORGANIZATION_ORGANIZATION_ID,
+  KEY_ORGANIZATION_PARENT_ORGANIZATION_ID,
+  KEY_ORGANIZATION_POSTAL_CODE,
+  KEY_ORGANIZATION_STATE,
+  KEY_ORGANIZATION_STATUS,
+  KEY_ORGANIZATION_TAX_ID,
+  KEY_ORGANIZATION_TAX_ID_TYPE,
+  KEY_ORGANIZATION_TAX_RATE,
+  KEY_ORGANIZATION_USERS,
+] as const;
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of OrganizationAttribute objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute[KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON;
+ * const value = organizationattribute[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON = 'created_on' as keyof OrganizationAttribute;
+/**
+ * Key
+ *
+ * Key of the attribute.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of OrganizationAttribute objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute[KEY_ORGANIZATION_ATTRIBUTE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_KEY;
+ * const value = organizationattribute[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_KEY = 'key' as keyof OrganizationAttribute;
+/**
+ * Organization Attribute Id
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_attribute_id` property of OrganizationAttribute objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute[KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID;
+ * const value = organizationattribute[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID = 'organization_attribute_id' as keyof OrganizationAttribute;
+/**
+ * Private
+ *
+ * When true, the attribute is private and not visible to users.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `private` property of OrganizationAttribute objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute[KEY_ORGANIZATION_ATTRIBUTE_PRIVATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_PRIVATE;
+ * const value = organizationattribute[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_PRIVATE = 'private' as keyof OrganizationAttribute;
+/**
+ * Protected
+ *
+ * When true, the attribute is protected and cannot be modified by users.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected` property of OrganizationAttribute objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute[KEY_ORGANIZATION_ATTRIBUTE_PROTECTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_PROTECTED;
+ * const value = organizationattribute[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_PROTECTED = 'protected' as keyof OrganizationAttribute;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of OrganizationAttribute objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute[KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON;
+ * const value = organizationattribute[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON = 'updated_on' as keyof OrganizationAttribute;
+/**
+ * value property
+ *
+ * Value of the attribute.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of OrganizationAttribute objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute[KEY_ORGANIZATION_ATTRIBUTE_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_VALUE;
+ * const value = organizationattribute[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_VALUE = 'value' as keyof OrganizationAttribute;
+
+/**
+ * Array of all OrganizationAttribute property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationAttribute objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_ATTRIBUTE) {
+ *   console.log(`Property: ${key}, Value: ${organizationattribute[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_ATTRIBUTE.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationAttribute} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_ATTRIBUTE: readonly (keyof OrganizationAttribute)[] = [
+  KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON,
+  KEY_ORGANIZATION_ATTRIBUTE_KEY,
+  KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID,
+  KEY_ORGANIZATION_ATTRIBUTE_PRIVATE,
+  KEY_ORGANIZATION_ATTRIBUTE_PROTECTED,
+  KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON,
+  KEY_ORGANIZATION_ATTRIBUTE_VALUE,
+] as const;
+
+/**
+ * Key
+ *
+ * Key of the attribute.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of OrganizationAttributeCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributecreate[KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY;
+ * const value = organizationattributecreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY = 'key' as keyof OrganizationAttributeCreate;
+/**
+ * Private
+ *
+ * When true, the attribute is private and not visible to users.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `private` property of OrganizationAttributeCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributecreate[KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE;
+ * const value = organizationattributecreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE = 'private' as keyof OrganizationAttributeCreate;
+/**
+ * Protected
+ *
+ * When true, the attribute is protected and cannot be modified by users.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected` property of OrganizationAttributeCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributecreate[KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED;
+ * const value = organizationattributecreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED = 'protected' as keyof OrganizationAttributeCreate;
+/**
+ * value property
+ *
+ * Value of the attribute.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of OrganizationAttributeCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributecreate[KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE;
+ * const value = organizationattributecreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE = 'value' as keyof OrganizationAttributeCreate;
+
+/**
+ * Array of all OrganizationAttributeCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationAttributeCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_ATTRIBUTE_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${organizationattributecreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_ATTRIBUTE_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_ATTRIBUTE_CREATE: readonly (keyof OrganizationAttributeCreate)[] = [
+  KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY,
+  KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE,
+  KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED,
+  KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE,
+] as const;
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of OrganizationAttribute2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute2[KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON;
+ * const value = organizationattribute2[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute2} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON = 'created_on' as keyof OrganizationAttribute2;
+/**
+ * Key
+ *
+ * Key of the attribute.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of OrganizationAttribute2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute2[KEY_ORGANIZATION_ATTRIBUTE2_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE2_KEY;
+ * const value = organizationattribute2[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute2} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE2_KEY = 'key' as keyof OrganizationAttribute2;
+/**
+ * Organization Attribute Id
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_attribute_id` property of OrganizationAttribute2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute2[KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID;
+ * const value = organizationattribute2[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute2} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID = 'organization_attribute_id' as keyof OrganizationAttribute2;
+/**
+ * Protected
+ *
+ * When true, the attribute is protected and cannot be modified by users.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected` property of OrganizationAttribute2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute2[KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED;
+ * const value = organizationattribute2[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute2} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED = 'protected' as keyof OrganizationAttribute2;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of OrganizationAttribute2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute2[KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON;
+ * const value = organizationattribute2[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute2} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON = 'updated_on' as keyof OrganizationAttribute2;
+/**
+ * value property
+ *
+ * Value of the attribute.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of OrganizationAttribute2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattribute2[KEY_ORGANIZATION_ATTRIBUTE2_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE2_VALUE;
+ * const value = organizationattribute2[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttribute2} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE2_VALUE = 'value' as keyof OrganizationAttribute2;
+
+/**
+ * Array of all OrganizationAttribute2 property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationAttribute2 objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_ATTRIBUTE2) {
+ *   console.log(`Property: ${key}, Value: ${organizationattribute2[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_ATTRIBUTE2.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationAttribute2} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_ATTRIBUTE2: readonly (keyof OrganizationAttribute2)[] = [
+  KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON,
+  KEY_ORGANIZATION_ATTRIBUTE2_KEY,
+  KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID,
+  KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED,
+  KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON,
+  KEY_ORGANIZATION_ATTRIBUTE2_VALUE,
+] as const;
+
+/**
+ * Key
+ *
+ * Key of the attribute.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of OrganizationAttributeUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributeupdate[KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY;
+ * const value = organizationattributeupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY = 'key' as keyof OrganizationAttributeUpdate;
+/**
+ * Private
+ *
+ * When true, the attribute is private and not visible to users.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `private` property of OrganizationAttributeUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributeupdate[KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE;
+ * const value = organizationattributeupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE = 'private' as keyof OrganizationAttributeUpdate;
+/**
+ * Protected
+ *
+ * When true, the attribute is protected and cannot be modified by users.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected` property of OrganizationAttributeUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributeupdate[KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED;
+ * const value = organizationattributeupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED = 'protected' as keyof OrganizationAttributeUpdate;
+/**
+ * value property
+ *
+ * Value of the attribute.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of OrganizationAttributeUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationattributeupdate[KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE;
+ * const value = organizationattributeupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE = 'value' as keyof OrganizationAttributeUpdate;
+
+/**
+ * Array of all OrganizationAttributeUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationAttributeUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_ATTRIBUTE_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${organizationattributeupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_ATTRIBUTE_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_ATTRIBUTE_UPDATE: readonly (keyof OrganizationAttributeUpdate)[] = [
+  KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY,
+  KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE,
+  KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED,
+  KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE,
+] as const;
+
+/**
+ * Address 1
+ *
+ * First line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_1` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_ADDRESS_1];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_ADDRESS_1;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_ADDRESS_1 = 'address_1' as keyof OrganizationCreate;
+/**
+ * Address 2
+ *
+ * Second line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_2` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_ADDRESS_2];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_ADDRESS_2;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_ADDRESS_2 = 'address_2' as keyof OrganizationCreate;
+/**
+ * Attributes
+ *
+ * List of attributes for the organization.
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_ATTRIBUTES;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_ATTRIBUTES = 'attributes' as keyof OrganizationCreate;
+/**
+ * Business Number
+ *
+ * Government issued business identifier for the organization issued.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `business_number` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER = 'business_number' as keyof OrganizationCreate;
+/**
+ * City
+ *
+ * City of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_CITY;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_CITY = 'city' as keyof OrganizationCreate;
+/**
+ * Country Code
+ *
+ * ISO 3166-1 alpha-2 country code.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country_code` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_COUNTRY_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_COUNTRY_CODE;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_COUNTRY_CODE = 'country_code' as keyof OrganizationCreate;
+/**
+ * currency property
+ *
+ * The currency used by the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_CURRENCY;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_CURRENCY = 'currency' as keyof OrganizationCreate;
+/**
+ * Default Locale
+ *
+ * Default locale for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `default_locale` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_DEFAULT_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_DEFAULT_LOCALE;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationCreate;
+/**
+ * Name
+ *
+ * Name of the organization.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_NAME;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_NAME = 'name' as keyof OrganizationCreate;
+/**
+ * Parent Organization Id
+ *
+ * ID of the parent organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parent_organization_id` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationCreate;
+/**
+ * Postal Code
+ *
+ * Postal code of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_POSTAL_CODE;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_POSTAL_CODE = 'postal_code' as keyof OrganizationCreate;
+/**
+ * State
+ *
+ * State or province of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_STATE;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_STATE = 'state' as keyof OrganizationCreate;
+/**
+ * Tax Id
+ *
+ * Tax ID of the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_TAX_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_TAX_ID;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_TAX_ID = 'tax_id' as keyof OrganizationCreate;
+/**
+ * Tax Id Type
+ *
+ * Type of tax ID for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id_type` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_TAX_ID_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_TAX_ID_TYPE;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationCreate;
+/**
+ * Tax Rate
+ *
+ * Tax rate for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_rate` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_TAX_RATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_TAX_RATE;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_TAX_RATE = 'tax_rate' as keyof OrganizationCreate;
+/**
+ * Users
+ *
+ * List of users that needs to be created with the organization.
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `users` property of OrganizationCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcreate[KEY_ORGANIZATION_CREATE_USERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREATE_USERS;
+ * const value = organizationcreate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREATE_USERS = 'users' as keyof OrganizationCreate;
+
+/**
+ * Array of all OrganizationCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${organizationcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationCreate} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_CREATE: readonly (keyof OrganizationCreate)[] = [
+  KEY_ORGANIZATION_CREATE_ADDRESS_1,
+  KEY_ORGANIZATION_CREATE_ADDRESS_2,
+  KEY_ORGANIZATION_CREATE_ATTRIBUTES,
+  KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER,
+  KEY_ORGANIZATION_CREATE_CITY,
+  KEY_ORGANIZATION_CREATE_COUNTRY_CODE,
+  KEY_ORGANIZATION_CREATE_CURRENCY,
+  KEY_ORGANIZATION_CREATE_DEFAULT_LOCALE,
+  KEY_ORGANIZATION_CREATE_NAME,
+  KEY_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID,
+  KEY_ORGANIZATION_CREATE_POSTAL_CODE,
+  KEY_ORGANIZATION_CREATE_STATE,
+  KEY_ORGANIZATION_CREATE_TAX_ID,
+  KEY_ORGANIZATION_CREATE_TAX_ID_TYPE,
+  KEY_ORGANIZATION_CREATE_TAX_RATE,
+  KEY_ORGANIZATION_CREATE_USERS,
+] as const;
+
+/**
+ * Api Key Description
+ *
+ * Description of the organization credential.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key_description` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_API_KEY_DESCRIPTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_API_KEY_DESCRIPTION;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_API_KEY_DESCRIPTION = 'api_key_description' as keyof OrganizationCredential;
+/**
+ * Api Key Id
+ *
+ * Unique identifier of the organization credential.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key_id` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_API_KEY_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_API_KEY_ID;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_API_KEY_ID = 'api_key_id' as keyof OrganizationCredential;
+/**
+ * Api Key Name
+ *
+ * Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key_name` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_API_KEY_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_API_KEY_NAME;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_API_KEY_NAME = 'api_key_name' as keyof OrganizationCredential;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_ON;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_ON = 'created_on' as keyof OrganizationCredential;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_DELETED_ON;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_DELETED_ON = 'deleted_on' as keyof OrganizationCredential;
+/**
+ * Last Used On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_used_on` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_LAST_USED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_LAST_USED_ON;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_LAST_USED_ON = 'last_used_on' as keyof OrganizationCredential;
+/**
+ * Organization Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_ORGANIZATION_ID;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_ORGANIZATION_ID = 'organization_id' as keyof OrganizationCredential;
+/**
+ * status property
+ *
+ * The status of the organization credential.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of OrganizationCredential objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredential[KEY_ORGANIZATION_CREDENTIAL_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_STATUS;
+ * const value = organizationcredential[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_STATUS = 'status' as keyof OrganizationCredential;
+
+/**
+ * Array of all OrganizationCredential property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationCredential objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_CREDENTIAL) {
+ *   console.log(`Property: ${key}, Value: ${organizationcredential[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_CREDENTIAL.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationCredential} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_CREDENTIAL: readonly (keyof OrganizationCredential)[] = [
+  KEY_ORGANIZATION_CREDENTIAL_API_KEY_DESCRIPTION,
+  KEY_ORGANIZATION_CREDENTIAL_API_KEY_ID,
+  KEY_ORGANIZATION_CREDENTIAL_API_KEY_NAME,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_DELETED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_LAST_USED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_ORGANIZATION_ID,
+  KEY_ORGANIZATION_CREDENTIAL_STATUS,
+] as const;
+
+/**
+ * Api Key
+ *
+ * Unique identifier of the organization credential.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY = 'api_key' as keyof OrganizationCredentialCreated;
+/**
+ * Api Key Description
+ *
+ * Description of the organization credential.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key_description` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_DESCRIPTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_DESCRIPTION;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_DESCRIPTION = 'api_key_description' as keyof OrganizationCredentialCreated;
+/**
+ * Api Key Name
+ *
+ * Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key_name` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_NAME;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_NAME = 'api_key_name' as keyof OrganizationCredentialCreated;
+/**
+ * Client Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `client_id` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_ID;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_ID = 'client_id' as keyof OrganizationCredentialCreated;
+/**
+ * Client Secret
+ *
+ * Plaintext secret to be hashed (not stored directly in the DB).
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `client_secret` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_SECRET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_SECRET;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_SECRET = 'client_secret' as keyof OrganizationCredentialCreated;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_CREATED_ON;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_CREATED_ON = 'created_on' as keyof OrganizationCredentialCreated;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_DELETED_ON;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_DELETED_ON = 'deleted_on' as keyof OrganizationCredentialCreated;
+/**
+ * Last Used On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_used_on` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_LAST_USED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_LAST_USED_ON;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_LAST_USED_ON = 'last_used_on' as keyof OrganizationCredentialCreated;
+/**
+ * status property
+ *
+ * The status of the organization credential.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of OrganizationCredentialCreated objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialcreated[KEY_ORGANIZATION_CREDENTIAL_CREATED_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_CREATED_STATUS;
+ * const value = organizationcredentialcreated[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_CREATED} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_STATUS = 'status' as keyof OrganizationCredentialCreated;
+
+/**
+ * Array of all OrganizationCredentialCreated property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationCredentialCreated objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_CREDENTIAL_CREATED) {
+ *   console.log(`Property: ${key}, Value: ${organizationcredentialcreated[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_CREDENTIAL_CREATED.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_CREDENTIAL_CREATED: readonly (keyof OrganizationCredentialCreated)[] = [
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_DESCRIPTION,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_NAME,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_ID,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_CLIENT_SECRET,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_CREATED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_DELETED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_LAST_USED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_STATUS,
+] as const;
+
+/**
+ * Api Key Description
+ *
+ * Description of the organization credential.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key_description` property of OrganizationCredentialExtra objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialextra[KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_DESCRIPTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_DESCRIPTION;
+ * const value = organizationcredentialextra[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialExtra} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_EXTRA} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_DESCRIPTION = 'api_key_description' as keyof OrganizationCredentialExtra;
+/**
+ * Api Key Name
+ *
+ * Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `api_key_name` property of OrganizationCredentialExtra objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialextra[KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_NAME;
+ * const value = organizationcredentialextra[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialExtra} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_EXTRA} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_NAME = 'api_key_name' as keyof OrganizationCredentialExtra;
+/**
+ * Expires At
+ *
+ * The date and time the credential expiration.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expires_at` property of OrganizationCredentialExtra objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationcredentialextra[KEY_ORGANIZATION_CREDENTIAL_EXTRA_EXPIRES_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_CREDENTIAL_EXTRA_EXPIRES_AT;
+ * const value = organizationcredentialextra[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationCredentialExtra} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_CREDENTIAL_EXTRA} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_CREDENTIAL_EXTRA_EXPIRES_AT = 'expires_at' as keyof OrganizationCredentialExtra;
+
+/**
+ * Array of all OrganizationCredentialExtra property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationCredentialExtra objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_CREDENTIAL_EXTRA) {
+ *   console.log(`Property: ${key}, Value: ${organizationcredentialextra[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_CREDENTIAL_EXTRA.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationCredentialExtra} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_CREDENTIAL_EXTRA: readonly (keyof OrganizationCredentialExtra)[] = [
+  KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_DESCRIPTION,
+  KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_NAME,
+  KEY_ORGANIZATION_CREDENTIAL_EXTRA_EXPIRES_AT,
+] as const;
+
+/**
+ * Access Token
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `access_token` property of OrganizationToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationtoken[KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN;
+ * const value = organizationtoken[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationToken} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_TOKEN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN = 'access_token' as keyof OrganizationToken;
+/**
+ * Expires In
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expires_in` property of OrganizationToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationtoken[KEY_ORGANIZATION_TOKEN_EXPIRES_IN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_TOKEN_EXPIRES_IN;
+ * const value = organizationtoken[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationToken} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_TOKEN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_TOKEN_EXPIRES_IN = 'expires_in' as keyof OrganizationToken;
+/**
+ * Token Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `token_type` property of OrganizationToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationtoken[KEY_ORGANIZATION_TOKEN_TOKEN_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_TOKEN_TOKEN_TYPE;
+ * const value = organizationtoken[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationToken} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_TOKEN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_TOKEN_TOKEN_TYPE = 'token_type' as keyof OrganizationToken;
+
+/**
+ * Array of all OrganizationToken property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationToken objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_TOKEN) {
+ *   console.log(`Property: ${key}, Value: ${organizationtoken[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_TOKEN.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationToken} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_TOKEN: readonly (keyof OrganizationToken)[] = [
+  KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN,
+  KEY_ORGANIZATION_TOKEN_EXPIRES_IN,
+  KEY_ORGANIZATION_TOKEN_TOKEN_TYPE,
+] as const;
+
+/**
+ * Address 1
+ *
+ * First line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_1` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_ADDRESS_1];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_ADDRESS_1;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_ADDRESS_1 = 'address_1' as keyof OrganizationUpdate;
+/**
+ * Address 2
+ *
+ * Second line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_2` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_ADDRESS_2];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_ADDRESS_2;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_ADDRESS_2 = 'address_2' as keyof OrganizationUpdate;
+/**
+ * Business Number
+ *
+ * Government issued business identifier for the organization issued.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `business_number` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER = 'business_number' as keyof OrganizationUpdate;
+/**
+ * City
+ *
+ * City of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_CITY;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_CITY = 'city' as keyof OrganizationUpdate;
+/**
+ * Country Code
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country_code` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_COUNTRY_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_COUNTRY_CODE;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_COUNTRY_CODE = 'country_code' as keyof OrganizationUpdate;
+/**
+ * Default Locale
+ *
+ * Default locale for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `default_locale` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_DEFAULT_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_DEFAULT_LOCALE;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationUpdate;
+/**
+ * Name
+ *
+ * Name of the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_NAME;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_NAME = 'name' as keyof OrganizationUpdate;
+/**
+ * Postal Code
+ *
+ * Postal code of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_POSTAL_CODE;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_POSTAL_CODE = 'postal_code' as keyof OrganizationUpdate;
+/**
+ * State
+ *
+ * State or province of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_STATE;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_STATE = 'state' as keyof OrganizationUpdate;
+/**
+ * Tax Id
+ *
+ * Tax ID of the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_TAX_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_TAX_ID;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_TAX_ID = 'tax_id' as keyof OrganizationUpdate;
+/**
+ * Tax Id Type
+ *
+ * Type of tax ID for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id_type` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationUpdate;
+/**
+ * Tax Rate
+ *
+ * Tax rate for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_rate` property of OrganizationUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationupdate[KEY_ORGANIZATION_UPDATE_TAX_RATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_UPDATE_TAX_RATE;
+ * const value = organizationupdate[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_UPDATE_TAX_RATE = 'tax_rate' as keyof OrganizationUpdate;
+
+/**
+ * Array of all OrganizationUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${organizationupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationUpdate} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_UPDATE: readonly (keyof OrganizationUpdate)[] = [
+  KEY_ORGANIZATION_UPDATE_ADDRESS_1,
+  KEY_ORGANIZATION_UPDATE_ADDRESS_2,
+  KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER,
+  KEY_ORGANIZATION_UPDATE_CITY,
+  KEY_ORGANIZATION_UPDATE_COUNTRY_CODE,
+  KEY_ORGANIZATION_UPDATE_DEFAULT_LOCALE,
+  KEY_ORGANIZATION_UPDATE_NAME,
+  KEY_ORGANIZATION_UPDATE_POSTAL_CODE,
+  KEY_ORGANIZATION_UPDATE_STATE,
+  KEY_ORGANIZATION_UPDATE_TAX_ID,
+  KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE,
+  KEY_ORGANIZATION_UPDATE_TAX_RATE,
+] as const;
+
+/**
+ * Address 1
+ *
+ * First line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_1` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1 = 'address_1' as keyof OrganizationWithPlan;
+/**
+ * Address 2
+ *
+ * Second line of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `address_2` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2 = 'address_2' as keyof OrganizationWithPlan;
+/**
+ * Attributes
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES = 'attributes' as keyof OrganizationWithPlan;
+/**
+ * Business Number
+ *
+ * Government issued business identifier for the organization issued.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `business_number` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER = 'business_number' as keyof OrganizationWithPlan;
+/**
+ * City
+ *
+ * City of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_CITY;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_CITY = 'city' as keyof OrganizationWithPlan;
+/**
+ * Country Code
+ *
+ * ISO 3166-1 alpha-2 country code.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country_code` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE = 'country_code' as keyof OrganizationWithPlan;
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_CREATED_ON;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_CREATED_ON = 'created_on' as keyof OrganizationWithPlan;
+/**
+ * currency property
+ *
+ * The currency used by the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_CURRENCY;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_CURRENCY = 'currency' as keyof OrganizationWithPlan;
+/**
+ * Default Locale
+ *
+ * Default locale for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `default_locale` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationWithPlan;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_DELETED_ON;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_DELETED_ON = 'deleted_on' as keyof OrganizationWithPlan;
+/**
+ * Name
+ *
+ * Name of the organization.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_NAME;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_NAME = 'name' as keyof OrganizationWithPlan;
+/**
+ * Organization Id
+ *
+ * Unique identifier for the organization.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID = 'organization_id' as keyof OrganizationWithPlan;
+/**
+ * Parent Organization Id
+ *
+ * ID of the parent organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parent_organization_id` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationWithPlan;
+/**
+ * plan property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plan` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_PLAN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_PLAN;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_PLAN = 'plan' as keyof OrganizationWithPlan;
+/**
+ * Postal Code
+ *
+ * Postal code of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE = 'postal_code' as keyof OrganizationWithPlan;
+/**
+ * State
+ *
+ * State or province of the organization's address.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_STATE;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_STATE = 'state' as keyof OrganizationWithPlan;
+/**
+ * status property
+ *
+ * Status of the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_STATUS;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_STATUS = 'status' as keyof OrganizationWithPlan;
+/**
+ * Tax Id
+ *
+ * Tax ID of the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_TAX_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_TAX_ID;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_TAX_ID = 'tax_id' as keyof OrganizationWithPlan;
+/**
+ * Tax Id Type
+ *
+ * Type of tax ID for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_id_type` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationWithPlan;
+/**
+ * Tax Rate
+ *
+ * Tax rate for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_rate` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_TAX_RATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_TAX_RATE;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_TAX_RATE = 'tax_rate' as keyof OrganizationWithPlan;
+/**
+ * Users
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `users` property of OrganizationWithPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_USERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_PLAN_USERS;
+ * const value = organizationwithplan[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_PLAN_USERS = 'users' as keyof OrganizationWithPlan;
+
+/**
+ * Array of all OrganizationWithPlan property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for OrganizationWithPlan objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ORGANIZATION_WITH_PLAN) {
+ *   console.log(`Property: ${key}, Value: ${organizationwithplan[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ORGANIZATION_WITH_PLAN.includes(someKey);
+ * ```
+ *
+ * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ */
+export const KEYS_ORGANIZATION_WITH_PLAN: readonly (keyof OrganizationWithPlan)[] = [
+  KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1,
+  KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2,
+  KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES,
+  KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER,
+  KEY_ORGANIZATION_WITH_PLAN_CITY,
+  KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE,
+  KEY_ORGANIZATION_WITH_PLAN_CREATED_ON,
+  KEY_ORGANIZATION_WITH_PLAN_CURRENCY,
+  KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE,
+  KEY_ORGANIZATION_WITH_PLAN_DELETED_ON,
+  KEY_ORGANIZATION_WITH_PLAN_NAME,
+  KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID,
+  KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID,
+  KEY_ORGANIZATION_WITH_PLAN_PLAN,
+  KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE,
+  KEY_ORGANIZATION_WITH_PLAN_STATE,
+  KEY_ORGANIZATION_WITH_PLAN_STATUS,
+  KEY_ORGANIZATION_WITH_PLAN_TAX_ID,
+  KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE,
+  KEY_ORGANIZATION_WITH_PLAN_TAX_RATE,
+  KEY_ORGANIZATION_WITH_PLAN_USERS,
+] as const;
+
+/**
+ * Current Page
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `current_page` property of PaginationMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = paginationmetadata[KEY_PAGINATION_METADATA_CURRENT_PAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PAGINATION_METADATA_CURRENT_PAGE;
+ * const value = paginationmetadata[propertyName];
+ * ```
+ *
+ * @see {@link PaginationMetadata} - The TypeScript type definition
+ * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
+ */
+export const KEY_PAGINATION_METADATA_CURRENT_PAGE = 'current_page' as keyof PaginationMetadata;
+/**
+ * Has Next Page
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `has_next_page` property of PaginationMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = paginationmetadata[KEY_PAGINATION_METADATA_HAS_NEXT_PAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PAGINATION_METADATA_HAS_NEXT_PAGE;
+ * const value = paginationmetadata[propertyName];
+ * ```
+ *
+ * @see {@link PaginationMetadata} - The TypeScript type definition
+ * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
+ */
+export const KEY_PAGINATION_METADATA_HAS_NEXT_PAGE = 'has_next_page' as keyof PaginationMetadata;
+/**
+ * Has Previous Page
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `has_previous_page` property of PaginationMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = paginationmetadata[KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE;
+ * const value = paginationmetadata[propertyName];
+ * ```
+ *
+ * @see {@link PaginationMetadata} - The TypeScript type definition
+ * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
+ */
+export const KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE = 'has_previous_page' as keyof PaginationMetadata;
+/**
+ * Page Size
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `page_size` property of PaginationMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = paginationmetadata[KEY_PAGINATION_METADATA_PAGE_SIZE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PAGINATION_METADATA_PAGE_SIZE;
+ * const value = paginationmetadata[propertyName];
+ * ```
+ *
+ * @see {@link PaginationMetadata} - The TypeScript type definition
+ * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
+ */
+export const KEY_PAGINATION_METADATA_PAGE_SIZE = 'page_size' as keyof PaginationMetadata;
+/**
+ * Total Items
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_items` property of PaginationMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = paginationmetadata[KEY_PAGINATION_METADATA_TOTAL_ITEMS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PAGINATION_METADATA_TOTAL_ITEMS;
+ * const value = paginationmetadata[propertyName];
+ * ```
+ *
+ * @see {@link PaginationMetadata} - The TypeScript type definition
+ * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
+ */
+export const KEY_PAGINATION_METADATA_TOTAL_ITEMS = 'total_items' as keyof PaginationMetadata;
+/**
+ * Total Pages
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_pages` property of PaginationMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = paginationmetadata[KEY_PAGINATION_METADATA_TOTAL_PAGES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PAGINATION_METADATA_TOTAL_PAGES;
+ * const value = paginationmetadata[propertyName];
+ * ```
+ *
+ * @see {@link PaginationMetadata} - The TypeScript type definition
+ * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
+ */
+export const KEY_PAGINATION_METADATA_TOTAL_PAGES = 'total_pages' as keyof PaginationMetadata;
+
+/**
+ * Array of all PaginationMetadata property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PaginationMetadata objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PAGINATION_METADATA) {
+ *   console.log(`Property: ${key}, Value: ${paginationmetadata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PAGINATION_METADATA.includes(someKey);
+ * ```
+ *
+ * @see {@link PaginationMetadata} - The TypeScript type definition
+ */
+export const KEYS_PAGINATION_METADATA: readonly (keyof PaginationMetadata)[] = [
+  KEY_PAGINATION_METADATA_CURRENT_PAGE,
+  KEY_PAGINATION_METADATA_HAS_NEXT_PAGE,
+  KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE,
+  KEY_PAGINATION_METADATA_PAGE_SIZE,
+  KEY_PAGINATION_METADATA_TOTAL_ITEMS,
+  KEY_PAGINATION_METADATA_TOTAL_PAGES,
+] as const;
+
+/**
+ * Permissions
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `permissions` property of PermissionSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = permissionset[KEY_PERMISSION_SET_PERMISSIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PERMISSION_SET_PERMISSIONS;
+ * const value = permissionset[propertyName];
+ * ```
+ *
+ * @see {@link PermissionSet} - The TypeScript type definition
+ * @see {@link KEYS_PERMISSION_SET} - Array of all keys for this type
+ */
+export const KEY_PERMISSION_SET_PERMISSIONS = 'permissions' as keyof PermissionSet;
+
+/**
+ * Array of all PermissionSet property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PermissionSet objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PERMISSION_SET) {
+ *   console.log(`Property: ${key}, Value: ${permissionset[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PERMISSION_SET.includes(someKey);
+ * ```
+ *
+ * @see {@link PermissionSet} - The TypeScript type definition
+ */
+export const KEYS_PERMISSION_SET: readonly (keyof PermissionSet)[] = [
+  KEY_PERMISSION_SET_PERMISSIONS,
+] as const;
+
+/**
+ * plan property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plan` property of PlanUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = planupdate[KEY_PLAN_UPDATE_PLAN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLAN_UPDATE_PLAN;
+ * const value = planupdate[propertyName];
+ * ```
+ *
+ * @see {@link PlanUpdate} - The TypeScript type definition
+ * @see {@link KEYS_PLAN_UPDATE} - Array of all keys for this type
+ */
+export const KEY_PLAN_UPDATE_PLAN = 'plan' as keyof PlanUpdate;
+
+/**
+ * Array of all PlanUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PlanUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PLAN_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${planupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PLAN_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link PlanUpdate} - The TypeScript type definition
+ */
+export const KEYS_PLAN_UPDATE: readonly (keyof PlanUpdate)[] = [
+  KEY_PLAN_UPDATE_PLAN,
+] as const;
+
+/**
+ * Problem detail
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `detail` property of Problem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = problem[KEY_PROBLEM_DETAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PROBLEM_DETAIL;
+ * const value = problem[propertyName];
+ * ```
+ *
+ * @see {@link Problem} - The TypeScript type definition
+ * @see {@link KEYS_PROBLEM} - Array of all keys for this type
+ */
+export const KEY_PROBLEM_DETAIL = 'detail' as keyof Problem;
+/**
+ * Status code
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of Problem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = problem[KEY_PROBLEM_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PROBLEM_STATUS;
+ * const value = problem[propertyName];
+ * ```
+ *
+ * @see {@link Problem} - The TypeScript type definition
+ * @see {@link KEYS_PROBLEM} - Array of all keys for this type
+ */
+export const KEY_PROBLEM_STATUS = 'status' as keyof Problem;
+/**
+ * Problem Title
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of Problem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = problem[KEY_PROBLEM_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PROBLEM_TITLE;
+ * const value = problem[propertyName];
+ * ```
+ *
+ * @see {@link Problem} - The TypeScript type definition
+ * @see {@link KEYS_PROBLEM} - Array of all keys for this type
+ */
+export const KEY_PROBLEM_TITLE = 'title' as keyof Problem;
+/**
+ * Problem type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of Problem objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = problem[KEY_PROBLEM_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PROBLEM_TYPE;
+ * const value = problem[propertyName];
+ * ```
+ *
+ * @see {@link Problem} - The TypeScript type definition
+ * @see {@link KEYS_PROBLEM} - Array of all keys for this type
+ */
+export const KEY_PROBLEM_TYPE = 'type' as keyof Problem;
+
+/**
+ * Array of all Problem property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Problem objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PROBLEM) {
+ *   console.log(`Property: ${key}, Value: ${problem[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PROBLEM.includes(someKey);
+ * ```
+ *
+ * @see {@link Problem} - The TypeScript type definition
+ */
+export const KEYS_PROBLEM: readonly (keyof Problem)[] = [
+  KEY_PROBLEM_DETAIL,
+  KEY_PROBLEM_STATUS,
+  KEY_PROBLEM_TITLE,
+  KEY_PROBLEM_TYPE,
+] as const;
+
+/**
+ * Relations
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `relations` property of RelationSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = relationset[KEY_RELATION_SET_RELATIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RELATION_SET_RELATIONS;
+ * const value = relationset[propertyName];
+ * ```
+ *
+ * @see {@link RelationSet} - The TypeScript type definition
+ * @see {@link KEYS_RELATION_SET} - Array of all keys for this type
+ */
+export const KEY_RELATION_SET_RELATIONS = 'relations' as keyof RelationSet;
+
+/**
+ * Array of all RelationSet property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RelationSet objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_RELATION_SET) {
+ *   console.log(`Property: ${key}, Value: ${relationset[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_RELATION_SET.includes(someKey);
+ * ```
+ *
+ * @see {@link RelationSet} - The TypeScript type definition
+ */
+export const KEYS_RELATION_SET: readonly (keyof RelationSet)[] = [
+  KEY_RELATION_SET_RELATIONS,
+] as const;
+
+/**
+ * organization property
+ *
+ * Organization signup.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization` property of SignupCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = signupcreate[KEY_SIGNUP_CREATE_ORGANIZATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SIGNUP_CREATE_ORGANIZATION;
+ * const value = signupcreate[propertyName];
+ * ```
+ *
+ * @see {@link SignupCreate} - The TypeScript type definition
+ * @see {@link KEYS_SIGNUP_CREATE} - Array of all keys for this type
+ */
+export const KEY_SIGNUP_CREATE_ORGANIZATION = 'organization' as keyof SignupCreate;
+/**
+ * terms_of_service property
+ *
+ * Optional terms of service acceptance.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `terms_of_service` property of SignupCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = signupcreate[KEY_SIGNUP_CREATE_TERMS_OF_SERVICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SIGNUP_CREATE_TERMS_OF_SERVICE;
+ * const value = signupcreate[propertyName];
+ * ```
+ *
+ * @see {@link SignupCreate} - The TypeScript type definition
+ * @see {@link KEYS_SIGNUP_CREATE} - Array of all keys for this type
+ */
+export const KEY_SIGNUP_CREATE_TERMS_OF_SERVICE = 'terms_of_service' as keyof SignupCreate;
+/**
+ * user property
+ *
+ * User signup to platform.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user` property of SignupCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = signupcreate[KEY_SIGNUP_CREATE_USER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SIGNUP_CREATE_USER;
+ * const value = signupcreate[propertyName];
+ * ```
+ *
+ * @see {@link SignupCreate} - The TypeScript type definition
+ * @see {@link KEYS_SIGNUP_CREATE} - Array of all keys for this type
+ */
+export const KEY_SIGNUP_CREATE_USER = 'user' as keyof SignupCreate;
+
+/**
+ * Array of all SignupCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for SignupCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_SIGNUP_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${signupcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_SIGNUP_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link SignupCreate} - The TypeScript type definition
+ */
+export const KEYS_SIGNUP_CREATE: readonly (keyof SignupCreate)[] = [
+  KEY_SIGNUP_CREATE_ORGANIZATION,
+  KEY_SIGNUP_CREATE_TERMS_OF_SERVICE,
+  KEY_SIGNUP_CREATE_USER,
+] as const;
+
+/**
+ * Add
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `add` property of SpiceDbRelationshipUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = spicedbrelationshipupdate[KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD;
+ * const value = spicedbrelationshipupdate[propertyName];
+ * ```
+ *
+ * @see {@link SpiceDbRelationshipUpdate} - The TypeScript type definition
+ * @see {@link KEYS_SPICE_DB_RELATIONSHIP_UPDATE} - Array of all keys for this type
+ */
+export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD = 'add' as keyof SpiceDbRelationshipUpdate;
+/**
+ * Remove
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `remove` property of SpiceDbRelationshipUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = spicedbrelationshipupdate[KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE;
+ * const value = spicedbrelationshipupdate[propertyName];
+ * ```
+ *
+ * @see {@link SpiceDbRelationshipUpdate} - The TypeScript type definition
+ * @see {@link KEYS_SPICE_DB_RELATIONSHIP_UPDATE} - Array of all keys for this type
+ */
+export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE = 'remove' as keyof SpiceDbRelationshipUpdate;
+
+/**
+ * Array of all SpiceDbRelationshipUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for SpiceDbRelationshipUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_SPICE_DB_RELATIONSHIP_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${spicedbrelationshipupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_SPICE_DB_RELATIONSHIP_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link SpiceDbRelationshipUpdate} - The TypeScript type definition
+ */
+export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE: readonly (keyof SpiceDbRelationshipUpdate)[] = [
+  KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD,
+  KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE,
+] as const;
+
+/**
+ * Accepted
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `accepted` property of TermsOfServiceAccept objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = termsofserviceaccept[KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED;
+ * const value = termsofserviceaccept[propertyName];
+ * ```
+ *
+ * @see {@link TermsOfServiceAccept} - The TypeScript type definition
+ * @see {@link KEYS_TERMS_OF_SERVICE_ACCEPT} - Array of all keys for this type
+ */
+export const KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED = 'accepted' as keyof TermsOfServiceAccept;
+
+/**
+ * Array of all TermsOfServiceAccept property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TermsOfServiceAccept objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TERMS_OF_SERVICE_ACCEPT) {
+ *   console.log(`Property: ${key}, Value: ${termsofserviceaccept[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TERMS_OF_SERVICE_ACCEPT.includes(someKey);
+ * ```
+ *
+ * @see {@link TermsOfServiceAccept} - The TypeScript type definition
+ */
+export const KEYS_TERMS_OF_SERVICE_ACCEPT: readonly (keyof TermsOfServiceAccept)[] = [
+  KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED,
+] as const;
+
+/**
+ * Current Registrar
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `current_registrar` property of TransferEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferevent[KEY_TRANSFER_EVENT_CURRENT_REGISTRAR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_EVENT_CURRENT_REGISTRAR;
+ * const value = transferevent[propertyName];
+ * ```
+ *
+ * @see {@link TransferEvent} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_EVENT_CURRENT_REGISTRAR = 'current_registrar' as keyof TransferEvent;
+/**
+ * execution_date property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `execution_date` property of TransferEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferevent[KEY_TRANSFER_EVENT_EXECUTION_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_EVENT_EXECUTION_DATE;
+ * const value = transferevent[propertyName];
+ * ```
+ *
+ * @see {@link TransferEvent} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_EVENT_EXECUTION_DATE = 'execution_date' as keyof TransferEvent;
+/**
+ * expiration_date property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expiration_date` property of TransferEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferevent[KEY_TRANSFER_EVENT_EXPIRATION_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_EVENT_EXPIRATION_DATE;
+ * const value = transferevent[propertyName];
+ * ```
+ *
+ * @see {@link TransferEvent} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_EVENT_EXPIRATION_DATE = 'expiration_date' as keyof TransferEvent;
+/**
+ * Message
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of TransferEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferevent[KEY_TRANSFER_EVENT_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_EVENT_MESSAGE;
+ * const value = transferevent[propertyName];
+ * ```
+ *
+ * @see {@link TransferEvent} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_EVENT_MESSAGE = 'message' as keyof TransferEvent;
+/**
+ * Requesting Registrar
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `requesting_registrar` property of TransferEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferevent[KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR;
+ * const value = transferevent[propertyName];
+ * ```
+ *
+ * @see {@link TransferEvent} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR = 'requesting_registrar' as keyof TransferEvent;
+
+/**
+ * Array of all TransferEvent property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TransferEvent objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TRANSFER_EVENT) {
+ *   console.log(`Property: ${key}, Value: ${transferevent[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TRANSFER_EVENT.includes(someKey);
+ * ```
+ *
+ * @see {@link TransferEvent} - The TypeScript type definition
+ */
+export const KEYS_TRANSFER_EVENT: readonly (keyof TransferEvent)[] = [
+  KEY_TRANSFER_EVENT_CURRENT_REGISTRAR,
+  KEY_TRANSFER_EVENT_EXECUTION_DATE,
+  KEY_TRANSFER_EVENT_EXPIRATION_DATE,
+  KEY_TRANSFER_EVENT_MESSAGE,
+  KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR,
+] as const;
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATED_ON;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_CREATED_ON = 'created_on' as keyof User;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_DELETED_ON;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_DELETED_ON = 'deleted_on' as keyof User;
+/**
+ * Email
+ *
+ * The user's email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_EMAIL;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_EMAIL = 'email' as keyof User;
+/**
+ * First Name
+ *
+ * The user's first name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_FIRST_NAME;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_FIRST_NAME = 'first_name' as keyof User;
+/**
+ * Last Name
+ *
+ * The user's last name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_LAST_NAME;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_LAST_NAME = 'last_name' as keyof User;
+/**
+ * Locale
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `locale` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_LOCALE;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_LOCALE = 'locale' as keyof User;
+/**
+ * Organization Id
+ *
+ * The user's organization id
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_ORGANIZATION_ID;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_ORGANIZATION_ID = 'organization_id' as keyof User;
+/**
+ * Phone
+ *
+ * The user's phone number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PHONE;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_PHONE = 'phone' as keyof User;
+/**
+ * status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_STATUS;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_STATUS = 'status' as keyof User;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATED_ON;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATED_ON = 'updated_on' as keyof User;
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_USER_ID;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_USER_ID = 'user_id' as keyof User;
+/**
+ * Username
+ *
+ * The user's unique username
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_USERNAME;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_USERNAME = 'username' as keyof User;
+
+/**
+ * Array of all User property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for User objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER) {
+ *   console.log(`Property: ${key}, Value: ${user[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER.includes(someKey);
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ */
+export const KEYS_USER: readonly (keyof User)[] = [
+  KEY_USER_CREATED_ON,
+  KEY_USER_DELETED_ON,
+  KEY_USER_EMAIL,
+  KEY_USER_FIRST_NAME,
+  KEY_USER_LAST_NAME,
+  KEY_USER_LOCALE,
+  KEY_USER_ORGANIZATION_ID,
+  KEY_USER_PHONE,
+  KEY_USER_STATUS,
+  KEY_USER_UPDATED_ON,
+  KEY_USER_USER_ID,
+  KEY_USER_USERNAME,
+] as const;
+
+/**
+ * Key
+ *
+ * Key of the attribute.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of UserAttributeUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userattributeupdate[KEY_USER_ATTRIBUTE_UPDATE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_ATTRIBUTE_UPDATE_KEY;
+ * const value = userattributeupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserAttributeUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_ATTRIBUTE_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_ATTRIBUTE_UPDATE_KEY = 'key' as keyof UserAttributeUpdate;
+/**
+ * value property
+ *
+ * Value of the attribute.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of UserAttributeUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userattributeupdate[KEY_USER_ATTRIBUTE_UPDATE_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_ATTRIBUTE_UPDATE_VALUE;
+ * const value = userattributeupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserAttributeUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_ATTRIBUTE_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_ATTRIBUTE_UPDATE_VALUE = 'value' as keyof UserAttributeUpdate;
+
+/**
+ * Array of all UserAttributeUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserAttributeUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_ATTRIBUTE_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${userattributeupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_ATTRIBUTE_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link UserAttributeUpdate} - The TypeScript type definition
+ */
+export const KEYS_USER_ATTRIBUTE_UPDATE: readonly (keyof UserAttributeUpdate)[] = [
+  KEY_USER_ATTRIBUTE_UPDATE_KEY,
+  KEY_USER_ATTRIBUTE_UPDATE_VALUE,
+] as const;
+
+/**
+ * Email
+ *
+ * The user's email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_EMAIL;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_EMAIL = 'email' as keyof UserCreate;
+/**
+ * First Name
+ *
+ * The user's first name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_FIRST_NAME;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_FIRST_NAME = 'first_name' as keyof UserCreate;
+/**
+ * Last Name
+ *
+ * The user's last name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_LAST_NAME;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_LAST_NAME = 'last_name' as keyof UserCreate;
+/**
+ * Locale
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `locale` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_LOCALE;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_LOCALE = 'locale' as keyof UserCreate;
+/**
+ * Password
+ *
+ * Plaintext password for hashing during creation
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `password` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_PASSWORD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_PASSWORD;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_PASSWORD = 'password' as keyof UserCreate;
+/**
+ * Phone
+ *
+ * The user's phone number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_PHONE;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_PHONE = 'phone' as keyof UserCreate;
+/**
+ * Username
+ *
+ * The user's unique username
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_USERNAME;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_USERNAME = 'username' as keyof UserCreate;
+
+/**
+ * Array of all UserCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${usercreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ */
+export const KEYS_USER_CREATE: readonly (keyof UserCreate)[] = [
+  KEY_USER_CREATE_EMAIL,
+  KEY_USER_CREATE_FIRST_NAME,
+  KEY_USER_CREATE_LAST_NAME,
+  KEY_USER_CREATE_LOCALE,
+  KEY_USER_CREATE_PASSWORD,
+  KEY_USER_CREATE_PHONE,
+  KEY_USER_CREATE_USERNAME,
+] as const;
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of UserNotification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotification[KEY_USER_NOTIFICATION_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_CREATED_ON;
+ * const value = usernotification[propertyName];
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_CREATED_ON = 'created_on' as keyof UserNotification;
+/**
+ * notification property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `notification` property of UserNotification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotification[KEY_USER_NOTIFICATION_NOTIFICATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_NOTIFICATION;
+ * const value = usernotification[propertyName];
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_NOTIFICATION = 'notification' as keyof UserNotification;
+/**
+ * Notification Id
+ *
+ * Unique identifier for the notification
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `notification_id` property of UserNotification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotification[KEY_USER_NOTIFICATION_NOTIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_NOTIFICATION_ID;
+ * const value = usernotification[propertyName];
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_NOTIFICATION_ID = 'notification_id' as keyof UserNotification;
+/**
+ * status property
+ *
+ * Whether the user has read the notification
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of UserNotification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotification[KEY_USER_NOTIFICATION_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_STATUS;
+ * const value = usernotification[propertyName];
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_STATUS = 'status' as keyof UserNotification;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of UserNotification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotification[KEY_USER_NOTIFICATION_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_UPDATED_ON;
+ * const value = usernotification[propertyName];
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_UPDATED_ON = 'updated_on' as keyof UserNotification;
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of UserNotification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotification[KEY_USER_NOTIFICATION_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_USER_ID;
+ * const value = usernotification[propertyName];
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_USER_ID = 'user_id' as keyof UserNotification;
+/**
+ * User Notification Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_notification_id` property of UserNotification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotification[KEY_USER_NOTIFICATION_USER_NOTIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_USER_NOTIFICATION_ID;
+ * const value = usernotification[propertyName];
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_USER_NOTIFICATION_ID = 'user_notification_id' as keyof UserNotification;
+
+/**
+ * Array of all UserNotification property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserNotification objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_NOTIFICATION) {
+ *   console.log(`Property: ${key}, Value: ${usernotification[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_NOTIFICATION.includes(someKey);
+ * ```
+ *
+ * @see {@link UserNotification} - The TypeScript type definition
+ */
+export const KEYS_USER_NOTIFICATION: readonly (keyof UserNotification)[] = [
+  KEY_USER_NOTIFICATION_CREATED_ON,
+  KEY_USER_NOTIFICATION_NOTIFICATION,
+  KEY_USER_NOTIFICATION_NOTIFICATION_ID,
+  KEY_USER_NOTIFICATION_STATUS,
+  KEY_USER_NOTIFICATION_UPDATED_ON,
+  KEY_USER_NOTIFICATION_USER_ID,
+  KEY_USER_NOTIFICATION_USER_NOTIFICATION_ID,
+] as const;
+
+/**
+ * notification property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `notification` property of UserNotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotificationsummary[KEY_USER_NOTIFICATION_SUMMARY_NOTIFICATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_SUMMARY_NOTIFICATION;
+ * const value = usernotificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link UserNotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_SUMMARY_NOTIFICATION = 'notification' as keyof UserNotificationSummary;
+/**
+ * status property
+ *
+ * Whether the user has read the notification
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of UserNotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotificationsummary[KEY_USER_NOTIFICATION_SUMMARY_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_SUMMARY_STATUS;
+ * const value = usernotificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link UserNotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_SUMMARY_STATUS = 'status' as keyof UserNotificationSummary;
+/**
+ * User Notification Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_notification_id` property of UserNotificationSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usernotificationsummary[KEY_USER_NOTIFICATION_SUMMARY_USER_NOTIFICATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_NOTIFICATION_SUMMARY_USER_NOTIFICATION_ID;
+ * const value = usernotificationsummary[propertyName];
+ * ```
+ *
+ * @see {@link UserNotificationSummary} - The TypeScript type definition
+ * @see {@link KEYS_USER_NOTIFICATION_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_USER_NOTIFICATION_SUMMARY_USER_NOTIFICATION_ID = 'user_notification_id' as keyof UserNotificationSummary;
+
+/**
+ * Array of all UserNotificationSummary property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserNotificationSummary objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_NOTIFICATION_SUMMARY) {
+ *   console.log(`Property: ${key}, Value: ${usernotificationsummary[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_NOTIFICATION_SUMMARY.includes(someKey);
+ * ```
+ *
+ * @see {@link UserNotificationSummary} - The TypeScript type definition
+ */
+export const KEYS_USER_NOTIFICATION_SUMMARY: readonly (keyof UserNotificationSummary)[] = [
+  KEY_USER_NOTIFICATION_SUMMARY_NOTIFICATION,
+  KEY_USER_NOTIFICATION_SUMMARY_STATUS,
+  KEY_USER_NOTIFICATION_SUMMARY_USER_NOTIFICATION_ID,
+] as const;
+
+/**
+ * Access Token
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `access_token` property of UserToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usertoken[KEY_USER_TOKEN_ACCESS_TOKEN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_TOKEN_ACCESS_TOKEN;
+ * const value = usertoken[propertyName];
+ * ```
+ *
+ * @see {@link UserToken} - The TypeScript type definition
+ * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
+ */
+export const KEY_USER_TOKEN_ACCESS_TOKEN = 'access_token' as keyof UserToken;
+/**
+ * Expires In
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expires_in` property of UserToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usertoken[KEY_USER_TOKEN_EXPIRES_IN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_TOKEN_EXPIRES_IN;
+ * const value = usertoken[propertyName];
+ * ```
+ *
+ * @see {@link UserToken} - The TypeScript type definition
+ * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
+ */
+export const KEY_USER_TOKEN_EXPIRES_IN = 'expires_in' as keyof UserToken;
+/**
+ * Refresh Expires In
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `refresh_expires_in` property of UserToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usertoken[KEY_USER_TOKEN_REFRESH_EXPIRES_IN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_TOKEN_REFRESH_EXPIRES_IN;
+ * const value = usertoken[propertyName];
+ * ```
+ *
+ * @see {@link UserToken} - The TypeScript type definition
+ * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
+ */
+export const KEY_USER_TOKEN_REFRESH_EXPIRES_IN = 'refresh_expires_in' as keyof UserToken;
+/**
+ * Refresh Token
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `refresh_token` property of UserToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usertoken[KEY_USER_TOKEN_REFRESH_TOKEN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_TOKEN_REFRESH_TOKEN;
+ * const value = usertoken[propertyName];
+ * ```
+ *
+ * @see {@link UserToken} - The TypeScript type definition
+ * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
+ */
+export const KEY_USER_TOKEN_REFRESH_TOKEN = 'refresh_token' as keyof UserToken;
+/**
+ * Token Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `token_type` property of UserToken objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usertoken[KEY_USER_TOKEN_TOKEN_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_TOKEN_TOKEN_TYPE;
+ * const value = usertoken[propertyName];
+ * ```
+ *
+ * @see {@link UserToken} - The TypeScript type definition
+ * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
+ */
+export const KEY_USER_TOKEN_TOKEN_TYPE = 'token_type' as keyof UserToken;
+
+/**
+ * Array of all UserToken property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserToken objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_TOKEN) {
+ *   console.log(`Property: ${key}, Value: ${usertoken[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_TOKEN.includes(someKey);
+ * ```
+ *
+ * @see {@link UserToken} - The TypeScript type definition
+ */
+export const KEYS_USER_TOKEN: readonly (keyof UserToken)[] = [
+  KEY_USER_TOKEN_ACCESS_TOKEN,
+  KEY_USER_TOKEN_EXPIRES_IN,
+  KEY_USER_TOKEN_REFRESH_EXPIRES_IN,
+  KEY_USER_TOKEN_REFRESH_TOKEN,
+  KEY_USER_TOKEN_TOKEN_TYPE,
+] as const;
+
+/**
+ * Email
+ *
+ * The user's email address
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of UserUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userupdate[KEY_USER_UPDATE_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATE_EMAIL;
+ * const value = userupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATE_EMAIL = 'email' as keyof UserUpdate;
+/**
+ * First Name
+ *
+ * The user's first name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of UserUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userupdate[KEY_USER_UPDATE_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATE_FIRST_NAME;
+ * const value = userupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATE_FIRST_NAME = 'first_name' as keyof UserUpdate;
+/**
+ * Last Name
+ *
+ * The user's last name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of UserUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userupdate[KEY_USER_UPDATE_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATE_LAST_NAME;
+ * const value = userupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATE_LAST_NAME = 'last_name' as keyof UserUpdate;
+/**
+ * Locale
+ *
+ * The user's locale
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `locale` property of UserUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userupdate[KEY_USER_UPDATE_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATE_LOCALE;
+ * const value = userupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATE_LOCALE = 'locale' as keyof UserUpdate;
+/**
+ * Phone
+ *
+ * The user's phone number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of UserUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userupdate[KEY_USER_UPDATE_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATE_PHONE;
+ * const value = userupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATE_PHONE = 'phone' as keyof UserUpdate;
+/**
+ * User Attributes
+ *
+ * User attributes
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_attributes` property of UserUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userupdate[KEY_USER_UPDATE_USER_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATE_USER_ATTRIBUTES;
+ * const value = userupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATE_USER_ATTRIBUTES = 'user_attributes' as keyof UserUpdate;
+/**
+ * Username
+ *
+ * The user's unique username
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of UserUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userupdate[KEY_USER_UPDATE_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_UPDATE_USERNAME;
+ * const value = userupdate[propertyName];
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
+ */
+export const KEY_USER_UPDATE_USERNAME = 'username' as keyof UserUpdate;
+
+/**
+ * Array of all UserUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${userupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link UserUpdate} - The TypeScript type definition
+ */
+export const KEYS_USER_UPDATE: readonly (keyof UserUpdate)[] = [
+  KEY_USER_UPDATE_EMAIL,
+  KEY_USER_UPDATE_FIRST_NAME,
+  KEY_USER_UPDATE_LAST_NAME,
+  KEY_USER_UPDATE_LOCALE,
+  KEY_USER_UPDATE_PHONE,
+  KEY_USER_UPDATE_USER_ATTRIBUTES,
+  KEY_USER_UPDATE_USERNAME,
+] as const;
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_CREATED_ON;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_CREATED_ON = 'created_on' as keyof UserWithAttributes;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_DELETED_ON;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_DELETED_ON = 'deleted_on' as keyof UserWithAttributes;
+/**
+ * Email
+ *
+ * The user's email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_EMAIL;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_EMAIL = 'email' as keyof UserWithAttributes;
+/**
+ * First Name
+ *
+ * The user's first name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_FIRST_NAME;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_FIRST_NAME = 'first_name' as keyof UserWithAttributes;
+/**
+ * Last Name
+ *
+ * The user's last name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_LAST_NAME;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_LAST_NAME = 'last_name' as keyof UserWithAttributes;
+/**
+ * Locale
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `locale` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_LOCALE;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_LOCALE = 'locale' as keyof UserWithAttributes;
+/**
+ * Organization Id
+ *
+ * The user's organization id
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID = 'organization_id' as keyof UserWithAttributes;
+/**
+ * Phone
+ *
+ * The user's phone number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_PHONE;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_PHONE = 'phone' as keyof UserWithAttributes;
+/**
+ * status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_STATUS;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_STATUS = 'status' as keyof UserWithAttributes;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_UPDATED_ON;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_UPDATED_ON = 'updated_on' as keyof UserWithAttributes;
+/**
+ * User Attributes
+ *
+ * All of the user attributes
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_attributes` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES = 'user_attributes' as keyof UserWithAttributes;
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_USER_ID;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_USER_ID = 'user_id' as keyof UserWithAttributes;
+/**
+ * Username
+ *
+ * The user's unique username
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of UserWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_ATTRIBUTES_USERNAME;
+ * const value = userwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_ATTRIBUTES_USERNAME = 'username' as keyof UserWithAttributes;
+
+/**
+ * Array of all UserWithAttributes property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserWithAttributes objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_WITH_ATTRIBUTES) {
+ *   console.log(`Property: ${key}, Value: ${userwithattributes[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_WITH_ATTRIBUTES.includes(someKey);
+ * ```
+ *
+ * @see {@link UserWithAttributes} - The TypeScript type definition
+ */
+export const KEYS_USER_WITH_ATTRIBUTES: readonly (keyof UserWithAttributes)[] = [
+  KEY_USER_WITH_ATTRIBUTES_CREATED_ON,
+  KEY_USER_WITH_ATTRIBUTES_DELETED_ON,
+  KEY_USER_WITH_ATTRIBUTES_EMAIL,
+  KEY_USER_WITH_ATTRIBUTES_FIRST_NAME,
+  KEY_USER_WITH_ATTRIBUTES_LAST_NAME,
+  KEY_USER_WITH_ATTRIBUTES_LOCALE,
+  KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID,
+  KEY_USER_WITH_ATTRIBUTES_PHONE,
+  KEY_USER_WITH_ATTRIBUTES_STATUS,
+  KEY_USER_WITH_ATTRIBUTES_UPDATED_ON,
+  KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES,
+  KEY_USER_WITH_ATTRIBUTES_USER_ID,
+  KEY_USER_WITH_ATTRIBUTES_USERNAME,
+] as const;
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON = 'created_on' as keyof UserWithRelationPermissions;
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON = 'deleted_on' as keyof UserWithRelationPermissions;
+/**
+ * Email
+ *
+ * The user's email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL = 'email' as keyof UserWithRelationPermissions;
+/**
+ * First Name
+ *
+ * The user's first name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME = 'first_name' as keyof UserWithRelationPermissions;
+/**
+ * Last Name
+ *
+ * The user's last name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME = 'last_name' as keyof UserWithRelationPermissions;
+/**
+ * Locale
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `locale` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE = 'locale' as keyof UserWithRelationPermissions;
+/**
+ * Organization Id
+ *
+ * The user's organization id
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID = 'organization_id' as keyof UserWithRelationPermissions;
+/**
+ * Permissions
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `permissions` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS = 'permissions' as keyof UserWithRelationPermissions;
+/**
+ * Phone
+ *
+ * The user's phone number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_PHONE;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_PHONE = 'phone' as keyof UserWithRelationPermissions;
+/**
+ * Relations
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `relations` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS = 'relations' as keyof UserWithRelationPermissions;
+/**
+ * status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_STATUS;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_STATUS = 'status' as keyof UserWithRelationPermissions;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON = 'updated_on' as keyof UserWithRelationPermissions;
+/**
+ * User Attributes
+ *
+ * All of the user attributes
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_attributes` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES = 'user_attributes' as keyof UserWithRelationPermissions;
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID = 'user_id' as keyof UserWithRelationPermissions;
+/**
+ * Username
+ *
+ * The user's unique username
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of UserWithRelationPermissions objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userwithrelationpermissions[KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME;
+ * const value = userwithrelationpermissions[propertyName];
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
+ */
+export const KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME = 'username' as keyof UserWithRelationPermissions;
+
+/**
+ * Array of all UserWithRelationPermissions property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserWithRelationPermissions objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_WITH_RELATION_PERMISSIONS) {
+ *   console.log(`Property: ${key}, Value: ${userwithrelationpermissions[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_WITH_RELATION_PERMISSIONS.includes(someKey);
+ * ```
+ *
+ * @see {@link UserWithRelationPermissions} - The TypeScript type definition
+ */
+export const KEYS_USER_WITH_RELATION_PERMISSIONS: readonly (keyof UserWithRelationPermissions)[] = [
+  KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON,
+  KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON,
+  KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL,
+  KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME,
+  KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME,
+  KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE,
+  KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID,
+  KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS,
+  KEY_USER_WITH_RELATION_PERMISSIONS_PHONE,
+  KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS,
+  KEY_USER_WITH_RELATION_PERMISSIONS_STATUS,
+  KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON,
+  KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES,
+  KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID,
+  KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME,
+] as const;
+
+/**
+ * Location
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `loc` property of ValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = validationerror[KEY_VALIDATION_ERROR_LOC];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VALIDATION_ERROR_LOC;
+ * const value = validationerror[propertyName];
+ * ```
+ *
+ * @see {@link ValidationError} - The TypeScript type definition
+ * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_VALIDATION_ERROR_LOC = 'loc' as keyof ValidationError;
+/**
+ * Message
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `msg` property of ValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = validationerror[KEY_VALIDATION_ERROR_MSG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VALIDATION_ERROR_MSG;
+ * const value = validationerror[propertyName];
+ * ```
+ *
+ * @see {@link ValidationError} - The TypeScript type definition
+ * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_VALIDATION_ERROR_MSG = 'msg' as keyof ValidationError;
+/**
+ * Error Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = validationerror[KEY_VALIDATION_ERROR_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VALIDATION_ERROR_TYPE;
+ * const value = validationerror[propertyName];
+ * ```
+ *
+ * @see {@link ValidationError} - The TypeScript type definition
+ * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_VALIDATION_ERROR_TYPE = 'type' as keyof ValidationError;
+
+/**
+ * Array of all ValidationError property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ValidationError objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_VALIDATION_ERROR) {
+ *   console.log(`Property: ${key}, Value: ${validationerror[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_VALIDATION_ERROR.includes(someKey);
+ * ```
+ *
+ * @see {@link ValidationError} - The TypeScript type definition
+ */
+export const KEYS_VALIDATION_ERROR: readonly (keyof ValidationError)[] = [
+  KEY_VALIDATION_ERROR_LOC,
+  KEY_VALIDATION_ERROR_MSG,
+  KEY_VALIDATION_ERROR_TYPE,
+] as const;
+
+/**
+ * meta property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `meta` property of DomainAvailabilityList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitylist[KEY_DOMAIN_AVAILABILITY_LIST_META];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_LIST_META;
+ * const value = domainavailabilitylist[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityList} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_LIST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' as keyof DomainAvailabilityList;
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainAvailabilityList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitylist[KEY_DOMAIN_AVAILABILITY_LIST_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_LIST_RESULTS;
+ * const value = domainavailabilitylist[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityList} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_LIST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' as keyof DomainAvailabilityList;
+
+/**
+ * Array of all DomainAvailabilityList property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainAvailabilityList objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_AVAILABILITY_LIST) {
+ *   console.log(`Property: ${key}, Value: ${domainavailabilitylist[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_AVAILABILITY_LIST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainAvailabilityList} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_AVAILABILITY_LIST: readonly (keyof DomainAvailabilityList)[] = [
+  KEY_DOMAIN_AVAILABILITY_LIST_META,
+  KEY_DOMAIN_AVAILABILITY_LIST_RESULTS,
+] as const;
+
+/**
+ * Available
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `available` property of DomainAvailabilityCheck objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitycheck[KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE;
+ * const value = domainavailabilitycheck[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE = 'available' as keyof DomainAvailabilityCheck;
+/**
+ * Domain
+ *
+ * The domain name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of DomainAvailabilityCheck objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitycheck[KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN;
+ * const value = domainavailabilitycheck[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN = 'domain' as keyof DomainAvailabilityCheck;
+/**
+ * Reason
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `reason` property of DomainAvailabilityCheck objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitycheck[KEY_DOMAIN_AVAILABILITY_CHECK_REASON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_CHECK_REASON;
+ * const value = domainavailabilitycheck[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON = 'reason' as keyof DomainAvailabilityCheck;
+
+/**
+ * Array of all DomainAvailabilityCheck property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainAvailabilityCheck objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_AVAILABILITY_CHECK) {
+ *   console.log(`Property: ${key}, Value: ${domainavailabilitycheck[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_AVAILABILITY_CHECK.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_AVAILABILITY_CHECK: readonly (keyof DomainAvailabilityCheck)[] = [
+  KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE,
+  KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN,
+  KEY_DOMAIN_AVAILABILITY_CHECK_REASON,
 ] as const;
