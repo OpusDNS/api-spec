@@ -34,7 +34,7 @@ import { components } from '../schema';
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray } from './schemas-arrays';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -2924,6 +2924,46 @@ Specify one or more domains to check for availability.
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsCheck_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainsSummary endpoint
+ *
+ * Get domain summary
+ * Retrieves a summary of domains including counts by status, TLD, and expiration timeframes
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainsSummary endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domains/summary
+ *
+ * @see {@link GET_DomainsSummary_Response_200} - 200 response type
+ *
+
+ */
+export type GET_DomainsSummary = {
+  200: GET_DomainsSummary_Response_200
+}
+
+/**
+ * 200 response for GET DomainsSummary endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainsSummary endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/summary
+ *
+ * @see {@link GET_DomainsSummary} - The main response type definition
+ * @see {@link DomainSummary} - The actual schema type definition
+ */
+export type GET_DomainsSummary_Response_200 = DomainSummary
 
 /**
  * Response types for POST DomainsTransfer endpoint
