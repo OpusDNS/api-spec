@@ -70,8 +70,11 @@ import { Domain } from './schemas';
 import { DomainSearchMeta } from './schemas';
 import { DomainSearch } from './schemas';
 import { DomainSearchSuggestion } from './schemas';
+import { DomainSummaryData } from './schemas';
+import { DomainSummary } from './schemas';
 import { DomainTransferIn } from './schemas';
 import { DomainUpdate } from './schemas';
+import { DomainsExpiringSoon } from './schemas';
 import { EmailForward } from './schemas';
 import { EmailForwardBulkDelete } from './schemas';
 import { EmailForwardBulkUpdate } from './schemas';
@@ -6058,6 +6061,214 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION: readonly (keyof DomainSearchSuggesti
 ] as const;
 
 /**
+ * By Status
+ *
+ * Domain counts by status (status: count)
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `by_status` property of DomainSummaryData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsummarydata[KEY_DOMAIN_SUMMARY_DATA_BY_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SUMMARY_DATA_BY_STATUS;
+ * const value = domainsummarydata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSummaryData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS = 'by_status' as keyof DomainSummaryData;
+/**
+ * By Tld
+ *
+ * Domain counts by TLD (tld: count)
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `by_tld` property of DomainSummaryData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsummarydata[KEY_DOMAIN_SUMMARY_DATA_BY_TLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SUMMARY_DATA_BY_TLD;
+ * const value = domainsummarydata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSummaryData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SUMMARY_DATA_BY_TLD = 'by_tld' as keyof DomainSummaryData;
+/**
+ * expiring_soon property
+ *
+ * Domains expiring soon
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expiring_soon` property of DomainSummaryData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsummarydata[KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON;
+ * const value = domainsummarydata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSummaryData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON = 'expiring_soon' as keyof DomainSummaryData;
+/**
+ * Total Count
+ *
+ * Total number of domains
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_count` property of DomainSummaryData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsummarydata[KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT;
+ * const value = domainsummarydata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSummaryData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT = 'total_count' as keyof DomainSummaryData;
+
+/**
+ * Array of all DomainSummaryData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainSummaryData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_SUMMARY_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domainsummarydata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_SUMMARY_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainSummaryData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_SUMMARY_DATA: readonly (keyof DomainSummaryData)[] = [
+  KEY_DOMAIN_SUMMARY_DATA_BY_STATUS,
+  KEY_DOMAIN_SUMMARY_DATA_BY_TLD,
+  KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON,
+  KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT,
+] as const;
+
+/**
+ * domains property
+ *
+ * Domain summary data
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domains` property of DomainSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsummary[KEY_DOMAIN_SUMMARY_DOMAINS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SUMMARY_DOMAINS;
+ * const value = domainsummary[propertyName];
+ * ```
+ *
+ * @see {@link DomainSummary} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SUMMARY_DOMAINS = 'domains' as keyof DomainSummary;
+/**
+ * Organization Id
+ *
+ * The organization ID
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of DomainSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsummary[KEY_DOMAIN_SUMMARY_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SUMMARY_ORGANIZATION_ID;
+ * const value = domainsummary[propertyName];
+ * ```
+ *
+ * @see {@link DomainSummary} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SUMMARY_ORGANIZATION_ID = 'organization_id' as keyof DomainSummary;
+
+/**
+ * Array of all DomainSummary property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainSummary objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_SUMMARY) {
+ *   console.log(`Property: ${key}, Value: ${domainsummary[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_SUMMARY.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainSummary} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_SUMMARY: readonly (keyof DomainSummary)[] = [
+  KEY_DOMAIN_SUMMARY_DOMAINS,
+  KEY_DOMAIN_SUMMARY_ORGANIZATION_ID,
+] as const;
+
+/**
  * Auth Code
  *
  * The auth code for the domain
@@ -6339,6 +6550,111 @@ export const KEYS_DOMAIN_UPDATE: readonly (keyof DomainUpdate)[] = [
   KEY_DOMAIN_UPDATE_NAMESERVERS,
   KEY_DOMAIN_UPDATE_RENEWAL_MODE,
   KEY_DOMAIN_UPDATE_STATUSES,
+] as const;
+
+/**
+ * Next 30 Days
+ *
+ * Number of domains expiring in the next 30 days
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `next_30_days` property of DomainsExpiringSoon objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsexpiringsoon[KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS;
+ * const value = domainsexpiringsoon[propertyName];
+ * ```
+ *
+ * @see {@link DomainsExpiringSoon} - The TypeScript type definition
+ * @see {@link KEYS_DOMAINS_EXPIRING_SOON} - Array of all keys for this type
+ */
+export const KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS = 'next_30_days' as keyof DomainsExpiringSoon;
+/**
+ * Next 60 Days
+ *
+ * Number of domains expiring in the next 60 days
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `next_60_days` property of DomainsExpiringSoon objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsexpiringsoon[KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS;
+ * const value = domainsexpiringsoon[propertyName];
+ * ```
+ *
+ * @see {@link DomainsExpiringSoon} - The TypeScript type definition
+ * @see {@link KEYS_DOMAINS_EXPIRING_SOON} - Array of all keys for this type
+ */
+export const KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS = 'next_60_days' as keyof DomainsExpiringSoon;
+/**
+ * Next 90 Days
+ *
+ * Number of domains expiring in the next 90 days
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `next_90_days` property of DomainsExpiringSoon objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsexpiringsoon[KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS;
+ * const value = domainsexpiringsoon[propertyName];
+ * ```
+ *
+ * @see {@link DomainsExpiringSoon} - The TypeScript type definition
+ * @see {@link KEYS_DOMAINS_EXPIRING_SOON} - Array of all keys for this type
+ */
+export const KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS = 'next_90_days' as keyof DomainsExpiringSoon;
+
+/**
+ * Array of all DomainsExpiringSoon property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainsExpiringSoon objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAINS_EXPIRING_SOON) {
+ *   console.log(`Property: ${key}, Value: ${domainsexpiringsoon[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAINS_EXPIRING_SOON.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainsExpiringSoon} - The TypeScript type definition
+ */
+export const KEYS_DOMAINS_EXPIRING_SOON: readonly (keyof DomainsExpiringSoon)[] = [
+  KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS,
+  KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS,
+  KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS,
 ] as const;
 
 /**

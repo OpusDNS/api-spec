@@ -923,6 +923,38 @@ export type DomainSortField = components['schemas']['DomainSortField'];
  */
 export type DomainStatus = components['schemas']['DomainStatus'];
 /**
+ * DomainSummaryData
+ *
+ * @remarks
+ * Type alias for the `DomainSummaryData` OpenAPI schema.
+ * This type represents domainsummarydata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainSummaryData();
+ * const item: DomainSummaryData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainSummaryData = components['schemas']['DomainSummaryData'];
+/**
+ * DomainSummaryResponse
+ *
+ * @remarks
+ * Type alias for the `DomainSummaryResponse` OpenAPI schema.
+ * This type represents domainsummaryresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainSummary();
+ * const item: DomainSummary = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainSummary = components['schemas']['DomainSummaryResponse'];
+/**
  * DomainTransferIn
  *
  * @remarks
@@ -954,6 +986,22 @@ export type DomainTransferIn = components['schemas']['DomainTransferIn'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainUpdate = components['schemas']['DomainUpdate'];
+/**
+ * DomainsExpiringSoon
+ *
+ * @remarks
+ * Type alias for the `DomainsExpiringSoon` OpenAPI schema.
+ * This type represents domainsexpiringsoon data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainsExpiringSoon();
+ * const item: DomainsExpiringSoon = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainsExpiringSoon = components['schemas']['DomainsExpiringSoon'];
 /**
  * EmailForward
  *

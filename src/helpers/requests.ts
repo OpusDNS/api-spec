@@ -1699,6 +1699,29 @@ export type DELETE_DomainsDomainReferenceTransfer_V1_Request = {
 export type DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Path = DELETE_DomainsDomainReferenceTransfer_V1_Request['parameters']['path'];
 
 /**
+ * Request type for GET DomainsSummary endpoint
+ *
+ * Get domain summary
+ * Retrieves a summary of domains including counts by status, TLD, and expiration timeframes
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainsSummary endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domains/summary
+ *
+ * @see {@link GET_DomainsSummary_V1_Request_Parameters_Query} - Query parameters type
+ * @see {@link GET_DomainsSummary_V1_Request_Parameters_Path} - Path parameters type
+ * @see {@link GET_DomainsSummary_V1_Request_RequestBody} - Request body type
+ */
+export type GET_DomainsSummary_V1_Request = {
+}
+
+/**
  * Request type for POST DomainsTransfer endpoint
  *
  * Transfer a domain
