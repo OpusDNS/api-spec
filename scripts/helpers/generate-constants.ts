@@ -134,7 +134,9 @@ import { ${enums.map(e => e.originalName).join(', ')} } from './schemas';
     if (enumInfo.type === 'integer') {
       // Generate array for integer enums
       const values = Object.values(enumInfo.values);
-      content += `export const ${enumInfo.name}: ${typeName}[] = [${values.join(', ')}] as const;\n\n`;
+      content += `export const ${enumInfo.name} = [
+  ${values.join(',\n  ')}
+] as const satisfies ${typeName}[];\n\n`;
     } else {
       // Generate const object for string enums
       content += `export const ${enumInfo.name} = {\n`;
@@ -146,7 +148,7 @@ import { ${enums.map(e => e.originalName).join(', ')} } from './schemas';
       
       // Generate array for string enums as well
       const stringValues = Object.values(enumInfo.values).map(value => 
-        typeof value === 'string' ? `"${value}"` : value
+        typeof value === 'string' ? `'${value}'` : value
       );
       content += `/**
  * Array of all ${typeName} enum values
@@ -169,7 +171,9 @@ import { ${enums.map(e => e.originalName).join(', ')} } from './schemas';
  * @see {@link ${typeName}} - The TypeScript type definition
  * @see {@link ${enumInfo.name}} - The object form of this enum
  */
-export const ${enumInfo.name}_VALUES: ${typeName}[] = [${stringValues.join(', ')}] as const;\n\n`;
+export const ${enumInfo.name}_VALUES = [
+  ${stringValues.join(',\n  ')}
+] as const satisfies [string, ...string[]] | ${typeName}[];\n\n`;
     }
   });
   return content;
