@@ -23,6 +23,7 @@ function generateIndexFile(): string {
     "export * from './schemas';",
     "export * from './schemas-arrays';",
     "export * from './constants';",
+    "export * from './responses';",
     '',
   ];
 
