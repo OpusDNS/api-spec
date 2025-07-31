@@ -477,7 +477,7 @@ function generateRequestsFile(groupedRequests: GroupedRequests, operationIdMap: 
  * Do not edit manually.
  */
 
-import { operations, components } from '../schema';
+import { operations } from '../schema';
 
 ${generateIndividualRequestTypesContent(groupedRequests, operationIdMap, openAPIContent)}
 `;

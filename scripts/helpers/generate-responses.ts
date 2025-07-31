@@ -405,7 +405,7 @@ function generateResponsesFile(groupedResponses: GroupedResponses, openAPIConten
  * Do not edit manually.
  */
 
-import { components } from '../schema';
+
 
 ${generateIndividualResponseTypesContent(groupedResponses, openAPIContent)}
 `;
