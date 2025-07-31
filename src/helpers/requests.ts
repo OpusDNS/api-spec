@@ -151,6 +151,42 @@ export type DELETE_AuthClientCredentialsApiKeyId_Request = {
 export type DELETE_AuthClientCredentialsApiKeyId_Request_Path = DELETE_AuthClientCredentialsApiKeyId_Request['parameters']['path'];
 
 /**
+ * Request type for POST AuthInternalClientCredentials endpoint
+ *
+ * Issue Opusdns Internal Api Key
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST AuthInternalClientCredentials endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/auth/internal_client_credentials
+ *
+ * @see {@link POST_AuthInternalClientCredentials_Request_Query} - Query parameters type
+ * @see {@link POST_AuthInternalClientCredentials_Request_Path} - Path parameters type
+ * @see {@link POST_AuthInternalClientCredentials_Request_Body} - Request body type
+ */
+export type POST_AuthInternalClientCredentials_Request = {
+  requestBody: OrganizationCredentialExtra;
+}
+/**
+ * Request body for POST /v1/auth/internal_client_credentials
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/auth/internal_client_credentials endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/auth/internal_client_credentials
+ */
+export type POST_AuthInternalClientCredentials_Request_Body = POST_AuthInternalClientCredentials_Request['requestBody'];
+
+/**
  * Request type for POST AuthLogout endpoint
  *
  * Logout

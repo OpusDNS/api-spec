@@ -4953,7 +4953,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-31-173148
+  version: 2025-07-31-215514
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5111,6 +5111,33 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Api Key
+      tags:
+      - authentication
+  /v1/auth/internal_client_credentials:
+    post:
+      operationId: issue_opusdns_internal_api_key_v1_auth_internal_client_credentials_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationCredentialExtra'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationCredentialCreated'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Issue Opusdns Internal Api Key
       tags:
       - authentication
   /v1/auth/logout:
