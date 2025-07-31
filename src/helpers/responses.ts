@@ -57,11 +57,7 @@ import { Pagination_OrganizationCredential, Problem, HTTPValidationError, Organi
  *
 
  */
-export type GET_AuthClientCredentials = {
-  200: GET_AuthClientCredentials_Response_200
-  401: GET_AuthClientCredentials_Response_401
-  422: GET_AuthClientCredentials_Response_422
-}
+export type GET_AuthClientCredentials_Response = GET_AuthClientCredentials_Response_200 | GET_AuthClientCredentials_Response_401 | GET_AuthClientCredentials_Response_422;
 
 /**
  * 200 response for GET AuthClientCredentials endpoint
@@ -76,7 +72,7 @@ export type GET_AuthClientCredentials = {
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  *
- * @see {@link GET_AuthClientCredentials} - The main response type definition
+ * @see {@link GET_AuthClientCredentials_Response} - The main response type definition
  * @see {@link Pagination_OrganizationCredential} - The actual schema type definition
  */
 export type GET_AuthClientCredentials_Response_200 = Pagination_OrganizationCredential
@@ -94,7 +90,7 @@ export type GET_AuthClientCredentials_Response_200 = Pagination_OrganizationCred
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  *
- * @see {@link GET_AuthClientCredentials} - The main response type definition
+ * @see {@link GET_AuthClientCredentials_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_AuthClientCredentials_Response_401 = Problem
@@ -112,7 +108,7 @@ export type GET_AuthClientCredentials_Response_401 = Problem
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  *
- * @see {@link GET_AuthClientCredentials} - The main response type definition
+ * @see {@link GET_AuthClientCredentials_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_AuthClientCredentials_Response_422 = HTTPValidationError
@@ -137,11 +133,7 @@ export type GET_AuthClientCredentials_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_AuthClientCredentials = {
-  200: POST_AuthClientCredentials_Response_200
-  401: POST_AuthClientCredentials_Response_401
-  422: POST_AuthClientCredentials_Response_422
-}
+export type POST_AuthClientCredentials_Response = POST_AuthClientCredentials_Response_200 | POST_AuthClientCredentials_Response_401 | POST_AuthClientCredentials_Response_422;
 
 /**
  * 200 response for POST AuthClientCredentials endpoint
@@ -155,7 +147,7 @@ export type POST_AuthClientCredentials = {
  *
  * @path /v1/auth/client_credentials
  *
- * @see {@link POST_AuthClientCredentials} - The main response type definition
+ * @see {@link POST_AuthClientCredentials_Response} - The main response type definition
  * @see {@link OrganizationCredentialCreated} - The actual schema type definition
  */
 export type POST_AuthClientCredentials_Response_200 = OrganizationCredentialCreated
@@ -172,7 +164,7 @@ export type POST_AuthClientCredentials_Response_200 = OrganizationCredentialCrea
  *
  * @path /v1/auth/client_credentials
  *
- * @see {@link POST_AuthClientCredentials} - The main response type definition
+ * @see {@link POST_AuthClientCredentials_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthClientCredentials_Response_401 = Problem
@@ -189,7 +181,7 @@ export type POST_AuthClientCredentials_Response_401 = Problem
  *
  * @path /v1/auth/client_credentials
  *
- * @see {@link POST_AuthClientCredentials} - The main response type definition
+ * @see {@link POST_AuthClientCredentials_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_AuthClientCredentials_Response_422 = HTTPValidationError
@@ -214,11 +206,7 @@ export type POST_AuthClientCredentials_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_AuthClientCredentialsByApiKeyId = {
-  401: DELETE_AuthClientCredentialsByApiKeyId_Response_401
-  404: DELETE_AuthClientCredentialsByApiKeyId_Response_404
-  422: DELETE_AuthClientCredentialsByApiKeyId_Response_422
-}
+export type DELETE_AuthClientCredentialsByApiKeyId_Response = DELETE_AuthClientCredentialsByApiKeyId_Response_401 | DELETE_AuthClientCredentialsByApiKeyId_Response_404 | DELETE_AuthClientCredentialsByApiKeyId_Response_422;
 
 /**
  * 401 response for DELETE AuthClientCredentialsByApiKeyId endpoint
@@ -232,7 +220,7 @@ export type DELETE_AuthClientCredentialsByApiKeyId = {
  *
  * @path /v1/auth/client_credentials/{api_key_id}
  *
- * @see {@link DELETE_AuthClientCredentialsByApiKeyId} - The main response type definition
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_AuthClientCredentialsByApiKeyId_Response_401 = Problem
@@ -249,7 +237,7 @@ export type DELETE_AuthClientCredentialsByApiKeyId_Response_401 = Problem
  *
  * @path /v1/auth/client_credentials/{api_key_id}
  *
- * @see {@link DELETE_AuthClientCredentialsByApiKeyId} - The main response type definition
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_AuthClientCredentialsByApiKeyId_Response_404 = Problem
@@ -266,7 +254,7 @@ export type DELETE_AuthClientCredentialsByApiKeyId_Response_404 = Problem
  *
  * @path /v1/auth/client_credentials/{api_key_id}
  *
- * @see {@link DELETE_AuthClientCredentialsByApiKeyId} - The main response type definition
+ * @see {@link DELETE_AuthClientCredentialsByApiKeyId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_AuthClientCredentialsByApiKeyId_Response_422 = HTTPValidationError
@@ -289,9 +277,7 @@ export type DELETE_AuthClientCredentialsByApiKeyId_Response_422 = HTTPValidation
  *
 
  */
-export type POST_AuthLogout = {
-  401: POST_AuthLogout_Response_401
-}
+export type POST_AuthLogout_Response = POST_AuthLogout_Response_401;
 
 /**
  * 401 response for POST AuthLogout endpoint
@@ -305,7 +291,7 @@ export type POST_AuthLogout = {
  *
  * @path /v1/auth/logout
  *
- * @see {@link POST_AuthLogout} - The main response type definition
+ * @see {@link POST_AuthLogout_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthLogout_Response_401 = Problem
@@ -329,10 +315,7 @@ export type POST_AuthLogout_Response_401 = Problem
  *
 
  */
-export type POST_AuthSignup = {
-  409: POST_AuthSignup_Response_409
-  422: POST_AuthSignup_Response_422
-}
+export type POST_AuthSignup_Response = POST_AuthSignup_Response_409 | POST_AuthSignup_Response_422;
 
 /**
  * 409 response for POST AuthSignup endpoint
@@ -346,7 +329,7 @@ export type POST_AuthSignup = {
  *
  * @path /v1/auth/signup
  *
- * @see {@link POST_AuthSignup} - The main response type definition
+ * @see {@link POST_AuthSignup_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthSignup_Response_409 = Problem
@@ -363,7 +346,7 @@ export type POST_AuthSignup_Response_409 = Problem
  *
  * @path /v1/auth/signup
  *
- * @see {@link POST_AuthSignup} - The main response type definition
+ * @see {@link POST_AuthSignup_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_AuthSignup_Response_422 = HTTPValidationError
@@ -387,10 +370,7 @@ export type POST_AuthSignup_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_AuthToken = {
-  401: POST_AuthToken_Response_401
-  422: POST_AuthToken_Response_422
-}
+export type POST_AuthToken_Response = POST_AuthToken_Response_401 | POST_AuthToken_Response_422;
 
 /**
  * 401 response for POST AuthToken endpoint
@@ -404,7 +384,7 @@ export type POST_AuthToken = {
  *
  * @path /v1/auth/token
  *
- * @see {@link POST_AuthToken} - The main response type definition
+ * @see {@link POST_AuthToken_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthToken_Response_401 = Problem
@@ -421,7 +401,7 @@ export type POST_AuthToken_Response_401 = Problem
  *
  * @path /v1/auth/token
  *
- * @see {@link POST_AuthToken} - The main response type definition
+ * @see {@link POST_AuthToken_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_AuthToken_Response_422 = HTTPValidationError
@@ -451,12 +431,7 @@ Specify one or more domains to check for availability.
  *
 
  */
-export type GET_Availability = {
-  200: GET_Availability_Response_200
-  401: GET_Availability_Response_401
-  422: GET_Availability_Response_422
-  502: GET_Availability_Response_502
-}
+export type GET_Availability_Response = GET_Availability_Response_200 | GET_Availability_Response_401 | GET_Availability_Response_422 | GET_Availability_Response_502;
 
 /**
  * 200 response for GET Availability endpoint
@@ -473,7 +448,7 @@ export type GET_Availability = {
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_Availability} - The main response type definition
+ * @see {@link GET_Availability_Response} - The main response type definition
  * @see {@link DomainAvailabilityList} - The actual schema type definition
  */
 export type GET_Availability_Response_200 = DomainAvailabilityList
@@ -493,7 +468,7 @@ export type GET_Availability_Response_200 = DomainAvailabilityList
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_Availability} - The main response type definition
+ * @see {@link GET_Availability_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_Availability_Response_401 = Problem
@@ -513,7 +488,7 @@ export type GET_Availability_Response_401 = Problem
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_Availability} - The main response type definition
+ * @see {@link GET_Availability_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Availability_Response_422 = HTTPValidationError
@@ -533,7 +508,7 @@ export type GET_Availability_Response_422 = HTTPValidationError
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_Availability} - The main response type definition
+ * @see {@link GET_Availability_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_Availability_Response_502 = Problem
@@ -562,11 +537,7 @@ Specify one or more domains to check for availability.
  *
 
  */
-export type GET_AvailabilityStream = {
-  401: GET_AvailabilityStream_Response_401
-  422: GET_AvailabilityStream_Response_422
-  502: GET_AvailabilityStream_Response_502
-}
+export type GET_AvailabilityStream_Response = GET_AvailabilityStream_Response_401 | GET_AvailabilityStream_Response_422 | GET_AvailabilityStream_Response_502;
 
 /**
  * 401 response for GET AvailabilityStream endpoint
@@ -583,7 +554,7 @@ export type GET_AvailabilityStream = {
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_AvailabilityStream} - The main response type definition
+ * @see {@link GET_AvailabilityStream_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_AvailabilityStream_Response_401 = Problem
@@ -603,7 +574,7 @@ export type GET_AvailabilityStream_Response_401 = Problem
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_AvailabilityStream} - The main response type definition
+ * @see {@link GET_AvailabilityStream_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_AvailabilityStream_Response_422 = HTTPValidationError
@@ -623,7 +594,7 @@ export type GET_AvailabilityStream_Response_422 = HTTPValidationError
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_AvailabilityStream} - The main response type definition
+ * @see {@link GET_AvailabilityStream_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_AvailabilityStream_Response_502 = Problem
@@ -648,10 +619,7 @@ export type GET_AvailabilityStream_Response_502 = Problem
  *
 
  */
-export type GET_Contacts = {
-  200: GET_Contacts_Response_200
-  422: GET_Contacts_Response_422
-}
+export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Response_422;
 
 /**
  * 200 response for GET Contacts endpoint
@@ -665,7 +633,7 @@ export type GET_Contacts = {
  *
  * @path /v1/contacts
  *
- * @see {@link GET_Contacts} - The main response type definition
+ * @see {@link GET_Contacts_Response} - The main response type definition
  * @see {@link Pagination_ContactSchema} - The actual schema type definition
  */
 export type GET_Contacts_Response_200 = Pagination_ContactSchema
@@ -682,7 +650,7 @@ export type GET_Contacts_Response_200 = Pagination_ContactSchema
  *
  * @path /v1/contacts
  *
- * @see {@link GET_Contacts} - The main response type definition
+ * @see {@link GET_Contacts_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Contacts_Response_422 = HTTPValidationError
@@ -707,10 +675,7 @@ export type GET_Contacts_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_Contacts = {
-  201: POST_Contacts_Response_201
-  422: POST_Contacts_Response_422
-}
+export type POST_Contacts_Response = POST_Contacts_Response_201 | POST_Contacts_Response_422;
 
 /**
  * 201 response for POST Contacts endpoint
@@ -724,7 +689,7 @@ export type POST_Contacts = {
  *
  * @path /v1/contacts
  *
- * @see {@link POST_Contacts} - The main response type definition
+ * @see {@link POST_Contacts_Response} - The main response type definition
  * @see {@link ContactSchema} - The actual schema type definition
  */
 export type POST_Contacts_Response_201 = ContactSchema
@@ -741,7 +706,7 @@ export type POST_Contacts_Response_201 = ContactSchema
  *
  * @path /v1/contacts
  *
- * @see {@link POST_Contacts} - The main response type definition
+ * @see {@link POST_Contacts_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Contacts_Response_422 = HTTPValidationError
@@ -767,11 +732,7 @@ export type POST_Contacts_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_ContactsByContactId = {
-  404: DELETE_ContactsByContactId_Response_404
-  409: DELETE_ContactsByContactId_Response_409
-  422: DELETE_ContactsByContactId_Response_422
-}
+export type DELETE_ContactsByContactId_Response = DELETE_ContactsByContactId_Response_404 | DELETE_ContactsByContactId_Response_409 | DELETE_ContactsByContactId_Response_422;
 
 /**
  * 404 response for DELETE ContactsByContactId endpoint
@@ -785,7 +746,7 @@ export type DELETE_ContactsByContactId = {
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link DELETE_ContactsByContactId} - The main response type definition
+ * @see {@link DELETE_ContactsByContactId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactId_Response_404 = Problem
@@ -802,7 +763,7 @@ export type DELETE_ContactsByContactId_Response_404 = Problem
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link DELETE_ContactsByContactId} - The main response type definition
+ * @see {@link DELETE_ContactsByContactId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactId_Response_409 = Problem
@@ -819,7 +780,7 @@ export type DELETE_ContactsByContactId_Response_409 = Problem
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link DELETE_ContactsByContactId} - The main response type definition
+ * @see {@link DELETE_ContactsByContactId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_ContactsByContactId_Response_422 = HTTPValidationError
@@ -845,11 +806,7 @@ export type DELETE_ContactsByContactId_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_ContactsByContactId = {
-  200: GET_ContactsByContactId_Response_200
-  404: GET_ContactsByContactId_Response_404
-  422: GET_ContactsByContactId_Response_422
-}
+export type GET_ContactsByContactId_Response = GET_ContactsByContactId_Response_200 | GET_ContactsByContactId_Response_404 | GET_ContactsByContactId_Response_422;
 
 /**
  * 200 response for GET ContactsByContactId endpoint
@@ -863,7 +820,7 @@ export type GET_ContactsByContactId = {
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link GET_ContactsByContactId} - The main response type definition
+ * @see {@link GET_ContactsByContactId_Response} - The main response type definition
  * @see {@link ContactSchema} - The actual schema type definition
  */
 export type GET_ContactsByContactId_Response_200 = ContactSchema
@@ -880,7 +837,7 @@ export type GET_ContactsByContactId_Response_200 = ContactSchema
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link GET_ContactsByContactId} - The main response type definition
+ * @see {@link GET_ContactsByContactId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsByContactId_Response_404 = Problem
@@ -897,7 +854,7 @@ export type GET_ContactsByContactId_Response_404 = Problem
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link GET_ContactsByContactId} - The main response type definition
+ * @see {@link GET_ContactsByContactId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsByContactId_Response_422 = HTTPValidationError
@@ -923,11 +880,7 @@ export type GET_ContactsByContactId_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_ContactsByContactIdVerification = {
-  401: DELETE_ContactsByContactIdVerification_Response_401
-  404: DELETE_ContactsByContactIdVerification_Response_404
-  422: DELETE_ContactsByContactIdVerification_Response_422
-}
+export type DELETE_ContactsByContactIdVerification_Response = DELETE_ContactsByContactIdVerification_Response_401 | DELETE_ContactsByContactIdVerification_Response_404 | DELETE_ContactsByContactIdVerification_Response_422;
 
 /**
  * 401 response for DELETE ContactsByContactIdVerification endpoint
@@ -941,7 +894,7 @@ export type DELETE_ContactsByContactIdVerification = {
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link DELETE_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link DELETE_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactIdVerification_Response_401 = Problem
@@ -958,7 +911,7 @@ export type DELETE_ContactsByContactIdVerification_Response_401 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link DELETE_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link DELETE_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_ContactsByContactIdVerification_Response_404 = Problem
@@ -975,7 +928,7 @@ export type DELETE_ContactsByContactIdVerification_Response_404 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link DELETE_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link DELETE_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_ContactsByContactIdVerification_Response_422 = HTTPValidationError
@@ -1002,12 +955,7 @@ export type DELETE_ContactsByContactIdVerification_Response_422 = HTTPValidation
  *
 
  */
-export type GET_ContactsByContactIdVerification = {
-  200: GET_ContactsByContactIdVerification_Response_200
-  401: GET_ContactsByContactIdVerification_Response_401
-  404: GET_ContactsByContactIdVerification_Response_404
-  422: GET_ContactsByContactIdVerification_Response_422
-}
+export type GET_ContactsByContactIdVerification_Response = GET_ContactsByContactIdVerification_Response_200 | GET_ContactsByContactIdVerification_Response_401 | GET_ContactsByContactIdVerification_Response_404 | GET_ContactsByContactIdVerification_Response_422;
 
 /**
  * 200 response for GET ContactsByContactIdVerification endpoint
@@ -1021,7 +969,7 @@ export type GET_ContactsByContactIdVerification = {
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link GET_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link ContactVerification} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_200 = ContactVerification
@@ -1038,7 +986,7 @@ export type GET_ContactsByContactIdVerification_Response_200 = ContactVerificati
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link GET_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_401 = Problem
@@ -1055,7 +1003,7 @@ export type GET_ContactsByContactIdVerification_Response_401 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link GET_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_404 = Problem
@@ -1072,7 +1020,7 @@ export type GET_ContactsByContactIdVerification_Response_404 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link GET_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link GET_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsByContactIdVerification_Response_422 = HTTPValidationError
@@ -1099,12 +1047,7 @@ export type GET_ContactsByContactIdVerification_Response_422 = HTTPValidationErr
  *
 
  */
-export type POST_ContactsByContactIdVerification = {
-  401: POST_ContactsByContactIdVerification_Response_401
-  404: POST_ContactsByContactIdVerification_Response_404
-  405: POST_ContactsByContactIdVerification_Response_405
-  422: POST_ContactsByContactIdVerification_Response_422
-}
+export type POST_ContactsByContactIdVerification_Response = POST_ContactsByContactIdVerification_Response_401 | POST_ContactsByContactIdVerification_Response_404 | POST_ContactsByContactIdVerification_Response_405 | POST_ContactsByContactIdVerification_Response_422;
 
 /**
  * 401 response for POST ContactsByContactIdVerification endpoint
@@ -1118,7 +1061,7 @@ export type POST_ContactsByContactIdVerification = {
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link POST_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_401 = Problem
@@ -1135,7 +1078,7 @@ export type POST_ContactsByContactIdVerification_Response_401 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link POST_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_404 = Problem
@@ -1152,7 +1095,7 @@ export type POST_ContactsByContactIdVerification_Response_404 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link POST_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_405 = Problem
@@ -1169,7 +1112,7 @@ export type POST_ContactsByContactIdVerification_Response_405 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link POST_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link POST_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerification_Response_422 = HTTPValidationError
@@ -1197,13 +1140,7 @@ export type POST_ContactsByContactIdVerification_Response_422 = HTTPValidationEr
  *
 
  */
-export type PUT_ContactsByContactIdVerification = {
-  400: PUT_ContactsByContactIdVerification_Response_400
-  401: PUT_ContactsByContactIdVerification_Response_401
-  403: PUT_ContactsByContactIdVerification_Response_403
-  404: PUT_ContactsByContactIdVerification_Response_404
-  422: PUT_ContactsByContactIdVerification_Response_422
-}
+export type PUT_ContactsByContactIdVerification_Response = PUT_ContactsByContactIdVerification_Response_400 | PUT_ContactsByContactIdVerification_Response_401 | PUT_ContactsByContactIdVerification_Response_403 | PUT_ContactsByContactIdVerification_Response_404 | PUT_ContactsByContactIdVerification_Response_422;
 
 /**
  * 400 response for PUT ContactsByContactIdVerification endpoint
@@ -1217,7 +1154,7 @@ export type PUT_ContactsByContactIdVerification = {
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link PUT_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_400 = Problem
@@ -1234,7 +1171,7 @@ export type PUT_ContactsByContactIdVerification_Response_400 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link PUT_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_401 = Problem
@@ -1251,7 +1188,7 @@ export type PUT_ContactsByContactIdVerification_Response_401 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link PUT_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_403 = Problem
@@ -1268,7 +1205,7 @@ export type PUT_ContactsByContactIdVerification_Response_403 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link PUT_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_404 = Problem
@@ -1285,7 +1222,7 @@ export type PUT_ContactsByContactIdVerification_Response_404 = Problem
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link PUT_ContactsByContactIdVerification} - The main response type definition
+ * @see {@link PUT_ContactsByContactIdVerification_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationError
@@ -1312,12 +1249,7 @@ export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationErr
  *
 
  */
-export type GET_ContactsVerification = {
-  200: GET_ContactsVerification_Response_200
-  401: GET_ContactsVerification_Response_401
-  404: GET_ContactsVerification_Response_404
-  422: GET_ContactsVerification_Response_422
-}
+export type GET_ContactsVerification_Response = GET_ContactsVerification_Response_200 | GET_ContactsVerification_Response_401 | GET_ContactsVerification_Response_404 | GET_ContactsVerification_Response_422;
 
 /**
  * 200 response for GET ContactsVerification endpoint
@@ -1331,7 +1263,7 @@ export type GET_ContactsVerification = {
  *
  * @path /v1/contacts/verification
  *
- * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link GET_ContactsVerification_Response} - The main response type definition
  * @see {@link Contact} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_200 = Contact
@@ -1348,7 +1280,7 @@ export type GET_ContactsVerification_Response_200 = Contact
  *
  * @path /v1/contacts/verification
  *
- * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link GET_ContactsVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_401 = Problem
@@ -1365,7 +1297,7 @@ export type GET_ContactsVerification_Response_401 = Problem
  *
  * @path /v1/contacts/verification
  *
- * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link GET_ContactsVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_404 = Problem
@@ -1382,7 +1314,7 @@ export type GET_ContactsVerification_Response_404 = Problem
  *
  * @path /v1/contacts/verification
  *
- * @see {@link GET_ContactsVerification} - The main response type definition
+ * @see {@link GET_ContactsVerification_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsVerification_Response_422 = HTTPValidationError
@@ -1409,12 +1341,7 @@ export type GET_ContactsVerification_Response_422 = HTTPValidationError
  *
 
  */
-export type PUT_ContactsVerification = {
-  400: PUT_ContactsVerification_Response_400
-  401: PUT_ContactsVerification_Response_401
-  404: PUT_ContactsVerification_Response_404
-  422: PUT_ContactsVerification_Response_422
-}
+export type PUT_ContactsVerification_Response = PUT_ContactsVerification_Response_400 | PUT_ContactsVerification_Response_401 | PUT_ContactsVerification_Response_404 | PUT_ContactsVerification_Response_422;
 
 /**
  * 400 response for PUT ContactsVerification endpoint
@@ -1428,7 +1355,7 @@ export type PUT_ContactsVerification = {
  *
  * @path /v1/contacts/verification
  *
- * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link PUT_ContactsVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_400 = Problem
@@ -1445,7 +1372,7 @@ export type PUT_ContactsVerification_Response_400 = Problem
  *
  * @path /v1/contacts/verification
  *
- * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link PUT_ContactsVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_401 = Problem
@@ -1462,7 +1389,7 @@ export type PUT_ContactsVerification_Response_401 = Problem
  *
  * @path /v1/contacts/verification
  *
- * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link PUT_ContactsVerification_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_404 = Problem
@@ -1479,7 +1406,7 @@ export type PUT_ContactsVerification_Response_404 = Problem
  *
  * @path /v1/contacts/verification
  *
- * @see {@link PUT_ContactsVerification} - The main response type definition
+ * @see {@link PUT_ContactsVerification_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_ContactsVerification_Response_422 = HTTPValidationError
@@ -1502,9 +1429,7 @@ export type PUT_ContactsVerification_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_ContactsVerify = {
-  422: GET_ContactsVerify_Response_422
-}
+export type GET_ContactsVerify_Response = GET_ContactsVerify_Response_422;
 
 /**
  * 422 response for GET ContactsVerify endpoint
@@ -1518,7 +1443,7 @@ export type GET_ContactsVerify = {
  *
  * @path /v1/contacts/verify
  *
- * @see {@link GET_ContactsVerify} - The main response type definition
+ * @see {@link GET_ContactsVerify_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ContactsVerify_Response_422 = HTTPValidationError
@@ -1542,10 +1467,7 @@ export type GET_ContactsVerify_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_Dns = {
-  200: GET_Dns_Response_200
-  422: GET_Dns_Response_422
-}
+export type GET_Dns_Response = GET_Dns_Response_200 | GET_Dns_Response_422;
 
 /**
  * 200 response for GET Dns endpoint
@@ -1559,7 +1481,7 @@ export type GET_Dns = {
  *
  * @path /v1/dns
  *
- * @see {@link GET_Dns} - The main response type definition
+ * @see {@link GET_Dns_Response} - The main response type definition
  * @see {@link Pagination_DnsZone} - The actual schema type definition
  */
 export type GET_Dns_Response_200 = Pagination_DnsZone
@@ -1576,7 +1498,7 @@ export type GET_Dns_Response_200 = Pagination_DnsZone
  *
  * @path /v1/dns
  *
- * @see {@link GET_Dns} - The main response type definition
+ * @see {@link GET_Dns_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Dns_Response_422 = HTTPValidationError
@@ -1599,9 +1521,7 @@ export type GET_Dns_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_Dns = {
-  422: POST_Dns_Response_422
-}
+export type POST_Dns_Response = POST_Dns_Response_422;
 
 /**
  * 422 response for POST Dns endpoint
@@ -1615,7 +1535,7 @@ export type POST_Dns = {
  *
  * @path /v1/dns
  *
- * @see {@link POST_Dns} - The main response type definition
+ * @see {@link POST_Dns_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Dns_Response_422 = HTTPValidationError
@@ -1639,9 +1559,7 @@ export type POST_Dns_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_DnsByZoneName = {
-  422: DELETE_DnsByZoneName_Response_422
-}
+export type DELETE_DnsByZoneName_Response = DELETE_DnsByZoneName_Response_422;
 
 /**
  * 422 response for DELETE DnsByZoneName endpoint
@@ -1656,7 +1574,7 @@ export type DELETE_DnsByZoneName = {
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link DELETE_DnsByZoneName} - The main response type definition
+ * @see {@link DELETE_DnsByZoneName_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DnsByZoneName_Response_422 = HTTPValidationError
@@ -1681,10 +1599,7 @@ export type DELETE_DnsByZoneName_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_DnsByZoneName = {
-  200: GET_DnsByZoneName_Response_200
-  422: GET_DnsByZoneName_Response_422
-}
+export type GET_DnsByZoneName_Response = GET_DnsByZoneName_Response_200 | GET_DnsByZoneName_Response_422;
 
 /**
  * 200 response for GET DnsByZoneName endpoint
@@ -1699,7 +1614,7 @@ export type GET_DnsByZoneName = {
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_DnsByZoneName} - The main response type definition
+ * @see {@link GET_DnsByZoneName_Response} - The main response type definition
  * @see {@link DnsZone} - The actual schema type definition
  */
 export type GET_DnsByZoneName_Response_200 = DnsZone
@@ -1717,7 +1632,7 @@ export type GET_DnsByZoneName_Response_200 = DnsZone
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_DnsByZoneName} - The main response type definition
+ * @see {@link GET_DnsByZoneName_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DnsByZoneName_Response_422 = HTTPValidationError
@@ -1742,10 +1657,7 @@ export type GET_DnsByZoneName_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_DnsByZoneNameDnssecDisable = {
-  200: POST_DnsByZoneNameDnssecDisable_Response_200
-  422: POST_DnsByZoneNameDnssecDisable_Response_422
-}
+export type POST_DnsByZoneNameDnssecDisable_Response = POST_DnsByZoneNameDnssecDisable_Response_200 | POST_DnsByZoneNameDnssecDisable_Response_422;
 
 /**
  * 200 response for POST DnsByZoneNameDnssecDisable endpoint
@@ -1760,7 +1672,7 @@ export type POST_DnsByZoneNameDnssecDisable = {
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_DnsByZoneNameDnssecDisable} - The main response type definition
+ * @see {@link POST_DnsByZoneNameDnssecDisable_Response} - The main response type definition
  * @see {@link DnsChanges} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecDisable_Response_200 = DnsChanges
@@ -1778,7 +1690,7 @@ export type POST_DnsByZoneNameDnssecDisable_Response_200 = DnsChanges
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_DnsByZoneNameDnssecDisable} - The main response type definition
+ * @see {@link POST_DnsByZoneNameDnssecDisable_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecDisable_Response_422 = HTTPValidationError
@@ -1803,10 +1715,7 @@ export type POST_DnsByZoneNameDnssecDisable_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_DnsByZoneNameDnssecEnable = {
-  200: POST_DnsByZoneNameDnssecEnable_Response_200
-  422: POST_DnsByZoneNameDnssecEnable_Response_422
-}
+export type POST_DnsByZoneNameDnssecEnable_Response = POST_DnsByZoneNameDnssecEnable_Response_200 | POST_DnsByZoneNameDnssecEnable_Response_422;
 
 /**
  * 200 response for POST DnsByZoneNameDnssecEnable endpoint
@@ -1821,7 +1730,7 @@ export type POST_DnsByZoneNameDnssecEnable = {
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_DnsByZoneNameDnssecEnable} - The main response type definition
+ * @see {@link POST_DnsByZoneNameDnssecEnable_Response} - The main response type definition
  * @see {@link DnsChanges} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecEnable_Response_200 = DnsChanges
@@ -1839,7 +1748,7 @@ export type POST_DnsByZoneNameDnssecEnable_Response_200 = DnsChanges
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_DnsByZoneNameDnssecEnable} - The main response type definition
+ * @see {@link POST_DnsByZoneNameDnssecEnable_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecEnable_Response_422 = HTTPValidationError
@@ -1863,9 +1772,7 @@ export type POST_DnsByZoneNameDnssecEnable_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_DnsByZoneNameRecords = {
-  422: PATCH_DnsByZoneNameRecords_Response_422
-}
+export type PATCH_DnsByZoneNameRecords_Response = PATCH_DnsByZoneNameRecords_Response_422;
 
 /**
  * 422 response for PATCH DnsByZoneNameRecords endpoint
@@ -1880,7 +1787,7 @@ export type PATCH_DnsByZoneNameRecords = {
  * @path /v1/dns/{zone_name}/records
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PATCH_DnsByZoneNameRecords} - The main response type definition
+ * @see {@link PATCH_DnsByZoneNameRecords_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_DnsByZoneNameRecords_Response_422 = HTTPValidationError
@@ -1904,9 +1811,7 @@ export type PATCH_DnsByZoneNameRecords_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_DnsByZoneNameRrsets = {
-  422: PATCH_DnsByZoneNameRrsets_Response_422
-}
+export type PATCH_DnsByZoneNameRrsets_Response = PATCH_DnsByZoneNameRrsets_Response_422;
 
 /**
  * 422 response for PATCH DnsByZoneNameRrsets endpoint
@@ -1921,7 +1826,7 @@ export type PATCH_DnsByZoneNameRrsets = {
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PATCH_DnsByZoneNameRrsets} - The main response type definition
+ * @see {@link PATCH_DnsByZoneNameRrsets_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
@@ -1945,9 +1850,7 @@ export type PATCH_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
  *
 
  */
-export type PUT_DnsByZoneNameRrsets = {
-  422: PUT_DnsByZoneNameRrsets_Response_422
-}
+export type PUT_DnsByZoneNameRrsets_Response = PUT_DnsByZoneNameRrsets_Response_422;
 
 /**
  * 422 response for PUT DnsByZoneNameRrsets endpoint
@@ -1962,7 +1865,7 @@ export type PUT_DnsByZoneNameRrsets = {
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PUT_DnsByZoneNameRrsets} - The main response type definition
+ * @see {@link PUT_DnsByZoneNameRrsets_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
@@ -1994,12 +1897,7 @@ Specify one or more TLDs to include in the search.
  *
 
  */
-export type GET_DomainSearchSuggest = {
-  200: GET_DomainSearchSuggest_Response_200
-  401: GET_DomainSearchSuggest_Response_401
-  422: GET_DomainSearchSuggest_Response_422
-  502: GET_DomainSearchSuggest_Response_502
-}
+export type GET_DomainSearchSuggest_Response = GET_DomainSearchSuggest_Response_200 | GET_DomainSearchSuggest_Response_401 | GET_DomainSearchSuggest_Response_422 | GET_DomainSearchSuggest_Response_502;
 
 /**
  * 200 response for GET DomainSearchSuggest endpoint
@@ -2019,7 +1917,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
- * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link GET_DomainSearchSuggest_Response} - The main response type definition
  * @see {@link DomainSearch} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_200 = DomainSearch
@@ -2042,7 +1940,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
- * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link GET_DomainSearchSuggest_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_401 = Problem
@@ -2065,7 +1963,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
- * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link GET_DomainSearchSuggest_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_422 = HTTPValidationError
@@ -2088,7 +1986,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
- * @see {@link GET_DomainSearchSuggest} - The main response type definition
+ * @see {@link GET_DomainSearchSuggest_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainSearchSuggest_Response_502 = Problem
@@ -2113,10 +2011,7 @@ export type GET_DomainSearchSuggest_Response_502 = Problem
  *
 
  */
-export type GET_Domains = {
-  200: GET_Domains_Response_200
-  422: GET_Domains_Response_422
-}
+export type GET_Domains_Response = GET_Domains_Response_200 | GET_Domains_Response_422;
 
 /**
  * 200 response for GET Domains endpoint
@@ -2130,7 +2025,7 @@ export type GET_Domains = {
  *
  * @path /v1/domains
  *
- * @see {@link GET_Domains} - The main response type definition
+ * @see {@link GET_Domains_Response} - The main response type definition
  * @see {@link Pagination_Domain} - The actual schema type definition
  */
 export type GET_Domains_Response_200 = Pagination_Domain
@@ -2147,7 +2042,7 @@ export type GET_Domains_Response_200 = Pagination_Domain
  *
  * @path /v1/domains
  *
- * @see {@link GET_Domains} - The main response type definition
+ * @see {@link GET_Domains_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Domains_Response_422 = HTTPValidationError
@@ -2175,13 +2070,7 @@ export type GET_Domains_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_Domains = {
-  201: POST_Domains_Response_201
-  400: POST_Domains_Response_400
-  404: POST_Domains_Response_404
-  409: POST_Domains_Response_409
-  422: POST_Domains_Response_422
-}
+export type POST_Domains_Response = POST_Domains_Response_201 | POST_Domains_Response_400 | POST_Domains_Response_404 | POST_Domains_Response_409 | POST_Domains_Response_422;
 
 /**
  * 201 response for POST Domains endpoint
@@ -2195,7 +2084,7 @@ export type POST_Domains = {
  *
  * @path /v1/domains
  *
- * @see {@link POST_Domains} - The main response type definition
+ * @see {@link POST_Domains_Response} - The main response type definition
  * @see {@link Domain} - The actual schema type definition
  */
 export type POST_Domains_Response_201 = Domain
@@ -2212,7 +2101,7 @@ export type POST_Domains_Response_201 = Domain
  *
  * @path /v1/domains
  *
- * @see {@link POST_Domains} - The main response type definition
+ * @see {@link POST_Domains_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_Domains_Response_400 = Problem
@@ -2229,7 +2118,7 @@ export type POST_Domains_Response_400 = Problem
  *
  * @path /v1/domains
  *
- * @see {@link POST_Domains} - The main response type definition
+ * @see {@link POST_Domains_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_Domains_Response_404 = Problem
@@ -2246,7 +2135,7 @@ export type POST_Domains_Response_404 = Problem
  *
  * @path /v1/domains
  *
- * @see {@link POST_Domains} - The main response type definition
+ * @see {@link POST_Domains_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_Domains_Response_409 = Problem
@@ -2263,7 +2152,7 @@ export type POST_Domains_Response_409 = Problem
  *
  * @path /v1/domains
  *
- * @see {@link POST_Domains} - The main response type definition
+ * @see {@link POST_Domains_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Domains_Response_422 = HTTPValidationError
@@ -2290,11 +2179,7 @@ and will enter a redemption period during which it may be restored.
  *
 
  */
-export type DELETE_DomainsByDomainReference = {
-  404: DELETE_DomainsByDomainReference_Response_404
-  409: DELETE_DomainsByDomainReference_Response_409
-  422: DELETE_DomainsByDomainReference_Response_422
-}
+export type DELETE_DomainsByDomainReference_Response = DELETE_DomainsByDomainReference_Response_404 | DELETE_DomainsByDomainReference_Response_409 | DELETE_DomainsByDomainReference_Response_422;
 
 /**
  * 404 response for DELETE DomainsByDomainReference endpoint
@@ -2308,7 +2193,7 @@ export type DELETE_DomainsByDomainReference = {
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link DELETE_DomainsByDomainReference} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReference_Response_404 = Problem
@@ -2325,7 +2210,7 @@ export type DELETE_DomainsByDomainReference_Response_404 = Problem
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link DELETE_DomainsByDomainReference} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReference_Response_409 = Problem
@@ -2342,7 +2227,7 @@ export type DELETE_DomainsByDomainReference_Response_409 = Problem
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link DELETE_DomainsByDomainReference} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReference_Response_422 = HTTPValidationError
@@ -2368,11 +2253,7 @@ export type DELETE_DomainsByDomainReference_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_DomainsByDomainReference = {
-  200: GET_DomainsByDomainReference_Response_200
-  404: GET_DomainsByDomainReference_Response_404
-  422: GET_DomainsByDomainReference_Response_422
-}
+export type GET_DomainsByDomainReference_Response = GET_DomainsByDomainReference_Response_200 | GET_DomainsByDomainReference_Response_404 | GET_DomainsByDomainReference_Response_422;
 
 /**
  * 200 response for GET DomainsByDomainReference endpoint
@@ -2386,7 +2267,7 @@ export type GET_DomainsByDomainReference = {
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link GET_DomainsByDomainReference} - The main response type definition
+ * @see {@link GET_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Domain} - The actual schema type definition
  */
 export type GET_DomainsByDomainReference_Response_200 = Domain
@@ -2403,7 +2284,7 @@ export type GET_DomainsByDomainReference_Response_200 = Domain
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link GET_DomainsByDomainReference} - The main response type definition
+ * @see {@link GET_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainsByDomainReference_Response_404 = Problem
@@ -2420,7 +2301,7 @@ export type GET_DomainsByDomainReference_Response_404 = Problem
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link GET_DomainsByDomainReference} - The main response type definition
+ * @see {@link GET_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsByDomainReference_Response_422 = HTTPValidationError
@@ -2448,11 +2329,7 @@ Providing `clientTransferProhibited` as a status will set the `transfer_lock` pr
  *
 
  */
-export type PATCH_DomainsByDomainReference = {
-  200: PATCH_DomainsByDomainReference_Response_200
-  404: PATCH_DomainsByDomainReference_Response_404
-  422: PATCH_DomainsByDomainReference_Response_422
-}
+export type PATCH_DomainsByDomainReference_Response = PATCH_DomainsByDomainReference_Response_200 | PATCH_DomainsByDomainReference_Response_404 | PATCH_DomainsByDomainReference_Response_422;
 
 /**
  * 200 response for PATCH DomainsByDomainReference endpoint
@@ -2466,7 +2343,7 @@ export type PATCH_DomainsByDomainReference = {
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link PATCH_DomainsByDomainReference} - The main response type definition
+ * @see {@link PATCH_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Domain} - The actual schema type definition
  */
 export type PATCH_DomainsByDomainReference_Response_200 = Domain
@@ -2483,7 +2360,7 @@ export type PATCH_DomainsByDomainReference_Response_200 = Domain
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link PATCH_DomainsByDomainReference} - The main response type definition
+ * @see {@link PATCH_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PATCH_DomainsByDomainReference_Response_404 = Problem
@@ -2500,7 +2377,7 @@ export type PATCH_DomainsByDomainReference_Response_404 = Problem
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link PATCH_DomainsByDomainReference} - The main response type definition
+ * @see {@link PATCH_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_DomainsByDomainReference_Response_422 = HTTPValidationError
@@ -2525,10 +2402,7 @@ export type PATCH_DomainsByDomainReference_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_DomainsByDomainReferenceDnssec = {
-  404: DELETE_DomainsByDomainReferenceDnssec_Response_404
-  422: DELETE_DomainsByDomainReferenceDnssec_Response_422
-}
+export type DELETE_DomainsByDomainReferenceDnssec_Response = DELETE_DomainsByDomainReferenceDnssec_Response_404 | DELETE_DomainsByDomainReferenceDnssec_Response_422;
 
 /**
  * 404 response for DELETE DomainsByDomainReferenceDnssec endpoint
@@ -2542,7 +2416,7 @@ export type DELETE_DomainsByDomainReferenceDnssec = {
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link DELETE_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceDnssec_Response_404 = Problem
@@ -2559,7 +2433,7 @@ export type DELETE_DomainsByDomainReferenceDnssec_Response_404 = Problem
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link DELETE_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
@@ -2585,11 +2459,7 @@ export type DELETE_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationE
  *
 
  */
-export type GET_DomainsByDomainReferenceDnssec = {
-  200: GET_DomainsByDomainReferenceDnssec_Response_200
-  404: GET_DomainsByDomainReferenceDnssec_Response_404
-  422: GET_DomainsByDomainReferenceDnssec_Response_422
-}
+export type GET_DomainsByDomainReferenceDnssec_Response = GET_DomainsByDomainReferenceDnssec_Response_200 | GET_DomainsByDomainReferenceDnssec_Response_404 | GET_DomainsByDomainReferenceDnssec_Response_422;
 
 /**
  * 200 response for GET DomainsByDomainReferenceDnssec endpoint
@@ -2603,7 +2473,7 @@ export type GET_DomainsByDomainReferenceDnssec = {
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link GET_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link GET_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link DomainDnssecData} - The actual schema type definition
  */
 export type GET_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataArray
@@ -2620,7 +2490,7 @@ export type GET_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataAr
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link GET_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link GET_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_DomainsByDomainReferenceDnssec_Response_404 = Problem
@@ -2637,7 +2507,7 @@ export type GET_DomainsByDomainReferenceDnssec_Response_404 = Problem
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link GET_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link GET_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
@@ -2663,11 +2533,7 @@ export type GET_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationErro
  *
 
  */
-export type PUT_DomainsByDomainReferenceDnssec = {
-  200: PUT_DomainsByDomainReferenceDnssec_Response_200
-  404: PUT_DomainsByDomainReferenceDnssec_Response_404
-  422: PUT_DomainsByDomainReferenceDnssec_Response_422
-}
+export type PUT_DomainsByDomainReferenceDnssec_Response = PUT_DomainsByDomainReferenceDnssec_Response_200 | PUT_DomainsByDomainReferenceDnssec_Response_404 | PUT_DomainsByDomainReferenceDnssec_Response_422;
 
 /**
  * 200 response for PUT DomainsByDomainReferenceDnssec endpoint
@@ -2681,7 +2547,7 @@ export type PUT_DomainsByDomainReferenceDnssec = {
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link PUT_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link PUT_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link DomainDnssecData} - The actual schema type definition
  */
 export type PUT_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataArray
@@ -2698,7 +2564,7 @@ export type PUT_DomainsByDomainReferenceDnssec_Response_200 = DomainDnssecDataAr
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link PUT_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link PUT_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PUT_DomainsByDomainReferenceDnssec_Response_404 = Problem
@@ -2715,7 +2581,7 @@ export type PUT_DomainsByDomainReferenceDnssec_Response_404 = Problem
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link PUT_DomainsByDomainReferenceDnssec} - The main response type definition
+ * @see {@link PUT_DomainsByDomainReferenceDnssec_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
@@ -2741,10 +2607,7 @@ to the current expiration date of the domain.
  *
 
  */
-export type POST_DomainsByDomainReferenceRenew = {
-  200: POST_DomainsByDomainReferenceRenew_Response_200
-  422: POST_DomainsByDomainReferenceRenew_Response_422
-}
+export type POST_DomainsByDomainReferenceRenew_Response = POST_DomainsByDomainReferenceRenew_Response_200 | POST_DomainsByDomainReferenceRenew_Response_422;
 
 /**
  * 200 response for POST DomainsByDomainReferenceRenew endpoint
@@ -2758,7 +2621,7 @@ export type POST_DomainsByDomainReferenceRenew = {
  *
  * @path /v1/domains/{domain_reference}/renew
  *
- * @see {@link POST_DomainsByDomainReferenceRenew} - The main response type definition
+ * @see {@link POST_DomainsByDomainReferenceRenew_Response} - The main response type definition
  * @see {@link DomainRenew} - The actual schema type definition
  */
 export type POST_DomainsByDomainReferenceRenew_Response_200 = DomainRenew
@@ -2775,7 +2638,7 @@ export type POST_DomainsByDomainReferenceRenew_Response_200 = DomainRenew
  *
  * @path /v1/domains/{domain_reference}/renew
  *
- * @see {@link POST_DomainsByDomainReferenceRenew} - The main response type definition
+ * @see {@link POST_DomainsByDomainReferenceRenew_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationError
@@ -2801,11 +2664,7 @@ export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationErro
  *
 
  */
-export type DELETE_DomainsByDomainReferenceTransfer = {
-  404: DELETE_DomainsByDomainReferenceTransfer_Response_404
-  409: DELETE_DomainsByDomainReferenceTransfer_Response_409
-  422: DELETE_DomainsByDomainReferenceTransfer_Response_422
-}
+export type DELETE_DomainsByDomainReferenceTransfer_Response = DELETE_DomainsByDomainReferenceTransfer_Response_404 | DELETE_DomainsByDomainReferenceTransfer_Response_409 | DELETE_DomainsByDomainReferenceTransfer_Response_422;
 
 /**
  * 404 response for DELETE DomainsByDomainReferenceTransfer endpoint
@@ -2819,7 +2678,7 @@ export type DELETE_DomainsByDomainReferenceTransfer = {
  *
  * @path /v1/domains/{domain_reference}/transfer
  *
- * @see {@link DELETE_DomainsByDomainReferenceTransfer} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceTransfer_Response_404 = Problem
@@ -2836,7 +2695,7 @@ export type DELETE_DomainsByDomainReferenceTransfer_Response_404 = Problem
  *
  * @path /v1/domains/{domain_reference}/transfer
  *
- * @see {@link DELETE_DomainsByDomainReferenceTransfer} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceTransfer_Response_409 = Problem
@@ -2853,7 +2712,7 @@ export type DELETE_DomainsByDomainReferenceTransfer_Response_409 = Problem
  *
  * @path /v1/domains/{domain_reference}/transfer
  *
- * @see {@link DELETE_DomainsByDomainReferenceTransfer} - The main response type definition
+ * @see {@link DELETE_DomainsByDomainReferenceTransfer_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_DomainsByDomainReferenceTransfer_Response_422 = HTTPValidationError
@@ -2880,10 +2739,7 @@ Specify one or more domains to check for availability.
  *
 
  */
-export type GET_DomainsCheck = {
-  200: GET_DomainsCheck_Response_200
-  422: GET_DomainsCheck_Response_422
-}
+export type GET_DomainsCheck_Response = GET_DomainsCheck_Response_200 | GET_DomainsCheck_Response_422;
 
 /**
  * 200 response for GET DomainsCheck endpoint
@@ -2900,7 +2756,7 @@ export type GET_DomainsCheck = {
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_DomainsCheck} - The main response type definition
+ * @see {@link GET_DomainsCheck_Response} - The main response type definition
  * @see {@link DomainCheck} - The actual schema type definition
  */
 export type GET_DomainsCheck_Response_200 = DomainCheck
@@ -2920,7 +2776,7 @@ export type GET_DomainsCheck_Response_200 = DomainCheck
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_DomainsCheck} - The main response type definition
+ * @see {@link GET_DomainsCheck_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsCheck_Response_422 = HTTPValidationError
@@ -2944,9 +2800,7 @@ export type GET_DomainsCheck_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_DomainsSummary = {
-  200: GET_DomainsSummary_Response_200
-}
+export type GET_DomainsSummary_Response = GET_DomainsSummary_Response_200;
 
 /**
  * 200 response for GET DomainsSummary endpoint
@@ -2960,7 +2814,7 @@ export type GET_DomainsSummary = {
  *
  * @path /v1/domains/summary
  *
- * @see {@link GET_DomainsSummary} - The main response type definition
+ * @see {@link GET_DomainsSummary_Response} - The main response type definition
  * @see {@link DomainSummary} - The actual schema type definition
  */
 export type GET_DomainsSummary_Response_200 = DomainSummary
@@ -2990,13 +2844,7 @@ This process can take up to 5 days, until the transfer is approved
  *
 
  */
-export type POST_DomainsTransfer = {
-  201: POST_DomainsTransfer_Response_201
-  400: POST_DomainsTransfer_Response_400
-  404: POST_DomainsTransfer_Response_404
-  409: POST_DomainsTransfer_Response_409
-  422: POST_DomainsTransfer_Response_422
-}
+export type POST_DomainsTransfer_Response = POST_DomainsTransfer_Response_201 | POST_DomainsTransfer_Response_400 | POST_DomainsTransfer_Response_404 | POST_DomainsTransfer_Response_409 | POST_DomainsTransfer_Response_422;
 
 /**
  * 201 response for POST DomainsTransfer endpoint
@@ -3010,7 +2858,7 @@ export type POST_DomainsTransfer = {
  *
  * @path /v1/domains/transfer
  *
- * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link POST_DomainsTransfer_Response} - The main response type definition
  * @see {@link Domain} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_201 = Domain
@@ -3027,7 +2875,7 @@ export type POST_DomainsTransfer_Response_201 = Domain
  *
  * @path /v1/domains/transfer
  *
- * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link POST_DomainsTransfer_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_400 = Problem
@@ -3044,7 +2892,7 @@ export type POST_DomainsTransfer_Response_400 = Problem
  *
  * @path /v1/domains/transfer
  *
- * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link POST_DomainsTransfer_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_404 = Problem
@@ -3061,7 +2909,7 @@ export type POST_DomainsTransfer_Response_404 = Problem
  *
  * @path /v1/domains/transfer
  *
- * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link POST_DomainsTransfer_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_409 = Problem
@@ -3078,7 +2926,7 @@ export type POST_DomainsTransfer_Response_409 = Problem
  *
  * @path /v1/domains/transfer
  *
- * @see {@link POST_DomainsTransfer} - The main response type definition
+ * @see {@link POST_DomainsTransfer_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_422 = Problem
@@ -3105,10 +2953,7 @@ export type POST_DomainsTransfer_Response_422 = Problem
  *
 
  */
-export type GET_EmailForwards = {
-  200: GET_EmailForwards_Response_200
-  422: GET_EmailForwards_Response_422
-}
+export type GET_EmailForwards_Response = GET_EmailForwards_Response_200 | GET_EmailForwards_Response_422;
 
 /**
  * 200 response for GET EmailForwards endpoint
@@ -3125,7 +2970,7 @@ export type GET_EmailForwards = {
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
  *
- * @see {@link GET_EmailForwards} - The main response type definition
+ * @see {@link GET_EmailForwards_Response} - The main response type definition
  * @see {@link Pagination_EmailForward} - The actual schema type definition
  */
 export type GET_EmailForwards_Response_200 = Pagination_EmailForward
@@ -3145,7 +2990,7 @@ export type GET_EmailForwards_Response_200 = Pagination_EmailForward
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
  *
- * @see {@link GET_EmailForwards} - The main response type definition
+ * @see {@link GET_EmailForwards_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_EmailForwards_Response_422 = HTTPValidationError
@@ -3169,10 +3014,7 @@ export type GET_EmailForwards_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_EmailForwards = {
-  201: POST_EmailForwards_Response_201
-  422: POST_EmailForwards_Response_422
-}
+export type POST_EmailForwards_Response = POST_EmailForwards_Response_201 | POST_EmailForwards_Response_422;
 
 /**
  * 201 response for POST EmailForwards endpoint
@@ -3186,7 +3028,7 @@ export type POST_EmailForwards = {
  *
  * @path /v1/email-forwards
  *
- * @see {@link POST_EmailForwards} - The main response type definition
+ * @see {@link POST_EmailForwards_Response} - The main response type definition
  * @see {@link EmailForward} - The actual schema type definition
  */
 export type POST_EmailForwards_Response_201 = EmailForward
@@ -3203,7 +3045,7 @@ export type POST_EmailForwards_Response_201 = EmailForward
  *
  * @path /v1/email-forwards
  *
- * @see {@link POST_EmailForwards} - The main response type definition
+ * @see {@link POST_EmailForwards_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_EmailForwards_Response_422 = HTTPValidationError
@@ -3227,10 +3069,7 @@ export type POST_EmailForwards_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_EmailForwardsBulkDelete = {
-  200: POST_EmailForwardsBulkDelete_Response_200
-  422: POST_EmailForwardsBulkDelete_Response_422
-}
+export type POST_EmailForwardsBulkDelete_Response = POST_EmailForwardsBulkDelete_Response_200 | POST_EmailForwardsBulkDelete_Response_422;
 
 /**
  * 200 response for POST EmailForwardsBulkDelete endpoint
@@ -3244,7 +3083,7 @@ export type POST_EmailForwardsBulkDelete = {
  *
  * @path /v1/email-forwards/bulk-delete
  *
- * @see {@link POST_EmailForwardsBulkDelete} - The main response type definition
+ * @see {@link POST_EmailForwardsBulkDelete_Response} - The main response type definition
  * @see {@link EmailForwardBulkDeleteResult} - The actual schema type definition
  */
 export type POST_EmailForwardsBulkDelete_Response_200 = EmailForwardBulkDeleteResult
@@ -3261,7 +3100,7 @@ export type POST_EmailForwardsBulkDelete_Response_200 = EmailForwardBulkDeleteRe
  *
  * @path /v1/email-forwards/bulk-delete
  *
- * @see {@link POST_EmailForwardsBulkDelete} - The main response type definition
+ * @see {@link POST_EmailForwardsBulkDelete_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_EmailForwardsBulkDelete_Response_422 = HTTPValidationError
@@ -3285,10 +3124,7 @@ export type POST_EmailForwardsBulkDelete_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_EmailForwardsBulkUpdate = {
-  200: PATCH_EmailForwardsBulkUpdate_Response_200
-  422: PATCH_EmailForwardsBulkUpdate_Response_422
-}
+export type PATCH_EmailForwardsBulkUpdate_Response = PATCH_EmailForwardsBulkUpdate_Response_200 | PATCH_EmailForwardsBulkUpdate_Response_422;
 
 /**
  * 200 response for PATCH EmailForwardsBulkUpdate endpoint
@@ -3302,7 +3138,7 @@ export type PATCH_EmailForwardsBulkUpdate = {
  *
  * @path /v1/email-forwards/bulk-update
  *
- * @see {@link PATCH_EmailForwardsBulkUpdate} - The main response type definition
+ * @see {@link PATCH_EmailForwardsBulkUpdate_Response} - The main response type definition
  * @see {@link EmailForwardBulkUpdateResult} - The actual schema type definition
  */
 export type PATCH_EmailForwardsBulkUpdate_Response_200 = EmailForwardBulkUpdateResult
@@ -3319,7 +3155,7 @@ export type PATCH_EmailForwardsBulkUpdate_Response_200 = EmailForwardBulkUpdateR
  *
  * @path /v1/email-forwards/bulk-update
  *
- * @see {@link PATCH_EmailForwardsBulkUpdate} - The main response type definition
+ * @see {@link PATCH_EmailForwardsBulkUpdate_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_EmailForwardsBulkUpdate_Response_422 = HTTPValidationError
@@ -3342,9 +3178,7 @@ export type PATCH_EmailForwardsBulkUpdate_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_EmailForwardsByEmailForwardId = {
-  422: DELETE_EmailForwardsByEmailForwardId_Response_422
-}
+export type DELETE_EmailForwardsByEmailForwardId_Response = DELETE_EmailForwardsByEmailForwardId_Response_422;
 
 /**
  * 422 response for DELETE EmailForwardsByEmailForwardId endpoint
@@ -3358,7 +3192,7 @@ export type DELETE_EmailForwardsByEmailForwardId = {
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link DELETE_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link DELETE_EmailForwardsByEmailForwardId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
@@ -3382,10 +3216,7 @@ export type DELETE_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationEr
  *
 
  */
-export type GET_EmailForwardsByEmailForwardId = {
-  200: GET_EmailForwardsByEmailForwardId_Response_200
-  422: GET_EmailForwardsByEmailForwardId_Response_422
-}
+export type GET_EmailForwardsByEmailForwardId_Response = GET_EmailForwardsByEmailForwardId_Response_200 | GET_EmailForwardsByEmailForwardId_Response_422;
 
 /**
  * 200 response for GET EmailForwardsByEmailForwardId endpoint
@@ -3399,7 +3230,7 @@ export type GET_EmailForwardsByEmailForwardId = {
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link GET_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link GET_EmailForwardsByEmailForwardId_Response} - The main response type definition
  * @see {@link EmailForward} - The actual schema type definition
  */
 export type GET_EmailForwardsByEmailForwardId_Response_200 = EmailForward
@@ -3416,7 +3247,7 @@ export type GET_EmailForwardsByEmailForwardId_Response_200 = EmailForward
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link GET_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link GET_EmailForwardsByEmailForwardId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
@@ -3440,10 +3271,7 @@ export type GET_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_EmailForwardsByEmailForwardId = {
-  200: PATCH_EmailForwardsByEmailForwardId_Response_200
-  422: PATCH_EmailForwardsByEmailForwardId_Response_422
-}
+export type PATCH_EmailForwardsByEmailForwardId_Response = PATCH_EmailForwardsByEmailForwardId_Response_200 | PATCH_EmailForwardsByEmailForwardId_Response_422;
 
 /**
  * 200 response for PATCH EmailForwardsByEmailForwardId endpoint
@@ -3457,7 +3285,7 @@ export type PATCH_EmailForwardsByEmailForwardId = {
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link PATCH_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link PATCH_EmailForwardsByEmailForwardId_Response} - The main response type definition
  * @see {@link EmailForward} - The actual schema type definition
  */
 export type PATCH_EmailForwardsByEmailForwardId_Response_200 = EmailForward
@@ -3474,7 +3302,7 @@ export type PATCH_EmailForwardsByEmailForwardId_Response_200 = EmailForward
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link PATCH_EmailForwardsByEmailForwardId} - The main response type definition
+ * @see {@link PATCH_EmailForwardsByEmailForwardId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
@@ -3499,11 +3327,7 @@ export type PATCH_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationErr
  *
 
  */
-export type GET_Event = {
-  200: GET_Event_Response_200
-  401: GET_Event_Response_401
-  422: GET_Event_Response_422
-}
+export type GET_Event_Response = GET_Event_Response_200 | GET_Event_Response_401 | GET_Event_Response_422;
 
 /**
  * 200 response for GET Event endpoint
@@ -3517,7 +3341,7 @@ export type GET_Event = {
  *
  * @path /v1/event
  *
- * @see {@link GET_Event} - The main response type definition
+ * @see {@link GET_Event_Response} - The main response type definition
  * @see {@link Pagination_Event} - The actual schema type definition
  */
 export type GET_Event_Response_200 = Pagination_Event
@@ -3534,7 +3358,7 @@ export type GET_Event_Response_200 = Pagination_Event
  *
  * @path /v1/event
  *
- * @see {@link GET_Event} - The main response type definition
+ * @see {@link GET_Event_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_Event_Response_401 = Problem
@@ -3551,7 +3375,7 @@ export type GET_Event_Response_401 = Problem
  *
  * @path /v1/event
  *
- * @see {@link GET_Event} - The main response type definition
+ * @see {@link GET_Event_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Event_Response_422 = HTTPValidationError
@@ -3577,12 +3401,7 @@ export type GET_Event_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_EventByEventId = {
-  200: GET_EventByEventId_Response_200
-  401: GET_EventByEventId_Response_401
-  404: GET_EventByEventId_Response_404
-  422: GET_EventByEventId_Response_422
-}
+export type GET_EventByEventId_Response = GET_EventByEventId_Response_200 | GET_EventByEventId_Response_401 | GET_EventByEventId_Response_404 | GET_EventByEventId_Response_422;
 
 /**
  * 200 response for GET EventByEventId endpoint
@@ -3596,7 +3415,7 @@ export type GET_EventByEventId = {
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link GET_EventByEventId_Response} - The main response type definition
  * @see {@link EventSchema} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_200 = EventSchema
@@ -3613,7 +3432,7 @@ export type GET_EventByEventId_Response_200 = EventSchema
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link GET_EventByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_401 = Problem
@@ -3630,7 +3449,7 @@ export type GET_EventByEventId_Response_401 = Problem
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link GET_EventByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_404 = Problem
@@ -3647,7 +3466,7 @@ export type GET_EventByEventId_Response_404 = Problem
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link GET_EventByEventId} - The main response type definition
+ * @see {@link GET_EventByEventId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_EventByEventId_Response_422 = HTTPValidationError
@@ -3672,11 +3491,7 @@ export type GET_EventByEventId_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_EventByEventId = {
-  401: PATCH_EventByEventId_Response_401
-  404: PATCH_EventByEventId_Response_404
-  422: PATCH_EventByEventId_Response_422
-}
+export type PATCH_EventByEventId_Response = PATCH_EventByEventId_Response_401 | PATCH_EventByEventId_Response_404 | PATCH_EventByEventId_Response_422;
 
 /**
  * 401 response for PATCH EventByEventId endpoint
@@ -3690,7 +3505,7 @@ export type PATCH_EventByEventId = {
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link PATCH_EventByEventId} - The main response type definition
+ * @see {@link PATCH_EventByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PATCH_EventByEventId_Response_401 = Problem
@@ -3707,7 +3522,7 @@ export type PATCH_EventByEventId_Response_401 = Problem
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link PATCH_EventByEventId} - The main response type definition
+ * @see {@link PATCH_EventByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type PATCH_EventByEventId_Response_404 = Problem
@@ -3724,7 +3539,7 @@ export type PATCH_EventByEventId_Response_404 = Problem
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link PATCH_EventByEventId} - The main response type definition
+ * @see {@link PATCH_EventByEventId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_EventByEventId_Response_422 = HTTPValidationError
@@ -3748,10 +3563,7 @@ export type PATCH_EventByEventId_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_Notifications = {
-  200: GET_Notifications_Response_200
-  422: GET_Notifications_Response_422
-}
+export type GET_Notifications_Response = GET_Notifications_Response_200 | GET_Notifications_Response_422;
 
 /**
  * 200 response for GET Notifications endpoint
@@ -3765,7 +3577,7 @@ export type GET_Notifications = {
  *
  * @path /v1/notifications
  *
- * @see {@link GET_Notifications} - The main response type definition
+ * @see {@link GET_Notifications_Response} - The main response type definition
  * @see {@link Pagination_UserNotificationSummary} - The actual schema type definition
  */
 export type GET_Notifications_Response_200 = Pagination_UserNotificationSummary
@@ -3782,7 +3594,7 @@ export type GET_Notifications_Response_200 = Pagination_UserNotificationSummary
  *
  * @path /v1/notifications
  *
- * @see {@link GET_Notifications} - The main response type definition
+ * @see {@link GET_Notifications_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Notifications_Response_422 = HTTPValidationError
@@ -3806,10 +3618,7 @@ export type GET_Notifications_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_Notifications = {
-  201: POST_Notifications_Response_201
-  422: POST_Notifications_Response_422
-}
+export type POST_Notifications_Response = POST_Notifications_Response_201 | POST_Notifications_Response_422;
 
 /**
  * 201 response for POST Notifications endpoint
@@ -3823,7 +3632,7 @@ export type POST_Notifications = {
  *
  * @path /v1/notifications
  *
- * @see {@link POST_Notifications} - The main response type definition
+ * @see {@link POST_Notifications_Response} - The main response type definition
  * @see {@link Notification} - The actual schema type definition
  */
 export type POST_Notifications_Response_201 = Notification
@@ -3840,7 +3649,7 @@ export type POST_Notifications_Response_201 = Notification
  *
  * @path /v1/notifications
  *
- * @see {@link POST_Notifications} - The main response type definition
+ * @see {@link POST_Notifications_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Notifications_Response_422 = HTTPValidationError
@@ -3863,9 +3672,7 @@ export type POST_Notifications_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_NotificationsByNotificationId = {
-  422: DELETE_NotificationsByNotificationId_Response_422
-}
+export type DELETE_NotificationsByNotificationId_Response = DELETE_NotificationsByNotificationId_Response_422;
 
 /**
  * 422 response for DELETE NotificationsByNotificationId endpoint
@@ -3879,7 +3686,7 @@ export type DELETE_NotificationsByNotificationId = {
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link DELETE_NotificationsByNotificationId} - The main response type definition
+ * @see {@link DELETE_NotificationsByNotificationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_NotificationsByNotificationId_Response_422 = HTTPValidationError
@@ -3903,10 +3710,7 @@ export type DELETE_NotificationsByNotificationId_Response_422 = HTTPValidationEr
  *
 
  */
-export type GET_NotificationsByNotificationId = {
-  200: GET_NotificationsByNotificationId_Response_200
-  422: GET_NotificationsByNotificationId_Response_422
-}
+export type GET_NotificationsByNotificationId_Response = GET_NotificationsByNotificationId_Response_200 | GET_NotificationsByNotificationId_Response_422;
 
 /**
  * 200 response for GET NotificationsByNotificationId endpoint
@@ -3920,7 +3724,7 @@ export type GET_NotificationsByNotificationId = {
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link GET_NotificationsByNotificationId} - The main response type definition
+ * @see {@link GET_NotificationsByNotificationId_Response} - The main response type definition
  * @see {@link UserNotification} - The actual schema type definition
  */
 export type GET_NotificationsByNotificationId_Response_200 = UserNotification
@@ -3937,7 +3741,7 @@ export type GET_NotificationsByNotificationId_Response_200 = UserNotification
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link GET_NotificationsByNotificationId} - The main response type definition
+ * @see {@link GET_NotificationsByNotificationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_NotificationsByNotificationId_Response_422 = HTTPValidationError
@@ -3961,10 +3765,7 @@ export type GET_NotificationsByNotificationId_Response_422 = HTTPValidationError
  *
 
  */
-export type PUT_NotificationsByNotificationId = {
-  200: PUT_NotificationsByNotificationId_Response_200
-  422: PUT_NotificationsByNotificationId_Response_422
-}
+export type PUT_NotificationsByNotificationId_Response = PUT_NotificationsByNotificationId_Response_200 | PUT_NotificationsByNotificationId_Response_422;
 
 /**
  * 200 response for PUT NotificationsByNotificationId endpoint
@@ -3978,7 +3779,7 @@ export type PUT_NotificationsByNotificationId = {
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link PUT_NotificationsByNotificationId} - The main response type definition
+ * @see {@link PUT_NotificationsByNotificationId_Response} - The main response type definition
  * @see {@link Notification} - The actual schema type definition
  */
 export type PUT_NotificationsByNotificationId_Response_200 = Notification
@@ -3995,7 +3796,7 @@ export type PUT_NotificationsByNotificationId_Response_200 = Notification
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link PUT_NotificationsByNotificationId} - The main response type definition
+ * @see {@link PUT_NotificationsByNotificationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_NotificationsByNotificationId_Response_422 = HTTPValidationError
@@ -4018,9 +3819,7 @@ export type PUT_NotificationsByNotificationId_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_NotificationsByNotificationIdRead = {
-  422: PATCH_NotificationsByNotificationIdRead_Response_422
-}
+export type PATCH_NotificationsByNotificationIdRead_Response = PATCH_NotificationsByNotificationIdRead_Response_422;
 
 /**
  * 422 response for PATCH NotificationsByNotificationIdRead endpoint
@@ -4034,7 +3833,7 @@ export type PATCH_NotificationsByNotificationIdRead = {
  *
  * @path /v1/notifications/{notification_id}/read
  *
- * @see {@link PATCH_NotificationsByNotificationIdRead} - The main response type definition
+ * @see {@link PATCH_NotificationsByNotificationIdRead_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_NotificationsByNotificationIdRead_Response_422 = HTTPValidationError
@@ -4058,10 +3857,7 @@ export type PATCH_NotificationsByNotificationIdRead_Response_422 = HTTPValidatio
  *
 
  */
-export type GET_Organizations = {
-  200: GET_Organizations_Response_200
-  422: GET_Organizations_Response_422
-}
+export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_422;
 
 /**
  * 200 response for GET Organizations endpoint
@@ -4075,7 +3871,7 @@ export type GET_Organizations = {
  *
  * @path /v1/organizations
  *
- * @see {@link GET_Organizations} - The main response type definition
+ * @see {@link GET_Organizations_Response} - The main response type definition
  * @see {@link Pagination_Organization} - The actual schema type definition
  */
 export type GET_Organizations_Response_200 = Pagination_Organization
@@ -4092,7 +3888,7 @@ export type GET_Organizations_Response_200 = Pagination_Organization
  *
  * @path /v1/organizations
  *
- * @see {@link GET_Organizations} - The main response type definition
+ * @see {@link GET_Organizations_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_Organizations_Response_422 = HTTPValidationError
@@ -4116,10 +3912,7 @@ export type GET_Organizations_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_Organizations = {
-  200: POST_Organizations_Response_200
-  422: POST_Organizations_Response_422
-}
+export type POST_Organizations_Response = POST_Organizations_Response_200 | POST_Organizations_Response_422;
 
 /**
  * 200 response for POST Organizations endpoint
@@ -4133,7 +3926,7 @@ export type POST_Organizations = {
  *
  * @path /v1/organizations
  *
- * @see {@link POST_Organizations} - The main response type definition
+ * @see {@link POST_Organizations_Response} - The main response type definition
  * @see {@link Organization} - The actual schema type definition
  */
 export type POST_Organizations_Response_200 = Organization
@@ -4150,7 +3943,7 @@ export type POST_Organizations_Response_200 = Organization
  *
  * @path /v1/organizations
  *
- * @see {@link POST_Organizations} - The main response type definition
+ * @see {@link POST_Organizations_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Organizations_Response_422 = HTTPValidationError
@@ -4175,10 +3968,7 @@ export type POST_Organizations_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_OrganizationsAttributes = {
-  200: GET_OrganizationsAttributes_Response_200
-  422: GET_OrganizationsAttributes_Response_422
-}
+export type GET_OrganizationsAttributes_Response = GET_OrganizationsAttributes_Response_200 | GET_OrganizationsAttributes_Response_422;
 
 /**
  * 200 response for GET OrganizationsAttributes endpoint
@@ -4193,7 +3983,7 @@ export type GET_OrganizationsAttributes = {
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
  *
- * @see {@link GET_OrganizationsAttributes} - The main response type definition
+ * @see {@link GET_OrganizationsAttributes_Response} - The main response type definition
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type GET_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
@@ -4211,7 +4001,7 @@ export type GET_OrganizationsAttributes_Response_200 = OrganizationAttribute2Arr
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
  *
- * @see {@link GET_OrganizationsAttributes} - The main response type definition
+ * @see {@link GET_OrganizationsAttributes_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsAttributes_Response_422 = HTTPValidationError
@@ -4235,10 +4025,7 @@ export type GET_OrganizationsAttributes_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_OrganizationsAttributes = {
-  200: PATCH_OrganizationsAttributes_Response_200
-  422: PATCH_OrganizationsAttributes_Response_422
-}
+export type PATCH_OrganizationsAttributes_Response = PATCH_OrganizationsAttributes_Response_200 | PATCH_OrganizationsAttributes_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsAttributes endpoint
@@ -4252,7 +4039,7 @@ export type PATCH_OrganizationsAttributes = {
  *
  * @path /v1/organizations/attributes
  *
- * @see {@link PATCH_OrganizationsAttributes} - The main response type definition
+ * @see {@link PATCH_OrganizationsAttributes_Response} - The main response type definition
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
@@ -4269,7 +4056,7 @@ export type PATCH_OrganizationsAttributes_Response_200 = OrganizationAttribute2A
  *
  * @path /v1/organizations/attributes
  *
- * @see {@link PATCH_OrganizationsAttributes} - The main response type definition
+ * @see {@link PATCH_OrganizationsAttributes_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributes_Response_422 = HTTPValidationError
@@ -4294,10 +4081,7 @@ export type PATCH_OrganizationsAttributes_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_OrganizationsAttributesByOrganizationId = {
-  200: GET_OrganizationsAttributesByOrganizationId_Response_200
-  422: GET_OrganizationsAttributesByOrganizationId_Response_422
-}
+export type GET_OrganizationsAttributesByOrganizationId_Response = GET_OrganizationsAttributesByOrganizationId_Response_200 | GET_OrganizationsAttributesByOrganizationId_Response_422;
 
 /**
  * 200 response for GET OrganizationsAttributesByOrganizationId endpoint
@@ -4312,7 +4096,7 @@ export type GET_OrganizationsAttributesByOrganizationId = {
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
  *
- * @see {@link GET_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type GET_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
@@ -4330,7 +4114,7 @@ export type GET_OrganizationsAttributesByOrganizationId_Response_200 = Organizat
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
  *
- * @see {@link GET_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValidationError
@@ -4354,10 +4138,7 @@ export type GET_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValid
  *
 
  */
-export type PATCH_OrganizationsAttributesByOrganizationId = {
-  200: PATCH_OrganizationsAttributesByOrganizationId_Response_200
-  422: PATCH_OrganizationsAttributesByOrganizationId_Response_422
-}
+export type PATCH_OrganizationsAttributesByOrganizationId_Response = PATCH_OrganizationsAttributesByOrganizationId_Response_200 | PATCH_OrganizationsAttributesByOrganizationId_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsAttributesByOrganizationId endpoint
@@ -4371,7 +4152,7 @@ export type PATCH_OrganizationsAttributesByOrganizationId = {
  *
  * @path /v1/organizations/attributes/{organization_id}
  *
- * @see {@link PATCH_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
@@ -4388,7 +4169,7 @@ export type PATCH_OrganizationsAttributesByOrganizationId_Response_200 = Organiz
  *
  * @path /v1/organizations/attributes/{organization_id}
  *
- * @see {@link PATCH_OrganizationsAttributesByOrganizationId} - The main response type definition
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValidationError
@@ -4411,9 +4192,7 @@ export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = HTTPVal
  *
 
  */
-export type DELETE_OrganizationsByOrganizationId = {
-  422: DELETE_OrganizationsByOrganizationId_Response_422
-}
+export type DELETE_OrganizationsByOrganizationId_Response = DELETE_OrganizationsByOrganizationId_Response_422;
 
 /**
  * 422 response for DELETE OrganizationsByOrganizationId endpoint
@@ -4427,7 +4206,7 @@ export type DELETE_OrganizationsByOrganizationId = {
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link DELETE_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link DELETE_OrganizationsByOrganizationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
@@ -4451,10 +4230,7 @@ export type DELETE_OrganizationsByOrganizationId_Response_422 = HTTPValidationEr
  *
 
  */
-export type GET_OrganizationsByOrganizationId = {
-  200: GET_OrganizationsByOrganizationId_Response_200
-  422: GET_OrganizationsByOrganizationId_Response_422
-}
+export type GET_OrganizationsByOrganizationId_Response = GET_OrganizationsByOrganizationId_Response_200 | GET_OrganizationsByOrganizationId_Response_422;
 
 /**
  * 200 response for GET OrganizationsByOrganizationId endpoint
@@ -4468,7 +4244,7 @@ export type GET_OrganizationsByOrganizationId = {
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link GET_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link GET_OrganizationsByOrganizationId_Response} - The main response type definition
  * @see {@link OrganizationWithPlan} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationId_Response_200 = OrganizationWithPlan
@@ -4485,7 +4261,7 @@ export type GET_OrganizationsByOrganizationId_Response_200 = OrganizationWithPla
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link GET_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link GET_OrganizationsByOrganizationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
@@ -4509,10 +4285,7 @@ export type GET_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_OrganizationsByOrganizationId = {
-  200: PATCH_OrganizationsByOrganizationId_Response_200
-  422: PATCH_OrganizationsByOrganizationId_Response_422
-}
+export type PATCH_OrganizationsByOrganizationId_Response = PATCH_OrganizationsByOrganizationId_Response_200 | PATCH_OrganizationsByOrganizationId_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsByOrganizationId endpoint
@@ -4526,7 +4299,7 @@ export type PATCH_OrganizationsByOrganizationId = {
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link PATCH_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response} - The main response type definition
  * @see {@link Organization} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationId_Response_200 = Organization
@@ -4543,7 +4316,7 @@ export type PATCH_OrganizationsByOrganizationId_Response_200 = Organization
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link PATCH_OrganizationsByOrganizationId} - The main response type definition
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
@@ -4567,10 +4340,7 @@ export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationErr
  *
 
  */
-export type PATCH_OrganizationsByOrganizationIdPlan = {
-  200: PATCH_OrganizationsByOrganizationIdPlan_Response_200
-  422: PATCH_OrganizationsByOrganizationIdPlan_Response_422
-}
+export type PATCH_OrganizationsByOrganizationIdPlan_Response = PATCH_OrganizationsByOrganizationIdPlan_Response_200 | PATCH_OrganizationsByOrganizationIdPlan_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsByOrganizationIdPlan endpoint
@@ -4584,7 +4354,7 @@ export type PATCH_OrganizationsByOrganizationIdPlan = {
  *
  * @path /v1/organizations/{organization_id}/plan
  *
- * @see {@link PATCH_OrganizationsByOrganizationIdPlan} - The main response type definition
+ * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response} - The main response type definition
  * @see {@link OrganizationWithPlan} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationWithPlan
@@ -4601,7 +4371,7 @@ export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationW
  *
  * @path /v1/organizations/{organization_id}/plan
  *
- * @see {@link PATCH_OrganizationsByOrganizationIdPlan} - The main response type definition
+ * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidationError
@@ -4625,9 +4395,7 @@ export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidatio
  *
 
  */
-export type GET_OrganizationsIpRestrictions = {
-  200: GET_OrganizationsIpRestrictions_Response_200
-}
+export type GET_OrganizationsIpRestrictions_Response = GET_OrganizationsIpRestrictions_Response_200;
 
 /**
  * 200 response for GET OrganizationsIpRestrictions endpoint
@@ -4641,7 +4409,7 @@ export type GET_OrganizationsIpRestrictions = {
  *
  * @path /v1/organizations/ip-restrictions
  *
- * @see {@link GET_OrganizationsIpRestrictions} - The main response type definition
+ * @see {@link GET_OrganizationsIpRestrictions_Response} - The main response type definition
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictions_Response_200 = IpRestrictionArray
@@ -4666,10 +4434,7 @@ export type GET_OrganizationsIpRestrictions_Response_200 = IpRestrictionArray
  *
 
  */
-export type POST_OrganizationsIpRestrictions = {
-  200: POST_OrganizationsIpRestrictions_Response_200
-  422: POST_OrganizationsIpRestrictions_Response_422
-}
+export type POST_OrganizationsIpRestrictions_Response = POST_OrganizationsIpRestrictions_Response_200 | POST_OrganizationsIpRestrictions_Response_422;
 
 /**
  * 200 response for POST OrganizationsIpRestrictions endpoint
@@ -4683,7 +4448,7 @@ export type POST_OrganizationsIpRestrictions = {
  *
  * @path /v1/organizations/ip-restrictions
  *
- * @see {@link POST_OrganizationsIpRestrictions} - The main response type definition
+ * @see {@link POST_OrganizationsIpRestrictions_Response} - The main response type definition
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction
@@ -4700,7 +4465,7 @@ export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction
  *
  * @path /v1/organizations/ip-restrictions
  *
- * @see {@link POST_OrganizationsIpRestrictions} - The main response type definition
+ * @see {@link POST_OrganizationsIpRestrictions_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError
@@ -4724,9 +4489,7 @@ export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId = {
-  422: DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422
-}
+export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response = DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
 
 /**
  * 422 response for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4740,7 +4503,7 @@ export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId = {
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
@@ -4765,10 +4528,7 @@ export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = H
  *
 
  */
-export type GET_OrganizationsIpRestrictionsByIpRestrictionId = {
-  200: GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200
-  422: GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422
-}
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response = GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 | GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
 
 /**
  * 200 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4782,7 +4542,7 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId = {
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
@@ -4799,7 +4559,7 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRe
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
@@ -4824,10 +4584,7 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTP
  *
 
  */
-export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId = {
-  200: PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200
-  422: PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422
-}
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 | PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4841,7 +4598,7 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId = {
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
@@ -4858,7 +4615,7 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = Ip
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId} - The main response type definition
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError
@@ -4881,8 +4638,7 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HT
  *
 
  */
-export type GET_OrganizationsRoles = {
-}
+export type GET_OrganizationsRoles_Response = ;
 
 /**
  * Response types for GET OrganizationsUsers endpoint
@@ -4903,10 +4659,7 @@ export type GET_OrganizationsRoles = {
  *
 
  */
-export type GET_OrganizationsUsers = {
-  200: GET_OrganizationsUsers_Response_200
-  422: GET_OrganizationsUsers_Response_422
-}
+export type GET_OrganizationsUsers_Response = GET_OrganizationsUsers_Response_200 | GET_OrganizationsUsers_Response_422;
 
 /**
  * 200 response for GET OrganizationsUsers endpoint
@@ -4920,7 +4673,7 @@ export type GET_OrganizationsUsers = {
  *
  * @path /v1/organizations/users
  *
- * @see {@link GET_OrganizationsUsers} - The main response type definition
+ * @see {@link GET_OrganizationsUsers_Response} - The main response type definition
  * @see {@link Pagination_User} - The actual schema type definition
  */
 export type GET_OrganizationsUsers_Response_200 = Pagination_User
@@ -4937,7 +4690,7 @@ export type GET_OrganizationsUsers_Response_200 = Pagination_User
  *
  * @path /v1/organizations/users
  *
- * @see {@link GET_OrganizationsUsers} - The main response type definition
+ * @see {@link GET_OrganizationsUsers_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
@@ -4961,10 +4714,7 @@ export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_Users = {
-  200: POST_Users_Response_200
-  422: POST_Users_Response_422
-}
+export type POST_Users_Response = POST_Users_Response_200 | POST_Users_Response_422;
 
 /**
  * 200 response for POST Users endpoint
@@ -4978,7 +4728,7 @@ export type POST_Users = {
  *
  * @path /v1/users
  *
- * @see {@link POST_Users} - The main response type definition
+ * @see {@link POST_Users_Response} - The main response type definition
  * @see {@link User} - The actual schema type definition
  */
 export type POST_Users_Response_200 = User
@@ -4995,7 +4745,7 @@ export type POST_Users_Response_200 = User
  *
  * @path /v1/users
  *
- * @see {@link POST_Users} - The main response type definition
+ * @see {@link POST_Users_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_Users_Response_422 = HTTPValidationError
@@ -5018,9 +4768,7 @@ export type POST_Users_Response_422 = HTTPValidationError
  *
 
  */
-export type POST_UsersAcceptTos = {
-  422: POST_UsersAcceptTos_Response_422
-}
+export type POST_UsersAcceptTos_Response = POST_UsersAcceptTos_Response_422;
 
 /**
  * 422 response for POST UsersAcceptTos endpoint
@@ -5034,7 +4782,7 @@ export type POST_UsersAcceptTos = {
  *
  * @path /v1/users/accept-tos
  *
- * @see {@link POST_UsersAcceptTos} - The main response type definition
+ * @see {@link POST_UsersAcceptTos_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_UsersAcceptTos_Response_422 = HTTPValidationError
@@ -5057,9 +4805,7 @@ export type POST_UsersAcceptTos_Response_422 = HTTPValidationError
  *
 
  */
-export type DELETE_UsersByUserId = {
-  422: DELETE_UsersByUserId_Response_422
-}
+export type DELETE_UsersByUserId_Response = DELETE_UsersByUserId_Response_422;
 
 /**
  * 422 response for DELETE UsersByUserId endpoint
@@ -5073,7 +4819,7 @@ export type DELETE_UsersByUserId = {
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link DELETE_UsersByUserId} - The main response type definition
+ * @see {@link DELETE_UsersByUserId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type DELETE_UsersByUserId_Response_422 = HTTPValidationError
@@ -5097,10 +4843,7 @@ export type DELETE_UsersByUserId_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_UsersByUserId = {
-  200: GET_UsersByUserId_Response_200
-  422: GET_UsersByUserId_Response_422
-}
+export type GET_UsersByUserId_Response = GET_UsersByUserId_Response_200 | GET_UsersByUserId_Response_422;
 
 /**
  * 200 response for GET UsersByUserId endpoint
@@ -5114,7 +4857,7 @@ export type GET_UsersByUserId = {
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link GET_UsersByUserId} - The main response type definition
+ * @see {@link GET_UsersByUserId_Response} - The main response type definition
  * @see {@link UserWithAttributes} - The actual schema type definition
  */
 export type GET_UsersByUserId_Response_200 = UserWithAttributes
@@ -5131,7 +4874,7 @@ export type GET_UsersByUserId_Response_200 = UserWithAttributes
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link GET_UsersByUserId} - The main response type definition
+ * @see {@link GET_UsersByUserId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersByUserId_Response_422 = HTTPValidationError
@@ -5155,10 +4898,7 @@ export type GET_UsersByUserId_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_UsersByUserId = {
-  200: PATCH_UsersByUserId_Response_200
-  422: PATCH_UsersByUserId_Response_422
-}
+export type PATCH_UsersByUserId_Response = PATCH_UsersByUserId_Response_200 | PATCH_UsersByUserId_Response_422;
 
 /**
  * 200 response for PATCH UsersByUserId endpoint
@@ -5172,7 +4912,7 @@ export type PATCH_UsersByUserId = {
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link PATCH_UsersByUserId} - The main response type definition
+ * @see {@link PATCH_UsersByUserId_Response} - The main response type definition
  * @see {@link UserWithAttributes} - The actual schema type definition
  */
 export type PATCH_UsersByUserId_Response_200 = UserWithAttributes
@@ -5189,7 +4929,7 @@ export type PATCH_UsersByUserId_Response_200 = UserWithAttributes
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link PATCH_UsersByUserId} - The main response type definition
+ * @see {@link PATCH_UsersByUserId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_UsersByUserId_Response_422 = HTTPValidationError
@@ -5213,10 +4953,7 @@ export type PATCH_UsersByUserId_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_UsersByUserIdPermissions = {
-  200: GET_UsersByUserIdPermissions_Response_200
-  422: GET_UsersByUserIdPermissions_Response_422
-}
+export type GET_UsersByUserIdPermissions_Response = GET_UsersByUserIdPermissions_Response_200 | GET_UsersByUserIdPermissions_Response_422;
 
 /**
  * 200 response for GET UsersByUserIdPermissions endpoint
@@ -5230,7 +4967,7 @@ export type GET_UsersByUserIdPermissions = {
  *
  * @path /v1/users/{user_id}/permissions
  *
- * @see {@link GET_UsersByUserIdPermissions} - The main response type definition
+ * @see {@link GET_UsersByUserIdPermissions_Response} - The main response type definition
  * @see {@link PermissionSet} - The actual schema type definition
  */
 export type GET_UsersByUserIdPermissions_Response_200 = PermissionSet
@@ -5247,7 +4984,7 @@ export type GET_UsersByUserIdPermissions_Response_200 = PermissionSet
  *
  * @path /v1/users/{user_id}/permissions
  *
- * @see {@link GET_UsersByUserIdPermissions} - The main response type definition
+ * @see {@link GET_UsersByUserIdPermissions_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersByUserIdPermissions_Response_422 = HTTPValidationError
@@ -5271,10 +5008,7 @@ export type GET_UsersByUserIdPermissions_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_UsersByUserIdRoles = {
-  200: GET_UsersByUserIdRoles_Response_200
-  422: GET_UsersByUserIdRoles_Response_422
-}
+export type GET_UsersByUserIdRoles_Response = GET_UsersByUserIdRoles_Response_200 | GET_UsersByUserIdRoles_Response_422;
 
 /**
  * 200 response for GET UsersByUserIdRoles endpoint
@@ -5288,7 +5022,7 @@ export type GET_UsersByUserIdRoles = {
  *
  * @path /v1/users/{user_id}/roles
  *
- * @see {@link GET_UsersByUserIdRoles} - The main response type definition
+ * @see {@link GET_UsersByUserIdRoles_Response} - The main response type definition
  * @see {@link RelationSet} - The actual schema type definition
  */
 export type GET_UsersByUserIdRoles_Response_200 = RelationSet
@@ -5305,7 +5039,7 @@ export type GET_UsersByUserIdRoles_Response_200 = RelationSet
  *
  * @path /v1/users/{user_id}/roles
  *
- * @see {@link GET_UsersByUserIdRoles} - The main response type definition
+ * @see {@link GET_UsersByUserIdRoles_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersByUserIdRoles_Response_422 = HTTPValidationError
@@ -5329,10 +5063,7 @@ export type GET_UsersByUserIdRoles_Response_422 = HTTPValidationError
  *
 
  */
-export type PATCH_UsersByUserIdRoles = {
-  200: PATCH_UsersByUserIdRoles_Response_200
-  422: PATCH_UsersByUserIdRoles_Response_422
-}
+export type PATCH_UsersByUserIdRoles_Response = PATCH_UsersByUserIdRoles_Response_200 | PATCH_UsersByUserIdRoles_Response_422;
 
 /**
  * 200 response for PATCH UsersByUserIdRoles endpoint
@@ -5346,7 +5077,7 @@ export type PATCH_UsersByUserIdRoles = {
  *
  * @path /v1/users/{user_id}/roles
  *
- * @see {@link PATCH_UsersByUserIdRoles} - The main response type definition
+ * @see {@link PATCH_UsersByUserIdRoles_Response} - The main response type definition
  * @see {@link RelationSet} - The actual schema type definition
  */
 export type PATCH_UsersByUserIdRoles_Response_200 = RelationSet
@@ -5363,7 +5094,7 @@ export type PATCH_UsersByUserIdRoles_Response_200 = RelationSet
  *
  * @path /v1/users/{user_id}/roles
  *
- * @see {@link PATCH_UsersByUserIdRoles} - The main response type definition
+ * @see {@link PATCH_UsersByUserIdRoles_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError
@@ -5387,10 +5118,7 @@ export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError
  *
 
  */
-export type GET_UsersMe = {
-  200: GET_UsersMe_Response_200
-  422: GET_UsersMe_Response_422
-}
+export type GET_UsersMe_Response = GET_UsersMe_Response_200 | GET_UsersMe_Response_422;
 
 /**
  * 200 response for GET UsersMe endpoint
@@ -5404,7 +5132,7 @@ export type GET_UsersMe = {
  *
  * @path /v1/users/me
  *
- * @see {@link GET_UsersMe} - The main response type definition
+ * @see {@link GET_UsersMe_Response} - The main response type definition
  * @see {@link UserWithRelationPermissions} - The actual schema type definition
  */
 export type GET_UsersMe_Response_200 = UserWithRelationPermissions
@@ -5421,7 +5149,7 @@ export type GET_UsersMe_Response_200 = UserWithRelationPermissions
  *
  * @path /v1/users/me
  *
- * @see {@link GET_UsersMe} - The main response type definition
+ * @see {@link GET_UsersMe_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersMe_Response_422 = HTTPValidationError
