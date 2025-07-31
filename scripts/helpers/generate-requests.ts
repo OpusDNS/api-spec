@@ -61,7 +61,7 @@ function generatePathName(path: string): string {
 function generateRequestTypeName(path: string, method: string): string {
   const pathName = generatePathName(path);
   
-  return `${method}_${pathName}_V1_Request`;
+  return `${method}_${pathName}_Request`;
 }
 
 function extractRequestTypesFromOpenAPI(
@@ -156,7 +156,7 @@ function generateGroupedRequestTypesContent(groupedRequests: GroupedRequests): s
   for (const [pathKey, methods] of Object.entries(groupedRequests)) {
     const typeName = pathKey.replace(/_/g, '');
     content += `/**\n * Request types for ${pathKey.replace(/_/g, ' ')}\n */\n`;
-    content += `export type ${typeName}_V1_Requests = {\n`;
+          content += `export type ${typeName}_Requests = {\n`;
 
     for (const [method, requestTypes] of Object.entries(methods)) {
       content += `  ${method}: {\n`;
@@ -302,9 +302,9 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
  *
  * @path ${actualPath}${parameterDescriptions}
  *
- * @see {@link ${typeBase}_Parameters_Query} - Query parameters type
- * @see {@link ${typeBase}_Parameters_Path} - Path parameters type
- * @see {@link ${typeBase}_RequestBody} - Request body type
+ * @see {@link ${typeBase}_Query} - Query parameters type
+ * @see {@link ${typeBase}_Path} - Path parameters type
+ * @see {@link ${typeBase}_Body} - Request body type
  */`);
       // Build parameters object
       const paramKeys: string[] = [];
@@ -365,7 +365,7 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
       // Emit individual parameter/body types with unique, context-aware TSDoc comments
       if (paramTypes.length > 0) {
         for (const paramType of paramTypes) {
-          const typeName = `${typeBase}_Parameters_${paramType.charAt(0).toUpperCase() + paramType.slice(1)}`;
+          const typeName = `${typeBase}_${paramType.charAt(0).toUpperCase() + paramType.slice(1)}`;
           if (!emittedTypes.has(typeName)) {
             // Compose TSDoc
             let paramDoc = `/**
@@ -396,7 +396,7 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
         }
       }
       if (requestBodyType) {
-        const typeName = `${typeBase}_RequestBody`;
+        const typeName = `${typeBase}_Body`;
         if (!emittedTypes.has(typeName)) {
           let paramDoc = `/**
  * Request body for ${method.toUpperCase()} ${actualPath}
@@ -453,21 +453,21 @@ function generateRequestsFile(groupedRequests: GroupedRequests, operationIdMap: 
  * These types ensure that request parameters match the expected API contract.
  *
  * @remarks
- * - Request types follow the pattern: \`METHOD_EndpointName_V1_Request\`
- * - Parameter types are available as: \`METHOD_EndpointName_V1_Request_Parameters_Query\`, \`METHOD_EndpointName_V1_Request_Parameters_Path\`
- * - Request body types are available as: \`METHOD_EndpointName_V1_Request_RequestBody\`
+ * - Request types follow the pattern: \`METHOD_EndpointName_Request\`
+ * - Parameter types are available as: \`METHOD_EndpointName_Request_Query\`, \`METHOD_EndpointName_Request_Path\`
+ * - Request body types are available as: \`METHOD_EndpointName_Request_Body\`
  * - All types include comprehensive parameter descriptions from the OpenAPI specification
  * - These types ensure type safety when making API requests
  *
  * @example
  * \`\`\`typescript
  * // Using request types for API calls
- * const params: GET_Domains_V1_Request_Parameters_Query = {
+ * const params: GET_Domains_Request_Query = {
  *   limit: 10,
  *   offset: 0
  * };
  * 
- * const body: POST_Domains_V1_Request_RequestBody = {
+ * const body: POST_Domains_Request_Body = {
  *   domain: 'example.com',
  *   period: 1
  * };

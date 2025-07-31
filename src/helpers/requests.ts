@@ -6,21 +6,21 @@
  * These types ensure that request parameters match the expected API contract.
  *
  * @remarks
- * - Request types follow the pattern: `METHOD_EndpointName_V1_Request`
- * - Parameter types are available as: `METHOD_EndpointName_V1_Request_Parameters_Query`, `METHOD_EndpointName_V1_Request_Parameters_Path`
- * - Request body types are available as: `METHOD_EndpointName_V1_Request_RequestBody`
+ * - Request types follow the pattern: `METHOD_EndpointName_Request`
+ * - Parameter types are available as: `METHOD_EndpointName_Request_Query`, `METHOD_EndpointName_Request_Path`
+ * - Request body types are available as: `METHOD_EndpointName_Request_Body`
  * - All types include comprehensive parameter descriptions from the OpenAPI specification
  * - These types ensure type safety when making API requests
  *
  * @example
  * ```typescript
  * // Using request types for API calls
- * const params: GET_Domains_V1_Request_Parameters_Query = {
+ * const params: GET_Domains_Request_Query = {
  *   limit: 10,
  *   offset: 0
  * };
  * 
- * const body: POST_Domains_V1_Request_RequestBody = {
+ * const body: POST_Domains_Request_Body = {
  *   domain: 'example.com',
  *   period: 1
  * };
@@ -52,11 +52,11 @@ import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  *
- * @see {@link GET_AuthClientCredentials_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_AuthClientCredentials_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_AuthClientCredentials_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_AuthClientCredentials_Request_Query} - Query parameters type
+ * @see {@link GET_AuthClientCredentials_Request_Path} - Path parameters type
+ * @see {@link GET_AuthClientCredentials_Request_Body} - Request body type
  */
-export type GET_AuthClientCredentials_V1_Request = {
+export type GET_AuthClientCredentials_Request = {
   parameters: {
     query: operations['list_api_keys_v1_auth_client_credentials_get']['parameters']['query'];
   };
@@ -74,7 +74,7 @@ export type GET_AuthClientCredentials_V1_Request = {
  * @path /v1/auth/client_credentials
  * @param status (query) - Optional status to filter the results
  */
-export type GET_AuthClientCredentials_V1_Request_Parameters_Query = GET_AuthClientCredentials_V1_Request['parameters']['query'];
+export type GET_AuthClientCredentials_Request_Query = GET_AuthClientCredentials_Request['parameters']['query'];
 
 /**
  * Request type for POST AuthClientCredentials endpoint
@@ -91,11 +91,11 @@ export type GET_AuthClientCredentials_V1_Request_Parameters_Query = GET_AuthClie
  *
  * @path /v1/auth/client_credentials
  *
- * @see {@link POST_AuthClientCredentials_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_AuthClientCredentials_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_AuthClientCredentials_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_AuthClientCredentials_Request_Query} - Query parameters type
+ * @see {@link POST_AuthClientCredentials_Request_Path} - Path parameters type
+ * @see {@link POST_AuthClientCredentials_Request_Body} - Request body type
  */
-export type POST_AuthClientCredentials_V1_Request = {
+export type POST_AuthClientCredentials_Request = {
   requestBody: OrganizationCredentialExtra;
 }
 /**
@@ -110,7 +110,7 @@ export type POST_AuthClientCredentials_V1_Request = {
  *
  * @path /v1/auth/client_credentials
  */
-export type POST_AuthClientCredentials_V1_Request_RequestBody = POST_AuthClientCredentials_V1_Request['requestBody'];
+export type POST_AuthClientCredentials_Request_Body = POST_AuthClientCredentials_Request['requestBody'];
 
 /**
  * Request type for DELETE AuthClientCredentialsApiKeyId endpoint
@@ -127,11 +127,11 @@ export type POST_AuthClientCredentials_V1_Request_RequestBody = POST_AuthClientC
  *
  * @path /v1/auth/client_credentials/{api_key_id}
  *
- * @see {@link DELETE_AuthClientCredentialsApiKeyId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_AuthClientCredentialsApiKeyId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_AuthClientCredentialsApiKeyId_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_AuthClientCredentialsApiKeyId_Request_Query} - Query parameters type
+ * @see {@link DELETE_AuthClientCredentialsApiKeyId_Request_Path} - Path parameters type
+ * @see {@link DELETE_AuthClientCredentialsApiKeyId_Request_Body} - Request body type
  */
-export type DELETE_AuthClientCredentialsApiKeyId_V1_Request = {
+export type DELETE_AuthClientCredentialsApiKeyId_Request = {
   parameters: {
     path: operations['delete_api_key_v1_auth_client_credentials__api_key_id__delete']['parameters']['path'];
   };
@@ -148,7 +148,7 @@ export type DELETE_AuthClientCredentialsApiKeyId_V1_Request = {
  *
  * @path /v1/auth/client_credentials/{api_key_id}
  */
-export type DELETE_AuthClientCredentialsApiKeyId_V1_Request_Parameters_Path = DELETE_AuthClientCredentialsApiKeyId_V1_Request['parameters']['path'];
+export type DELETE_AuthClientCredentialsApiKeyId_Request_Path = DELETE_AuthClientCredentialsApiKeyId_Request['parameters']['path'];
 
 /**
  * Request type for POST AuthLogout endpoint
@@ -165,11 +165,11 @@ export type DELETE_AuthClientCredentialsApiKeyId_V1_Request_Parameters_Path = DE
  *
  * @path /v1/auth/logout
  *
- * @see {@link POST_AuthLogout_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_AuthLogout_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_AuthLogout_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_AuthLogout_Request_Query} - Query parameters type
+ * @see {@link POST_AuthLogout_Request_Path} - Path parameters type
+ * @see {@link POST_AuthLogout_Request_Body} - Request body type
  */
-export type POST_AuthLogout_V1_Request = {
+export type POST_AuthLogout_Request = {
 }
 
 /**
@@ -187,11 +187,11 @@ export type POST_AuthLogout_V1_Request = {
  *
  * @path /v1/auth/signup
  *
- * @see {@link POST_AuthSignup_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_AuthSignup_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_AuthSignup_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_AuthSignup_Request_Query} - Query parameters type
+ * @see {@link POST_AuthSignup_Request_Path} - Path parameters type
+ * @see {@link POST_AuthSignup_Request_Body} - Request body type
  */
-export type POST_AuthSignup_V1_Request = {
+export type POST_AuthSignup_Request = {
   requestBody: SignupCreate;
 }
 /**
@@ -206,7 +206,7 @@ export type POST_AuthSignup_V1_Request = {
  *
  * @path /v1/auth/signup
  */
-export type POST_AuthSignup_V1_Request_RequestBody = POST_AuthSignup_V1_Request['requestBody'];
+export type POST_AuthSignup_Request_Body = POST_AuthSignup_Request['requestBody'];
 
 /**
  * Request type for POST AuthToken endpoint
@@ -223,11 +223,11 @@ export type POST_AuthSignup_V1_Request_RequestBody = POST_AuthSignup_V1_Request[
  *
  * @path /v1/auth/token
  *
- * @see {@link POST_AuthToken_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_AuthToken_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_AuthToken_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_AuthToken_Request_Query} - Query parameters type
+ * @see {@link POST_AuthToken_Request_Path} - Path parameters type
+ * @see {@link POST_AuthToken_Request_Body} - Request body type
  */
-export type POST_AuthToken_V1_Request = {
+export type POST_AuthToken_Request = {
 }
 
 /**
@@ -249,11 +249,11 @@ export type POST_AuthToken_V1_Request = {
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_Availability_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_Availability_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_Availability_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_Availability_Request_Query} - Query parameters type
+ * @see {@link GET_Availability_Request_Path} - Path parameters type
+ * @see {@link GET_Availability_Request_Body} - Request body type
  */
-export type GET_Availability_V1_Request = {
+export type GET_Availability_Request = {
   parameters: {
     query: operations['bulk_availability_v1_availability_get']['parameters']['query'];
   };
@@ -273,7 +273,7 @@ export type GET_Availability_V1_Request = {
 Specify one or more domains to check for availability.
 
  */
-export type GET_Availability_V1_Request_Parameters_Query = GET_Availability_V1_Request['parameters']['query'];
+export type GET_Availability_Request_Query = GET_Availability_Request['parameters']['query'];
 
 /**
  * Request type for GET AvailabilityStream endpoint
@@ -294,11 +294,11 @@ export type GET_Availability_V1_Request_Parameters_Query = GET_Availability_V1_R
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_AvailabilityStream_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_AvailabilityStream_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_AvailabilityStream_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_AvailabilityStream_Request_Query} - Query parameters type
+ * @see {@link GET_AvailabilityStream_Request_Path} - Path parameters type
+ * @see {@link GET_AvailabilityStream_Request_Body} - Request body type
  */
-export type GET_AvailabilityStream_V1_Request = {
+export type GET_AvailabilityStream_Request = {
   parameters: {
     query: operations['stream_availability_v1_availability_stream_get']['parameters']['query'];
   };
@@ -318,7 +318,7 @@ export type GET_AvailabilityStream_V1_Request = {
 Specify one or more domains to check for availability.
 
  */
-export type GET_AvailabilityStream_V1_Request_Parameters_Query = GET_AvailabilityStream_V1_Request['parameters']['query'];
+export type GET_AvailabilityStream_Request_Query = GET_AvailabilityStream_Request['parameters']['query'];
 
 /**
  * Request type for GET Contacts endpoint
@@ -336,11 +336,11 @@ export type GET_AvailabilityStream_V1_Request_Parameters_Query = GET_Availabilit
  *
  * @path /v1/contacts
  *
- * @see {@link GET_Contacts_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_Contacts_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_Contacts_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_Contacts_Request_Query} - Query parameters type
+ * @see {@link GET_Contacts_Request_Path} - Path parameters type
+ * @see {@link GET_Contacts_Request_Body} - Request body type
  */
-export type GET_Contacts_V1_Request = {
+export type GET_Contacts_Request = {
   parameters: {
     query: operations['get_contacts_v1_contacts_get']['parameters']['query'];
   };
@@ -357,7 +357,7 @@ export type GET_Contacts_V1_Request = {
  *
  * @path /v1/contacts
  */
-export type GET_Contacts_V1_Request_Parameters_Query = GET_Contacts_V1_Request['parameters']['query'];
+export type GET_Contacts_Request_Query = GET_Contacts_Request['parameters']['query'];
 
 /**
  * Request type for POST Contacts endpoint
@@ -375,11 +375,11 @@ export type GET_Contacts_V1_Request_Parameters_Query = GET_Contacts_V1_Request['
  *
  * @path /v1/contacts
  *
- * @see {@link POST_Contacts_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_Contacts_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_Contacts_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_Contacts_Request_Query} - Query parameters type
+ * @see {@link POST_Contacts_Request_Path} - Path parameters type
+ * @see {@link POST_Contacts_Request_Body} - Request body type
  */
-export type POST_Contacts_V1_Request = {
+export type POST_Contacts_Request = {
   requestBody: ContactCreate;
 }
 /**
@@ -394,7 +394,7 @@ export type POST_Contacts_V1_Request = {
  *
  * @path /v1/contacts
  */
-export type POST_Contacts_V1_Request_RequestBody = POST_Contacts_V1_Request['requestBody'];
+export type POST_Contacts_Request_Body = POST_Contacts_Request['requestBody'];
 
 /**
  * Request type for DELETE ContactsContactId endpoint
@@ -412,11 +412,11 @@ export type POST_Contacts_V1_Request_RequestBody = POST_Contacts_V1_Request['req
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link DELETE_ContactsContactId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_ContactsContactId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_ContactsContactId_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_ContactsContactId_Request_Query} - Query parameters type
+ * @see {@link DELETE_ContactsContactId_Request_Path} - Path parameters type
+ * @see {@link DELETE_ContactsContactId_Request_Body} - Request body type
  */
-export type DELETE_ContactsContactId_V1_Request = {
+export type DELETE_ContactsContactId_Request = {
   parameters: {
     path: operations['delete_contact_v1_contacts__contact_id__delete']['parameters']['path'];
   };
@@ -433,7 +433,7 @@ export type DELETE_ContactsContactId_V1_Request = {
  *
  * @path /v1/contacts/{contact_id}
  */
-export type DELETE_ContactsContactId_V1_Request_Parameters_Path = DELETE_ContactsContactId_V1_Request['parameters']['path'];
+export type DELETE_ContactsContactId_Request_Path = DELETE_ContactsContactId_Request['parameters']['path'];
 
 /**
  * Request type for GET ContactsContactId endpoint
@@ -451,11 +451,11 @@ export type DELETE_ContactsContactId_V1_Request_Parameters_Path = DELETE_Contact
  *
  * @path /v1/contacts/{contact_id}
  *
- * @see {@link GET_ContactsContactId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_ContactsContactId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_ContactsContactId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_ContactsContactId_Request_Query} - Query parameters type
+ * @see {@link GET_ContactsContactId_Request_Path} - Path parameters type
+ * @see {@link GET_ContactsContactId_Request_Body} - Request body type
  */
-export type GET_ContactsContactId_V1_Request = {
+export type GET_ContactsContactId_Request = {
   parameters: {
     path: operations['get_contact_v1_contacts__contact_id__get']['parameters']['path'];
   };
@@ -472,7 +472,7 @@ export type GET_ContactsContactId_V1_Request = {
  *
  * @path /v1/contacts/{contact_id}
  */
-export type GET_ContactsContactId_V1_Request_Parameters_Path = GET_ContactsContactId_V1_Request['parameters']['path'];
+export type GET_ContactsContactId_Request_Path = GET_ContactsContactId_Request['parameters']['path'];
 
 /**
  * Request type for DELETE ContactsContactIdVerification endpoint
@@ -490,11 +490,11 @@ export type GET_ContactsContactId_V1_Request_Parameters_Path = GET_ContactsConta
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link DELETE_ContactsContactIdVerification_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_ContactsContactIdVerification_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_ContactsContactIdVerification_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_ContactsContactIdVerification_Request_Query} - Query parameters type
+ * @see {@link DELETE_ContactsContactIdVerification_Request_Path} - Path parameters type
+ * @see {@link DELETE_ContactsContactIdVerification_Request_Body} - Request body type
  */
-export type DELETE_ContactsContactIdVerification_V1_Request = {
+export type DELETE_ContactsContactIdVerification_Request = {
   parameters: {
     path: operations['cancel_verification_v1_contacts__contact_id__verification_delete']['parameters']['path'];
   };
@@ -511,7 +511,7 @@ export type DELETE_ContactsContactIdVerification_V1_Request = {
  *
  * @path /v1/contacts/{contact_id}/verification
  */
-export type DELETE_ContactsContactIdVerification_V1_Request_Parameters_Path = DELETE_ContactsContactIdVerification_V1_Request['parameters']['path'];
+export type DELETE_ContactsContactIdVerification_Request_Path = DELETE_ContactsContactIdVerification_Request['parameters']['path'];
 
 /**
  * Request type for GET ContactsContactIdVerification endpoint
@@ -529,11 +529,11 @@ export type DELETE_ContactsContactIdVerification_V1_Request_Parameters_Path = DE
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link GET_ContactsContactIdVerification_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_ContactsContactIdVerification_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_ContactsContactIdVerification_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_ContactsContactIdVerification_Request_Query} - Query parameters type
+ * @see {@link GET_ContactsContactIdVerification_Request_Path} - Path parameters type
+ * @see {@link GET_ContactsContactIdVerification_Request_Body} - Request body type
  */
-export type GET_ContactsContactIdVerification_V1_Request = {
+export type GET_ContactsContactIdVerification_Request = {
   parameters: {
     path: operations['get_verification_status_v1_contacts__contact_id__verification_get']['parameters']['path'];
   };
@@ -550,7 +550,7 @@ export type GET_ContactsContactIdVerification_V1_Request = {
  *
  * @path /v1/contacts/{contact_id}/verification
  */
-export type GET_ContactsContactIdVerification_V1_Request_Parameters_Path = GET_ContactsContactIdVerification_V1_Request['parameters']['path'];
+export type GET_ContactsContactIdVerification_Request_Path = GET_ContactsContactIdVerification_Request['parameters']['path'];
 
 /**
  * Request type for POST ContactsContactIdVerification endpoint
@@ -568,11 +568,11 @@ export type GET_ContactsContactIdVerification_V1_Request_Parameters_Path = GET_C
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link POST_ContactsContactIdVerification_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_ContactsContactIdVerification_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_ContactsContactIdVerification_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_ContactsContactIdVerification_Request_Query} - Query parameters type
+ * @see {@link POST_ContactsContactIdVerification_Request_Path} - Path parameters type
+ * @see {@link POST_ContactsContactIdVerification_Request_Body} - Request body type
  */
-export type POST_ContactsContactIdVerification_V1_Request = {
+export type POST_ContactsContactIdVerification_Request = {
   parameters: {
     query: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['query'];
     path: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['path'];
@@ -590,7 +590,7 @@ export type POST_ContactsContactIdVerification_V1_Request = {
  *
  * @path /v1/contacts/{contact_id}/verification
  */
-export type POST_ContactsContactIdVerification_V1_Request_Parameters_Query = POST_ContactsContactIdVerification_V1_Request['parameters']['query'];
+export type POST_ContactsContactIdVerification_Request_Query = POST_ContactsContactIdVerification_Request['parameters']['query'];
 /**
  * Path parameters for POST /v1/contacts/{contact_id}/verification
  *
@@ -603,7 +603,7 @@ export type POST_ContactsContactIdVerification_V1_Request_Parameters_Query = POS
  *
  * @path /v1/contacts/{contact_id}/verification
  */
-export type POST_ContactsContactIdVerification_V1_Request_Parameters_Path = POST_ContactsContactIdVerification_V1_Request['parameters']['path'];
+export type POST_ContactsContactIdVerification_Request_Path = POST_ContactsContactIdVerification_Request['parameters']['path'];
 
 /**
  * Request type for PUT ContactsContactIdVerification endpoint
@@ -621,11 +621,11 @@ export type POST_ContactsContactIdVerification_V1_Request_Parameters_Path = POST
  *
  * @path /v1/contacts/{contact_id}/verification
  *
- * @see {@link PUT_ContactsContactIdVerification_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PUT_ContactsContactIdVerification_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PUT_ContactsContactIdVerification_V1_Request_RequestBody} - Request body type
+ * @see {@link PUT_ContactsContactIdVerification_Request_Query} - Query parameters type
+ * @see {@link PUT_ContactsContactIdVerification_Request_Path} - Path parameters type
+ * @see {@link PUT_ContactsContactIdVerification_Request_Body} - Request body type
  */
-export type PUT_ContactsContactIdVerification_V1_Request = {
+export type PUT_ContactsContactIdVerification_Request = {
   parameters: {
     query: operations['update_verification_v1_contacts__contact_id__verification_put']['parameters']['query'];
     path: operations['update_verification_v1_contacts__contact_id__verification_put']['parameters']['path'];
@@ -643,7 +643,7 @@ export type PUT_ContactsContactIdVerification_V1_Request = {
  *
  * @path /v1/contacts/{contact_id}/verification
  */
-export type PUT_ContactsContactIdVerification_V1_Request_Parameters_Query = PUT_ContactsContactIdVerification_V1_Request['parameters']['query'];
+export type PUT_ContactsContactIdVerification_Request_Query = PUT_ContactsContactIdVerification_Request['parameters']['query'];
 /**
  * Path parameters for PUT /v1/contacts/{contact_id}/verification
  *
@@ -656,7 +656,7 @@ export type PUT_ContactsContactIdVerification_V1_Request_Parameters_Query = PUT_
  *
  * @path /v1/contacts/{contact_id}/verification
  */
-export type PUT_ContactsContactIdVerification_V1_Request_Parameters_Path = PUT_ContactsContactIdVerification_V1_Request['parameters']['path'];
+export type PUT_ContactsContactIdVerification_Request_Path = PUT_ContactsContactIdVerification_Request['parameters']['path'];
 
 /**
  * Request type for GET ContactsVerification endpoint
@@ -674,11 +674,11 @@ export type PUT_ContactsContactIdVerification_V1_Request_Parameters_Path = PUT_C
  *
  * @path /v1/contacts/verification
  *
- * @see {@link GET_ContactsVerification_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_ContactsVerification_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_ContactsVerification_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_ContactsVerification_Request_Query} - Query parameters type
+ * @see {@link GET_ContactsVerification_Request_Path} - Path parameters type
+ * @see {@link GET_ContactsVerification_Request_Body} - Request body type
  */
-export type GET_ContactsVerification_V1_Request = {
+export type GET_ContactsVerification_Request = {
   parameters: {
     query: operations['get_verification_by_token_v1_contacts_verification_get']['parameters']['query'];
   };
@@ -695,7 +695,7 @@ export type GET_ContactsVerification_V1_Request = {
  *
  * @path /v1/contacts/verification
  */
-export type GET_ContactsVerification_V1_Request_Parameters_Query = GET_ContactsVerification_V1_Request['parameters']['query'];
+export type GET_ContactsVerification_Request_Query = GET_ContactsVerification_Request['parameters']['query'];
 
 /**
  * Request type for PUT ContactsVerification endpoint
@@ -713,11 +713,11 @@ export type GET_ContactsVerification_V1_Request_Parameters_Query = GET_ContactsV
  *
  * @path /v1/contacts/verification
  *
- * @see {@link PUT_ContactsVerification_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PUT_ContactsVerification_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PUT_ContactsVerification_V1_Request_RequestBody} - Request body type
+ * @see {@link PUT_ContactsVerification_Request_Query} - Query parameters type
+ * @see {@link PUT_ContactsVerification_Request_Path} - Path parameters type
+ * @see {@link PUT_ContactsVerification_Request_Body} - Request body type
  */
-export type PUT_ContactsVerification_V1_Request = {
+export type PUT_ContactsVerification_Request = {
   parameters: {
     query: operations['update_verification_by_token_v1_contacts_verification_put']['parameters']['query'];
   };
@@ -734,7 +734,7 @@ export type PUT_ContactsVerification_V1_Request = {
  *
  * @path /v1/contacts/verification
  */
-export type PUT_ContactsVerification_V1_Request_Parameters_Query = PUT_ContactsVerification_V1_Request['parameters']['query'];
+export type PUT_ContactsVerification_Request_Query = PUT_ContactsVerification_Request['parameters']['query'];
 
 /**
  * Request type for GET ContactsVerify endpoint
@@ -751,11 +751,11 @@ export type PUT_ContactsVerification_V1_Request_Parameters_Query = PUT_ContactsV
  *
  * @path /v1/contacts/verify
  *
- * @see {@link GET_ContactsVerify_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_ContactsVerify_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_ContactsVerify_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_ContactsVerify_Request_Query} - Query parameters type
+ * @see {@link GET_ContactsVerify_Request_Path} - Path parameters type
+ * @see {@link GET_ContactsVerify_Request_Body} - Request body type
  */
-export type GET_ContactsVerify_V1_Request = {
+export type GET_ContactsVerify_Request = {
   parameters: {
     query: operations['email_verify_contact_v1_contacts_verify_get']['parameters']['query'];
   };
@@ -772,7 +772,7 @@ export type GET_ContactsVerify_V1_Request = {
  *
  * @path /v1/contacts/verify
  */
-export type GET_ContactsVerify_V1_Request_Parameters_Query = GET_ContactsVerify_V1_Request['parameters']['query'];
+export type GET_ContactsVerify_Request_Query = GET_ContactsVerify_Request['parameters']['query'];
 
 /**
  * Request type for GET Dns endpoint
@@ -789,11 +789,11 @@ export type GET_ContactsVerify_V1_Request_Parameters_Query = GET_ContactsVerify_
  *
  * @path /v1/dns
  *
- * @see {@link GET_Dns_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_Dns_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_Dns_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_Dns_Request_Query} - Query parameters type
+ * @see {@link GET_Dns_Request_Path} - Path parameters type
+ * @see {@link GET_Dns_Request_Body} - Request body type
  */
-export type GET_Dns_V1_Request = {
+export type GET_Dns_Request = {
   parameters: {
     query: operations['list_zones_v1_dns_get']['parameters']['query'];
   };
@@ -810,7 +810,7 @@ export type GET_Dns_V1_Request = {
  *
  * @path /v1/dns
  */
-export type GET_Dns_V1_Request_Parameters_Query = GET_Dns_V1_Request['parameters']['query'];
+export type GET_Dns_Request_Query = GET_Dns_Request['parameters']['query'];
 
 /**
  * Request type for POST Dns endpoint
@@ -827,11 +827,11 @@ export type GET_Dns_V1_Request_Parameters_Query = GET_Dns_V1_Request['parameters
  *
  * @path /v1/dns
  *
- * @see {@link POST_Dns_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_Dns_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_Dns_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_Dns_Request_Query} - Query parameters type
+ * @see {@link POST_Dns_Request_Path} - Path parameters type
+ * @see {@link POST_Dns_Request_Body} - Request body type
  */
-export type POST_Dns_V1_Request = {
+export type POST_Dns_Request = {
   requestBody: DnsZoneCreate;
 }
 /**
@@ -846,7 +846,7 @@ export type POST_Dns_V1_Request = {
  *
  * @path /v1/dns
  */
-export type POST_Dns_V1_Request_RequestBody = POST_Dns_V1_Request['requestBody'];
+export type POST_Dns_Request_Body = POST_Dns_Request['requestBody'];
 
 /**
  * Request type for DELETE DnsZoneName endpoint
@@ -864,11 +864,11 @@ export type POST_Dns_V1_Request_RequestBody = POST_Dns_V1_Request['requestBody']
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link DELETE_DnsZoneName_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_DnsZoneName_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_DnsZoneName_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_DnsZoneName_Request_Query} - Query parameters type
+ * @see {@link DELETE_DnsZoneName_Request_Path} - Path parameters type
+ * @see {@link DELETE_DnsZoneName_Request_Body} - Request body type
  */
-export type DELETE_DnsZoneName_V1_Request = {
+export type DELETE_DnsZoneName_Request = {
   parameters: {
     path: operations['delete_zone_v1_dns__zone_name__delete']['parameters']['path'];
   };
@@ -886,7 +886,7 @@ export type DELETE_DnsZoneName_V1_Request = {
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type DELETE_DnsZoneName_V1_Request_Parameters_Path = DELETE_DnsZoneName_V1_Request['parameters']['path'];
+export type DELETE_DnsZoneName_Request_Path = DELETE_DnsZoneName_Request['parameters']['path'];
 
 /**
  * Request type for GET DnsZoneName endpoint
@@ -904,11 +904,11 @@ export type DELETE_DnsZoneName_V1_Request_Parameters_Path = DELETE_DnsZoneName_V
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_DnsZoneName_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_DnsZoneName_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_DnsZoneName_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_DnsZoneName_Request_Query} - Query parameters type
+ * @see {@link GET_DnsZoneName_Request_Path} - Path parameters type
+ * @see {@link GET_DnsZoneName_Request_Body} - Request body type
  */
-export type GET_DnsZoneName_V1_Request = {
+export type GET_DnsZoneName_Request = {
   parameters: {
     path: operations['get_zone_v1_dns__zone_name__get']['parameters']['path'];
   };
@@ -926,7 +926,7 @@ export type GET_DnsZoneName_V1_Request = {
  * @path /v1/dns/{zone_name}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type GET_DnsZoneName_V1_Request_Parameters_Path = GET_DnsZoneName_V1_Request['parameters']['path'];
+export type GET_DnsZoneName_Request_Path = GET_DnsZoneName_Request['parameters']['path'];
 
 /**
  * Request type for POST DnsZoneNameDnssecDisable endpoint
@@ -944,11 +944,11 @@ export type GET_DnsZoneName_V1_Request_Parameters_Path = GET_DnsZoneName_V1_Requ
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_DnsZoneNameDnssecDisable_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_DnsZoneNameDnssecDisable_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_DnsZoneNameDnssecDisable_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_DnsZoneNameDnssecDisable_Request_Query} - Query parameters type
+ * @see {@link POST_DnsZoneNameDnssecDisable_Request_Path} - Path parameters type
+ * @see {@link POST_DnsZoneNameDnssecDisable_Request_Body} - Request body type
  */
-export type POST_DnsZoneNameDnssecDisable_V1_Request = {
+export type POST_DnsZoneNameDnssecDisable_Request = {
   parameters: {
     path: operations['disable_dnssec_v1_dns__zone_name__dnssec_disable_post']['parameters']['path'];
   };
@@ -966,7 +966,7 @@ export type POST_DnsZoneNameDnssecDisable_V1_Request = {
  * @path /v1/dns/{zone_name}/dnssec/disable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type POST_DnsZoneNameDnssecDisable_V1_Request_Parameters_Path = POST_DnsZoneNameDnssecDisable_V1_Request['parameters']['path'];
+export type POST_DnsZoneNameDnssecDisable_Request_Path = POST_DnsZoneNameDnssecDisable_Request['parameters']['path'];
 
 /**
  * Request type for POST DnsZoneNameDnssecEnable endpoint
@@ -984,11 +984,11 @@ export type POST_DnsZoneNameDnssecDisable_V1_Request_Parameters_Path = POST_DnsZ
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_DnsZoneNameDnssecEnable_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_DnsZoneNameDnssecEnable_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_DnsZoneNameDnssecEnable_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_DnsZoneNameDnssecEnable_Request_Query} - Query parameters type
+ * @see {@link POST_DnsZoneNameDnssecEnable_Request_Path} - Path parameters type
+ * @see {@link POST_DnsZoneNameDnssecEnable_Request_Body} - Request body type
  */
-export type POST_DnsZoneNameDnssecEnable_V1_Request = {
+export type POST_DnsZoneNameDnssecEnable_Request = {
   parameters: {
     path: operations['enable_dnssec_v1_dns__zone_name__dnssec_enable_post']['parameters']['path'];
   };
@@ -1006,7 +1006,7 @@ export type POST_DnsZoneNameDnssecEnable_V1_Request = {
  * @path /v1/dns/{zone_name}/dnssec/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type POST_DnsZoneNameDnssecEnable_V1_Request_Parameters_Path = POST_DnsZoneNameDnssecEnable_V1_Request['parameters']['path'];
+export type POST_DnsZoneNameDnssecEnable_Request_Path = POST_DnsZoneNameDnssecEnable_Request['parameters']['path'];
 
 /**
  * Request type for PATCH DnsZoneNameRecords endpoint
@@ -1024,11 +1024,11 @@ export type POST_DnsZoneNameDnssecEnable_V1_Request_Parameters_Path = POST_DnsZo
  * @path /v1/dns/{zone_name}/records
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PATCH_DnsZoneNameRecords_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_DnsZoneNameRecords_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_DnsZoneNameRecords_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_DnsZoneNameRecords_Request_Query} - Query parameters type
+ * @see {@link PATCH_DnsZoneNameRecords_Request_Path} - Path parameters type
+ * @see {@link PATCH_DnsZoneNameRecords_Request_Body} - Request body type
  */
-export type PATCH_DnsZoneNameRecords_V1_Request = {
+export type PATCH_DnsZoneNameRecords_Request = {
   parameters: {
     path: operations['patch_zone_records_v1_dns__zone_name__records_patch']['parameters']['path'];
   };
@@ -1047,7 +1047,7 @@ export type PATCH_DnsZoneNameRecords_V1_Request = {
  * @path /v1/dns/{zone_name}/records
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type PATCH_DnsZoneNameRecords_V1_Request_Parameters_Path = PATCH_DnsZoneNameRecords_V1_Request['parameters']['path'];
+export type PATCH_DnsZoneNameRecords_Request_Path = PATCH_DnsZoneNameRecords_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/dns/{zone_name}/records
  *
@@ -1060,7 +1060,7 @@ export type PATCH_DnsZoneNameRecords_V1_Request_Parameters_Path = PATCH_DnsZoneN
  *
  * @path /v1/dns/{zone_name}/records
  */
-export type PATCH_DnsZoneNameRecords_V1_Request_RequestBody = PATCH_DnsZoneNameRecords_V1_Request['requestBody'];
+export type PATCH_DnsZoneNameRecords_Request_Body = PATCH_DnsZoneNameRecords_Request['requestBody'];
 
 /**
  * Request type for PATCH DnsZoneNameRrsets endpoint
@@ -1078,11 +1078,11 @@ export type PATCH_DnsZoneNameRecords_V1_Request_RequestBody = PATCH_DnsZoneNameR
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PATCH_DnsZoneNameRrsets_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_DnsZoneNameRrsets_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_DnsZoneNameRrsets_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_DnsZoneNameRrsets_Request_Query} - Query parameters type
+ * @see {@link PATCH_DnsZoneNameRrsets_Request_Path} - Path parameters type
+ * @see {@link PATCH_DnsZoneNameRrsets_Request_Body} - Request body type
  */
-export type PATCH_DnsZoneNameRrsets_V1_Request = {
+export type PATCH_DnsZoneNameRrsets_Request = {
   parameters: {
     path: operations['patch_zone_rrsets_v1_dns__zone_name__rrsets_patch']['parameters']['path'];
   };
@@ -1101,7 +1101,7 @@ export type PATCH_DnsZoneNameRrsets_V1_Request = {
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type PATCH_DnsZoneNameRrsets_V1_Request_Parameters_Path = PATCH_DnsZoneNameRrsets_V1_Request['parameters']['path'];
+export type PATCH_DnsZoneNameRrsets_Request_Path = PATCH_DnsZoneNameRrsets_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/dns/{zone_name}/rrsets
  *
@@ -1114,7 +1114,7 @@ export type PATCH_DnsZoneNameRrsets_V1_Request_Parameters_Path = PATCH_DnsZoneNa
  *
  * @path /v1/dns/{zone_name}/rrsets
  */
-export type PATCH_DnsZoneNameRrsets_V1_Request_RequestBody = PATCH_DnsZoneNameRrsets_V1_Request['requestBody'];
+export type PATCH_DnsZoneNameRrsets_Request_Body = PATCH_DnsZoneNameRrsets_Request['requestBody'];
 
 /**
  * Request type for PUT DnsZoneNameRrsets endpoint
@@ -1132,11 +1132,11 @@ export type PATCH_DnsZoneNameRrsets_V1_Request_RequestBody = PATCH_DnsZoneNameRr
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PUT_DnsZoneNameRrsets_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PUT_DnsZoneNameRrsets_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PUT_DnsZoneNameRrsets_V1_Request_RequestBody} - Request body type
+ * @see {@link PUT_DnsZoneNameRrsets_Request_Query} - Query parameters type
+ * @see {@link PUT_DnsZoneNameRrsets_Request_Path} - Path parameters type
+ * @see {@link PUT_DnsZoneNameRrsets_Request_Body} - Request body type
  */
-export type PUT_DnsZoneNameRrsets_V1_Request = {
+export type PUT_DnsZoneNameRrsets_Request = {
   parameters: {
     path: operations['update_zone_rrsets_v1_dns__zone_name__rrsets_put']['parameters']['path'];
   };
@@ -1155,7 +1155,7 @@ export type PUT_DnsZoneNameRrsets_V1_Request = {
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
-export type PUT_DnsZoneNameRrsets_V1_Request_Parameters_Path = PUT_DnsZoneNameRrsets_V1_Request['parameters']['path'];
+export type PUT_DnsZoneNameRrsets_Request_Path = PUT_DnsZoneNameRrsets_Request['parameters']['path'];
 /**
  * Request body for PUT /v1/dns/{zone_name}/rrsets
  *
@@ -1168,7 +1168,7 @@ export type PUT_DnsZoneNameRrsets_V1_Request_Parameters_Path = PUT_DnsZoneNameRr
  *
  * @path /v1/dns/{zone_name}/rrsets
  */
-export type PUT_DnsZoneNameRrsets_V1_Request_RequestBody = PUT_DnsZoneNameRrsets_V1_Request['requestBody'];
+export type PUT_DnsZoneNameRrsets_Request_Body = PUT_DnsZoneNameRrsets_Request['requestBody'];
 
 /**
  * Request type for GET DomainSearchSuggest endpoint
@@ -1191,11 +1191,11 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
- * @see {@link GET_DomainSearchSuggest_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_DomainSearchSuggest_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_DomainSearchSuggest_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_DomainSearchSuggest_Request_Query} - Query parameters type
+ * @see {@link GET_DomainSearchSuggest_Request_Path} - Path parameters type
+ * @see {@link GET_DomainSearchSuggest_Request_Body} - Request body type
  */
-export type GET_DomainSearchSuggest_V1_Request = {
+export type GET_DomainSearchSuggest_Request = {
   parameters: {
     query: operations['suggest_v1_domain_search_suggest_get']['parameters']['query'];
   };
@@ -1218,7 +1218,7 @@ Specify one or more TLDs to include in the search.
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  */
-export type GET_DomainSearchSuggest_V1_Request_Parameters_Query = GET_DomainSearchSuggest_V1_Request['parameters']['query'];
+export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Request['parameters']['query'];
 
 /**
  * Request type for GET Domains endpoint
@@ -1236,11 +1236,11 @@ export type GET_DomainSearchSuggest_V1_Request_Parameters_Query = GET_DomainSear
  *
  * @path /v1/domains
  *
- * @see {@link GET_Domains_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_Domains_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_Domains_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_Domains_Request_Query} - Query parameters type
+ * @see {@link GET_Domains_Request_Path} - Path parameters type
+ * @see {@link GET_Domains_Request_Body} - Request body type
  */
-export type GET_Domains_V1_Request = {
+export type GET_Domains_Request = {
   parameters: {
     query: operations['get_domains_v1_domains_get']['parameters']['query'];
   };
@@ -1257,7 +1257,7 @@ export type GET_Domains_V1_Request = {
  *
  * @path /v1/domains
  */
-export type GET_Domains_V1_Request_Parameters_Query = GET_Domains_V1_Request['parameters']['query'];
+export type GET_Domains_Request_Query = GET_Domains_Request['parameters']['query'];
 
 /**
  * Request type for POST Domains endpoint
@@ -1275,11 +1275,11 @@ export type GET_Domains_V1_Request_Parameters_Query = GET_Domains_V1_Request['pa
  *
  * @path /v1/domains
  *
- * @see {@link POST_Domains_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_Domains_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_Domains_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_Domains_Request_Query} - Query parameters type
+ * @see {@link POST_Domains_Request_Path} - Path parameters type
+ * @see {@link POST_Domains_Request_Body} - Request body type
  */
-export type POST_Domains_V1_Request = {
+export type POST_Domains_Request = {
   requestBody: DomainCreate;
 }
 /**
@@ -1294,7 +1294,7 @@ export type POST_Domains_V1_Request = {
  *
  * @path /v1/domains
  */
-export type POST_Domains_V1_Request_RequestBody = POST_Domains_V1_Request['requestBody'];
+export type POST_Domains_Request_Body = POST_Domains_Request['requestBody'];
 
 /**
  * Request type for GET DomainsCheck endpoint
@@ -1314,11 +1314,11 @@ export type POST_Domains_V1_Request_RequestBody = POST_Domains_V1_Request['reque
 Specify one or more domains to check for availability.
 
  *
- * @see {@link GET_DomainsCheck_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_DomainsCheck_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_DomainsCheck_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_DomainsCheck_Request_Query} - Query parameters type
+ * @see {@link GET_DomainsCheck_Request_Path} - Path parameters type
+ * @see {@link GET_DomainsCheck_Request_Body} - Request body type
  */
-export type GET_DomainsCheck_V1_Request = {
+export type GET_DomainsCheck_Request = {
   parameters: {
     query: operations['epp_check_domain_v1_domains_check_get']['parameters']['query'];
   };
@@ -1338,7 +1338,7 @@ export type GET_DomainsCheck_V1_Request = {
 Specify one or more domains to check for availability.
 
  */
-export type GET_DomainsCheck_V1_Request_Parameters_Query = GET_DomainsCheck_V1_Request['parameters']['query'];
+export type GET_DomainsCheck_Request_Query = GET_DomainsCheck_Request['parameters']['query'];
 
 /**
  * Request type for DELETE DomainsDomainReference endpoint
@@ -1357,11 +1357,11 @@ and will enter a redemption period during which it may be restored.
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link DELETE_DomainsDomainReference_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_DomainsDomainReference_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_DomainsDomainReference_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_DomainsDomainReference_Request_Query} - Query parameters type
+ * @see {@link DELETE_DomainsDomainReference_Request_Path} - Path parameters type
+ * @see {@link DELETE_DomainsDomainReference_Request_Body} - Request body type
  */
-export type DELETE_DomainsDomainReference_V1_Request = {
+export type DELETE_DomainsDomainReference_Request = {
   parameters: {
     path: operations['delete_domain_v1_domains__domain_reference__delete']['parameters']['path'];
   };
@@ -1378,7 +1378,7 @@ export type DELETE_DomainsDomainReference_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}
  */
-export type DELETE_DomainsDomainReference_V1_Request_Parameters_Path = DELETE_DomainsDomainReference_V1_Request['parameters']['path'];
+export type DELETE_DomainsDomainReference_Request_Path = DELETE_DomainsDomainReference_Request['parameters']['path'];
 
 /**
  * Request type for GET DomainsDomainReference endpoint
@@ -1396,11 +1396,11 @@ export type DELETE_DomainsDomainReference_V1_Request_Parameters_Path = DELETE_Do
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link GET_DomainsDomainReference_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_DomainsDomainReference_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_DomainsDomainReference_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_DomainsDomainReference_Request_Query} - Query parameters type
+ * @see {@link GET_DomainsDomainReference_Request_Path} - Path parameters type
+ * @see {@link GET_DomainsDomainReference_Request_Body} - Request body type
  */
-export type GET_DomainsDomainReference_V1_Request = {
+export type GET_DomainsDomainReference_Request = {
   parameters: {
     path: operations['get_domain_v1_domains__domain_reference__get']['parameters']['path'];
   };
@@ -1417,7 +1417,7 @@ export type GET_DomainsDomainReference_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}
  */
-export type GET_DomainsDomainReference_V1_Request_Parameters_Path = GET_DomainsDomainReference_V1_Request['parameters']['path'];
+export type GET_DomainsDomainReference_Request_Path = GET_DomainsDomainReference_Request['parameters']['path'];
 
 /**
  * Request type for PATCH DomainsDomainReference endpoint
@@ -1437,11 +1437,11 @@ Providing `clientTransferProhibited` as a status will set the `transfer_lock` pr
  *
  * @path /v1/domains/{domain_reference}
  *
- * @see {@link PATCH_DomainsDomainReference_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_DomainsDomainReference_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_DomainsDomainReference_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_DomainsDomainReference_Request_Query} - Query parameters type
+ * @see {@link PATCH_DomainsDomainReference_Request_Path} - Path parameters type
+ * @see {@link PATCH_DomainsDomainReference_Request_Body} - Request body type
  */
-export type PATCH_DomainsDomainReference_V1_Request = {
+export type PATCH_DomainsDomainReference_Request = {
   parameters: {
     path: operations['update_domain_v1_domains__domain_reference__patch']['parameters']['path'];
   };
@@ -1459,7 +1459,7 @@ export type PATCH_DomainsDomainReference_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}
  */
-export type PATCH_DomainsDomainReference_V1_Request_Parameters_Path = PATCH_DomainsDomainReference_V1_Request['parameters']['path'];
+export type PATCH_DomainsDomainReference_Request_Path = PATCH_DomainsDomainReference_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/domains/{domain_reference}
  *
@@ -1472,7 +1472,7 @@ export type PATCH_DomainsDomainReference_V1_Request_Parameters_Path = PATCH_Doma
  *
  * @path /v1/domains/{domain_reference}
  */
-export type PATCH_DomainsDomainReference_V1_Request_RequestBody = PATCH_DomainsDomainReference_V1_Request['requestBody'];
+export type PATCH_DomainsDomainReference_Request_Body = PATCH_DomainsDomainReference_Request['requestBody'];
 
 /**
  * Request type for DELETE DomainsDomainReferenceDnssec endpoint
@@ -1490,11 +1490,11 @@ export type PATCH_DomainsDomainReference_V1_Request_RequestBody = PATCH_DomainsD
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link DELETE_DomainsDomainReferenceDnssec_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_DomainsDomainReferenceDnssec_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_DomainsDomainReferenceDnssec_Request_Query} - Query parameters type
+ * @see {@link DELETE_DomainsDomainReferenceDnssec_Request_Path} - Path parameters type
+ * @see {@link DELETE_DomainsDomainReferenceDnssec_Request_Body} - Request body type
  */
-export type DELETE_DomainsDomainReferenceDnssec_V1_Request = {
+export type DELETE_DomainsDomainReferenceDnssec_Request = {
   parameters: {
     path: operations['delete_dnssec_v1_domains__domain_reference__dnssec_delete']['parameters']['path'];
   };
@@ -1511,7 +1511,7 @@ export type DELETE_DomainsDomainReferenceDnssec_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type DELETE_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = DELETE_DomainsDomainReferenceDnssec_V1_Request['parameters']['path'];
+export type DELETE_DomainsDomainReferenceDnssec_Request_Path = DELETE_DomainsDomainReferenceDnssec_Request['parameters']['path'];
 
 /**
  * Request type for GET DomainsDomainReferenceDnssec endpoint
@@ -1529,11 +1529,11 @@ export type DELETE_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = DEL
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link GET_DomainsDomainReferenceDnssec_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_DomainsDomainReferenceDnssec_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_DomainsDomainReferenceDnssec_Request_Query} - Query parameters type
+ * @see {@link GET_DomainsDomainReferenceDnssec_Request_Path} - Path parameters type
+ * @see {@link GET_DomainsDomainReferenceDnssec_Request_Body} - Request body type
  */
-export type GET_DomainsDomainReferenceDnssec_V1_Request = {
+export type GET_DomainsDomainReferenceDnssec_Request = {
   parameters: {
     path: operations['get_dnssec_v1_domains__domain_reference__dnssec_get']['parameters']['path'];
   };
@@ -1550,7 +1550,7 @@ export type GET_DomainsDomainReferenceDnssec_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type GET_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = GET_DomainsDomainReferenceDnssec_V1_Request['parameters']['path'];
+export type GET_DomainsDomainReferenceDnssec_Request_Path = GET_DomainsDomainReferenceDnssec_Request['parameters']['path'];
 
 /**
  * Request type for PUT DomainsDomainReferenceDnssec endpoint
@@ -1568,11 +1568,11 @@ export type GET_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = GET_Do
  *
  * @path /v1/domains/{domain_reference}/dnssec
  *
- * @see {@link PUT_DomainsDomainReferenceDnssec_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PUT_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PUT_DomainsDomainReferenceDnssec_V1_Request_RequestBody} - Request body type
+ * @see {@link PUT_DomainsDomainReferenceDnssec_Request_Query} - Query parameters type
+ * @see {@link PUT_DomainsDomainReferenceDnssec_Request_Path} - Path parameters type
+ * @see {@link PUT_DomainsDomainReferenceDnssec_Request_Body} - Request body type
  */
-export type PUT_DomainsDomainReferenceDnssec_V1_Request = {
+export type PUT_DomainsDomainReferenceDnssec_Request = {
   parameters: {
     path: operations['create_or_update_dnssec_v1_domains__domain_reference__dnssec_put']['parameters']['path'];
   };
@@ -1590,7 +1590,7 @@ export type PUT_DomainsDomainReferenceDnssec_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type PUT_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = PUT_DomainsDomainReferenceDnssec_V1_Request['parameters']['path'];
+export type PUT_DomainsDomainReferenceDnssec_Request_Path = PUT_DomainsDomainReferenceDnssec_Request['parameters']['path'];
 /**
  * Request body for PUT /v1/domains/{domain_reference}/dnssec
  *
@@ -1603,7 +1603,7 @@ export type PUT_DomainsDomainReferenceDnssec_V1_Request_Parameters_Path = PUT_Do
  *
  * @path /v1/domains/{domain_reference}/dnssec
  */
-export type PUT_DomainsDomainReferenceDnssec_V1_Request_RequestBody = PUT_DomainsDomainReferenceDnssec_V1_Request['requestBody'];
+export type PUT_DomainsDomainReferenceDnssec_Request_Body = PUT_DomainsDomainReferenceDnssec_Request['requestBody'];
 
 /**
  * Request type for POST DomainsDomainReferenceRenew endpoint
@@ -1622,11 +1622,11 @@ to the current expiration date of the domain.
  *
  * @path /v1/domains/{domain_reference}/renew
  *
- * @see {@link POST_DomainsDomainReferenceRenew_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_DomainsDomainReferenceRenew_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_DomainsDomainReferenceRenew_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_DomainsDomainReferenceRenew_Request_Query} - Query parameters type
+ * @see {@link POST_DomainsDomainReferenceRenew_Request_Path} - Path parameters type
+ * @see {@link POST_DomainsDomainReferenceRenew_Request_Body} - Request body type
  */
-export type POST_DomainsDomainReferenceRenew_V1_Request = {
+export type POST_DomainsDomainReferenceRenew_Request = {
   parameters: {
     path: operations['renew_domain_v1_domains__domain_reference__renew_post']['parameters']['path'];
   };
@@ -1644,7 +1644,7 @@ export type POST_DomainsDomainReferenceRenew_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}/renew
  */
-export type POST_DomainsDomainReferenceRenew_V1_Request_Parameters_Path = POST_DomainsDomainReferenceRenew_V1_Request['parameters']['path'];
+export type POST_DomainsDomainReferenceRenew_Request_Path = POST_DomainsDomainReferenceRenew_Request['parameters']['path'];
 /**
  * Request body for POST /v1/domains/{domain_reference}/renew
  *
@@ -1657,7 +1657,7 @@ export type POST_DomainsDomainReferenceRenew_V1_Request_Parameters_Path = POST_D
  *
  * @path /v1/domains/{domain_reference}/renew
  */
-export type POST_DomainsDomainReferenceRenew_V1_Request_RequestBody = POST_DomainsDomainReferenceRenew_V1_Request['requestBody'];
+export type POST_DomainsDomainReferenceRenew_Request_Body = POST_DomainsDomainReferenceRenew_Request['requestBody'];
 
 /**
  * Request type for DELETE DomainsDomainReferenceTransfer endpoint
@@ -1675,11 +1675,11 @@ export type POST_DomainsDomainReferenceRenew_V1_Request_RequestBody = POST_Domai
  *
  * @path /v1/domains/{domain_reference}/transfer
  *
- * @see {@link DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_DomainsDomainReferenceTransfer_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_DomainsDomainReferenceTransfer_Request_Query} - Query parameters type
+ * @see {@link DELETE_DomainsDomainReferenceTransfer_Request_Path} - Path parameters type
+ * @see {@link DELETE_DomainsDomainReferenceTransfer_Request_Body} - Request body type
  */
-export type DELETE_DomainsDomainReferenceTransfer_V1_Request = {
+export type DELETE_DomainsDomainReferenceTransfer_Request = {
   parameters: {
     path: operations['cancel_domain_transfer_v1_domains__domain_reference__transfer_delete']['parameters']['path'];
   };
@@ -1696,7 +1696,7 @@ export type DELETE_DomainsDomainReferenceTransfer_V1_Request = {
  *
  * @path /v1/domains/{domain_reference}/transfer
  */
-export type DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Path = DELETE_DomainsDomainReferenceTransfer_V1_Request['parameters']['path'];
+export type DELETE_DomainsDomainReferenceTransfer_Request_Path = DELETE_DomainsDomainReferenceTransfer_Request['parameters']['path'];
 
 /**
  * Request type for GET DomainsSummary endpoint
@@ -1714,11 +1714,11 @@ export type DELETE_DomainsDomainReferenceTransfer_V1_Request_Parameters_Path = D
  *
  * @path /v1/domains/summary
  *
- * @see {@link GET_DomainsSummary_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_DomainsSummary_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_DomainsSummary_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_DomainsSummary_Request_Query} - Query parameters type
+ * @see {@link GET_DomainsSummary_Request_Path} - Path parameters type
+ * @see {@link GET_DomainsSummary_Request_Body} - Request body type
  */
-export type GET_DomainsSummary_V1_Request = {
+export type GET_DomainsSummary_Request = {
 }
 
 /**
@@ -1739,11 +1739,11 @@ This process can take up to 5 days, until the transfer is approved
  *
  * @path /v1/domains/transfer
  *
- * @see {@link POST_DomainsTransfer_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_DomainsTransfer_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_DomainsTransfer_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_DomainsTransfer_Request_Query} - Query parameters type
+ * @see {@link POST_DomainsTransfer_Request_Path} - Path parameters type
+ * @see {@link POST_DomainsTransfer_Request_Body} - Request body type
  */
-export type POST_DomainsTransfer_V1_Request = {
+export type POST_DomainsTransfer_Request = {
   requestBody: DomainTransferIn;
 }
 /**
@@ -1758,7 +1758,7 @@ export type POST_DomainsTransfer_V1_Request = {
  *
  * @path /v1/domains/transfer
  */
-export type POST_DomainsTransfer_V1_Request_RequestBody = POST_DomainsTransfer_V1_Request['requestBody'];
+export type POST_DomainsTransfer_Request_Body = POST_DomainsTransfer_Request['requestBody'];
 
 /**
  * Request type for GET EmailForwards endpoint
@@ -1778,11 +1778,11 @@ export type POST_DomainsTransfer_V1_Request_RequestBody = POST_DomainsTransfer_V
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
  *
- * @see {@link GET_EmailForwards_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_EmailForwards_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_EmailForwards_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_EmailForwards_Request_Query} - Query parameters type
+ * @see {@link GET_EmailForwards_Request_Path} - Path parameters type
+ * @see {@link GET_EmailForwards_Request_Body} - Request body type
  */
-export type GET_EmailForwards_V1_Request = {
+export type GET_EmailForwards_Request = {
   parameters: {
     query: operations['list_email_forwards_v1_email_forwards_get']['parameters']['query'];
   };
@@ -1802,7 +1802,7 @@ export type GET_EmailForwards_V1_Request = {
  * @param source_address (query) - Optional source address to filter the results
  * @param target_address (query) - Optional target address to filter the results
  */
-export type GET_EmailForwards_V1_Request_Parameters_Query = GET_EmailForwards_V1_Request['parameters']['query'];
+export type GET_EmailForwards_Request_Query = GET_EmailForwards_Request['parameters']['query'];
 
 /**
  * Request type for POST EmailForwards endpoint
@@ -1819,11 +1819,11 @@ export type GET_EmailForwards_V1_Request_Parameters_Query = GET_EmailForwards_V1
  *
  * @path /v1/email-forwards
  *
- * @see {@link POST_EmailForwards_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_EmailForwards_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_EmailForwards_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_EmailForwards_Request_Query} - Query parameters type
+ * @see {@link POST_EmailForwards_Request_Path} - Path parameters type
+ * @see {@link POST_EmailForwards_Request_Body} - Request body type
  */
-export type POST_EmailForwards_V1_Request = {
+export type POST_EmailForwards_Request = {
   requestBody: EmailForwardCreate;
 }
 /**
@@ -1838,7 +1838,7 @@ export type POST_EmailForwards_V1_Request = {
  *
  * @path /v1/email-forwards
  */
-export type POST_EmailForwards_V1_Request_RequestBody = POST_EmailForwards_V1_Request['requestBody'];
+export type POST_EmailForwards_Request_Body = POST_EmailForwards_Request['requestBody'];
 
 /**
  * Request type for POST EmailForwardsBulkDelete endpoint
@@ -1855,11 +1855,11 @@ export type POST_EmailForwards_V1_Request_RequestBody = POST_EmailForwards_V1_Re
  *
  * @path /v1/email-forwards/bulk-delete
  *
- * @see {@link POST_EmailForwardsBulkDelete_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_EmailForwardsBulkDelete_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_EmailForwardsBulkDelete_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_EmailForwardsBulkDelete_Request_Query} - Query parameters type
+ * @see {@link POST_EmailForwardsBulkDelete_Request_Path} - Path parameters type
+ * @see {@link POST_EmailForwardsBulkDelete_Request_Body} - Request body type
  */
-export type POST_EmailForwardsBulkDelete_V1_Request = {
+export type POST_EmailForwardsBulkDelete_Request = {
   requestBody: EmailForwardBulkDelete;
 }
 /**
@@ -1874,7 +1874,7 @@ export type POST_EmailForwardsBulkDelete_V1_Request = {
  *
  * @path /v1/email-forwards/bulk-delete
  */
-export type POST_EmailForwardsBulkDelete_V1_Request_RequestBody = POST_EmailForwardsBulkDelete_V1_Request['requestBody'];
+export type POST_EmailForwardsBulkDelete_Request_Body = POST_EmailForwardsBulkDelete_Request['requestBody'];
 
 /**
  * Request type for PATCH EmailForwardsBulkUpdate endpoint
@@ -1891,11 +1891,11 @@ export type POST_EmailForwardsBulkDelete_V1_Request_RequestBody = POST_EmailForw
  *
  * @path /v1/email-forwards/bulk-update
  *
- * @see {@link PATCH_EmailForwardsBulkUpdate_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_EmailForwardsBulkUpdate_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_EmailForwardsBulkUpdate_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_EmailForwardsBulkUpdate_Request_Query} - Query parameters type
+ * @see {@link PATCH_EmailForwardsBulkUpdate_Request_Path} - Path parameters type
+ * @see {@link PATCH_EmailForwardsBulkUpdate_Request_Body} - Request body type
  */
-export type PATCH_EmailForwardsBulkUpdate_V1_Request = {
+export type PATCH_EmailForwardsBulkUpdate_Request = {
   requestBody: EmailForwardBulkUpdate;
 }
 /**
@@ -1910,7 +1910,7 @@ export type PATCH_EmailForwardsBulkUpdate_V1_Request = {
  *
  * @path /v1/email-forwards/bulk-update
  */
-export type PATCH_EmailForwardsBulkUpdate_V1_Request_RequestBody = PATCH_EmailForwardsBulkUpdate_V1_Request['requestBody'];
+export type PATCH_EmailForwardsBulkUpdate_Request_Body = PATCH_EmailForwardsBulkUpdate_Request['requestBody'];
 
 /**
  * Request type for DELETE EmailForwardsEmailForwardId endpoint
@@ -1927,11 +1927,11 @@ export type PATCH_EmailForwardsBulkUpdate_V1_Request_RequestBody = PATCH_EmailFo
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link DELETE_EmailForwardsEmailForwardId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_EmailForwardsEmailForwardId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_EmailForwardsEmailForwardId_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Query} - Query parameters type
+ * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Path} - Path parameters type
+ * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Body} - Request body type
  */
-export type DELETE_EmailForwardsEmailForwardId_V1_Request = {
+export type DELETE_EmailForwardsEmailForwardId_Request = {
   parameters: {
     path: operations['delete_email_forward_v1_email_forwards__email_forward_id__delete']['parameters']['path'];
   };
@@ -1948,7 +1948,7 @@ export type DELETE_EmailForwardsEmailForwardId_V1_Request = {
  *
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type DELETE_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = DELETE_EmailForwardsEmailForwardId_V1_Request['parameters']['path'];
+export type DELETE_EmailForwardsEmailForwardId_Request_Path = DELETE_EmailForwardsEmailForwardId_Request['parameters']['path'];
 
 /**
  * Request type for GET EmailForwardsEmailForwardId endpoint
@@ -1965,11 +1965,11 @@ export type DELETE_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = DELE
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link GET_EmailForwardsEmailForwardId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_EmailForwardsEmailForwardId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_EmailForwardsEmailForwardId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_EmailForwardsEmailForwardId_Request_Query} - Query parameters type
+ * @see {@link GET_EmailForwardsEmailForwardId_Request_Path} - Path parameters type
+ * @see {@link GET_EmailForwardsEmailForwardId_Request_Body} - Request body type
  */
-export type GET_EmailForwardsEmailForwardId_V1_Request = {
+export type GET_EmailForwardsEmailForwardId_Request = {
   parameters: {
     path: operations['get_email_forward_v1_email_forwards__email_forward_id__get']['parameters']['path'];
   };
@@ -1986,7 +1986,7 @@ export type GET_EmailForwardsEmailForwardId_V1_Request = {
  *
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type GET_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = GET_EmailForwardsEmailForwardId_V1_Request['parameters']['path'];
+export type GET_EmailForwardsEmailForwardId_Request_Path = GET_EmailForwardsEmailForwardId_Request['parameters']['path'];
 
 /**
  * Request type for PATCH EmailForwardsEmailForwardId endpoint
@@ -2003,11 +2003,11 @@ export type GET_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = GET_Ema
  *
  * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link PATCH_EmailForwardsEmailForwardId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_EmailForwardsEmailForwardId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_EmailForwardsEmailForwardId_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_EmailForwardsEmailForwardId_Request_Query} - Query parameters type
+ * @see {@link PATCH_EmailForwardsEmailForwardId_Request_Path} - Path parameters type
+ * @see {@link PATCH_EmailForwardsEmailForwardId_Request_Body} - Request body type
  */
-export type PATCH_EmailForwardsEmailForwardId_V1_Request = {
+export type PATCH_EmailForwardsEmailForwardId_Request = {
   parameters: {
     path: operations['update_email_forward_v1_email_forwards__email_forward_id__patch']['parameters']['path'];
   };
@@ -2025,7 +2025,7 @@ export type PATCH_EmailForwardsEmailForwardId_V1_Request = {
  *
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type PATCH_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = PATCH_EmailForwardsEmailForwardId_V1_Request['parameters']['path'];
+export type PATCH_EmailForwardsEmailForwardId_Request_Path = PATCH_EmailForwardsEmailForwardId_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/email-forwards/{email_forward_id}
  *
@@ -2038,7 +2038,7 @@ export type PATCH_EmailForwardsEmailForwardId_V1_Request_Parameters_Path = PATCH
  *
  * @path /v1/email-forwards/{email_forward_id}
  */
-export type PATCH_EmailForwardsEmailForwardId_V1_Request_RequestBody = PATCH_EmailForwardsEmailForwardId_V1_Request['requestBody'];
+export type PATCH_EmailForwardsEmailForwardId_Request_Body = PATCH_EmailForwardsEmailForwardId_Request['requestBody'];
 
 /**
  * Request type for GET Event endpoint
@@ -2055,11 +2055,11 @@ export type PATCH_EmailForwardsEmailForwardId_V1_Request_RequestBody = PATCH_Ema
  *
  * @path /v1/event
  *
- * @see {@link GET_Event_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_Event_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_Event_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_Event_Request_Query} - Query parameters type
+ * @see {@link GET_Event_Request_Path} - Path parameters type
+ * @see {@link GET_Event_Request_Body} - Request body type
  */
-export type GET_Event_V1_Request = {
+export type GET_Event_Request = {
   parameters: {
     query: operations['get_events_v1_event_get']['parameters']['query'];
   };
@@ -2076,7 +2076,7 @@ export type GET_Event_V1_Request = {
  *
  * @path /v1/event
  */
-export type GET_Event_V1_Request_Parameters_Query = GET_Event_V1_Request['parameters']['query'];
+export type GET_Event_Request_Query = GET_Event_Request['parameters']['query'];
 
 /**
  * Request type for GET EventEventId endpoint
@@ -2093,11 +2093,11 @@ export type GET_Event_V1_Request_Parameters_Query = GET_Event_V1_Request['parame
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link GET_EventEventId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_EventEventId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_EventEventId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_EventEventId_Request_Query} - Query parameters type
+ * @see {@link GET_EventEventId_Request_Path} - Path parameters type
+ * @see {@link GET_EventEventId_Request_Body} - Request body type
  */
-export type GET_EventEventId_V1_Request = {
+export type GET_EventEventId_Request = {
   parameters: {
     path: operations['get_event_v1_event__event_id__get']['parameters']['path'];
   };
@@ -2114,7 +2114,7 @@ export type GET_EventEventId_V1_Request = {
  *
  * @path /v1/event/{event_id}
  */
-export type GET_EventEventId_V1_Request_Parameters_Path = GET_EventEventId_V1_Request['parameters']['path'];
+export type GET_EventEventId_Request_Path = GET_EventEventId_Request['parameters']['path'];
 
 /**
  * Request type for PATCH EventEventId endpoint
@@ -2131,11 +2131,11 @@ export type GET_EventEventId_V1_Request_Parameters_Path = GET_EventEventId_V1_Re
  *
  * @path /v1/event/{event_id}
  *
- * @see {@link PATCH_EventEventId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_EventEventId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_EventEventId_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_EventEventId_Request_Query} - Query parameters type
+ * @see {@link PATCH_EventEventId_Request_Path} - Path parameters type
+ * @see {@link PATCH_EventEventId_Request_Body} - Request body type
  */
-export type PATCH_EventEventId_V1_Request = {
+export type PATCH_EventEventId_Request = {
   parameters: {
     path: operations['acknowledge_event_v1_event__event_id__patch']['parameters']['path'];
   };
@@ -2152,7 +2152,7 @@ export type PATCH_EventEventId_V1_Request = {
  *
  * @path /v1/event/{event_id}
  */
-export type PATCH_EventEventId_V1_Request_Parameters_Path = PATCH_EventEventId_V1_Request['parameters']['path'];
+export type PATCH_EventEventId_Request_Path = PATCH_EventEventId_Request['parameters']['path'];
 
 /**
  * Request type for GET Notifications endpoint
@@ -2169,11 +2169,11 @@ export type PATCH_EventEventId_V1_Request_Parameters_Path = PATCH_EventEventId_V
  *
  * @path /v1/notifications
  *
- * @see {@link GET_Notifications_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_Notifications_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_Notifications_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_Notifications_Request_Query} - Query parameters type
+ * @see {@link GET_Notifications_Request_Path} - Path parameters type
+ * @see {@link GET_Notifications_Request_Body} - Request body type
  */
-export type GET_Notifications_V1_Request = {
+export type GET_Notifications_Request = {
   parameters: {
     query: operations['list_notifications_v1_notifications_get']['parameters']['query'];
   };
@@ -2190,7 +2190,7 @@ export type GET_Notifications_V1_Request = {
  *
  * @path /v1/notifications
  */
-export type GET_Notifications_V1_Request_Parameters_Query = GET_Notifications_V1_Request['parameters']['query'];
+export type GET_Notifications_Request_Query = GET_Notifications_Request['parameters']['query'];
 
 /**
  * Request type for POST Notifications endpoint
@@ -2207,11 +2207,11 @@ export type GET_Notifications_V1_Request_Parameters_Query = GET_Notifications_V1
  *
  * @path /v1/notifications
  *
- * @see {@link POST_Notifications_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_Notifications_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_Notifications_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_Notifications_Request_Query} - Query parameters type
+ * @see {@link POST_Notifications_Request_Path} - Path parameters type
+ * @see {@link POST_Notifications_Request_Body} - Request body type
  */
-export type POST_Notifications_V1_Request = {
+export type POST_Notifications_Request = {
   requestBody: NotificationCreate;
 }
 /**
@@ -2226,7 +2226,7 @@ export type POST_Notifications_V1_Request = {
  *
  * @path /v1/notifications
  */
-export type POST_Notifications_V1_Request_RequestBody = POST_Notifications_V1_Request['requestBody'];
+export type POST_Notifications_Request_Body = POST_Notifications_Request['requestBody'];
 
 /**
  * Request type for DELETE NotificationsNotificationId endpoint
@@ -2243,11 +2243,11 @@ export type POST_Notifications_V1_Request_RequestBody = POST_Notifications_V1_Re
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link DELETE_NotificationsNotificationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_NotificationsNotificationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_NotificationsNotificationId_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_NotificationsNotificationId_Request_Query} - Query parameters type
+ * @see {@link DELETE_NotificationsNotificationId_Request_Path} - Path parameters type
+ * @see {@link DELETE_NotificationsNotificationId_Request_Body} - Request body type
  */
-export type DELETE_NotificationsNotificationId_V1_Request = {
+export type DELETE_NotificationsNotificationId_Request = {
   parameters: {
     path: operations['delete_notification_v1_notifications__notification_id__delete']['parameters']['path'];
   };
@@ -2264,7 +2264,7 @@ export type DELETE_NotificationsNotificationId_V1_Request = {
  *
  * @path /v1/notifications/{notification_id}
  */
-export type DELETE_NotificationsNotificationId_V1_Request_Parameters_Path = DELETE_NotificationsNotificationId_V1_Request['parameters']['path'];
+export type DELETE_NotificationsNotificationId_Request_Path = DELETE_NotificationsNotificationId_Request['parameters']['path'];
 
 /**
  * Request type for GET NotificationsNotificationId endpoint
@@ -2281,11 +2281,11 @@ export type DELETE_NotificationsNotificationId_V1_Request_Parameters_Path = DELE
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link GET_NotificationsNotificationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_NotificationsNotificationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_NotificationsNotificationId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_NotificationsNotificationId_Request_Query} - Query parameters type
+ * @see {@link GET_NotificationsNotificationId_Request_Path} - Path parameters type
+ * @see {@link GET_NotificationsNotificationId_Request_Body} - Request body type
  */
-export type GET_NotificationsNotificationId_V1_Request = {
+export type GET_NotificationsNotificationId_Request = {
   parameters: {
     query: operations['get_notification_v1_notifications__notification_id__get']['parameters']['query'];
     path: operations['get_notification_v1_notifications__notification_id__get']['parameters']['path'];
@@ -2303,7 +2303,7 @@ export type GET_NotificationsNotificationId_V1_Request = {
  *
  * @path /v1/notifications/{notification_id}
  */
-export type GET_NotificationsNotificationId_V1_Request_Parameters_Query = GET_NotificationsNotificationId_V1_Request['parameters']['query'];
+export type GET_NotificationsNotificationId_Request_Query = GET_NotificationsNotificationId_Request['parameters']['query'];
 /**
  * Path parameters for GET /v1/notifications/{notification_id}
  *
@@ -2316,7 +2316,7 @@ export type GET_NotificationsNotificationId_V1_Request_Parameters_Query = GET_No
  *
  * @path /v1/notifications/{notification_id}
  */
-export type GET_NotificationsNotificationId_V1_Request_Parameters_Path = GET_NotificationsNotificationId_V1_Request['parameters']['path'];
+export type GET_NotificationsNotificationId_Request_Path = GET_NotificationsNotificationId_Request['parameters']['path'];
 
 /**
  * Request type for PUT NotificationsNotificationId endpoint
@@ -2333,11 +2333,11 @@ export type GET_NotificationsNotificationId_V1_Request_Parameters_Path = GET_Not
  *
  * @path /v1/notifications/{notification_id}
  *
- * @see {@link PUT_NotificationsNotificationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PUT_NotificationsNotificationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PUT_NotificationsNotificationId_V1_Request_RequestBody} - Request body type
+ * @see {@link PUT_NotificationsNotificationId_Request_Query} - Query parameters type
+ * @see {@link PUT_NotificationsNotificationId_Request_Path} - Path parameters type
+ * @see {@link PUT_NotificationsNotificationId_Request_Body} - Request body type
  */
-export type PUT_NotificationsNotificationId_V1_Request = {
+export type PUT_NotificationsNotificationId_Request = {
   parameters: {
     path: operations['update_notification_v1_notifications__notification_id__put']['parameters']['path'];
   };
@@ -2355,7 +2355,7 @@ export type PUT_NotificationsNotificationId_V1_Request = {
  *
  * @path /v1/notifications/{notification_id}
  */
-export type PUT_NotificationsNotificationId_V1_Request_Parameters_Path = PUT_NotificationsNotificationId_V1_Request['parameters']['path'];
+export type PUT_NotificationsNotificationId_Request_Path = PUT_NotificationsNotificationId_Request['parameters']['path'];
 /**
  * Request body for PUT /v1/notifications/{notification_id}
  *
@@ -2368,7 +2368,7 @@ export type PUT_NotificationsNotificationId_V1_Request_Parameters_Path = PUT_Not
  *
  * @path /v1/notifications/{notification_id}
  */
-export type PUT_NotificationsNotificationId_V1_Request_RequestBody = PUT_NotificationsNotificationId_V1_Request['requestBody'];
+export type PUT_NotificationsNotificationId_Request_Body = PUT_NotificationsNotificationId_Request['requestBody'];
 
 /**
  * Request type for PATCH NotificationsNotificationIdRead endpoint
@@ -2385,11 +2385,11 @@ export type PUT_NotificationsNotificationId_V1_Request_RequestBody = PUT_Notific
  *
  * @path /v1/notifications/{notification_id}/read
  *
- * @see {@link PATCH_NotificationsNotificationIdRead_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_NotificationsNotificationIdRead_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_NotificationsNotificationIdRead_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_NotificationsNotificationIdRead_Request_Query} - Query parameters type
+ * @see {@link PATCH_NotificationsNotificationIdRead_Request_Path} - Path parameters type
+ * @see {@link PATCH_NotificationsNotificationIdRead_Request_Body} - Request body type
  */
-export type PATCH_NotificationsNotificationIdRead_V1_Request = {
+export type PATCH_NotificationsNotificationIdRead_Request = {
   parameters: {
     path: operations['update_notification_read_v1_notifications__notification_id__read_patch']['parameters']['path'];
   };
@@ -2406,7 +2406,7 @@ export type PATCH_NotificationsNotificationIdRead_V1_Request = {
  *
  * @path /v1/notifications/{notification_id}/read
  */
-export type PATCH_NotificationsNotificationIdRead_V1_Request_Parameters_Path = PATCH_NotificationsNotificationIdRead_V1_Request['parameters']['path'];
+export type PATCH_NotificationsNotificationIdRead_Request_Path = PATCH_NotificationsNotificationIdRead_Request['parameters']['path'];
 
 /**
  * Request type for GET Organizations endpoint
@@ -2423,11 +2423,11 @@ export type PATCH_NotificationsNotificationIdRead_V1_Request_Parameters_Path = P
  *
  * @path /v1/organizations
  *
- * @see {@link GET_Organizations_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_Organizations_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_Organizations_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_Organizations_Request_Query} - Query parameters type
+ * @see {@link GET_Organizations_Request_Path} - Path parameters type
+ * @see {@link GET_Organizations_Request_Body} - Request body type
  */
-export type GET_Organizations_V1_Request = {
+export type GET_Organizations_Request = {
   parameters: {
     query: operations['list_organizations_v1_organizations_get']['parameters']['query'];
   };
@@ -2444,7 +2444,7 @@ export type GET_Organizations_V1_Request = {
  *
  * @path /v1/organizations
  */
-export type GET_Organizations_V1_Request_Parameters_Query = GET_Organizations_V1_Request['parameters']['query'];
+export type GET_Organizations_Request_Query = GET_Organizations_Request['parameters']['query'];
 
 /**
  * Request type for POST Organizations endpoint
@@ -2461,11 +2461,11 @@ export type GET_Organizations_V1_Request_Parameters_Query = GET_Organizations_V1
  *
  * @path /v1/organizations
  *
- * @see {@link POST_Organizations_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_Organizations_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_Organizations_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_Organizations_Request_Query} - Query parameters type
+ * @see {@link POST_Organizations_Request_Path} - Path parameters type
+ * @see {@link POST_Organizations_Request_Body} - Request body type
  */
-export type POST_Organizations_V1_Request = {
+export type POST_Organizations_Request = {
   requestBody: OrganizationCreate;
 }
 /**
@@ -2480,7 +2480,7 @@ export type POST_Organizations_V1_Request = {
  *
  * @path /v1/organizations
  */
-export type POST_Organizations_V1_Request_RequestBody = POST_Organizations_V1_Request['requestBody'];
+export type POST_Organizations_Request_Body = POST_Organizations_Request['requestBody'];
 
 /**
  * Request type for GET OrganizationsAttributes endpoint
@@ -2498,11 +2498,11 @@ export type POST_Organizations_V1_Request_RequestBody = POST_Organizations_V1_Re
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
  *
- * @see {@link GET_OrganizationsAttributes_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_OrganizationsAttributes_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_OrganizationsAttributes_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_OrganizationsAttributes_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsAttributes_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsAttributes_Request_Body} - Request body type
  */
-export type GET_OrganizationsAttributes_V1_Request = {
+export type GET_OrganizationsAttributes_Request = {
   parameters: {
     query: operations['get_attributes_v1_organizations_attributes_get']['parameters']['query'];
   };
@@ -2520,7 +2520,7 @@ export type GET_OrganizationsAttributes_V1_Request = {
  * @path /v1/organizations/attributes
  * @param keys (query) - Optional list of attribute keys to filter
  */
-export type GET_OrganizationsAttributes_V1_Request_Parameters_Query = GET_OrganizationsAttributes_V1_Request['parameters']['query'];
+export type GET_OrganizationsAttributes_Request_Query = GET_OrganizationsAttributes_Request['parameters']['query'];
 
 /**
  * Request type for PATCH OrganizationsAttributes endpoint
@@ -2537,11 +2537,11 @@ export type GET_OrganizationsAttributes_V1_Request_Parameters_Query = GET_Organi
  *
  * @path /v1/organizations/attributes
  *
- * @see {@link PATCH_OrganizationsAttributes_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsAttributes_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsAttributes_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_OrganizationsAttributes_Request_Query} - Query parameters type
+ * @see {@link PATCH_OrganizationsAttributes_Request_Path} - Path parameters type
+ * @see {@link PATCH_OrganizationsAttributes_Request_Body} - Request body type
  */
-export type PATCH_OrganizationsAttributes_V1_Request = {
+export type PATCH_OrganizationsAttributes_Request = {
   parameters: {
     query: operations['update_attributes_v1_organizations_attributes_patch']['parameters']['query'];
   };
@@ -2559,7 +2559,7 @@ export type PATCH_OrganizationsAttributes_V1_Request = {
  *
  * @path /v1/organizations/attributes
  */
-export type PATCH_OrganizationsAttributes_V1_Request_Parameters_Query = PATCH_OrganizationsAttributes_V1_Request['parameters']['query'];
+export type PATCH_OrganizationsAttributes_Request_Query = PATCH_OrganizationsAttributes_Request['parameters']['query'];
 /**
  * Request body for PATCH /v1/organizations/attributes
  *
@@ -2572,7 +2572,7 @@ export type PATCH_OrganizationsAttributes_V1_Request_Parameters_Query = PATCH_Or
  *
  * @path /v1/organizations/attributes
  */
-export type PATCH_OrganizationsAttributes_V1_Request_RequestBody = PATCH_OrganizationsAttributes_V1_Request['requestBody'];
+export type PATCH_OrganizationsAttributes_Request_Body = PATCH_OrganizationsAttributes_Request['requestBody'];
 
 /**
  * Request type for GET OrganizationsAttributesOrganizationId endpoint
@@ -2590,11 +2590,11 @@ export type PATCH_OrganizationsAttributes_V1_Request_RequestBody = PATCH_Organiz
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
  *
- * @see {@link GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_OrganizationsAttributesOrganizationId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_OrganizationsAttributesOrganizationId_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsAttributesOrganizationId_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsAttributesOrganizationId_Request_Body} - Request body type
  */
-export type GET_OrganizationsAttributesOrganizationId_V1_Request = {
+export type GET_OrganizationsAttributesOrganizationId_Request = {
   parameters: {
     query: operations['get_attributes_v1_organizations_attributes__organization_id__get']['parameters']['query'];
     path: operations['get_attributes_v1_organizations_attributes__organization_id__get']['parameters']['path'];
@@ -2613,7 +2613,7 @@ export type GET_OrganizationsAttributesOrganizationId_V1_Request = {
  * @path /v1/organizations/attributes/{organization_id}
  * @param keys (query) - Optional list of attribute keys to filter
  */
-export type GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Query = GET_OrganizationsAttributesOrganizationId_V1_Request['parameters']['query'];
+export type GET_OrganizationsAttributesOrganizationId_Request_Query = GET_OrganizationsAttributesOrganizationId_Request['parameters']['query'];
 /**
  * Path parameters for GET /v1/organizations/attributes/{organization_id}
  *
@@ -2626,7 +2626,7 @@ export type GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Quer
  *
  * @path /v1/organizations/attributes/{organization_id}
  */
-export type GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Path = GET_OrganizationsAttributesOrganizationId_V1_Request['parameters']['path'];
+export type GET_OrganizationsAttributesOrganizationId_Request_Path = GET_OrganizationsAttributesOrganizationId_Request['parameters']['path'];
 
 /**
  * Request type for PATCH OrganizationsAttributesOrganizationId endpoint
@@ -2643,11 +2643,11 @@ export type GET_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Path
  *
  * @path /v1/organizations/attributes/{organization_id}
  *
- * @see {@link PATCH_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsAttributesOrganizationId_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_OrganizationsAttributesOrganizationId_Request_Query} - Query parameters type
+ * @see {@link PATCH_OrganizationsAttributesOrganizationId_Request_Path} - Path parameters type
+ * @see {@link PATCH_OrganizationsAttributesOrganizationId_Request_Body} - Request body type
  */
-export type PATCH_OrganizationsAttributesOrganizationId_V1_Request = {
+export type PATCH_OrganizationsAttributesOrganizationId_Request = {
   parameters: {
     path: operations['update_attributes_v1_organizations_attributes__organization_id__patch']['parameters']['path'];
   };
@@ -2665,7 +2665,7 @@ export type PATCH_OrganizationsAttributesOrganizationId_V1_Request = {
  *
  * @path /v1/organizations/attributes/{organization_id}
  */
-export type PATCH_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Path = PATCH_OrganizationsAttributesOrganizationId_V1_Request['parameters']['path'];
+export type PATCH_OrganizationsAttributesOrganizationId_Request_Path = PATCH_OrganizationsAttributesOrganizationId_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/organizations/attributes/{organization_id}
  *
@@ -2678,7 +2678,7 @@ export type PATCH_OrganizationsAttributesOrganizationId_V1_Request_Parameters_Pa
  *
  * @path /v1/organizations/attributes/{organization_id}
  */
-export type PATCH_OrganizationsAttributesOrganizationId_V1_Request_RequestBody = PATCH_OrganizationsAttributesOrganizationId_V1_Request['requestBody'];
+export type PATCH_OrganizationsAttributesOrganizationId_Request_Body = PATCH_OrganizationsAttributesOrganizationId_Request['requestBody'];
 
 /**
  * Request type for GET OrganizationsIpRestrictions endpoint
@@ -2696,11 +2696,11 @@ export type PATCH_OrganizationsAttributesOrganizationId_V1_Request_RequestBody =
  *
  * @path /v1/organizations/ip-restrictions
  *
- * @see {@link GET_OrganizationsIpRestrictions_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_OrganizationsIpRestrictions_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_OrganizationsIpRestrictions_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_OrganizationsIpRestrictions_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsIpRestrictions_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsIpRestrictions_Request_Body} - Request body type
  */
-export type GET_OrganizationsIpRestrictions_V1_Request = {
+export type GET_OrganizationsIpRestrictions_Request = {
 }
 
 /**
@@ -2719,11 +2719,11 @@ export type GET_OrganizationsIpRestrictions_V1_Request = {
  *
  * @path /v1/organizations/ip-restrictions
  *
- * @see {@link POST_OrganizationsIpRestrictions_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_OrganizationsIpRestrictions_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_OrganizationsIpRestrictions_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_OrganizationsIpRestrictions_Request_Query} - Query parameters type
+ * @see {@link POST_OrganizationsIpRestrictions_Request_Path} - Path parameters type
+ * @see {@link POST_OrganizationsIpRestrictions_Request_Body} - Request body type
  */
-export type POST_OrganizationsIpRestrictions_V1_Request = {
+export type POST_OrganizationsIpRestrictions_Request = {
   requestBody: IpRestrictionCreate;
 }
 /**
@@ -2738,7 +2738,7 @@ export type POST_OrganizationsIpRestrictions_V1_Request = {
  *
  * @path /v1/organizations/ip-restrictions
  */
-export type POST_OrganizationsIpRestrictions_V1_Request_RequestBody = POST_OrganizationsIpRestrictions_V1_Request['requestBody'];
+export type POST_OrganizationsIpRestrictions_Request_Body = POST_OrganizationsIpRestrictions_Request['requestBody'];
 
 /**
  * Request type for DELETE OrganizationsIpRestrictionsIpRestrictionId endpoint
@@ -2756,11 +2756,11 @@ export type POST_OrganizationsIpRestrictions_V1_Request_RequestBody = POST_Organ
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Query} - Query parameters type
+ * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Path} - Path parameters type
+ * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Body} - Request body type
  */
-export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
+export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request = {
   parameters: {
     path: operations['delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete']['parameters']['path'];
   };
@@ -2777,7 +2777,7 @@ export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path = DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters']['path'];
+export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request['parameters']['path'];
 
 /**
  * Request type for GET OrganizationsIpRestrictionsIpRestrictionId endpoint
@@ -2795,11 +2795,11 @@ export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Paramet
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Body} - Request body type
  */
-export type GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
+export type GET_OrganizationsIpRestrictionsIpRestrictionId_Request = {
   parameters: {
     path: operations['get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get']['parameters']['path'];
   };
@@ -2816,7 +2816,7 @@ export type GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path = GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters']['path'];
+export type GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = GET_OrganizationsIpRestrictionsIpRestrictionId_Request['parameters']['path'];
 
 /**
  * Request type for PATCH OrganizationsIpRestrictionsIpRestrictionId endpoint
@@ -2834,11 +2834,11 @@ export type GET_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
- * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Query} - Query parameters type
+ * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Path} - Path parameters type
+ * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Body} - Request body type
  */
-export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
+export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request = {
   parameters: {
     path: operations['update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch']['parameters']['path'];
   };
@@ -2856,7 +2856,7 @@ export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request = {
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Parameters_Path = PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['parameters']['path'];
+export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
@@ -2869,7 +2869,7 @@ export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_Paramete
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  */
-export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_RequestBody = PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request['requestBody'];
+export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Body = PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request['requestBody'];
 
 /**
  * Request type for DELETE OrganizationsOrganizationId endpoint
@@ -2886,11 +2886,11 @@ export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_V1_Request_RequestB
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link DELETE_OrganizationsOrganizationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_OrganizationsOrganizationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_OrganizationsOrganizationId_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_OrganizationsOrganizationId_Request_Query} - Query parameters type
+ * @see {@link DELETE_OrganizationsOrganizationId_Request_Path} - Path parameters type
+ * @see {@link DELETE_OrganizationsOrganizationId_Request_Body} - Request body type
  */
-export type DELETE_OrganizationsOrganizationId_V1_Request = {
+export type DELETE_OrganizationsOrganizationId_Request = {
   parameters: {
     path: operations['delete_user_v1_organizations__organization_id__delete']['parameters']['path'];
   };
@@ -2907,7 +2907,7 @@ export type DELETE_OrganizationsOrganizationId_V1_Request = {
  *
  * @path /v1/organizations/{organization_id}
  */
-export type DELETE_OrganizationsOrganizationId_V1_Request_Parameters_Path = DELETE_OrganizationsOrganizationId_V1_Request['parameters']['path'];
+export type DELETE_OrganizationsOrganizationId_Request_Path = DELETE_OrganizationsOrganizationId_Request['parameters']['path'];
 
 /**
  * Request type for GET OrganizationsOrganizationId endpoint
@@ -2924,11 +2924,11 @@ export type DELETE_OrganizationsOrganizationId_V1_Request_Parameters_Path = DELE
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link GET_OrganizationsOrganizationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_OrganizationsOrganizationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_OrganizationsOrganizationId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_OrganizationsOrganizationId_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsOrganizationId_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsOrganizationId_Request_Body} - Request body type
  */
-export type GET_OrganizationsOrganizationId_V1_Request = {
+export type GET_OrganizationsOrganizationId_Request = {
   parameters: {
     path: operations['get_organization_v1_organizations__organization_id__get']['parameters']['path'];
   };
@@ -2945,7 +2945,7 @@ export type GET_OrganizationsOrganizationId_V1_Request = {
  *
  * @path /v1/organizations/{organization_id}
  */
-export type GET_OrganizationsOrganizationId_V1_Request_Parameters_Path = GET_OrganizationsOrganizationId_V1_Request['parameters']['path'];
+export type GET_OrganizationsOrganizationId_Request_Path = GET_OrganizationsOrganizationId_Request['parameters']['path'];
 
 /**
  * Request type for PATCH OrganizationsOrganizationId endpoint
@@ -2962,11 +2962,11 @@ export type GET_OrganizationsOrganizationId_V1_Request_Parameters_Path = GET_Org
  *
  * @path /v1/organizations/{organization_id}
  *
- * @see {@link PATCH_OrganizationsOrganizationId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsOrganizationId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsOrganizationId_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_OrganizationsOrganizationId_Request_Query} - Query parameters type
+ * @see {@link PATCH_OrganizationsOrganizationId_Request_Path} - Path parameters type
+ * @see {@link PATCH_OrganizationsOrganizationId_Request_Body} - Request body type
  */
-export type PATCH_OrganizationsOrganizationId_V1_Request = {
+export type PATCH_OrganizationsOrganizationId_Request = {
   parameters: {
     path: operations['update_organization_v1_organizations__organization_id__patch']['parameters']['path'];
   };
@@ -2984,7 +2984,7 @@ export type PATCH_OrganizationsOrganizationId_V1_Request = {
  *
  * @path /v1/organizations/{organization_id}
  */
-export type PATCH_OrganizationsOrganizationId_V1_Request_Parameters_Path = PATCH_OrganizationsOrganizationId_V1_Request['parameters']['path'];
+export type PATCH_OrganizationsOrganizationId_Request_Path = PATCH_OrganizationsOrganizationId_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/organizations/{organization_id}
  *
@@ -2997,7 +2997,7 @@ export type PATCH_OrganizationsOrganizationId_V1_Request_Parameters_Path = PATCH
  *
  * @path /v1/organizations/{organization_id}
  */
-export type PATCH_OrganizationsOrganizationId_V1_Request_RequestBody = PATCH_OrganizationsOrganizationId_V1_Request['requestBody'];
+export type PATCH_OrganizationsOrganizationId_Request_Body = PATCH_OrganizationsOrganizationId_Request['requestBody'];
 
 /**
  * Request type for PATCH OrganizationsOrganizationIdPlan endpoint
@@ -3014,11 +3014,11 @@ export type PATCH_OrganizationsOrganizationId_V1_Request_RequestBody = PATCH_Org
  *
  * @path /v1/organizations/{organization_id}/plan
  *
- * @see {@link PATCH_OrganizationsOrganizationIdPlan_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsOrganizationIdPlan_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsOrganizationIdPlan_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_OrganizationsOrganizationIdPlan_Request_Query} - Query parameters type
+ * @see {@link PATCH_OrganizationsOrganizationIdPlan_Request_Path} - Path parameters type
+ * @see {@link PATCH_OrganizationsOrganizationIdPlan_Request_Body} - Request body type
  */
-export type PATCH_OrganizationsOrganizationIdPlan_V1_Request = {
+export type PATCH_OrganizationsOrganizationIdPlan_Request = {
   parameters: {
     path: operations['change_plan_v1_organizations__organization_id__plan_patch']['parameters']['path'];
   };
@@ -3036,7 +3036,7 @@ export type PATCH_OrganizationsOrganizationIdPlan_V1_Request = {
  *
  * @path /v1/organizations/{organization_id}/plan
  */
-export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_Parameters_Path = PATCH_OrganizationsOrganizationIdPlan_V1_Request['parameters']['path'];
+export type PATCH_OrganizationsOrganizationIdPlan_Request_Path = PATCH_OrganizationsOrganizationIdPlan_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/organizations/{organization_id}/plan
  *
@@ -3049,7 +3049,7 @@ export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_Parameters_Path = P
  *
  * @path /v1/organizations/{organization_id}/plan
  */
-export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_RequestBody = PATCH_OrganizationsOrganizationIdPlan_V1_Request['requestBody'];
+export type PATCH_OrganizationsOrganizationIdPlan_Request_Body = PATCH_OrganizationsOrganizationIdPlan_Request['requestBody'];
 
 /**
  * Request type for GET OrganizationsRoles endpoint
@@ -3066,11 +3066,11 @@ export type PATCH_OrganizationsOrganizationIdPlan_V1_Request_RequestBody = PATCH
  *
  * @path /v1/organizations/roles
  *
- * @see {@link GET_OrganizationsRoles_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_OrganizationsRoles_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_OrganizationsRoles_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_OrganizationsRoles_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsRoles_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsRoles_Request_Body} - Request body type
  */
-export type GET_OrganizationsRoles_V1_Request = {
+export type GET_OrganizationsRoles_Request = {
 }
 
 /**
@@ -3088,11 +3088,11 @@ export type GET_OrganizationsRoles_V1_Request = {
  *
  * @path /v1/organizations/users
  *
- * @see {@link GET_OrganizationsUsers_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_OrganizationsUsers_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_OrganizationsUsers_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_OrganizationsUsers_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsUsers_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsUsers_Request_Body} - Request body type
  */
-export type GET_OrganizationsUsers_V1_Request = {
+export type GET_OrganizationsUsers_Request = {
   parameters: {
     query: operations['list_users_v1_organizations_users_get']['parameters']['query'];
   };
@@ -3109,7 +3109,7 @@ export type GET_OrganizationsUsers_V1_Request = {
  *
  * @path /v1/organizations/users
  */
-export type GET_OrganizationsUsers_V1_Request_Parameters_Query = GET_OrganizationsUsers_V1_Request['parameters']['query'];
+export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Request['parameters']['query'];
 
 /**
  * Request type for POST Users endpoint
@@ -3126,11 +3126,11 @@ export type GET_OrganizationsUsers_V1_Request_Parameters_Query = GET_Organizatio
  *
  * @path /v1/users
  *
- * @see {@link POST_Users_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_Users_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_Users_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_Users_Request_Query} - Query parameters type
+ * @see {@link POST_Users_Request_Path} - Path parameters type
+ * @see {@link POST_Users_Request_Body} - Request body type
  */
-export type POST_Users_V1_Request = {
+export type POST_Users_Request = {
   requestBody: UserCreate;
 }
 /**
@@ -3145,7 +3145,7 @@ export type POST_Users_V1_Request = {
  *
  * @path /v1/users
  */
-export type POST_Users_V1_Request_RequestBody = POST_Users_V1_Request['requestBody'];
+export type POST_Users_Request_Body = POST_Users_Request['requestBody'];
 
 /**
  * Request type for POST UsersAcceptTos endpoint
@@ -3162,11 +3162,11 @@ export type POST_Users_V1_Request_RequestBody = POST_Users_V1_Request['requestBo
  *
  * @path /v1/users/accept-tos
  *
- * @see {@link POST_UsersAcceptTos_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link POST_UsersAcceptTos_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link POST_UsersAcceptTos_V1_Request_RequestBody} - Request body type
+ * @see {@link POST_UsersAcceptTos_Request_Query} - Query parameters type
+ * @see {@link POST_UsersAcceptTos_Request_Path} - Path parameters type
+ * @see {@link POST_UsersAcceptTos_Request_Body} - Request body type
  */
-export type POST_UsersAcceptTos_V1_Request = {
+export type POST_UsersAcceptTos_Request = {
   requestBody: TermsOfServiceAccept;
 }
 /**
@@ -3181,7 +3181,7 @@ export type POST_UsersAcceptTos_V1_Request = {
  *
  * @path /v1/users/accept-tos
  */
-export type POST_UsersAcceptTos_V1_Request_RequestBody = POST_UsersAcceptTos_V1_Request['requestBody'];
+export type POST_UsersAcceptTos_Request_Body = POST_UsersAcceptTos_Request['requestBody'];
 
 /**
  * Request type for GET UsersMe endpoint
@@ -3198,11 +3198,11 @@ export type POST_UsersAcceptTos_V1_Request_RequestBody = POST_UsersAcceptTos_V1_
  *
  * @path /v1/users/me
  *
- * @see {@link GET_UsersMe_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_UsersMe_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_UsersMe_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_UsersMe_Request_Query} - Query parameters type
+ * @see {@link GET_UsersMe_Request_Path} - Path parameters type
+ * @see {@link GET_UsersMe_Request_Body} - Request body type
  */
-export type GET_UsersMe_V1_Request = {
+export type GET_UsersMe_Request = {
   parameters: {
     query: operations['get_current_user_v1_users_me_get']['parameters']['query'];
   };
@@ -3219,7 +3219,7 @@ export type GET_UsersMe_V1_Request = {
  *
  * @path /v1/users/me
  */
-export type GET_UsersMe_V1_Request_Parameters_Query = GET_UsersMe_V1_Request['parameters']['query'];
+export type GET_UsersMe_Request_Query = GET_UsersMe_Request['parameters']['query'];
 
 /**
  * Request type for DELETE UsersUserId endpoint
@@ -3236,11 +3236,11 @@ export type GET_UsersMe_V1_Request_Parameters_Query = GET_UsersMe_V1_Request['pa
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link DELETE_UsersUserId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link DELETE_UsersUserId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link DELETE_UsersUserId_V1_Request_RequestBody} - Request body type
+ * @see {@link DELETE_UsersUserId_Request_Query} - Query parameters type
+ * @see {@link DELETE_UsersUserId_Request_Path} - Path parameters type
+ * @see {@link DELETE_UsersUserId_Request_Body} - Request body type
  */
-export type DELETE_UsersUserId_V1_Request = {
+export type DELETE_UsersUserId_Request = {
   parameters: {
     path: operations['delete_user_v1_users__user_id__delete']['parameters']['path'];
   };
@@ -3257,7 +3257,7 @@ export type DELETE_UsersUserId_V1_Request = {
  *
  * @path /v1/users/{user_id}
  */
-export type DELETE_UsersUserId_V1_Request_Parameters_Path = DELETE_UsersUserId_V1_Request['parameters']['path'];
+export type DELETE_UsersUserId_Request_Path = DELETE_UsersUserId_Request['parameters']['path'];
 
 /**
  * Request type for GET UsersUserId endpoint
@@ -3274,11 +3274,11 @@ export type DELETE_UsersUserId_V1_Request_Parameters_Path = DELETE_UsersUserId_V
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link GET_UsersUserId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_UsersUserId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_UsersUserId_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_UsersUserId_Request_Query} - Query parameters type
+ * @see {@link GET_UsersUserId_Request_Path} - Path parameters type
+ * @see {@link GET_UsersUserId_Request_Body} - Request body type
  */
-export type GET_UsersUserId_V1_Request = {
+export type GET_UsersUserId_Request = {
   parameters: {
     query: operations['get_user_v1_users__user_id__get']['parameters']['query'];
     path: operations['get_user_v1_users__user_id__get']['parameters']['path'];
@@ -3296,7 +3296,7 @@ export type GET_UsersUserId_V1_Request = {
  *
  * @path /v1/users/{user_id}
  */
-export type GET_UsersUserId_V1_Request_Parameters_Query = GET_UsersUserId_V1_Request['parameters']['query'];
+export type GET_UsersUserId_Request_Query = GET_UsersUserId_Request['parameters']['query'];
 /**
  * Path parameters for GET /v1/users/{user_id}
  *
@@ -3309,7 +3309,7 @@ export type GET_UsersUserId_V1_Request_Parameters_Query = GET_UsersUserId_V1_Req
  *
  * @path /v1/users/{user_id}
  */
-export type GET_UsersUserId_V1_Request_Parameters_Path = GET_UsersUserId_V1_Request['parameters']['path'];
+export type GET_UsersUserId_Request_Path = GET_UsersUserId_Request['parameters']['path'];
 
 /**
  * Request type for PATCH UsersUserId endpoint
@@ -3326,11 +3326,11 @@ export type GET_UsersUserId_V1_Request_Parameters_Path = GET_UsersUserId_V1_Requ
  *
  * @path /v1/users/{user_id}
  *
- * @see {@link PATCH_UsersUserId_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_UsersUserId_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_UsersUserId_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_UsersUserId_Request_Query} - Query parameters type
+ * @see {@link PATCH_UsersUserId_Request_Path} - Path parameters type
+ * @see {@link PATCH_UsersUserId_Request_Body} - Request body type
  */
-export type PATCH_UsersUserId_V1_Request = {
+export type PATCH_UsersUserId_Request = {
   parameters: {
     path: operations['update_user_v1_users__user_id__patch']['parameters']['path'];
   };
@@ -3348,7 +3348,7 @@ export type PATCH_UsersUserId_V1_Request = {
  *
  * @path /v1/users/{user_id}
  */
-export type PATCH_UsersUserId_V1_Request_Parameters_Path = PATCH_UsersUserId_V1_Request['parameters']['path'];
+export type PATCH_UsersUserId_Request_Path = PATCH_UsersUserId_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/users/{user_id}
  *
@@ -3361,7 +3361,7 @@ export type PATCH_UsersUserId_V1_Request_Parameters_Path = PATCH_UsersUserId_V1_
  *
  * @path /v1/users/{user_id}
  */
-export type PATCH_UsersUserId_V1_Request_RequestBody = PATCH_UsersUserId_V1_Request['requestBody'];
+export type PATCH_UsersUserId_Request_Body = PATCH_UsersUserId_Request['requestBody'];
 
 /**
  * Request type for GET UsersUserIdPermissions endpoint
@@ -3378,11 +3378,11 @@ export type PATCH_UsersUserId_V1_Request_RequestBody = PATCH_UsersUserId_V1_Requ
  *
  * @path /v1/users/{user_id}/permissions
  *
- * @see {@link GET_UsersUserIdPermissions_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_UsersUserIdPermissions_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_UsersUserIdPermissions_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_UsersUserIdPermissions_Request_Query} - Query parameters type
+ * @see {@link GET_UsersUserIdPermissions_Request_Path} - Path parameters type
+ * @see {@link GET_UsersUserIdPermissions_Request_Body} - Request body type
  */
-export type GET_UsersUserIdPermissions_V1_Request = {
+export type GET_UsersUserIdPermissions_Request = {
   parameters: {
     path: operations['get_user_permissions_v1_users__user_id__permissions_get']['parameters']['path'];
   };
@@ -3399,7 +3399,7 @@ export type GET_UsersUserIdPermissions_V1_Request = {
  *
  * @path /v1/users/{user_id}/permissions
  */
-export type GET_UsersUserIdPermissions_V1_Request_Parameters_Path = GET_UsersUserIdPermissions_V1_Request['parameters']['path'];
+export type GET_UsersUserIdPermissions_Request_Path = GET_UsersUserIdPermissions_Request['parameters']['path'];
 
 /**
  * Request type for GET UsersUserIdRoles endpoint
@@ -3416,11 +3416,11 @@ export type GET_UsersUserIdPermissions_V1_Request_Parameters_Path = GET_UsersUse
  *
  * @path /v1/users/{user_id}/roles
  *
- * @see {@link GET_UsersUserIdRoles_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link GET_UsersUserIdRoles_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link GET_UsersUserIdRoles_V1_Request_RequestBody} - Request body type
+ * @see {@link GET_UsersUserIdRoles_Request_Query} - Query parameters type
+ * @see {@link GET_UsersUserIdRoles_Request_Path} - Path parameters type
+ * @see {@link GET_UsersUserIdRoles_Request_Body} - Request body type
  */
-export type GET_UsersUserIdRoles_V1_Request = {
+export type GET_UsersUserIdRoles_Request = {
   parameters: {
     path: operations['list_roles_v1_users__user_id__roles_get']['parameters']['path'];
   };
@@ -3437,7 +3437,7 @@ export type GET_UsersUserIdRoles_V1_Request = {
  *
  * @path /v1/users/{user_id}/roles
  */
-export type GET_UsersUserIdRoles_V1_Request_Parameters_Path = GET_UsersUserIdRoles_V1_Request['parameters']['path'];
+export type GET_UsersUserIdRoles_Request_Path = GET_UsersUserIdRoles_Request['parameters']['path'];
 
 /**
  * Request type for PATCH UsersUserIdRoles endpoint
@@ -3454,11 +3454,11 @@ export type GET_UsersUserIdRoles_V1_Request_Parameters_Path = GET_UsersUserIdRol
  *
  * @path /v1/users/{user_id}/roles
  *
- * @see {@link PATCH_UsersUserIdRoles_V1_Request_Parameters_Query} - Query parameters type
- * @see {@link PATCH_UsersUserIdRoles_V1_Request_Parameters_Path} - Path parameters type
- * @see {@link PATCH_UsersUserIdRoles_V1_Request_RequestBody} - Request body type
+ * @see {@link PATCH_UsersUserIdRoles_Request_Query} - Query parameters type
+ * @see {@link PATCH_UsersUserIdRoles_Request_Path} - Path parameters type
+ * @see {@link PATCH_UsersUserIdRoles_Request_Body} - Request body type
  */
-export type PATCH_UsersUserIdRoles_V1_Request = {
+export type PATCH_UsersUserIdRoles_Request = {
   parameters: {
     path: operations['update_user_relations_v1_users__user_id__roles_patch']['parameters']['path'];
   };
@@ -3476,7 +3476,7 @@ export type PATCH_UsersUserIdRoles_V1_Request = {
  *
  * @path /v1/users/{user_id}/roles
  */
-export type PATCH_UsersUserIdRoles_V1_Request_Parameters_Path = PATCH_UsersUserIdRoles_V1_Request['parameters']['path'];
+export type PATCH_UsersUserIdRoles_Request_Path = PATCH_UsersUserIdRoles_Request['parameters']['path'];
 /**
  * Request body for PATCH /v1/users/{user_id}/roles
  *
@@ -3489,5 +3489,5 @@ export type PATCH_UsersUserIdRoles_V1_Request_Parameters_Path = PATCH_UsersUserI
  *
  * @path /v1/users/{user_id}/roles
  */
-export type PATCH_UsersUserIdRoles_V1_Request_RequestBody = PATCH_UsersUserIdRoles_V1_Request['requestBody'];
+export type PATCH_UsersUserIdRoles_Request_Body = PATCH_UsersUserIdRoles_Request['requestBody'];
 
