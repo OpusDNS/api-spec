@@ -1,5 +1,28 @@
 components:
   schemas:
+    AllocationMethodType:
+      enum:
+      - fcfs
+      - auction
+      - lottery
+      title: AllocationMethodType
+      type: string
+    AllowedNumberOfNameserverBase:
+      properties:
+        max:
+          description: Maximum number of nameserver per domain name
+          title: Max
+          type: integer
+        min:
+          description: Minimum number of nameserver per domain name
+          minimum: 0.0
+          title: Min
+          type: integer
+      required:
+      - min
+      - max
+      title: AllowedNumberOfNameserverBase
+      type: object
     Body_issue_organization_token_v1_auth_token_post:
       properties:
         client_id:
@@ -79,6 +102,27 @@ components:
       - failed
       title: BulkOperationStatus
       type: string
+    ContactConfigBase:
+      properties:
+        max:
+          description: Maximum contacts per domain name
+          minimum: 0.0
+          title: Max
+          type: integer
+        min:
+          description: Minimum contacts per domain name
+          minimum: 0.0
+          title: Min
+          type: integer
+        type:
+          $ref: '#/components/schemas/ContactRoleType'
+          description: The type of contact
+      required:
+      - type
+      - min
+      - max
+      title: ContactConfigBase
+      type: object
     ContactCreate:
       properties:
         city:
@@ -266,6 +310,14 @@ components:
       - disclose
       title: ContactResponse
       type: object
+    ContactRoleType:
+      enum:
+      - registrant
+      - admin
+      - tech
+      - billing
+      title: ContactRoleType
+      type: string
     ContactSchema:
       properties:
         city:
@@ -567,11 +619,78 @@ components:
       - type
       title: ContactVerificationResponse
       type: object
+    ContactsBase:
+      properties:
+        authinfo_required:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the registry requires authinfo for contact creation
+          title: Authinfo Required
+        is_thick:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the registry supports thick contacts
+          title: Is Thick
+        privacy_proxy:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether a privacy service is allowed
+          title: Privacy Proxy
+        registrant_change:
+          anyOf:
+          - $ref: '#/components/schemas/RegistrantChangeType'
+          - type: 'null'
+          description: Whether the registrant can change through update or trade
+        support_check:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the registry supports contact checks
+          title: Support Check
+        support_client_contact_id:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the registry supports client defined contact ID
+          title: Support Client Contact Id
+        support_transfer:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the registry supports contact transfer
+          title: Support Transfer
+        supported_postal_types:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PostalAddressType'
+            type: array
+          - type: 'null'
+          description: Supported postal address types
+          title: Supported Postal Types
+        supported_roles:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ContactConfigBase'
+            type: array
+          - type: 'null'
+          description: Supported contact roles
+          title: Supported Roles
+      title: ContactsBase
+      type: object
     Currency:
       enum:
       - USD
       - EUR
       title: Currency
+      type: string
+    DeletePolicyType:
+      enum:
+      - immediate
+      - expiration
+      title: DeletePolicyType
       type: string
     DeletedEvent:
       properties:
@@ -647,6 +766,60 @@ components:
       - num_changes
       - changes
       title: DnsChangesResponse
+      type: object
+    DnsConfigurationBase:
+      properties:
+        allowed_number_of_nameserver:
+          $ref: '#/components/schemas/AllowedNumberOfNameserverBase'
+        czds_available:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether the zone is available in CZDS
+          title: Czds Available
+        dnssec_allowed:
+          description: Whether the registry supports DNSSEC
+          title: Dnssec Allowed
+          type: boolean
+        dnssec_mandatory:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether DNSSEC is mandatory for a domain name
+          title: Dnssec Mandatory
+        dnssec_mode:
+          anyOf:
+          - $ref: '#/components/schemas/DnssecModeType'
+          - type: 'null'
+          description: DNSSEC mode
+        host_objects:
+          description: Whether the registry supports host objects or use attributes
+          title: Host Objects
+          type: boolean
+        host_parent_check_tlds:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: TLDs that require parent-host checks (ns1.example.com => example.com)
+          title: Host Parent Check Tlds
+        registry_nameserver_check:
+          description: Whether the registry checks the nameserver configuration
+          title: Registry Nameserver Check
+          type: boolean
+        registry_root_nameserver_update:
+          description: Number of hours until the root zone is updated, 0 = real-time
+          minimum: 0.0
+          title: Registry Root Nameserver Update
+          type: integer
+      required:
+      - allowed_number_of_nameserver
+      - registry_nameserver_check
+      - dnssec_allowed
+      - registry_root_nameserver_update
+      - host_objects
+      title: DnsConfigurationBase
       type: object
     DnsRecordCreate:
       properties:
@@ -887,6 +1060,12 @@ components:
       - 6
       title: DnssecDigestType
       type: integer
+    DnssecModeType:
+      enum:
+      - DS
+      - DNSKEY
+      title: DnssecModeType
+      type: string
     DnssecRecordType:
       enum:
       - ds_data
@@ -1141,6 +1320,115 @@ components:
       - record_type
       - algorithm
       title: DomainDnssecDataResponse
+      type: object
+    DomainLifecycleBase:
+      properties:
+        add_grace_period:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Add grace period in days after registration in ISO 8601 format
+            (e.g., 5D, 3D)
+          title: Add Grace Period
+        auto_renew_before_expiration:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Time before expiration to auto-renew a domain in ISO 8601 format
+            (e.g., 5D, -7D)
+          title: Auto Renew Before Expiration
+        delete_before_expiration:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Time before expiration to delete a domain in ISO 8601 format
+            (e.g., 5D, -7D)
+          title: Delete Before Expiration
+        delete_policy:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DeletePolicyType'
+            type: array
+          - type: 'null'
+          description: How a domain can be deleted
+          title: Delete Policy
+        explicit_renew:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether an explicit renewal is possible
+          title: Explicit Renew
+        grace_period:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Grace period after expiration in ISO 8601 format (e.g., 5D,
+            -7D)
+          examples:
+          - P5D
+          - P30D
+          title: Grace Period
+        pending_delete:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Pending delete period in ISO 8601 format (e.g., 5D, 10D) after
+            redemption_period
+          title: Pending Delete
+        redemption_period:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Redemption period for domain recovery after grace period in
+            ISO 8601 format (e.g., 5D, -7D)
+          title: Redemption Period
+        registration_periods:
+          $ref: '#/components/schemas/PeriodList'
+          description: List of allowed registration periods (e.g., '1y' or ['1y',
+            '2y', '5y'])
+        registry_auto_renew:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Does the registry enforce auto-renewal
+          title: Registry Auto Renew
+        renewal_periods:
+          $ref: '#/components/schemas/PeriodList'
+          description: List of allowed renewal periods (e.g., '1y' or ['1y', '2y',
+            '5y'])
+        sync_after_operations:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SyncOperationType'
+            type: array
+          - type: 'null'
+          description: Operations that trigger a sync with the registry
+          title: Sync After Operations
+      title: DomainLifecycleBase
       type: object
     DomainNameParts:
       properties:
@@ -1438,6 +1726,25 @@ components:
       - clientHold
       title: DomainStatus
       type: string
+    DomainStatusesBase:
+      properties:
+        default:
+          description: The default status for an active domain with no restrictions
+          items:
+            type: string
+          title: Default
+          type: array
+        supported_statuses:
+          description: Supported domain statuses
+          items:
+            $ref: '#/components/schemas/DomainStatus'
+          title: Supported Statuses
+          type: array
+      required:
+      - default
+      - supported_statuses
+      title: DomainStatusesBase
+      type: object
     DomainSummaryData:
       properties:
         by_status:
@@ -1921,6 +2228,17 @@ components:
       - OUTBOUND_TRANSFER
       title: EventType
       type: string
+    GeneralAvailabilityBase:
+      properties:
+        start_date:
+          description: Start date of general availability
+          format: date-time
+          title: Start Date
+          type: string
+      required:
+      - start_date
+      title: GeneralAvailabilityBase
+      type: object
     GrantType:
       enum:
       - client_credentials
@@ -1949,6 +2267,24 @@ components:
       - errors
       - status
       title: RequestValidationError
+      type: object
+    IdnBase:
+      properties:
+        idn_capable:
+          description: IDN allowed
+          title: Idn Capable
+          type: boolean
+        idn_tables:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Allowed IDN characters, file with the IDN codes
+          title: Idn Tables
+      required:
+      - idn_capable
+      title: IdnBase
       type: object
     IpRestrictionCreate:
       properties:
@@ -2029,6 +2365,112 @@ components:
       title: IpRestrictionUpdate
       type: object
     JsonValue: {}
+    LaunchPhaseBase:
+      properties:
+        allocation:
+          anyOf:
+          - $ref: '#/components/schemas/AllocationMethodType'
+          - type: 'null'
+          description: Allocation method
+        end_date:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: End date of the phase
+          title: End Date
+        smd_required:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether an SMD file is required for participation
+          title: Smd Required
+        start_date:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Start date of the phase
+          title: Start Date
+        supported:
+          description: Whether this phase is supported
+          title: Supported
+          type: boolean
+        type:
+          $ref: '#/components/schemas/LaunchPhaseType'
+          description: Type of launch phase
+      required:
+      - type
+      - supported
+      title: LaunchPhaseBase
+      type: object
+    LaunchPhaseType:
+      enum:
+      - sunrise
+      - landrush
+      - eap
+      title: LaunchPhaseType
+      type: string
+    LaunchPhasesBase:
+      properties:
+        general_availability:
+          $ref: '#/components/schemas/GeneralAvailabilityBase'
+        phases:
+          default: []
+          items:
+            $ref: '#/components/schemas/LaunchPhaseBase'
+          title: Phases
+          type: array
+        trademark_claims:
+          anyOf:
+          - $ref: '#/components/schemas/TrademarkClaimsBase'
+          - type: 'null'
+      required:
+      - general_availability
+      title: LaunchPhasesBase
+      type: object
+    LocalPresenceBase:
+      properties:
+        eligible_countries:
+          anyOf:
+          - items:
+              pattern: ^\w{2}$
+              type: string
+            type: array
+          - type: 'null'
+          description: ISO 3166-1 Alpha-2 country code
+          title: Eligible Countries
+        required:
+          description: Whether a local presence is required to register and maintain
+            a domain name
+          title: Required
+          type: boolean
+        requirement:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocalPresenceRequirementType'
+            type: array
+          - type: 'null'
+          description: Type of local presence requirement
+          title: Requirement
+        type:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ContactRoleType'
+            type: array
+          - type: 'null'
+          description: Who must meet the requirement
+          title: Type
+      required:
+      - required
+      title: LocalPresenceBase
+      type: object
+    LocalPresenceRequirementType:
+      enum:
+      - physical_address
+      - business_entity
+      title: LocalPresenceRequirementType
+      type: string
     Nameserver:
       properties:
         hostname:
@@ -3219,6 +3661,27 @@ components:
       - remove
       title: PatchOp
       type: string
+    Period:
+      properties:
+        unit:
+          $ref: '#/components/schemas/PeriodUnit'
+          description: The unit of the period
+        value:
+          description: Amount of time in the unit
+          exclusiveMinimum: 0.0
+          title: Value
+          type: integer
+      required:
+      - value
+      - unit
+      title: Period
+      type: object
+    PeriodList:
+      anyOf:
+      - items:
+          $ref: '#/components/schemas/Period'
+        type: array
+      - type: 'null'
     PeriodUnit:
       enum:
       - y
@@ -3286,6 +3749,55 @@ components:
           default: basic_plan
       title: PlanUpdate
       type: object
+    PostTransferRequirements:
+      enum:
+      - update_contacts
+      - tld_specific
+      title: PostTransferRequirements
+      type: string
+    PostalAddressType:
+      enum:
+      - loc
+      - int
+      title: PostalAddressType
+      type: string
+    PremiumAffectsType:
+      enum:
+      - registration
+      - renewal
+      title: PremiumAffectsType
+      type: string
+    PremiumDomainsBase:
+      properties:
+        affects:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PremiumAffectsType'
+            type: array
+          - type: 'null'
+          description: What operations are affected by premium status
+          title: Affects
+        source:
+          anyOf:
+          - $ref: '#/components/schemas/PremiumSourceType'
+          - type: 'null'
+          description: Source of premium domain information
+        supported:
+          description: Whether the registry has premium domains
+          title: Supported
+          type: boolean
+      required:
+      - supported
+      title: PremiumDomainsBase
+      type: object
+    PremiumSourceType:
+      enum:
+      - EPP
+      - API
+      - CSV
+      - manual
+      title: PremiumSourceType
+      type: string
     Problem:
       properties:
         detail:
@@ -3308,6 +3820,55 @@ components:
       - detail
       - status
       title: Problem
+      type: object
+    RdapBase:
+      properties:
+        rdap_server:
+          anyOf:
+          - format: uri
+            maxLength: 2083
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: RDAP server URL
+          title: Rdap Server
+      title: RdapBase
+      type: object
+    RegistrantChangeType:
+      enum:
+      - update
+      - trade
+      title: RegistrantChangeType
+      type: string
+    RegistryLockBase:
+      properties:
+        prevents:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: What operations are prevented by registry lock
+          title: Prevents
+        removal_process:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Process for unlocking the domain
+          title: Removal Process
+        requires_manual_request:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether a manual request is required
+          title: Requires Manual Request
+        supported:
+          description: Whether the registry provides a Registry Lock feature
+          title: Supported
+          type: boolean
+      required:
+      - supported
+      title: RegistryLockBase
       type: object
     Relation:
       enum:
@@ -3348,6 +3909,37 @@ components:
       - delete
       title: RenewalMode
       type: string
+    ReservedDomainsBase:
+      properties:
+        source:
+          anyOf:
+          - $ref: '#/components/schemas/ReservedSourceType'
+          - type: 'null'
+          description: Source of reserved domain information
+        supported:
+          description: Registry provides a reserved list
+          title: Supported
+          type: boolean
+        url:
+          anyOf:
+          - format: uri
+            maxLength: 2083
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Link to reserved list
+          title: Url
+      required:
+      - supported
+      title: ReservedDomainsBase
+      type: object
+    ReservedSourceType:
+      enum:
+      - API
+      - CSV
+      - manual
+      title: ReservedSourceType
+      type: string
     SignupCreate:
       properties:
         organization:
@@ -3365,6 +3957,23 @@ components:
       - user
       - organization
       title: SignupCreate
+      type: object
+    SldLength:
+      properties:
+        max:
+          description: Maximum length of a domain name
+          maximum: 63.0
+          title: Max
+          type: integer
+        min:
+          description: Minimum length of a domain name
+          minimum: 1.0
+          title: Min
+          type: integer
+      required:
+      - min
+      - max
+      title: SldLength
       type: object
     SortOrder:
       enum:
@@ -3390,6 +3999,19 @@ components:
           title: Remove
       title: SpiceDbRelationshipUpdate
       type: object
+    SyncOperationType:
+      enum:
+      - registration
+      - renewal
+      - transfer
+      title: SyncOperationType
+      type: string
+    TLDType:
+      enum:
+      - gTLD
+      - ccTLD
+      title: TLDType
+      type: string
     TermsOfServiceAccept:
       properties:
         accepted:
@@ -3399,6 +4021,153 @@ components:
       - accepted
       title: TermsOfServiceAccept
       type: object
+    TldBase:
+      properties:
+        name:
+          description: The TLD being configured
+          title: Name
+          type: string
+        type:
+          $ref: '#/components/schemas/TLDType'
+          description: The type of the TLD (e.g., gTLD, ccTLD)
+      required:
+      - name
+      - type
+      title: TldBase
+      type: object
+    TldResponseShort:
+      properties:
+        tld:
+          examples:
+          - com
+          - org
+          - net
+          title: Tld
+          type: string
+        type:
+          $ref: '#/components/schemas/TLDType'
+          examples:
+          - gTLD
+          - ccTLD
+      required:
+      - tld
+      - type
+      title: TldResponseShort
+      type: object
+    TldSpecificationResponse:
+      properties:
+        characters:
+          $ref: '#/components/schemas/SldLength'
+          description: Character limits for domain names
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/ContactsBase'
+          - type: 'null'
+          description: Contacts configuration
+        dns_configuration:
+          $ref: '#/components/schemas/DnsConfigurationBase'
+          description: DNS configuration
+        domain_lifecycle:
+          $ref: '#/components/schemas/DomainLifecycleBase'
+          description: Domain lifecycle configuration
+        domain_statuses:
+          $ref: '#/components/schemas/DomainStatusesBase'
+          description: Domain statuses configuration
+        idn:
+          $ref: '#/components/schemas/IdnBase'
+          description: IDN configuration
+        launch_phases:
+          anyOf:
+          - $ref: '#/components/schemas/LaunchPhasesBase'
+          - type: 'null'
+          description: Launch phases configuration
+        local_presence:
+          anyOf:
+          - $ref: '#/components/schemas/LocalPresenceBase'
+          - type: 'null'
+          description: Local presence requirements
+        premium_domains:
+          anyOf:
+          - $ref: '#/components/schemas/PremiumDomainsBase'
+          - type: 'null'
+          description: Premium domains configuration
+        rdap:
+          anyOf:
+          - $ref: '#/components/schemas/RdapBase'
+          - type: 'null'
+          description: RDAP configuration
+        registry_lock:
+          anyOf:
+          - $ref: '#/components/schemas/RegistryLockBase'
+          - type: 'null'
+          description: Registry lock configuration
+        reserved_domains:
+          anyOf:
+          - $ref: '#/components/schemas/ReservedDomainsBase'
+          - type: 'null'
+          description: Reserved domains configuration
+        tlds:
+          description: List of TLDs being configured
+          items:
+            $ref: '#/components/schemas/TldBase'
+          title: Tlds
+          type: array
+        transfer_policies:
+          $ref: '#/components/schemas/TransferPoliciesBase'
+          description: Transfer policies configuration
+        whois:
+          anyOf:
+          - $ref: '#/components/schemas/WhoisBase'
+          - type: 'null'
+          description: WHOIS configuration
+      required:
+      - tlds
+      - domain_lifecycle
+      - domain_statuses
+      - characters
+      - idn
+      - dns_configuration
+      - transfer_policies
+      title: TldSpecificationResponse
+      type: object
+    TrademarkClaimsBase:
+      properties:
+        end_date:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: End date of trademark claims
+          title: End Date
+        start_date:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Start date of trademark claims
+          title: Start Date
+        supported:
+          description: Whether trademark claims are supported
+          title: Supported
+          type: boolean
+        tmch_required:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: If true, claim notifications are mandatory within the timeframe
+          title: Tmch Required
+      required:
+      - supported
+      title: TrademarkClaimsBase
+      type: object
+    TransferAckType:
+      enum:
+      - none
+      - registrar
+      - registrant
+      - both
+      title: TransferAckType
+      type: string
     TransferEvent:
       properties:
         current_registrar:
@@ -3423,6 +4192,116 @@ components:
       - current_registrar
       - expiration_date
       title: TransferEvent
+      type: object
+    TransferPoliciesBase:
+      properties:
+        authinfo_max_length:
+          anyOf:
+          - minimum: 1.0
+            type: integer
+          - type: 'null'
+          description: Maximum length of the auth info
+          title: Authinfo Max Length
+        authinfo_min_length:
+          anyOf:
+          - minimum: 1.0
+            type: integer
+          - type: 'null'
+          description: Minimum length of the auth info
+          title: Authinfo Min Length
+        authinfo_required:
+          description: Whether an auth info is required for transfers
+          title: Authinfo Required
+          type: boolean
+        authinfo_time_limited:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether an auth info has a time limit
+          title: Authinfo Time Limited
+        authinfo_validity_period:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Validity period of the auth info (e.g., '5D' for 5 days)
+          title: Authinfo Validity Period
+        info_contact_authinfo:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether querying a foreign contact with authinfo is possible
+          title: Info Contact Authinfo
+        info_domain_authinfo:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether querying a foreign domain with authinfo is possible
+          title: Info Domain Authinfo
+        post_transfer_requirements:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PostTransferRequirements'
+            type: array
+          - type: 'null'
+          description: 'Post-transfer requirements: lists the behaviors, as in [''update_contacts'',
+            ''set_transfer_lock''] or [ ''tld_specific'' ] for specific behavior'
+          title: Post Transfer Requirements
+        transfer_ack:
+          anyOf:
+          - $ref: '#/components/schemas/TransferAckType'
+          - type: 'null'
+          description: Whether a transfer can be approved
+        transfer_email_required:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether an email confirmation is required to perform the transfer
+          title: Transfer Email Required
+        transfer_lock_enabled:
+          description: Whether transfers are locked by default in our system
+          title: Transfer Lock Enabled
+          type: boolean
+        transfer_nack:
+          anyOf:
+          - $ref: '#/components/schemas/TransferAckType'
+          - type: 'null'
+          description: Whether a transfer can be denied
+        transfer_renewal_period:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: If transfer_renews_domain is true, the renewal period (e.g.,
+            '1Y' for 1 year)
+          title: Transfer Renewal Period
+        transfer_renews_domain:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether a transfer triggers a domain renewal
+          title: Transfer Renews Domain
+        transfer_time:
+          anyOf:
+          - examples:
+            - P5D
+            - P1Y
+            pattern: ^\-?P?(\d+Y)?(\d+M)?(\d+D)?T?(\d+H)?(\d+M)?(\d+S)?$
+            type: string
+          - type: 'null'
+          description: Time duration of transfers in ISO 8601 format (e.g., 5D, -7D)
+            according to the policy, 0 = real-time
+          title: Transfer Time
+      required:
+      - transfer_lock_enabled
+      - authinfo_required
+      title: TransferPoliciesBase
       type: object
     User:
       properties:
@@ -3970,6 +4849,16 @@ components:
       - email
       title: VerificationType
       type: string
+    WhoisBase:
+      properties:
+        whois_server:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: WHOIS server
+          title: Whois Server
+      title: WhoisBase
+      type: object
     ZoneSortField:
       enum:
       - name
@@ -4064,7 +4953,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-31-022547
+  version: 2025-07-31-173148
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7664,6 +8553,64 @@ paths:
       summary: Change Plan
       tags:
       - organization
+  /v1/tlds/portfolio:
+    get:
+      operationId: get_tld_portfolio_v1_tlds_portfolio_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TldResponseShort'
+                title: Response Get Tld Portfolio V1 Tlds Portfolio Get
+                type: array
+          description: Successful Response
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Tld Portfolio
+      tags:
+      - tld
+  /v1/tlds/{tld}:
+    get:
+      operationId: get_tld_spec_v1_tlds__tld__get
+      parameters:
+      - in: path
+        name: tld
+        required: true
+        schema:
+          title: Tld
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TldSpecificationResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_TLD_NOT_FOUND
+                detail: Unknown TLD
+                status: 404
+                title: TLD ERROR
+                type: tld-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Tld Spec
+      tags:
+      - tld
   /v1/users:
     post:
       operationId: create_user_v1_users_post

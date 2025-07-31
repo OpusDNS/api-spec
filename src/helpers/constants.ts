@@ -21,7 +21,59 @@
  * ```
  */
 
-import { BulkOperationStatus, ContactSortField, Currency, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailForwardStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, Relation, RenewalMode, SortOrder, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, BulkOperationStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailForwardStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+
+/**
+ * AllocationMethodType. Auto-generated enum for AllocationMethodType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the AllocationMethodType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = ALLOCATION_METHOD_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = ALLOCATION_METHOD_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link AllocationMethodType} - The TypeScript type definition
+ */
+export const ALLOCATION_METHOD_TYPE = {
+  FCFS: "fcfs",
+  AUCTION: "auction",
+  LOTTERY: "lottery",
+} as const satisfies Record<string, AllocationMethodType>;
+
+/**
+ * Array of all AllocationMethodType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid AllocationMethodType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of ALLOCATION_METHOD_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = ALLOCATION_METHOD_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link AllocationMethodType} - The TypeScript type definition
+ * @see {@link ALLOCATION_METHOD_TYPE} - The object form of this enum
+ */
+export const ALLOCATION_METHOD_TYPE_VALUES = [
+  'fcfs',
+  'auction',
+  'lottery'
+] as const satisfies [string, ...string[]] | AllocationMethodType[];
 
 /**
  * BulkOperationStatus. Auto-generated enum for BulkOperationStatus
@@ -72,6 +124,60 @@ export const BULK_OPERATION_STATUS_VALUES = [
   'success',
   'failed'
 ] as const satisfies [string, ...string[]] | BulkOperationStatus[];
+
+/**
+ * ContactRoleType. Auto-generated enum for ContactRoleType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the ContactRoleType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = CONTACT_ROLE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = CONTACT_ROLE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link ContactRoleType} - The TypeScript type definition
+ */
+export const CONTACT_ROLE_TYPE = {
+  REGISTRANT: "registrant",
+  ADMIN: "admin",
+  TECH: "tech",
+  BILLING: "billing",
+} as const satisfies Record<string, ContactRoleType>;
+
+/**
+ * Array of all ContactRoleType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid ContactRoleType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of CONTACT_ROLE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = CONTACT_ROLE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link ContactRoleType} - The TypeScript type definition
+ * @see {@link CONTACT_ROLE_TYPE} - The object form of this enum
+ */
+export const CONTACT_ROLE_TYPE_VALUES = [
+  'registrant',
+  'admin',
+  'tech',
+  'billing'
+] as const satisfies [string, ...string[]] | ContactRoleType[];
 
 /**
  * ContactSortField. Auto-generated enum for ContactSortField
@@ -176,6 +282,56 @@ export const CURRENCY_VALUES = [
   'USD',
   'EUR'
 ] as const satisfies [string, ...string[]] | Currency[];
+
+/**
+ * DeletePolicyType. Auto-generated enum for DeletePolicyType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the DeletePolicyType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = DELETE_POLICY_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = DELETE_POLICY_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link DeletePolicyType} - The TypeScript type definition
+ */
+export const DELETE_POLICY_TYPE = {
+  IMMEDIATE: "immediate",
+  EXPIRATION: "expiration",
+} as const satisfies Record<string, DeletePolicyType>;
+
+/**
+ * Array of all DeletePolicyType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid DeletePolicyType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of DELETE_POLICY_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = DELETE_POLICY_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link DeletePolicyType} - The TypeScript type definition
+ * @see {@link DELETE_POLICY_TYPE} - The object form of this enum
+ */
+export const DELETE_POLICY_TYPE_VALUES = [
+  'immediate',
+  'expiration'
+] as const satisfies [string, ...string[]] | DeletePolicyType[];
 
 /**
  * DnsChangeAction. Auto-generated enum for DnsChangeAction
@@ -366,6 +522,56 @@ export const DNSSEC_DIGEST_TYPE = [
   5,
   6
 ] as const satisfies DnssecDigestType[];
+
+/**
+ * DnssecModeType. Auto-generated enum for DnssecModeType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the DnssecModeType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = DNSSEC_MODE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = DNSSEC_MODE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link DnssecModeType} - The TypeScript type definition
+ */
+export const DNSSEC_MODE_TYPE = {
+  DS: "DS",
+  DNSKEY: "DNSKEY",
+} as const satisfies Record<string, DnssecModeType>;
+
+/**
+ * Array of all DnssecModeType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid DnssecModeType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of DNSSEC_MODE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = DNSSEC_MODE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link DnssecModeType} - The TypeScript type definition
+ * @see {@link DNSSEC_MODE_TYPE} - The object form of this enum
+ */
+export const DNSSEC_MODE_TYPE_VALUES = [
+  'DS',
+  'DNSKEY'
+] as const satisfies [string, ...string[]] | DnssecModeType[];
 
 /**
  * DnssecRecordType. Auto-generated enum for DnssecRecordType
@@ -1106,6 +1312,108 @@ export const GRANT_TYPE_VALUES = [
 ] as const satisfies [string, ...string[]] | GrantType[];
 
 /**
+ * LaunchPhaseType. Auto-generated enum for LaunchPhaseType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the LaunchPhaseType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = LAUNCH_PHASE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = LAUNCH_PHASE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link LaunchPhaseType} - The TypeScript type definition
+ */
+export const LAUNCH_PHASE_TYPE = {
+  SUNRISE: "sunrise",
+  LANDRUSH: "landrush",
+  EAP: "eap",
+} as const satisfies Record<string, LaunchPhaseType>;
+
+/**
+ * Array of all LaunchPhaseType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid LaunchPhaseType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of LAUNCH_PHASE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = LAUNCH_PHASE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link LaunchPhaseType} - The TypeScript type definition
+ * @see {@link LAUNCH_PHASE_TYPE} - The object form of this enum
+ */
+export const LAUNCH_PHASE_TYPE_VALUES = [
+  'sunrise',
+  'landrush',
+  'eap'
+] as const satisfies [string, ...string[]] | LaunchPhaseType[];
+
+/**
+ * LocalPresenceRequirementType. Auto-generated enum for LocalPresenceRequirementType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the LocalPresenceRequirementType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = LOCAL_PRESENCE_REQUIREMENT_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link LocalPresenceRequirementType} - The TypeScript type definition
+ */
+export const LOCAL_PRESENCE_REQUIREMENT_TYPE = {
+  PHYSICAL_ADDRESS: "physical_address",
+  BUSINESS_ENTITY: "business_entity",
+} as const satisfies Record<string, LocalPresenceRequirementType>;
+
+/**
+ * Array of all LocalPresenceRequirementType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid LocalPresenceRequirementType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link LocalPresenceRequirementType} - The TypeScript type definition
+ * @see {@link LOCAL_PRESENCE_REQUIREMENT_TYPE} - The object form of this enum
+ */
+export const LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES = [
+  'physical_address',
+  'business_entity'
+] as const satisfies [string, ...string[]] | LocalPresenceRequirementType[];
+
+/**
  * OrganizationCredentialStatus. Auto-generated enum for OrganizationCredentialStatus
  *
  * @remarks
@@ -1472,6 +1780,260 @@ export const PLAN_RELATION_VALUES = [
 ] as const satisfies [string, ...string[]] | PlanRelation[];
 
 /**
+ * PostTransferRequirements. Auto-generated enum for PostTransferRequirements
+ *
+ * @remarks
+ * This constant provides both object and array forms for the PostTransferRequirements enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = POST_TRANSFER_REQUIREMENTS.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = POST_TRANSFER_REQUIREMENTS_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link PostTransferRequirements} - The TypeScript type definition
+ */
+export const POST_TRANSFER_REQUIREMENTS = {
+  UPDATE_CONTACTS: "update_contacts",
+  TLD_SPECIFIC: "tld_specific",
+} as const satisfies Record<string, PostTransferRequirements>;
+
+/**
+ * Array of all PostTransferRequirements enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid PostTransferRequirements enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of POST_TRANSFER_REQUIREMENTS_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = POST_TRANSFER_REQUIREMENTS_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link PostTransferRequirements} - The TypeScript type definition
+ * @see {@link POST_TRANSFER_REQUIREMENTS} - The object form of this enum
+ */
+export const POST_TRANSFER_REQUIREMENTS_VALUES = [
+  'update_contacts',
+  'tld_specific'
+] as const satisfies [string, ...string[]] | PostTransferRequirements[];
+
+/**
+ * PostalAddressType. Auto-generated enum for PostalAddressType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the PostalAddressType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = POSTAL_ADDRESS_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = POSTAL_ADDRESS_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link PostalAddressType} - The TypeScript type definition
+ */
+export const POSTAL_ADDRESS_TYPE = {
+  LOC: "loc",
+  INT: "int",
+} as const satisfies Record<string, PostalAddressType>;
+
+/**
+ * Array of all PostalAddressType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid PostalAddressType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of POSTAL_ADDRESS_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = POSTAL_ADDRESS_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link PostalAddressType} - The TypeScript type definition
+ * @see {@link POSTAL_ADDRESS_TYPE} - The object form of this enum
+ */
+export const POSTAL_ADDRESS_TYPE_VALUES = [
+  'loc',
+  'int'
+] as const satisfies [string, ...string[]] | PostalAddressType[];
+
+/**
+ * PremiumAffectsType. Auto-generated enum for PremiumAffectsType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the PremiumAffectsType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = PREMIUM_AFFECTS_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = PREMIUM_AFFECTS_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link PremiumAffectsType} - The TypeScript type definition
+ */
+export const PREMIUM_AFFECTS_TYPE = {
+  REGISTRATION: "registration",
+  RENEWAL: "renewal",
+} as const satisfies Record<string, PremiumAffectsType>;
+
+/**
+ * Array of all PremiumAffectsType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid PremiumAffectsType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of PREMIUM_AFFECTS_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = PREMIUM_AFFECTS_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link PremiumAffectsType} - The TypeScript type definition
+ * @see {@link PREMIUM_AFFECTS_TYPE} - The object form of this enum
+ */
+export const PREMIUM_AFFECTS_TYPE_VALUES = [
+  'registration',
+  'renewal'
+] as const satisfies [string, ...string[]] | PremiumAffectsType[];
+
+/**
+ * PremiumSourceType. Auto-generated enum for PremiumSourceType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the PremiumSourceType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = PREMIUM_SOURCE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = PREMIUM_SOURCE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link PremiumSourceType} - The TypeScript type definition
+ */
+export const PREMIUM_SOURCE_TYPE = {
+  EPP: "EPP",
+  API: "API",
+  CSV: "CSV",
+  MANUAL: "manual",
+} as const satisfies Record<string, PremiumSourceType>;
+
+/**
+ * Array of all PremiumSourceType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid PremiumSourceType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of PREMIUM_SOURCE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = PREMIUM_SOURCE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link PremiumSourceType} - The TypeScript type definition
+ * @see {@link PREMIUM_SOURCE_TYPE} - The object form of this enum
+ */
+export const PREMIUM_SOURCE_TYPE_VALUES = [
+  'EPP',
+  'API',
+  'CSV',
+  'manual'
+] as const satisfies [string, ...string[]] | PremiumSourceType[];
+
+/**
+ * RegistrantChangeType. Auto-generated enum for RegistrantChangeType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the RegistrantChangeType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = REGISTRANT_CHANGE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = REGISTRANT_CHANGE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link RegistrantChangeType} - The TypeScript type definition
+ */
+export const REGISTRANT_CHANGE_TYPE = {
+  UPDATE: "update",
+  TRADE: "trade",
+} as const satisfies Record<string, RegistrantChangeType>;
+
+/**
+ * Array of all RegistrantChangeType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid RegistrantChangeType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of REGISTRANT_CHANGE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = REGISTRANT_CHANGE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link RegistrantChangeType} - The TypeScript type definition
+ * @see {@link REGISTRANT_CHANGE_TYPE} - The object form of this enum
+ */
+export const REGISTRANT_CHANGE_TYPE_VALUES = [
+  'update',
+  'trade'
+] as const satisfies [string, ...string[]] | RegistrantChangeType[];
+
+/**
  * Relation. Auto-generated enum for Relation
  *
  * @remarks
@@ -1608,6 +2170,58 @@ export const RENEWAL_MODE_VALUES = [
 ] as const satisfies [string, ...string[]] | RenewalMode[];
 
 /**
+ * ReservedSourceType. Auto-generated enum for ReservedSourceType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the ReservedSourceType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = RESERVED_SOURCE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = RESERVED_SOURCE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link ReservedSourceType} - The TypeScript type definition
+ */
+export const RESERVED_SOURCE_TYPE = {
+  API: "API",
+  CSV: "CSV",
+  MANUAL: "manual",
+} as const satisfies Record<string, ReservedSourceType>;
+
+/**
+ * Array of all ReservedSourceType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid ReservedSourceType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of RESERVED_SOURCE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = RESERVED_SOURCE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link ReservedSourceType} - The TypeScript type definition
+ * @see {@link RESERVED_SOURCE_TYPE} - The object form of this enum
+ */
+export const RESERVED_SOURCE_TYPE_VALUES = [
+  'API',
+  'CSV',
+  'manual'
+] as const satisfies [string, ...string[]] | ReservedSourceType[];
+
+/**
  * SortOrder. Auto-generated enum for SortOrder
  *
  * @remarks
@@ -1656,6 +2270,162 @@ export const SORT_ORDER_VALUES = [
   'asc',
   'desc'
 ] as const satisfies [string, ...string[]] | SortOrder[];
+
+/**
+ * SyncOperationType. Auto-generated enum for SyncOperationType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the SyncOperationType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = SYNC_OPERATION_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = SYNC_OPERATION_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link SyncOperationType} - The TypeScript type definition
+ */
+export const SYNC_OPERATION_TYPE = {
+  REGISTRATION: "registration",
+  RENEWAL: "renewal",
+  TRANSFER: "transfer",
+} as const satisfies Record<string, SyncOperationType>;
+
+/**
+ * Array of all SyncOperationType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid SyncOperationType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of SYNC_OPERATION_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = SYNC_OPERATION_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link SyncOperationType} - The TypeScript type definition
+ * @see {@link SYNC_OPERATION_TYPE} - The object form of this enum
+ */
+export const SYNC_OPERATION_TYPE_VALUES = [
+  'registration',
+  'renewal',
+  'transfer'
+] as const satisfies [string, ...string[]] | SyncOperationType[];
+
+/**
+ * TLDType. Auto-generated enum for TLDType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the TLDType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = TLD_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = TLD_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link TLDType} - The TypeScript type definition
+ */
+export const TLD_TYPE = {
+  G_TLD: "gTLD",
+  CC_TLD: "ccTLD",
+} as const satisfies Record<string, TLDType>;
+
+/**
+ * Array of all TLDType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid TLDType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of TLD_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = TLD_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link TLDType} - The TypeScript type definition
+ * @see {@link TLD_TYPE} - The object form of this enum
+ */
+export const TLD_TYPE_VALUES = [
+  'gTLD',
+  'ccTLD'
+] as const satisfies [string, ...string[]] | TLDType[];
+
+/**
+ * TransferAckType. Auto-generated enum for TransferAckType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the TransferAckType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = TRANSFER_ACK_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = TRANSFER_ACK_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link TransferAckType} - The TypeScript type definition
+ */
+export const TRANSFER_ACK_TYPE = {
+  NONE: "none",
+  REGISTRAR: "registrar",
+  REGISTRANT: "registrant",
+  BOTH: "both",
+} as const satisfies Record<string, TransferAckType>;
+
+/**
+ * Array of all TransferAckType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid TransferAckType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of TRANSFER_ACK_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = TRANSFER_ACK_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link TransferAckType} - The TypeScript type definition
+ * @see {@link TRANSFER_ACK_TYPE} - The object form of this enum
+ */
+export const TRANSFER_ACK_TYPE_VALUES = [
+  'none',
+  'registrar',
+  'registrant',
+  'both'
+] as const satisfies [string, ...string[]] | TransferAckType[];
 
 /**
  * UserNotificationStatus. Auto-generated enum for UserNotificationStatus

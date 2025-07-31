@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, BulkOperationResult, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, EmailForwardBulkUpdateItem, ValidationError, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForward, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Permission, Relation, UserAttributeUpdate, DomainAvailability } from './schemas';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, BulkOperationResult, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, EmailForwardBulkUpdateItem, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForward, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeUpdate, DomainAvailability } from './schemas';
 
 /**
  * DomainDnssecDataResponse
@@ -94,6 +94,20 @@ export type OrganizationAttributeUpdateArray = OrganizationAttributeUpdate[];
  */
 export type IpRestrictionArray = IpRestriction[];
 /**
+ * TldResponseShort
+ *
+ * @remarks
+ * Array type for TldResponseShort objects. Used when the API returns a collection of TldResponseShort instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TldResponseShortArray = await api.getTldResponseShorts();
+ * ```
+ *
+ * @see {@link TldResponseShort} - The individual TldResponseShort type definition
+ */
+export type TldResponseShortArray = TldResponseShort[];
+/**
  * BulkOperationResult
  *
  * @remarks
@@ -107,6 +121,34 @@ export type IpRestrictionArray = IpRestriction[];
  * @see {@link BulkOperationResult} - The individual BulkOperationResult type definition
  */
 export type BulkOperationResultArray = BulkOperationResult[];
+/**
+ * PostalAddressType
+ *
+ * @remarks
+ * Array type for PostalAddressType objects. Used when the API returns a collection of PostalAddressType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PostalAddressTypeArray = await api.getPostalAddressTypes();
+ * ```
+ *
+ * @see {@link PostalAddressType} - The individual PostalAddressType type definition
+ */
+export type PostalAddressTypeArray = PostalAddressType[];
+/**
+ * ContactConfigBase
+ *
+ * @remarks
+ * Array type for ContactConfigBase objects. Used when the API returns a collection of ContactConfigBase instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactConfigBaseArray = await api.getContactConfigBases();
+ * ```
+ *
+ * @see {@link ContactConfigBase} - The individual ContactConfigBase type definition
+ */
+export type ContactConfigBaseArray = ContactConfigBase[];
 /**
  * DnsChangeResponse
  *
@@ -234,6 +276,34 @@ export type DomainAvailabilityCheckArray = DomainAvailabilityCheck[];
  */
 export type NameserverArray = Nameserver[];
 /**
+ * DeletePolicyType
+ *
+ * @remarks
+ * Array type for DeletePolicyType objects. Used when the API returns a collection of DeletePolicyType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DeletePolicyTypeArray = await api.getDeletePolicyTypes();
+ * ```
+ *
+ * @see {@link DeletePolicyType} - The individual DeletePolicyType type definition
+ */
+export type DeletePolicyTypeArray = DeletePolicyType[];
+/**
+ * SyncOperationType
+ *
+ * @remarks
+ * Array type for SyncOperationType objects. Used when the API returns a collection of SyncOperationType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: SyncOperationTypeArray = await api.getSyncOperationTypes();
+ * ```
+ *
+ * @see {@link SyncOperationType} - The individual SyncOperationType type definition
+ */
+export type SyncOperationTypeArray = SyncOperationType[];
+/**
  * DomainContactResponse
  *
  * @remarks
@@ -317,6 +387,48 @@ export type EmailForwardBulkUpdateItemArray = EmailForwardBulkUpdateItem[];
  * @see {@link ValidationError} - The individual ValidationError type definition
  */
 export type ValidationErrorArray = ValidationError[];
+/**
+ * LaunchPhaseBase
+ *
+ * @remarks
+ * Array type for LaunchPhaseBase objects. Used when the API returns a collection of LaunchPhaseBase instances.
+ *
+ * @example
+ * ```typescript
+ * const items: LaunchPhaseBaseArray = await api.getLaunchPhaseBases();
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The individual LaunchPhaseBase type definition
+ */
+export type LaunchPhaseBaseArray = LaunchPhaseBase[];
+/**
+ * LocalPresenceRequirementType
+ *
+ * @remarks
+ * Array type for LocalPresenceRequirementType objects. Used when the API returns a collection of LocalPresenceRequirementType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: LocalPresenceRequirementTypeArray = await api.getLocalPresenceRequirementTypes();
+ * ```
+ *
+ * @see {@link LocalPresenceRequirementType} - The individual LocalPresenceRequirementType type definition
+ */
+export type LocalPresenceRequirementTypeArray = LocalPresenceRequirementType[];
+/**
+ * ContactRoleType
+ *
+ * @remarks
+ * Array type for ContactRoleType objects. Used when the API returns a collection of ContactRoleType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactRoleTypeArray = await api.getContactRoleTypes();
+ * ```
+ *
+ * @see {@link ContactRoleType} - The individual ContactRoleType type definition
+ */
+export type ContactRoleTypeArray = ContactRoleType[];
 /**
  * OrganizationAttribute
  *
@@ -486,6 +598,20 @@ export type OrganizationArray = Organization[];
  */
 export type UserNotificationSummaryArray = UserNotificationSummary[];
 /**
+ * Period
+ *
+ * @remarks
+ * Array type for Period objects. Used when the API returns a collection of Period instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PeriodArray = await api.getPeriods();
+ * ```
+ *
+ * @see {@link Period} - The individual Period type definition
+ */
+export type PeriodArray = Period[];
+/**
  * Permission
  *
  * @remarks
@@ -500,6 +626,20 @@ export type UserNotificationSummaryArray = UserNotificationSummary[];
  */
 export type PermissionArray = Permission[];
 /**
+ * PremiumAffectsType
+ *
+ * @remarks
+ * Array type for PremiumAffectsType objects. Used when the API returns a collection of PremiumAffectsType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PremiumAffectsTypeArray = await api.getPremiumAffectsTypes();
+ * ```
+ *
+ * @see {@link PremiumAffectsType} - The individual PremiumAffectsType type definition
+ */
+export type PremiumAffectsTypeArray = PremiumAffectsType[];
+/**
  * Relation
  *
  * @remarks
@@ -513,6 +653,34 @@ export type PermissionArray = Permission[];
  * @see {@link Relation} - The individual Relation type definition
  */
 export type RelationArray = Relation[];
+/**
+ * TldBase
+ *
+ * @remarks
+ * Array type for TldBase objects. Used when the API returns a collection of TldBase instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TldBaseArray = await api.getTldBases();
+ * ```
+ *
+ * @see {@link TldBase} - The individual TldBase type definition
+ */
+export type TldBaseArray = TldBase[];
+/**
+ * PostTransferRequirements
+ *
+ * @remarks
+ * Array type for PostTransferRequirements objects. Used when the API returns a collection of PostTransferRequirements instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PostTransferRequirementsArray = await api.getPostTransferRequirementss();
+ * ```
+ *
+ * @see {@link PostTransferRequirements} - The individual PostTransferRequirements type definition
+ */
+export type PostTransferRequirementsArray = PostTransferRequirements[];
 /**
  * UserAttributeUpdate
  *

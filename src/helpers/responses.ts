@@ -32,9 +32,9 @@
 
 
 
-import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray } from './schemas-arrays';
+import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -4694,6 +4694,116 @@ export type GET_OrganizationsUsers_Response_200 = Pagination_User
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET TldsByTld endpoint
+ *
+ * Get Tld Spec
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET TldsByTld endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tlds/{tld}
+ *
+ * @see {@link GET_TldsByTld_Response_200} - 200 response type
+ * @see {@link GET_TldsByTld_Response_404} - 404 response type
+ * @see {@link GET_TldsByTld_Response_422} - 422 response type
+ *
+
+ */
+export type GET_TldsByTld_Response = GET_TldsByTld_Response_200 | GET_TldsByTld_Response_404 | GET_TldsByTld_Response_422;
+
+/**
+ * 200 response for GET TldsByTld endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET TldsByTld endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tlds/{tld}
+ *
+ * @see {@link GET_TldsByTld_Response} - The main response type definition
+ * @see {@link TldSpecification} - The actual schema type definition
+ */
+export type GET_TldsByTld_Response_200 = TldSpecification
+
+/**
+ * 404 response for GET TldsByTld endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET TldsByTld endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tlds/{tld}
+ *
+ * @see {@link GET_TldsByTld_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_TldsByTld_Response_404 = Problem
+
+/**
+ * 422 response for GET TldsByTld endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET TldsByTld endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tlds/{tld}
+ *
+ * @see {@link GET_TldsByTld_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_TldsByTld_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET TldsPortfolio endpoint
+ *
+ * Get Tld Portfolio
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET TldsPortfolio endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tlds/portfolio
+ *
+ * @see {@link GET_TldsPortfolio_Response_200} - 200 response type
+ *
+
+ */
+export type GET_TldsPortfolio_Response = GET_TldsPortfolio_Response_200;
+
+/**
+ * 200 response for GET TldsPortfolio endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET TldsPortfolio endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tlds/portfolio
+ *
+ * @see {@link GET_TldsPortfolio_Response} - The main response type definition
+ * @see {@link TldResponseShort} - The actual schema type definition
+ */
+export type GET_TldsPortfolio_Response_200 = TldResponseShortArray
 
 /**
  * Response types for POST Users endpoint

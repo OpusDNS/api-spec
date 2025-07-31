@@ -3112,6 +3112,66 @@ export type GET_OrganizationsUsers_Request = {
 export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Request['parameters']['query'];
 
 /**
+ * Request type for GET TldsPortfolio endpoint
+ *
+ * Get Tld Portfolio
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET TldsPortfolio endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tlds/portfolio
+ *
+ * @see {@link GET_TldsPortfolio_Request_Query} - Query parameters type
+ * @see {@link GET_TldsPortfolio_Request_Path} - Path parameters type
+ * @see {@link GET_TldsPortfolio_Request_Body} - Request body type
+ */
+export type GET_TldsPortfolio_Request = {
+}
+
+/**
+ * Request type for GET TldsTld endpoint
+ *
+ * Get Tld Spec
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET TldsTld endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tlds/{tld}
+ *
+ * @see {@link GET_TldsTld_Request_Query} - Query parameters type
+ * @see {@link GET_TldsTld_Request_Path} - Path parameters type
+ * @see {@link GET_TldsTld_Request_Body} - Request body type
+ */
+export type GET_TldsTld_Request = {
+  parameters: {
+    path: operations['get_tld_spec_v1_tlds__tld__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/tlds/{tld}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/tlds/{tld} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/tlds/{tld}
+ */
+export type GET_TldsTld_Request_Path = GET_TldsTld_Request['parameters']['path'];
+
+/**
  * Request type for POST Users endpoint
  *
  * Create User

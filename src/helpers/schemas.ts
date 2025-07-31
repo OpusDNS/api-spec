@@ -27,6 +27,38 @@
 import { components } from '../schema';
 
 /**
+ * AllocationMethodType
+ *
+ * @remarks
+ * Type alias for the `AllocationMethodType` OpenAPI schema.
+ * This type represents allocationmethodtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getAllocationMethodType();
+ * const item: AllocationMethodType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type AllocationMethodType = components['schemas']['AllocationMethodType'];
+/**
+ * AllowedNumberOfNameserverBase
+ *
+ * @remarks
+ * Type alias for the `AllowedNumberOfNameserverBase` OpenAPI schema.
+ * This type represents allowednumberofnameserverbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getAllowedNumberOfNameserverBase();
+ * const item: AllowedNumberOfNameserverBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
+/**
  * Body_issue_organization_token_v1_auth_token_post
  *
  * @remarks
@@ -107,6 +139,22 @@ export type BulkOperationResult = components['schemas']['BulkOperationResult'];
  */
 export type BulkOperationStatus = components['schemas']['BulkOperationStatus'];
 /**
+ * ContactConfigBase
+ *
+ * @remarks
+ * Type alias for the `ContactConfigBase` OpenAPI schema.
+ * This type represents contactconfigbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactConfigBase();
+ * const item: ContactConfigBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactConfigBase = components['schemas']['ContactConfigBase'];
+/**
  * ContactCreate
  *
  * @remarks
@@ -154,6 +202,22 @@ export type ContactIdList = components['schemas']['ContactIdList'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Contact = components['schemas']['ContactResponse'];
+/**
+ * ContactRoleType
+ *
+ * @remarks
+ * Type alias for the `ContactRoleType` OpenAPI schema.
+ * This type represents contactroletype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactRoleType();
+ * const item: ContactRoleType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactRoleType = components['schemas']['ContactRoleType'];
 /**
  * ContactSchema
  *
@@ -235,6 +299,22 @@ export type ContactVerificationEmail = components['schemas']['ContactVerificatio
  */
 export type ContactVerification = components['schemas']['ContactVerificationResponse'];
 /**
+ * ContactsBase
+ *
+ * @remarks
+ * Type alias for the `ContactsBase` OpenAPI schema.
+ * This type represents contactsbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactsBase();
+ * const item: ContactsBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactsBase = components['schemas']['ContactsBase'];
+/**
  * Currency
  *
  * @remarks
@@ -250,6 +330,22 @@ export type ContactVerification = components['schemas']['ContactVerificationResp
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Currency = components['schemas']['Currency'];
+/**
+ * DeletePolicyType
+ *
+ * @remarks
+ * Type alias for the `DeletePolicyType` OpenAPI schema.
+ * This type represents deletepolicytype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDeletePolicyType();
+ * const item: DeletePolicyType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DeletePolicyType = components['schemas']['DeletePolicyType'];
 /**
  * DeletedEvent
  *
@@ -314,6 +410,22 @@ export type DnsChange = components['schemas']['DnsChangeResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DnsChanges = components['schemas']['DnsChangesResponse'];
+/**
+ * DnsConfigurationBase
+ *
+ * @remarks
+ * Type alias for the `DnsConfigurationBase` OpenAPI schema.
+ * This type represents dnsconfigurationbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsConfigurationBase();
+ * const item: DnsConfigurationBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsConfigurationBase = components['schemas']['DnsConfigurationBase'];
 /**
  * DnsRecordCreate
  *
@@ -571,6 +683,22 @@ export type DnssecAlgorithm = components['schemas']['DnssecAlgorithm'];
  */
 export type DnssecDigestType = components['schemas']['DnssecDigestType'];
 /**
+ * DnssecModeType
+ *
+ * @remarks
+ * Type alias for the `DnssecModeType` OpenAPI schema.
+ * This type represents dnssecmodetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnssecModeType();
+ * const item: DnssecModeType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnssecModeType = components['schemas']['DnssecModeType'];
+/**
  * DnssecRecordType
  *
  * @remarks
@@ -763,6 +891,22 @@ export type DomainDnssecDataCreate = components['schemas']['DomainDnssecDataCrea
  */
 export type DomainDnssecData = components['schemas']['DomainDnssecDataResponse'];
 /**
+ * DomainLifecycleBase
+ *
+ * @remarks
+ * Type alias for the `DomainLifecycleBase` OpenAPI schema.
+ * This type represents domainlifecyclebase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainLifecycleBase();
+ * const item: DomainLifecycleBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainLifecycleBase = components['schemas']['DomainLifecycleBase'];
+/**
  * DomainNameParts
  *
  * @remarks
@@ -922,6 +1066,22 @@ export type DomainSortField = components['schemas']['DomainSortField'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainStatus = components['schemas']['DomainStatus'];
+/**
+ * DomainStatusesBase
+ *
+ * @remarks
+ * Type alias for the `DomainStatusesBase` OpenAPI schema.
+ * This type represents domainstatusesbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainStatusesBase();
+ * const item: DomainStatusesBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainStatusesBase = components['schemas']['DomainStatusesBase'];
 /**
  * DomainSummaryData
  *
@@ -1227,6 +1387,22 @@ export type EventSubtype = components['schemas']['EventSubtype'];
  */
 export type EventType = components['schemas']['EventType'];
 /**
+ * GeneralAvailabilityBase
+ *
+ * @remarks
+ * Type alias for the `GeneralAvailabilityBase` OpenAPI schema.
+ * This type represents generalavailabilitybase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getGeneralAvailabilityBase();
+ * const item: GeneralAvailabilityBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type GeneralAvailabilityBase = components['schemas']['GeneralAvailabilityBase'];
+/**
  * GrantType
  *
  * @remarks
@@ -1258,6 +1434,22 @@ export type GrantType = components['schemas']['GrantType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type HTTPValidationError = components['schemas']['HTTPValidationError'];
+/**
+ * IdnBase
+ *
+ * @remarks
+ * Type alias for the `IdnBase` OpenAPI schema.
+ * This type represents idnbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getIdnBase();
+ * const item: IdnBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type IdnBase = components['schemas']['IdnBase'];
 /**
  * IpRestrictionCreate
  *
@@ -1322,6 +1514,86 @@ export type IpRestrictionUpdate = components['schemas']['IpRestrictionUpdate'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type JsonValue = components['schemas']['JsonValue'];
+/**
+ * LaunchPhaseBase
+ *
+ * @remarks
+ * Type alias for the `LaunchPhaseBase` OpenAPI schema.
+ * This type represents launchphasebase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLaunchPhaseBase();
+ * const item: LaunchPhaseBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LaunchPhaseBase = components['schemas']['LaunchPhaseBase'];
+/**
+ * LaunchPhaseType
+ *
+ * @remarks
+ * Type alias for the `LaunchPhaseType` OpenAPI schema.
+ * This type represents launchphasetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLaunchPhaseType();
+ * const item: LaunchPhaseType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LaunchPhaseType = components['schemas']['LaunchPhaseType'];
+/**
+ * LaunchPhasesBase
+ *
+ * @remarks
+ * Type alias for the `LaunchPhasesBase` OpenAPI schema.
+ * This type represents launchphasesbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLaunchPhasesBase();
+ * const item: LaunchPhasesBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LaunchPhasesBase = components['schemas']['LaunchPhasesBase'];
+/**
+ * LocalPresenceBase
+ *
+ * @remarks
+ * Type alias for the `LocalPresenceBase` OpenAPI schema.
+ * This type represents localpresencebase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLocalPresenceBase();
+ * const item: LocalPresenceBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LocalPresenceBase = components['schemas']['LocalPresenceBase'];
+/**
+ * LocalPresenceRequirementType
+ *
+ * @remarks
+ * Type alias for the `LocalPresenceRequirementType` OpenAPI schema.
+ * This type represents localpresencerequirementtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLocalPresenceRequirementType();
+ * const item: LocalPresenceRequirementType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LocalPresenceRequirementType = components['schemas']['LocalPresenceRequirementType'];
 /**
  * Nameserver
  *
@@ -1803,6 +2075,38 @@ export type Pagination_User = components['schemas']['Pagination_User_'];
  */
 export type PatchOp = components['schemas']['PatchOp'];
 /**
+ * Period
+ *
+ * @remarks
+ * Type alias for the `Period` OpenAPI schema.
+ * This type represents period data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPeriod();
+ * const item: Period = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Period = components['schemas']['Period'];
+/**
+ * PeriodList
+ *
+ * @remarks
+ * Type alias for the `PeriodList` OpenAPI schema.
+ * This type represents periodlist data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPeriodList();
+ * const item: PeriodList = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PeriodList = components['schemas']['PeriodList'];
+/**
  * PeriodUnit
  *
  * @remarks
@@ -1883,6 +2187,86 @@ export type PlanRelation = components['schemas']['PlanRelation'];
  */
 export type PlanUpdate = components['schemas']['PlanUpdate'];
 /**
+ * PostTransferRequirements
+ *
+ * @remarks
+ * Type alias for the `PostTransferRequirements` OpenAPI schema.
+ * This type represents posttransferrequirements data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPostTransferRequirements();
+ * const item: PostTransferRequirements = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PostTransferRequirements = components['schemas']['PostTransferRequirements'];
+/**
+ * PostalAddressType
+ *
+ * @remarks
+ * Type alias for the `PostalAddressType` OpenAPI schema.
+ * This type represents postaladdresstype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPostalAddressType();
+ * const item: PostalAddressType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PostalAddressType = components['schemas']['PostalAddressType'];
+/**
+ * PremiumAffectsType
+ *
+ * @remarks
+ * Type alias for the `PremiumAffectsType` OpenAPI schema.
+ * This type represents premiumaffectstype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPremiumAffectsType();
+ * const item: PremiumAffectsType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PremiumAffectsType = components['schemas']['PremiumAffectsType'];
+/**
+ * PremiumDomainsBase
+ *
+ * @remarks
+ * Type alias for the `PremiumDomainsBase` OpenAPI schema.
+ * This type represents premiumdomainsbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPremiumDomainsBase();
+ * const item: PremiumDomainsBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PremiumDomainsBase = components['schemas']['PremiumDomainsBase'];
+/**
+ * PremiumSourceType
+ *
+ * @remarks
+ * Type alias for the `PremiumSourceType` OpenAPI schema.
+ * This type represents premiumsourcetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPremiumSourceType();
+ * const item: PremiumSourceType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PremiumSourceType = components['schemas']['PremiumSourceType'];
+/**
  * Problem
  *
  * @remarks
@@ -1898,6 +2282,54 @@ export type PlanUpdate = components['schemas']['PlanUpdate'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Problem = components['schemas']['Problem'];
+/**
+ * RdapBase
+ *
+ * @remarks
+ * Type alias for the `RdapBase` OpenAPI schema.
+ * This type represents rdapbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRdapBase();
+ * const item: RdapBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RdapBase = components['schemas']['RdapBase'];
+/**
+ * RegistrantChangeType
+ *
+ * @remarks
+ * Type alias for the `RegistrantChangeType` OpenAPI schema.
+ * This type represents registrantchangetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRegistrantChangeType();
+ * const item: RegistrantChangeType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RegistrantChangeType = components['schemas']['RegistrantChangeType'];
+/**
+ * RegistryLockBase
+ *
+ * @remarks
+ * Type alias for the `RegistryLockBase` OpenAPI schema.
+ * This type represents registrylockbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRegistryLockBase();
+ * const item: RegistryLockBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RegistryLockBase = components['schemas']['RegistryLockBase'];
 /**
  * Relation
  *
@@ -1947,6 +2379,38 @@ export type RelationSet = components['schemas']['RelationSet'];
  */
 export type RenewalMode = components['schemas']['RenewalMode'];
 /**
+ * ReservedDomainsBase
+ *
+ * @remarks
+ * Type alias for the `ReservedDomainsBase` OpenAPI schema.
+ * This type represents reserveddomainsbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getReservedDomainsBase();
+ * const item: ReservedDomainsBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ReservedDomainsBase = components['schemas']['ReservedDomainsBase'];
+/**
+ * ReservedSourceType
+ *
+ * @remarks
+ * Type alias for the `ReservedSourceType` OpenAPI schema.
+ * This type represents reservedsourcetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getReservedSourceType();
+ * const item: ReservedSourceType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ReservedSourceType = components['schemas']['ReservedSourceType'];
+/**
  * SignupCreate
  *
  * @remarks
@@ -1962,6 +2426,22 @@ export type RenewalMode = components['schemas']['RenewalMode'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type SignupCreate = components['schemas']['SignupCreate'];
+/**
+ * SldLength
+ *
+ * @remarks
+ * Type alias for the `SldLength` OpenAPI schema.
+ * This type represents sldlength data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getSldLength();
+ * const item: SldLength = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type SldLength = components['schemas']['SldLength'];
 /**
  * SortOrder
  *
@@ -1995,6 +2475,38 @@ export type SortOrder = components['schemas']['SortOrder'];
  */
 export type SpiceDbRelationshipUpdate = components['schemas']['SpiceDbRelationshipUpdate'];
 /**
+ * SyncOperationType
+ *
+ * @remarks
+ * Type alias for the `SyncOperationType` OpenAPI schema.
+ * This type represents syncoperationtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getSyncOperationType();
+ * const item: SyncOperationType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type SyncOperationType = components['schemas']['SyncOperationType'];
+/**
+ * TLDType
+ *
+ * @remarks
+ * Type alias for the `TLDType` OpenAPI schema.
+ * This type represents tldtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTLDType();
+ * const item: TLDType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TLDType = components['schemas']['TLDType'];
+/**
  * TermsOfServiceAccept
  *
  * @remarks
@@ -2011,6 +2523,86 @@ export type SpiceDbRelationshipUpdate = components['schemas']['SpiceDbRelationsh
  */
 export type TermsOfServiceAccept = components['schemas']['TermsOfServiceAccept'];
 /**
+ * TldBase
+ *
+ * @remarks
+ * Type alias for the `TldBase` OpenAPI schema.
+ * This type represents tldbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTldBase();
+ * const item: TldBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TldBase = components['schemas']['TldBase'];
+/**
+ * TldResponseShort
+ *
+ * @remarks
+ * Type alias for the `TldResponseShort` OpenAPI schema.
+ * This type represents tldresponseshort data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTldResponseShort();
+ * const item: TldResponseShort = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TldResponseShort = components['schemas']['TldResponseShort'];
+/**
+ * TldSpecificationResponse
+ *
+ * @remarks
+ * Type alias for the `TldSpecificationResponse` OpenAPI schema.
+ * This type represents tldspecificationresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTldSpecification();
+ * const item: TldSpecification = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TldSpecification = components['schemas']['TldSpecificationResponse'];
+/**
+ * TrademarkClaimsBase
+ *
+ * @remarks
+ * Type alias for the `TrademarkClaimsBase` OpenAPI schema.
+ * This type represents trademarkclaimsbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTrademarkClaimsBase();
+ * const item: TrademarkClaimsBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TrademarkClaimsBase = components['schemas']['TrademarkClaimsBase'];
+/**
+ * TransferAckType
+ *
+ * @remarks
+ * Type alias for the `TransferAckType` OpenAPI schema.
+ * This type represents transferacktype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTransferAckType();
+ * const item: TransferAckType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TransferAckType = components['schemas']['TransferAckType'];
+/**
  * TransferEvent
  *
  * @remarks
@@ -2026,6 +2618,22 @@ export type TermsOfServiceAccept = components['schemas']['TermsOfServiceAccept']
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type TransferEvent = components['schemas']['TransferEvent'];
+/**
+ * TransferPoliciesBase
+ *
+ * @remarks
+ * Type alias for the `TransferPoliciesBase` OpenAPI schema.
+ * This type represents transferpoliciesbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTransferPoliciesBase();
+ * const item: TransferPoliciesBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TransferPoliciesBase = components['schemas']['TransferPoliciesBase'];
 /**
  * User
  *
@@ -2234,6 +2842,22 @@ export type ValidationError = components['schemas']['ValidationError'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type VerificationType = components['schemas']['VerificationType'];
+/**
+ * WhoisBase
+ *
+ * @remarks
+ * Type alias for the `WhoisBase` OpenAPI schema.
+ * This type represents whoisbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getWhoisBase();
+ * const item: WhoisBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type WhoisBase = components['schemas']['WhoisBase'];
 /**
  * ZoneSortField
  *

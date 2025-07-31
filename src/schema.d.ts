@@ -888,6 +888,40 @@ export interface paths {
         patch: operations["change_plan_v1_organizations__organization_id__plan_patch"];
         trace?: never;
     };
+    "/v1/tlds/portfolio": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Tld Portfolio */
+        get: operations["get_tld_portfolio_v1_tlds_portfolio_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/tlds/{tld}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Tld Spec */
+        get: operations["get_tld_spec_v1_tlds__tld__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/users": {
         parameters: {
             query?: never;
@@ -997,6 +1031,24 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * AllocationMethodType
+         * @enum {string}
+         */
+        AllocationMethodType: "fcfs" | "auction" | "lottery";
+        /** AllowedNumberOfNameserverBase */
+        AllowedNumberOfNameserverBase: {
+            /**
+             * Max
+             * @description Maximum number of nameserver per domain name
+             */
+            max: number;
+            /**
+             * Min
+             * @description Minimum number of nameserver per domain name
+             */
+            min: number;
+        };
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
             /**
@@ -1047,6 +1099,21 @@ export interface components {
          * @enum {string}
          */
         BulkOperationStatus: "success" | "failed";
+        /** ContactConfigBase */
+        ContactConfigBase: {
+            /**
+             * Max
+             * @description Maximum contacts per domain name
+             */
+            max: number;
+            /**
+             * Min
+             * @description Minimum contacts per domain name
+             */
+            min: number;
+            /** @description The type of contact */
+            type: components["schemas"]["ContactRoleType"];
+        };
         /** ContactCreate */
         ContactCreate: {
             /**
@@ -1190,6 +1257,11 @@ export interface components {
              */
             title?: string | null;
         };
+        /**
+         * ContactRoleType
+         * @enum {string}
+         */
+        ContactRoleType: "registrant" | "admin" | "tech" | "billing";
         /** ContactSchema */
         ContactSchema: {
             /**
@@ -1425,11 +1497,61 @@ export interface components {
              */
             verified_on?: Date | null;
         };
+        /** ContactsBase */
+        ContactsBase: {
+            /**
+             * Authinfo Required
+             * @description Whether the registry requires authinfo for contact creation
+             */
+            authinfo_required?: boolean | null;
+            /**
+             * Is Thick
+             * @description Whether the registry supports thick contacts
+             */
+            is_thick?: boolean | null;
+            /**
+             * Privacy Proxy
+             * @description Whether a privacy service is allowed
+             */
+            privacy_proxy?: boolean | null;
+            /** @description Whether the registrant can change through update or trade */
+            registrant_change?: components["schemas"]["RegistrantChangeType"] | null;
+            /**
+             * Support Check
+             * @description Whether the registry supports contact checks
+             */
+            support_check?: boolean | null;
+            /**
+             * Support Client Contact Id
+             * @description Whether the registry supports client defined contact ID
+             */
+            support_client_contact_id?: boolean | null;
+            /**
+             * Support Transfer
+             * @description Whether the registry supports contact transfer
+             */
+            support_transfer?: boolean | null;
+            /**
+             * Supported Postal Types
+             * @description Supported postal address types
+             */
+            supported_postal_types?: components["schemas"]["PostalAddressType"][] | null;
+            /**
+             * Supported Roles
+             * @description Supported contact roles
+             */
+            supported_roles?: components["schemas"]["ContactConfigBase"][] | null;
+        };
         /**
          * Currency
          * @enum {string}
          */
         Currency: "USD" | "EUR";
+        /**
+         * DeletePolicyType
+         * @enum {string}
+         */
+        DeletePolicyType: "immediate" | "expiration";
         /** DeletedEvent */
         DeletedEvent: {
             date: components["schemas"]["EppDateTime"];
@@ -1460,6 +1582,47 @@ export interface components {
             num_changes: number;
             /** Zone Name */
             zone_name: string;
+        };
+        /** DnsConfigurationBase */
+        DnsConfigurationBase: {
+            allowed_number_of_nameserver: components["schemas"]["AllowedNumberOfNameserverBase"];
+            /**
+             * Czds Available
+             * @description Whether the zone is available in CZDS
+             */
+            czds_available?: boolean | null;
+            /**
+             * Dnssec Allowed
+             * @description Whether the registry supports DNSSEC
+             */
+            dnssec_allowed: boolean;
+            /**
+             * Dnssec Mandatory
+             * @description Whether DNSSEC is mandatory for a domain name
+             */
+            dnssec_mandatory?: boolean | null;
+            /** @description DNSSEC mode */
+            dnssec_mode?: components["schemas"]["DnssecModeType"] | null;
+            /**
+             * Host Objects
+             * @description Whether the registry supports host objects or use attributes
+             */
+            host_objects: boolean;
+            /**
+             * Host Parent Check Tlds
+             * @description TLDs that require parent-host checks (ns1.example.com => example.com)
+             */
+            host_parent_check_tlds?: string[] | null;
+            /**
+             * Registry Nameserver Check
+             * @description Whether the registry checks the nameserver configuration
+             */
+            registry_nameserver_check: boolean;
+            /**
+             * Registry Root Nameserver Update
+             * @description Number of hours until the root zone is updated, 0 = real-time
+             */
+            registry_root_nameserver_update: number;
         };
         /** DnsRecordCreate */
         DnsRecordCreate: {
@@ -1570,6 +1733,11 @@ export interface components {
          * @enum {integer}
          */
         DnssecDigestType: 1 | 2 | 3 | 4 | 5 | 6;
+        /**
+         * DnssecModeType
+         * @enum {string}
+         */
+        DnssecModeType: "DS" | "DNSKEY";
         /**
          * DnssecRecordType
          * @enum {string}
@@ -1739,6 +1907,63 @@ export interface components {
              * @description The date/time the entry was last updated on
              */
             updated_on?: Date;
+        };
+        /** DomainLifecycleBase */
+        DomainLifecycleBase: {
+            /**
+             * Add Grace Period
+             * @description Add grace period in days after registration in ISO 8601 format (e.g., 5D, 3D)
+             */
+            add_grace_period?: string | null;
+            /**
+             * Auto Renew Before Expiration
+             * @description Time before expiration to auto-renew a domain in ISO 8601 format (e.g., 5D, -7D)
+             */
+            auto_renew_before_expiration?: string | null;
+            /**
+             * Delete Before Expiration
+             * @description Time before expiration to delete a domain in ISO 8601 format (e.g., 5D, -7D)
+             */
+            delete_before_expiration?: string | null;
+            /**
+             * Delete Policy
+             * @description How a domain can be deleted
+             */
+            delete_policy?: components["schemas"]["DeletePolicyType"][] | null;
+            /**
+             * Explicit Renew
+             * @description Whether an explicit renewal is possible
+             */
+            explicit_renew?: boolean | null;
+            /**
+             * Grace Period
+             * @description Grace period after expiration in ISO 8601 format (e.g., 5D, -7D)
+             */
+            grace_period?: string | null;
+            /**
+             * Pending Delete
+             * @description Pending delete period in ISO 8601 format (e.g., 5D, 10D) after redemption_period
+             */
+            pending_delete?: string | null;
+            /**
+             * Redemption Period
+             * @description Redemption period for domain recovery after grace period in ISO 8601 format (e.g., 5D, -7D)
+             */
+            redemption_period?: string | null;
+            /** @description List of allowed registration periods (e.g., '1y' or ['1y', '2y', '5y']) */
+            registration_periods?: components["schemas"]["PeriodList"];
+            /**
+             * Registry Auto Renew
+             * @description Does the registry enforce auto-renewal
+             */
+            registry_auto_renew?: boolean | null;
+            /** @description List of allowed renewal periods (e.g., '1y' or ['1y', '2y', '5y']) */
+            renewal_periods?: components["schemas"]["PeriodList"];
+            /**
+             * Sync After Operations
+             * @description Operations that trigger a sync with the registry
+             */
+            sync_after_operations?: components["schemas"]["SyncOperationType"][] | null;
         };
         /** DomainNameParts */
         DomainNameParts: {
@@ -1924,6 +2149,19 @@ export interface components {
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        /** DomainStatusesBase */
+        DomainStatusesBase: {
+            /**
+             * Default
+             * @description The default status for an active domain with no restrictions
+             */
+            default: string[];
+            /**
+             * Supported Statuses
+             * @description Supported domain statuses
+             */
+            supported_statuses: components["schemas"]["DomainStatus"][];
+        };
         /** DomainSummaryData */
         DomainSummaryData: {
             /**
@@ -2239,6 +2477,15 @@ export interface components {
          * @enum {string}
          */
         EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER";
+        /** GeneralAvailabilityBase */
+        GeneralAvailabilityBase: {
+            /**
+             * Start Date
+             * Format: date-time
+             * @description Start date of general availability
+             */
+            start_date: Date;
+        };
         /**
          * GrantType
          * @enum {string}
@@ -2253,6 +2500,19 @@ export interface components {
             title: string;
             /** Problem type */
             type: string;
+        };
+        /** IdnBase */
+        IdnBase: {
+            /**
+             * Idn Capable
+             * @description IDN allowed
+             */
+            idn_capable: boolean;
+            /**
+             * Idn Tables
+             * @description Allowed IDN characters, file with the IDN codes
+             */
+            idn_tables?: string[] | null;
         };
         /** IpRestrictionCreate */
         IpRestrictionCreate: {
@@ -2305,6 +2565,76 @@ export interface components {
             last_used_on?: Date | null;
         };
         JsonValue: unknown;
+        /** LaunchPhaseBase */
+        LaunchPhaseBase: {
+            /** @description Allocation method */
+            allocation?: components["schemas"]["AllocationMethodType"] | null;
+            /**
+             * End Date
+             * @description End date of the phase
+             */
+            end_date?: Date | null;
+            /**
+             * Smd Required
+             * @description Whether an SMD file is required for participation
+             */
+            smd_required?: boolean | null;
+            /**
+             * Start Date
+             * @description Start date of the phase
+             */
+            start_date?: Date | null;
+            /**
+             * Supported
+             * @description Whether this phase is supported
+             */
+            supported: boolean;
+            /** @description Type of launch phase */
+            type: components["schemas"]["LaunchPhaseType"];
+        };
+        /**
+         * LaunchPhaseType
+         * @enum {string}
+         */
+        LaunchPhaseType: "sunrise" | "landrush" | "eap";
+        /** LaunchPhasesBase */
+        LaunchPhasesBase: {
+            general_availability: components["schemas"]["GeneralAvailabilityBase"];
+            /**
+             * Phases
+             * @default []
+             */
+            phases: components["schemas"]["LaunchPhaseBase"][];
+            trademark_claims?: components["schemas"]["TrademarkClaimsBase"] | null;
+        };
+        /** LocalPresenceBase */
+        LocalPresenceBase: {
+            /**
+             * Eligible Countries
+             * @description ISO 3166-1 Alpha-2 country code
+             */
+            eligible_countries?: string[] | null;
+            /**
+             * Required
+             * @description Whether a local presence is required to register and maintain a domain name
+             */
+            required: boolean;
+            /**
+             * Requirement
+             * @description Type of local presence requirement
+             */
+            requirement?: components["schemas"]["LocalPresenceRequirementType"][] | null;
+            /**
+             * Type
+             * @description Who must meet the requirement
+             */
+            type?: components["schemas"]["ContactRoleType"][] | null;
+        };
+        /**
+         * LocalPresenceRequirementType
+         * @enum {string}
+         */
+        LocalPresenceRequirementType: "physical_address" | "business_entity";
         /** Nameserver */
         Nameserver: {
             /**
@@ -3145,6 +3475,17 @@ export interface components {
          * @enum {string}
          */
         PatchOp: "upsert" | "remove";
+        /** Period */
+        Period: {
+            /** @description The unit of the period */
+            unit: components["schemas"]["PeriodUnit"];
+            /**
+             * Value
+             * @description Amount of time in the unit
+             */
+            value: number;
+        };
+        PeriodList: components["schemas"]["Period"][] | null;
         /**
          * PeriodUnit
          * @enum {string}
@@ -3170,6 +3511,41 @@ export interface components {
             /** @default basic_plan */
             plan: components["schemas"]["PlanRelation"];
         };
+        /**
+         * PostTransferRequirements
+         * @enum {string}
+         */
+        PostTransferRequirements: "update_contacts" | "tld_specific";
+        /**
+         * PostalAddressType
+         * @enum {string}
+         */
+        PostalAddressType: "loc" | "int";
+        /**
+         * PremiumAffectsType
+         * @enum {string}
+         */
+        PremiumAffectsType: "registration" | "renewal";
+        /** PremiumDomainsBase */
+        PremiumDomainsBase: {
+            /**
+             * Affects
+             * @description What operations are affected by premium status
+             */
+            affects?: components["schemas"]["PremiumAffectsType"][] | null;
+            /** @description Source of premium domain information */
+            source?: components["schemas"]["PremiumSourceType"] | null;
+            /**
+             * Supported
+             * @description Whether the registry has premium domains
+             */
+            supported: boolean;
+        };
+        /**
+         * PremiumSourceType
+         * @enum {string}
+         */
+        PremiumSourceType: "EPP" | "API" | "CSV" | "manual";
         /** Problem */
         Problem: {
             /** Problem detail */
@@ -3180,6 +3556,42 @@ export interface components {
             title: string;
             /** Problem type */
             type: string;
+        };
+        /** RdapBase */
+        RdapBase: {
+            /**
+             * Rdap Server
+             * @description RDAP server URL
+             */
+            rdap_server?: string | null;
+        };
+        /**
+         * RegistrantChangeType
+         * @enum {string}
+         */
+        RegistrantChangeType: "update" | "trade";
+        /** RegistryLockBase */
+        RegistryLockBase: {
+            /**
+             * Prevents
+             * @description What operations are prevented by registry lock
+             */
+            prevents?: string[] | null;
+            /**
+             * Removal Process
+             * @description Process for unlocking the domain
+             */
+            removal_process?: string | null;
+            /**
+             * Requires Manual Request
+             * @description Whether a manual request is required
+             */
+            requires_manual_request?: boolean | null;
+            /**
+             * Supported
+             * @description Whether the registry provides a Registry Lock feature
+             */
+            supported: boolean;
         };
         /**
          * Relation
@@ -3196,6 +3608,26 @@ export interface components {
          * @enum {string}
          */
         RenewalMode: "renew" | "expire" | "delete";
+        /** ReservedDomainsBase */
+        ReservedDomainsBase: {
+            /** @description Source of reserved domain information */
+            source?: components["schemas"]["ReservedSourceType"] | null;
+            /**
+             * Supported
+             * @description Registry provides a reserved list
+             */
+            supported: boolean;
+            /**
+             * Url
+             * @description Link to reserved list
+             */
+            url?: string | null;
+        };
+        /**
+         * ReservedSourceType
+         * @enum {string}
+         */
+        ReservedSourceType: "API" | "CSV" | "manual";
         /** SignupCreate */
         SignupCreate: {
             /** @description Organization signup. */
@@ -3204,6 +3636,19 @@ export interface components {
             terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
             /** @description User signup to platform. */
             user: components["schemas"]["UserCreate"];
+        };
+        /** SldLength */
+        SldLength: {
+            /**
+             * Max
+             * @description Maximum length of a domain name
+             */
+            max: number;
+            /**
+             * Min
+             * @description Minimum length of a domain name
+             */
+            min: number;
         };
         /**
          * SortOrder
@@ -3217,11 +3662,101 @@ export interface components {
             /** Remove */
             remove?: components["schemas"]["Relation"][] | null;
         };
+        /**
+         * SyncOperationType
+         * @enum {string}
+         */
+        SyncOperationType: "registration" | "renewal" | "transfer";
+        /**
+         * TLDType
+         * @enum {string}
+         */
+        TLDType: "gTLD" | "ccTLD";
         /** TermsOfServiceAccept */
         TermsOfServiceAccept: {
             /** Accepted */
             accepted: boolean;
         };
+        /** TldBase */
+        TldBase: {
+            /**
+             * Name
+             * @description The TLD being configured
+             */
+            name: string;
+            /** @description The type of the TLD (e.g., gTLD, ccTLD) */
+            type: components["schemas"]["TLDType"];
+        };
+        /** TldResponseShort */
+        TldResponseShort: {
+            /** Tld */
+            tld: string;
+            type: components["schemas"]["TLDType"];
+        };
+        /** TldSpecificationResponse */
+        TldSpecificationResponse: {
+            /** @description Character limits for domain names */
+            characters: components["schemas"]["SldLength"];
+            /** @description Contacts configuration */
+            contacts?: components["schemas"]["ContactsBase"] | null;
+            /** @description DNS configuration */
+            dns_configuration: components["schemas"]["DnsConfigurationBase"];
+            /** @description Domain lifecycle configuration */
+            domain_lifecycle: components["schemas"]["DomainLifecycleBase"];
+            /** @description Domain statuses configuration */
+            domain_statuses: components["schemas"]["DomainStatusesBase"];
+            /** @description IDN configuration */
+            idn: components["schemas"]["IdnBase"];
+            /** @description Launch phases configuration */
+            launch_phases?: components["schemas"]["LaunchPhasesBase"] | null;
+            /** @description Local presence requirements */
+            local_presence?: components["schemas"]["LocalPresenceBase"] | null;
+            /** @description Premium domains configuration */
+            premium_domains?: components["schemas"]["PremiumDomainsBase"] | null;
+            /** @description RDAP configuration */
+            rdap?: components["schemas"]["RdapBase"] | null;
+            /** @description Registry lock configuration */
+            registry_lock?: components["schemas"]["RegistryLockBase"] | null;
+            /** @description Reserved domains configuration */
+            reserved_domains?: components["schemas"]["ReservedDomainsBase"] | null;
+            /**
+             * Tlds
+             * @description List of TLDs being configured
+             */
+            tlds: components["schemas"]["TldBase"][];
+            /** @description Transfer policies configuration */
+            transfer_policies: components["schemas"]["TransferPoliciesBase"];
+            /** @description WHOIS configuration */
+            whois?: components["schemas"]["WhoisBase"] | null;
+        };
+        /** TrademarkClaimsBase */
+        TrademarkClaimsBase: {
+            /**
+             * End Date
+             * @description End date of trademark claims
+             */
+            end_date?: Date | null;
+            /**
+             * Start Date
+             * @description Start date of trademark claims
+             */
+            start_date?: Date | null;
+            /**
+             * Supported
+             * @description Whether trademark claims are supported
+             */
+            supported: boolean;
+            /**
+             * Tmch Required
+             * @description If true, claim notifications are mandatory within the timeframe
+             */
+            tmch_required?: boolean | null;
+        };
+        /**
+         * TransferAckType
+         * @enum {string}
+         */
+        TransferAckType: "none" | "registrar" | "registrant" | "both";
         /** TransferEvent */
         TransferEvent: {
             /** Current Registrar */
@@ -3232,6 +3767,78 @@ export interface components {
             message: string;
             /** Requesting Registrar */
             requesting_registrar: string;
+        };
+        /** TransferPoliciesBase */
+        TransferPoliciesBase: {
+            /**
+             * Authinfo Max Length
+             * @description Maximum length of the auth info
+             */
+            authinfo_max_length?: number | null;
+            /**
+             * Authinfo Min Length
+             * @description Minimum length of the auth info
+             */
+            authinfo_min_length?: number | null;
+            /**
+             * Authinfo Required
+             * @description Whether an auth info is required for transfers
+             */
+            authinfo_required: boolean;
+            /**
+             * Authinfo Time Limited
+             * @description Whether an auth info has a time limit
+             */
+            authinfo_time_limited?: boolean | null;
+            /**
+             * Authinfo Validity Period
+             * @description Validity period of the auth info (e.g., '5D' for 5 days)
+             */
+            authinfo_validity_period?: string | null;
+            /**
+             * Info Contact Authinfo
+             * @description Whether querying a foreign contact with authinfo is possible
+             */
+            info_contact_authinfo?: boolean | null;
+            /**
+             * Info Domain Authinfo
+             * @description Whether querying a foreign domain with authinfo is possible
+             */
+            info_domain_authinfo?: boolean | null;
+            /**
+             * Post Transfer Requirements
+             * @description Post-transfer requirements: lists the behaviors, as in ['update_contacts', 'set_transfer_lock'] or [ 'tld_specific' ] for specific behavior
+             */
+            post_transfer_requirements?: components["schemas"]["PostTransferRequirements"][] | null;
+            /** @description Whether a transfer can be approved */
+            transfer_ack?: components["schemas"]["TransferAckType"] | null;
+            /**
+             * Transfer Email Required
+             * @description Whether an email confirmation is required to perform the transfer
+             */
+            transfer_email_required?: boolean | null;
+            /**
+             * Transfer Lock Enabled
+             * @description Whether transfers are locked by default in our system
+             */
+            transfer_lock_enabled: boolean;
+            /** @description Whether a transfer can be denied */
+            transfer_nack?: components["schemas"]["TransferAckType"] | null;
+            /**
+             * Transfer Renewal Period
+             * @description If transfer_renews_domain is true, the renewal period (e.g., '1Y' for 1 year)
+             */
+            transfer_renewal_period?: string | null;
+            /**
+             * Transfer Renews Domain
+             * @description Whether a transfer triggers a domain renewal
+             */
+            transfer_renews_domain?: boolean | null;
+            /**
+             * Transfer Time
+             * @description Time duration of transfers in ISO 8601 format (e.g., 5D, -7D) according to the policy, 0 = real-time
+             */
+            transfer_time?: string | null;
         };
         /** User */
         User: {
@@ -3611,6 +4218,14 @@ export interface components {
          * @enum {string}
          */
         VerificationType: "api" | "email";
+        /** WhoisBase */
+        WhoisBase: {
+            /**
+             * Whois Server
+             * @description WHOIS server
+             */
+            whois_server?: string | null;
+        };
         /**
          * ZoneSortField
          * @enum {string}
@@ -6907,6 +7522,73 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OrganizationWithPlan"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_tld_portfolio_v1_tlds_portfolio_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TldResponseShort"][];
+                };
+            };
+        };
+    };
+    get_tld_spec_v1_tlds__tld__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tld: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TldSpecificationResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TLD_NOT_FOUND",
+                     *       "detail": "Unknown TLD",
+                     *       "status": 404,
+                     *       "title": "TLD ERROR",
+                     *       "type": "tld-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */

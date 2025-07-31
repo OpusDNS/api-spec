@@ -29,19 +29,23 @@
  * Do not edit manually.
  */
 
+import { AllowedNumberOfNameserverBase } from './schemas';
 import { Body_issue_organization_token_v1_auth_token_post } from './schemas';
 import { EmailForwardBulkDeleteResult } from './schemas';
 import { EmailForwardBulkUpdateResult } from './schemas';
 import { BulkOperationResult } from './schemas';
+import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
 import { Contact } from './schemas';
 import { ContactSchema } from './schemas';
 import { ContactVerificationApi } from './schemas';
 import { ContactVerificationEmail } from './schemas';
 import { ContactVerification } from './schemas';
+import { ContactsBase } from './schemas';
 import { DeletedEvent } from './schemas';
 import { DnsChange } from './schemas';
 import { DnsChanges } from './schemas';
+import { DnsConfigurationBase } from './schemas';
 import { DnsRecordCreate } from './schemas';
 import { DnsRecordPatchOp } from './schemas';
 import { DnsRecord } from './schemas';
@@ -62,6 +66,7 @@ import { DomainContact } from './schemas';
 import { DomainCreate } from './schemas';
 import { DomainDnssecDataCreate } from './schemas';
 import { DomainDnssecData } from './schemas';
+import { DomainLifecycleBase } from './schemas';
 import { DomainNameParts } from './schemas';
 import { DomainPeriod } from './schemas';
 import { DomainRenewRequest } from './schemas';
@@ -70,6 +75,7 @@ import { Domain } from './schemas';
 import { DomainSearchMeta } from './schemas';
 import { DomainSearch } from './schemas';
 import { DomainSearchSuggestion } from './schemas';
+import { DomainStatusesBase } from './schemas';
 import { DomainSummaryData } from './schemas';
 import { DomainSummary } from './schemas';
 import { DomainTransferIn } from './schemas';
@@ -83,10 +89,15 @@ import { EmailForwardCreate } from './schemas';
 import { EmailForwardUpdate } from './schemas';
 import { EventResponse } from './schemas';
 import { EventSchema } from './schemas';
+import { GeneralAvailabilityBase } from './schemas';
 import { HTTPValidationError } from './schemas';
+import { IdnBase } from './schemas';
 import { IpRestrictionCreate } from './schemas';
 import { IpRestriction } from './schemas';
 import { IpRestrictionUpdate } from './schemas';
+import { LaunchPhaseBase } from './schemas';
+import { LaunchPhasesBase } from './schemas';
+import { LocalPresenceBase } from './schemas';
 import { Nameserver } from './schemas';
 import { Notification } from './schemas';
 import { NotificationCreate } from './schemas';
@@ -105,14 +116,25 @@ import { OrganizationToken } from './schemas';
 import { OrganizationUpdate } from './schemas';
 import { OrganizationWithPlan } from './schemas';
 import { PaginationMetadata } from './schemas';
+import { Period } from './schemas';
 import { PermissionSet } from './schemas';
 import { PlanUpdate } from './schemas';
+import { PremiumDomainsBase } from './schemas';
 import { Problem } from './schemas';
+import { RdapBase } from './schemas';
+import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
+import { ReservedDomainsBase } from './schemas';
 import { SignupCreate } from './schemas';
+import { SldLength } from './schemas';
 import { SpiceDbRelationshipUpdate } from './schemas';
 import { TermsOfServiceAccept } from './schemas';
+import { TldBase } from './schemas';
+import { TldResponseShort } from './schemas';
+import { TldSpecification } from './schemas';
+import { TrademarkClaimsBase } from './schemas';
 import { TransferEvent } from './schemas';
+import { TransferPoliciesBase } from './schemas';
 import { User } from './schemas';
 import { UserAttributeUpdate } from './schemas';
 import { UserCreate } from './schemas';
@@ -123,8 +145,87 @@ import { UserUpdate } from './schemas';
 import { UserWithAttributes } from './schemas';
 import { UserWithRelationPermissions } from './schemas';
 import { ValidationError } from './schemas';
+import { WhoisBase } from './schemas';
 import { DomainAvailabilityList } from './schemas';
 import { DomainAvailabilityCheck } from './schemas';
+
+/**
+ * Max
+ *
+ * Maximum number of nameserver per domain name
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `max` property of AllowedNumberOfNameserverBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = allowednumberofnameserverbase[KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX;
+ * const value = allowednumberofnameserverbase[propertyName];
+ * ```
+ *
+ * @see {@link AllowedNumberOfNameserverBase} - The TypeScript type definition
+ * @see {@link KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE} - Array of all keys for this type
+ */
+export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX = 'max' as keyof AllowedNumberOfNameserverBase;
+/**
+ * Min
+ *
+ * Minimum number of nameserver per domain name
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `min` property of AllowedNumberOfNameserverBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = allowednumberofnameserverbase[KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN;
+ * const value = allowednumberofnameserverbase[propertyName];
+ * ```
+ *
+ * @see {@link AllowedNumberOfNameserverBase} - The TypeScript type definition
+ * @see {@link KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE} - Array of all keys for this type
+ */
+export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN = 'min' as keyof AllowedNumberOfNameserverBase;
+
+/**
+ * Array of all AllowedNumberOfNameserverBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for AllowedNumberOfNameserverBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE) {
+ *   console.log(`Property: ${key}, Value: ${allowednumberofnameserverbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link AllowedNumberOfNameserverBase} - The TypeScript type definition
+ */
+export const KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE = [
+  KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX,
+  KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN,
+] as const satisfies (keyof AllowedNumberOfNameserverBase)[];
 
 /**
  * Client Id
@@ -455,6 +556,110 @@ export const KEYS_BULK_OPERATION_RESULT = [
   KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE,
   KEY_BULK_OPERATION_RESULT_STATUS,
 ] as const satisfies (keyof BulkOperationResult)[];
+
+/**
+ * Max
+ *
+ * Maximum contacts per domain name
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `max` property of ContactConfigBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactconfigbase[KEY_CONTACT_CONFIG_BASE_MAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CONFIG_BASE_MAX;
+ * const value = contactconfigbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactConfigBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CONFIG_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CONFIG_BASE_MAX = 'max' as keyof ContactConfigBase;
+/**
+ * Min
+ *
+ * Minimum contacts per domain name
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `min` property of ContactConfigBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactconfigbase[KEY_CONTACT_CONFIG_BASE_MIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CONFIG_BASE_MIN;
+ * const value = contactconfigbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactConfigBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CONFIG_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CONFIG_BASE_MIN = 'min' as keyof ContactConfigBase;
+/**
+ * type property
+ *
+ * The type of contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ContactConfigBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactconfigbase[KEY_CONTACT_CONFIG_BASE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CONFIG_BASE_TYPE;
+ * const value = contactconfigbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactConfigBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CONFIG_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CONFIG_BASE_TYPE = 'type' as keyof ContactConfigBase;
+
+/**
+ * Array of all ContactConfigBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactConfigBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CONFIG_BASE) {
+ *   console.log(`Property: ${key}, Value: ${contactconfigbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CONFIG_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactConfigBase} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CONFIG_BASE = [
+  KEY_CONTACT_CONFIG_BASE_MAX,
+  KEY_CONTACT_CONFIG_BASE_MIN,
+  KEY_CONTACT_CONFIG_BASE_TYPE,
+] as const satisfies (keyof ContactConfigBase)[];
 
 /**
  * City
@@ -2408,6 +2613,264 @@ export const KEYS_CONTACT_VERIFICATION = [
 ] as const satisfies (keyof ContactVerification)[];
 
 /**
+ * Authinfo Required
+ *
+ * Whether the registry requires authinfo for contact creation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_required` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_AUTHINFO_REQUIRED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_AUTHINFO_REQUIRED;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_AUTHINFO_REQUIRED = 'authinfo_required' as keyof ContactsBase;
+/**
+ * Is Thick
+ *
+ * Whether the registry supports thick contacts
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `is_thick` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_IS_THICK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_IS_THICK;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_IS_THICK = 'is_thick' as keyof ContactsBase;
+/**
+ * Privacy Proxy
+ *
+ * Whether a privacy service is allowed
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `privacy_proxy` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_PRIVACY_PROXY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_PRIVACY_PROXY;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_PRIVACY_PROXY = 'privacy_proxy' as keyof ContactsBase;
+/**
+ * registrant_change property
+ *
+ * Whether the registrant can change through update or trade
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registrant_change` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_REGISTRANT_CHANGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_REGISTRANT_CHANGE;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE = 'registrant_change' as keyof ContactsBase;
+/**
+ * Support Check
+ *
+ * Whether the registry supports contact checks
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `support_check` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_SUPPORT_CHECK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_SUPPORT_CHECK;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_SUPPORT_CHECK = 'support_check' as keyof ContactsBase;
+/**
+ * Support Client Contact Id
+ *
+ * Whether the registry supports client defined contact ID
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `support_client_contact_id` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID = 'support_client_contact_id' as keyof ContactsBase;
+/**
+ * Support Transfer
+ *
+ * Whether the registry supports contact transfer
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `support_transfer` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_SUPPORT_TRANSFER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_SUPPORT_TRANSFER;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_SUPPORT_TRANSFER = 'support_transfer' as keyof ContactsBase;
+/**
+ * Supported Postal Types
+ *
+ * Supported postal address types
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported_postal_types` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES = 'supported_postal_types' as keyof ContactsBase;
+/**
+ * Supported Roles
+ *
+ * Supported contact roles
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported_roles` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_SUPPORTED_ROLES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_SUPPORTED_ROLES;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_SUPPORTED_ROLES = 'supported_roles' as keyof ContactsBase;
+
+/**
+ * Array of all ContactsBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactsBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACTS_BASE) {
+ *   console.log(`Property: ${key}, Value: ${contactsbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACTS_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ */
+export const KEYS_CONTACTS_BASE = [
+  KEY_CONTACTS_BASE_AUTHINFO_REQUIRED,
+  KEY_CONTACTS_BASE_IS_THICK,
+  KEY_CONTACTS_BASE_PRIVACY_PROXY,
+  KEY_CONTACTS_BASE_REGISTRANT_CHANGE,
+  KEY_CONTACTS_BASE_SUPPORT_CHECK,
+  KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID,
+  KEY_CONTACTS_BASE_SUPPORT_TRANSFER,
+  KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES,
+  KEY_CONTACTS_BASE_SUPPORTED_ROLES,
+] as const satisfies (keyof ContactsBase)[];
+
+/**
  * date property
  *
  *
@@ -2731,6 +3194,267 @@ export const KEYS_DNS_CHANGES = [
   KEY_DNS_CHANGES_NUM_CHANGES,
   KEY_DNS_CHANGES_ZONE_NAME,
 ] as const satisfies (keyof DnsChanges)[];
+
+/**
+ * allowed_number_of_nameserver property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `allowed_number_of_nameserver` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_ALLOWED_NUMBER_OF_NAMESERVER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_ALLOWED_NUMBER_OF_NAMESERVER;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_ALLOWED_NUMBER_OF_NAMESERVER = 'allowed_number_of_nameserver' as keyof DnsConfigurationBase;
+/**
+ * Czds Available
+ *
+ * Whether the zone is available in CZDS
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `czds_available` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE = 'czds_available' as keyof DnsConfigurationBase;
+/**
+ * Dnssec Allowed
+ *
+ * Whether the registry supports DNSSEC
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_allowed` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED = 'dnssec_allowed' as keyof DnsConfigurationBase;
+/**
+ * Dnssec Mandatory
+ *
+ * Whether DNSSEC is mandatory for a domain name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_mandatory` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY = 'dnssec_mandatory' as keyof DnsConfigurationBase;
+/**
+ * dnssec_mode property
+ *
+ * DNSSEC mode
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_mode` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE = 'dnssec_mode' as keyof DnsConfigurationBase;
+/**
+ * Host Objects
+ *
+ * Whether the registry supports host objects or use attributes
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `host_objects` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS = 'host_objects' as keyof DnsConfigurationBase;
+/**
+ * Host Parent Check Tlds
+ *
+ * TLDs that require parent-host checks (ns1.example.com => example.com)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `host_parent_check_tlds` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS = 'host_parent_check_tlds' as keyof DnsConfigurationBase;
+/**
+ * Registry Nameserver Check
+ *
+ * Whether the registry checks the nameserver configuration
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registry_nameserver_check` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK = 'registry_nameserver_check' as keyof DnsConfigurationBase;
+/**
+ * Registry Root Nameserver Update
+ *
+ * Number of hours until the root zone is updated, 0 = real-time
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registry_root_nameserver_update` property of DnsConfigurationBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsconfigurationbase[KEY_DNS_CONFIGURATION_BASE_REGISTRY_ROOT_NAMESERVER_UPDATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_CONFIGURATION_BASE_REGISTRY_ROOT_NAMESERVER_UPDATE;
+ * const value = dnsconfigurationbase[propertyName];
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
+ */
+export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_ROOT_NAMESERVER_UPDATE = 'registry_root_nameserver_update' as keyof DnsConfigurationBase;
+
+/**
+ * Array of all DnsConfigurationBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsConfigurationBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_CONFIGURATION_BASE) {
+ *   console.log(`Property: ${key}, Value: ${dnsconfigurationbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_CONFIGURATION_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsConfigurationBase} - The TypeScript type definition
+ */
+export const KEYS_DNS_CONFIGURATION_BASE = [
+  KEY_DNS_CONFIGURATION_BASE_ALLOWED_NUMBER_OF_NAMESERVER,
+  KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE,
+  KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED,
+  KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY,
+  KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE,
+  KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS,
+  KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS,
+  KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK,
+  KEY_DNS_CONFIGURATION_BASE_REGISTRY_ROOT_NAMESERVER_UPDATE,
+] as const satisfies (keyof DnsConfigurationBase)[];
 
 /**
  * Rdata
@@ -4896,6 +5620,342 @@ export const KEYS_DOMAIN_DNSSEC_DATA = [
 ] as const satisfies (keyof DomainDnssecData)[];
 
 /**
+ * Add Grace Period
+ *
+ * Add grace period in days after registration in ISO 8601 format (e.g., 5D, 3D)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `add_grace_period` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD = 'add_grace_period' as keyof DomainLifecycleBase;
+/**
+ * Auto Renew Before Expiration
+ *
+ * Time before expiration to auto-renew a domain in ISO 8601 format (e.g., 5D, -7D)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auto_renew_before_expiration` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION = 'auto_renew_before_expiration' as keyof DomainLifecycleBase;
+/**
+ * Delete Before Expiration
+ *
+ * Time before expiration to delete a domain in ISO 8601 format (e.g., 5D, -7D)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `delete_before_expiration` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION = 'delete_before_expiration' as keyof DomainLifecycleBase;
+/**
+ * Delete Policy
+ *
+ * How a domain can be deleted
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `delete_policy` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY = 'delete_policy' as keyof DomainLifecycleBase;
+/**
+ * Explicit Renew
+ *
+ * Whether an explicit renewal is possible
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `explicit_renew` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW = 'explicit_renew' as keyof DomainLifecycleBase;
+/**
+ * Grace Period
+ *
+ * Grace period after expiration in ISO 8601 format (e.g., 5D, -7D)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `grace_period` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_GRACE_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_GRACE_PERIOD;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_GRACE_PERIOD = 'grace_period' as keyof DomainLifecycleBase;
+/**
+ * Pending Delete
+ *
+ * Pending delete period in ISO 8601 format (e.g., 5D, 10D) after redemption_period
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `pending_delete` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_PENDING_DELETE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_PENDING_DELETE;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_PENDING_DELETE = 'pending_delete' as keyof DomainLifecycleBase;
+/**
+ * Redemption Period
+ *
+ * Redemption period for domain recovery after grace period in ISO 8601 format (e.g., 5D, -7D)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `redemption_period` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_REDEMPTION_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_REDEMPTION_PERIOD;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_REDEMPTION_PERIOD = 'redemption_period' as keyof DomainLifecycleBase;
+/**
+ * registration_periods property
+ *
+ * List of allowed registration periods (e.g., '1y' or ['1y', '2y', '5y'])
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registration_periods` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS = 'registration_periods' as keyof DomainLifecycleBase;
+/**
+ * Registry Auto Renew
+ *
+ * Does the registry enforce auto-renewal
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registry_auto_renew` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW = 'registry_auto_renew' as keyof DomainLifecycleBase;
+/**
+ * renewal_periods property
+ *
+ * List of allowed renewal periods (e.g., '1y' or ['1y', '2y', '5y'])
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_periods` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS = 'renewal_periods' as keyof DomainLifecycleBase;
+/**
+ * Sync After Operations
+ *
+ * Operations that trigger a sync with the registry
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `sync_after_operations` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS = 'sync_after_operations' as keyof DomainLifecycleBase;
+
+/**
+ * Array of all DomainLifecycleBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainLifecycleBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_LIFECYCLE_BASE) {
+ *   console.log(`Property: ${key}, Value: ${domainlifecyclebase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_LIFECYCLE_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_LIFECYCLE_BASE = [
+  KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD,
+  KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION,
+  KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION,
+  KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY,
+  KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW,
+  KEY_DOMAIN_LIFECYCLE_BASE_GRACE_PERIOD,
+  KEY_DOMAIN_LIFECYCLE_BASE_PENDING_DELETE,
+  KEY_DOMAIN_LIFECYCLE_BASE_REDEMPTION_PERIOD,
+  KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS,
+  KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW,
+  KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS,
+  KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS,
+] as const satisfies (keyof DomainLifecycleBase)[];
+
+/**
  * Domain
  *
  *
@@ -6059,6 +7119,84 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION = [
   KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN,
   KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM,
 ] as const satisfies (keyof DomainSearchSuggestion)[];
+
+/**
+ * Default
+ *
+ * The default status for an active domain with no restrictions
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `default` property of DomainStatusesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainstatusesbase[KEY_DOMAIN_STATUSES_BASE_DEFAULT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_STATUSES_BASE_DEFAULT;
+ * const value = domainstatusesbase[propertyName];
+ * ```
+ *
+ * @see {@link DomainStatusesBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_STATUSES_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_STATUSES_BASE_DEFAULT = 'default' as keyof DomainStatusesBase;
+/**
+ * Supported Statuses
+ *
+ * Supported domain statuses
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported_statuses` property of DomainStatusesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainstatusesbase[KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES;
+ * const value = domainstatusesbase[propertyName];
+ * ```
+ *
+ * @see {@link DomainStatusesBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_STATUSES_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES = 'supported_statuses' as keyof DomainStatusesBase;
+
+/**
+ * Array of all DomainStatusesBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainStatusesBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_STATUSES_BASE) {
+ *   console.log(`Property: ${key}, Value: ${domainstatusesbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_STATUSES_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainStatusesBase} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_STATUSES_BASE = [
+  KEY_DOMAIN_STATUSES_BASE_DEFAULT,
+  KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES,
+] as const satisfies (keyof DomainStatusesBase)[];
 
 /**
  * By Status
@@ -7796,6 +8934,57 @@ export const KEYS_EVENT_SCHEMA = [
 ] as const satisfies (keyof EventSchema)[];
 
 /**
+ * Start Date
+ *
+ * Start date of general availability
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `start_date` property of GeneralAvailabilityBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = generalavailabilitybase[KEY_GENERAL_AVAILABILITY_BASE_START_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_GENERAL_AVAILABILITY_BASE_START_DATE;
+ * const value = generalavailabilitybase[propertyName];
+ * ```
+ *
+ * @see {@link GeneralAvailabilityBase} - The TypeScript type definition
+ * @see {@link KEYS_GENERAL_AVAILABILITY_BASE} - Array of all keys for this type
+ */
+export const KEY_GENERAL_AVAILABILITY_BASE_START_DATE = 'start_date' as keyof GeneralAvailabilityBase;
+
+/**
+ * Array of all GeneralAvailabilityBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for GeneralAvailabilityBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_GENERAL_AVAILABILITY_BASE) {
+ *   console.log(`Property: ${key}, Value: ${generalavailabilitybase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_GENERAL_AVAILABILITY_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link GeneralAvailabilityBase} - The TypeScript type definition
+ */
+export const KEYS_GENERAL_AVAILABILITY_BASE = [
+  KEY_GENERAL_AVAILABILITY_BASE_START_DATE,
+] as const satisfies (keyof GeneralAvailabilityBase)[];
+
+/**
  * errors property
  *
  *
@@ -7922,6 +9111,83 @@ export const KEYS_H_T_T_P_VALIDATION_ERROR = [
   KEY_H_T_T_P_VALIDATION_ERROR_TITLE,
   KEY_H_T_T_P_VALIDATION_ERROR_TYPE,
 ] as const satisfies (keyof HTTPValidationError)[];
+
+/**
+ * Idn Capable
+ *
+ * IDN allowed
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idn_capable` property of IdnBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = idnbase[KEY_IDN_BASE_IDN_CAPABLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IDN_BASE_IDN_CAPABLE;
+ * const value = idnbase[propertyName];
+ * ```
+ *
+ * @see {@link IdnBase} - The TypeScript type definition
+ * @see {@link KEYS_IDN_BASE} - Array of all keys for this type
+ */
+export const KEY_IDN_BASE_IDN_CAPABLE = 'idn_capable' as keyof IdnBase;
+/**
+ * Idn Tables
+ *
+ * Allowed IDN characters, file with the IDN codes
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idn_tables` property of IdnBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = idnbase[KEY_IDN_BASE_IDN_TABLES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_IDN_BASE_IDN_TABLES;
+ * const value = idnbase[propertyName];
+ * ```
+ *
+ * @see {@link IdnBase} - The TypeScript type definition
+ * @see {@link KEYS_IDN_BASE} - Array of all keys for this type
+ */
+export const KEY_IDN_BASE_IDN_TABLES = 'idn_tables' as keyof IdnBase;
+
+/**
+ * Array of all IdnBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for IdnBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_IDN_BASE) {
+ *   console.log(`Property: ${key}, Value: ${idnbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_IDN_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link IdnBase} - The TypeScript type definition
+ */
+export const KEYS_IDN_BASE = [
+  KEY_IDN_BASE_IDN_CAPABLE,
+  KEY_IDN_BASE_IDN_TABLES,
+] as const satisfies (keyof IdnBase)[];
 
 /**
  * Ip Network
@@ -8229,6 +9495,416 @@ export const KEYS_IP_RESTRICTION_UPDATE = [
   KEY_IP_RESTRICTION_UPDATE_IP_NETWORK,
   KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON,
 ] as const satisfies (keyof IpRestrictionUpdate)[];
+
+/**
+ * allocation property
+ *
+ * Allocation method
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `allocation` property of LaunchPhaseBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasebase[KEY_LAUNCH_PHASE_BASE_ALLOCATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASE_BASE_ALLOCATION;
+ * const value = launchphasebase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASE_BASE_ALLOCATION = 'allocation' as keyof LaunchPhaseBase;
+/**
+ * End Date
+ *
+ * End date of the phase
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `end_date` property of LaunchPhaseBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasebase[KEY_LAUNCH_PHASE_BASE_END_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASE_BASE_END_DATE;
+ * const value = launchphasebase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASE_BASE_END_DATE = 'end_date' as keyof LaunchPhaseBase;
+/**
+ * Smd Required
+ *
+ * Whether an SMD file is required for participation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `smd_required` property of LaunchPhaseBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasebase[KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED;
+ * const value = launchphasebase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED = 'smd_required' as keyof LaunchPhaseBase;
+/**
+ * Start Date
+ *
+ * Start date of the phase
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `start_date` property of LaunchPhaseBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasebase[KEY_LAUNCH_PHASE_BASE_START_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASE_BASE_START_DATE;
+ * const value = launchphasebase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASE_BASE_START_DATE = 'start_date' as keyof LaunchPhaseBase;
+/**
+ * Supported
+ *
+ * Whether this phase is supported
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported` property of LaunchPhaseBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasebase[KEY_LAUNCH_PHASE_BASE_SUPPORTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASE_BASE_SUPPORTED;
+ * const value = launchphasebase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASE_BASE_SUPPORTED = 'supported' as keyof LaunchPhaseBase;
+/**
+ * type property
+ *
+ * Type of launch phase
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of LaunchPhaseBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasebase[KEY_LAUNCH_PHASE_BASE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASE_BASE_TYPE;
+ * const value = launchphasebase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASE_BASE_TYPE = 'type' as keyof LaunchPhaseBase;
+
+/**
+ * Array of all LaunchPhaseBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for LaunchPhaseBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_LAUNCH_PHASE_BASE) {
+ *   console.log(`Property: ${key}, Value: ${launchphasebase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_LAUNCH_PHASE_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link LaunchPhaseBase} - The TypeScript type definition
+ */
+export const KEYS_LAUNCH_PHASE_BASE = [
+  KEY_LAUNCH_PHASE_BASE_ALLOCATION,
+  KEY_LAUNCH_PHASE_BASE_END_DATE,
+  KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED,
+  KEY_LAUNCH_PHASE_BASE_START_DATE,
+  KEY_LAUNCH_PHASE_BASE_SUPPORTED,
+  KEY_LAUNCH_PHASE_BASE_TYPE,
+] as const satisfies (keyof LaunchPhaseBase)[];
+
+/**
+ * general_availability property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `general_availability` property of LaunchPhasesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasesbase[KEY_LAUNCH_PHASES_BASE_GENERAL_AVAILABILITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASES_BASE_GENERAL_AVAILABILITY;
+ * const value = launchphasesbase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhasesBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASES_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASES_BASE_GENERAL_AVAILABILITY = 'general_availability' as keyof LaunchPhasesBase;
+/**
+ * Phases
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phases` property of LaunchPhasesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasesbase[KEY_LAUNCH_PHASES_BASE_PHASES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASES_BASE_PHASES;
+ * const value = launchphasesbase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhasesBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASES_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASES_BASE_PHASES = 'phases' as keyof LaunchPhasesBase;
+/**
+ * trademark_claims property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `trademark_claims` property of LaunchPhasesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = launchphasesbase[KEY_LAUNCH_PHASES_BASE_TRADEMARK_CLAIMS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LAUNCH_PHASES_BASE_TRADEMARK_CLAIMS;
+ * const value = launchphasesbase[propertyName];
+ * ```
+ *
+ * @see {@link LaunchPhasesBase} - The TypeScript type definition
+ * @see {@link KEYS_LAUNCH_PHASES_BASE} - Array of all keys for this type
+ */
+export const KEY_LAUNCH_PHASES_BASE_TRADEMARK_CLAIMS = 'trademark_claims' as keyof LaunchPhasesBase;
+
+/**
+ * Array of all LaunchPhasesBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for LaunchPhasesBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_LAUNCH_PHASES_BASE) {
+ *   console.log(`Property: ${key}, Value: ${launchphasesbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_LAUNCH_PHASES_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link LaunchPhasesBase} - The TypeScript type definition
+ */
+export const KEYS_LAUNCH_PHASES_BASE = [
+  KEY_LAUNCH_PHASES_BASE_GENERAL_AVAILABILITY,
+  KEY_LAUNCH_PHASES_BASE_PHASES,
+  KEY_LAUNCH_PHASES_BASE_TRADEMARK_CLAIMS,
+] as const satisfies (keyof LaunchPhasesBase)[];
+
+/**
+ * Eligible Countries
+ *
+ * ISO 3166-1 Alpha-2 country code
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `eligible_countries` property of LocalPresenceBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = localpresencebase[KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES;
+ * const value = localpresencebase[propertyName];
+ * ```
+ *
+ * @see {@link LocalPresenceBase} - The TypeScript type definition
+ * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
+ */
+export const KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES = 'eligible_countries' as keyof LocalPresenceBase;
+/**
+ * Required
+ *
+ * Whether a local presence is required to register and maintain a domain name
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `required` property of LocalPresenceBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = localpresencebase[KEY_LOCAL_PRESENCE_BASE_REQUIRED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LOCAL_PRESENCE_BASE_REQUIRED;
+ * const value = localpresencebase[propertyName];
+ * ```
+ *
+ * @see {@link LocalPresenceBase} - The TypeScript type definition
+ * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
+ */
+export const KEY_LOCAL_PRESENCE_BASE_REQUIRED = 'required' as keyof LocalPresenceBase;
+/**
+ * Requirement
+ *
+ * Type of local presence requirement
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `requirement` property of LocalPresenceBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = localpresencebase[KEY_LOCAL_PRESENCE_BASE_REQUIREMENT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LOCAL_PRESENCE_BASE_REQUIREMENT;
+ * const value = localpresencebase[propertyName];
+ * ```
+ *
+ * @see {@link LocalPresenceBase} - The TypeScript type definition
+ * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
+ */
+export const KEY_LOCAL_PRESENCE_BASE_REQUIREMENT = 'requirement' as keyof LocalPresenceBase;
+/**
+ * Type
+ *
+ * Who must meet the requirement
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of LocalPresenceBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = localpresencebase[KEY_LOCAL_PRESENCE_BASE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LOCAL_PRESENCE_BASE_TYPE;
+ * const value = localpresencebase[propertyName];
+ * ```
+ *
+ * @see {@link LocalPresenceBase} - The TypeScript type definition
+ * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
+ */
+export const KEY_LOCAL_PRESENCE_BASE_TYPE = 'type' as keyof LocalPresenceBase;
+
+/**
+ * Array of all LocalPresenceBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for LocalPresenceBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_LOCAL_PRESENCE_BASE) {
+ *   console.log(`Property: ${key}, Value: ${localpresencebase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_LOCAL_PRESENCE_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link LocalPresenceBase} - The TypeScript type definition
+ */
+export const KEYS_LOCAL_PRESENCE_BASE = [
+  KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES,
+  KEY_LOCAL_PRESENCE_BASE_REQUIRED,
+  KEY_LOCAL_PRESENCE_BASE_REQUIREMENT,
+  KEY_LOCAL_PRESENCE_BASE_TYPE,
+] as const satisfies (keyof LocalPresenceBase)[];
 
 /**
  * Hostname
@@ -12699,6 +14375,83 @@ export const KEYS_PAGINATION_METADATA = [
 ] as const satisfies (keyof PaginationMetadata)[];
 
 /**
+ * unit property
+ *
+ * The unit of the period
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unit` property of Period objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = period[KEY_PERIOD_UNIT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PERIOD_UNIT;
+ * const value = period[propertyName];
+ * ```
+ *
+ * @see {@link Period} - The TypeScript type definition
+ * @see {@link KEYS_PERIOD} - Array of all keys for this type
+ */
+export const KEY_PERIOD_UNIT = 'unit' as keyof Period;
+/**
+ * Value
+ *
+ * Amount of time in the unit
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of Period objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = period[KEY_PERIOD_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PERIOD_VALUE;
+ * const value = period[propertyName];
+ * ```
+ *
+ * @see {@link Period} - The TypeScript type definition
+ * @see {@link KEYS_PERIOD} - Array of all keys for this type
+ */
+export const KEY_PERIOD_VALUE = 'value' as keyof Period;
+
+/**
+ * Array of all Period property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Period objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PERIOD) {
+ *   console.log(`Property: ${key}, Value: ${period[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PERIOD.includes(someKey);
+ * ```
+ *
+ * @see {@link Period} - The TypeScript type definition
+ */
+export const KEYS_PERIOD = [
+  KEY_PERIOD_UNIT,
+  KEY_PERIOD_VALUE,
+] as const satisfies (keyof Period)[];
+
+/**
  * Permissions
  *
  *
@@ -12796,6 +14549,109 @@ export const KEY_PLAN_UPDATE_PLAN = 'plan' as keyof PlanUpdate;
 export const KEYS_PLAN_UPDATE = [
   KEY_PLAN_UPDATE_PLAN,
 ] as const satisfies (keyof PlanUpdate)[];
+
+/**
+ * Affects
+ *
+ * What operations are affected by premium status
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `affects` property of PremiumDomainsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumdomainsbase[KEY_PREMIUM_DOMAINS_BASE_AFFECTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_DOMAINS_BASE_AFFECTS;
+ * const value = premiumdomainsbase[propertyName];
+ * ```
+ *
+ * @see {@link PremiumDomainsBase} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_DOMAINS_BASE} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_DOMAINS_BASE_AFFECTS = 'affects' as keyof PremiumDomainsBase;
+/**
+ * source property
+ *
+ * Source of premium domain information
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source` property of PremiumDomainsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumdomainsbase[KEY_PREMIUM_DOMAINS_BASE_SOURCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_DOMAINS_BASE_SOURCE;
+ * const value = premiumdomainsbase[propertyName];
+ * ```
+ *
+ * @see {@link PremiumDomainsBase} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_DOMAINS_BASE} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_DOMAINS_BASE_SOURCE = 'source' as keyof PremiumDomainsBase;
+/**
+ * Supported
+ *
+ * Whether the registry has premium domains
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported` property of PremiumDomainsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumdomainsbase[KEY_PREMIUM_DOMAINS_BASE_SUPPORTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_DOMAINS_BASE_SUPPORTED;
+ * const value = premiumdomainsbase[propertyName];
+ * ```
+ *
+ * @see {@link PremiumDomainsBase} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_DOMAINS_BASE} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_DOMAINS_BASE_SUPPORTED = 'supported' as keyof PremiumDomainsBase;
+
+/**
+ * Array of all PremiumDomainsBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PremiumDomainsBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PREMIUM_DOMAINS_BASE) {
+ *   console.log(`Property: ${key}, Value: ${premiumdomainsbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PREMIUM_DOMAINS_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link PremiumDomainsBase} - The TypeScript type definition
+ */
+export const KEYS_PREMIUM_DOMAINS_BASE = [
+  KEY_PREMIUM_DOMAINS_BASE_AFFECTS,
+  KEY_PREMIUM_DOMAINS_BASE_SOURCE,
+  KEY_PREMIUM_DOMAINS_BASE_SUPPORTED,
+] as const satisfies (keyof PremiumDomainsBase)[];
 
 /**
  * Problem detail
@@ -12925,6 +14781,185 @@ export const KEYS_PROBLEM = [
 ] as const satisfies (keyof Problem)[];
 
 /**
+ * Rdap Server
+ *
+ * RDAP server URL
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rdap_server` property of RdapBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = rdapbase[KEY_RDAP_BASE_RDAP_SERVER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RDAP_BASE_RDAP_SERVER;
+ * const value = rdapbase[propertyName];
+ * ```
+ *
+ * @see {@link RdapBase} - The TypeScript type definition
+ * @see {@link KEYS_RDAP_BASE} - Array of all keys for this type
+ */
+export const KEY_RDAP_BASE_RDAP_SERVER = 'rdap_server' as keyof RdapBase;
+
+/**
+ * Array of all RdapBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RdapBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_RDAP_BASE) {
+ *   console.log(`Property: ${key}, Value: ${rdapbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_RDAP_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link RdapBase} - The TypeScript type definition
+ */
+export const KEYS_RDAP_BASE = [
+  KEY_RDAP_BASE_RDAP_SERVER,
+] as const satisfies (keyof RdapBase)[];
+
+/**
+ * Prevents
+ *
+ * What operations are prevented by registry lock
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `prevents` property of RegistryLockBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = registrylockbase[KEY_REGISTRY_LOCK_BASE_PREVENTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REGISTRY_LOCK_BASE_PREVENTS;
+ * const value = registrylockbase[propertyName];
+ * ```
+ *
+ * @see {@link RegistryLockBase} - The TypeScript type definition
+ * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
+ */
+export const KEY_REGISTRY_LOCK_BASE_PREVENTS = 'prevents' as keyof RegistryLockBase;
+/**
+ * Removal Process
+ *
+ * Process for unlocking the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `removal_process` property of RegistryLockBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = registrylockbase[KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS;
+ * const value = registrylockbase[propertyName];
+ * ```
+ *
+ * @see {@link RegistryLockBase} - The TypeScript type definition
+ * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
+ */
+export const KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS = 'removal_process' as keyof RegistryLockBase;
+/**
+ * Requires Manual Request
+ *
+ * Whether a manual request is required
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `requires_manual_request` property of RegistryLockBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = registrylockbase[KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST;
+ * const value = registrylockbase[propertyName];
+ * ```
+ *
+ * @see {@link RegistryLockBase} - The TypeScript type definition
+ * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
+ */
+export const KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST = 'requires_manual_request' as keyof RegistryLockBase;
+/**
+ * Supported
+ *
+ * Whether the registry provides a Registry Lock feature
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported` property of RegistryLockBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = registrylockbase[KEY_REGISTRY_LOCK_BASE_SUPPORTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REGISTRY_LOCK_BASE_SUPPORTED;
+ * const value = registrylockbase[propertyName];
+ * ```
+ *
+ * @see {@link RegistryLockBase} - The TypeScript type definition
+ * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
+ */
+export const KEY_REGISTRY_LOCK_BASE_SUPPORTED = 'supported' as keyof RegistryLockBase;
+
+/**
+ * Array of all RegistryLockBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RegistryLockBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REGISTRY_LOCK_BASE) {
+ *   console.log(`Property: ${key}, Value: ${registrylockbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REGISTRY_LOCK_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link RegistryLockBase} - The TypeScript type definition
+ */
+export const KEYS_REGISTRY_LOCK_BASE = [
+  KEY_REGISTRY_LOCK_BASE_PREVENTS,
+  KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS,
+  KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST,
+  KEY_REGISTRY_LOCK_BASE_SUPPORTED,
+] as const satisfies (keyof RegistryLockBase)[];
+
+/**
  * Relations
  *
  *
@@ -12973,6 +15008,109 @@ export const KEY_RELATION_SET_RELATIONS = 'relations' as keyof RelationSet;
 export const KEYS_RELATION_SET = [
   KEY_RELATION_SET_RELATIONS,
 ] as const satisfies (keyof RelationSet)[];
+
+/**
+ * source property
+ *
+ * Source of reserved domain information
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `source` property of ReservedDomainsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = reserveddomainsbase[KEY_RESERVED_DOMAINS_BASE_SOURCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RESERVED_DOMAINS_BASE_SOURCE;
+ * const value = reserveddomainsbase[propertyName];
+ * ```
+ *
+ * @see {@link ReservedDomainsBase} - The TypeScript type definition
+ * @see {@link KEYS_RESERVED_DOMAINS_BASE} - Array of all keys for this type
+ */
+export const KEY_RESERVED_DOMAINS_BASE_SOURCE = 'source' as keyof ReservedDomainsBase;
+/**
+ * Supported
+ *
+ * Registry provides a reserved list
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported` property of ReservedDomainsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = reserveddomainsbase[KEY_RESERVED_DOMAINS_BASE_SUPPORTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RESERVED_DOMAINS_BASE_SUPPORTED;
+ * const value = reserveddomainsbase[propertyName];
+ * ```
+ *
+ * @see {@link ReservedDomainsBase} - The TypeScript type definition
+ * @see {@link KEYS_RESERVED_DOMAINS_BASE} - Array of all keys for this type
+ */
+export const KEY_RESERVED_DOMAINS_BASE_SUPPORTED = 'supported' as keyof ReservedDomainsBase;
+/**
+ * Url
+ *
+ * Link to reserved list
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `url` property of ReservedDomainsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = reserveddomainsbase[KEY_RESERVED_DOMAINS_BASE_URL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RESERVED_DOMAINS_BASE_URL;
+ * const value = reserveddomainsbase[propertyName];
+ * ```
+ *
+ * @see {@link ReservedDomainsBase} - The TypeScript type definition
+ * @see {@link KEYS_RESERVED_DOMAINS_BASE} - Array of all keys for this type
+ */
+export const KEY_RESERVED_DOMAINS_BASE_URL = 'url' as keyof ReservedDomainsBase;
+
+/**
+ * Array of all ReservedDomainsBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ReservedDomainsBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_RESERVED_DOMAINS_BASE) {
+ *   console.log(`Property: ${key}, Value: ${reserveddomainsbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_RESERVED_DOMAINS_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link ReservedDomainsBase} - The TypeScript type definition
+ */
+export const KEYS_RESERVED_DOMAINS_BASE = [
+  KEY_RESERVED_DOMAINS_BASE_SOURCE,
+  KEY_RESERVED_DOMAINS_BASE_SUPPORTED,
+  KEY_RESERVED_DOMAINS_BASE_URL,
+] as const satisfies (keyof ReservedDomainsBase)[];
 
 /**
  * organization property
@@ -13075,6 +15213,84 @@ export const KEYS_SIGNUP_CREATE = [
   KEY_SIGNUP_CREATE_TERMS_OF_SERVICE,
   KEY_SIGNUP_CREATE_USER,
 ] as const satisfies (keyof SignupCreate)[];
+
+/**
+ * Max
+ *
+ * Maximum length of a domain name
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `max` property of SldLength objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = sldlength[KEY_SLD_LENGTH_MAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SLD_LENGTH_MAX;
+ * const value = sldlength[propertyName];
+ * ```
+ *
+ * @see {@link SldLength} - The TypeScript type definition
+ * @see {@link KEYS_SLD_LENGTH} - Array of all keys for this type
+ */
+export const KEY_SLD_LENGTH_MAX = 'max' as keyof SldLength;
+/**
+ * Min
+ *
+ * Minimum length of a domain name
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `min` property of SldLength objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = sldlength[KEY_SLD_LENGTH_MIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SLD_LENGTH_MIN;
+ * const value = sldlength[propertyName];
+ * ```
+ *
+ * @see {@link SldLength} - The TypeScript type definition
+ * @see {@link KEYS_SLD_LENGTH} - Array of all keys for this type
+ */
+export const KEY_SLD_LENGTH_MIN = 'min' as keyof SldLength;
+
+/**
+ * Array of all SldLength property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for SldLength objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_SLD_LENGTH) {
+ *   console.log(`Property: ${key}, Value: ${sldlength[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_SLD_LENGTH.includes(someKey);
+ * ```
+ *
+ * @see {@link SldLength} - The TypeScript type definition
+ */
+export const KEYS_SLD_LENGTH = [
+  KEY_SLD_LENGTH_MAX,
+  KEY_SLD_LENGTH_MIN,
+] as const satisfies (keyof SldLength)[];
 
 /**
  * Add
@@ -13199,6 +15415,702 @@ export const KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED = 'accepted' as keyof TermsOfS
 export const KEYS_TERMS_OF_SERVICE_ACCEPT = [
   KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED,
 ] as const satisfies (keyof TermsOfServiceAccept)[];
+
+/**
+ * Name
+ *
+ * The TLD being configured
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of TldBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldbase[KEY_TLD_BASE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_BASE_NAME;
+ * const value = tldbase[propertyName];
+ * ```
+ *
+ * @see {@link TldBase} - The TypeScript type definition
+ * @see {@link KEYS_TLD_BASE} - Array of all keys for this type
+ */
+export const KEY_TLD_BASE_NAME = 'name' as keyof TldBase;
+/**
+ * type property
+ *
+ * The type of the TLD (e.g., gTLD, ccTLD)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of TldBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldbase[KEY_TLD_BASE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_BASE_TYPE;
+ * const value = tldbase[propertyName];
+ * ```
+ *
+ * @see {@link TldBase} - The TypeScript type definition
+ * @see {@link KEYS_TLD_BASE} - Array of all keys for this type
+ */
+export const KEY_TLD_BASE_TYPE = 'type' as keyof TldBase;
+
+/**
+ * Array of all TldBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TldBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TLD_BASE) {
+ *   console.log(`Property: ${key}, Value: ${tldbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TLD_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link TldBase} - The TypeScript type definition
+ */
+export const KEYS_TLD_BASE = [
+  KEY_TLD_BASE_NAME,
+  KEY_TLD_BASE_TYPE,
+] as const satisfies (keyof TldBase)[];
+
+/**
+ * Tld
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tld` property of TldResponseShort objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldresponseshort[KEY_TLD_RESPONSE_SHORT_TLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_RESPONSE_SHORT_TLD;
+ * const value = tldresponseshort[propertyName];
+ * ```
+ *
+ * @see {@link TldResponseShort} - The TypeScript type definition
+ * @see {@link KEYS_TLD_RESPONSE_SHORT} - Array of all keys for this type
+ */
+export const KEY_TLD_RESPONSE_SHORT_TLD = 'tld' as keyof TldResponseShort;
+/**
+ * type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of TldResponseShort objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldresponseshort[KEY_TLD_RESPONSE_SHORT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_RESPONSE_SHORT_TYPE;
+ * const value = tldresponseshort[propertyName];
+ * ```
+ *
+ * @see {@link TldResponseShort} - The TypeScript type definition
+ * @see {@link KEYS_TLD_RESPONSE_SHORT} - Array of all keys for this type
+ */
+export const KEY_TLD_RESPONSE_SHORT_TYPE = 'type' as keyof TldResponseShort;
+
+/**
+ * Array of all TldResponseShort property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TldResponseShort objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TLD_RESPONSE_SHORT) {
+ *   console.log(`Property: ${key}, Value: ${tldresponseshort[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TLD_RESPONSE_SHORT.includes(someKey);
+ * ```
+ *
+ * @see {@link TldResponseShort} - The TypeScript type definition
+ */
+export const KEYS_TLD_RESPONSE_SHORT = [
+  KEY_TLD_RESPONSE_SHORT_TLD,
+  KEY_TLD_RESPONSE_SHORT_TYPE,
+] as const satisfies (keyof TldResponseShort)[];
+
+/**
+ * characters property
+ *
+ * Character limits for domain names
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `characters` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_CHARACTERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_CHARACTERS;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_CHARACTERS = 'characters' as keyof TldSpecification;
+/**
+ * contacts property
+ *
+ * Contacts configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_CONTACTS;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_CONTACTS = 'contacts' as keyof TldSpecification;
+/**
+ * dns_configuration property
+ *
+ * DNS configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dns_configuration` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_DNS_CONFIGURATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_DNS_CONFIGURATION;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_DNS_CONFIGURATION = 'dns_configuration' as keyof TldSpecification;
+/**
+ * domain_lifecycle property
+ *
+ * Domain lifecycle configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_lifecycle` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_DOMAIN_LIFECYCLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_DOMAIN_LIFECYCLE;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_DOMAIN_LIFECYCLE = 'domain_lifecycle' as keyof TldSpecification;
+/**
+ * domain_statuses property
+ *
+ * Domain statuses configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_statuses` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_DOMAIN_STATUSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_DOMAIN_STATUSES;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_DOMAIN_STATUSES = 'domain_statuses' as keyof TldSpecification;
+/**
+ * idn property
+ *
+ * IDN configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idn` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_IDN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_IDN;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_IDN = 'idn' as keyof TldSpecification;
+/**
+ * launch_phases property
+ *
+ * Launch phases configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `launch_phases` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_LAUNCH_PHASES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_LAUNCH_PHASES;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_LAUNCH_PHASES = 'launch_phases' as keyof TldSpecification;
+/**
+ * local_presence property
+ *
+ * Local presence requirements
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `local_presence` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_LOCAL_PRESENCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_LOCAL_PRESENCE;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_LOCAL_PRESENCE = 'local_presence' as keyof TldSpecification;
+/**
+ * premium_domains property
+ *
+ * Premium domains configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `premium_domains` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS = 'premium_domains' as keyof TldSpecification;
+/**
+ * rdap property
+ *
+ * RDAP configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rdap` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_RDAP];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_RDAP;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_RDAP = 'rdap' as keyof TldSpecification;
+/**
+ * registry_lock property
+ *
+ * Registry lock configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registry_lock` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_REGISTRY_LOCK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_REGISTRY_LOCK;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_REGISTRY_LOCK = 'registry_lock' as keyof TldSpecification;
+/**
+ * reserved_domains property
+ *
+ * Reserved domains configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `reserved_domains` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_RESERVED_DOMAINS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_RESERVED_DOMAINS;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_RESERVED_DOMAINS = 'reserved_domains' as keyof TldSpecification;
+/**
+ * Tlds
+ *
+ * List of TLDs being configured
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tlds` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_TLDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_TLDS;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_TLDS = 'tlds' as keyof TldSpecification;
+/**
+ * transfer_policies property
+ *
+ * Transfer policies configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_policies` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_TRANSFER_POLICIES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_TRANSFER_POLICIES;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_TRANSFER_POLICIES = 'transfer_policies' as keyof TldSpecification;
+/**
+ * whois property
+ *
+ * WHOIS configuration
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `whois` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_WHOIS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_WHOIS;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_WHOIS = 'whois' as keyof TldSpecification;
+
+/**
+ * Array of all TldSpecification property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TldSpecification objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TLD_SPECIFICATION) {
+ *   console.log(`Property: ${key}, Value: ${tldspecification[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TLD_SPECIFICATION.includes(someKey);
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ */
+export const KEYS_TLD_SPECIFICATION = [
+  KEY_TLD_SPECIFICATION_CHARACTERS,
+  KEY_TLD_SPECIFICATION_CONTACTS,
+  KEY_TLD_SPECIFICATION_DNS_CONFIGURATION,
+  KEY_TLD_SPECIFICATION_DOMAIN_LIFECYCLE,
+  KEY_TLD_SPECIFICATION_DOMAIN_STATUSES,
+  KEY_TLD_SPECIFICATION_IDN,
+  KEY_TLD_SPECIFICATION_LAUNCH_PHASES,
+  KEY_TLD_SPECIFICATION_LOCAL_PRESENCE,
+  KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS,
+  KEY_TLD_SPECIFICATION_RDAP,
+  KEY_TLD_SPECIFICATION_REGISTRY_LOCK,
+  KEY_TLD_SPECIFICATION_RESERVED_DOMAINS,
+  KEY_TLD_SPECIFICATION_TLDS,
+  KEY_TLD_SPECIFICATION_TRANSFER_POLICIES,
+  KEY_TLD_SPECIFICATION_WHOIS,
+] as const satisfies (keyof TldSpecification)[];
+
+/**
+ * End Date
+ *
+ * End date of trademark claims
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `end_date` property of TrademarkClaimsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = trademarkclaimsbase[KEY_TRADEMARK_CLAIMS_BASE_END_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRADEMARK_CLAIMS_BASE_END_DATE;
+ * const value = trademarkclaimsbase[propertyName];
+ * ```
+ *
+ * @see {@link TrademarkClaimsBase} - The TypeScript type definition
+ * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
+ */
+export const KEY_TRADEMARK_CLAIMS_BASE_END_DATE = 'end_date' as keyof TrademarkClaimsBase;
+/**
+ * Start Date
+ *
+ * Start date of trademark claims
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `start_date` property of TrademarkClaimsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = trademarkclaimsbase[KEY_TRADEMARK_CLAIMS_BASE_START_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRADEMARK_CLAIMS_BASE_START_DATE;
+ * const value = trademarkclaimsbase[propertyName];
+ * ```
+ *
+ * @see {@link TrademarkClaimsBase} - The TypeScript type definition
+ * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
+ */
+export const KEY_TRADEMARK_CLAIMS_BASE_START_DATE = 'start_date' as keyof TrademarkClaimsBase;
+/**
+ * Supported
+ *
+ * Whether trademark claims are supported
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported` property of TrademarkClaimsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = trademarkclaimsbase[KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED;
+ * const value = trademarkclaimsbase[propertyName];
+ * ```
+ *
+ * @see {@link TrademarkClaimsBase} - The TypeScript type definition
+ * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
+ */
+export const KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED = 'supported' as keyof TrademarkClaimsBase;
+/**
+ * Tmch Required
+ *
+ * If true, claim notifications are mandatory within the timeframe
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tmch_required` property of TrademarkClaimsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = trademarkclaimsbase[KEY_TRADEMARK_CLAIMS_BASE_TMCH_REQUIRED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRADEMARK_CLAIMS_BASE_TMCH_REQUIRED;
+ * const value = trademarkclaimsbase[propertyName];
+ * ```
+ *
+ * @see {@link TrademarkClaimsBase} - The TypeScript type definition
+ * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
+ */
+export const KEY_TRADEMARK_CLAIMS_BASE_TMCH_REQUIRED = 'tmch_required' as keyof TrademarkClaimsBase;
+
+/**
+ * Array of all TrademarkClaimsBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TrademarkClaimsBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TRADEMARK_CLAIMS_BASE) {
+ *   console.log(`Property: ${key}, Value: ${trademarkclaimsbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TRADEMARK_CLAIMS_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link TrademarkClaimsBase} - The TypeScript type definition
+ */
+export const KEYS_TRADEMARK_CLAIMS_BASE = [
+  KEY_TRADEMARK_CLAIMS_BASE_END_DATE,
+  KEY_TRADEMARK_CLAIMS_BASE_START_DATE,
+  KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED,
+  KEY_TRADEMARK_CLAIMS_BASE_TMCH_REQUIRED,
+] as const satisfies (keyof TrademarkClaimsBase)[];
 
 /**
  * Current Registrar
@@ -13351,6 +16263,422 @@ export const KEYS_TRANSFER_EVENT = [
   KEY_TRANSFER_EVENT_MESSAGE,
   KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR,
 ] as const satisfies (keyof TransferEvent)[];
+
+/**
+ * Authinfo Max Length
+ *
+ * Maximum length of the auth info
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_max_length` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH = 'authinfo_max_length' as keyof TransferPoliciesBase;
+/**
+ * Authinfo Min Length
+ *
+ * Minimum length of the auth info
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_min_length` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH = 'authinfo_min_length' as keyof TransferPoliciesBase;
+/**
+ * Authinfo Required
+ *
+ * Whether an auth info is required for transfers
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_required` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED = 'authinfo_required' as keyof TransferPoliciesBase;
+/**
+ * Authinfo Time Limited
+ *
+ * Whether an auth info has a time limit
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_time_limited` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED = 'authinfo_time_limited' as keyof TransferPoliciesBase;
+/**
+ * Authinfo Validity Period
+ *
+ * Validity period of the auth info (e.g., '5D' for 5 days)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_validity_period` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD = 'authinfo_validity_period' as keyof TransferPoliciesBase;
+/**
+ * Info Contact Authinfo
+ *
+ * Whether querying a foreign contact with authinfo is possible
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `info_contact_authinfo` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO = 'info_contact_authinfo' as keyof TransferPoliciesBase;
+/**
+ * Info Domain Authinfo
+ *
+ * Whether querying a foreign domain with authinfo is possible
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `info_domain_authinfo` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO = 'info_domain_authinfo' as keyof TransferPoliciesBase;
+/**
+ * Post Transfer Requirements
+ *
+ * Post-transfer requirements: lists the behaviors, as in ['update_contacts', 'set_transfer_lock'] or [ 'tld_specific' ] for specific behavior
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `post_transfer_requirements` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS = 'post_transfer_requirements' as keyof TransferPoliciesBase;
+/**
+ * transfer_ack property
+ *
+ * Whether a transfer can be approved
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_ack` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK = 'transfer_ack' as keyof TransferPoliciesBase;
+/**
+ * Transfer Email Required
+ *
+ * Whether an email confirmation is required to perform the transfer
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_email_required` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED = 'transfer_email_required' as keyof TransferPoliciesBase;
+/**
+ * Transfer Lock Enabled
+ *
+ * Whether transfers are locked by default in our system
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_lock_enabled` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED = 'transfer_lock_enabled' as keyof TransferPoliciesBase;
+/**
+ * transfer_nack property
+ *
+ * Whether a transfer can be denied
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_nack` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK = 'transfer_nack' as keyof TransferPoliciesBase;
+/**
+ * Transfer Renewal Period
+ *
+ * If transfer_renews_domain is true, the renewal period (e.g., '1Y' for 1 year)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_renewal_period` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD = 'transfer_renewal_period' as keyof TransferPoliciesBase;
+/**
+ * Transfer Renews Domain
+ *
+ * Whether a transfer triggers a domain renewal
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_renews_domain` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN = 'transfer_renews_domain' as keyof TransferPoliciesBase;
+/**
+ * Transfer Time
+ *
+ * Time duration of transfers in ISO 8601 format (e.g., 5D, -7D) according to the policy, 0 = real-time
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_time` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME = 'transfer_time' as keyof TransferPoliciesBase;
+
+/**
+ * Array of all TransferPoliciesBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TransferPoliciesBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TRANSFER_POLICIES_BASE) {
+ *   console.log(`Property: ${key}, Value: ${transferpoliciesbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TRANSFER_POLICIES_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ */
+export const KEYS_TRANSFER_POLICIES_BASE = [
+  KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH,
+  KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH,
+  KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED,
+  KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED,
+  KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD,
+  KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO,
+  KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO,
+  KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME,
+] as const satisfies (keyof TransferPoliciesBase)[];
 
 /**
  * Created On
@@ -15540,6 +18868,56 @@ export const KEYS_VALIDATION_ERROR = [
   KEY_VALIDATION_ERROR_MSG,
   KEY_VALIDATION_ERROR_TYPE,
 ] as const satisfies (keyof ValidationError)[];
+
+/**
+ * Whois Server
+ *
+ * WHOIS server
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `whois_server` property of WhoisBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = whoisbase[KEY_WHOIS_BASE_WHOIS_SERVER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WHOIS_BASE_WHOIS_SERVER;
+ * const value = whoisbase[propertyName];
+ * ```
+ *
+ * @see {@link WhoisBase} - The TypeScript type definition
+ * @see {@link KEYS_WHOIS_BASE} - Array of all keys for this type
+ */
+export const KEY_WHOIS_BASE_WHOIS_SERVER = 'whois_server' as keyof WhoisBase;
+
+/**
+ * Array of all WhoisBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for WhoisBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_WHOIS_BASE) {
+ *   console.log(`Property: ${key}, Value: ${whoisbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_WHOIS_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link WhoisBase} - The TypeScript type definition
+ */
+export const KEYS_WHOIS_BASE = [
+  KEY_WHOIS_BASE_WHOIS_SERVER,
+] as const satisfies (keyof WhoisBase)[];
 
 /**
  * meta property
