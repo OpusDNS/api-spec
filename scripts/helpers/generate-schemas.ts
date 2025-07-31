@@ -324,7 +324,7 @@ function main() {
     const directAliasesContent = generateDirectSchemaAliases(openAPIContent);
     
     // Write the direct aliases content to the file
-    const outputPath = path.join(process.cwd(), 'src/helpers/schemas.ts');
+    const outputPath = path.join(process.cwd(), 'src/helpers/schemas.d.ts');
     
     // Ensure the directory exists
     const outputDir = path.dirname(outputPath);

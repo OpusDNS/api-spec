@@ -222,7 +222,7 @@ function generateSchemasArraysContent(arrayUsages: ArrayUsage[]): string {
     typeNames.push(typeName);
   }
   // Emit named import for all used types
-  lines.push(`import { ${typeNames.join(', ')} } from './schemas';`);
+  lines.push(`import { ${typeNames.join(', ')} } from './schemas.d';`);
   lines.push('');
 
   // Now emit the array types with comments
@@ -289,7 +289,7 @@ function main() {
 
     // Generate schemas arrays content
     const schemasArraysContent = generateSchemasArraysContent(allArrayUsages);
-    const outputPath = path.join(process.cwd(), 'src/helpers/schemas-arrays.ts');
+    const outputPath = path.join(process.cwd(), 'src/helpers/schemas-arrays.d.ts');
     fs.writeFileSync(outputPath, schemasArraysContent);
 
     console.log(

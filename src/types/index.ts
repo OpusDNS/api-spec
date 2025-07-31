@@ -7,5 +7,4 @@
 
 export * from './constants';
 export * from './keys';
-export * from './paths';
 export * from './types';

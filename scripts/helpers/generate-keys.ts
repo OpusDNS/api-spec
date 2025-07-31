@@ -29,7 +29,7 @@ function resolveSchemaRef(ref: string, spec: any): any {
 }
 
 function extractExistingTypes(validSchemas: Set<string>): TypeInfo[] {
-  const schemasPath = path.join(process.cwd(), 'src/helpers/schemas.ts');
+  const schemasPath = path.join(process.cwd(), 'src/helpers/schemas.d.ts');
   const schemasContent = fs.readFileSync(schemasPath, 'utf8');
 
   const types: TypeInfo[] = [];
@@ -257,11 +257,11 @@ function main() {
   // Create a set of valid schema names
   const validSchemas = new Set(schemas.map((schema) => schema.name));
 
-  // Extract existing types from schemas.ts file, filtering for valid schemas
+  // Extract existing types from schemas.d.ts file, filtering for valid schemas
   const existingTypes = extractExistingTypes(validSchemas);
 
   if (existingTypes.length === 0) {
-    console.error('❌ No valid types found in schemas.ts file');
+    console.error('❌ No valid types found in schemas.d.ts file');
     process.exit(1);
   }
 

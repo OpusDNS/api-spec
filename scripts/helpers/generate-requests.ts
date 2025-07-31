@@ -190,9 +190,9 @@ function generateGroupedRequestTypesContent(groupedRequests: GroupedRequests): s
   return content;
 }
 
-// Helper: Build a map of OpenAPI schema names to TypeScript aliases from schemas.ts
+// Helper: Build a map of OpenAPI schema names to TypeScript aliases from schemas.d.ts
 function getSchemaAliasMap(): Record<string, string> {
-  const schemasFile = path.join(process.cwd(), 'src/helpers/schemas.ts');
+  const schemasFile = path.join(process.cwd(), 'src/helpers/schemas.d.ts');
   const content = fs.readFileSync(schemasFile, 'utf8');
   const aliasMap: Record<string, string> = {};
   const regex = /export type (\w+) = components\['schemas'\]\['(\w+)'\];/g;
@@ -207,7 +207,7 @@ function getSchemaAliasMap(): Record<string, string> {
 
 // Helper: Build a map of TypeScript element aliases to array aliases from schemas-arrays.ts
 function getArrayAliasMap(): Record<string, string> {
-  const arraysFile = path.join(process.cwd(), 'src/helpers/schemas-arrays.ts');
+  const arraysFile = path.join(process.cwd(), 'src/helpers/schemas-arrays.d.ts');
   const content = fs.readFileSync(arraysFile, 'utf8');
   const aliasMap: Record<string, string> = {};
   const regex = /export type (\w+Array) = (\w+)\[\];/g;
@@ -420,10 +420,10 @@ function generateIndividualRequestTypesContent(groupedRequests: GroupedRequests,
   }
   // Emit import for all used aliases
   if (usedAliases.size > 0) {
-    lines.unshift(`import { ${Array.from(usedAliases).join(', ')} } from './schemas';\n`);
+    lines.unshift(`import { ${Array.from(usedAliases).join(', ')} } from './schemas.d';\n`);
   }
   if (usedArrayAliases.size > 0) {
-    lines.unshift(`import { ${Array.from(usedArrayAliases).join(', ')} } from './schemas-arrays';\n`);
+    lines.unshift(`import { ${Array.from(usedArrayAliases).join(', ')} } from './schemas-arrays.d';\n`);
   }
   return lines.join('\n');
 }
@@ -491,7 +491,7 @@ function main() {
     const operationIdMap = extractOperationIdMap(openAPIContent);
     const requestsOutputPath = path.join(
       process.cwd(),
-      'src/helpers/requests.ts',
+      'src/helpers/requests.d.ts',
     );
     // Generate requests file
     const requestsContent = generateRequestsFile(groupedRequests, operationIdMap, openAPIContent);

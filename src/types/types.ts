@@ -3,7 +3,7 @@
  * All types have moved to the helpers directory (see src/helpers/schemas.ts and related files). Please update your imports.
  */
 
-import { components, operations } from '../schema';
+import type { components, operations } from '../schema.d.ts';
 
 
 /** 

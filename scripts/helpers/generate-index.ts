@@ -20,10 +20,10 @@ function generateIndexFile(): string {
     '',
     "export * from './keys';",
     "export * from './requests';",
-    "export * from './schemas';",
-    "export * from './schemas-arrays';",
-    "export * from './constants';",
-    "export * from './responses';",
+    "export * from './schemas.d';",
+    "export * from './schemas-arrays.d';",
+    "export * from './constants.d';",
+    "export * from './responses.d';",
     '',
   ];
 

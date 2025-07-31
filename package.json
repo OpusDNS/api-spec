@@ -10,9 +10,18 @@
   "name": "@opusdns/api",
   "version": "0.12.0",
   "description": "TypeScript types for the OpusDNS OpenAPI specification",
-  "main": "src/index.d.ts",
-  "types": "src/index.d.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.ts"
+    },
+    "./helpers": "./src/helpers/index.ts",
+    "./types": "./src/index.d.ts"
+  },
   "dependencies": {
     "typeid-js": "^1.2.0"
   },
@@ -25,13 +34,15 @@
   "bugs": {
     "url": "https://github.com/OpusDNS/api-spec/issues"
   },
-  "homepage": "https://github.com/OpusDNS/api-spec#readme",
   "scripts": {
     "generate:schema": "tsx scripts/generate-schema.ts",
     "generate:helpers": "tsx scripts/helpers/generate-all.ts"
   },
+  "homepage": "https://github.com/OpusDNS/api-spec#readme",
   "files": [
     "package.json",
-    "src/"
+    "src/",
+    "README.md",
+    "LICENSE"
   ]
 }
