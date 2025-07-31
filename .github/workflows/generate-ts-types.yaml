@@ -44,8 +44,7 @@ jobs:
             echo "No changes to commit."
           else
             npm run generate:helpers
-            git add src/openapi.yaml
-            git add src/types
+            git add src
             git commit -m "Update OpenAPI spec and types"
             npm version minor
             git push
