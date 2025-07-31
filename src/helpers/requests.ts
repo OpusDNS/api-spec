@@ -30,7 +30,7 @@
  * Do not edit manually.
  */
 
-import { operations, components } from '../schema';
+import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays';
 

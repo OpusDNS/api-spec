@@ -30,7 +30,7 @@
  * Do not edit manually.
  */
 
-import { components } from '../schema';
+
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray } from './schemas-arrays';
 
