@@ -309,7 +309,12 @@ ${seeTags}
         return individualTypeName;
       });
       
-      lines.push(`export type ${responseTypeName} = ${unionTypes.join(' | ')};`);
+      // Handle case where there are no response types (empty schema)
+      if (unionTypes.length === 0) {
+        lines.push(`export type ${responseTypeName} = unknown;`);
+      } else {
+        lines.push(`export type ${responseTypeName} = ${unionTypes.join(' | ')};`);
+      }
       lines.push(``);
       
       // Generate individual response types for each status code
