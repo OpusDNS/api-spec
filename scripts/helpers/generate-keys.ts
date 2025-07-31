@@ -236,9 +236,9 @@ export const KEY_${typeNameUpper}_${keyName} = '${prop}' as keyof ${type.name};`
  *
  * @see {@link ${type.name}} - The TypeScript type definition
  */
-export const KEYS_${typeNameUpper}: readonly (keyof ${type.name})[] = [`);
+export const KEYS_${typeNameUpper} = [`);
     lines.push(...keysArray);
-    lines.push('] as const;');
+    lines.push(`] as const satisfies (keyof ${type.name})[];`);
     lines.push('');
   });
 

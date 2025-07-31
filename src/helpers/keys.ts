@@ -272,13 +272,13 @@ export const KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME = 'us
  *
  * @see {@link Body_issue_organization_token_v1_auth_token_post} - The TypeScript type definition
  */
-export const KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST: readonly (keyof Body_issue_organization_token_v1_auth_token_post)[] = [
+export const KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST = [
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_ID,
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_CLIENT_SECRET,
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_GRANT_TYPE,
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD,
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME,
-] as const;
+] as const satisfies (keyof Body_issue_organization_token_v1_auth_token_post)[];
 
 /**
  * Results
@@ -326,9 +326,9 @@ export const KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS = 'results' as keyof E
  *
  * @see {@link EmailForwardBulkDeleteResult} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT: readonly (keyof EmailForwardBulkDeleteResult)[] = [
+export const KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT = [
   KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS,
-] as const;
+] as const satisfies (keyof EmailForwardBulkDeleteResult)[];
 
 /**
  * Results
@@ -376,9 +376,9 @@ export const KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS = 'results' as keyof E
  *
  * @see {@link EmailForwardBulkUpdateResult} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT: readonly (keyof EmailForwardBulkUpdateResult)[] = [
+export const KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT = [
   KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS,
-] as const;
+] as const satisfies (keyof EmailForwardBulkUpdateResult)[];
 
 /**
  * Error Message
@@ -451,10 +451,10 @@ export const KEY_BULK_OPERATION_RESULT_STATUS = 'status' as keyof BulkOperationR
  *
  * @see {@link BulkOperationResult} - The TypeScript type definition
  */
-export const KEYS_BULK_OPERATION_RESULT: readonly (keyof BulkOperationResult)[] = [
+export const KEYS_BULK_OPERATION_RESULT = [
   KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE,
   KEY_BULK_OPERATION_RESULT_STATUS,
-] as const;
+] as const satisfies (keyof BulkOperationResult)[];
 
 /**
  * City
@@ -811,7 +811,7 @@ export const KEY_CONTACT_CREATE_TITLE = 'title' as keyof ContactCreate;
  *
  * @see {@link ContactCreate} - The TypeScript type definition
  */
-export const KEYS_CONTACT_CREATE: readonly (keyof ContactCreate)[] = [
+export const KEYS_CONTACT_CREATE = [
   KEY_CONTACT_CREATE_CITY,
   KEY_CONTACT_CREATE_COUNTRY,
   KEY_CONTACT_CREATE_DISCLOSE,
@@ -825,7 +825,7 @@ export const KEYS_CONTACT_CREATE: readonly (keyof ContactCreate)[] = [
   KEY_CONTACT_CREATE_STATE,
   KEY_CONTACT_CREATE_STREET,
   KEY_CONTACT_CREATE_TITLE,
-] as const;
+] as const satisfies (keyof ContactCreate)[];
 
 /**
  * City
@@ -1182,7 +1182,7 @@ export const KEY_CONTACT_TITLE = 'title' as keyof Contact;
  *
  * @see {@link Contact} - The TypeScript type definition
  */
-export const KEYS_CONTACT: readonly (keyof Contact)[] = [
+export const KEYS_CONTACT = [
   KEY_CONTACT_CITY,
   KEY_CONTACT_COUNTRY,
   KEY_CONTACT_DISCLOSE,
@@ -1196,7 +1196,7 @@ export const KEYS_CONTACT: readonly (keyof Contact)[] = [
   KEY_CONTACT_STATE,
   KEY_CONTACT_STREET,
   KEY_CONTACT_TITLE,
-] as const;
+] as const satisfies (keyof Contact)[];
 
 /**
  * City
@@ -1655,7 +1655,7 @@ export const KEY_CONTACT_SCHEMA_TITLE = 'title' as keyof ContactSchema;
  *
  * @see {@link ContactSchema} - The TypeScript type definition
  */
-export const KEYS_CONTACT_SCHEMA: readonly (keyof ContactSchema)[] = [
+export const KEYS_CONTACT_SCHEMA = [
   KEY_CONTACT_SCHEMA_CITY,
   KEY_CONTACT_SCHEMA_CONTACT_ID,
   KEY_CONTACT_SCHEMA_COUNTRY,
@@ -1673,7 +1673,7 @@ export const KEYS_CONTACT_SCHEMA: readonly (keyof ContactSchema)[] = [
   KEY_CONTACT_SCHEMA_STATE,
   KEY_CONTACT_SCHEMA_STREET,
   KEY_CONTACT_SCHEMA_TITLE,
-] as const;
+] as const satisfies (keyof ContactSchema)[];
 
 /**
  * Canceled On
@@ -1925,7 +1925,7 @@ export const KEY_CONTACT_VERIFICATION_API_VERIFIED_ON = 'verified_on' as keyof C
  *
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  */
-export const KEYS_CONTACT_VERIFICATION_API: readonly (keyof ContactVerificationApi)[] = [
+export const KEYS_CONTACT_VERIFICATION_API = [
   KEY_CONTACT_VERIFICATION_API_CANCELED_ON,
   KEY_CONTACT_VERIFICATION_API_CONTACT_ID,
   KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID,
@@ -1935,7 +1935,7 @@ export const KEYS_CONTACT_VERIFICATION_API: readonly (keyof ContactVerificationA
   KEY_CONTACT_VERIFICATION_API_TYPE,
   KEY_CONTACT_VERIFICATION_API_UPDATED_ON,
   KEY_CONTACT_VERIFICATION_API_VERIFIED_ON,
-] as const;
+] as const satisfies (keyof ContactVerificationApi)[];
 
 /**
  * Canceled On
@@ -2161,7 +2161,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON = 'verified_on' as keyof
  *
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  */
-export const KEYS_CONTACT_VERIFICATION_EMAIL: readonly (keyof ContactVerificationEmail)[] = [
+export const KEYS_CONTACT_VERIFICATION_EMAIL = [
   KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON,
   KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID,
   KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID,
@@ -2170,7 +2170,7 @@ export const KEYS_CONTACT_VERIFICATION_EMAIL: readonly (keyof ContactVerificatio
   KEY_CONTACT_VERIFICATION_EMAIL_TYPE,
   KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON,
   KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON,
-] as const;
+] as const satisfies (keyof ContactVerificationEmail)[];
 
 /**
  * Canceled On
@@ -2396,7 +2396,7 @@ export const KEY_CONTACT_VERIFICATION_VERIFIED_ON = 'verified_on' as keyof Conta
  *
  * @see {@link ContactVerification} - The TypeScript type definition
  */
-export const KEYS_CONTACT_VERIFICATION: readonly (keyof ContactVerification)[] = [
+export const KEYS_CONTACT_VERIFICATION = [
   KEY_CONTACT_VERIFICATION_CANCELED_ON,
   KEY_CONTACT_VERIFICATION_CONTACT_ID,
   KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID,
@@ -2405,7 +2405,7 @@ export const KEYS_CONTACT_VERIFICATION: readonly (keyof ContactVerification)[] =
   KEY_CONTACT_VERIFICATION_TYPE,
   KEY_CONTACT_VERIFICATION_UPDATED_ON,
   KEY_CONTACT_VERIFICATION_VERIFIED_ON,
-] as const;
+] as const satisfies (keyof ContactVerification)[];
 
 /**
  * date property
@@ -2452,9 +2452,9 @@ export const KEY_DELETED_EVENT_DATE = 'date' as keyof DeletedEvent;
  *
  * @see {@link DeletedEvent} - The TypeScript type definition
  */
-export const KEYS_DELETED_EVENT: readonly (keyof DeletedEvent)[] = [
+export const KEYS_DELETED_EVENT = [
   KEY_DELETED_EVENT_DATE,
-] as const;
+] as const satisfies (keyof DeletedEvent)[];
 
 /**
  * action property
@@ -2597,13 +2597,13 @@ export const KEY_DNS_CHANGE_TTL = 'ttl' as keyof DnsChange;
  *
  * @see {@link DnsChange} - The TypeScript type definition
  */
-export const KEYS_DNS_CHANGE: readonly (keyof DnsChange)[] = [
+export const KEYS_DNS_CHANGE = [
   KEY_DNS_CHANGE_ACTION,
   KEY_DNS_CHANGE_RECORD_DATA,
   KEY_DNS_CHANGE_RRSET_NAME,
   KEY_DNS_CHANGE_RRSET_TYPE,
   KEY_DNS_CHANGE_TTL,
-] as const;
+] as const satisfies (keyof DnsChange)[];
 
 /**
  * Changes
@@ -2725,12 +2725,12 @@ export const KEY_DNS_CHANGES_ZONE_NAME = 'zone_name' as keyof DnsChanges;
  *
  * @see {@link DnsChanges} - The TypeScript type definition
  */
-export const KEYS_DNS_CHANGES: readonly (keyof DnsChanges)[] = [
+export const KEYS_DNS_CHANGES = [
   KEY_DNS_CHANGES_CHANGES,
   KEY_DNS_CHANGES_CHANGESET_ID,
   KEY_DNS_CHANGES_NUM_CHANGES,
   KEY_DNS_CHANGES_ZONE_NAME,
-] as const;
+] as const satisfies (keyof DnsChanges)[];
 
 /**
  * Rdata
@@ -2778,9 +2778,9 @@ export const KEY_DNS_RECORD_CREATE_RDATA = 'rdata' as keyof DnsRecordCreate;
  *
  * @see {@link DnsRecordCreate} - The TypeScript type definition
  */
-export const KEYS_DNS_RECORD_CREATE: readonly (keyof DnsRecordCreate)[] = [
+export const KEYS_DNS_RECORD_CREATE = [
   KEY_DNS_RECORD_CREATE_RDATA,
-] as const;
+] as const satisfies (keyof DnsRecordCreate)[];
 
 /**
  * op property
@@ -2851,10 +2851,10 @@ export const KEY_DNS_RECORD_PATCH_OP_RECORD = 'record' as keyof DnsRecordPatchOp
  *
  * @see {@link DnsRecordPatchOp} - The TypeScript type definition
  */
-export const KEYS_DNS_RECORD_PATCH_OP: readonly (keyof DnsRecordPatchOp)[] = [
+export const KEYS_DNS_RECORD_PATCH_OP = [
   KEY_DNS_RECORD_PATCH_OP_OP,
   KEY_DNS_RECORD_PATCH_OP_RECORD,
-] as const;
+] as const satisfies (keyof DnsRecordPatchOp)[];
 
 /**
  * Rdata
@@ -2902,9 +2902,9 @@ export const KEY_DNS_RECORD_RDATA = 'rdata' as keyof DnsRecord;
  *
  * @see {@link DnsRecord} - The TypeScript type definition
  */
-export const KEYS_DNS_RECORD: readonly (keyof DnsRecord)[] = [
+export const KEYS_DNS_RECORD = [
   KEY_DNS_RECORD_RDATA,
-] as const;
+] as const satisfies (keyof DnsRecord)[];
 
 /**
  * Name
@@ -3026,12 +3026,12 @@ export const KEY_DNS_RRSET_CREATE_TYPE = 'type' as keyof DnsRrsetCreate;
  *
  * @see {@link DnsRrsetCreate} - The TypeScript type definition
  */
-export const KEYS_DNS_RRSET_CREATE: readonly (keyof DnsRrsetCreate)[] = [
+export const KEYS_DNS_RRSET_CREATE = [
   KEY_DNS_RRSET_CREATE_NAME,
   KEY_DNS_RRSET_CREATE_RECORDS,
   KEY_DNS_RRSET_CREATE_TTL,
   KEY_DNS_RRSET_CREATE_TYPE,
-] as const;
+] as const satisfies (keyof DnsRrsetCreate)[];
 
 /**
  * Name
@@ -3153,12 +3153,12 @@ export const KEY_DNS_RRSET_PATCH_TYPE = 'type' as keyof DnsRrsetPatch;
  *
  * @see {@link DnsRrsetPatch} - The TypeScript type definition
  */
-export const KEYS_DNS_RRSET_PATCH: readonly (keyof DnsRrsetPatch)[] = [
+export const KEYS_DNS_RRSET_PATCH = [
   KEY_DNS_RRSET_PATCH_NAME,
   KEY_DNS_RRSET_PATCH_RECORDS,
   KEY_DNS_RRSET_PATCH_TTL,
   KEY_DNS_RRSET_PATCH_TYPE,
-] as const;
+] as const satisfies (keyof DnsRrsetPatch)[];
 
 /**
  * op property
@@ -3229,10 +3229,10 @@ export const KEY_DNS_RRSET_PATCH_OP_RRSET = 'rrset' as keyof DnsRrsetPatchOp;
  *
  * @see {@link DnsRrsetPatchOp} - The TypeScript type definition
  */
-export const KEYS_DNS_RRSET_PATCH_OP: readonly (keyof DnsRrsetPatchOp)[] = [
+export const KEYS_DNS_RRSET_PATCH_OP = [
   KEY_DNS_RRSET_PATCH_OP_OP,
   KEY_DNS_RRSET_PATCH_OP_RRSET,
-] as const;
+] as const satisfies (keyof DnsRrsetPatchOp)[];
 
 /**
  * Name
@@ -3354,12 +3354,12 @@ export const KEY_DNS_RRSET_TYPE = 'type' as keyof DnsRrset;
  *
  * @see {@link DnsRrset} - The TypeScript type definition
  */
-export const KEYS_DNS_RRSET: readonly (keyof DnsRrset)[] = [
+export const KEYS_DNS_RRSET = [
   KEY_DNS_RRSET_NAME,
   KEY_DNS_RRSET_RECORDS,
   KEY_DNS_RRSET_TTL,
   KEY_DNS_RRSET_TYPE,
-] as const;
+] as const satisfies (keyof DnsRrset)[];
 
 /**
  * Name
@@ -3481,12 +3481,12 @@ export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE = 'type' as keyof DnsRrset
  *
  * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
  */
-export const KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH: readonly (keyof DnsRrsetWithOneRecordPatch)[] = [
+export const KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH = [
   KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME,
   KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA,
   KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL,
   KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE,
-] as const;
+] as const satisfies (keyof DnsRrsetWithOneRecordPatch)[];
 
 /**
  * dnssec_status property
@@ -3583,11 +3583,11 @@ export const KEY_DNS_ZONE_CREATE_RRSETS = 'rrsets' as keyof DnsZoneCreate;
  *
  * @see {@link DnsZoneCreate} - The TypeScript type definition
  */
-export const KEYS_DNS_ZONE_CREATE: readonly (keyof DnsZoneCreate)[] = [
+export const KEYS_DNS_ZONE_CREATE = [
   KEY_DNS_ZONE_CREATE_DNSSEC_STATUS,
   KEY_DNS_ZONE_CREATE_NAME,
   KEY_DNS_ZONE_CREATE_RRSETS,
-] as const;
+] as const satisfies (keyof DnsZoneCreate)[];
 
 /**
  * Ops
@@ -3635,9 +3635,9 @@ export const KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS = 'ops' as keyof DnsZoneRecordsP
  *
  * @see {@link DnsZoneRecordsPatchOps} - The TypeScript type definition
  */
-export const KEYS_DNS_ZONE_RECORDS_PATCH_OPS: readonly (keyof DnsZoneRecordsPatchOps)[] = [
+export const KEYS_DNS_ZONE_RECORDS_PATCH_OPS = [
   KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS,
-] as const;
+] as const satisfies (keyof DnsZoneRecordsPatchOps)[];
 
 /**
  * dnssec_status property
@@ -3758,12 +3758,12 @@ export const KEY_DNS_ZONE_RRSETS = 'rrsets' as keyof DnsZone;
  *
  * @see {@link DnsZone} - The TypeScript type definition
  */
-export const KEYS_DNS_ZONE: readonly (keyof DnsZone)[] = [
+export const KEYS_DNS_ZONE = [
   KEY_DNS_ZONE_DNSSEC_STATUS,
   KEY_DNS_ZONE_DOMAIN_PARTS,
   KEY_DNS_ZONE_NAME,
   KEY_DNS_ZONE_RRSETS,
-] as const;
+] as const satisfies (keyof DnsZone)[];
 
 /**
  * Rrsets
@@ -3811,9 +3811,9 @@ export const KEY_DNS_ZONE_RRSETS_CREATE_RRSETS = 'rrsets' as keyof DnsZoneRrsets
  *
  * @see {@link DnsZoneRrsetsCreate} - The TypeScript type definition
  */
-export const KEYS_DNS_ZONE_RRSETS_CREATE: readonly (keyof DnsZoneRrsetsCreate)[] = [
+export const KEYS_DNS_ZONE_RRSETS_CREATE = [
   KEY_DNS_ZONE_RRSETS_CREATE_RRSETS,
-] as const;
+] as const satisfies (keyof DnsZoneRrsetsCreate)[];
 
 /**
  * Ops
@@ -3861,9 +3861,9 @@ export const KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS = 'ops' as keyof DnsZoneRrsetsPat
  *
  * @see {@link DnsZoneRrsetsPatchOps} - The TypeScript type definition
  */
-export const KEYS_DNS_ZONE_RRSETS_PATCH_OPS: readonly (keyof DnsZoneRrsetsPatchOps)[] = [
+export const KEYS_DNS_ZONE_RRSETS_PATCH_OPS = [
   KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS,
-] as const;
+] as const satisfies (keyof DnsZoneRrsetsPatchOps)[];
 
 /**
  * Domain
@@ -3935,10 +3935,10 @@ export const KEY_DOMAIN_AVAILABILITY_STATUS = 'status' as keyof DomainAvailabili
  *
  * @see {@link DomainAvailability} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_AVAILABILITY: readonly (keyof DomainAvailability)[] = [
+export const KEYS_DOMAIN_AVAILABILITY = [
   KEY_DOMAIN_AVAILABILITY_DOMAIN,
   KEY_DOMAIN_AVAILABILITY_STATUS,
-] as const;
+] as const satisfies (keyof DomainAvailability)[];
 
 /**
  * Processing Time Ms
@@ -4011,10 +4011,10 @@ export const KEY_DOMAIN_AVAILABILITY_META_TOTAL = 'total' as keyof DomainAvailab
  *
  * @see {@link DomainAvailabilityMeta} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_AVAILABILITY_META: readonly (keyof DomainAvailabilityMeta)[] = [
+export const KEYS_DOMAIN_AVAILABILITY_META = [
   KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS,
   KEY_DOMAIN_AVAILABILITY_META_TOTAL,
-] as const;
+] as const satisfies (keyof DomainAvailabilityMeta)[];
 
 /**
  * Results
@@ -4062,9 +4062,9 @@ export const KEY_DOMAIN_CHECK_RESULTS = 'results' as keyof DomainCheck;
  *
  * @see {@link DomainCheck} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_CHECK: readonly (keyof DomainCheck)[] = [
+export const KEYS_DOMAIN_CHECK = [
   KEY_DOMAIN_CHECK_RESULTS,
-] as const;
+] as const satisfies (keyof DomainCheck)[];
 
 /**
  * Contact Id
@@ -4138,10 +4138,10 @@ export const KEY_DOMAIN_CONTACT_CONTACT_TYPE = 'contact_type' as keyof DomainCon
  *
  * @see {@link DomainContact} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_CONTACT: readonly (keyof DomainContact)[] = [
+export const KEYS_DOMAIN_CONTACT = [
   KEY_DOMAIN_CONTACT_CONTACT_ID,
   KEY_DOMAIN_CONTACT_CONTACT_TYPE,
-] as const;
+] as const satisfies (keyof DomainContact)[];
 
 /**
  * Auth Code
@@ -4315,14 +4315,14 @@ export const KEY_DOMAIN_CREATE_RENEWAL_MODE = 'renewal_mode' as keyof DomainCrea
  *
  * @see {@link DomainCreate} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_CREATE: readonly (keyof DomainCreate)[] = [
+export const KEYS_DOMAIN_CREATE = [
   KEY_DOMAIN_CREATE_AUTH_CODE,
   KEY_DOMAIN_CREATE_CONTACTS,
   KEY_DOMAIN_CREATE_NAME,
   KEY_DOMAIN_CREATE_NAMESERVERS,
   KEY_DOMAIN_CREATE_PERIOD,
   KEY_DOMAIN_CREATE_RENEWAL_MODE,
-] as const;
+] as const satisfies (keyof DomainCreate)[];
 
 /**
  * algorithm property
@@ -4545,7 +4545,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE = 'record_type' as keyof 
  *
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_DNSSEC_DATA_CREATE: readonly (keyof DomainDnssecDataCreate)[] = [
+export const KEYS_DOMAIN_DNSSEC_DATA_CREATE = [
   KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM,
   KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST,
   KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE,
@@ -4554,7 +4554,7 @@ export const KEYS_DOMAIN_DNSSEC_DATA_CREATE: readonly (keyof DomainDnssecDataCre
   KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL,
   KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY,
   KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE,
-] as const;
+] as const satisfies (keyof DomainDnssecDataCreate)[];
 
 /**
  * algorithm property
@@ -4880,7 +4880,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON = 'updated_on' as keyof DomainDns
  *
  * @see {@link DomainDnssecData} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_DNSSEC_DATA: readonly (keyof DomainDnssecData)[] = [
+export const KEYS_DOMAIN_DNSSEC_DATA = [
   KEY_DOMAIN_DNSSEC_DATA_ALGORITHM,
   KEY_DOMAIN_DNSSEC_DATA_CREATED_ON,
   KEY_DOMAIN_DNSSEC_DATA_DIGEST,
@@ -4893,7 +4893,7 @@ export const KEYS_DOMAIN_DNSSEC_DATA: readonly (keyof DomainDnssecData)[] = [
   KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY,
   KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE,
   KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON,
-] as const;
+] as const satisfies (keyof DomainDnssecData)[];
 
 /**
  * Domain
@@ -4988,11 +4988,11 @@ export const KEY_DOMAIN_NAME_PARTS_SUFFIX = 'suffix' as keyof DomainNameParts;
  *
  * @see {@link DomainNameParts} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_NAME_PARTS: readonly (keyof DomainNameParts)[] = [
+export const KEYS_DOMAIN_NAME_PARTS = [
   KEY_DOMAIN_NAME_PARTS_DOMAIN,
   KEY_DOMAIN_NAME_PARTS_SUBDOMAIN,
   KEY_DOMAIN_NAME_PARTS_SUFFIX,
-] as const;
+] as const satisfies (keyof DomainNameParts)[];
 
 /**
  * unit property
@@ -5066,10 +5066,10 @@ export const KEY_DOMAIN_PERIOD_VALUE = 'value' as keyof DomainPeriod;
  *
  * @see {@link DomainPeriod} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_PERIOD: readonly (keyof DomainPeriod)[] = [
+export const KEYS_DOMAIN_PERIOD = [
   KEY_DOMAIN_PERIOD_UNIT,
   KEY_DOMAIN_PERIOD_VALUE,
-] as const;
+] as const satisfies (keyof DomainPeriod)[];
 
 /**
  * Current Expiry Date
@@ -5143,10 +5143,10 @@ export const KEY_DOMAIN_RENEW_REQUEST_PERIOD = 'period' as keyof DomainRenewRequ
  *
  * @see {@link DomainRenewRequest} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_RENEW_REQUEST: readonly (keyof DomainRenewRequest)[] = [
+export const KEYS_DOMAIN_RENEW_REQUEST = [
   KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE,
   KEY_DOMAIN_RENEW_REQUEST_PERIOD,
-] as const;
+] as const satisfies (keyof DomainRenewRequest)[];
 
 /**
  * Name
@@ -5246,11 +5246,11 @@ export const KEY_DOMAIN_RENEW_PERIOD_EXTENDED = 'period_extended' as keyof Domai
  *
  * @see {@link DomainRenew} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_RENEW: readonly (keyof DomainRenew)[] = [
+export const KEYS_DOMAIN_RENEW = [
   KEY_DOMAIN_RENEW_NAME,
   KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE,
   KEY_DOMAIN_RENEW_PERIOD_EXTENDED,
-] as const;
+] as const satisfies (keyof DomainRenew)[];
 
 /**
  * Auth Code
@@ -5784,7 +5784,7 @@ export const KEY_DOMAIN_UPDATED_ON = 'updated_on' as keyof Domain;
  *
  * @see {@link Domain} - The TypeScript type definition
  */
-export const KEYS_DOMAIN: readonly (keyof Domain)[] = [
+export const KEYS_DOMAIN = [
   KEY_DOMAIN_AUTH_CODE,
   KEY_DOMAIN_AUTH_CODE_EXPIRES_ON,
   KEY_DOMAIN_CANCELED_ON,
@@ -5805,7 +5805,7 @@ export const KEYS_DOMAIN: readonly (keyof Domain)[] = [
   KEY_DOMAIN_TLD,
   KEY_DOMAIN_TRANSFER_LOCK,
   KEY_DOMAIN_UPDATED_ON,
-] as const;
+] as const satisfies (keyof Domain)[];
 
 /**
  * Processing Time Ms
@@ -5878,10 +5878,10 @@ export const KEY_DOMAIN_SEARCH_META_TOTAL = 'total' as keyof DomainSearchMeta;
  *
  * @see {@link DomainSearchMeta} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_SEARCH_META: readonly (keyof DomainSearchMeta)[] = [
+export const KEYS_DOMAIN_SEARCH_META = [
   KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS,
   KEY_DOMAIN_SEARCH_META_TOTAL,
-] as const;
+] as const satisfies (keyof DomainSearchMeta)[];
 
 /**
  * meta property
@@ -5953,10 +5953,10 @@ export const KEY_DOMAIN_SEARCH_RESULTS = 'results' as keyof DomainSearch;
  *
  * @see {@link DomainSearch} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_SEARCH: readonly (keyof DomainSearch)[] = [
+export const KEYS_DOMAIN_SEARCH = [
   KEY_DOMAIN_SEARCH_META,
   KEY_DOMAIN_SEARCH_RESULTS,
-] as const;
+] as const satisfies (keyof DomainSearch)[];
 
 /**
  * Available
@@ -6054,11 +6054,11 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM = 'premium' as keyof DomainSea
  *
  * @see {@link DomainSearchSuggestion} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_SEARCH_SUGGESTION: readonly (keyof DomainSearchSuggestion)[] = [
+export const KEYS_DOMAIN_SEARCH_SUGGESTION = [
   KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE,
   KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN,
   KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM,
-] as const;
+] as const satisfies (keyof DomainSearchSuggestion)[];
 
 /**
  * By Status
@@ -6184,12 +6184,12 @@ export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT = 'total_count' as keyof Domain
  *
  * @see {@link DomainSummaryData} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_SUMMARY_DATA: readonly (keyof DomainSummaryData)[] = [
+export const KEYS_DOMAIN_SUMMARY_DATA = [
   KEY_DOMAIN_SUMMARY_DATA_BY_STATUS,
   KEY_DOMAIN_SUMMARY_DATA_BY_TLD,
   KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON,
   KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT,
-] as const;
+] as const satisfies (keyof DomainSummaryData)[];
 
 /**
  * domains property
@@ -6263,10 +6263,10 @@ export const KEY_DOMAIN_SUMMARY_ORGANIZATION_ID = 'organization_id' as keyof Dom
  *
  * @see {@link DomainSummary} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_SUMMARY: readonly (keyof DomainSummary)[] = [
+export const KEYS_DOMAIN_SUMMARY = [
   KEY_DOMAIN_SUMMARY_DOMAINS,
   KEY_DOMAIN_SUMMARY_ORGANIZATION_ID,
-] as const;
+] as const satisfies (keyof DomainSummary)[];
 
 /**
  * Auth Code
@@ -6391,12 +6391,12 @@ export const KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE = 'renewal_mode' as keyof Domai
  *
  * @see {@link DomainTransferIn} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_TRANSFER_IN: readonly (keyof DomainTransferIn)[] = [
+export const KEYS_DOMAIN_TRANSFER_IN = [
   KEY_DOMAIN_TRANSFER_IN_AUTH_CODE,
   KEY_DOMAIN_TRANSFER_IN_CONTACTS,
   KEY_DOMAIN_TRANSFER_IN_NAME,
   KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,
-] as const;
+] as const satisfies (keyof DomainTransferIn)[];
 
 /**
  * Auth Code
@@ -6544,13 +6544,13 @@ export const KEY_DOMAIN_UPDATE_STATUSES = 'statuses' as keyof DomainUpdate;
  *
  * @see {@link DomainUpdate} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_UPDATE: readonly (keyof DomainUpdate)[] = [
+export const KEYS_DOMAIN_UPDATE = [
   KEY_DOMAIN_UPDATE_AUTH_CODE,
   KEY_DOMAIN_UPDATE_CONTACTS,
   KEY_DOMAIN_UPDATE_NAMESERVERS,
   KEY_DOMAIN_UPDATE_RENEWAL_MODE,
   KEY_DOMAIN_UPDATE_STATUSES,
-] as const;
+] as const satisfies (keyof DomainUpdate)[];
 
 /**
  * Next 30 Days
@@ -6651,11 +6651,11 @@ export const KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS = 'next_90_days' as keyof Do
  *
  * @see {@link DomainsExpiringSoon} - The TypeScript type definition
  */
-export const KEYS_DOMAINS_EXPIRING_SOON: readonly (keyof DomainsExpiringSoon)[] = [
+export const KEYS_DOMAINS_EXPIRING_SOON = [
   KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS,
   KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS,
   KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS,
-] as const;
+] as const satisfies (keyof DomainsExpiringSoon)[];
 
 /**
  * Created On
@@ -6832,14 +6832,14 @@ export const KEY_EMAIL_FORWARD_UPDATED_ON = 'updated_on' as keyof EmailForward;
  *
  * @see {@link EmailForward} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD: readonly (keyof EmailForward)[] = [
+export const KEYS_EMAIL_FORWARD = [
   KEY_EMAIL_FORWARD_CREATED_ON,
   KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID,
   KEY_EMAIL_FORWARD_SOURCE_ADDRESS,
   KEY_EMAIL_FORWARD_STATUS,
   KEY_EMAIL_FORWARD_TARGET_ADDRESS,
   KEY_EMAIL_FORWARD_UPDATED_ON,
-] as const;
+] as const satisfies (keyof EmailForward)[];
 
 /**
  * Email Forward Ids
@@ -6888,9 +6888,9 @@ export const KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS = 'email_forward_id
  *
  * @see {@link EmailForwardBulkDelete} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_BULK_DELETE: readonly (keyof EmailForwardBulkDelete)[] = [
+export const KEYS_EMAIL_FORWARD_BULK_DELETE = [
   KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS,
-] as const;
+] as const satisfies (keyof EmailForwardBulkDelete)[];
 
 /**
  * Email Forwards
@@ -6939,9 +6939,9 @@ export const KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS = 'email_forwards' as 
  *
  * @see {@link EmailForwardBulkUpdate} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_BULK_UPDATE: readonly (keyof EmailForwardBulkUpdate)[] = [
+export const KEYS_EMAIL_FORWARD_BULK_UPDATE = [
   KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS,
-] as const;
+] as const satisfies (keyof EmailForwardBulkUpdate)[];
 
 /**
  * Email Forward Id
@@ -7065,12 +7065,12 @@ export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS = 'target_address
  *
  * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM: readonly (keyof EmailForwardBulkUpdateItem)[] = [
+export const KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM = [
   KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID,
   KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS,
   KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS,
   KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS,
-] as const;
+] as const satisfies (keyof EmailForwardBulkUpdateItem)[];
 
 /**
  * Source Address
@@ -7170,11 +7170,11 @@ export const KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS = 'target_address' as keyof
  *
  * @see {@link EmailForwardCreate} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_CREATE: readonly (keyof EmailForwardCreate)[] = [
+export const KEYS_EMAIL_FORWARD_CREATE = [
   KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS,
   KEY_EMAIL_FORWARD_CREATE_STATUS,
   KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS,
-] as const;
+] as const satisfies (keyof EmailForwardCreate)[];
 
 /**
  * Source Address
@@ -7272,11 +7272,11 @@ export const KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS = 'target_address' as keyof
  *
  * @see {@link EmailForwardUpdate} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_UPDATE: readonly (keyof EmailForwardUpdate)[] = [
+export const KEYS_EMAIL_FORWARD_UPDATE = [
   KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS,
   KEY_EMAIL_FORWARD_UPDATE_STATUS,
   KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS,
-] as const;
+] as const satisfies (keyof EmailForwardUpdate)[];
 
 /**
  * Event Data
@@ -7448,14 +7448,14 @@ export const KEY_EVENT_RESPONSE_TYPE = 'type' as keyof EventResponse;
  *
  * @see {@link EventResponse} - The TypeScript type definition
  */
-export const KEYS_EVENT_RESPONSE: readonly (keyof EventResponse)[] = [
+export const KEYS_EVENT_RESPONSE = [
   KEY_EVENT_RESPONSE_EVENT_DATA,
   KEY_EVENT_RESPONSE_EVENT_ID,
   KEY_EVENT_RESPONSE_OBJECT_ID,
   KEY_EVENT_RESPONSE_OBJECT_TYPE,
   KEY_EVENT_RESPONSE_SUBTYPE,
   KEY_EVENT_RESPONSE_TYPE,
-] as const;
+] as const satisfies (keyof EventResponse)[];
 
 /**
  * Acknowledged On
@@ -7780,7 +7780,7 @@ export const KEY_EVENT_SCHEMA_TYPE = 'type' as keyof EventSchema;
  *
  * @see {@link EventSchema} - The TypeScript type definition
  */
-export const KEYS_EVENT_SCHEMA: readonly (keyof EventSchema)[] = [
+export const KEYS_EVENT_SCHEMA = [
   KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON,
   KEY_EVENT_SCHEMA_CREATED_ON,
   KEY_EVENT_SCHEMA_EVENT_DATA,
@@ -7793,7 +7793,7 @@ export const KEYS_EVENT_SCHEMA: readonly (keyof EventSchema)[] = [
   KEY_EVENT_SCHEMA_SUBTYPE,
   KEY_EVENT_SCHEMA_TARGET,
   KEY_EVENT_SCHEMA_TYPE,
-] as const;
+] as const satisfies (keyof EventSchema)[];
 
 /**
  * errors property
@@ -7916,12 +7916,12 @@ export const KEY_H_T_T_P_VALIDATION_ERROR_TYPE = 'type' as keyof HTTPValidationE
  *
  * @see {@link HTTPValidationError} - The TypeScript type definition
  */
-export const KEYS_H_T_T_P_VALIDATION_ERROR: readonly (keyof HTTPValidationError)[] = [
+export const KEYS_H_T_T_P_VALIDATION_ERROR = [
   KEY_H_T_T_P_VALIDATION_ERROR_ERRORS,
   KEY_H_T_T_P_VALIDATION_ERROR_STATUS,
   KEY_H_T_T_P_VALIDATION_ERROR_TITLE,
   KEY_H_T_T_P_VALIDATION_ERROR_TYPE,
-] as const;
+] as const satisfies (keyof HTTPValidationError)[];
 
 /**
  * Ip Network
@@ -7995,10 +7995,10 @@ export const KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID = 'organization_id' as ke
  *
  * @see {@link IpRestrictionCreate} - The TypeScript type definition
  */
-export const KEYS_IP_RESTRICTION_CREATE: readonly (keyof IpRestrictionCreate)[] = [
+export const KEYS_IP_RESTRICTION_CREATE = [
   KEY_IP_RESTRICTION_CREATE_IP_NETWORK,
   KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID,
-] as const;
+] as const satisfies (keyof IpRestrictionCreate)[];
 
 /**
  * Created On
@@ -8146,13 +8146,13 @@ export const KEY_IP_RESTRICTION_ORGANIZATION_ID = 'organization_id' as keyof IpR
  *
  * @see {@link IpRestriction} - The TypeScript type definition
  */
-export const KEYS_IP_RESTRICTION: readonly (keyof IpRestriction)[] = [
+export const KEYS_IP_RESTRICTION = [
   KEY_IP_RESTRICTION_CREATED_ON,
   KEY_IP_RESTRICTION_IP_NETWORK,
   KEY_IP_RESTRICTION_IP_RESTRICTION_ID,
   KEY_IP_RESTRICTION_LAST_USED_ON,
   KEY_IP_RESTRICTION_ORGANIZATION_ID,
-] as const;
+] as const satisfies (keyof IpRestriction)[];
 
 /**
  * Ip Network
@@ -8225,10 +8225,10 @@ export const KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON = 'last_used_on' as keyof Ip
  *
  * @see {@link IpRestrictionUpdate} - The TypeScript type definition
  */
-export const KEYS_IP_RESTRICTION_UPDATE: readonly (keyof IpRestrictionUpdate)[] = [
+export const KEYS_IP_RESTRICTION_UPDATE = [
   KEY_IP_RESTRICTION_UPDATE_IP_NETWORK,
   KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON,
-] as const;
+] as const satisfies (keyof IpRestrictionUpdate)[];
 
 /**
  * Hostname
@@ -8303,10 +8303,10 @@ export const KEY_NAMESERVER_IP_ADDRESSES = 'ip_addresses' as keyof Nameserver;
  *
  * @see {@link Nameserver} - The TypeScript type definition
  */
-export const KEYS_NAMESERVER: readonly (keyof Nameserver)[] = [
+export const KEYS_NAMESERVER = [
   KEY_NAMESERVER_HOSTNAME,
   KEY_NAMESERVER_IP_ADDRESSES,
-] as const;
+] as const satisfies (keyof Nameserver)[];
 
 /**
  * Author
@@ -8588,7 +8588,7 @@ export const KEY_NOTIFICATION_UPDATED_ON = 'updated_on' as keyof Notification;
  *
  * @see {@link Notification} - The TypeScript type definition
  */
-export const KEYS_NOTIFICATION: readonly (keyof Notification)[] = [
+export const KEYS_NOTIFICATION = [
   KEY_NOTIFICATION_AUTHOR,
   KEY_NOTIFICATION_CREATED_ON,
   KEY_NOTIFICATION_MESSAGE,
@@ -8599,7 +8599,7 @@ export const KEYS_NOTIFICATION: readonly (keyof Notification)[] = [
   KEY_NOTIFICATION_TARGET,
   KEY_NOTIFICATION_TYPE,
   KEY_NOTIFICATION_UPDATED_ON,
-] as const;
+] as const satisfies (keyof Notification)[];
 
 /**
  * Author
@@ -8804,7 +8804,7 @@ export const KEY_NOTIFICATION_CREATE_TYPE = 'type' as keyof NotificationCreate;
  *
  * @see {@link NotificationCreate} - The TypeScript type definition
  */
-export const KEYS_NOTIFICATION_CREATE: readonly (keyof NotificationCreate)[] = [
+export const KEYS_NOTIFICATION_CREATE = [
   KEY_NOTIFICATION_CREATE_AUTHOR,
   KEY_NOTIFICATION_CREATE_MESSAGE,
   KEY_NOTIFICATION_CREATE_PUBLISH_DATE,
@@ -8812,7 +8812,7 @@ export const KEYS_NOTIFICATION_CREATE: readonly (keyof NotificationCreate)[] = [
   KEY_NOTIFICATION_CREATE_SUBJECT,
   KEY_NOTIFICATION_CREATE_TARGET,
   KEY_NOTIFICATION_CREATE_TYPE,
-] as const;
+] as const satisfies (keyof NotificationCreate)[];
 
 /**
  * Author
@@ -9042,7 +9042,7 @@ export const KEY_NOTIFICATION_SUMMARY_TYPE = 'type' as keyof NotificationSummary
  *
  * @see {@link NotificationSummary} - The TypeScript type definition
  */
-export const KEYS_NOTIFICATION_SUMMARY: readonly (keyof NotificationSummary)[] = [
+export const KEYS_NOTIFICATION_SUMMARY = [
   KEY_NOTIFICATION_SUMMARY_AUTHOR,
   KEY_NOTIFICATION_SUMMARY_MESSAGE,
   KEY_NOTIFICATION_SUMMARY_NOTIFICATION_ID,
@@ -9051,7 +9051,7 @@ export const KEYS_NOTIFICATION_SUMMARY: readonly (keyof NotificationSummary)[] =
   KEY_NOTIFICATION_SUMMARY_SUBJECT,
   KEY_NOTIFICATION_SUMMARY_TARGET,
   KEY_NOTIFICATION_SUMMARY_TYPE,
-] as const;
+] as const satisfies (keyof NotificationSummary)[];
 
 /**
  * Author
@@ -9256,7 +9256,7 @@ export const KEY_NOTIFICATION_UPDATE_TYPE = 'type' as keyof NotificationUpdate;
  *
  * @see {@link NotificationUpdate} - The TypeScript type definition
  */
-export const KEYS_NOTIFICATION_UPDATE: readonly (keyof NotificationUpdate)[] = [
+export const KEYS_NOTIFICATION_UPDATE = [
   KEY_NOTIFICATION_UPDATE_AUTHOR,
   KEY_NOTIFICATION_UPDATE_MESSAGE,
   KEY_NOTIFICATION_UPDATE_PUBLISH_DATE,
@@ -9264,7 +9264,7 @@ export const KEYS_NOTIFICATION_UPDATE: readonly (keyof NotificationUpdate)[] = [
   KEY_NOTIFICATION_UPDATE_SUBJECT,
   KEY_NOTIFICATION_UPDATE_TARGET,
   KEY_NOTIFICATION_UPDATE_TYPE,
-] as const;
+] as const satisfies (keyof NotificationUpdate)[];
 
 /**
  * Address 1
@@ -9790,7 +9790,7 @@ export const KEY_ORGANIZATION_USERS = 'users' as keyof Organization;
  *
  * @see {@link Organization} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION: readonly (keyof Organization)[] = [
+export const KEYS_ORGANIZATION = [
   KEY_ORGANIZATION_ADDRESS_1,
   KEY_ORGANIZATION_ADDRESS_2,
   KEY_ORGANIZATION_ATTRIBUTES,
@@ -9811,7 +9811,7 @@ export const KEYS_ORGANIZATION: readonly (keyof Organization)[] = [
   KEY_ORGANIZATION_TAX_ID_TYPE,
   KEY_ORGANIZATION_TAX_RATE,
   KEY_ORGANIZATION_USERS,
-] as const;
+] as const satisfies (keyof Organization)[];
 
 /**
  * Created On
@@ -10014,7 +10014,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_VALUE = 'value' as keyof OrganizationAtt
  *
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_ATTRIBUTE: readonly (keyof OrganizationAttribute)[] = [
+export const KEYS_ORGANIZATION_ATTRIBUTE = [
   KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON,
   KEY_ORGANIZATION_ATTRIBUTE_KEY,
   KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID,
@@ -10022,7 +10022,7 @@ export const KEYS_ORGANIZATION_ATTRIBUTE: readonly (keyof OrganizationAttribute)
   KEY_ORGANIZATION_ATTRIBUTE_PROTECTED,
   KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON,
   KEY_ORGANIZATION_ATTRIBUTE_VALUE,
-] as const;
+] as const satisfies (keyof OrganizationAttribute)[];
 
 /**
  * Key
@@ -10148,12 +10148,12 @@ export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE = 'value' as keyof Organiza
  *
  * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_ATTRIBUTE_CREATE: readonly (keyof OrganizationAttributeCreate)[] = [
+export const KEYS_ORGANIZATION_ATTRIBUTE_CREATE = [
   KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY,
   KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE,
   KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED,
   KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE,
-] as const;
+] as const satisfies (keyof OrganizationAttributeCreate)[];
 
 /**
  * Created On
@@ -10330,14 +10330,14 @@ export const KEY_ORGANIZATION_ATTRIBUTE2_VALUE = 'value' as keyof OrganizationAt
  *
  * @see {@link OrganizationAttribute2} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_ATTRIBUTE2: readonly (keyof OrganizationAttribute2)[] = [
+export const KEYS_ORGANIZATION_ATTRIBUTE2 = [
   KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON,
   KEY_ORGANIZATION_ATTRIBUTE2_KEY,
   KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID,
   KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED,
   KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON,
   KEY_ORGANIZATION_ATTRIBUTE2_VALUE,
-] as const;
+] as const satisfies (keyof OrganizationAttribute2)[];
 
 /**
  * Key
@@ -10463,12 +10463,12 @@ export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE = 'value' as keyof Organiza
  *
  * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_ATTRIBUTE_UPDATE: readonly (keyof OrganizationAttributeUpdate)[] = [
+export const KEYS_ORGANIZATION_ATTRIBUTE_UPDATE = [
   KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY,
   KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE,
   KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED,
   KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE,
-] as const;
+] as const satisfies (keyof OrganizationAttributeUpdate)[];
 
 /**
  * Address 1
@@ -10894,7 +10894,7 @@ export const KEY_ORGANIZATION_CREATE_USERS = 'users' as keyof OrganizationCreate
  *
  * @see {@link OrganizationCreate} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_CREATE: readonly (keyof OrganizationCreate)[] = [
+export const KEYS_ORGANIZATION_CREATE = [
   KEY_ORGANIZATION_CREATE_ADDRESS_1,
   KEY_ORGANIZATION_CREATE_ADDRESS_2,
   KEY_ORGANIZATION_CREATE_ATTRIBUTES,
@@ -10911,7 +10911,7 @@ export const KEYS_ORGANIZATION_CREATE: readonly (keyof OrganizationCreate)[] = [
   KEY_ORGANIZATION_CREATE_TAX_ID_TYPE,
   KEY_ORGANIZATION_CREATE_TAX_RATE,
   KEY_ORGANIZATION_CREATE_USERS,
-] as const;
+] as const satisfies (keyof OrganizationCreate)[];
 
 /**
  * Api Key Description
@@ -11136,7 +11136,7 @@ export const KEY_ORGANIZATION_CREDENTIAL_STATUS = 'status' as keyof Organization
  *
  * @see {@link OrganizationCredential} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_CREDENTIAL: readonly (keyof OrganizationCredential)[] = [
+export const KEYS_ORGANIZATION_CREDENTIAL = [
   KEY_ORGANIZATION_CREDENTIAL_API_KEY_DESCRIPTION,
   KEY_ORGANIZATION_CREDENTIAL_API_KEY_ID,
   KEY_ORGANIZATION_CREDENTIAL_API_KEY_NAME,
@@ -11145,7 +11145,7 @@ export const KEYS_ORGANIZATION_CREDENTIAL: readonly (keyof OrganizationCredentia
   KEY_ORGANIZATION_CREDENTIAL_LAST_USED_ON,
   KEY_ORGANIZATION_CREDENTIAL_ORGANIZATION_ID,
   KEY_ORGANIZATION_CREDENTIAL_STATUS,
-] as const;
+] as const satisfies (keyof OrganizationCredential)[];
 
 /**
  * Api Key
@@ -11395,7 +11395,7 @@ export const KEY_ORGANIZATION_CREDENTIAL_CREATED_STATUS = 'status' as keyof Orga
  *
  * @see {@link OrganizationCredentialCreated} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_CREDENTIAL_CREATED: readonly (keyof OrganizationCredentialCreated)[] = [
+export const KEYS_ORGANIZATION_CREDENTIAL_CREATED = [
   KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY,
   KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_DESCRIPTION,
   KEY_ORGANIZATION_CREDENTIAL_CREATED_API_KEY_NAME,
@@ -11405,7 +11405,7 @@ export const KEYS_ORGANIZATION_CREDENTIAL_CREATED: readonly (keyof OrganizationC
   KEY_ORGANIZATION_CREDENTIAL_CREATED_DELETED_ON,
   KEY_ORGANIZATION_CREDENTIAL_CREATED_LAST_USED_ON,
   KEY_ORGANIZATION_CREDENTIAL_CREATED_STATUS,
-] as const;
+] as const satisfies (keyof OrganizationCredentialCreated)[];
 
 /**
  * Api Key Description
@@ -11503,11 +11503,11 @@ export const KEY_ORGANIZATION_CREDENTIAL_EXTRA_EXPIRES_AT = 'expires_at' as keyo
  *
  * @see {@link OrganizationCredentialExtra} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_CREDENTIAL_EXTRA: readonly (keyof OrganizationCredentialExtra)[] = [
+export const KEYS_ORGANIZATION_CREDENTIAL_EXTRA = [
   KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_DESCRIPTION,
   KEY_ORGANIZATION_CREDENTIAL_EXTRA_API_KEY_NAME,
   KEY_ORGANIZATION_CREDENTIAL_EXTRA_EXPIRES_AT,
-] as const;
+] as const satisfies (keyof OrganizationCredentialExtra)[];
 
 /**
  * Access Token
@@ -11605,11 +11605,11 @@ export const KEY_ORGANIZATION_TOKEN_TOKEN_TYPE = 'token_type' as keyof Organizat
  *
  * @see {@link OrganizationToken} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_TOKEN: readonly (keyof OrganizationToken)[] = [
+export const KEYS_ORGANIZATION_TOKEN = [
   KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN,
   KEY_ORGANIZATION_TOKEN_EXPIRES_IN,
   KEY_ORGANIZATION_TOKEN_TOKEN_TYPE,
-] as const;
+] as const satisfies (keyof OrganizationToken)[];
 
 /**
  * Address 1
@@ -11931,7 +11931,7 @@ export const KEY_ORGANIZATION_UPDATE_TAX_RATE = 'tax_rate' as keyof Organization
  *
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_UPDATE: readonly (keyof OrganizationUpdate)[] = [
+export const KEYS_ORGANIZATION_UPDATE = [
   KEY_ORGANIZATION_UPDATE_ADDRESS_1,
   KEY_ORGANIZATION_UPDATE_ADDRESS_2,
   KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER,
@@ -11944,7 +11944,7 @@ export const KEYS_ORGANIZATION_UPDATE: readonly (keyof OrganizationUpdate)[] = [
   KEY_ORGANIZATION_UPDATE_TAX_ID,
   KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE,
   KEY_ORGANIZATION_UPDATE_TAX_RATE,
-] as const;
+] as const satisfies (keyof OrganizationUpdate)[];
 
 /**
  * Address 1
@@ -12494,7 +12494,7 @@ export const KEY_ORGANIZATION_WITH_PLAN_USERS = 'users' as keyof OrganizationWit
  *
  * @see {@link OrganizationWithPlan} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_WITH_PLAN: readonly (keyof OrganizationWithPlan)[] = [
+export const KEYS_ORGANIZATION_WITH_PLAN = [
   KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1,
   KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2,
   KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES,
@@ -12516,7 +12516,7 @@ export const KEYS_ORGANIZATION_WITH_PLAN: readonly (keyof OrganizationWithPlan)[
   KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE,
   KEY_ORGANIZATION_WITH_PLAN_TAX_RATE,
   KEY_ORGANIZATION_WITH_PLAN_USERS,
-] as const;
+] as const satisfies (keyof OrganizationWithPlan)[];
 
 /**
  * Current Page
@@ -12689,14 +12689,14 @@ export const KEY_PAGINATION_METADATA_TOTAL_PAGES = 'total_pages' as keyof Pagina
  *
  * @see {@link PaginationMetadata} - The TypeScript type definition
  */
-export const KEYS_PAGINATION_METADATA: readonly (keyof PaginationMetadata)[] = [
+export const KEYS_PAGINATION_METADATA = [
   KEY_PAGINATION_METADATA_CURRENT_PAGE,
   KEY_PAGINATION_METADATA_HAS_NEXT_PAGE,
   KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE,
   KEY_PAGINATION_METADATA_PAGE_SIZE,
   KEY_PAGINATION_METADATA_TOTAL_ITEMS,
   KEY_PAGINATION_METADATA_TOTAL_PAGES,
-] as const;
+] as const satisfies (keyof PaginationMetadata)[];
 
 /**
  * Permissions
@@ -12744,9 +12744,9 @@ export const KEY_PERMISSION_SET_PERMISSIONS = 'permissions' as keyof PermissionS
  *
  * @see {@link PermissionSet} - The TypeScript type definition
  */
-export const KEYS_PERMISSION_SET: readonly (keyof PermissionSet)[] = [
+export const KEYS_PERMISSION_SET = [
   KEY_PERMISSION_SET_PERMISSIONS,
-] as const;
+] as const satisfies (keyof PermissionSet)[];
 
 /**
  * plan property
@@ -12793,9 +12793,9 @@ export const KEY_PLAN_UPDATE_PLAN = 'plan' as keyof PlanUpdate;
  *
  * @see {@link PlanUpdate} - The TypeScript type definition
  */
-export const KEYS_PLAN_UPDATE: readonly (keyof PlanUpdate)[] = [
+export const KEYS_PLAN_UPDATE = [
   KEY_PLAN_UPDATE_PLAN,
-] as const;
+] as const satisfies (keyof PlanUpdate)[];
 
 /**
  * Problem detail
@@ -12917,12 +12917,12 @@ export const KEY_PROBLEM_TYPE = 'type' as keyof Problem;
  *
  * @see {@link Problem} - The TypeScript type definition
  */
-export const KEYS_PROBLEM: readonly (keyof Problem)[] = [
+export const KEYS_PROBLEM = [
   KEY_PROBLEM_DETAIL,
   KEY_PROBLEM_STATUS,
   KEY_PROBLEM_TITLE,
   KEY_PROBLEM_TYPE,
-] as const;
+] as const satisfies (keyof Problem)[];
 
 /**
  * Relations
@@ -12970,9 +12970,9 @@ export const KEY_RELATION_SET_RELATIONS = 'relations' as keyof RelationSet;
  *
  * @see {@link RelationSet} - The TypeScript type definition
  */
-export const KEYS_RELATION_SET: readonly (keyof RelationSet)[] = [
+export const KEYS_RELATION_SET = [
   KEY_RELATION_SET_RELATIONS,
-] as const;
+] as const satisfies (keyof RelationSet)[];
 
 /**
  * organization property
@@ -13070,11 +13070,11 @@ export const KEY_SIGNUP_CREATE_USER = 'user' as keyof SignupCreate;
  *
  * @see {@link SignupCreate} - The TypeScript type definition
  */
-export const KEYS_SIGNUP_CREATE: readonly (keyof SignupCreate)[] = [
+export const KEYS_SIGNUP_CREATE = [
   KEY_SIGNUP_CREATE_ORGANIZATION,
   KEY_SIGNUP_CREATE_TERMS_OF_SERVICE,
   KEY_SIGNUP_CREATE_USER,
-] as const;
+] as const satisfies (keyof SignupCreate)[];
 
 /**
  * Add
@@ -13145,10 +13145,10 @@ export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE = 'remove' as keyof SpiceDb
  *
  * @see {@link SpiceDbRelationshipUpdate} - The TypeScript type definition
  */
-export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE: readonly (keyof SpiceDbRelationshipUpdate)[] = [
+export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE = [
   KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD,
   KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE,
-] as const;
+] as const satisfies (keyof SpiceDbRelationshipUpdate)[];
 
 /**
  * Accepted
@@ -13196,9 +13196,9 @@ export const KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED = 'accepted' as keyof TermsOfS
  *
  * @see {@link TermsOfServiceAccept} - The TypeScript type definition
  */
-export const KEYS_TERMS_OF_SERVICE_ACCEPT: readonly (keyof TermsOfServiceAccept)[] = [
+export const KEYS_TERMS_OF_SERVICE_ACCEPT = [
   KEY_TERMS_OF_SERVICE_ACCEPT_ACCEPTED,
-] as const;
+] as const satisfies (keyof TermsOfServiceAccept)[];
 
 /**
  * Current Registrar
@@ -13344,13 +13344,13 @@ export const KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR = 'requesting_registrar' as
  *
  * @see {@link TransferEvent} - The TypeScript type definition
  */
-export const KEYS_TRANSFER_EVENT: readonly (keyof TransferEvent)[] = [
+export const KEYS_TRANSFER_EVENT = [
   KEY_TRANSFER_EVENT_CURRENT_REGISTRAR,
   KEY_TRANSFER_EVENT_EXECUTION_DATE,
   KEY_TRANSFER_EVENT_EXPIRATION_DATE,
   KEY_TRANSFER_EVENT_MESSAGE,
   KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR,
-] as const;
+] as const satisfies (keyof TransferEvent)[];
 
 /**
  * Created On
@@ -13679,7 +13679,7 @@ export const KEY_USER_USERNAME = 'username' as keyof User;
  *
  * @see {@link User} - The TypeScript type definition
  */
-export const KEYS_USER: readonly (keyof User)[] = [
+export const KEYS_USER = [
   KEY_USER_CREATED_ON,
   KEY_USER_DELETED_ON,
   KEY_USER_EMAIL,
@@ -13692,7 +13692,7 @@ export const KEYS_USER: readonly (keyof User)[] = [
   KEY_USER_UPDATED_ON,
   KEY_USER_USER_ID,
   KEY_USER_USERNAME,
-] as const;
+] as const satisfies (keyof User)[];
 
 /**
  * Key
@@ -13766,10 +13766,10 @@ export const KEY_USER_ATTRIBUTE_UPDATE_VALUE = 'value' as keyof UserAttributeUpd
  *
  * @see {@link UserAttributeUpdate} - The TypeScript type definition
  */
-export const KEYS_USER_ATTRIBUTE_UPDATE: readonly (keyof UserAttributeUpdate)[] = [
+export const KEYS_USER_ATTRIBUTE_UPDATE = [
   KEY_USER_ATTRIBUTE_UPDATE_KEY,
   KEY_USER_ATTRIBUTE_UPDATE_VALUE,
-] as const;
+] as const satisfies (keyof UserAttributeUpdate)[];
 
 /**
  * Email
@@ -13972,7 +13972,7 @@ export const KEY_USER_CREATE_USERNAME = 'username' as keyof UserCreate;
  *
  * @see {@link UserCreate} - The TypeScript type definition
  */
-export const KEYS_USER_CREATE: readonly (keyof UserCreate)[] = [
+export const KEYS_USER_CREATE = [
   KEY_USER_CREATE_EMAIL,
   KEY_USER_CREATE_FIRST_NAME,
   KEY_USER_CREATE_LAST_NAME,
@@ -13980,7 +13980,7 @@ export const KEYS_USER_CREATE: readonly (keyof UserCreate)[] = [
   KEY_USER_CREATE_PASSWORD,
   KEY_USER_CREATE_PHONE,
   KEY_USER_CREATE_USERNAME,
-] as const;
+] as const satisfies (keyof UserCreate)[];
 
 /**
  * Created On
@@ -14180,7 +14180,7 @@ export const KEY_USER_NOTIFICATION_USER_NOTIFICATION_ID = 'user_notification_id'
  *
  * @see {@link UserNotification} - The TypeScript type definition
  */
-export const KEYS_USER_NOTIFICATION: readonly (keyof UserNotification)[] = [
+export const KEYS_USER_NOTIFICATION = [
   KEY_USER_NOTIFICATION_CREATED_ON,
   KEY_USER_NOTIFICATION_NOTIFICATION,
   KEY_USER_NOTIFICATION_NOTIFICATION_ID,
@@ -14188,7 +14188,7 @@ export const KEYS_USER_NOTIFICATION: readonly (keyof UserNotification)[] = [
   KEY_USER_NOTIFICATION_UPDATED_ON,
   KEY_USER_NOTIFICATION_USER_ID,
   KEY_USER_NOTIFICATION_USER_NOTIFICATION_ID,
-] as const;
+] as const satisfies (keyof UserNotification)[];
 
 /**
  * notification property
@@ -14285,11 +14285,11 @@ export const KEY_USER_NOTIFICATION_SUMMARY_USER_NOTIFICATION_ID = 'user_notifica
  *
  * @see {@link UserNotificationSummary} - The TypeScript type definition
  */
-export const KEYS_USER_NOTIFICATION_SUMMARY: readonly (keyof UserNotificationSummary)[] = [
+export const KEYS_USER_NOTIFICATION_SUMMARY = [
   KEY_USER_NOTIFICATION_SUMMARY_NOTIFICATION,
   KEY_USER_NOTIFICATION_SUMMARY_STATUS,
   KEY_USER_NOTIFICATION_SUMMARY_USER_NOTIFICATION_ID,
-] as const;
+] as const satisfies (keyof UserNotificationSummary)[];
 
 /**
  * Access Token
@@ -14437,13 +14437,13 @@ export const KEY_USER_TOKEN_TOKEN_TYPE = 'token_type' as keyof UserToken;
  *
  * @see {@link UserToken} - The TypeScript type definition
  */
-export const KEYS_USER_TOKEN: readonly (keyof UserToken)[] = [
+export const KEYS_USER_TOKEN = [
   KEY_USER_TOKEN_ACCESS_TOKEN,
   KEY_USER_TOKEN_EXPIRES_IN,
   KEY_USER_TOKEN_REFRESH_EXPIRES_IN,
   KEY_USER_TOKEN_REFRESH_TOKEN,
   KEY_USER_TOKEN_TOKEN_TYPE,
-] as const;
+] as const satisfies (keyof UserToken)[];
 
 /**
  * Email
@@ -14641,7 +14641,7 @@ export const KEY_USER_UPDATE_USERNAME = 'username' as keyof UserUpdate;
  *
  * @see {@link UserUpdate} - The TypeScript type definition
  */
-export const KEYS_USER_UPDATE: readonly (keyof UserUpdate)[] = [
+export const KEYS_USER_UPDATE = [
   KEY_USER_UPDATE_EMAIL,
   KEY_USER_UPDATE_FIRST_NAME,
   KEY_USER_UPDATE_LAST_NAME,
@@ -14649,7 +14649,7 @@ export const KEYS_USER_UPDATE: readonly (keyof UserUpdate)[] = [
   KEY_USER_UPDATE_PHONE,
   KEY_USER_UPDATE_USER_ATTRIBUTES,
   KEY_USER_UPDATE_USERNAME,
-] as const;
+] as const satisfies (keyof UserUpdate)[];
 
 /**
  * Created On
@@ -15004,7 +15004,7 @@ export const KEY_USER_WITH_ATTRIBUTES_USERNAME = 'username' as keyof UserWithAtt
  *
  * @see {@link UserWithAttributes} - The TypeScript type definition
  */
-export const KEYS_USER_WITH_ATTRIBUTES: readonly (keyof UserWithAttributes)[] = [
+export const KEYS_USER_WITH_ATTRIBUTES = [
   KEY_USER_WITH_ATTRIBUTES_CREATED_ON,
   KEY_USER_WITH_ATTRIBUTES_DELETED_ON,
   KEY_USER_WITH_ATTRIBUTES_EMAIL,
@@ -15018,7 +15018,7 @@ export const KEYS_USER_WITH_ATTRIBUTES: readonly (keyof UserWithAttributes)[] = 
   KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES,
   KEY_USER_WITH_ATTRIBUTES_USER_ID,
   KEY_USER_WITH_ATTRIBUTES_USERNAME,
-] as const;
+] as const satisfies (keyof UserWithAttributes)[];
 
 /**
  * Created On
@@ -15421,7 +15421,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME = 'username' as keyof U
  *
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  */
-export const KEYS_USER_WITH_RELATION_PERMISSIONS: readonly (keyof UserWithRelationPermissions)[] = [
+export const KEYS_USER_WITH_RELATION_PERMISSIONS = [
   KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON,
   KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON,
   KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL,
@@ -15437,7 +15437,7 @@ export const KEYS_USER_WITH_RELATION_PERMISSIONS: readonly (keyof UserWithRelati
   KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES,
   KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID,
   KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME,
-] as const;
+] as const satisfies (keyof UserWithRelationPermissions)[];
 
 /**
  * Location
@@ -15535,11 +15535,11 @@ export const KEY_VALIDATION_ERROR_TYPE = 'type' as keyof ValidationError;
  *
  * @see {@link ValidationError} - The TypeScript type definition
  */
-export const KEYS_VALIDATION_ERROR: readonly (keyof ValidationError)[] = [
+export const KEYS_VALIDATION_ERROR = [
   KEY_VALIDATION_ERROR_LOC,
   KEY_VALIDATION_ERROR_MSG,
   KEY_VALIDATION_ERROR_TYPE,
-] as const;
+] as const satisfies (keyof ValidationError)[];
 
 /**
  * meta property
@@ -15611,10 +15611,10 @@ export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' as keyof DomainAva
  *
  * @see {@link DomainAvailabilityList} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_AVAILABILITY_LIST: readonly (keyof DomainAvailabilityList)[] = [
+export const KEYS_DOMAIN_AVAILABILITY_LIST = [
   KEY_DOMAIN_AVAILABILITY_LIST_META,
   KEY_DOMAIN_AVAILABILITY_LIST_RESULTS,
-] as const;
+] as const satisfies (keyof DomainAvailabilityList)[];
 
 /**
  * Available
@@ -15712,8 +15712,8 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON = 'reason' as keyof DomainAvai
  *
  * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_AVAILABILITY_CHECK: readonly (keyof DomainAvailabilityCheck)[] = [
+export const KEYS_DOMAIN_AVAILABILITY_CHECK = [
   KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE,
   KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN,
   KEY_DOMAIN_AVAILABILITY_CHECK_REASON,
-] as const;
+] as const satisfies (keyof DomainAvailabilityCheck)[];

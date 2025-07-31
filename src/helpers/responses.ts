@@ -4638,7 +4638,7 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HT
  *
 
  */
-export type GET_OrganizationsRoles_Response = never;
+export type GET_OrganizationsRoles_Response = unknown;
 
 /**
  * Response types for GET OrganizationsUsers endpoint
