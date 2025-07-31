@@ -3672,6 +3672,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3714,6 +3721,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3752,6 +3766,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3761,6 +3782,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_ORGANIZATION_CREDENTIAL_NOT_FOUND",
+                     *       "credential_id": "Additional error context.",
+                     *       "detail": "Organization credential with ID Additional error context. not found",
+                     *       "status": 404,
+                     *       "title": "Organization Management Error",
+                     *       "type": "organization-credential-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3797,6 +3826,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3830,6 +3866,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_EXISTS",
+                     *       "detail": "User with username or email already exists",
+                     *       "status": 409,
+                     *       "title": "User Management Error",
+                     *       "type": "user-already-present",
+                     *       "user": "Additional error context."
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3872,6 +3916,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3915,6 +3966,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3933,6 +3991,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AVAILABILITY_PROVIDER",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Availability Error",
+                     *       "type": "availability-provider"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3967,6 +4032,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -3985,6 +4057,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AVAILABILITY_PROVIDER",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Availability Error",
+                     *       "type": "availability-provider"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4090,6 +4169,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4099,6 +4185,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
+                     *       "detail": "No contact verification found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "token": "Additional error context.",
+                     *       "type": "contact-verification-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4146,6 +4240,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4155,6 +4256,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
+                     *       "detail": "No contact verification found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "token": "Additional error context.",
+                     *       "type": "contact-verification-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4226,6 +4335,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact not found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4264,6 +4381,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact not found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4273,6 +4398,40 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_IN_USE",
+                     *       "detail": "Contact is linked to one or more domains",
+                     *       "domain_ids": [
+                     *         "A",
+                     *         "d",
+                     *         "d",
+                     *         "i",
+                     *         "t",
+                     *         "i",
+                     *         "o",
+                     *         "n",
+                     *         "a",
+                     *         "l",
+                     *         " ",
+                     *         "e",
+                     *         "r",
+                     *         "r",
+                     *         "o",
+                     *         "r",
+                     *         " ",
+                     *         "c",
+                     *         "o",
+                     *         "n",
+                     *         "t",
+                     *         "e",
+                     *         "x",
+                     *         "t",
+                     *         "."
+                     *       ],
+                     *       "status": 409,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-in-use"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4313,6 +4472,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4322,6 +4488,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
+                     *       "detail": "No contact verification found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "token": "Additional error context.",
+                     *       "type": "contact-verification-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4371,6 +4545,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4380,6 +4561,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_MISSING_PERMISSIONS",
+                     *       "detail": "Missing permissions to verify contact as type Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-verification-type-missing-permissions"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4389,6 +4577,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
+                     *       "detail": "No contact verification found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "token": "Additional error context.",
+                     *       "type": "contact-verification-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4431,6 +4627,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4440,6 +4643,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact not found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4449,6 +4660,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_INVALID_TYPE",
+                     *       "detail": "Invalid verification type: Additional error context.",
+                     *       "status": 405,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-verification-type-invalid"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4487,6 +4705,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4496,6 +4721,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_NOT_FOUND",
+                     *       "detail": "No contact verification found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "token": "Additional error context.",
+                     *       "type": "contact-verification-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4848,6 +5081,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4866,6 +5106,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_SEARCH_PROVIDER",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Domain Search Error",
+                     *       "type": "domain-search-provider"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4946,6 +5193,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_TLD_NOT_AVAILABLE",
+                     *       "detail": "This TLD is not available",
+                     *       "status": 400,
+                     *       "title": "Domain Management Error",
+                     *       "tld": "Additional error context.",
+                     *       "type": "domain-tld-not-available"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4955,6 +5210,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact not found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -4964,6 +5227,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_EXISTS",
+                     *       "detail": "Domain already exists",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-exists"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5069,6 +5340,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact not found",
+                     *       "status": 404,
+                     *       "title": "Contact Management Error",
+                     *       "type": "contact-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5078,6 +5357,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_EXISTS",
+                     *       "detail": "Domain already exists",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-exists"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5087,6 +5374,12 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "detail": "Additional error context.",
+                     *       "status": 422,
+                     *       "title": "Policy Validation Error",
+                     *       "type": "policy-validation-error"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5118,6 +5411,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5156,6 +5457,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5165,6 +5474,15 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_DELETE_PROHIBITED",
+                     *       "detail": "Domain deletion is prohibited due to current status: ",
+                     *       "domain_name": "Additional error context.",
+                     *       "prohibiting_statuses": [],
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-delete-prohibited"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5249,6 +5567,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5293,6 +5619,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5331,6 +5665,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5404,6 +5746,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5413,6 +5763,15 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER",
+                     *       "detail": "An unspecified error occurred",
+                     *       "domain_name": "Additional error context.",
+                     *       "reason": "There was an error transferring the domain",
+                     *       "status": 400,
+                     *       "title": "Domain Transfer Error",
+                     *       "type": "domain-transfer"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5686,6 +6045,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5726,6 +6092,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5735,6 +6108,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_EVENT_NOT_FOUND",
+                     *       "detail": "Event not found",
+                     *       "event_id": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Event Error",
+                     *       "type": "event-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5773,6 +6154,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -5782,6 +6170,14 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
+                    /** @example {
+                     *       "code": "ERROR_EVENT_NOT_FOUND",
+                     *       "detail": "Event not found",
+                     *       "event_id": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Event Error",
+                     *       "type": "event-not-found"
+                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
