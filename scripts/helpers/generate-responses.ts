@@ -235,7 +235,7 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
     for (const method of sortedMethods) {
       const methodResponses = pathResponses[method];
       // Generate the main response type for this method
-      const responseTypeName = `${method}_${pathName}`;
+      const responseTypeName = `${method}_${pathName}_Response`;
       const actualPath = pathNameToPathMap[pathName] || 'unknown';
       
       // Extract parameter descriptions from the OpenAPI spec
@@ -300,17 +300,16 @@ ${seeTags}
  *
 
  */`);
-      lines.push(`export type ${responseTypeName} = {`);
-      
       // Sort response codes numerically
       const sortedCodes = Object.keys(methodResponses).sort((a, b) => parseInt(a) - parseInt(b));
       
-      for (const responseCode of sortedCodes) {
+      // Create union type of all possible response types
+      const unionTypes = sortedCodes.map(responseCode => {
         const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
-        lines.push(`  ${responseCode}: ${individualTypeName}`);
-      }
+        return individualTypeName;
+      });
       
-      lines.push(`}`);
+      lines.push(`export type ${responseTypeName} = ${unionTypes.join(' | ')};`);
       lines.push(``);
       
       // Generate individual response types for each status code
