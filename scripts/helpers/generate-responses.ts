@@ -279,7 +279,7 @@ function generateIndividualResponseTypesContent(groupedResponses: GroupedRespons
       
       // Generate @see tags for individual response types
       const seeTags = Object.keys(methodResponses).map(responseCode => {
-        const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
+        const individualTypeName = `${responseTypeName}_${responseCode}`;
         return ` * @see {@link ${individualTypeName}} - ${responseCode} response type`;
       }).join('\n');
       
@@ -305,7 +305,7 @@ ${seeTags}
       
       // Create union type of all possible response types
       const unionTypes = sortedCodes.map(responseCode => {
-        const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
+        const individualTypeName = `${responseTypeName}_${responseCode}`;
         return individualTypeName;
       });
       
@@ -320,7 +320,7 @@ ${seeTags}
           isArray = true;
           schemaRef = schemaRef.slice(0, -2);
         }
-        const individualTypeName = `${responseTypeName}_Response_${responseCode}`;
+        const individualTypeName = `${responseTypeName}_${responseCode}`;
         
         lines.push(`/**
  * ${responseCode} response for ${method.toUpperCase()} ${pathName} endpoint
