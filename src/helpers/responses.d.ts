@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -1924,6 +1924,43 @@ export type PUT_DnsByZoneNameRrsets_Response = PUT_DnsByZoneNameRrsets_Response_
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DnsSummary endpoint
+ *
+ * Get Zones Summary
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DnsSummary endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/dns/summary
+ *
+ * @see {@link GET_DnsSummary_Response_200} - 200 response type
+ *
+
+ */
+export type GET_DnsSummary_Response = GET_DnsSummary_Response_200;
+
+/**
+ * 200 response for GET DnsSummary endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DnsSummary endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/summary
+ *
+ * @see {@link GET_DnsSummary_Response} - The main response type definition
+ * @see {@link DnsZoneSummary} - The actual schema type definition
+ */
+export type GET_DnsSummary_Response_200 = DnsZoneSummary
 
 /**
  * Response types for GET DomainSearchSuggest endpoint

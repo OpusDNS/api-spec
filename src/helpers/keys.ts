@@ -59,6 +59,7 @@ import { DnsZoneRecordsPatchOps } from './schemas';
 import { DnsZone } from './schemas';
 import { DnsZoneRrsetsCreate } from './schemas';
 import { DnsZoneRrsetsPatchOps } from './schemas';
+import { DnsZoneSummary } from './schemas';
 import { DomainAvailability } from './schemas';
 import { DomainAvailabilityMeta } from './schemas';
 import { DomainCheck } from './schemas';
@@ -4588,6 +4589,84 @@ export const KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS = 'ops' as keyof DnsZoneRrsetsPat
 export const KEYS_DNS_ZONE_RRSETS_PATCH_OPS = [
   KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS,
 ] as const satisfies (keyof DnsZoneRrsetsPatchOps)[];
+
+/**
+ * Total Zones
+ *
+ * Total number of DNS zones
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_zones` property of DnsZoneSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonesummary[KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES;
+ * const value = dnszonesummary[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneSummary} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES = 'total_zones' as keyof DnsZoneSummary;
+/**
+ * Zones By Dnssec
+ *
+ * Count of zones by DNSSEC status
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zones_by_dnssec` property of DnsZoneSummary objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonesummary[KEY_DNS_ZONE_SUMMARY_ZONES_BY_DNSSEC];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_SUMMARY_ZONES_BY_DNSSEC;
+ * const value = dnszonesummary[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneSummary} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_SUMMARY} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_SUMMARY_ZONES_BY_DNSSEC = 'zones_by_dnssec' as keyof DnsZoneSummary;
+
+/**
+ * Array of all DnsZoneSummary property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneSummary objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_SUMMARY) {
+ *   console.log(`Property: ${key}, Value: ${dnszonesummary[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_SUMMARY.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneSummary} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_SUMMARY = [
+  KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES,
+  KEY_DNS_ZONE_SUMMARY_ZONES_BY_DNSSEC,
+] as const satisfies (keyof DnsZoneSummary)[];
 
 /**
  * Domain

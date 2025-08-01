@@ -282,6 +282,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/dns/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Zones Summary */
+        get: operations["get_zones_summary_v1_dns_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/dns/{zone_name}": {
         parameters: {
             query?: never;
@@ -1739,6 +1756,21 @@ export interface components {
         DnsZoneRrsetsPatchOps: {
             /** Ops */
             ops: components["schemas"]["DnsRrsetPatchOp"][];
+        };
+        /** DnsZoneSummary */
+        DnsZoneSummary: {
+            /**
+             * Total Zones
+             * @description Total number of DNS zones
+             */
+            total_zones: number;
+            /**
+             * Zones By Dnssec
+             * @description Count of zones by DNSSEC status
+             */
+            zones_by_dnssec?: {
+                [key: string]: number;
+            };
         };
         /**
          * DnssecAlgorithm
@@ -5479,6 +5511,26 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_zones_summary_v1_dns_summary_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsZoneSummary"];
                 };
             };
         };

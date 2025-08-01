@@ -885,6 +885,28 @@ export type POST_Dns_Request = {
 export type POST_Dns_Request_Body = POST_Dns_Request['requestBody'];
 
 /**
+ * Request type for GET DnsSummary endpoint
+ *
+ * Get Zones Summary
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DnsSummary endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/dns/summary
+ *
+ * @see {@link GET_DnsSummary_Request_Query} - Query parameters type
+ * @see {@link GET_DnsSummary_Request_Path} - Path parameters type
+ * @see {@link GET_DnsSummary_Request_Body} - Request body type
+ */
+export type GET_DnsSummary_Request = {
+}
+
+/**
  * Request type for DELETE DnsZoneName endpoint
  *
  * Delete Zone

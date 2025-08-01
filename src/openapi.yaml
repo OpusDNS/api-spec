@@ -1030,6 +1030,24 @@ components:
       - ops
       title: DnsZoneRrsetsPatchOps
       type: object
+    DnsZoneSummary:
+      properties:
+        total_zones:
+          description: Total number of DNS zones
+          title: Total Zones
+          type: integer
+        zones_by_dnssec:
+          additionalProperties:
+            type: integer
+          description: Count of zones by DNSSEC status
+          propertyNames:
+            $ref: '#/components/schemas/DnssecStatus'
+          title: Zones By Dnssec
+          type: object
+      required:
+      - total_zones
+      title: DnsZoneSummary
+      type: object
     DnssecAlgorithm:
       enum:
       - 1
@@ -4953,7 +4971,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-01-144220
+  version: 2025-08-01-144457
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6227,6 +6245,21 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create Zone
+      tags:
+      - dns
+  /v1/dns/summary:
+    get:
+      operationId: get_zones_summary_v1_dns_summary_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnsZoneSummary'
+          description: Successful Response
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Zones Summary
       tags:
       - dns
   /v1/dns/{zone_name}:

@@ -651,6 +651,22 @@ export type DnsZoneRrsetsCreate = components['schemas']['DnsZoneRrsetsCreate'];
  */
 export type DnsZoneRrsetsPatchOps = components['schemas']['DnsZoneRrsetsPatchOps'];
 /**
+ * DnsZoneSummary
+ *
+ * @remarks
+ * Type alias for the `DnsZoneSummary` OpenAPI schema.
+ * This type represents dnszonesummary data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneSummary();
+ * const item: DnsZoneSummary = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneSummary = components['schemas']['DnsZoneSummary'];
+/**
  * DnssecAlgorithm
  *
  * @remarks
