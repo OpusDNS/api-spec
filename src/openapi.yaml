@@ -4953,7 +4953,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-07-31-235405
+  version: 2025-08-01-144220
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6670,6 +6670,30 @@ paths:
             type: string
           - type: 'null'
           title: Expires Before
+      - in: query
+        name: expires_in_30_days
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Expires In 30 Days
+      - in: query
+        name: expires_in_60_days
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Expires In 60 Days
+      - in: query
+        name: expires_in_90_days
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Expires In 90 Days
       - in: query
         name: registered_after
         required: false

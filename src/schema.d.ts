@@ -5801,6 +5801,9 @@ export interface operations {
                 updated_before?: Date | null;
                 expires_after?: Date | null;
                 expires_before?: Date | null;
+                expires_in_30_days?: boolean | null;
+                expires_in_60_days?: boolean | null;
+                expires_in_90_days?: boolean | null;
                 registered_after?: Date | null;
                 registered_before?: Date | null;
             };
