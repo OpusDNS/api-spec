@@ -19077,7 +19077,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON = 'reason' as keyof DomainAvai
  * This constant provides a readonly array containing all valid property keys for DomainAvailabilityCheck objects.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
- * @example
+ * @example =
  * ```typescript
  * // Iterating through all keys
  * for (const key of KEYS_DOMAIN_AVAILABILITY_CHECK) {
