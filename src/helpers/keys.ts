@@ -1059,7 +1059,7 @@ export const KEYS_CONTACT_CREATE = [
  */
 export const KEY_CONTACT_CITY = 'city' as keyof Contact;
 /**
- * Country
+ * Country =
  *
  * The country of the contact
  *
@@ -1639,7 +1639,7 @@ export const KEY_CONTACT_SCHEMA_FIRST_NAME = 'first_name' as keyof ContactSchema
  *
  * The last name of the contact
  *
- * @type {string}
+ * @type {string}ASDFASDF
  *
  *
  * @remarks
@@ -19085,7 +19085,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON = 'reason' as keyof DomainAvai
  * }
  * 
  * // Validation
- * const isValidKey = KEYS_DOMAIN_AVAILABILITY_CHECK.includes(someKey);
+ * const isValidKey ===- KEYS_DOMAIN_AVAILABILITY_CHECK.includes(someKey);
  * ```
  *
  * @see {@link DomainAvailabilityCheck} - The TypeScript type definition

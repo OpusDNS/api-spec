@@ -51,16 +51,18 @@ jobs:
             npm version minor
             git push
             npm publish --access public
+            exit 0
           fi
           
           # Check if helpers have changed (even if schema didn't change)
+          npm run generate:helpers
           git add src/helpers/
-          git add scripts/helpers/
           if git diff --staged --quiet; then
             echo "No changes to helpers."
           else
             echo "Helper changes detected, updating package version..."
             git commit -m "Update OpenAPI helpers"
+            git push
             npm version patch
             git push
             npm publish --access public

@@ -100,7 +100,7 @@ export const BULK_OPERATION_STATUS = {
 } as const satisfies Record<string, BulkOperationStatus>;
 
 /**
- * Array of all BulkOperationStatus enum values
+ * Array of all BulkOperationStatus enum values as constants
  *
  * @remarks
  * This constant provides a array containing all valid BulkOperationStatus enum values.
