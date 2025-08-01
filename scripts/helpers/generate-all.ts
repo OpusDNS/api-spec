@@ -12,8 +12,8 @@ async function main() {
   console.log('🚀 Starting OpusDNS API code generation...\n');
 
   try {
-    // Step 1: Generate schema aliases
-    console.log('📦 Step 1: Generating schema aliases...');
+    // Step 1: Generate direct schema aliases
+    console.log('📦 Step 1: Generating direct schema aliases...');
     const schemaCount = generateSchemas();
     console.log(`   Generated ${schemaCount} direct schema aliases\n`);
 
