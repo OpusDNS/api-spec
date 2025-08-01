@@ -55,6 +55,7 @@ jobs:
           
           # Check if helpers have changed (even if schema didn't change)
           git add src/helpers/
+          git add src/scripts/helpers/
           if git diff --staged --quiet; then
             echo "No changes to helpers."
           else
