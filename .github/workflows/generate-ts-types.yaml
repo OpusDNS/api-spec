@@ -40,13 +40,27 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add src/schema.d.ts
+          
+          # Check if schema.d.ts has changes
           if git diff --staged --quiet; then
-            echo "No changes to commit."
+            echo "No changes to schema.d.ts"
           else
             npm run generate:helpers
             git add src
-            git commit -m "Update OpenAPI spec and types"
+            git commit -m "Update OpenAPI spec and helpers"
             npm version minor
+            git push
+            npm publish --access public
+          fi
+          
+          # Check if helpers have changed (even if schema didn't change)
+          git add src/helpers/
+          if git diff --staged --quiet; then
+            echo "No changes to helpers."
+          else
+            echo "Helper changes detected, updating package version..."
+            git commit -m "Update OpenAPI helpers"
+            npm version patch
             git push
             npm publish --access public
           fi
