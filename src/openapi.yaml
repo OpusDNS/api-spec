@@ -4404,6 +4404,22 @@ components:
       - status
       title: User
       type: object
+    UserAttributeBase:
+      properties:
+        key:
+          description: Key of the attribute.
+          minLength: 1
+          title: Key
+          type: string
+        value:
+          anyOf:
+          - $ref: '#/components/schemas/JsonValue'
+          - type: 'null'
+          description: Value of the attribute.
+      required:
+      - key
+      title: UserAttributeBase
+      type: object
     UserAttributeUpdate:
       properties:
         key:
@@ -4457,6 +4473,14 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
+        user_attributes:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/UserAttributeBase'
+            type: array
+          - type: 'null'
+          description: User attributes
+          title: User Attributes
         username:
           description: The user's unique username
           minLength: 1
@@ -4971,7 +4995,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-01-163639
+  version: 2025-08-02-000200
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

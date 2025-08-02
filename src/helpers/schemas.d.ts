@@ -2667,6 +2667,22 @@ export type TransferPoliciesBase = components['schemas']['TransferPoliciesBase']
  */
 export type User = components['schemas']['User'];
 /**
+ * UserAttributeBase
+ *
+ * @remarks
+ * Type alias for the `UserAttributeBase` OpenAPI schema.
+ * This type represents userattributebase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getUserAttributeBase();
+ * const item: UserAttributeBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type UserAttributeBase = components['schemas']['UserAttributeBase'];
+/**
  * UserAttributeUpdate
  *
  * @remarks

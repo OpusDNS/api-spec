@@ -3950,6 +3950,16 @@ export interface components {
              */
             username: string;
         };
+        /** UserAttributeBase */
+        UserAttributeBase: {
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+        };
         /** UserAttributeUpdate */
         UserAttributeUpdate: {
             /**
@@ -3990,6 +4000,11 @@ export interface components {
              * @description The user's phone number
              */
             phone?: string | null;
+            /**
+             * User Attributes
+             * @description User attributes
+             */
+            user_attributes?: components["schemas"]["UserAttributeBase"][] | null;
             /**
              * Username
              * @description The user's unique username

@@ -137,6 +137,7 @@ import { TrademarkClaimsBase } from './schemas';
 import { TransferEvent } from './schemas';
 import { TransferPoliciesBase } from './schemas';
 import { User } from './schemas';
+import { UserAttributeBase } from './schemas';
 import { UserAttributeUpdate } from './schemas';
 import { UserCreate } from './schemas';
 import { UserNotification } from './schemas';
@@ -17110,6 +17111,83 @@ export const KEYS_USER = [
  *
  *
  * @remarks
+ * This key constant provides type-safe access to the `key` property of UserAttributeBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userattributebase[KEY_USER_ATTRIBUTE_BASE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_ATTRIBUTE_BASE_KEY;
+ * const value = userattributebase[propertyName];
+ * ```
+ *
+ * @see {@link UserAttributeBase} - The TypeScript type definition
+ * @see {@link KEYS_USER_ATTRIBUTE_BASE} - Array of all keys for this type
+ */
+export const KEY_USER_ATTRIBUTE_BASE_KEY = 'key' as keyof UserAttributeBase;
+/**
+ * value property
+ *
+ * Value of the attribute.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of UserAttributeBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userattributebase[KEY_USER_ATTRIBUTE_BASE_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_ATTRIBUTE_BASE_VALUE;
+ * const value = userattributebase[propertyName];
+ * ```
+ *
+ * @see {@link UserAttributeBase} - The TypeScript type definition
+ * @see {@link KEYS_USER_ATTRIBUTE_BASE} - Array of all keys for this type
+ */
+export const KEY_USER_ATTRIBUTE_BASE_VALUE = 'value' as keyof UserAttributeBase;
+
+/**
+ * Array of all UserAttributeBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserAttributeBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_ATTRIBUTE_BASE) {
+ *   console.log(`Property: ${key}, Value: ${userattributebase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_ATTRIBUTE_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link UserAttributeBase} - The TypeScript type definition
+ */
+export const KEYS_USER_ATTRIBUTE_BASE = [
+  KEY_USER_ATTRIBUTE_BASE_KEY,
+  KEY_USER_ATTRIBUTE_BASE_VALUE,
+] as const satisfies (keyof UserAttributeBase)[];
+
+/**
+ * Key
+ *
+ * Key of the attribute.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
  * This key constant provides type-safe access to the `key` property of UserAttributeUpdate objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
@@ -17333,6 +17411,31 @@ export const KEY_USER_CREATE_PASSWORD = 'password' as keyof UserCreate;
  */
 export const KEY_USER_CREATE_PHONE = 'phone' as keyof UserCreate;
 /**
+ * User Attributes
+ *
+ * User attributes
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_attributes` property of UserCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = usercreate[KEY_USER_CREATE_USER_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_CREATE_USER_ATTRIBUTES;
+ * const value = usercreate[propertyName];
+ * ```
+ *
+ * @see {@link UserCreate} - The TypeScript type definition
+ * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
+ */
+export const KEY_USER_CREATE_USER_ATTRIBUTES = 'user_attributes' as keyof UserCreate;
+/**
  * Username
  *
  * The user's unique username
@@ -17386,6 +17489,7 @@ export const KEYS_USER_CREATE = [
   KEY_USER_CREATE_LOCALE,
   KEY_USER_CREATE_PASSWORD,
   KEY_USER_CREATE_PHONE,
+  KEY_USER_CREATE_USER_ATTRIBUTES,
   KEY_USER_CREATE_USERNAME,
 ] as const satisfies (keyof UserCreate)[];
 

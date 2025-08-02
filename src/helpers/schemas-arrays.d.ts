@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, BulkOperationResult, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, EmailForwardBulkUpdateItem, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForward, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeUpdate, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, BulkOperationResult, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, EmailForwardBulkUpdateItem, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForward, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, UserAttributeUpdate, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -681,6 +681,20 @@ export type TldBaseArray = TldBase[];
  * @see {@link PostTransferRequirements} - The individual PostTransferRequirements type definition
  */
 export type PostTransferRequirementsArray = PostTransferRequirements[];
+/**
+ * UserAttributeBase
+ *
+ * @remarks
+ * Array type for UserAttributeBase objects. Used when the API returns a collection of UserAttributeBase instances.
+ *
+ * @example
+ * ```typescript
+ * const items: UserAttributeBaseArray = await api.getUserAttributeBases();
+ * ```
+ *
+ * @see {@link UserAttributeBase} - The individual UserAttributeBase type definition
+ */
+export type UserAttributeBaseArray = UserAttributeBase[];
 /**
  * UserAttributeUpdate
  *
