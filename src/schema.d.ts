@@ -586,42 +586,45 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/email-forwards": {
+    "/v1/email-forwards/{zone_name}/aliases": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List Email Forwards */
-        get: operations["list_email_forwards_v1_email_forwards_get"];
+        /** Get Email Forward Aliases */
+        get: operations["get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get"];
         put?: never;
-        /** Create Email Forward */
-        post: operations["create_email_forward_v1_email_forwards_post"];
-        delete?: never;
+        /** Create Email Forward Alias */
+        post: operations["create_email_forward_alias_v1_email_forwards__zone_name__aliases_post"];
+        /** Delete Email Forward Aliases */
+        delete: operations["delete_email_forward_aliases_v1_email_forwards__zone_name__aliases_delete"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/email-forwards/bulk-delete": {
+    "/v1/email-forwards/{zone_name}/aliases/{alias}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
-        put?: never;
-        /** Bulk Delete Email Forwards */
-        post: operations["bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post"];
-        delete?: never;
+        /** Get Email Forward Alias */
+        get: operations["get_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__get"];
+        /** Update Email Forward Alias */
+        put: operations["update_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__put"];
+        post?: never;
+        /** Delete Email Forward Alias */
+        delete: operations["delete_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__delete"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/email-forwards/bulk-update": {
+    "/v1/email-forwards/{zone_name}/disable": {
         parameters: {
             query?: never;
             header?: never;
@@ -634,27 +637,25 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Bulk Update Email Forwards */
-        patch: operations["bulk_update_email_forwards_v1_email_forwards_bulk_update_patch"];
+        /** Disable Email Forward */
+        patch: operations["disable_email_forward_v1_email_forwards__zone_name__disable_patch"];
         trace?: never;
     };
-    "/v1/email-forwards/{email_forward_id}": {
+    "/v1/email-forwards/{zone_name}/enable": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get Email Forward */
-        get: operations["get_email_forward_v1_email_forwards__email_forward_id__get"];
+        get?: never;
         put?: never;
         post?: never;
-        /** Delete Email Forward */
-        delete: operations["delete_email_forward_v1_email_forwards__email_forward_id__delete"];
+        delete?: never;
         options?: never;
         head?: never;
-        /** Update Email Forward */
-        patch: operations["update_email_forward_v1_email_forwards__email_forward_id__patch"];
+        /** Enable Email Forward */
+        patch: operations["enable_email_forward_v1_email_forwards__zone_name__enable_patch"];
         trace?: never;
     };
     "/v1/event": {
@@ -1108,31 +1109,6 @@ export interface components {
              */
             username?: string | null;
         };
-        /** BulkOperationResponse[EmailForwardBulkDeleteResult] */
-        BulkOperationResponse_EmailForwardBulkDeleteResult_: {
-            /** Results */
-            results: components["schemas"]["BulkOperationResult"][];
-        };
-        /** BulkOperationResponse[EmailForwardBulkUpdateResult] */
-        BulkOperationResponse_EmailForwardBulkUpdateResult_: {
-            /** Results */
-            results: components["schemas"]["BulkOperationResult"][];
-        };
-        /** BulkOperationResult */
-        BulkOperationResult: {
-            /**
-             * Error Message
-             * @description Error message if operation failed
-             */
-            error_message?: string | null;
-            /** @description Status of performed operation */
-            status: components["schemas"]["BulkOperationStatus"];
-        };
-        /**
-         * BulkOperationStatus
-         * @enum {string}
-         */
-        BulkOperationStatus: "success" | "failed";
         /** ContactConfigBase */
         ContactConfigBase: {
             /**
@@ -2312,119 +2288,23 @@ export interface components {
              */
             next_90_days: number;
         };
-        /** EmailForward */
-        EmailForward: {
+        /** EmailForwardAlias */
+        EmailForwardAlias: {
+            /** Alias */
+            alias: string;
             /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Email Forward Id
-             * Format: typeid
-             */
-            email_forward_id?: TypeID<"email_forward">;
-            /**
-             * Source Address
+             * Forward To
              * Format: email
-             * @description The source email address to forward from
              */
-            source_address: string;
+            forward_to: string;
+        };
+        /** EmailForwardAliasUpdate */
+        EmailForwardAliasUpdate: {
             /**
-             * @description Current status of the email forward rule
-             * @default active
-             */
-            status: components["schemas"]["EmailForwardStatus"];
-            /**
-             * Target Address
+             * Forward To
              * Format: email
-             * @description The target email address to forward to
              */
-            target_address: string;
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-        };
-        /** EmailForwardBulkDelete */
-        EmailForwardBulkDelete: {
-            /**
-             * Email Forward Ids
-             * @description List of email forward ids to delete
-             */
-            email_forward_ids: TypeID<"email_forward">[];
-        };
-        /** EmailForwardBulkUpdate */
-        EmailForwardBulkUpdate: {
-            /**
-             * Email Forwards
-             * @description List of email forwards data to update
-             */
-            email_forwards: components["schemas"]["EmailForwardBulkUpdateItem"][];
-        };
-        /** EmailForwardBulkUpdateItem */
-        EmailForwardBulkUpdateItem: {
-            /**
-             * Email Forward Id
-             * Format: typeid
-             * @description Unique identifier for the email forward
-             */
-            email_forward_id: TypeID<"email_forward">;
-            /**
-             * Source Address
-             * @description The source email address to forward from
-             */
-            source_address?: string | null;
-            /** @description Current status of the email forward rule */
-            status?: components["schemas"]["EmailForwardStatus"] | null;
-            /**
-             * Target Address
-             * @description The target email address to forward to
-             */
-            target_address?: string | null;
-        };
-        /** EmailForwardCreate */
-        EmailForwardCreate: {
-            /**
-             * Source Address
-             * Format: email
-             * @description The source email address to forward from
-             */
-            source_address: string;
-            /**
-             * @description Current status of the email forward rule
-             * @default active
-             */
-            status: components["schemas"]["EmailForwardStatus"];
-            /**
-             * Target Address
-             * Format: email
-             * @description The target email address to forward to
-             */
-            target_address: string;
-        };
-        /**
-         * EmailForwardStatus
-         * @enum {string}
-         */
-        EmailForwardStatus: "active" | "inactive";
-        /** EmailForwardUpdate */
-        EmailForwardUpdate: {
-            /**
-             * Source Address
-             * @description The source email address to forward from
-             */
-            source_address?: string | null;
-            /** @description Current status of the email forward rule */
-            status?: components["schemas"]["EmailForwardStatus"] | null;
-            /**
-             * Target Address
-             * @description The target email address to forward to
-             */
-            target_address?: string | null;
+            forward_to: string;
         };
         /**
          * EmailVerificationStatus
@@ -3483,11 +3363,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["DomainResponse"][];
         };
-        /** Pagination[EmailForward] */
-        Pagination_EmailForward_: {
+        /** Pagination[EmailForwardAlias] */
+        Pagination_EmailForwardAlias_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["EmailForward"][];
+            results: components["schemas"]["EmailForwardAlias"][];
         };
         /** Pagination[EventResponse] */
         Pagination_EventResponse_: {
@@ -6521,20 +6401,17 @@ export interface operations {
             };
         };
     };
-    list_email_forwards_v1_email_forwards_get: {
+    get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get: {
         parameters: {
             query?: {
-                /** @description Optional status to filter the results */
-                status?: components["schemas"]["EmailForwardStatus"] | null;
-                /** @description Optional source address to filter the results */
-                source_address?: string | null;
-                /** @description Optional target address to filter the results */
-                target_address?: string | null;
                 page?: number;
                 page_size?: number;
             };
             header?: never;
-            path?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
             cookie?: never;
         };
         requestBody?: never;
@@ -6545,7 +6422,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_EmailForward_"];
+                    "application/json": components["schemas"]["Pagination_EmailForwardAlias_"];
                 };
             };
             /** @description Validation Error */
@@ -6559,16 +6436,19 @@ export interface operations {
             };
         };
     };
-    create_email_forward_v1_email_forwards_post: {
+    create_email_forward_alias_v1_email_forwards__zone_name__aliases_post: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["EmailForwardCreate"];
+                "application/json": components["schemas"]["EmailForwardAlias"];
             };
         };
         responses: {
@@ -6577,9 +6457,7 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": components["schemas"]["EmailForward"];
-                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
@@ -6592,109 +6470,13 @@ export interface operations {
             };
         };
     };
-    bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailForwardBulkDelete"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["BulkOperationResponse_EmailForwardBulkDeleteResult_"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    bulk_update_email_forwards_v1_email_forwards_bulk_update_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailForwardBulkUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["BulkOperationResponse_EmailForwardBulkUpdateResult_"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_email_forward_v1_email_forwards__email_forward_id__get: {
+    delete_email_forward_aliases_v1_email_forwards__zone_name__aliases_delete: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                email_forward_id: TypeID<"email_forward">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["EmailForward"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_email_forward_v1_email_forwards__email_forward_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                email_forward_id: TypeID<"email_forward">;
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
             };
             cookie?: never;
         };
@@ -6718,20 +6500,18 @@ export interface operations {
             };
         };
     };
-    update_email_forward_v1_email_forwards__email_forward_id__patch: {
+    get_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__get: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                email_forward_id: TypeID<"email_forward">;
+                alias: string;
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailForwardUpdate"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {
@@ -6739,8 +6519,134 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["EmailForward"];
+                    "application/json": components["schemas"]["EmailForwardAlias"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                alias: string;
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmailForwardAliasUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                alias: string;
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    disable_email_forward_v1_email_forwards__zone_name__disable_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    enable_email_forward_v1_email_forwards__zone_name__enable_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {

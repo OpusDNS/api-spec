@@ -31,9 +31,6 @@
 
 import { AllowedNumberOfNameserverBase } from './schemas';
 import { Body_issue_organization_token_v1_auth_token_post } from './schemas';
-import { EmailForwardBulkDeleteResult } from './schemas';
-import { EmailForwardBulkUpdateResult } from './schemas';
-import { BulkOperationResult } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
 import { Contact } from './schemas';
@@ -82,12 +79,8 @@ import { DomainSummary } from './schemas';
 import { DomainTransferIn } from './schemas';
 import { DomainUpdate } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
-import { EmailForward } from './schemas';
-import { EmailForwardBulkDelete } from './schemas';
-import { EmailForwardBulkUpdate } from './schemas';
-import { EmailForwardBulkUpdateItem } from './schemas';
-import { EmailForwardCreate } from './schemas';
-import { EmailForwardUpdate } from './schemas';
+import { EmailForwardAlias } from './schemas';
+import { EmailForwardAliasUpdate } from './schemas';
 import { EventResponse } from './schemas';
 import { EventSchema } from './schemas';
 import { GeneralAvailabilityBase } from './schemas';
@@ -382,182 +375,6 @@ export const KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST = [
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD,
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME,
 ] as const satisfies (keyof Body_issue_organization_token_v1_auth_token_post)[];
-
-/**
- * Results
- *
- *
- * @type {array}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `results` property of EmailForwardBulkDeleteResult objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardbulkdeleteresult[KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS;
- * const value = emailforwardbulkdeleteresult[propertyName];
- * ```
- *
- * @see {@link EmailForwardBulkDeleteResult} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS = 'results' as keyof EmailForwardBulkDeleteResult;
-
-/**
- * Array of all EmailForwardBulkDeleteResult property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForwardBulkDeleteResult objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT) {
- *   console.log(`Property: ${key}, Value: ${emailforwardbulkdeleteresult[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT.includes(someKey);
- * ```
- *
- * @see {@link EmailForwardBulkDeleteResult} - The TypeScript type definition
- */
-export const KEYS_EMAIL_FORWARD_BULK_DELETE_RESULT = [
-  KEY_EMAIL_FORWARD_BULK_DELETE_RESULT_RESULTS,
-] as const satisfies (keyof EmailForwardBulkDeleteResult)[];
-
-/**
- * Results
- *
- *
- * @type {array}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `results` property of EmailForwardBulkUpdateResult objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardbulkupdateresult[KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS;
- * const value = emailforwardbulkupdateresult[propertyName];
- * ```
- *
- * @see {@link EmailForwardBulkUpdateResult} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS = 'results' as keyof EmailForwardBulkUpdateResult;
-
-/**
- * Array of all EmailForwardBulkUpdateResult property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForwardBulkUpdateResult objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT) {
- *   console.log(`Property: ${key}, Value: ${emailforwardbulkupdateresult[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT.includes(someKey);
- * ```
- *
- * @see {@link EmailForwardBulkUpdateResult} - The TypeScript type definition
- */
-export const KEYS_EMAIL_FORWARD_BULK_UPDATE_RESULT = [
-  KEY_EMAIL_FORWARD_BULK_UPDATE_RESULT_RESULTS,
-] as const satisfies (keyof EmailForwardBulkUpdateResult)[];
-
-/**
- * Error Message
- *
- * Error message if operation failed
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `error_message` property of BulkOperationResult objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = bulkoperationresult[KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE;
- * const value = bulkoperationresult[propertyName];
- * ```
- *
- * @see {@link BulkOperationResult} - The TypeScript type definition
- * @see {@link KEYS_BULK_OPERATION_RESULT} - Array of all keys for this type
- */
-export const KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE = 'error_message' as keyof BulkOperationResult;
-/**
- * status property
- *
- * Status of performed operation
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `status` property of BulkOperationResult objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = bulkoperationresult[KEY_BULK_OPERATION_RESULT_STATUS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_BULK_OPERATION_RESULT_STATUS;
- * const value = bulkoperationresult[propertyName];
- * ```
- *
- * @see {@link BulkOperationResult} - The TypeScript type definition
- * @see {@link KEYS_BULK_OPERATION_RESULT} - Array of all keys for this type
- */
-export const KEY_BULK_OPERATION_RESULT_STATUS = 'status' as keyof BulkOperationResult;
-
-/**
- * Array of all BulkOperationResult property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for BulkOperationResult objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_BULK_OPERATION_RESULT) {
- *   console.log(`Property: ${key}, Value: ${bulkoperationresult[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_BULK_OPERATION_RESULT.includes(someKey);
- * ```
- *
- * @see {@link BulkOperationResult} - The TypeScript type definition
- */
-export const KEYS_BULK_OPERATION_RESULT = [
-  KEY_BULK_OPERATION_RESULT_ERROR_MESSAGE,
-  KEY_BULK_OPERATION_RESULT_STATUS,
-] as const satisfies (keyof BulkOperationResult)[];
 
 /**
  * Max
@@ -7876,625 +7693,130 @@ export const KEYS_DOMAINS_EXPIRING_SOON = [
 ] as const satisfies (keyof DomainsExpiringSoon)[];
 
 /**
- * Created On
- *
- * The date/time the entry was created on
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `created_on` property of EmailForward objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforward[KEY_EMAIL_FORWARD_CREATED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_CREATED_ON;
- * const value = emailforward[propertyName];
- * ```
- *
- * @see {@link EmailForward} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_CREATED_ON = 'created_on' as keyof EmailForward;
-/**
- * Email Forward Id
+ * Alias
  *
  *
  * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `email_forward_id` property of EmailForward objects.
+ * This key constant provides type-safe access to the `alias` property of EmailForwardAlias objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = emailforward[KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID];
+ * const value = emailforwardalias[KEY_EMAIL_FORWARD_ALIAS_ALIAS];
  * 
  * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID;
- * const value = emailforward[propertyName];
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_ALIAS;
+ * const value = emailforwardalias[propertyName];
  * ```
  *
- * @see {@link EmailForward} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ * @see {@link EmailForwardAlias} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_ALIAS_ALIAS = 'alias' as keyof EmailForwardAlias;
 /**
- * Source Address
+ * Forward To
  *
- * The source email address to forward from
  *
  * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `source_address` property of EmailForward objects.
+ * This key constant provides type-safe access to the `forward_to` property of EmailForwardAlias objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = emailforward[KEY_EMAIL_FORWARD_SOURCE_ADDRESS];
+ * const value = emailforwardalias[KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO];
  * 
  * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_SOURCE_ADDRESS;
- * const value = emailforward[propertyName];
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO;
+ * const value = emailforwardalias[propertyName];
  * ```
  *
- * @see {@link EmailForward} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ * @see {@link EmailForwardAlias} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_SOURCE_ADDRESS = 'source_address' as keyof EmailForward;
-/**
- * status property
- *
- * Current status of the email forward rule
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `status` property of EmailForward objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforward[KEY_EMAIL_FORWARD_STATUS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_STATUS;
- * const value = emailforward[propertyName];
- * ```
- *
- * @see {@link EmailForward} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_STATUS = 'status' as keyof EmailForward;
-/**
- * Target Address
- *
- * The target email address to forward to
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `target_address` property of EmailForward objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforward[KEY_EMAIL_FORWARD_TARGET_ADDRESS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_TARGET_ADDRESS;
- * const value = emailforward[propertyName];
- * ```
- *
- * @see {@link EmailForward} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_TARGET_ADDRESS = 'target_address' as keyof EmailForward;
-/**
- * Updated On
- *
- * The date/time the entry was last updated on
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `updated_on` property of EmailForward objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforward[KEY_EMAIL_FORWARD_UPDATED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_UPDATED_ON;
- * const value = emailforward[propertyName];
- * ```
- *
- * @see {@link EmailForward} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_UPDATED_ON = 'updated_on' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO = 'forward_to' as keyof EmailForwardAlias;
 
 /**
- * Array of all EmailForward property keys
+ * Array of all EmailForwardAlias property keys
  *
  * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForward objects.
+ * This constant provides a readonly array containing all valid property keys for EmailForwardAlias objects.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
  * ```typescript
  * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD) {
- *   console.log(`Property: ${key}, Value: ${emailforward[key]}`);
+ * for (const key of KEYS_EMAIL_FORWARD_ALIAS) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardalias[key]}`);
  * }
  * 
  * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD.includes(someKey);
+ * const isValidKey = KEYS_EMAIL_FORWARD_ALIAS.includes(someKey);
  * ```
  *
- * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link EmailForwardAlias} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD = [
-  KEY_EMAIL_FORWARD_CREATED_ON,
-  KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID,
-  KEY_EMAIL_FORWARD_SOURCE_ADDRESS,
-  KEY_EMAIL_FORWARD_STATUS,
-  KEY_EMAIL_FORWARD_TARGET_ADDRESS,
-  KEY_EMAIL_FORWARD_UPDATED_ON,
-] as const satisfies (keyof EmailForward)[];
+export const KEYS_EMAIL_FORWARD_ALIAS = [
+  KEY_EMAIL_FORWARD_ALIAS_ALIAS,
+  KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO,
+] as const satisfies (keyof EmailForwardAlias)[];
 
 /**
- * Email Forward Ids
+ * Forward To
  *
- * List of email forward ids to delete
- *
- * @type {array}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `email_forward_ids` property of EmailForwardBulkDelete objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardbulkdelete[KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS;
- * const value = emailforwardbulkdelete[propertyName];
- * ```
- *
- * @see {@link EmailForwardBulkDelete} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_DELETE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS = 'email_forward_ids' as keyof EmailForwardBulkDelete;
-
-/**
- * Array of all EmailForwardBulkDelete property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForwardBulkDelete objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD_BULK_DELETE) {
- *   console.log(`Property: ${key}, Value: ${emailforwardbulkdelete[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD_BULK_DELETE.includes(someKey);
- * ```
- *
- * @see {@link EmailForwardBulkDelete} - The TypeScript type definition
- */
-export const KEYS_EMAIL_FORWARD_BULK_DELETE = [
-  KEY_EMAIL_FORWARD_BULK_DELETE_EMAIL_FORWARD_IDS,
-] as const satisfies (keyof EmailForwardBulkDelete)[];
-
-/**
- * Email Forwards
- *
- * List of email forwards data to update
- *
- * @type {array}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `email_forwards` property of EmailForwardBulkUpdate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardbulkupdate[KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS;
- * const value = emailforwardbulkupdate[propertyName];
- * ```
- *
- * @see {@link EmailForwardBulkUpdate} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS = 'email_forwards' as keyof EmailForwardBulkUpdate;
-
-/**
- * Array of all EmailForwardBulkUpdate property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForwardBulkUpdate objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD_BULK_UPDATE) {
- *   console.log(`Property: ${key}, Value: ${emailforwardbulkupdate[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD_BULK_UPDATE.includes(someKey);
- * ```
- *
- * @see {@link EmailForwardBulkUpdate} - The TypeScript type definition
- */
-export const KEYS_EMAIL_FORWARD_BULK_UPDATE = [
-  KEY_EMAIL_FORWARD_BULK_UPDATE_EMAIL_FORWARDS,
-] as const satisfies (keyof EmailForwardBulkUpdate)[];
-
-/**
- * Email Forward Id
- *
- * Unique identifier for the email forward
  *
  * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `email_forward_id` property of EmailForwardBulkUpdateItem objects.
+ * This key constant provides type-safe access to the `forward_to` property of EmailForwardAliasUpdate objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID];
+ * const value = emailforwardaliasupdate[KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO];
  * 
  * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID;
- * const value = emailforwardbulkupdateitem[propertyName];
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO;
+ * const value = emailforwardaliasupdate[propertyName];
  * ```
  *
- * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
+ * @see {@link EmailForwardAliasUpdate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS_UPDATE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForwardBulkUpdateItem;
-/**
- * Source Address
- *
- * The source email address to forward from
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `source_address` property of EmailForwardBulkUpdateItem objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS;
- * const value = emailforwardbulkupdateitem[propertyName];
- * ```
- *
- * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardBulkUpdateItem;
-/**
- * status property
- *
- * Current status of the email forward rule
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `status` property of EmailForwardBulkUpdateItem objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS;
- * const value = emailforwardbulkupdateitem[propertyName];
- * ```
- *
- * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS = 'status' as keyof EmailForwardBulkUpdateItem;
-/**
- * Target Address
- *
- * The target email address to forward to
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `target_address` property of EmailForwardBulkUpdateItem objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardbulkupdateitem[KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS;
- * const value = emailforwardbulkupdateitem[propertyName];
- * ```
- *
- * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS = 'target_address' as keyof EmailForwardBulkUpdateItem;
+export const KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO = 'forward_to' as keyof EmailForwardAliasUpdate;
 
 /**
- * Array of all EmailForwardBulkUpdateItem property keys
+ * Array of all EmailForwardAliasUpdate property keys
  *
  * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForwardBulkUpdateItem objects.
+ * This constant provides a readonly array containing all valid property keys for EmailForwardAliasUpdate objects.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
  * ```typescript
  * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM) {
- *   console.log(`Property: ${key}, Value: ${emailforwardbulkupdateitem[key]}`);
+ * for (const key of KEYS_EMAIL_FORWARD_ALIAS_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardaliasupdate[key]}`);
  * }
  * 
  * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM.includes(someKey);
+ * const isValidKey = KEYS_EMAIL_FORWARD_ALIAS_UPDATE.includes(someKey);
  * ```
  *
- * @see {@link EmailForwardBulkUpdateItem} - The TypeScript type definition
+ * @see {@link EmailForwardAliasUpdate} - The TypeScript type definition
  */
-export const KEYS_EMAIL_FORWARD_BULK_UPDATE_ITEM = [
-  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_EMAIL_FORWARD_ID,
-  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_SOURCE_ADDRESS,
-  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_STATUS,
-  KEY_EMAIL_FORWARD_BULK_UPDATE_ITEM_TARGET_ADDRESS,
-] as const satisfies (keyof EmailForwardBulkUpdateItem)[];
-
-/**
- * Source Address
- *
- * The source email address to forward from
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `source_address` property of EmailForwardCreate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS;
- * const value = emailforwardcreate[propertyName];
- * ```
- *
- * @see {@link EmailForwardCreate} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardCreate;
-/**
- * status property
- *
- * Current status of the email forward rule
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `status` property of EmailForwardCreate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_STATUS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_CREATE_STATUS;
- * const value = emailforwardcreate[propertyName];
- * ```
- *
- * @see {@link EmailForwardCreate} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_CREATE_STATUS = 'status' as keyof EmailForwardCreate;
-/**
- * Target Address
- *
- * The target email address to forward to
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `target_address` property of EmailForwardCreate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS;
- * const value = emailforwardcreate[propertyName];
- * ```
- *
- * @see {@link EmailForwardCreate} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS = 'target_address' as keyof EmailForwardCreate;
-
-/**
- * Array of all EmailForwardCreate property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForwardCreate objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD_CREATE) {
- *   console.log(`Property: ${key}, Value: ${emailforwardcreate[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD_CREATE.includes(someKey);
- * ```
- *
- * @see {@link EmailForwardCreate} - The TypeScript type definition
- */
-export const KEYS_EMAIL_FORWARD_CREATE = [
-  KEY_EMAIL_FORWARD_CREATE_SOURCE_ADDRESS,
-  KEY_EMAIL_FORWARD_CREATE_STATUS,
-  KEY_EMAIL_FORWARD_CREATE_TARGET_ADDRESS,
-] as const satisfies (keyof EmailForwardCreate)[];
-
-/**
- * Source Address
- *
- * The source email address to forward from
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `source_address` property of EmailForwardUpdate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardupdate[KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS;
- * const value = emailforwardupdate[propertyName];
- * ```
- *
- * @see {@link EmailForwardUpdate} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_UPDATE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS = 'source_address' as keyof EmailForwardUpdate;
-/**
- * status property
- *
- * Current status of the email forward rule
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `status` property of EmailForwardUpdate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardupdate[KEY_EMAIL_FORWARD_UPDATE_STATUS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_UPDATE_STATUS;
- * const value = emailforwardupdate[propertyName];
- * ```
- *
- * @see {@link EmailForwardUpdate} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_UPDATE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_UPDATE_STATUS = 'status' as keyof EmailForwardUpdate;
-/**
- * Target Address
- *
- * The target email address to forward to
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `target_address` property of EmailForwardUpdate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardupdate[KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS;
- * const value = emailforwardupdate[propertyName];
- * ```
- *
- * @see {@link EmailForwardUpdate} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_UPDATE} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS = 'target_address' as keyof EmailForwardUpdate;
-
-/**
- * Array of all EmailForwardUpdate property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for EmailForwardUpdate objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_EMAIL_FORWARD_UPDATE) {
- *   console.log(`Property: ${key}, Value: ${emailforwardupdate[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_EMAIL_FORWARD_UPDATE.includes(someKey);
- * ```
- *
- * @see {@link EmailForwardUpdate} - The TypeScript type definition
- */
-export const KEYS_EMAIL_FORWARD_UPDATE = [
-  KEY_EMAIL_FORWARD_UPDATE_SOURCE_ADDRESS,
-  KEY_EMAIL_FORWARD_UPDATE_STATUS,
-  KEY_EMAIL_FORWARD_UPDATE_TARGET_ADDRESS,
-] as const satisfies (keyof EmailForwardUpdate)[];
+export const KEYS_EMAIL_FORWARD_ALIAS_UPDATE = [
+  KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO,
+] as const satisfies (keyof EmailForwardAliasUpdate)[];
 
 /**
  * Event Data

@@ -75,70 +75,6 @@ export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumber
  */
 export type Body_issue_organization_token_v1_auth_token_post = components['schemas']['Body_issue_organization_token_v1_auth_token_post'];
 /**
- * BulkOperationResponse[EmailForwardBulkDeleteResult]
- *
- * @remarks
- * Type alias for the `BulkOperationResponse_EmailForwardBulkDeleteResult_` OpenAPI schema.
- * This type represents bulkoperationresponse[emailforwardbulkdeleteresult] data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardBulkDeleteResult();
- * const item: EmailForwardBulkDeleteResult = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardBulkDeleteResult = components['schemas']['BulkOperationResponse_EmailForwardBulkDeleteResult_'];
-/**
- * BulkOperationResponse[EmailForwardBulkUpdateResult]
- *
- * @remarks
- * Type alias for the `BulkOperationResponse_EmailForwardBulkUpdateResult_` OpenAPI schema.
- * This type represents bulkoperationresponse[emailforwardbulkupdateresult] data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardBulkUpdateResult();
- * const item: EmailForwardBulkUpdateResult = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardBulkUpdateResult = components['schemas']['BulkOperationResponse_EmailForwardBulkUpdateResult_'];
-/**
- * BulkOperationResult
- *
- * @remarks
- * Type alias for the `BulkOperationResult` OpenAPI schema.
- * This type represents bulkoperationresult data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getBulkOperationResult();
- * const item: BulkOperationResult = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type BulkOperationResult = components['schemas']['BulkOperationResult'];
-/**
- * BulkOperationStatus
- *
- * @remarks
- * Type alias for the `BulkOperationStatus` OpenAPI schema.
- * This type represents bulkoperationstatus data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getBulkOperationStatus();
- * const item: BulkOperationStatus = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type BulkOperationStatus = components['schemas']['BulkOperationStatus'];
-/**
  * ContactConfigBase
  *
  * @remarks
@@ -1179,117 +1115,37 @@ export type DomainUpdate = components['schemas']['DomainUpdate'];
  */
 export type DomainsExpiringSoon = components['schemas']['DomainsExpiringSoon'];
 /**
- * EmailForward
+ * EmailForwardAlias
  *
  * @remarks
- * Type alias for the `EmailForward` OpenAPI schema.
- * This type represents emailforward data structures used in API requests and responses.
+ * Type alias for the `EmailForwardAlias` OpenAPI schema.
+ * This type represents emailforwardalias data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getEmailForward();
- * const item: EmailForward = response.results;
+ * const response = await api.getEmailForwardAlias();
+ * const item: EmailForwardAlias = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type EmailForward = components['schemas']['EmailForward'];
+export type EmailForwardAlias = components['schemas']['EmailForwardAlias'];
 /**
- * EmailForwardBulkDelete
+ * EmailForwardAliasUpdate
  *
  * @remarks
- * Type alias for the `EmailForwardBulkDelete` OpenAPI schema.
- * This type represents emailforwardbulkdelete data structures used in API requests and responses.
+ * Type alias for the `EmailForwardAliasUpdate` OpenAPI schema.
+ * This type represents emailforwardaliasupdate data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getEmailForwardBulkDelete();
- * const item: EmailForwardBulkDelete = response.results;
+ * const response = await api.getEmailForwardAliasUpdate();
+ * const item: EmailForwardAliasUpdate = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type EmailForwardBulkDelete = components['schemas']['EmailForwardBulkDelete'];
-/**
- * EmailForwardBulkUpdate
- *
- * @remarks
- * Type alias for the `EmailForwardBulkUpdate` OpenAPI schema.
- * This type represents emailforwardbulkupdate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardBulkUpdate();
- * const item: EmailForwardBulkUpdate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardBulkUpdate = components['schemas']['EmailForwardBulkUpdate'];
-/**
- * EmailForwardBulkUpdateItem
- *
- * @remarks
- * Type alias for the `EmailForwardBulkUpdateItem` OpenAPI schema.
- * This type represents emailforwardbulkupdateitem data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardBulkUpdateItem();
- * const item: EmailForwardBulkUpdateItem = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardBulkUpdateItem = components['schemas']['EmailForwardBulkUpdateItem'];
-/**
- * EmailForwardCreate
- *
- * @remarks
- * Type alias for the `EmailForwardCreate` OpenAPI schema.
- * This type represents emailforwardcreate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardCreate();
- * const item: EmailForwardCreate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardCreate = components['schemas']['EmailForwardCreate'];
-/**
- * EmailForwardStatus
- *
- * @remarks
- * Type alias for the `EmailForwardStatus` OpenAPI schema.
- * This type represents emailforwardstatus data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardStatus();
- * const item: EmailForwardStatus = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardStatus = components['schemas']['EmailForwardStatus'];
-/**
- * EmailForwardUpdate
- *
- * @remarks
- * Type alias for the `EmailForwardUpdate` OpenAPI schema.
- * This type represents emailforwardupdate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardUpdate();
- * const item: EmailForwardUpdate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardUpdate = components['schemas']['EmailForwardUpdate'];
+export type EmailForwardAliasUpdate = components['schemas']['EmailForwardAliasUpdate'];
 /**
  * EmailVerificationStatus
  *
@@ -1979,21 +1835,21 @@ export type Pagination_DnsZone = components['schemas']['Pagination_DnsZoneRespon
  */
 export type Pagination_Domain = components['schemas']['Pagination_DomainResponse_'];
 /**
- * Pagination[EmailForward]
+ * Pagination[EmailForwardAlias]
  *
  * @remarks
- * Type alias for the `Pagination_EmailForward_` OpenAPI schema.
- * This type represents pagination[emailforward] data structures used in API requests and responses.
+ * Type alias for the `Pagination_EmailForwardAlias_` OpenAPI schema.
+ * This type represents pagination[emailforwardalias] data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getPagination_EmailForward();
- * const item: Pagination_EmailForward = response.results;
+ * const response = await api.getPagination_EmailForwardAlias();
+ * const item: Pagination_EmailForwardAlias = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type Pagination_EmailForward = components['schemas']['Pagination_EmailForward_'];
+export type Pagination_EmailForwardAlias = components['schemas']['Pagination_EmailForwardAlias_'];
 /**
  * Pagination[EventResponse]
  *

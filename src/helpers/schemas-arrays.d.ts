@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, BulkOperationResult, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, EmailForwardBulkUpdateItem, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForward, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, UserAttributeUpdate, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, UserAttributeUpdate, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -107,20 +107,6 @@ export type IpRestrictionArray = IpRestriction[];
  * @see {@link TldResponseShort} - The individual TldResponseShort type definition
  */
 export type TldResponseShortArray = TldResponseShort[];
-/**
- * BulkOperationResult
- *
- * @remarks
- * Array type for BulkOperationResult objects. Used when the API returns a collection of BulkOperationResult instances.
- *
- * @example
- * ```typescript
- * const items: BulkOperationResultArray = await api.getBulkOperationResults();
- * ```
- *
- * @see {@link BulkOperationResult} - The individual BulkOperationResult type definition
- */
-export type BulkOperationResultArray = BulkOperationResult[];
 /**
  * PostalAddressType
  *
@@ -360,20 +346,6 @@ export type DomainSearchSuggestionArray = DomainSearchSuggestion[];
  */
 export type DomainClientStatusArray = DomainClientStatus[];
 /**
- * EmailForwardBulkUpdateItem
- *
- * @remarks
- * Array type for EmailForwardBulkUpdateItem objects. Used when the API returns a collection of EmailForwardBulkUpdateItem instances.
- *
- * @example
- * ```typescript
- * const items: EmailForwardBulkUpdateItemArray = await api.getEmailForwardBulkUpdateItems();
- * ```
- *
- * @see {@link EmailForwardBulkUpdateItem} - The individual EmailForwardBulkUpdateItem type definition
- */
-export type EmailForwardBulkUpdateItemArray = EmailForwardBulkUpdateItem[];
-/**
  * ValidationError
  *
  * @remarks
@@ -528,19 +500,19 @@ export type DnsZoneArray = DnsZone[];
  */
 export type DomainArray = Domain[];
 /**
- * EmailForward
+ * EmailForwardAlias
  *
  * @remarks
- * Array type for EmailForward objects. Used when the API returns a collection of EmailForward instances.
+ * Array type for EmailForwardAlias objects. Used when the API returns a collection of EmailForwardAlias instances.
  *
  * @example
  * ```typescript
- * const items: EmailForwardArray = await api.getEmailForwards();
+ * const items: EmailForwardAliasArray = await api.getEmailForwardAliass();
  * ```
  *
- * @see {@link EmailForward} - The individual EmailForward type definition
+ * @see {@link EmailForwardAlias} - The individual EmailForwardAlias type definition
  */
-export type EmailForwardArray = EmailForward[];
+export type EmailForwardAliasArray = EmailForwardAlias[];
 /**
  * EventResponse
  *

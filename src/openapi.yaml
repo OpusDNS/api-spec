@@ -59,49 +59,6 @@ components:
           title: Username
       title: Body_issue_organization_token_v1_auth_token_post
       type: object
-    BulkOperationResponse_EmailForwardBulkDeleteResult_:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/BulkOperationResult'
-          title: Results
-          type: array
-      required:
-      - results
-      title: BulkOperationResponse[EmailForwardBulkDeleteResult]
-      type: object
-    BulkOperationResponse_EmailForwardBulkUpdateResult_:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/BulkOperationResult'
-          title: Results
-          type: array
-      required:
-      - results
-      title: BulkOperationResponse[EmailForwardBulkUpdateResult]
-      type: object
-    BulkOperationResult:
-      properties:
-        error_message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Error message if operation failed
-          title: Error Message
-        status:
-          $ref: '#/components/schemas/BulkOperationStatus'
-          description: Status of performed operation
-      required:
-      - status
-      title: BulkOperationResult
-      type: object
-    BulkOperationStatus:
-      enum:
-      - success
-      - failed
-      title: BulkOperationStatus
-      type: string
     ContactConfigBase:
       properties:
         max:
@@ -1920,162 +1877,29 @@ components:
       - next_90_days
       title: DomainsExpiringSoon
       type: object
-    EmailForward:
+    EmailForwardAlias:
       properties:
-        created_on:
-          description: The date/time the entry was created on
-          format: date-time
-          title: Created On
+        alias:
+          title: Alias
           type: string
-        email_forward_id:
-          examples:
-          - email_forward_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Email Forward Id
-          type: string
-          x-typeid-prefix: email_forward
-        source_address:
-          description: The source email address to forward from
+        forward_to:
           format: email
-          title: Source Address
+          title: Forward To
           type: string
-        status:
-          $ref: '#/components/schemas/EmailForwardStatus'
-          default: active
-          description: Current status of the email forward rule
-        target_address:
-          description: The target email address to forward to
+      required:
+      - forward_to
+      - alias
+      title: EmailForwardAlias
+      type: object
+    EmailForwardAliasUpdate:
+      properties:
+        forward_to:
           format: email
-          title: Target Address
-          type: string
-        updated_on:
-          description: The date/time the entry was last updated on
-          format: date-time
-          title: Updated On
+          title: Forward To
           type: string
       required:
-      - source_address
-      - target_address
-      title: EmailForward
-      type: object
-    EmailForwardBulkDelete:
-      properties:
-        email_forward_ids:
-          description: List of email forward ids to delete
-          items:
-            examples:
-            - email_forward_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: email_forward
-          maxItems: 50
-          minItems: 1
-          title: Email Forward Ids
-          type: array
-          uniqueItems: true
-      required:
-      - email_forward_ids
-      title: EmailForwardBulkDelete
-      type: object
-    EmailForwardBulkUpdate:
-      properties:
-        email_forwards:
-          description: List of email forwards data to update
-          items:
-            $ref: '#/components/schemas/EmailForwardBulkUpdateItem'
-          maxItems: 50
-          minItems: 1
-          title: Email Forwards
-          type: array
-      required:
-      - email_forwards
-      title: EmailForwardBulkUpdate
-      type: object
-    EmailForwardBulkUpdateItem:
-      properties:
-        email_forward_id:
-          description: Unique identifier for the email forward
-          examples:
-          - email_forward_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Email Forward Id
-          type: string
-          x-typeid-prefix: email_forward
-        source_address:
-          anyOf:
-          - format: email
-            type: string
-          - type: 'null'
-          description: The source email address to forward from
-          title: Source Address
-        status:
-          anyOf:
-          - $ref: '#/components/schemas/EmailForwardStatus'
-          - type: 'null'
-          description: Current status of the email forward rule
-        target_address:
-          anyOf:
-          - format: email
-            type: string
-          - type: 'null'
-          description: The target email address to forward to
-          title: Target Address
-      required:
-      - email_forward_id
-      title: EmailForwardBulkUpdateItem
-      type: object
-    EmailForwardCreate:
-      properties:
-        source_address:
-          description: The source email address to forward from
-          format: email
-          title: Source Address
-          type: string
-        status:
-          $ref: '#/components/schemas/EmailForwardStatus'
-          default: active
-          description: Current status of the email forward rule
-        target_address:
-          description: The target email address to forward to
-          format: email
-          title: Target Address
-          type: string
-      required:
-      - source_address
-      - target_address
-      title: EmailForwardCreate
-      type: object
-    EmailForwardStatus:
-      enum:
-      - active
-      - inactive
-      title: EmailForwardStatus
-      type: string
-    EmailForwardUpdate:
-      properties:
-        source_address:
-          anyOf:
-          - format: email
-            type: string
-          - type: 'null'
-          description: The source email address to forward from
-          title: Source Address
-        status:
-          anyOf:
-          - $ref: '#/components/schemas/EmailForwardStatus'
-          - type: 'null'
-          description: Current status of the email forward rule
-        target_address:
-          anyOf:
-          - format: email
-            type: string
-          - type: 'null'
-          description: The target email address to forward to
-          title: Target Address
-      title: EmailForwardUpdate
+      - forward_to
+      title: EmailForwardAliasUpdate
       type: object
     EmailVerificationStatus:
       enum:
@@ -3589,19 +3413,19 @@ components:
       - pagination
       title: Pagination[DomainResponse]
       type: object
-    Pagination_EmailForward_:
+    Pagination_EmailForwardAlias_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/EmailForward'
+            $ref: '#/components/schemas/EmailForwardAlias'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[EmailForward]
+      title: Pagination[EmailForwardAlias]
       type: object
     Pagination_EventResponse_:
       properties:
@@ -4995,7 +4819,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-02-000200
+  version: 2025-08-04-073353
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7446,40 +7270,43 @@ paths:
       summary: Cancel a domain transfer
       tags:
       - domain
-  /v1/email-forwards:
-    get:
-      operationId: list_email_forwards_v1_email_forwards_get
+  /v1/email-forwards/{zone_name}/aliases:
+    delete:
+      operationId: delete_email_forward_aliases_v1_email_forwards__zone_name__aliases_delete
       parameters:
-      - description: Optional status to filter the results
-        in: query
-        name: status
-        required: false
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
         schema:
-          anyOf:
-          - $ref: '#/components/schemas/EmailForwardStatus'
-          - type: 'null'
-          description: Optional status to filter the results
-          title: Status
-      - description: Optional source address to filter the results
-        in: query
-        name: source_address
-        required: false
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Delete Email Forward Aliases
+      tags:
+      - email_forward
+    get:
+      operationId: get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
         schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Optional source address to filter the results
-          title: Source Address
-      - description: Optional target address to filter the results
-        in: query
-        name: target_address
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Optional target address to filter the results
-          title: Target Address
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
       - in: query
         name: page
         required: false
@@ -7502,7 +7329,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_EmailForward_'
+                $ref: '#/components/schemas/Pagination_EmailForwardAlias_'
           description: Successful Response
         '422':
           content:
@@ -7512,23 +7339,28 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: List Email Forwards
+      summary: Get Email Forward Aliases
       tags:
       - email_forward
     post:
-      operationId: create_email_forward_v1_email_forwards_post
+      operationId: create_email_forward_alias_v1_email_forwards__zone_name__aliases_post
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EmailForwardCreate'
+              $ref: '#/components/schemas/EmailForwardAlias'
         required: true
       responses:
         '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmailForward'
           description: Successful Response
         '422':
           content:
@@ -7538,78 +7370,27 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create Email Forward
+      summary: Create Email Forward Alias
       tags:
       - email_forward
-  /v1/email-forwards/bulk-delete:
-    post:
-      operationId: bulk_delete_email_forwards_v1_email_forwards_bulk_delete_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EmailForwardBulkDelete'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BulkOperationResponse_EmailForwardBulkDeleteResult_'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Bulk Delete Email Forwards
-      tags:
-      - email_forward
-  /v1/email-forwards/bulk-update:
-    patch:
-      operationId: bulk_update_email_forwards_v1_email_forwards_bulk_update_patch
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EmailForwardBulkUpdate'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BulkOperationResponse_EmailForwardBulkUpdateResult_'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Bulk Update Email Forwards
-      tags:
-      - email_forward
-  /v1/email-forwards/{email_forward_id}:
+  /v1/email-forwards/{zone_name}/aliases/{alias}:
     delete:
-      operationId: delete_email_forward_v1_email_forwards__email_forward_id__delete
+      operationId: delete_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__delete
       parameters:
       - in: path
-        name: email_forward_id
+        name: alias
         required: true
         schema:
-          examples:
-          - email_forward_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Email Forward Id
+          title: Alias
           type: string
-          x-typeid-prefix: email_forward
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
       responses:
         '204':
           description: Successful Response
@@ -7621,29 +7402,32 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete Email Forward
+      summary: Delete Email Forward Alias
       tags:
       - email_forward
     get:
-      operationId: get_email_forward_v1_email_forwards__email_forward_id__get
+      operationId: get_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__get
       parameters:
       - in: path
-        name: email_forward_id
+        name: alias
         required: true
         schema:
-          examples:
-          - email_forward_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Email Forward Id
+          title: Alias
           type: string
-          x-typeid-prefix: email_forward
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmailForward'
+                $ref: '#/components/schemas/EmailForwardAlias'
           description: Successful Response
         '422':
           content:
@@ -7653,35 +7437,34 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Email Forward
+      summary: Get Email Forward Alias
       tags:
       - email_forward
-    patch:
-      operationId: update_email_forward_v1_email_forwards__email_forward_id__patch
+    put:
+      operationId: update_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__put
       parameters:
       - in: path
-        name: email_forward_id
+        name: alias
         required: true
         schema:
-          examples:
-          - email_forward_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Email Forward Id
+          title: Alias
           type: string
-          x-typeid-prefix: email_forward
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EmailForwardUpdate'
+              $ref: '#/components/schemas/EmailForwardAliasUpdate'
         required: true
       responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmailForward'
+        '201':
           description: Successful Response
         '422':
           content:
@@ -7691,7 +7474,59 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Email Forward
+      summary: Update Email Forward Alias
+      tags:
+      - email_forward
+  /v1/email-forwards/{zone_name}/disable:
+    patch:
+      operationId: disable_email_forward_v1_email_forwards__zone_name__disable_patch
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Disable Email Forward
+      tags:
+      - email_forward
+  /v1/email-forwards/{zone_name}/enable:
+    patch:
+      operationId: enable_email_forward_v1_email_forwards__zone_name__enable_patch
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Enable Email Forward
       tags:
       - email_forward
   /v1/event:

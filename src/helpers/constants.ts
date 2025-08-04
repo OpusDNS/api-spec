@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, BulkOperationStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailForwardStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -74,56 +74,6 @@ export const ALLOCATION_METHOD_TYPE_VALUES = [
   'auction',
   'lottery'
 ] as const satisfies [string, ...string[]] | AllocationMethodType[];
-
-/**
- * BulkOperationStatus. Auto-generated enum for BulkOperationStatus
- *
- * @remarks
- * This constant provides both object and array forms for the BulkOperationStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BULK_OPERATION_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BULK_OPERATION_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link BulkOperationStatus} - The TypeScript type definition
- */
-export const BULK_OPERATION_STATUS = {
-  SUCCESS: "success",
-  FAILED: "failed",
-} as const satisfies Record<string, BulkOperationStatus>;
-
-/**
- * Array of all BulkOperationStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid BulkOperationStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of BULK_OPERATION_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = BULK_OPERATION_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link BulkOperationStatus} - The TypeScript type definition
- * @see {@link BULK_OPERATION_STATUS} - The object form of this enum
- */
-export const BULK_OPERATION_STATUS_VALUES = [
-  'success',
-  'failed'
-] as const satisfies [string, ...string[]] | BulkOperationStatus[];
 
 /**
  * ContactRoleType. Auto-generated enum for ContactRoleType
@@ -988,56 +938,6 @@ export const DOMAIN_STATUS_VALUES = [
   'clientRenewProhibited',
   'clientHold'
 ] as const satisfies [string, ...string[]] | DomainStatus[];
-
-/**
- * EmailForwardStatus. Auto-generated enum for EmailForwardStatus
- *
- * @remarks
- * This constant provides both object and array forms for the EmailForwardStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EMAIL_FORWARD_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EMAIL_FORWARD_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EmailForwardStatus} - The TypeScript type definition
- */
-export const EMAIL_FORWARD_STATUS = {
-  ACTIVE: "active",
-  INACTIVE: "inactive",
-} as const satisfies Record<string, EmailForwardStatus>;
-
-/**
- * Array of all EmailForwardStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid EmailForwardStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EMAIL_FORWARD_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EMAIL_FORWARD_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EmailForwardStatus} - The TypeScript type definition
- * @see {@link EMAIL_FORWARD_STATUS} - The object form of this enum
- */
-export const EMAIL_FORWARD_STATUS_VALUES = [
-  'active',
-  'inactive'
-] as const satisfies [string, ...string[]] | EmailForwardStatus[];
 
 /**
  * EmailVerificationStatus. Auto-generated enum for EmailVerificationStatus

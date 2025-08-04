@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForward, EmailForward, EmailForwardBulkDeleteResult, EmailForwardBulkUpdateResult, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -3024,380 +3024,354 @@ export type POST_DomainsTransfer_Response_409 = Problem
 export type POST_DomainsTransfer_Response_422 = Problem
 
 /**
- * Response types for GET EmailForwards endpoint
+ * Response types for DELETE EmailForwardsByZoneNameAliases endpoint
  *
- * List Email Forwards
+ * Delete Email Forward Aliases
  *
  * @remarks
- * This type defines all possible response structures for the GET EmailForwards endpoint.
+ * This type defines all possible response structures for the DELETE EmailForwardsByZoneNameAliases endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/email-forwards
- * @param status (query) - Optional status to filter the results
- * @param source_address (query) - Optional source address to filter the results
- * @param target_address (query) - Optional target address to filter the results
+ * @path /v1/email-forwards/{zone_name}/aliases
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_EmailForwards_Response_200} - 200 response type
- * @see {@link GET_EmailForwards_Response_422} - 422 response type
+ * @see {@link DELETE_EmailForwardsByZoneNameAliases_Response_422} - 422 response type
  *
 
  */
-export type GET_EmailForwards_Response = GET_EmailForwards_Response_200 | GET_EmailForwards_Response_422;
+export type DELETE_EmailForwardsByZoneNameAliases_Response = DELETE_EmailForwardsByZoneNameAliases_Response_422;
 
 /**
- * 200 response for GET EmailForwards endpoint
+ * 422 response for DELETE EmailForwardsByZoneNameAliases endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE EmailForwardsByZoneNameAliases endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/email-forwards/{zone_name}/aliases
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link DELETE_EmailForwardsByZoneNameAliases_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_EmailForwardsByZoneNameAliases_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET EmailForwardsByZoneNameAliases endpoint
+ *
+ * Get Email Forward Aliases
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET EmailForwardsByZoneNameAliases endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/email-forwards/{zone_name}/aliases
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_EmailForwardsByZoneNameAliases_Response_200} - 200 response type
+ * @see {@link GET_EmailForwardsByZoneNameAliases_Response_422} - 422 response type
+ *
+
+ */
+export type GET_EmailForwardsByZoneNameAliases_Response = GET_EmailForwardsByZoneNameAliases_Response_200 | GET_EmailForwardsByZoneNameAliases_Response_422;
+
+/**
+ * 200 response for GET EmailForwardsByZoneNameAliases endpoint
  *
  * @remarks
  * This type defines the response structure for the 200 status code
- * of the GET EmailForwards endpoint.
+ * of the GET EmailForwardsByZoneNameAliases endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards
- * @param status (query) - Optional status to filter the results
- * @param source_address (query) - Optional source address to filter the results
- * @param target_address (query) - Optional target address to filter the results
+ * @path /v1/email-forwards/{zone_name}/aliases
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_EmailForwards_Response} - The main response type definition
- * @see {@link Pagination_EmailForward} - The actual schema type definition
+ * @see {@link GET_EmailForwardsByZoneNameAliases_Response} - The main response type definition
+ * @see {@link Pagination_EmailForwardAlias} - The actual schema type definition
  */
-export type GET_EmailForwards_Response_200 = Pagination_EmailForward
+export type GET_EmailForwardsByZoneNameAliases_Response_200 = Pagination_EmailForwardAlias
 
 /**
- * 422 response for GET EmailForwards endpoint
+ * 422 response for GET EmailForwardsByZoneNameAliases endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the GET EmailForwards endpoint.
+ * of the GET EmailForwardsByZoneNameAliases endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards
- * @param status (query) - Optional status to filter the results
- * @param source_address (query) - Optional source address to filter the results
- * @param target_address (query) - Optional target address to filter the results
+ * @path /v1/email-forwards/{zone_name}/aliases
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_EmailForwards_Response} - The main response type definition
+ * @see {@link GET_EmailForwardsByZoneNameAliases_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type GET_EmailForwards_Response_422 = HTTPValidationError
+export type GET_EmailForwardsByZoneNameAliases_Response_422 = HTTPValidationError
 
 /**
- * Response types for POST EmailForwards endpoint
+ * Response types for POST EmailForwardsByZoneNameAliases endpoint
  *
- * Create Email Forward
+ * Create Email Forward Alias
  *
  * @remarks
- * This type defines all possible response structures for the POST EmailForwards endpoint.
+ * This type defines all possible response structures for the POST EmailForwardsByZoneNameAliases endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/email-forwards
+ * @path /v1/email-forwards/{zone_name}/aliases
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_EmailForwards_Response_201} - 201 response type
- * @see {@link POST_EmailForwards_Response_422} - 422 response type
+ * @see {@link POST_EmailForwardsByZoneNameAliases_Response_422} - 422 response type
  *
 
  */
-export type POST_EmailForwards_Response = POST_EmailForwards_Response_201 | POST_EmailForwards_Response_422;
+export type POST_EmailForwardsByZoneNameAliases_Response = POST_EmailForwardsByZoneNameAliases_Response_422;
 
 /**
- * 201 response for POST EmailForwards endpoint
- *
- * @remarks
- * This type defines the response structure for the 201 status code
- * of the POST EmailForwards endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/email-forwards
- *
- * @see {@link POST_EmailForwards_Response} - The main response type definition
- * @see {@link EmailForward} - The actual schema type definition
- */
-export type POST_EmailForwards_Response_201 = EmailForward
-
-/**
- * 422 response for POST EmailForwards endpoint
+ * 422 response for POST EmailForwardsByZoneNameAliases endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the POST EmailForwards endpoint.
+ * of the POST EmailForwardsByZoneNameAliases endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards
+ * @path /v1/email-forwards/{zone_name}/aliases
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_EmailForwards_Response} - The main response type definition
+ * @see {@link POST_EmailForwardsByZoneNameAliases_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type POST_EmailForwards_Response_422 = HTTPValidationError
+export type POST_EmailForwardsByZoneNameAliases_Response_422 = HTTPValidationError
 
 /**
- * Response types for POST EmailForwardsBulkDelete endpoint
+ * Response types for DELETE EmailForwardsByZoneNameAliasesByAlias endpoint
  *
- * Bulk Delete Email Forwards
+ * Delete Email Forward Alias
  *
  * @remarks
- * This type defines all possible response structures for the POST EmailForwardsBulkDelete endpoint.
+ * This type defines all possible response structures for the DELETE EmailForwardsByZoneNameAliasesByAlias endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/email-forwards/bulk-delete
+ * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_EmailForwardsBulkDelete_Response_200} - 200 response type
- * @see {@link POST_EmailForwardsBulkDelete_Response_422} - 422 response type
+ * @see {@link DELETE_EmailForwardsByZoneNameAliasesByAlias_Response_422} - 422 response type
  *
 
  */
-export type POST_EmailForwardsBulkDelete_Response = POST_EmailForwardsBulkDelete_Response_200 | POST_EmailForwardsBulkDelete_Response_422;
+export type DELETE_EmailForwardsByZoneNameAliasesByAlias_Response = DELETE_EmailForwardsByZoneNameAliasesByAlias_Response_422;
 
 /**
- * 200 response for POST EmailForwardsBulkDelete endpoint
+ * 422 response for DELETE EmailForwardsByZoneNameAliasesByAlias endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE EmailForwardsByZoneNameAliasesByAlias endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link DELETE_EmailForwardsByZoneNameAliasesByAlias_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_EmailForwardsByZoneNameAliasesByAlias_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET EmailForwardsByZoneNameAliasesByAlias endpoint
+ *
+ * Get Email Forward Alias
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET EmailForwardsByZoneNameAliasesByAlias endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_EmailForwardsByZoneNameAliasesByAlias_Response_200} - 200 response type
+ * @see {@link GET_EmailForwardsByZoneNameAliasesByAlias_Response_422} - 422 response type
+ *
+
+ */
+export type GET_EmailForwardsByZoneNameAliasesByAlias_Response = GET_EmailForwardsByZoneNameAliasesByAlias_Response_200 | GET_EmailForwardsByZoneNameAliasesByAlias_Response_422;
+
+/**
+ * 200 response for GET EmailForwardsByZoneNameAliasesByAlias endpoint
  *
  * @remarks
  * This type defines the response structure for the 200 status code
- * of the POST EmailForwardsBulkDelete endpoint.
+ * of the GET EmailForwardsByZoneNameAliasesByAlias endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards/bulk-delete
+ * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_EmailForwardsBulkDelete_Response} - The main response type definition
- * @see {@link EmailForwardBulkDeleteResult} - The actual schema type definition
+ * @see {@link GET_EmailForwardsByZoneNameAliasesByAlias_Response} - The main response type definition
+ * @see {@link EmailForwardAlias} - The actual schema type definition
  */
-export type POST_EmailForwardsBulkDelete_Response_200 = EmailForwardBulkDeleteResult
+export type GET_EmailForwardsByZoneNameAliasesByAlias_Response_200 = EmailForwardAlias
 
 /**
- * 422 response for POST EmailForwardsBulkDelete endpoint
+ * 422 response for GET EmailForwardsByZoneNameAliasesByAlias endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the POST EmailForwardsBulkDelete endpoint.
+ * of the GET EmailForwardsByZoneNameAliasesByAlias endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards/bulk-delete
+ * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link POST_EmailForwardsBulkDelete_Response} - The main response type definition
+ * @see {@link GET_EmailForwardsByZoneNameAliasesByAlias_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type POST_EmailForwardsBulkDelete_Response_422 = HTTPValidationError
+export type GET_EmailForwardsByZoneNameAliasesByAlias_Response_422 = HTTPValidationError
 
 /**
- * Response types for PATCH EmailForwardsBulkUpdate endpoint
+ * Response types for PUT EmailForwardsByZoneNameAliasesByAlias endpoint
  *
- * Bulk Update Email Forwards
+ * Update Email Forward Alias
  *
  * @remarks
- * This type defines all possible response structures for the PATCH EmailForwardsBulkUpdate endpoint.
+ * This type defines all possible response structures for the PUT EmailForwardsByZoneNameAliasesByAlias endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/email-forwards/bulk-update
+ * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PATCH_EmailForwardsBulkUpdate_Response_200} - 200 response type
- * @see {@link PATCH_EmailForwardsBulkUpdate_Response_422} - 422 response type
+ * @see {@link PUT_EmailForwardsByZoneNameAliasesByAlias_Response_422} - 422 response type
  *
 
  */
-export type PATCH_EmailForwardsBulkUpdate_Response = PATCH_EmailForwardsBulkUpdate_Response_200 | PATCH_EmailForwardsBulkUpdate_Response_422;
+export type PUT_EmailForwardsByZoneNameAliasesByAlias_Response = PUT_EmailForwardsByZoneNameAliasesByAlias_Response_422;
 
 /**
- * 200 response for PATCH EmailForwardsBulkUpdate endpoint
- *
- * @remarks
- * This type defines the response structure for the 200 status code
- * of the PATCH EmailForwardsBulkUpdate endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/email-forwards/bulk-update
- *
- * @see {@link PATCH_EmailForwardsBulkUpdate_Response} - The main response type definition
- * @see {@link EmailForwardBulkUpdateResult} - The actual schema type definition
- */
-export type PATCH_EmailForwardsBulkUpdate_Response_200 = EmailForwardBulkUpdateResult
-
-/**
- * 422 response for PATCH EmailForwardsBulkUpdate endpoint
+ * 422 response for PUT EmailForwardsByZoneNameAliasesByAlias endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the PATCH EmailForwardsBulkUpdate endpoint.
+ * of the PUT EmailForwardsByZoneNameAliasesByAlias endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards/bulk-update
+ * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link PATCH_EmailForwardsBulkUpdate_Response} - The main response type definition
+ * @see {@link PUT_EmailForwardsByZoneNameAliasesByAlias_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type PATCH_EmailForwardsBulkUpdate_Response_422 = HTTPValidationError
+export type PUT_EmailForwardsByZoneNameAliasesByAlias_Response_422 = HTTPValidationError
 
 /**
- * Response types for DELETE EmailForwardsByEmailForwardId endpoint
+ * Response types for PATCH EmailForwardsByZoneNameDisable endpoint
  *
- * Delete Email Forward
+ * Disable Email Forward
  *
  * @remarks
- * This type defines all possible response structures for the DELETE EmailForwardsByEmailForwardId endpoint.
+ * This type defines all possible response structures for the PATCH EmailForwardsByZoneNameDisable endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{zone_name}/disable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link DELETE_EmailForwardsByEmailForwardId_Response_422} - 422 response type
+ * @see {@link PATCH_EmailForwardsByZoneNameDisable_Response_422} - 422 response type
  *
 
  */
-export type DELETE_EmailForwardsByEmailForwardId_Response = DELETE_EmailForwardsByEmailForwardId_Response_422;
+export type PATCH_EmailForwardsByZoneNameDisable_Response = PATCH_EmailForwardsByZoneNameDisable_Response_422;
 
 /**
- * 422 response for DELETE EmailForwardsByEmailForwardId endpoint
+ * 422 response for PATCH EmailForwardsByZoneNameDisable endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the DELETE EmailForwardsByEmailForwardId endpoint.
+ * of the PATCH EmailForwardsByZoneNameDisable endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{zone_name}/disable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link DELETE_EmailForwardsByEmailForwardId_Response} - The main response type definition
+ * @see {@link PATCH_EmailForwardsByZoneNameDisable_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type DELETE_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
+export type PATCH_EmailForwardsByZoneNameDisable_Response_422 = HTTPValidationError
 
 /**
- * Response types for GET EmailForwardsByEmailForwardId endpoint
+ * Response types for PATCH EmailForwardsByZoneNameEnable endpoint
  *
- * Get Email Forward
+ * Enable Email Forward
  *
  * @remarks
- * This type defines all possible response structures for the GET EmailForwardsByEmailForwardId endpoint.
+ * This type defines all possible response structures for the PATCH EmailForwardsByZoneNameEnable endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{zone_name}/enable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_EmailForwardsByEmailForwardId_Response_200} - 200 response type
- * @see {@link GET_EmailForwardsByEmailForwardId_Response_422} - 422 response type
+ * @see {@link PATCH_EmailForwardsByZoneNameEnable_Response_422} - 422 response type
  *
 
  */
-export type GET_EmailForwardsByEmailForwardId_Response = GET_EmailForwardsByEmailForwardId_Response_200 | GET_EmailForwardsByEmailForwardId_Response_422;
+export type PATCH_EmailForwardsByZoneNameEnable_Response = PATCH_EmailForwardsByZoneNameEnable_Response_422;
 
 /**
- * 200 response for GET EmailForwardsByEmailForwardId endpoint
- *
- * @remarks
- * This type defines the response structure for the 200 status code
- * of the GET EmailForwardsByEmailForwardId endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/email-forwards/{email_forward_id}
- *
- * @see {@link GET_EmailForwardsByEmailForwardId_Response} - The main response type definition
- * @see {@link EmailForward} - The actual schema type definition
- */
-export type GET_EmailForwardsByEmailForwardId_Response_200 = EmailForward
-
-/**
- * 422 response for GET EmailForwardsByEmailForwardId endpoint
+ * 422 response for PATCH EmailForwardsByZoneNameEnable endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the GET EmailForwardsByEmailForwardId endpoint.
+ * of the PATCH EmailForwardsByZoneNameEnable endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/email-forwards/{email_forward_id}
+ * @path /v1/email-forwards/{zone_name}/enable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
- * @see {@link GET_EmailForwardsByEmailForwardId_Response} - The main response type definition
+ * @see {@link PATCH_EmailForwardsByZoneNameEnable_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type GET_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
-
-/**
- * Response types for PATCH EmailForwardsByEmailForwardId endpoint
- *
- * Update Email Forward
- *
- * @remarks
- * This type defines all possible response structures for the PATCH EmailForwardsByEmailForwardId endpoint.
- * Each response code maps to a specific response type as defined in the OpenAPI specification.
- * Use this type to ensure type safety when handling API responses from this endpoint.
- *
-
- *
- * @path /v1/email-forwards/{email_forward_id}
- *
- * @see {@link PATCH_EmailForwardsByEmailForwardId_Response_200} - 200 response type
- * @see {@link PATCH_EmailForwardsByEmailForwardId_Response_422} - 422 response type
- *
-
- */
-export type PATCH_EmailForwardsByEmailForwardId_Response = PATCH_EmailForwardsByEmailForwardId_Response_200 | PATCH_EmailForwardsByEmailForwardId_Response_422;
-
-/**
- * 200 response for PATCH EmailForwardsByEmailForwardId endpoint
- *
- * @remarks
- * This type defines the response structure for the 200 status code
- * of the PATCH EmailForwardsByEmailForwardId endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/email-forwards/{email_forward_id}
- *
- * @see {@link PATCH_EmailForwardsByEmailForwardId_Response} - The main response type definition
- * @see {@link EmailForward} - The actual schema type definition
- */
-export type PATCH_EmailForwardsByEmailForwardId_Response_200 = EmailForward
-
-/**
- * 422 response for PATCH EmailForwardsByEmailForwardId endpoint
- *
- * @remarks
- * This type defines the response structure for the 422 status code
- * of the PATCH EmailForwardsByEmailForwardId endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/email-forwards/{email_forward_id}
- *
- * @see {@link PATCH_EmailForwardsByEmailForwardId_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
- */
-export type PATCH_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
+export type PATCH_EmailForwardsByZoneNameEnable_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Event endpoint
