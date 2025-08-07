@@ -658,7 +658,7 @@ export interface paths {
         patch: operations["enable_email_forward_v1_email_forwards__zone_name__enable_patch"];
         trace?: never;
     };
-    "/v1/event": {
+    "/v1/events": {
         parameters: {
             query?: never;
             header?: never;
@@ -666,7 +666,7 @@ export interface paths {
             cookie?: never;
         };
         /** Get Events */
-        get: operations["get_events_v1_event_get"];
+        get: operations["get_events_v1_events_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -675,7 +675,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/event/{event_id}": {
+    "/v1/events/{event_id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -683,14 +683,14 @@ export interface paths {
             cookie?: never;
         };
         /** Get Event */
-        get: operations["get_event_v1_event__event_id__get"];
+        get: operations["get_event_v1_events__event_id__get"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
         /** Acknowledge Event */
-        patch: operations["acknowledge_event_v1_event__event_id__patch"];
+        patch: operations["acknowledge_event_v1_events__event_id__patch"];
         trace?: never;
     };
     "/v1/notifications": {
@@ -6659,7 +6659,7 @@ export interface operations {
             };
         };
     };
-    get_events_v1_event_get: {
+    get_events_v1_events_get: {
         parameters: {
             query?: {
                 page?: number;
@@ -6707,7 +6707,7 @@ export interface operations {
             };
         };
     };
-    get_event_v1_event__event_id__get: {
+    get_event_v1_events__event_id__get: {
         parameters: {
             query?: never;
             header?: never;
@@ -6771,7 +6771,7 @@ export interface operations {
             };
         };
     };
-    acknowledge_event_v1_event__event_id__patch: {
+    acknowledge_event_v1_events__event_id__patch: {
         parameters: {
             query?: never;
             header?: never;

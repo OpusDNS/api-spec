@@ -3374,241 +3374,241 @@ export type PATCH_EmailForwardsByZoneNameEnable_Response = PATCH_EmailForwardsBy
 export type PATCH_EmailForwardsByZoneNameEnable_Response_422 = HTTPValidationError
 
 /**
- * Response types for GET Event endpoint
+ * Response types for GET Events endpoint
  *
  * Get Events
  *
  * @remarks
- * This type defines all possible response structures for the GET Event endpoint.
+ * This type defines all possible response structures for the GET Events endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/event
+ * @path /v1/events
  *
- * @see {@link GET_Event_Response_200} - 200 response type
- * @see {@link GET_Event_Response_401} - 401 response type
- * @see {@link GET_Event_Response_422} - 422 response type
+ * @see {@link GET_Events_Response_200} - 200 response type
+ * @see {@link GET_Events_Response_401} - 401 response type
+ * @see {@link GET_Events_Response_422} - 422 response type
  *
 
  */
-export type GET_Event_Response = GET_Event_Response_200 | GET_Event_Response_401 | GET_Event_Response_422;
+export type GET_Events_Response = GET_Events_Response_200 | GET_Events_Response_401 | GET_Events_Response_422;
 
 /**
- * 200 response for GET Event endpoint
+ * 200 response for GET Events endpoint
  *
  * @remarks
  * This type defines the response structure for the 200 status code
- * of the GET Event endpoint.
+ * of the GET Events endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event
+ * @path /v1/events
  *
- * @see {@link GET_Event_Response} - The main response type definition
+ * @see {@link GET_Events_Response} - The main response type definition
  * @see {@link Pagination_Event} - The actual schema type definition
  */
-export type GET_Event_Response_200 = Pagination_Event
+export type GET_Events_Response_200 = Pagination_Event
 
 /**
- * 401 response for GET Event endpoint
+ * 401 response for GET Events endpoint
  *
  * @remarks
  * This type defines the response structure for the 401 status code
- * of the GET Event endpoint.
+ * of the GET Events endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event
+ * @path /v1/events
  *
- * @see {@link GET_Event_Response} - The main response type definition
+ * @see {@link GET_Events_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type GET_Event_Response_401 = Problem
+export type GET_Events_Response_401 = Problem
 
 /**
- * 422 response for GET Event endpoint
+ * 422 response for GET Events endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the GET Event endpoint.
+ * of the GET Events endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event
+ * @path /v1/events
  *
- * @see {@link GET_Event_Response} - The main response type definition
+ * @see {@link GET_Events_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type GET_Event_Response_422 = HTTPValidationError
+export type GET_Events_Response_422 = HTTPValidationError
 
 /**
- * Response types for GET EventByEventId endpoint
+ * Response types for GET EventsByEventId endpoint
  *
  * Get Event
  *
  * @remarks
- * This type defines all possible response structures for the GET EventByEventId endpoint.
+ * This type defines all possible response structures for the GET EventsByEventId endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link GET_EventByEventId_Response_200} - 200 response type
- * @see {@link GET_EventByEventId_Response_401} - 401 response type
- * @see {@link GET_EventByEventId_Response_404} - 404 response type
- * @see {@link GET_EventByEventId_Response_422} - 422 response type
+ * @see {@link GET_EventsByEventId_Response_200} - 200 response type
+ * @see {@link GET_EventsByEventId_Response_401} - 401 response type
+ * @see {@link GET_EventsByEventId_Response_404} - 404 response type
+ * @see {@link GET_EventsByEventId_Response_422} - 422 response type
  *
 
  */
-export type GET_EventByEventId_Response = GET_EventByEventId_Response_200 | GET_EventByEventId_Response_401 | GET_EventByEventId_Response_404 | GET_EventByEventId_Response_422;
+export type GET_EventsByEventId_Response = GET_EventsByEventId_Response_200 | GET_EventsByEventId_Response_401 | GET_EventsByEventId_Response_404 | GET_EventsByEventId_Response_422;
 
 /**
- * 200 response for GET EventByEventId endpoint
+ * 200 response for GET EventsByEventId endpoint
  *
  * @remarks
  * This type defines the response structure for the 200 status code
- * of the GET EventByEventId endpoint.
+ * of the GET EventsByEventId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link GET_EventByEventId_Response} - The main response type definition
+ * @see {@link GET_EventsByEventId_Response} - The main response type definition
  * @see {@link EventSchema} - The actual schema type definition
  */
-export type GET_EventByEventId_Response_200 = EventSchema
+export type GET_EventsByEventId_Response_200 = EventSchema
 
 /**
- * 401 response for GET EventByEventId endpoint
+ * 401 response for GET EventsByEventId endpoint
  *
  * @remarks
  * This type defines the response structure for the 401 status code
- * of the GET EventByEventId endpoint.
+ * of the GET EventsByEventId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link GET_EventByEventId_Response} - The main response type definition
+ * @see {@link GET_EventsByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type GET_EventByEventId_Response_401 = Problem
+export type GET_EventsByEventId_Response_401 = Problem
 
 /**
- * 404 response for GET EventByEventId endpoint
+ * 404 response for GET EventsByEventId endpoint
  *
  * @remarks
  * This type defines the response structure for the 404 status code
- * of the GET EventByEventId endpoint.
+ * of the GET EventsByEventId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link GET_EventByEventId_Response} - The main response type definition
+ * @see {@link GET_EventsByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type GET_EventByEventId_Response_404 = Problem
+export type GET_EventsByEventId_Response_404 = Problem
 
 /**
- * 422 response for GET EventByEventId endpoint
+ * 422 response for GET EventsByEventId endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the GET EventByEventId endpoint.
+ * of the GET EventsByEventId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link GET_EventByEventId_Response} - The main response type definition
+ * @see {@link GET_EventsByEventId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type GET_EventByEventId_Response_422 = HTTPValidationError
+export type GET_EventsByEventId_Response_422 = HTTPValidationError
 
 /**
- * Response types for PATCH EventByEventId endpoint
+ * Response types for PATCH EventsByEventId endpoint
  *
  * Acknowledge Event
  *
  * @remarks
- * This type defines all possible response structures for the PATCH EventByEventId endpoint.
+ * This type defines all possible response structures for the PATCH EventsByEventId endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link PATCH_EventByEventId_Response_401} - 401 response type
- * @see {@link PATCH_EventByEventId_Response_404} - 404 response type
- * @see {@link PATCH_EventByEventId_Response_422} - 422 response type
+ * @see {@link PATCH_EventsByEventId_Response_401} - 401 response type
+ * @see {@link PATCH_EventsByEventId_Response_404} - 404 response type
+ * @see {@link PATCH_EventsByEventId_Response_422} - 422 response type
  *
 
  */
-export type PATCH_EventByEventId_Response = PATCH_EventByEventId_Response_401 | PATCH_EventByEventId_Response_404 | PATCH_EventByEventId_Response_422;
+export type PATCH_EventsByEventId_Response = PATCH_EventsByEventId_Response_401 | PATCH_EventsByEventId_Response_404 | PATCH_EventsByEventId_Response_422;
 
 /**
- * 401 response for PATCH EventByEventId endpoint
+ * 401 response for PATCH EventsByEventId endpoint
  *
  * @remarks
  * This type defines the response structure for the 401 status code
- * of the PATCH EventByEventId endpoint.
+ * of the PATCH EventsByEventId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link PATCH_EventByEventId_Response} - The main response type definition
+ * @see {@link PATCH_EventsByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type PATCH_EventByEventId_Response_401 = Problem
+export type PATCH_EventsByEventId_Response_401 = Problem
 
 /**
- * 404 response for PATCH EventByEventId endpoint
+ * 404 response for PATCH EventsByEventId endpoint
  *
  * @remarks
  * This type defines the response structure for the 404 status code
- * of the PATCH EventByEventId endpoint.
+ * of the PATCH EventsByEventId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link PATCH_EventByEventId_Response} - The main response type definition
+ * @see {@link PATCH_EventsByEventId_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type PATCH_EventByEventId_Response_404 = Problem
+export type PATCH_EventsByEventId_Response_404 = Problem
 
 /**
- * 422 response for PATCH EventByEventId endpoint
+ * 422 response for PATCH EventsByEventId endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the PATCH EventByEventId endpoint.
+ * of the PATCH EventsByEventId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link PATCH_EventByEventId_Response} - The main response type definition
+ * @see {@link PATCH_EventsByEventId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type PATCH_EventByEventId_Response_422 = HTTPValidationError
+export type PATCH_EventsByEventId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Notifications endpoint

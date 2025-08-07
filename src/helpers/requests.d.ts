@@ -2181,118 +2181,118 @@ export type PATCH_EmailForwardsZoneNameEnable_Request = {
 export type PATCH_EmailForwardsZoneNameEnable_Request_Path = PATCH_EmailForwardsZoneNameEnable_Request['parameters']['path'];
 
 /**
- * Request type for GET Event endpoint
+ * Request type for GET Events endpoint
  *
  * Get Events
  *
  * @remarks
- * This type defines the complete request structure for the GET Event endpoint.
+ * This type defines the complete request structure for the GET Events endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/event
+ * @path /v1/events
  *
- * @see {@link GET_Event_Request_Query} - Query parameters type
- * @see {@link GET_Event_Request_Path} - Path parameters type
- * @see {@link GET_Event_Request_Body} - Request body type
+ * @see {@link GET_Events_Request_Query} - Query parameters type
+ * @see {@link GET_Events_Request_Path} - Path parameters type
+ * @see {@link GET_Events_Request_Body} - Request body type
  */
-export type GET_Event_Request = {
+export type GET_Events_Request = {
   parameters: {
-    query: operations['get_events_v1_event_get']['parameters']['query'];
+    query: operations['get_events_v1_events_get']['parameters']['query'];
   };
 }
 /**
- * Query parameters for GET /v1/event
+ * Query parameters for GET /v1/events
  *
  * @remarks
- * This type defines the query parameters for the GET /v1/event endpoint.
+ * This type defines the query parameters for the GET /v1/events endpoint.
  * It provides type safety for all query parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for query parameters.
  *
- * @path /v1/event
+ * @path /v1/events
  */
-export type GET_Event_Request_Query = GET_Event_Request['parameters']['query'];
+export type GET_Events_Request_Query = GET_Events_Request['parameters']['query'];
 
 /**
- * Request type for GET EventEventId endpoint
+ * Request type for GET EventsEventId endpoint
  *
  * Get Event
  *
  * @remarks
- * This type defines the complete request structure for the GET EventEventId endpoint.
+ * This type defines the complete request structure for the GET EventsEventId endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link GET_EventEventId_Request_Query} - Query parameters type
- * @see {@link GET_EventEventId_Request_Path} - Path parameters type
- * @see {@link GET_EventEventId_Request_Body} - Request body type
+ * @see {@link GET_EventsEventId_Request_Query} - Query parameters type
+ * @see {@link GET_EventsEventId_Request_Path} - Path parameters type
+ * @see {@link GET_EventsEventId_Request_Body} - Request body type
  */
-export type GET_EventEventId_Request = {
+export type GET_EventsEventId_Request = {
   parameters: {
-    path: operations['get_event_v1_event__event_id__get']['parameters']['path'];
+    path: operations['get_event_v1_events__event_id__get']['parameters']['path'];
   };
 }
 /**
- * Path parameters for GET /v1/event/{event_id}
+ * Path parameters for GET /v1/events/{event_id}
  *
  * @remarks
- * This type defines the path parameters for the GET /v1/event/{event_id} endpoint.
+ * This type defines the path parameters for the GET /v1/events/{event_id} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  */
-export type GET_EventEventId_Request_Path = GET_EventEventId_Request['parameters']['path'];
+export type GET_EventsEventId_Request_Path = GET_EventsEventId_Request['parameters']['path'];
 
 /**
- * Request type for PATCH EventEventId endpoint
+ * Request type for PATCH EventsEventId endpoint
  *
  * Acknowledge Event
  *
  * @remarks
- * This type defines the complete request structure for the PATCH EventEventId endpoint.
+ * This type defines the complete request structure for the PATCH EventsEventId endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  *
- * @see {@link PATCH_EventEventId_Request_Query} - Query parameters type
- * @see {@link PATCH_EventEventId_Request_Path} - Path parameters type
- * @see {@link PATCH_EventEventId_Request_Body} - Request body type
+ * @see {@link PATCH_EventsEventId_Request_Query} - Query parameters type
+ * @see {@link PATCH_EventsEventId_Request_Path} - Path parameters type
+ * @see {@link PATCH_EventsEventId_Request_Body} - Request body type
  */
-export type PATCH_EventEventId_Request = {
+export type PATCH_EventsEventId_Request = {
   parameters: {
-    path: operations['acknowledge_event_v1_event__event_id__patch']['parameters']['path'];
+    path: operations['acknowledge_event_v1_events__event_id__patch']['parameters']['path'];
   };
 }
 /**
- * Path parameters for PATCH /v1/event/{event_id}
+ * Path parameters for PATCH /v1/events/{event_id}
  *
  * @remarks
- * This type defines the path parameters for the PATCH /v1/event/{event_id} endpoint.
+ * This type defines the path parameters for the PATCH /v1/events/{event_id} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/event/{event_id}
+ * @path /v1/events/{event_id}
  */
-export type PATCH_EventEventId_Request_Path = PATCH_EventEventId_Request['parameters']['path'];
+export type PATCH_EventsEventId_Request_Path = PATCH_EventsEventId_Request['parameters']['path'];
 
 /**
  * Request type for GET Notifications endpoint

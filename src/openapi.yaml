@@ -4819,7 +4819,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-04-073353
+  version: 2025-08-07-211955
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7529,9 +7529,9 @@ paths:
       summary: Enable Email Forward
       tags:
       - email_forward
-  /v1/event:
+  /v1/events:
     get:
-      operationId: get_events_v1_event_get
+      operationId: get_events_v1_events_get
       parameters:
       - in: query
         name: page
@@ -7580,9 +7580,9 @@ paths:
       summary: Get Events
       tags:
       - event
-  /v1/event/{event_id}:
+  /v1/events/{event_id}:
     get:
-      operationId: get_event_v1_event__event_id__get
+      operationId: get_event_v1_events__event_id__get
       parameters:
       - in: path
         name: event_id
@@ -7639,7 +7639,7 @@ paths:
       tags:
       - event
     patch:
-      operationId: acknowledge_event_v1_event__event_id__patch
+      operationId: acknowledge_event_v1_events__event_id__patch
       parameters:
       - in: path
         name: event_id
