@@ -164,8 +164,8 @@ header {
 		gap: 2rem;
 
 		.link-column {
-			width: 150px;
-			flex-shrink: 0;
+			max-width: 200px;
+			flex: 1;
 
 			h4 {
 				margin-bottom: 0.5rem;
