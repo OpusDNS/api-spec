@@ -1984,6 +1984,8 @@ export interface components {
             registry_auto_renew?: boolean | null;
             /** @description List of allowed renewal periods (e.g., '1y' or ['1y', '2y', '5y']) */
             renewal_periods?: components["schemas"]["PeriodList"];
+            /** @description RGP operations supported by the registry */
+            rgp_operations?: components["schemas"]["RgpOperations"] | null;
             /**
              * Sync After Operations
              * @description Operations that trigger a sync with the registry
@@ -2173,7 +2175,7 @@ export interface components {
          * DomainStatus
          * @enum {string}
          */
-        DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverRestoreProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
         /** DomainStatusesBase */
         DomainStatusesBase: {
             /**
@@ -3557,6 +3559,21 @@ export interface components {
          * @enum {string}
          */
         ReservedSourceType: "API" | "CSV" | "manual";
+        /** RgpOperations */
+        RgpOperations: {
+            /**
+             * Report
+             * @description Whether registry supports RGP restore report
+             * @default true
+             */
+            report: boolean;
+            /**
+             * Request
+             * @description Whether registry supports RGP restore request
+             * @default true
+             */
+            request: boolean;
+        };
         /** SignupCreate */
         SignupCreate: {
             /** @description Organization signup. */

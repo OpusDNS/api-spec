@@ -2283,6 +2283,22 @@ export type ReservedDomainsBase = components['schemas']['ReservedDomainsBase'];
  */
 export type ReservedSourceType = components['schemas']['ReservedSourceType'];
 /**
+ * RgpOperations
+ *
+ * @remarks
+ * Type alias for the `RgpOperations` OpenAPI schema.
+ * This type represents rgpoperations data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRgpOperations();
+ * const item: RgpOperations = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RgpOperations = components['schemas']['RgpOperations'];
+/**
  * SignupCreate
  *
  * @remarks

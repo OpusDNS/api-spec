@@ -119,6 +119,7 @@ import { RdapBase } from './schemas';
 import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
 import { ReservedDomainsBase } from './schemas';
+import { RgpOperations } from './schemas';
 import { SignupCreate } from './schemas';
 import { SldLength } from './schemas';
 import { SpiceDbRelationshipUpdate } from './schemas';
@@ -5792,6 +5793,31 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW = 'registry_auto_rene
  */
 export const KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS = 'renewal_periods' as keyof DomainLifecycleBase;
 /**
+ * rgp_operations property
+ *
+ * RGP operations supported by the registry
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rgp_operations` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS = 'rgp_operations' as keyof DomainLifecycleBase;
+/**
  * Sync After Operations
  *
  * Operations that trigger a sync with the registry
@@ -5849,6 +5875,7 @@ export const KEYS_DOMAIN_LIFECYCLE_BASE = [
   KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS,
   KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW,
   KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS,
+  KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS,
   KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS,
 ] as const satisfies (keyof DomainLifecycleBase)[];
 
@@ -14513,6 +14540,84 @@ export const KEYS_RESERVED_DOMAINS_BASE = [
   KEY_RESERVED_DOMAINS_BASE_SUPPORTED,
   KEY_RESERVED_DOMAINS_BASE_URL,
 ] as const satisfies (keyof ReservedDomainsBase)[];
+
+/**
+ * Report
+ *
+ * Whether registry supports RGP restore report
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `report` property of RgpOperations objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = rgpoperations[KEY_RGP_OPERATIONS_REPORT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RGP_OPERATIONS_REPORT;
+ * const value = rgpoperations[propertyName];
+ * ```
+ *
+ * @see {@link RgpOperations} - The TypeScript type definition
+ * @see {@link KEYS_RGP_OPERATIONS} - Array of all keys for this type
+ */
+export const KEY_RGP_OPERATIONS_REPORT = 'report' as keyof RgpOperations;
+/**
+ * Request
+ *
+ * Whether registry supports RGP restore request
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request` property of RgpOperations objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = rgpoperations[KEY_RGP_OPERATIONS_REQUEST];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RGP_OPERATIONS_REQUEST;
+ * const value = rgpoperations[propertyName];
+ * ```
+ *
+ * @see {@link RgpOperations} - The TypeScript type definition
+ * @see {@link KEYS_RGP_OPERATIONS} - Array of all keys for this type
+ */
+export const KEY_RGP_OPERATIONS_REQUEST = 'request' as keyof RgpOperations;
+
+/**
+ * Array of all RgpOperations property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RgpOperations objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_RGP_OPERATIONS) {
+ *   console.log(`Property: ${key}, Value: ${rgpoperations[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_RGP_OPERATIONS.includes(someKey);
+ * ```
+ *
+ * @see {@link RgpOperations} - The TypeScript type definition
+ */
+export const KEYS_RGP_OPERATIONS = [
+  KEY_RGP_OPERATIONS_REPORT,
+  KEY_RGP_OPERATIONS_REQUEST,
+] as const satisfies (keyof RgpOperations)[];
 
 /**
  * organization property
