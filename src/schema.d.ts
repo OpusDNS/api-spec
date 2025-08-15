@@ -1562,10 +1562,6 @@ export interface components {
          * @enum {string}
          */
         DeletePolicyType: "immediate" | "expiration";
-        /** DeletedEvent */
-        DeletedEvent: {
-            date: components["schemas"]["EppDateTime"];
-        };
         /**
          * DnsChangeAction
          * @enum {string}
@@ -2313,8 +2309,6 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
-        /** EmptyEvent */
-        EmptyEvent: Record<string, never>;
         EppDateTime: Date | string;
         /**
          * EventObjectType
@@ -2324,7 +2318,7 @@ export interface components {
         /** EventResponse */
         EventResponse: {
             /** Event Data */
-            event_data: components["schemas"]["TransferEvent"] | components["schemas"]["DeletedEvent"] | components["schemas"]["RenewalEvent"] | components["schemas"]["EmptyEvent"];
+            event_data: Record<string, never>;
             /**
              * Event Id
              * Format: typeid
@@ -3536,15 +3530,6 @@ export interface components {
             /** Relations */
             relations?: components["schemas"]["Relation"][];
         };
-        /** RenewalEvent */
-        RenewalEvent: {
-            /**
-             * Registration Expiration Date
-             * Format: date-time
-             * @description The new expiration date/time after the domain has been renewed
-             */
-            registration_expiration_date: Date;
-        };
         /**
          * RenewalMode
          * @enum {string}
@@ -3714,17 +3699,6 @@ export interface components {
          * @enum {string}
          */
         TransferAckType: "none" | "registrar" | "registrant" | "both";
-        /** TransferEvent */
-        TransferEvent: {
-            /** Current Registrar */
-            current_registrar: string;
-            execution_date: components["schemas"]["EppDateTime"];
-            expiration_date: components["schemas"]["EppDateTime"] | null;
-            /** Message */
-            message: string;
-            /** Requesting Registrar */
-            requesting_registrar: string;
-        };
         /** TransferPoliciesBase */
         TransferPoliciesBase: {
             /**

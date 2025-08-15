@@ -283,22 +283,6 @@ export type Currency = components['schemas']['Currency'];
  */
 export type DeletePolicyType = components['schemas']['DeletePolicyType'];
 /**
- * DeletedEvent
- *
- * @remarks
- * Type alias for the `DeletedEvent` OpenAPI schema.
- * This type represents deletedevent data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getDeletedEvent();
- * const item: DeletedEvent = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type DeletedEvent = components['schemas']['DeletedEvent'];
-/**
  * DnsChangeAction
  *
  * @remarks
@@ -1162,22 +1146,6 @@ export type EmailForwardAliasUpdate = components['schemas']['EmailForwardAliasUp
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type EmailVerificationStatus = components['schemas']['EmailVerificationStatus'];
-/**
- * EmptyEvent
- *
- * @remarks
- * Type alias for the `EmptyEvent` OpenAPI schema.
- * This type represents emptyevent data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmptyEvent();
- * const item: EmptyEvent = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmptyEvent = components['schemas']['EmptyEvent'];
 /**
  * EppDateTime
  *
@@ -2251,22 +2219,6 @@ export type Relation = components['schemas']['Relation'];
  */
 export type RelationSet = components['schemas']['RelationSet'];
 /**
- * RenewalEvent
- *
- * @remarks
- * Type alias for the `RenewalEvent` OpenAPI schema.
- * This type represents renewalevent data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getRenewalEvent();
- * const item: RenewalEvent = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type RenewalEvent = components['schemas']['RenewalEvent'];
-/**
  * RenewalMode
  *
  * @remarks
@@ -2522,22 +2474,6 @@ export type TrademarkClaimsBase = components['schemas']['TrademarkClaimsBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type TransferAckType = components['schemas']['TransferAckType'];
-/**
- * TransferEvent
- *
- * @remarks
- * Type alias for the `TransferEvent` OpenAPI schema.
- * This type represents transferevent data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getTransferEvent();
- * const item: TransferEvent = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type TransferEvent = components['schemas']['TransferEvent'];
 /**
  * TransferPoliciesBase
  *

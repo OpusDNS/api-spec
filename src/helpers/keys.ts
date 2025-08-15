@@ -39,7 +39,6 @@ import { ContactVerificationApi } from './schemas';
 import { ContactVerificationEmail } from './schemas';
 import { ContactVerification } from './schemas';
 import { ContactsBase } from './schemas';
-import { DeletedEvent } from './schemas';
 import { DnsChange } from './schemas';
 import { DnsChanges } from './schemas';
 import { DnsConfigurationBase } from './schemas';
@@ -118,7 +117,6 @@ import { Problem } from './schemas';
 import { RdapBase } from './schemas';
 import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
-import { RenewalEvent } from './schemas';
 import { ReservedDomainsBase } from './schemas';
 import { RgpOperations } from './schemas';
 import { SignupCreate } from './schemas';
@@ -129,7 +127,6 @@ import { TldBase } from './schemas';
 import { TldResponseShort } from './schemas';
 import { TldSpecification } from './schemas';
 import { TrademarkClaimsBase } from './schemas';
-import { TransferEvent } from './schemas';
 import { TransferPoliciesBase } from './schemas';
 import { User } from './schemas';
 import { UserAttributeBase } from './schemas';
@@ -2690,55 +2687,6 @@ export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES,
   KEY_CONTACTS_BASE_SUPPORTED_ROLES,
 ] as const satisfies (keyof ContactsBase)[];
-
-/**
- * date property
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `date` property of DeletedEvent objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = deletedevent[KEY_DELETED_EVENT_DATE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DELETED_EVENT_DATE;
- * const value = deletedevent[propertyName];
- * ```
- *
- * @see {@link DeletedEvent} - The TypeScript type definition
- * @see {@link KEYS_DELETED_EVENT} - Array of all keys for this type
- */
-export const KEY_DELETED_EVENT_DATE = 'date' as keyof DeletedEvent;
-
-/**
- * Array of all DeletedEvent property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for DeletedEvent objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_DELETED_EVENT) {
- *   console.log(`Property: ${key}, Value: ${deletedevent[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_DELETED_EVENT.includes(someKey);
- * ```
- *
- * @see {@link DeletedEvent} - The TypeScript type definition
- */
-export const KEYS_DELETED_EVENT = [
-  KEY_DELETED_EVENT_DATE,
-] as const satisfies (keyof DeletedEvent)[];
 
 /**
  * action property
@@ -7850,6 +7798,7 @@ export const KEYS_EMAIL_FORWARD_ALIAS_UPDATE = [
  * Event Data
  *
  *
+ * @type {object}
  *
  *
  * @remarks
@@ -14440,57 +14389,6 @@ export const KEYS_RELATION_SET = [
 ] as const satisfies (keyof RelationSet)[];
 
 /**
- * Registration Expiration Date
- *
- * The new expiration date/time after the domain has been renewed
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `registration_expiration_date` property of RenewalEvent objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = renewalevent[KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE;
- * const value = renewalevent[propertyName];
- * ```
- *
- * @see {@link RenewalEvent} - The TypeScript type definition
- * @see {@link KEYS_RENEWAL_EVENT} - Array of all keys for this type
- */
-export const KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE = 'registration_expiration_date' as keyof RenewalEvent;
-
-/**
- * Array of all RenewalEvent property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for RenewalEvent objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_RENEWAL_EVENT) {
- *   console.log(`Property: ${key}, Value: ${renewalevent[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_RENEWAL_EVENT.includes(someKey);
- * ```
- *
- * @see {@link RenewalEvent} - The TypeScript type definition
- */
-export const KEYS_RENEWAL_EVENT = [
-  KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE,
-] as const satisfies (keyof RenewalEvent)[];
-
-/**
  * source property
  *
  * Source of reserved domain information
@@ -15670,158 +15568,6 @@ export const KEYS_TRADEMARK_CLAIMS_BASE = [
   KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED,
   KEY_TRADEMARK_CLAIMS_BASE_TMCH_REQUIRED,
 ] as const satisfies (keyof TrademarkClaimsBase)[];
-
-/**
- * Current Registrar
- *
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `current_registrar` property of TransferEvent objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = transferevent[KEY_TRANSFER_EVENT_CURRENT_REGISTRAR];
- * 
- * // Dynamic property access
- * const propertyName = KEY_TRANSFER_EVENT_CURRENT_REGISTRAR;
- * const value = transferevent[propertyName];
- * ```
- *
- * @see {@link TransferEvent} - The TypeScript type definition
- * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
- */
-export const KEY_TRANSFER_EVENT_CURRENT_REGISTRAR = 'current_registrar' as keyof TransferEvent;
-/**
- * execution_date property
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `execution_date` property of TransferEvent objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = transferevent[KEY_TRANSFER_EVENT_EXECUTION_DATE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_TRANSFER_EVENT_EXECUTION_DATE;
- * const value = transferevent[propertyName];
- * ```
- *
- * @see {@link TransferEvent} - The TypeScript type definition
- * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
- */
-export const KEY_TRANSFER_EVENT_EXECUTION_DATE = 'execution_date' as keyof TransferEvent;
-/**
- * expiration_date property
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `expiration_date` property of TransferEvent objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = transferevent[KEY_TRANSFER_EVENT_EXPIRATION_DATE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_TRANSFER_EVENT_EXPIRATION_DATE;
- * const value = transferevent[propertyName];
- * ```
- *
- * @see {@link TransferEvent} - The TypeScript type definition
- * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
- */
-export const KEY_TRANSFER_EVENT_EXPIRATION_DATE = 'expiration_date' as keyof TransferEvent;
-/**
- * Message
- *
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `message` property of TransferEvent objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = transferevent[KEY_TRANSFER_EVENT_MESSAGE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_TRANSFER_EVENT_MESSAGE;
- * const value = transferevent[propertyName];
- * ```
- *
- * @see {@link TransferEvent} - The TypeScript type definition
- * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
- */
-export const KEY_TRANSFER_EVENT_MESSAGE = 'message' as keyof TransferEvent;
-/**
- * Requesting Registrar
- *
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `requesting_registrar` property of TransferEvent objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = transferevent[KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR];
- * 
- * // Dynamic property access
- * const propertyName = KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR;
- * const value = transferevent[propertyName];
- * ```
- *
- * @see {@link TransferEvent} - The TypeScript type definition
- * @see {@link KEYS_TRANSFER_EVENT} - Array of all keys for this type
- */
-export const KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR = 'requesting_registrar' as keyof TransferEvent;
-
-/**
- * Array of all TransferEvent property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for TransferEvent objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_TRANSFER_EVENT) {
- *   console.log(`Property: ${key}, Value: ${transferevent[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_TRANSFER_EVENT.includes(someKey);
- * ```
- *
- * @see {@link TransferEvent} - The TypeScript type definition
- */
-export const KEYS_TRANSFER_EVENT = [
-  KEY_TRANSFER_EVENT_CURRENT_REGISTRAR,
-  KEY_TRANSFER_EVENT_EXECUTION_DATE,
-  KEY_TRANSFER_EVENT_EXPIRATION_DATE,
-  KEY_TRANSFER_EVENT_MESSAGE,
-  KEY_TRANSFER_EVENT_REQUESTING_REGISTRAR,
-] as const satisfies (keyof TransferEvent)[];
 
 /**
  * Authinfo Max Length

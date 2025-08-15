@@ -649,14 +649,6 @@ components:
       - expiration
       title: DeletePolicyType
       type: string
-    DeletedEvent:
-      properties:
-        date:
-          $ref: '#/components/schemas/EppDateTime'
-      required:
-      - date
-      title: DeletedEvent
-      type: object
     DnsChangeAction:
       enum:
       - create_zone
@@ -1914,10 +1906,6 @@ components:
       - canceled
       title: EmailVerificationStatus
       type: string
-    EmptyEvent:
-      properties: {}
-      title: EmptyEvent
-      type: object
     EppDateTime:
       anyOf:
       - format: date-time
@@ -1935,12 +1923,8 @@ components:
     EventResponse:
       properties:
         event_data:
-          anyOf:
-          - $ref: '#/components/schemas/TransferEvent'
-          - $ref: '#/components/schemas/DeletedEvent'
-          - $ref: '#/components/schemas/RenewalEvent'
-          - $ref: '#/components/schemas/EmptyEvent'
           title: Event Data
+          type: object
         event_id:
           examples:
           - epp_event_01h45ytscbebyvny4gc8cr8ma2
@@ -3756,17 +3740,6 @@ components:
           type: array
       title: RelationSet
       type: object
-    RenewalEvent:
-      properties:
-        registration_expiration_date:
-          description: The new expiration date/time after the domain has been renewed
-          format: date-time
-          title: Registration Expiration Date
-          type: string
-      required:
-      - registration_expiration_date
-      title: RenewalEvent
-      type: object
     RenewalMode:
       enum:
       - renew
@@ -4047,31 +4020,6 @@ components:
       - both
       title: TransferAckType
       type: string
-    TransferEvent:
-      properties:
-        current_registrar:
-          title: Current Registrar
-          type: string
-        execution_date:
-          $ref: '#/components/schemas/EppDateTime'
-        expiration_date:
-          anyOf:
-          - $ref: '#/components/schemas/EppDateTime'
-          - type: 'null'
-        message:
-          title: Message
-          type: string
-        requesting_registrar:
-          title: Requesting Registrar
-          type: string
-      required:
-      - execution_date
-      - message
-      - requesting_registrar
-      - current_registrar
-      - expiration_date
-      title: TransferEvent
-      type: object
     TransferPoliciesBase:
       properties:
         authinfo_max_length:
@@ -4856,7 +4804,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-15-204923
+  version: 2025-08-15-211010
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
