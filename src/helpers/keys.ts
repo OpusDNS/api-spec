@@ -118,6 +118,7 @@ import { Problem } from './schemas';
 import { RdapBase } from './schemas';
 import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
+import { RenewalEvent } from './schemas';
 import { ReservedDomainsBase } from './schemas';
 import { RgpOperations } from './schemas';
 import { SignupCreate } from './schemas';
@@ -14437,6 +14438,57 @@ export const KEY_RELATION_SET_RELATIONS = 'relations' as keyof RelationSet;
 export const KEYS_RELATION_SET = [
   KEY_RELATION_SET_RELATIONS,
 ] as const satisfies (keyof RelationSet)[];
+
+/**
+ * Registration Expiration Date
+ *
+ * The new expiration date/time after the domain has been renewed
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registration_expiration_date` property of RenewalEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = renewalevent[KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE;
+ * const value = renewalevent[propertyName];
+ * ```
+ *
+ * @see {@link RenewalEvent} - The TypeScript type definition
+ * @see {@link KEYS_RENEWAL_EVENT} - Array of all keys for this type
+ */
+export const KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE = 'registration_expiration_date' as keyof RenewalEvent;
+
+/**
+ * Array of all RenewalEvent property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RenewalEvent objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_RENEWAL_EVENT) {
+ *   console.log(`Property: ${key}, Value: ${renewalevent[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_RENEWAL_EVENT.includes(someKey);
+ * ```
+ *
+ * @see {@link RenewalEvent} - The TypeScript type definition
+ */
+export const KEYS_RENEWAL_EVENT = [
+  KEY_RENEWAL_EVENT_REGISTRATION_EXPIRATION_DATE,
+] as const satisfies (keyof RenewalEvent)[];
 
 /**
  * source property

@@ -1163,6 +1163,22 @@ export type EmailForwardAliasUpdate = components['schemas']['EmailForwardAliasUp
  */
 export type EmailVerificationStatus = components['schemas']['EmailVerificationStatus'];
 /**
+ * EmptyEvent
+ *
+ * @remarks
+ * Type alias for the `EmptyEvent` OpenAPI schema.
+ * This type represents emptyevent data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmptyEvent();
+ * const item: EmptyEvent = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmptyEvent = components['schemas']['EmptyEvent'];
+/**
  * EppDateTime
  *
  * @remarks
@@ -2234,6 +2250,22 @@ export type Relation = components['schemas']['Relation'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type RelationSet = components['schemas']['RelationSet'];
+/**
+ * RenewalEvent
+ *
+ * @remarks
+ * Type alias for the `RenewalEvent` OpenAPI schema.
+ * This type represents renewalevent data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRenewalEvent();
+ * const item: RenewalEvent = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RenewalEvent = components['schemas']['RenewalEvent'];
 /**
  * RenewalMode
  *

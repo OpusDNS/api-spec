@@ -2313,6 +2313,8 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
+        /** EmptyEvent */
+        EmptyEvent: Record<string, never>;
         EppDateTime: Date | string;
         /**
          * EventObjectType
@@ -2322,7 +2324,7 @@ export interface components {
         /** EventResponse */
         EventResponse: {
             /** Event Data */
-            event_data: components["schemas"]["TransferEvent"] | components["schemas"]["DeletedEvent"];
+            event_data: components["schemas"]["TransferEvent"] | components["schemas"]["DeletedEvent"] | components["schemas"]["RenewalEvent"] | components["schemas"]["EmptyEvent"];
             /**
              * Event Id
              * Format: typeid
@@ -3533,6 +3535,15 @@ export interface components {
         RelationSet: {
             /** Relations */
             relations?: components["schemas"]["Relation"][];
+        };
+        /** RenewalEvent */
+        RenewalEvent: {
+            /**
+             * Registration Expiration Date
+             * Format: date-time
+             * @description The new expiration date/time after the domain has been renewed
+             */
+            registration_expiration_date: Date;
         };
         /**
          * RenewalMode
