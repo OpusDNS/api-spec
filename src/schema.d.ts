@@ -4681,8 +4681,6 @@ export interface operations {
     get_contacts_v1_contacts_get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["ContactSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 first_name?: string | null;
@@ -4692,6 +4690,8 @@ export interface operations {
                 country?: string | null;
                 created_after?: Date | null;
                 created_before?: Date | null;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -5355,8 +5355,6 @@ export interface operations {
     list_zones_v1_dns_get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["ZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 dnssec_status?: components["schemas"]["DnssecStatus"] | null;
@@ -5367,6 +5365,8 @@ export interface operations {
                 created_before?: Date | null;
                 updated_after?: Date | null;
                 updated_before?: Date | null;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -5750,8 +5750,6 @@ export interface operations {
     get_domains_v1_domains_get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["DomainSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 name?: string | null;
@@ -5770,6 +5768,8 @@ export interface operations {
                 expires_in_90_days?: boolean | null;
                 registered_after?: Date | null;
                 registered_before?: Date | null;
+                page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
