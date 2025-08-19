@@ -2523,22 +2523,6 @@ export type User = components['schemas']['User'];
  */
 export type UserAttributeBase = components['schemas']['UserAttributeBase'];
 /**
- * UserAttributeUpdate
- *
- * @remarks
- * Type alias for the `UserAttributeUpdate` OpenAPI schema.
- * This type represents userattributeupdate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserAttributeUpdate();
- * const item: UserAttributeUpdate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserAttributeUpdate = components['schemas']['UserAttributeUpdate'];
-/**
  * UserCreate
  *
  * @remarks

@@ -3842,16 +3842,6 @@ export interface components {
             /** @description Value of the attribute. */
             value?: components["schemas"]["JsonValue"] | null;
         };
-        /** UserAttributeUpdate */
-        UserAttributeUpdate: {
-            /**
-             * Key
-             * @description Key of the attribute.
-             */
-            key: string;
-            /** @description Value of the attribute. */
-            value?: components["schemas"]["JsonValue"] | null;
-        };
         /** UserCreate */
         UserCreate: {
             /**
@@ -4003,7 +3993,7 @@ export interface components {
              * User Attributes
              * @description User attributes
              */
-            user_attributes?: components["schemas"]["UserAttributeUpdate"][] | null;
+            user_attributes?: components["schemas"]["UserAttributeBase"][] | null;
             /**
              * Username
              * @description The user's unique username

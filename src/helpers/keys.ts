@@ -130,7 +130,6 @@ import { TrademarkClaimsBase } from './schemas';
 import { TransferPoliciesBase } from './schemas';
 import { User } from './schemas';
 import { UserAttributeBase } from './schemas';
-import { UserAttributeUpdate } from './schemas';
 import { UserCreate } from './schemas';
 import { UserNotification } from './schemas';
 import { UserNotificationSummary } from './schemas';
@@ -16403,83 +16402,6 @@ export const KEYS_USER_ATTRIBUTE_BASE = [
   KEY_USER_ATTRIBUTE_BASE_KEY,
   KEY_USER_ATTRIBUTE_BASE_VALUE,
 ] as const satisfies (keyof UserAttributeBase)[];
-
-/**
- * Key
- *
- * Key of the attribute.
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `key` property of UserAttributeUpdate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userattributeupdate[KEY_USER_ATTRIBUTE_UPDATE_KEY];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_ATTRIBUTE_UPDATE_KEY;
- * const value = userattributeupdate[propertyName];
- * ```
- *
- * @see {@link UserAttributeUpdate} - The TypeScript type definition
- * @see {@link KEYS_USER_ATTRIBUTE_UPDATE} - Array of all keys for this type
- */
-export const KEY_USER_ATTRIBUTE_UPDATE_KEY = 'key' as keyof UserAttributeUpdate;
-/**
- * value property
- *
- * Value of the attribute.
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `value` property of UserAttributeUpdate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userattributeupdate[KEY_USER_ATTRIBUTE_UPDATE_VALUE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_ATTRIBUTE_UPDATE_VALUE;
- * const value = userattributeupdate[propertyName];
- * ```
- *
- * @see {@link UserAttributeUpdate} - The TypeScript type definition
- * @see {@link KEYS_USER_ATTRIBUTE_UPDATE} - Array of all keys for this type
- */
-export const KEY_USER_ATTRIBUTE_UPDATE_VALUE = 'value' as keyof UserAttributeUpdate;
-
-/**
- * Array of all UserAttributeUpdate property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for UserAttributeUpdate objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_USER_ATTRIBUTE_UPDATE) {
- *   console.log(`Property: ${key}, Value: ${userattributeupdate[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_USER_ATTRIBUTE_UPDATE.includes(someKey);
- * ```
- *
- * @see {@link UserAttributeUpdate} - The TypeScript type definition
- */
-export const KEYS_USER_ATTRIBUTE_UPDATE = [
-  KEY_USER_ATTRIBUTE_UPDATE_KEY,
-  KEY_USER_ATTRIBUTE_UPDATE_VALUE,
-] as const satisfies (keyof UserAttributeUpdate)[];
 
 /**
  * Email
