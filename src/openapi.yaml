@@ -1697,6 +1697,10 @@ components:
       - clientDeleteProhibited
       - clientRenewProhibited
       - clientHold
+      - free
+      - connect
+      - failed
+      - invalid
       title: DomainStatus
       type: string
     DomainStatusesBase:
@@ -1795,6 +1799,14 @@ components:
           - example.com
           title: Name
           type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
         renewal_mode:
           $ref: '#/components/schemas/RenewalMode'
       required:
@@ -4788,7 +4800,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-19-064842
+  version: 2025-08-21-124715
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -890,6 +890,10 @@ export const DOMAIN_STATUS = {
   CLIENT_DELETE_PROHIBITED: "clientDeleteProhibited",
   CLIENT_RENEW_PROHIBITED: "clientRenewProhibited",
   CLIENT_HOLD: "clientHold",
+  FREE: "free",
+  CONNECT: "connect",
+  FAILED: "failed",
+  INVALID: "invalid",
 } as const satisfies Record<string, DomainStatus>;
 
 /**
@@ -938,7 +942,11 @@ export const DOMAIN_STATUS_VALUES = [
   'clientUpdateProhibited',
   'clientDeleteProhibited',
   'clientRenewProhibited',
-  'clientHold'
+  'clientHold',
+  'free',
+  'connect',
+  'failed',
+  'invalid'
 ] as const satisfies [string, ...string[]] | DomainStatus[];
 
 /**

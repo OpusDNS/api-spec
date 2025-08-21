@@ -2171,7 +2171,7 @@ export interface components {
          * DomainStatus
          * @enum {string}
          */
-        DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverRestoreProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverRestoreProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold" | "free" | "connect" | "failed" | "invalid";
         /** DomainStatusesBase */
         DomainStatusesBase: {
             /**
@@ -2239,6 +2239,11 @@ export interface components {
              * @description The domain name
              */
             name: string;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
             renewal_mode: components["schemas"]["RenewalMode"];
         };
         /** DomainUpdate */

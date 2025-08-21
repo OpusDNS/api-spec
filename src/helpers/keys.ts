@@ -7357,6 +7357,31 @@ export const KEY_DOMAIN_TRANSFER_IN_CONTACTS = 'contacts' as keyof DomainTransfe
  */
 export const KEY_DOMAIN_TRANSFER_IN_NAME = 'name' as keyof DomainTransferIn;
 /**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_NAMESERVERS;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_NAMESERVERS = 'nameservers' as keyof DomainTransferIn;
+/**
  * renewal_mode property
  *
  *
@@ -7405,6 +7430,7 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
   KEY_DOMAIN_TRANSFER_IN_AUTH_CODE,
   KEY_DOMAIN_TRANSFER_IN_CONTACTS,
   KEY_DOMAIN_TRANSFER_IN_NAME,
+  KEY_DOMAIN_TRANSFER_IN_NAMESERVERS,
   KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,
 ] as const satisfies (keyof DomainTransferIn)[];
 
