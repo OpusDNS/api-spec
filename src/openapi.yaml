@@ -1159,9 +1159,9 @@ components:
           description: The renewal mode of the domain
       required:
       - name
-      - period
       - contacts
       - renewal_mode
+      - period
       title: DomainCreate
       type: object
     DomainDnssecDataCreate:
@@ -1776,27 +1776,10 @@ components:
           title: Auth Code
           type: string
         contacts:
-          additionalProperties:
-            examples:
-            - contact_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: contact
+          $ref: '#/components/schemas/ContactIdList'
           description: The contacts of the domain
-          examples:
-          - admin: contact_01h45ytscbebyvny4gc8cr8ma2
-            billing: contact_01h45ytscbebyvny4gc8cr8ma2
-            registrant: contact_01h45ytscbebyvny4gc8cr8ma2
-            tech: contact_01h45ytscbebyvny4gc8cr8ma2
-          propertyNames:
-            $ref: '#/components/schemas/DomainContactType'
-          title: Contacts
-          type: object
         name:
-          description: The domain name
-          examples:
-          - example.com
+          description: The domain to be created
           title: Name
           type: string
         nameservers:
@@ -1809,10 +1792,12 @@ components:
           title: Nameservers
         renewal_mode:
           $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
       required:
       - name
-      - auth_code
+      - contacts
       - renewal_mode
+      - auth_code
       title: DomainTransferIn
       type: object
     DomainUpdate:
@@ -4800,7 +4785,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-21-124715
+  version: 2025-08-26-091019
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

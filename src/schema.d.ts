@@ -2227,16 +2227,11 @@ export interface components {
              * @description The auth code for the domain
              */
             auth_code: string;
-            /**
-             * Contacts
-             * @description The contacts of the domain
-             */
-            contacts?: {
-                [key: string]: TypeID<"contact">;
-            };
+            /** @description The contacts of the domain */
+            contacts: components["schemas"]["ContactIdList"];
             /**
              * Name
-             * @description The domain name
+             * @description The domain to be created
              */
             name: string;
             /**
@@ -2244,6 +2239,7 @@ export interface components {
              * @description The name servers for the domain
              */
             nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description The renewal mode of the domain */
             renewal_mode: components["schemas"]["RenewalMode"];
         };
         /** DomainUpdate */

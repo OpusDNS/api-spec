@@ -7305,11 +7305,10 @@ export const KEYS_DOMAIN_SUMMARY = [
  */
 export const KEY_DOMAIN_TRANSFER_IN_AUTH_CODE = 'auth_code' as keyof DomainTransferIn;
 /**
- * Contacts
+ * contacts property
  *
  * The contacts of the domain
  *
- * @type {object}
  *
  *
  * @remarks
@@ -7333,7 +7332,7 @@ export const KEY_DOMAIN_TRANSFER_IN_CONTACTS = 'contacts' as keyof DomainTransfe
 /**
  * Name
  *
- * The domain name
+ * The domain to be created
  *
  * @type {string}
  *
@@ -7384,6 +7383,7 @@ export const KEY_DOMAIN_TRANSFER_IN_NAMESERVERS = 'nameservers' as keyof DomainT
 /**
  * renewal_mode property
  *
+ * The renewal mode of the domain
  *
  *
  *
