@@ -974,23 +974,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/users/accept-tos": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Tos Sign */
-        post: operations["tos_sign_v1_users_accept_tos_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/users/me": {
         parameters: {
             query?: never;
@@ -3423,7 +3406,7 @@ export interface components {
          * Permission
          * @enum {string}
          */
-        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "enterprise" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "plan_manager" | "premium" | "premium_reseller" | "renew_expire" | "starter" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
+        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "enterprise" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "plan_manager" | "premium" | "premium_reseller" | "renew_expire" | "starter" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
         /** PermissionSet */
         PermissionSet: {
             /** Permissions */
@@ -3575,8 +3558,8 @@ export interface components {
         SignupCreate: {
             /** @description Organization signup. */
             organization: components["schemas"]["OrganizationCreate"];
-            /** @description Optional terms of service acceptance. */
-            terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
+            /** @description Terms of service acceptance. */
+            terms_of_service: components["schemas"]["TermsOfServiceAccept"];
             /** @description User signup to platform. */
             user: components["schemas"]["UserCreate"];
         };
@@ -3617,7 +3600,10 @@ export interface components {
         TLDType: "gTLD" | "ccTLD";
         /** TermsOfServiceAccept */
         TermsOfServiceAccept: {
-            /** Accepted */
+            /**
+             * Accepted
+             * @description The organization accepts Terms of Service.
+             */
             accepted: boolean;
         };
         /** TldBase */
@@ -7642,37 +7628,6 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["User"];
                 };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    tos_sign_v1_users_accept_tos_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TermsOfServiceAccept"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
             };
             /** @description Validation Error */
             422: {

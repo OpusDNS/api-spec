@@ -14622,7 +14622,7 @@ export const KEY_SIGNUP_CREATE_ORGANIZATION = 'organization' as keyof SignupCrea
 /**
  * terms_of_service property
  *
- * Optional terms of service acceptance.
+ * Terms of service acceptance.
  *
  *
  *
@@ -14851,6 +14851,7 @@ export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE = [
 /**
  * Accepted
  *
+ * The organization accepts Terms of Service.
  *
  * @type {boolean}
  *

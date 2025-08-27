@@ -4927,43 +4927,6 @@ export type POST_Users_Response_200 = User
 export type POST_Users_Response_422 = HTTPValidationError
 
 /**
- * Response types for POST UsersAcceptTos endpoint
- *
- * Tos Sign
- *
- * @remarks
- * This type defines all possible response structures for the POST UsersAcceptTos endpoint.
- * Each response code maps to a specific response type as defined in the OpenAPI specification.
- * Use this type to ensure type safety when handling API responses from this endpoint.
- *
-
- *
- * @path /v1/users/accept-tos
- *
- * @see {@link POST_UsersAcceptTos_Response_422} - 422 response type
- *
-
- */
-export type POST_UsersAcceptTos_Response = POST_UsersAcceptTos_Response_422;
-
-/**
- * 422 response for POST UsersAcceptTos endpoint
- *
- * @remarks
- * This type defines the response structure for the 422 status code
- * of the POST UsersAcceptTos endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/users/accept-tos
- *
- * @see {@link POST_UsersAcceptTos_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
- */
-export type POST_UsersAcceptTos_Response_422 = HTTPValidationError
-
-/**
  * Response types for DELETE UsersByUserId endpoint
  *
  * Delete User

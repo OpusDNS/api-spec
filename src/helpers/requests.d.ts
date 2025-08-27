@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, TermsOfServiceAccept, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET AuthClientCredentials endpoint
@@ -3346,42 +3346,6 @@ export type POST_Users_Request = {
  * @path /v1/users
  */
 export type POST_Users_Request_Body = POST_Users_Request['requestBody'];
-
-/**
- * Request type for POST UsersAcceptTos endpoint
- *
- * Tos Sign
- *
- * @remarks
- * This type defines the complete request structure for the POST UsersAcceptTos endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/accept-tos
- *
- * @see {@link POST_UsersAcceptTos_Request_Query} - Query parameters type
- * @see {@link POST_UsersAcceptTos_Request_Path} - Path parameters type
- * @see {@link POST_UsersAcceptTos_Request_Body} - Request body type
- */
-export type POST_UsersAcceptTos_Request = {
-  requestBody: TermsOfServiceAccept;
-}
-/**
- * Request body for POST /v1/users/accept-tos
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/users/accept-tos endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/users/accept-tos
- */
-export type POST_UsersAcceptTos_Request_Body = POST_UsersAcceptTos_Request['requestBody'];
 
 /**
  * Request type for GET UsersMe endpoint
