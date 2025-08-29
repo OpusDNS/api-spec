@@ -2092,7 +2092,7 @@ export interface components {
              * Registry Statuses
              * @description All the domain statuses
              */
-            registry_statuses?: components["schemas"]["DomainStatus"][];
+            registry_statuses?: string[];
             /** @description The renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"];
             /**

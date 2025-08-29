@@ -1574,7 +1574,7 @@ components:
         registry_statuses:
           description: All the domain statuses
           items:
-            $ref: '#/components/schemas/DomainStatus'
+            type: string
           title: Registry Statuses
           type: array
         renewal_mode:
@@ -2317,8 +2317,10 @@ components:
         ip_addresses:
           description: The ip addresses of the name server
           examples:
-          - 0.0.0.0
-          - 127.0.0.1
+          - - 0.0.0.0
+            - 127.0.0.1
+          - - 2001:db8::1
+            - 2001:db8::2
           items:
             format: ipvanyaddress
             type: string
@@ -4785,7 +4787,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-27-172818
+  version: 2025-08-29-160817
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

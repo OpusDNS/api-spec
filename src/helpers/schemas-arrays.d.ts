@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainStatus, DomainSearchSuggestion, DomainClientStatus, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestion, DomainStatus, DomainClientStatus, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -304,20 +304,6 @@ export type SyncOperationTypeArray = SyncOperationType[];
  */
 export type DomainContactArray = DomainContact[];
 /**
- * DomainStatus
- *
- * @remarks
- * Array type for DomainStatus objects. Used when the API returns a collection of DomainStatus instances.
- *
- * @example
- * ```typescript
- * const items: DomainStatusArray = await api.getDomainStatuss();
- * ```
- *
- * @see {@link DomainStatus} - The individual DomainStatus type definition
- */
-export type DomainStatusArray = DomainStatus[];
-/**
  * DomainSearchSuggestion
  *
  * @remarks
@@ -331,6 +317,20 @@ export type DomainStatusArray = DomainStatus[];
  * @see {@link DomainSearchSuggestion} - The individual DomainSearchSuggestion type definition
  */
 export type DomainSearchSuggestionArray = DomainSearchSuggestion[];
+/**
+ * DomainStatus
+ *
+ * @remarks
+ * Array type for DomainStatus objects. Used when the API returns a collection of DomainStatus instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainStatusArray = await api.getDomainStatuss();
+ * ```
+ *
+ * @see {@link DomainStatus} - The individual DomainStatus type definition
+ */
+export type DomainStatusArray = DomainStatus[];
 /**
  * DomainClientStatus
  *
