@@ -1711,10 +1711,21 @@ components:
             type: string
           title: Default
           type: array
+        status_mapping:
+          anyOf:
+          - additionalProperties:
+              items:
+                $ref: '#/components/schemas/DomainStatus'
+              type: array
+            type: object
+          - type: 'null'
+          description: Mapping of registry-specific statuses to their equivalent default
+            ones, if any
+          title: Status Mapping
         supported_statuses:
           description: Supported domain statuses
           items:
-            $ref: '#/components/schemas/DomainStatus'
+            type: string
           title: Supported Statuses
           type: array
       required:
@@ -4787,7 +4798,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-29-160817
+  version: 2025-08-29-171808
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

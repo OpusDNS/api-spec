@@ -2163,10 +2163,17 @@ export interface components {
              */
             default: string[];
             /**
+             * Status Mapping
+             * @description Mapping of registry-specific statuses to their equivalent default ones, if any
+             */
+            status_mapping?: {
+                [key: string]: components["schemas"]["DomainStatus"][];
+            } | null;
+            /**
              * Supported Statuses
              * @description Supported domain statuses
              */
-            supported_statuses: components["schemas"]["DomainStatus"][];
+            supported_statuses: string[];
         };
         /** DomainSummaryData */
         DomainSummaryData: {

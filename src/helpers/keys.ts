@@ -7019,6 +7019,31 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION = [
  */
 export const KEY_DOMAIN_STATUSES_BASE_DEFAULT = 'default' as keyof DomainStatusesBase;
 /**
+ * Status Mapping
+ *
+ * Mapping of registry-specific statuses to their equivalent default ones, if any
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_mapping` property of DomainStatusesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainstatusesbase[KEY_DOMAIN_STATUSES_BASE_STATUS_MAPPING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_STATUSES_BASE_STATUS_MAPPING;
+ * const value = domainstatusesbase[propertyName];
+ * ```
+ *
+ * @see {@link DomainStatusesBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_STATUSES_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_STATUSES_BASE_STATUS_MAPPING = 'status_mapping' as keyof DomainStatusesBase;
+/**
  * Supported Statuses
  *
  * Supported domain statuses
@@ -7067,6 +7092,7 @@ export const KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES = 'supported_statuses' 
  */
 export const KEYS_DOMAIN_STATUSES_BASE = [
   KEY_DOMAIN_STATUSES_BASE_DEFAULT,
+  KEY_DOMAIN_STATUSES_BASE_STATUS_MAPPING,
   KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES,
 ] as const satisfies (keyof DomainStatusesBase)[];
 
