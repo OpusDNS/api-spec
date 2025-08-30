@@ -1664,6 +1664,82 @@ export type PUT_DomainsDomainReferenceDnssec_Request_Path = PUT_DomainsDomainRef
 export type PUT_DomainsDomainReferenceDnssec_Request_Body = PUT_DomainsDomainReferenceDnssec_Request['requestBody'];
 
 /**
+ * Request type for POST DomainsDomainReferenceDnssecDisable endpoint
+ *
+ * Disable DNSSEC for domains using our nameservers
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST DomainsDomainReferenceDnssecDisable endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/disable
+ *
+ * @see {@link POST_DomainsDomainReferenceDnssecDisable_Request_Query} - Query parameters type
+ * @see {@link POST_DomainsDomainReferenceDnssecDisable_Request_Path} - Path parameters type
+ * @see {@link POST_DomainsDomainReferenceDnssecDisable_Request_Body} - Request body type
+ */
+export type POST_DomainsDomainReferenceDnssecDisable_Request = {
+  parameters: {
+    path: operations['disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/domains/{domain_reference}/dnssec/disable
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/domains/{domain_reference}/dnssec/disable endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/disable
+ */
+export type POST_DomainsDomainReferenceDnssecDisable_Request_Path = POST_DomainsDomainReferenceDnssecDisable_Request['parameters']['path'];
+
+/**
+ * Request type for POST DomainsDomainReferenceDnssecEnable endpoint
+ *
+ * Enable DNSSEC for domains using our nameservers
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST DomainsDomainReferenceDnssecEnable endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/enable
+ *
+ * @see {@link POST_DomainsDomainReferenceDnssecEnable_Request_Query} - Query parameters type
+ * @see {@link POST_DomainsDomainReferenceDnssecEnable_Request_Path} - Path parameters type
+ * @see {@link POST_DomainsDomainReferenceDnssecEnable_Request_Body} - Request body type
+ */
+export type POST_DomainsDomainReferenceDnssecEnable_Request = {
+  parameters: {
+    path: operations['enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/domains/{domain_reference}/dnssec/enable
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/domains/{domain_reference}/dnssec/enable endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/enable
+ */
+export type POST_DomainsDomainReferenceDnssecEnable_Request_Path = POST_DomainsDomainReferenceDnssecEnable_Request['parameters']['path'];
+
+/**
  * Request type for POST DomainsDomainReferenceRenew endpoint
  *
  * Renew a domain

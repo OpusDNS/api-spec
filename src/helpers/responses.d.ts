@@ -2679,6 +2679,134 @@ export type PUT_DomainsByDomainReferenceDnssec_Response_404 = Problem
 export type PUT_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
 
 /**
+ * Response types for POST DomainsByDomainReferenceDnssecDisable endpoint
+ *
+ * Disable DNSSEC for domains using our nameservers
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainsByDomainReferenceDnssecDisable endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/disable
+ *
+ * @see {@link POST_DomainsByDomainReferenceDnssecDisable_Response_404} - 404 response type
+ * @see {@link POST_DomainsByDomainReferenceDnssecDisable_Response_422} - 422 response type
+ *
+
+ */
+export type POST_DomainsByDomainReferenceDnssecDisable_Response = POST_DomainsByDomainReferenceDnssecDisable_Response_404 | POST_DomainsByDomainReferenceDnssecDisable_Response_422;
+
+/**
+ * 404 response for POST DomainsByDomainReferenceDnssecDisable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainsByDomainReferenceDnssecDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/disable
+ *
+ * @see {@link POST_DomainsByDomainReferenceDnssecDisable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainsByDomainReferenceDnssecDisable_Response_404 = Problem
+
+/**
+ * 422 response for POST DomainsByDomainReferenceDnssecDisable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainsByDomainReferenceDnssecDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/disable
+ *
+ * @see {@link POST_DomainsByDomainReferenceDnssecDisable_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_DomainsByDomainReferenceDnssecDisable_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST DomainsByDomainReferenceDnssecEnable endpoint
+ *
+ * Enable DNSSEC for domains using our nameservers
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainsByDomainReferenceDnssecEnable endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/enable
+ *
+ * @see {@link POST_DomainsByDomainReferenceDnssecEnable_Response_200} - 200 response type
+ * @see {@link POST_DomainsByDomainReferenceDnssecEnable_Response_404} - 404 response type
+ * @see {@link POST_DomainsByDomainReferenceDnssecEnable_Response_422} - 422 response type
+ *
+
+ */
+export type POST_DomainsByDomainReferenceDnssecEnable_Response = POST_DomainsByDomainReferenceDnssecEnable_Response_200 | POST_DomainsByDomainReferenceDnssecEnable_Response_404 | POST_DomainsByDomainReferenceDnssecEnable_Response_422;
+
+/**
+ * 200 response for POST DomainsByDomainReferenceDnssecEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST DomainsByDomainReferenceDnssecEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/enable
+ *
+ * @see {@link POST_DomainsByDomainReferenceDnssecEnable_Response} - The main response type definition
+ * @see {@link DomainDnssecData} - The actual schema type definition
+ */
+export type POST_DomainsByDomainReferenceDnssecEnable_Response_200 = DomainDnssecDataArray
+
+/**
+ * 404 response for POST DomainsByDomainReferenceDnssecEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainsByDomainReferenceDnssecEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/enable
+ *
+ * @see {@link POST_DomainsByDomainReferenceDnssecEnable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainsByDomainReferenceDnssecEnable_Response_404 = Problem
+
+/**
+ * 422 response for POST DomainsByDomainReferenceDnssecEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainsByDomainReferenceDnssecEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/dnssec/enable
+ *
+ * @see {@link POST_DomainsByDomainReferenceDnssecEnable_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_DomainsByDomainReferenceDnssecEnable_Response_422 = HTTPValidationError
+
+/**
  * Response types for POST DomainsByDomainReferenceRenew endpoint
  *
  * Renew a domain

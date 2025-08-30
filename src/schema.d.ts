@@ -545,6 +545,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/{domain_reference}/dnssec/disable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Disable DNSSEC for domains using our nameservers */
+        post: operations["disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/{domain_reference}/dnssec/enable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Enable DNSSEC for domains using our nameservers */
+        post: operations["enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/{domain_reference}/renew": {
         parameters: {
             query?: never;
@@ -6259,6 +6293,100 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeID<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainDnssecDataResponse"][];
+                };
             };
             /** @description Not Found */
             404: {

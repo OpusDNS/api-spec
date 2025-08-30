@@ -4798,7 +4798,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-29-171808
+  version: 2025-08-30-003827
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7142,6 +7142,102 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update DNSSEC data
+      tags:
+      - domain
+  /v1/domains/{domain_reference}/dnssec/disable:
+    post:
+      operationId: disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Disable DNSSEC for domains using our nameservers
+      tags:
+      - domain
+  /v1/domains/{domain_reference}/dnssec/enable:
+    post:
+      operationId: enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DomainDnssecDataResponse'
+                title: Response Enable And Publish Dnssec Records V1 Domains  Domain
+                  Reference  Dnssec Enable Post
+                type: array
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Enable DNSSEC for domains using our nameservers
       tags:
       - domain
   /v1/domains/{domain_reference}/renew:
