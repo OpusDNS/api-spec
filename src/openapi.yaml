@@ -23,6 +23,24 @@ components:
       - max
       title: AllowedNumberOfNameserverBase
       type: object
+    BillingTransactionAction:
+      enum:
+      - create
+      - transfer
+      - renew
+      - restore
+      - trade
+      - application
+      title: BillingTransactionAction
+      type: string
+    BillingTransactionProductType:
+      enum:
+      - domain
+      - zone
+      - email_forward
+      - domain_forward
+      title: BillingTransactionProductType
+      type: string
     Body_issue_organization_token_v1_auth_token_post:
       properties:
         client_id:
@@ -2085,6 +2103,35 @@ components:
       - start_date
       title: GeneralAvailabilityBase
       type: object
+    GetCurrentAvailablePlansResponse:
+      properties:
+        current_plan:
+          anyOf:
+          - $ref: '#/components/schemas/PlanInfo'
+          - type: 'null'
+          description: Current active plan for the customer
+        plans:
+          description: List of available plans
+          items:
+            $ref: '#/components/schemas/PlanInfo'
+          title: Plans
+          type: array
+      required:
+      - plans
+      title: GetCurrentAvailablePlansResponse
+      type: object
+    GetPricesResponse:
+      properties:
+        prices:
+          description: List of prices
+          items:
+            $ref: '#/components/schemas/PriceInfo'
+          title: Prices
+          type: array
+      required:
+      - prices
+      title: GetPricesResponse
+      type: object
     GrantType:
       enum:
       - client_credentials
@@ -3582,6 +3629,44 @@ components:
           type: array
       title: PermissionSet
       type: object
+    PlanInfo:
+      properties:
+        amount:
+          description: Base price
+          title: Amount
+          type: number
+        currency:
+          description: Currency code
+          title: Currency
+          type: string
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Plan display name
+          title: Name
+        plan_id:
+          description: Unique plan identifier
+          title: Plan Id
+          type: string
+        plan_level:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Plan level such as 'premium' or 'starter'
+          title: Plan Level
+        plan_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Plan type or billing interval
+          title: Plan Type
+      required:
+      - plan_id
+      - currency
+      - amount
+      title: PlanInfo
+      type: object
     PlanRelation:
       enum:
       - basic_plan
@@ -3646,6 +3731,33 @@ components:
       - manual
       title: PremiumSourceType
       type: string
+    PriceInfo:
+      properties:
+        currency:
+          title: Currency
+          type: string
+        price:
+          title: Price
+          type: string
+        product_action:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Product Action
+        product_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Product Class
+        product_type:
+          title: Product Type
+          type: string
+      required:
+      - product_type
+      - price
+      - currency
+      title: PriceInfo
+      type: object
     Problem:
       properties:
         detail:
@@ -4798,7 +4910,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-08-30-003827
+  version: 2025-09-03-232034
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8569,6 +8681,93 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Change Plan
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/plans:
+    get:
+      operationId: get_current_available_plans_v1_organizations__organization_id__plans_get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCurrentAvailablePlansResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Current Available Plans
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/pricing/product-type/{product_type}:
+    get:
+      operationId: get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - in: path
+        name: product_type
+        required: true
+        schema:
+          $ref: '#/components/schemas/BillingTransactionProductType'
+      - in: query
+        name: product_action
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BillingTransactionAction'
+          - type: 'null'
+          title: Product Action
+      - in: query
+        name: product_class
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Product Class
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPricesResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Pricing Plans
       tags:
       - organization
   /v1/tlds/portfolio:

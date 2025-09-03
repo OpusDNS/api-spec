@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -4569,6 +4569,116 @@ export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationW
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET OrganizationsByOrganizationIdPlans endpoint
+ *
+ * Get Current Available Plans
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsByOrganizationIdPlans endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/plans
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPlans_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdPlans_Response_422} - 422 response type
+ *
+
+ */
+export type GET_OrganizationsByOrganizationIdPlans_Response = GET_OrganizationsByOrganizationIdPlans_Response_200 | GET_OrganizationsByOrganizationIdPlans_Response_422;
+
+/**
+ * 200 response for GET OrganizationsByOrganizationIdPlans endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsByOrganizationIdPlans endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/plans
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPlans_Response} - The main response type definition
+ * @see {@link GetCurrentAvailablePlans} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdPlans_Response_200 = GetCurrentAvailablePlans
+
+/**
+ * 422 response for GET OrganizationsByOrganizationIdPlans endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsByOrganizationIdPlans endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/plans
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPlans_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdPlans_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
+ *
+ * Get Pricing Plans
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_422} - 422 response type
+ *
+
+ */
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response = GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_200 | GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_422;
+
+/**
+ * 200 response for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response} - The main response type definition
+ * @see {@link GetPrices} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_200 = GetPrices
+
+/**
+ * 422 response for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsIpRestrictions endpoint

@@ -3268,6 +3268,96 @@ export type PATCH_OrganizationsOrganizationIdPlan_Request_Path = PATCH_Organizat
 export type PATCH_OrganizationsOrganizationIdPlan_Request_Body = PATCH_OrganizationsOrganizationIdPlan_Request['requestBody'];
 
 /**
+ * Request type for GET OrganizationsOrganizationIdPlans endpoint
+ *
+ * Get Current Available Plans
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET OrganizationsOrganizationIdPlans endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/plans
+ *
+ * @see {@link GET_OrganizationsOrganizationIdPlans_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsOrganizationIdPlans_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsOrganizationIdPlans_Request_Body} - Request body type
+ */
+export type GET_OrganizationsOrganizationIdPlans_Request = {
+  parameters: {
+    path: operations['get_current_available_plans_v1_organizations__organization_id__plans_get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/organizations/{organization_id}/plans
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/organizations/{organization_id}/plans endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/plans
+ */
+export type GET_OrganizationsOrganizationIdPlans_Request_Path = GET_OrganizationsOrganizationIdPlans_Request['parameters']['path'];
+
+/**
+ * Request type for GET OrganizationsOrganizationIdPricingProductTypeProductType endpoint
+ *
+ * Get Pricing Plans
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET OrganizationsOrganizationIdPricingProductTypeProductType endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @see {@link GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Body} - Request body type
+ */
+export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request = {
+  parameters: {
+    query: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters']['query'];
+    path: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/organizations/{organization_id}/pricing/product-type/{product_type} endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ */
+export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Query = GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/organizations/{organization_id}/pricing/product-type/{product_type} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ */
+export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Path = GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request['parameters']['path'];
+
+/**
  * Request type for GET OrganizationsRoles endpoint
  *
  * List Roles

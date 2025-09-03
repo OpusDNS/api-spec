@@ -957,6 +957,40 @@ export interface paths {
         patch: operations["change_plan_v1_organizations__organization_id__plan_patch"];
         trace?: never;
     };
+    "/v1/organizations/{organization_id}/plans": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Current Available Plans */
+        get: operations["get_current_available_plans_v1_organizations__organization_id__plans_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/pricing/product-type/{product_type}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Pricing Plans */
+        get: operations["get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/tlds/portfolio": {
         parameters: {
             query?: never;
@@ -1101,6 +1135,16 @@ export interface components {
              */
             min: number;
         };
+        /**
+         * BillingTransactionAction
+         * @enum {string}
+         */
+        BillingTransactionAction: "create" | "transfer" | "renew" | "restore" | "trade" | "application";
+        /**
+         * BillingTransactionProductType
+         * @enum {string}
+         */
+        BillingTransactionProductType: "domain" | "zone" | "email_forward" | "domain_forward";
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
             /**
@@ -2438,6 +2482,24 @@ export interface components {
              */
             start_date: Date;
         };
+        /** GetCurrentAvailablePlansResponse */
+        GetCurrentAvailablePlansResponse: {
+            /** @description Current active plan for the customer */
+            current_plan?: components["schemas"]["PlanInfo"] | null;
+            /**
+             * Plans
+             * @description List of available plans
+             */
+            plans: components["schemas"]["PlanInfo"][];
+        };
+        /** GetPricesResponse */
+        GetPricesResponse: {
+            /**
+             * Prices
+             * @description List of prices
+             */
+            prices: components["schemas"]["PriceInfo"][];
+        };
         /**
          * GrantType
          * @enum {string}
@@ -3453,6 +3515,39 @@ export interface components {
             /** Permissions */
             permissions?: components["schemas"]["Permission"][];
         };
+        /** PlanInfo */
+        PlanInfo: {
+            /**
+             * Amount
+             * @description Base price
+             */
+            amount: number;
+            /**
+             * Currency
+             * @description Currency code
+             */
+            currency: string;
+            /**
+             * Name
+             * @description Plan display name
+             */
+            name?: string | null;
+            /**
+             * Plan Id
+             * @description Unique plan identifier
+             */
+            plan_id: string;
+            /**
+             * Plan Level
+             * @description Plan level such as 'premium' or 'starter'
+             */
+            plan_level?: string | null;
+            /**
+             * Plan Type
+             * @description Plan type or billing interval
+             */
+            plan_type?: string | null;
+        };
         /**
          * PlanRelation
          * @enum {string}
@@ -3498,6 +3593,19 @@ export interface components {
          * @enum {string}
          */
         PremiumSourceType: "EPP" | "API" | "CSV" | "manual";
+        /** PriceInfo */
+        PriceInfo: {
+            /** Currency */
+            currency: string;
+            /** Price */
+            price: string;
+            /** Product Action */
+            product_action?: string | null;
+            /** Product Class */
+            product_class?: string | null;
+            /** Product Type */
+            product_type: string;
+        };
         /** Problem */
         Problem: {
             /** Problem detail */
@@ -7662,6 +7770,72 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OrganizationWithPlan"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_current_available_plans_v1_organizations__organization_id__plans_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeID<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetCurrentAvailablePlansResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get: {
+        parameters: {
+            query?: {
+                product_action?: components["schemas"]["BillingTransactionAction"] | null;
+                product_class?: string | null;
+            };
+            header?: never;
+            path: {
+                organization_id: TypeID<"organization">;
+                product_type: components["schemas"]["BillingTransactionProductType"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetPricesResponse"];
                 };
             };
             /** @description Validation Error */

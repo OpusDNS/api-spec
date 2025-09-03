@@ -83,6 +83,8 @@ import { EmailForwardAliasUpdate } from './schemas';
 import { EventResponse } from './schemas';
 import { EventSchema } from './schemas';
 import { GeneralAvailabilityBase } from './schemas';
+import { GetCurrentAvailablePlans } from './schemas';
+import { GetPrices } from './schemas';
 import { HTTPValidationError } from './schemas';
 import { IdnBase } from './schemas';
 import { IpRestrictionCreate } from './schemas';
@@ -111,8 +113,10 @@ import { OrganizationWithPlan } from './schemas';
 import { PaginationMetadata } from './schemas';
 import { Period } from './schemas';
 import { PermissionSet } from './schemas';
+import { PlanInfo } from './schemas';
 import { PlanUpdate } from './schemas';
 import { PremiumDomainsBase } from './schemas';
+import { PriceInfo } from './schemas';
 import { Problem } from './schemas';
 import { RdapBase } from './schemas';
 import { RegistryLockBase } from './schemas';
@@ -8415,6 +8419,134 @@ export const KEYS_GENERAL_AVAILABILITY_BASE = [
 ] as const satisfies (keyof GeneralAvailabilityBase)[];
 
 /**
+ * current_plan property
+ *
+ * Current active plan for the customer
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `current_plan` property of GetCurrentAvailablePlans objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = getcurrentavailableplans[KEY_GET_CURRENT_AVAILABLE_PLANS_CURRENT_PLAN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_GET_CURRENT_AVAILABLE_PLANS_CURRENT_PLAN;
+ * const value = getcurrentavailableplans[propertyName];
+ * ```
+ *
+ * @see {@link GetCurrentAvailablePlans} - The TypeScript type definition
+ * @see {@link KEYS_GET_CURRENT_AVAILABLE_PLANS} - Array of all keys for this type
+ */
+export const KEY_GET_CURRENT_AVAILABLE_PLANS_CURRENT_PLAN = 'current_plan' as keyof GetCurrentAvailablePlans;
+/**
+ * Plans
+ *
+ * List of available plans
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plans` property of GetCurrentAvailablePlans objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = getcurrentavailableplans[KEY_GET_CURRENT_AVAILABLE_PLANS_PLANS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_GET_CURRENT_AVAILABLE_PLANS_PLANS;
+ * const value = getcurrentavailableplans[propertyName];
+ * ```
+ *
+ * @see {@link GetCurrentAvailablePlans} - The TypeScript type definition
+ * @see {@link KEYS_GET_CURRENT_AVAILABLE_PLANS} - Array of all keys for this type
+ */
+export const KEY_GET_CURRENT_AVAILABLE_PLANS_PLANS = 'plans' as keyof GetCurrentAvailablePlans;
+
+/**
+ * Array of all GetCurrentAvailablePlans property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for GetCurrentAvailablePlans objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_GET_CURRENT_AVAILABLE_PLANS) {
+ *   console.log(`Property: ${key}, Value: ${getcurrentavailableplans[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_GET_CURRENT_AVAILABLE_PLANS.includes(someKey);
+ * ```
+ *
+ * @see {@link GetCurrentAvailablePlans} - The TypeScript type definition
+ */
+export const KEYS_GET_CURRENT_AVAILABLE_PLANS = [
+  KEY_GET_CURRENT_AVAILABLE_PLANS_CURRENT_PLAN,
+  KEY_GET_CURRENT_AVAILABLE_PLANS_PLANS,
+] as const satisfies (keyof GetCurrentAvailablePlans)[];
+
+/**
+ * Prices
+ *
+ * List of prices
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `prices` property of GetPrices objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = getprices[KEY_GET_PRICES_PRICES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_GET_PRICES_PRICES;
+ * const value = getprices[propertyName];
+ * ```
+ *
+ * @see {@link GetPrices} - The TypeScript type definition
+ * @see {@link KEYS_GET_PRICES} - Array of all keys for this type
+ */
+export const KEY_GET_PRICES_PRICES = 'prices' as keyof GetPrices;
+
+/**
+ * Array of all GetPrices property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for GetPrices objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_GET_PRICES) {
+ *   console.log(`Property: ${key}, Value: ${getprices[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_GET_PRICES.includes(someKey);
+ * ```
+ *
+ * @see {@link GetPrices} - The TypeScript type definition
+ */
+export const KEYS_GET_PRICES = [
+  KEY_GET_PRICES_PRICES,
+] as const satisfies (keyof GetPrices)[];
+
+/**
  * errors property
  *
  *
@@ -13932,6 +14064,189 @@ export const KEYS_PERMISSION_SET = [
 ] as const satisfies (keyof PermissionSet)[];
 
 /**
+ * Amount
+ *
+ * Base price
+ *
+ * @type {number}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `amount` property of PlanInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = planinfo[KEY_PLAN_INFO_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLAN_INFO_AMOUNT;
+ * const value = planinfo[propertyName];
+ * ```
+ *
+ * @see {@link PlanInfo} - The TypeScript type definition
+ * @see {@link KEYS_PLAN_INFO} - Array of all keys for this type
+ */
+export const KEY_PLAN_INFO_AMOUNT = 'amount' as keyof PlanInfo;
+/**
+ * Currency
+ *
+ * Currency code
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of PlanInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = planinfo[KEY_PLAN_INFO_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLAN_INFO_CURRENCY;
+ * const value = planinfo[propertyName];
+ * ```
+ *
+ * @see {@link PlanInfo} - The TypeScript type definition
+ * @see {@link KEYS_PLAN_INFO} - Array of all keys for this type
+ */
+export const KEY_PLAN_INFO_CURRENCY = 'currency' as keyof PlanInfo;
+/**
+ * Name
+ *
+ * Plan display name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of PlanInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = planinfo[KEY_PLAN_INFO_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLAN_INFO_NAME;
+ * const value = planinfo[propertyName];
+ * ```
+ *
+ * @see {@link PlanInfo} - The TypeScript type definition
+ * @see {@link KEYS_PLAN_INFO} - Array of all keys for this type
+ */
+export const KEY_PLAN_INFO_NAME = 'name' as keyof PlanInfo;
+/**
+ * Plan Id
+ *
+ * Unique plan identifier
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plan_id` property of PlanInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = planinfo[KEY_PLAN_INFO_PLAN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLAN_INFO_PLAN_ID;
+ * const value = planinfo[propertyName];
+ * ```
+ *
+ * @see {@link PlanInfo} - The TypeScript type definition
+ * @see {@link KEYS_PLAN_INFO} - Array of all keys for this type
+ */
+export const KEY_PLAN_INFO_PLAN_ID = 'plan_id' as keyof PlanInfo;
+/**
+ * Plan Level
+ *
+ * Plan level such as 'premium' or 'starter'
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plan_level` property of PlanInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = planinfo[KEY_PLAN_INFO_PLAN_LEVEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLAN_INFO_PLAN_LEVEL;
+ * const value = planinfo[propertyName];
+ * ```
+ *
+ * @see {@link PlanInfo} - The TypeScript type definition
+ * @see {@link KEYS_PLAN_INFO} - Array of all keys for this type
+ */
+export const KEY_PLAN_INFO_PLAN_LEVEL = 'plan_level' as keyof PlanInfo;
+/**
+ * Plan Type
+ *
+ * Plan type or billing interval
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plan_type` property of PlanInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = planinfo[KEY_PLAN_INFO_PLAN_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLAN_INFO_PLAN_TYPE;
+ * const value = planinfo[propertyName];
+ * ```
+ *
+ * @see {@link PlanInfo} - The TypeScript type definition
+ * @see {@link KEYS_PLAN_INFO} - Array of all keys for this type
+ */
+export const KEY_PLAN_INFO_PLAN_TYPE = 'plan_type' as keyof PlanInfo;
+
+/**
+ * Array of all PlanInfo property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PlanInfo objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PLAN_INFO) {
+ *   console.log(`Property: ${key}, Value: ${planinfo[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PLAN_INFO.includes(someKey);
+ * ```
+ *
+ * @see {@link PlanInfo} - The TypeScript type definition
+ */
+export const KEYS_PLAN_INFO = [
+  KEY_PLAN_INFO_AMOUNT,
+  KEY_PLAN_INFO_CURRENCY,
+  KEY_PLAN_INFO_NAME,
+  KEY_PLAN_INFO_PLAN_ID,
+  KEY_PLAN_INFO_PLAN_LEVEL,
+  KEY_PLAN_INFO_PLAN_TYPE,
+] as const satisfies (keyof PlanInfo)[];
+
+/**
  * plan property
  *
  *
@@ -14082,6 +14397,158 @@ export const KEYS_PREMIUM_DOMAINS_BASE = [
   KEY_PREMIUM_DOMAINS_BASE_SOURCE,
   KEY_PREMIUM_DOMAINS_BASE_SUPPORTED,
 ] as const satisfies (keyof PremiumDomainsBase)[];
+
+/**
+ * Currency
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of PriceInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = priceinfo[KEY_PRICE_INFO_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PRICE_INFO_CURRENCY;
+ * const value = priceinfo[propertyName];
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
+ */
+export const KEY_PRICE_INFO_CURRENCY = 'currency' as keyof PriceInfo;
+/**
+ * Price
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `price` property of PriceInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = priceinfo[KEY_PRICE_INFO_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PRICE_INFO_PRICE;
+ * const value = priceinfo[propertyName];
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
+ */
+export const KEY_PRICE_INFO_PRICE = 'price' as keyof PriceInfo;
+/**
+ * Product Action
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `product_action` property of PriceInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = priceinfo[KEY_PRICE_INFO_PRODUCT_ACTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PRICE_INFO_PRODUCT_ACTION;
+ * const value = priceinfo[propertyName];
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
+ */
+export const KEY_PRICE_INFO_PRODUCT_ACTION = 'product_action' as keyof PriceInfo;
+/**
+ * Product Class
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `product_class` property of PriceInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = priceinfo[KEY_PRICE_INFO_PRODUCT_CLASS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PRICE_INFO_PRODUCT_CLASS;
+ * const value = priceinfo[propertyName];
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
+ */
+export const KEY_PRICE_INFO_PRODUCT_CLASS = 'product_class' as keyof PriceInfo;
+/**
+ * Product Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `product_type` property of PriceInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = priceinfo[KEY_PRICE_INFO_PRODUCT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PRICE_INFO_PRODUCT_TYPE;
+ * const value = priceinfo[propertyName];
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
+ */
+export const KEY_PRICE_INFO_PRODUCT_TYPE = 'product_type' as keyof PriceInfo;
+
+/**
+ * Array of all PriceInfo property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PriceInfo objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PRICE_INFO) {
+ *   console.log(`Property: ${key}, Value: ${priceinfo[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PRICE_INFO.includes(someKey);
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ */
+export const KEYS_PRICE_INFO = [
+  KEY_PRICE_INFO_CURRENCY,
+  KEY_PRICE_INFO_PRICE,
+  KEY_PRICE_INFO_PRODUCT_ACTION,
+  KEY_PRICE_INFO_PRODUCT_CLASS,
+  KEY_PRICE_INFO_PRODUCT_TYPE,
+] as const satisfies (keyof PriceInfo)[];
 
 /**
  * Problem detail

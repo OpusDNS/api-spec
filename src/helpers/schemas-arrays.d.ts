@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestion, DomainStatus, DomainClientStatus, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestion, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -345,6 +345,34 @@ export type DomainStatusArray = DomainStatus[];
  * @see {@link DomainClientStatus} - The individual DomainClientStatus type definition
  */
 export type DomainClientStatusArray = DomainClientStatus[];
+/**
+ * PlanInfo
+ *
+ * @remarks
+ * Array type for PlanInfo objects. Used when the API returns a collection of PlanInfo instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PlanInfoArray = await api.getPlanInfos();
+ * ```
+ *
+ * @see {@link PlanInfo} - The individual PlanInfo type definition
+ */
+export type PlanInfoArray = PlanInfo[];
+/**
+ * PriceInfo
+ *
+ * @remarks
+ * Array type for PriceInfo objects. Used when the API returns a collection of PriceInfo instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PriceInfoArray = await api.getPriceInfos();
+ * ```
+ *
+ * @see {@link PriceInfo} - The individual PriceInfo type definition
+ */
+export type PriceInfoArray = PriceInfo[];
 /**
  * ValidationError
  *

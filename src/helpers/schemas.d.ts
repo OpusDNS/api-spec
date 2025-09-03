@@ -59,6 +59,38 @@ export type AllocationMethodType = components['schemas']['AllocationMethodType']
  */
 export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
 /**
+ * BillingTransactionAction
+ *
+ * @remarks
+ * Type alias for the `BillingTransactionAction` OpenAPI schema.
+ * This type represents billingtransactionaction data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBillingTransactionAction();
+ * const item: BillingTransactionAction = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BillingTransactionAction = components['schemas']['BillingTransactionAction'];
+/**
+ * BillingTransactionProductType
+ *
+ * @remarks
+ * Type alias for the `BillingTransactionProductType` OpenAPI schema.
+ * This type represents billingtransactionproducttype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBillingTransactionProductType();
+ * const item: BillingTransactionProductType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BillingTransactionProductType = components['schemas']['BillingTransactionProductType'];
+/**
  * Body_issue_organization_token_v1_auth_token_post
  *
  * @remarks
@@ -1259,6 +1291,38 @@ export type EventType = components['schemas']['EventType'];
  */
 export type GeneralAvailabilityBase = components['schemas']['GeneralAvailabilityBase'];
 /**
+ * GetCurrentAvailablePlansResponse
+ *
+ * @remarks
+ * Type alias for the `GetCurrentAvailablePlansResponse` OpenAPI schema.
+ * This type represents getcurrentavailableplansresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getGetCurrentAvailablePlans();
+ * const item: GetCurrentAvailablePlans = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type GetCurrentAvailablePlans = components['schemas']['GetCurrentAvailablePlansResponse'];
+/**
+ * GetPricesResponse
+ *
+ * @remarks
+ * Type alias for the `GetPricesResponse` OpenAPI schema.
+ * This type represents getpricesresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getGetPrices();
+ * const item: GetPrices = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type GetPrices = components['schemas']['GetPricesResponse'];
+/**
  * GrantType
  *
  * @remarks
@@ -2011,6 +2075,22 @@ export type Permission = components['schemas']['Permission'];
  */
 export type PermissionSet = components['schemas']['PermissionSet'];
 /**
+ * PlanInfo
+ *
+ * @remarks
+ * Type alias for the `PlanInfo` OpenAPI schema.
+ * This type represents planinfo data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPlanInfo();
+ * const item: PlanInfo = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PlanInfo = components['schemas']['PlanInfo'];
+/**
  * PlanRelation
  *
  * @remarks
@@ -2122,6 +2202,22 @@ export type PremiumDomainsBase = components['schemas']['PremiumDomainsBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type PremiumSourceType = components['schemas']['PremiumSourceType'];
+/**
+ * PriceInfo
+ *
+ * @remarks
+ * Type alias for the `PriceInfo` OpenAPI schema.
+ * This type represents priceinfo data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPriceInfo();
+ * const item: PriceInfo = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PriceInfo = components['schemas']['PriceInfo'];
 /**
  * Problem
  *
