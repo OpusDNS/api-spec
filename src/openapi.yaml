@@ -4910,7 +4910,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-03-232034
+  version: 2025-09-05-075426
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8905,6 +8905,18 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_USER_IS_LAST_ADMIN
+                detail: User is the last admin for the organization
+                status: 409
+                title: User Management Error
+                type: user-is-last-admin
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:

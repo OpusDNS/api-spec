@@ -5178,11 +5178,29 @@ export type POST_Users_Response_422 = HTTPValidationError
  *
  * @path /v1/users/{user_id}
  *
+ * @see {@link DELETE_UsersByUserId_Response_409} - 409 response type
  * @see {@link DELETE_UsersByUserId_Response_422} - 422 response type
  *
 
  */
-export type DELETE_UsersByUserId_Response = DELETE_UsersByUserId_Response_422;
+export type DELETE_UsersByUserId_Response = DELETE_UsersByUserId_Response_409 | DELETE_UsersByUserId_Response_422;
+
+/**
+ * 409 response for DELETE UsersByUserId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the DELETE UsersByUserId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}
+ *
+ * @see {@link DELETE_UsersByUserId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_UsersByUserId_Response_409 = Problem
 
 /**
  * 422 response for DELETE UsersByUserId endpoint

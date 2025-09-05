@@ -8031,6 +8031,22 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_IS_LAST_ADMIN",
+                     *       "detail": "User is the last admin for the organization",
+                     *       "status": 409,
+                     *       "title": "User Management Error",
+                     *       "type": "user-is-last-admin"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
