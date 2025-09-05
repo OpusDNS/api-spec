@@ -1654,7 +1654,7 @@ components:
           $ref: '#/components/schemas/DomainSearchMeta'
         results:
           items:
-            $ref: '#/components/schemas/DomainSearchSuggestion'
+            $ref: '#/components/schemas/DomainSearchSuggestionWithPrice'
           title: Results
           type: array
       required:
@@ -1662,7 +1662,25 @@ components:
       - results
       title: DomainSearchResponse
       type: object
-    DomainSearchSuggestion:
+    DomainSearchSuggestionPriceData:
+      properties:
+        amount:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Amount
+        currency:
+          title: Currency
+          type: string
+        period:
+          $ref: '#/components/schemas/DomainPeriod'
+      required:
+      - amount
+      - currency
+      - period
+      title: DomainSearchSuggestionPriceData
+      type: object
+    DomainSearchSuggestionWithPrice:
       properties:
         available:
           title: Available
@@ -1673,11 +1691,14 @@ components:
         premium:
           title: Premium
           type: boolean
+        price:
+          $ref: '#/components/schemas/DomainSearchSuggestionPriceData'
       required:
       - domain
       - available
       - premium
-      title: DomainSearchSuggestion
+      - price
+      title: DomainSearchSuggestionWithPrice
       type: object
     DomainSortField:
       enum:
@@ -4910,7 +4931,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-05-075426
+  version: 2025-09-05-210401
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -71,7 +71,8 @@ import { DomainRenew } from './schemas';
 import { Domain } from './schemas';
 import { DomainSearchMeta } from './schemas';
 import { DomainSearch } from './schemas';
-import { DomainSearchSuggestion } from './schemas';
+import { DomainSearchSuggestionPriceData } from './schemas';
+import { DomainSearchSuggestionWithPrice } from './schemas';
 import { DomainStatusesBase } from './schemas';
 import { DomainSummaryData } from './schemas';
 import { DomainSummary } from './schemas';
@@ -6895,6 +6896,106 @@ export const KEYS_DOMAIN_SEARCH = [
 ] as const satisfies (keyof DomainSearch)[];
 
 /**
+ * Amount
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `amount` property of DomainSearchSuggestionPriceData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestionpricedata[KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_AMOUNT;
+ * const value = domainsearchsuggestionpricedata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestionPriceData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_AMOUNT = 'amount' as keyof DomainSearchSuggestionPriceData;
+/**
+ * Currency
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of DomainSearchSuggestionPriceData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestionpricedata[KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_CURRENCY;
+ * const value = domainsearchsuggestionpricedata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestionPriceData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_CURRENCY = 'currency' as keyof DomainSearchSuggestionPriceData;
+/**
+ * period property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainSearchSuggestionPriceData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestionpricedata[KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_PERIOD;
+ * const value = domainsearchsuggestionpricedata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestionPriceData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_PERIOD = 'period' as keyof DomainSearchSuggestionPriceData;
+
+/**
+ * Array of all DomainSearchSuggestionPriceData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainSearchSuggestionPriceData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domainsearchsuggestionpricedata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainSearchSuggestionPriceData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA = [
+  KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_AMOUNT,
+  KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_CURRENCY,
+  KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_PERIOD,
+] as const satisfies (keyof DomainSearchSuggestionPriceData)[];
+
+/**
  * Available
  *
  *
@@ -6902,23 +7003,23 @@ export const KEYS_DOMAIN_SEARCH = [
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `available` property of DomainSearchSuggestion objects.
+ * This key constant provides type-safe access to the `available` property of DomainSearchSuggestionWithPrice objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = domainsearchsuggestion[KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE];
+ * const value = domainsearchsuggestionwithprice[KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE;
- * const value = domainsearchsuggestion[propertyName];
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE;
+ * const value = domainsearchsuggestionwithprice[propertyName];
  * ```
  *
- * @see {@link DomainSearchSuggestion} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION} - Array of all keys for this type
+ * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE = 'available' as keyof DomainSearchSuggestion;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE = 'available' as keyof DomainSearchSuggestionWithPrice;
 /**
  * Domain
  *
@@ -6927,23 +7028,23 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE = 'available' as keyof Domai
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `domain` property of DomainSearchSuggestion objects.
+ * This key constant provides type-safe access to the `domain` property of DomainSearchSuggestionWithPrice objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = domainsearchsuggestion[KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN];
+ * const value = domainsearchsuggestionwithprice[KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN];
  * 
  * // Dynamic property access
- * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN;
- * const value = domainsearchsuggestion[propertyName];
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN;
+ * const value = domainsearchsuggestionwithprice[propertyName];
  * ```
  *
- * @see {@link DomainSearchSuggestion} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION} - Array of all keys for this type
+ * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN = 'domain' as keyof DomainSearchSuggestion;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN = 'domain' as keyof DomainSearchSuggestionWithPrice;
 /**
  * Premium
  *
@@ -6952,49 +7053,74 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN = 'domain' as keyof DomainSearc
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `premium` property of DomainSearchSuggestion objects.
+ * This key constant provides type-safe access to the `premium` property of DomainSearchSuggestionWithPrice objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = domainsearchsuggestion[KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM];
+ * const value = domainsearchsuggestionwithprice[KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM];
  * 
  * // Dynamic property access
- * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM;
- * const value = domainsearchsuggestion[propertyName];
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM;
+ * const value = domainsearchsuggestionwithprice[propertyName];
  * ```
  *
- * @see {@link DomainSearchSuggestion} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION} - Array of all keys for this type
+ * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM = 'premium' as keyof DomainSearchSuggestion;
-
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM = 'premium' as keyof DomainSearchSuggestionWithPrice;
 /**
- * Array of all DomainSearchSuggestion property keys
+ * price property
+ *
+ *
+ *
  *
  * @remarks
- * This constant provides a readonly array containing all valid property keys for DomainSearchSuggestion objects.
+ * This key constant provides type-safe access to the `price` property of DomainSearchSuggestionWithPrice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestionwithprice[KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE;
+ * const value = domainsearchsuggestionwithprice[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE = 'price' as keyof DomainSearchSuggestionWithPrice;
+
+/**
+ * Array of all DomainSearchSuggestionWithPrice property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainSearchSuggestionWithPrice objects.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
  * ```typescript
  * // Iterating through all keys
- * for (const key of KEYS_DOMAIN_SEARCH_SUGGESTION) {
- *   console.log(`Property: ${key}, Value: ${domainsearchsuggestion[key]}`);
+ * for (const key of KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE) {
+ *   console.log(`Property: ${key}, Value: ${domainsearchsuggestionwithprice[key]}`);
  * }
  * 
  * // Validation
- * const isValidKey = KEYS_DOMAIN_SEARCH_SUGGESTION.includes(someKey);
+ * const isValidKey = KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE.includes(someKey);
  * ```
  *
- * @see {@link DomainSearchSuggestion} - The TypeScript type definition
+ * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_SEARCH_SUGGESTION = [
-  KEY_DOMAIN_SEARCH_SUGGESTION_AVAILABLE,
-  KEY_DOMAIN_SEARCH_SUGGESTION_DOMAIN,
-  KEY_DOMAIN_SEARCH_SUGGESTION_PREMIUM,
-] as const satisfies (keyof DomainSearchSuggestion)[];
+export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
+  KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE,
+  KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN,
+  KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM,
+  KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE,
+] as const satisfies (keyof DomainSearchSuggestionWithPrice)[];
 
 /**
  * Default

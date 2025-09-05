@@ -2212,16 +2212,25 @@ export interface components {
         DomainSearchResponse: {
             meta: components["schemas"]["DomainSearchMeta"];
             /** Results */
-            results: components["schemas"]["DomainSearchSuggestion"][];
+            results: components["schemas"]["DomainSearchSuggestionWithPrice"][];
         };
-        /** DomainSearchSuggestion */
-        DomainSearchSuggestion: {
+        /** DomainSearchSuggestionPriceData */
+        DomainSearchSuggestionPriceData: {
+            /** Amount */
+            amount: string | null;
+            /** Currency */
+            currency: string;
+            period: components["schemas"]["DomainPeriod"];
+        };
+        /** DomainSearchSuggestionWithPrice */
+        DomainSearchSuggestionWithPrice: {
             /** Available */
             available: boolean;
             /** Domain */
             domain: string;
             /** Premium */
             premium: boolean;
+            price: components["schemas"]["DomainSearchSuggestionPriceData"];
         };
         /**
          * DomainSortField

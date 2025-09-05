@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestion, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -304,19 +304,19 @@ export type SyncOperationTypeArray = SyncOperationType[];
  */
 export type DomainContactArray = DomainContact[];
 /**
- * DomainSearchSuggestion
+ * DomainSearchSuggestionWithPrice
  *
  * @remarks
- * Array type for DomainSearchSuggestion objects. Used when the API returns a collection of DomainSearchSuggestion instances.
+ * Array type for DomainSearchSuggestionWithPrice objects. Used when the API returns a collection of DomainSearchSuggestionWithPrice instances.
  *
  * @example
  * ```typescript
- * const items: DomainSearchSuggestionArray = await api.getDomainSearchSuggestions();
+ * const items: DomainSearchSuggestionWithPriceArray = await api.getDomainSearchSuggestionWithPrices();
  * ```
  *
- * @see {@link DomainSearchSuggestion} - The individual DomainSearchSuggestion type definition
+ * @see {@link DomainSearchSuggestionWithPrice} - The individual DomainSearchSuggestionWithPrice type definition
  */
-export type DomainSearchSuggestionArray = DomainSearchSuggestion[];
+export type DomainSearchSuggestionWithPriceArray = DomainSearchSuggestionWithPrice[];
 /**
  * DomainStatus
  *

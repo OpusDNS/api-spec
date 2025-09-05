@@ -987,21 +987,37 @@ export type DomainSearchMeta = components['schemas']['DomainSearchMeta'];
  */
 export type DomainSearch = components['schemas']['DomainSearchResponse'];
 /**
- * DomainSearchSuggestion
+ * DomainSearchSuggestionPriceData
  *
  * @remarks
- * Type alias for the `DomainSearchSuggestion` OpenAPI schema.
- * This type represents domainsearchsuggestion data structures used in API requests and responses.
+ * Type alias for the `DomainSearchSuggestionPriceData` OpenAPI schema.
+ * This type represents domainsearchsuggestionpricedata data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getDomainSearchSuggestion();
- * const item: DomainSearchSuggestion = response.results;
+ * const response = await api.getDomainSearchSuggestionPriceData();
+ * const item: DomainSearchSuggestionPriceData = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type DomainSearchSuggestion = components['schemas']['DomainSearchSuggestion'];
+export type DomainSearchSuggestionPriceData = components['schemas']['DomainSearchSuggestionPriceData'];
+/**
+ * DomainSearchSuggestionWithPrice
+ *
+ * @remarks
+ * Type alias for the `DomainSearchSuggestionWithPrice` OpenAPI schema.
+ * This type represents domainsearchsuggestionwithprice data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainSearchSuggestionWithPrice();
+ * const item: DomainSearchSuggestionWithPrice = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainSearchSuggestionWithPrice = components['schemas']['DomainSearchSuggestionWithPrice'];
 /**
  * DomainSortField
  *
