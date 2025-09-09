@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserVerification, UserPasswordResetEmail, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -5495,6 +5495,408 @@ export type PATCH_UsersByUserIdRoles_Response_200 = RelationSet
 export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError
 
 /**
+ * Response types for DELETE UsersByUserIdVerification endpoint
+ *
+ * Cancel Verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE UsersByUserIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link DELETE_UsersByUserIdVerification_Response_401} - 401 response type
+ * @see {@link DELETE_UsersByUserIdVerification_Response_422} - 422 response type
+ *
+
+ */
+export type DELETE_UsersByUserIdVerification_Response = DELETE_UsersByUserIdVerification_Response_401 | DELETE_UsersByUserIdVerification_Response_422;
+
+/**
+ * 401 response for DELETE UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link DELETE_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_UsersByUserIdVerification_Response_401 = Problem
+
+/**
+ * 422 response for DELETE UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link DELETE_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_UsersByUserIdVerification_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET UsersByUserIdVerification endpoint
+ *
+ * Get Verification Status
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET UsersByUserIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link GET_UsersByUserIdVerification_Response_200} - 200 response type
+ * @see {@link GET_UsersByUserIdVerification_Response_401} - 401 response type
+ * @see {@link GET_UsersByUserIdVerification_Response_422} - 422 response type
+ *
+
+ */
+export type GET_UsersByUserIdVerification_Response = GET_UsersByUserIdVerification_Response_200 | GET_UsersByUserIdVerification_Response_401 | GET_UsersByUserIdVerification_Response_422;
+
+/**
+ * 200 response for GET UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link GET_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link UserVerification} - The actual schema type definition
+ */
+export type GET_UsersByUserIdVerification_Response_200 = UserVerification
+
+/**
+ * 401 response for GET UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link GET_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_UsersByUserIdVerification_Response_401 = Problem
+
+/**
+ * 422 response for GET UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link GET_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_UsersByUserIdVerification_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH UsersByUserIdVerification endpoint
+ *
+ * Update Verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH UsersByUserIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link PATCH_UsersByUserIdVerification_Response_400} - 400 response type
+ * @see {@link PATCH_UsersByUserIdVerification_Response_401} - 401 response type
+ * @see {@link PATCH_UsersByUserIdVerification_Response_404} - 404 response type
+ * @see {@link PATCH_UsersByUserIdVerification_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_UsersByUserIdVerification_Response = PATCH_UsersByUserIdVerification_Response_400 | PATCH_UsersByUserIdVerification_Response_401 | PATCH_UsersByUserIdVerification_Response_404 | PATCH_UsersByUserIdVerification_Response_422;
+
+/**
+ * 400 response for PATCH UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PATCH UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link PATCH_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_UsersByUserIdVerification_Response_400 = Problem
+
+/**
+ * 401 response for PATCH UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link PATCH_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_UsersByUserIdVerification_Response_401 = Problem
+
+/**
+ * 404 response for PATCH UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link PATCH_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_UsersByUserIdVerification_Response_404 = Problem
+
+/**
+ * 422 response for PATCH UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link PATCH_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_UsersByUserIdVerification_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST UsersByUserIdVerification endpoint
+ *
+ * Create Verification
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST UsersByUserIdVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link POST_UsersByUserIdVerification_Response_401} - 401 response type
+ * @see {@link POST_UsersByUserIdVerification_Response_404} - 404 response type
+ * @see {@link POST_UsersByUserIdVerification_Response_405} - 405 response type
+ * @see {@link POST_UsersByUserIdVerification_Response_422} - 422 response type
+ *
+
+ */
+export type POST_UsersByUserIdVerification_Response = POST_UsersByUserIdVerification_Response_401 | POST_UsersByUserIdVerification_Response_404 | POST_UsersByUserIdVerification_Response_405 | POST_UsersByUserIdVerification_Response_422;
+
+/**
+ * 401 response for POST UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link POST_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_UsersByUserIdVerification_Response_401 = Problem
+
+/**
+ * 404 response for POST UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link POST_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_UsersByUserIdVerification_Response_404 = Problem
+
+/**
+ * 405 response for POST UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 405 status code
+ * of the POST UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link POST_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_UsersByUserIdVerification_Response_405 = Problem
+
+/**
+ * 422 response for POST UsersByUserIdVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST UsersByUserIdVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/{user_id}/verification
+ *
+ * @see {@link POST_UsersByUserIdVerification_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_UsersByUserIdVerification_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST UsersEmailPasswordReset endpoint
+ *
+ * Create User Password Reset
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST UsersEmailPasswordReset endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/email/password-reset
+ *
+ * @see {@link POST_UsersEmailPasswordReset_Response_201} - 201 response type
+ * @see {@link POST_UsersEmailPasswordReset_Response_422} - 422 response type
+ *
+
+ */
+export type POST_UsersEmailPasswordReset_Response = POST_UsersEmailPasswordReset_Response_201 | POST_UsersEmailPasswordReset_Response_422;
+
+/**
+ * 201 response for POST UsersEmailPasswordReset endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST UsersEmailPasswordReset endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/email/password-reset
+ *
+ * @see {@link POST_UsersEmailPasswordReset_Response} - The main response type definition
+ * @see {@link UserPasswordResetEmail} - The actual schema type definition
+ */
+export type POST_UsersEmailPasswordReset_Response_201 = UserPasswordResetEmail
+
+/**
+ * 422 response for POST UsersEmailPasswordReset endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST UsersEmailPasswordReset endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/email/password-reset
+ *
+ * @see {@link POST_UsersEmailPasswordReset_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_UsersEmailPasswordReset_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET UsersEmailVerify endpoint
+ *
+ * Redirect Verify User
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET UsersEmailVerify endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/email/verify
+ *
+ * @see {@link GET_UsersEmailVerify_Response_422} - 422 response type
+ *
+
+ */
+export type GET_UsersEmailVerify_Response = GET_UsersEmailVerify_Response_422;
+
+/**
+ * 422 response for GET UsersEmailVerify endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET UsersEmailVerify endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/email/verify
+ *
+ * @see {@link GET_UsersEmailVerify_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_UsersEmailVerify_Response_422 = HTTPValidationError
+
+/**
  * Response types for GET UsersMe endpoint
  *
  * Get Current User
@@ -5548,4 +5950,333 @@ export type GET_UsersMe_Response_200 = UserWithRelationPermissions
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_UsersMe_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH UsersMePasswordReset endpoint
+ *
+ * Confirm User Password Reset Me
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH UsersMePasswordReset endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/me/password-reset
+ *
+ * @see {@link PATCH_UsersMePasswordReset_Response_401} - 401 response type
+ * @see {@link PATCH_UsersMePasswordReset_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_UsersMePasswordReset_Response = PATCH_UsersMePasswordReset_Response_401 | PATCH_UsersMePasswordReset_Response_422;
+
+/**
+ * 401 response for PATCH UsersMePasswordReset endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH UsersMePasswordReset endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/password-reset
+ *
+ * @see {@link PATCH_UsersMePasswordReset_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_UsersMePasswordReset_Response_401 = Problem
+
+/**
+ * 422 response for PATCH UsersMePasswordReset endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH UsersMePasswordReset endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/password-reset
+ *
+ * @see {@link PATCH_UsersMePasswordReset_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_UsersMePasswordReset_Response_422 = HTTPValidationError
+
+/**
+ * Response types for DELETE UsersMeVerification endpoint
+ *
+ * Cancel Verification Me
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE UsersMeVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link DELETE_UsersMeVerification_Response_401} - 401 response type
+ *
+
+ */
+export type DELETE_UsersMeVerification_Response = DELETE_UsersMeVerification_Response_401;
+
+/**
+ * 401 response for DELETE UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link DELETE_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_UsersMeVerification_Response_401 = Problem
+
+/**
+ * Response types for GET UsersMeVerification endpoint
+ *
+ * Get Verification Status Me
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET UsersMeVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link GET_UsersMeVerification_Response_200} - 200 response type
+ * @see {@link GET_UsersMeVerification_Response_401} - 401 response type
+ *
+
+ */
+export type GET_UsersMeVerification_Response = GET_UsersMeVerification_Response_200 | GET_UsersMeVerification_Response_401;
+
+/**
+ * 200 response for GET UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link GET_UsersMeVerification_Response} - The main response type definition
+ * @see {@link UserVerification} - The actual schema type definition
+ */
+export type GET_UsersMeVerification_Response_200 = UserVerification
+
+/**
+ * 401 response for GET UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link GET_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_UsersMeVerification_Response_401 = Problem
+
+/**
+ * Response types for PATCH UsersMeVerification endpoint
+ *
+ * Update Verification Me
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH UsersMeVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link PATCH_UsersMeVerification_Response_400} - 400 response type
+ * @see {@link PATCH_UsersMeVerification_Response_401} - 401 response type
+ * @see {@link PATCH_UsersMeVerification_Response_404} - 404 response type
+ * @see {@link PATCH_UsersMeVerification_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_UsersMeVerification_Response = PATCH_UsersMeVerification_Response_400 | PATCH_UsersMeVerification_Response_401 | PATCH_UsersMeVerification_Response_404 | PATCH_UsersMeVerification_Response_422;
+
+/**
+ * 400 response for PATCH UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PATCH UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link PATCH_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_UsersMeVerification_Response_400 = Problem
+
+/**
+ * 401 response for PATCH UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link PATCH_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_UsersMeVerification_Response_401 = Problem
+
+/**
+ * 404 response for PATCH UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link PATCH_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_UsersMeVerification_Response_404 = Problem
+
+/**
+ * 422 response for PATCH UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link PATCH_UsersMeVerification_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_UsersMeVerification_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST UsersMeVerification endpoint
+ *
+ * Create Verification Me
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST UsersMeVerification endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link POST_UsersMeVerification_Response_401} - 401 response type
+ * @see {@link POST_UsersMeVerification_Response_404} - 404 response type
+ * @see {@link POST_UsersMeVerification_Response_405} - 405 response type
+ * @see {@link POST_UsersMeVerification_Response_422} - 422 response type
+ *
+
+ */
+export type POST_UsersMeVerification_Response = POST_UsersMeVerification_Response_401 | POST_UsersMeVerification_Response_404 | POST_UsersMeVerification_Response_405 | POST_UsersMeVerification_Response_422;
+
+/**
+ * 401 response for POST UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link POST_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_UsersMeVerification_Response_401 = Problem
+
+/**
+ * 404 response for POST UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link POST_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_UsersMeVerification_Response_404 = Problem
+
+/**
+ * 405 response for POST UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 405 status code
+ * of the POST UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link POST_UsersMeVerification_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_UsersMeVerification_Response_405 = Problem
+
+/**
+ * 422 response for POST UsersMeVerification endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST UsersMeVerification endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/users/me/verification
+ *
+ * @see {@link POST_UsersMeVerification_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_UsersMeVerification_Response_422 = HTTPValidationError
 

@@ -1042,6 +1042,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/users/email/password-reset": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create User Password Reset */
+        post: operations["create_user_password_reset_v1_users_email_password_reset_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/users/email/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Redirect Verify User */
+        get: operations["redirect_verify_user_v1_users_email_verify_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/users/me": {
         parameters: {
             query?: never;
@@ -1057,6 +1091,43 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/v1/users/me/password-reset": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Confirm User Password Reset Me */
+        patch: operations["confirm_user_password_reset_me_v1_users_me_password_reset_patch"];
+        trace?: never;
+    };
+    "/v1/users/me/verification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Verification Status Me */
+        get: operations["get_verification_status_me_v1_users_me_verification_get"];
+        put?: never;
+        /** Create Verification Me */
+        post: operations["create_verification_me_v1_users_me_verification_post"];
+        /** Cancel Verification Me */
+        delete: operations["cancel_verification_me_v1_users_me_verification_delete"];
+        options?: never;
+        head?: never;
+        /** Update Verification Me */
+        patch: operations["update_verification_me_v1_users_me_verification_patch"];
         trace?: never;
     };
     "/v1/users/{user_id}": {
@@ -1111,6 +1182,26 @@ export interface paths {
         head?: never;
         /** Update User Relations */
         patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
+        trace?: never;
+    };
+    "/v1/users/{user_id}/verification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Verification Status */
+        get: operations["get_verification_status_v1_users__user_id__verification_get"];
+        put?: never;
+        /** Create Verification */
+        post: operations["create_verification_v1_users__user_id__verification_post"];
+        /** Cancel Verification */
+        delete: operations["cancel_verification_v1_users__user_id__verification_delete"];
+        options?: never;
+        head?: never;
+        /** Update Verification */
+        patch: operations["update_verification_v1_users__user_id__verification_patch"];
         trace?: never;
     };
 }
@@ -3493,6 +3584,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["User"][];
         };
+        /** PasswordUpdate */
+        PasswordUpdate: {
+            /** New Password */
+            new_password: string;
+        };
         /**
          * PatchOp
          * @enum {string}
@@ -3745,6 +3841,14 @@ export interface components {
             add?: components["schemas"]["Relation"][] | null;
             /** Remove */
             remove?: components["schemas"]["Relation"][] | null;
+        };
+        /** StartPasswordReset */
+        StartPasswordReset: {
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
         };
         /**
          * SyncOperationType
@@ -4086,6 +4190,15 @@ export interface components {
              */
             user_notification_id?: TypeID<"user_notification">;
         };
+        /** UserPasswordResetEmailResponse */
+        UserPasswordResetEmailResponse: {
+            /**
+             * Message
+             * @description Message to the user. This message is always displayed regarding the password reset process to prevent leaking information.
+             * @default A password reset link will be sent to this email if an account is registered under it.
+             */
+            message: string;
+        };
         /**
          * UserStatus
          * @enum {string}
@@ -4144,6 +4257,143 @@ export interface components {
              * @description The user's unique username
              */
             username?: string | null;
+        };
+        /** UserVerificationApiResponse */
+        UserVerificationApiResponse: {
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /**
+             * Token
+             * @description The token to verify the email address
+             */
+            token: string;
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * User Id
+             * Format: typeid
+             * @description The user's id
+             * @default None
+             */
+            user_id: TypeID<"user">;
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
+            user_verification_id?: TypeID<"user_verification">;
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+        };
+        /** UserVerificationEmailResponse */
+        UserVerificationEmailResponse: {
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * User Id
+             * Format: typeid
+             * @description The user's id
+             * @default None
+             */
+            user_id: TypeID<"user">;
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
+            user_verification_id?: TypeID<"user_verification">;
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
+        };
+        /** UserVerificationResponse */
+        UserVerificationResponse: {
+            /**
+             * Canceled On
+             * @description The date the verification was cancelled
+             */
+            canceled_on?: Date | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * @description Current status of the email verification
+             * @default pending
+             */
+            status: components["schemas"]["EmailVerificationStatus"];
+            /** @description The type of verification: 'api' for retrieving token via API, 'email' for retrieving via email */
+            type: components["schemas"]["VerificationType"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * User Id
+             * Format: typeid
+             * @description The user's id
+             * @default None
+             */
+            user_id: TypeID<"user">;
+            /**
+             * User Verification Id
+             * Format: typeid
+             */
+            user_verification_id?: TypeID<"user_verification">;
+            /**
+             * Verified On
+             * @description The date the verification was verified
+             */
+            verified_on?: Date | null;
         };
         /** UserWithAttributes */
         UserWithAttributes: {
@@ -7958,6 +8208,70 @@ export interface operations {
             };
         };
     };
+    create_user_password_reset_v1_users_email_password_reset_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StartPasswordReset"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserPasswordResetEmailResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    redirect_verify_user_v1_users_email_verify_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_current_user_v1_users_me_get: {
         parameters: {
             query?: {
@@ -7976,6 +8290,272 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UserWithRelationPermissions"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    confirm_user_password_reset_me_v1_users_me_password_reset_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_verification_status_me_v1_users_me_verification_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserVerificationResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    create_verification_me_v1_users_me_verification_post: {
+        parameters: {
+            query: {
+                type: components["schemas"]["VerificationType"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserVerificationEmailResponse"] | components["schemas"]["UserVerificationApiResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_NOT_FOUND",
+                     *       "detail": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "User Management Error",
+                     *       "type": "user-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_VERIFICATION_INVALID_TYPE",
+                     *       "detail": "Invalid verification type: Additional error context.",
+                     *       "status": 405,
+                     *       "title": "User Management Error",
+                     *       "type": "user-verification-type-invalid"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_verification_me_v1_users_me_verification_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    update_verification_me_v1_users_me_verification_patch: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_VERIFICATION_NOT_FOUND",
+                     *       "detail": "No user verification found for user: user_id=Additional error context.",
+                     *       "status": 404,
+                     *       "title": "User Management Error",
+                     *       "type": "user-verification-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -8186,6 +8766,251 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["RelationSet"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_verification_status_v1_users__user_id__verification_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserVerificationResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_verification_v1_users__user_id__verification_post: {
+        parameters: {
+            query: {
+                type: components["schemas"]["VerificationType"];
+            };
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserVerificationEmailResponse"] | components["schemas"]["UserVerificationApiResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_NOT_FOUND",
+                     *       "detail": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "User Management Error",
+                     *       "type": "user-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_VERIFICATION_INVALID_TYPE",
+                     *       "detail": "Invalid verification type: Additional error context.",
+                     *       "status": 405,
+                     *       "title": "User Management Error",
+                     *       "type": "user-verification-type-invalid"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_verification_v1_users__user_id__verification_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_verification_v1_users__user_id__verification_patch: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path: {
+                user_id: TypeID<"user">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_VERIFICATION_NOT_FOUND",
+                     *       "detail": "No user verification found for user: user_id=Additional error context.",
+                     *       "status": 404,
+                     *       "title": "User Management Error",
+                     *       "type": "user-verification-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
