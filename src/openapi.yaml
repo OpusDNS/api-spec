@@ -5138,7 +5138,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-09-123217
+  version: 2025-09-09-175858
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9108,7 +9108,6 @@ paths:
       summary: Create User Password Reset
       tags:
       - user
-      - user
   /v1/users/email/verify:
     get:
       operationId: redirect_verify_user_v1_users_email_verify_get
@@ -9133,7 +9132,6 @@ paths:
           description: Validation Error
       summary: Redirect Verify User
       tags:
-      - user
       - user
   /v1/users/me:
     get:
@@ -9202,7 +9200,6 @@ paths:
       summary: Confirm User Password Reset Me
       tags:
       - user
-      - user
   /v1/users/me/verification:
     delete:
       operationId: cancel_verification_me_v1_users_me_verification_delete
@@ -9225,7 +9222,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Cancel Verification Me
       tags:
-      - user
       - user
     get:
       operationId: get_verification_status_me_v1_users_me_verification_get
@@ -9252,7 +9248,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Get Verification Status Me
       tags:
-      - user
       - user
     patch:
       operationId: update_verification_me_v1_users_me_verification_patch
@@ -9315,7 +9310,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Update Verification Me
       tags:
-      - user
       - user
     post:
       operationId: create_verification_me_v1_users_me_verification_post
@@ -9381,7 +9375,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Create Verification Me
       tags:
-      - user
       - user
   /v1/users/{user_id}:
     delete:
@@ -9649,7 +9642,6 @@ paths:
       summary: Cancel Verification
       tags:
       - user
-      - user
     get:
       operationId: get_verification_status_v1_users__user_id__verification_get
       parameters:
@@ -9693,7 +9685,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Get Verification Status
       tags:
-      - user
       - user
     patch:
       operationId: update_verification_v1_users__user_id__verification_patch
@@ -9767,7 +9758,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Update Verification
       tags:
-      - user
       - user
     post:
       operationId: create_verification_v1_users__user_id__verification_post
@@ -9845,7 +9835,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Create Verification
       tags:
-      - user
       - user
 servers:
 - description: Production environment
