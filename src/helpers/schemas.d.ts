@@ -59,6 +59,38 @@ export type AllocationMethodType = components['schemas']['AllocationMethodType']
  */
 export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
 /**
+ * BillingMetadata
+ *
+ * @remarks
+ * Type alias for the `BillingMetadata` OpenAPI schema.
+ * This type represents billingmetadata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBillingMetadata();
+ * const item: BillingMetadata = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BillingMetadata = components['schemas']['BillingMetadata'];
+/**
+ * BillingPlan
+ *
+ * @remarks
+ * Type alias for the `BillingPlan` OpenAPI schema.
+ * This type represents billingplan data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBillingPlan();
+ * const item: BillingPlan = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BillingPlan = components['schemas']['BillingPlan'];
+/**
  * BillingTransactionAction
  *
  * @remarks
@@ -1819,21 +1851,21 @@ export type OrganizationToken = components['schemas']['OrganizationTokenResponse
  */
 export type OrganizationUpdate = components['schemas']['OrganizationUpdate'];
 /**
- * OrganizationWithPlan
+ * OrganizationWithBillingData
  *
  * @remarks
- * Type alias for the `OrganizationWithPlan` OpenAPI schema.
- * This type represents organizationwithplan data structures used in API requests and responses.
+ * Type alias for the `OrganizationWithBillingData` OpenAPI schema.
+ * This type represents organizationwithbillingdata data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getOrganizationWithPlan();
- * const item: OrganizationWithPlan = response.results;
+ * const response = await api.getOrganizationWithBillingData();
+ * const item: OrganizationWithBillingData = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type OrganizationWithPlan = components['schemas']['OrganizationWithPlan'];
+export type OrganizationWithBillingData = components['schemas']['OrganizationWithBillingData'];
 /**
  * PaginationMetadata
  *

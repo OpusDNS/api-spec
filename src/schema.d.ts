@@ -1226,6 +1226,45 @@ export interface components {
              */
             min: number;
         };
+        /** BillingMetadata */
+        BillingMetadata: {
+            /**
+             * Billing Model
+             * @description Payment terms for the organization.
+             */
+            billing_model?: string | null;
+            /**
+             * Customer Number
+             * @description Customer account number for the organization.
+             */
+            customer_number?: number | null;
+        };
+        /** BillingPlan */
+        BillingPlan: {
+            /**
+             * Amount
+             * @description Price of the billing plan.
+             * @default 0.00
+             */
+            amount: string;
+            /** @description Currency of the billing plan. */
+            currency?: components["schemas"]["Currency"] | null;
+            /**
+             * Name
+             * @description Name of the billing plan.
+             */
+            name?: string | null;
+            /**
+             * Plan Id
+             * @description Billing plan ID for the organization.
+             */
+            plan_id?: string | null;
+            /**
+             * Type
+             * @description Plan type or billing interval.
+             */
+            type?: string | null;
+        };
         /**
          * BillingTransactionAction
          * @enum {string}
@@ -3417,8 +3456,11 @@ export interface components {
              */
             tax_rate?: number | string | null;
         };
-        /** OrganizationWithPlan */
-        OrganizationWithPlan: {
+        /** OrganizationWithBillingData */
+        OrganizationWithBillingData: {
+            /** Account Balance */
+            account_balance?: string | null;
+            active_plan?: components["schemas"]["BillingPlan"];
             /**
              * Address 1
              * @description First line of the organization's address.
@@ -3431,6 +3473,7 @@ export interface components {
             address_2?: string | null;
             /** Attributes */
             attributes?: components["schemas"]["OrganizationAttribute"][];
+            billing_metadata?: components["schemas"]["BillingMetadata"];
             /**
              * Business Number
              * @description Government issued business identifier for the organization issued.
@@ -3480,8 +3523,6 @@ export interface components {
              * @description ID of the parent organization.
              */
             parent_organization_id?: TypeID<"organization"> | null;
-            /** @default basic_plan */
-            plan: components["schemas"]["PlanRelation"];
             /**
              * Postal Code
              * @description Postal code of the organization's address.
@@ -7929,7 +7970,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["OrganizationWithPlan"];
+                    "application/json": components["schemas"]["OrganizationWithBillingData"];
                 };
             };
             /** @description Validation Error */
@@ -8028,7 +8069,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["OrganizationWithPlan"];
+                    "application/json": components["schemas"]["OrganizationWithBillingData"];
                 };
             };
             /** @description Validation Error */

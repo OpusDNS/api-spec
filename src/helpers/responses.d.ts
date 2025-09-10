@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithPlan, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserVerification, UserPasswordResetEmail, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithBillingData, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserVerification, UserPasswordResetEmail, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -4439,9 +4439,9 @@ export type GET_OrganizationsByOrganizationId_Response = GET_OrganizationsByOrga
  * @path /v1/organizations/{organization_id}
  *
  * @see {@link GET_OrganizationsByOrganizationId_Response} - The main response type definition
- * @see {@link OrganizationWithPlan} - The actual schema type definition
+ * @see {@link OrganizationWithBillingData} - The actual schema type definition
  */
-export type GET_OrganizationsByOrganizationId_Response_200 = OrganizationWithPlan
+export type GET_OrganizationsByOrganizationId_Response_200 = OrganizationWithBillingData
 
 /**
  * 422 response for GET OrganizationsByOrganizationId endpoint
@@ -4549,9 +4549,9 @@ export type PATCH_OrganizationsByOrganizationIdPlan_Response = PATCH_Organizatio
  * @path /v1/organizations/{organization_id}/plan
  *
  * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response} - The main response type definition
- * @see {@link OrganizationWithPlan} - The actual schema type definition
+ * @see {@link OrganizationWithBillingData} - The actual schema type definition
  */
-export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationWithPlan
+export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationWithBillingData
 
 /**
  * 422 response for PATCH OrganizationsByOrganizationIdPlan endpoint

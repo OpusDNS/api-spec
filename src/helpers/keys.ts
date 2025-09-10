@@ -30,6 +30,8 @@
  */
 
 import { AllowedNumberOfNameserverBase } from './schemas';
+import { BillingMetadata } from './schemas';
+import { BillingPlan } from './schemas';
 import { Body_issue_organization_token_v1_auth_token_post } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
@@ -110,7 +112,7 @@ import { OrganizationCredentialCreated } from './schemas';
 import { OrganizationCredentialExtra } from './schemas';
 import { OrganizationToken } from './schemas';
 import { OrganizationUpdate } from './schemas';
-import { OrganizationWithPlan } from './schemas';
+import { OrganizationWithBillingData } from './schemas';
 import { PaginationMetadata } from './schemas';
 import { PasswordUpdate } from './schemas';
 import { Period } from './schemas';
@@ -230,6 +232,237 @@ export const KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE = [
   KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX,
   KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN,
 ] as const satisfies (keyof AllowedNumberOfNameserverBase)[];
+
+/**
+ * Billing Model
+ *
+ * Payment terms for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `billing_model` property of BillingMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingmetadata[KEY_BILLING_METADATA_BILLING_MODEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_METADATA_BILLING_MODEL;
+ * const value = billingmetadata[propertyName];
+ * ```
+ *
+ * @see {@link BillingMetadata} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_METADATA} - Array of all keys for this type
+ */
+export const KEY_BILLING_METADATA_BILLING_MODEL = 'billing_model' as keyof BillingMetadata;
+/**
+ * Customer Number
+ *
+ * Customer account number for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `customer_number` property of BillingMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingmetadata[KEY_BILLING_METADATA_CUSTOMER_NUMBER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_METADATA_CUSTOMER_NUMBER;
+ * const value = billingmetadata[propertyName];
+ * ```
+ *
+ * @see {@link BillingMetadata} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_METADATA} - Array of all keys for this type
+ */
+export const KEY_BILLING_METADATA_CUSTOMER_NUMBER = 'customer_number' as keyof BillingMetadata;
+
+/**
+ * Array of all BillingMetadata property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for BillingMetadata objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_BILLING_METADATA) {
+ *   console.log(`Property: ${key}, Value: ${billingmetadata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_BILLING_METADATA.includes(someKey);
+ * ```
+ *
+ * @see {@link BillingMetadata} - The TypeScript type definition
+ */
+export const KEYS_BILLING_METADATA = [
+  KEY_BILLING_METADATA_BILLING_MODEL,
+  KEY_BILLING_METADATA_CUSTOMER_NUMBER,
+] as const satisfies (keyof BillingMetadata)[];
+
+/**
+ * Amount
+ *
+ * Price of the billing plan.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `amount` property of BillingPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingplan[KEY_BILLING_PLAN_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_PLAN_AMOUNT;
+ * const value = billingplan[propertyName];
+ * ```
+ *
+ * @see {@link BillingPlan} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
+ */
+export const KEY_BILLING_PLAN_AMOUNT = 'amount' as keyof BillingPlan;
+/**
+ * currency property
+ *
+ * Currency of the billing plan.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of BillingPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingplan[KEY_BILLING_PLAN_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_PLAN_CURRENCY;
+ * const value = billingplan[propertyName];
+ * ```
+ *
+ * @see {@link BillingPlan} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
+ */
+export const KEY_BILLING_PLAN_CURRENCY = 'currency' as keyof BillingPlan;
+/**
+ * Name
+ *
+ * Name of the billing plan.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of BillingPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingplan[KEY_BILLING_PLAN_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_PLAN_NAME;
+ * const value = billingplan[propertyName];
+ * ```
+ *
+ * @see {@link BillingPlan} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
+ */
+export const KEY_BILLING_PLAN_NAME = 'name' as keyof BillingPlan;
+/**
+ * Plan Id
+ *
+ * Billing plan ID for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plan_id` property of BillingPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingplan[KEY_BILLING_PLAN_PLAN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_PLAN_PLAN_ID;
+ * const value = billingplan[propertyName];
+ * ```
+ *
+ * @see {@link BillingPlan} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
+ */
+export const KEY_BILLING_PLAN_PLAN_ID = 'plan_id' as keyof BillingPlan;
+/**
+ * Type
+ *
+ * Plan type or billing interval.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of BillingPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingplan[KEY_BILLING_PLAN_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_PLAN_TYPE;
+ * const value = billingplan[propertyName];
+ * ```
+ *
+ * @see {@link BillingPlan} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
+ */
+export const KEY_BILLING_PLAN_TYPE = 'type' as keyof BillingPlan;
+
+/**
+ * Array of all BillingPlan property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for BillingPlan objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_BILLING_PLAN) {
+ *   console.log(`Property: ${key}, Value: ${billingplan[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_BILLING_PLAN.includes(someKey);
+ * ```
+ *
+ * @see {@link BillingPlan} - The TypeScript type definition
+ */
+export const KEYS_BILLING_PLAN = [
+  KEY_BILLING_PLAN_AMOUNT,
+  KEY_BILLING_PLAN_CURRENCY,
+  KEY_BILLING_PLAN_NAME,
+  KEY_BILLING_PLAN_PLAN_ID,
+  KEY_BILLING_PLAN_TYPE,
+] as const satisfies (keyof BillingPlan)[];
 
 /**
  * Client Id
@@ -13317,6 +13550,54 @@ export const KEYS_ORGANIZATION_UPDATE = [
 ] as const satisfies (keyof OrganizationUpdate)[];
 
 /**
+ * Account Balance
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `account_balance` property of OrganizationWithBillingData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE;
+ * const value = organizationwithbillingdata[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE = 'account_balance' as keyof OrganizationWithBillingData;
+/**
+ * active_plan property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `active_plan` property of OrganizationWithBillingData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN;
+ * const value = organizationwithbillingdata[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN = 'active_plan' as keyof OrganizationWithBillingData;
+/**
  * Address 1
  *
  * First line of the organization's address.
@@ -13324,23 +13605,23 @@ export const KEYS_ORGANIZATION_UPDATE = [
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `address_1` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `address_1` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1 = 'address_1' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1 = 'address_1' as keyof OrganizationWithBillingData;
 /**
  * Address 2
  *
@@ -13349,23 +13630,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1 = 'address_1' as keyof Organiz
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `address_2` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `address_2` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2 = 'address_2' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2 = 'address_2' as keyof OrganizationWithBillingData;
 /**
  * Attributes
  *
@@ -13374,23 +13655,47 @@ export const KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2 = 'address_2' as keyof Organiz
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `attributes` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `attributes` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES = 'attributes' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES = 'attributes' as keyof OrganizationWithBillingData;
+/**
+ * billing_metadata property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `billing_metadata` property of OrganizationWithBillingData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA;
+ * const value = organizationwithbillingdata[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA = 'billing_metadata' as keyof OrganizationWithBillingData;
 /**
  * Business Number
  *
@@ -13399,23 +13704,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES = 'attributes' as keyof Organ
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `business_number` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `business_number` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER = 'business_number' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER = 'business_number' as keyof OrganizationWithBillingData;
 /**
  * City
  *
@@ -13424,23 +13729,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER = 'business_number' as k
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `city` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `city` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_CITY];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_CITY];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_CITY;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_CITY;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_CITY = 'city' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_CITY = 'city' as keyof OrganizationWithBillingData;
 /**
  * Country Code
  *
@@ -13449,23 +13754,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_CITY = 'city' as keyof OrganizationWithP
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `country_code` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `country_code` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE = 'country_code' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE = 'country_code' as keyof OrganizationWithBillingData;
 /**
  * Created On
  *
@@ -13475,23 +13780,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE = 'country_code' as keyof O
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `created_on` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `created_on` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_CREATED_ON];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_CREATED_ON];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_CREATED_ON;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_CREATED_ON;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_CREATED_ON = 'created_on' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_CREATED_ON = 'created_on' as keyof OrganizationWithBillingData;
 /**
  * currency property
  *
@@ -13500,23 +13805,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_CREATED_ON = 'created_on' as keyof Organ
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `currency` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `currency` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_CURRENCY];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_CURRENCY;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_CURRENCY = 'currency' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY = 'currency' as keyof OrganizationWithBillingData;
 /**
  * Default Locale
  *
@@ -13525,23 +13830,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_CURRENCY = 'currency' as keyof Organizat
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `default_locale` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `default_locale` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationWithBillingData;
 /**
  * Deleted On
  *
@@ -13550,23 +13855,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE = 'default_locale' as key
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `deleted_on` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `deleted_on` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_DELETED_ON];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_DELETED_ON;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_DELETED_ON = 'deleted_on' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON = 'deleted_on' as keyof OrganizationWithBillingData;
 /**
  * Name
  *
@@ -13576,23 +13881,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_DELETED_ON = 'deleted_on' as keyof Organ
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `name` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `name` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_NAME];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_NAME];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_NAME;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_NAME;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_NAME = 'name' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_NAME = 'name' as keyof OrganizationWithBillingData;
 /**
  * Organization Id
  *
@@ -13602,23 +13907,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_NAME = 'name' as keyof OrganizationWithP
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `organization_id` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `organization_id` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID = 'organization_id' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID = 'organization_id' as keyof OrganizationWithBillingData;
 /**
  * Parent Organization Id
  *
@@ -13627,47 +13932,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID = 'organization_id' as k
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `parent_organization_id` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `parent_organization_id` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationWithPlan;
-/**
- * plan property
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `plan` property of OrganizationWithPlan objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_PLAN];
- * 
- * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_PLAN;
- * const value = organizationwithplan[propertyName];
- * ```
- *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
- */
-export const KEY_ORGANIZATION_WITH_PLAN_PLAN = 'plan' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationWithBillingData;
 /**
  * Postal Code
  *
@@ -13676,23 +13957,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_PLAN = 'plan' as keyof OrganizationWithP
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `postal_code` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `postal_code` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_POSTAL_CODE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_POSTAL_CODE;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE = 'postal_code' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_POSTAL_CODE = 'postal_code' as keyof OrganizationWithBillingData;
 /**
  * State
  *
@@ -13701,23 +13982,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE = 'postal_code' as keyof Org
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `state` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `state` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_STATE];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_STATE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_STATE;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_STATE;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_STATE = 'state' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATE = 'state' as keyof OrganizationWithBillingData;
 /**
  * status property
  *
@@ -13726,23 +14007,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_STATE = 'state' as keyof OrganizationWit
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `status` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `status` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_STATUS];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_STATUS];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_STATUS;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_STATUS;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_STATUS = 'status' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATUS = 'status' as keyof OrganizationWithBillingData;
 /**
  * Tax Id
  *
@@ -13751,23 +14032,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_STATUS = 'status' as keyof OrganizationW
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `tax_id` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `tax_id` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_TAX_ID];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_TAX_ID;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_TAX_ID = 'tax_id' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID = 'tax_id' as keyof OrganizationWithBillingData;
 /**
  * Tax Id Type
  *
@@ -13776,23 +14057,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_TAX_ID = 'tax_id' as keyof OrganizationW
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `tax_id_type` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `tax_id_type` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID_TYPE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID_TYPE;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationWithBillingData;
 /**
  * Tax Rate
  *
@@ -13801,23 +14082,23 @@ export const KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE = 'tax_id_type' as keyof Org
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `tax_rate` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `tax_rate` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_TAX_RATE];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_TAX_RATE;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_TAX_RATE = 'tax_rate' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE = 'tax_rate' as keyof OrganizationWithBillingData;
 /**
  * Users
  *
@@ -13826,67 +14107,69 @@ export const KEY_ORGANIZATION_WITH_PLAN_TAX_RATE = 'tax_rate' as keyof Organizat
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `users` property of OrganizationWithPlan objects.
+ * This key constant provides type-safe access to the `users` property of OrganizationWithBillingData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = organizationwithplan[KEY_ORGANIZATION_WITH_PLAN_USERS];
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_USERS];
  * 
  * // Dynamic property access
- * const propertyName = KEY_ORGANIZATION_WITH_PLAN_USERS;
- * const value = organizationwithplan[propertyName];
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_USERS;
+ * const value = organizationwithbillingdata[propertyName];
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
- * @see {@link KEYS_ORGANIZATION_WITH_PLAN} - Array of all keys for this type
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_PLAN_USERS = 'users' as keyof OrganizationWithPlan;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_USERS = 'users' as keyof OrganizationWithBillingData;
 
 /**
- * Array of all OrganizationWithPlan property keys
+ * Array of all OrganizationWithBillingData property keys
  *
  * @remarks
- * This constant provides a readonly array containing all valid property keys for OrganizationWithPlan objects.
+ * This constant provides a readonly array containing all valid property keys for OrganizationWithBillingData objects.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
  * ```typescript
  * // Iterating through all keys
- * for (const key of KEYS_ORGANIZATION_WITH_PLAN) {
- *   console.log(`Property: ${key}, Value: ${organizationwithplan[key]}`);
+ * for (const key of KEYS_ORGANIZATION_WITH_BILLING_DATA) {
+ *   console.log(`Property: ${key}, Value: ${organizationwithbillingdata[key]}`);
  * }
  * 
  * // Validation
- * const isValidKey = KEYS_ORGANIZATION_WITH_PLAN.includes(someKey);
+ * const isValidKey = KEYS_ORGANIZATION_WITH_BILLING_DATA.includes(someKey);
  * ```
  *
- * @see {@link OrganizationWithPlan} - The TypeScript type definition
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  */
-export const KEYS_ORGANIZATION_WITH_PLAN = [
-  KEY_ORGANIZATION_WITH_PLAN_ADDRESS_1,
-  KEY_ORGANIZATION_WITH_PLAN_ADDRESS_2,
-  KEY_ORGANIZATION_WITH_PLAN_ATTRIBUTES,
-  KEY_ORGANIZATION_WITH_PLAN_BUSINESS_NUMBER,
-  KEY_ORGANIZATION_WITH_PLAN_CITY,
-  KEY_ORGANIZATION_WITH_PLAN_COUNTRY_CODE,
-  KEY_ORGANIZATION_WITH_PLAN_CREATED_ON,
-  KEY_ORGANIZATION_WITH_PLAN_CURRENCY,
-  KEY_ORGANIZATION_WITH_PLAN_DEFAULT_LOCALE,
-  KEY_ORGANIZATION_WITH_PLAN_DELETED_ON,
-  KEY_ORGANIZATION_WITH_PLAN_NAME,
-  KEY_ORGANIZATION_WITH_PLAN_ORGANIZATION_ID,
-  KEY_ORGANIZATION_WITH_PLAN_PARENT_ORGANIZATION_ID,
-  KEY_ORGANIZATION_WITH_PLAN_PLAN,
-  KEY_ORGANIZATION_WITH_PLAN_POSTAL_CODE,
-  KEY_ORGANIZATION_WITH_PLAN_STATE,
-  KEY_ORGANIZATION_WITH_PLAN_STATUS,
-  KEY_ORGANIZATION_WITH_PLAN_TAX_ID,
-  KEY_ORGANIZATION_WITH_PLAN_TAX_ID_TYPE,
-  KEY_ORGANIZATION_WITH_PLAN_TAX_RATE,
-  KEY_ORGANIZATION_WITH_PLAN_USERS,
-] as const satisfies (keyof OrganizationWithPlan)[];
+export const KEYS_ORGANIZATION_WITH_BILLING_DATA = [
+  KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_CITY,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_CREATED_ON,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_NAME,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_POSTAL_CODE,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_STATE,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_STATUS,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID_TYPE,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_USERS,
+] as const satisfies (keyof OrganizationWithBillingData)[];
 
 /**
  * Current Page
