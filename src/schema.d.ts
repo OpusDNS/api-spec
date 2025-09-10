@@ -940,23 +940,6 @@ export interface paths {
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
         trace?: never;
     };
-    "/v1/organizations/{organization_id}/plan": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Change Plan */
-        patch: operations["change_plan_v1_organizations__organization_id__plan_patch"];
-        trace?: never;
-    };
     "/v1/organizations/{organization_id}/plans": {
         parameters: {
             query?: never;
@@ -3655,7 +3638,7 @@ export interface components {
          * Permission
          * @enum {string}
          */
-        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "create" | "delete" | "enterprise" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "plan_manager" | "premium" | "premium_reseller" | "renew_expire" | "starter" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
+        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "corporate_plan" | "create" | "delete" | "enterprise_plan" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_user_relations" | "manage_users" | "plan_manager" | "premium_plan" | "renew_expire" | "starter_plan" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs";
         /** PermissionSet */
         PermissionSet: {
             /** Permissions */
@@ -3693,16 +3676,6 @@ export interface components {
              * @description Plan type or billing interval
              */
             plan_type?: string | null;
-        };
-        /**
-         * PlanRelation
-         * @enum {string}
-         */
-        PlanRelation: "basic_plan" | "enterprise_plan" | "premium_plan" | "starter_plan";
-        /** PlanUpdate */
-        PlanUpdate: {
-            /** @default basic_plan */
-            plan: components["schemas"]["PlanRelation"];
         };
         /**
          * PostTransferRequirements
@@ -8035,41 +8008,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    change_plan_v1_organizations__organization_id__plan_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeID<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PlanUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationWithBillingData"];
                 };
             };
             /** @description Validation Error */

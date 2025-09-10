@@ -2155,38 +2155,6 @@ export type PermissionSet = components['schemas']['PermissionSet'];
  */
 export type PlanInfo = components['schemas']['PlanInfo'];
 /**
- * PlanRelation
- *
- * @remarks
- * Type alias for the `PlanRelation` OpenAPI schema.
- * This type represents planrelation data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPlanRelation();
- * const item: PlanRelation = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type PlanRelation = components['schemas']['PlanRelation'];
-/**
- * PlanUpdate
- *
- * @remarks
- * Type alias for the `PlanUpdate` OpenAPI schema.
- * This type represents planupdate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPlanUpdate();
- * const item: PlanUpdate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type PlanUpdate = components['schemas']['PlanUpdate'];
-/**
  * PostTransferRequirements
  *
  * @remarks

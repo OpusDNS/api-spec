@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1663,9 +1663,10 @@ export const PERMISSION = {
   BULK_RENEW_EXPIRE: "bulk_renew_expire",
   BULK_TRANSFER_TRADE: "bulk_transfer_trade",
   BULK_UPDATE: "bulk_update",
+  CORPORATE_PLAN: "corporate_plan",
   CREATE: "create",
   DELETE: "delete",
-  ENTERPRISE: "enterprise",
+  ENTERPRISE_PLAN: "enterprise_plan",
   HAS_ACCEPTED_TOS: "has_accepted_tos",
   MANAGE_API_KEYS: "manage_api_keys",
   MANAGE_BILLING: "manage_billing",
@@ -1680,10 +1681,9 @@ export const PERMISSION = {
   MANAGE_USER_RELATIONS: "manage_user_relations",
   MANAGE_USERS: "manage_users",
   PLAN_MANAGER: "plan_manager",
-  PREMIUM: "premium",
-  PREMIUM_RESELLER: "premium_reseller",
+  PREMIUM_PLAN: "premium_plan",
   RENEW_EXPIRE: "renew_expire",
-  STARTER: "starter",
+  STARTER_PLAN: "starter_plan",
   TRANSFER_TRADE: "transfer_trade",
   UPDATE: "update",
   VERIFY: "verify",
@@ -1719,9 +1719,10 @@ export const PERMISSION_VALUES = [
   'bulk_renew_expire',
   'bulk_transfer_trade',
   'bulk_update',
+  'corporate_plan',
   'create',
   'delete',
-  'enterprise',
+  'enterprise_plan',
   'has_accepted_tos',
   'manage_api_keys',
   'manage_billing',
@@ -1736,70 +1737,15 @@ export const PERMISSION_VALUES = [
   'manage_user_relations',
   'manage_users',
   'plan_manager',
-  'premium',
-  'premium_reseller',
+  'premium_plan',
   'renew_expire',
-  'starter',
+  'starter_plan',
   'transfer_trade',
   'update',
   'verify',
   'view',
   'view_audit_logs'
 ] as const satisfies [string, ...string[]] | Permission[];
-
-/**
- * PlanRelation. Auto-generated enum for PlanRelation
- *
- * @remarks
- * This constant provides both object and array forms for the PlanRelation enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PLAN_RELATION.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PLAN_RELATION_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PlanRelation} - The TypeScript type definition
- */
-export const PLAN_RELATION = {
-  BASIC_PLAN: "basic_plan",
-  ENTERPRISE_PLAN: "enterprise_plan",
-  PREMIUM_PLAN: "premium_plan",
-  STARTER_PLAN: "starter_plan",
-} as const satisfies Record<string, PlanRelation>;
-
-/**
- * Array of all PlanRelation enum values
- *
- * @remarks
- * This constant provides a array containing all valid PlanRelation enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PLAN_RELATION_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PLAN_RELATION_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PlanRelation} - The TypeScript type definition
- * @see {@link PLAN_RELATION} - The object form of this enum
- */
-export const PLAN_RELATION_VALUES = [
-  'basic_plan',
-  'enterprise_plan',
-  'premium_plan',
-  'starter_plan'
-] as const satisfies [string, ...string[]] | PlanRelation[];
 
 /**
  * PostTransferRequirements. Auto-generated enum for PostTransferRequirements

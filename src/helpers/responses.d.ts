@@ -4516,61 +4516,6 @@ export type PATCH_OrganizationsByOrganizationId_Response_200 = Organization
 export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 
 /**
- * Response types for PATCH OrganizationsByOrganizationIdPlan endpoint
- *
- * Change Plan
- *
- * @remarks
- * This type defines all possible response structures for the PATCH OrganizationsByOrganizationIdPlan endpoint.
- * Each response code maps to a specific response type as defined in the OpenAPI specification.
- * Use this type to ensure type safety when handling API responses from this endpoint.
- *
-
- *
- * @path /v1/organizations/{organization_id}/plan
- *
- * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response_200} - 200 response type
- * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response_422} - 422 response type
- *
-
- */
-export type PATCH_OrganizationsByOrganizationIdPlan_Response = PATCH_OrganizationsByOrganizationIdPlan_Response_200 | PATCH_OrganizationsByOrganizationIdPlan_Response_422;
-
-/**
- * 200 response for PATCH OrganizationsByOrganizationIdPlan endpoint
- *
- * @remarks
- * This type defines the response structure for the 200 status code
- * of the PATCH OrganizationsByOrganizationIdPlan endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/organizations/{organization_id}/plan
- *
- * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response} - The main response type definition
- * @see {@link OrganizationWithBillingData} - The actual schema type definition
- */
-export type PATCH_OrganizationsByOrganizationIdPlan_Response_200 = OrganizationWithBillingData
-
-/**
- * 422 response for PATCH OrganizationsByOrganizationIdPlan endpoint
- *
- * @remarks
- * This type defines the response structure for the 422 status code
- * of the PATCH OrganizationsByOrganizationIdPlan endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/organizations/{organization_id}/plan
- *
- * @see {@link PATCH_OrganizationsByOrganizationIdPlan_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
- */
-export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidationError
-
-/**
  * Response types for GET OrganizationsByOrganizationIdPlans endpoint
  *
  * Get Current Available Plans

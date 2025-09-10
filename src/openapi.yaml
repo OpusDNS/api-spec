@@ -3678,9 +3678,10 @@ components:
       - bulk_renew_expire
       - bulk_transfer_trade
       - bulk_update
+      - corporate_plan
       - create
       - delete
-      - enterprise
+      - enterprise_plan
       - has_accepted_tos
       - manage_api_keys
       - manage_billing
@@ -3695,10 +3696,9 @@ components:
       - manage_user_relations
       - manage_users
       - plan_manager
-      - premium
-      - premium_reseller
+      - premium_plan
       - renew_expire
-      - starter
+      - starter_plan
       - transfer_trade
       - update
       - verify
@@ -3752,21 +3752,6 @@ components:
       - currency
       - amount
       title: PlanInfo
-      type: object
-    PlanRelation:
-      enum:
-      - basic_plan
-      - enterprise_plan
-      - premium_plan
-      - starter_plan
-      title: PlanRelation
-      type: string
-    PlanUpdate:
-      properties:
-        plan:
-          $ref: '#/components/schemas/PlanRelation'
-          default: basic_plan
-      title: PlanUpdate
       type: object
     PostTransferRequirements:
       enum:
@@ -5192,7 +5177,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-10-192345
+  version: 2025-09-10-232127
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8924,45 +8909,6 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Organization
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/plan:
-    patch:
-      operationId: change_plan_v1_organizations__organization_id__plan_patch
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlanUpdate'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrganizationWithBillingData'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Change Plan
       tags:
       - organization
   /v1/organizations/{organization_id}/plans:

@@ -118,7 +118,6 @@ import { PasswordUpdate } from './schemas';
 import { Period } from './schemas';
 import { PermissionSet } from './schemas';
 import { PlanInfo } from './schemas';
-import { PlanUpdate } from './schemas';
 import { PremiumDomainsBase } from './schemas';
 import { PriceInfo } from './schemas';
 import { Problem } from './schemas';
@@ -14710,55 +14709,6 @@ export const KEYS_PLAN_INFO = [
   KEY_PLAN_INFO_PLAN_LEVEL,
   KEY_PLAN_INFO_PLAN_TYPE,
 ] as const satisfies (keyof PlanInfo)[];
-
-/**
- * plan property
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `plan` property of PlanUpdate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = planupdate[KEY_PLAN_UPDATE_PLAN];
- * 
- * // Dynamic property access
- * const propertyName = KEY_PLAN_UPDATE_PLAN;
- * const value = planupdate[propertyName];
- * ```
- *
- * @see {@link PlanUpdate} - The TypeScript type definition
- * @see {@link KEYS_PLAN_UPDATE} - Array of all keys for this type
- */
-export const KEY_PLAN_UPDATE_PLAN = 'plan' as keyof PlanUpdate;
-
-/**
- * Array of all PlanUpdate property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for PlanUpdate objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_PLAN_UPDATE) {
- *   console.log(`Property: ${key}, Value: ${planupdate[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_PLAN_UPDATE.includes(someKey);
- * ```
- *
- * @see {@link PlanUpdate} - The TypeScript type definition
- */
-export const KEYS_PLAN_UPDATE = [
-  KEY_PLAN_UPDATE_PLAN,
-] as const satisfies (keyof PlanUpdate)[];
 
 /**
  * Affects

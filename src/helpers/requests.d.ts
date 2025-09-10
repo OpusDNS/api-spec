@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, StartPasswordReset, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, NotificationCreate, NotificationUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, StartPasswordReset, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET AuthClientCredentials endpoint
@@ -3214,58 +3214,6 @@ export type PATCH_OrganizationsOrganizationId_Request_Path = PATCH_Organizations
  * @path /v1/organizations/{organization_id}
  */
 export type PATCH_OrganizationsOrganizationId_Request_Body = PATCH_OrganizationsOrganizationId_Request['requestBody'];
-
-/**
- * Request type for PATCH OrganizationsOrganizationIdPlan endpoint
- *
- * Change Plan
- *
- * @remarks
- * This type defines the complete request structure for the PATCH OrganizationsOrganizationIdPlan endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}/plan
- *
- * @see {@link PATCH_OrganizationsOrganizationIdPlan_Request_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsOrganizationIdPlan_Request_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsOrganizationIdPlan_Request_Body} - Request body type
- */
-export type PATCH_OrganizationsOrganizationIdPlan_Request = {
-  parameters: {
-    path: operations['change_plan_v1_organizations__organization_id__plan_patch']['parameters']['path'];
-  };
-  requestBody: PlanUpdate;
-}
-/**
- * Path parameters for PATCH /v1/organizations/{organization_id}/plan
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/organizations/{organization_id}/plan endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}/plan
- */
-export type PATCH_OrganizationsOrganizationIdPlan_Request_Path = PATCH_OrganizationsOrganizationIdPlan_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/organizations/{organization_id}/plan
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/organizations/{organization_id}/plan endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations/{organization_id}/plan
- */
-export type PATCH_OrganizationsOrganizationIdPlan_Request_Body = PATCH_OrganizationsOrganizationIdPlan_Request['requestBody'];
 
 /**
  * Request type for GET OrganizationsOrganizationIdPlans endpoint
