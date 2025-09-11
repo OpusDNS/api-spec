@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2000,6 +2000,54 @@ export const REGISTRANT_CHANGE_TYPE_VALUES = [
   'update',
   'trade'
 ] as const satisfies [string, ...string[]] | RegistrantChangeType[];
+
+/**
+ * RegistryHandleAttributeType. Registry handle attribute types for type-safe attribute key access.
+ *
+ * @remarks
+ * This constant provides both object and array forms for the RegistryHandleAttributeType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = REGISTRY_HANDLE_ATTRIBUTE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link RegistryHandleAttributeType} - The TypeScript type definition
+ */
+export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
+  AT-EXT-CONTACT:TYPE: "at-ext-contact:type",
+} as const satisfies Record<string, RegistryHandleAttributeType>;
+
+/**
+ * Array of all RegistryHandleAttributeType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid RegistryHandleAttributeType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link RegistryHandleAttributeType} - The TypeScript type definition
+ * @see {@link REGISTRY_HANDLE_ATTRIBUTE_TYPE} - The object form of this enum
+ */
+export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
+  'at-ext-contact:type'
+] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**
  * Relation. Auto-generated enum for Relation

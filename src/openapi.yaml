@@ -234,6 +234,31 @@ components:
       - disclose
       title: ContactCreate
       type: object
+    ContactHandle:
+      properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              $ref: '#/components/schemas/JsonValue'
+            propertyNames:
+              $ref: '#/components/schemas/RegistryHandleAttributeType'
+            type: object
+          - type: 'null'
+          description: Additional attributes related to the contact
+          title: Attributes
+        contact_id:
+          description: The contact id of the contact
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      required:
+      - contact_id
+      title: ContactHandle
+      type: object
     ContactIdList:
       additionalProperties:
         examples:
@@ -1165,6 +1190,14 @@ components:
       - clientHold
       title: DomainClientStatus
       type: string
+    DomainContactHandles:
+      additionalProperties:
+        items:
+          $ref: '#/components/schemas/ContactHandle'
+        type: array
+      propertyNames:
+        $ref: '#/components/schemas/DomainContactType'
+      type: object
     DomainContactResponse:
       properties:
         contact_id:
@@ -1203,8 +1236,11 @@ components:
           description: The auth code used for the domain
           title: Auth Code
         contacts:
-          $ref: '#/components/schemas/ContactIdList'
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
           description: The contacts of the domain
+          title: Contacts
         name:
           description: The domain to be created
           title: Name
@@ -1874,8 +1910,11 @@ components:
           title: Auth Code
           type: string
         contacts:
-          $ref: '#/components/schemas/ContactIdList'
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
           description: The contacts of the domain
+          title: Contacts
         name:
           description: The domain to be created
           title: Name
@@ -1909,16 +1948,8 @@ components:
           title: Auth Code
         contacts:
           anyOf:
-          - additionalProperties:
-              examples:
-              - contact_01h45ytscbebyvny4gc8cr8ma2
-              format: typeid
-              pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-              type: string
-              x-typeid-prefix: contact
-            propertyNames:
-              $ref: '#/components/schemas/DomainContactType'
-            type: object
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
           - type: 'null'
           description: The new contacts of the domain
           examples:
@@ -3871,6 +3902,12 @@ components:
       - trade
       title: RegistrantChangeType
       type: string
+    RegistryHandleAttributeType:
+      description: Registry handle attribute types for type-safe attribute key access.
+      enum:
+      - at-ext-contact:type
+      title: RegistryHandleAttributeType
+      type: string
     RegistryLockBase:
       properties:
         prevents:
@@ -5177,7 +5214,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-10-232127
+  version: 2025-09-11-090517
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

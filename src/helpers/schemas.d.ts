@@ -171,6 +171,22 @@ export type ContactConfigBase = components['schemas']['ContactConfigBase'];
  */
 export type ContactCreate = components['schemas']['ContactCreate'];
 /**
+ * ContactHandle
+ *
+ * @remarks
+ * Type alias for the `ContactHandle` OpenAPI schema.
+ * This type represents contacthandle data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactHandle();
+ * const item: ContactHandle = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactHandle = components['schemas']['ContactHandle'];
+/**
  * ContactIdList
  *
  * @remarks
@@ -810,6 +826,22 @@ export type DomainCheck = components['schemas']['DomainCheckResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainClientStatus = components['schemas']['DomainClientStatus'];
+/**
+ * DomainContactHandles
+ *
+ * @remarks
+ * Type alias for the `DomainContactHandles` OpenAPI schema.
+ * This type represents domaincontacthandles data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainContactHandles();
+ * const item: DomainContactHandles = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainContactHandles = components['schemas']['DomainContactHandles'];
 /**
  * DomainContactResponse
  *
@@ -2298,6 +2330,22 @@ export type RdapBase = components['schemas']['RdapBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type RegistrantChangeType = components['schemas']['RegistrantChangeType'];
+/**
+ * RegistryHandleAttributeType. Registry handle attribute types for type-safe attribute key access.
+ *
+ * @remarks
+ * Type alias for the `RegistryHandleAttributeType` OpenAPI schema.
+ * This type represents registryhandleattributetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRegistryHandleAttributeType();
+ * const item: RegistryHandleAttributeType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RegistryHandleAttributeType = components['schemas']['RegistryHandleAttributeType'];
 /**
  * RegistryLockBase
  *

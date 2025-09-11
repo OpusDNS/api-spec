@@ -35,6 +35,7 @@ import { BillingPlan } from './schemas';
 import { Body_issue_organization_token_v1_auth_token_post } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
+import { ContactHandle } from './schemas';
 import { Contact } from './schemas';
 import { ContactSchema } from './schemas';
 import { ContactVerificationApi } from './schemas';
@@ -1091,6 +1092,83 @@ export const KEYS_CONTACT_CREATE = [
   KEY_CONTACT_CREATE_STREET,
   KEY_CONTACT_CREATE_TITLE,
 ] as const satisfies (keyof ContactCreate)[];
+
+/**
+ * Attributes
+ *
+ * Additional attributes related to the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of ContactHandle objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contacthandle[KEY_CONTACT_HANDLE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_HANDLE_ATTRIBUTES;
+ * const value = contacthandle[propertyName];
+ * ```
+ *
+ * @see {@link ContactHandle} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_HANDLE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_HANDLE_ATTRIBUTES = 'attributes' as keyof ContactHandle;
+/**
+ * Contact Id
+ *
+ * The contact id of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactHandle objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contacthandle[KEY_CONTACT_HANDLE_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_HANDLE_CONTACT_ID;
+ * const value = contacthandle[propertyName];
+ * ```
+ *
+ * @see {@link ContactHandle} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_HANDLE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_HANDLE_CONTACT_ID = 'contact_id' as keyof ContactHandle;
+
+/**
+ * Array of all ContactHandle property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactHandle objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_HANDLE) {
+ *   console.log(`Property: ${key}, Value: ${contacthandle[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_HANDLE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactHandle} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_HANDLE = [
+  KEY_CONTACT_HANDLE_ATTRIBUTES,
+  KEY_CONTACT_HANDLE_CONTACT_ID,
+] as const satisfies (keyof ContactHandle)[];
 
 /**
  * City
@@ -4982,7 +5060,7 @@ export const KEYS_DOMAIN_CONTACT = [
  */
 export const KEY_DOMAIN_CREATE_AUTH_CODE = 'auth_code' as keyof DomainCreate;
 /**
- * contacts property
+ * Contacts
  *
  * The contacts of the domain
  *
@@ -7699,7 +7777,7 @@ export const KEYS_DOMAIN_SUMMARY = [
  */
 export const KEY_DOMAIN_TRANSFER_IN_AUTH_CODE = 'auth_code' as keyof DomainTransferIn;
 /**
- * contacts property
+ * Contacts
  *
  * The contacts of the domain
  *

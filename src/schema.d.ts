@@ -1368,6 +1368,22 @@ export interface components {
              */
             title?: string | null;
         };
+        /** ContactHandle */
+        ContactHandle: {
+            /**
+             * Attributes
+             * @description Additional attributes related to the contact
+             */
+            attributes?: {
+                [key: string]: components["schemas"]["JsonValue"];
+            } | null;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @description The contact id of the contact
+             */
+            contact_id: TypeID<"contact">;
+        };
         ContactIdList: {
             [key: string]: TypeID<"contact">;
         };
@@ -1971,6 +1987,9 @@ export interface components {
          * @enum {string}
          */
         DomainClientStatus: "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        DomainContactHandles: {
+            [key: string]: components["schemas"]["ContactHandle"][];
+        };
         /** DomainContactResponse */
         DomainContactResponse: {
             /**
@@ -1994,8 +2013,11 @@ export interface components {
              * @description The auth code used for the domain
              */
             auth_code?: string | null;
-            /** @description The contacts of the domain */
-            contacts: components["schemas"]["ContactIdList"];
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
             /**
              * Name
              * @description The domain to be created
@@ -2417,8 +2439,11 @@ export interface components {
              * @description The auth code for the domain
              */
             auth_code: string;
-            /** @description The contacts of the domain */
-            contacts: components["schemas"]["ContactIdList"];
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
             /**
              * Name
              * @description The domain to be created
@@ -2443,9 +2468,7 @@ export interface components {
              * Contacts
              * @description The new contacts of the domain
              */
-            contacts?: {
-                [key: string]: TypeID<"contact">;
-            } | null;
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
             /**
              * Nameservers
              * @description The new name servers for the domain
@@ -3749,6 +3772,12 @@ export interface components {
          * @enum {string}
          */
         RegistrantChangeType: "update" | "trade";
+        /**
+         * RegistryHandleAttributeType
+         * @description Registry handle attribute types for type-safe attribute key access.
+         * @enum {string}
+         */
+        RegistryHandleAttributeType: "at-ext-contact:type";
         /** RegistryLockBase */
         RegistryLockBase: {
             /**
