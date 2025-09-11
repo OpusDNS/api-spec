@@ -12,6 +12,13 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'Onest';
+	src: url('fonts/Onest_VariableFont.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
 :root {
 	--scalar-custom-header-height: 75px;
 	--scalar-font: 'Open Sans', sans-serif;
@@ -145,76 +152,271 @@ header {
 	align-items: start;
 	gap: 2rem;
 	background: black;
-
-	.footer-logo {
-		display: flex;
-		justify-content: center;
-
-
-		img {
-			width: 186px;
-			padding: 20px;
-		}
-	}
-
-	.footer-links {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-		gap: 2rem;
-
-		.link-column {
-			max-width: 200px;
-			flex: 1;
-
-			h4 {
-				margin-bottom: 0.5rem;
-				font-size: 1.1rem;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-			}
-
-			a {
-				display: block;
-				color: var(--scalar-color-2);
-				text-decoration: none;
-				margin-top: 13px;
-			}
-
-			a:hover {
-				color: #fff;
-			}
-		}
-
-		.icann-logo {
-			margin-top: 15px;
-			width: 100px;
-		}
-	}
-
-	.footer-bottom {
-		grid-column: 1 / -1;
-		text-align: center;
-		font-size: 0.9rem;
-
-		p {
-			color: var(--scalar-color-2);
-			font-weight: 100;
-		}
-	}
+	-webkit-font-smoothing: auto !important;
 }
 
-@media (max-width: 768px) {
-	.footer {
-		grid-template-columns: 1fr;
+/* Custom footer */
+.kb-body-wrapper{
+	min-height: 100vh;
+	margin: 0;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
 
-		.footer-links {
-			justify-content: center;
+.op-footer{
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    background-color: #000000;
+    color:#ffffff;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    flex-flow: column;
+    padding: 72px 24px 16px;
+    display: flex;
+    background-color: #000000;
+    text-align: center;
+    word-break: normal;
+	font-family: 'Onest';
+}
 
-			.link-column {
-				width: 45%;
-				max-width: 150px;
-			}
-		}
-	}
+.op-footer div, .op-footer  a{
+	-webkit-font-smoothing: auto !important;
+}
+
+.op-footer .footer-row {
+    grid-column-gap: 48px;
+    grid-row-gap: 48px;
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1600px;
+}
+
+@media screen and (max-width: 1240px) {
+    .op-footer .footer-row .large-footer-menu-wrapper {
+	    display:none;
+    }
+    
+    .op-footer .footer-row {
+	    width:100%;
+	    }
+}
+
+.op-footer ._4-columns.large-footer-menu-wrapper {
+    grid-column-gap: 12px;
+    grid-row-gap: 12px;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: flex;
+}
+
+@media screen and (max-width: 1240px) {
+    .op-footer ._4-columns.large-footer-menu-wrapper, .op-footer ._4-columns.pricing-title, .op-footer ._4-columns.checklist-text, .op-footer ._4-columns.investors-title {
+        width: auto;
+    }
+}
+
+.op-footer ._4-columns {
+    width: calc(33.3333vw - 32px);
+    max-width: 528px;
+}
+
+.op-footer ._3-columns {
+    width: calc(25vw - 30px);
+    max-width: 390px;
+    display: flex;
+}
+
+.op-footer .footer-menus {
+    grid-column-gap: 16px;
+    grid-row-gap: 48px;
+    flex: 1;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: grid;
+    overflow: visible;
+}
+
+@media screen and (max-width: 991px) {
+    .op-footer .footer-menus {
+        flex-flow: wrap;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .op-footer .footer-menus {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .op-footer .footer-menus {
+        flex-flow: wrap;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .op-footer .footer-menu {
+         font-size: 16px !important;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .op-footer .footer-menus {
+        grid-column-gap: 48px;
+        grid-row-gap: 48px;
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
+        grid-auto-columns: 1fr;
+        display: grid;
+    }
+}
+
+.op-footer .footer-menu {
+        grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 20px;
+    line-height: 1.3em;
+    display: flex;
+}
+
+.op-footer ._2-columns {
+    width: calc(14vw - 28px);
+    max-width: 190px;
+}
+@media screen and (max-width: 1240px) {
+	.op-footer ._2-columns {
+	 	width: calc(20vw - 28px);
+	 }
+}
+
+@media screen and (max-width: 991px) {
+    .op-footer ._2-columns.footer-menu-wrapper {
+        flex: 1;
+        width: auto;
+    }
+}
+
+.op-footer .footer-category {
+    opacity: .7;
+    font-weight:500;
+	font-variation-settings: "wght" 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    mix-blend-mode: normal;
+    font-size: 16px;
+    text-align:left;
+}
+
+.op-footer .footer-link {
+    line-height: 1.2em;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 200;
+    font-variation-settings: "wght" 200;
+    text-align: left;
+}
+
+.op-footer .footer-link:hover {
+	opacity: 0.7;
+	text-decoration: none;
+}
+
+
+.op-footer .footer-link:focus {
+	color:#fff;
+}
+
+.op-footer .footer-logo{
+	width:140px;
+	max-width: 100%;
+}
+
+@media screen and (min-width: 1280px) {
+    .op-footer .footer-logo {
+        width: 220px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .op-footer .footer-logo {
+        width: 200px;
+        max-height: none;
+    }
+}
+
+.op-footer .footer-copyright-text {
+    opacity: .7;
+    font-size: 14px;
+    font-weight: 200;
+    font-variation-settings: "wght" 200;
+    text-align:left;
+    width:100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    text-align:center;
+    line-height: 27px;
+}
+
+.op-footer .footer-copyright-text-mobile {
+    opacity: .7;
+    font-size: 14px;
+    font-weight: 500;
+    display: none;
+}
+
+.op-footer .social-icon {
+    max-height: 18px;
+    vertical-align: middle;
+}
+
+.op-footer .logos {
+	grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-flow: row-reverse;
+    display: flex;
+    position: relative;
+    width: 100%;
+            align-self: center;
+        max-width: 1400px;
+        top: -60px;
+}
+
+@media screen and (max-width: 991px) {
+    .op-footer .logos {
+        top: 0;
+    }
+}
+
+.op-footer .logos .logo-block {
+	grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    border-top: 1px none var(--dark-grey);
+    flex-flow: row-reverse;
+    align-self: auto;
+    padding-top: 10px;
+    display: flex;
+}
+
+.op-footer .icann-logo{
+	    align-self: flex-end;
+    width: auto;
+    height: 100px;
+    padding-top: 0;
+}
+
+.op-footer .eco-logo {
+    height: 80px;
+    margin-top: 10px;
+}
+
+.op-footer .logos .mobile-logo img{
+	width:100px;
 }
