@@ -1192,6 +1192,11 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         /**
+         * AgreementType
+         * @enum {string}
+         */
+        AgreementType: "terms_and_conditions" | "master_service_agreement" | "acting_as_trader";
+        /**
          * AllocationMethodType
          * @enum {string}
          */
@@ -3853,10 +3858,15 @@ export interface components {
         };
         /** SignupCreate */
         SignupCreate: {
+            /**
+             * Agreements
+             * @description User agreement acceptances.
+             */
+            agreements?: components["schemas"]["UserAgreementAcceptance"][] | null;
             /** @description Organization signup. */
             organization: components["schemas"]["OrganizationCreate"];
-            /** @description Terms of service acceptance. */
-            terms_of_service: components["schemas"]["TermsOfServiceAccept"];
+            /** @description Terms of service acceptance (legacy). */
+            terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
             /** @description User signup to platform. */
             user: components["schemas"]["UserCreate"];
         };
@@ -4123,6 +4133,26 @@ export interface components {
              * @description The user's unique username
              */
             username: string;
+        };
+        /** UserAgreementAcceptance */
+        UserAgreementAcceptance: {
+            /**
+             * Accepted
+             * @description Whether the agreement has been accepted.
+             */
+            accepted: boolean;
+            /** @description Type of agreement being accepted. */
+            type: components["schemas"]["AgreementType"];
+            /**
+             * Url
+             * @description URL where the agreement can be found.
+             */
+            url?: string | null;
+            /**
+             * Version
+             * @description Version of the agreement being accepted.
+             */
+            version?: string | null;
         };
         /** UserAttributeBase */
         UserAttributeBase: {

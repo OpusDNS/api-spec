@@ -1,5 +1,12 @@
 components:
   schemas:
+    AgreementType:
+      enum:
+      - terms_and_conditions
+      - master_service_agreement
+      - acting_as_trader
+      title: AgreementType
+      type: string
     AllocationMethodType:
       enum:
       - fcfs
@@ -4024,19 +4031,28 @@ components:
       type: object
     SignupCreate:
       properties:
+        agreements:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/UserAgreementAcceptance'
+            type: array
+          - type: 'null'
+          description: User agreement acceptances.
+          title: Agreements
         organization:
           $ref: '#/components/schemas/OrganizationCreate'
           description: Organization signup.
         terms_of_service:
-          $ref: '#/components/schemas/TermsOfServiceAccept'
-          description: Terms of service acceptance.
+          anyOf:
+          - $ref: '#/components/schemas/TermsOfServiceAccept'
+          - type: 'null'
+          description: Terms of service acceptance (legacy).
         user:
           $ref: '#/components/schemas/UserCreate'
           description: User signup to platform.
       required:
       - user
       - organization
-      - terms_of_service
       title: SignupCreate
       type: object
     SldLength:
@@ -4452,6 +4468,35 @@ components:
       - locale
       - status
       title: User
+      type: object
+    UserAgreementAcceptance:
+      properties:
+        accepted:
+          description: Whether the agreement has been accepted.
+          title: Accepted
+          type: boolean
+        type:
+          $ref: '#/components/schemas/AgreementType'
+          description: Type of agreement being accepted.
+        url:
+          anyOf:
+          - format: uri
+            maxLength: 2083
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: URL where the agreement can be found.
+          title: Url
+        version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Version of the agreement being accepted.
+          title: Version
+      required:
+      - type
+      - accepted
+      title: UserAgreementAcceptance
       type: object
     UserAttributeBase:
       properties:
@@ -5214,7 +5259,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-11-090517
+  version: 2025-09-11-192549
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

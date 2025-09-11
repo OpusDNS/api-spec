@@ -138,6 +138,7 @@ import { TldSpecification } from './schemas';
 import { TrademarkClaimsBase } from './schemas';
 import { TransferPoliciesBase } from './schemas';
 import { User } from './schemas';
+import { UserAgreementAcceptance } from './schemas';
 import { UserAttributeBase } from './schemas';
 import { UserCreate } from './schemas';
 import { UserNotification } from './schemas';
@@ -15581,6 +15582,31 @@ export const KEYS_RGP_OPERATIONS = [
 ] as const satisfies (keyof RgpOperations)[];
 
 /**
+ * Agreements
+ *
+ * User agreement acceptances.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `agreements` property of SignupCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = signupcreate[KEY_SIGNUP_CREATE_AGREEMENTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SIGNUP_CREATE_AGREEMENTS;
+ * const value = signupcreate[propertyName];
+ * ```
+ *
+ * @see {@link SignupCreate} - The TypeScript type definition
+ * @see {@link KEYS_SIGNUP_CREATE} - Array of all keys for this type
+ */
+export const KEY_SIGNUP_CREATE_AGREEMENTS = 'agreements' as keyof SignupCreate;
+/**
  * organization property
  *
  * Organization signup.
@@ -15608,7 +15634,7 @@ export const KEY_SIGNUP_CREATE_ORGANIZATION = 'organization' as keyof SignupCrea
 /**
  * terms_of_service property
  *
- * Terms of service acceptance.
+ * Terms of service acceptance (legacy).
  *
  *
  *
@@ -15677,6 +15703,7 @@ export const KEY_SIGNUP_CREATE_USER = 'user' as keyof SignupCreate;
  * @see {@link SignupCreate} - The TypeScript type definition
  */
 export const KEYS_SIGNUP_CREATE = [
+  KEY_SIGNUP_CREATE_AGREEMENTS,
   KEY_SIGNUP_CREATE_ORGANIZATION,
   KEY_SIGNUP_CREATE_TERMS_OF_SERVICE,
   KEY_SIGNUP_CREATE_USER,
@@ -17388,6 +17415,135 @@ export const KEYS_USER = [
   KEY_USER_USER_ID,
   KEY_USER_USERNAME,
 ] as const satisfies (keyof User)[];
+
+/**
+ * Accepted
+ *
+ * Whether the agreement has been accepted.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `accepted` property of UserAgreementAcceptance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = useragreementacceptance[KEY_USER_AGREEMENT_ACCEPTANCE_ACCEPTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_AGREEMENT_ACCEPTANCE_ACCEPTED;
+ * const value = useragreementacceptance[propertyName];
+ * ```
+ *
+ * @see {@link UserAgreementAcceptance} - The TypeScript type definition
+ * @see {@link KEYS_USER_AGREEMENT_ACCEPTANCE} - Array of all keys for this type
+ */
+export const KEY_USER_AGREEMENT_ACCEPTANCE_ACCEPTED = 'accepted' as keyof UserAgreementAcceptance;
+/**
+ * type property
+ *
+ * Type of agreement being accepted.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of UserAgreementAcceptance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = useragreementacceptance[KEY_USER_AGREEMENT_ACCEPTANCE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_AGREEMENT_ACCEPTANCE_TYPE;
+ * const value = useragreementacceptance[propertyName];
+ * ```
+ *
+ * @see {@link UserAgreementAcceptance} - The TypeScript type definition
+ * @see {@link KEYS_USER_AGREEMENT_ACCEPTANCE} - Array of all keys for this type
+ */
+export const KEY_USER_AGREEMENT_ACCEPTANCE_TYPE = 'type' as keyof UserAgreementAcceptance;
+/**
+ * Url
+ *
+ * URL where the agreement can be found.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `url` property of UserAgreementAcceptance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = useragreementacceptance[KEY_USER_AGREEMENT_ACCEPTANCE_URL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_AGREEMENT_ACCEPTANCE_URL;
+ * const value = useragreementacceptance[propertyName];
+ * ```
+ *
+ * @see {@link UserAgreementAcceptance} - The TypeScript type definition
+ * @see {@link KEYS_USER_AGREEMENT_ACCEPTANCE} - Array of all keys for this type
+ */
+export const KEY_USER_AGREEMENT_ACCEPTANCE_URL = 'url' as keyof UserAgreementAcceptance;
+/**
+ * Version
+ *
+ * Version of the agreement being accepted.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of UserAgreementAcceptance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = useragreementacceptance[KEY_USER_AGREEMENT_ACCEPTANCE_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_AGREEMENT_ACCEPTANCE_VERSION;
+ * const value = useragreementacceptance[propertyName];
+ * ```
+ *
+ * @see {@link UserAgreementAcceptance} - The TypeScript type definition
+ * @see {@link KEYS_USER_AGREEMENT_ACCEPTANCE} - Array of all keys for this type
+ */
+export const KEY_USER_AGREEMENT_ACCEPTANCE_VERSION = 'version' as keyof UserAgreementAcceptance;
+
+/**
+ * Array of all UserAgreementAcceptance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserAgreementAcceptance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_AGREEMENT_ACCEPTANCE) {
+ *   console.log(`Property: ${key}, Value: ${useragreementacceptance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_AGREEMENT_ACCEPTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link UserAgreementAcceptance} - The TypeScript type definition
+ */
+export const KEYS_USER_AGREEMENT_ACCEPTANCE = [
+  KEY_USER_AGREEMENT_ACCEPTANCE_ACCEPTED,
+  KEY_USER_AGREEMENT_ACCEPTANCE_TYPE,
+  KEY_USER_AGREEMENT_ACCEPTANCE_URL,
+  KEY_USER_AGREEMENT_ACCEPTANCE_VERSION,
+] as const satisfies (keyof UserAgreementAcceptance)[];
 
 /**
  * Key

@@ -27,6 +27,22 @@
 import { components } from '../schema';
 
 /**
+ * AgreementType
+ *
+ * @remarks
+ * Type alias for the `AgreementType` OpenAPI schema.
+ * This type represents agreementtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getAgreementType();
+ * const item: AgreementType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type AgreementType = components['schemas']['AgreementType'];
+/**
  * AllocationMethodType
  *
  * @remarks
@@ -2698,6 +2714,22 @@ export type TransferPoliciesBase = components['schemas']['TransferPoliciesBase']
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type User = components['schemas']['User'];
+/**
+ * UserAgreementAcceptance
+ *
+ * @remarks
+ * Type alias for the `UserAgreementAcceptance` OpenAPI schema.
+ * This type represents useragreementacceptance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getUserAgreementAcceptance();
+ * const item: UserAgreementAcceptance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type UserAgreementAcceptance = components['schemas']['UserAgreementAcceptance'];
 /**
  * UserAttributeBase
  *

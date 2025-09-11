@@ -21,7 +21,59 @@
  * ```
  */
 
-import { AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+
+/**
+ * AgreementType. Auto-generated enum for AgreementType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the AgreementType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = AGREEMENT_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = AGREEMENT_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link AgreementType} - The TypeScript type definition
+ */
+export const AGREEMENT_TYPE = {
+  TERMS_AND_CONDITIONS: "terms_and_conditions",
+  MASTER_SERVICE_AGREEMENT: "master_service_agreement",
+  ACTING_AS_TRADER: "acting_as_trader",
+} as const satisfies Record<string, AgreementType>;
+
+/**
+ * Array of all AgreementType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid AgreementType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of AGREEMENT_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = AGREEMENT_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link AgreementType} - The TypeScript type definition
+ * @see {@link AGREEMENT_TYPE} - The object form of this enum
+ */
+export const AGREEMENT_TYPE_VALUES = [
+  'terms_and_conditions',
+  'master_service_agreement',
+  'acting_as_trader'
+] as const satisfies [string, ...string[]] | AgreementType[];
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
