@@ -1282,7 +1282,7 @@ export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Requ
  * Request type for GET Domains endpoint
  *
  * List all domains
- * Retrieves a paginated list of all domains
+ * Retrieves a paginated list of all active domains
  *
  * @remarks
  * This type defines the complete request structure for the GET Domains endpoint.
@@ -1442,7 +1442,7 @@ export type DELETE_DomainsDomainReference_Request_Path = DELETE_DomainsDomainRef
  * Request type for GET DomainsDomainReference endpoint
  *
  * Retrieve a domain
- * Retrieves a single domain by either its name or id
+ * Retrieves a single active domain by either its name or id
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainsDomainReference endpoint.

@@ -2087,7 +2087,7 @@ export type GET_DomainSearchSuggest_Response_502 = Problem
  * Response types for GET Domains endpoint
  *
  * List all domains
- * Retrieves a paginated list of all domains
+ * Retrieves a paginated list of all active domains
  *
  * @remarks
  * This type defines all possible response structures for the GET Domains endpoint.
@@ -2328,7 +2328,7 @@ export type DELETE_DomainsByDomainReference_Response_422 = HTTPValidationError
  * Response types for GET DomainsByDomainReference endpoint
  *
  * Retrieve a domain
- * Retrieves a single domain by either its name or id
+ * Retrieves a single active domain by either its name or id
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainsByDomainReference endpoint.

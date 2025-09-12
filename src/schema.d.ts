@@ -412,7 +412,7 @@ export interface paths {
         };
         /**
          * List all domains
-         * @description Retrieves a paginated list of all domains
+         * @description Retrieves a paginated list of all active domains
          */
         get: operations["get_domains_v1_domains_get"];
         put?: never;
@@ -495,7 +495,7 @@ export interface paths {
         };
         /**
          * Retrieve a domain
-         * @description Retrieves a single domain by either its name or id
+         * @description Retrieves a single active domain by either its name or id
          */
         get: operations["get_domain_v1_domains__domain_reference__get"];
         put?: never;
