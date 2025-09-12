@@ -2073,7 +2073,7 @@ export const REGISTRANT_CHANGE_TYPE_VALUES = [
  * @see {@link RegistryHandleAttributeType} - The TypeScript type definition
  */
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
-  AT-EXT-CONTACT:TYPE: "at-ext-contact:type",
+  AT_EXT_CONTACT_TYPE: "at-ext-contact:type",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**

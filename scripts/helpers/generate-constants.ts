@@ -46,6 +46,7 @@ function extractEnumsFromOpenAPI(): EnumInfo[] {
         // Convert value to a valid enum key
         const key = typeof value === 'string' 
           ? value
+              .replace(/[^a-zA-Z0-9]/g, '_') // Replace all non-alphanumeric chars with underscore
               .replace(/([A-Z]+)(?=[A-Z][a-z]|$)/g, '$1_')
               .replace(/([a-z])([A-Z])/g, '$1_$2')
               .toUpperCase()
