@@ -1232,9 +1232,8 @@ export interface components {
             /**
              * Amount
              * @description Price of the billing plan.
-             * @default 0.00
              */
-            amount: string;
+            amount?: string;
             /** @description Currency of the billing plan. */
             currency?: components["schemas"]["Currency"] | null;
             /**
