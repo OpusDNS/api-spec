@@ -14611,7 +14611,7 @@ export const KEYS_PERMISSION_SET = [
  *
  * Base price
  *
- * @type {number}
+ * @type {string}
  *
  *
  * @remarks

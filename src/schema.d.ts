@@ -3678,7 +3678,7 @@ export interface components {
              * Amount
              * @description Base price
              */
-            amount: number;
+            amount: string;
             /**
              * Currency
              * @description Currency code
