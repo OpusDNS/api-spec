@@ -4454,6 +4454,32 @@ export const KEYS_DNS_ZONE_RECORDS_PATCH_OPS = [
 ] as const satisfies (keyof DnsZoneRecordsPatchOps)[];
 
 /**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of DnsZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszone[KEY_DNS_ZONE_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATED_ON;
+ * const value = dnszone[propertyName];
+ * ```
+ *
+ * @see {@link DnsZone} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATED_ON = 'created_on' as keyof DnsZone;
+/**
  * dnssec_status property
  *
  *
@@ -4551,6 +4577,32 @@ export const KEY_DNS_ZONE_NAME = 'name' as keyof DnsZone;
  * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
  */
 export const KEY_DNS_ZONE_RRSETS = 'rrsets' as keyof DnsZone;
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of DnsZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszone[KEY_DNS_ZONE_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATED_ON;
+ * const value = dnszone[propertyName];
+ * ```
+ *
+ * @see {@link DnsZone} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATED_ON = 'updated_on' as keyof DnsZone;
 
 /**
  * Array of all DnsZone property keys
@@ -4573,10 +4625,12 @@ export const KEY_DNS_ZONE_RRSETS = 'rrsets' as keyof DnsZone;
  * @see {@link DnsZone} - The TypeScript type definition
  */
 export const KEYS_DNS_ZONE = [
+  KEY_DNS_ZONE_CREATED_ON,
   KEY_DNS_ZONE_DNSSEC_STATUS,
   KEY_DNS_ZONE_DOMAIN_PARTS,
   KEY_DNS_ZONE_NAME,
   KEY_DNS_ZONE_RRSETS,
+  KEY_DNS_ZONE_UPDATED_ON,
 ] as const satisfies (keyof DnsZone)[];
 
 /**

@@ -1039,6 +1039,11 @@ components:
       type: object
     DnsZoneResponse:
       properties:
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
         dnssec_status:
           $ref: '#/components/schemas/DnssecStatus'
           default: disabled
@@ -1052,6 +1057,11 @@ components:
             $ref: '#/components/schemas/DnsRrsetResponse'
           title: Rrsets
           type: array
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
       required:
       - name
       title: DnsZoneResponse
@@ -5258,7 +5268,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-13-065122
+  version: 2025-09-13-213944
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

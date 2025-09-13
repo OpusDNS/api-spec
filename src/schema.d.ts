@@ -1905,6 +1905,12 @@ export interface components {
         };
         /** DnsZoneResponse */
         DnsZoneResponse: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
             domain_parts?: components["schemas"]["DomainNameParts"];
@@ -1912,6 +1918,12 @@ export interface components {
             name: string;
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetResponse"][];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
         };
         /** DnsZoneRrsetsCreate */
         DnsZoneRrsetsCreate: {
