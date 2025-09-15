@@ -538,6 +538,9 @@ export const DNS_RRSET_TYPE = {
   TXT: "TXT",
   SOA: "SOA",
   SRV: "SRV",
+  SMIMEA: "SMIMEA",
+  TLSA: "TLSA",
+  URI: "URI",
 } as const satisfies Record<string, DnsRrsetType>;
 
 /**
@@ -574,7 +577,10 @@ export const DNS_RRSET_TYPE_VALUES = [
   'PTR',
   'TXT',
   'SOA',
-  'SRV'
+  'SRV',
+  'SMIMEA',
+  'TLSA',
+  'URI'
 ] as const satisfies [string, ...string[]] | DnsRrsetType[];
 
 /**

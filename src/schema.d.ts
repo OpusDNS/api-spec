@@ -1878,7 +1878,7 @@ export interface components {
          * DnsRrsetType
          * @enum {string}
          */
-        DnsRrsetType: "A" | "AAAA" | "ALIAS" | "CAA" | "CNAME" | "DNSKEY" | "DS" | "MX" | "NS" | "PTR" | "TXT" | "SOA" | "SRV";
+        DnsRrsetType: "A" | "AAAA" | "ALIAS" | "CAA" | "CNAME" | "DNSKEY" | "DS" | "MX" | "NS" | "PTR" | "TXT" | "SOA" | "SRV" | "SMIMEA" | "TLSA" | "URI";
         /** DnsRrsetWithOneRecordPatch */
         DnsRrsetWithOneRecordPatch: {
             /** Name */
