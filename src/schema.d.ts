@@ -1,4 +1,4 @@
-import { TypeID } from "typeid-js";
+import { TypeId } from "typeid-js";
 export interface paths {
     "/v1/auth/client_credentials": {
         parameters: {
@@ -1268,7 +1268,7 @@ export interface components {
              * Client Id
              * @description The organization ID associated with the credentials.
              */
-            client_id?: TypeID<"organization"> | null;
+            client_id?: TypeId<"organization"> | null;
             /**
              * Client Secret
              * @description Client secret for authentication.
@@ -1386,10 +1386,10 @@ export interface components {
              * Format: typeid
              * @description The contact id of the contact
              */
-            contact_id: TypeID<"contact">;
+            contact_id: TypeId<"contact">;
         };
         ContactIdList: {
-            [key: string]: TypeID<"contact">;
+            [key: string]: TypeId<"contact">;
         };
         /** ContactResponse */
         ContactResponse: {
@@ -1477,7 +1477,7 @@ export interface components {
              * Contact Id
              * Format: typeid
              */
-            contact_id?: TypeID<"contact">;
+            contact_id?: TypeId<"contact">;
             /**
              * Country
              * @description The country of the contact
@@ -1531,7 +1531,7 @@ export interface components {
              * @description The organization that owns the domain
              * @default None
              */
-            organization_id: TypeID<"organization">;
+            organization_id: TypeId<"organization">;
             /**
              * Phone
              * Format: phone
@@ -1577,12 +1577,12 @@ export interface components {
              * @description The contact that is being verified
              * @default None
              */
-            contact_id: TypeID<"contact">;
+            contact_id: TypeId<"contact">;
             /**
              * Contact Verification Id
              * Format: typeid
              */
-            contact_verification_id?: TypeID<"contact_verification">;
+            contact_verification_id?: TypeId<"contact_verification">;
             /**
              * Created On
              * Format: date-time
@@ -1626,12 +1626,12 @@ export interface components {
              * @description The contact that is being verified
              * @default None
              */
-            contact_id: TypeID<"contact">;
+            contact_id: TypeId<"contact">;
             /**
              * Contact Verification Id
              * Format: typeid
              */
-            contact_verification_id?: TypeID<"contact_verification">;
+            contact_verification_id?: TypeId<"contact_verification">;
             /**
              * Created On
              * Format: date-time
@@ -1670,12 +1670,12 @@ export interface components {
              * @description The contact that is being verified
              * @default None
              */
-            contact_id: TypeID<"contact">;
+            contact_id: TypeId<"contact">;
             /**
              * Contact Verification Id
              * Format: typeid
              */
-            contact_verification_id?: TypeID<"contact_verification">;
+            contact_verification_id?: TypeId<"contact_verification">;
             /**
              * Created On
              * Format: date-time
@@ -2013,7 +2013,7 @@ export interface components {
              * Format: typeid
              * @description The contact id of the contact
              */
-            contact_id: TypeID<"contact">;
+            contact_id: TypeId<"contact">;
             /** @description The type of contact */
             contact_type: components["schemas"]["DomainContactType"];
         };
@@ -2104,14 +2104,14 @@ export interface components {
              * Domain Dnssec Data Id
              * Format: typeid
              */
-            domain_dnssec_data_id?: TypeID<"domain_dnssec">;
+            domain_dnssec_data_id?: TypeId<"domain_dnssec">;
             /**
              * Domain Id
              * Format: typeid
              * @description The domain this DNSSEC record belongs to
              * @default None
              */
-            domain_id: TypeID<"domain">;
+            domain_id: TypeId<"domain">;
             /**
              * Flags
              * @description DNSKEY flags for key records
@@ -2283,7 +2283,7 @@ export interface components {
              * Domain Id
              * Format: typeid
              */
-            domain_id?: TypeID<"domain">;
+            domain_id?: TypeId<"domain">;
             /**
              * Expires On
              * @description When the domain expires
@@ -2305,7 +2305,7 @@ export interface components {
              * @description The organization that owns the domain
              * @default None
              */
-            owner_id: TypeID<"organization">;
+            owner_id: TypeId<"organization">;
             /**
              * Registered On
              * @description When the domain was registered
@@ -2316,7 +2316,7 @@ export interface components {
              * Format: typeid
              * @default None
              */
-            registry_account_id: TypeID<"registry_account">;
+            registry_account_id: TypeId<"registry_account">;
             /**
              * Registry Statuses
              * @description All the domain statuses
@@ -2446,7 +2446,7 @@ export interface components {
              * Format: typeid
              * @description The organization ID
              */
-            organization_id: TypeID<"organization">;
+            organization_id: TypeId<"organization">;
         };
         /** DomainTransferIn */
         DomainTransferIn: {
@@ -2553,7 +2553,7 @@ export interface components {
              * Event Id
              * Format: typeid
              */
-            event_id?: TypeID<"epp_event">;
+            event_id?: TypeId<"epp_event">;
             /**
              * Object Id
              * @description The id of the object that the event is about
@@ -2588,7 +2588,7 @@ export interface components {
              * Event Id
              * Format: typeid
              */
-            event_id?: TypeID<"epp_event">;
+            event_id?: TypeId<"epp_event">;
             /**
              * Message Queue Id
              * @description A composite key with the registry account + message queue ID from the poll operation.
@@ -2613,14 +2613,14 @@ export interface components {
              * Source Event Id
              * @description The reference of the original registry event (if any) that triggered this customer-facing event
              */
-            source_event_id?: TypeID<"epp_event"> | null;
+            source_event_id?: TypeId<"epp_event"> | null;
             /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
             subtype?: components["schemas"]["EventSubtype"] | null;
             /**
              * Target
              * @description The target of the event
              */
-            target?: TypeID<"organization"> | null;
+            target?: TypeId<"organization"> | null;
             /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
             type?: components["schemas"]["EventType"] | null;
         };
@@ -2701,7 +2701,7 @@ export interface components {
              * Organization Id
              * Format: typeid
              */
-            organization_id?: TypeID<"organization">;
+            organization_id?: TypeId<"organization">;
         };
         /** IpRestrictionResponse */
         IpRestrictionResponse: {
@@ -2724,7 +2724,7 @@ export interface components {
              * Organization Id
              * Format: typeid
              */
-            organization_id: TypeID<"organization">;
+            organization_id: TypeId<"organization">;
         };
         /** IpRestrictionUpdate */
         IpRestrictionUpdate: {
@@ -2845,7 +2845,7 @@ export interface components {
              * Notification Id
              * Format: typeid
              */
-            notification_id?: TypeID<"notification">;
+            notification_id?: TypeId<"notification">;
             /**
              * Publish Date
              * Format: date-time
@@ -2934,7 +2934,7 @@ export interface components {
              * Notification Id
              * Format: typeid
              */
-            notification_id?: TypeID<"notification">;
+            notification_id?: TypeId<"notification">;
             /**
              * Publish Date
              * Format: date-time
@@ -3058,12 +3058,12 @@ export interface components {
              * Format: typeid
              * @description Unique identifier for the organization.
              */
-            organization_id?: TypeID<"organization">;
+            organization_id?: TypeId<"organization">;
             /**
              * Parent Organization Id
              * @description ID of the parent organization.
              */
-            parent_organization_id?: TypeID<"organization"> | null;
+            parent_organization_id?: TypeId<"organization"> | null;
             /**
              * Postal Code
              * @description Postal code of the organization's address.
@@ -3255,7 +3255,7 @@ export interface components {
              * Parent Organization Id
              * @description ID of the parent organization.
              */
-            parent_organization_id?: TypeID<"organization"> | null;
+            parent_organization_id?: TypeId<"organization"> | null;
             /**
              * Postal Code
              * @description Postal code of the organization's address.
@@ -3299,7 +3299,7 @@ export interface components {
              * Format: typeid
              * @description Unique identifier of the organization credential.
              */
-            api_key_id: TypeID<"api_key">;
+            api_key_id: TypeId<"api_key">;
             /**
              * Api Key Name
              * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
@@ -3326,7 +3326,7 @@ export interface components {
              * Format: typeid
              * @default None
              */
-            organization_id: TypeID<"organization">;
+            organization_id: TypeId<"organization">;
             /** @description The status of the organization credential. */
             readonly status: components["schemas"]["OrganizationCredentialStatus"];
         };
@@ -3337,7 +3337,7 @@ export interface components {
              * Format: typeid
              * @description Unique identifier of the organization credential.
              */
-            api_key: TypeID<"api_key">;
+            api_key: TypeId<"api_key">;
             /**
              * Api Key Description
              * @description Description of the organization credential.
@@ -3353,7 +3353,7 @@ export interface components {
              * Format: typeid
              * @default None
              */
-            client_id: TypeID<"organization">;
+            client_id: TypeId<"organization">;
             /**
              * Client Secret
              * @description Plaintext secret to be hashed (not stored directly in the DB).
@@ -3539,12 +3539,12 @@ export interface components {
              * Format: typeid
              * @description Unique identifier for the organization.
              */
-            organization_id?: TypeID<"organization">;
+            organization_id?: TypeId<"organization">;
             /**
              * Parent Organization Id
              * @description ID of the parent organization.
              */
-            parent_organization_id?: TypeID<"organization"> | null;
+            parent_organization_id?: TypeId<"organization"> | null;
             /**
              * Postal Code
              * @description Postal code of the organization's address.
@@ -4121,7 +4121,7 @@ export interface components {
              * @description The user's organization id
              * @default None
              */
-            organization_id: TypeID<"organization">;
+            organization_id: TypeId<"organization">;
             /**
              * Phone
              * @description The user's phone number
@@ -4138,7 +4138,7 @@ export interface components {
              * User Id
              * Format: typeid
              */
-            user_id?: TypeID<"user">;
+            user_id?: TypeId<"user">;
             /**
              * Username
              * @description The user's unique username
@@ -4231,7 +4231,7 @@ export interface components {
              * @description Unique identifier for the notification
              * @default None
              */
-            notification_id: TypeID<"notification">;
+            notification_id: TypeId<"notification">;
             /**
              * @description Whether the user has read the notification
              * @default unread
@@ -4248,12 +4248,12 @@ export interface components {
              * Format: typeid
              * @default None
              */
-            user_id: TypeID<"user">;
+            user_id: TypeId<"user">;
             /**
              * User Notification Id
              * Format: typeid
              */
-            user_notification_id?: TypeID<"user_notification">;
+            user_notification_id?: TypeId<"user_notification">;
         };
         /**
          * UserNotificationStatus
@@ -4272,7 +4272,7 @@ export interface components {
              * User Notification Id
              * Format: typeid
              */
-            user_notification_id?: TypeID<"user_notification">;
+            user_notification_id?: TypeId<"user_notification">;
         };
         /** UserPasswordResetEmailResponse */
         UserPasswordResetEmailResponse: {
@@ -4379,12 +4379,12 @@ export interface components {
              * @description The user's id
              * @default None
              */
-            user_id: TypeID<"user">;
+            user_id: TypeId<"user">;
             /**
              * User Verification Id
              * Format: typeid
              */
-            user_verification_id?: TypeID<"user_verification">;
+            user_verification_id?: TypeId<"user_verification">;
             /**
              * Verified On
              * @description The date the verification was verified
@@ -4423,12 +4423,12 @@ export interface components {
              * @description The user's id
              * @default None
              */
-            user_id: TypeID<"user">;
+            user_id: TypeId<"user">;
             /**
              * User Verification Id
              * Format: typeid
              */
-            user_verification_id?: TypeID<"user_verification">;
+            user_verification_id?: TypeId<"user_verification">;
             /**
              * Verified On
              * @description The date the verification was verified
@@ -4467,12 +4467,12 @@ export interface components {
              * @description The user's id
              * @default None
              */
-            user_id: TypeID<"user">;
+            user_id: TypeId<"user">;
             /**
              * User Verification Id
              * Format: typeid
              */
-            user_verification_id?: TypeID<"user_verification">;
+            user_verification_id?: TypeId<"user_verification">;
             /**
              * Verified On
              * @description The date the verification was verified
@@ -4516,7 +4516,7 @@ export interface components {
              * @description The user's organization id
              * @default None
              */
-            organization_id: TypeID<"organization">;
+            organization_id: TypeId<"organization">;
             /**
              * Phone
              * @description The user's phone number
@@ -4540,7 +4540,7 @@ export interface components {
              * User Id
              * Format: typeid
              */
-            user_id?: TypeID<"user">;
+            user_id?: TypeId<"user">;
             /**
              * Username
              * @description The user's unique username
@@ -4584,7 +4584,7 @@ export interface components {
              * @description The user's organization id
              * @default None
              */
-            organization_id: TypeID<"organization">;
+            organization_id: TypeId<"organization">;
             /** Permissions */
             permissions?: components["schemas"]["Permission"][] | null;
             /**
@@ -4612,7 +4612,7 @@ export interface components {
              * User Id
              * Format: typeid
              */
-            user_id?: TypeID<"user">;
+            user_id?: TypeId<"user">;
             /**
              * Username
              * @description The user's unique username
@@ -4777,7 +4777,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                api_key_id: TypeID<"api_key">;
+                api_key_id: TypeId<"api_key">;
             };
             cookie?: never;
         };
@@ -5377,7 +5377,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeId<"contact">;
             };
             cookie?: never;
         };
@@ -5425,7 +5425,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeId<"contact">;
             };
             cookie?: never;
         };
@@ -5514,7 +5514,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeId<"contact">;
             };
             cookie?: never;
         };
@@ -5580,7 +5580,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeId<"contact">;
             };
             cookie?: never;
         };
@@ -5669,7 +5669,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeId<"contact">;
             };
             cookie?: never;
         };
@@ -5749,7 +5749,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                contact_id: TypeID<"contact">;
+                contact_id: TypeId<"contact">;
             };
             cookie?: never;
         };
@@ -6476,7 +6476,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6524,7 +6524,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6588,7 +6588,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6632,7 +6632,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6680,7 +6680,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6732,7 +6732,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6778,7 +6778,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6824,7 +6824,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6872,7 +6872,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -6907,7 +6907,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                domain_reference: TypeID<"domain"> | string;
+                domain_reference: TypeId<"domain"> | string;
             };
             cookie?: never;
         };
@@ -7277,7 +7277,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                event_id: TypeID<"epp_event">;
+                event_id: TypeId<"epp_event">;
             };
             cookie?: never;
         };
@@ -7341,7 +7341,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                event_id: TypeID<"epp_event">;
+                event_id: TypeId<"epp_event">;
             };
             cookie?: never;
         };
@@ -7401,7 +7401,7 @@ export interface operations {
     list_notifications_v1_notifications_get: {
         parameters: {
             query: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
                 page?: number;
                 page_size?: number;
             };
@@ -7467,11 +7467,11 @@ export interface operations {
     get_notification_v1_notifications__notification_id__get: {
         parameters: {
             query: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             header?: never;
             path: {
-                notification_id: TypeID<"notification">;
+                notification_id: TypeId<"notification">;
             };
             cookie?: never;
         };
@@ -7502,7 +7502,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                notification_id: TypeID<"notification">;
+                notification_id: TypeId<"notification">;
             };
             cookie?: never;
         };
@@ -7537,7 +7537,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                notification_id: TypeID<"notification">;
+                notification_id: TypeId<"notification">;
             };
             cookie?: never;
         };
@@ -7568,7 +7568,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                notification_id: TypeID<"notification">;
+                notification_id: TypeId<"notification">;
             };
             cookie?: never;
         };
@@ -7662,7 +7662,7 @@ export interface operations {
     get_attributes_v1_organizations_attributes_get: {
         parameters: {
             query?: {
-                organization_id?: TypeID<"organization"> | null;
+                organization_id?: TypeId<"organization"> | null;
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
             };
@@ -7695,7 +7695,7 @@ export interface operations {
     update_attributes_v1_organizations_attributes_patch: {
         parameters: {
             query?: {
-                organization_id?: TypeID<"organization"> | null;
+                organization_id?: TypeId<"organization"> | null;
             };
             header?: never;
             path?: never;
@@ -7735,7 +7735,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                organization_id: TypeID<"organization"> | null;
+                organization_id: TypeId<"organization"> | null;
             };
             cookie?: never;
         };
@@ -7766,7 +7766,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization"> | null;
+                organization_id: TypeId<"organization"> | null;
             };
             cookie?: never;
         };
@@ -8001,7 +8001,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization">;
+                organization_id: TypeId<"organization">;
             };
             cookie?: never;
         };
@@ -8032,7 +8032,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization">;
+                organization_id: TypeId<"organization">;
             };
             cookie?: never;
         };
@@ -8061,7 +8061,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization">;
+                organization_id: TypeId<"organization">;
             };
             cookie?: never;
         };
@@ -8096,7 +8096,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                organization_id: TypeID<"organization">;
+                organization_id: TypeId<"organization">;
             };
             cookie?: never;
         };
@@ -8130,7 +8130,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                organization_id: TypeID<"organization">;
+                organization_id: TypeId<"organization">;
                 product_type: components["schemas"]["BillingTransactionProductType"];
             };
             cookie?: never;
@@ -8625,7 +8625,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8656,7 +8656,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8701,7 +8701,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8736,7 +8736,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8767,7 +8767,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8798,7 +8798,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8833,7 +8833,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8882,7 +8882,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -8961,7 +8961,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
@@ -9008,7 +9008,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                user_id: TypeID<"user">;
+                user_id: TypeId<"user">;
             };
             cookie?: never;
         };
