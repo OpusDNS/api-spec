@@ -1733,11 +1733,12 @@ export const PERMISSION = {
   MANAGE_DNS_ZONES: "manage_dns_zones",
   MANAGE_DOMAINS: "manage_domains",
   MANAGE_EMAIL_FORWARDS: "manage_email_forwards",
+  MANAGE_EVENTS: "manage_events",
   MANAGE_OPUSDNS_API_KEYS: "manage_opusdns_api_keys",
   MANAGE_PRODUCTS: "manage_products",
   MANAGE_RESELLER: "manage_reseller",
-  MANAGE_USER_RELATIONS: "manage_user_relations",
   MANAGE_USERS: "manage_users",
+  MANAGE_USER_RELATIONS: "manage_user_relations",
   PLAN_MANAGER: "plan_manager",
   PREMIUM_PLAN: "premium_plan",
   RENEW_EXPIRE: "renew_expire",
@@ -1747,6 +1748,7 @@ export const PERMISSION = {
   VERIFY: "verify",
   VIEW: "view",
   VIEW_AUDIT_LOGS: "view_audit_logs",
+  VIEW_EVENTS: "view_events",
 } as const satisfies Record<string, Permission>;
 
 /**
@@ -1789,11 +1791,12 @@ export const PERMISSION_VALUES = [
   'manage_dns_zones',
   'manage_domains',
   'manage_email_forwards',
+  'manage_events',
   'manage_opusdns_api_keys',
   'manage_products',
   'manage_reseller',
-  'manage_user_relations',
   'manage_users',
+  'manage_user_relations',
   'plan_manager',
   'premium_plan',
   'renew_expire',
@@ -1802,7 +1805,8 @@ export const PERMISSION_VALUES = [
   'update',
   'verify',
   'view',
-  'view_audit_logs'
+  'view_audit_logs',
+  'view_events'
 ] as const satisfies [string, ...string[]] | Permission[];
 
 /**
@@ -2136,6 +2140,7 @@ export const RELATION = {
   CONTACT_MANAGER: "contact_manager",
   DOMAIN_MANAGER: "domain_manager",
   EMAIL_FORWARD_MANAGER: "email_forward_manager",
+  EVENTS_MANAGER: "events_manager",
   MEMBER: "member",
   OPUSDNS_INTERNAL_API_KEY: "opusdns_internal_api_key",
   ORGANIZATION_MANAGER: "organization_manager",
@@ -2179,6 +2184,7 @@ export const RELATION_VALUES = [
   'contact_manager',
   'domain_manager',
   'email_forward_manager',
+  'events_manager',
   'member',
   'opusdns_internal_api_key',
   'organization_manager',

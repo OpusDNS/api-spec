@@ -3793,11 +3793,12 @@ components:
       - manage_dns_zones
       - manage_domains
       - manage_email_forwards
+      - manage_events
       - manage_opusdns_api_keys
       - manage_products
       - manage_reseller
-      - manage_user_relations
       - manage_users
+      - manage_user_relations
       - plan_manager
       - premium_plan
       - renew_expire
@@ -3807,6 +3808,7 @@ components:
       - verify
       - view
       - view_audit_logs
+      - view_events
       title: Permission
       type: string
     PermissionSet:
@@ -4021,6 +4023,7 @@ components:
       - contact_manager
       - domain_manager
       - email_forward_manager
+      - events_manager
       - member
       - opusdns_internal_api_key
       - organization_manager
@@ -5331,7 +5334,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-16-220632
+  version: 2025-09-16-223203
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
