@@ -33,7 +33,7 @@ const ast = await openapiTS(schemaPath, {
 				}
 
 				const typeIdType = ts.factory.createTypeReferenceNode(
-					ts.factory.createIdentifier("TypeID"),
+					ts.factory.createIdentifier("TypeId"),
 					[
 						ts.factory.createLiteralTypeNode(
 							ts.factory.createStringLiteral(typeIdPrefix)
@@ -46,7 +46,7 @@ const ast = await openapiTS(schemaPath, {
 				return undefined;
 		}
 	},
-	inject: "import { TypeID } from 'typeid-js';",
+	inject: "import { TypeId } from 'typeid-js';",
 });
 const contents = astToString(ast);
 
