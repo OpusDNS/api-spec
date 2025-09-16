@@ -4001,6 +4001,12 @@ export interface components {
              * @description The TLD being configured
              */
             name: string;
+            /**
+             * Third Level Structure
+             * @description Name of the third levels (name and overrides)
+             * @default []
+             */
+            third_level_structure: string[];
             /** @description The type of the TLD (e.g., gTLD, ccTLD) */
             type: components["schemas"]["TLDType"];
         };

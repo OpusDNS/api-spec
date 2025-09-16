@@ -16281,6 +16281,32 @@ export const KEYS_TERMS_OF_SERVICE_ACCEPT = [
  */
 export const KEY_TLD_BASE_NAME = 'name' as keyof TldBase;
 /**
+ * Third Level Structure
+ *
+ * Name of the third levels (name and overrides)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `third_level_structure` property of TldBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldbase[KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE;
+ * const value = tldbase[propertyName];
+ * ```
+ *
+ * @see {@link TldBase} - The TypeScript type definition
+ * @see {@link KEYS_TLD_BASE} - Array of all keys for this type
+ */
+export const KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE = 'third_level_structure' as keyof TldBase;
+/**
  * type property
  *
  * The type of the TLD (e.g., gTLD, ccTLD)
@@ -16328,6 +16354,7 @@ export const KEY_TLD_BASE_TYPE = 'type' as keyof TldBase;
  */
 export const KEYS_TLD_BASE = [
   KEY_TLD_BASE_NAME,
+  KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE,
   KEY_TLD_BASE_TYPE,
 ] as const satisfies (keyof TldBase)[];
 
