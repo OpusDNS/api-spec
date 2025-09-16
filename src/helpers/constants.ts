@@ -206,7 +206,7 @@ export const BILLING_TRANSACTION_ACTION_VALUES = [
  */
 export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   DOMAIN: "domain",
-  ZONE: "zone",
+  ZONES: "zones",
   EMAIL_FORWARD: "email_forward",
   DOMAIN_FORWARD: "domain_forward",
 } as const satisfies Record<string, BillingTransactionProductType>;
@@ -234,7 +234,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
  */
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'domain',
-  'zone',
+  'zones',
   'email_forward',
   'domain_forward'
 ] as const satisfies [string, ...string[]] | BillingTransactionProductType[];

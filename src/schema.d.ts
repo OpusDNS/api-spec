@@ -1278,7 +1278,7 @@ export interface components {
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zone" | "email_forward" | "domain_forward";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward";
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
             /**
