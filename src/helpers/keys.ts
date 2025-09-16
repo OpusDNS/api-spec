@@ -72,6 +72,8 @@ import { DomainPeriod } from './schemas';
 import { DomainRenewRequest } from './schemas';
 import { DomainRenew } from './schemas';
 import { Domain } from './schemas';
+import { DomainRestoreRequest } from './schemas';
+import { DomainRestore } from './schemas';
 import { DomainSearchMeta } from './schemas';
 import { DomainSearch } from './schemas';
 import { DomainSearchSuggestionPriceData } from './schemas';
@@ -7114,6 +7116,242 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_TRANSFER_LOCK,
   KEY_DOMAIN_UPDATED_ON,
 ] as const satisfies (keyof Domain)[];
+
+/**
+ * Additional Info
+ *
+ * Additional information to include in the restore operation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `additional_info` property of DomainRestoreRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrestorerequest[KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO;
+ * const value = domainrestorerequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainRestoreRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RESTORE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO = 'additional_info' as keyof DomainRestoreRequest;
+/**
+ * Auto Renew
+ *
+ * Whether to automatically renew the domain after restore
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auto_renew` property of DomainRestoreRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrestorerequest[KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW;
+ * const value = domainrestorerequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainRestoreRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RESTORE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW = 'auto_renew' as keyof DomainRestoreRequest;
+/**
+ * Reason
+ *
+ * Reason for restoring the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `reason` property of DomainRestoreRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrestorerequest[KEY_DOMAIN_RESTORE_REQUEST_REASON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RESTORE_REQUEST_REASON;
+ * const value = domainrestorerequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainRestoreRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RESTORE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RESTORE_REQUEST_REASON = 'reason' as keyof DomainRestoreRequest;
+
+/**
+ * Array of all DomainRestoreRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainRestoreRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_RESTORE_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${domainrestorerequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_RESTORE_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainRestoreRequest} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_RESTORE_REQUEST = [
+  KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO,
+  KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW,
+  KEY_DOMAIN_RESTORE_REQUEST_REASON,
+] as const satisfies (keyof DomainRestoreRequest)[];
+
+/**
+ * Domain Id
+ *
+ * The ID of the restored domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_id` property of DomainRestore objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrestore[KEY_DOMAIN_RESTORE_DOMAIN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RESTORE_DOMAIN_ID;
+ * const value = domainrestore[propertyName];
+ * ```
+ *
+ * @see {@link DomainRestore} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RESTORE_DOMAIN_ID = 'domain_id' as keyof DomainRestore;
+/**
+ * Expiration Date
+ *
+ * The new expiration date after restore
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expiration_date` property of DomainRestore objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrestore[KEY_DOMAIN_RESTORE_EXPIRATION_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RESTORE_EXPIRATION_DATE;
+ * const value = domainrestore[propertyName];
+ * ```
+ *
+ * @see {@link DomainRestore} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RESTORE_EXPIRATION_DATE = 'expiration_date' as keyof DomainRestore;
+/**
+ * Name
+ *
+ * The name of the restored domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainRestore objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrestore[KEY_DOMAIN_RESTORE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RESTORE_NAME;
+ * const value = domainrestore[propertyName];
+ * ```
+ *
+ * @see {@link DomainRestore} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RESTORE_NAME = 'name' as keyof DomainRestore;
+/**
+ * Restored At
+ *
+ * When the domain restore operation was completed
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `restored_at` property of DomainRestore objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrestore[KEY_DOMAIN_RESTORE_RESTORED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RESTORE_RESTORED_AT;
+ * const value = domainrestore[propertyName];
+ * ```
+ *
+ * @see {@link DomainRestore} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RESTORE_RESTORED_AT = 'restored_at' as keyof DomainRestore;
+
+/**
+ * Array of all DomainRestore property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainRestore objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_RESTORE) {
+ *   console.log(`Property: ${key}, Value: ${domainrestore[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_RESTORE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainRestore} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_RESTORE = [
+  KEY_DOMAIN_RESTORE_DOMAIN_ID,
+  KEY_DOMAIN_RESTORE_EXPIRATION_DATE,
+  KEY_DOMAIN_RESTORE_NAME,
+  KEY_DOMAIN_RESTORE_RESTORED_AT,
+] as const satisfies (keyof DomainRestore)[];
 
 /**
  * Processing Time Ms

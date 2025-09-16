@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithBillingData, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserVerification, UserPasswordResetEmail, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_UserNotificationSummary, Notification, UserNotification, Pagination_Organization, Organization, OrganizationWithBillingData, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserVerification, UserPasswordResetEmail, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -2862,6 +2862,61 @@ export type POST_DomainsByDomainReferenceRenew_Response_200 = DomainRenew
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST DomainsByDomainReferenceRestore endpoint
+ *
+ * Restore Domain
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainsByDomainReferenceRestore endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/restore
+ *
+ * @see {@link POST_DomainsByDomainReferenceRestore_Response_200} - 200 response type
+ * @see {@link POST_DomainsByDomainReferenceRestore_Response_422} - 422 response type
+ *
+
+ */
+export type POST_DomainsByDomainReferenceRestore_Response = POST_DomainsByDomainReferenceRestore_Response_200 | POST_DomainsByDomainReferenceRestore_Response_422;
+
+/**
+ * 200 response for POST DomainsByDomainReferenceRestore endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST DomainsByDomainReferenceRestore endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/restore
+ *
+ * @see {@link POST_DomainsByDomainReferenceRestore_Response} - The main response type definition
+ * @see {@link DomainRestore} - The actual schema type definition
+ */
+export type POST_DomainsByDomainReferenceRestore_Response_200 = DomainRestore
+
+/**
+ * 422 response for POST DomainsByDomainReferenceRestore endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainsByDomainReferenceRestore endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/{domain_reference}/restore
+ *
+ * @see {@link POST_DomainsByDomainReferenceRestore_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_DomainsByDomainReferenceRestore_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainsByDomainReferenceTransfer endpoint

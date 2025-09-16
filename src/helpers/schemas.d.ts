@@ -1035,6 +1035,38 @@ export type DomainRenew = components['schemas']['DomainRenewResponse'];
  */
 export type Domain = components['schemas']['DomainResponse'];
 /**
+ * DomainRestoreRequest
+ *
+ * @remarks
+ * Type alias for the `DomainRestoreRequest` OpenAPI schema.
+ * This type represents domainrestorerequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainRestoreRequest();
+ * const item: DomainRestoreRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainRestoreRequest = components['schemas']['DomainRestoreRequest'];
+/**
+ * DomainRestoreResponse
+ *
+ * @remarks
+ * Type alias for the `DomainRestoreResponse` OpenAPI schema.
+ * This type represents domainrestoreresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainRestore();
+ * const item: DomainRestore = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainRestore = components['schemas']['DomainRestoreResponse'];
+/**
  * DomainSearchMeta
  *
  * @remarks

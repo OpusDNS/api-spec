@@ -600,6 +600,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/{domain_reference}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore Domain */
+        post: operations["restore_domain_v1_domains__domain_reference__restore_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/{domain_reference}/transfer": {
         parameters: {
             query?: never;
@@ -2351,6 +2368,51 @@ export interface components {
              * @description The date/time the entry was last updated on
              */
             updated_on?: Date;
+        };
+        /** DomainRestoreRequest */
+        DomainRestoreRequest: {
+            /**
+             * Additional Info
+             * @description Additional information to include in the restore operation
+             */
+            additional_info?: string | null;
+            /**
+             * Auto Renew
+             * @description Whether to automatically renew the domain after restore
+             * @default true
+             */
+            auto_renew: boolean;
+            /**
+             * Reason
+             * @description Reason for restoring the domain
+             */
+            reason: string;
+        };
+        /** DomainRestoreResponse */
+        DomainRestoreResponse: {
+            /**
+             * Domain Id
+             * Format: typeid
+             * @description The ID of the restored domain
+             */
+            domain_id: TypeId<"domain">;
+            /**
+             * Expiration Date
+             * Format: date-time
+             * @description The new expiration date after restore
+             */
+            expiration_date: Date;
+            /**
+             * Name
+             * @description The name of the restored domain
+             */
+            name: string;
+            /**
+             * Restored At
+             * Format: date-time
+             * @description When the domain restore operation was completed
+             */
+            restored_at: Date;
         };
         /** DomainSearchMeta */
         DomainSearchMeta: {
@@ -6889,6 +6951,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainRenewResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restore_domain_v1_domains__domain_reference__restore_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainRestoreRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainRestoreResponse"];
                 };
             };
             /** @description Validation Error */

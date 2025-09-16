@@ -1738,6 +1738,59 @@ components:
       - roid
       title: DomainResponse
       type: object
+    DomainRestoreRequest:
+      properties:
+        additional_info:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional information to include in the restore operation
+          title: Additional Info
+        auto_renew:
+          default: true
+          description: Whether to automatically renew the domain after restore
+          title: Auto Renew
+          type: boolean
+        reason:
+          description: Reason for restoring the domain
+          title: Reason
+          type: string
+      required:
+      - reason
+      title: DomainRestoreRequest
+      type: object
+    DomainRestoreResponse:
+      properties:
+        domain_id:
+          description: The ID of the restored domain
+          examples:
+          - domain_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Domain Id
+          type: string
+          x-typeid-prefix: domain
+        expiration_date:
+          description: The new expiration date after restore
+          format: date-time
+          title: Expiration Date
+          type: string
+        name:
+          description: The name of the restored domain
+          title: Name
+          type: string
+        restored_at:
+          description: When the domain restore operation was completed
+          format: date-time
+          title: Restored At
+          type: string
+      required:
+      - domain_id
+      - name
+      - expiration_date
+      - restored_at
+      title: DomainRestoreResponse
+      type: object
     DomainSearchMeta:
       properties:
         processing_time_ms:
@@ -5271,7 +5324,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-15-221912
+  version: 2025-09-16-171129
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7756,6 +7809,47 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Renew a domain
+      tags:
+      - domain
+  /v1/domains/{domain_reference}/restore:
+    post:
+      operationId: restore_domain_v1_domains__domain_reference__restore_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainRestoreRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainRestoreResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Restore Domain
       tags:
       - domain
   /v1/domains/{domain_reference}/transfer:
