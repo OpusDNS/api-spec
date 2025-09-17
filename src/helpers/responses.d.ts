@@ -5495,61 +5495,6 @@ export type PATCH_UsersByUserIdRoles_Response_200 = RelationSet
 export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError
 
 /**
- * Response types for DELETE UsersByUserIdVerification endpoint
- *
- * Cancel Verification
- *
- * @remarks
- * This type defines all possible response structures for the DELETE UsersByUserIdVerification endpoint.
- * Each response code maps to a specific response type as defined in the OpenAPI specification.
- * Use this type to ensure type safety when handling API responses from this endpoint.
- *
-
- *
- * @path /v1/users/{user_id}/verification
- *
- * @see {@link DELETE_UsersByUserIdVerification_Response_401} - 401 response type
- * @see {@link DELETE_UsersByUserIdVerification_Response_422} - 422 response type
- *
-
- */
-export type DELETE_UsersByUserIdVerification_Response = DELETE_UsersByUserIdVerification_Response_401 | DELETE_UsersByUserIdVerification_Response_422;
-
-/**
- * 401 response for DELETE UsersByUserIdVerification endpoint
- *
- * @remarks
- * This type defines the response structure for the 401 status code
- * of the DELETE UsersByUserIdVerification endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/users/{user_id}/verification
- *
- * @see {@link DELETE_UsersByUserIdVerification_Response} - The main response type definition
- * @see {@link Problem} - The actual schema type definition
- */
-export type DELETE_UsersByUserIdVerification_Response_401 = Problem
-
-/**
- * 422 response for DELETE UsersByUserIdVerification endpoint
- *
- * @remarks
- * This type defines the response structure for the 422 status code
- * of the DELETE UsersByUserIdVerification endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/users/{user_id}/verification
- *
- * @see {@link DELETE_UsersByUserIdVerification_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
- */
-export type DELETE_UsersByUserIdVerification_Response_422 = HTTPValidationError
-
-/**
  * Response types for GET UsersByUserIdVerification endpoint
  *
  * Get Verification Status
@@ -6005,43 +5950,6 @@ export type PATCH_UsersMePasswordReset_Response_401 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_UsersMePasswordReset_Response_422 = HTTPValidationError
-
-/**
- * Response types for DELETE UsersMeVerification endpoint
- *
- * Cancel Verification Me
- *
- * @remarks
- * This type defines all possible response structures for the DELETE UsersMeVerification endpoint.
- * Each response code maps to a specific response type as defined in the OpenAPI specification.
- * Use this type to ensure type safety when handling API responses from this endpoint.
- *
-
- *
- * @path /v1/users/me/verification
- *
- * @see {@link DELETE_UsersMeVerification_Response_401} - 401 response type
- *
-
- */
-export type DELETE_UsersMeVerification_Response = DELETE_UsersMeVerification_Response_401;
-
-/**
- * 401 response for DELETE UsersMeVerification endpoint
- *
- * @remarks
- * This type defines the response structure for the 401 status code
- * of the DELETE UsersMeVerification endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/users/me/verification
- *
- * @see {@link DELETE_UsersMeVerification_Response} - The main response type definition
- * @see {@link Problem} - The actual schema type definition
- */
-export type DELETE_UsersMeVerification_Response_401 = Problem
 
 /**
  * Response types for GET UsersMeVerification endpoint

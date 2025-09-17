@@ -3662,28 +3662,6 @@ export type PATCH_UsersMePasswordReset_Request = {
 export type PATCH_UsersMePasswordReset_Request_Body = PATCH_UsersMePasswordReset_Request['requestBody'];
 
 /**
- * Request type for DELETE UsersMeVerification endpoint
- *
- * Cancel Verification Me
- *
- * @remarks
- * This type defines the complete request structure for the DELETE UsersMeVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/me/verification
- *
- * @see {@link DELETE_UsersMeVerification_Request_Query} - Query parameters type
- * @see {@link DELETE_UsersMeVerification_Request_Path} - Path parameters type
- * @see {@link DELETE_UsersMeVerification_Request_Body} - Request body type
- */
-export type DELETE_UsersMeVerification_Request = {
-}
-
-/**
  * Request type for GET UsersMeVerification endpoint
  *
  * Get Verification Status Me
@@ -4050,44 +4028,6 @@ export type PATCH_UsersUserIdRoles_Request_Path = PATCH_UsersUserIdRoles_Request
  * @path /v1/users/{user_id}/roles
  */
 export type PATCH_UsersUserIdRoles_Request_Body = PATCH_UsersUserIdRoles_Request['requestBody'];
-
-/**
- * Request type for DELETE UsersUserIdVerification endpoint
- *
- * Cancel Verification
- *
- * @remarks
- * This type defines the complete request structure for the DELETE UsersUserIdVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/{user_id}/verification
- *
- * @see {@link DELETE_UsersUserIdVerification_Request_Query} - Query parameters type
- * @see {@link DELETE_UsersUserIdVerification_Request_Path} - Path parameters type
- * @see {@link DELETE_UsersUserIdVerification_Request_Body} - Request body type
- */
-export type DELETE_UsersUserIdVerification_Request = {
-  parameters: {
-    path: operations['cancel_verification_v1_users__user_id__verification_delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/users/{user_id}/verification
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/users/{user_id}/verification endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/users/{user_id}/verification
- */
-export type DELETE_UsersUserIdVerification_Request_Path = DELETE_UsersUserIdVerification_Request['parameters']['path'];
 
 /**
  * Request type for GET UsersUserIdVerification endpoint

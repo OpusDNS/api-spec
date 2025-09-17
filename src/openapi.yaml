@@ -5334,7 +5334,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-16-231949
+  version: 2025-09-17-104252
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9399,28 +9399,6 @@ paths:
       tags:
       - user
   /v1/users/me/verification:
-    delete:
-      operationId: cancel_verification_me_v1_users_me_verification_delete
-      responses:
-        '204':
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Cancel Verification Me
-      tags:
-      - user
     get:
       operationId: get_verification_status_me_v1_users_me_verification_get
       responses:
@@ -9800,46 +9778,6 @@ paths:
       tags:
       - user
   /v1/users/{user_id}/verification:
-    delete:
-      operationId: cancel_verification_v1_users__user_id__verification_delete
-      parameters:
-      - in: path
-        name: user_id
-        required: true
-        schema:
-          examples:
-          - user_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: User Id
-          type: string
-          x-typeid-prefix: user
-      responses:
-        '204':
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Cancel Verification
-      tags:
-      - user
     get:
       operationId: get_verification_status_v1_users__user_id__verification_get
       parameters:

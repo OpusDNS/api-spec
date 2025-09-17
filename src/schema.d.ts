@@ -1122,8 +1122,7 @@ export interface paths {
         put?: never;
         /** Create Verification Me */
         post: operations["create_verification_me_v1_users_me_verification_post"];
-        /** Cancel Verification Me */
-        delete: operations["cancel_verification_me_v1_users_me_verification_delete"];
+        delete?: never;
         options?: never;
         head?: never;
         /** Update Verification Me */
@@ -1196,8 +1195,7 @@ export interface paths {
         put?: never;
         /** Create Verification */
         post: operations["create_verification_v1_users__user_id__verification_post"];
-        /** Cancel Verification */
-        delete: operations["cancel_verification_v1_users__user_id__verification_delete"];
+        delete?: never;
         options?: never;
         head?: never;
         /** Update Verification */
@@ -8617,40 +8615,6 @@ export interface operations {
             };
         };
     };
-    cancel_verification_me_v1_users_me_verification_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
     update_verification_me_v1_users_me_verification_patch: {
         parameters: {
             query: {
@@ -9044,51 +9008,6 @@ export interface operations {
                      *       "status": 405,
                      *       "title": "User Management Error",
                      *       "type": "user-verification-type-invalid"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    cancel_verification_v1_users__user_id__verification_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                user_id: TypeId<"user">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
