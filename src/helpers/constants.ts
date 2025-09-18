@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserNotificationStatus, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AgreementType. Auto-generated enum for AgreementType
@@ -2564,56 +2564,6 @@ export const TRANSFER_ACK_TYPE_VALUES = [
   'registrant',
   'both'
 ] as const satisfies [string, ...string[]] | TransferAckType[];
-
-/**
- * UserNotificationStatus. Auto-generated enum for UserNotificationStatus
- *
- * @remarks
- * This constant provides both object and array forms for the UserNotificationStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = USER_NOTIFICATION_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = USER_NOTIFICATION_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link UserNotificationStatus} - The TypeScript type definition
- */
-export const USER_NOTIFICATION_STATUS = {
-  READ: "read",
-  UNREAD: "unread",
-} as const satisfies Record<string, UserNotificationStatus>;
-
-/**
- * Array of all UserNotificationStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid UserNotificationStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of USER_NOTIFICATION_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = USER_NOTIFICATION_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link UserNotificationStatus} - The TypeScript type definition
- * @see {@link USER_NOTIFICATION_STATUS} - The object form of this enum
- */
-export const USER_NOTIFICATION_STATUS_VALUES = [
-  'read',
-  'unread'
-] as const satisfies [string, ...string[]] | UserNotificationStatus[];
 
 /**
  * UserStatus. Auto-generated enum for UserStatus

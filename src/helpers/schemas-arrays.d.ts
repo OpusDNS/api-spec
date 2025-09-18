@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, UserNotificationSummary, Period, Permission, PremiumAffectsType, Relation, UserAgreementAcceptance, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, Period, Permission, PremiumAffectsType, Relation, UserAgreementAcceptance, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -597,20 +597,6 @@ export type OrganizationCredentialArray = OrganizationCredential[];
  * @see {@link Organization} - The individual Organization type definition
  */
 export type OrganizationArray = Organization[];
-/**
- * UserNotificationSummary
- *
- * @remarks
- * Array type for UserNotificationSummary objects. Used when the API returns a collection of UserNotificationSummary instances.
- *
- * @example
- * ```typescript
- * const items: UserNotificationSummaryArray = await api.getUserNotificationSummarys();
- * ```
- *
- * @see {@link UserNotificationSummary} - The individual UserNotificationSummary type definition
- */
-export type UserNotificationSummaryArray = UserNotificationSummary[];
 /**
  * Period
  *

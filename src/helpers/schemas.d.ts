@@ -1664,70 +1664,6 @@ export type LocalPresenceRequirementType = components['schemas']['LocalPresenceR
  */
 export type Nameserver = components['schemas']['Nameserver'];
 /**
- * Notification
- *
- * @remarks
- * Type alias for the `Notification` OpenAPI schema.
- * This type represents notification data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getNotification();
- * const item: Notification = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type Notification = components['schemas']['Notification'];
-/**
- * NotificationCreate
- *
- * @remarks
- * Type alias for the `NotificationCreate` OpenAPI schema.
- * This type represents notificationcreate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getNotificationCreate();
- * const item: NotificationCreate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type NotificationCreate = components['schemas']['NotificationCreate'];
-/**
- * NotificationSummary
- *
- * @remarks
- * Type alias for the `NotificationSummary` OpenAPI schema.
- * This type represents notificationsummary data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getNotificationSummary();
- * const item: NotificationSummary = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type NotificationSummary = components['schemas']['NotificationSummary'];
-/**
- * NotificationUpdate
- *
- * @remarks
- * Type alias for the `NotificationUpdate` OpenAPI schema.
- * This type represents notificationupdate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getNotificationUpdate();
- * const item: NotificationUpdate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type NotificationUpdate = components['schemas']['NotificationUpdate'];
-/**
  * Organization
  *
  * @remarks
@@ -2079,22 +2015,6 @@ export type Pagination_OrganizationCredential = components['schemas']['Paginatio
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_Organization = components['schemas']['Pagination_Organization_'];
-/**
- * Pagination[UserNotificationSummary]
- *
- * @remarks
- * Type alias for the `Pagination_UserNotificationSummary_` OpenAPI schema.
- * This type represents pagination[usernotificationsummary] data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPagination_UserNotificationSummary();
- * const item: Pagination_UserNotificationSummary = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type Pagination_UserNotificationSummary = components['schemas']['Pagination_UserNotificationSummary_'];
 /**
  * Pagination[User]
  *
@@ -2831,54 +2751,6 @@ export type UserAttributeBase = components['schemas']['UserAttributeBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type UserCreate = components['schemas']['UserCreate'];
-/**
- * UserNotification
- *
- * @remarks
- * Type alias for the `UserNotification` OpenAPI schema.
- * This type represents usernotification data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserNotification();
- * const item: UserNotification = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserNotification = components['schemas']['UserNotification'];
-/**
- * UserNotificationStatus
- *
- * @remarks
- * Type alias for the `UserNotificationStatus` OpenAPI schema.
- * This type represents usernotificationstatus data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserNotificationStatus();
- * const item: UserNotificationStatus = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserNotificationStatus = components['schemas']['UserNotificationStatus'];
-/**
- * UserNotificationSummary
- *
- * @remarks
- * Type alias for the `UserNotificationSummary` OpenAPI schema.
- * This type represents usernotificationsummary data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserNotificationSummary();
- * const item: UserNotificationSummary = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserNotificationSummary = components['schemas']['UserNotificationSummary'];
 /**
  * UserPasswordResetEmailResponse
  *
