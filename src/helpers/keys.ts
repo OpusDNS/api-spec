@@ -9489,7 +9489,7 @@ export const KEYS_IDN_BASE = [
 /**
  * Ip Network
  *
- * IP address or CIDR range for the restriction.
+ * IP address or CIDR network range. Individual IPs can be specified without CIDR notation.
  *
  * @type {string}
  *
@@ -9591,7 +9591,7 @@ export const KEY_IP_RESTRICTION_CREATED_ON = 'created_on' as keyof IpRestriction
 /**
  * Ip Network
  *
- * IP address or CIDR range for the restriction.
+ * IP address or CIDR network range. Single IPs are returned with /32 (IPv4) or /128 (IPv6) notation.
  *
  * @type {string}
  *
@@ -9720,7 +9720,7 @@ export const KEYS_IP_RESTRICTION = [
 /**
  * Ip Network
  *
- * IP address or CIDR range for the restriction.
+ * IP address or CIDR network range to replace the existing restriction.
  *
  *
  *

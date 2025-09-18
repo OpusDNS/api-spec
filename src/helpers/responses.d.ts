@@ -4759,7 +4759,10 @@ export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Res
  * Response types for GET OrganizationsIpRestrictions endpoint
  *
  * List Ip Restrictions
- * Get all IP restrictions for the organization
+ * List all IP restrictions for the organization.
+
+Returns a list of all IP restrictions configured for your organization.
+Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsIpRestrictions endpoint.
@@ -4797,7 +4800,10 @@ export type GET_OrganizationsIpRestrictions_Response_200 = IpRestrictionArray
  * Response types for POST OrganizationsIpRestrictions endpoint
  *
  * Create Ip Restriction
- * Create a new IP restriction for the organization
+ * Create a new IP restriction for the organization.
+
+Accepts either a single IP address or a CIDR network range.
+Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines all possible response structures for the POST OrganizationsIpRestrictions endpoint.
@@ -4853,7 +4859,9 @@ export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError
  * Response types for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
  *
  * Delete Ip Restriction
- * Delete an IP restriction
+ * Delete an IP restriction.
+
+Permanently removes the specified IP restriction from your organization.
  *
  * @remarks
  * This type defines all possible response structures for the DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint.
@@ -4891,7 +4899,10 @@ export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = H
  * Response types for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
  *
  * Get Ip Restriction
- * Get a specific IP restriction by ID
+ * Get a specific IP restriction by ID.
+
+Returns the details of a specific IP restriction if it exists and belongs to your organization.
+Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsIpRestrictionsByIpRestrictionId endpoint.
@@ -4947,7 +4958,10 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTP
  * Response types for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
  *
  * Update Ip Restriction
- * Update an IP restriction
+ * Update an existing IP restriction.
+
+You can update the IP network range or the last usage timestamp.
+Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines all possible response structures for the PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint.

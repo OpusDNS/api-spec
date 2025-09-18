@@ -861,13 +861,19 @@ export interface paths {
         };
         /**
          * List Ip Restrictions
-         * @description Get all IP restrictions for the organization
+         * @description List all IP restrictions for the organization.
+         *
+         *     Returns a list of all IP restrictions configured for your organization.
+         *     Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
          */
         get: operations["list_ip_restrictions_v1_organizations_ip_restrictions_get"];
         put?: never;
         /**
          * Create Ip Restriction
-         * @description Create a new IP restriction for the organization
+         * @description Create a new IP restriction for the organization.
+         *
+         *     Accepts either a single IP address or a CIDR network range.
+         *     Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
          */
         post: operations["create_ip_restriction_v1_organizations_ip_restrictions_post"];
         delete?: never;
@@ -885,21 +891,29 @@ export interface paths {
         };
         /**
          * Get Ip Restriction
-         * @description Get a specific IP restriction by ID
+         * @description Get a specific IP restriction by ID.
+         *
+         *     Returns the details of a specific IP restriction if it exists and belongs to your organization.
+         *     Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
          */
         get: operations["get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get"];
         put?: never;
         post?: never;
         /**
          * Delete Ip Restriction
-         * @description Delete an IP restriction
+         * @description Delete an IP restriction.
+         *
+         *     Permanently removes the specified IP restriction from your organization.
          */
         delete: operations["delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete"];
         options?: never;
         head?: never;
         /**
          * Update Ip Restriction
-         * @description Update an IP restriction
+         * @description Update an existing IP restriction.
+         *
+         *     You can update the IP network range or the last usage timestamp.
+         *     Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
          */
         patch: operations["update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch"];
         trace?: never;
@@ -2749,12 +2763,18 @@ export interface components {
              */
             idn_tables?: string[] | null;
         };
-        /** IpRestrictionCreate */
+        /**
+         * IpRestrictionCreate
+         * @description Create an IP restriction for an organization.
+         *
+         *     Accepts either a single IP address or a CIDR network range.
+         *     Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
+         */
         IpRestrictionCreate: {
             /**
              * Ip Network
              * Format: ipvanynetwork
-             * @description IP address or CIDR range for the restriction.
+             * @description IP address or CIDR network range. Individual IPs can be specified without CIDR notation.
              */
             ip_network: string;
             /**
@@ -2773,7 +2793,7 @@ export interface components {
             /**
              * Ip Network
              * Format: ipvanynetwork
-             * @description IP address or CIDR range for the restriction.
+             * @description IP address or CIDR network range. Single IPs are returned with /32 (IPv4) or /128 (IPv6) notation.
              */
             ip_network: string;
             /** Ip Restriction Id */
@@ -2786,11 +2806,16 @@ export interface components {
              */
             organization_id: TypeId<"organization">;
         };
-        /** IpRestrictionUpdate */
+        /**
+         * IpRestrictionUpdate
+         * @description Update an existing IP restriction.
+         *
+         *     You can update the IP network range or the last usage timestamp.
+         */
         IpRestrictionUpdate: {
             /**
              * Ip Network
-             * @description IP address or CIDR range for the restriction.
+             * @description IP address or CIDR network range to replace the existing restriction.
              */
             ip_network?: string | null;
             /**

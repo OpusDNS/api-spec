@@ -2352,11 +2352,22 @@ components:
       title: IdnBase
       type: object
     IpRestrictionCreate:
+      description: 'Create an IP restriction for an organization.
+
+
+        Accepts either a single IP address or a CIDR network range.
+
+        Individual IP addresses are stored and returned with CIDR notation (/32 for
+        IPv4, /128 for IPv6).'
       properties:
         ip_network:
-          description: IP address or CIDR range for the restriction.
+          description: IP address or CIDR network range. Individual IPs can be specified
+            without CIDR notation.
           examples:
+          - 192.0.2.1
           - 192.0.2.0/24
+          - 2001:db8::1
+          - 2001:db8::/32
           format: ipvanynetwork
           title: Ip Network
           type: string
@@ -2379,9 +2390,13 @@ components:
           title: Created On
           type: string
         ip_network:
-          description: IP address or CIDR range for the restriction.
+          description: IP address or CIDR network range. Single IPs are returned with
+            /32 (IPv4) or /128 (IPv6) notation.
           examples:
+          - 192.0.2.1/32
           - 192.0.2.0/24
+          - 2001:db8::1/128
+          - 2001:db8::/32
           format: ipvanynetwork
           title: Ip Network
           type: string
@@ -2410,15 +2425,22 @@ components:
       title: IpRestrictionResponse
       type: object
     IpRestrictionUpdate:
+      description: 'Update an existing IP restriction.
+
+
+        You can update the IP network range or the last usage timestamp.'
       properties:
         ip_network:
           anyOf:
           - format: ipvanynetwork
             type: string
           - type: 'null'
-          description: IP address or CIDR range for the restriction.
+          description: IP address or CIDR network range to replace the existing restriction.
           examples:
+          - 192.0.2.1
           - 192.0.2.0/24
+          - 2001:db8::1
+          - 2001:db8::/32
           title: Ip Network
         last_used_on:
           anyOf:
@@ -5335,7 +5357,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-18-131050
+  version: 2025-09-18-175058
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8879,7 +8901,13 @@ paths:
       - organization
   /v1/organizations/ip-restrictions:
     get:
-      description: Get all IP restrictions for the organization
+      description: 'List all IP restrictions for the organization.
+
+
+        Returns a list of all IP restrictions configured for your organization.
+
+        Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for
+        IPv6).'
       operationId: list_ip_restrictions_v1_organizations_ip_restrictions_get
       responses:
         '200':
@@ -8898,7 +8926,13 @@ paths:
       tags:
       - organization
     post:
-      description: Create a new IP restriction for the organization
+      description: 'Create a new IP restriction for the organization.
+
+
+        Accepts either a single IP address or a CIDR network range.
+
+        Individual IP addresses are stored and returned with CIDR notation (/32 for
+        IPv4, /128 for IPv6).'
       operationId: create_ip_restriction_v1_organizations_ip_restrictions_post
       requestBody:
         content:
@@ -8926,7 +8960,10 @@ paths:
       - organization
   /v1/organizations/ip-restrictions/{ip_restriction_id}:
     delete:
-      description: Delete an IP restriction
+      description: 'Delete an IP restriction.
+
+
+        Permanently removes the specified IP restriction from your organization.'
       operationId: delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete
       parameters:
       - in: path
@@ -8950,7 +8987,14 @@ paths:
       tags:
       - organization
     get:
-      description: Get a specific IP restriction by ID
+      description: 'Get a specific IP restriction by ID.
+
+
+        Returns the details of a specific IP restriction if it exists and belongs
+        to your organization.
+
+        Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for
+        IPv6).'
       operationId: get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get
       parameters:
       - in: path
@@ -8978,7 +9022,13 @@ paths:
       tags:
       - organization
     patch:
-      description: Update an IP restriction
+      description: 'Update an existing IP restriction.
+
+
+        You can update the IP network range or the last usage timestamp.
+
+        Individual IP addresses are stored and returned with CIDR notation (/32 for
+        IPv4, /128 for IPv6).'
       operationId: update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch
       parameters:
       - in: path

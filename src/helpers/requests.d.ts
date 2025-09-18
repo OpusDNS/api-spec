@@ -2952,7 +2952,10 @@ export type PATCH_OrganizationsAttributesOrganizationId_Request_Body = PATCH_Org
  * Request type for GET OrganizationsIpRestrictions endpoint
  *
  * List Ip Restrictions
- * Get all IP restrictions for the organization
+ * List all IP restrictions for the organization.
+
+Returns a list of all IP restrictions configured for your organization.
+Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsIpRestrictions endpoint.
@@ -2975,7 +2978,10 @@ export type GET_OrganizationsIpRestrictions_Request = {
  * Request type for POST OrganizationsIpRestrictions endpoint
  *
  * Create Ip Restriction
- * Create a new IP restriction for the organization
+ * Create a new IP restriction for the organization.
+
+Accepts either a single IP address or a CIDR network range.
+Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines the complete request structure for the POST OrganizationsIpRestrictions endpoint.
@@ -3012,7 +3018,9 @@ export type POST_OrganizationsIpRestrictions_Request_Body = POST_OrganizationsIp
  * Request type for DELETE OrganizationsIpRestrictionsIpRestrictionId endpoint
  *
  * Delete Ip Restriction
- * Delete an IP restriction
+ * Delete an IP restriction.
+
+Permanently removes the specified IP restriction from your organization.
  *
  * @remarks
  * This type defines the complete request structure for the DELETE OrganizationsIpRestrictionsIpRestrictionId endpoint.
@@ -3051,7 +3059,10 @@ export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = DEL
  * Request type for GET OrganizationsIpRestrictionsIpRestrictionId endpoint
  *
  * Get Ip Restriction
- * Get a specific IP restriction by ID
+ * Get a specific IP restriction by ID.
+
+Returns the details of a specific IP restriction if it exists and belongs to your organization.
+Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsIpRestrictionsIpRestrictionId endpoint.
@@ -3090,7 +3101,10 @@ export type GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = GET_Or
  * Request type for PATCH OrganizationsIpRestrictionsIpRestrictionId endpoint
  *
  * Update Ip Restriction
- * Update an IP restriction
+ * Update an existing IP restriction.
+
+You can update the IP network range or the last usage timestamp.
+Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * This type defines the complete request structure for the PATCH OrganizationsIpRestrictionsIpRestrictionId endpoint.

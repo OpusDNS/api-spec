@@ -1499,7 +1499,10 @@ export type HTTPValidationError = components['schemas']['HTTPValidationError'];
  */
 export type IdnBase = components['schemas']['IdnBase'];
 /**
- * IpRestrictionCreate
+ * IpRestrictionCreate. Create an IP restriction for an organization.
+
+Accepts either a single IP address or a CIDR network range.
+Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
  *
  * @remarks
  * Type alias for the `IpRestrictionCreate` OpenAPI schema.
@@ -1531,7 +1534,9 @@ export type IpRestrictionCreate = components['schemas']['IpRestrictionCreate'];
  */
 export type IpRestriction = components['schemas']['IpRestrictionResponse'];
 /**
- * IpRestrictionUpdate
+ * IpRestrictionUpdate. Update an existing IP restriction.
+
+You can update the IP network range or the last usage timestamp.
  *
  * @remarks
  * Type alias for the `IpRestrictionUpdate` OpenAPI schema.
