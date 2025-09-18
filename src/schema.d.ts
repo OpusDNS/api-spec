@@ -971,6 +971,23 @@ export interface paths {
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
         trace?: never;
     };
+    "/v1/organizations/{organization_id}/plan": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Change Plan */
+        patch: operations["change_plan_v1_organizations__organization_id__plan_patch"];
+        trace?: never;
+    };
     "/v1/organizations/{organization_id}/plans": {
         parameters: {
             query?: never;
@@ -3800,6 +3817,16 @@ export interface components {
              * @description Plan type or billing interval
              */
             plan_type?: string | null;
+        };
+        /**
+         * PlanRelation
+         * @enum {string}
+         */
+        PlanRelation: "basic" | "enterprise" | "corporate" | "premium" | "starter";
+        /** PlanUpdate */
+        PlanUpdate: {
+            /** @default basic */
+            plan: components["schemas"]["PlanRelation"];
         };
         /**
          * PostTransferRequirements
@@ -8274,6 +8301,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    change_plan_v1_organizations__organization_id__plan_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlanUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationWithBillingData"];
                 };
             };
             /** @description Validation Error */

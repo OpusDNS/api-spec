@@ -3880,6 +3880,22 @@ components:
       - amount
       title: PlanInfo
       type: object
+    PlanRelation:
+      enum:
+      - basic
+      - enterprise
+      - corporate
+      - premium
+      - starter
+      title: PlanRelation
+      type: string
+    PlanUpdate:
+      properties:
+        plan:
+          $ref: '#/components/schemas/PlanRelation'
+          default: basic
+      title: PlanUpdate
+      type: object
     PostTransferRequirements:
       enum:
       - update_contacts
@@ -5357,7 +5373,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-18-175058
+  version: 2025-09-18-175712
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9211,6 +9227,45 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update Organization
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/plan:
+    patch:
+      operationId: change_plan_v1_organizations__organization_id__plan_patch
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanUpdate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationWithBillingData'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Change Plan
       tags:
       - organization
   /v1/organizations/{organization_id}/plans:
