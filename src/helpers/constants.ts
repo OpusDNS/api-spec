@@ -2084,6 +2084,7 @@ export const REGISTRANT_CHANGE_TYPE_VALUES = [
  */
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   AT_EXT_CONTACT_TYPE: "at-ext-contact:type",
+  DE_CONTACT_TYPE: "DE_CONTACT_TYPE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -2108,7 +2109,8 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
  * @see {@link REGISTRY_HANDLE_ATTRIBUTE_TYPE} - The object form of this enum
  */
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
-  'at-ext-contact:type'
+  'at-ext-contact:type',
+  'DE_CONTACT_TYPE'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**

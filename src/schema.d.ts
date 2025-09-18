@@ -1394,7 +1394,7 @@ export interface components {
              * @description Additional attributes related to the contact
              */
             attributes?: {
-                [key: string]: components["schemas"]["JsonValue"];
+                [key: string]: string;
             } | null;
             /**
              * Contact Id
@@ -3853,7 +3853,7 @@ export interface components {
          * @description Registry handle attribute types for type-safe attribute key access.
          * @enum {string}
          */
-        RegistryHandleAttributeType: "at-ext-contact:type";
+        RegistryHandleAttributeType: "at-ext-contact:type" | "DE_CONTACT_TYPE";
         /** RegistryLockBase */
         RegistryLockBase: {
             /**

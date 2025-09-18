@@ -245,7 +245,7 @@ components:
         attributes:
           anyOf:
           - additionalProperties:
-              $ref: '#/components/schemas/JsonValue'
+              type: string
             propertyNames:
               $ref: '#/components/schemas/RegistryHandleAttributeType'
             type: object
@@ -3980,6 +3980,7 @@ components:
       description: Registry handle attribute types for type-safe attribute key access.
       enum:
       - at-ext-contact:type
+      - DE_CONTACT_TYPE
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -5334,7 +5335,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-18-083215
+  version: 2025-09-18-131050
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
