@@ -2674,9 +2674,9 @@ export type PUT_DomainsByDomainReferenceDnssec_Response_404 = Problem
  * @path /v1/domains/{domain_reference}/dnssec
  *
  * @see {@link PUT_DomainsByDomainReferenceDnssec_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
+ * @see {@link Problem} - The actual schema type definition
  */
-export type PUT_DomainsByDomainReferenceDnssec_Response_422 = HTTPValidationError
+export type PUT_DomainsByDomainReferenceDnssec_Response_422 = Problem
 
 /**
  * Response types for POST DomainsByDomainReferenceDnssecDisable endpoint

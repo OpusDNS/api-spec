@@ -5334,7 +5334,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-17-104252
+  version: 2025-09-18-062613
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7672,9 +7672,14 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                detail: Additional error context.
+                status: 422
+                title: Policy Validation Error
+                type: policy-validation-error
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       summary: Update DNSSEC data
