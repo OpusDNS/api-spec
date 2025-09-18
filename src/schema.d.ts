@@ -5936,6 +5936,22 @@ export interface operations {
                     "application/json": components["schemas"]["DnsChangesResponse"] | null;
                 };
             };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DNS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "DNS Error",
+                     *       "type": "dns"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -6116,6 +6132,22 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DNS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "DNS Error",
+                     *       "type": "dns"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -6150,6 +6182,22 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DNS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "DNS Error",
+                     *       "type": "dns"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -6183,6 +6231,22 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DNS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "DNS Error",
+                     *       "type": "dns"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {

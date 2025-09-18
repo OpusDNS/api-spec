@@ -1572,11 +1572,29 @@ export type GET_Dns_Response_422 = HTTPValidationError
  *
  * @path /v1/dns
  *
+ * @see {@link POST_Dns_Response_400} - 400 response type
  * @see {@link POST_Dns_Response_422} - 422 response type
  *
 
  */
-export type POST_Dns_Response = POST_Dns_Response_422;
+export type POST_Dns_Response = POST_Dns_Response_400 | POST_Dns_Response_422;
+
+/**
+ * 400 response for POST Dns endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST Dns endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns
+ *
+ * @see {@link POST_Dns_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Dns_Response_400 = Problem
 
 /**
  * 422 response for POST Dns endpoint
@@ -1823,11 +1841,30 @@ export type POST_DnsByZoneNameDnssecEnable_Response_422 = HTTPValidationError
  * @path /v1/dns/{zone_name}/records
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
+ * @see {@link PATCH_DnsByZoneNameRecords_Response_400} - 400 response type
  * @see {@link PATCH_DnsByZoneNameRecords_Response_422} - 422 response type
  *
 
  */
-export type PATCH_DnsByZoneNameRecords_Response = PATCH_DnsByZoneNameRecords_Response_422;
+export type PATCH_DnsByZoneNameRecords_Response = PATCH_DnsByZoneNameRecords_Response_400 | PATCH_DnsByZoneNameRecords_Response_422;
+
+/**
+ * 400 response for PATCH DnsByZoneNameRecords endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PATCH DnsByZoneNameRecords endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/records
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PATCH_DnsByZoneNameRecords_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DnsByZoneNameRecords_Response_400 = Problem
 
 /**
  * 422 response for PATCH DnsByZoneNameRecords endpoint
@@ -1862,11 +1899,30 @@ export type PATCH_DnsByZoneNameRecords_Response_422 = HTTPValidationError
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
+ * @see {@link PATCH_DnsByZoneNameRrsets_Response_400} - 400 response type
  * @see {@link PATCH_DnsByZoneNameRrsets_Response_422} - 422 response type
  *
 
  */
-export type PATCH_DnsByZoneNameRrsets_Response = PATCH_DnsByZoneNameRrsets_Response_422;
+export type PATCH_DnsByZoneNameRrsets_Response = PATCH_DnsByZoneNameRrsets_Response_400 | PATCH_DnsByZoneNameRrsets_Response_422;
+
+/**
+ * 400 response for PATCH DnsByZoneNameRrsets endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PATCH DnsByZoneNameRrsets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/rrsets
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PATCH_DnsByZoneNameRrsets_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DnsByZoneNameRrsets_Response_400 = Problem
 
 /**
  * 422 response for PATCH DnsByZoneNameRrsets endpoint
@@ -1901,11 +1957,30 @@ export type PATCH_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
  * @path /v1/dns/{zone_name}/rrsets
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
+ * @see {@link PUT_DnsByZoneNameRrsets_Response_400} - 400 response type
  * @see {@link PUT_DnsByZoneNameRrsets_Response_422} - 422 response type
  *
 
  */
-export type PUT_DnsByZoneNameRrsets_Response = PUT_DnsByZoneNameRrsets_Response_422;
+export type PUT_DnsByZoneNameRrsets_Response = PUT_DnsByZoneNameRrsets_Response_400 | PUT_DnsByZoneNameRrsets_Response_422;
+
+/**
+ * 400 response for PUT DnsByZoneNameRrsets endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PUT DnsByZoneNameRrsets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/rrsets
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link PUT_DnsByZoneNameRrsets_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PUT_DnsByZoneNameRrsets_Response_400 = Problem
 
 /**
  * 422 response for PUT DnsByZoneNameRrsets endpoint

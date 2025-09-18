@@ -5334,7 +5334,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-18-062613
+  version: 2025-09-18-083215
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6599,6 +6599,18 @@ paths:
                 - type: 'null'
                 title: Response Create Zone V1 Dns Post
           description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DNS
+                detail: Additional error context.
+                status: 400
+                title: DNS Error
+                type: dns
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
         '422':
           content:
             application/problem+json:
@@ -6761,6 +6773,18 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DNS
+                detail: Additional error context.
+                status: 400
+                title: DNS Error
+                type: dns
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
         '422':
           content:
             application/problem+json:
@@ -6793,6 +6817,18 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DNS
+                detail: Additional error context.
+                status: 400
+                title: DNS Error
+                type: dns
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
         '422':
           content:
             application/problem+json:
@@ -6824,6 +6860,18 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DNS
+                detail: Additional error context.
+                status: 400
+                title: DNS Error
+                type: dns
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
         '422':
           content:
             application/problem+json:
