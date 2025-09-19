@@ -27,7 +27,7 @@
 	--opusdns-dark-gray: #3C3C3C;
 	--opusdns-light-blue: #6ecdeb;
 	--opusdns-dark-blue: #5f87c3;
-	--opusdns-yellow: #fae64b;
+	--opusdns-yellow: rgb(255, 209, 59);
 	--opusdns-orange: #faa436;
 	--opusdns-pink: #C81E78;
 }
@@ -80,6 +80,7 @@ header {
 		height: var(--scalar-custom-header-height);
 		margin-top: -2px;
 		margin-left: 10px;
+		padding:15px 0;
 	}
 
 	.burger {
@@ -166,14 +167,13 @@ header {
 .op-footer {
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
-	background-color: #000000;
+	background-color: #171923;
 	color: #ffffff;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 	flex-flow: column;
-	padding: 72px 24px 16px;
+	padding: 100px 24px 16px;
 	display: flex;
-	background-color: #000000;
 	text-align: center;
 	word-break: normal;
 	font-family: 'Onest';
@@ -191,6 +191,7 @@ header {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 1600px;
+	padding-bottom: 40px;
 }
 
 @media screen and (max-width: 1240px) {
@@ -388,11 +389,9 @@ header {
 	grid-row-gap: 20px;
 	flex-flow: row-reverse;
 	display: flex;
-	position: relative;
 	width: 100%;
 	align-self: center;
 	max-width: 1400px;
-	top: -60px;
 }
 
 @media screen and (max-width: 991px) {
@@ -402,25 +401,31 @@ header {
 }
 
 .op-footer .logos .logo-block {
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
 	border-top: 1px none var(--dark-grey);
 	flex-flow: row-reverse;
 	align-self: auto;
 	padding-top: 10px;
 	display: flex;
+	position: relative;
+    top: -100px;
+}
+
+.op-footer .footer-logo-background {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
 }
 
 .op-footer .icann-logo {
-	align-self: flex-end;
-	width: auto;
-	height: 100px;
-	padding-top: 0;
+	max-width: 100%;
 }
 
 .op-footer .eco-logo {
-	height: 80px;
-	margin-top: 10px;
+	max-width: 100%;
 }
 
 .op-footer .logos .mobile-logo img {
