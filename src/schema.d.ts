@@ -1167,6 +1167,11 @@ export interface components {
              */
             plan_id?: string | null;
             /**
+             * Plan Level
+             * @description Plan level such as 'basic', 'premium' or 'enterprise'.
+             */
+            plan_level?: string | null;
+            /**
              * Type
              * @description Plan type or billing interval.
              */

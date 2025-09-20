@@ -404,6 +404,31 @@ export const KEY_BILLING_PLAN_NAME = 'name' as keyof BillingPlan;
  */
 export const KEY_BILLING_PLAN_PLAN_ID = 'plan_id' as keyof BillingPlan;
 /**
+ * Plan Level
+ *
+ * Plan level such as 'basic', 'premium' or 'enterprise'.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `plan_level` property of BillingPlan objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingplan[KEY_BILLING_PLAN_PLAN_LEVEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_PLAN_PLAN_LEVEL;
+ * const value = billingplan[propertyName];
+ * ```
+ *
+ * @see {@link BillingPlan} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
+ */
+export const KEY_BILLING_PLAN_PLAN_LEVEL = 'plan_level' as keyof BillingPlan;
+/**
  * Type
  *
  * Plan type or billing interval.
@@ -454,6 +479,7 @@ export const KEYS_BILLING_PLAN = [
   KEY_BILLING_PLAN_CURRENCY,
   KEY_BILLING_PLAN_NAME,
   KEY_BILLING_PLAN_PLAN_ID,
+  KEY_BILLING_PLAN_PLAN_LEVEL,
   KEY_BILLING_PLAN_TYPE,
 ] as const satisfies (keyof BillingPlan)[];
 
