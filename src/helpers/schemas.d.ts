@@ -2528,22 +2528,6 @@ export type SortOrder = components['schemas']['SortOrder'];
  */
 export type SpiceDbRelationshipUpdate = components['schemas']['SpiceDbRelationshipUpdate'];
 /**
- * StartPasswordReset
- *
- * @remarks
- * Type alias for the `StartPasswordReset` OpenAPI schema.
- * This type represents startpasswordreset data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getStartPasswordReset();
- * const item: StartPasswordReset = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type StartPasswordReset = components['schemas']['StartPasswordReset'];
-/**
  * SyncOperationType
  *
  * @remarks
@@ -2752,22 +2736,6 @@ export type UserAttributeBase = components['schemas']['UserAttributeBase'];
  */
 export type UserCreate = components['schemas']['UserCreate'];
 /**
- * UserPasswordResetEmailResponse
- *
- * @remarks
- * Type alias for the `UserPasswordResetEmailResponse` OpenAPI schema.
- * This type represents userpasswordresetemailresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserPasswordResetEmail();
- * const item: UserPasswordResetEmail = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserPasswordResetEmail = components['schemas']['UserPasswordResetEmailResponse'];
-/**
  * UserStatus
  *
  * @remarks
@@ -2815,54 +2783,6 @@ export type UserToken = components['schemas']['UserTokenResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type UserUpdate = components['schemas']['UserUpdate'];
-/**
- * UserVerificationApiResponse
- *
- * @remarks
- * Type alias for the `UserVerificationApiResponse` OpenAPI schema.
- * This type represents userverificationapiresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserVerificationApi();
- * const item: UserVerificationApi = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserVerificationApi = components['schemas']['UserVerificationApiResponse'];
-/**
- * UserVerificationEmailResponse
- *
- * @remarks
- * Type alias for the `UserVerificationEmailResponse` OpenAPI schema.
- * This type represents userverificationemailresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserVerificationEmail();
- * const item: UserVerificationEmail = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserVerificationEmail = components['schemas']['UserVerificationEmailResponse'];
-/**
- * UserVerificationResponse
- *
- * @remarks
- * Type alias for the `UserVerificationResponse` OpenAPI schema.
- * This type represents userverificationresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserVerification();
- * const item: UserVerification = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserVerification = components['schemas']['UserVerificationResponse'];
 /**
  * UserWithAttributes
  *
