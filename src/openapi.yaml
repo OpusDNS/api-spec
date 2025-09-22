@@ -3756,18 +3756,11 @@ components:
         currency:
           title: Currency
           type: string
-        period_unit:
+        period:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/PricingPeriod'
           - type: 'null'
-          description: 'Period unit: ''y'' (year), ''m'' (month), ''d'' (day)'
-          title: Period Unit
-        period_value:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Period value (e.g., 1 for 1 year)
-          title: Period Value
+          description: Pricing period (e.g., 1 year, 2 months)
         price:
           title: Price
           type: string
@@ -3789,6 +3782,21 @@ components:
       - price
       - currency
       title: PriceInfo
+      type: object
+    PricingPeriod:
+      properties:
+        unit:
+          $ref: '#/components/schemas/PeriodUnit'
+          description: The unit of the period
+        value:
+          description: Amount of time in the unit
+          exclusiveMinimum: 0.0
+          title: Value
+          type: integer
+      required:
+      - value
+      - unit
+      title: PricingPeriod
       type: object
     Problem:
       properties:
@@ -4920,7 +4928,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-22-190002
+  version: 2025-09-22-215413
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

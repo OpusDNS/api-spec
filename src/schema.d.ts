@@ -3545,16 +3545,8 @@ export interface components {
         PriceInfo: {
             /** Currency */
             currency: string;
-            /**
-             * Period Unit
-             * @description Period unit: 'y' (year), 'm' (month), 'd' (day)
-             */
-            period_unit?: string | null;
-            /**
-             * Period Value
-             * @description Period value (e.g., 1 for 1 year)
-             */
-            period_value?: number | null;
+            /** @description Pricing period (e.g., 1 year, 2 months) */
+            period?: components["schemas"]["PricingPeriod"] | null;
             /** Price */
             price: string;
             /** Product Action */
@@ -3563,6 +3555,16 @@ export interface components {
             product_class?: string | null;
             /** Product Type */
             product_type: string;
+        };
+        /** PricingPeriod */
+        PricingPeriod: {
+            /** @description The unit of the period */
+            unit: components["schemas"]["PeriodUnit"];
+            /**
+             * Value
+             * @description Amount of time in the unit
+             */
+            value: number;
         };
         /** Problem */
         Problem: {

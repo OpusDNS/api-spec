@@ -2288,6 +2288,22 @@ export type PremiumSourceType = components['schemas']['PremiumSourceType'];
  */
 export type PriceInfo = components['schemas']['PriceInfo'];
 /**
+ * PricingPeriod
+ *
+ * @remarks
+ * Type alias for the `PricingPeriod` OpenAPI schema.
+ * This type represents pricingperiod data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPricingPeriod();
+ * const item: PricingPeriod = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PricingPeriod = components['schemas']['PricingPeriod'];
+/**
  * Problem
  *
  * @remarks
