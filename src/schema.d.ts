@@ -3545,6 +3545,16 @@ export interface components {
         PriceInfo: {
             /** Currency */
             currency: string;
+            /**
+             * Period Unit
+             * @description Period unit: 'y' (year), 'm' (month), 'd' (day)
+             */
+            period_unit?: string | null;
+            /**
+             * Period Value
+             * @description Period value (e.g., 1 for 1 year)
+             */
+            period_value?: number | null;
             /** Price */
             price: string;
             /** Product Action */

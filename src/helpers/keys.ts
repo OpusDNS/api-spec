@@ -14317,6 +14317,56 @@ export const KEYS_PREMIUM_DOMAINS_BASE = [
  */
 export const KEY_PRICE_INFO_CURRENCY = 'currency' as keyof PriceInfo;
 /**
+ * Period Unit
+ *
+ * Period unit: 'y' (year), 'm' (month), 'd' (day)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period_unit` property of PriceInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = priceinfo[KEY_PRICE_INFO_PERIOD_UNIT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PRICE_INFO_PERIOD_UNIT;
+ * const value = priceinfo[propertyName];
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
+ */
+export const KEY_PRICE_INFO_PERIOD_UNIT = 'period_unit' as keyof PriceInfo;
+/**
+ * Period Value
+ *
+ * Period value (e.g., 1 for 1 year)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period_value` property of PriceInfo objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = priceinfo[KEY_PRICE_INFO_PERIOD_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PRICE_INFO_PERIOD_VALUE;
+ * const value = priceinfo[propertyName];
+ * ```
+ *
+ * @see {@link PriceInfo} - The TypeScript type definition
+ * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
+ */
+export const KEY_PRICE_INFO_PERIOD_VALUE = 'period_value' as keyof PriceInfo;
+/**
  * Price
  *
  *
@@ -14437,6 +14487,8 @@ export const KEY_PRICE_INFO_PRODUCT_TYPE = 'product_type' as keyof PriceInfo;
  */
 export const KEYS_PRICE_INFO = [
   KEY_PRICE_INFO_CURRENCY,
+  KEY_PRICE_INFO_PERIOD_UNIT,
+  KEY_PRICE_INFO_PERIOD_VALUE,
   KEY_PRICE_INFO_PRICE,
   KEY_PRICE_INFO_PRODUCT_ACTION,
   KEY_PRICE_INFO_PRODUCT_CLASS,
