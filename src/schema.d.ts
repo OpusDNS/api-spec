@@ -1019,7 +1019,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/users/me/change_password": {
+    "/v1/users/me/password-reset": {
         parameters: {
             query?: never;
             header?: never;
@@ -1032,11 +1032,8 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /**
-         * Change password
-         * @description Change the password of the current user.
-         */
-        patch: operations["change_password_v1_users_me_change_password_patch"];
+        /** Change Password */
+        patch: operations["change_password_v1_users_me_password_reset_patch"];
         trace?: never;
     };
     "/v1/users/{user_id}": {
@@ -7786,7 +7783,7 @@ export interface operations {
             };
         };
     };
-    change_password_v1_users_me_change_password_patch: {
+    change_password_v1_users_me_password_reset_patch: {
         parameters: {
             query?: never;
             header?: never;

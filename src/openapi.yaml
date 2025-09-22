@@ -4908,7 +4908,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-22-074729
+  version: 2025-09-22-083231
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8759,10 +8759,9 @@ paths:
       summary: Get Current User
       tags:
       - user
-  /v1/users/me/change_password:
+  /v1/users/me/password-reset:
     patch:
-      description: Change the password of the current user.
-      operationId: change_password_v1_users_me_change_password_patch
+      operationId: change_password_v1_users_me_password_reset_patch
       requestBody:
         content:
           application/json:
@@ -8792,7 +8791,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Change password
+      summary: Change Password
       tags:
       - user
   /v1/users/{user_id}:

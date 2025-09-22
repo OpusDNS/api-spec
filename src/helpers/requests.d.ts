@@ -3328,41 +3328,40 @@ export type GET_UsersMe_Request = {
 export type GET_UsersMe_Request_Query = GET_UsersMe_Request['parameters']['query'];
 
 /**
- * Request type for PATCH UsersMeChangePassword endpoint
+ * Request type for PATCH UsersMePasswordReset endpoint
  *
- * Change password
- * Change the password of the current user.
+ * Change Password
  *
  * @remarks
- * This type defines the complete request structure for the PATCH UsersMeChangePassword endpoint.
+ * This type defines the complete request structure for the PATCH UsersMePasswordReset endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/users/me/change_password
+ * @path /v1/users/me/password-reset
  *
- * @see {@link PATCH_UsersMeChangePassword_Request_Query} - Query parameters type
- * @see {@link PATCH_UsersMeChangePassword_Request_Path} - Path parameters type
- * @see {@link PATCH_UsersMeChangePassword_Request_Body} - Request body type
+ * @see {@link PATCH_UsersMePasswordReset_Request_Query} - Query parameters type
+ * @see {@link PATCH_UsersMePasswordReset_Request_Path} - Path parameters type
+ * @see {@link PATCH_UsersMePasswordReset_Request_Body} - Request body type
  */
-export type PATCH_UsersMeChangePassword_Request = {
+export type PATCH_UsersMePasswordReset_Request = {
   requestBody: PasswordUpdate;
 }
 /**
- * Request body for PATCH /v1/users/me/change_password
+ * Request body for PATCH /v1/users/me/password-reset
  *
  * @remarks
- * This type defines the request body structure for the PATCH /v1/users/me/change_password endpoint.
+ * This type defines the request body structure for the PATCH /v1/users/me/password-reset endpoint.
  * It provides type safety for the request body as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for request body structure.
  *
- * @path /v1/users/me/change_password
+ * @path /v1/users/me/password-reset
  */
-export type PATCH_UsersMeChangePassword_Request_Body = PATCH_UsersMeChangePassword_Request['requestBody'];
+export type PATCH_UsersMePasswordReset_Request_Body = PATCH_UsersMePasswordReset_Request['requestBody'];
 
 /**
  * Request type for DELETE UsersUserId endpoint
