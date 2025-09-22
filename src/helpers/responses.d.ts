@@ -260,61 +260,6 @@ export type DELETE_AuthClientCredentialsByApiKeyId_Response_404 = Problem
 export type DELETE_AuthClientCredentialsByApiKeyId_Response_422 = HTTPValidationError
 
 /**
- * Response types for POST AuthInternalClientCredentials endpoint
- *
- * Issue Opusdns Internal Api Key
- *
- * @remarks
- * This type defines all possible response structures for the POST AuthInternalClientCredentials endpoint.
- * Each response code maps to a specific response type as defined in the OpenAPI specification.
- * Use this type to ensure type safety when handling API responses from this endpoint.
- *
-
- *
- * @path /v1/auth/internal_client_credentials
- *
- * @see {@link POST_AuthInternalClientCredentials_Response_200} - 200 response type
- * @see {@link POST_AuthInternalClientCredentials_Response_422} - 422 response type
- *
-
- */
-export type POST_AuthInternalClientCredentials_Response = POST_AuthInternalClientCredentials_Response_200 | POST_AuthInternalClientCredentials_Response_422;
-
-/**
- * 200 response for POST AuthInternalClientCredentials endpoint
- *
- * @remarks
- * This type defines the response structure for the 200 status code
- * of the POST AuthInternalClientCredentials endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/auth/internal_client_credentials
- *
- * @see {@link POST_AuthInternalClientCredentials_Response} - The main response type definition
- * @see {@link OrganizationCredentialCreated} - The actual schema type definition
- */
-export type POST_AuthInternalClientCredentials_Response_200 = OrganizationCredentialCreated
-
-/**
- * 422 response for POST AuthInternalClientCredentials endpoint
- *
- * @remarks
- * This type defines the response structure for the 422 status code
- * of the POST AuthInternalClientCredentials endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/auth/internal_client_credentials
- *
- * @see {@link POST_AuthInternalClientCredentials_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
- */
-export type POST_AuthInternalClientCredentials_Response_422 = HTTPValidationError
-
-/**
  * Response types for POST AuthLogout endpoint
  *
  * Logout
@@ -5400,57 +5345,58 @@ export type GET_UsersMe_Response_200 = UserWithRelationPermissions
 export type GET_UsersMe_Response_422 = HTTPValidationError
 
 /**
- * Response types for PATCH UsersMePasswordReset endpoint
+ * Response types for PATCH UsersMeChangePassword endpoint
  *
- * Confirm User Password Reset Me
+ * Change password
+ * Change the password of the current user.
  *
  * @remarks
- * This type defines all possible response structures for the PATCH UsersMePasswordReset endpoint.
+ * This type defines all possible response structures for the PATCH UsersMeChangePassword endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/users/me/password-reset
+ * @path /v1/users/me/change_password
  *
- * @see {@link PATCH_UsersMePasswordReset_Response_401} - 401 response type
- * @see {@link PATCH_UsersMePasswordReset_Response_422} - 422 response type
+ * @see {@link PATCH_UsersMeChangePassword_Response_401} - 401 response type
+ * @see {@link PATCH_UsersMeChangePassword_Response_422} - 422 response type
  *
 
  */
-export type PATCH_UsersMePasswordReset_Response = PATCH_UsersMePasswordReset_Response_401 | PATCH_UsersMePasswordReset_Response_422;
+export type PATCH_UsersMeChangePassword_Response = PATCH_UsersMeChangePassword_Response_401 | PATCH_UsersMeChangePassword_Response_422;
 
 /**
- * 401 response for PATCH UsersMePasswordReset endpoint
+ * 401 response for PATCH UsersMeChangePassword endpoint
  *
  * @remarks
  * This type defines the response structure for the 401 status code
- * of the PATCH UsersMePasswordReset endpoint.
+ * of the PATCH UsersMeChangePassword endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/users/me/password-reset
+ * @path /v1/users/me/change_password
  *
- * @see {@link PATCH_UsersMePasswordReset_Response} - The main response type definition
+ * @see {@link PATCH_UsersMeChangePassword_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type PATCH_UsersMePasswordReset_Response_401 = Problem
+export type PATCH_UsersMeChangePassword_Response_401 = Problem
 
 /**
- * 422 response for PATCH UsersMePasswordReset endpoint
+ * 422 response for PATCH UsersMeChangePassword endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the PATCH UsersMePasswordReset endpoint.
+ * of the PATCH UsersMeChangePassword endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/users/me/password-reset
+ * @path /v1/users/me/change_password
  *
- * @see {@link PATCH_UsersMePasswordReset_Response} - The main response type definition
+ * @see {@link PATCH_UsersMeChangePassword_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type PATCH_UsersMePasswordReset_Response_422 = HTTPValidationError
+export type PATCH_UsersMeChangePassword_Response_422 = HTTPValidationError
 

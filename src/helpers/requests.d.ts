@@ -151,42 +151,6 @@ export type DELETE_AuthClientCredentialsApiKeyId_Request = {
 export type DELETE_AuthClientCredentialsApiKeyId_Request_Path = DELETE_AuthClientCredentialsApiKeyId_Request['parameters']['path'];
 
 /**
- * Request type for POST AuthInternalClientCredentials endpoint
- *
- * Issue Opusdns Internal Api Key
- *
- * @remarks
- * This type defines the complete request structure for the POST AuthInternalClientCredentials endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/auth/internal_client_credentials
- *
- * @see {@link POST_AuthInternalClientCredentials_Request_Query} - Query parameters type
- * @see {@link POST_AuthInternalClientCredentials_Request_Path} - Path parameters type
- * @see {@link POST_AuthInternalClientCredentials_Request_Body} - Request body type
- */
-export type POST_AuthInternalClientCredentials_Request = {
-  requestBody: OrganizationCredentialExtra;
-}
-/**
- * Request body for POST /v1/auth/internal_client_credentials
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/auth/internal_client_credentials endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/auth/internal_client_credentials
- */
-export type POST_AuthInternalClientCredentials_Request_Body = POST_AuthInternalClientCredentials_Request['requestBody'];
-
-/**
  * Request type for POST AuthLogout endpoint
  *
  * Logout
@@ -3364,40 +3328,41 @@ export type GET_UsersMe_Request = {
 export type GET_UsersMe_Request_Query = GET_UsersMe_Request['parameters']['query'];
 
 /**
- * Request type for PATCH UsersMePasswordReset endpoint
+ * Request type for PATCH UsersMeChangePassword endpoint
  *
- * Confirm User Password Reset Me
+ * Change password
+ * Change the password of the current user.
  *
  * @remarks
- * This type defines the complete request structure for the PATCH UsersMePasswordReset endpoint.
+ * This type defines the complete request structure for the PATCH UsersMeChangePassword endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/users/me/password-reset
+ * @path /v1/users/me/change_password
  *
- * @see {@link PATCH_UsersMePasswordReset_Request_Query} - Query parameters type
- * @see {@link PATCH_UsersMePasswordReset_Request_Path} - Path parameters type
- * @see {@link PATCH_UsersMePasswordReset_Request_Body} - Request body type
+ * @see {@link PATCH_UsersMeChangePassword_Request_Query} - Query parameters type
+ * @see {@link PATCH_UsersMeChangePassword_Request_Path} - Path parameters type
+ * @see {@link PATCH_UsersMeChangePassword_Request_Body} - Request body type
  */
-export type PATCH_UsersMePasswordReset_Request = {
+export type PATCH_UsersMeChangePassword_Request = {
   requestBody: PasswordUpdate;
 }
 /**
- * Request body for PATCH /v1/users/me/password-reset
+ * Request body for PATCH /v1/users/me/change_password
  *
  * @remarks
- * This type defines the request body structure for the PATCH /v1/users/me/password-reset endpoint.
+ * This type defines the request body structure for the PATCH /v1/users/me/change_password endpoint.
  * It provides type safety for the request body as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for request body structure.
  *
- * @path /v1/users/me/password-reset
+ * @path /v1/users/me/change_password
  */
-export type PATCH_UsersMePasswordReset_Request_Body = PATCH_UsersMePasswordReset_Request['requestBody'];
+export type PATCH_UsersMeChangePassword_Request_Body = PATCH_UsersMeChangePassword_Request['requestBody'];
 
 /**
  * Request type for DELETE UsersUserId endpoint

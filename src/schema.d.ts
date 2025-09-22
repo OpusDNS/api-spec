@@ -35,23 +35,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/auth/internal_client_credentials": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Issue Opusdns Internal Api Key */
-        post: operations["issue_opusdns_internal_api_key_v1_auth_internal_client_credentials_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/auth/logout": {
         parameters: {
             query?: never;
@@ -1036,7 +1019,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/users/me/password-reset": {
+    "/v1/users/me/change_password": {
         parameters: {
             query?: never;
             header?: never;
@@ -1049,8 +1032,11 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Confirm User Password Reset Me */
-        patch: operations["confirm_user_password_reset_me_v1_users_me_password_reset_patch"];
+        /**
+         * Change password
+         * @description Change the password of the current user.
+         */
+        patch: operations["change_password_v1_users_me_change_password_patch"];
         trace?: never;
     };
     "/v1/users/{user_id}": {
@@ -4435,39 +4421,6 @@ export interface operations {
             };
         };
     };
-    issue_opusdns_internal_api_key_v1_auth_internal_client_credentials_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OrganizationCredentialExtra"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationCredentialCreated"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     logout_v1_auth_logout_post: {
         parameters: {
             query?: never;
@@ -7833,7 +7786,7 @@ export interface operations {
             };
         };
     };
-    confirm_user_password_reset_me_v1_users_me_password_reset_patch: {
+    change_password_v1_users_me_change_password_patch: {
         parameters: {
             query?: never;
             header?: never;

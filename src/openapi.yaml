@@ -4908,7 +4908,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-20-161341
+  version: 2025-09-22-074729
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5066,33 +5066,6 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Delete Api Key
-      tags:
-      - authentication
-  /v1/auth/internal_client_credentials:
-    post:
-      operationId: issue_opusdns_internal_api_key_v1_auth_internal_client_credentials_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrganizationCredentialExtra'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrganizationCredentialCreated'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Issue Opusdns Internal Api Key
       tags:
       - authentication
   /v1/auth/logout:
@@ -8786,9 +8759,10 @@ paths:
       summary: Get Current User
       tags:
       - user
-  /v1/users/me/password-reset:
+  /v1/users/me/change_password:
     patch:
-      operationId: confirm_user_password_reset_me_v1_users_me_password_reset_patch
+      description: Change the password of the current user.
+      operationId: change_password_v1_users_me_change_password_patch
       requestBody:
         content:
           application/json:
@@ -8818,7 +8792,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Confirm User Password Reset Me
+      summary: Change password
       tags:
       - user
   /v1/users/{user_id}:
