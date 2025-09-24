@@ -900,6 +900,91 @@ export interface paths {
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
         trace?: never;
     };
+    "/v1/organizations/{organization_id}/billing/checkout-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Get Checkout Session */
+        post: operations["get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/billing/payment-methods": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Payment Methods */
+        get: operations["list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Payment Method */
+        delete: operations["delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Default Payment Method */
+        patch: operations["update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch"];
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/billing/wallet/credits": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Credit Wallet */
+        post: operations["credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations/{organization_id}/plan": {
         parameters: {
             query?: never;
@@ -1277,6 +1362,22 @@ export interface components {
              * @description Username for authentication.
              */
             username?: string | null;
+        };
+        /** CheckoutSessionRequest */
+        CheckoutSessionRequest: {
+            /**
+             * Return Url
+             * @description Return URL that will be used
+             */
+            return_url: string;
+        };
+        /** CheckoutSessionResponse */
+        CheckoutSessionResponse: {
+            /**
+             * Session Client Secret
+             * @description Checkout session client secret - meant to be used in the embedded checkout
+             */
+            session_client_secret: string;
         };
         /** ContactConfigBase */
         ContactConfigBase: {
@@ -1742,6 +1843,44 @@ export interface components {
          * @enum {string}
          */
         Currency: "USD" | "EUR";
+        /** CustomerCreditCardPaymentMethod */
+        CustomerCreditCardPaymentMethod: {
+            /**
+             * Brand
+             * @description Card brand
+             */
+            brand: string;
+            /**
+             * Country
+             * @description Country code
+             */
+            country?: string | null;
+            /**
+             * Exp Month
+             * @description Expiration month
+             */
+            exp_month: number;
+            /**
+             * Exp Year
+             * @description Expiration year
+             */
+            exp_year: number;
+            /**
+             * Id
+             * @description Payment method ID
+             */
+            id: string;
+            /**
+             * Is Default
+             * @description Whether this is the default payment method
+             */
+            is_default: boolean;
+            /**
+             * Last4
+             * @description Last four digits of the card
+             */
+            last4: string;
+        };
         /**
          * DeletePolicyType
          * @enum {string}
@@ -4318,6 +4457,49 @@ export interface components {
          * @enum {string}
          */
         VerificationType: "api" | "email";
+        /** WalletCreditRequest */
+        WalletCreditRequest: {
+            /**
+             * Amount
+             * @description Amount to credit the customer wallet
+             */
+            amount: number | string;
+            /**
+             * Payment Method Id
+             * @description Payment method ID that should be used
+             */
+            payment_method_id: string;
+        };
+        /**
+         * WalletCreditResponseStatus
+         * @enum {string}
+         */
+        WalletCreditResponseStatus: "success" | "failed";
+        /** WalletCreditResponseWithBalance */
+        WalletCreditResponseWithBalance: {
+            /**
+             * Amount
+             * @description Amount credited to the customer wallet
+             */
+            amount: string;
+            /**
+             * Balance
+             * @description Updated wallet balance after the credit
+             */
+            balance: string;
+            /**
+             * Credit Id
+             * @description Unique identifier of the wallet credit transaction
+             */
+            credit_id: string;
+            /**
+             * Message
+             * @description Optional human-readable message describing the result
+             */
+            message?: string | null;
+            /** @description Status of the credit operation */
+            status: components["schemas"]["WalletCreditResponseStatus"];
+        };
         /** WhoisBase */
         WhoisBase: {
             /**
@@ -7639,6 +7821,169 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CheckoutSessionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CheckoutSessionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CustomerCreditCardPaymentMethod"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                payment_method_id: string;
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                payment_method_id: string;
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CustomerCreditCardPaymentMethod"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["WalletCreditRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WalletCreditResponseWithBalance"];
                 };
             };
             /** @description Validation Error */

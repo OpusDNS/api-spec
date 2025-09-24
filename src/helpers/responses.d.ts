@@ -32,9 +32,9 @@
 
 
 
-import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
+import { DomainDnssecDataArray, OrganizationAttribute2Array, CustomerCreditCardPaymentMethodArray, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, GetCurrentAvailablePlans, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, CheckoutSession, WalletCreditResponseWithBalance, GetCurrentAvailablePlans, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -4295,6 +4295,263 @@ export type PATCH_OrganizationsByOrganizationId_Response_200 = Organization
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint
+ *
+ * Get Checkout Session
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/checkout-sessions
+ *
+ * @see {@link POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response_200} - 200 response type
+ * @see {@link POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response_422} - 422 response type
+ *
+
+ */
+export type POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response = POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response_200 | POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response_422;
+
+/**
+ * 200 response for POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/checkout-sessions
+ *
+ * @see {@link POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response} - The main response type definition
+ * @see {@link CheckoutSession} - The actual schema type definition
+ */
+export type POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response_200 = CheckoutSession
+
+/**
+ * 422 response for POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/checkout-sessions
+ *
+ * @see {@link POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint
+ *
+ * List Payment Methods
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response_422} - 422 response type
+ *
+
+ */
+export type GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response = GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response_200 | GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response_422;
+
+/**
+ * 200 response for GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response} - The main response type definition
+ * @see {@link CustomerCreditCardPaymentMethod} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response_200 = CustomerCreditCardPaymentMethodArray
+
+/**
+ * 422 response for GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response_422 = HTTPValidationError
+
+/**
+ * Response types for DELETE OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId endpoint
+ *
+ * Delete Payment Method
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}
+ *
+ * @see {@link DELETE_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId_Response_422} - 422 response type
+ *
+
+ */
+export type DELETE_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId_Response = DELETE_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId_Response_422;
+
+/**
+ * 422 response for DELETE OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}
+ *
+ * @see {@link DELETE_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint
+ *
+ * Update Default Payment Method
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response = PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response_200 | PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response_422;
+
+/**
+ * 200 response for PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response} - The main response type definition
+ * @see {@link CustomerCreditCardPaymentMethod} - The actual schema type definition
+ */
+export type PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response_200 = CustomerCreditCardPaymentMethodArray
+
+/**
+ * 422 response for PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST OrganizationsByOrganizationIdBillingWalletCredits endpoint
+ *
+ * Credit Wallet
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST OrganizationsByOrganizationIdBillingWalletCredits endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/wallet/credits
+ *
+ * @see {@link POST_OrganizationsByOrganizationIdBillingWalletCredits_Response_200} - 200 response type
+ * @see {@link POST_OrganizationsByOrganizationIdBillingWalletCredits_Response_422} - 422 response type
+ *
+
+ */
+export type POST_OrganizationsByOrganizationIdBillingWalletCredits_Response = POST_OrganizationsByOrganizationIdBillingWalletCredits_Response_200 | POST_OrganizationsByOrganizationIdBillingWalletCredits_Response_422;
+
+/**
+ * 200 response for POST OrganizationsByOrganizationIdBillingWalletCredits endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST OrganizationsByOrganizationIdBillingWalletCredits endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/wallet/credits
+ *
+ * @see {@link POST_OrganizationsByOrganizationIdBillingWalletCredits_Response} - The main response type definition
+ * @see {@link WalletCreditResponseWithBalance} - The actual schema type definition
+ */
+export type POST_OrganizationsByOrganizationIdBillingWalletCredits_Response_200 = WalletCreditResponseWithBalance
+
+/**
+ * 422 response for POST OrganizationsByOrganizationIdBillingWalletCredits endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST OrganizationsByOrganizationIdBillingWalletCredits endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/wallet/credits
+ *
+ * @see {@link POST_OrganizationsByOrganizationIdBillingWalletCredits_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_OrganizationsByOrganizationIdBillingWalletCredits_Response_422 = HTTPValidationError
 
 /**
  * Response types for PATCH OrganizationsByOrganizationIdPlan endpoint

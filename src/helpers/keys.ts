@@ -34,6 +34,8 @@ import { BillingMetadata } from './schemas';
 import { BillingPlan } from './schemas';
 import { BillingTransaction } from './schemas';
 import { Body_issue_organization_token_v1_auth_token_post } from './schemas';
+import { CheckoutSessionRequest } from './schemas';
+import { CheckoutSession } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
 import { ContactHandle } from './schemas';
@@ -43,6 +45,7 @@ import { ContactVerificationApi } from './schemas';
 import { ContactVerificationEmail } from './schemas';
 import { ContactVerification } from './schemas';
 import { ContactsBase } from './schemas';
+import { CustomerCreditCardPaymentMethod } from './schemas';
 import { DnsChange } from './schemas';
 import { DnsChanges } from './schemas';
 import { DnsConfigurationBase } from './schemas';
@@ -146,6 +149,8 @@ import { UserUpdate } from './schemas';
 import { UserWithAttributes } from './schemas';
 import { UserWithRelationPermissions } from './schemas';
 import { ValidationError } from './schemas';
+import { WalletCreditRequest } from './schemas';
+import { WalletCreditResponseWithBalance } from './schemas';
 import { WhoisBase } from './schemas';
 import { DomainAvailabilityList } from './schemas';
 import { DomainAvailabilityCheck } from './schemas';
@@ -872,6 +877,108 @@ export const KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST = [
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD,
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME,
 ] as const satisfies (keyof Body_issue_organization_token_v1_auth_token_post)[];
+
+/**
+ * Return Url
+ *
+ * Return URL that will be used
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `return_url` property of CheckoutSessionRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = checkoutsessionrequest[KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL;
+ * const value = checkoutsessionrequest[propertyName];
+ * ```
+ *
+ * @see {@link CheckoutSessionRequest} - The TypeScript type definition
+ * @see {@link KEYS_CHECKOUT_SESSION_REQUEST} - Array of all keys for this type
+ */
+export const KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL = 'return_url' as keyof CheckoutSessionRequest;
+
+/**
+ * Array of all CheckoutSessionRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for CheckoutSessionRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CHECKOUT_SESSION_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${checkoutsessionrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CHECKOUT_SESSION_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link CheckoutSessionRequest} - The TypeScript type definition
+ */
+export const KEYS_CHECKOUT_SESSION_REQUEST = [
+  KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL,
+] as const satisfies (keyof CheckoutSessionRequest)[];
+
+/**
+ * Session Client Secret
+ *
+ * Checkout session client secret - meant to be used in the embedded checkout
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `session_client_secret` property of CheckoutSession objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = checkoutsession[KEY_CHECKOUT_SESSION_SESSION_CLIENT_SECRET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CHECKOUT_SESSION_SESSION_CLIENT_SECRET;
+ * const value = checkoutsession[propertyName];
+ * ```
+ *
+ * @see {@link CheckoutSession} - The TypeScript type definition
+ * @see {@link KEYS_CHECKOUT_SESSION} - Array of all keys for this type
+ */
+export const KEY_CHECKOUT_SESSION_SESSION_CLIENT_SECRET = 'session_client_secret' as keyof CheckoutSession;
+
+/**
+ * Array of all CheckoutSession property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for CheckoutSession objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CHECKOUT_SESSION) {
+ *   console.log(`Property: ${key}, Value: ${checkoutsession[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CHECKOUT_SESSION.includes(someKey);
+ * ```
+ *
+ * @see {@link CheckoutSession} - The TypeScript type definition
+ */
+export const KEYS_CHECKOUT_SESSION = [
+  KEY_CHECKOUT_SESSION_SESSION_CLIENT_SECRET,
+] as const satisfies (keyof CheckoutSession)[];
 
 /**
  * Max
@@ -3262,6 +3369,218 @@ export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES,
   KEY_CONTACTS_BASE_SUPPORTED_ROLES,
 ] as const satisfies (keyof ContactsBase)[];
+
+/**
+ * Brand
+ *
+ * Card brand
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `brand` property of CustomerCreditCardPaymentMethod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = customercreditcardpaymentmethod[KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_BRAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_BRAND;
+ * const value = customercreditcardpaymentmethod[propertyName];
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ * @see {@link KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD} - Array of all keys for this type
+ */
+export const KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_BRAND = 'brand' as keyof CustomerCreditCardPaymentMethod;
+/**
+ * Country
+ *
+ * Country code
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of CustomerCreditCardPaymentMethod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = customercreditcardpaymentmethod[KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_COUNTRY;
+ * const value = customercreditcardpaymentmethod[propertyName];
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ * @see {@link KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD} - Array of all keys for this type
+ */
+export const KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_COUNTRY = 'country' as keyof CustomerCreditCardPaymentMethod;
+/**
+ * Exp Month
+ *
+ * Expiration month
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `exp_month` property of CustomerCreditCardPaymentMethod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = customercreditcardpaymentmethod[KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_MONTH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_MONTH;
+ * const value = customercreditcardpaymentmethod[propertyName];
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ * @see {@link KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD} - Array of all keys for this type
+ */
+export const KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_MONTH = 'exp_month' as keyof CustomerCreditCardPaymentMethod;
+/**
+ * Exp Year
+ *
+ * Expiration year
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `exp_year` property of CustomerCreditCardPaymentMethod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = customercreditcardpaymentmethod[KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_YEAR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_YEAR;
+ * const value = customercreditcardpaymentmethod[propertyName];
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ * @see {@link KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD} - Array of all keys for this type
+ */
+export const KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_YEAR = 'exp_year' as keyof CustomerCreditCardPaymentMethod;
+/**
+ * Id
+ *
+ * Payment method ID
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `id` property of CustomerCreditCardPaymentMethod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = customercreditcardpaymentmethod[KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_ID;
+ * const value = customercreditcardpaymentmethod[propertyName];
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ * @see {@link KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD} - Array of all keys for this type
+ */
+export const KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_ID = 'id' as keyof CustomerCreditCardPaymentMethod;
+/**
+ * Is Default
+ *
+ * Whether this is the default payment method
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `is_default` property of CustomerCreditCardPaymentMethod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = customercreditcardpaymentmethod[KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_IS_DEFAULT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_IS_DEFAULT;
+ * const value = customercreditcardpaymentmethod[propertyName];
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ * @see {@link KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD} - Array of all keys for this type
+ */
+export const KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_IS_DEFAULT = 'is_default' as keyof CustomerCreditCardPaymentMethod;
+/**
+ * Last4
+ *
+ * Last four digits of the card
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last4` property of CustomerCreditCardPaymentMethod objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = customercreditcardpaymentmethod[KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_LAST4];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_LAST4;
+ * const value = customercreditcardpaymentmethod[propertyName];
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ * @see {@link KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD} - Array of all keys for this type
+ */
+export const KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_LAST4 = 'last4' as keyof CustomerCreditCardPaymentMethod;
+
+/**
+ * Array of all CustomerCreditCardPaymentMethod property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for CustomerCreditCardPaymentMethod objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD) {
+ *   console.log(`Property: ${key}, Value: ${customercreditcardpaymentmethod[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD.includes(someKey);
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The TypeScript type definition
+ */
+export const KEYS_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD = [
+  KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_BRAND,
+  KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_COUNTRY,
+  KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_MONTH,
+  KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_EXP_YEAR,
+  KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_ID,
+  KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_IS_DEFAULT,
+  KEY_CUSTOMER_CREDIT_CARD_PAYMENT_METHOD_LAST4,
+] as const satisfies (keyof CustomerCreditCardPaymentMethod)[];
 
 /**
  * action property
@@ -18823,6 +19142,240 @@ export const KEYS_VALIDATION_ERROR = [
   KEY_VALIDATION_ERROR_MSG,
   KEY_VALIDATION_ERROR_TYPE,
 ] as const satisfies (keyof ValidationError)[];
+
+/**
+ * Amount
+ *
+ * Amount to credit the customer wallet
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `amount` property of WalletCreditRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditrequest[KEY_WALLET_CREDIT_REQUEST_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_REQUEST_AMOUNT;
+ * const value = walletcreditrequest[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditRequest} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_REQUEST} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_REQUEST_AMOUNT = 'amount' as keyof WalletCreditRequest;
+/**
+ * Payment Method Id
+ *
+ * Payment method ID that should be used
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payment_method_id` property of WalletCreditRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditrequest[KEY_WALLET_CREDIT_REQUEST_PAYMENT_METHOD_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_REQUEST_PAYMENT_METHOD_ID;
+ * const value = walletcreditrequest[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditRequest} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_REQUEST} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_REQUEST_PAYMENT_METHOD_ID = 'payment_method_id' as keyof WalletCreditRequest;
+
+/**
+ * Array of all WalletCreditRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for WalletCreditRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_WALLET_CREDIT_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${walletcreditrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_WALLET_CREDIT_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link WalletCreditRequest} - The TypeScript type definition
+ */
+export const KEYS_WALLET_CREDIT_REQUEST = [
+  KEY_WALLET_CREDIT_REQUEST_AMOUNT,
+  KEY_WALLET_CREDIT_REQUEST_PAYMENT_METHOD_ID,
+] as const satisfies (keyof WalletCreditRequest)[];
+
+/**
+ * Amount
+ *
+ * Amount credited to the customer wallet
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `amount` property of WalletCreditResponseWithBalance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditresponsewithbalance[KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_AMOUNT;
+ * const value = walletcreditresponsewithbalance[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditResponseWithBalance} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_AMOUNT = 'amount' as keyof WalletCreditResponseWithBalance;
+/**
+ * Balance
+ *
+ * Updated wallet balance after the credit
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `balance` property of WalletCreditResponseWithBalance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditresponsewithbalance[KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_BALANCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_BALANCE;
+ * const value = walletcreditresponsewithbalance[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditResponseWithBalance} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_BALANCE = 'balance' as keyof WalletCreditResponseWithBalance;
+/**
+ * Credit Id
+ *
+ * Unique identifier of the wallet credit transaction
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `credit_id` property of WalletCreditResponseWithBalance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditresponsewithbalance[KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CREDIT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CREDIT_ID;
+ * const value = walletcreditresponsewithbalance[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditResponseWithBalance} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CREDIT_ID = 'credit_id' as keyof WalletCreditResponseWithBalance;
+/**
+ * Message
+ *
+ * Optional human-readable message describing the result
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of WalletCreditResponseWithBalance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditresponsewithbalance[KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_MESSAGE;
+ * const value = walletcreditresponsewithbalance[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditResponseWithBalance} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_MESSAGE = 'message' as keyof WalletCreditResponseWithBalance;
+/**
+ * status property
+ *
+ * Status of the credit operation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of WalletCreditResponseWithBalance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditresponsewithbalance[KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_STATUS;
+ * const value = walletcreditresponsewithbalance[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditResponseWithBalance} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_STATUS = 'status' as keyof WalletCreditResponseWithBalance;
+
+/**
+ * Array of all WalletCreditResponseWithBalance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for WalletCreditResponseWithBalance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE) {
+ *   console.log(`Property: ${key}, Value: ${walletcreditresponsewithbalance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link WalletCreditResponseWithBalance} - The TypeScript type definition
+ */
+export const KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE = [
+  KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_AMOUNT,
+  KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_BALANCE,
+  KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CREDIT_ID,
+  KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_MESSAGE,
+  KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_STATUS,
+] as const satisfies (keyof WalletCreditResponseWithBalance)[];
 
 /**
  * Whois Server

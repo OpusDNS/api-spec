@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, Period, Permission, PremiumAffectsType, Relation, UserAgreementAcceptance, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, CustomerCreditCardPaymentMethod, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, Period, Permission, PremiumAffectsType, Relation, UserAgreementAcceptance, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -93,6 +93,20 @@ export type OrganizationAttributeUpdateArray = OrganizationAttributeUpdate[];
  * @see {@link IpRestriction} - The individual IpRestrictionResponse type definition
  */
 export type IpRestrictionArray = IpRestriction[];
+/**
+ * CustomerCreditCardPaymentMethod
+ *
+ * @remarks
+ * Array type for CustomerCreditCardPaymentMethod objects. Used when the API returns a collection of CustomerCreditCardPaymentMethod instances.
+ *
+ * @example
+ * ```typescript
+ * const items: CustomerCreditCardPaymentMethodArray = await api.getCustomerCreditCardPaymentMethods();
+ * ```
+ *
+ * @see {@link CustomerCreditCardPaymentMethod} - The individual CustomerCreditCardPaymentMethod type definition
+ */
+export type CustomerCreditCardPaymentMethodArray = CustomerCreditCardPaymentMethod[];
 /**
  * TldResponseShort
  *

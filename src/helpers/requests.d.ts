@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, PlanUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, CheckoutSessionRequest, WalletCreditRequest, PlanUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET AuthClientCredentials endpoint
@@ -2990,6 +2990,224 @@ export type PATCH_OrganizationsOrganizationId_Request_Path = PATCH_Organizations
  * @path /v1/organizations/{organization_id}
  */
 export type PATCH_OrganizationsOrganizationId_Request_Body = PATCH_OrganizationsOrganizationId_Request['requestBody'];
+
+/**
+ * Request type for POST OrganizationsOrganizationIdBillingCheckoutSessions endpoint
+ *
+ * Get Checkout Session
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST OrganizationsOrganizationIdBillingCheckoutSessions endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/billing/checkout-sessions
+ *
+ * @see {@link POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request_Query} - Query parameters type
+ * @see {@link POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request_Path} - Path parameters type
+ * @see {@link POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request_Body} - Request body type
+ */
+export type POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request = {
+  parameters: {
+    path: operations['get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post']['parameters']['path'];
+  };
+  requestBody: CheckoutSessionRequest;
+}
+/**
+ * Path parameters for POST /v1/organizations/{organization_id}/billing/checkout-sessions
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/organizations/{organization_id}/billing/checkout-sessions endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/billing/checkout-sessions
+ */
+export type POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request_Path = POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/organizations/{organization_id}/billing/checkout-sessions
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/organizations/{organization_id}/billing/checkout-sessions endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/organizations/{organization_id}/billing/checkout-sessions
+ */
+export type POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request_Body = POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request['requestBody'];
+
+/**
+ * Request type for GET OrganizationsOrganizationIdBillingPaymentMethods endpoint
+ *
+ * List Payment Methods
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET OrganizationsOrganizationIdBillingPaymentMethods endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods
+ *
+ * @see {@link GET_OrganizationsOrganizationIdBillingPaymentMethods_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsOrganizationIdBillingPaymentMethods_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsOrganizationIdBillingPaymentMethods_Request_Body} - Request body type
+ */
+export type GET_OrganizationsOrganizationIdBillingPaymentMethods_Request = {
+  parameters: {
+    path: operations['list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/organizations/{organization_id}/billing/payment-methods
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/organizations/{organization_id}/billing/payment-methods endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods
+ */
+export type GET_OrganizationsOrganizationIdBillingPaymentMethods_Request_Path = GET_OrganizationsOrganizationIdBillingPaymentMethods_Request['parameters']['path'];
+
+/**
+ * Request type for DELETE OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId endpoint
+ *
+ * Delete Payment Method
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}
+ *
+ * @see {@link DELETE_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId_Request_Query} - Query parameters type
+ * @see {@link DELETE_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId_Request_Path} - Path parameters type
+ * @see {@link DELETE_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId_Request_Body} - Request body type
+ */
+export type DELETE_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId_Request = {
+  parameters: {
+    path: operations['delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}
+ */
+export type DELETE_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId_Request_Path = DELETE_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId_Request['parameters']['path'];
+
+/**
+ * Request type for PATCH OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault endpoint
+ *
+ * Update Default Payment Method
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default
+ *
+ * @see {@link PATCH_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault_Request_Query} - Query parameters type
+ * @see {@link PATCH_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault_Request_Path} - Path parameters type
+ * @see {@link PATCH_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault_Request_Body} - Request body type
+ */
+export type PATCH_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault_Request = {
+  parameters: {
+    path: operations['update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for PATCH /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default
+ *
+ * @remarks
+ * This type defines the path parameters for the PATCH /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default
+ */
+export type PATCH_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault_Request_Path = PATCH_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault_Request['parameters']['path'];
+
+/**
+ * Request type for POST OrganizationsOrganizationIdBillingWalletCredits endpoint
+ *
+ * Credit Wallet
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST OrganizationsOrganizationIdBillingWalletCredits endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/billing/wallet/credits
+ *
+ * @see {@link POST_OrganizationsOrganizationIdBillingWalletCredits_Request_Query} - Query parameters type
+ * @see {@link POST_OrganizationsOrganizationIdBillingWalletCredits_Request_Path} - Path parameters type
+ * @see {@link POST_OrganizationsOrganizationIdBillingWalletCredits_Request_Body} - Request body type
+ */
+export type POST_OrganizationsOrganizationIdBillingWalletCredits_Request = {
+  parameters: {
+    path: operations['credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post']['parameters']['path'];
+  };
+  requestBody: WalletCreditRequest;
+}
+/**
+ * Path parameters for POST /v1/organizations/{organization_id}/billing/wallet/credits
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/organizations/{organization_id}/billing/wallet/credits endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/billing/wallet/credits
+ */
+export type POST_OrganizationsOrganizationIdBillingWalletCredits_Request_Path = POST_OrganizationsOrganizationIdBillingWalletCredits_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/organizations/{organization_id}/billing/wallet/credits
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/organizations/{organization_id}/billing/wallet/credits endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/organizations/{organization_id}/billing/wallet/credits
+ */
+export type POST_OrganizationsOrganizationIdBillingWalletCredits_Request_Body = POST_OrganizationsOrganizationIdBillingWalletCredits_Request['requestBody'];
 
 /**
  * Request type for PATCH OrganizationsOrganizationIdPlan endpoint

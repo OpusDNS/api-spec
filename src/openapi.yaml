@@ -204,6 +204,27 @@ components:
           title: Username
       title: Body_issue_organization_token_v1_auth_token_post
       type: object
+    CheckoutSessionRequest:
+      properties:
+        return_url:
+          description: Return URL that will be used
+          title: Return Url
+          type: string
+      required:
+      - return_url
+      title: CheckoutSessionRequest
+      type: object
+    CheckoutSessionResponse:
+      properties:
+        session_client_secret:
+          description: Checkout session client secret - meant to be used in the embedded
+            checkout
+          title: Session Client Secret
+          type: string
+      required:
+      - session_client_secret
+      title: CheckoutSessionResponse
+      type: object
     ContactConfigBase:
       properties:
         max:
@@ -813,6 +834,47 @@ components:
       - EUR
       title: Currency
       type: string
+    CustomerCreditCardPaymentMethod:
+      properties:
+        brand:
+          description: Card brand
+          title: Brand
+          type: string
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Country code
+          title: Country
+        exp_month:
+          description: Expiration month
+          title: Exp Month
+          type: integer
+        exp_year:
+          description: Expiration year
+          title: Exp Year
+          type: integer
+        id:
+          description: Payment method ID
+          title: Id
+          type: string
+        is_default:
+          description: Whether this is the default payment method
+          title: Is Default
+          type: boolean
+        last4:
+          description: Last four digits of the card
+          title: Last4
+          type: string
+      required:
+      - id
+      - brand
+      - last4
+      - exp_month
+      - exp_year
+      - is_default
+      title: CustomerCreditCardPaymentMethod
+      type: object
     DeletePolicyType:
       enum:
       - immediate
@@ -4905,6 +4967,59 @@ components:
       - email
       title: VerificationType
       type: string
+    WalletCreditRequest:
+      properties:
+        amount:
+          anyOf:
+          - type: number
+          - type: string
+          description: Amount to credit the customer wallet
+          title: Amount
+        payment_method_id:
+          description: Payment method ID that should be used
+          title: Payment Method Id
+          type: string
+      required:
+      - amount
+      - payment_method_id
+      title: WalletCreditRequest
+      type: object
+    WalletCreditResponseStatus:
+      enum:
+      - success
+      - failed
+      title: WalletCreditResponseStatus
+      type: string
+    WalletCreditResponseWithBalance:
+      properties:
+        amount:
+          description: Amount credited to the customer wallet
+          title: Amount
+          type: string
+        balance:
+          description: Updated wallet balance after the credit
+          title: Balance
+          type: string
+        credit_id:
+          description: Unique identifier of the wallet credit transaction
+          title: Credit Id
+          type: string
+        message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Optional human-readable message describing the result
+          title: Message
+        status:
+          $ref: '#/components/schemas/WalletCreditResponseStatus'
+          description: Status of the credit operation
+      required:
+      - credit_id
+      - amount
+      - status
+      - balance
+      title: WalletCreditResponseWithBalance
+      type: object
     WhoisBase:
       properties:
         whois_server:
@@ -5009,7 +5124,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-24-153436
+  version: 2025-09-24-162647
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8616,6 +8731,204 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Update Organization
       tags:
+      - organization
+  /v1/organizations/{organization_id}/billing/checkout-sessions:
+    post:
+      operationId: get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSessionResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Checkout Session
+      tags:
+      - organization
+      - organization
+  /v1/organizations/{organization_id}/billing/payment-methods:
+    get:
+      operationId: list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerCreditCardPaymentMethod'
+                title: Response List Payment Methods V1 Organizations  Organization
+                  Id  Billing Payment Methods Get
+                type: array
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: List Payment Methods
+      tags:
+      - organization
+      - organization
+  /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}:
+    delete:
+      operationId: delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete
+      parameters:
+      - in: path
+        name: payment_method_id
+        required: true
+        schema:
+          title: Payment Method Id
+          type: string
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Delete Payment Method
+      tags:
+      - organization
+      - organization
+  /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default:
+    patch:
+      operationId: update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch
+      parameters:
+      - in: path
+        name: payment_method_id
+        required: true
+        schema:
+          title: Payment Method Id
+          type: string
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerCreditCardPaymentMethod'
+                title: Response Update Default Payment Method V1 Organizations  Organization
+                  Id  Billing Payment Methods  Payment Method Id  Default Patch
+                type: array
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Update Default Payment Method
+      tags:
+      - organization
+      - organization
+  /v1/organizations/{organization_id}/billing/wallet/credits:
+    post:
+      operationId: credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletCreditRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletCreditResponseWithBalance'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Credit Wallet
+      tags:
+      - organization
       - organization
   /v1/organizations/{organization_id}/plan:
     patch:
