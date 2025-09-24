@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, GetCurrentAvailablePlans, GetPrices, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, GetCurrentAvailablePlans, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -4460,6 +4460,116 @@ export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Res
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET OrganizationsByOrganizationIdTransactions endpoint
+ *
+ * Get transactions for an organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsByOrganizationIdTransactions endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response_422} - 422 response type
+ *
+
+ */
+export type GET_OrganizationsByOrganizationIdTransactions_Response = GET_OrganizationsByOrganizationIdTransactions_Response_200 | GET_OrganizationsByOrganizationIdTransactions_Response_422;
+
+/**
+ * 200 response for GET OrganizationsByOrganizationIdTransactions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsByOrganizationIdTransactions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response} - The main response type definition
+ * @see {@link Pagination_BillingTransaction} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactions_Response_200 = Pagination_BillingTransaction
+
+/**
+ * 422 response for GET OrganizationsByOrganizationIdTransactions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsByOrganizationIdTransactions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactions_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
+ *
+ * Get a specific transaction for an organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_422} - 422 response type
+ *
+
+ */
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response = GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_200 | GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_422;
+
+/**
+ * 200 response for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response} - The main response type definition
+ * @see {@link BillingTransaction} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_200 = BillingTransaction
+
+/**
+ * 422 response for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsIpRestrictions endpoint

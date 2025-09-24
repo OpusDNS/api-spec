@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AgreementType. Auto-generated enum for AgreementType
@@ -238,6 +238,116 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'email_forward',
   'domain_forward'
 ] as const satisfies [string, ...string[]] | BillingTransactionProductType[];
+
+/**
+ * BillingTransactionSortField. Auto-generated enum for BillingTransactionSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the BillingTransactionSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = BILLING_TRANSACTION_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = BILLING_TRANSACTION_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link BillingTransactionSortField} - The TypeScript type definition
+ */
+export const BILLING_TRANSACTION_SORT_FIELD = {
+  PRODUCT_TYPE: "product_type",
+  ACTION: "action",
+  STATUS: "status",
+  CREATED_ON: "created_on",
+  COMPLETED_ON: "completed_on",
+} as const satisfies Record<string, BillingTransactionSortField>;
+
+/**
+ * Array of all BillingTransactionSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid BillingTransactionSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of BILLING_TRANSACTION_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = BILLING_TRANSACTION_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link BillingTransactionSortField} - The TypeScript type definition
+ * @see {@link BILLING_TRANSACTION_SORT_FIELD} - The object form of this enum
+ */
+export const BILLING_TRANSACTION_SORT_FIELD_VALUES = [
+  'product_type',
+  'action',
+  'status',
+  'created_on',
+  'completed_on'
+] as const satisfies [string, ...string[]] | BillingTransactionSortField[];
+
+/**
+ * BillingTransactionStatus. Auto-generated enum for BillingTransactionStatus
+ *
+ * @remarks
+ * This constant provides both object and array forms for the BillingTransactionStatus enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = BILLING_TRANSACTION_STATUS.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = BILLING_TRANSACTION_STATUS_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link BillingTransactionStatus} - The TypeScript type definition
+ */
+export const BILLING_TRANSACTION_STATUS = {
+  PENDING: "pending",
+  SUCCEEDED: "succeeded",
+  FAILED: "failed",
+  CANCELED: "canceled",
+} as const satisfies Record<string, BillingTransactionStatus>;
+
+/**
+ * Array of all BillingTransactionStatus enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid BillingTransactionStatus enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of BILLING_TRANSACTION_STATUS_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = BILLING_TRANSACTION_STATUS_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link BillingTransactionStatus} - The TypeScript type definition
+ * @see {@link BILLING_TRANSACTION_STATUS} - The object form of this enum
+ */
+export const BILLING_TRANSACTION_STATUS_VALUES = [
+  'pending',
+  'succeeded',
+  'failed',
+  'canceled'
+] as const satisfies [string, ...string[]] | BillingTransactionStatus[];
 
 /**
  * ContactRoleType. Auto-generated enum for ContactRoleType

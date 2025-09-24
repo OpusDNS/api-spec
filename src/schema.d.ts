@@ -951,6 +951,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/organizations/{organization_id}/transactions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get transactions for an organization */
+        get: operations["get_transactions_v1_organizations__organization_id__transactions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/transactions/{transaction_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a specific transaction for an organization */
+        get: operations["get_transaction_v1_organizations__organization_id__transactions__transaction_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/tlds/portfolio": {
         parameters: {
             query?: never;
@@ -1170,6 +1204,55 @@ export interface components {
          * @enum {string}
          */
         BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward";
+        /** BillingTransactionResponse */
+        BillingTransactionResponse: {
+            /** @description The action performed in the transaction */
+            action: components["schemas"]["BillingTransactionAction"];
+            /**
+             * Billing Transaction Id
+             * Format: typeid
+             */
+            billing_transaction_id?: TypeId<"billing_transaction">;
+            /**
+             * Completed On
+             * @description The date/time the transaction completed
+             */
+            completed_on?: Date | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the transaction was created
+             */
+            created_on?: Date;
+            /**
+             * Product Reference
+             * @description The reference of the product
+             */
+            product_reference: string | null;
+            /** @description The type of product */
+            product_type: components["schemas"]["BillingTransactionProductType"];
+            /**
+             * @description The status of the transaction
+             * @default pending
+             */
+            status: components["schemas"]["BillingTransactionStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the transaction was updated
+             */
+            updated_on?: Date;
+        };
+        /**
+         * BillingTransactionSortField
+         * @enum {string}
+         */
+        BillingTransactionSortField: "product_type" | "action" | "status" | "created_on" | "completed_on";
+        /**
+         * BillingTransactionStatus
+         * @enum {string}
+         */
+        BillingTransactionStatus: "pending" | "succeeded" | "failed" | "canceled";
         /** Body_issue_organization_token_v1_auth_token_post */
         Body_issue_organization_token_v1_auth_token_post: {
             /**
@@ -3378,6 +3461,12 @@ export interface components {
             total_items: number;
             /** Total Pages */
             total_pages: number;
+        };
+        /** Pagination[BillingTransactionResponse] */
+        Pagination_BillingTransactionResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["BillingTransactionResponse"][];
         };
         /** Pagination[ContactSchema] */
         Pagination_ContactSchema_: {
@@ -7651,6 +7740,82 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["GetPricesResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_transactions_v1_organizations__organization_id__transactions_get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["BillingTransactionSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                product_reference?: string | null;
+                product_type?: components["schemas"]["BillingTransactionProductType"] | null;
+                action?: components["schemas"]["BillingTransactionAction"] | null;
+                status?: components["schemas"]["BillingTransactionStatus"] | null;
+                created_after?: Date | null;
+                created_before?: Date | null;
+                completed_after?: Date | null;
+                completed_before?: Date | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_BillingTransactionResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_transaction_v1_organizations__organization_id__transactions__transaction_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization">;
+                transaction_id: TypeId<"billing_transaction">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BillingTransactionResponse"];
                 };
             };
             /** @description Validation Error */

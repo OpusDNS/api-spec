@@ -139,6 +139,54 @@ export type BillingTransactionAction = components['schemas']['BillingTransaction
  */
 export type BillingTransactionProductType = components['schemas']['BillingTransactionProductType'];
 /**
+ * BillingTransactionResponse
+ *
+ * @remarks
+ * Type alias for the `BillingTransactionResponse` OpenAPI schema.
+ * This type represents billingtransactionresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBillingTransaction();
+ * const item: BillingTransaction = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BillingTransaction = components['schemas']['BillingTransactionResponse'];
+/**
+ * BillingTransactionSortField
+ *
+ * @remarks
+ * Type alias for the `BillingTransactionSortField` OpenAPI schema.
+ * This type represents billingtransactionsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBillingTransactionSortField();
+ * const item: BillingTransactionSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BillingTransactionSortField = components['schemas']['BillingTransactionSortField'];
+/**
+ * BillingTransactionStatus
+ *
+ * @remarks
+ * Type alias for the `BillingTransactionStatus` OpenAPI schema.
+ * This type represents billingtransactionstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBillingTransactionStatus();
+ * const item: BillingTransactionStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BillingTransactionStatus = components['schemas']['BillingTransactionStatus'];
+/**
  * Body_issue_organization_token_v1_auth_token_post
  *
  * @remarks
@@ -1903,6 +1951,22 @@ export type OrganizationWithBillingData = components['schemas']['OrganizationWit
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type PaginationMetadata = components['schemas']['PaginationMetadata'];
+/**
+ * Pagination[BillingTransactionResponse]
+ *
+ * @remarks
+ * Type alias for the `Pagination_BillingTransactionResponse_` OpenAPI schema.
+ * This type represents pagination[billingtransactionresponse] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_BillingTransaction();
+ * const item: Pagination_BillingTransaction = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_BillingTransaction = components['schemas']['Pagination_BillingTransactionResponse_'];
 /**
  * Pagination[ContactSchema]
  *

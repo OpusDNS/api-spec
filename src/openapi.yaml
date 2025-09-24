@@ -101,6 +101,73 @@ components:
       - domain_forward
       title: BillingTransactionProductType
       type: string
+    BillingTransactionResponse:
+      properties:
+        action:
+          $ref: '#/components/schemas/BillingTransactionAction'
+          description: The action performed in the transaction
+        billing_transaction_id:
+          examples:
+          - billing_transaction_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^billing_transaction_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Billing Transaction Id
+          type: string
+          x-typeid-prefix: billing_transaction
+        completed_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date/time the transaction completed
+          title: Completed On
+        created_on:
+          description: The date/time the transaction was created
+          format: date-time
+          title: Created On
+          type: string
+        product_reference:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The reference of the product
+          title: Product Reference
+        product_type:
+          $ref: '#/components/schemas/BillingTransactionProductType'
+          description: The type of product
+        status:
+          $ref: '#/components/schemas/BillingTransactionStatus'
+          default: pending
+          description: The status of the transaction
+        updated_on:
+          description: The date/time the transaction was updated
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - product_type
+      - product_reference
+      - action
+      title: BillingTransactionResponse
+      type: object
+    BillingTransactionSortField:
+      enum:
+      - product_type
+      - action
+      - status
+      - created_on
+      - completed_on
+      title: BillingTransactionSortField
+      type: string
+    BillingTransactionStatus:
+      enum:
+      - pending
+      - succeeded
+      - failed
+      - canceled
+      title: BillingTransactionStatus
+      type: string
     Body_issue_organization_token_v1_auth_token_post:
       properties:
         client_id:
@@ -3444,6 +3511,20 @@ components:
       - has_previous_page
       title: PaginationMetadata
       type: object
+    Pagination_BillingTransactionResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/BillingTransactionResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[BillingTransactionResponse]
+      type: object
     Pagination_ContactSchema_:
       properties:
         pagination:
@@ -4928,7 +5009,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-22-215413
+  version: 2025-09-24-153436
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8660,6 +8741,181 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Get Pricing Plans
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/transactions:
+    get:
+      operationId: get_transactions_v1_organizations__organization_id__transactions_get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/BillingTransactionSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: product_reference
+        required: false
+        schema:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          title: Product Reference
+      - in: query
+        name: product_type
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BillingTransactionProductType'
+          - type: 'null'
+          title: Product Type
+      - in: query
+        name: action
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BillingTransactionAction'
+          - type: 'null'
+          title: Action
+      - in: query
+        name: status
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BillingTransactionStatus'
+          - type: 'null'
+          title: Status
+      - in: query
+        name: created_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created After
+      - in: query
+        name: created_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created Before
+      - in: query
+        name: completed_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Completed After
+      - in: query
+        name: completed_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Completed Before
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_BillingTransactionResponse_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get transactions for an organization
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/transactions/{transaction_id}:
+    get:
+      operationId: get_transaction_v1_organizations__organization_id__transactions__transaction_id__get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - in: path
+        name: transaction_id
+        required: true
+        schema:
+          examples:
+          - billing_transaction_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^billing_transaction_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Transaction Id
+          type: string
+          x-typeid-prefix: billing_transaction
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingTransactionResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get a specific transaction for an organization
       tags:
       - organization
   /v1/tlds/portfolio:

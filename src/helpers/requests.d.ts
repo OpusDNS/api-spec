@@ -3134,6 +3134,96 @@ export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request
 export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Path = GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request['parameters']['path'];
 
 /**
+ * Request type for GET OrganizationsOrganizationIdTransactions endpoint
+ *
+ * Get transactions for an organization
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET OrganizationsOrganizationIdTransactions endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ *
+ * @see {@link GET_OrganizationsOrganizationIdTransactions_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsOrganizationIdTransactions_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsOrganizationIdTransactions_Request_Body} - Request body type
+ */
+export type GET_OrganizationsOrganizationIdTransactions_Request = {
+  parameters: {
+    query: operations['get_transactions_v1_organizations__organization_id__transactions_get']['parameters']['query'];
+    path: operations['get_transactions_v1_organizations__organization_id__transactions_get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/organizations/{organization_id}/transactions
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/organizations/{organization_id}/transactions endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ */
+export type GET_OrganizationsOrganizationIdTransactions_Request_Query = GET_OrganizationsOrganizationIdTransactions_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/organizations/{organization_id}/transactions
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/organizations/{organization_id}/transactions endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ */
+export type GET_OrganizationsOrganizationIdTransactions_Request_Path = GET_OrganizationsOrganizationIdTransactions_Request['parameters']['path'];
+
+/**
+ * Request type for GET OrganizationsOrganizationIdTransactionsTransactionId endpoint
+ *
+ * Get a specific transaction for an organization
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET OrganizationsOrganizationIdTransactionsTransactionId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
+ *
+ * @see {@link GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Body} - Request body type
+ */
+export type GET_OrganizationsOrganizationIdTransactionsTransactionId_Request = {
+  parameters: {
+    path: operations['get_transaction_v1_organizations__organization_id__transactions__transaction_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/organizations/{organization_id}/transactions/{transaction_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/organizations/{organization_id}/transactions/{transaction_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
+ */
+export type GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Path = GET_OrganizationsOrganizationIdTransactionsTransactionId_Request['parameters']['path'];
+
+/**
  * Request type for GET OrganizationsRoles endpoint
  *
  * List Roles
