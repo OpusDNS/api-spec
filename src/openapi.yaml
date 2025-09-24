@@ -3791,6 +3791,16 @@ components:
           type: array
       title: PermissionSet
       type: object
+    PlanIdRequest:
+      properties:
+        plan_id:
+          description: Plan ID from available plans
+          title: Plan Id
+          type: string
+      required:
+      - plan_id
+      title: PlanIdRequest
+      type: object
     PlanInfo:
       properties:
         amount:
@@ -3828,22 +3838,6 @@ components:
       - currency
       - amount
       title: PlanInfo
-      type: object
-    PlanRelation:
-      enum:
-      - basic
-      - enterprise
-      - corporate
-      - premium
-      - starter
-      title: PlanRelation
-      type: string
-    PlanUpdate:
-      properties:
-        plan:
-          $ref: '#/components/schemas/PlanRelation'
-          default: basic
-      title: PlanUpdate
       type: object
     PostTransferRequirements:
       enum:
@@ -5124,7 +5118,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-24-162647
+  version: 2025-09-24-220429
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8949,7 +8943,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PlanUpdate'
+              $ref: '#/components/schemas/PlanIdRequest'
         required: true
       responses:
         '200':

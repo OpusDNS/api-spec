@@ -3691,6 +3691,14 @@ export interface components {
             /** Permissions */
             permissions?: components["schemas"]["Permission"][];
         };
+        /** PlanIdRequest */
+        PlanIdRequest: {
+            /**
+             * Plan Id
+             * @description Plan ID from available plans
+             */
+            plan_id: string;
+        };
         /** PlanInfo */
         PlanInfo: {
             /**
@@ -3723,16 +3731,6 @@ export interface components {
              * @description Plan type or billing interval
              */
             plan_type?: string | null;
-        };
-        /**
-         * PlanRelation
-         * @enum {string}
-         */
-        PlanRelation: "basic" | "enterprise" | "corporate" | "premium" | "starter";
-        /** PlanUpdate */
-        PlanUpdate: {
-            /** @default basic */
-            plan: components["schemas"]["PlanRelation"];
         };
         /**
          * PostTransferRequirements
@@ -8008,7 +8006,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["PlanUpdate"];
+                "application/json": components["schemas"]["PlanIdRequest"];
             };
         };
         responses: {

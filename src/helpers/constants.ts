@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PlanRelation, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
+import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
 
 /**
  * AgreementType. Auto-generated enum for AgreementType
@@ -1918,62 +1918,6 @@ export const PERMISSION_VALUES = [
   'view_audit_logs',
   'view_events'
 ] as const satisfies [string, ...string[]] | Permission[];
-
-/**
- * PlanRelation. Auto-generated enum for PlanRelation
- *
- * @remarks
- * This constant provides both object and array forms for the PlanRelation enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PLAN_RELATION.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PLAN_RELATION_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PlanRelation} - The TypeScript type definition
- */
-export const PLAN_RELATION = {
-  BASIC: "basic",
-  ENTERPRISE: "enterprise",
-  CORPORATE: "corporate",
-  PREMIUM: "premium",
-  STARTER: "starter",
-} as const satisfies Record<string, PlanRelation>;
-
-/**
- * Array of all PlanRelation enum values
- *
- * @remarks
- * This constant provides a array containing all valid PlanRelation enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PLAN_RELATION_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PLAN_RELATION_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PlanRelation} - The TypeScript type definition
- * @see {@link PLAN_RELATION} - The object form of this enum
- */
-export const PLAN_RELATION_VALUES = [
-  'basic',
-  'enterprise',
-  'corporate',
-  'premium',
-  'starter'
-] as const satisfies [string, ...string[]] | PlanRelation[];
 
 /**
  * PostTransferRequirements. Auto-generated enum for PostTransferRequirements
