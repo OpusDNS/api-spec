@@ -2165,6 +2165,12 @@ export interface components {
              */
             contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
             /**
+             * Create Zone
+             * @description Create a zone for the domain on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
              * Name
              * @description The domain to be created
              */
@@ -2635,6 +2641,12 @@ export interface components {
              * @description The contacts of the domain
              */
             contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone for the domain on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
             /**
              * Name
              * @description The domain to be created

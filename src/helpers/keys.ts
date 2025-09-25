@@ -5713,6 +5713,32 @@ export const KEY_DOMAIN_CREATE_AUTH_CODE = 'auth_code' as keyof DomainCreate;
  */
 export const KEY_DOMAIN_CREATE_CONTACTS = 'contacts' as keyof DomainCreate;
 /**
+ * Create Zone
+ *
+ * Create a zone for the domain on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_CREATE_ZONE;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_CREATE_ZONE = 'create_zone' as keyof DomainCreate;
+/**
  * Name
  *
  * The domain to be created
@@ -5837,6 +5863,7 @@ export const KEY_DOMAIN_CREATE_RENEWAL_MODE = 'renewal_mode' as keyof DomainCrea
 export const KEYS_DOMAIN_CREATE = [
   KEY_DOMAIN_CREATE_AUTH_CODE,
   KEY_DOMAIN_CREATE_CONTACTS,
+  KEY_DOMAIN_CREATE_CREATE_ZONE,
   KEY_DOMAIN_CREATE_NAME,
   KEY_DOMAIN_CREATE_NAMESERVERS,
   KEY_DOMAIN_CREATE_PERIOD,
@@ -8666,6 +8693,32 @@ export const KEY_DOMAIN_TRANSFER_IN_AUTH_CODE = 'auth_code' as keyof DomainTrans
  */
 export const KEY_DOMAIN_TRANSFER_IN_CONTACTS = 'contacts' as keyof DomainTransferIn;
 /**
+ * Create Zone
+ *
+ * Create a zone for the domain on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE = 'create_zone' as keyof DomainTransferIn;
+/**
  * Name
  *
  * The domain to be created
@@ -8765,6 +8818,7 @@ export const KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE = 'renewal_mode' as keyof Domai
 export const KEYS_DOMAIN_TRANSFER_IN = [
   KEY_DOMAIN_TRANSFER_IN_AUTH_CODE,
   KEY_DOMAIN_TRANSFER_IN_CONTACTS,
+  KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE,
   KEY_DOMAIN_TRANSFER_IN_NAME,
   KEY_DOMAIN_TRANSFER_IN_NAMESERVERS,
   KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,

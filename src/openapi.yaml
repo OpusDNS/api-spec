@@ -1395,6 +1395,11 @@ components:
           - $ref: '#/components/schemas/ContactIdList'
           description: The contacts of the domain
           title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone for the domain on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
         name:
           description: The domain to be created
           title: Name
@@ -2122,6 +2127,11 @@ components:
           - $ref: '#/components/schemas/ContactIdList'
           description: The contacts of the domain
           title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone for the domain on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
         name:
           description: The domain to be created
           title: Name
@@ -5118,7 +5128,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-24-220429
+  version: 2025-09-25-064650
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
