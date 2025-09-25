@@ -3756,7 +3756,6 @@ components:
       type: string
     Permission:
       enum:
-      - acknowledge
       - bulk_create
       - bulk_delete
       - bulk_renew_expire
@@ -4042,7 +4041,6 @@ components:
       - owner
       - parent
       - product_manager
-      - recipient
       - reseller_manager
       - root_admin
       - self
@@ -5128,7 +5126,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-25-064650
+  version: 2025-09-25-223241
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

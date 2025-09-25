@@ -3697,7 +3697,7 @@ export interface components {
          * Permission
          * @enum {string}
          */
-        Permission: "acknowledge" | "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "corporate_plan" | "create" | "delete" | "enterprise_plan" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_events" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_users" | "manage_user_relations" | "plan_manager" | "premium_plan" | "renew_expire" | "starter_plan" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs" | "view_events";
+        Permission: "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "corporate_plan" | "create" | "delete" | "enterprise_plan" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_email_forwards" | "manage_events" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_users" | "manage_user_relations" | "plan_manager" | "premium_plan" | "renew_expire" | "starter_plan" | "transfer_trade" | "update" | "verify" | "view" | "view_audit_logs" | "view_events";
         /** PermissionSet */
         PermissionSet: {
             /** Permissions */
@@ -3861,7 +3861,7 @@ export interface components {
          * Relation
          * @enum {string}
          */
-        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_manager" | "email_forward_manager" | "events_manager" | "member" | "opusdns_internal_api_key" | "organization_manager" | "owner" | "parent" | "product_manager" | "recipient" | "reseller_manager" | "root_admin" | "self";
+        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_manager" | "email_forward_manager" | "events_manager" | "member" | "opusdns_internal_api_key" | "organization_manager" | "owner" | "parent" | "product_manager" | "reseller_manager" | "root_admin" | "self";
         /** RelationSet */
         RelationSet: {
             /** Relations */

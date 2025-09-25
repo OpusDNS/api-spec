@@ -1825,7 +1825,6 @@ export const PERIOD_UNIT_VALUES = [
  * @see {@link Permission} - The TypeScript type definition
  */
 export const PERMISSION = {
-  ACKNOWLEDGE: "acknowledge",
   BULK_CREATE: "bulk_create",
   BULK_DELETE: "bulk_delete",
   BULK_RENEW_EXPIRE: "bulk_renew_expire",
@@ -1883,7 +1882,6 @@ export const PERMISSION = {
  * @see {@link PERMISSION} - The object form of this enum
  */
 export const PERMISSION_VALUES = [
-  'acknowledge',
   'bulk_create',
   'bulk_delete',
   'bulk_renew_expire',
@@ -2259,7 +2257,6 @@ export const RELATION = {
   OWNER: "owner",
   PARENT: "parent",
   PRODUCT_MANAGER: "product_manager",
-  RECIPIENT: "recipient",
   RESELLER_MANAGER: "reseller_manager",
   ROOT_ADMIN: "root_admin",
   SELF: "self",
@@ -2303,7 +2300,6 @@ export const RELATION_VALUES = [
   'owner',
   'parent',
   'product_manager',
-  'recipient',
   'reseller_manager',
   'root_admin',
   'self'
