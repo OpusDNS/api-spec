@@ -1406,6 +1406,8 @@ export interface components {
              * @description The date/time the transaction was created
              */
             created_on?: Date;
+            /** @description The currency of the transaction */
+            currency?: components["schemas"]["Currency"];
             /**
              * Price
              * @description The price of the product without sales tax

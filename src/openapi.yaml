@@ -138,6 +138,9 @@ components:
           format: date-time
           title: Created On
           type: string
+        currency:
+          $ref: '#/components/schemas/Currency'
+          description: The currency of the transaction
         price:
           description: The price of the product without sales tax
           title: Price
@@ -5210,7 +5213,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-29-110334
+  version: 2025-09-29-135930
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

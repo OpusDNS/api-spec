@@ -620,6 +620,31 @@ export const KEY_BILLING_TRANSACTION_COMPLETED_ON = 'completed_on' as keyof Bill
  */
 export const KEY_BILLING_TRANSACTION_CREATED_ON = 'created_on' as keyof BillingTransaction;
 /**
+ * currency property
+ *
+ * The currency of the transaction
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of BillingTransaction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingtransaction[KEY_BILLING_TRANSACTION_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_TRANSACTION_CURRENCY;
+ * const value = billingtransaction[propertyName];
+ * ```
+ *
+ * @see {@link BillingTransaction} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
+ */
+export const KEY_BILLING_TRANSACTION_CURRENCY = 'currency' as keyof BillingTransaction;
+/**
  * Price
  *
  * The price of the product without sales tax
@@ -825,6 +850,7 @@ export const KEYS_BILLING_TRANSACTION = [
   KEY_BILLING_TRANSACTION_BILLING_TRANSACTION_ID,
   KEY_BILLING_TRANSACTION_COMPLETED_ON,
   KEY_BILLING_TRANSACTION_CREATED_ON,
+  KEY_BILLING_TRANSACTION_CURRENCY,
   KEY_BILLING_TRANSACTION_PRICE,
   KEY_BILLING_TRANSACTION_PRODUCT_REFERENCE,
   KEY_BILLING_TRANSACTION_PRODUCT_TYPE,
