@@ -1476,13 +1476,7 @@ export interface components {
             username?: string | null;
         };
         /** CheckoutSessionRequest */
-        CheckoutSessionRequest: {
-            /**
-             * Return Url
-             * @description Return URL that will be used
-             */
-            return_url: string;
-        };
+        CheckoutSessionRequest: Record<string, never>;
         /** CheckoutSessionResponse */
         CheckoutSessionResponse: {
             /**

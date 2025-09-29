@@ -233,13 +233,7 @@ components:
       title: Body_issue_organization_token_v1_auth_token_post
       type: object
     CheckoutSessionRequest:
-      properties:
-        return_url:
-          description: Return URL that will be used
-          title: Return Url
-          type: string
-      required:
-      - return_url
+      properties: {}
       title: CheckoutSessionRequest
       type: object
     CheckoutSessionResponse:
@@ -5216,7 +5210,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-29-103012
+  version: 2025-09-29-110334
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

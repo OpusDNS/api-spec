@@ -34,7 +34,6 @@ import { BillingMetadata } from './schemas';
 import { BillingPlan } from './schemas';
 import { BillingTransaction } from './schemas';
 import { Body_issue_organization_token_v1_auth_token_post } from './schemas';
-import { CheckoutSessionRequest } from './schemas';
 import { CheckoutSession } from './schemas';
 import { ContactAttributeDefinition } from './schemas';
 import { ContactConfigBase } from './schemas';
@@ -988,57 +987,6 @@ export const KEYS_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST = [
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_PASSWORD,
   KEY_BODY_ISSUE_ORGANIZATION_TOKEN_V1_AUTH_TOKEN_POST_USERNAME,
 ] as const satisfies (keyof Body_issue_organization_token_v1_auth_token_post)[];
-
-/**
- * Return Url
- *
- * Return URL that will be used
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `return_url` property of CheckoutSessionRequest objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = checkoutsessionrequest[KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL];
- * 
- * // Dynamic property access
- * const propertyName = KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL;
- * const value = checkoutsessionrequest[propertyName];
- * ```
- *
- * @see {@link CheckoutSessionRequest} - The TypeScript type definition
- * @see {@link KEYS_CHECKOUT_SESSION_REQUEST} - Array of all keys for this type
- */
-export const KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL = 'return_url' as keyof CheckoutSessionRequest;
-
-/**
- * Array of all CheckoutSessionRequest property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for CheckoutSessionRequest objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_CHECKOUT_SESSION_REQUEST) {
- *   console.log(`Property: ${key}, Value: ${checkoutsessionrequest[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_CHECKOUT_SESSION_REQUEST.includes(someKey);
- * ```
- *
- * @see {@link CheckoutSessionRequest} - The TypeScript type definition
- */
-export const KEYS_CHECKOUT_SESSION_REQUEST = [
-  KEY_CHECKOUT_SESSION_REQUEST_RETURN_URL,
-] as const satisfies (keyof CheckoutSessionRequest)[];
 
 /**
  * Session Client Secret
