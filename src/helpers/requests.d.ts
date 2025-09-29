@@ -39,7 +39,7 @@ import { OrganizationCredentialExtra, SignupCreate, ContactCreate, DnsZoneCreate
 /**
  * Request type for GET AuthClientCredentials endpoint
  *
- * List Api Keys
+ * List all API keys
  *
  * @remarks
  * This type defines the complete request structure for the GET AuthClientCredentials endpoint.
@@ -79,7 +79,7 @@ export type GET_AuthClientCredentials_Request_Query = GET_AuthClientCredentials_
 /**
  * Request type for POST AuthClientCredentials endpoint
  *
- * Issue Api Key
+ * Issue an API key
  *
  * @remarks
  * This type defines the complete request structure for the POST AuthClientCredentials endpoint.
@@ -115,7 +115,7 @@ export type POST_AuthClientCredentials_Request_Body = POST_AuthClientCredentials
 /**
  * Request type for DELETE AuthClientCredentialsApiKeyId endpoint
  *
- * Delete Api Key
+ * Delete an API key
  *
  * @remarks
  * This type defines the complete request structure for the DELETE AuthClientCredentialsApiKeyId endpoint.
@@ -233,7 +233,7 @@ export type POST_AuthToken_Request = {
 /**
  * Request type for GET Availability endpoint
  *
- * Bulk Availability
+ * Check domain availability
  * Check the availability of one or more domains.
  *
  * @remarks
@@ -278,7 +278,7 @@ export type GET_Availability_Request_Query = GET_Availability_Request['parameter
 /**
  * Request type for GET AvailabilityStream endpoint
  *
- * Stream Availability
+ * Stream domain availability results
  * Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
  *
  * @remarks
@@ -323,8 +323,8 @@ export type GET_AvailabilityStream_Request_Query = GET_AvailabilityStream_Reques
 /**
  * Request type for GET Contacts endpoint
  *
- * Get Contacts
  * List all contacts
+ * Retrieves a paginated list of all contacts
  *
  * @remarks
  * This type defines the complete request structure for the GET Contacts endpoint.
@@ -362,8 +362,8 @@ export type GET_Contacts_Request_Query = GET_Contacts_Request['parameters']['que
 /**
  * Request type for POST Contacts endpoint
  *
- * Create Contact
  * Create a contact
+ * Create a new contact object to use for domain registration
  *
  * @remarks
  * This type defines the complete request structure for the POST Contacts endpoint.
@@ -399,8 +399,8 @@ export type POST_Contacts_Request_Body = POST_Contacts_Request['requestBody'];
 /**
  * Request type for DELETE ContactsContactId endpoint
  *
- * Delete Contact
  * Delete a contact
+ * Deletes a contact object; only possible if the contact is not in use
  *
  * @remarks
  * This type defines the complete request structure for the DELETE ContactsContactId endpoint.
@@ -438,8 +438,8 @@ export type DELETE_ContactsContactId_Request_Path = DELETE_ContactsContactId_Req
 /**
  * Request type for GET ContactsContactId endpoint
  *
- * Get Contact
  * Retrieve a contact
+ * Retrieves a contact object
  *
  * @remarks
  * This type defines the complete request structure for the GET ContactsContactId endpoint.
@@ -477,7 +477,6 @@ export type GET_ContactsContactId_Request_Path = GET_ContactsContactId_Request['
 /**
  * Request type for DELETE ContactsContactIdVerification endpoint
  *
- * Cancel Verification
  * Delete contact verification
  *
  * @remarks
@@ -516,8 +515,7 @@ export type DELETE_ContactsContactIdVerification_Request_Path = DELETE_ContactsC
 /**
  * Request type for GET ContactsContactIdVerification endpoint
  *
- * Get Verification Status
- * Retrieve contact verification
+ * Retrieve contact verification by contact ID
  *
  * @remarks
  * This type defines the complete request structure for the GET ContactsContactIdVerification endpoint.
@@ -555,7 +553,6 @@ export type GET_ContactsContactIdVerification_Request_Path = GET_ContactsContact
 /**
  * Request type for POST ContactsContactIdVerification endpoint
  *
- * Start Contact Verification
  * Start contact verification
  *
  * @remarks
@@ -608,8 +605,7 @@ export type POST_ContactsContactIdVerification_Request_Path = POST_ContactsConta
 /**
  * Request type for PUT ContactsContactIdVerification endpoint
  *
- * Update Verification
- * Complete contact verification
+ * Complete contact verification by contact ID
  *
  * @remarks
  * This type defines the complete request structure for the PUT ContactsContactIdVerification endpoint.
@@ -661,8 +657,7 @@ export type PUT_ContactsContactIdVerification_Request_Path = PUT_ContactsContact
 /**
  * Request type for GET ContactsVerification endpoint
  *
- * Get Verification By Token
- * Retrieve contact verification
+ * Retrieve contact verification by token
  *
  * @remarks
  * This type defines the complete request structure for the GET ContactsVerification endpoint.
@@ -700,8 +695,7 @@ export type GET_ContactsVerification_Request_Query = GET_ContactsVerification_Re
 /**
  * Request type for PUT ContactsVerification endpoint
  *
- * Update Verification By Token
- * Complete contact verification
+ * Complete contact verification with token
  *
  * @remarks
  * This type defines the complete request structure for the PUT ContactsVerification endpoint.
@@ -1195,7 +1189,8 @@ export type PUT_DnsZoneNameRrsets_Request_Body = PUT_DnsZoneNameRrsets_Request['
 /**
  * Request type for GET DomainSearchSuggest endpoint
  *
- * Suggest
+ * Suggest domains
+ * Get a list of domain suggestions based on a search query
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainSearchSuggest endpoint.
@@ -1207,9 +1202,7 @@ export type PUT_DnsZoneNameRrsets_Request_Body = PUT_DnsZoneNameRrsets_Request['
  *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - 
-Specify one or more TLDs to include in the search.
-
+ * @param tlds (query) - The TLDs to include in the search
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
@@ -1234,9 +1227,7 @@ export type GET_DomainSearchSuggest_Request = {
  *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - 
-Specify one or more TLDs to include in the search.
-
+ * @param tlds (query) - The TLDs to include in the search
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  */
@@ -1760,7 +1751,7 @@ export type POST_DomainsDomainReferenceRenew_Request_Body = POST_DomainsDomainRe
 /**
  * Request type for POST DomainsDomainReferenceRestore endpoint
  *
- * Restore Domain
+ * Restore an eligible domain (during redemption period)
  *
  * @remarks
  * This type defines the complete request structure for the POST DomainsDomainReferenceRestore endpoint.
@@ -2275,7 +2266,8 @@ export type PATCH_EmailForwardsZoneNameEnable_Request_Path = PATCH_EmailForwards
 /**
  * Request type for GET Events endpoint
  *
- * Get Events
+ * Get pending events
+ * Retrieves a paginated list of pending events for the organization
  *
  * @remarks
  * This type defines the complete request structure for the GET Events endpoint.
@@ -2313,7 +2305,8 @@ export type GET_Events_Request_Query = GET_Events_Request['parameters']['query']
 /**
  * Request type for GET EventsEventId endpoint
  *
- * Get Event
+ * Get event
+ * Get an event by its ID
  *
  * @remarks
  * This type defines the complete request structure for the GET EventsEventId endpoint.
@@ -2351,7 +2344,8 @@ export type GET_EventsEventId_Request_Path = GET_EventsEventId_Request['paramete
 /**
  * Request type for PATCH EventsEventId endpoint
  *
- * Acknowledge Event
+ * Acknowledge event
+ * Acknowledge an event
  *
  * @remarks
  * This type defines the complete request structure for the PATCH EventsEventId endpoint.
@@ -2389,7 +2383,8 @@ export type PATCH_EventsEventId_Request_Path = PATCH_EventsEventId_Request['para
 /**
  * Request type for GET Organizations endpoint
  *
- * List Organizations
+ * List all organizations
+ * Retrieves a paginated list of organizations under the current organization
  *
  * @remarks
  * This type defines the complete request structure for the GET Organizations endpoint.
@@ -2427,7 +2422,8 @@ export type GET_Organizations_Request_Query = GET_Organizations_Request['paramet
 /**
  * Request type for POST Organizations endpoint
  *
- * Create Organization
+ * Create an organization
+ * Create a new organization under the current organization
  *
  * @remarks
  * This type defines the complete request structure for the POST Organizations endpoint.
@@ -2463,7 +2459,8 @@ export type POST_Organizations_Request_Body = POST_Organizations_Request['reques
 /**
  * Request type for GET OrganizationsAttributes endpoint
  *
- * Get Attributes
+ * List organization attributes
+ * Retrieves a list of organization attributes for the current organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsAttributes endpoint.
@@ -2503,7 +2500,8 @@ export type GET_OrganizationsAttributes_Request_Query = GET_OrganizationsAttribu
 /**
  * Request type for PATCH OrganizationsAttributes endpoint
  *
- * Update Attributes
+ * Update organization attributes
+ * Updates one or more organization attributes for the current organization
  *
  * @remarks
  * This type defines the complete request structure for the PATCH OrganizationsAttributes endpoint.
@@ -2555,7 +2553,8 @@ export type PATCH_OrganizationsAttributes_Request_Body = PATCH_OrganizationsAttr
 /**
  * Request type for GET OrganizationsAttributesOrganizationId endpoint
  *
- * Get Attributes
+ * List organization attributes
+ * Retrieves a list of organization attributes for the specified organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsAttributesOrganizationId endpoint.
@@ -2609,7 +2608,8 @@ export type GET_OrganizationsAttributesOrganizationId_Request_Path = GET_Organiz
 /**
  * Request type for PATCH OrganizationsAttributesOrganizationId endpoint
  *
- * Update Attributes
+ * Update organization attributes
+ * Updates one or more organization attributes for the specified organization
  *
  * @remarks
  * This type defines the complete request structure for the PATCH OrganizationsAttributesOrganizationId endpoint.
@@ -2661,7 +2661,7 @@ export type PATCH_OrganizationsAttributesOrganizationId_Request_Body = PATCH_Org
 /**
  * Request type for GET OrganizationsIpRestrictions endpoint
  *
- * List Ip Restrictions
+ * List IP restrictions
  * List all IP restrictions for the organization.
 
 Returns a list of all IP restrictions configured for your organization.
@@ -2687,7 +2687,7 @@ export type GET_OrganizationsIpRestrictions_Request = {
 /**
  * Request type for POST OrganizationsIpRestrictions endpoint
  *
- * Create Ip Restriction
+ * Create an IP restriction
  * Create a new IP restriction for the organization.
 
 Accepts either a single IP address or a CIDR network range.
@@ -2727,7 +2727,7 @@ export type POST_OrganizationsIpRestrictions_Request_Body = POST_OrganizationsIp
 /**
  * Request type for DELETE OrganizationsIpRestrictionsIpRestrictionId endpoint
  *
- * Delete Ip Restriction
+ * Delete an IP restriction
  * Delete an IP restriction.
 
 Permanently removes the specified IP restriction from your organization.
@@ -2768,7 +2768,7 @@ export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = DEL
 /**
  * Request type for GET OrganizationsIpRestrictionsIpRestrictionId endpoint
  *
- * Get Ip Restriction
+ * Get an IP restriction
  * Get a specific IP restriction by ID.
 
 Returns the details of a specific IP restriction if it exists and belongs to your organization.
@@ -2810,7 +2810,7 @@ export type GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = GET_Or
 /**
  * Request type for PATCH OrganizationsIpRestrictionsIpRestrictionId endpoint
  *
- * Update Ip Restriction
+ * Update an IP restriction
  * Update an existing IP restriction.
 
 You can update the IP network range or the last usage timestamp.
@@ -2866,7 +2866,8 @@ export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Body = PATC
 /**
  * Request type for DELETE OrganizationsOrganizationId endpoint
  *
- * Delete User
+ * Delete an organization
+ * Permanently deletes an organization
  *
  * @remarks
  * This type defines the complete request structure for the DELETE OrganizationsOrganizationId endpoint.
@@ -2904,7 +2905,8 @@ export type DELETE_OrganizationsOrganizationId_Request_Path = DELETE_Organizatio
 /**
  * Request type for GET OrganizationsOrganizationId endpoint
  *
- * Get Organization
+ * Get organization details
+ * Retrieves details for a specific organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsOrganizationId endpoint.
@@ -2942,7 +2944,8 @@ export type GET_OrganizationsOrganizationId_Request_Path = GET_OrganizationsOrga
 /**
  * Request type for PATCH OrganizationsOrganizationId endpoint
  *
- * Update Organization
+ * Update an organization
+ * Updates details for a specific organization
  *
  * @remarks
  * This type defines the complete request structure for the PATCH OrganizationsOrganizationId endpoint.
@@ -2994,7 +2997,8 @@ export type PATCH_OrganizationsOrganizationId_Request_Body = PATCH_Organizations
 /**
  * Request type for POST OrganizationsOrganizationIdBillingCheckoutSessions endpoint
  *
- * Get Checkout Session
+ * Create checkout session
+ * Create a checkout session for the organization
  *
  * @remarks
  * This type defines the complete request structure for the POST OrganizationsOrganizationIdBillingCheckoutSessions endpoint.
@@ -3046,7 +3050,8 @@ export type POST_OrganizationsOrganizationIdBillingCheckoutSessions_Request_Body
 /**
  * Request type for GET OrganizationsOrganizationIdBillingPaymentMethods endpoint
  *
- * List Payment Methods
+ * List all payment methods
+ * List all available payment methods for the organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsOrganizationIdBillingPaymentMethods endpoint.
@@ -3084,7 +3089,8 @@ export type GET_OrganizationsOrganizationIdBillingPaymentMethods_Request_Path = 
 /**
  * Request type for DELETE OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId endpoint
  *
- * Delete Payment Method
+ * Delete a payment method
+ * Delete a payment method for the organization
  *
  * @remarks
  * This type defines the complete request structure for the DELETE OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodId endpoint.
@@ -3122,7 +3128,8 @@ export type DELETE_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethod
 /**
  * Request type for PATCH OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault endpoint
  *
- * Update Default Payment Method
+ * Set payment method as default
+ * Set the provided payment method as default for the specified organization
  *
  * @remarks
  * This type defines the complete request structure for the PATCH OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodIdDefault endpoint.
@@ -3160,7 +3167,8 @@ export type PATCH_OrganizationsOrganizationIdBillingPaymentMethodsPaymentMethodI
 /**
  * Request type for POST OrganizationsOrganizationIdBillingWalletCredits endpoint
  *
- * Credit Wallet
+ * Credit wallet
+ * Credit the organization's wallet using the provided amount and payment method
  *
  * @remarks
  * This type defines the complete request structure for the POST OrganizationsOrganizationIdBillingWalletCredits endpoint.
@@ -3212,7 +3220,8 @@ export type POST_OrganizationsOrganizationIdBillingWalletCredits_Request_Body = 
 /**
  * Request type for PATCH OrganizationsOrganizationIdPlan endpoint
  *
- * Change Plan
+ * Update organization plan
+ * Changes the plan for an organization
  *
  * @remarks
  * This type defines the complete request structure for the PATCH OrganizationsOrganizationIdPlan endpoint.
@@ -3264,7 +3273,8 @@ export type PATCH_OrganizationsOrganizationIdPlan_Request_Body = PATCH_Organizat
 /**
  * Request type for GET OrganizationsOrganizationIdPlans endpoint
  *
- * Get Current Available Plans
+ * Get plans for an organization
+ * Retrieves a list of plans for an organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsOrganizationIdPlans endpoint.
@@ -3302,7 +3312,8 @@ export type GET_OrganizationsOrganizationIdPlans_Request_Path = GET_Organization
 /**
  * Request type for GET OrganizationsOrganizationIdPricingProductTypeProductType endpoint
  *
- * Get Pricing Plans
+ * List product prices
+ * Retrieves pricing data for a specific product type. If a product action/class are specified, only prices for those are returned, if any.
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsOrganizationIdPricingProductTypeProductType endpoint.
@@ -3354,7 +3365,8 @@ export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request
 /**
  * Request type for GET OrganizationsOrganizationIdTransactions endpoint
  *
- * Get transactions for an organization
+ * List all transactions
+ * Retrieves a paginated list of transactions for an organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsOrganizationIdTransactions endpoint.
@@ -3406,7 +3418,8 @@ export type GET_OrganizationsOrganizationIdTransactions_Request_Path = GET_Organ
 /**
  * Request type for GET OrganizationsOrganizationIdTransactionsTransactionId endpoint
  *
- * Get a specific transaction for an organization
+ * Get a specific transaction
+ * Retrieves details for a specific transaction for an organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsOrganizationIdTransactionsTransactionId endpoint.
@@ -3444,7 +3457,8 @@ export type GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Pat
 /**
  * Request type for GET OrganizationsRoles endpoint
  *
- * List Roles
+ * List all roles
+ * Retrieves a list of roles for the current organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsRoles endpoint.
@@ -3466,7 +3480,8 @@ export type GET_OrganizationsRoles_Request = {
 /**
  * Request type for GET OrganizationsUsers endpoint
  *
- * List Users
+ * List all users
+ * Retrieves a paginated list of users under the current organization
  *
  * @remarks
  * This type defines the complete request structure for the GET OrganizationsUsers endpoint.
@@ -3504,7 +3519,8 @@ export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Reques
 /**
  * Request type for GET TldsPortfolio endpoint
  *
- * Get Tld Portfolio
+ * Get the list of TLDs we support
+ * Retrieves a list of TLDs we have support for
  *
  * @remarks
  * This type defines the complete request structure for the GET TldsPortfolio endpoint.
@@ -3526,7 +3542,8 @@ export type GET_TldsPortfolio_Request = {
 /**
  * Request type for GET TldsTld endpoint
  *
- * Get Tld Spec
+ * Get the TLD specification
+ * Retrieves the TLD specification for a given TLD
  *
  * @remarks
  * This type defines the complete request structure for the GET TldsTld endpoint.
@@ -3564,7 +3581,8 @@ export type GET_TldsTld_Request_Path = GET_TldsTld_Request['parameters']['path']
 /**
  * Request type for POST Users endpoint
  *
- * Create User
+ * Create a user
+ * Create a new user
  *
  * @remarks
  * This type defines the complete request structure for the POST Users endpoint.
@@ -3600,7 +3618,8 @@ export type POST_Users_Request_Body = POST_Users_Request['requestBody'];
 /**
  * Request type for GET UsersMe endpoint
  *
- * Get Current User
+ * Get current user
+ * Get the current user
  *
  * @remarks
  * This type defines the complete request structure for the GET UsersMe endpoint.
@@ -3674,7 +3693,8 @@ export type PATCH_UsersMePasswordReset_Request_Body = PATCH_UsersMePasswordReset
 /**
  * Request type for DELETE UsersUserId endpoint
  *
- * Delete User
+ * Delete a user
+ * Delete a user by ID
  *
  * @remarks
  * This type defines the complete request structure for the DELETE UsersUserId endpoint.
@@ -3712,7 +3732,8 @@ export type DELETE_UsersUserId_Request_Path = DELETE_UsersUserId_Request['parame
 /**
  * Request type for GET UsersUserId endpoint
  *
- * Get User
+ * Get a user
+ * Get a user by ID
  *
  * @remarks
  * This type defines the complete request structure for the GET UsersUserId endpoint.
@@ -3764,7 +3785,8 @@ export type GET_UsersUserId_Request_Path = GET_UsersUserId_Request['parameters']
 /**
  * Request type for PATCH UsersUserId endpoint
  *
- * Update User
+ * Update a user
+ * Update a user by ID
  *
  * @remarks
  * This type defines the complete request structure for the PATCH UsersUserId endpoint.
@@ -3816,7 +3838,8 @@ export type PATCH_UsersUserId_Request_Body = PATCH_UsersUserId_Request['requestB
 /**
  * Request type for GET UsersUserIdPermissions endpoint
  *
- * Get User Permissions
+ * Get user permissions
+ * Get the permissions for a user
  *
  * @remarks
  * This type defines the complete request structure for the GET UsersUserIdPermissions endpoint.
@@ -3854,7 +3877,8 @@ export type GET_UsersUserIdPermissions_Request_Path = GET_UsersUserIdPermissions
 /**
  * Request type for GET UsersUserIdRoles endpoint
  *
- * List Roles
+ * Get user roles
+ * Get the roles for a user
  *
  * @remarks
  * This type defines the complete request structure for the GET UsersUserIdRoles endpoint.
@@ -3892,7 +3916,8 @@ export type GET_UsersUserIdRoles_Request_Path = GET_UsersUserIdRoles_Request['pa
 /**
  * Request type for PATCH UsersUserIdRoles endpoint
  *
- * Update User Relations
+ * Update user roles
+ * Update the roles for a user
  *
  * @remarks
  * This type defines the complete request structure for the PATCH UsersUserIdRoles endpoint.

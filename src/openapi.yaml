@@ -5196,7 +5196,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-29-070622
+  version: 2025-09-29-071158
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5260,7 +5260,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: List Api Keys
+      summary: List all API keys
       tags:
       - authentication
     post:
@@ -5298,7 +5298,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Issue Api Key
+      summary: Issue an API key
       tags:
       - authentication
   /v1/auth/client_credentials/{api_key_id}:
@@ -5353,7 +5353,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete Api Key
+      summary: Delete an API key
       tags:
       - authentication
   /v1/auth/logout:
@@ -5527,7 +5527,7 @@ paths:
           description: Bad Gateway
       security:
       - OAuth2PasswordBearer: []
-      summary: Bulk Availability
+      summary: Check domain availability
       tags:
       - availability
   /v1/availability/stream:
@@ -5608,12 +5608,12 @@ paths:
           description: Bad Gateway
       security:
       - OAuth2PasswordBearer: []
-      summary: Stream Availability
+      summary: Stream domain availability results
       tags:
       - availability
   /v1/contacts:
     get:
-      description: List all contacts
+      description: Retrieves a paginated list of all contacts
       operationId: get_contacts_v1_contacts_get
       parameters:
       - in: query
@@ -5718,11 +5718,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Contacts
+      summary: List all contacts
       tags:
       - contact
     post:
-      description: Create a contact
+      description: Create a new contact object to use for domain registration
       operationId: create_contact_v1_contacts_post
       requestBody:
         content:
@@ -5745,12 +5745,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create Contact
+      summary: Create a contact
       tags:
       - contact
   /v1/contacts/verification:
     get:
-      description: Retrieve contact verification
       operationId: get_verification_by_token_v1_contacts_verification_get
       parameters:
       - in: query
@@ -5797,11 +5796,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Get Verification By Token
+      summary: Retrieve contact verification by token
       tags:
       - contact
     put:
-      description: Complete contact verification
       operationId: update_verification_by_token_v1_contacts_verification_put
       parameters:
       - in: query
@@ -5859,7 +5857,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Update Verification By Token
+      summary: Complete contact verification with token
       tags:
       - contact
   /v1/contacts/verify:
@@ -5889,7 +5887,8 @@ paths:
       - contact
   /v1/contacts/{contact_id}:
     delete:
-      description: Delete a contact
+      description: Deletes a contact object; only possible if the contact is not in
+        use
       operationId: delete_contact_v1_contacts__contact_id__delete
       parameters:
       - in: path
@@ -5965,11 +5964,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete Contact
+      summary: Delete a contact
       tags:
       - contact
     get:
-      description: Retrieve a contact
+      description: Retrieves a contact object
       operationId: get_contact_v1_contacts__contact_id__get
       parameters:
       - in: path
@@ -6011,12 +6010,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Contact
+      summary: Retrieve a contact
       tags:
       - contact
   /v1/contacts/{contact_id}/verification:
     delete:
-      description: Delete contact verification
       operationId: cancel_verification_v1_contacts__contact_id__verification_delete
       parameters:
       - in: path
@@ -6066,11 +6064,10 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Cancel Verification
+      summary: Delete contact verification
       tags:
       - contact
     get:
-      description: Retrieve contact verification
       operationId: get_verification_status_v1_contacts__contact_id__verification_get
       parameters:
       - in: path
@@ -6124,11 +6121,10 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Verification Status
+      summary: Retrieve contact verification by contact ID
       tags:
       - contact
     post:
-      description: Start contact verification
       operationId: start_contact_verification_v1_contacts__contact_id__verification_post
       parameters:
       - in: path
@@ -6203,11 +6199,10 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Start Contact Verification
+      summary: Start contact verification
       tags:
       - contact
     put:
-      description: Complete contact verification
       operationId: update_verification_v1_contacts__contact_id__verification_put
       parameters:
       - in: path
@@ -6291,7 +6286,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Verification
+      summary: Complete contact verification by contact ID
       tags:
       - contact
   /v1/dns:
@@ -6717,6 +6712,7 @@ paths:
       - dns
   /v1/domain-search/suggest:
     get:
+      description: Get a list of domain suggestions based on a search query
       operationId: suggest_v1_domain_search_suggest_get
       parameters:
       - description: The primary keyword or phrase for the domain search
@@ -6727,11 +6723,7 @@ paths:
           description: The primary keyword or phrase for the domain search
           title: Query
           type: string
-      - description: '
-
-          Specify one or more TLDs to include in the search.
-
-          '
+      - description: The TLDs to include in the search
         examples:
           list:
             summary: A list of TLDs
@@ -6748,11 +6740,7 @@ paths:
               type: string
             type: array
           - type: 'null'
-          description: '
-
-            Specify one or more TLDs to include in the search.
-
-            '
+          description: The TLDs to include in the search
           title: Tlds
       - description: The maximum number of domain suggestions to return
         in: query
@@ -6815,7 +6803,7 @@ paths:
           description: Bad Gateway
       security:
       - OAuth2PasswordBearer: []
-      summary: Suggest
+      summary: Suggest domains
       tags:
       - domain_search
   /v1/domains:
@@ -7744,7 +7732,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Restore Domain
+      summary: Restore an eligible domain (during redemption period)
       tags:
       - domain
   /v1/domains/{domain_reference}/transfer:
@@ -8068,6 +8056,7 @@ paths:
       - email_forward
   /v1/events:
     get:
+      description: Retrieves a paginated list of pending events for the organization
       operationId: get_events_v1_events_get
       parameters:
       - in: query
@@ -8114,11 +8103,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Events
+      summary: Get pending events
       tags:
       - event
   /v1/events/{event_id}:
     get:
+      description: Get an event by its ID
       operationId: get_event_v1_events__event_id__get
       parameters:
       - in: path
@@ -8172,10 +8162,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Event
+      summary: Get event
       tags:
       - event
     patch:
+      description: Acknowledge an event
       operationId: acknowledge_event_v1_events__event_id__patch
       parameters:
       - in: path
@@ -8225,11 +8216,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Acknowledge Event
+      summary: Acknowledge event
       tags:
       - event
   /v1/organizations:
     get:
+      description: Retrieves a paginated list of organizations under the current organization
       operationId: list_organizations_v1_organizations_get
       parameters:
       - in: query
@@ -8264,10 +8256,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: List Organizations
+      summary: List all organizations
       tags:
       - organization
     post:
+      description: Create a new organization under the current organization
       operationId: create_organization_v1_organizations_post
       requestBody:
         content:
@@ -8290,11 +8283,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create Organization
+      summary: Create an organization
       tags:
       - organization
   /v1/organizations/attributes:
     get:
+      description: Retrieves a list of organization attributes for the current organization
       operationId: get_attributes_v1_organizations_attributes_get
       parameters:
       - in: query
@@ -8340,10 +8334,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Attributes
+      summary: List organization attributes
       tags:
       - organization
     patch:
+      description: Updates one or more organization attributes for the current organization
       operationId: update_attributes_v1_organizations_attributes_patch
       parameters:
       - in: query
@@ -8386,11 +8381,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Attributes
+      summary: Update organization attributes
       tags:
       - organization
   /v1/organizations/attributes/{organization_id}:
     get:
+      description: Retrieves a list of organization attributes for the specified organization
       operationId: get_attributes_v1_organizations_attributes__organization_id__get
       parameters:
       - in: path
@@ -8437,10 +8433,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Attributes
+      summary: List organization attributes
       tags:
       - organization
     patch:
+      description: Updates one or more organization attributes for the specified organization
       operationId: update_attributes_v1_organizations_attributes__organization_id__patch
       parameters:
       - in: path
@@ -8484,7 +8481,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Attributes
+      summary: Update organization attributes
       tags:
       - organization
   /v1/organizations/ip-restrictions:
@@ -8510,7 +8507,7 @@ paths:
           description: Successful Response
       security:
       - OAuth2PasswordBearer: []
-      summary: List Ip Restrictions
+      summary: List IP restrictions
       tags:
       - organization
     post:
@@ -8543,7 +8540,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create Ip Restriction
+      summary: Create an IP restriction
       tags:
       - organization
   /v1/organizations/ip-restrictions/{ip_restriction_id}:
@@ -8571,7 +8568,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete Ip Restriction
+      summary: Delete an IP restriction
       tags:
       - organization
     get:
@@ -8606,7 +8603,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Ip Restriction
+      summary: Get an IP restriction
       tags:
       - organization
     patch:
@@ -8646,11 +8643,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Ip Restriction
+      summary: Update an IP restriction
       tags:
       - organization
   /v1/organizations/roles:
     get:
+      description: Retrieves a list of roles for the current organization
       operationId: list_roles_v1_organizations_roles_get
       responses:
         '200':
@@ -8660,11 +8658,12 @@ paths:
           description: Successful Response
       security:
       - OAuth2PasswordBearer: []
-      summary: List Roles
+      summary: List all roles
       tags:
       - organization
   /v1/organizations/users:
     get:
+      description: Retrieves a paginated list of users under the current organization
       operationId: list_users_v1_organizations_users_get
       parameters:
       - in: query
@@ -8699,11 +8698,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: List Users
+      summary: List all users
       tags:
       - organization
   /v1/organizations/{organization_id}:
     delete:
+      description: Permanently deletes an organization
       operationId: delete_user_v1_organizations__organization_id__delete
       parameters:
       - in: path
@@ -8728,10 +8728,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete User
+      summary: Delete an organization
       tags:
       - organization
     get:
+      description: Retrieves details for a specific organization
       operationId: get_organization_v1_organizations__organization_id__get
       parameters:
       - in: path
@@ -8760,10 +8761,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Organization
+      summary: Get organization details
       tags:
       - organization
     patch:
+      description: Updates details for a specific organization
       operationId: update_organization_v1_organizations__organization_id__patch
       parameters:
       - in: path
@@ -8798,11 +8800,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Organization
+      summary: Update an organization
       tags:
       - organization
   /v1/organizations/{organization_id}/billing/checkout-sessions:
     post:
+      description: Create a checkout session for the organization
       operationId: get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post
       parameters:
       - in: path
@@ -8837,12 +8840,13 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Checkout Session
+      summary: Create checkout session
       tags:
       - organization
       - organization
   /v1/organizations/{organization_id}/billing/payment-methods:
     get:
+      description: List all available payment methods for the organization
       operationId: list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get
       parameters:
       - in: path
@@ -8875,12 +8879,13 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: List Payment Methods
+      summary: List all payment methods
       tags:
       - organization
       - organization
   /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}:
     delete:
+      description: Delete a payment method for the organization
       operationId: delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete
       parameters:
       - in: path
@@ -8911,12 +8916,13 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete Payment Method
+      summary: Delete a payment method
       tags:
       - organization
       - organization
   /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default:
     patch:
+      description: Set the provided payment method as default for the specified organization
       operationId: update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch
       parameters:
       - in: path
@@ -8955,12 +8961,14 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Default Payment Method
+      summary: Set payment method as default
       tags:
       - organization
       - organization
   /v1/organizations/{organization_id}/billing/wallet/credits:
     post:
+      description: Credit the organization's wallet using the provided amount and
+        payment method
       operationId: credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post
       parameters:
       - in: path
@@ -8995,12 +9003,13 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Credit Wallet
+      summary: Credit wallet
       tags:
       - organization
       - organization
   /v1/organizations/{organization_id}/plan:
     patch:
+      description: Changes the plan for an organization
       operationId: change_plan_v1_organizations__organization_id__plan_patch
       parameters:
       - in: path
@@ -9035,11 +9044,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Change Plan
+      summary: Update organization plan
       tags:
       - organization
   /v1/organizations/{organization_id}/plans:
     get:
+      description: Retrieves a list of plans for an organization
       operationId: get_current_available_plans_v1_organizations__organization_id__plans_get
       parameters:
       - in: path
@@ -9068,11 +9078,13 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Current Available Plans
+      summary: Get plans for an organization
       tags:
       - organization
   /v1/organizations/{organization_id}/pricing/product-type/{product_type}:
     get:
+      description: Retrieves pricing data for a specific product type. If a product
+        action/class are specified, only prices for those are returned, if any.
       operationId: get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get
       parameters:
       - in: path
@@ -9122,11 +9134,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Pricing Plans
+      summary: List product prices
       tags:
       - organization
   /v1/organizations/{organization_id}/transactions:
     get:
+      description: Retrieves a paginated list of transactions for an organization
       operationId: get_transactions_v1_organizations__organization_id__transactions_get
       parameters:
       - in: path
@@ -9253,11 +9266,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get transactions for an organization
+      summary: List all transactions
       tags:
       - organization
   /v1/organizations/{organization_id}/transactions/{transaction_id}:
     get:
+      description: Retrieves details for a specific transaction for an organization
       operationId: get_transaction_v1_organizations__organization_id__transactions__transaction_id__get
       parameters:
       - in: path
@@ -9297,11 +9311,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get a specific transaction for an organization
+      summary: Get a specific transaction
       tags:
       - organization
   /v1/tlds/portfolio:
     get:
+      description: Retrieves a list of TLDs we have support for
       operationId: get_tld_portfolio_v1_tlds_portfolio_get
       responses:
         '200':
@@ -9315,11 +9330,12 @@ paths:
           description: Successful Response
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Tld Portfolio
+      summary: Get the list of TLDs we support
       tags:
       - tld
   /v1/tlds/{tld}:
     get:
+      description: Retrieves the TLD specification for a given TLD
       operationId: get_tld_spec_v1_tlds__tld__get
       parameters:
       - in: path
@@ -9355,11 +9371,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Tld Spec
+      summary: Get the TLD specification
       tags:
       - tld
   /v1/users:
     post:
+      description: Create a new user
       operationId: create_user_v1_users_post
       requestBody:
         content:
@@ -9382,11 +9399,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create User
+      summary: Create a user
       tags:
       - user
   /v1/users/me:
     get:
+      description: Get the current user
       operationId: get_current_user_v1_users_me_get
       parameters:
       - in: query
@@ -9414,7 +9432,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Current User
+      summary: Get current user
       tags:
       - user
   /v1/users/me/password-reset:
@@ -9454,6 +9472,7 @@ paths:
       - user
   /v1/users/{user_id}:
     delete:
+      description: Delete a user by ID
       operationId: delete_user_v1_users__user_id__delete
       parameters:
       - in: path
@@ -9490,10 +9509,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete User
+      summary: Delete a user
       tags:
       - user
     get:
+      description: Get a user by ID
       operationId: get_user_v1_users__user_id__get
       parameters:
       - in: path
@@ -9532,10 +9552,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get User
+      summary: Get a user
       tags:
       - user
     patch:
+      description: Update a user by ID
       operationId: update_user_v1_users__user_id__patch
       parameters:
       - in: path
@@ -9570,11 +9591,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update User
+      summary: Update a user
       tags:
       - user
   /v1/users/{user_id}/permissions:
     get:
+      description: Get the permissions for a user
       operationId: get_user_permissions_v1_users__user_id__permissions_get
       parameters:
       - in: path
@@ -9603,11 +9625,12 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get User Permissions
+      summary: Get user permissions
       tags:
       - user
   /v1/users/{user_id}/roles:
     get:
+      description: Get the roles for a user
       operationId: list_roles_v1_users__user_id__roles_get
       parameters:
       - in: path
@@ -9636,10 +9659,11 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: List Roles
+      summary: Get user roles
       tags:
       - user
     patch:
+      description: Update the roles for a user
       operationId: update_user_relations_v1_users__user_id__roles_patch
       parameters:
       - in: path
@@ -9674,7 +9698,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update User Relations
+      summary: Update user roles
       tags:
       - user
 servers:

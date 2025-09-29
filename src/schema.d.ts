@@ -7,10 +7,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Api Keys */
+        /** List all API keys */
         get: operations["list_api_keys_v1_auth_client_credentials_get"];
         put?: never;
-        /** Issue Api Key */
+        /** Issue an API key */
         post: operations["issue_api_key_v1_auth_client_credentials_post"];
         delete?: never;
         options?: never;
@@ -28,7 +28,7 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        /** Delete Api Key */
+        /** Delete an API key */
         delete: operations["delete_api_key_v1_auth_client_credentials__api_key_id__delete"];
         options?: never;
         head?: never;
@@ -94,7 +94,7 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Bulk Availability
+         * Check domain availability
          * @description Check the availability of one or more domains.
          */
         get: operations["bulk_availability_v1_availability_get"];
@@ -114,7 +114,7 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Stream Availability
+         * Stream domain availability results
          * @description Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
          */
         get: operations["stream_availability_v1_availability_stream_get"];
@@ -134,14 +134,14 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get Contacts
-         * @description List all contacts
+         * List all contacts
+         * @description Retrieves a paginated list of all contacts
          */
         get: operations["get_contacts_v1_contacts_get"];
         put?: never;
         /**
-         * Create Contact
-         * @description Create a contact
+         * Create a contact
+         * @description Create a new contact object to use for domain registration
          */
         post: operations["create_contact_v1_contacts_post"];
         delete?: never;
@@ -157,15 +157,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * Get Verification By Token
-         * @description Retrieve contact verification
-         */
+        /** Retrieve contact verification by token */
         get: operations["get_verification_by_token_v1_contacts_verification_get"];
-        /**
-         * Update Verification By Token
-         * @description Complete contact verification
-         */
+        /** Complete contact verification with token */
         put: operations["update_verification_by_token_v1_contacts_verification_put"];
         post?: never;
         delete?: never;
@@ -199,15 +193,15 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get Contact
-         * @description Retrieve a contact
+         * Retrieve a contact
+         * @description Retrieves a contact object
          */
         get: operations["get_contact_v1_contacts__contact_id__get"];
         put?: never;
         post?: never;
         /**
-         * Delete Contact
-         * @description Delete a contact
+         * Delete a contact
+         * @description Deletes a contact object; only possible if the contact is not in use
          */
         delete: operations["delete_contact_v1_contacts__contact_id__delete"];
         options?: never;
@@ -222,25 +216,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * Get Verification Status
-         * @description Retrieve contact verification
-         */
+        /** Retrieve contact verification by contact ID */
         get: operations["get_verification_status_v1_contacts__contact_id__verification_get"];
-        /**
-         * Update Verification
-         * @description Complete contact verification
-         */
+        /** Complete contact verification by contact ID */
         put: operations["update_verification_v1_contacts__contact_id__verification_put"];
-        /**
-         * Start Contact Verification
-         * @description Start contact verification
-         */
+        /** Start contact verification */
         post: operations["start_contact_verification_v1_contacts__contact_id__verification_post"];
-        /**
-         * Cancel Verification
-         * @description Delete contact verification
-         */
+        /** Delete contact verification */
         delete: operations["cancel_verification_v1_contacts__contact_id__verification_delete"];
         options?: never;
         head?: never;
@@ -376,7 +358,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Suggest */
+        /**
+         * Suggest domains
+         * @description Get a list of domain suggestions based on a search query
+         */
         get: operations["suggest_v1_domain_search_suggest_get"];
         put?: never;
         post?: never;
@@ -592,7 +577,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Restore Domain */
+        /** Restore an eligible domain (during redemption period) */
         post: operations["restore_domain_v1_domains__domain_reference__restore_post"];
         delete?: never;
         options?: never;
@@ -699,7 +684,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Events */
+        /**
+         * Get pending events
+         * @description Retrieves a paginated list of pending events for the organization
+         */
         get: operations["get_events_v1_events_get"];
         put?: never;
         post?: never;
@@ -716,14 +704,20 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Event */
+        /**
+         * Get event
+         * @description Get an event by its ID
+         */
         get: operations["get_event_v1_events__event_id__get"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        /** Acknowledge Event */
+        /**
+         * Acknowledge event
+         * @description Acknowledge an event
+         */
         patch: operations["acknowledge_event_v1_events__event_id__patch"];
         trace?: never;
     };
@@ -734,10 +728,16 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Organizations */
+        /**
+         * List all organizations
+         * @description Retrieves a paginated list of organizations under the current organization
+         */
         get: operations["list_organizations_v1_organizations_get"];
         put?: never;
-        /** Create Organization */
+        /**
+         * Create an organization
+         * @description Create a new organization under the current organization
+         */
         post: operations["create_organization_v1_organizations_post"];
         delete?: never;
         options?: never;
@@ -752,14 +752,20 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Attributes */
+        /**
+         * List organization attributes
+         * @description Retrieves a list of organization attributes for the current organization
+         */
         get: operations["get_attributes_v1_organizations_attributes_get"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        /** Update Attributes */
+        /**
+         * Update organization attributes
+         * @description Updates one or more organization attributes for the current organization
+         */
         patch: operations["update_attributes_v1_organizations_attributes_patch"];
         trace?: never;
     };
@@ -770,14 +776,20 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Attributes */
+        /**
+         * List organization attributes
+         * @description Retrieves a list of organization attributes for the specified organization
+         */
         get: operations["get_attributes_v1_organizations_attributes__organization_id__get"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        /** Update Attributes */
+        /**
+         * Update organization attributes
+         * @description Updates one or more organization attributes for the specified organization
+         */
         patch: operations["update_attributes_v1_organizations_attributes__organization_id__patch"];
         trace?: never;
     };
@@ -789,7 +801,7 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * List Ip Restrictions
+         * List IP restrictions
          * @description List all IP restrictions for the organization.
          *
          *     Returns a list of all IP restrictions configured for your organization.
@@ -798,7 +810,7 @@ export interface paths {
         get: operations["list_ip_restrictions_v1_organizations_ip_restrictions_get"];
         put?: never;
         /**
-         * Create Ip Restriction
+         * Create an IP restriction
          * @description Create a new IP restriction for the organization.
          *
          *     Accepts either a single IP address or a CIDR network range.
@@ -819,7 +831,7 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get Ip Restriction
+         * Get an IP restriction
          * @description Get a specific IP restriction by ID.
          *
          *     Returns the details of a specific IP restriction if it exists and belongs to your organization.
@@ -829,7 +841,7 @@ export interface paths {
         put?: never;
         post?: never;
         /**
-         * Delete Ip Restriction
+         * Delete an IP restriction
          * @description Delete an IP restriction.
          *
          *     Permanently removes the specified IP restriction from your organization.
@@ -838,7 +850,7 @@ export interface paths {
         options?: never;
         head?: never;
         /**
-         * Update Ip Restriction
+         * Update an IP restriction
          * @description Update an existing IP restriction.
          *
          *     You can update the IP network range or the last usage timestamp.
@@ -854,7 +866,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Roles */
+        /**
+         * List all roles
+         * @description Retrieves a list of roles for the current organization
+         */
         get: operations["list_roles_v1_organizations_roles_get"];
         put?: never;
         post?: never;
@@ -871,7 +886,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Users */
+        /**
+         * List all users
+         * @description Retrieves a paginated list of users under the current organization
+         */
         get: operations["list_users_v1_organizations_users_get"];
         put?: never;
         post?: never;
@@ -888,15 +906,24 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Organization */
+        /**
+         * Get organization details
+         * @description Retrieves details for a specific organization
+         */
         get: operations["get_organization_v1_organizations__organization_id__get"];
         put?: never;
         post?: never;
-        /** Delete User */
+        /**
+         * Delete an organization
+         * @description Permanently deletes an organization
+         */
         delete: operations["delete_user_v1_organizations__organization_id__delete"];
         options?: never;
         head?: never;
-        /** Update Organization */
+        /**
+         * Update an organization
+         * @description Updates details for a specific organization
+         */
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
         trace?: never;
     };
@@ -909,7 +936,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Get Checkout Session */
+        /**
+         * Create checkout session
+         * @description Create a checkout session for the organization
+         */
         post: operations["get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post"];
         delete?: never;
         options?: never;
@@ -924,7 +954,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Payment Methods */
+        /**
+         * List all payment methods
+         * @description List all available payment methods for the organization
+         */
         get: operations["list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get"];
         put?: never;
         post?: never;
@@ -944,7 +977,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        /** Delete Payment Method */
+        /**
+         * Delete a payment method
+         * @description Delete a payment method for the organization
+         */
         delete: operations["delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete"];
         options?: never;
         head?: never;
@@ -964,7 +1000,10 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Update Default Payment Method */
+        /**
+         * Set payment method as default
+         * @description Set the provided payment method as default for the specified organization
+         */
         patch: operations["update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch"];
         trace?: never;
     };
@@ -977,7 +1016,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Credit Wallet */
+        /**
+         * Credit wallet
+         * @description Credit the organization's wallet using the provided amount and payment method
+         */
         post: operations["credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post"];
         delete?: never;
         options?: never;
@@ -998,7 +1040,10 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Change Plan */
+        /**
+         * Update organization plan
+         * @description Changes the plan for an organization
+         */
         patch: operations["change_plan_v1_organizations__organization_id__plan_patch"];
         trace?: never;
     };
@@ -1009,7 +1054,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Current Available Plans */
+        /**
+         * Get plans for an organization
+         * @description Retrieves a list of plans for an organization
+         */
         get: operations["get_current_available_plans_v1_organizations__organization_id__plans_get"];
         put?: never;
         post?: never;
@@ -1026,7 +1074,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Pricing Plans */
+        /**
+         * List product prices
+         * @description Retrieves pricing data for a specific product type. If a product action/class are specified, only prices for those are returned, if any.
+         */
         get: operations["get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get"];
         put?: never;
         post?: never;
@@ -1043,7 +1094,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get transactions for an organization */
+        /**
+         * List all transactions
+         * @description Retrieves a paginated list of transactions for an organization
+         */
         get: operations["get_transactions_v1_organizations__organization_id__transactions_get"];
         put?: never;
         post?: never;
@@ -1060,7 +1114,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get a specific transaction for an organization */
+        /**
+         * Get a specific transaction
+         * @description Retrieves details for a specific transaction for an organization
+         */
         get: operations["get_transaction_v1_organizations__organization_id__transactions__transaction_id__get"];
         put?: never;
         post?: never;
@@ -1077,7 +1134,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Tld Portfolio */
+        /**
+         * Get the list of TLDs we support
+         * @description Retrieves a list of TLDs we have support for
+         */
         get: operations["get_tld_portfolio_v1_tlds_portfolio_get"];
         put?: never;
         post?: never;
@@ -1094,7 +1154,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Tld Spec */
+        /**
+         * Get the TLD specification
+         * @description Retrieves the TLD specification for a given TLD
+         */
         get: operations["get_tld_spec_v1_tlds__tld__get"];
         put?: never;
         post?: never;
@@ -1113,7 +1176,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Create User */
+        /**
+         * Create a user
+         * @description Create a new user
+         */
         post: operations["create_user_v1_users_post"];
         delete?: never;
         options?: never;
@@ -1128,7 +1194,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Current User */
+        /**
+         * Get current user
+         * @description Get the current user
+         */
         get: operations["get_current_user_v1_users_me_get"];
         put?: never;
         post?: never;
@@ -1162,15 +1231,24 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get User */
+        /**
+         * Get a user
+         * @description Get a user by ID
+         */
         get: operations["get_user_v1_users__user_id__get"];
         put?: never;
         post?: never;
-        /** Delete User */
+        /**
+         * Delete a user
+         * @description Delete a user by ID
+         */
         delete: operations["delete_user_v1_users__user_id__delete"];
         options?: never;
         head?: never;
-        /** Update User */
+        /**
+         * Update a user
+         * @description Update a user by ID
+         */
         patch: operations["update_user_v1_users__user_id__patch"];
         trace?: never;
     };
@@ -1181,7 +1259,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get User Permissions */
+        /**
+         * Get user permissions
+         * @description Get the permissions for a user
+         */
         get: operations["get_user_permissions_v1_users__user_id__permissions_get"];
         put?: never;
         post?: never;
@@ -1198,14 +1279,20 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Roles */
+        /**
+         * Get user roles
+         * @description Get the roles for a user
+         */
         get: operations["list_roles_v1_users__user_id__roles_get"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        /** Update User Relations */
+        /**
+         * Update user roles
+         * @description Update the roles for a user
+         */
         patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
         trace?: never;
     };
@@ -6090,9 +6177,7 @@ export interface operations {
             query: {
                 /** @description The primary keyword or phrase for the domain search */
                 query: string;
-                /** @description
-                 *     Specify one or more TLDs to include in the search.
-                 *      */
+                /** @description The TLDs to include in the search */
                 tlds?: string[] | null;
                 /** @description The maximum number of domain suggestions to return */
                 limit?: number | null;

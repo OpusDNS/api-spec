@@ -39,7 +39,7 @@ import { Pagination_OrganizationCredential, Problem, HTTPValidationError, Organi
 /**
  * Response types for GET AuthClientCredentials endpoint
  *
- * List Api Keys
+ * List all API keys
  *
  * @remarks
  * This type defines all possible response structures for the GET AuthClientCredentials endpoint.
@@ -116,7 +116,7 @@ export type GET_AuthClientCredentials_Response_422 = HTTPValidationError
 /**
  * Response types for POST AuthClientCredentials endpoint
  *
- * Issue Api Key
+ * Issue an API key
  *
  * @remarks
  * This type defines all possible response structures for the POST AuthClientCredentials endpoint.
@@ -189,7 +189,7 @@ export type POST_AuthClientCredentials_Response_422 = HTTPValidationError
 /**
  * Response types for DELETE AuthClientCredentialsByApiKeyId endpoint
  *
- * Delete Api Key
+ * Delete an API key
  *
  * @remarks
  * This type defines all possible response structures for the DELETE AuthClientCredentialsByApiKeyId endpoint.
@@ -427,7 +427,7 @@ export type POST_AuthToken_Response_422 = HTTPValidationError
 /**
  * Response types for GET Availability endpoint
  *
- * Bulk Availability
+ * Check domain availability
  * Check the availability of one or more domains.
  *
  * @remarks
@@ -534,7 +534,7 @@ export type GET_Availability_Response_502 = Problem
 /**
  * Response types for GET AvailabilityStream endpoint
  *
- * Stream Availability
+ * Stream domain availability results
  * Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
  *
  * @remarks
@@ -620,8 +620,8 @@ export type GET_AvailabilityStream_Response_502 = Problem
 /**
  * Response types for GET Contacts endpoint
  *
- * Get Contacts
  * List all contacts
+ * Retrieves a paginated list of all contacts
  *
  * @remarks
  * This type defines all possible response structures for the GET Contacts endpoint.
@@ -676,8 +676,8 @@ export type GET_Contacts_Response_422 = HTTPValidationError
 /**
  * Response types for POST Contacts endpoint
  *
- * Create Contact
  * Create a contact
+ * Create a new contact object to use for domain registration
  *
  * @remarks
  * This type defines all possible response structures for the POST Contacts endpoint.
@@ -732,8 +732,8 @@ export type POST_Contacts_Response_422 = HTTPValidationError
 /**
  * Response types for DELETE ContactsByContactId endpoint
  *
- * Delete Contact
  * Delete a contact
+ * Deletes a contact object; only possible if the contact is not in use
  *
  * @remarks
  * This type defines all possible response structures for the DELETE ContactsByContactId endpoint.
@@ -806,8 +806,8 @@ export type DELETE_ContactsByContactId_Response_422 = HTTPValidationError
 /**
  * Response types for GET ContactsByContactId endpoint
  *
- * Get Contact
  * Retrieve a contact
+ * Retrieves a contact object
  *
  * @remarks
  * This type defines all possible response structures for the GET ContactsByContactId endpoint.
@@ -880,7 +880,6 @@ export type GET_ContactsByContactId_Response_422 = HTTPValidationError
 /**
  * Response types for DELETE ContactsByContactIdVerification endpoint
  *
- * Cancel Verification
  * Delete contact verification
  *
  * @remarks
@@ -954,8 +953,7 @@ export type DELETE_ContactsByContactIdVerification_Response_422 = HTTPValidation
 /**
  * Response types for GET ContactsByContactIdVerification endpoint
  *
- * Get Verification Status
- * Retrieve contact verification
+ * Retrieve contact verification by contact ID
  *
  * @remarks
  * This type defines all possible response structures for the GET ContactsByContactIdVerification endpoint.
@@ -1046,7 +1044,6 @@ export type GET_ContactsByContactIdVerification_Response_422 = HTTPValidationErr
 /**
  * Response types for POST ContactsByContactIdVerification endpoint
  *
- * Start Contact Verification
  * Start contact verification
  *
  * @remarks
@@ -1138,8 +1135,7 @@ export type POST_ContactsByContactIdVerification_Response_422 = HTTPValidationEr
 /**
  * Response types for PUT ContactsByContactIdVerification endpoint
  *
- * Update Verification
- * Complete contact verification
+ * Complete contact verification by contact ID
  *
  * @remarks
  * This type defines all possible response structures for the PUT ContactsByContactIdVerification endpoint.
@@ -1248,8 +1244,7 @@ export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationErr
 /**
  * Response types for GET ContactsVerification endpoint
  *
- * Get Verification By Token
- * Retrieve contact verification
+ * Retrieve contact verification by token
  *
  * @remarks
  * This type defines all possible response structures for the GET ContactsVerification endpoint.
@@ -1340,8 +1335,7 @@ export type GET_ContactsVerification_Response_422 = HTTPValidationError
 /**
  * Response types for PUT ContactsVerification endpoint
  *
- * Update Verification By Token
- * Complete contact verification
+ * Complete contact verification with token
  *
  * @remarks
  * This type defines all possible response structures for the PUT ContactsVerification endpoint.
@@ -2003,7 +1997,8 @@ export type GET_DnsSummary_Response_200 = DnsZoneSummary
 /**
  * Response types for GET DomainSearchSuggest endpoint
  *
- * Suggest
+ * Suggest domains
+ * Get a list of domain suggestions based on a search query
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainSearchSuggest endpoint.
@@ -2014,9 +2009,7 @@ export type GET_DnsSummary_Response_200 = DnsZoneSummary
  *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - 
-Specify one or more TLDs to include in the search.
-
+ * @param tlds (query) - The TLDs to include in the search
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
@@ -2041,9 +2034,7 @@ export type GET_DomainSearchSuggest_Response = GET_DomainSearchSuggest_Response_
  *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - 
-Specify one or more TLDs to include in the search.
-
+ * @param tlds (query) - The TLDs to include in the search
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
@@ -2064,9 +2055,7 @@ export type GET_DomainSearchSuggest_Response_200 = DomainSearch
  *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - 
-Specify one or more TLDs to include in the search.
-
+ * @param tlds (query) - The TLDs to include in the search
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
@@ -2087,9 +2076,7 @@ export type GET_DomainSearchSuggest_Response_401 = Problem
  *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - 
-Specify one or more TLDs to include in the search.
-
+ * @param tlds (query) - The TLDs to include in the search
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
@@ -2110,9 +2097,7 @@ export type GET_DomainSearchSuggest_Response_422 = HTTPValidationError
  *
  * @path /v1/domain-search/suggest
  * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - 
-Specify one or more TLDs to include in the search.
-
+ * @param tlds (query) - The TLDs to include in the search
  * @param limit (query) - The maximum number of domain suggestions to return
  * @param premium (query) - Whether to include premium domains in the suggestions
  *
@@ -2904,7 +2889,7 @@ export type POST_DomainsByDomainReferenceRenew_Response_422 = HTTPValidationErro
 /**
  * Response types for POST DomainsByDomainReferenceRestore endpoint
  *
- * Restore Domain
+ * Restore an eligible domain (during redemption period)
  *
  * @remarks
  * This type defines all possible response structures for the POST DomainsByDomainReferenceRestore endpoint.
@@ -3597,7 +3582,8 @@ export type PATCH_EmailForwardsByZoneNameEnable_Response_422 = HTTPValidationErr
 /**
  * Response types for GET Events endpoint
  *
- * Get Events
+ * Get pending events
+ * Retrieves a paginated list of pending events for the organization
  *
  * @remarks
  * This type defines all possible response structures for the GET Events endpoint.
@@ -3670,7 +3656,8 @@ export type GET_Events_Response_422 = HTTPValidationError
 /**
  * Response types for GET EventsByEventId endpoint
  *
- * Get Event
+ * Get event
+ * Get an event by its ID
  *
  * @remarks
  * This type defines all possible response structures for the GET EventsByEventId endpoint.
@@ -3761,7 +3748,8 @@ export type GET_EventsByEventId_Response_422 = HTTPValidationError
 /**
  * Response types for PATCH EventsByEventId endpoint
  *
- * Acknowledge Event
+ * Acknowledge event
+ * Acknowledge an event
  *
  * @remarks
  * This type defines all possible response structures for the PATCH EventsByEventId endpoint.
@@ -3834,7 +3822,8 @@ export type PATCH_EventsByEventId_Response_422 = HTTPValidationError
 /**
  * Response types for GET Organizations endpoint
  *
- * List Organizations
+ * List all organizations
+ * Retrieves a paginated list of organizations under the current organization
  *
  * @remarks
  * This type defines all possible response structures for the GET Organizations endpoint.
@@ -3889,7 +3878,8 @@ export type GET_Organizations_Response_422 = HTTPValidationError
 /**
  * Response types for POST Organizations endpoint
  *
- * Create Organization
+ * Create an organization
+ * Create a new organization under the current organization
  *
  * @remarks
  * This type defines all possible response structures for the POST Organizations endpoint.
@@ -3944,7 +3934,8 @@ export type POST_Organizations_Response_422 = HTTPValidationError
 /**
  * Response types for GET OrganizationsAttributes endpoint
  *
- * Get Attributes
+ * List organization attributes
+ * Retrieves a list of organization attributes for the current organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsAttributes endpoint.
@@ -4002,7 +3993,8 @@ export type GET_OrganizationsAttributes_Response_422 = HTTPValidationError
 /**
  * Response types for PATCH OrganizationsAttributes endpoint
  *
- * Update Attributes
+ * Update organization attributes
+ * Updates one or more organization attributes for the current organization
  *
  * @remarks
  * This type defines all possible response structures for the PATCH OrganizationsAttributes endpoint.
@@ -4057,7 +4049,8 @@ export type PATCH_OrganizationsAttributes_Response_422 = HTTPValidationError
 /**
  * Response types for GET OrganizationsAttributesByOrganizationId endpoint
  *
- * Get Attributes
+ * List organization attributes
+ * Retrieves a list of organization attributes for the specified organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsAttributesByOrganizationId endpoint.
@@ -4115,7 +4108,8 @@ export type GET_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValid
 /**
  * Response types for PATCH OrganizationsAttributesByOrganizationId endpoint
  *
- * Update Attributes
+ * Update organization attributes
+ * Updates one or more organization attributes for the specified organization
  *
  * @remarks
  * This type defines all possible response structures for the PATCH OrganizationsAttributesByOrganizationId endpoint.
@@ -4170,7 +4164,8 @@ export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = HTTPVal
 /**
  * Response types for DELETE OrganizationsByOrganizationId endpoint
  *
- * Delete User
+ * Delete an organization
+ * Permanently deletes an organization
  *
  * @remarks
  * This type defines all possible response structures for the DELETE OrganizationsByOrganizationId endpoint.
@@ -4207,7 +4202,8 @@ export type DELETE_OrganizationsByOrganizationId_Response_422 = HTTPValidationEr
 /**
  * Response types for GET OrganizationsByOrganizationId endpoint
  *
- * Get Organization
+ * Get organization details
+ * Retrieves details for a specific organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsByOrganizationId endpoint.
@@ -4262,7 +4258,8 @@ export type GET_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
 /**
  * Response types for PATCH OrganizationsByOrganizationId endpoint
  *
- * Update Organization
+ * Update an organization
+ * Updates details for a specific organization
  *
  * @remarks
  * This type defines all possible response structures for the PATCH OrganizationsByOrganizationId endpoint.
@@ -4317,7 +4314,8 @@ export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationErr
 /**
  * Response types for POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint
  *
- * Get Checkout Session
+ * Create checkout session
+ * Create a checkout session for the organization
  *
  * @remarks
  * This type defines all possible response structures for the POST OrganizationsByOrganizationIdBillingCheckoutSessions endpoint.
@@ -4372,7 +4370,8 @@ export type POST_OrganizationsByOrganizationIdBillingCheckoutSessions_Response_4
 /**
  * Response types for GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint
  *
- * List Payment Methods
+ * List all payment methods
+ * List all available payment methods for the organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsByOrganizationIdBillingPaymentMethods endpoint.
@@ -4427,7 +4426,8 @@ export type GET_OrganizationsByOrganizationIdBillingPaymentMethods_Response_422 
 /**
  * Response types for DELETE OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId endpoint
  *
- * Delete Payment Method
+ * Delete a payment method
+ * Delete a payment method for the organization
  *
  * @remarks
  * This type defines all possible response structures for the DELETE OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodId endpoint.
@@ -4464,7 +4464,8 @@ export type DELETE_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMe
 /**
  * Response types for PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint
  *
- * Update Default Payment Method
+ * Set payment method as default
+ * Set the provided payment method as default for the specified organization
  *
  * @remarks
  * This type defines all possible response structures for the PATCH OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMethodIdDefault endpoint.
@@ -4519,7 +4520,8 @@ export type PATCH_OrganizationsByOrganizationIdBillingPaymentMethodsByPaymentMet
 /**
  * Response types for POST OrganizationsByOrganizationIdBillingWalletCredits endpoint
  *
- * Credit Wallet
+ * Credit wallet
+ * Credit the organization's wallet using the provided amount and payment method
  *
  * @remarks
  * This type defines all possible response structures for the POST OrganizationsByOrganizationIdBillingWalletCredits endpoint.
@@ -4574,7 +4576,8 @@ export type POST_OrganizationsByOrganizationIdBillingWalletCredits_Response_422 
 /**
  * Response types for PATCH OrganizationsByOrganizationIdPlan endpoint
  *
- * Change Plan
+ * Update organization plan
+ * Changes the plan for an organization
  *
  * @remarks
  * This type defines all possible response structures for the PATCH OrganizationsByOrganizationIdPlan endpoint.
@@ -4629,7 +4632,8 @@ export type PATCH_OrganizationsByOrganizationIdPlan_Response_422 = HTTPValidatio
 /**
  * Response types for GET OrganizationsByOrganizationIdPlans endpoint
  *
- * Get Current Available Plans
+ * Get plans for an organization
+ * Retrieves a list of plans for an organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsByOrganizationIdPlans endpoint.
@@ -4684,7 +4688,8 @@ export type GET_OrganizationsByOrganizationIdPlans_Response_422 = HTTPValidation
 /**
  * Response types for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
  *
- * Get Pricing Plans
+ * List product prices
+ * Retrieves pricing data for a specific product type. If a product action/class are specified, only prices for those are returned, if any.
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint.
@@ -4739,7 +4744,8 @@ export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Res
 /**
  * Response types for GET OrganizationsByOrganizationIdTransactions endpoint
  *
- * Get transactions for an organization
+ * List all transactions
+ * Retrieves a paginated list of transactions for an organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsByOrganizationIdTransactions endpoint.
@@ -4794,7 +4800,8 @@ export type GET_OrganizationsByOrganizationIdTransactions_Response_422 = HTTPVal
 /**
  * Response types for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
  *
- * Get a specific transaction for an organization
+ * Get a specific transaction
+ * Retrieves details for a specific transaction for an organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint.
@@ -4849,7 +4856,7 @@ export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Respons
 /**
  * Response types for GET OrganizationsIpRestrictions endpoint
  *
- * List Ip Restrictions
+ * List IP restrictions
  * List all IP restrictions for the organization.
 
 Returns a list of all IP restrictions configured for your organization.
@@ -4890,7 +4897,7 @@ export type GET_OrganizationsIpRestrictions_Response_200 = IpRestrictionArray
 /**
  * Response types for POST OrganizationsIpRestrictions endpoint
  *
- * Create Ip Restriction
+ * Create an IP restriction
  * Create a new IP restriction for the organization.
 
 Accepts either a single IP address or a CIDR network range.
@@ -4949,7 +4956,7 @@ export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError
 /**
  * Response types for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
  *
- * Delete Ip Restriction
+ * Delete an IP restriction
  * Delete an IP restriction.
 
 Permanently removes the specified IP restriction from your organization.
@@ -4989,7 +4996,7 @@ export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = H
 /**
  * Response types for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
  *
- * Get Ip Restriction
+ * Get an IP restriction
  * Get a specific IP restriction by ID.
 
 Returns the details of a specific IP restriction if it exists and belongs to your organization.
@@ -5048,7 +5055,7 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTP
 /**
  * Response types for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
  *
- * Update Ip Restriction
+ * Update an IP restriction
  * Update an existing IP restriction.
 
 You can update the IP network range or the last usage timestamp.
@@ -5107,7 +5114,8 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HT
 /**
  * Response types for GET OrganizationsRoles endpoint
  *
- * List Roles
+ * List all roles
+ * Retrieves a list of roles for the current organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsRoles endpoint.
@@ -5127,7 +5135,8 @@ export type GET_OrganizationsRoles_Response = unknown;
 /**
  * Response types for GET OrganizationsUsers endpoint
  *
- * List Users
+ * List all users
+ * Retrieves a paginated list of users under the current organization
  *
  * @remarks
  * This type defines all possible response structures for the GET OrganizationsUsers endpoint.
@@ -5182,7 +5191,8 @@ export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
 /**
  * Response types for GET TldsByTld endpoint
  *
- * Get Tld Spec
+ * Get the TLD specification
+ * Retrieves the TLD specification for a given TLD
  *
  * @remarks
  * This type defines all possible response structures for the GET TldsByTld endpoint.
@@ -5255,7 +5265,8 @@ export type GET_TldsByTld_Response_422 = HTTPValidationError
 /**
  * Response types for GET TldsPortfolio endpoint
  *
- * Get Tld Portfolio
+ * Get the list of TLDs we support
+ * Retrieves a list of TLDs we have support for
  *
  * @remarks
  * This type defines all possible response structures for the GET TldsPortfolio endpoint.
@@ -5292,7 +5303,8 @@ export type GET_TldsPortfolio_Response_200 = TldResponseShortArray
 /**
  * Response types for POST Users endpoint
  *
- * Create User
+ * Create a user
+ * Create a new user
  *
  * @remarks
  * This type defines all possible response structures for the POST Users endpoint.
@@ -5347,7 +5359,8 @@ export type POST_Users_Response_422 = HTTPValidationError
 /**
  * Response types for DELETE UsersByUserId endpoint
  *
- * Delete User
+ * Delete a user
+ * Delete a user by ID
  *
  * @remarks
  * This type defines all possible response structures for the DELETE UsersByUserId endpoint.
@@ -5402,7 +5415,8 @@ export type DELETE_UsersByUserId_Response_422 = HTTPValidationError
 /**
  * Response types for GET UsersByUserId endpoint
  *
- * Get User
+ * Get a user
+ * Get a user by ID
  *
  * @remarks
  * This type defines all possible response structures for the GET UsersByUserId endpoint.
@@ -5457,7 +5471,8 @@ export type GET_UsersByUserId_Response_422 = HTTPValidationError
 /**
  * Response types for PATCH UsersByUserId endpoint
  *
- * Update User
+ * Update a user
+ * Update a user by ID
  *
  * @remarks
  * This type defines all possible response structures for the PATCH UsersByUserId endpoint.
@@ -5512,7 +5527,8 @@ export type PATCH_UsersByUserId_Response_422 = HTTPValidationError
 /**
  * Response types for GET UsersByUserIdPermissions endpoint
  *
- * Get User Permissions
+ * Get user permissions
+ * Get the permissions for a user
  *
  * @remarks
  * This type defines all possible response structures for the GET UsersByUserIdPermissions endpoint.
@@ -5567,7 +5583,8 @@ export type GET_UsersByUserIdPermissions_Response_422 = HTTPValidationError
 /**
  * Response types for GET UsersByUserIdRoles endpoint
  *
- * List Roles
+ * Get user roles
+ * Get the roles for a user
  *
  * @remarks
  * This type defines all possible response structures for the GET UsersByUserIdRoles endpoint.
@@ -5622,7 +5639,8 @@ export type GET_UsersByUserIdRoles_Response_422 = HTTPValidationError
 /**
  * Response types for PATCH UsersByUserIdRoles endpoint
  *
- * Update User Relations
+ * Update user roles
+ * Update the roles for a user
  *
  * @remarks
  * This type defines all possible response structures for the PATCH UsersByUserIdRoles endpoint.
@@ -5677,7 +5695,8 @@ export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError
 /**
  * Response types for GET UsersMe endpoint
  *
- * Get Current User
+ * Get current user
+ * Get the current user
  *
  * @remarks
  * This type defines all possible response structures for the GET UsersMe endpoint.
