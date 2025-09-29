@@ -5126,7 +5126,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-25-223241
+  version: 2025-09-29-070341
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7104,9 +7104,9 @@ paths:
                 Domain Transfer Error:
                   value:
                     code: ERROR_DOMAIN_TRANSFER
-                    detail: An unspecified error occurred
+                    detail: There was an error transferring the domain
                     domain_name: Additional error context.
-                    reason: There was an error transferring the domain
+                    reason: An unspecified error occurred
                     status: 400
                     title: Domain Transfer Error
                     type: domain-transfer
@@ -7720,9 +7720,9 @@ paths:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_TRANSFER
-                detail: An unspecified error occurred
+                detail: There was an error transferring the domain
                 domain_name: Additional error context.
-                reason: There was an error transferring the domain
+                reason: An unspecified error occurred
                 status: 400
                 title: Domain Transfer Error
                 type: domain-transfer

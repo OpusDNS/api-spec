@@ -6894,9 +6894,9 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_TRANSFER",
-                     *       "detail": "An unspecified error occurred",
+                     *       "detail": "There was an error transferring the domain",
                      *       "domain_name": "Additional error context.",
-                     *       "reason": "There was an error transferring the domain",
+                     *       "reason": "An unspecified error occurred",
                      *       "status": 400,
                      *       "title": "Domain Transfer Error",
                      *       "type": "domain-transfer"
