@@ -6264,7 +6264,7 @@ export interface operations {
                 registered_after?: Date | null;
                 registered_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
-                statuses?: string[] | null;
+                registry_statuses?: string[] | null;
                 page?: number;
                 page_size?: number;
             };

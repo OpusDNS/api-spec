@@ -5196,7 +5196,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-29-074010
+  version: 2025-09-29-080859
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6962,7 +6962,7 @@ paths:
       - description: Filter domains by registry status. Can be specified multiple
           times (union of all provided values).
         in: query
-        name: statuses
+        name: registry_statuses
         required: false
         schema:
           anyOf:
@@ -6972,7 +6972,7 @@ paths:
           - type: 'null'
           description: Filter domains by registry status. Can be specified multiple
             times (union of all provided values).
-          title: Statuses
+          title: Registry Statuses
       - in: query
         name: page
         required: false
