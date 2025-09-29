@@ -36,10 +36,12 @@ import { BillingTransaction } from './schemas';
 import { Body_issue_organization_token_v1_auth_token_post } from './schemas';
 import { CheckoutSessionRequest } from './schemas';
 import { CheckoutSession } from './schemas';
+import { ContactAttributeDefinition } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
 import { ContactHandle } from './schemas';
 import { Contact } from './schemas';
+import { ContactRoleAttributeRequirement } from './schemas';
 import { ContactSchema } from './schemas';
 import { ContactVerificationApi } from './schemas';
 import { ContactVerificationEmail } from './schemas';
@@ -132,6 +134,7 @@ import { RelationSet } from './schemas';
 import { ReservedDomainsBase } from './schemas';
 import { RgpOperations } from './schemas';
 import { SignupCreate } from './schemas';
+import { Signup } from './schemas';
 import { SldLength } from './schemas';
 import { SpiceDbRelationshipUpdate } from './schemas';
 import { TermsOfServiceAccept } from './schemas';
@@ -979,6 +982,108 @@ export const KEY_CHECKOUT_SESSION_SESSION_CLIENT_SECRET = 'session_client_secret
 export const KEYS_CHECKOUT_SESSION = [
   KEY_CHECKOUT_SESSION_SESSION_CLIENT_SECRET,
 ] as const satisfies (keyof CheckoutSession)[];
+
+/**
+ * key property
+ *
+ * Unique identifier for the attribute
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of ContactAttributeDefinition objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributedefinition[KEY_CONTACT_ATTRIBUTE_DEFINITION_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_DEFINITION_KEY;
+ * const value = contactattributedefinition[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeDefinition} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_DEFINITION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_DEFINITION_KEY = 'key' as keyof ContactAttributeDefinition;
+/**
+ * type property
+ *
+ * Type of the attribute (e.g., 'enum', 'string', 'boolean')
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ContactAttributeDefinition objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributedefinition[KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE;
+ * const value = contactattributedefinition[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeDefinition} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_DEFINITION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE = 'type' as keyof ContactAttributeDefinition;
+/**
+ * Values
+ *
+ * Allowed values for enum types
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `values` property of ContactAttributeDefinition objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributedefinition[KEY_CONTACT_ATTRIBUTE_DEFINITION_VALUES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_DEFINITION_VALUES;
+ * const value = contactattributedefinition[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeDefinition} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_DEFINITION} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_DEFINITION_VALUES = 'values' as keyof ContactAttributeDefinition;
+
+/**
+ * Array of all ContactAttributeDefinition property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttributeDefinition objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTRIBUTE_DEFINITION) {
+ *   console.log(`Property: ${key}, Value: ${contactattributedefinition[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTRIBUTE_DEFINITION.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttributeDefinition} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTRIBUTE_DEFINITION = [
+  KEY_CONTACT_ATTRIBUTE_DEFINITION_KEY,
+  KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE,
+  KEY_CONTACT_ATTRIBUTE_DEFINITION_VALUES,
+] as const satisfies (keyof ContactAttributeDefinition)[];
 
 /**
  * Max
@@ -1902,6 +2007,83 @@ export const KEYS_CONTACT = [
   KEY_CONTACT_STREET,
   KEY_CONTACT_TITLE,
 ] as const satisfies (keyof Contact)[];
+
+/**
+ * Attributes
+ *
+ * List of required attribute keys for this role
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of ContactRoleAttributeRequirement objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactroleattributerequirement[KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ATTRIBUTES;
+ * const value = contactroleattributerequirement[propertyName];
+ * ```
+ *
+ * @see {@link ContactRoleAttributeRequirement} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ATTRIBUTES = 'attributes' as keyof ContactRoleAttributeRequirement;
+/**
+ * role property
+ *
+ * The role this requirement applies to
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `role` property of ContactRoleAttributeRequirement objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactroleattributerequirement[KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ROLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ROLE;
+ * const value = contactroleattributerequirement[propertyName];
+ * ```
+ *
+ * @see {@link ContactRoleAttributeRequirement} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ROLE = 'role' as keyof ContactRoleAttributeRequirement;
+
+/**
+ * Array of all ContactRoleAttributeRequirement property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactRoleAttributeRequirement objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT) {
+ *   console.log(`Property: ${key}, Value: ${contactroleattributerequirement[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactRoleAttributeRequirement} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT = [
+  KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ATTRIBUTES,
+  KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ROLE,
+] as const satisfies (keyof ContactRoleAttributeRequirement)[];
 
 /**
  * City
@@ -3163,6 +3345,32 @@ export const KEY_CONTACTS_BASE_AUTHINFO_REQUIRED = 'authinfo_required' as keyof 
  */
 export const KEY_CONTACTS_BASE_IS_THICK = 'is_thick' as keyof ContactsBase;
 /**
+ * Possible Attributes
+ *
+ * List of possible attributes that can be set for this TLD
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `possible_attributes` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES = 'possible_attributes' as keyof ContactsBase;
+/**
  * Privacy Proxy
  *
  * Whether a privacy service is allowed
@@ -3212,6 +3420,32 @@ export const KEY_CONTACTS_BASE_PRIVACY_PROXY = 'privacy_proxy' as keyof Contacts
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
 export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE = 'registrant_change' as keyof ContactsBase;
+/**
+ * Required Attributes
+ *
+ * List of attribute requirements by role
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `required_attributes` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_REQUIRED_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_REQUIRED_ATTRIBUTES;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_REQUIRED_ATTRIBUTES = 'required_attributes' as keyof ContactsBase;
 /**
  * Support Check
  *
@@ -3361,8 +3595,10 @@ export const KEY_CONTACTS_BASE_SUPPORTED_ROLES = 'supported_roles' as keyof Cont
 export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_AUTHINFO_REQUIRED,
   KEY_CONTACTS_BASE_IS_THICK,
+  KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES,
   KEY_CONTACTS_BASE_PRIVACY_PROXY,
   KEY_CONTACTS_BASE_REGISTRANT_CHANGE,
+  KEY_CONTACTS_BASE_REQUIRED_ATTRIBUTES,
   KEY_CONTACTS_BASE_SUPPORT_CHECK,
   KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID,
   KEY_CONTACTS_BASE_SUPPORT_TRANSFER,
@@ -15821,6 +16057,80 @@ export const KEYS_SIGNUP_CREATE = [
   KEY_SIGNUP_CREATE_TERMS_OF_SERVICE,
   KEY_SIGNUP_CREATE_USER,
 ] as const satisfies (keyof SignupCreate)[];
+
+/**
+ * organization property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization` property of Signup objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = signup[KEY_SIGNUP_ORGANIZATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SIGNUP_ORGANIZATION;
+ * const value = signup[propertyName];
+ * ```
+ *
+ * @see {@link Signup} - The TypeScript type definition
+ * @see {@link KEYS_SIGNUP} - Array of all keys for this type
+ */
+export const KEY_SIGNUP_ORGANIZATION = 'organization' as keyof Signup;
+/**
+ * user property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user` property of Signup objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = signup[KEY_SIGNUP_USER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_SIGNUP_USER;
+ * const value = signup[propertyName];
+ * ```
+ *
+ * @see {@link Signup} - The TypeScript type definition
+ * @see {@link KEYS_SIGNUP} - Array of all keys for this type
+ */
+export const KEY_SIGNUP_USER = 'user' as keyof Signup;
+
+/**
+ * Array of all Signup property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Signup objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_SIGNUP) {
+ *   console.log(`Property: ${key}, Value: ${signup[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_SIGNUP.includes(someKey);
+ * ```
+ *
+ * @see {@link Signup} - The TypeScript type definition
+ */
+export const KEYS_SIGNUP = [
+  KEY_SIGNUP_ORGANIZATION,
+  KEY_SIGNUP_USER,
+] as const satisfies (keyof Signup)[];
 
 /**
  * Max

@@ -1236,6 +1236,11 @@ export interface components {
              */
             min: number;
         };
+        /**
+         * AttributeType
+         * @enum {string}
+         */
+        AttributeType: "enum" | "string" | "boolean" | "datetime";
         /** BillingMetadata */
         BillingMetadata: {
             /**
@@ -1378,6 +1383,21 @@ export interface components {
              * @description Checkout session client secret - meant to be used in the embedded checkout
              */
             session_client_secret: string;
+        };
+        /**
+         * ContactAttributeDefinition
+         * @description Definition of a possible attribute for a TLD.
+         */
+        ContactAttributeDefinition: {
+            /** @description Unique identifier for the attribute */
+            key: components["schemas"]["RegistryHandleAttributeType"];
+            /** @description Type of the attribute (e.g., 'enum', 'string', 'boolean') */
+            type: components["schemas"]["AttributeType"];
+            /**
+             * Values
+             * @description Allowed values for enum types
+             */
+            values?: string[] | null;
         };
         /** ContactConfigBase */
         ContactConfigBase: {
@@ -1552,6 +1572,19 @@ export interface components {
              * @description The title of the contact
              */
             title?: string | null;
+        };
+        /**
+         * ContactRoleAttributeRequirement
+         * @description Attribute requirements for a specific contact role.
+         */
+        ContactRoleAttributeRequirement: {
+            /**
+             * Attributes
+             * @description List of required attribute keys for this role
+             */
+            attributes: components["schemas"]["RegistryHandleAttributeType"][];
+            /** @description The role this requirement applies to */
+            role: components["schemas"]["ContactRoleType"];
         };
         /**
          * ContactRoleType
@@ -1806,12 +1839,22 @@ export interface components {
              */
             is_thick?: boolean | null;
             /**
+             * Possible Attributes
+             * @description List of possible attributes that can be set for this TLD
+             */
+            possible_attributes?: components["schemas"]["ContactAttributeDefinition"][];
+            /**
              * Privacy Proxy
              * @description Whether a privacy service is allowed
              */
             privacy_proxy?: boolean | null;
             /** @description Whether the registrant can change through update or trade */
             registrant_change?: components["schemas"]["RegistrantChangeType"] | null;
+            /**
+             * Required Attributes
+             * @description List of attribute requirements by role
+             */
+            required_attributes?: components["schemas"]["ContactRoleAttributeRequirement"][];
             /**
              * Support Check
              * @description Whether the registry supports contact checks
@@ -3921,6 +3964,11 @@ export interface components {
             /** @description User signup to platform. */
             user: components["schemas"]["UserCreate"];
         };
+        /** SignupResponse */
+        SignupResponse: {
+            organization: components["schemas"]["Organization"];
+            user: components["schemas"]["User"];
+        };
         /** SldLength */
         SldLength: {
             /**
@@ -4764,7 +4812,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["OrganizationTokenResponse"] | components["schemas"]["UserTokenResponse"];
+                    "application/json": components["schemas"]["SignupResponse"];
                 };
             };
             /** @description Conflict */

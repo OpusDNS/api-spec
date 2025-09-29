@@ -75,6 +75,22 @@ export type AllocationMethodType = components['schemas']['AllocationMethodType']
  */
 export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
 /**
+ * AttributeType
+ *
+ * @remarks
+ * Type alias for the `AttributeType` OpenAPI schema.
+ * This type represents attributetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getAttributeType();
+ * const item: AttributeType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type AttributeType = components['schemas']['AttributeType'];
+/**
  * BillingMetadata
  *
  * @remarks
@@ -235,6 +251,22 @@ export type CheckoutSessionRequest = components['schemas']['CheckoutSessionReque
  */
 export type CheckoutSession = components['schemas']['CheckoutSessionResponse'];
 /**
+ * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeDefinition` OpenAPI schema.
+ * This type represents contactattributedefinition data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeDefinition();
+ * const item: ContactAttributeDefinition = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeDefinition = components['schemas']['ContactAttributeDefinition'];
+/**
  * ContactConfigBase
  *
  * @remarks
@@ -314,6 +346,22 @@ export type ContactIdList = components['schemas']['ContactIdList'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Contact = components['schemas']['ContactResponse'];
+/**
+ * ContactRoleAttributeRequirement. Attribute requirements for a specific contact role.
+ *
+ * @remarks
+ * Type alias for the `ContactRoleAttributeRequirement` OpenAPI schema.
+ * This type represents contactroleattributerequirement data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactRoleAttributeRequirement();
+ * const item: ContactRoleAttributeRequirement = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactRoleAttributeRequirement = components['schemas']['ContactRoleAttributeRequirement'];
 /**
  * ContactRoleType
  *
@@ -2591,6 +2639,22 @@ export type RgpOperations = components['schemas']['RgpOperations'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type SignupCreate = components['schemas']['SignupCreate'];
+/**
+ * SignupResponse
+ *
+ * @remarks
+ * Type alias for the `SignupResponse` OpenAPI schema.
+ * This type represents signupresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getSignup();
+ * const item: Signup = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Signup = components['schemas']['SignupResponse'];
 /**
  * SldLength
  *

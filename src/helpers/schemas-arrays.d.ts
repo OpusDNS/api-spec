@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, CustomerCreditCardPaymentMethod, TldResponseShort, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, Period, Permission, PremiumAffectsType, Relation, UserAgreementAcceptance, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, CustomerCreditCardPaymentMethod, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, Period, Permission, PremiumAffectsType, Relation, UserAgreementAcceptance, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -121,6 +121,48 @@ export type CustomerCreditCardPaymentMethodArray = CustomerCreditCardPaymentMeth
  * @see {@link TldResponseShort} - The individual TldResponseShort type definition
  */
 export type TldResponseShortArray = TldResponseShort[];
+/**
+ * RegistryHandleAttributeType. Registry handle attribute types for type-safe attribute key access.
+ *
+ * @remarks
+ * Array type for RegistryHandleAttributeType objects. Used when the API returns a collection of RegistryHandleAttributeType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: RegistryHandleAttributeTypeArray = await api.getRegistryHandleAttributeTypes();
+ * ```
+ *
+ * @see {@link RegistryHandleAttributeType} - The individual RegistryHandleAttributeType type definition
+ */
+export type RegistryHandleAttributeTypeArray = RegistryHandleAttributeType[];
+/**
+ * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
+ *
+ * @remarks
+ * Array type for ContactAttributeDefinition objects. Used when the API returns a collection of ContactAttributeDefinition instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactAttributeDefinitionArray = await api.getContactAttributeDefinitions();
+ * ```
+ *
+ * @see {@link ContactAttributeDefinition} - The individual ContactAttributeDefinition type definition
+ */
+export type ContactAttributeDefinitionArray = ContactAttributeDefinition[];
+/**
+ * ContactRoleAttributeRequirement. Attribute requirements for a specific contact role.
+ *
+ * @remarks
+ * Array type for ContactRoleAttributeRequirement objects. Used when the API returns a collection of ContactRoleAttributeRequirement instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactRoleAttributeRequirementArray = await api.getContactRoleAttributeRequirements();
+ * ```
+ *
+ * @see {@link ContactRoleAttributeRequirement} - The individual ContactRoleAttributeRequirement type definition
+ */
+export type ContactRoleAttributeRequirementArray = ContactRoleAttributeRequirement[];
 /**
  * PostalAddressType
  *

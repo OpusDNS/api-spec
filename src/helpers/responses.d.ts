@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, CustomerCreditCardPaymentMethodArray, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, CheckoutSession, WalletCreditResponseWithBalance, GetCurrentAvailablePlans, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_OrganizationCredential, Problem, HTTPValidationError, OrganizationCredentialCreated, Signup, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, CheckoutSession, WalletCreditResponseWithBalance, GetCurrentAvailablePlans, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AuthClientCredentials endpoint
@@ -310,12 +310,30 @@ export type POST_AuthLogout_Response_401 = Problem
  *
  * @path /v1/auth/signup
  *
+ * @see {@link POST_AuthSignup_Response_200} - 200 response type
  * @see {@link POST_AuthSignup_Response_409} - 409 response type
  * @see {@link POST_AuthSignup_Response_422} - 422 response type
  *
 
  */
-export type POST_AuthSignup_Response = POST_AuthSignup_Response_409 | POST_AuthSignup_Response_422;
+export type POST_AuthSignup_Response = POST_AuthSignup_Response_200 | POST_AuthSignup_Response_409 | POST_AuthSignup_Response_422;
+
+/**
+ * 200 response for POST AuthSignup endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST AuthSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/auth/signup
+ *
+ * @see {@link POST_AuthSignup_Response} - The main response type definition
+ * @see {@link Signup} - The actual schema type definition
+ */
+export type POST_AuthSignup_Response_200 = Signup
 
 /**
  * 409 response for POST AuthSignup endpoint

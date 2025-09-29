@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AgreementType, AllocationMethodType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
+import { AgreementType, AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
 
 /**
  * AgreementType. Auto-generated enum for AgreementType
@@ -126,6 +126,60 @@ export const ALLOCATION_METHOD_TYPE_VALUES = [
   'auction',
   'lottery'
 ] as const satisfies [string, ...string[]] | AllocationMethodType[];
+
+/**
+ * AttributeType. Auto-generated enum for AttributeType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the AttributeType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = ATTRIBUTE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = ATTRIBUTE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link AttributeType} - The TypeScript type definition
+ */
+export const ATTRIBUTE_TYPE = {
+  ENUM: "enum",
+  STRING: "string",
+  BOOLEAN: "boolean",
+  DATETIME: "datetime",
+} as const satisfies Record<string, AttributeType>;
+
+/**
+ * Array of all AttributeType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid AttributeType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of ATTRIBUTE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = ATTRIBUTE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link AttributeType} - The TypeScript type definition
+ * @see {@link ATTRIBUTE_TYPE} - The object form of this enum
+ */
+export const ATTRIBUTE_TYPE_VALUES = [
+  'enum',
+  'string',
+  'boolean',
+  'datetime'
+] as const satisfies [string, ...string[]] | AttributeType[];
 
 /**
  * BillingTransactionAction. Auto-generated enum for BillingTransactionAction
