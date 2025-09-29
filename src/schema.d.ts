@@ -1386,6 +1386,11 @@ export interface components {
             /** @description The action performed in the transaction */
             action: components["schemas"]["BillingTransactionAction"];
             /**
+             * Amount
+             * @description The amount of the transaction including VAT
+             */
+            amount: string;
+            /**
              * Billing Transaction Id
              * Format: typeid
              */
@@ -1402,6 +1407,11 @@ export interface components {
              */
             created_on?: Date;
             /**
+             * Price
+             * @description The price of the product without sales tax
+             */
+            price: string;
+            /**
              * Product Reference
              * @description The reference of the product
              */
@@ -1413,6 +1423,16 @@ export interface components {
              * @default pending
              */
             status: components["schemas"]["BillingTransactionStatus"];
+            /**
+             * Tax Amount
+             * @description The tax amount of the transaction
+             */
+            tax_amount: string;
+            /**
+             * Tax Rate
+             * @description The tax rate of the transaction
+             */
+            tax_rate: string;
             /**
              * Updated On
              * Format: date-time

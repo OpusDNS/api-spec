@@ -114,6 +114,10 @@ components:
         action:
           $ref: '#/components/schemas/BillingTransactionAction'
           description: The action performed in the transaction
+        amount:
+          description: The amount of the transaction including VAT
+          title: Amount
+          type: string
         billing_transaction_id:
           examples:
           - billing_transaction_01h45ytscbebyvny4gc8cr8ma2
@@ -134,6 +138,10 @@ components:
           format: date-time
           title: Created On
           type: string
+        price:
+          description: The price of the product without sales tax
+          title: Price
+          type: string
         product_reference:
           anyOf:
           - minLength: 1
@@ -148,6 +156,14 @@ components:
           $ref: '#/components/schemas/BillingTransactionStatus'
           default: pending
           description: The status of the transaction
+        tax_amount:
+          description: The tax amount of the transaction
+          title: Tax Amount
+          type: string
+        tax_rate:
+          description: The tax rate of the transaction
+          title: Tax Rate
+          type: string
         updated_on:
           description: The date/time the transaction was updated
           format: date-time
@@ -157,6 +173,10 @@ components:
       - product_type
       - product_reference
       - action
+      - amount
+      - price
+      - tax_rate
+      - tax_amount
       title: BillingTransactionResponse
       type: object
     BillingTransactionSortField:
@@ -5196,7 +5216,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-29-080859
+  version: 2025-09-29-103012
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

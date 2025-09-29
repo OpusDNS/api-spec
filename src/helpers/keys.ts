@@ -519,6 +519,32 @@ export const KEYS_BILLING_PLAN = [
  */
 export const KEY_BILLING_TRANSACTION_ACTION = 'action' as keyof BillingTransaction;
 /**
+ * Amount
+ *
+ * The amount of the transaction including VAT
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `amount` property of BillingTransaction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingtransaction[KEY_BILLING_TRANSACTION_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_TRANSACTION_AMOUNT;
+ * const value = billingtransaction[propertyName];
+ * ```
+ *
+ * @see {@link BillingTransaction} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
+ */
+export const KEY_BILLING_TRANSACTION_AMOUNT = 'amount' as keyof BillingTransaction;
+/**
  * Billing Transaction Id
  *
  *
@@ -595,6 +621,32 @@ export const KEY_BILLING_TRANSACTION_COMPLETED_ON = 'completed_on' as keyof Bill
  */
 export const KEY_BILLING_TRANSACTION_CREATED_ON = 'created_on' as keyof BillingTransaction;
 /**
+ * Price
+ *
+ * The price of the product without sales tax
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `price` property of BillingTransaction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingtransaction[KEY_BILLING_TRANSACTION_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_TRANSACTION_PRICE;
+ * const value = billingtransaction[propertyName];
+ * ```
+ *
+ * @see {@link BillingTransaction} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
+ */
+export const KEY_BILLING_TRANSACTION_PRICE = 'price' as keyof BillingTransaction;
+/**
  * Product Reference
  *
  * The reference of the product
@@ -670,6 +722,58 @@ export const KEY_BILLING_TRANSACTION_PRODUCT_TYPE = 'product_type' as keyof Bill
  */
 export const KEY_BILLING_TRANSACTION_STATUS = 'status' as keyof BillingTransaction;
 /**
+ * Tax Amount
+ *
+ * The tax amount of the transaction
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_amount` property of BillingTransaction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingtransaction[KEY_BILLING_TRANSACTION_TAX_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_TRANSACTION_TAX_AMOUNT;
+ * const value = billingtransaction[propertyName];
+ * ```
+ *
+ * @see {@link BillingTransaction} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
+ */
+export const KEY_BILLING_TRANSACTION_TAX_AMOUNT = 'tax_amount' as keyof BillingTransaction;
+/**
+ * Tax Rate
+ *
+ * The tax rate of the transaction
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tax_rate` property of BillingTransaction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingtransaction[KEY_BILLING_TRANSACTION_TAX_RATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_TRANSACTION_TAX_RATE;
+ * const value = billingtransaction[propertyName];
+ * ```
+ *
+ * @see {@link BillingTransaction} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
+ */
+export const KEY_BILLING_TRANSACTION_TAX_RATE = 'tax_rate' as keyof BillingTransaction;
+/**
  * Updated On
  *
  * The date/time the transaction was updated
@@ -718,12 +822,16 @@ export const KEY_BILLING_TRANSACTION_UPDATED_ON = 'updated_on' as keyof BillingT
  */
 export const KEYS_BILLING_TRANSACTION = [
   KEY_BILLING_TRANSACTION_ACTION,
+  KEY_BILLING_TRANSACTION_AMOUNT,
   KEY_BILLING_TRANSACTION_BILLING_TRANSACTION_ID,
   KEY_BILLING_TRANSACTION_COMPLETED_ON,
   KEY_BILLING_TRANSACTION_CREATED_ON,
+  KEY_BILLING_TRANSACTION_PRICE,
   KEY_BILLING_TRANSACTION_PRODUCT_REFERENCE,
   KEY_BILLING_TRANSACTION_PRODUCT_TYPE,
   KEY_BILLING_TRANSACTION_STATUS,
+  KEY_BILLING_TRANSACTION_TAX_AMOUNT,
+  KEY_BILLING_TRANSACTION_TAX_RATE,
   KEY_BILLING_TRANSACTION_UPDATED_ON,
 ] as const satisfies (keyof BillingTransaction)[];
 
