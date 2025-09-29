@@ -6263,6 +6263,8 @@ export interface operations {
                 expires_in_90_days?: boolean | null;
                 registered_after?: Date | null;
                 registered_before?: Date | null;
+                /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
+                statuses?: string[] | null;
                 page?: number;
                 page_size?: number;
             };

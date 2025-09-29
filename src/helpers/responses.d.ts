@@ -2120,6 +2120,7 @@ export type GET_DomainSearchSuggest_Response_502 = Problem
 
  *
  * @path /v1/domains
+ * @param statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  *
  * @see {@link GET_Domains_Response_200} - 200 response type
  * @see {@link GET_Domains_Response_422} - 422 response type
@@ -2139,6 +2140,7 @@ export type GET_Domains_Response = GET_Domains_Response_200 | GET_Domains_Respon
 
  *
  * @path /v1/domains
+ * @param statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  *
  * @see {@link GET_Domains_Response} - The main response type definition
  * @see {@link Pagination_Domain} - The actual schema type definition
@@ -2156,6 +2158,7 @@ export type GET_Domains_Response_200 = Pagination_Domain
 
  *
  * @path /v1/domains
+ * @param statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  *
  * @see {@link GET_Domains_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition

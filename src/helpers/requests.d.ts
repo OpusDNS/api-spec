@@ -1248,6 +1248,7 @@ export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Requ
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domains
+ * @param statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  *
  * @see {@link GET_Domains_Request_Query} - Query parameters type
  * @see {@link GET_Domains_Request_Path} - Path parameters type
@@ -1269,6 +1270,7 @@ export type GET_Domains_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/domains
+ * @param statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  */
 export type GET_Domains_Request_Query = GET_Domains_Request['parameters']['query'];
 
