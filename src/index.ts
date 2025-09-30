@@ -1,6 +1,7 @@
 // Runtime exports (constants and keys)
 export * from './helpers/keys';
 export * from './helpers/constants';
+export * from './helpers/paths';
 
 // Export all types including schema types
 export type * from './helpers/responses.d';
