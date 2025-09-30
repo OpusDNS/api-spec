@@ -4649,6 +4649,11 @@ export interface components {
              */
             balance: string;
             /**
+             * Client Secret
+             * @description Client secret for 3DS authentication
+             */
+            client_secret: string | null;
+            /**
              * Credit Id
              * @description Unique identifier of the wallet credit transaction
              */

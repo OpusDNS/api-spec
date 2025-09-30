@@ -19721,6 +19721,31 @@ export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_AMOUNT = 'amount' as keyof 
  */
 export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_BALANCE = 'balance' as keyof WalletCreditResponseWithBalance;
 /**
+ * Client Secret
+ *
+ * Client secret for 3DS authentication
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `client_secret` property of WalletCreditResponseWithBalance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = walletcreditresponsewithbalance[KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CLIENT_SECRET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CLIENT_SECRET;
+ * const value = walletcreditresponsewithbalance[propertyName];
+ * ```
+ *
+ * @see {@link WalletCreditResponseWithBalance} - The TypeScript type definition
+ * @see {@link KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE} - Array of all keys for this type
+ */
+export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CLIENT_SECRET = 'client_secret' as keyof WalletCreditResponseWithBalance;
+/**
  * Credit Id
  *
  * Unique identifier of the wallet credit transaction
@@ -19820,6 +19845,7 @@ export const KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_STATUS = 'status' as keyof 
 export const KEYS_WALLET_CREDIT_RESPONSE_WITH_BALANCE = [
   KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_AMOUNT,
   KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_BALANCE,
+  KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CLIENT_SECRET,
   KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_CREDIT_ID,
   KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_MESSAGE,
   KEY_WALLET_CREDIT_RESPONSE_WITH_BALANCE_STATUS,

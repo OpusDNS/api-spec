@@ -5090,6 +5090,12 @@ components:
           description: Updated wallet balance after the credit
           title: Balance
           type: string
+        client_secret:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Client secret for 3DS authentication
+          title: Client Secret
         credit_id:
           description: Unique identifier of the wallet credit transaction
           title: Credit Id
@@ -5107,6 +5113,7 @@ components:
       - credit_id
       - amount
       - status
+      - client_secret
       - balance
       title: WalletCreditResponseWithBalance
       type: object
@@ -5214,7 +5221,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-30-073823
+  version: 2025-09-30-110200
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8875,7 +8882,6 @@ paths:
       summary: Create checkout session
       tags:
       - organization
-      - organization
   /v1/organizations/{organization_id}/billing/payment-methods:
     get:
       description: List all available payment methods for the organization
@@ -8914,7 +8920,6 @@ paths:
       summary: List all payment methods
       tags:
       - organization
-      - organization
   /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}:
     delete:
       description: Delete a payment method for the organization
@@ -8950,7 +8955,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Delete a payment method
       tags:
-      - organization
       - organization
   /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default:
     patch:
@@ -8996,7 +9000,6 @@ paths:
       summary: Set payment method as default
       tags:
       - organization
-      - organization
   /v1/organizations/{organization_id}/billing/wallet/credits:
     post:
       description: Credit the organization's wallet using the provided amount and
@@ -9037,7 +9040,6 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Credit wallet
       tags:
-      - organization
       - organization
   /v1/organizations/{organization_id}/plan:
     patch:
