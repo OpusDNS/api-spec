@@ -907,6 +907,22 @@ export type DnssecRecordType = components['schemas']['DnssecRecordType'];
  */
 export type DnssecStatus = components['schemas']['DnssecStatus'];
 /**
+ * DomainAttributeKey
+ *
+ * @remarks
+ * Type alias for the `DomainAttributeKey` OpenAPI schema.
+ * This type represents domainattributekey data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainAttributeKey();
+ * const item: DomainAttributeKey = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainAttributeKey = components['schemas']['DomainAttributeKey'];
+/**
  * DomainAvailability
  *
  * @remarks

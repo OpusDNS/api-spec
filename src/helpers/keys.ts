@@ -6110,7 +6110,7 @@ export const KEY_DOMAIN_CREATE_NAMESERVERS = 'nameservers' as keyof DomainCreate
 /**
  * period property
  *
- * How long the domain should be registered for
+ * The registration period of the domain
  *
  *
  *
@@ -8960,6 +8960,31 @@ export const KEYS_DOMAIN_SUMMARY = [
 ] as const satisfies (keyof DomainSummary)[];
 
 /**
+ * Attributes
+ *
+ * Additional attributes of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_ATTRIBUTES;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_ATTRIBUTES = 'attributes' as keyof DomainTransferIn;
+/**
  * Auth Code
  *
  * The auth code for the domain
@@ -9134,6 +9159,7 @@ export const KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE = 'renewal_mode' as keyof Domai
  * @see {@link DomainTransferIn} - The TypeScript type definition
  */
 export const KEYS_DOMAIN_TRANSFER_IN = [
+  KEY_DOMAIN_TRANSFER_IN_ATTRIBUTES,
   KEY_DOMAIN_TRANSFER_IN_AUTH_CODE,
   KEY_DOMAIN_TRANSFER_IN_CONTACTS,
   KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE,

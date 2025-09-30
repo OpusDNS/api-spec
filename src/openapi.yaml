@@ -1366,6 +1366,11 @@ components:
       - disabled
       title: DnssecStatus
       type: string
+    DomainAttributeKey:
+      enum:
+      - auto_renew_period
+      title: DomainAttributeKey
+      type: string
     DomainAvailability:
       properties:
         domain:
@@ -1490,7 +1495,7 @@ components:
           title: Nameservers
         period:
           $ref: '#/components/schemas/DomainPeriod'
-          description: How long the domain should be registered for
+          description: The registration period of the domain
         renewal_mode:
           $ref: '#/components/schemas/RenewalMode'
           description: The renewal mode of the domain
@@ -2193,6 +2198,16 @@ components:
       type: object
     DomainTransferIn:
       properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Additional attributes of the domain
+          title: Attributes
         auth_code:
           description: The auth code for the domain
           title: Auth Code
@@ -5221,7 +5236,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-30-110200
+  version: 2025-09-30-180117
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -2251,6 +2251,11 @@ export interface components {
          * @enum {string}
          */
         DnssecStatus: "enabled" | "disabled";
+        /**
+         * DomainAttributeKey
+         * @enum {string}
+         */
+        DomainAttributeKey: "auto_renew_period";
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -2326,7 +2331,7 @@ export interface components {
              * @description The name servers for the domain
              */
             nameservers?: components["schemas"]["Nameserver"][] | null;
-            /** @description How long the domain should be registered for */
+            /** @description The registration period of the domain */
             period: components["schemas"]["DomainPeriod"];
             /** @description The renewal mode of the domain */
             renewal_mode: components["schemas"]["RenewalMode"];
@@ -2777,6 +2782,13 @@ export interface components {
         };
         /** DomainTransferIn */
         DomainTransferIn: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
             /**
              * Auth Code
              * @description The auth code for the domain

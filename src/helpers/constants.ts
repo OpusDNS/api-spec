@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AgreementType, AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
+import { AgreementType, AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
 
 /**
  * AgreementType. Auto-generated enum for AgreementType
@@ -956,6 +956,54 @@ export const DNSSEC_STATUS_VALUES = [
   'enabled',
   'disabled'
 ] as const satisfies [string, ...string[]] | DnssecStatus[];
+
+/**
+ * DomainAttributeKey. Auto-generated enum for DomainAttributeKey
+ *
+ * @remarks
+ * This constant provides both object and array forms for the DomainAttributeKey enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = DOMAIN_ATTRIBUTE_KEY.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = DOMAIN_ATTRIBUTE_KEY_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link DomainAttributeKey} - The TypeScript type definition
+ */
+export const DOMAIN_ATTRIBUTE_KEY = {
+  AUTO_RENEW_PERIOD: "auto_renew_period",
+} as const satisfies Record<string, DomainAttributeKey>;
+
+/**
+ * Array of all DomainAttributeKey enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid DomainAttributeKey enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of DOMAIN_ATTRIBUTE_KEY_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = DOMAIN_ATTRIBUTE_KEY_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link DomainAttributeKey} - The TypeScript type definition
+ * @see {@link DOMAIN_ATTRIBUTE_KEY} - The object form of this enum
+ */
+export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
+  'auto_renew_period'
+] as const satisfies [string, ...string[]] | DomainAttributeKey[];
 
 /**
  * DomainAvailabilityStatus. Auto-generated enum for DomainAvailabilityStatus
