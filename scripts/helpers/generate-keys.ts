@@ -104,7 +104,7 @@ function generateKeysFile(
     ' * @remarks',
     ' * - Individual key constants follow the pattern: \`KEY_TYPE_NAME_PROPERTY_NAME\`',
     ' * - Key arrays follow the pattern: \`KEYS_TYPE_NAME\` and are typed as \`readonly (keyof TypeName)[]\`',
-    ' * - All keys are typed with \`as keyof TypeName\` for type safety',
+    ' * - All keys are string literals for type safety',
     ' * - Key constants include descriptions from the OpenAPI schema',
     ' * - These constants ensure type safety when accessing response object properties',
     ' *',
@@ -206,7 +206,7 @@ function generateKeysFile(
  * @see {@link ${type.name}} - The TypeScript type definition
  * @see {@link KEYS_${typeNameUpper}} - Array of all keys for this type
  */
-export const KEY_${typeNameUpper}_${keyName} = '${prop}' as keyof ${type.name};`);
+export const KEY_${typeNameUpper}_${keyName} = '${prop}';`);
     });
 
     // Generate keys array
