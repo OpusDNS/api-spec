@@ -4635,7 +4635,7 @@ export interface components {
          * WalletCreditResponseStatus
          * @enum {string}
          */
-        WalletCreditResponseStatus: "success" | "failed";
+        WalletCreditResponseStatus: "success" | "failed" | "pending";
         /** WalletCreditResponseWithBalance */
         WalletCreditResponseWithBalance: {
             /**

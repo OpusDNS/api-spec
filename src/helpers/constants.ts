@@ -2791,6 +2791,7 @@ export const VERIFICATION_TYPE_VALUES = [
 export const WALLET_CREDIT_RESPONSE_STATUS = {
   SUCCESS: "success",
   FAILED: "failed",
+  PENDING: "pending",
 } as const satisfies Record<string, WalletCreditResponseStatus>;
 
 /**
@@ -2816,7 +2817,8 @@ export const WALLET_CREDIT_RESPONSE_STATUS = {
  */
 export const WALLET_CREDIT_RESPONSE_STATUS_VALUES = [
   'success',
-  'failed'
+  'failed',
+  'pending'
 ] as const satisfies [string, ...string[]] | WalletCreditResponseStatus[];
 
 /**
