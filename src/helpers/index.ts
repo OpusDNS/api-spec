@@ -16,5 +16,5 @@ export * from './keys';
 export * from './requests';
 export * from './schemas.d';
 export * from './schemas-arrays.d';
-export * from './constants.d';
+export * from './constants';
 export * from './responses.d';
