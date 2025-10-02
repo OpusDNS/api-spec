@@ -5236,7 +5236,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-09-30-180117
+  version: 2025-10-02-163917
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5435,6 +5435,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/SignupResponse'
           description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_SIGNUP_NOT_ALLOWED
+                detail: Additional error context.
+                status: 403
+                title: Organization Management Error
+                type: signup-not-allowed
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '409':
           content:
             application/problem+json:

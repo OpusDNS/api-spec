@@ -311,12 +311,13 @@ export type POST_AuthLogout_Response_401 = Problem
  * @path /v1/auth/signup
  *
  * @see {@link POST_AuthSignup_Response_200} - 200 response type
+ * @see {@link POST_AuthSignup_Response_403} - 403 response type
  * @see {@link POST_AuthSignup_Response_409} - 409 response type
  * @see {@link POST_AuthSignup_Response_422} - 422 response type
  *
 
  */
-export type POST_AuthSignup_Response = POST_AuthSignup_Response_200 | POST_AuthSignup_Response_409 | POST_AuthSignup_Response_422;
+export type POST_AuthSignup_Response = POST_AuthSignup_Response_200 | POST_AuthSignup_Response_403 | POST_AuthSignup_Response_409 | POST_AuthSignup_Response_422;
 
 /**
  * 200 response for POST AuthSignup endpoint
@@ -334,6 +335,23 @@ export type POST_AuthSignup_Response = POST_AuthSignup_Response_200 | POST_AuthS
  * @see {@link Signup} - The actual schema type definition
  */
 export type POST_AuthSignup_Response_200 = Signup
+
+/**
+ * 403 response for POST AuthSignup endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST AuthSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/auth/signup
+ *
+ * @see {@link POST_AuthSignup_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AuthSignup_Response_403 = Problem
 
 /**
  * 409 response for POST AuthSignup endpoint

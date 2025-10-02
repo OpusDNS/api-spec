@@ -4935,6 +4935,22 @@ export interface operations {
                     "application/json": components["schemas"]["SignupResponse"];
                 };
             };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_SIGNUP_NOT_ALLOWED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Organization Management Error",
+                     *       "type": "signup-not-allowed"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Conflict */
             409: {
                 headers: {
