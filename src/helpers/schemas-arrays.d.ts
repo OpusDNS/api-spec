@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, CustomerCreditCardPaymentMethod, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, OrganizationCredential, Organization, Period, Permission, PremiumAffectsType, Relation, UserAgreementAcceptance, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, CustomerCreditCardPaymentMethod, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -640,20 +640,6 @@ export type EmailForwardAliasArray = EmailForwardAlias[];
  */
 export type EventResponseArray = EventResponse[];
 /**
- * OrganizationCredential
- *
- * @remarks
- * Array type for OrganizationCredential objects. Used when the API returns a collection of OrganizationCredential instances.
- *
- * @example
- * ```typescript
- * const items: OrganizationCredentialArray = await api.getOrganizationCredentials();
- * ```
- *
- * @see {@link OrganizationCredential} - The individual OrganizationCredential type definition
- */
-export type OrganizationCredentialArray = OrganizationCredential[];
-/**
  * Organization
  *
  * @remarks
@@ -723,20 +709,6 @@ export type PremiumAffectsTypeArray = PremiumAffectsType[];
  * @see {@link Relation} - The individual Relation type definition
  */
 export type RelationArray = Relation[];
-/**
- * UserAgreementAcceptance
- *
- * @remarks
- * Array type for UserAgreementAcceptance objects. Used when the API returns a collection of UserAgreementAcceptance instances.
- *
- * @example
- * ```typescript
- * const items: UserAgreementAcceptanceArray = await api.getUserAgreementAcceptances();
- * ```
- *
- * @see {@link UserAgreementAcceptance} - The individual UserAgreementAcceptance type definition
- */
-export type UserAgreementAcceptanceArray = UserAgreementAcceptance[];
 /**
  * TldBase
  *

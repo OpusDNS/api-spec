@@ -1,12 +1,5 @@
 components:
   schemas:
-    AgreementType:
-      enum:
-      - terms_and_conditions
-      - master_service_agreement
-      - acting_as_trader
-      title: AgreementType
-      type: string
     AllocationMethodType:
       enum:
       - fcfs
@@ -199,42 +192,6 @@ components:
       - canceled
       title: BillingTransactionStatus
       type: string
-    Body_issue_organization_token_v1_auth_token_post:
-      properties:
-        client_id:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
-          description: The organization ID associated with the credentials.
-          title: Client Id
-        client_secret:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Client secret for authentication.
-          title: Client Secret
-        grant_type:
-          $ref: '#/components/schemas/GrantType'
-          description: The grant type for the authentication request.
-        password:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Password for the user.
-          title: Password
-        username:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Username for authentication.
-          title: Username
-      title: Body_issue_organization_token_v1_auth_token_post
-      type: object
     CheckoutSessionRequest:
       properties: {}
       title: CheckoutSessionRequest
@@ -3217,164 +3174,6 @@ components:
       - name
       title: OrganizationCreate
       type: object
-    OrganizationCredential:
-      properties:
-        api_key_description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Description of the organization credential.
-          title: Api Key Description
-        api_key_id:
-          description: Unique identifier of the organization credential.
-          examples:
-          - api_key_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^api_key_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Api Key Id
-          type: string
-          x-typeid-prefix: api_key
-        api_key_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Name of the organization credential. Only a-z, A-Z, 0-9, underscore,
-            and hyphen are allowed.
-          title: Api Key Name
-        created_on:
-          description: The date/time the entry was created on
-          format: date-time
-          title: Created On
-          type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
-        last_used_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Last Used On
-        organization_id:
-          default: None
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-        status:
-          $ref: '#/components/schemas/OrganizationCredentialStatus'
-          description: The status of the organization credential.
-          readOnly: true
-      required:
-      - api_key_id
-      - status
-      title: OrganizationCredential
-      type: object
-    OrganizationCredentialCreated:
-      properties:
-        api_key:
-          description: Unique identifier of the organization credential.
-          examples:
-          - api_key_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^api_key_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Api Key
-          type: string
-          x-typeid-prefix: api_key
-        api_key_description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Description of the organization credential.
-          title: Api Key Description
-        api_key_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Name of the organization credential. Only a-z, A-Z, 0-9, underscore,
-            and hyphen are allowed.
-          title: Api Key Name
-        client_id:
-          default: None
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Client Id
-          type: string
-          x-typeid-prefix: organization
-        client_secret:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Plaintext secret to be hashed (not stored directly in the DB).
-          title: Client Secret
-        created_on:
-          description: The date/time the entry was created on
-          format: date-time
-          title: Created On
-          type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
-        last_used_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Last Used On
-        status:
-          $ref: '#/components/schemas/OrganizationCredentialStatus'
-          description: The status of the organization credential.
-          readOnly: true
-      required:
-      - api_key
-      - status
-      title: OrganizationCredentialCreated
-      type: object
-    OrganizationCredentialExtra:
-      properties:
-        api_key_description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Description of the organization credential.
-          title: Api Key Description
-        api_key_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Name of the organization credential. Only a-z, A-Z, 0-9, underscore,
-            and hyphen are allowed.
-          title: Api Key Name
-        expires_at:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date and time the credential expiration.
-          title: Expires At
-      title: OrganizationCredentialExtra
-      type: object
-    OrganizationCredentialStatus:
-      enum:
-      - active
-      - revoked
-      title: OrganizationCredentialStatus
-      type: string
     OrganizationStatus:
       enum:
       - active
@@ -3758,20 +3557,6 @@ components:
       - pagination
       title: Pagination[EventResponse]
       type: object
-    Pagination_OrganizationCredential_:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-        results:
-          items:
-            $ref: '#/components/schemas/OrganizationCredential'
-          title: Results
-          type: array
-      required:
-      - results
-      - pagination
-      title: Pagination[OrganizationCredential]
-      type: object
     Pagination_Organization_:
       properties:
         pagination:
@@ -4058,6 +3843,32 @@ components:
       - status
       title: Problem
       type: object
+    PublicAuthRequestForm:
+      properties:
+        client_id:
+          description: The organization ID associated with the credentials.
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Client Id
+          type: string
+          x-typeid-prefix: organization
+        client_secret:
+          description: Client secret for authentication.
+          title: Client Secret
+          type: string
+        grant_type:
+          description: The grant type for the authentication request (should always
+            be 'client_credentials').
+          title: Grant Type
+          type: string
+      required:
+      - grant_type
+      - client_id
+      - client_secret
+      title: PublicAuthRequestForm
+      type: object
     RdapBase:
       properties:
         rdap_server:
@@ -4198,43 +4009,6 @@ components:
           type: boolean
       title: RgpOperations
       type: object
-    SignupCreate:
-      properties:
-        agreements:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/UserAgreementAcceptance'
-            type: array
-          - type: 'null'
-          description: User agreement acceptances.
-          title: Agreements
-        organization:
-          $ref: '#/components/schemas/OrganizationCreate'
-          description: Organization signup.
-        terms_of_service:
-          anyOf:
-          - $ref: '#/components/schemas/TermsOfServiceAccept'
-          - type: 'null'
-          description: Terms of service acceptance (legacy).
-        user:
-          $ref: '#/components/schemas/UserCreate'
-          description: User signup to platform.
-      required:
-      - user
-      - organization
-      title: SignupCreate
-      type: object
-    SignupResponse:
-      properties:
-        organization:
-          $ref: '#/components/schemas/Organization'
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - user
-      - organization
-      title: SignupResponse
-      type: object
     SldLength:
       properties:
         max:
@@ -4289,16 +4063,6 @@ components:
       - ccTLD
       title: TLDType
       type: string
-    TermsOfServiceAccept:
-      properties:
-        accepted:
-          description: The organization accepts Terms of Service.
-          title: Accepted
-          type: boolean
-      required:
-      - accepted
-      title: TermsOfServiceAccept
-      type: object
     TldBase:
       properties:
         name:
@@ -4645,35 +4409,6 @@ components:
       - locale
       - status
       title: User
-      type: object
-    UserAgreementAcceptance:
-      properties:
-        accepted:
-          description: Whether the agreement has been accepted.
-          title: Accepted
-          type: boolean
-        type:
-          $ref: '#/components/schemas/AgreementType'
-          description: Type of agreement being accepted.
-        url:
-          anyOf:
-          - format: uri
-            maxLength: 2083
-            minLength: 1
-            type: string
-          - type: 'null'
-          description: URL where the agreement can be found.
-          title: Url
-        version:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Version of the agreement being accepted.
-          title: Version
-      required:
-      - type
-      - accepted
-      title: UserAgreementAcceptance
       type: object
     UserAttributeBase:
       properties:
@@ -5236,239 +4971,12 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-02-163917
+  version: 2025-10-02-195210
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
 openapi: 3.1.0
 paths:
-  /v1/auth/client_credentials:
-    get:
-      operationId: list_api_keys_v1_auth_client_credentials_get
-      parameters:
-      - description: Optional status to filter the results
-        in: query
-        name: status
-        required: false
-        schema:
-          anyOf:
-          - $ref: '#/components/schemas/OrganizationCredentialStatus'
-          - type: 'null'
-          description: Optional status to filter the results
-          title: Status
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 100
-          minimum: 1
-          title: Page Size
-          type: integer
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pagination_OrganizationCredential_'
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: List all API keys
-      tags:
-      - authentication
-    post:
-      operationId: issue_api_key_v1_auth_client_credentials_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrganizationCredentialExtra'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrganizationCredentialCreated'
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Issue an API key
-      tags:
-      - authentication
-  /v1/auth/client_credentials/{api_key_id}:
-    delete:
-      operationId: delete_api_key_v1_auth_client_credentials__api_key_id__delete
-      parameters:
-      - in: path
-        name: api_key_id
-        required: true
-        schema:
-          examples:
-          - api_key_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^api_key_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Api Key Id
-          type: string
-          x-typeid-prefix: api_key
-      responses:
-        '204':
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '404':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_ORGANIZATION_CREDENTIAL_NOT_FOUND
-                credential_id: Additional error context.
-                detail: Organization credential with ID Additional error context.
-                  not found
-                status: 404
-                title: Organization Management Error
-                type: organization-credential-not-found
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Not Found
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Delete an API key
-      tags:
-      - authentication
-  /v1/auth/logout:
-    post:
-      operationId: logout_v1_auth_logout_post
-      responses:
-        '204':
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Logout
-      tags:
-      - authentication
-  /v1/auth/signup:
-    post:
-      operationId: signup_v1_auth_signup_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SignupCreate'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignupResponse'
-          description: Successful Response
-        '403':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_SIGNUP_NOT_ALLOWED
-                detail: Additional error context.
-                status: 403
-                title: Organization Management Error
-                type: signup-not-allowed
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Forbidden
-        '409':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_USER_EXISTS
-                detail: User with username or email already exists
-                status: 409
-                title: User Management Error
-                type: user-already-present
-                user: Additional error context.
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Conflict
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Signup
-      tags:
-      - authentication
   /v1/auth/token:
     post:
       operationId: issue_organization_token_v1_auth_token_post
@@ -5476,7 +4984,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Body_issue_organization_token_v1_auth_token_post'
+              $ref: '#/components/schemas/PublicAuthRequestForm'
       responses:
         '200':
           content:

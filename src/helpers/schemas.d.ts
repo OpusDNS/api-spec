@@ -27,22 +27,6 @@
 import { components } from '../schema';
 
 /**
- * AgreementType
- *
- * @remarks
- * Type alias for the `AgreementType` OpenAPI schema.
- * This type represents agreementtype data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getAgreementType();
- * const item: AgreementType = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type AgreementType = components['schemas']['AgreementType'];
-/**
  * AllocationMethodType
  *
  * @remarks
@@ -202,22 +186,6 @@ export type BillingTransactionSortField = components['schemas']['BillingTransact
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type BillingTransactionStatus = components['schemas']['BillingTransactionStatus'];
-/**
- * Body_issue_organization_token_v1_auth_token_post
- *
- * @remarks
- * Type alias for the `Body_issue_organization_token_v1_auth_token_post` OpenAPI schema.
- * This type represents body_issue_organization_token_v1_auth_token_post data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getBody_issue_organization_token_v1_auth_token_post();
- * const item: Body_issue_organization_token_v1_auth_token_post = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type Body_issue_organization_token_v1_auth_token_post = components['schemas']['Body_issue_organization_token_v1_auth_token_post'];
 /**
  * CheckoutSessionRequest
  *
@@ -1920,70 +1888,6 @@ export type OrganizationAttributeUpdate = components['schemas']['OrganizationAtt
  */
 export type OrganizationCreate = components['schemas']['OrganizationCreate'];
 /**
- * OrganizationCredential
- *
- * @remarks
- * Type alias for the `OrganizationCredential` OpenAPI schema.
- * This type represents organizationcredential data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getOrganizationCredential();
- * const item: OrganizationCredential = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type OrganizationCredential = components['schemas']['OrganizationCredential'];
-/**
- * OrganizationCredentialCreated
- *
- * @remarks
- * Type alias for the `OrganizationCredentialCreated` OpenAPI schema.
- * This type represents organizationcredentialcreated data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getOrganizationCredentialCreated();
- * const item: OrganizationCredentialCreated = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type OrganizationCredentialCreated = components['schemas']['OrganizationCredentialCreated'];
-/**
- * OrganizationCredentialExtra
- *
- * @remarks
- * Type alias for the `OrganizationCredentialExtra` OpenAPI schema.
- * This type represents organizationcredentialextra data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getOrganizationCredentialExtra();
- * const item: OrganizationCredentialExtra = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type OrganizationCredentialExtra = components['schemas']['OrganizationCredentialExtra'];
-/**
- * OrganizationCredentialStatus
- *
- * @remarks
- * Type alias for the `OrganizationCredentialStatus` OpenAPI schema.
- * This type represents organizationcredentialstatus data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getOrganizationCredentialStatus();
- * const item: OrganizationCredentialStatus = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type OrganizationCredentialStatus = components['schemas']['OrganizationCredentialStatus'];
-/**
  * OrganizationStatus
  *
  * @remarks
@@ -2159,22 +2063,6 @@ export type Pagination_EmailForwardAlias = components['schemas']['Pagination_Ema
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_Event = components['schemas']['Pagination_EventResponse_'];
-/**
- * Pagination[OrganizationCredential]
- *
- * @remarks
- * Type alias for the `Pagination_OrganizationCredential_` OpenAPI schema.
- * This type represents pagination[organizationcredential] data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPagination_OrganizationCredential();
- * const item: Pagination_OrganizationCredential = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type Pagination_OrganizationCredential = components['schemas']['Pagination_OrganizationCredential_'];
 /**
  * Pagination[Organization]
  *
@@ -2480,6 +2368,22 @@ export type PricingPeriod = components['schemas']['PricingPeriod'];
  */
 export type Problem = components['schemas']['Problem'];
 /**
+ * PublicAuthRequestForm
+ *
+ * @remarks
+ * Type alias for the `PublicAuthRequestForm` OpenAPI schema.
+ * This type represents publicauthrequestform data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPublicAuthRequestForm();
+ * const item: PublicAuthRequestForm = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PublicAuthRequestForm = components['schemas']['PublicAuthRequestForm'];
+/**
  * RdapBase
  *
  * @remarks
@@ -2640,38 +2544,6 @@ export type ReservedSourceType = components['schemas']['ReservedSourceType'];
  */
 export type RgpOperations = components['schemas']['RgpOperations'];
 /**
- * SignupCreate
- *
- * @remarks
- * Type alias for the `SignupCreate` OpenAPI schema.
- * This type represents signupcreate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getSignupCreate();
- * const item: SignupCreate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type SignupCreate = components['schemas']['SignupCreate'];
-/**
- * SignupResponse
- *
- * @remarks
- * Type alias for the `SignupResponse` OpenAPI schema.
- * This type represents signupresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getSignup();
- * const item: Signup = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type Signup = components['schemas']['SignupResponse'];
-/**
  * SldLength
  *
  * @remarks
@@ -2751,22 +2623,6 @@ export type SyncOperationType = components['schemas']['SyncOperationType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type TLDType = components['schemas']['TLDType'];
-/**
- * TermsOfServiceAccept
- *
- * @remarks
- * Type alias for the `TermsOfServiceAccept` OpenAPI schema.
- * This type represents termsofserviceaccept data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getTermsOfServiceAccept();
- * const item: TermsOfServiceAccept = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type TermsOfServiceAccept = components['schemas']['TermsOfServiceAccept'];
 /**
  * TldBase
  *
@@ -2879,22 +2735,6 @@ export type TransferPoliciesBase = components['schemas']['TransferPoliciesBase']
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type User = components['schemas']['User'];
-/**
- * UserAgreementAcceptance
- *
- * @remarks
- * Type alias for the `UserAgreementAcceptance` OpenAPI schema.
- * This type represents useragreementacceptance data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserAgreementAcceptance();
- * const item: UserAgreementAcceptance = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserAgreementAcceptance = components['schemas']['UserAgreementAcceptance'];
 /**
  * UserAttributeBase
  *

@@ -1,74 +1,5 @@
 import { TypeId } from "typeid-js";
 export interface paths {
-    "/v1/auth/client_credentials": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List all API keys */
-        get: operations["list_api_keys_v1_auth_client_credentials_get"];
-        put?: never;
-        /** Issue an API key */
-        post: operations["issue_api_key_v1_auth_client_credentials_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/auth/client_credentials/{api_key_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Delete an API key */
-        delete: operations["delete_api_key_v1_auth_client_credentials__api_key_id__delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/auth/logout": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Logout */
-        post: operations["logout_v1_auth_logout_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/auth/signup": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Signup */
-        post: operations["signup_v1_auth_signup_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/auth/token": {
         parameters: {
             query?: never;
@@ -1301,11 +1232,6 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         /**
-         * AgreementType
-         * @enum {string}
-         */
-        AgreementType: "terms_and_conditions" | "master_service_agreement" | "acting_as_trader";
-        /**
          * AllocationMethodType
          * @enum {string}
          */
@@ -1452,31 +1378,6 @@ export interface components {
          * @enum {string}
          */
         BillingTransactionStatus: "pending" | "succeeded" | "failed" | "canceled";
-        /** Body_issue_organization_token_v1_auth_token_post */
-        Body_issue_organization_token_v1_auth_token_post: {
-            /**
-             * Client Id
-             * @description The organization ID associated with the credentials.
-             */
-            client_id?: TypeId<"organization"> | null;
-            /**
-             * Client Secret
-             * @description Client secret for authentication.
-             */
-            client_secret?: string | null;
-            /** @description The grant type for the authentication request. */
-            grant_type?: components["schemas"]["GrantType"];
-            /**
-             * Password
-             * @description Password for the user.
-             */
-            password?: string | null;
-            /**
-             * Username
-             * @description Username for authentication.
-             */
-            username?: string | null;
-        };
         /** CheckoutSessionRequest */
         CheckoutSessionRequest: Record<string, never>;
         /** CheckoutSessionResponse */
@@ -3465,120 +3366,6 @@ export interface components {
              */
             users?: components["schemas"]["UserCreate"][];
         };
-        /** OrganizationCredential */
-        OrganizationCredential: {
-            /**
-             * Api Key Description
-             * @description Description of the organization credential.
-             */
-            api_key_description?: string | null;
-            /**
-             * Api Key Id
-             * Format: typeid
-             * @description Unique identifier of the organization credential.
-             */
-            api_key_id: TypeId<"api_key">;
-            /**
-             * Api Key Name
-             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
-             */
-            api_key_name?: string | null;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
-             * Last Used On
-             * @description The date/time the entry was deleted on
-             */
-            last_used_on?: Date | null;
-            /**
-             * Organization Id
-             * Format: typeid
-             * @default None
-             */
-            organization_id: TypeId<"organization">;
-            /** @description The status of the organization credential. */
-            readonly status: components["schemas"]["OrganizationCredentialStatus"];
-        };
-        /** OrganizationCredentialCreated */
-        OrganizationCredentialCreated: {
-            /**
-             * Api Key
-             * Format: typeid
-             * @description Unique identifier of the organization credential.
-             */
-            api_key: TypeId<"api_key">;
-            /**
-             * Api Key Description
-             * @description Description of the organization credential.
-             */
-            api_key_description?: string | null;
-            /**
-             * Api Key Name
-             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
-             */
-            api_key_name?: string | null;
-            /**
-             * Client Id
-             * Format: typeid
-             * @default None
-             */
-            client_id: TypeId<"organization">;
-            /**
-             * Client Secret
-             * @description Plaintext secret to be hashed (not stored directly in the DB).
-             */
-            client_secret?: string | null;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
-             * Last Used On
-             * @description The date/time the entry was deleted on
-             */
-            last_used_on?: Date | null;
-            /** @description The status of the organization credential. */
-            readonly status: components["schemas"]["OrganizationCredentialStatus"];
-        };
-        /** OrganizationCredentialExtra */
-        OrganizationCredentialExtra: {
-            /**
-             * Api Key Description
-             * @description Description of the organization credential.
-             */
-            api_key_description?: string | null;
-            /**
-             * Api Key Name
-             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
-             */
-            api_key_name?: string | null;
-            /**
-             * Expires At
-             * @description The date and time the credential expiration.
-             */
-            expires_at?: Date | null;
-        };
-        /**
-         * OrganizationCredentialStatus
-         * @enum {string}
-         */
-        OrganizationCredentialStatus: "active" | "revoked";
         /**
          * OrganizationStatus
          * @enum {string}
@@ -3807,12 +3594,6 @@ export interface components {
             /** Results */
             results: components["schemas"]["EventResponse"][];
         };
-        /** Pagination[OrganizationCredential] */
-        Pagination_OrganizationCredential_: {
-            pagination: components["schemas"]["PaginationMetadata"];
-            /** Results */
-            results: components["schemas"]["OrganizationCredential"][];
-        };
         /** Pagination[Organization] */
         Pagination_Organization_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -3973,6 +3754,25 @@ export interface components {
             /** Problem type */
             type: string;
         };
+        /** PublicAuthRequestForm */
+        PublicAuthRequestForm: {
+            /**
+             * Client Id
+             * Format: typeid
+             * @description The organization ID associated with the credentials.
+             */
+            client_id: TypeId<"organization">;
+            /**
+             * Client Secret
+             * @description Client secret for authentication.
+             */
+            client_secret: string;
+            /**
+             * Grant Type
+             * @description The grant type for the authentication request (should always be 'client_credentials').
+             */
+            grant_type: string;
+        };
         /** RdapBase */
         RdapBase: {
             /**
@@ -4065,25 +3865,6 @@ export interface components {
              */
             request: boolean;
         };
-        /** SignupCreate */
-        SignupCreate: {
-            /**
-             * Agreements
-             * @description User agreement acceptances.
-             */
-            agreements?: components["schemas"]["UserAgreementAcceptance"][] | null;
-            /** @description Organization signup. */
-            organization: components["schemas"]["OrganizationCreate"];
-            /** @description Terms of service acceptance (legacy). */
-            terms_of_service?: components["schemas"]["TermsOfServiceAccept"] | null;
-            /** @description User signup to platform. */
-            user: components["schemas"]["UserCreate"];
-        };
-        /** SignupResponse */
-        SignupResponse: {
-            organization: components["schemas"]["Organization"];
-            user: components["schemas"]["User"];
-        };
         /** SldLength */
         SldLength: {
             /**
@@ -4119,14 +3900,6 @@ export interface components {
          * @enum {string}
          */
         TLDType: "gTLD" | "ccTLD";
-        /** TermsOfServiceAccept */
-        TermsOfServiceAccept: {
-            /**
-             * Accepted
-             * @description The organization accepts Terms of Service.
-             */
-            accepted: boolean;
-        };
         /** TldBase */
         TldBase: {
             /**
@@ -4345,26 +4118,6 @@ export interface components {
              * @description The user's unique username
              */
             username: string;
-        };
-        /** UserAgreementAcceptance */
-        UserAgreementAcceptance: {
-            /**
-             * Accepted
-             * @description Whether the agreement has been accepted.
-             */
-            accepted: boolean;
-            /** @description Type of agreement being accepted. */
-            type: components["schemas"]["AgreementType"];
-            /**
-             * Url
-             * @description URL where the agreement can be found.
-             */
-            url?: string | null;
-            /**
-             * Version
-             * @description Version of the agreement being accepted.
-             */
-            version?: string | null;
         };
         /** UserAttributeBase */
         UserAttributeBase: {
@@ -4718,267 +4471,6 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    list_api_keys_v1_auth_client_credentials_get: {
-        parameters: {
-            query?: {
-                /** @description Optional status to filter the results */
-                status?: components["schemas"]["OrganizationCredentialStatus"] | null;
-                page?: number;
-                page_size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Pagination_OrganizationCredential_"];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    issue_api_key_v1_auth_client_credentials_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OrganizationCredentialExtra"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationCredentialCreated"];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_api_key_v1_auth_client_credentials__api_key_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                api_key_id: TypeId<"api_key">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_ORGANIZATION_CREDENTIAL_NOT_FOUND",
-                     *       "credential_id": "Additional error context.",
-                     *       "detail": "Organization credential with ID Additional error context. not found",
-                     *       "status": 404,
-                     *       "title": "Organization Management Error",
-                     *       "type": "organization-credential-not-found"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    logout_v1_auth_logout_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-        };
-    };
-    signup_v1_auth_signup_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SignupCreate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SignupResponse"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_SIGNUP_NOT_ALLOWED",
-                     *       "detail": "Additional error context.",
-                     *       "status": 403,
-                     *       "title": "Organization Management Error",
-                     *       "type": "signup-not-allowed"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_USER_EXISTS",
-                     *       "detail": "User with username or email already exists",
-                     *       "status": 409,
-                     *       "title": "User Management Error",
-                     *       "type": "user-already-present",
-                     *       "user": "Additional error context."
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     issue_organization_token_v1_auth_token_post: {
         parameters: {
             query?: never;
@@ -4988,7 +4480,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/x-www-form-urlencoded": components["schemas"]["Body_issue_organization_token_v1_auth_token_post"];
+                "application/x-www-form-urlencoded": components["schemas"]["PublicAuthRequestForm"];
             };
         };
         responses: {

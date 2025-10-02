@@ -21,59 +21,7 @@
  * ```
  */
 
-import { AgreementType, AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationCredentialStatus, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
-
-/**
- * AgreementType. Auto-generated enum for AgreementType
- *
- * @remarks
- * This constant provides both object and array forms for the AgreementType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = AGREEMENT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = AGREEMENT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link AgreementType} - The TypeScript type definition
- */
-export const AGREEMENT_TYPE = {
-  TERMS_AND_CONDITIONS: "terms_and_conditions",
-  MASTER_SERVICE_AGREEMENT: "master_service_agreement",
-  ACTING_AS_TRADER: "acting_as_trader",
-} as const satisfies Record<string, AgreementType>;
-
-/**
- * Array of all AgreementType enum values
- *
- * @remarks
- * This constant provides a array containing all valid AgreementType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of AGREEMENT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = AGREEMENT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link AgreementType} - The TypeScript type definition
- * @see {@link AGREEMENT_TYPE} - The object form of this enum
- */
-export const AGREEMENT_TYPE_VALUES = [
-  'terms_and_conditions',
-  'master_service_agreement',
-  'acting_as_trader'
-] as const satisfies [string, ...string[]] | AgreementType[];
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1704,56 +1652,6 @@ export const LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES = [
   'physical_address',
   'business_entity'
 ] as const satisfies [string, ...string[]] | LocalPresenceRequirementType[];
-
-/**
- * OrganizationCredentialStatus. Auto-generated enum for OrganizationCredentialStatus
- *
- * @remarks
- * This constant provides both object and array forms for the OrganizationCredentialStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = ORGANIZATION_CREDENTIAL_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = ORGANIZATION_CREDENTIAL_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link OrganizationCredentialStatus} - The TypeScript type definition
- */
-export const ORGANIZATION_CREDENTIAL_STATUS = {
-  ACTIVE: "active",
-  REVOKED: "revoked",
-} as const satisfies Record<string, OrganizationCredentialStatus>;
-
-/**
- * Array of all OrganizationCredentialStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid OrganizationCredentialStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of ORGANIZATION_CREDENTIAL_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = ORGANIZATION_CREDENTIAL_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link OrganizationCredentialStatus} - The TypeScript type definition
- * @see {@link ORGANIZATION_CREDENTIAL_STATUS} - The object form of this enum
- */
-export const ORGANIZATION_CREDENTIAL_STATUS_VALUES = [
-  'active',
-  'revoked'
-] as const satisfies [string, ...string[]] | OrganizationCredentialStatus[];
 
 /**
  * OrganizationStatus. Auto-generated enum for OrganizationStatus
