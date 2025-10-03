@@ -1319,6 +1319,7 @@ export interface components {
             /**
              * Billing Transaction Id
              * Format: typeid
+             * @example billing_transaction_01h45ytscbebyvny4gc8cr8ma2
              */
             billing_transaction_id?: TypeId<"billing_transaction">;
             /**
@@ -1465,6 +1466,7 @@ export interface components {
              * Phone
              * Format: phone
              * @description The contact's phone number
+             * @example +1.2125552368
              */
             phone: string;
             /**
@@ -1501,6 +1503,7 @@ export interface components {
              * Contact Id
              * Format: typeid
              * @description The contact id of the contact
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_id: TypeId<"contact">;
         };
@@ -1554,6 +1557,7 @@ export interface components {
              * Phone
              * Format: phone
              * @description The contact's phone number
+             * @example +1.2125552368
              */
             phone: string;
             /**
@@ -1605,6 +1609,7 @@ export interface components {
             /**
              * Contact Id
              * Format: typeid
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_id?: TypeId<"contact">;
             /**
@@ -1659,12 +1664,14 @@ export interface components {
              * Format: typeid
              * @description The organization that owns the domain
              * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
             /**
              * Phone
              * Format: phone
              * @description The contact's phone number
+             * @example +1.2125552368
              */
             phone: string;
             /**
@@ -1705,11 +1712,13 @@ export interface components {
              * Format: typeid
              * @description The contact that is being verified
              * @default None
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_id: TypeId<"contact">;
             /**
              * Contact Verification Id
              * Format: typeid
+             * @example contact_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_verification_id?: TypeId<"contact_verification">;
             /**
@@ -1754,11 +1763,13 @@ export interface components {
              * Format: typeid
              * @description The contact that is being verified
              * @default None
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_id: TypeId<"contact">;
             /**
              * Contact Verification Id
              * Format: typeid
+             * @example contact_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_verification_id?: TypeId<"contact_verification">;
             /**
@@ -1798,11 +1809,13 @@ export interface components {
              * Format: typeid
              * @description The contact that is being verified
              * @default None
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_id: TypeId<"contact">;
             /**
              * Contact Verification Id
              * Format: typeid
+             * @example contact_verification_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_verification_id?: TypeId<"contact_verification">;
             /**
@@ -2194,6 +2207,7 @@ export interface components {
              * Contact Id
              * Format: typeid
              * @description The contact id of the contact
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
              */
             contact_id: TypeId<"contact">;
             /** @description The type of contact */
@@ -2291,6 +2305,7 @@ export interface components {
             /**
              * Domain Dnssec Data Id
              * Format: typeid
+             * @example domain_dnssec_01h45ytscbebyvny4gc8cr8ma2
              */
             domain_dnssec_data_id?: TypeId<"domain_dnssec">;
             /**
@@ -2298,6 +2313,7 @@ export interface components {
              * Format: typeid
              * @description The domain this DNSSEC record belongs to
              * @default None
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
              */
             domain_id: TypeId<"domain">;
             /**
@@ -2359,6 +2375,8 @@ export interface components {
             /**
              * Grace Period
              * @description Grace period after expiration in ISO 8601 format (e.g., 5D, -7D)
+             * @example P5D
+             * @example P30D
              */
             grace_period?: string | null;
             /**
@@ -2390,11 +2408,20 @@ export interface components {
         };
         /** DomainNameParts */
         DomainNameParts: {
-            /** Domain */
+            /**
+             * Domain
+             * @example example
+             */
             domain?: string | null;
-            /** Subdomain */
+            /**
+             * Subdomain
+             * @example foo
+             */
             subdomain?: string | null;
-            /** Suffix */
+            /**
+             * Suffix
+             * @example com
+             */
             suffix?: string | null;
         };
         /** DomainPeriod */
@@ -2470,6 +2497,7 @@ export interface components {
             /**
              * Domain Id
              * Format: typeid
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
              */
             domain_id?: TypeId<"domain">;
             /**
@@ -2480,6 +2508,7 @@ export interface components {
             /**
              * Name
              * @description The domain name
+             * @example example.com
              */
             name: string;
             /**
@@ -2492,6 +2521,7 @@ export interface components {
              * Format: typeid
              * @description The organization that owns the domain
              * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             owner_id: TypeId<"organization">;
             /**
@@ -2503,6 +2533,7 @@ export interface components {
              * Registry Account Id
              * Format: typeid
              * @default None
+             * @example registry_account_01h45ytscbebyvny4gc8cr8ma2
              */
             registry_account_id: TypeId<"registry_account">;
             /**
@@ -2515,16 +2546,19 @@ export interface components {
             /**
              * Roid
              * @description The registry object id of the domain
+             * @example D123456789-EXAMPLE-TEST
              */
             roid: string;
             /**
              * Sld
              * @description The second level domain
+             * @example example
              */
             sld: string;
             /**
              * Tld
              * @description The top level domain of the domain
+             * @example com
              */
             tld: string;
             /**
@@ -2565,6 +2599,7 @@ export interface components {
              * Domain Id
              * Format: typeid
              * @description The ID of the restored domain
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
              */
             domain_id: TypeId<"domain">;
             /**
@@ -2678,6 +2713,7 @@ export interface components {
              * Organization Id
              * Format: typeid
              * @description The organization ID
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
         };
@@ -2729,6 +2765,12 @@ export interface components {
             /**
              * Contacts
              * @description The new contacts of the domain
+             * @example {
+             *       "admin": "contact_01h45ytscbebyvny4gc8cr8ma2",
+             *       "billing": "contact_01h45ytscbebyvny4gc8cr8ma2",
+             *       "registrant": "contact_01h45ytscbebyvny4gc8cr8ma2",
+             *       "tech": "contact_01h45ytscbebyvny4gc8cr8ma2"
+             *     }
              */
             contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
             /**
@@ -2798,6 +2840,7 @@ export interface components {
             /**
              * Event Id
              * Format: typeid
+             * @example epp_event_01h45ytscbebyvny4gc8cr8ma2
              */
             event_id?: TypeId<"epp_event">;
             /**
@@ -2833,6 +2876,7 @@ export interface components {
             /**
              * Event Id
              * Format: typeid
+             * @example epp_event_01h45ytscbebyvny4gc8cr8ma2
              */
             event_id?: TypeId<"epp_event">;
             /**
@@ -2947,11 +2991,16 @@ export interface components {
              * Ip Network
              * Format: ipvanynetwork
              * @description IP address or CIDR network range. Individual IPs can be specified without CIDR notation.
+             * @example 192.0.2.1
+             * @example 192.0.2.0/24
+             * @example 2001:db8::1
+             * @example 2001:db8::/32
              */
             ip_network: string;
             /**
              * Organization Id
              * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id?: TypeId<"organization">;
         };
@@ -2966,6 +3015,10 @@ export interface components {
              * Ip Network
              * Format: ipvanynetwork
              * @description IP address or CIDR network range. Single IPs are returned with /32 (IPv4) or /128 (IPv6) notation.
+             * @example 192.0.2.1/32
+             * @example 192.0.2.0/24
+             * @example 2001:db8::1/128
+             * @example 2001:db8::/32
              */
             ip_network: string;
             /** Ip Restriction Id */
@@ -2975,6 +3028,7 @@ export interface components {
             /**
              * Organization Id
              * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
         };
@@ -2988,6 +3042,10 @@ export interface components {
             /**
              * Ip Network
              * @description IP address or CIDR network range to replace the existing restriction.
+             * @example 192.0.2.1
+             * @example 192.0.2.0/24
+             * @example 2001:db8::1
+             * @example 2001:db8::/32
              */
             ip_network?: string | null;
             /**
@@ -3072,11 +3130,20 @@ export interface components {
             /**
              * Hostname
              * @description The name server of the domain
+             * @example ns1.example.com
              */
             hostname: string;
             /**
              * Ip Addresses
              * @description The ip addresses of the name server
+             * @example [
+             *       "0.0.0.0",
+             *       "127.0.0.1"
+             *     ]
+             * @example [
+             *       "2001:db8::1",
+             *       "2001:db8::2"
+             *     ]
              */
             ip_addresses?: string[];
         };
@@ -3136,6 +3203,7 @@ export interface components {
              * Organization Id
              * Format: typeid
              * @description Unique identifier for the organization.
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id?: TypeId<"organization">;
             /**
@@ -3503,6 +3571,7 @@ export interface components {
              * Organization Id
              * Format: typeid
              * @description Unique identifier for the organization.
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id?: TypeId<"organization">;
             /**
@@ -3608,7 +3677,10 @@ export interface components {
         };
         /** PasswordUpdate */
         PasswordUpdate: {
-            /** New Password */
+            /**
+             * New Password
+             * @example correcthorsebatterystaple
+             */
             new_password: string;
         };
         /**
@@ -3760,6 +3832,7 @@ export interface components {
              * Client Id
              * Format: typeid
              * @description The organization ID associated with the credentials.
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             client_id: TypeId<"organization">;
             /**
@@ -3918,8 +3991,17 @@ export interface components {
         };
         /** TldResponseShort */
         TldResponseShort: {
-            /** Tld */
+            /**
+             * Tld
+             * @example com
+             * @example org
+             * @example net
+             */
             tld: string;
+            /**
+             * @example gTLD
+             * @example ccTLD
+             */
             type: components["schemas"]["TLDType"];
         };
         /** TldSpecificationResponse */
@@ -4087,18 +4169,23 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /** Locale */
+            /**
+             * Locale
+             * @example en_US
+             */
             locale: string;
             /**
              * Organization Id
              * Format: typeid
              * @description The user's organization id
              * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
             /**
              * Phone
              * @description The user's phone number
+             * @example +1.2125552368
              */
             phone?: string | null;
             readonly status: components["schemas"]["UserStatus"];
@@ -4111,6 +4198,7 @@ export interface components {
             /**
              * User Id
              * Format: typeid
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
              */
             user_id?: TypeId<"user">;
             /**
@@ -4147,16 +4235,21 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /** Locale */
+            /**
+             * Locale
+             * @example en_US
+             */
             locale: string;
             /**
              * Password
              * @description Plaintext password for hashing during creation
+             * @example correcthorsebatterystaple
              */
             password: string;
             /**
              * Phone
              * @description The user's phone number
+             * @example +1.2125552368
              */
             phone?: string | null;
             /**
@@ -4258,18 +4351,23 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /** Locale */
+            /**
+             * Locale
+             * @example en_US
+             */
             locale: string;
             /**
              * Organization Id
              * Format: typeid
              * @description The user's organization id
              * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
             /**
              * Phone
              * @description The user's phone number
+             * @example +1.2125552368
              */
             phone?: string | null;
             readonly status: components["schemas"]["UserStatus"];
@@ -4282,6 +4380,16 @@ export interface components {
             /**
              * User Attributes
              * @description All of the user attributes
+             * @example {
+             *       "array": [
+             *         1,
+             *         2,
+             *         3
+             *       ],
+             *       "bool": true,
+             *       "number": 1,
+             *       "string": "value2"
+             *     }
              */
             user_attributes?: {
                 [key: string]: components["schemas"]["JsonValue"];
@@ -4289,6 +4397,7 @@ export interface components {
             /**
              * User Id
              * Format: typeid
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
              */
             user_id?: TypeId<"user">;
             /**
@@ -4326,13 +4435,17 @@ export interface components {
              * @description The user's last name
              */
             last_name: string;
-            /** Locale */
+            /**
+             * Locale
+             * @example en_US
+             */
             locale: string;
             /**
              * Organization Id
              * Format: typeid
              * @description The user's organization id
              * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
             /** Permissions */
@@ -4340,6 +4453,7 @@ export interface components {
             /**
              * Phone
              * @description The user's phone number
+             * @example +1.2125552368
              */
             phone?: string | null;
             /** Relations */
@@ -4354,6 +4468,16 @@ export interface components {
             /**
              * User Attributes
              * @description All of the user attributes
+             * @example {
+             *       "array": [
+             *         1,
+             *         2,
+             *         3
+             *       ],
+             *       "bool": true,
+             *       "number": 1,
+             *       "string": "value2"
+             *     }
              */
             user_attributes?: {
                 [key: string]: components["schemas"]["JsonValue"];
@@ -4361,6 +4485,7 @@ export interface components {
             /**
              * User Id
              * Format: typeid
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
              */
             user_id?: TypeId<"user">;
             /**
@@ -4457,6 +4582,7 @@ export interface components {
             /**
              * Domain
              * @description The domain name
+             * @example example.com
              */
             domain: string;
             /** Reason */

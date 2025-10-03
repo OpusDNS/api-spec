@@ -1,11 +1,6 @@
 {
   "devDependencies": {
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.0.14",
-    "js-yaml": "^4.1.0",
-    "openapi-typescript": "^7.8.0",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.2"
+    "@opusdns/api-spec-ts-generator": "^0.9.1"
   },
   "name": "@opusdns/api",
   "version": "0.79.0",
@@ -36,7 +31,7 @@
   },
   "scripts": {
     "generate:schema": "tsx scripts/generate-schema.ts",
-    "generate:helpers": "tsx scripts/helpers/generate-all.ts"
+    "generate:helpers": "tsx scripts/generate-all-helpers.ts"
   },
   "homepage": "https://github.com/OpusDNS/api-spec#readme",
   "files": [
