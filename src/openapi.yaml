@@ -192,21 +192,6 @@ components:
       - canceled
       title: BillingTransactionStatus
       type: string
-    CheckoutSessionRequest:
-      properties: {}
-      title: CheckoutSessionRequest
-      type: object
-    CheckoutSessionResponse:
-      properties:
-        session_client_secret:
-          description: Checkout session client secret - meant to be used in the embedded
-            checkout
-          title: Session Client Secret
-          type: string
-      required:
-      - session_client_secret
-      title: CheckoutSessionResponse
-      type: object
     ContactAttributeDefinition:
       description: Definition of a possible attribute for a TLD.
       properties:
@@ -867,47 +852,6 @@ components:
       - EUR
       title: Currency
       type: string
-    CustomerCreditCardPaymentMethod:
-      properties:
-        brand:
-          description: Card brand
-          title: Brand
-          type: string
-        country:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Country code
-          title: Country
-        exp_month:
-          description: Expiration month
-          title: Exp Month
-          type: integer
-        exp_year:
-          description: Expiration year
-          title: Exp Year
-          type: integer
-        id:
-          description: Payment method ID
-          title: Id
-          type: string
-        is_default:
-          description: Whether this is the default payment method
-          title: Is Default
-          type: boolean
-        last4:
-          description: Last four digits of the card
-          title: Last4
-          type: string
-      required:
-      - id
-      - brand
-      - last4
-      - exp_month
-      - exp_year
-      - is_default
-      title: CustomerCreditCardPaymentMethod
-      type: object
     DeletePolicyType:
       enum:
       - immediate
@@ -2468,23 +2412,6 @@ components:
       - start_date
       title: GeneralAvailabilityBase
       type: object
-    GetCurrentAvailablePlansResponse:
-      properties:
-        current_plan:
-          anyOf:
-          - $ref: '#/components/schemas/PlanInfo'
-          - type: 'null'
-          description: Current active plan for the customer
-        plans:
-          description: List of available plans
-          items:
-            $ref: '#/components/schemas/PlanInfo'
-          title: Plans
-          type: array
-      required:
-      - plans
-      title: GetCurrentAvailablePlansResponse
-      type: object
     GetPricesResponse:
       properties:
         prices:
@@ -3676,54 +3603,6 @@ components:
           type: array
       title: PermissionSet
       type: object
-    PlanIdRequest:
-      properties:
-        plan_id:
-          description: Plan ID from available plans
-          title: Plan Id
-          type: string
-      required:
-      - plan_id
-      title: PlanIdRequest
-      type: object
-    PlanInfo:
-      properties:
-        amount:
-          description: Base price
-          title: Amount
-          type: string
-        currency:
-          description: Currency code
-          title: Currency
-          type: string
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Plan display name
-          title: Name
-        plan_id:
-          description: Unique plan identifier
-          title: Plan Id
-          type: string
-        plan_level:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Plan level such as 'premium' or 'starter'
-          title: Plan Level
-        plan_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Plan type or billing interval
-          title: Plan Type
-      required:
-      - plan_id
-      - currency
-      - amount
-      title: PlanInfo
-      type: object
     PostTransferRequirements:
       enum:
       - update_contacts
@@ -4398,7 +4277,9 @@ components:
           x-typeid-prefix: user
         username:
           description: The user's unique username
-          minLength: 1
+          maxLength: 128
+          minLength: 3
+          pattern: ^[a-zA-Z0-9\-+_@.]+$
           title: Username
           type: string
       required:
@@ -4473,7 +4354,9 @@ components:
           title: User Attributes
         username:
           description: The user's unique username
-          minLength: 1
+          maxLength: 128
+          minLength: 3
+          pattern: ^[a-zA-Z0-9\-+_@.]+$
           title: Username
           type: string
       required:
@@ -4656,7 +4539,9 @@ components:
           x-typeid-prefix: user
         username:
           description: The user's unique username
-          minLength: 1
+          maxLength: 128
+          minLength: 3
+          pattern: ^[a-zA-Z0-9\-+_@.]+$
           title: Username
           type: string
       required:
@@ -4767,7 +4652,9 @@ components:
           x-typeid-prefix: user
         username:
           description: The user's unique username
-          minLength: 1
+          maxLength: 128
+          minLength: 3
+          pattern: ^[a-zA-Z0-9\-+_@.]+$
           title: Username
           type: string
       required:
@@ -4806,67 +4693,6 @@ components:
       - email
       title: VerificationType
       type: string
-    WalletCreditRequest:
-      properties:
-        amount:
-          anyOf:
-          - type: number
-          - type: string
-          description: Amount to credit the customer wallet
-          title: Amount
-        payment_method_id:
-          description: Payment method ID that should be used
-          title: Payment Method Id
-          type: string
-      required:
-      - amount
-      - payment_method_id
-      title: WalletCreditRequest
-      type: object
-    WalletCreditResponseStatus:
-      enum:
-      - success
-      - failed
-      - pending
-      title: WalletCreditResponseStatus
-      type: string
-    WalletCreditResponseWithBalance:
-      properties:
-        amount:
-          description: Amount credited to the customer wallet
-          title: Amount
-          type: string
-        balance:
-          description: Updated wallet balance after the credit
-          title: Balance
-          type: string
-        client_secret:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Client secret for 3DS authentication
-          title: Client Secret
-        credit_id:
-          description: Unique identifier of the wallet credit transaction
-          title: Credit Id
-          type: string
-        message:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Optional human-readable message describing the result
-          title: Message
-        status:
-          $ref: '#/components/schemas/WalletCreditResponseStatus'
-          description: Status of the credit operation
-      required:
-      - credit_id
-      - amount
-      - status
-      - client_secret
-      - balance
-      title: WalletCreditResponseWithBalance
-      type: object
     WhoisBase:
       properties:
         whois_server:
@@ -4971,7 +4797,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-02-195210
+  version: 2025-10-06-172245
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8278,7 +8104,7 @@ paths:
   /v1/organizations/{organization_id}:
     delete:
       description: Permanently deletes an organization
-      operationId: delete_user_v1_organizations__organization_id__delete
+      operationId: delete_organization_v1_organizations__organization_id__delete
       parameters:
       - in: path
         name: organization_id
@@ -8375,279 +8201,6 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update an organization
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/billing/checkout-sessions:
-    post:
-      description: Create a checkout session for the organization
-      operationId: get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CheckoutSessionRequest'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CheckoutSessionResponse'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Create checkout session
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/billing/payment-methods:
-    get:
-      description: List all available payment methods for the organization
-      operationId: list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/CustomerCreditCardPaymentMethod'
-                title: Response List Payment Methods V1 Organizations  Organization
-                  Id  Billing Payment Methods Get
-                type: array
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: List all payment methods
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}:
-    delete:
-      description: Delete a payment method for the organization
-      operationId: delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete
-      parameters:
-      - in: path
-        name: payment_method_id
-        required: true
-        schema:
-          title: Payment Method Id
-          type: string
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      responses:
-        '204':
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Delete a payment method
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default:
-    patch:
-      description: Set the provided payment method as default for the specified organization
-      operationId: update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch
-      parameters:
-      - in: path
-        name: payment_method_id
-        required: true
-        schema:
-          title: Payment Method Id
-          type: string
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/CustomerCreditCardPaymentMethod'
-                title: Response Update Default Payment Method V1 Organizations  Organization
-                  Id  Billing Payment Methods  Payment Method Id  Default Patch
-                type: array
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Set payment method as default
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/billing/wallet/credits:
-    post:
-      description: Credit the organization's wallet using the provided amount and
-        payment method
-      operationId: credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WalletCreditRequest'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WalletCreditResponseWithBalance'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Credit wallet
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/plan:
-    patch:
-      description: Changes the plan for an organization
-      operationId: change_plan_v1_organizations__organization_id__plan_patch
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlanIdRequest'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrganizationWithBillingData'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Update organization plan
-      tags:
-      - organization
-  /v1/organizations/{organization_id}/plans:
-    get:
-      description: Retrieves a list of plans for an organization
-      operationId: get_current_available_plans_v1_organizations__organization_id__plans_get
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetCurrentAvailablePlansResponse'
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Get plans for an organization
       tags:
       - organization
   /v1/organizations/{organization_id}/pricing/product-type/{product_type}:

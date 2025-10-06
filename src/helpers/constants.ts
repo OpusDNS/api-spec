@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, WalletCreditResponseStatus, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2714,58 +2714,6 @@ export const VERIFICATION_TYPE_VALUES = [
   'api',
   'email'
 ] as const satisfies [string, ...string[]] | VerificationType[];
-
-/**
- * WalletCreditResponseStatus. Auto-generated enum for WalletCreditResponseStatus
- *
- * @remarks
- * This constant provides both object and array forms for the WalletCreditResponseStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = WALLET_CREDIT_RESPONSE_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = WALLET_CREDIT_RESPONSE_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link WalletCreditResponseStatus} - The TypeScript type definition
- */
-export const WALLET_CREDIT_RESPONSE_STATUS = {
-  SUCCESS: "success",
-  FAILED: "failed",
-  PENDING: "pending",
-} as const satisfies Record<string, WalletCreditResponseStatus>;
-
-/**
- * Array of all WalletCreditResponseStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid WalletCreditResponseStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of WALLET_CREDIT_RESPONSE_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = WALLET_CREDIT_RESPONSE_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link WalletCreditResponseStatus} - The TypeScript type definition
- * @see {@link WALLET_CREDIT_RESPONSE_STATUS} - The object form of this enum
- */
-export const WALLET_CREDIT_RESPONSE_STATUS_VALUES = [
-  'success',
-  'failed',
-  'pending'
-] as const satisfies [string, ...string[]] | WalletCreditResponseStatus[];
 
 /**
  * ZoneSortField. Auto-generated enum for ZoneSortField

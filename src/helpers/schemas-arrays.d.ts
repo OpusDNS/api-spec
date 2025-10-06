@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, CustomerCreditCardPaymentMethod, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PlanInfo, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -93,20 +93,6 @@ export type OrganizationAttributeUpdateArray = OrganizationAttributeUpdate[];
  * @see {@link IpRestriction} - The individual IpRestrictionResponse type definition
  */
 export type IpRestrictionArray = IpRestriction[];
-/**
- * CustomerCreditCardPaymentMethod
- *
- * @remarks
- * Array type for CustomerCreditCardPaymentMethod objects. Used when the API returns a collection of CustomerCreditCardPaymentMethod instances.
- *
- * @example
- * ```typescript
- * const items: CustomerCreditCardPaymentMethodArray = await api.getCustomerCreditCardPaymentMethods();
- * ```
- *
- * @see {@link CustomerCreditCardPaymentMethod} - The individual CustomerCreditCardPaymentMethod type definition
- */
-export type CustomerCreditCardPaymentMethodArray = CustomerCreditCardPaymentMethod[];
 /**
  * TldResponseShort
  *
@@ -415,20 +401,6 @@ export type DomainStatusArray = DomainStatus[];
  * @see {@link DomainClientStatus} - The individual DomainClientStatus type definition
  */
 export type DomainClientStatusArray = DomainClientStatus[];
-/**
- * PlanInfo
- *
- * @remarks
- * Array type for PlanInfo objects. Used when the API returns a collection of PlanInfo instances.
- *
- * @example
- * ```typescript
- * const items: PlanInfoArray = await api.getPlanInfos();
- * ```
- *
- * @see {@link PlanInfo} - The individual PlanInfo type definition
- */
-export type PlanInfoArray = PlanInfo[];
 /**
  * PriceInfo
  *

@@ -187,38 +187,6 @@ export type BillingTransactionSortField = components['schemas']['BillingTransact
  */
 export type BillingTransactionStatus = components['schemas']['BillingTransactionStatus'];
 /**
- * CheckoutSessionRequest
- *
- * @remarks
- * Type alias for the `CheckoutSessionRequest` OpenAPI schema.
- * This type represents checkoutsessionrequest data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getCheckoutSessionRequest();
- * const item: CheckoutSessionRequest = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type CheckoutSessionRequest = components['schemas']['CheckoutSessionRequest'];
-/**
- * CheckoutSessionResponse
- *
- * @remarks
- * Type alias for the `CheckoutSessionResponse` OpenAPI schema.
- * This type represents checkoutsessionresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getCheckoutSession();
- * const item: CheckoutSession = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type CheckoutSession = components['schemas']['CheckoutSessionResponse'];
-/**
  * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
  *
  * @remarks
@@ -458,22 +426,6 @@ export type ContactsBase = components['schemas']['ContactsBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Currency = components['schemas']['Currency'];
-/**
- * CustomerCreditCardPaymentMethod
- *
- * @remarks
- * Type alias for the `CustomerCreditCardPaymentMethod` OpenAPI schema.
- * This type represents customercreditcardpaymentmethod data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getCustomerCreditCardPaymentMethod();
- * const item: CustomerCreditCardPaymentMethod = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type CustomerCreditCardPaymentMethod = components['schemas']['CustomerCreditCardPaymentMethod'];
 /**
  * DeletePolicyType
  *
@@ -1547,22 +1499,6 @@ export type EventType = components['schemas']['EventType'];
  */
 export type GeneralAvailabilityBase = components['schemas']['GeneralAvailabilityBase'];
 /**
- * GetCurrentAvailablePlansResponse
- *
- * @remarks
- * Type alias for the `GetCurrentAvailablePlansResponse` OpenAPI schema.
- * This type represents getcurrentavailableplansresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getGetCurrentAvailablePlans();
- * const item: GetCurrentAvailablePlans = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type GetCurrentAvailablePlans = components['schemas']['GetCurrentAvailablePlansResponse'];
-/**
  * GetPricesResponse
  *
  * @remarks
@@ -2208,38 +2144,6 @@ export type Permission = components['schemas']['Permission'];
  */
 export type PermissionSet = components['schemas']['PermissionSet'];
 /**
- * PlanIdRequest
- *
- * @remarks
- * Type alias for the `PlanIdRequest` OpenAPI schema.
- * This type represents planidrequest data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPlanIdRequest();
- * const item: PlanIdRequest = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type PlanIdRequest = components['schemas']['PlanIdRequest'];
-/**
- * PlanInfo
- *
- * @remarks
- * Type alias for the `PlanInfo` OpenAPI schema.
- * This type represents planinfo data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPlanInfo();
- * const item: PlanInfo = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type PlanInfo = components['schemas']['PlanInfo'];
-/**
  * PostTransferRequirements
  *
  * @remarks
@@ -2879,54 +2783,6 @@ export type ValidationError = components['schemas']['ValidationError'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type VerificationType = components['schemas']['VerificationType'];
-/**
- * WalletCreditRequest
- *
- * @remarks
- * Type alias for the `WalletCreditRequest` OpenAPI schema.
- * This type represents walletcreditrequest data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getWalletCreditRequest();
- * const item: WalletCreditRequest = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type WalletCreditRequest = components['schemas']['WalletCreditRequest'];
-/**
- * WalletCreditResponseStatus
- *
- * @remarks
- * Type alias for the `WalletCreditResponseStatus` OpenAPI schema.
- * This type represents walletcreditresponsestatus data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getWalletCreditResponseStatus();
- * const item: WalletCreditResponseStatus = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type WalletCreditResponseStatus = components['schemas']['WalletCreditResponseStatus'];
-/**
- * WalletCreditResponseWithBalance
- *
- * @remarks
- * Type alias for the `WalletCreditResponseWithBalance` OpenAPI schema.
- * This type represents walletcreditresponsewithbalance data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getWalletCreditResponseWithBalance();
- * const item: WalletCreditResponseWithBalance = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type WalletCreditResponseWithBalance = components['schemas']['WalletCreditResponseWithBalance'];
 /**
  * WhoisBase
  *

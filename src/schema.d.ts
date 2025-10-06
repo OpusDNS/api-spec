@@ -848,7 +848,7 @@ export interface paths {
          * Delete an organization
          * @description Permanently deletes an organization
          */
-        delete: operations["delete_user_v1_organizations__organization_id__delete"];
+        delete: operations["delete_organization_v1_organizations__organization_id__delete"];
         options?: never;
         head?: never;
         /**
@@ -856,146 +856,6 @@ export interface paths {
          * @description Updates details for a specific organization
          */
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
-        trace?: never;
-    };
-    "/v1/organizations/{organization_id}/billing/checkout-sessions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Create checkout session
-         * @description Create a checkout session for the organization
-         */
-        post: operations["get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{organization_id}/billing/payment-methods": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List all payment methods
-         * @description List all available payment methods for the organization
-         */
-        get: operations["list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /**
-         * Delete a payment method
-         * @description Delete a payment method for the organization
-         */
-        delete: operations["delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{organization_id}/billing/payment-methods/{payment_method_id}/default": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Set payment method as default
-         * @description Set the provided payment method as default for the specified organization
-         */
-        patch: operations["update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch"];
-        trace?: never;
-    };
-    "/v1/organizations/{organization_id}/billing/wallet/credits": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Credit wallet
-         * @description Credit the organization's wallet using the provided amount and payment method
-         */
-        post: operations["credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{organization_id}/plan": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Update organization plan
-         * @description Changes the plan for an organization
-         */
-        patch: operations["change_plan_v1_organizations__organization_id__plan_patch"];
-        trace?: never;
-    };
-    "/v1/organizations/{organization_id}/plans": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get plans for an organization
-         * @description Retrieves a list of plans for an organization
-         */
-        get: operations["get_current_available_plans_v1_organizations__organization_id__plans_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
         trace?: never;
     };
     "/v1/organizations/{organization_id}/pricing/product-type/{product_type}": {
@@ -1379,16 +1239,6 @@ export interface components {
          * @enum {string}
          */
         BillingTransactionStatus: "pending" | "succeeded" | "failed" | "canceled";
-        /** CheckoutSessionRequest */
-        CheckoutSessionRequest: Record<string, never>;
-        /** CheckoutSessionResponse */
-        CheckoutSessionResponse: {
-            /**
-             * Session Client Secret
-             * @description Checkout session client secret - meant to be used in the embedded checkout
-             */
-            session_client_secret: string;
-        };
         /**
          * ContactAttributeDefinition
          * @description Definition of a possible attribute for a TLD.
@@ -1903,44 +1753,6 @@ export interface components {
          * @enum {string}
          */
         Currency: "USD" | "EUR";
-        /** CustomerCreditCardPaymentMethod */
-        CustomerCreditCardPaymentMethod: {
-            /**
-             * Brand
-             * @description Card brand
-             */
-            brand: string;
-            /**
-             * Country
-             * @description Country code
-             */
-            country?: string | null;
-            /**
-             * Exp Month
-             * @description Expiration month
-             */
-            exp_month: number;
-            /**
-             * Exp Year
-             * @description Expiration year
-             */
-            exp_year: number;
-            /**
-             * Id
-             * @description Payment method ID
-             */
-            id: string;
-            /**
-             * Is Default
-             * @description Whether this is the default payment method
-             */
-            is_default: boolean;
-            /**
-             * Last4
-             * @description Last four digits of the card
-             */
-            last4: string;
-        };
         /**
          * DeletePolicyType
          * @enum {string}
@@ -2933,16 +2745,6 @@ export interface components {
              */
             start_date: Date;
         };
-        /** GetCurrentAvailablePlansResponse */
-        GetCurrentAvailablePlansResponse: {
-            /** @description Current active plan for the customer */
-            current_plan?: components["schemas"]["PlanInfo"] | null;
-            /**
-             * Plans
-             * @description List of available plans
-             */
-            plans: components["schemas"]["PlanInfo"][];
-        };
         /** GetPricesResponse */
         GetPricesResponse: {
             /**
@@ -3714,47 +3516,6 @@ export interface components {
             /** Permissions */
             permissions?: components["schemas"]["Permission"][];
         };
-        /** PlanIdRequest */
-        PlanIdRequest: {
-            /**
-             * Plan Id
-             * @description Plan ID from available plans
-             */
-            plan_id: string;
-        };
-        /** PlanInfo */
-        PlanInfo: {
-            /**
-             * Amount
-             * @description Base price
-             */
-            amount: string;
-            /**
-             * Currency
-             * @description Currency code
-             */
-            currency: string;
-            /**
-             * Name
-             * @description Plan display name
-             */
-            name?: string | null;
-            /**
-             * Plan Id
-             * @description Unique plan identifier
-             */
-            plan_id: string;
-            /**
-             * Plan Level
-             * @description Plan level such as 'premium' or 'starter'
-             */
-            plan_level?: string | null;
-            /**
-             * Plan Type
-             * @description Plan type or billing interval
-             */
-            plan_type?: string | null;
-        };
         /**
          * PostTransferRequirements
          * @enum {string}
@@ -4508,54 +4269,6 @@ export interface components {
          * @enum {string}
          */
         VerificationType: "api" | "email";
-        /** WalletCreditRequest */
-        WalletCreditRequest: {
-            /**
-             * Amount
-             * @description Amount to credit the customer wallet
-             */
-            amount: number | string;
-            /**
-             * Payment Method Id
-             * @description Payment method ID that should be used
-             */
-            payment_method_id: string;
-        };
-        /**
-         * WalletCreditResponseStatus
-         * @enum {string}
-         */
-        WalletCreditResponseStatus: "success" | "failed" | "pending";
-        /** WalletCreditResponseWithBalance */
-        WalletCreditResponseWithBalance: {
-            /**
-             * Amount
-             * @description Amount credited to the customer wallet
-             */
-            amount: string;
-            /**
-             * Balance
-             * @description Updated wallet balance after the credit
-             */
-            balance: string;
-            /**
-             * Client Secret
-             * @description Client secret for 3DS authentication
-             */
-            client_secret: string | null;
-            /**
-             * Credit Id
-             * @description Unique identifier of the wallet credit transaction
-             */
-            credit_id: string;
-            /**
-             * Message
-             * @description Optional human-readable message describing the result
-             */
-            message?: string | null;
-            /** @description Status of the credit operation */
-            status: components["schemas"]["WalletCreditResponseStatus"];
-        };
         /** WhoisBase */
         WhoisBase: {
             /**
@@ -7582,7 +7295,7 @@ export interface operations {
             };
         };
     };
-    delete_user_v1_organizations__organization_id__delete: {
+    delete_organization_v1_organizations__organization_id__delete: {
         parameters: {
             query?: never;
             header?: never;
@@ -7633,235 +7346,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_checkout_session_v1_organizations__organization_id__billing_checkout_sessions_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeId<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CheckoutSessionRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CheckoutSessionResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_payment_methods_v1_organizations__organization_id__billing_payment_methods_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeId<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CustomerCreditCardPaymentMethod"][];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                payment_method_id: string;
-                organization_id: TypeId<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_default_payment_method_v1_organizations__organization_id__billing_payment_methods__payment_method_id__default_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                payment_method_id: string;
-                organization_id: TypeId<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CustomerCreditCardPaymentMethod"][];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    credit_wallet_v1_organizations__organization_id__billing_wallet_credits_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeId<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["WalletCreditRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["WalletCreditResponseWithBalance"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    change_plan_v1_organizations__organization_id__plan_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeId<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PlanIdRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationWithBillingData"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_current_available_plans_v1_organizations__organization_id__plans_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeId<"organization">;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["GetCurrentAvailablePlansResponse"];
                 };
             };
             /** @description Validation Error */
