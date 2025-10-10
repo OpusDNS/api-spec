@@ -3505,11 +3505,13 @@ export type PATCH_EventsByEventId_Response_422 = HTTPValidationError
  * @path /v1/organizations
  *
  * @see {@link GET_Organizations_Response_200} - 200 response type
+ * @see {@link GET_Organizations_Response_401} - 401 response type
+ * @see {@link GET_Organizations_Response_403} - 403 response type
  * @see {@link GET_Organizations_Response_422} - 422 response type
  *
 
  */
-export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_422;
+export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Organizations_Response_401 | GET_Organizations_Response_403 | GET_Organizations_Response_422;
 
 /**
  * 200 response for GET Organizations endpoint
@@ -3527,6 +3529,40 @@ export type GET_Organizations_Response = GET_Organizations_Response_200 | GET_Or
  * @see {@link Pagination_Organization} - The actual schema type definition
  */
 export type GET_Organizations_Response_200 = Pagination_Organization
+
+/**
+ * 401 response for GET Organizations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations
+ *
+ * @see {@link GET_Organizations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_Organizations_Response_401 = Problem
+
+/**
+ * 403 response for GET Organizations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations
+ *
+ * @see {@link GET_Organizations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_Organizations_Response_403 = Problem
 
 /**
  * 422 response for GET Organizations endpoint
@@ -3561,11 +3597,13 @@ export type GET_Organizations_Response_422 = HTTPValidationError
  * @path /v1/organizations
  *
  * @see {@link POST_Organizations_Response_200} - 200 response type
+ * @see {@link POST_Organizations_Response_401} - 401 response type
+ * @see {@link POST_Organizations_Response_403} - 403 response type
  * @see {@link POST_Organizations_Response_422} - 422 response type
  *
 
  */
-export type POST_Organizations_Response = POST_Organizations_Response_200 | POST_Organizations_Response_422;
+export type POST_Organizations_Response = POST_Organizations_Response_200 | POST_Organizations_Response_401 | POST_Organizations_Response_403 | POST_Organizations_Response_422;
 
 /**
  * 200 response for POST Organizations endpoint
@@ -3583,6 +3621,40 @@ export type POST_Organizations_Response = POST_Organizations_Response_200 | POST
  * @see {@link Organization} - The actual schema type definition
  */
 export type POST_Organizations_Response_200 = Organization
+
+/**
+ * 401 response for POST Organizations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations
+ *
+ * @see {@link POST_Organizations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Organizations_Response_401 = Problem
+
+/**
+ * 403 response for POST Organizations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST Organizations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations
+ *
+ * @see {@link POST_Organizations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Organizations_Response_403 = Problem
 
 /**
  * 422 response for POST Organizations endpoint
@@ -3618,11 +3690,13 @@ export type POST_Organizations_Response_422 = HTTPValidationError
  * @param keys (query) - Optional list of attribute keys to filter
  *
  * @see {@link GET_OrganizationsAttributes_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsAttributes_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsAttributes_Response_403} - 403 response type
  * @see {@link GET_OrganizationsAttributes_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsAttributes_Response = GET_OrganizationsAttributes_Response_200 | GET_OrganizationsAttributes_Response_422;
+export type GET_OrganizationsAttributes_Response = GET_OrganizationsAttributes_Response_200 | GET_OrganizationsAttributes_Response_401 | GET_OrganizationsAttributes_Response_403 | GET_OrganizationsAttributes_Response_422;
 
 /**
  * 200 response for GET OrganizationsAttributes endpoint
@@ -3641,6 +3715,42 @@ export type GET_OrganizationsAttributes_Response = GET_OrganizationsAttributes_R
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type GET_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
+
+/**
+ * 401 response for GET OrganizationsAttributes endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes
+ * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributes_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsAttributes_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsAttributes endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes
+ * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributes_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsAttributes_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsAttributes endpoint
@@ -3676,11 +3786,13 @@ export type GET_OrganizationsAttributes_Response_422 = HTTPValidationError
  * @path /v1/organizations/attributes
  *
  * @see {@link PATCH_OrganizationsAttributes_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsAttributes_Response_401} - 401 response type
+ * @see {@link PATCH_OrganizationsAttributes_Response_403} - 403 response type
  * @see {@link PATCH_OrganizationsAttributes_Response_422} - 422 response type
  *
 
  */
-export type PATCH_OrganizationsAttributes_Response = PATCH_OrganizationsAttributes_Response_200 | PATCH_OrganizationsAttributes_Response_422;
+export type PATCH_OrganizationsAttributes_Response = PATCH_OrganizationsAttributes_Response_200 | PATCH_OrganizationsAttributes_Response_401 | PATCH_OrganizationsAttributes_Response_403 | PATCH_OrganizationsAttributes_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsAttributes endpoint
@@ -3698,6 +3810,40 @@ export type PATCH_OrganizationsAttributes_Response = PATCH_OrganizationsAttribut
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributes_Response_200 = OrganizationAttribute2Array
+
+/**
+ * 401 response for PATCH OrganizationsAttributes endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes
+ *
+ * @see {@link PATCH_OrganizationsAttributes_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsAttributes_Response_401 = Problem
+
+/**
+ * 403 response for PATCH OrganizationsAttributes endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PATCH OrganizationsAttributes endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes
+ *
+ * @see {@link PATCH_OrganizationsAttributes_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsAttributes_Response_403 = Problem
 
 /**
  * 422 response for PATCH OrganizationsAttributes endpoint
@@ -3733,11 +3879,13 @@ export type PATCH_OrganizationsAttributes_Response_422 = HTTPValidationError
  * @param keys (query) - Optional list of attribute keys to filter
  *
  * @see {@link GET_OrganizationsAttributesByOrganizationId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response_403} - 403 response type
  * @see {@link GET_OrganizationsAttributesByOrganizationId_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsAttributesByOrganizationId_Response = GET_OrganizationsAttributesByOrganizationId_Response_200 | GET_OrganizationsAttributesByOrganizationId_Response_422;
+export type GET_OrganizationsAttributesByOrganizationId_Response = GET_OrganizationsAttributesByOrganizationId_Response_200 | GET_OrganizationsAttributesByOrganizationId_Response_401 | GET_OrganizationsAttributesByOrganizationId_Response_403 | GET_OrganizationsAttributesByOrganizationId_Response_422;
 
 /**
  * 200 response for GET OrganizationsAttributesByOrganizationId endpoint
@@ -3756,6 +3904,42 @@ export type GET_OrganizationsAttributesByOrganizationId_Response = GET_Organizat
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type GET_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
+
+/**
+ * 401 response for GET OrganizationsAttributesByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes/{organization_id}
+ * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsAttributesByOrganizationId_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsAttributesByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes/{organization_id}
+ * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsAttributesByOrganizationId_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsAttributesByOrganizationId endpoint
@@ -3791,11 +3975,13 @@ export type GET_OrganizationsAttributesByOrganizationId_Response_422 = HTTPValid
  * @path /v1/organizations/attributes/{organization_id}
  *
  * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response_401} - 401 response type
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response_403} - 403 response type
  * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response_422} - 422 response type
  *
 
  */
-export type PATCH_OrganizationsAttributesByOrganizationId_Response = PATCH_OrganizationsAttributesByOrganizationId_Response_200 | PATCH_OrganizationsAttributesByOrganizationId_Response_422;
+export type PATCH_OrganizationsAttributesByOrganizationId_Response = PATCH_OrganizationsAttributesByOrganizationId_Response_200 | PATCH_OrganizationsAttributesByOrganizationId_Response_401 | PATCH_OrganizationsAttributesByOrganizationId_Response_403 | PATCH_OrganizationsAttributesByOrganizationId_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsAttributesByOrganizationId endpoint
@@ -3813,6 +3999,40 @@ export type PATCH_OrganizationsAttributesByOrganizationId_Response = PATCH_Organ
  * @see {@link OrganizationAttribute2} - The actual schema type definition
  */
 export type PATCH_OrganizationsAttributesByOrganizationId_Response_200 = OrganizationAttribute2Array
+
+/**
+ * 401 response for PATCH OrganizationsAttributesByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsAttributesByOrganizationId_Response_401 = Problem
+
+/**
+ * 403 response for PATCH OrganizationsAttributesByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PATCH OrganizationsAttributesByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/attributes/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsAttributesByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsAttributesByOrganizationId_Response_403 = Problem
 
 /**
  * 422 response for PATCH OrganizationsAttributesByOrganizationId endpoint
@@ -3846,11 +4066,47 @@ export type PATCH_OrganizationsAttributesByOrganizationId_Response_422 = HTTPVal
  *
  * @path /v1/organizations/{organization_id}
  *
+ * @see {@link DELETE_OrganizationsByOrganizationId_Response_401} - 401 response type
+ * @see {@link DELETE_OrganizationsByOrganizationId_Response_403} - 403 response type
  * @see {@link DELETE_OrganizationsByOrganizationId_Response_422} - 422 response type
  *
 
  */
-export type DELETE_OrganizationsByOrganizationId_Response = DELETE_OrganizationsByOrganizationId_Response_422;
+export type DELETE_OrganizationsByOrganizationId_Response = DELETE_OrganizationsByOrganizationId_Response_401 | DELETE_OrganizationsByOrganizationId_Response_403 | DELETE_OrganizationsByOrganizationId_Response_422;
+
+/**
+ * 401 response for DELETE OrganizationsByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link DELETE_OrganizationsByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_OrganizationsByOrganizationId_Response_401 = Problem
+
+/**
+ * 403 response for DELETE OrganizationsByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the DELETE OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link DELETE_OrganizationsByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_OrganizationsByOrganizationId_Response_403 = Problem
 
 /**
  * 422 response for DELETE OrganizationsByOrganizationId endpoint
@@ -3885,11 +4141,13 @@ export type DELETE_OrganizationsByOrganizationId_Response_422 = HTTPValidationEr
  * @path /v1/organizations/{organization_id}
  *
  * @see {@link GET_OrganizationsByOrganizationId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationId_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsByOrganizationId_Response_403} - 403 response type
  * @see {@link GET_OrganizationsByOrganizationId_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsByOrganizationId_Response = GET_OrganizationsByOrganizationId_Response_200 | GET_OrganizationsByOrganizationId_Response_422;
+export type GET_OrganizationsByOrganizationId_Response = GET_OrganizationsByOrganizationId_Response_200 | GET_OrganizationsByOrganizationId_Response_401 | GET_OrganizationsByOrganizationId_Response_403 | GET_OrganizationsByOrganizationId_Response_422;
 
 /**
  * 200 response for GET OrganizationsByOrganizationId endpoint
@@ -3907,6 +4165,40 @@ export type GET_OrganizationsByOrganizationId_Response = GET_OrganizationsByOrga
  * @see {@link OrganizationWithBillingData} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationId_Response_200 = OrganizationWithBillingData
+
+/**
+ * 401 response for GET OrganizationsByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationId_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationId_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsByOrganizationId endpoint
@@ -3941,11 +4233,13 @@ export type GET_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
  * @path /v1/organizations/{organization_id}
  *
  * @see {@link PATCH_OrganizationsByOrganizationId_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response_401} - 401 response type
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response_403} - 403 response type
  * @see {@link PATCH_OrganizationsByOrganizationId_Response_422} - 422 response type
  *
 
  */
-export type PATCH_OrganizationsByOrganizationId_Response = PATCH_OrganizationsByOrganizationId_Response_200 | PATCH_OrganizationsByOrganizationId_Response_422;
+export type PATCH_OrganizationsByOrganizationId_Response = PATCH_OrganizationsByOrganizationId_Response_200 | PATCH_OrganizationsByOrganizationId_Response_401 | PATCH_OrganizationsByOrganizationId_Response_403 | PATCH_OrganizationsByOrganizationId_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsByOrganizationId endpoint
@@ -3963,6 +4257,40 @@ export type PATCH_OrganizationsByOrganizationId_Response = PATCH_OrganizationsBy
  * @see {@link Organization} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationId_Response_200 = Organization
+
+/**
+ * 401 response for PATCH OrganizationsByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsByOrganizationId_Response_401 = Problem
+
+/**
+ * 403 response for PATCH OrganizationsByOrganizationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PATCH OrganizationsByOrganizationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}
+ *
+ * @see {@link PATCH_OrganizationsByOrganizationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsByOrganizationId_Response_403 = Problem
 
 /**
  * 422 response for PATCH OrganizationsByOrganizationId endpoint
@@ -3997,11 +4325,13 @@ export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationErr
  * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
  *
  * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_403} - 403 response type
  * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response = GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_200 | GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_422;
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response = GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_200 | GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_401 | GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_403 | GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_422;
 
 /**
  * 200 response for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
@@ -4019,6 +4349,40 @@ export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Res
  * @see {@link GetPrices} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_200 = GetPrices
+
+/**
+ * 401 response for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint
@@ -4053,11 +4417,13 @@ export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Res
  * @path /v1/organizations/{organization_id}/transactions
  *
  * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response_403} - 403 response type
  * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsByOrganizationIdTransactions_Response = GET_OrganizationsByOrganizationIdTransactions_Response_200 | GET_OrganizationsByOrganizationIdTransactions_Response_422;
+export type GET_OrganizationsByOrganizationIdTransactions_Response = GET_OrganizationsByOrganizationIdTransactions_Response_200 | GET_OrganizationsByOrganizationIdTransactions_Response_401 | GET_OrganizationsByOrganizationIdTransactions_Response_403 | GET_OrganizationsByOrganizationIdTransactions_Response_422;
 
 /**
  * 200 response for GET OrganizationsByOrganizationIdTransactions endpoint
@@ -4075,6 +4441,40 @@ export type GET_OrganizationsByOrganizationIdTransactions_Response = GET_Organiz
  * @see {@link Pagination_BillingTransaction} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationIdTransactions_Response_200 = Pagination_BillingTransaction
+
+/**
+ * 401 response for GET OrganizationsByOrganizationIdTransactions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsByOrganizationIdTransactions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactions_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsByOrganizationIdTransactions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsByOrganizationIdTransactions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactions_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactions_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsByOrganizationIdTransactions endpoint
@@ -4109,11 +4509,13 @@ export type GET_OrganizationsByOrganizationIdTransactions_Response_422 = HTTPVal
  * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
  *
  * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_403} - 403 response type
  * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response = GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_200 | GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_422;
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response = GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_200 | GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_401 | GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_403 | GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_422;
 
 /**
  * 200 response for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
@@ -4131,6 +4533,40 @@ export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Respons
  * @see {@link BillingTransaction} - The actual schema type definition
  */
 export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_200 = BillingTransaction
+
+/**
+ * 401 response for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsByOrganizationIdTransactionsByTransactionId endpoint
@@ -4168,10 +4604,12 @@ Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6
  * @path /v1/organizations/ip-restrictions
  *
  * @see {@link GET_OrganizationsIpRestrictions_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsIpRestrictions_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsIpRestrictions_Response_403} - 403 response type
  *
 
  */
-export type GET_OrganizationsIpRestrictions_Response = GET_OrganizationsIpRestrictions_Response_200;
+export type GET_OrganizationsIpRestrictions_Response = GET_OrganizationsIpRestrictions_Response_200 | GET_OrganizationsIpRestrictions_Response_401 | GET_OrganizationsIpRestrictions_Response_403;
 
 /**
  * 200 response for GET OrganizationsIpRestrictions endpoint
@@ -4189,6 +4627,40 @@ export type GET_OrganizationsIpRestrictions_Response = GET_OrganizationsIpRestri
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictions_Response_200 = IpRestrictionArray
+
+/**
+ * 401 response for GET OrganizationsIpRestrictions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link GET_OrganizationsIpRestrictions_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsIpRestrictions_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsIpRestrictions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link GET_OrganizationsIpRestrictions_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsIpRestrictions_Response_403 = Problem
 
 /**
  * Response types for POST OrganizationsIpRestrictions endpoint
@@ -4209,11 +4681,13 @@ Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4
  * @path /v1/organizations/ip-restrictions
  *
  * @see {@link POST_OrganizationsIpRestrictions_Response_200} - 200 response type
+ * @see {@link POST_OrganizationsIpRestrictions_Response_401} - 401 response type
+ * @see {@link POST_OrganizationsIpRestrictions_Response_403} - 403 response type
  * @see {@link POST_OrganizationsIpRestrictions_Response_422} - 422 response type
  *
 
  */
-export type POST_OrganizationsIpRestrictions_Response = POST_OrganizationsIpRestrictions_Response_200 | POST_OrganizationsIpRestrictions_Response_422;
+export type POST_OrganizationsIpRestrictions_Response = POST_OrganizationsIpRestrictions_Response_200 | POST_OrganizationsIpRestrictions_Response_401 | POST_OrganizationsIpRestrictions_Response_403 | POST_OrganizationsIpRestrictions_Response_422;
 
 /**
  * 200 response for POST OrganizationsIpRestrictions endpoint
@@ -4231,6 +4705,40 @@ export type POST_OrganizationsIpRestrictions_Response = POST_OrganizationsIpRest
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction
+
+/**
+ * 401 response for POST OrganizationsIpRestrictions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link POST_OrganizationsIpRestrictions_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_OrganizationsIpRestrictions_Response_401 = Problem
+
+/**
+ * 403 response for POST OrganizationsIpRestrictions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link POST_OrganizationsIpRestrictions_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_OrganizationsIpRestrictions_Response_403 = Problem
 
 /**
  * 422 response for POST OrganizationsIpRestrictions endpoint
@@ -4266,11 +4774,47 @@ Permanently removes the specified IP restriction from your organization.
  *
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
+ * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_401} - 401 response type
+ * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_403} - 403 response type
  * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422} - 422 response type
  *
 
  */
-export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response = DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
+export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response = DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 | DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 | DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
+
+/**
+ * 401 response for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Problem
+
+/**
+ * 403 response for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem
 
 /**
  * 422 response for DELETE OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4308,11 +4852,13 @@ Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
  * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_403} - 403 response type
  * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response = GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 | GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response = GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 | GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 | GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 | GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
 
 /**
  * 200 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4330,6 +4876,40 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response = GET_Orga
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
+
+/**
+ * 401 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link GET_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4367,11 +4947,13 @@ Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4
  * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
  *
  * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200} - 200 response type
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_401} - 401 response type
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_403} - 403 response type
  * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422} - 422 response type
  *
 
  */
-export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 | PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 | PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 | PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 | PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422;
 
 /**
  * 200 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4389,6 +4971,40 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response = PATCH_
  * @see {@link IpRestriction} - The actual schema type definition
  */
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = IpRestriction
+
+/**
+ * 401 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Problem
+
+/**
+ * 403 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
+ *
+ * @see {@link PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem
 
 /**
  * 422 response for PATCH OrganizationsIpRestrictionsByIpRestrictionId endpoint
@@ -4422,11 +5038,46 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HT
  *
  * @path /v1/organizations/roles
  *
-
+ * @see {@link GET_OrganizationsRoles_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsRoles_Response_403} - 403 response type
  *
 
  */
-export type GET_OrganizationsRoles_Response = unknown;
+export type GET_OrganizationsRoles_Response = GET_OrganizationsRoles_Response_401 | GET_OrganizationsRoles_Response_403;
+
+/**
+ * 401 response for GET OrganizationsRoles endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsRoles endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/roles
+ *
+ * @see {@link GET_OrganizationsRoles_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsRoles_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsRoles endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsRoles endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/roles
+ *
+ * @see {@link GET_OrganizationsRoles_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsRoles_Response_403 = Problem
 
 /**
  * Response types for GET OrganizationsUsers endpoint
@@ -4444,11 +5095,13 @@ export type GET_OrganizationsRoles_Response = unknown;
  * @path /v1/organizations/users
  *
  * @see {@link GET_OrganizationsUsers_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsUsers_Response_401} - 401 response type
+ * @see {@link GET_OrganizationsUsers_Response_403} - 403 response type
  * @see {@link GET_OrganizationsUsers_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsUsers_Response = GET_OrganizationsUsers_Response_200 | GET_OrganizationsUsers_Response_422;
+export type GET_OrganizationsUsers_Response = GET_OrganizationsUsers_Response_200 | GET_OrganizationsUsers_Response_401 | GET_OrganizationsUsers_Response_403 | GET_OrganizationsUsers_Response_422;
 
 /**
  * 200 response for GET OrganizationsUsers endpoint
@@ -4466,6 +5119,40 @@ export type GET_OrganizationsUsers_Response = GET_OrganizationsUsers_Response_20
  * @see {@link Pagination_User} - The actual schema type definition
  */
 export type GET_OrganizationsUsers_Response_200 = Pagination_User
+
+/**
+ * 401 response for GET OrganizationsUsers endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET OrganizationsUsers endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/users
+ *
+ * @see {@link GET_OrganizationsUsers_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsUsers_Response_401 = Problem
+
+/**
+ * 403 response for GET OrganizationsUsers endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET OrganizationsUsers endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/users
+ *
+ * @see {@link GET_OrganizationsUsers_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_OrganizationsUsers_Response_403 = Problem
 
 /**
  * 422 response for GET OrganizationsUsers endpoint

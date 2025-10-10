@@ -4797,7 +4797,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-06-172245
+  version: 2025-10-10-154932
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7648,6 +7648,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pagination_Organization_'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7675,6 +7699,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7726,6 +7774,30 @@ paths:
                 title: Response Get Attributes V1 Organizations Attributes Get
                 type: array
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7773,6 +7845,30 @@ paths:
                 title: Response Update Attributes V1 Organizations Attributes Patch
                 type: array
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7825,6 +7921,30 @@ paths:
                   Id  Get
                 type: array
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7873,6 +7993,30 @@ paths:
                   Id  Patch
                 type: array
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7905,6 +8049,30 @@ paths:
                   Get
                 type: array
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
       security:
       - OAuth2PasswordBearer: []
       summary: List IP restrictions
@@ -7932,6 +8100,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/IpRestrictionResponse'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7960,6 +8152,30 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -7995,6 +8211,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/IpRestrictionResponse'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8035,6 +8275,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/IpRestrictionResponse'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8056,6 +8320,30 @@ paths:
             application/json:
               schema: {}
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
       security:
       - OAuth2PasswordBearer: []
       summary: List all roles
@@ -8090,6 +8378,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pagination_User_'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8120,6 +8432,30 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8153,6 +8489,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/OrganizationWithBillingData'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8192,6 +8552,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8248,6 +8632,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetPricesResponse'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8380,6 +8788,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pagination_BillingTransactionResponse_'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -8425,6 +8857,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/BillingTransactionResponse'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:

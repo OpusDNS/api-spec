@@ -6883,6 +6883,38 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_Organization_"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -6916,6 +6948,38 @@ export interface operations {
                     "application/json": components["schemas"]["Organization"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -6947,6 +7011,38 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -6984,6 +7080,38 @@ export interface operations {
                     "application/json": components["schemas"]["OrganizationAttributeResponse"][];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -7016,6 +7144,38 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -7053,6 +7213,38 @@ export interface operations {
                     "application/json": components["schemas"]["OrganizationAttributeResponse"][];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -7082,6 +7274,38 @@ export interface operations {
                     "application/json": components["schemas"]["IpRestrictionResponse"][];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     create_ip_restriction_v1_organizations_ip_restrictions_post: {
@@ -7104,6 +7328,38 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["IpRestrictionResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -7137,6 +7393,38 @@ export interface operations {
                     "application/json": components["schemas"]["IpRestrictionResponse"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -7165,6 +7453,38 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -7201,6 +7521,38 @@ export interface operations {
                     "application/json": components["schemas"]["IpRestrictionResponse"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -7230,6 +7582,38 @@ export interface operations {
                     "application/json": unknown;
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     list_users_v1_organizations_users_get: {
@@ -7251,6 +7635,38 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_User_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -7284,6 +7700,38 @@ export interface operations {
                     "application/json": components["schemas"]["OrganizationWithBillingData"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -7312,6 +7760,38 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -7348,6 +7828,38 @@ export interface operations {
                     "application/json": components["schemas"]["Organization"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -7381,6 +7893,38 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["GetPricesResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -7427,6 +7971,38 @@ export interface operations {
                     "application/json": components["schemas"]["Pagination_BillingTransactionResponse_"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -7457,6 +8033,38 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["BillingTransactionResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
