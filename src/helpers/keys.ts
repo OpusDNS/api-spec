@@ -120,6 +120,12 @@ import { PricingPeriod } from './schemas';
 import { Problem } from './schemas';
 import { PublicAuthRequestForm } from './schemas';
 import { RdapBase } from './schemas';
+import { Redirect } from './schemas';
+import { RedirectPatchOp } from './schemas';
+import { RedirectPatchOps } from './schemas';
+import { RedirectRemove } from './schemas';
+import { RedirectSet } from './schemas';
+import { RedirectUpdate } from './schemas';
 import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
 import { ReservedDomainsBase } from './schemas';
@@ -14444,6 +14450,798 @@ export const KEY_RDAP_BASE_RDAP_SERVER = 'rdap_server' as keyof RdapBase;
 export const KEYS_RDAP_BASE = [
   KEY_RDAP_BASE_RDAP_SERVER,
 ] as const satisfies (keyof RdapBase)[];
+
+/**
+ * Redirect Code
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `redirect_code` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_REDIRECT_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REDIRECT_CODE;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REDIRECT_CODE = 'redirect_code' as keyof Redirect;
+/**
+ * Request Domain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_domain` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_REQUEST_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REQUEST_DOMAIN;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REQUEST_DOMAIN = 'request_domain' as keyof Redirect;
+/**
+ * Request Path
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_path` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_REQUEST_PATH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REQUEST_PATH;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REQUEST_PATH = 'request_path' as keyof Redirect;
+/**
+ * Request Protocol
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_protocol` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_REQUEST_PROTOCOL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REQUEST_PROTOCOL;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REQUEST_PROTOCOL = 'request_protocol' as keyof Redirect;
+/**
+ * Request Subdomain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_subdomain` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_REQUEST_SUBDOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REQUEST_SUBDOMAIN;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REQUEST_SUBDOMAIN = 'request_subdomain' as keyof Redirect;
+/**
+ * Target Domain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_domain` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_TARGET_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_TARGET_DOMAIN;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_TARGET_DOMAIN = 'target_domain' as keyof Redirect;
+/**
+ * Target Path
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_path` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_TARGET_PATH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_TARGET_PATH;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_TARGET_PATH = 'target_path' as keyof Redirect;
+/**
+ * Target Protocol
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_protocol` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_TARGET_PROTOCOL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_TARGET_PROTOCOL;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_TARGET_PROTOCOL = 'target_protocol' as keyof Redirect;
+/**
+ * Target Subdomain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_subdomain` property of Redirect objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirect[KEY_REDIRECT_TARGET_SUBDOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_TARGET_SUBDOMAIN;
+ * const value = redirect[propertyName];
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_TARGET_SUBDOMAIN = 'target_subdomain' as keyof Redirect;
+
+/**
+ * Array of all Redirect property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Redirect objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REDIRECT) {
+ *   console.log(`Property: ${key}, Value: ${redirect[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REDIRECT.includes(someKey);
+ * ```
+ *
+ * @see {@link Redirect} - The TypeScript type definition
+ */
+export const KEYS_REDIRECT = [
+  KEY_REDIRECT_REDIRECT_CODE,
+  KEY_REDIRECT_REQUEST_DOMAIN,
+  KEY_REDIRECT_REQUEST_PATH,
+  KEY_REDIRECT_REQUEST_PROTOCOL,
+  KEY_REDIRECT_REQUEST_SUBDOMAIN,
+  KEY_REDIRECT_TARGET_DOMAIN,
+  KEY_REDIRECT_TARGET_PATH,
+  KEY_REDIRECT_TARGET_PROTOCOL,
+  KEY_REDIRECT_TARGET_SUBDOMAIN,
+] as const satisfies (keyof Redirect)[];
+
+/**
+ * op property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `op` property of RedirectPatchOp objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectpatchop[KEY_REDIRECT_PATCH_OP_OP];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_PATCH_OP_OP;
+ * const value = redirectpatchop[propertyName];
+ * ```
+ *
+ * @see {@link RedirectPatchOp} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_PATCH_OP} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_PATCH_OP_OP = 'op' as keyof RedirectPatchOp;
+/**
+ * Redirect
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `redirect` property of RedirectPatchOp objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectpatchop[KEY_REDIRECT_PATCH_OP_REDIRECT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_PATCH_OP_REDIRECT;
+ * const value = redirectpatchop[propertyName];
+ * ```
+ *
+ * @see {@link RedirectPatchOp} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_PATCH_OP} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_PATCH_OP_REDIRECT = 'redirect' as keyof RedirectPatchOp;
+
+/**
+ * Array of all RedirectPatchOp property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RedirectPatchOp objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REDIRECT_PATCH_OP) {
+ *   console.log(`Property: ${key}, Value: ${redirectpatchop[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REDIRECT_PATCH_OP.includes(someKey);
+ * ```
+ *
+ * @see {@link RedirectPatchOp} - The TypeScript type definition
+ */
+export const KEYS_REDIRECT_PATCH_OP = [
+  KEY_REDIRECT_PATCH_OP_OP,
+  KEY_REDIRECT_PATCH_OP_REDIRECT,
+] as const satisfies (keyof RedirectPatchOp)[];
+
+/**
+ * Ops
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ops` property of RedirectPatchOps objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectpatchops[KEY_REDIRECT_PATCH_OPS_OPS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_PATCH_OPS_OPS;
+ * const value = redirectpatchops[propertyName];
+ * ```
+ *
+ * @see {@link RedirectPatchOps} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_PATCH_OPS} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_PATCH_OPS_OPS = 'ops' as keyof RedirectPatchOps;
+
+/**
+ * Array of all RedirectPatchOps property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RedirectPatchOps objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REDIRECT_PATCH_OPS) {
+ *   console.log(`Property: ${key}, Value: ${redirectpatchops[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REDIRECT_PATCH_OPS.includes(someKey);
+ * ```
+ *
+ * @see {@link RedirectPatchOps} - The TypeScript type definition
+ */
+export const KEYS_REDIRECT_PATCH_OPS = [
+  KEY_REDIRECT_PATCH_OPS_OPS,
+] as const satisfies (keyof RedirectPatchOps)[];
+
+/**
+ * Request Domain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_domain` property of RedirectRemove objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectremove[KEY_REDIRECT_REMOVE_REQUEST_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REMOVE_REQUEST_DOMAIN;
+ * const value = redirectremove[propertyName];
+ * ```
+ *
+ * @see {@link RedirectRemove} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_REMOVE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REMOVE_REQUEST_DOMAIN = 'request_domain' as keyof RedirectRemove;
+/**
+ * Request Path
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_path` property of RedirectRemove objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectremove[KEY_REDIRECT_REMOVE_REQUEST_PATH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REMOVE_REQUEST_PATH;
+ * const value = redirectremove[propertyName];
+ * ```
+ *
+ * @see {@link RedirectRemove} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_REMOVE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REMOVE_REQUEST_PATH = 'request_path' as keyof RedirectRemove;
+/**
+ * Request Protocol
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_protocol` property of RedirectRemove objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectremove[KEY_REDIRECT_REMOVE_REQUEST_PROTOCOL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REMOVE_REQUEST_PROTOCOL;
+ * const value = redirectremove[propertyName];
+ * ```
+ *
+ * @see {@link RedirectRemove} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_REMOVE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REMOVE_REQUEST_PROTOCOL = 'request_protocol' as keyof RedirectRemove;
+/**
+ * Request Subdomain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_subdomain` property of RedirectRemove objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectremove[KEY_REDIRECT_REMOVE_REQUEST_SUBDOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_REMOVE_REQUEST_SUBDOMAIN;
+ * const value = redirectremove[propertyName];
+ * ```
+ *
+ * @see {@link RedirectRemove} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_REMOVE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_REMOVE_REQUEST_SUBDOMAIN = 'request_subdomain' as keyof RedirectRemove;
+
+/**
+ * Array of all RedirectRemove property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RedirectRemove objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REDIRECT_REMOVE) {
+ *   console.log(`Property: ${key}, Value: ${redirectremove[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REDIRECT_REMOVE.includes(someKey);
+ * ```
+ *
+ * @see {@link RedirectRemove} - The TypeScript type definition
+ */
+export const KEYS_REDIRECT_REMOVE = [
+  KEY_REDIRECT_REMOVE_REQUEST_DOMAIN,
+  KEY_REDIRECT_REMOVE_REQUEST_PATH,
+  KEY_REDIRECT_REMOVE_REQUEST_PROTOCOL,
+  KEY_REDIRECT_REMOVE_REQUEST_SUBDOMAIN,
+] as const satisfies (keyof RedirectRemove)[];
+
+/**
+ * Redirects
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `redirects` property of RedirectSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectset[KEY_REDIRECT_SET_REDIRECTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_SET_REDIRECTS;
+ * const value = redirectset[propertyName];
+ * ```
+ *
+ * @see {@link RedirectSet} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_SET} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_SET_REDIRECTS = 'redirects' as keyof RedirectSet;
+
+/**
+ * Array of all RedirectSet property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RedirectSet objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REDIRECT_SET) {
+ *   console.log(`Property: ${key}, Value: ${redirectset[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REDIRECT_SET.includes(someKey);
+ * ```
+ *
+ * @see {@link RedirectSet} - The TypeScript type definition
+ */
+export const KEYS_REDIRECT_SET = [
+  KEY_REDIRECT_SET_REDIRECTS,
+] as const satisfies (keyof RedirectSet)[];
+
+/**
+ * Redirect Code
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `redirect_code` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_REDIRECT_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_REDIRECT_CODE;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_REDIRECT_CODE = 'redirect_code' as keyof RedirectUpdate;
+/**
+ * Request Path
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_path` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_REQUEST_PATH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_REQUEST_PATH;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_REQUEST_PATH = 'request_path' as keyof RedirectUpdate;
+/**
+ * Request Protocol
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_protocol` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_REQUEST_PROTOCOL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_REQUEST_PROTOCOL;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_REQUEST_PROTOCOL = 'request_protocol' as keyof RedirectUpdate;
+/**
+ * Request Subdomain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_subdomain` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_REQUEST_SUBDOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_REQUEST_SUBDOMAIN;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_REQUEST_SUBDOMAIN = 'request_subdomain' as keyof RedirectUpdate;
+/**
+ * Target Domain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_domain` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_TARGET_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_TARGET_DOMAIN;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_TARGET_DOMAIN = 'target_domain' as keyof RedirectUpdate;
+/**
+ * Target Path
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_path` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_TARGET_PATH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_TARGET_PATH;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_TARGET_PATH = 'target_path' as keyof RedirectUpdate;
+/**
+ * Target Protocol
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_protocol` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_TARGET_PROTOCOL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_TARGET_PROTOCOL;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_TARGET_PROTOCOL = 'target_protocol' as keyof RedirectUpdate;
+/**
+ * Target Subdomain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `target_subdomain` property of RedirectUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = redirectupdate[KEY_REDIRECT_UPDATE_TARGET_SUBDOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REDIRECT_UPDATE_TARGET_SUBDOMAIN;
+ * const value = redirectupdate[propertyName];
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ * @see {@link KEYS_REDIRECT_UPDATE} - Array of all keys for this type
+ */
+export const KEY_REDIRECT_UPDATE_TARGET_SUBDOMAIN = 'target_subdomain' as keyof RedirectUpdate;
+
+/**
+ * Array of all RedirectUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RedirectUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REDIRECT_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${redirectupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REDIRECT_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The TypeScript type definition
+ */
+export const KEYS_REDIRECT_UPDATE = [
+  KEY_REDIRECT_UPDATE_REDIRECT_CODE,
+  KEY_REDIRECT_UPDATE_REQUEST_PATH,
+  KEY_REDIRECT_UPDATE_REQUEST_PROTOCOL,
+  KEY_REDIRECT_UPDATE_REQUEST_SUBDOMAIN,
+  KEY_REDIRECT_UPDATE_TARGET_DOMAIN,
+  KEY_REDIRECT_UPDATE_TARGET_PATH,
+  KEY_REDIRECT_UPDATE_TARGET_PROTOCOL,
+  KEY_REDIRECT_UPDATE_TARGET_SUBDOMAIN,
+] as const satisfies (keyof RedirectUpdate)[];
 
 /**
  * Prevents

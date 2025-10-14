@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, Organization, Redirect, Period, Permission, PremiumAffectsType, RedirectPatchOp, RedirectUpdate, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -626,6 +626,20 @@ export type EventResponseArray = EventResponse[];
  */
 export type OrganizationArray = Organization[];
 /**
+ * Redirect
+ *
+ * @remarks
+ * Array type for Redirect objects. Used when the API returns a collection of Redirect instances.
+ *
+ * @example
+ * ```typescript
+ * const items: RedirectArray = await api.getRedirects();
+ * ```
+ *
+ * @see {@link Redirect} - The individual Redirect type definition
+ */
+export type RedirectArray = Redirect[];
+/**
  * Period
  *
  * @remarks
@@ -667,6 +681,34 @@ export type PermissionArray = Permission[];
  * @see {@link PremiumAffectsType} - The individual PremiumAffectsType type definition
  */
 export type PremiumAffectsTypeArray = PremiumAffectsType[];
+/**
+ * RedirectPatchOp
+ *
+ * @remarks
+ * Array type for RedirectPatchOp objects. Used when the API returns a collection of RedirectPatchOp instances.
+ *
+ * @example
+ * ```typescript
+ * const items: RedirectPatchOpArray = await api.getRedirectPatchOps();
+ * ```
+ *
+ * @see {@link RedirectPatchOp} - The individual RedirectPatchOp type definition
+ */
+export type RedirectPatchOpArray = RedirectPatchOp[];
+/**
+ * RedirectUpdate
+ *
+ * @remarks
+ * Array type for RedirectUpdate objects. Used when the API returns a collection of RedirectUpdate instances.
+ *
+ * @example
+ * ```typescript
+ * const items: RedirectUpdateArray = await api.getRedirectUpdates();
+ * ```
+ *
+ * @see {@link RedirectUpdate} - The individual RedirectUpdate type definition
+ */
+export type RedirectUpdateArray = RedirectUpdate[];
 /**
  * Relation
  *

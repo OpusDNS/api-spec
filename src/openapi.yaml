@@ -3498,6 +3498,20 @@ components:
       - pagination
       title: Pagination[Organization]
       type: object
+    Pagination_Redirect_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/Redirect'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[Redirect]
+      type: object
     Pagination_User_:
       properties:
         pagination:
@@ -3760,6 +3774,141 @@ components:
           description: RDAP server URL
           title: Rdap Server
       title: RdapBase
+      type: object
+    Redirect:
+      properties:
+        redirect_code:
+          title: Redirect Code
+          type: integer
+        request_domain:
+          title: Request Domain
+          type: string
+        request_path:
+          title: Request Path
+          type: string
+        request_protocol:
+          title: Request Protocol
+          type: string
+        request_subdomain:
+          title: Request Subdomain
+          type: string
+        target_domain:
+          title: Target Domain
+          type: string
+        target_path:
+          title: Target Path
+          type: string
+        target_protocol:
+          title: Target Protocol
+          type: string
+        target_subdomain:
+          title: Target Subdomain
+          type: string
+      required:
+      - request_protocol
+      - request_subdomain
+      - request_path
+      - target_protocol
+      - target_subdomain
+      - target_domain
+      - target_path
+      - redirect_code
+      - request_domain
+      title: Redirect
+      type: object
+    RedirectPatchOp:
+      properties:
+        op:
+          $ref: '#/components/schemas/PatchOp'
+        redirect:
+          anyOf:
+          - $ref: '#/components/schemas/Redirect'
+          - $ref: '#/components/schemas/RedirectRemove'
+          title: Redirect
+      required:
+      - op
+      - redirect
+      title: RedirectPatchOp
+      type: object
+    RedirectPatchOps:
+      properties:
+        ops:
+          items:
+            $ref: '#/components/schemas/RedirectPatchOp'
+          title: Ops
+          type: array
+      required:
+      - ops
+      title: RedirectPatchOps
+      type: object
+    RedirectRemove:
+      properties:
+        request_domain:
+          title: Request Domain
+          type: string
+        request_path:
+          title: Request Path
+          type: string
+        request_protocol:
+          title: Request Protocol
+          type: string
+        request_subdomain:
+          title: Request Subdomain
+          type: string
+      required:
+      - request_protocol
+      - request_subdomain
+      - request_path
+      - request_domain
+      title: RedirectRemove
+      type: object
+    RedirectSet:
+      properties:
+        redirects:
+          items:
+            $ref: '#/components/schemas/RedirectUpdate'
+          title: Redirects
+          type: array
+      required:
+      - redirects
+      title: RedirectSet
+      type: object
+    RedirectUpdate:
+      properties:
+        redirect_code:
+          title: Redirect Code
+          type: integer
+        request_path:
+          title: Request Path
+          type: string
+        request_protocol:
+          title: Request Protocol
+          type: string
+        request_subdomain:
+          title: Request Subdomain
+          type: string
+        target_domain:
+          title: Target Domain
+          type: string
+        target_path:
+          title: Target Path
+          type: string
+        target_protocol:
+          title: Target Protocol
+          type: string
+        target_subdomain:
+          title: Target Subdomain
+          type: string
+      required:
+      - request_protocol
+      - request_subdomain
+      - request_path
+      - target_protocol
+      - target_subdomain
+      - target_domain
+      - target_path
+      - redirect_code
+      title: RedirectUpdate
       type: object
     RegistrantChangeType:
       enum:
@@ -4797,7 +4946,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-10-154932
+  version: 2025-10-14-131453
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6096,6 +6245,241 @@ paths:
       summary: Update Zone Rrsets
       tags:
       - dns
+  /v1/domain-forwards:
+    patch:
+      operationId: patch_redirects_v1_domain_forwards_patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedirectPatchOps'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Patch Redirects
+      tags:
+      - domain_forward
+  /v1/domain-forwards/{zone_name}:
+    delete:
+      operationId: delete_redirects_v1_domain_forwards__zone_name__delete
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Delete Redirects
+      tags:
+      - domain_forward
+    get:
+      operationId: get_redirects_v1_domain_forwards__zone_name__get
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_Redirect_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get Redirects
+      tags:
+      - domain_forward
+    post:
+      operationId: create_redirects_v1_domain_forwards__zone_name__post
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedirectSet'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_REDIRECT_ALREADY_EXISTS
+                detail: Redirect already exists for A, d, d, i, t, i, o, n, a, l,  ,
+                  e, r, r, o, r,  , c, o, n, t, e, x, t, .
+                status: 409
+                title: Domain Forward Error
+                type: domain-forward-redirect-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Create Redirects
+      tags:
+      - domain_forward
+    put:
+      operationId: update_redirects_v1_domain_forwards__zone_name__put
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedirectSet'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_REDIRECT_NOT_EXISTS
+                detail: Redirect does not exist for A, d, d, i, t, i, o, n, a, l,  ,
+                  e, r, r, o, r,  , c, o, n, t, e, x, t, .
+                status: 409
+                title: Domain Forward Error
+                type: domain-forward-redirect-not-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Update Redirects
+      tags:
+      - domain_forward
+  /v1/domain-forwards/{zone_name}/disable:
+    patch:
+      operationId: disable_domain_forward_v1_domain_forwards__zone_name__disable_patch
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Disable Domain Forward
+      tags:
+      - domain_forward
+  /v1/domain-forwards/{zone_name}/enable:
+    patch:
+      operationId: enable_domain_forward_v1_domain_forwards__zone_name__enable_patch
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Enable Domain Forward
+      tags:
+      - domain_forward
   /v1/domain-search/suggest:
     get:
       description: Get a list of domain suggestions based on a search query

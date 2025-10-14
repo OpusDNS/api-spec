@@ -2016,6 +2016,22 @@ export type Pagination_Event = components['schemas']['Pagination_EventResponse_'
  */
 export type Pagination_Organization = components['schemas']['Pagination_Organization_'];
 /**
+ * Pagination[Redirect]
+ *
+ * @remarks
+ * Type alias for the `Pagination_Redirect_` OpenAPI schema.
+ * This type represents pagination[redirect] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_Redirect();
+ * const item: Pagination_Redirect = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_Redirect = components['schemas']['Pagination_Redirect_'];
+/**
  * Pagination[User]
  *
  * @remarks
@@ -2303,6 +2319,102 @@ export type PublicAuthRequestForm = components['schemas']['PublicAuthRequestForm
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type RdapBase = components['schemas']['RdapBase'];
+/**
+ * Redirect
+ *
+ * @remarks
+ * Type alias for the `Redirect` OpenAPI schema.
+ * This type represents redirect data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRedirect();
+ * const item: Redirect = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Redirect = components['schemas']['Redirect'];
+/**
+ * RedirectPatchOp
+ *
+ * @remarks
+ * Type alias for the `RedirectPatchOp` OpenAPI schema.
+ * This type represents redirectpatchop data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRedirectPatchOp();
+ * const item: RedirectPatchOp = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RedirectPatchOp = components['schemas']['RedirectPatchOp'];
+/**
+ * RedirectPatchOps
+ *
+ * @remarks
+ * Type alias for the `RedirectPatchOps` OpenAPI schema.
+ * This type represents redirectpatchops data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRedirectPatchOps();
+ * const item: RedirectPatchOps = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RedirectPatchOps = components['schemas']['RedirectPatchOps'];
+/**
+ * RedirectRemove
+ *
+ * @remarks
+ * Type alias for the `RedirectRemove` OpenAPI schema.
+ * This type represents redirectremove data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRedirectRemove();
+ * const item: RedirectRemove = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RedirectRemove = components['schemas']['RedirectRemove'];
+/**
+ * RedirectSet
+ *
+ * @remarks
+ * Type alias for the `RedirectSet` OpenAPI schema.
+ * This type represents redirectset data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRedirectSet();
+ * const item: RedirectSet = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RedirectSet = components['schemas']['RedirectSet'];
+/**
+ * RedirectUpdate
+ *
+ * @remarks
+ * Type alias for the `RedirectUpdate` OpenAPI schema.
+ * This type represents redirectupdate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRedirectUpdate();
+ * const item: RedirectUpdate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RedirectUpdate = components['schemas']['RedirectUpdate'];
 /**
  * RegistrantChangeType
  *
