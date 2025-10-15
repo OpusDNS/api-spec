@@ -1314,9 +1314,23 @@ export type PATCH_DomainForwardsZoneNameDisable_Request_Path = PATCH_DomainForwa
  */
 export type PATCH_DomainForwardsZoneNameEnable_Request = {
   parameters: {
+    query: operations['enable_domain_forward_v1_domain_forwards__zone_name__enable_patch']['parameters']['query'];
     path: operations['enable_domain_forward_v1_domain_forwards__zone_name__enable_patch']['parameters']['path'];
   };
 }
+/**
+ * Query parameters for PATCH /v1/domain-forwards/{zone_name}/enable
+ *
+ * @remarks
+ * This type defines the query parameters for the PATCH /v1/domain-forwards/{zone_name}/enable endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/{zone_name}/enable
+ */
+export type PATCH_DomainForwardsZoneNameEnable_Request_Query = PATCH_DomainForwardsZoneNameEnable_Request['parameters']['query'];
 /**
  * Path parameters for PATCH /v1/domain-forwards/{zone_name}/enable
  *
@@ -2393,9 +2407,23 @@ export type PATCH_EmailForwardsZoneNameDisable_Request_Path = PATCH_EmailForward
  */
 export type PATCH_EmailForwardsZoneNameEnable_Request = {
   parameters: {
+    query: operations['enable_email_forward_v1_email_forwards__zone_name__enable_patch']['parameters']['query'];
     path: operations['enable_email_forward_v1_email_forwards__zone_name__enable_patch']['parameters']['path'];
   };
 }
+/**
+ * Query parameters for PATCH /v1/email-forwards/{zone_name}/enable
+ *
+ * @remarks
+ * This type defines the query parameters for the PATCH /v1/email-forwards/{zone_name}/enable endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/email-forwards/{zone_name}/enable
+ */
+export type PATCH_EmailForwardsZoneNameEnable_Request_Query = PATCH_EmailForwardsZoneNameEnable_Request['parameters']['query'];
 /**
  * Path parameters for PATCH /v1/email-forwards/{zone_name}/enable
  *

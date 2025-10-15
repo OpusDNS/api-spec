@@ -5924,7 +5924,9 @@ export interface operations {
     };
     enable_domain_forward_v1_domain_forwards__zone_name__enable_patch: {
         parameters: {
-            query?: never;
+            query?: {
+                auto_create_zone?: boolean;
+            };
             header?: never;
             path: {
                 /** @description DNS zone name (trailing dot optional) */
@@ -7060,7 +7062,9 @@ export interface operations {
     };
     enable_email_forward_v1_email_forwards__zone_name__enable_patch: {
         parameters: {
-            query?: never;
+            query?: {
+                auto_create_zone?: boolean;
+            };
             header?: never;
             path: {
                 /** @description DNS zone name (trailing dot optional) */
