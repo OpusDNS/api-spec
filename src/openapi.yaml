@@ -4946,7 +4946,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-15-151802
+  version: 2025-10-20-101702
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5948,6 +5948,55 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              business_setup:
+                description: A comprehensive setup for a business with multiple subdomains
+                  and services
+                summary: Business setup with multiple services
+                value:
+                  dnssec_status: enabled
+                  name: example.com
+                  rrsets:
+                  - name: '@'
+                    records:
+                    - rdata: 203.0.113.10
+                    ttl: 600
+                    type: A
+                  - name: www
+                    records:
+                    - rdata: example.com.
+                    ttl: 300
+                    type: CNAME
+                  - name: api
+                    records:
+                    - rdata: 203.0.113.20
+                    ttl: 300
+                    type: A
+                  - name: mail
+                    records:
+                    - rdata: 203.0.113.30
+                    ttl: 300
+                    type: A
+                  - name: '@'
+                    records:
+                    - rdata: 10 mail.example.com.
+                    - rdata: 20 backup-mail.example.com.
+                    ttl: 300
+                    type: MX
+                  - name: '@'
+                    records:
+                    - rdata: '"v=spf1 include:_spf.google.com ~all"'
+                    - rdata: '"google-site-verification=abc123def456"'
+                    ttl: 300
+                    type: TXT
+              minimal_setup:
+                description: Create a zone with just the zone name - SOA and NS records
+                  are automatically generated
+                summary: Minimal zone creation
+                value:
+                  dnssec_status: disabled
+                  name: example.com
+                  rrsets: []
             schema:
               $ref: '#/components/schemas/DnsZoneCreate'
         required: true
@@ -5955,12 +6004,126 @@ paths:
         '201':
           content:
             application/json:
+              examples:
+                business_setup_response:
+                  description: Changeset response when creating a comprehensive business
+                    zone
+                  summary: Response for business setup creation
+                  value:
+                    changes:
+                    - action: create_zone
+                    - action: create_record
+                      record_data: example.com.
+                      rrset_name: www.example.com.
+                      rrset_type: CNAME
+                      ttl: 300
+                    - action: create_record
+                      record_data: 203.0.113.30
+                      rrset_name: mail.example.com.
+                      rrset_type: A
+                      ttl: 300
+                    - action: create_record
+                      record_data: 203.0.113.20
+                      rrset_name: api.example.com.
+                      rrset_type: A
+                      ttl: 300
+                    - action: create_record
+                      record_data: '"google-site-verification=abc123def456"'
+                      rrset_name: example.com.
+                      rrset_type: TXT
+                      ttl: 300
+                    - action: create_record
+                      record_data: '"v=spf1 include:_spf.google.com ~all"'
+                      rrset_name: example.com.
+                      rrset_type: TXT
+                      ttl: 300
+                    - action: create_record
+                      record_data: 10 mail.example.com.
+                      rrset_name: example.com.
+                      rrset_type: MX
+                      ttl: 300
+                    - action: create_record
+                      record_data: 20 backup-mail.example.com.
+                      rrset_name: example.com.
+                      rrset_type: MX
+                      ttl: 300
+                    - action: create_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025101401
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: create_record
+                      record_data: ns1.opusdns.com.
+                      rrset_name: example.com.
+                      rrset_type: NS
+                      ttl: 3600
+                    - action: create_record
+                      record_data: ns2.opusdns.com.
+                      rrset_name: example.com.
+                      rrset_type: NS
+                      ttl: 3600
+                    - action: create_record
+                      record_data: 203.0.113.10
+                      rrset_name: example.com.
+                      rrset_type: A
+                      ttl: 600
+                    - action: create_record
+                      record_data: 256 3 13 4epAMhnUgbFbAmKI2zbTXXFHGlVeHamiWLPdwJ8ehE9NgmvDNraqYF/0YdDcoc2elyelvi72KJyQfIR02axEeQ==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: create_record
+                      record_data: 257 3 13 Wx1Wk8Sl+PyanAWPYsCPw9qFv2Nv0U/MXoJGgpmdqgbLgtvPlVM1/66j/MFTOjk4ONGKGZoWbZ86ud18lWvacw==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: create_record
+                      record_data: 17781 13 2 21d0b2b21f501935546de33505a2b43d16ba3b1f375e00b0386dae3942165915
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: create_record
+                      record_data: 17781 13 4 d10ab2a071c85c20a0338797401928255be1d08c470236b381fbd87df0d60e3aab5d86c6dee8356374167d9b68652608
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: enable_dnssec
+                    changeset_id: 108e6028-2812-4bd9-aa41-5b46cdc7fbdc
+                    num_changes: 17
+                    zone_name: example.com.
+                minimal_setup_response:
+                  description: Changeset response when creating a zone with automatic
+                    SOA and NS records
+                  summary: Response for minimal zone creation
+                  value:
+                    changes:
+                    - action: create_zone
+                    - action: create_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025101401
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: create_record
+                      record_data: ns1.opusdns.com.
+                      rrset_name: example.com.
+                      rrset_type: NS
+                      ttl: 3600
+                    - action: create_record
+                      record_data: ns2.opusdns.com.
+                      rrset_name: example.com.
+                      rrset_type: NS
+                      ttl: 3600
+                    changeset_id: de28f689-b400-45b7-9f67-9f92d512935a
+                    num_changes: 4
+                    zone_name: example.com.
               schema:
                 anyOf:
                 - $ref: '#/components/schemas/DnsChangesResponse'
                 - type: 'null'
                 title: Response Create Zone V1 Dns Post
-          description: Successful Response
+          description: Zone created successfully
         '400':
           content:
             application/problem+json:
@@ -5976,9 +6139,25 @@ paths:
         '422':
           content:
             application/problem+json:
+              examples:
+                typo_in_name:
+                  description: The request contains a typo in the name field
+                  summary: Typo in name
+                  value:
+                    errors:
+                    - input:
+                        nme: example.com
+                      loc:
+                      - body
+                      - name
+                      msg: Field required
+                      type: missing
+                    status: 422
+                    title: Request validation error.
+                    type: request-validation-failed
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+          description: Invalid request parameters
       security:
       - OAuth2PasswordBearer: []
       summary: Create Zone

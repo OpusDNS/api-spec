@@ -5364,7 +5364,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Zone created successfully */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -5389,7 +5389,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Invalid request parameters */
             422: {
                 headers: {
                     [name: string]: unknown;
