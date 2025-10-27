@@ -2383,6 +2383,12 @@ components:
       - source
       title: EventSchema
       type: object
+    EventSortField:
+      enum:
+      - object_id
+      - created_on
+      title: EventSortField
+      type: string
     EventSubtype:
       enum:
       - NOTIFICATION
@@ -4946,7 +4952,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-20-101702
+  version: 2025-10-27-080440
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8033,9 +8039,62 @@ paths:
       - email_forward
   /v1/events:
     get:
-      description: Retrieves a paginated list of pending events for the organization
+      description: Retrieves a paginated list of events for the organization
       operationId: get_events_v1_events_get
       parameters:
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/EventSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: object_type
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/EventObjectType'
+          - type: 'null'
+          title: Object Type
+      - in: query
+        name: object_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Object Id
+      - in: query
+        name: type
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/EventType'
+          - type: 'null'
+          title: Type
+      - in: query
+        name: subtype
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/EventSubtype'
+          - type: 'null'
+          title: Subtype
+      - in: query
+        name: acknowledged
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          title: Acknowledged
       - in: query
         name: page
         required: false

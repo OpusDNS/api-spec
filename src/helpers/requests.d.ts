@@ -2443,7 +2443,7 @@ export type PATCH_EmailForwardsZoneNameEnable_Request_Path = PATCH_EmailForwards
  * Request type for GET Events endpoint
  *
  * Get pending events
- * Retrieves a paginated list of pending events for the organization
+ * Retrieves a paginated list of events for the organization
  *
  * @remarks
  * This type defines the complete request structure for the GET Events endpoint.

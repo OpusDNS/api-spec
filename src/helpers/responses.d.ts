@@ -3581,7 +3581,7 @@ export type PATCH_EmailForwardsByZoneNameEnable_Response_422 = HTTPValidationErr
  * Response types for GET Events endpoint
  *
  * Get pending events
- * Retrieves a paginated list of pending events for the organization
+ * Retrieves a paginated list of events for the organization
  *
  * @remarks
  * This type defines all possible response structures for the GET Events endpoint.

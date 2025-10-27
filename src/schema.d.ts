@@ -688,7 +688,7 @@ export interface paths {
         };
         /**
          * Get pending events
-         * @description Retrieves a paginated list of pending events for the organization
+         * @description Retrieves a paginated list of events for the organization
          */
         get: operations["get_events_v1_events_get"];
         put?: never;
@@ -2797,6 +2797,11 @@ export interface components {
             /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
             type?: components["schemas"]["EventType"] | null;
         };
+        /**
+         * EventSortField
+         * @enum {string}
+         */
+        EventSortField: "object_id" | "created_on";
         /**
          * EventSubtype
          * @enum {string}
@@ -7095,6 +7100,13 @@ export interface operations {
     get_events_v1_events_get: {
         parameters: {
             query?: {
+                sort_by?: components["schemas"]["EventSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                object_type?: components["schemas"]["EventObjectType"] | null;
+                object_id?: string | null;
+                type?: components["schemas"]["EventType"] | null;
+                subtype?: components["schemas"]["EventSubtype"] | null;
+                acknowledged?: boolean | null;
                 page?: number;
                 page_size?: number;
             };

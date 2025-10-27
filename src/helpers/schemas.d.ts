@@ -1451,6 +1451,22 @@ export type EventResponse = components['schemas']['EventResponse'];
  */
 export type EventSchema = components['schemas']['EventSchema'];
 /**
+ * EventSortField
+ *
+ * @remarks
+ * Type alias for the `EventSortField` OpenAPI schema.
+ * This type represents eventsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEventSortField();
+ * const item: EventSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EventSortField = components['schemas']['EventSortField'];
+/**
  * EventSubtype
  *
  * @remarks
