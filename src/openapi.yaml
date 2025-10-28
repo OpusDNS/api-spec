@@ -4952,7 +4952,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-27-080440
+  version: 2025-10-28-111859
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9528,6 +9528,50 @@ paths:
       summary: Get a specific transaction
       tags:
       - organization
+  /v1/tlds/:
+    get:
+      description: Retrieves a list of TLD Specifications we have support for
+      operationId: get_tld_specifications_v1_tlds__get
+      parameters:
+      - in: query
+        name: fields
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fields
+      - in: query
+        name: tlds
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tlds
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  items:
+                    type: object
+                  type: array
+                title: Response Get Tld Specifications V1 Tlds  Get
+                type: object
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get list of Specifications for all TLDs we support
+      tags:
+      - tld
   /v1/tlds/portfolio:
     get:
       description: Retrieves a list of TLDs we have support for

@@ -989,6 +989,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/tlds/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get list of Specifications for all TLDs we support
+         * @description Retrieves a list of TLD Specifications we have support for
+         */
+        get: operations["get_tld_specifications_v1_tlds__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/tlds/portfolio": {
         parameters: {
             query?: never;
@@ -8481,6 +8501,40 @@ export interface operations {
                      *       "type": "permission-denied"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_tld_specifications_v1_tlds__get: {
+        parameters: {
+            query?: {
+                fields?: string | null;
+                tlds?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: Record<string, never>[];
+                    };
                 };
             };
             /** @description Validation Error */

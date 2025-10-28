@@ -5500,6 +5500,44 @@ export type GET_OrganizationsUsers_Response_403 = Problem
 export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
 
 /**
+ * Response types for GET Tlds endpoint
+ *
+ * Get list of Specifications for all TLDs we support
+ * Retrieves a list of TLD Specifications we have support for
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Tlds endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tlds/
+ *
+ * @see {@link GET_Tlds_Response_422} - 422 response type
+ *
+
+ */
+export type GET_Tlds_Response = GET_Tlds_Response_422;
+
+/**
+ * 422 response for GET Tlds endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Tlds endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tlds/
+ *
+ * @see {@link GET_Tlds_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_Tlds_Response_422 = HTTPValidationError
+
+/**
  * Response types for GET TldsByTld endpoint
  *
  * Get the TLD specification

@@ -3378,6 +3378,45 @@ export type GET_OrganizationsUsers_Request = {
 export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Request['parameters']['query'];
 
 /**
+ * Request type for GET Tlds endpoint
+ *
+ * Get list of Specifications for all TLDs we support
+ * Retrieves a list of TLD Specifications we have support for
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET Tlds endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tlds/
+ *
+ * @see {@link GET_Tlds_Request_Query} - Query parameters type
+ * @see {@link GET_Tlds_Request_Path} - Path parameters type
+ * @see {@link GET_Tlds_Request_Body} - Request body type
+ */
+export type GET_Tlds_Request = {
+  parameters: {
+    query: operations['get_tld_specifications_v1_tlds__get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/tlds/
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/tlds/ endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/tlds/
+ */
+export type GET_Tlds_Request_Query = GET_Tlds_Request['parameters']['query'];
+
+/**
  * Request type for GET TldsPortfolio endpoint
  *
  * Get the list of TLDs we support
