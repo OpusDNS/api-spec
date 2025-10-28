@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1602,6 +1602,56 @@ export const GRANT_TYPE_VALUES = [
 ] as const satisfies [string, ...string[]] | GrantType[];
 
 /**
+ * HttpProtocol. Auto-generated enum for HttpProtocol
+ *
+ * @remarks
+ * This constant provides both object and array forms for the HttpProtocol enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = HTTP_PROTOCOL.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = HTTP_PROTOCOL_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link HttpProtocol} - The TypeScript type definition
+ */
+export const HTTP_PROTOCOL = {
+  HTTP: "http",
+  HTTPS: "https",
+} as const satisfies Record<string, HttpProtocol>;
+
+/**
+ * Array of all HttpProtocol enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid HttpProtocol enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of HTTP_PROTOCOL_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = HTTP_PROTOCOL_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link HttpProtocol} - The TypeScript type definition
+ * @see {@link HTTP_PROTOCOL} - The object form of this enum
+ */
+export const HTTP_PROTOCOL_VALUES = [
+  'http',
+  'https'
+] as const satisfies [string, ...string[]] | HttpProtocol[];
+
+/**
  * LaunchPhaseType. Auto-generated enum for LaunchPhaseType
  *
  * @remarks
@@ -2170,6 +2220,29 @@ export const PREMIUM_SOURCE_TYPE_VALUES = [
   'CSV',
   'manual'
 ] as const satisfies [string, ...string[]] | PremiumSourceType[];
+
+/**
+ * RedirectCode. Auto-generated enum for RedirectCode
+ *
+ * @remarks
+ * This constant provides an array of integer values for the RedirectCode enum.
+ * Integer enums are represented as typed arrays for efficient iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the array for iteration
+ * const algorithms = DNSSEC_ALGORITHM;
+ * console.log(`Available algorithms: ${algorithms.join(', ')}`);
+ * ```
+ *
+ * @see {@link RedirectCode} - The TypeScript type definition
+ */
+export const REDIRECT_CODE = [
+  301,
+  302,
+  307,
+  308
+] as const satisfies RedirectCode[];
 
 /**
  * RegistrantChangeType. Auto-generated enum for RegistrantChangeType
