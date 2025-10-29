@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1650,6 +1650,172 @@ export const HTTP_PROTOCOL_VALUES = [
   'http',
   'https'
 ] as const satisfies [string, ...string[]] | HttpProtocol[];
+
+/**
+ * InvoiceResponsePaymentStatus. Auto-generated enum for InvoiceResponsePaymentStatus
+ *
+ * @remarks
+ * This constant provides both object and array forms for the InvoiceResponsePaymentStatus enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = INVOICE_RESPONSE_PAYMENT_STATUS.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = INVOICE_RESPONSE_PAYMENT_STATUS_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link InvoiceResponsePaymentStatus} - The TypeScript type definition
+ */
+export const INVOICE_RESPONSE_PAYMENT_STATUS = {
+  PENDING: "pending",
+  FAILED: "failed",
+  SUCCEEDED: "succeeded",
+} as const satisfies Record<string, InvoiceResponsePaymentStatus>;
+
+/**
+ * Array of all InvoiceResponsePaymentStatus enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid InvoiceResponsePaymentStatus enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of INVOICE_RESPONSE_PAYMENT_STATUS_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = INVOICE_RESPONSE_PAYMENT_STATUS_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link InvoiceResponsePaymentStatus} - The TypeScript type definition
+ * @see {@link INVOICE_RESPONSE_PAYMENT_STATUS} - The object form of this enum
+ */
+export const INVOICE_RESPONSE_PAYMENT_STATUS_VALUES = [
+  'pending',
+  'failed',
+  'succeeded'
+] as const satisfies [string, ...string[]] | InvoiceResponsePaymentStatus[];
+
+/**
+ * InvoiceResponseStatus. Auto-generated enum for InvoiceResponseStatus
+ *
+ * @remarks
+ * This constant provides both object and array forms for the InvoiceResponseStatus enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = INVOICE_RESPONSE_STATUS.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = INVOICE_RESPONSE_STATUS_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link InvoiceResponseStatus} - The TypeScript type definition
+ */
+export const INVOICE_RESPONSE_STATUS = {
+  DRAFT: "draft",
+  FINALIZED: "finalized",
+  FAILED: "failed",
+  PENDING: "pending",
+  VOIDED: "voided",
+} as const satisfies Record<string, InvoiceResponseStatus>;
+
+/**
+ * Array of all InvoiceResponseStatus enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid InvoiceResponseStatus enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of INVOICE_RESPONSE_STATUS_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = INVOICE_RESPONSE_STATUS_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link InvoiceResponseStatus} - The TypeScript type definition
+ * @see {@link INVOICE_RESPONSE_STATUS} - The object form of this enum
+ */
+export const INVOICE_RESPONSE_STATUS_VALUES = [
+  'draft',
+  'finalized',
+  'failed',
+  'pending',
+  'voided'
+] as const satisfies [string, ...string[]] | InvoiceResponseStatus[];
+
+/**
+ * InvoiceResponseType. Auto-generated enum for InvoiceResponseType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the InvoiceResponseType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = INVOICE_RESPONSE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = INVOICE_RESPONSE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link InvoiceResponseType} - The TypeScript type definition
+ */
+export const INVOICE_RESPONSE_TYPE = {
+  SUBSCRIPTION: "subscription",
+  ADD_ON: "add_on",
+  CREDIT: "credit",
+  ONE_OFF: "one_off",
+  ADVANCE_CHARGES: "advance_charges",
+  PROGRESSIVE_BILLING: "progressive_billing",
+} as const satisfies Record<string, InvoiceResponseType>;
+
+/**
+ * Array of all InvoiceResponseType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid InvoiceResponseType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of INVOICE_RESPONSE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = INVOICE_RESPONSE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link InvoiceResponseType} - The TypeScript type definition
+ * @see {@link INVOICE_RESPONSE_TYPE} - The object form of this enum
+ */
+export const INVOICE_RESPONSE_TYPE_VALUES = [
+  'subscription',
+  'add_on',
+  'credit',
+  'one_off',
+  'advance_charges',
+  'progressive_billing'
+] as const satisfies [string, ...string[]] | InvoiceResponseType[];
 
 /**
  * LaunchPhaseType. Auto-generated enum for LaunchPhaseType

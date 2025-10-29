@@ -912,6 +912,26 @@ export interface paths {
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
         trace?: never;
     };
+    "/v1/organizations/{organization_id}/billing/invoices": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List all invoices for the organization
+         * @description Retrieves a paginated list of all invoices for the organization
+         */
+        get: operations["list_invoices_v1_organizations__organization_id__billing_invoices_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations/{organization_id}/pricing/product-type/{product_type}": {
         parameters: {
             query?: never;
@@ -2907,6 +2927,79 @@ export interface components {
              */
             idn_tables?: string[] | null;
         };
+        /** InvoiceResponse */
+        InvoiceResponse: {
+            /**
+             * Amount
+             * @description Total invoice amount
+             */
+            amount: string;
+            /** @description Invoice currency */
+            currency: components["schemas"]["Currency"];
+            /**
+             * External Id
+             * @description Lago ID (external) for this invoice
+             */
+            external_id: string;
+            /**
+             * Fees Amount
+             * @description Fees amount
+             */
+            fees_amount: string;
+            /**
+             * File Url
+             * @description URL to invoice PDF file
+             */
+            file_url: string;
+            /** @description Invoice type */
+            invoice_type: components["schemas"]["InvoiceResponseType"];
+            /**
+             * Issuing Date
+             * Format: date-time
+             * @description Invoice issuing date
+             */
+            issuing_date: Date;
+            /**
+             * Number
+             * @description Invoice number
+             */
+            number: string;
+            /**
+             * Payment Due Date
+             * Format: date-time
+             * @description Payment due date
+             */
+            payment_due_date: Date;
+            /**
+             * Payment Overdue
+             * @description Whether payment is overdue
+             */
+            payment_overdue: boolean;
+            /** @description Payment status */
+            payment_status: components["schemas"]["InvoiceResponsePaymentStatus"];
+            /** @description Invoice status */
+            status: components["schemas"]["InvoiceResponseStatus"];
+            /**
+             * Taxes Amount
+             * @description Taxes amount
+             */
+            taxes_amount: string;
+        };
+        /**
+         * InvoiceResponsePaymentStatus
+         * @enum {string}
+         */
+        InvoiceResponsePaymentStatus: "pending" | "failed" | "succeeded";
+        /**
+         * InvoiceResponseStatus
+         * @enum {string}
+         */
+        InvoiceResponseStatus: "draft" | "finalized" | "failed" | "pending" | "voided";
+        /**
+         * InvoiceResponseType
+         * @enum {string}
+         */
+        InvoiceResponseType: "subscription" | "add_on" | "credit" | "one_off" | "advance_charges" | "progressive_billing";
         /**
          * IpRestrictionCreate
          * @description Create an IP restriction for an organization.
@@ -3590,6 +3683,12 @@ export interface components {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["EventResponse"][];
+        };
+        /** Pagination[InvoiceResponse] */
+        Pagination_InvoiceResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["InvoiceResponse"][];
         };
         /** Pagination[Organization] */
         Pagination_Organization_: {
@@ -8230,6 +8329,40 @@ export interface operations {
                      *       "type": "permission-denied"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_invoices_v1_organizations__organization_id__billing_invoices_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_InvoiceResponse_"];
                 };
             };
             /** @description Validation Error */

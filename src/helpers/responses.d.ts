@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainForward, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainForward, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for POST AuthToken endpoint
@@ -4637,6 +4637,62 @@ export type PATCH_OrganizationsByOrganizationId_Response_403 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_OrganizationsByOrganizationId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET OrganizationsByOrganizationIdBillingInvoices endpoint
+ *
+ * List all invoices for the organization
+ * Retrieves a paginated list of all invoices for the organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET OrganizationsByOrganizationIdBillingInvoices endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/invoices
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdBillingInvoices_Response_200} - 200 response type
+ * @see {@link GET_OrganizationsByOrganizationIdBillingInvoices_Response_422} - 422 response type
+ *
+
+ */
+export type GET_OrganizationsByOrganizationIdBillingInvoices_Response = GET_OrganizationsByOrganizationIdBillingInvoices_Response_200 | GET_OrganizationsByOrganizationIdBillingInvoices_Response_422;
+
+/**
+ * 200 response for GET OrganizationsByOrganizationIdBillingInvoices endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET OrganizationsByOrganizationIdBillingInvoices endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/invoices
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdBillingInvoices_Response} - The main response type definition
+ * @see {@link Pagination_Invoice} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdBillingInvoices_Response_200 = Pagination_Invoice
+
+/**
+ * 422 response for GET OrganizationsByOrganizationIdBillingInvoices endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsByOrganizationIdBillingInvoices endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/{organization_id}/billing/invoices
+ *
+ * @see {@link GET_OrganizationsByOrganizationIdBillingInvoices_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsByOrganizationIdBillingInvoices_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsByOrganizationIdPricingProductTypeByProductType endpoint

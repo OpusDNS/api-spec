@@ -2563,6 +2563,100 @@ components:
       - idn_capable
       title: IdnBase
       type: object
+    InvoiceResponse:
+      properties:
+        amount:
+          description: Total invoice amount
+          title: Amount
+          type: string
+        currency:
+          $ref: '#/components/schemas/Currency'
+          description: Invoice currency
+        external_id:
+          description: Lago ID (external) for this invoice
+          title: External Id
+          type: string
+        fees_amount:
+          description: Fees amount
+          title: Fees Amount
+          type: string
+        file_url:
+          description: URL to invoice PDF file
+          title: File Url
+          type: string
+        invoice_type:
+          $ref: '#/components/schemas/InvoiceResponseType'
+          description: Invoice type
+        issuing_date:
+          description: Invoice issuing date
+          format: date-time
+          title: Issuing Date
+          type: string
+        number:
+          description: Invoice number
+          title: Number
+          type: string
+        payment_due_date:
+          description: Payment due date
+          format: date-time
+          title: Payment Due Date
+          type: string
+        payment_overdue:
+          description: Whether payment is overdue
+          title: Payment Overdue
+          type: boolean
+        payment_status:
+          $ref: '#/components/schemas/InvoiceResponsePaymentStatus'
+          description: Payment status
+        status:
+          $ref: '#/components/schemas/InvoiceResponseStatus'
+          description: Invoice status
+        taxes_amount:
+          description: Taxes amount
+          title: Taxes Amount
+          type: string
+      required:
+      - external_id
+      - number
+      - issuing_date
+      - payment_due_date
+      - invoice_type
+      - status
+      - payment_status
+      - payment_overdue
+      - currency
+      - amount
+      - fees_amount
+      - taxes_amount
+      - file_url
+      title: InvoiceResponse
+      type: object
+    InvoiceResponsePaymentStatus:
+      enum:
+      - pending
+      - failed
+      - succeeded
+      title: InvoiceResponsePaymentStatus
+      type: string
+    InvoiceResponseStatus:
+      enum:
+      - draft
+      - finalized
+      - failed
+      - pending
+      - voided
+      title: InvoiceResponseStatus
+      type: string
+    InvoiceResponseType:
+      enum:
+      - subscription
+      - add_on
+      - credit
+      - one_off
+      - advance_charges
+      - progressive_billing
+      title: InvoiceResponseType
+      type: string
     IpRestrictionCreate:
       description: 'Create an IP restriction for an organization.
 
@@ -3575,6 +3669,20 @@ components:
       - results
       - pagination
       title: Pagination[EventResponse]
+      type: object
+    Pagination_InvoiceResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/InvoiceResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[InvoiceResponse]
       type: object
     Pagination_Organization_:
       properties:
@@ -4897,7 +5005,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-28-153856
+  version: 2025-10-29-093948
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9154,6 +9262,57 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Update an organization
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/billing/invoices:
+    get:
+      description: Retrieves a paginated list of all invoices for the organization
+      operationId: list_invoices_v1_organizations__organization_id__billing_invoices_get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_InvoiceResponse_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: List all invoices for the organization
       tags:
       - organization
   /v1/organizations/{organization_id}/pricing/product-type/{product_type}:

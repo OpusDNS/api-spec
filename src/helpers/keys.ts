@@ -97,6 +97,7 @@ import { GetPrices } from './schemas';
 import { HTTPValidationError } from './schemas';
 import { HttpRedirect } from './schemas';
 import { IdnBase } from './schemas';
+import { Invoice } from './schemas';
 import { IpRestrictionCreate } from './schemas';
 import { IpRestriction } from './schemas';
 import { IpRestrictionUpdate } from './schemas';
@@ -10406,6 +10407,377 @@ export const KEYS_IDN_BASE = [
   KEY_IDN_BASE_IDN_CAPABLE,
   KEY_IDN_BASE_IDN_TABLES,
 ] as const satisfies (keyof IdnBase)[];
+
+/**
+ * Amount
+ *
+ * Total invoice amount
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `amount` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_AMOUNT;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_AMOUNT = 'amount' as keyof Invoice;
+/**
+ * currency property
+ *
+ * Invoice currency
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_CURRENCY;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_CURRENCY = 'currency' as keyof Invoice;
+/**
+ * External Id
+ *
+ * Lago ID (external) for this invoice
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `external_id` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_EXTERNAL_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_EXTERNAL_ID;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_EXTERNAL_ID = 'external_id' as keyof Invoice;
+/**
+ * Fees Amount
+ *
+ * Fees amount
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fees_amount` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_FEES_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_FEES_AMOUNT;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_FEES_AMOUNT = 'fees_amount' as keyof Invoice;
+/**
+ * File Url
+ *
+ * URL to invoice PDF file
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `file_url` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_FILE_URL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_FILE_URL;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_FILE_URL = 'file_url' as keyof Invoice;
+/**
+ * invoice_type property
+ *
+ * Invoice type
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `invoice_type` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_INVOICE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_INVOICE_TYPE;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_INVOICE_TYPE = 'invoice_type' as keyof Invoice;
+/**
+ * Issuing Date
+ *
+ * Invoice issuing date
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `issuing_date` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_ISSUING_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_ISSUING_DATE;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_ISSUING_DATE = 'issuing_date' as keyof Invoice;
+/**
+ * Number
+ *
+ * Invoice number
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `number` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_NUMBER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_NUMBER;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_NUMBER = 'number' as keyof Invoice;
+/**
+ * Payment Due Date
+ *
+ * Payment due date
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payment_due_date` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_PAYMENT_DUE_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_PAYMENT_DUE_DATE;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_PAYMENT_DUE_DATE = 'payment_due_date' as keyof Invoice;
+/**
+ * Payment Overdue
+ *
+ * Whether payment is overdue
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payment_overdue` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_PAYMENT_OVERDUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_PAYMENT_OVERDUE;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_PAYMENT_OVERDUE = 'payment_overdue' as keyof Invoice;
+/**
+ * payment_status property
+ *
+ * Payment status
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payment_status` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_PAYMENT_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_PAYMENT_STATUS;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_PAYMENT_STATUS = 'payment_status' as keyof Invoice;
+/**
+ * status property
+ *
+ * Invoice status
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_STATUS;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_STATUS = 'status' as keyof Invoice;
+/**
+ * Taxes Amount
+ *
+ * Taxes amount
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `taxes_amount` property of Invoice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = invoice[KEY_INVOICE_TAXES_AMOUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_INVOICE_TAXES_AMOUNT;
+ * const value = invoice[propertyName];
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ * @see {@link KEYS_INVOICE} - Array of all keys for this type
+ */
+export const KEY_INVOICE_TAXES_AMOUNT = 'taxes_amount' as keyof Invoice;
+
+/**
+ * Array of all Invoice property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Invoice objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_INVOICE) {
+ *   console.log(`Property: ${key}, Value: ${invoice[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_INVOICE.includes(someKey);
+ * ```
+ *
+ * @see {@link Invoice} - The TypeScript type definition
+ */
+export const KEYS_INVOICE = [
+  KEY_INVOICE_AMOUNT,
+  KEY_INVOICE_CURRENCY,
+  KEY_INVOICE_EXTERNAL_ID,
+  KEY_INVOICE_FEES_AMOUNT,
+  KEY_INVOICE_FILE_URL,
+  KEY_INVOICE_INVOICE_TYPE,
+  KEY_INVOICE_ISSUING_DATE,
+  KEY_INVOICE_NUMBER,
+  KEY_INVOICE_PAYMENT_DUE_DATE,
+  KEY_INVOICE_PAYMENT_OVERDUE,
+  KEY_INVOICE_PAYMENT_STATUS,
+  KEY_INVOICE_STATUS,
+  KEY_INVOICE_TAXES_AMOUNT,
+] as const satisfies (keyof Invoice)[];
 
 /**
  * Ip Network

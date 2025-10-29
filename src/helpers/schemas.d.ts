@@ -1643,6 +1643,70 @@ export type HttpRedirect = components['schemas']['HttpRedirect'];
  */
 export type IdnBase = components['schemas']['IdnBase'];
 /**
+ * InvoiceResponse
+ *
+ * @remarks
+ * Type alias for the `InvoiceResponse` OpenAPI schema.
+ * This type represents invoiceresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getInvoice();
+ * const item: Invoice = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Invoice = components['schemas']['InvoiceResponse'];
+/**
+ * InvoiceResponsePaymentStatus
+ *
+ * @remarks
+ * Type alias for the `InvoiceResponsePaymentStatus` OpenAPI schema.
+ * This type represents invoiceresponsepaymentstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getInvoiceResponsePaymentStatus();
+ * const item: InvoiceResponsePaymentStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type InvoiceResponsePaymentStatus = components['schemas']['InvoiceResponsePaymentStatus'];
+/**
+ * InvoiceResponseStatus
+ *
+ * @remarks
+ * Type alias for the `InvoiceResponseStatus` OpenAPI schema.
+ * This type represents invoiceresponsestatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getInvoiceResponseStatus();
+ * const item: InvoiceResponseStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type InvoiceResponseStatus = components['schemas']['InvoiceResponseStatus'];
+/**
+ * InvoiceResponseType
+ *
+ * @remarks
+ * Type alias for the `InvoiceResponseType` OpenAPI schema.
+ * This type represents invoiceresponsetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getInvoiceResponseType();
+ * const item: InvoiceResponseType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type InvoiceResponseType = components['schemas']['InvoiceResponseType'];
+/**
  * IpRestrictionCreate. Create an IP restriction for an organization.
 
 Accepts either a single IP address or a CIDR network range.
@@ -2079,6 +2143,22 @@ export type Pagination_EmailForwardAlias = components['schemas']['Pagination_Ema
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_Event = components['schemas']['Pagination_EventResponse_'];
+/**
+ * Pagination[InvoiceResponse]
+ *
+ * @remarks
+ * Type alias for the `Pagination_InvoiceResponse_` OpenAPI schema.
+ * This type represents pagination[invoiceresponse] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_Invoice();
+ * const item: Pagination_Invoice = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_Invoice = components['schemas']['Pagination_InvoiceResponse_'];
 /**
  * Pagination[Organization]
  *
