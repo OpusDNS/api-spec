@@ -5005,7 +5005,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-29-093948
+  version: 2025-10-29-163217
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6562,6 +6562,18 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found
+                status: 404
+                title: Domain Forward Error
+                type: domain-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:
@@ -6640,12 +6652,11 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_DOMAIN_FORWARD_REDIRECT_ALREADY_EXISTS
-                detail: Redirect already exists for A, d, d, i, t, i, o, n, a, l,  ,
-                  e, r, r, o, r,  , c, o, n, t, e, x, t, .
+                code: ERROR_DOMAIN_FORWARD_ALREADY_EXISTS
+                detail: Domain forward already exists
                 status: 409
                 title: Domain Forward Error
-                type: domain-forward-redirect-already-exists
+                type: domain-forward-already-exists
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict
@@ -6689,19 +6700,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/DomainForward'
           description: Successful Response
-        '409':
+        '404':
           content:
             application/problem+json:
               example:
-                code: ERROR_DOMAIN_FORWARD_REDIRECT_NOT_EXISTS
-                detail: Redirect does not exist for A, d, d, i, t, i, o, n, a, l,  ,
-                  e, r, r, o, r,  , c, o, n, t, e, x, t, .
-                status: 409
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found
+                status: 404
                 title: Domain Forward Error
-                type: domain-forward-redirect-not-exists
+                type: domain-forward-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Conflict
+          description: Not Found
         '422':
           content:
             application/problem+json:

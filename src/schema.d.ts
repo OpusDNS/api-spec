@@ -5903,18 +5903,18 @@ export interface operations {
                     "application/json": components["schemas"]["DomainForward"];
                 };
             };
-            /** @description Conflict */
-            409: {
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_REDIRECT_NOT_EXISTS",
-                     *       "detail": "Redirect does not exist for A, d, d, i, t, i, o, n, a, l,  , e, r, r, o, r,  , c, o, n, t, e, x, t, .",
-                     *       "status": 409,
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found",
+                     *       "status": 404,
                      *       "title": "Domain Forward Error",
-                     *       "type": "domain-forward-redirect-not-exists"
+                     *       "type": "domain-forward-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -5963,11 +5963,11 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_REDIRECT_ALREADY_EXISTS",
-                     *       "detail": "Redirect already exists for A, d, d, i, t, i, o, n, a, l,  , e, r, r, o, r,  , c, o, n, t, e, x, t, .",
+                     *       "code": "ERROR_DOMAIN_FORWARD_ALREADY_EXISTS",
+                     *       "detail": "Domain forward already exists",
                      *       "status": 409,
                      *       "title": "Domain Forward Error",
-                     *       "type": "domain-forward-redirect-already-exists"
+                     *       "type": "domain-forward-already-exists"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -6002,6 +6002,22 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found",
+                     *       "status": 404,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {

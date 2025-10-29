@@ -1676,11 +1676,30 @@ export type GET_DnsSummary_Response_200 = DnsZoneSummary
  * @path /v1/domain-forwards/{zone_name}/{request_protocol}
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
+ * @see {@link DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_404} - 404 response type
  * @see {@link DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_422} - 422 response type
  *
 
  */
-export type DELETE_DomainForwardsByZoneNameByRequestProtocol_Response = DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_422;
+export type DELETE_DomainForwardsByZoneNameByRequestProtocol_Response = DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_404 | DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_422;
+
+/**
+ * 404 response for DELETE DomainForwardsByZoneNameByRequestProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{zone_name}/{request_protocol}
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link DELETE_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_404 = Problem
 
 /**
  * 422 response for DELETE DomainForwardsByZoneNameByRequestProtocol endpoint
@@ -1851,12 +1870,12 @@ export type POST_DomainForwardsByZoneNameByRequestProtocol_Response_422 = HTTPVa
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
  * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200} - 200 response type
- * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response_409} - 409 response type
+ * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response_404} - 404 response type
  * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response_422} - 422 response type
  *
 
  */
-export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response = PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200 | PUT_DomainForwardsByZoneNameByRequestProtocol_Response_409 | PUT_DomainForwardsByZoneNameByRequestProtocol_Response_422;
+export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response = PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200 | PUT_DomainForwardsByZoneNameByRequestProtocol_Response_404 | PUT_DomainForwardsByZoneNameByRequestProtocol_Response_422;
 
 /**
  * 200 response for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
@@ -1877,10 +1896,10 @@ export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response = PUT_DomainF
 export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200 = DomainForward
 
 /**
- * 409 response for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 404 response for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
  *
  * @remarks
- * This type defines the response structure for the 409 status code
+ * This type defines the response structure for the 404 status code
  * of the PUT DomainForwardsByZoneNameByRequestProtocol endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
@@ -1892,7 +1911,7 @@ export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200 = DomainF
  * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response_409 = Problem
+export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response_404 = Problem
 
 /**
  * 422 response for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
