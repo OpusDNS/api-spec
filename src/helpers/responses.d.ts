@@ -2094,6 +2094,8 @@ export type PATCH_DomainForwardsByZoneNameDisable_Response_422 = HTTPValidationE
  *
  * @path /v1/domain-forwards/{zone_name}/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByZoneNameEnable_Response_422} - 422 response type
  *
@@ -2113,6 +2115,8 @@ export type PATCH_DomainForwardsByZoneNameEnable_Response = PATCH_DomainForwards
  *
  * @path /v1/domain-forwards/{zone_name}/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByZoneNameEnable_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition

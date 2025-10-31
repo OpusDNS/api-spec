@@ -1549,13 +1549,13 @@ components:
           title: Updated On
           type: string
         wildcard:
+          default: false
           title: Wildcard
           type: boolean
         zone_name:
           title: Zone Name
           type: string
       required:
-      - wildcard
       - redirects
       - zone_name
       - request_protocol
@@ -1615,10 +1615,10 @@ components:
           title: Redirects
           type: array
         wildcard:
+          default: false
           title: Wildcard
           type: boolean
       required:
-      - wildcard
       - redirects
       title: DomainForwardRequest
       type: object
@@ -5108,7 +5108,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-31-135349
+  version: 2025-10-31-165358
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6777,18 +6777,22 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
-      - in: query
+      - description: Auto create zone if it doesn't exist
+        in: query
         name: auto_create_zone
         required: false
         schema:
           default: false
+          description: Auto create zone if it doesn't exist
           title: Auto Create Zone
           type: boolean
-      - in: query
+      - description: Wildcard domain forwarding
+        in: query
         name: wildcard
         required: false
         schema:
           default: false
+          description: Wildcard domain forwarding
           title: Wildcard
           type: boolean
       responses:

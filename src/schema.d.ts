@@ -2284,7 +2284,10 @@ export interface components {
              * Format: date-time
              */
             updated_on: Date;
-            /** Wildcard */
+            /**
+             * Wildcard
+             * @default false
+             */
             wildcard: boolean;
             /** Zone Name */
             zone_name: string;
@@ -2312,7 +2315,10 @@ export interface components {
         DomainForwardRequest: {
             /** Redirects */
             redirects: components["schemas"]["HttpRedirect"][];
-            /** Wildcard */
+            /**
+             * Wildcard
+             * @default false
+             */
             wildcard: boolean;
         };
         /** DomainForwardZone */
@@ -5969,7 +5975,9 @@ export interface operations {
     enable_domain_forward_v1_domain_forwards__zone_name__enable_patch: {
         parameters: {
             query?: {
+                /** @description Auto create zone if it doesn't exist */
                 auto_create_zone?: boolean;
+                /** @description Wildcard domain forwarding */
                 wildcard?: boolean;
             };
             header?: never;

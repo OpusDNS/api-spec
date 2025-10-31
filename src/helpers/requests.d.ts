@@ -1143,6 +1143,8 @@ export type PATCH_DomainForwardsZoneNameDisable_Request_Path = PATCH_DomainForwa
  *
  * @path /v1/domain-forwards/{zone_name}/enable
  * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsZoneNameEnable_Request_Query} - Query parameters type
  * @see {@link PATCH_DomainForwardsZoneNameEnable_Request_Path} - Path parameters type
@@ -1165,6 +1167,8 @@ export type PATCH_DomainForwardsZoneNameEnable_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/domain-forwards/{zone_name}/enable
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
  */
 export type PATCH_DomainForwardsZoneNameEnable_Request_Query = PATCH_DomainForwardsZoneNameEnable_Request['parameters']['query'];
 /**
