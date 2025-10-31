@@ -1563,6 +1563,50 @@ components:
       - created_on
       title: DomainForward
       type: object
+    DomainForwardPatchOp:
+      properties:
+        op:
+          $ref: '#/components/schemas/PatchOp'
+        redirect:
+          anyOf:
+          - $ref: '#/components/schemas/HttpRedirect'
+          - $ref: '#/components/schemas/HttpRedirectRemove'
+          title: Redirect
+        request_protocol:
+          $ref: '#/components/schemas/HttpProtocol'
+        zone_name:
+          title: Zone Name
+          type: string
+      required:
+      - op
+      - zone_name
+      - request_protocol
+      - redirect
+      title: DomainForwardPatchOp
+      type: object
+    DomainForwardPatchOps:
+      properties:
+        ops:
+          items:
+            $ref: '#/components/schemas/DomainForwardPatchOp'
+          title: Ops
+          type: array
+      required:
+      - ops
+      title: DomainForwardPatchOps
+      type: object
+    DomainForwardProtocols:
+      properties:
+        http:
+          anyOf:
+          - $ref: '#/components/schemas/ProtocolRedirects'
+          - type: 'null'
+        https:
+          anyOf:
+          - $ref: '#/components/schemas/ProtocolRedirects'
+          - type: 'null'
+      title: DomainForwardProtocols
+      type: object
     DomainForwardRequest:
       properties:
         redirects:
@@ -1577,6 +1621,26 @@ components:
       - wildcard
       - redirects
       title: DomainForwardRequest
+      type: object
+    DomainForwardZone:
+      properties:
+        enabled:
+          title: Enabled
+          type: boolean
+        protocols:
+          $ref: '#/components/schemas/DomainForwardProtocols'
+        wildcard:
+          title: Wildcard
+          type: boolean
+        zone_name:
+          title: Zone Name
+          type: string
+      required:
+      - zone_name
+      - wildcard
+      - enabled
+      - protocols
+      title: DomainForwardZone
       type: object
     DomainLifecycleBase:
       properties:
@@ -2544,6 +2608,20 @@ components:
       - target_path
       - redirect_code
       title: HttpRedirect
+      type: object
+    HttpRedirectRemove:
+      properties:
+        request_path:
+          title: Request Path
+          type: string
+        request_subdomain:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Request Subdomain
+      required:
+      - request_path
+      title: HttpRedirectRemove
       type: object
     IdnBase:
       properties:
@@ -3628,6 +3706,20 @@ components:
       - pagination
       title: Pagination[DnsZoneResponse]
       type: object
+    Pagination_DomainForwardZone_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/DomainForwardZone'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[DomainForwardZone]
+      type: object
     Pagination_DomainResponse_:
       properties:
         pagination:
@@ -3921,6 +4013,17 @@ components:
       - detail
       - status
       title: Problem
+      type: object
+    ProtocolRedirects:
+      properties:
+        redirects:
+          items:
+            $ref: '#/components/schemas/HttpRedirect'
+          title: Redirects
+          type: array
+      required:
+      - redirects
+      title: ProtocolRedirects
       type: object
     PublicAuthRequestForm:
       properties:
@@ -5005,7 +5108,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-10-29-163217
+  version: 2025-10-31-135349
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6483,6 +6586,159 @@ paths:
       summary: Update Zone Rrsets
       tags:
       - dns
+  /v1/domain-forwards:
+    get:
+      operationId: list_domain_forwards_v1_domain_forwards_get
+      parameters:
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/ZoneSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: dnssec_status
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/DnssecStatus'
+          - type: 'null'
+          title: Dnssec Status
+      - in: query
+        name: name
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      - in: query
+        name: search
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+      - in: query
+        name: suffix
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Suffix
+      - in: query
+        name: created_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created After
+      - in: query
+        name: created_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created Before
+      - in: query
+        name: updated_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Updated After
+      - in: query
+        name: updated_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Updated Before
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_DomainForwardZone_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: List Domain Forwards
+      tags:
+      - domain_forward
+    patch:
+      operationId: patch_redirects_v1_domain_forwards_patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainForwardPatchOps'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found
+                status: 404
+                title: Domain Forward Error
+                type: domain-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Patch Redirects
+      tags:
+      - domain_forward
   /v1/domain-forwards/{zone_name}/disable:
     patch:
       operationId: disable_domain_forward_v1_domain_forwards__zone_name__disable_patch
@@ -6527,6 +6783,13 @@ paths:
         schema:
           default: false
           title: Auto Create Zone
+          type: boolean
+      - in: query
+        name: wildcard
+        required: false
+        schema:
+          default: false
+          title: Wildcard
           type: boolean
       responses:
         '204':

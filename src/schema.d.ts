@@ -282,6 +282,24 @@ export interface paths {
         patch: operations["patch_zone_rrsets_v1_dns__zone_name__rrsets_patch"];
         trace?: never;
     };
+    "/v1/domain-forwards": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Domain Forwards */
+        get: operations["list_domain_forwards_v1_domain_forwards_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Patch Redirects */
+        patch: operations["patch_redirects_v1_domain_forwards_patch"];
+        trace?: never;
+    };
     "/v1/domain-forwards/{zone_name}/disable": {
         parameters: {
             query?: never;
@@ -2271,12 +2289,41 @@ export interface components {
             /** Zone Name */
             zone_name: string;
         };
+        /** DomainForwardPatchOp */
+        DomainForwardPatchOp: {
+            op: components["schemas"]["PatchOp"];
+            /** Redirect */
+            redirect: components["schemas"]["HttpRedirect"] | components["schemas"]["HttpRedirectRemove"];
+            request_protocol: components["schemas"]["HttpProtocol"];
+            /** Zone Name */
+            zone_name: string;
+        };
+        /** DomainForwardPatchOps */
+        DomainForwardPatchOps: {
+            /** Ops */
+            ops: components["schemas"]["DomainForwardPatchOp"][];
+        };
+        /** DomainForwardProtocols */
+        DomainForwardProtocols: {
+            http?: components["schemas"]["ProtocolRedirects"] | null;
+            https?: components["schemas"]["ProtocolRedirects"] | null;
+        };
         /** DomainForwardRequest */
         DomainForwardRequest: {
             /** Redirects */
             redirects: components["schemas"]["HttpRedirect"][];
             /** Wildcard */
             wildcard: boolean;
+        };
+        /** DomainForwardZone */
+        DomainForwardZone: {
+            /** Enabled */
+            enabled: boolean;
+            protocols: components["schemas"]["DomainForwardProtocols"];
+            /** Wildcard */
+            wildcard: boolean;
+            /** Zone Name */
+            zone_name: string;
         };
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
@@ -2913,6 +2960,13 @@ export interface components {
             target_protocol: components["schemas"]["HttpProtocol"];
             /** Target Subdomain */
             target_subdomain?: string | null;
+        };
+        /** HttpRedirectRemove */
+        HttpRedirectRemove: {
+            /** Request Path */
+            request_path: string;
+            /** Request Subdomain */
+            request_subdomain?: string | null;
         };
         /** IdnBase */
         IdnBase: {
@@ -3666,6 +3720,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["DnsZoneResponse"][];
         };
+        /** Pagination[DomainForwardZone] */
+        Pagination_DomainForwardZone_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["DomainForwardZone"][];
+        };
         /** Pagination[DomainResponse] */
         Pagination_DomainResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -3811,6 +3871,11 @@ export interface components {
             title: string;
             /** Problem type */
             type: string;
+        };
+        /** ProtocolRedirects */
+        ProtocolRedirects: {
+            /** Redirects */
+            redirects: components["schemas"]["HttpRedirect"][];
         };
         /** PublicAuthRequestForm */
         PublicAuthRequestForm: {
@@ -5782,6 +5847,95 @@ export interface operations {
             };
         };
     };
+    list_domain_forwards_v1_domain_forwards_get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["ZoneSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                dnssec_status?: components["schemas"]["DnssecStatus"] | null;
+                name?: string | null;
+                search?: string | null;
+                suffix?: string | null;
+                created_after?: Date | null;
+                created_before?: Date | null;
+                updated_after?: Date | null;
+                updated_before?: Date | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_DomainForwardZone_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    patch_redirects_v1_domain_forwards_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainForwardPatchOps"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found",
+                     *       "status": 404,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     disable_domain_forward_v1_domain_forwards__zone_name__disable_patch: {
         parameters: {
             query?: never;
@@ -5816,6 +5970,7 @@ export interface operations {
         parameters: {
             query?: {
                 auto_create_zone?: boolean;
+                wildcard?: boolean;
             };
             header?: never;
             path: {

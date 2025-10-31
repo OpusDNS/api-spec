@@ -1035,6 +1035,54 @@ export type DomainDnssecData = components['schemas']['DomainDnssecDataResponse']
  */
 export type DomainForward = components['schemas']['DomainForward'];
 /**
+ * DomainForwardPatchOp
+ *
+ * @remarks
+ * Type alias for the `DomainForwardPatchOp` OpenAPI schema.
+ * This type represents domainforwardpatchop data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardPatchOp();
+ * const item: DomainForwardPatchOp = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardPatchOp = components['schemas']['DomainForwardPatchOp'];
+/**
+ * DomainForwardPatchOps
+ *
+ * @remarks
+ * Type alias for the `DomainForwardPatchOps` OpenAPI schema.
+ * This type represents domainforwardpatchops data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardPatchOps();
+ * const item: DomainForwardPatchOps = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardPatchOps = components['schemas']['DomainForwardPatchOps'];
+/**
+ * DomainForwardProtocols
+ *
+ * @remarks
+ * Type alias for the `DomainForwardProtocols` OpenAPI schema.
+ * This type represents domainforwardprotocols data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardProtocols();
+ * const item: DomainForwardProtocols = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardProtocols = components['schemas']['DomainForwardProtocols'];
+/**
  * DomainForwardRequest
  *
  * @remarks
@@ -1050,6 +1098,22 @@ export type DomainForward = components['schemas']['DomainForward'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainForwardRequest = components['schemas']['DomainForwardRequest'];
+/**
+ * DomainForwardZone
+ *
+ * @remarks
+ * Type alias for the `DomainForwardZone` OpenAPI schema.
+ * This type represents domainforwardzone data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardZone();
+ * const item: DomainForwardZone = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardZone = components['schemas']['DomainForwardZone'];
 /**
  * DomainLifecycleBase
  *
@@ -1627,6 +1691,22 @@ export type HttpProtocol = components['schemas']['HttpProtocol'];
  */
 export type HttpRedirect = components['schemas']['HttpRedirect'];
 /**
+ * HttpRedirectRemove
+ *
+ * @remarks
+ * Type alias for the `HttpRedirectRemove` OpenAPI schema.
+ * This type represents httpredirectremove data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getHttpRedirectRemove();
+ * const item: HttpRedirectRemove = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type HttpRedirectRemove = components['schemas']['HttpRedirectRemove'];
+/**
  * IdnBase
  *
  * @remarks
@@ -2096,6 +2176,22 @@ export type Pagination_ContactSchema = components['schemas']['Pagination_Contact
  */
 export type Pagination_DnsZone = components['schemas']['Pagination_DnsZoneResponse_'];
 /**
+ * Pagination[DomainForwardZone]
+ *
+ * @remarks
+ * Type alias for the `Pagination_DomainForwardZone_` OpenAPI schema.
+ * This type represents pagination[domainforwardzone] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_DomainForwardZone();
+ * const item: Pagination_DomainForwardZone = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_DomainForwardZone = components['schemas']['Pagination_DomainForwardZone_'];
+/**
  * Pagination[DomainResponse]
  *
  * @remarks
@@ -2431,6 +2527,22 @@ export type PricingPeriod = components['schemas']['PricingPeriod'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Problem = components['schemas']['Problem'];
+/**
+ * ProtocolRedirects
+ *
+ * @remarks
+ * Type alias for the `ProtocolRedirects` OpenAPI schema.
+ * This type represents protocolredirects data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getProtocolRedirects();
+ * const item: ProtocolRedirects = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ProtocolRedirects = components['schemas']['ProtocolRedirects'];
 /**
  * PublicAuthRequestForm
  *

@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, HttpRedirect, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, Domain, EmailForwardAlias, EventResponse, Invoice, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, HttpRedirect, DomainForwardPatchOp, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardAlias, EventResponse, Invoice, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -332,6 +332,20 @@ export type NameserverArray = Nameserver[];
  */
 export type HttpRedirectArray = HttpRedirect[];
 /**
+ * DomainForwardPatchOp
+ *
+ * @remarks
+ * Array type for DomainForwardPatchOp objects. Used when the API returns a collection of DomainForwardPatchOp instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainForwardPatchOpArray = await api.getDomainForwardPatchOps();
+ * ```
+ *
+ * @see {@link DomainForwardPatchOp} - The individual DomainForwardPatchOp type definition
+ */
+export type DomainForwardPatchOpArray = DomainForwardPatchOp[];
+/**
  * DeletePolicyType
  *
  * @remarks
@@ -583,6 +597,20 @@ export type ContactSchemaArray = ContactSchema[];
  * @see {@link DnsZone} - The individual DnsZoneResponse type definition
  */
 export type DnsZoneArray = DnsZone[];
+/**
+ * DomainForwardZone
+ *
+ * @remarks
+ * Array type for DomainForwardZone objects. Used when the API returns a collection of DomainForwardZone instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainForwardZoneArray = await api.getDomainForwardZones();
+ * ```
+ *
+ * @see {@link DomainForwardZone} - The individual DomainForwardZone type definition
+ */
+export type DomainForwardZoneArray = DomainForwardZone[];
 /**
  * DomainResponse
  *

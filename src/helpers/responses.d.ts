@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, DomainForward, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, Pagination_DomainForwardZone, DomainForward, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for POST AuthToken endpoint
@@ -1660,6 +1660,116 @@ export type GET_DnsSummary_Response = GET_DnsSummary_Response_200;
  * @see {@link DnsZoneSummary} - The actual schema type definition
  */
 export type GET_DnsSummary_Response_200 = DnsZoneSummary
+
+/**
+ * Response types for GET DomainForwards endpoint
+ *
+ * List Domain Forwards
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwards endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link GET_DomainForwards_Response_200} - 200 response type
+ * @see {@link GET_DomainForwards_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwards_Response = GET_DomainForwards_Response_200 | GET_DomainForwards_Response_422;
+
+/**
+ * 200 response for GET DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link GET_DomainForwards_Response} - The main response type definition
+ * @see {@link Pagination_DomainForwardZone} - The actual schema type definition
+ */
+export type GET_DomainForwards_Response_200 = Pagination_DomainForwardZone
+
+/**
+ * 422 response for GET DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link GET_DomainForwards_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwards_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH DomainForwards endpoint
+ *
+ * Patch Redirects
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH DomainForwards endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link PATCH_DomainForwards_Response_404} - 404 response type
+ * @see {@link PATCH_DomainForwards_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_DomainForwards_Response = PATCH_DomainForwards_Response_404 | PATCH_DomainForwards_Response_422;
+
+/**
+ * 404 response for PATCH DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link PATCH_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwards_Response_404 = Problem
+
+/**
+ * 422 response for PATCH DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link PATCH_DomainForwards_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_DomainForwards_Response_422 = HTTPValidationError
 
 /**
  * Response types for DELETE DomainForwardsByZoneNameByRequestProtocol endpoint
