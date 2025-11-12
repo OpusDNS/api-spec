@@ -155,6 +155,8 @@ export const BILLING_TRANSACTION_ACTION = {
   RESTORE: "restore",
   TRADE: "trade",
   APPLICATION: "application",
+  SERVICE_FEE: "service_fee",
+  WALLET_TOP_UP: "wallet_top_up",
 } as const satisfies Record<string, BillingTransactionAction>;
 
 /**
@@ -184,7 +186,9 @@ export const BILLING_TRANSACTION_ACTION_VALUES = [
   'renew',
   'restore',
   'trade',
-  'application'
+  'application',
+  'service_fee',
+  'wallet_top_up'
 ] as const satisfies [string, ...string[]] | BillingTransactionAction[];
 
 /**
@@ -211,6 +215,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   ZONES: "zones",
   EMAIL_FORWARD: "email_forward",
   DOMAIN_FORWARD: "domain_forward",
+  ACCOUNT_WALLET: "account_wallet",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 /**
@@ -238,7 +243,8 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'domain',
   'zones',
   'email_forward',
-  'domain_forward'
+  'domain_forward',
+  'account_wallet'
 ] as const satisfies [string, ...string[]] | BillingTransactionProductType[];
 
 /**

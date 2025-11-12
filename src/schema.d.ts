@@ -1273,12 +1273,12 @@ export interface components {
          * BillingTransactionAction
          * @enum {string}
          */
-        BillingTransactionAction: "create" | "transfer" | "renew" | "restore" | "trade" | "application";
+        BillingTransactionAction: "create" | "transfer" | "renew" | "restore" | "trade" | "application" | "service_fee" | "wallet_top_up";
         /**
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet";
         /** BillingTransactionResponse */
         BillingTransactionResponse: {
             /** @description The action performed in the transaction */
