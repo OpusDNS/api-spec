@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, Pagination_DomainForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for POST AuthToken endpoint
@@ -1451,6 +1451,103 @@ export type POST_DnsByZoneNameDnssecEnable_Response_200 = DnsChanges
 export type POST_DnsByZoneNameDnssecEnable_Response_422 = HTTPValidationError
 
 /**
+ * Response types for GET DnsByZoneNameDomainForwards endpoint
+ *
+ * List domain forwards for a zone
+ * Retrieves all domain forwards configured for the specified DNS zone, including subdomains.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DnsByZoneNameDomainForwards endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/domain-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response_200} - 200 response type
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response_401} - 401 response type
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response_403} - 403 response type
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DnsByZoneNameDomainForwards_Response = GET_DnsByZoneNameDomainForwards_Response_200 | GET_DnsByZoneNameDomainForwards_Response_401 | GET_DnsByZoneNameDomainForwards_Response_403 | GET_DnsByZoneNameDomainForwards_Response_422;
+
+/**
+ * 200 response for GET DnsByZoneNameDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DnsByZoneNameDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/domain-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response} - The main response type definition
+ * @see {@link DomainForwardZone} - The actual schema type definition
+ */
+export type GET_DnsByZoneNameDomainForwards_Response_200 = DomainForwardZone
+
+/**
+ * 401 response for GET DnsByZoneNameDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DnsByZoneNameDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/domain-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DnsByZoneNameDomainForwards_Response_401 = Problem
+
+/**
+ * 403 response for GET DnsByZoneNameDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DnsByZoneNameDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/domain-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DnsByZoneNameDomainForwards_Response_403 = Problem
+
+/**
+ * 422 response for GET DnsByZoneNameDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DnsByZoneNameDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/domain-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsByZoneNameDomainForwards_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DnsByZoneNameDomainForwards_Response_422 = HTTPValidationError
+
+/**
  * Response types for PATCH DnsByZoneNameRecords endpoint
  *
  * Patch Zone Records
@@ -1623,6 +1720,98 @@ export type PUT_DnsByZoneNameRrsets_Response_400 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_DnsByZoneNameRrsets_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DnsDomainForwards endpoint
+ *
+ * List domain forwards by zone
+ * Retrieves a paginated list of domain forwards grouped by DNS zones.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DnsDomainForwards endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/dns/domain-forwards
+ *
+ * @see {@link GET_DnsDomainForwards_Response_200} - 200 response type
+ * @see {@link GET_DnsDomainForwards_Response_401} - 401 response type
+ * @see {@link GET_DnsDomainForwards_Response_403} - 403 response type
+ * @see {@link GET_DnsDomainForwards_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DnsDomainForwards_Response = GET_DnsDomainForwards_Response_200 | GET_DnsDomainForwards_Response_401 | GET_DnsDomainForwards_Response_403 | GET_DnsDomainForwards_Response_422;
+
+/**
+ * 200 response for GET DnsDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DnsDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/domain-forwards
+ *
+ * @see {@link GET_DnsDomainForwards_Response} - The main response type definition
+ * @see {@link Pagination_DomainForwardZone} - The actual schema type definition
+ */
+export type GET_DnsDomainForwards_Response_200 = Pagination_DomainForwardZone
+
+/**
+ * 401 response for GET DnsDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DnsDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/domain-forwards
+ *
+ * @see {@link GET_DnsDomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DnsDomainForwards_Response_401 = Problem
+
+/**
+ * 403 response for GET DnsDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DnsDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/domain-forwards
+ *
+ * @see {@link GET_DnsDomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DnsDomainForwards_Response_403 = Problem
+
+/**
+ * 422 response for GET DnsDomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DnsDomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/domain-forwards
+ *
+ * @see {@link GET_DnsDomainForwards_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DnsDomainForwards_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DnsSummary endpoint

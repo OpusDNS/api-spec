@@ -671,6 +671,45 @@ export type POST_Dns_Request = {
 export type POST_Dns_Request_Body = POST_Dns_Request['requestBody'];
 
 /**
+ * Request type for GET DnsDomainForwards endpoint
+ *
+ * List domain forwards by zone
+ * Retrieves a paginated list of domain forwards grouped by DNS zones.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DnsDomainForwards endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/dns/domain-forwards
+ *
+ * @see {@link GET_DnsDomainForwards_Request_Query} - Query parameters type
+ * @see {@link GET_DnsDomainForwards_Request_Path} - Path parameters type
+ * @see {@link GET_DnsDomainForwards_Request_Body} - Request body type
+ */
+export type GET_DnsDomainForwards_Request = {
+  parameters: {
+    query: operations['list_domain_forwards_by_zone_v1_dns_domain_forwards_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/dns/domain-forwards
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/dns/domain-forwards endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/dns/domain-forwards
+ */
+export type GET_DnsDomainForwards_Request_Query = GET_DnsDomainForwards_Request['parameters']['query'];
+
+/**
  * Request type for GET DnsSummary endpoint
  *
  * Get Zones Summary
@@ -851,6 +890,47 @@ export type POST_DnsZoneNameDnssecEnable_Request = {
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type POST_DnsZoneNameDnssecEnable_Request_Path = POST_DnsZoneNameDnssecEnable_Request['parameters']['path'];
+
+/**
+ * Request type for GET DnsZoneNameDomainForwards endpoint
+ *
+ * List domain forwards for a zone
+ * Retrieves all domain forwards configured for the specified DNS zone, including subdomains.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DnsZoneNameDomainForwards endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/dns/{zone_name}/domain-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsZoneNameDomainForwards_Request_Query} - Query parameters type
+ * @see {@link GET_DnsZoneNameDomainForwards_Request_Path} - Path parameters type
+ * @see {@link GET_DnsZoneNameDomainForwards_Request_Body} - Request body type
+ */
+export type GET_DnsZoneNameDomainForwards_Request = {
+  parameters: {
+    path: operations['list_zone_domain_forwards_v1_dns__zone_name__domain_forwards_get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/dns/{zone_name}/domain-forwards
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/dns/{zone_name}/domain-forwards endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/dns/{zone_name}/domain-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ */
+export type GET_DnsZoneNameDomainForwards_Request_Path = GET_DnsZoneNameDomainForwards_Request['parameters']['path'];
 
 /**
  * Request type for PATCH DnsZoneNameRecords endpoint

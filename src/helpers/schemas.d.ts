@@ -1147,6 +1147,22 @@ export type DomainForwardSetRequest = components['schemas']['DomainForwardSetReq
  */
 export type DomainForwardSet = components['schemas']['DomainForwardSetResponse'];
 /**
+ * DomainForwardZone
+ *
+ * @remarks
+ * Type alias for the `DomainForwardZone` OpenAPI schema.
+ * This type represents domainforwardzone data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardZone();
+ * const item: DomainForwardZone = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardZone = components['schemas']['DomainForwardZone'];
+/**
  * DomainLifecycleBase
  *
  * @remarks
@@ -2239,6 +2255,22 @@ export type Pagination_ContactSchema = components['schemas']['Pagination_Contact
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_DnsZone = components['schemas']['Pagination_DnsZoneResponse_'];
+/**
+ * Pagination[DomainForwardZone]
+ *
+ * @remarks
+ * Type alias for the `Pagination_DomainForwardZone_` OpenAPI schema.
+ * This type represents pagination[domainforwardzone] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_DomainForwardZone();
+ * const item: Pagination_DomainForwardZone = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_DomainForwardZone = components['schemas']['Pagination_DomainForwardZone_'];
 /**
  * Pagination[DomainForward]
  *

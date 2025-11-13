@@ -76,6 +76,7 @@ import { DomainForwardProtocolSet } from './schemas';
 import { DomainForwardRequest } from './schemas';
 import { DomainForwardSetRequest } from './schemas';
 import { DomainForwardSet } from './schemas';
+import { DomainForwardZone } from './schemas';
 import { DomainLifecycleBase } from './schemas';
 import { DomainNameParts } from './schemas';
 import { DomainPeriod } from './schemas';
@@ -6671,30 +6672,6 @@ export const KEYS_DOMAIN_FORWARD_PATCH_OPS = [
 ] as const satisfies (keyof DomainForwardPatchOps)[];
 
 /**
- * Created On
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `created_on` property of DomainForwardProtocolSetRequest objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforwardprotocolsetrequest[KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_CREATED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_CREATED_ON;
- * const value = domainforwardprotocolsetrequest[propertyName];
- * ```
- *
- * @see {@link DomainForwardProtocolSetRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_CREATED_ON = 'created_on' as keyof DomainForwardProtocolSetRequest;
-/**
  * Redirects
  *
  *
@@ -6719,30 +6696,6 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_CREATED_ON = 'created_on' a
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST} - Array of all keys for this type
  */
 export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS = 'redirects' as keyof DomainForwardProtocolSetRequest;
-/**
- * Updated On
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `updated_on` property of DomainForwardProtocolSetRequest objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforwardprotocolsetrequest[KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_UPDATED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_UPDATED_ON;
- * const value = domainforwardprotocolsetrequest[propertyName];
- * ```
- *
- * @see {@link DomainForwardProtocolSetRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_UPDATED_ON = 'updated_on' as keyof DomainForwardProtocolSetRequest;
 /**
  * Wildcard
  *
@@ -6789,9 +6742,7 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD = 'wildcard' as ke
  * @see {@link DomainForwardProtocolSetRequest} - The TypeScript type definition
  */
 export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST = [
-  KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_CREATED_ON,
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS,
-  KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_UPDATED_ON,
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD,
 ] as const satisfies (keyof DomainForwardProtocolSetRequest)[];
 
@@ -7276,6 +7227,108 @@ export const KEYS_DOMAIN_FORWARD_SET = [
   KEY_DOMAIN_FORWARD_SET_UPDATED_ON,
   KEY_DOMAIN_FORWARD_SET_WILDCARD,
 ] as const satisfies (keyof DomainForwardSet)[];
+
+/**
+ * Domain Forwards
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_forwards` property of DomainForwardZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardzone[KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS;
+ * const value = domainforwardzone[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardZone} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_ZONE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS = 'domain_forwards' as keyof DomainForwardZone;
+/**
+ * Zone Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_id` property of DomainForwardZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardzone[KEY_DOMAIN_FORWARD_ZONE_ZONE_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_ZONE_ZONE_ID;
+ * const value = domainforwardzone[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardZone} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_ZONE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_ZONE_ZONE_ID = 'zone_id' as keyof DomainForwardZone;
+/**
+ * Zone Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_name` property of DomainForwardZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardzone[KEY_DOMAIN_FORWARD_ZONE_ZONE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_ZONE_ZONE_NAME;
+ * const value = domainforwardzone[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardZone} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_ZONE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_ZONE_ZONE_NAME = 'zone_name' as keyof DomainForwardZone;
+
+/**
+ * Array of all DomainForwardZone property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardZone objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_ZONE) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardzone[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_ZONE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardZone} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_ZONE = [
+  KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS,
+  KEY_DOMAIN_FORWARD_ZONE_ZONE_ID,
+  KEY_DOMAIN_FORWARD_ZONE_ZONE_NAME,
+] as const satisfies (keyof DomainForwardZone)[];
 
 /**
  * Add Grace Period
