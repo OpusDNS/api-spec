@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, Pagination_DomainForwardZone, DomainForward, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for POST AuthToken endpoint
@@ -1664,7 +1664,8 @@ export type GET_DnsSummary_Response_200 = DnsZoneSummary
 /**
  * Response types for GET DomainForwards endpoint
  *
- * List Domain Forwards
+ * List domain forwards
+ * Retrieves a paginated list of domain forwards for the organization
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwards endpoint.
@@ -1676,11 +1677,13 @@ export type GET_DnsSummary_Response_200 = DnsZoneSummary
  * @path /v1/domain-forwards
  *
  * @see {@link GET_DomainForwards_Response_200} - 200 response type
+ * @see {@link GET_DomainForwards_Response_401} - 401 response type
+ * @see {@link GET_DomainForwards_Response_403} - 403 response type
  * @see {@link GET_DomainForwards_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwards_Response = GET_DomainForwards_Response_200 | GET_DomainForwards_Response_422;
+export type GET_DomainForwards_Response = GET_DomainForwards_Response_200 | GET_DomainForwards_Response_401 | GET_DomainForwards_Response_403 | GET_DomainForwards_Response_422;
 
 /**
  * 200 response for GET DomainForwards endpoint
@@ -1695,9 +1698,43 @@ export type GET_DomainForwards_Response = GET_DomainForwards_Response_200 | GET_
  * @path /v1/domain-forwards
  *
  * @see {@link GET_DomainForwards_Response} - The main response type definition
- * @see {@link Pagination_DomainForwardZone} - The actual schema type definition
+ * @see {@link Pagination_DomainForward} - The actual schema type definition
  */
-export type GET_DomainForwards_Response_200 = Pagination_DomainForwardZone
+export type GET_DomainForwards_Response_200 = Pagination_DomainForward
+
+/**
+ * 401 response for GET DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link GET_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwards_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link GET_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwards_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwards endpoint
@@ -1719,7 +1756,8 @@ export type GET_DomainForwards_Response_422 = HTTPValidationError
 /**
  * Response types for PATCH DomainForwards endpoint
  *
- * Patch Redirects
+ * Patch domain forward redirects
+ * Applies patch operations to update or remove redirects across hostnames and protocols. Raises an error if the domain forward or domain forward set does not exist.
  *
  * @remarks
  * This type defines all possible response structures for the PATCH DomainForwards endpoint.
@@ -1730,12 +1768,48 @@ export type GET_DomainForwards_Response_422 = HTTPValidationError
  *
  * @path /v1/domain-forwards
  *
+ * @see {@link PATCH_DomainForwards_Response_401} - 401 response type
+ * @see {@link PATCH_DomainForwards_Response_403} - 403 response type
  * @see {@link PATCH_DomainForwards_Response_404} - 404 response type
  * @see {@link PATCH_DomainForwards_Response_422} - 422 response type
  *
 
  */
-export type PATCH_DomainForwards_Response = PATCH_DomainForwards_Response_404 | PATCH_DomainForwards_Response_422;
+export type PATCH_DomainForwards_Response = PATCH_DomainForwards_Response_401 | PATCH_DomainForwards_Response_403 | PATCH_DomainForwards_Response_404 | PATCH_DomainForwards_Response_422;
+
+/**
+ * 401 response for PATCH DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link PATCH_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwards_Response_401 = Problem
+
+/**
+ * 403 response for PATCH DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PATCH DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link PATCH_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwards_Response_403 = Problem
 
 /**
  * 404 response for PATCH DomainForwards endpoint
@@ -1772,356 +1846,987 @@ export type PATCH_DomainForwards_Response_404 = Problem
 export type PATCH_DomainForwards_Response_422 = HTTPValidationError
 
 /**
- * Response types for DELETE DomainForwardsByZoneNameByRequestProtocol endpoint
+ * Response types for DELETE DomainForwardsByHostname endpoint
  *
- * Delete Domain Forward
+ * Delete a domain forward
+ * Deletes the domain forward configuration for the specified hostname
  *
  * @remarks
- * This type defines all possible response structures for the DELETE DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * This type defines all possible response structures for the DELETE DomainForwardsByHostname endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_404} - 404 response type
- * @see {@link DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_422} - 422 response type
+ * @see {@link DELETE_DomainForwardsByHostname_Response_401} - 401 response type
+ * @see {@link DELETE_DomainForwardsByHostname_Response_403} - 403 response type
+ * @see {@link DELETE_DomainForwardsByHostname_Response_404} - 404 response type
+ * @see {@link DELETE_DomainForwardsByHostname_Response_422} - 422 response type
  *
 
  */
-export type DELETE_DomainForwardsByZoneNameByRequestProtocol_Response = DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_404 | DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_422;
+export type DELETE_DomainForwardsByHostname_Response = DELETE_DomainForwardsByHostname_Response_401 | DELETE_DomainForwardsByHostname_Response_403 | DELETE_DomainForwardsByHostname_Response_404 | DELETE_DomainForwardsByHostname_Response_422;
 
 /**
- * 404 response for DELETE DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 401 response for DELETE DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_DomainForwardsByHostname_Response_401 = Problem
+
+/**
+ * 403 response for DELETE DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the DELETE DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_DomainForwardsByHostname_Response_403 = Problem
+
+/**
+ * 404 response for DELETE DomainForwardsByHostname endpoint
  *
  * @remarks
  * This type defines the response structure for the 404 status code
- * of the DELETE DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the DELETE DomainForwardsByHostname endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link DELETE_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_404 = Problem
+export type DELETE_DomainForwardsByHostname_Response_404 = Problem
 
 /**
- * 422 response for DELETE DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 422 response for DELETE DomainForwardsByHostname endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the DELETE DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the DELETE DomainForwardsByHostname endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link DELETE_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type DELETE_DomainForwardsByZoneNameByRequestProtocol_Response_422 = HTTPValidationError
+export type DELETE_DomainForwardsByHostname_Response_422 = HTTPValidationError
 
 /**
- * Response types for GET DomainForwardsByZoneNameByRequestProtocol endpoint
+ * Response types for GET DomainForwardsByHostname endpoint
  *
- * Get Domain Forward
+ * Get a domain forward
+ * Retrieves the domain forward configuration for the specified hostname
  *
  * @remarks
- * This type defines all possible response structures for the GET DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * This type defines all possible response structures for the GET DomainForwardsByHostname endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link GET_DomainForwardsByZoneNameByRequestProtocol_Response_200} - 200 response type
- * @see {@link GET_DomainForwardsByZoneNameByRequestProtocol_Response_422} - 422 response type
+ * @see {@link GET_DomainForwardsByHostname_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsByHostname_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsByHostname_Response_403} - 403 response type
+ * @see {@link GET_DomainForwardsByHostname_Response_404} - 404 response type
+ * @see {@link GET_DomainForwardsByHostname_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsByZoneNameByRequestProtocol_Response = GET_DomainForwardsByZoneNameByRequestProtocol_Response_200 | GET_DomainForwardsByZoneNameByRequestProtocol_Response_422;
+export type GET_DomainForwardsByHostname_Response = GET_DomainForwardsByHostname_Response_200 | GET_DomainForwardsByHostname_Response_401 | GET_DomainForwardsByHostname_Response_403 | GET_DomainForwardsByHostname_Response_404 | GET_DomainForwardsByHostname_Response_422;
 
 /**
- * 200 response for GET DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 200 response for GET DomainForwardsByHostname endpoint
  *
  * @remarks
  * This type defines the response structure for the 200 status code
- * of the GET DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the GET DomainForwardsByHostname endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link GET_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link DomainForward} - The actual schema type definition
  */
-export type GET_DomainForwardsByZoneNameByRequestProtocol_Response_200 = DomainForward
+export type GET_DomainForwardsByHostname_Response_200 = DomainForward
 
 /**
- * 422 response for GET DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 401 response for GET DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsByHostname_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsByHostname_Response_403 = Problem
+
+/**
+ * 404 response for GET DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsByHostname_Response_404 = Problem
+
+/**
+ * 422 response for GET DomainForwardsByHostname endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the GET DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the GET DomainForwardsByHostname endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link GET_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type GET_DomainForwardsByZoneNameByRequestProtocol_Response_422 = HTTPValidationError
+export type GET_DomainForwardsByHostname_Response_422 = HTTPValidationError
 
 /**
- * Response types for POST DomainForwardsByZoneNameByRequestProtocol endpoint
+ * Response types for POST DomainForwardsByHostname endpoint
  *
- * Create Domain Forward
+ * Create a domain forward
+ * Creates a new domain forward configuration for the specified hostname
  *
  * @remarks
- * This type defines all possible response structures for the POST DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * This type defines all possible response structures for the POST DomainForwardsByHostname endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link POST_DomainForwardsByZoneNameByRequestProtocol_Response_201} - 201 response type
- * @see {@link POST_DomainForwardsByZoneNameByRequestProtocol_Response_409} - 409 response type
- * @see {@link POST_DomainForwardsByZoneNameByRequestProtocol_Response_422} - 422 response type
+ * @see {@link POST_DomainForwardsByHostname_Response_201} - 201 response type
+ * @see {@link POST_DomainForwardsByHostname_Response_401} - 401 response type
+ * @see {@link POST_DomainForwardsByHostname_Response_403} - 403 response type
+ * @see {@link POST_DomainForwardsByHostname_Response_409} - 409 response type
+ * @see {@link POST_DomainForwardsByHostname_Response_422} - 422 response type
  *
 
  */
-export type POST_DomainForwardsByZoneNameByRequestProtocol_Response = POST_DomainForwardsByZoneNameByRequestProtocol_Response_201 | POST_DomainForwardsByZoneNameByRequestProtocol_Response_409 | POST_DomainForwardsByZoneNameByRequestProtocol_Response_422;
+export type POST_DomainForwardsByHostname_Response = POST_DomainForwardsByHostname_Response_201 | POST_DomainForwardsByHostname_Response_401 | POST_DomainForwardsByHostname_Response_403 | POST_DomainForwardsByHostname_Response_409 | POST_DomainForwardsByHostname_Response_422;
 
 /**
- * 201 response for POST DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 201 response for POST DomainForwardsByHostname endpoint
  *
  * @remarks
  * This type defines the response structure for the 201 status code
- * of the POST DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the POST DomainForwardsByHostname endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link POST_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link DomainForward} - The actual schema type definition
  */
-export type POST_DomainForwardsByZoneNameByRequestProtocol_Response_201 = DomainForward
+export type POST_DomainForwardsByHostname_Response_201 = DomainForward
 
 /**
- * 409 response for POST DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 401 response for POST DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostname_Response_401 = Problem
+
+/**
+ * 403 response for POST DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostname_Response_403 = Problem
+
+/**
+ * 409 response for POST DomainForwardsByHostname endpoint
  *
  * @remarks
  * This type defines the response structure for the 409 status code
- * of the POST DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the POST DomainForwardsByHostname endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link POST_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type POST_DomainForwardsByZoneNameByRequestProtocol_Response_409 = Problem
+export type POST_DomainForwardsByHostname_Response_409 = Problem
 
 /**
- * 422 response for POST DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 422 response for POST DomainForwardsByHostname endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the POST DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the POST DomainForwardsByHostname endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link POST_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type POST_DomainForwardsByZoneNameByRequestProtocol_Response_422 = HTTPValidationError
+export type POST_DomainForwardsByHostname_Response_422 = HTTPValidationError
 
 /**
- * Response types for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
+ * Response types for DELETE DomainForwardsByHostnameByProtocol endpoint
  *
- * Update Domain Forward
+ * Delete domain forward set
+ * Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
  *
  * @remarks
- * This type defines all possible response structures for the PUT DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * This type defines all possible response structures for the DELETE DomainForwardsByHostnameByProtocol endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200} - 200 response type
- * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response_404} - 404 response type
- * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response_422} - 422 response type
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response_403} - 403 response type
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response_404} - 404 response type
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response_422} - 422 response type
  *
 
  */
-export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response = PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200 | PUT_DomainForwardsByZoneNameByRequestProtocol_Response_404 | PUT_DomainForwardsByZoneNameByRequestProtocol_Response_422;
+export type DELETE_DomainForwardsByHostnameByProtocol_Response = DELETE_DomainForwardsByHostnameByProtocol_Response_401 | DELETE_DomainForwardsByHostnameByProtocol_Response_403 | DELETE_DomainForwardsByHostnameByProtocol_Response_404 | DELETE_DomainForwardsByHostnameByProtocol_Response_422;
 
 /**
- * 200 response for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 401 response for DELETE DomainForwardsByHostnameByProtocol endpoint
  *
  * @remarks
- * This type defines the response structure for the 200 status code
- * of the PUT DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * This type defines the response structure for the 401 status code
+ * of the DELETE DomainForwardsByHostnameByProtocol endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
- * @see {@link DomainForward} - The actual schema type definition
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
  */
-export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response_200 = DomainForward
+export type DELETE_DomainForwardsByHostnameByProtocol_Response_401 = Problem
 
 /**
- * 404 response for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 403 response for DELETE DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the DELETE DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_DomainForwardsByHostnameByProtocol_Response_403 = Problem
+
+/**
+ * 404 response for DELETE DomainForwardsByHostnameByProtocol endpoint
  *
  * @remarks
  * This type defines the response structure for the 404 status code
- * of the PUT DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the DELETE DomainForwardsByHostnameByProtocol endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response_404 = Problem
+export type DELETE_DomainForwardsByHostnameByProtocol_Response_404 = Problem
 
 /**
- * 422 response for PUT DomainForwardsByZoneNameByRequestProtocol endpoint
+ * 422 response for DELETE DomainForwardsByHostnameByProtocol endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the PUT DomainForwardsByZoneNameByRequestProtocol endpoint.
+ * of the DELETE DomainForwardsByHostnameByProtocol endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PUT_DomainForwardsByZoneNameByRequestProtocol_Response} - The main response type definition
+ * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type PUT_DomainForwardsByZoneNameByRequestProtocol_Response_422 = HTTPValidationError
+export type DELETE_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidationError
 
 /**
- * Response types for PATCH DomainForwardsByZoneNameDisable endpoint
+ * Response types for GET DomainForwardsByHostnameByProtocol endpoint
  *
- * Disable Domain Forward
+ * Get domain forward set
+ * Retrieves all redirects for a specific protocol (HTTP or HTTPS) for the specified hostname
  *
  * @remarks
- * This type defines all possible response structures for the PATCH DomainForwardsByZoneNameDisable endpoint.
+ * This type defines all possible response structures for the GET DomainForwardsByHostnameByProtocol endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PATCH_DomainForwardsByZoneNameDisable_Response_422} - 422 response type
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response_403} - 403 response type
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response_404} - 404 response type
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response_422} - 422 response type
  *
 
  */
-export type PATCH_DomainForwardsByZoneNameDisable_Response = PATCH_DomainForwardsByZoneNameDisable_Response_422;
+export type GET_DomainForwardsByHostnameByProtocol_Response = GET_DomainForwardsByHostnameByProtocol_Response_200 | GET_DomainForwardsByHostnameByProtocol_Response_401 | GET_DomainForwardsByHostnameByProtocol_Response_403 | GET_DomainForwardsByHostnameByProtocol_Response_404 | GET_DomainForwardsByHostnameByProtocol_Response_422;
 
 /**
- * 422 response for PATCH DomainForwardsByZoneNameDisable endpoint
+ * 200 response for GET DomainForwardsByHostnameByProtocol endpoint
  *
  * @remarks
- * This type defines the response structure for the 422 status code
- * of the PATCH DomainForwardsByZoneNameDisable endpoint.
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsByHostnameByProtocol endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PATCH_DomainForwardsByZoneNameDisable_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link DomainForwardSet} - The actual schema type definition
  */
-export type PATCH_DomainForwardsByZoneNameDisable_Response_422 = HTTPValidationError
+export type GET_DomainForwardsByHostnameByProtocol_Response_200 = DomainForwardSet
 
 /**
- * Response types for PATCH DomainForwardsByZoneNameEnable endpoint
- *
- * Enable Domain Forward
+ * 401 response for GET DomainForwardsByHostnameByProtocol endpoint
  *
  * @remarks
- * This type defines all possible response structures for the PATCH DomainForwardsByZoneNameEnable endpoint.
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsByHostnameByProtocol_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsByHostnameByProtocol_Response_403 = Problem
+
+/**
+ * 404 response for GET DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsByHostnameByProtocol_Response_404 = Problem
+
+/**
+ * 422 response for GET DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST DomainForwardsByHostnameByProtocol endpoint
+ *
+ * Create domain forward set
+ * Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainForwardsByHostnameByProtocol endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param wildcard (query) - Wildcard domain forwarding
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PATCH_DomainForwardsByZoneNameEnable_Response_422} - 422 response type
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_201} - 201 response type
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_403} - 403 response type
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_404} - 404 response type
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_409} - 409 response type
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_422} - 422 response type
  *
 
  */
-export type PATCH_DomainForwardsByZoneNameEnable_Response = PATCH_DomainForwardsByZoneNameEnable_Response_422;
+export type POST_DomainForwardsByHostnameByProtocol_Response = POST_DomainForwardsByHostnameByProtocol_Response_201 | POST_DomainForwardsByHostnameByProtocol_Response_401 | POST_DomainForwardsByHostnameByProtocol_Response_403 | POST_DomainForwardsByHostnameByProtocol_Response_404 | POST_DomainForwardsByHostnameByProtocol_Response_409 | POST_DomainForwardsByHostnameByProtocol_Response_422;
 
 /**
- * 422 response for PATCH DomainForwardsByZoneNameEnable endpoint
+ * 201 response for POST DomainForwardsByHostnameByProtocol endpoint
  *
  * @remarks
- * This type defines the response structure for the 422 status code
- * of the PATCH DomainForwardsByZoneNameEnable endpoint.
+ * This type defines the response structure for the 201 status code
+ * of the POST DomainForwardsByHostnameByProtocol endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/domain-forwards/{zone_name}/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param wildcard (query) - Wildcard domain forwarding
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PATCH_DomainForwardsByZoneNameEnable_Response} - The main response type definition
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link DomainForwardSet} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostnameByProtocol_Response_201 = DomainForwardSet
+
+/**
+ * 401 response for POST DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostnameByProtocol_Response_401 = Problem
+
+/**
+ * 403 response for POST DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostnameByProtocol_Response_403 = Problem
+
+/**
+ * 404 response for POST DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostnameByProtocol_Response_404 = Problem
+
+/**
+ * 409 response for POST DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostnameByProtocol_Response_409 = Problem
+
+/**
+ * 422 response for POST DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type PATCH_DomainForwardsByZoneNameEnable_Response_422 = HTTPValidationError
+export type POST_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PUT DomainForwardsByHostnameByProtocol endpoint
+ *
+ * Update domain forward set
+ * Updates an existing domain forward set for a specific protocol (HTTP or HTTPS). All existing redirects for this protocol are replaced with the provided redirects. Raises an error if the set does not exist.
+ *
+ * @remarks
+ * This type defines all possible response structures for the PUT DomainForwardsByHostnameByProtocol endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response_200} - 200 response type
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response_403} - 403 response type
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response_404} - 404 response type
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response_422} - 422 response type
+ *
+
+ */
+export type PUT_DomainForwardsByHostnameByProtocol_Response = PUT_DomainForwardsByHostnameByProtocol_Response_200 | PUT_DomainForwardsByHostnameByProtocol_Response_401 | PUT_DomainForwardsByHostnameByProtocol_Response_403 | PUT_DomainForwardsByHostnameByProtocol_Response_404 | PUT_DomainForwardsByHostnameByProtocol_Response_422;
+
+/**
+ * 200 response for PUT DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PUT DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link DomainForwardSet} - The actual schema type definition
+ */
+export type PUT_DomainForwardsByHostnameByProtocol_Response_200 = DomainForwardSet
+
+/**
+ * 401 response for PUT DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PUT DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PUT_DomainForwardsByHostnameByProtocol_Response_401 = Problem
+
+/**
+ * 403 response for PUT DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PUT DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PUT_DomainForwardsByHostnameByProtocol_Response_403 = Problem
+
+/**
+ * 404 response for PUT DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PUT DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PUT_DomainForwardsByHostnameByProtocol_Response_404 = Problem
+
+/**
+ * 422 response for PUT DomainForwardsByHostnameByProtocol endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PUT DomainForwardsByHostnameByProtocol endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PUT_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH DomainForwardsByHostnameDisable endpoint
+ *
+ * Disable domain forward
+ * Disables domain forwarding by removing DNS records. The domain forward configuration is preserved but disabled.
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH DomainForwardsByHostnameDisable endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/disable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameDisable_Response_401} - 401 response type
+ * @see {@link PATCH_DomainForwardsByHostnameDisable_Response_403} - 403 response type
+ * @see {@link PATCH_DomainForwardsByHostnameDisable_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_DomainForwardsByHostnameDisable_Response = PATCH_DomainForwardsByHostnameDisable_Response_401 | PATCH_DomainForwardsByHostnameDisable_Response_403 | PATCH_DomainForwardsByHostnameDisable_Response_422;
+
+/**
+ * 401 response for PATCH DomainForwardsByHostnameDisable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH DomainForwardsByHostnameDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/disable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameDisable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwardsByHostnameDisable_Response_401 = Problem
+
+/**
+ * 403 response for PATCH DomainForwardsByHostnameDisable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PATCH DomainForwardsByHostnameDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/disable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameDisable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwardsByHostnameDisable_Response_403 = Problem
+
+/**
+ * 422 response for PATCH DomainForwardsByHostnameDisable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH DomainForwardsByHostnameDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/disable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameDisable_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_DomainForwardsByHostnameDisable_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH DomainForwardsByHostnameEnable endpoint
+ *
+ * Enable domain forward
+ * Enables domain forwarding by creating necessary DNS records. Optionally auto-creates the zone and domain forward if they don't exist.
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH DomainForwardsByHostnameEnable endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/enable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_400} - 400 response type
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_401} - 401 response type
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_403} - 403 response type
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_DomainForwardsByHostnameEnable_Response = PATCH_DomainForwardsByHostnameEnable_Response_400 | PATCH_DomainForwardsByHostnameEnable_Response_401 | PATCH_DomainForwardsByHostnameEnable_Response_403 | PATCH_DomainForwardsByHostnameEnable_Response_422;
+
+/**
+ * 400 response for PATCH DomainForwardsByHostnameEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the PATCH DomainForwardsByHostnameEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/enable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwardsByHostnameEnable_Response_400 = Problem
+
+/**
+ * 401 response for PATCH DomainForwardsByHostnameEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH DomainForwardsByHostnameEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/enable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwardsByHostnameEnable_Response_401 = Problem
+
+/**
+ * 403 response for PATCH DomainForwardsByHostnameEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the PATCH DomainForwardsByHostnameEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/enable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_DomainForwardsByHostnameEnable_Response_403 = Problem
+
+/**
+ * 422 response for PATCH DomainForwardsByHostnameEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH DomainForwardsByHostnameEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}/enable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
+ *
+ * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_DomainForwardsByHostnameEnable_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainSearchSuggest endpoint

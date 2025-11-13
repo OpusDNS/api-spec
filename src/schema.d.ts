@@ -289,18 +289,52 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Domain Forwards */
+        /**
+         * List domain forwards
+         * @description Retrieves a paginated list of domain forwards for the organization
+         */
         get: operations["list_domain_forwards_v1_domain_forwards_get"];
         put?: never;
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        /** Patch Redirects */
+        /**
+         * Patch domain forward redirects
+         * @description Applies patch operations to update or remove redirects across hostnames and protocols. Raises an error if the domain forward or domain forward set does not exist.
+         */
         patch: operations["patch_redirects_v1_domain_forwards_patch"];
         trace?: never;
     };
-    "/v1/domain-forwards/{zone_name}/disable": {
+    "/v1/domain-forwards/{hostname}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get a domain forward
+         * @description Retrieves the domain forward configuration for the specified hostname
+         */
+        get: operations["get_domain_forward_v1_domain_forwards__hostname__get"];
+        put?: never;
+        /**
+         * Create a domain forward
+         * @description Creates a new domain forward configuration for the specified hostname
+         */
+        post: operations["create_domain_forward_v1_domain_forwards__hostname__post"];
+        /**
+         * Delete a domain forward
+         * @description Deletes the domain forward configuration for the specified hostname
+         */
+        delete: operations["delete_domain_forward_v1_domain_forwards__hostname__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/{hostname}/disable": {
         parameters: {
             query?: never;
             header?: never;
@@ -313,11 +347,14 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Disable Domain Forward */
-        patch: operations["disable_domain_forward_v1_domain_forwards__zone_name__disable_patch"];
+        /**
+         * Disable domain forward
+         * @description Disables domain forwarding by removing DNS records. The domain forward configuration is preserved but disabled.
+         */
+        patch: operations["disable_domain_forward_v1_domain_forwards__hostname__disable_patch"];
         trace?: never;
     };
-    "/v1/domain-forwards/{zone_name}/enable": {
+    "/v1/domain-forwards/{hostname}/enable": {
         parameters: {
             query?: never;
             header?: never;
@@ -330,25 +367,40 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Enable Domain Forward */
-        patch: operations["enable_domain_forward_v1_domain_forwards__zone_name__enable_patch"];
+        /**
+         * Enable domain forward
+         * @description Enables domain forwarding by creating necessary DNS records. Optionally auto-creates the zone and domain forward if they don't exist.
+         */
+        patch: operations["enable_domain_forward_v1_domain_forwards__hostname__enable_patch"];
         trace?: never;
     };
-    "/v1/domain-forwards/{zone_name}/{request_protocol}": {
+    "/v1/domain-forwards/{hostname}/{protocol}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get Domain Forward */
-        get: operations["get_domain_forward_v1_domain_forwards__zone_name___request_protocol__get"];
-        /** Update Domain Forward */
-        put: operations["update_domain_forward_v1_domain_forwards__zone_name___request_protocol__put"];
-        /** Create Domain Forward */
-        post: operations["create_domain_forward_v1_domain_forwards__zone_name___request_protocol__post"];
-        /** Delete Domain Forward */
-        delete: operations["delete_domain_forward_v1_domain_forwards__zone_name___request_protocol__delete"];
+        /**
+         * Get domain forward set
+         * @description Retrieves all redirects for a specific protocol (HTTP or HTTPS) for the specified hostname
+         */
+        get: operations["get_domain_forward_set_v1_domain_forwards__hostname___protocol__get"];
+        /**
+         * Update domain forward set
+         * @description Updates an existing domain forward set for a specific protocol (HTTP or HTTPS). All existing redirects for this protocol are replaced with the provided redirects. Raises an error if the set does not exist.
+         */
+        put: operations["update_domain_forward_set_v1_domain_forwards__hostname___protocol__put"];
+        /**
+         * Create domain forward set
+         * @description Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
+         */
+        post: operations["create_domain_forward_set_v1_domain_forwards__hostname___protocol__post"];
+        /**
+         * Delete domain forward set
+         * @description Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
+         */
+        delete: operations["delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -2276,60 +2328,95 @@ export interface components {
              * Format: date-time
              */
             created_on: Date;
-            /** Redirects */
-            redirects: components["schemas"]["HttpRedirect"][];
-            request_protocol: components["schemas"]["HttpProtocol"];
+            /** Enabled */
+            enabled: boolean;
+            /** Hostname */
+            hostname: string;
+            http?: components["schemas"]["DomainForwardProtocolSetResponse"] | null;
+            https?: components["schemas"]["DomainForwardProtocolSetResponse"] | null;
             /**
              * Updated On
              * Format: date-time
              */
             updated_on: Date;
-            /**
-             * Wildcard
-             * @default false
-             */
+            /** Wildcard */
             wildcard: boolean;
-            /** Zone Name */
-            zone_name: string;
         };
         /** DomainForwardPatchOp */
         DomainForwardPatchOp: {
             op: components["schemas"]["PatchOp"];
             /** Redirect */
-            redirect: components["schemas"]["HttpRedirect"] | components["schemas"]["HttpRedirectRemove"];
-            request_protocol: components["schemas"]["HttpProtocol"];
-            /** Zone Name */
-            zone_name: string;
+            redirect: components["schemas"]["HttpRedirectUpsert"] | components["schemas"]["HttpRedirectRemove"];
         };
         /** DomainForwardPatchOps */
         DomainForwardPatchOps: {
             /** Ops */
             ops: components["schemas"]["DomainForwardPatchOp"][];
         };
-        /** DomainForwardProtocols */
-        DomainForwardProtocols: {
-            http?: components["schemas"]["ProtocolRedirects"] | null;
-            https?: components["schemas"]["ProtocolRedirects"] | null;
+        /** DomainForwardProtocolSetRequest */
+        DomainForwardProtocolSetRequest: {
+            /** Created On */
+            created_on?: Date | null;
+            /** Redirects */
+            redirects: (components["schemas"]["HttpRedirectRequest"] | components["schemas"]["WildcardHttpRedirectRequest"])[];
+            /** Updated On */
+            updated_on?: Date | null;
+            /** Wildcard */
+            wildcard?: boolean | null;
+        };
+        /** DomainForwardProtocolSetResponse */
+        DomainForwardProtocolSetResponse: {
+            /**
+             * Created On
+             * Format: date-time
+             */
+            created_on: Date;
+            /** Redirects */
+            redirects: components["schemas"]["HttpRedirectListResponse"][];
+            /**
+             * Updated On
+             * Format: date-time
+             */
+            updated_on: Date;
+            /** Wildcard */
+            wildcard: boolean;
         };
         /** DomainForwardRequest */
         DomainForwardRequest: {
-            /** Redirects */
-            redirects: components["schemas"]["HttpRedirect"][];
             /**
-             * Wildcard
+             * Enabled
              * @default false
              */
-            wildcard: boolean;
-        };
-        /** DomainForwardZone */
-        DomainForwardZone: {
-            /** Enabled */
             enabled: boolean;
-            protocols: components["schemas"]["DomainForwardProtocols"];
+            http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+            https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+            /** Wildcard */
+            wildcard?: boolean | null;
+        };
+        /** DomainForwardSetRequest */
+        DomainForwardSetRequest: {
+            /** Redirects */
+            redirects: (components["schemas"]["HttpRedirectRequest"] | components["schemas"]["WildcardHttpRedirectRequest"])[];
+        };
+        /** DomainForwardSetResponse */
+        DomainForwardSetResponse: {
+            /**
+             * Created On
+             * Format: date-time
+             */
+            created_on: Date;
+            /** Hostname */
+            hostname: string;
+            protocol: components["schemas"]["HttpProtocol"];
+            /** Redirects */
+            redirects: components["schemas"]["HttpRedirectListResponse"][];
+            /**
+             * Updated On
+             * Format: date-time
+             */
+            updated_on: Date;
             /** Wildcard */
             wildcard: boolean;
-            /** Zone Name */
-            zone_name: string;
         };
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
@@ -2952,27 +3039,58 @@ export interface components {
          * @enum {string}
          */
         HttpProtocol: "http" | "https";
-        /** HttpRedirect */
-        HttpRedirect: {
+        /** HttpRedirectListResponse */
+        HttpRedirectListResponse: {
             redirect_code: components["schemas"]["RedirectCode"];
+            /** Request Hostname */
+            request_hostname: string;
             /** Request Path */
             request_path: string;
+            request_protocol: components["schemas"]["HttpProtocol"];
             /** Request Subdomain */
             request_subdomain?: string | null;
-            /** Target Domain */
-            target_domain: string;
+            /** Target Hostname */
+            target_hostname: string;
             /** Target Path */
             target_path: string;
             target_protocol: components["schemas"]["HttpProtocol"];
-            /** Target Subdomain */
-            target_subdomain?: string | null;
         };
         /** HttpRedirectRemove */
         HttpRedirectRemove: {
+            /** Request Hostname */
+            request_hostname: string;
             /** Request Path */
             request_path: string;
+            request_protocol: components["schemas"]["HttpProtocol"];
             /** Request Subdomain */
             request_subdomain?: string | null;
+        };
+        /** HttpRedirectRequest */
+        HttpRedirectRequest: {
+            redirect_code: components["schemas"]["RedirectCode"];
+            /** Request Path */
+            request_path: string;
+            /** Target Hostname */
+            target_hostname: string;
+            /** Target Path */
+            target_path: string;
+            target_protocol: components["schemas"]["HttpProtocol"];
+        };
+        /** HttpRedirectUpsert */
+        HttpRedirectUpsert: {
+            redirect_code: components["schemas"]["RedirectCode"];
+            /** Request Hostname */
+            request_hostname: string;
+            /** Request Path */
+            request_path: string;
+            request_protocol?: components["schemas"]["HttpProtocol"] | null;
+            /** Request Subdomain */
+            request_subdomain?: string | null;
+            /** Target Hostname */
+            target_hostname: string;
+            /** Target Path */
+            target_path: string;
+            target_protocol: components["schemas"]["HttpProtocol"];
         };
         /** IdnBase */
         IdnBase: {
@@ -3726,11 +3844,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["DnsZoneResponse"][];
         };
-        /** Pagination[DomainForwardZone] */
-        Pagination_DomainForwardZone_: {
+        /** Pagination[DomainForward] */
+        Pagination_DomainForward_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["DomainForwardZone"][];
+            results: components["schemas"]["DomainForward"][];
         };
         /** Pagination[DomainResponse] */
         Pagination_DomainResponse_: {
@@ -3877,11 +3995,6 @@ export interface components {
             title: string;
             /** Problem type */
             type: string;
-        };
-        /** ProtocolRedirects */
-        ProtocolRedirects: {
-            /** Redirects */
-            redirects: components["schemas"]["HttpRedirect"][];
         };
         /** PublicAuthRequestForm */
         PublicAuthRequestForm: {
@@ -4577,6 +4690,19 @@ export interface components {
              * @description WHOIS server
              */
             whois_server?: string | null;
+        };
+        /** WildcardHttpRedirectRequest */
+        WildcardHttpRedirectRequest: {
+            redirect_code: components["schemas"]["RedirectCode"];
+            /** Request Path */
+            request_path: string;
+            /** Request Subdomain */
+            request_subdomain: string;
+            /** Target Hostname */
+            target_hostname: string;
+            /** Target Path */
+            target_path: string;
+            target_protocol: components["schemas"]["HttpProtocol"];
         };
         /**
          * ZoneSortField
@@ -5881,7 +6007,39 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_DomainForwardZone_"];
+                    "application/json": components["schemas"]["Pagination_DomainForward_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -5915,6 +6073,38 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Not Found */
             404: {
                 headers: {
@@ -5923,7 +6113,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
-                     *       "detail": "Domain forward not found",
+                     *       "detail": "Domain forward not found for Additional error context.",
                      *       "status": 404,
                      *       "title": "Domain Forward Error",
                      *       "type": "domain-forward-not-found"
@@ -5942,79 +6132,13 @@ export interface operations {
             };
         };
     };
-    disable_domain_forward_v1_domain_forwards__zone_name__disable_patch: {
+    get_domain_forward_v1_domain_forwards__hostname__get: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    enable_domain_forward_v1_domain_forwards__zone_name__enable_patch: {
-        parameters: {
-            query?: {
-                /** @description Auto create zone if it doesn't exist */
-                auto_create_zone?: boolean;
-                /** @description Wildcard domain forwarding */
-                wildcard?: boolean;
-            };
-            header?: never;
-            path: {
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_domain_forward_v1_domain_forwards__zone_name___request_protocol__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                request_protocol: components["schemas"]["HttpProtocol"];
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
             };
             cookie?: never;
         };
@@ -6029,41 +6153,36 @@ export interface operations {
                     "application/json": components["schemas"]["DomainForward"];
                 };
             };
-            /** @description Validation Error */
-            422: {
+            /** @description Unauthorized */
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-        };
-    };
-    update_domain_forward_v1_domain_forwards__zone_name___request_protocol__put: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                request_protocol: components["schemas"]["HttpProtocol"];
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainForwardRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
+            /** @description Forbidden */
+            403: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DomainForward"];
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Not Found */
@@ -6074,7 +6193,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
-                     *       "detail": "Domain forward not found",
+                     *       "detail": "Domain forward not found for Additional error context.",
                      *       "status": 404,
                      *       "title": "Domain Forward Error",
                      *       "type": "domain-forward-not-found"
@@ -6093,14 +6212,13 @@ export interface operations {
             };
         };
     };
-    create_domain_forward_v1_domain_forwards__zone_name___request_protocol__post: {
+    create_domain_forward_v1_domain_forwards__hostname__post: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                request_protocol: components["schemas"]["HttpProtocol"];
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
             };
             cookie?: never;
         };
@@ -6119,6 +6237,38 @@ export interface operations {
                     "application/json": components["schemas"]["DomainForward"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Conflict */
             409: {
                 headers: {
@@ -6127,7 +6277,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_ALREADY_EXISTS",
-                     *       "detail": "Domain forward already exists",
+                     *       "detail": "Domain forward already exists for Additional error context.",
                      *       "status": 409,
                      *       "title": "Domain Forward Error",
                      *       "type": "domain-forward-already-exists"
@@ -6146,14 +6296,13 @@ export interface operations {
             };
         };
     };
-    delete_domain_forward_v1_domain_forwards__zone_name___request_protocol__delete: {
+    delete_domain_forward_v1_domain_forwards__hostname__delete: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                request_protocol: components["schemas"]["HttpProtocol"];
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
             };
             cookie?: never;
         };
@@ -6166,6 +6315,38 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Not Found */
             404: {
                 headers: {
@@ -6174,7 +6355,500 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
-                     *       "detail": "Domain forward not found",
+                     *       "detail": "Domain forward not found for Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    disable_domain_forward_v1_domain_forwards__hostname__disable_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    enable_domain_forward_v1_domain_forwards__hostname__enable_patch: {
+        parameters: {
+            query?: {
+                /** @description Auto create zone if it doesn't exist */
+                auto_create_zone?: boolean;
+                /** @description Auto create domain forward if it doesn't exist */
+                auto_create_domain_forward?: boolean;
+                /** @description Wildcard domain forwarding */
+                wildcard?: boolean;
+            };
+            header?: never;
+            path: {
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_WILDCARD_NOT_SUPPORTED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "Wildcard Not Supported",
+                     *       "type": "domain-forward-wildcard-not-supported"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_domain_forward_set_v1_domain_forwards__hostname___protocol__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                protocol: components["schemas"]["HttpProtocol"];
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardSetResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found for Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_domain_forward_set_v1_domain_forwards__hostname___protocol__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                protocol: components["schemas"]["HttpProtocol"];
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainForwardSetRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardSetResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found for Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_domain_forward_set_v1_domain_forwards__hostname___protocol__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                protocol: components["schemas"]["HttpProtocol"];
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainForwardSetRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardSetResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found for Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_ALREADY_EXISTS",
+                     *       "detail": "Domain forward already exists for Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                protocol: components["schemas"]["HttpProtocol"];
+                /** @description Hostname (trailing dot optional) */
+                hostname: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found for Additional error context.",
                      *       "status": 404,
                      *       "title": "Domain Forward Error",
                      *       "type": "domain-forward-not-found"

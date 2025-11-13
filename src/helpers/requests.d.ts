@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for POST AuthToken endpoint
@@ -1017,7 +1017,8 @@ export type PUT_DnsZoneNameRrsets_Request_Body = PUT_DnsZoneNameRrsets_Request['
 /**
  * Request type for GET DomainForwards endpoint
  *
- * List Domain Forwards
+ * List domain forwards
+ * Retrieves a paginated list of domain forwards for the organization
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwards endpoint.
@@ -1055,7 +1056,8 @@ export type GET_DomainForwards_Request_Query = GET_DomainForwards_Request['param
 /**
  * Request type for PATCH DomainForwards endpoint
  *
- * Patch Redirects
+ * Patch domain forward redirects
+ * Applies patch operations to update or remove redirects across hostnames and protocols. Raises an error if the domain forward or domain forward set does not exist.
  *
  * @remarks
  * This type defines the complete request structure for the PATCH DomainForwards endpoint.
@@ -1089,290 +1091,435 @@ export type PATCH_DomainForwards_Request = {
 export type PATCH_DomainForwards_Request_Body = PATCH_DomainForwards_Request['requestBody'];
 
 /**
- * Request type for PATCH DomainForwardsZoneNameDisable endpoint
+ * Request type for DELETE DomainForwardsHostname endpoint
  *
- * Disable Domain Forward
+ * Delete a domain forward
+ * Deletes the domain forward configuration for the specified hostname
  *
  * @remarks
- * This type defines the complete request structure for the PATCH DomainForwardsZoneNameDisable endpoint.
+ * This type defines the complete request structure for the DELETE DomainForwardsHostname endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/domain-forwards/{zone_name}/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PATCH_DomainForwardsZoneNameDisable_Request_Query} - Query parameters type
- * @see {@link PATCH_DomainForwardsZoneNameDisable_Request_Path} - Path parameters type
- * @see {@link PATCH_DomainForwardsZoneNameDisable_Request_Body} - Request body type
+ * @see {@link DELETE_DomainForwardsHostname_Request_Query} - Query parameters type
+ * @see {@link DELETE_DomainForwardsHostname_Request_Path} - Path parameters type
+ * @see {@link DELETE_DomainForwardsHostname_Request_Body} - Request body type
  */
-export type PATCH_DomainForwardsZoneNameDisable_Request = {
+export type DELETE_DomainForwardsHostname_Request = {
   parameters: {
-    path: operations['disable_domain_forward_v1_domain_forwards__zone_name__disable_patch']['parameters']['path'];
+    path: operations['delete_domain_forward_v1_domain_forwards__hostname__delete']['parameters']['path'];
   };
 }
 /**
- * Path parameters for PATCH /v1/domain-forwards/{zone_name}/disable
+ * Path parameters for DELETE /v1/domain-forwards/{hostname}
  *
  * @remarks
- * This type defines the path parameters for the PATCH /v1/domain-forwards/{zone_name}/disable endpoint.
+ * This type defines the path parameters for the DELETE /v1/domain-forwards/{hostname} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/domain-forwards/{zone_name}/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  */
-export type PATCH_DomainForwardsZoneNameDisable_Request_Path = PATCH_DomainForwardsZoneNameDisable_Request['parameters']['path'];
+export type DELETE_DomainForwardsHostname_Request_Path = DELETE_DomainForwardsHostname_Request['parameters']['path'];
 
 /**
- * Request type for PATCH DomainForwardsZoneNameEnable endpoint
+ * Request type for GET DomainForwardsHostname endpoint
  *
- * Enable Domain Forward
+ * Get a domain forward
+ * Retrieves the domain forward configuration for the specified hostname
  *
  * @remarks
- * This type defines the complete request structure for the PATCH DomainForwardsZoneNameEnable endpoint.
+ * This type defines the complete request structure for the GET DomainForwardsHostname endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/domain-forwards/{zone_name}/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param wildcard (query) - Wildcard domain forwarding
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PATCH_DomainForwardsZoneNameEnable_Request_Query} - Query parameters type
- * @see {@link PATCH_DomainForwardsZoneNameEnable_Request_Path} - Path parameters type
- * @see {@link PATCH_DomainForwardsZoneNameEnable_Request_Body} - Request body type
+ * @see {@link GET_DomainForwardsHostname_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsHostname_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsHostname_Request_Body} - Request body type
  */
-export type PATCH_DomainForwardsZoneNameEnable_Request = {
+export type GET_DomainForwardsHostname_Request = {
   parameters: {
-    query: operations['enable_domain_forward_v1_domain_forwards__zone_name__enable_patch']['parameters']['query'];
-    path: operations['enable_domain_forward_v1_domain_forwards__zone_name__enable_patch']['parameters']['path'];
+    path: operations['get_domain_forward_v1_domain_forwards__hostname__get']['parameters']['path'];
   };
 }
 /**
- * Query parameters for PATCH /v1/domain-forwards/{zone_name}/enable
+ * Path parameters for GET /v1/domain-forwards/{hostname}
  *
  * @remarks
- * This type defines the query parameters for the PATCH /v1/domain-forwards/{zone_name}/enable endpoint.
+ * This type defines the path parameters for the GET /v1/domain-forwards/{hostname} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ */
+export type GET_DomainForwardsHostname_Request_Path = GET_DomainForwardsHostname_Request['parameters']['path'];
+
+/**
+ * Request type for POST DomainForwardsHostname endpoint
+ *
+ * Create a domain forward
+ * Creates a new domain forward configuration for the specified hostname
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST DomainForwardsHostname endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link POST_DomainForwardsHostname_Request_Query} - Query parameters type
+ * @see {@link POST_DomainForwardsHostname_Request_Path} - Path parameters type
+ * @see {@link POST_DomainForwardsHostname_Request_Body} - Request body type
+ */
+export type POST_DomainForwardsHostname_Request = {
+  parameters: {
+    path: operations['create_domain_forward_v1_domain_forwards__hostname__post']['parameters']['path'];
+  };
+  requestBody: DomainForwardRequest;
+}
+/**
+ * Path parameters for POST /v1/domain-forwards/{hostname}
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/domain-forwards/{hostname} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname (trailing dot optional)
+ */
+export type POST_DomainForwardsHostname_Request_Path = POST_DomainForwardsHostname_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/domain-forwards/{hostname}
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/domain-forwards/{hostname} endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/domain-forwards/{hostname}
+ */
+export type POST_DomainForwardsHostname_Request_Body = POST_DomainForwardsHostname_Request['requestBody'];
+
+/**
+ * Request type for PATCH DomainForwardsHostnameDisable endpoint
+ *
+ * Disable domain forward
+ * Disables domain forwarding by removing DNS records. The domain forward configuration is preserved but disabled.
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH DomainForwardsHostnameDisable endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/{hostname}/disable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ *
+ * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Query} - Query parameters type
+ * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Path} - Path parameters type
+ * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Body} - Request body type
+ */
+export type PATCH_DomainForwardsHostnameDisable_Request = {
+  parameters: {
+    path: operations['disable_domain_forward_v1_domain_forwards__hostname__disable_patch']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for PATCH /v1/domain-forwards/{hostname}/disable
+ *
+ * @remarks
+ * This type defines the path parameters for the PATCH /v1/domain-forwards/{hostname}/disable endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/domain-forwards/{hostname}/disable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ */
+export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwardsHostnameDisable_Request['parameters']['path'];
+
+/**
+ * Request type for PATCH DomainForwardsHostnameEnable endpoint
+ *
+ * Enable domain forward
+ * Enables domain forwarding by creating necessary DNS records. Optionally auto-creates the zone and domain forward if they don't exist.
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH DomainForwardsHostnameEnable endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/{hostname}/enable
+ * @param hostname (path) - Hostname (trailing dot optional)
+ * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
+ * @param wildcard (query) - Wildcard domain forwarding
+ *
+ * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Query} - Query parameters type
+ * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Path} - Path parameters type
+ * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Body} - Request body type
+ */
+export type PATCH_DomainForwardsHostnameEnable_Request = {
+  parameters: {
+    query: operations['enable_domain_forward_v1_domain_forwards__hostname__enable_patch']['parameters']['query'];
+    path: operations['enable_domain_forward_v1_domain_forwards__hostname__enable_patch']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for PATCH /v1/domain-forwards/{hostname}/enable
+ *
+ * @remarks
+ * This type defines the query parameters for the PATCH /v1/domain-forwards/{hostname}/enable endpoint.
  * It provides type safety for all query parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for query parameters.
  *
- * @path /v1/domain-forwards/{zone_name}/enable
+ * @path /v1/domain-forwards/{hostname}/enable
  * @param auto_create_zone (query) - Auto create zone if it doesn't exist
+ * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  */
-export type PATCH_DomainForwardsZoneNameEnable_Request_Query = PATCH_DomainForwardsZoneNameEnable_Request['parameters']['query'];
+export type PATCH_DomainForwardsHostnameEnable_Request_Query = PATCH_DomainForwardsHostnameEnable_Request['parameters']['query'];
 /**
- * Path parameters for PATCH /v1/domain-forwards/{zone_name}/enable
+ * Path parameters for PATCH /v1/domain-forwards/{hostname}/enable
  *
  * @remarks
- * This type defines the path parameters for the PATCH /v1/domain-forwards/{zone_name}/enable endpoint.
+ * This type defines the path parameters for the PATCH /v1/domain-forwards/{hostname}/enable endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/domain-forwards/{zone_name}/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/enable
+ * @param hostname (path) - Hostname (trailing dot optional)
  */
-export type PATCH_DomainForwardsZoneNameEnable_Request_Path = PATCH_DomainForwardsZoneNameEnable_Request['parameters']['path'];
+export type PATCH_DomainForwardsHostnameEnable_Request_Path = PATCH_DomainForwardsHostnameEnable_Request['parameters']['path'];
 
 /**
- * Request type for DELETE DomainForwardsZoneNameRequestProtocol endpoint
+ * Request type for DELETE DomainForwardsHostnameProtocol endpoint
  *
- * Delete Domain Forward
+ * Delete domain forward set
+ * Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
  *
  * @remarks
- * This type defines the complete request structure for the DELETE DomainForwardsZoneNameRequestProtocol endpoint.
+ * This type defines the complete request structure for the DELETE DomainForwardsHostnameProtocol endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link DELETE_DomainForwardsZoneNameRequestProtocol_Request_Query} - Query parameters type
- * @see {@link DELETE_DomainForwardsZoneNameRequestProtocol_Request_Path} - Path parameters type
- * @see {@link DELETE_DomainForwardsZoneNameRequestProtocol_Request_Body} - Request body type
+ * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
+ * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
+ * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Body} - Request body type
  */
-export type DELETE_DomainForwardsZoneNameRequestProtocol_Request = {
+export type DELETE_DomainForwardsHostnameProtocol_Request = {
   parameters: {
-    path: operations['delete_domain_forward_v1_domain_forwards__zone_name___request_protocol__delete']['parameters']['path'];
+    path: operations['delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete']['parameters']['path'];
   };
 }
 /**
- * Path parameters for DELETE /v1/domain-forwards/{zone_name}/{request_protocol}
+ * Path parameters for DELETE /v1/domain-forwards/{hostname}/{protocol}
  *
  * @remarks
- * This type defines the path parameters for the DELETE /v1/domain-forwards/{zone_name}/{request_protocol} endpoint.
+ * This type defines the path parameters for the DELETE /v1/domain-forwards/{hostname}/{protocol} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  */
-export type DELETE_DomainForwardsZoneNameRequestProtocol_Request_Path = DELETE_DomainForwardsZoneNameRequestProtocol_Request['parameters']['path'];
+export type DELETE_DomainForwardsHostnameProtocol_Request_Path = DELETE_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 
 /**
- * Request type for GET DomainForwardsZoneNameRequestProtocol endpoint
+ * Request type for GET DomainForwardsHostnameProtocol endpoint
  *
- * Get Domain Forward
+ * Get domain forward set
+ * Retrieves all redirects for a specific protocol (HTTP or HTTPS) for the specified hostname
  *
  * @remarks
- * This type defines the complete request structure for the GET DomainForwardsZoneNameRequestProtocol endpoint.
+ * This type defines the complete request structure for the GET DomainForwardsHostnameProtocol endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link GET_DomainForwardsZoneNameRequestProtocol_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsZoneNameRequestProtocol_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsZoneNameRequestProtocol_Request_Body} - Request body type
+ * @see {@link GET_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsHostnameProtocol_Request_Body} - Request body type
  */
-export type GET_DomainForwardsZoneNameRequestProtocol_Request = {
+export type GET_DomainForwardsHostnameProtocol_Request = {
   parameters: {
-    path: operations['get_domain_forward_v1_domain_forwards__zone_name___request_protocol__get']['parameters']['path'];
+    path: operations['get_domain_forward_set_v1_domain_forwards__hostname___protocol__get']['parameters']['path'];
   };
 }
 /**
- * Path parameters for GET /v1/domain-forwards/{zone_name}/{request_protocol}
+ * Path parameters for GET /v1/domain-forwards/{hostname}/{protocol}
  *
  * @remarks
- * This type defines the path parameters for the GET /v1/domain-forwards/{zone_name}/{request_protocol} endpoint.
+ * This type defines the path parameters for the GET /v1/domain-forwards/{hostname}/{protocol} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  */
-export type GET_DomainForwardsZoneNameRequestProtocol_Request_Path = GET_DomainForwardsZoneNameRequestProtocol_Request['parameters']['path'];
+export type GET_DomainForwardsHostnameProtocol_Request_Path = GET_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 
 /**
- * Request type for POST DomainForwardsZoneNameRequestProtocol endpoint
+ * Request type for POST DomainForwardsHostnameProtocol endpoint
  *
- * Create Domain Forward
+ * Create domain forward set
+ * Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
  *
  * @remarks
- * This type defines the complete request structure for the POST DomainForwardsZoneNameRequestProtocol endpoint.
+ * This type defines the complete request structure for the POST DomainForwardsHostnameProtocol endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link POST_DomainForwardsZoneNameRequestProtocol_Request_Query} - Query parameters type
- * @see {@link POST_DomainForwardsZoneNameRequestProtocol_Request_Path} - Path parameters type
- * @see {@link POST_DomainForwardsZoneNameRequestProtocol_Request_Body} - Request body type
+ * @see {@link POST_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
+ * @see {@link POST_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
+ * @see {@link POST_DomainForwardsHostnameProtocol_Request_Body} - Request body type
  */
-export type POST_DomainForwardsZoneNameRequestProtocol_Request = {
+export type POST_DomainForwardsHostnameProtocol_Request = {
   parameters: {
-    path: operations['create_domain_forward_v1_domain_forwards__zone_name___request_protocol__post']['parameters']['path'];
+    path: operations['create_domain_forward_set_v1_domain_forwards__hostname___protocol__post']['parameters']['path'];
   };
-  requestBody: DomainForwardRequest;
+  requestBody: DomainForwardSetRequest;
 }
 /**
- * Path parameters for POST /v1/domain-forwards/{zone_name}/{request_protocol}
+ * Path parameters for POST /v1/domain-forwards/{hostname}/{protocol}
  *
  * @remarks
- * This type defines the path parameters for the POST /v1/domain-forwards/{zone_name}/{request_protocol} endpoint.
+ * This type defines the path parameters for the POST /v1/domain-forwards/{hostname}/{protocol} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  */
-export type POST_DomainForwardsZoneNameRequestProtocol_Request_Path = POST_DomainForwardsZoneNameRequestProtocol_Request['parameters']['path'];
+export type POST_DomainForwardsHostnameProtocol_Request_Path = POST_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 /**
- * Request body for POST /v1/domain-forwards/{zone_name}/{request_protocol}
+ * Request body for POST /v1/domain-forwards/{hostname}/{protocol}
  *
  * @remarks
- * This type defines the request body structure for the POST /v1/domain-forwards/{zone_name}/{request_protocol} endpoint.
+ * This type defines the request body structure for the POST /v1/domain-forwards/{hostname}/{protocol} endpoint.
  * It provides type safety for the request body as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for request body structure.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
+ * @path /v1/domain-forwards/{hostname}/{protocol}
  */
-export type POST_DomainForwardsZoneNameRequestProtocol_Request_Body = POST_DomainForwardsZoneNameRequestProtocol_Request['requestBody'];
+export type POST_DomainForwardsHostnameProtocol_Request_Body = POST_DomainForwardsHostnameProtocol_Request['requestBody'];
 
 /**
- * Request type for PUT DomainForwardsZoneNameRequestProtocol endpoint
+ * Request type for PUT DomainForwardsHostnameProtocol endpoint
  *
- * Update Domain Forward
+ * Update domain forward set
+ * Updates an existing domain forward set for a specific protocol (HTTP or HTTPS). All existing redirects for this protocol are replaced with the provided redirects. Raises an error if the set does not exist.
  *
  * @remarks
- * This type defines the complete request structure for the PUT DomainForwardsZoneNameRequestProtocol endpoint.
+ * This type defines the complete request structure for the PUT DomainForwardsHostnameProtocol endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  *
- * @see {@link PUT_DomainForwardsZoneNameRequestProtocol_Request_Query} - Query parameters type
- * @see {@link PUT_DomainForwardsZoneNameRequestProtocol_Request_Path} - Path parameters type
- * @see {@link PUT_DomainForwardsZoneNameRequestProtocol_Request_Body} - Request body type
+ * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
+ * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
+ * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Body} - Request body type
  */
-export type PUT_DomainForwardsZoneNameRequestProtocol_Request = {
+export type PUT_DomainForwardsHostnameProtocol_Request = {
   parameters: {
-    path: operations['update_domain_forward_v1_domain_forwards__zone_name___request_protocol__put']['parameters']['path'];
+    path: operations['update_domain_forward_set_v1_domain_forwards__hostname___protocol__put']['parameters']['path'];
   };
-  requestBody: DomainForwardRequest;
+  requestBody: DomainForwardSetRequest;
 }
 /**
- * Path parameters for PUT /v1/domain-forwards/{zone_name}/{request_protocol}
+ * Path parameters for PUT /v1/domain-forwards/{hostname}/{protocol}
  *
  * @remarks
- * This type defines the path parameters for the PUT /v1/domain-forwards/{zone_name}/{request_protocol} endpoint.
+ * This type defines the path parameters for the PUT /v1/domain-forwards/{hostname}/{protocol} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/domain-forwards/{hostname}/{protocol}
+ * @param hostname (path) - Hostname (trailing dot optional)
  */
-export type PUT_DomainForwardsZoneNameRequestProtocol_Request_Path = PUT_DomainForwardsZoneNameRequestProtocol_Request['parameters']['path'];
+export type PUT_DomainForwardsHostnameProtocol_Request_Path = PUT_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 /**
- * Request body for PUT /v1/domain-forwards/{zone_name}/{request_protocol}
+ * Request body for PUT /v1/domain-forwards/{hostname}/{protocol}
  *
  * @remarks
- * This type defines the request body structure for the PUT /v1/domain-forwards/{zone_name}/{request_protocol} endpoint.
+ * This type defines the request body structure for the PUT /v1/domain-forwards/{hostname}/{protocol} endpoint.
  * It provides type safety for the request body as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for request body structure.
  *
- * @path /v1/domain-forwards/{zone_name}/{request_protocol}
+ * @path /v1/domain-forwards/{hostname}/{protocol}
  */
-export type PUT_DomainForwardsZoneNameRequestProtocol_Request_Body = PUT_DomainForwardsZoneNameRequestProtocol_Request['requestBody'];
+export type PUT_DomainForwardsHostnameProtocol_Request_Body = PUT_DomainForwardsHostnameProtocol_Request['requestBody'];
 
 /**
  * Request type for GET DomainSearchSuggest endpoint

@@ -1067,21 +1067,37 @@ export type DomainForwardPatchOp = components['schemas']['DomainForwardPatchOp']
  */
 export type DomainForwardPatchOps = components['schemas']['DomainForwardPatchOps'];
 /**
- * DomainForwardProtocols
+ * DomainForwardProtocolSetRequest
  *
  * @remarks
- * Type alias for the `DomainForwardProtocols` OpenAPI schema.
- * This type represents domainforwardprotocols data structures used in API requests and responses.
+ * Type alias for the `DomainForwardProtocolSetRequest` OpenAPI schema.
+ * This type represents domainforwardprotocolsetrequest data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getDomainForwardProtocols();
- * const item: DomainForwardProtocols = response.results;
+ * const response = await api.getDomainForwardProtocolSetRequest();
+ * const item: DomainForwardProtocolSetRequest = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type DomainForwardProtocols = components['schemas']['DomainForwardProtocols'];
+export type DomainForwardProtocolSetRequest = components['schemas']['DomainForwardProtocolSetRequest'];
+/**
+ * DomainForwardProtocolSetResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardProtocolSetResponse` OpenAPI schema.
+ * This type represents domainforwardprotocolsetresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardProtocolSet();
+ * const item: DomainForwardProtocolSet = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardProtocolSet = components['schemas']['DomainForwardProtocolSetResponse'];
 /**
  * DomainForwardRequest
  *
@@ -1099,21 +1115,37 @@ export type DomainForwardProtocols = components['schemas']['DomainForwardProtoco
  */
 export type DomainForwardRequest = components['schemas']['DomainForwardRequest'];
 /**
- * DomainForwardZone
+ * DomainForwardSetRequest
  *
  * @remarks
- * Type alias for the `DomainForwardZone` OpenAPI schema.
- * This type represents domainforwardzone data structures used in API requests and responses.
+ * Type alias for the `DomainForwardSetRequest` OpenAPI schema.
+ * This type represents domainforwardsetrequest data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getDomainForwardZone();
- * const item: DomainForwardZone = response.results;
+ * const response = await api.getDomainForwardSetRequest();
+ * const item: DomainForwardSetRequest = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type DomainForwardZone = components['schemas']['DomainForwardZone'];
+export type DomainForwardSetRequest = components['schemas']['DomainForwardSetRequest'];
+/**
+ * DomainForwardSetResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardSetResponse` OpenAPI schema.
+ * This type represents domainforwardsetresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardSet();
+ * const item: DomainForwardSet = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardSet = components['schemas']['DomainForwardSetResponse'];
 /**
  * DomainLifecycleBase
  *
@@ -1675,21 +1707,21 @@ export type HTTPValidationError = components['schemas']['HTTPValidationError'];
  */
 export type HttpProtocol = components['schemas']['HttpProtocol'];
 /**
- * HttpRedirect
+ * HttpRedirectListResponse
  *
  * @remarks
- * Type alias for the `HttpRedirect` OpenAPI schema.
- * This type represents httpredirect data structures used in API requests and responses.
+ * Type alias for the `HttpRedirectListResponse` OpenAPI schema.
+ * This type represents httpredirectlistresponse data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getHttpRedirect();
- * const item: HttpRedirect = response.results;
+ * const response = await api.getHttpRedirectList();
+ * const item: HttpRedirectList = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type HttpRedirect = components['schemas']['HttpRedirect'];
+export type HttpRedirectList = components['schemas']['HttpRedirectListResponse'];
 /**
  * HttpRedirectRemove
  *
@@ -1706,6 +1738,38 @@ export type HttpRedirect = components['schemas']['HttpRedirect'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type HttpRedirectRemove = components['schemas']['HttpRedirectRemove'];
+/**
+ * HttpRedirectRequest
+ *
+ * @remarks
+ * Type alias for the `HttpRedirectRequest` OpenAPI schema.
+ * This type represents httpredirectrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getHttpRedirectRequest();
+ * const item: HttpRedirectRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type HttpRedirectRequest = components['schemas']['HttpRedirectRequest'];
+/**
+ * HttpRedirectUpsert
+ *
+ * @remarks
+ * Type alias for the `HttpRedirectUpsert` OpenAPI schema.
+ * This type represents httpredirectupsert data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getHttpRedirectUpsert();
+ * const item: HttpRedirectUpsert = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type HttpRedirectUpsert = components['schemas']['HttpRedirectUpsert'];
 /**
  * IdnBase
  *
@@ -2176,21 +2240,21 @@ export type Pagination_ContactSchema = components['schemas']['Pagination_Contact
  */
 export type Pagination_DnsZone = components['schemas']['Pagination_DnsZoneResponse_'];
 /**
- * Pagination[DomainForwardZone]
+ * Pagination[DomainForward]
  *
  * @remarks
- * Type alias for the `Pagination_DomainForwardZone_` OpenAPI schema.
- * This type represents pagination[domainforwardzone] data structures used in API requests and responses.
+ * Type alias for the `Pagination_DomainForward_` OpenAPI schema.
+ * This type represents pagination[domainforward] data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getPagination_DomainForwardZone();
- * const item: Pagination_DomainForwardZone = response.results;
+ * const response = await api.getPagination_DomainForward();
+ * const item: Pagination_DomainForward = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type Pagination_DomainForwardZone = components['schemas']['Pagination_DomainForwardZone_'];
+export type Pagination_DomainForward = components['schemas']['Pagination_DomainForward_'];
 /**
  * Pagination[DomainResponse]
  *
@@ -2527,22 +2591,6 @@ export type PricingPeriod = components['schemas']['PricingPeriod'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Problem = components['schemas']['Problem'];
-/**
- * ProtocolRedirects
- *
- * @remarks
- * Type alias for the `ProtocolRedirects` OpenAPI schema.
- * This type represents protocolredirects data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getProtocolRedirects();
- * const item: ProtocolRedirects = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type ProtocolRedirects = components['schemas']['ProtocolRedirects'];
 /**
  * PublicAuthRequestForm
  *
@@ -3087,6 +3135,22 @@ export type VerificationType = components['schemas']['VerificationType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type WhoisBase = components['schemas']['WhoisBase'];
+/**
+ * WildcardHttpRedirectRequest
+ *
+ * @remarks
+ * Type alias for the `WildcardHttpRedirectRequest` OpenAPI schema.
+ * This type represents wildcardhttpredirectrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getWildcardHttpRedirectRequest();
+ * const item: WildcardHttpRedirectRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type WildcardHttpRedirectRequest = components['schemas']['WildcardHttpRedirectRequest'];
 /**
  * ZoneSortField
  *

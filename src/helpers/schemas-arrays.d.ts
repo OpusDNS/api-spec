@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, HttpRedirect, DomainForwardPatchOp, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardAlias, EventResponse, Invoice, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForward, Domain, EmailForwardAlias, EventResponse, Invoice, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -318,20 +318,6 @@ export type ContactHandleArray = ContactHandle[];
  */
 export type NameserverArray = Nameserver[];
 /**
- * HttpRedirect
- *
- * @remarks
- * Array type for HttpRedirect objects. Used when the API returns a collection of HttpRedirect instances.
- *
- * @example
- * ```typescript
- * const items: HttpRedirectArray = await api.getHttpRedirects();
- * ```
- *
- * @see {@link HttpRedirect} - The individual HttpRedirect type definition
- */
-export type HttpRedirectArray = HttpRedirect[];
-/**
  * DomainForwardPatchOp
  *
  * @remarks
@@ -345,6 +331,20 @@ export type HttpRedirectArray = HttpRedirect[];
  * @see {@link DomainForwardPatchOp} - The individual DomainForwardPatchOp type definition
  */
 export type DomainForwardPatchOpArray = DomainForwardPatchOp[];
+/**
+ * HttpRedirectListResponse
+ *
+ * @remarks
+ * Array type for HttpRedirectListResponse objects. Used when the API returns a collection of HttpRedirectListResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: HttpRedirectListArray = await api.getHttpRedirectLists();
+ * ```
+ *
+ * @see {@link HttpRedirectList} - The individual HttpRedirectListResponse type definition
+ */
+export type HttpRedirectListArray = HttpRedirectList[];
 /**
  * DeletePolicyType
  *
@@ -598,19 +598,19 @@ export type ContactSchemaArray = ContactSchema[];
  */
 export type DnsZoneArray = DnsZone[];
 /**
- * DomainForwardZone
+ * DomainForward
  *
  * @remarks
- * Array type for DomainForwardZone objects. Used when the API returns a collection of DomainForwardZone instances.
+ * Array type for DomainForward objects. Used when the API returns a collection of DomainForward instances.
  *
  * @example
  * ```typescript
- * const items: DomainForwardZoneArray = await api.getDomainForwardZones();
+ * const items: DomainForwardArray = await api.getDomainForwards();
  * ```
  *
- * @see {@link DomainForwardZone} - The individual DomainForwardZone type definition
+ * @see {@link DomainForward} - The individual DomainForward type definition
  */
-export type DomainForwardZoneArray = DomainForwardZone[];
+export type DomainForwardArray = DomainForward[];
 /**
  * DomainResponse
  *

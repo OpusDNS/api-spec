@@ -1540,28 +1540,31 @@ components:
           format: date-time
           title: Created On
           type: string
-        redirects:
-          items:
-            $ref: '#/components/schemas/HttpRedirect'
-          title: Redirects
-          type: array
-        request_protocol:
-          $ref: '#/components/schemas/HttpProtocol'
+        enabled:
+          title: Enabled
+          type: boolean
+        hostname:
+          title: Hostname
+          type: string
+        http:
+          anyOf:
+          - $ref: '#/components/schemas/DomainForwardProtocolSetResponse'
+          - type: 'null'
+        https:
+          anyOf:
+          - $ref: '#/components/schemas/DomainForwardProtocolSetResponse'
+          - type: 'null'
         updated_on:
           format: date-time
           title: Updated On
           type: string
         wildcard:
-          default: false
           title: Wildcard
           type: boolean
-        zone_name:
-          title: Zone Name
-          type: string
       required:
-      - redirects
-      - zone_name
-      - request_protocol
+      - hostname
+      - wildcard
+      - enabled
       - updated_on
       - created_on
       title: DomainForward
@@ -1572,18 +1575,11 @@ components:
           $ref: '#/components/schemas/PatchOp'
         redirect:
           anyOf:
-          - $ref: '#/components/schemas/HttpRedirect'
+          - $ref: '#/components/schemas/HttpRedirectUpsert'
           - $ref: '#/components/schemas/HttpRedirectRemove'
           title: Redirect
-        request_protocol:
-          $ref: '#/components/schemas/HttpProtocol'
-        zone_name:
-          title: Zone Name
-          type: string
       required:
       - op
-      - zone_name
-      - request_protocol
       - redirect
       title: DomainForwardPatchOp
       type: object
@@ -1598,52 +1594,126 @@ components:
       - ops
       title: DomainForwardPatchOps
       type: object
-    DomainForwardProtocols:
+    DomainForwardProtocolSetRequest:
       properties:
-        http:
+        created_on:
           anyOf:
-          - $ref: '#/components/schemas/ProtocolRedirects'
+          - format: date-time
+            type: string
           - type: 'null'
-        https:
+          title: Created On
+        redirects:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/HttpRedirectRequest'
+            - $ref: '#/components/schemas/WildcardHttpRedirectRequest'
+          title: Redirects
+          type: array
+        updated_on:
           anyOf:
-          - $ref: '#/components/schemas/ProtocolRedirects'
+          - format: date-time
+            type: string
           - type: 'null'
-      title: DomainForwardProtocols
+          title: Updated On
+        wildcard:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Wildcard
+      required:
+      - redirects
+      title: DomainForwardProtocolSetRequest
+      type: object
+    DomainForwardProtocolSetResponse:
+      properties:
+        created_on:
+          format: date-time
+          title: Created On
+          type: string
+        redirects:
+          items:
+            $ref: '#/components/schemas/HttpRedirectListResponse'
+          title: Redirects
+          type: array
+        updated_on:
+          format: date-time
+          title: Updated On
+          type: string
+        wildcard:
+          title: Wildcard
+          type: boolean
+      required:
+      - wildcard
+      - redirects
+      - updated_on
+      - created_on
+      title: DomainForwardProtocolSetResponse
       type: object
     DomainForwardRequest:
       properties:
-        redirects:
-          items:
-            $ref: '#/components/schemas/HttpRedirect'
-          title: Redirects
-          type: array
-        wildcard:
-          default: false
-          title: Wildcard
-          type: boolean
-      required:
-      - redirects
-      title: DomainForwardRequest
-      type: object
-    DomainForwardZone:
-      properties:
         enabled:
+          default: false
           title: Enabled
           type: boolean
-        protocols:
-          $ref: '#/components/schemas/DomainForwardProtocols'
+        http:
+          anyOf:
+          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
+          - type: 'null'
+        https:
+          anyOf:
+          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
+          - type: 'null'
+        wildcard:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Wildcard
+      title: DomainForwardRequest
+      type: object
+    DomainForwardSetRequest:
+      properties:
+        redirects:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/HttpRedirectRequest'
+            - $ref: '#/components/schemas/WildcardHttpRedirectRequest'
+          title: Redirects
+          type: array
+      required:
+      - redirects
+      title: DomainForwardSetRequest
+      type: object
+    DomainForwardSetResponse:
+      properties:
+        created_on:
+          format: date-time
+          title: Created On
+          type: string
+        hostname:
+          title: Hostname
+          type: string
+        protocol:
+          $ref: '#/components/schemas/HttpProtocol'
+        redirects:
+          items:
+            $ref: '#/components/schemas/HttpRedirectListResponse'
+          title: Redirects
+          type: array
+        updated_on:
+          format: date-time
+          title: Updated On
+          type: string
         wildcard:
           title: Wildcard
           type: boolean
-        zone_name:
-          title: Zone Name
-          type: string
       required:
-      - zone_name
+      - hostname
+      - protocol
       - wildcard
-      - enabled
-      - protocols
-      title: DomainForwardZone
+      - redirects
+      - updated_on
+      - created_on
+      title: DomainForwardSetResponse
       type: object
     DomainLifecycleBase:
       properties:
@@ -2579,52 +2649,120 @@ components:
       - https
       title: HttpProtocol
       type: string
-    HttpRedirect:
+    HttpRedirectListResponse:
       properties:
         redirect_code:
           $ref: '#/components/schemas/RedirectCode'
+        request_hostname:
+          title: Request Hostname
+          type: string
         request_path:
           title: Request Path
           type: string
+        request_protocol:
+          $ref: '#/components/schemas/HttpProtocol'
         request_subdomain:
           anyOf:
           - type: string
           - type: 'null'
           title: Request Subdomain
-        target_domain:
-          title: Target Domain
+        target_hostname:
+          title: Target Hostname
           type: string
         target_path:
           title: Target Path
           type: string
         target_protocol:
           $ref: '#/components/schemas/HttpProtocol'
-        target_subdomain:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Target Subdomain
       required:
       - request_path
       - target_protocol
-      - target_domain
+      - target_hostname
       - target_path
       - redirect_code
-      title: HttpRedirect
+      - request_protocol
+      - request_hostname
+      title: HttpRedirectListResponse
       type: object
     HttpRedirectRemove:
       properties:
+        request_hostname:
+          title: Request Hostname
+          type: string
         request_path:
           title: Request Path
           type: string
+        request_protocol:
+          $ref: '#/components/schemas/HttpProtocol'
         request_subdomain:
           anyOf:
           - type: string
           - type: 'null'
           title: Request Subdomain
       required:
+      - request_protocol
+      - request_hostname
       - request_path
       title: HttpRedirectRemove
+      type: object
+    HttpRedirectRequest:
+      properties:
+        redirect_code:
+          $ref: '#/components/schemas/RedirectCode'
+        request_path:
+          title: Request Path
+          type: string
+        target_hostname:
+          title: Target Hostname
+          type: string
+        target_path:
+          title: Target Path
+          type: string
+        target_protocol:
+          $ref: '#/components/schemas/HttpProtocol'
+      required:
+      - request_path
+      - target_protocol
+      - target_hostname
+      - target_path
+      - redirect_code
+      title: HttpRedirectRequest
+      type: object
+    HttpRedirectUpsert:
+      properties:
+        redirect_code:
+          $ref: '#/components/schemas/RedirectCode'
+        request_hostname:
+          title: Request Hostname
+          type: string
+        request_path:
+          title: Request Path
+          type: string
+        request_protocol:
+          anyOf:
+          - $ref: '#/components/schemas/HttpProtocol'
+          - type: 'null'
+        request_subdomain:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Request Subdomain
+        target_hostname:
+          title: Target Hostname
+          type: string
+        target_path:
+          title: Target Path
+          type: string
+        target_protocol:
+          $ref: '#/components/schemas/HttpProtocol'
+      required:
+      - request_path
+      - target_protocol
+      - target_hostname
+      - target_path
+      - redirect_code
+      - request_hostname
+      title: HttpRedirectUpsert
       type: object
     IdnBase:
       properties:
@@ -3709,19 +3847,19 @@ components:
       - pagination
       title: Pagination[DnsZoneResponse]
       type: object
-    Pagination_DomainForwardZone_:
+    Pagination_DomainForward_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/DomainForwardZone'
+            $ref: '#/components/schemas/DomainForward'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[DomainForwardZone]
+      title: Pagination[DomainForward]
       type: object
     Pagination_DomainResponse_:
       properties:
@@ -4016,17 +4154,6 @@ components:
       - detail
       - status
       title: Problem
-      type: object
-    ProtocolRedirects:
-      properties:
-        redirects:
-          items:
-            $ref: '#/components/schemas/HttpRedirect'
-          title: Redirects
-          type: array
-      required:
-      - redirects
-      title: ProtocolRedirects
       type: object
     PublicAuthRequestForm:
       properties:
@@ -5017,6 +5144,33 @@ components:
           title: Whois Server
       title: WhoisBase
       type: object
+    WildcardHttpRedirectRequest:
+      properties:
+        redirect_code:
+          $ref: '#/components/schemas/RedirectCode'
+        request_path:
+          title: Request Path
+          type: string
+        request_subdomain:
+          title: Request Subdomain
+          type: string
+        target_hostname:
+          title: Target Hostname
+          type: string
+        target_path:
+          title: Target Path
+          type: string
+        target_protocol:
+          $ref: '#/components/schemas/HttpProtocol'
+      required:
+      - request_path
+      - target_protocol
+      - target_hostname
+      - target_path
+      - redirect_code
+      - request_subdomain
+      title: WildcardHttpRedirectRequest
+      type: object
     ZoneSortField:
       enum:
       - name
@@ -5111,7 +5265,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-12-143559
+  version: 2025-11-13-093836
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6591,6 +6745,7 @@ paths:
       - dns
   /v1/domain-forwards:
     get:
+      description: Retrieves a paginated list of domain forwards for the organization
       operationId: list_domain_forwards_v1_domain_forwards_get
       parameters:
       - in: query
@@ -6695,8 +6850,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_DomainForwardZone_'
+                $ref: '#/components/schemas/Pagination_DomainForward_'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -6705,10 +6884,13 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: List Domain Forwards
+      summary: List domain forwards
       tags:
       - domain_forward
     patch:
+      description: Applies patch operations to update or remove redirects across hostnames
+        and protocols. Raises an error if the domain forward or domain forward set
+        does not exist.
       operationId: patch_redirects_v1_domain_forwards_patch
       requestBody:
         content:
@@ -6719,12 +6901,36 @@ paths:
       responses:
         '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '404':
           content:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
-                detail: Domain forward not found
+                detail: Domain forward not found for Additional error context.
                 status: 404
                 title: Domain Forward Error
                 type: domain-forward-not-found
@@ -6739,105 +6945,55 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Patch Redirects
+      summary: Patch domain forward redirects
       tags:
       - domain_forward
-  /v1/domain-forwards/{zone_name}/disable:
-    patch:
-      operationId: disable_domain_forward_v1_domain_forwards__zone_name__disable_patch
-      parameters:
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
-        required: true
-        schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
-          type: string
-      responses:
-        '204':
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Disable Domain Forward
-      tags:
-      - domain_forward
-  /v1/domain-forwards/{zone_name}/enable:
-    patch:
-      operationId: enable_domain_forward_v1_domain_forwards__zone_name__enable_patch
-      parameters:
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
-        required: true
-        schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
-          type: string
-      - description: Auto create zone if it doesn't exist
-        in: query
-        name: auto_create_zone
-        required: false
-        schema:
-          default: false
-          description: Auto create zone if it doesn't exist
-          title: Auto Create Zone
-          type: boolean
-      - description: Wildcard domain forwarding
-        in: query
-        name: wildcard
-        required: false
-        schema:
-          default: false
-          description: Wildcard domain forwarding
-          title: Wildcard
-          type: boolean
-      responses:
-        '204':
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Enable Domain Forward
-      tags:
-      - domain_forward
-  /v1/domain-forwards/{zone_name}/{request_protocol}:
+  /v1/domain-forwards/{hostname}:
     delete:
-      operationId: delete_domain_forward_v1_domain_forwards__zone_name___request_protocol__delete
+      description: Deletes the domain forward configuration for the specified hostname
+      operationId: delete_domain_forward_v1_domain_forwards__hostname__delete
       parameters:
-      - in: path
-        name: request_protocol
-        required: true
-        schema:
-          $ref: '#/components/schemas/HttpProtocol'
-      - description: DNS zone name (trailing dot optional)
+      - description: Hostname (trailing dot optional)
         in: path
-        name: zone_name
+        name: hostname
         required: true
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
+          description: Hostname (trailing dot optional)
+          title: Hostname
           type: string
       responses:
         '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '404':
           content:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
-                detail: Domain forward not found
+                detail: Domain forward not found for Additional error context.
                 status: 404
                 title: Domain Forward Error
                 type: domain-forward-not-found
@@ -6852,24 +7008,20 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete Domain Forward
+      summary: Delete a domain forward
       tags:
       - domain_forward
     get:
-      operationId: get_domain_forward_v1_domain_forwards__zone_name___request_protocol__get
+      description: Retrieves the domain forward configuration for the specified hostname
+      operationId: get_domain_forward_v1_domain_forwards__hostname__get
       parameters:
-      - in: path
-        name: request_protocol
-        required: true
-        schema:
-          $ref: '#/components/schemas/HttpProtocol'
-      - description: DNS zone name (trailing dot optional)
+      - description: Hostname (trailing dot optional)
         in: path
-        name: zone_name
+        name: hostname
         required: true
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
+          description: Hostname (trailing dot optional)
+          title: Hostname
           type: string
       responses:
         '200':
@@ -6878,6 +7030,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/DomainForward'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found for Additional error context.
+                status: 404
+                title: Domain Forward Error
+                type: domain-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:
@@ -6886,24 +7074,20 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Domain Forward
+      summary: Get a domain forward
       tags:
       - domain_forward
     post:
-      operationId: create_domain_forward_v1_domain_forwards__zone_name___request_protocol__post
+      description: Creates a new domain forward configuration for the specified hostname
+      operationId: create_domain_forward_v1_domain_forwards__hostname__post
       parameters:
-      - in: path
-        name: request_protocol
-        required: true
-        schema:
-          $ref: '#/components/schemas/HttpProtocol'
-      - description: DNS zone name (trailing dot optional)
+      - description: Hostname (trailing dot optional)
         in: path
-        name: zone_name
+        name: hostname
         required: true
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
+          description: Hostname (trailing dot optional)
+          title: Hostname
           type: string
       requestBody:
         content:
@@ -6918,12 +7102,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/DomainForward'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '409':
           content:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_ALREADY_EXISTS
-                detail: Domain forward already exists
+                detail: Domain forward already exists for Additional error context.
                 status: 409
                 title: Domain Forward Error
                 type: domain-forward-already-exists
@@ -6938,44 +7146,203 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create Domain Forward
+      summary: Create a domain forward
       tags:
       - domain_forward
-    put:
-      operationId: update_domain_forward_v1_domain_forwards__zone_name___request_protocol__put
+  /v1/domain-forwards/{hostname}/disable:
+    patch:
+      description: Disables domain forwarding by removing DNS records. The domain
+        forward configuration is preserved but disabled.
+      operationId: disable_domain_forward_v1_domain_forwards__hostname__disable_patch
+      parameters:
+      - description: Hostname (trailing dot optional)
+        in: path
+        name: hostname
+        required: true
+        schema:
+          description: Hostname (trailing dot optional)
+          title: Hostname
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Disable domain forward
+      tags:
+      - domain_forward
+  /v1/domain-forwards/{hostname}/enable:
+    patch:
+      description: Enables domain forwarding by creating necessary DNS records. Optionally
+        auto-creates the zone and domain forward if they don't exist.
+      operationId: enable_domain_forward_v1_domain_forwards__hostname__enable_patch
+      parameters:
+      - description: Hostname (trailing dot optional)
+        in: path
+        name: hostname
+        required: true
+        schema:
+          description: Hostname (trailing dot optional)
+          title: Hostname
+          type: string
+      - description: Auto create zone if it doesn't exist
+        in: query
+        name: auto_create_zone
+        required: false
+        schema:
+          default: false
+          description: Auto create zone if it doesn't exist
+          title: Auto Create Zone
+          type: boolean
+      - description: Auto create domain forward if it doesn't exist
+        in: query
+        name: auto_create_domain_forward
+        required: false
+        schema:
+          default: false
+          description: Auto create domain forward if it doesn't exist
+          title: Auto Create Domain Forward
+          type: boolean
+      - description: Wildcard domain forwarding
+        in: query
+        name: wildcard
+        required: false
+        schema:
+          default: false
+          description: Wildcard domain forwarding
+          title: Wildcard
+          type: boolean
+      responses:
+        '204':
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_WILDCARD_NOT_SUPPORTED
+                detail: Additional error context.
+                status: 400
+                title: Wildcard Not Supported
+                type: domain-forward-wildcard-not-supported
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Enable domain forward
+      tags:
+      - domain_forward
+  /v1/domain-forwards/{hostname}/{protocol}:
+    delete:
+      description: Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
+      operationId: delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete
       parameters:
       - in: path
-        name: request_protocol
+        name: protocol
         required: true
         schema:
           $ref: '#/components/schemas/HttpProtocol'
-      - description: DNS zone name (trailing dot optional)
+      - description: Hostname (trailing dot optional)
         in: path
-        name: zone_name
+        name: hostname
         required: true
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
+          description: Hostname (trailing dot optional)
+          title: Hostname
           type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DomainForwardRequest'
-        required: true
       responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DomainForward'
+        '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '404':
           content:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
-                detail: Domain forward not found
+                detail: Domain forward not found for Additional error context.
                 status: 404
                 title: Domain Forward Error
                 type: domain-forward-not-found
@@ -6990,7 +7357,248 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Domain Forward
+      summary: Delete domain forward set
+      tags:
+      - domain_forward
+    get:
+      description: Retrieves all redirects for a specific protocol (HTTP or HTTPS)
+        for the specified hostname
+      operationId: get_domain_forward_set_v1_domain_forwards__hostname___protocol__get
+      parameters:
+      - in: path
+        name: protocol
+        required: true
+        schema:
+          $ref: '#/components/schemas/HttpProtocol'
+      - description: Hostname (trailing dot optional)
+        in: path
+        name: hostname
+        required: true
+        schema:
+          description: Hostname (trailing dot optional)
+          title: Hostname
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardSetResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found for Additional error context.
+                status: 404
+                title: Domain Forward Error
+                type: domain-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get domain forward set
+      tags:
+      - domain_forward
+    post:
+      description: Creates a new domain forward set for a specific protocol (HTTP
+        or HTTPS). Raises an error if the set already exists.
+      operationId: create_domain_forward_set_v1_domain_forwards__hostname___protocol__post
+      parameters:
+      - in: path
+        name: protocol
+        required: true
+        schema:
+          $ref: '#/components/schemas/HttpProtocol'
+      - description: Hostname (trailing dot optional)
+        in: path
+        name: hostname
+        required: true
+        schema:
+          description: Hostname (trailing dot optional)
+          title: Hostname
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainForwardSetRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardSetResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found for Additional error context.
+                status: 404
+                title: Domain Forward Error
+                type: domain-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_ALREADY_EXISTS
+                detail: Domain forward already exists for Additional error context.
+                status: 409
+                title: Domain Forward Error
+                type: domain-forward-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Create domain forward set
+      tags:
+      - domain_forward
+    put:
+      description: Updates an existing domain forward set for a specific protocol
+        (HTTP or HTTPS). All existing redirects for this protocol are replaced with
+        the provided redirects. Raises an error if the set does not exist.
+      operationId: update_domain_forward_set_v1_domain_forwards__hostname___protocol__put
+      parameters:
+      - in: path
+        name: protocol
+        required: true
+        schema:
+          $ref: '#/components/schemas/HttpProtocol'
+      - description: Hostname (trailing dot optional)
+        in: path
+        name: hostname
+        required: true
+        schema:
+          description: Hostname (trailing dot optional)
+          title: Hostname
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainForwardSetRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardSetResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found for Additional error context.
+                status: 404
+                title: Domain Forward Error
+                type: domain-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Update domain forward set
       tags:
       - domain_forward
   /v1/domain-search/suggest:
