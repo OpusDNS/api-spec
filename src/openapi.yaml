@@ -4036,6 +4036,7 @@ components:
       - manage_domains
       - manage_email_forwards
       - manage_events
+      - manage_hosts
       - manage_opusdns_api_keys
       - manage_products
       - manage_reseller
@@ -4283,6 +4284,7 @@ components:
       - domain_manager
       - email_forward_manager
       - events_manager
+      - host_manager
       - member
       - opusdns_internal_api_key
       - organization_manager
@@ -5291,7 +5293,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-13-112957
+  version: 2025-11-14-091055
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
