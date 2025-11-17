@@ -5290,10 +5290,35 @@ info:
 
 
 
+    # Sandbox Environment
+
+
+    We provide a free sandbox environment where you can test and make sure your integration
+    with OpusDNS runs smoothly. The sandbox is completely isolated, meaning all domains,
+    configurations, and actions inside this environment have no effect on your live
+    data or production systems. It is a full test system for safe experimentation
+    and completely free to use.
+
+
+    Please register a new sandbox account at https://app.sandbox.opusdns.com and create
+    a new API key there.
+
+
+    This sandbox provides a separate dashboard at [app.sandbox.opusdns.com](https://app.sandbox.opusdns.com).
+
+
+    The sandbox API Base URL is `https://sandbox.opusdns.com`.
+
+
+    If you have any questions about the API or run into issues, please open a ticket
+    at support@opusdns.com. We are happy to help!
+
+
+
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-14-091055
+  version: 2025-11-17-123618
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
