@@ -1185,7 +1185,7 @@ export type PATCH_DomainForwards_Request_Body = PATCH_DomainForwards_Request['re
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsHostname_Request_Query} - Query parameters type
  * @see {@link DELETE_DomainForwardsHostname_Request_Path} - Path parameters type
@@ -1207,7 +1207,7 @@ export type DELETE_DomainForwardsHostname_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type DELETE_DomainForwardsHostname_Request_Path = DELETE_DomainForwardsHostname_Request['parameters']['path'];
 
@@ -1226,7 +1226,7 @@ export type DELETE_DomainForwardsHostname_Request_Path = DELETE_DomainForwardsHo
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsHostname_Request_Query} - Query parameters type
  * @see {@link GET_DomainForwardsHostname_Request_Path} - Path parameters type
@@ -1248,7 +1248,7 @@ export type GET_DomainForwardsHostname_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type GET_DomainForwardsHostname_Request_Path = GET_DomainForwardsHostname_Request['parameters']['path'];
 
@@ -1267,7 +1267,7 @@ export type GET_DomainForwardsHostname_Request_Path = GET_DomainForwardsHostname
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsHostname_Request_Query} - Query parameters type
  * @see {@link POST_DomainForwardsHostname_Request_Path} - Path parameters type
@@ -1290,7 +1290,7 @@ export type POST_DomainForwardsHostname_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type POST_DomainForwardsHostname_Request_Path = POST_DomainForwardsHostname_Request['parameters']['path'];
 /**
@@ -1322,7 +1322,7 @@ export type POST_DomainForwardsHostname_Request_Body = POST_DomainForwardsHostna
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Query} - Query parameters type
  * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Path} - Path parameters type
@@ -1344,7 +1344,7 @@ export type PATCH_DomainForwardsHostnameDisable_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwardsHostnameDisable_Request['parameters']['path'];
 
@@ -1363,7 +1363,7 @@ export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwa
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  * @param auto_create_zone (query) - Auto create zone if it doesn't exist
  * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
@@ -1405,7 +1405,7 @@ export type PATCH_DomainForwardsHostnameEnable_Request_Query = PATCH_DomainForwa
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type PATCH_DomainForwardsHostnameEnable_Request_Path = PATCH_DomainForwardsHostnameEnable_Request['parameters']['path'];
 
@@ -1424,7 +1424,7 @@ export type PATCH_DomainForwardsHostnameEnable_Request_Path = PATCH_DomainForwar
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
  * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
@@ -1446,7 +1446,7 @@ export type DELETE_DomainForwardsHostnameProtocol_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type DELETE_DomainForwardsHostnameProtocol_Request_Path = DELETE_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 
@@ -1465,7 +1465,7 @@ export type DELETE_DomainForwardsHostnameProtocol_Request_Path = DELETE_DomainFo
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
  * @see {@link GET_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
@@ -1487,7 +1487,7 @@ export type GET_DomainForwardsHostnameProtocol_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type GET_DomainForwardsHostnameProtocol_Request_Path = GET_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 
@@ -1506,7 +1506,7 @@ export type GET_DomainForwardsHostnameProtocol_Request_Path = GET_DomainForwards
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
  * @see {@link POST_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
@@ -1529,7 +1529,7 @@ export type POST_DomainForwardsHostnameProtocol_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type POST_DomainForwardsHostnameProtocol_Request_Path = POST_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 /**
@@ -1561,7 +1561,7 @@ export type POST_DomainForwardsHostnameProtocol_Request_Body = POST_DomainForwar
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
  * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
@@ -1584,7 +1584,7 @@ export type PUT_DomainForwardsHostnameProtocol_Request = {
  * Use this type to ensure type safety for path parameters.
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  */
 export type PUT_DomainForwardsHostnameProtocol_Request_Path = PUT_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 /**

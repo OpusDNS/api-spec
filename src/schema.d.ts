@@ -6330,7 +6330,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6410,7 +6410,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6421,7 +6421,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward created successfully */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -6462,7 +6462,24 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Conflict */
+            /** @description DNS zone was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_NOT_FOUND",
+                     *       "detail": "Zone not found",
+                     *       "status": 404,
+                     *       "title": "DNS Error",
+                     *       "type": "dns-zone-not-found",
+                     *       "zone_name": "Zone example.com. not found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Domain forward already exists */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -6470,7 +6487,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_ALREADY_EXISTS",
-                     *       "detail": "Domain forward already exists for Additional error context.",
+                     *       "detail": "Domain forward already exists for example.com.",
                      *       "status": 409,
                      *       "title": "Domain Forward Error",
                      *       "type": "domain-forward-already-exists"
@@ -6494,7 +6511,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6572,7 +6589,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6641,7 +6658,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6720,7 +6737,7 @@ export interface operations {
             header?: never;
             path: {
                 protocol: components["schemas"]["HttpProtocol"];
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6801,7 +6818,7 @@ export interface operations {
             header?: never;
             path: {
                 protocol: components["schemas"]["HttpProtocol"];
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6886,7 +6903,7 @@ export interface operations {
             header?: never;
             path: {
                 protocol: components["schemas"]["HttpProtocol"];
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;
@@ -6987,7 +7004,7 @@ export interface operations {
             header?: never;
             path: {
                 protocol: components["schemas"]["HttpProtocol"];
-                /** @description Hostname (trailing dot optional) */
+                /** @description Hostname */
                 hostname: string;
             };
             cookie?: never;

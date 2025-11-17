@@ -5318,7 +5318,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-17-123618
+  version: 2025-11-17-131834
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7206,12 +7206,12 @@ paths:
       description: Deletes the domain forward configuration for the specified hostname
       operationId: delete_domain_forward_v1_domain_forwards__hostname__delete
       parameters:
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       responses:
@@ -7268,12 +7268,12 @@ paths:
       description: Retrieves the domain forward configuration for the specified hostname
       operationId: get_domain_forward_v1_domain_forwards__hostname__get
       parameters:
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       responses:
@@ -7334,17 +7334,56 @@ paths:
       description: Creates a new domain forward configuration for the specified hostname
       operationId: create_domain_forward_v1_domain_forwards__hostname__post
       parameters:
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       requestBody:
         content:
           application/json:
+            examples:
+              domain_forward:
+                description: Create a HTTP domain forward with redirect from HTTP
+                  to HTTPS and HTTPS to auth.example.com
+                summary: HTTP domain forward
+                value:
+                  enabled: false
+                  http:
+                    redirects:
+                    - redirect_code: 301
+                      request_path: /
+                      target_hostname: example.com
+                      target_path: /
+                      target_protocol: https
+                    wildcard: false
+                  https:
+                    redirects:
+                    - redirect_code: 302
+                      request_path: /
+                      target_hostname: auth.example.com
+                      target_path: /
+                      target_protocol: https
+                    wildcard: false
+                  wildcard: false
+              http_to_https:
+                description: Create a HTTP domain forward with redirect from HTTP
+                  to HTTPS
+                summary: HTTP to HTTPS
+                value:
+                  enabled: false
+                  https:
+                    redirects:
+                    - redirect_code: 301
+                      request_path: /
+                      target_hostname: example.com
+                      target_path: /
+                      target_protocol: https
+                    wildcard: false
+                  wildcard: false
             schema:
               $ref: '#/components/schemas/DomainForwardRequest'
         required: true
@@ -7352,9 +7391,65 @@ paths:
         '201':
           content:
             application/json:
+              examples:
+                http_domain_forward_response:
+                  description: Response when creating a HTTP domain forward with redirect
+                    from HTTP to HTTPS and HTTPS to auth.example.com
+                  summary: Response for HTTP domain forward
+                  value:
+                    created_on: '2025-11-14T09:01:38'
+                    enabled: false
+                    hostname: example.com.
+                    http:
+                      created_on: '2025-11-14T09:01:38'
+                      redirects:
+                      - redirect_code: 301
+                        request_hostname: example.com.
+                        request_path: /
+                        request_protocol: http
+                        target_hostname: example.com
+                        target_path: /
+                        target_protocol: https
+                      updated_on: '2025-11-14T09:01:38'
+                      wildcard: false
+                    https:
+                      created_on: '2025-11-14T09:01:38'
+                      redirects:
+                      - redirect_code: 302
+                        request_hostname: example.com.
+                        request_path: /
+                        request_protocol: https
+                        target_hostname: auth.example.com
+                        target_path: /
+                        target_protocol: https
+                      updated_on: '2025-11-14T09:01:38'
+                      wildcard: false
+                    updated_on: '2025-11-14T09:01:38'
+                    wildcard: false
+                http_to_https_response:
+                  description: Response when creating a HTTP to HTTPS domain forward
+                  summary: Response for HTTP to HTTPS
+                  value:
+                    created_on: '2025-11-14T09:01:38'
+                    enabled: false
+                    hostname: example.com.
+                    http:
+                      created_on: '2025-11-14T09:01:38'
+                      redirects:
+                      - redirect_code: 301
+                        request_hostname: example.com.
+                        request_path: /
+                        request_protocol: http
+                        target_hostname: example.com
+                        target_path: /
+                        target_protocol: https
+                      updated_on: '2025-11-14T09:01:38'
+                      wildcard: false
+                    updated_on: '2025-11-14T09:01:38'
+                    wildcard: false
               schema:
                 $ref: '#/components/schemas/DomainForward'
-          description: Successful Response
+          description: Domain forward created successfully
         '401':
           content:
             application/problem+json:
@@ -7379,18 +7474,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ZONE_NOT_FOUND
+                detail: Zone not found
+                status: 404
+                title: DNS Error
+                type: dns-zone-not-found
+                zone_name: Zone example.com. not found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: DNS zone was not found
         '409':
           content:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_ALREADY_EXISTS
-                detail: Domain forward already exists for Additional error context.
+                detail: Domain forward already exists for example.com.
                 status: 409
                 title: Domain Forward Error
                 type: domain-forward-already-exists
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Conflict
+          description: Domain forward already exists
         '422':
           content:
             application/problem+json:
@@ -7408,12 +7516,12 @@ paths:
         forward configuration is preserved but disabled.
       operationId: disable_domain_forward_v1_domain_forwards__hostname__disable_patch
       parameters:
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       responses:
@@ -7460,12 +7568,12 @@ paths:
         auto-creates the zone and domain forward if they don't exist.
       operationId: enable_domain_forward_v1_domain_forwards__hostname__enable_patch
       parameters:
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       - description: Auto create zone if it doesn't exist
@@ -7555,12 +7663,12 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/HttpProtocol'
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       responses:
@@ -7623,12 +7731,12 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/HttpProtocol'
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       responses:
@@ -7695,12 +7803,12 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/HttpProtocol'
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       requestBody:
@@ -7786,12 +7894,12 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/HttpProtocol'
-      - description: Hostname (trailing dot optional)
+      - description: Hostname
         in: path
         name: hostname
         required: true
         schema:
-          description: Hostname (trailing dot optional)
+          description: Hostname
           title: Hostname
           type: string
       requestBody:

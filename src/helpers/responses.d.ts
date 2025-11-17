@@ -2048,7 +2048,7 @@ export type PATCH_DomainForwards_Response_422 = HTTPValidationError
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostname_Response_401} - 401 response type
  * @see {@link DELETE_DomainForwardsByHostname_Response_403} - 403 response type
@@ -2070,7 +2070,7 @@ export type DELETE_DomainForwardsByHostname_Response = DELETE_DomainForwardsByHo
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2088,7 +2088,7 @@ export type DELETE_DomainForwardsByHostname_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2106,7 +2106,7 @@ export type DELETE_DomainForwardsByHostname_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2124,7 +2124,7 @@ export type DELETE_DomainForwardsByHostname_Response_404 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2145,7 +2145,7 @@ export type DELETE_DomainForwardsByHostname_Response_422 = HTTPValidationError
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostname_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsByHostname_Response_401} - 401 response type
@@ -2168,7 +2168,7 @@ export type GET_DomainForwardsByHostname_Response = GET_DomainForwardsByHostname
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link DomainForward} - The actual schema type definition
@@ -2186,7 +2186,7 @@ export type GET_DomainForwardsByHostname_Response_200 = DomainForward
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2204,7 +2204,7 @@ export type GET_DomainForwardsByHostname_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2222,7 +2222,7 @@ export type GET_DomainForwardsByHostname_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2240,7 +2240,7 @@ export type GET_DomainForwardsByHostname_Response_404 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2261,17 +2261,18 @@ export type GET_DomainForwardsByHostname_Response_422 = HTTPValidationError
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostname_Response_201} - 201 response type
  * @see {@link POST_DomainForwardsByHostname_Response_401} - 401 response type
  * @see {@link POST_DomainForwardsByHostname_Response_403} - 403 response type
+ * @see {@link POST_DomainForwardsByHostname_Response_404} - 404 response type
  * @see {@link POST_DomainForwardsByHostname_Response_409} - 409 response type
  * @see {@link POST_DomainForwardsByHostname_Response_422} - 422 response type
  *
 
  */
-export type POST_DomainForwardsByHostname_Response = POST_DomainForwardsByHostname_Response_201 | POST_DomainForwardsByHostname_Response_401 | POST_DomainForwardsByHostname_Response_403 | POST_DomainForwardsByHostname_Response_409 | POST_DomainForwardsByHostname_Response_422;
+export type POST_DomainForwardsByHostname_Response = POST_DomainForwardsByHostname_Response_201 | POST_DomainForwardsByHostname_Response_401 | POST_DomainForwardsByHostname_Response_403 | POST_DomainForwardsByHostname_Response_404 | POST_DomainForwardsByHostname_Response_409 | POST_DomainForwardsByHostname_Response_422;
 
 /**
  * 201 response for POST DomainForwardsByHostname endpoint
@@ -2284,7 +2285,7 @@ export type POST_DomainForwardsByHostname_Response = POST_DomainForwardsByHostna
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link DomainForward} - The actual schema type definition
@@ -2302,7 +2303,7 @@ export type POST_DomainForwardsByHostname_Response_201 = DomainForward
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2320,12 +2321,30 @@ export type POST_DomainForwardsByHostname_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainForwardsByHostname_Response_403 = Problem
+
+/**
+ * 404 response for POST DomainForwardsByHostname endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainForwardsByHostname endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/{hostname}
+ * @param hostname (path) - Hostname
+ *
+ * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwardsByHostname_Response_404 = Problem
 
 /**
  * 409 response for POST DomainForwardsByHostname endpoint
@@ -2338,7 +2357,7 @@ export type POST_DomainForwardsByHostname_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2356,7 +2375,7 @@ export type POST_DomainForwardsByHostname_Response_409 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2377,7 +2396,7 @@ export type POST_DomainForwardsByHostname_Response_422 = HTTPValidationError
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
  * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response_403} - 403 response type
@@ -2399,7 +2418,7 @@ export type DELETE_DomainForwardsByHostnameByProtocol_Response = DELETE_DomainFo
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2417,7 +2436,7 @@ export type DELETE_DomainForwardsByHostnameByProtocol_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2435,7 +2454,7 @@ export type DELETE_DomainForwardsByHostnameByProtocol_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2453,7 +2472,7 @@ export type DELETE_DomainForwardsByHostnameByProtocol_Response_404 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link DELETE_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2474,7 +2493,7 @@ export type DELETE_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidat
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostnameByProtocol_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
@@ -2497,7 +2516,7 @@ export type GET_DomainForwardsByHostnameByProtocol_Response = GET_DomainForwards
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link DomainForwardSet} - The actual schema type definition
@@ -2515,7 +2534,7 @@ export type GET_DomainForwardsByHostnameByProtocol_Response_200 = DomainForwardS
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2533,7 +2552,7 @@ export type GET_DomainForwardsByHostnameByProtocol_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2551,7 +2570,7 @@ export type GET_DomainForwardsByHostnameByProtocol_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2569,7 +2588,7 @@ export type GET_DomainForwardsByHostnameByProtocol_Response_404 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link GET_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2590,7 +2609,7 @@ export type GET_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidation
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_201} - 201 response type
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
@@ -2614,7 +2633,7 @@ export type POST_DomainForwardsByHostnameByProtocol_Response = POST_DomainForwar
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link DomainForwardSet} - The actual schema type definition
@@ -2632,7 +2651,7 @@ export type POST_DomainForwardsByHostnameByProtocol_Response_201 = DomainForward
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2650,7 +2669,7 @@ export type POST_DomainForwardsByHostnameByProtocol_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2668,7 +2687,7 @@ export type POST_DomainForwardsByHostnameByProtocol_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2686,7 +2705,7 @@ export type POST_DomainForwardsByHostnameByProtocol_Response_404 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2704,7 +2723,7 @@ export type POST_DomainForwardsByHostnameByProtocol_Response_409 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2725,7 +2744,7 @@ export type POST_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidatio
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response_200} - 200 response type
  * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response_401} - 401 response type
@@ -2748,7 +2767,7 @@ export type PUT_DomainForwardsByHostnameByProtocol_Response = PUT_DomainForwards
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link DomainForwardSet} - The actual schema type definition
@@ -2766,7 +2785,7 @@ export type PUT_DomainForwardsByHostnameByProtocol_Response_200 = DomainForwardS
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2784,7 +2803,7 @@ export type PUT_DomainForwardsByHostnameByProtocol_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2802,7 +2821,7 @@ export type PUT_DomainForwardsByHostnameByProtocol_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2820,7 +2839,7 @@ export type PUT_DomainForwardsByHostnameByProtocol_Response_404 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PUT_DomainForwardsByHostnameByProtocol_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2841,7 +2860,7 @@ export type PUT_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidation
 
  *
  * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PATCH_DomainForwardsByHostnameDisable_Response_401} - 401 response type
  * @see {@link PATCH_DomainForwardsByHostnameDisable_Response_403} - 403 response type
@@ -2862,7 +2881,7 @@ export type PATCH_DomainForwardsByHostnameDisable_Response = PATCH_DomainForward
 
  *
  * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PATCH_DomainForwardsByHostnameDisable_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2880,7 +2899,7 @@ export type PATCH_DomainForwardsByHostnameDisable_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PATCH_DomainForwardsByHostnameDisable_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -2898,7 +2917,7 @@ export type PATCH_DomainForwardsByHostnameDisable_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  *
  * @see {@link PATCH_DomainForwardsByHostnameDisable_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -2919,7 +2938,7 @@ export type PATCH_DomainForwardsByHostnameDisable_Response_422 = HTTPValidationE
 
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  * @param auto_create_zone (query) - Auto create zone if it doesn't exist
  * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
@@ -2944,7 +2963,7 @@ export type PATCH_DomainForwardsByHostnameEnable_Response = PATCH_DomainForwards
 
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  * @param auto_create_zone (query) - Auto create zone if it doesn't exist
  * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
@@ -2965,7 +2984,7 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_400 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  * @param auto_create_zone (query) - Auto create zone if it doesn't exist
  * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
@@ -2986,7 +3005,7 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_401 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  * @param auto_create_zone (query) - Auto create zone if it doesn't exist
  * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
@@ -3007,7 +3026,7 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_403 = Problem
 
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname (trailing dot optional)
+ * @param hostname (path) - Hostname
  * @param auto_create_zone (query) - Auto create zone if it doesn't exist
  * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
