@@ -1364,8 +1364,6 @@ export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwa
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Query} - Query parameters type
@@ -1389,8 +1387,6 @@ export type PATCH_DomainForwardsHostnameEnable_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/domain-forwards/{hostname}/enable
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  */
 export type PATCH_DomainForwardsHostnameEnable_Request_Query = PATCH_DomainForwardsHostnameEnable_Request['parameters']['query'];

@@ -6649,10 +6649,6 @@ export interface operations {
     enable_domain_forward_v1_domain_forwards__hostname__enable_patch: {
         parameters: {
             query?: {
-                /** @description Auto create zone if it doesn't exist */
-                auto_create_zone?: boolean;
-                /** @description Auto create domain forward if it doesn't exist */
-                auto_create_domain_forward?: boolean;
                 /** @description Wildcard domain forwarding */
                 wildcard?: boolean;
             };

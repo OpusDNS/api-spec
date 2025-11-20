@@ -2939,8 +2939,6 @@ export type PATCH_DomainForwardsByHostnameDisable_Response_422 = HTTPValidationE
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_400} - 400 response type
@@ -2964,8 +2962,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response = PATCH_DomainForwards
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
@@ -2985,8 +2981,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_400 = Problem
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
@@ -3006,8 +3000,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_401 = Problem
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
@@ -3027,8 +3019,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_403 = Problem
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param auto_create_zone (query) - Auto create zone if it doesn't exist
- * @param auto_create_domain_forward (query) - Auto create domain forward if it doesn't exist
  * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition

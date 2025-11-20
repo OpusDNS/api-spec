@@ -5318,7 +5318,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-17-131834
+  version: 2025-11-20-110801
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7576,24 +7576,6 @@ paths:
           description: Hostname
           title: Hostname
           type: string
-      - description: Auto create zone if it doesn't exist
-        in: query
-        name: auto_create_zone
-        required: false
-        schema:
-          default: false
-          description: Auto create zone if it doesn't exist
-          title: Auto Create Zone
-          type: boolean
-      - description: Auto create domain forward if it doesn't exist
-        in: query
-        name: auto_create_domain_forward
-        required: false
-        schema:
-          default: false
-          description: Auto create domain forward if it doesn't exist
-          title: Auto Create Domain Forward
-          type: boolean
       - description: Wildcard domain forwarding
         in: query
         name: wildcard
