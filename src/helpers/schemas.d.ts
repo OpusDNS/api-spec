@@ -1147,6 +1147,22 @@ export type DomainForwardSetRequest = components['schemas']['DomainForwardSetReq
  */
 export type DomainForwardSet = components['schemas']['DomainForwardSetResponse'];
 /**
+ * DomainForwardSortField
+ *
+ * @remarks
+ * Type alias for the `DomainForwardSortField` OpenAPI schema.
+ * This type represents domainforwardsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardSortField();
+ * const item: DomainForwardSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardSortField = components['schemas']['DomainForwardSortField'];
+/**
  * DomainForwardZone
  *
  * @remarks
@@ -1162,6 +1178,22 @@ export type DomainForwardSet = components['schemas']['DomainForwardSetResponse']
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainForwardZone = components['schemas']['DomainForwardZone'];
+/**
+ * DomainForwardZoneSortField
+ *
+ * @remarks
+ * Type alias for the `DomainForwardZoneSortField` OpenAPI schema.
+ * This type represents domainforwardzonesortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardZoneSortField();
+ * const item: DomainForwardZoneSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardZoneSortField = components['schemas']['DomainForwardZoneSortField'];
 /**
  * DomainLifecycleBase
  *

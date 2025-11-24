@@ -1098,7 +1098,7 @@ export type PUT_DnsZoneNameRrsets_Request_Body = PUT_DnsZoneNameRrsets_Request['
  * Request type for GET DomainForwards endpoint
  *
  * List domain forwards
- * Retrieves a paginated list of domain forwards for the organization
+ * Retrieves a paginated list of domain forwards by hostname for the organization
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwards endpoint.

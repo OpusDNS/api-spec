@@ -1854,7 +1854,7 @@ export type GET_DnsSummary_Response_200 = DnsZoneSummary
  * Response types for GET DomainForwards endpoint
  *
  * List domain forwards
- * Retrieves a paginated list of domain forwards for the organization
+ * Retrieves a paginated list of domain forwards by hostname for the organization
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwards endpoint.

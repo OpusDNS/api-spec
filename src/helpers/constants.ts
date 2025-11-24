@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1124,6 +1124,108 @@ export const DOMAIN_CONTACT_TYPE_VALUES = [
   'tech',
   'billing'
 ] as const satisfies [string, ...string[]] | DomainContactType[];
+
+/**
+ * DomainForwardSortField. Auto-generated enum for DomainForwardSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the DomainForwardSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = DOMAIN_FORWARD_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = DOMAIN_FORWARD_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link DomainForwardSortField} - The TypeScript type definition
+ */
+export const DOMAIN_FORWARD_SORT_FIELD = {
+  HOSTNAME: "hostname",
+  ENABLED: "enabled",
+  CREATED_ON: "created_on",
+} as const satisfies Record<string, DomainForwardSortField>;
+
+/**
+ * Array of all DomainForwardSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid DomainForwardSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of DOMAIN_FORWARD_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = DOMAIN_FORWARD_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link DomainForwardSortField} - The TypeScript type definition
+ * @see {@link DOMAIN_FORWARD_SORT_FIELD} - The object form of this enum
+ */
+export const DOMAIN_FORWARD_SORT_FIELD_VALUES = [
+  'hostname',
+  'enabled',
+  'created_on'
+] as const satisfies [string, ...string[]] | DomainForwardSortField[];
+
+/**
+ * DomainForwardZoneSortField. Auto-generated enum for DomainForwardZoneSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the DomainForwardZoneSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = DOMAIN_FORWARD_ZONE_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link DomainForwardZoneSortField} - The TypeScript type definition
+ */
+export const DOMAIN_FORWARD_ZONE_SORT_FIELD = {
+  NAME: "name",
+  CREATED_ON: "created_on",
+} as const satisfies Record<string, DomainForwardZoneSortField>;
+
+/**
+ * Array of all DomainForwardZoneSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid DomainForwardZoneSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link DomainForwardZoneSortField} - The TypeScript type definition
+ * @see {@link DOMAIN_FORWARD_ZONE_SORT_FIELD} - The object form of this enum
+ */
+export const DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES = [
+  'name',
+  'created_on'
+] as const satisfies [string, ...string[]] | DomainForwardZoneSortField[];
 
 /**
  * DomainSortField. Auto-generated enum for DomainSortField

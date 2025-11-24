@@ -331,7 +331,7 @@ export interface paths {
         };
         /**
          * List domain forwards
-         * @description Retrieves a paginated list of domain forwards for the organization
+         * @description Retrieves a paginated list of domain forwards by hostname for the organization
          */
         get: operations["list_domain_forwards_v1_domain_forwards_get"];
         put?: never;
@@ -2454,6 +2454,11 @@ export interface components {
             /** Wildcard */
             wildcard: boolean;
         };
+        /**
+         * DomainForwardSortField
+         * @enum {string}
+         */
+        DomainForwardSortField: "hostname" | "enabled" | "created_on";
         /** DomainForwardZone */
         DomainForwardZone: {
             /** Domain Forwards */
@@ -2467,6 +2472,11 @@ export interface components {
             /** Zone Name */
             zone_name: string;
         };
+        /**
+         * DomainForwardZoneSortField
+         * @enum {string}
+         */
+        DomainForwardZoneSortField: "name" | "created_on";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -5741,16 +5751,9 @@ export interface operations {
     list_domain_forwards_by_zone_v1_dns_domain_forwards_get: {
         parameters: {
             query?: {
-                sort_by?: components["schemas"]["ZoneSortField"];
-                sort_order?: components["schemas"]["SortOrder"];
-                dnssec_status?: components["schemas"]["DnssecStatus"] | null;
-                name?: string | null;
                 search?: string | null;
-                suffix?: string | null;
-                created_after?: Date | null;
-                created_before?: Date | null;
-                updated_after?: Date | null;
-                updated_before?: Date | null;
+                sort_by?: components["schemas"]["DomainForwardZoneSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
                 page?: number;
                 page_size?: number;
             };
@@ -6175,16 +6178,9 @@ export interface operations {
     list_domain_forwards_v1_domain_forwards_get: {
         parameters: {
             query?: {
-                sort_by?: components["schemas"]["ZoneSortField"];
-                sort_order?: components["schemas"]["SortOrder"];
-                dnssec_status?: components["schemas"]["DnssecStatus"] | null;
-                name?: string | null;
                 search?: string | null;
-                suffix?: string | null;
-                created_after?: Date | null;
-                created_before?: Date | null;
-                updated_after?: Date | null;
-                updated_before?: Date | null;
+                sort_by?: components["schemas"]["DomainForwardSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
                 page?: number;
                 page_size?: number;
             };

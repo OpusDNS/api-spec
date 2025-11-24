@@ -1703,6 +1703,13 @@ components:
       - created_on
       title: DomainForwardSetResponse
       type: object
+    DomainForwardSortField:
+      enum:
+      - hostname
+      - enabled
+      - created_on
+      title: DomainForwardSortField
+      type: string
     DomainForwardZone:
       properties:
         domain_forwards:
@@ -1727,6 +1734,12 @@ components:
       - domain_forwards
       title: DomainForwardZone
       type: object
+    DomainForwardZoneSortField:
+      enum:
+      - name
+      - created_on
+      title: DomainForwardZoneSortField
+      type: string
     DomainLifecycleBase:
       properties:
         add_grace_period:
@@ -5318,7 +5331,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-20-110801
+  version: 2025-11-24-120310
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6541,34 +6554,6 @@ paths:
       operationId: list_domain_forwards_by_zone_v1_dns_domain_forwards_get
       parameters:
       - in: query
-        name: sort_by
-        required: false
-        schema:
-          $ref: '#/components/schemas/ZoneSortField'
-          default: created_on
-      - in: query
-        name: sort_order
-        required: false
-        schema:
-          $ref: '#/components/schemas/SortOrder'
-          default: desc
-      - in: query
-        name: dnssec_status
-        required: false
-        schema:
-          anyOf:
-          - $ref: '#/components/schemas/DnssecStatus'
-          - type: 'null'
-          title: Dnssec Status
-      - in: query
-        name: name
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-      - in: query
         name: search
         required: false
         schema:
@@ -6577,49 +6562,17 @@ paths:
           - type: 'null'
           title: Search
       - in: query
-        name: suffix
+        name: sort_by
         required: false
         schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Suffix
+          $ref: '#/components/schemas/DomainForwardZoneSortField'
+          default: created_on
       - in: query
-        name: created_after
+        name: sort_order
         required: false
         schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Created After
-      - in: query
-        name: created_before
-        required: false
-        schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Created Before
-      - in: query
-        name: updated_after
-        required: false
-        schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Updated After
-      - in: query
-        name: updated_before
-        required: false
-        schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Updated Before
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
       - in: query
         name: page
         required: false
@@ -6998,37 +6951,10 @@ paths:
       - dns
   /v1/domain-forwards:
     get:
-      description: Retrieves a paginated list of domain forwards for the organization
+      description: Retrieves a paginated list of domain forwards by hostname for the
+        organization
       operationId: list_domain_forwards_v1_domain_forwards_get
       parameters:
-      - in: query
-        name: sort_by
-        required: false
-        schema:
-          $ref: '#/components/schemas/ZoneSortField'
-          default: created_on
-      - in: query
-        name: sort_order
-        required: false
-        schema:
-          $ref: '#/components/schemas/SortOrder'
-          default: desc
-      - in: query
-        name: dnssec_status
-        required: false
-        schema:
-          anyOf:
-          - $ref: '#/components/schemas/DnssecStatus'
-          - type: 'null'
-          title: Dnssec Status
-      - in: query
-        name: name
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
       - in: query
         name: search
         required: false
@@ -7038,49 +6964,17 @@ paths:
           - type: 'null'
           title: Search
       - in: query
-        name: suffix
+        name: sort_by
         required: false
         schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Suffix
+          $ref: '#/components/schemas/DomainForwardSortField'
+          default: created_on
       - in: query
-        name: created_after
+        name: sort_order
         required: false
         schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Created After
-      - in: query
-        name: created_before
-        required: false
-        schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Created Before
-      - in: query
-        name: updated_after
-        required: false
-        schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Updated After
-      - in: query
-        name: updated_before
-        required: false
-        schema:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          title: Updated Before
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
       - in: query
         name: page
         required: false
