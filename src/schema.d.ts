@@ -8,8 +8,8 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get organization logs
-         * @description Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+         * Retrieve all object history
+         * @description Retrieve all paginated audit logs with optional filtering and sorting
          */
         get: operations["get_object_logs_v1_archive_object_logs_get"];
         put?: never;
@@ -28,8 +28,8 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get organization logs
-         * @description Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+         * Retrieve object history
+         * @description Retrieve paginated audit logs for a specific object with optional filtering and sorting
          */
         get: operations["get_object_logs_by_object_id_v1_archive_object_logs__object_id__get"];
         put?: never;
@@ -48,7 +48,7 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get request history logs
+         * Retrieve request history logs
          * @description Retrieves a paginated list of request history logs
          */
         get: operations["get_request_history_v1_archive_request_history_get"];

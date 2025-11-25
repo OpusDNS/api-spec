@@ -5529,7 +5529,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-25-131913
+  version: 2025-11-25-132620
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -5537,8 +5537,7 @@ openapi: 3.1.0
 paths:
   /v1/archive/object-logs:
     get:
-      description: Retrieve paginated audit logs for a specific organization with
-        optional filtering and sorting
+      description: Retrieve all paginated audit logs with optional filtering and sorting
       operationId: get_object_logs_v1_archive_object_logs_get
       parameters:
       - in: query
@@ -5659,13 +5658,13 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get organization logs
+      summary: Retrieve all object history
       tags:
       - archive
   /v1/archive/object-logs/{object_id}:
     get:
-      description: Retrieve paginated audit logs for a specific organization with
-        optional filtering and sorting
+      description: Retrieve paginated audit logs for a specific object with optional
+        filtering and sorting
       operationId: get_object_logs_by_object_id_v1_archive_object_logs__object_id__get
       parameters:
       - in: path
@@ -5784,7 +5783,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get organization logs
+      summary: Retrieve object history
       tags:
       - archive
   /v1/archive/request-history:
@@ -5942,7 +5941,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get request history logs
+      summary: Retrieve request history logs
       tags:
       - archive
   /v1/auth/token:

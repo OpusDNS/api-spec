@@ -39,8 +39,8 @@ import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatc
 /**
  * Request type for GET ArchiveObjectLogs endpoint
  *
- * Get organization logs
- * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ * Retrieve all object history
+ * Retrieve all paginated audit logs with optional filtering and sorting
  *
  * @remarks
  * This type defines the complete request structure for the GET ArchiveObjectLogs endpoint.
@@ -78,8 +78,8 @@ export type GET_ArchiveObjectLogs_Request_Query = GET_ArchiveObjectLogs_Request[
 /**
  * Request type for GET ArchiveObjectLogsObjectId endpoint
  *
- * Get organization logs
- * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ * Retrieve object history
+ * Retrieve paginated audit logs for a specific object with optional filtering and sorting
  *
  * @remarks
  * This type defines the complete request structure for the GET ArchiveObjectLogsObjectId endpoint.
@@ -131,7 +131,7 @@ export type GET_ArchiveObjectLogsObjectId_Request_Path = GET_ArchiveObjectLogsOb
 /**
  * Request type for GET ArchiveRequestHistory endpoint
  *
- * Get request history logs
+ * Retrieve request history logs
  * Retrieves a paginated list of request history logs
  *
  * @remarks

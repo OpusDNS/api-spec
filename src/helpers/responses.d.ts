@@ -39,8 +39,8 @@ import { Pagination_ObjectLog, HTTPValidationError, Pagination_RequestHistory, P
 /**
  * Response types for GET ArchiveObjectLogs endpoint
  *
- * Get organization logs
- * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ * Retrieve all object history
+ * Retrieve all paginated audit logs with optional filtering and sorting
  *
  * @remarks
  * This type defines all possible response structures for the GET ArchiveObjectLogs endpoint.
@@ -95,8 +95,8 @@ export type GET_ArchiveObjectLogs_Response_422 = HTTPValidationError
 /**
  * Response types for GET ArchiveObjectLogsByObjectId endpoint
  *
- * Get organization logs
- * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ * Retrieve object history
+ * Retrieve paginated audit logs for a specific object with optional filtering and sorting
  *
  * @remarks
  * This type defines all possible response structures for the GET ArchiveObjectLogsByObjectId endpoint.
@@ -151,7 +151,7 @@ export type GET_ArchiveObjectLogsByObjectId_Response_422 = HTTPValidationError
 /**
  * Response types for GET ArchiveRequestHistory endpoint
  *
- * Get request history logs
+ * Retrieve request history logs
  * Retrieves a paginated list of request history logs
  *
  * @remarks
