@@ -1148,6 +1148,7 @@ export const DOMAIN_FORWARD_SORT_FIELD = {
   HOSTNAME: "hostname",
   ENABLED: "enabled",
   CREATED_ON: "created_on",
+  UPDATED_ON: "updated_on",
 } as const satisfies Record<string, DomainForwardSortField>;
 
 /**
@@ -1174,7 +1175,8 @@ export const DOMAIN_FORWARD_SORT_FIELD = {
 export const DOMAIN_FORWARD_SORT_FIELD_VALUES = [
   'hostname',
   'enabled',
-  'created_on'
+  'created_on',
+  'updated_on'
 ] as const satisfies [string, ...string[]] | DomainForwardSortField[];
 
 /**
@@ -1199,6 +1201,7 @@ export const DOMAIN_FORWARD_SORT_FIELD_VALUES = [
 export const DOMAIN_FORWARD_ZONE_SORT_FIELD = {
   NAME: "name",
   CREATED_ON: "created_on",
+  UPDATED_ON: "updated_on",
 } as const satisfies Record<string, DomainForwardZoneSortField>;
 
 /**
@@ -1224,7 +1227,8 @@ export const DOMAIN_FORWARD_ZONE_SORT_FIELD = {
  */
 export const DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES = [
   'name',
-  'created_on'
+  'created_on',
+  'updated_on'
 ] as const satisfies [string, ...string[]] | DomainForwardZoneSortField[];
 
 /**

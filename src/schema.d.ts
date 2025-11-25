@@ -2458,7 +2458,7 @@ export interface components {
          * DomainForwardSortField
          * @enum {string}
          */
-        DomainForwardSortField: "hostname" | "enabled" | "created_on";
+        DomainForwardSortField: "hostname" | "enabled" | "created_on" | "updated_on";
         /** DomainForwardZone */
         DomainForwardZone: {
             /** Domain Forwards */
@@ -2476,7 +2476,7 @@ export interface components {
          * DomainForwardZoneSortField
          * @enum {string}
          */
-        DomainForwardZoneSortField: "name" | "created_on";
+        DomainForwardZoneSortField: "name" | "created_on" | "updated_on";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**

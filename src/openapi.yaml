@@ -1708,6 +1708,7 @@ components:
       - hostname
       - enabled
       - created_on
+      - updated_on
       title: DomainForwardSortField
       type: string
     DomainForwardZone:
@@ -1738,6 +1739,7 @@ components:
       enum:
       - name
       - created_on
+      - updated_on
       title: DomainForwardZoneSortField
       type: string
     DomainLifecycleBase:
@@ -5331,7 +5333,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-24-120310
+  version: 2025-11-25-093749
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -11187,6 +11189,9 @@ tags:
     '
   name: authentication
   x-displayName: Authentication
+- description: "Endpoints for fetching historical data for objects and requests \n"
+  name: archive
+  x-displayName: Archive
 - description: 'Endpoints for checking domain availability.
 
     '
