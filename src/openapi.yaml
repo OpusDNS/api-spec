@@ -3134,6 +3134,89 @@ components:
       - hostname
       title: Nameserver
       type: object
+    ObjectEventType:
+      enum:
+      - CREATED
+      - UPDATED
+      - DELETED
+      - TRANSFER_STARTED
+      - TRANSFER_COMPLETED
+      - TRANSFER_OUT_STARTED
+      - TRANSFER_OUT_COMPLETED
+      - RENEWED
+      - RESTORED
+      - BILLING_TRANSACTION_RESERVED
+      - BILLING_TRANSACTION_SUCCEEDED
+      - BILLING_TRANSACTION_FAILED
+      - BILLING_TRANSACTION_CANCELLED
+      title: ObjectEventType
+      type: string
+    ObjectLog:
+      properties:
+        action:
+          $ref: '#/components/schemas/ObjectEventType'
+          description: Action performed
+        created_on:
+          description: Timestamp when the log was created
+          format: date-time
+          title: Created On
+          type: string
+        details:
+          anyOf:
+          - type: object
+          - type: 'null'
+          description: Changes made to the object
+          title: Details
+        object_id:
+          description: ID of the object
+          title: Object Id
+          type: string
+        object_log_id:
+          description: Unique ID of the log
+          title: Object Log Id
+          type: string
+        object_type:
+          description: Type of the object
+          title: Object Type
+          type: string
+        performed_by_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ID of the actor who performed the action
+          title: Performed By Id
+        performed_by_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Type of the actor who performed the action
+          title: Performed By Type
+        server_request_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Server request ID
+          title: Server Request Id
+      required:
+      - object_log_id
+      - object_id
+      - object_type
+      - action
+      - created_on
+      title: ObjectLog
+      type: object
+    ObjectLogSortField:
+      enum:
+      - object_log_id
+      - object_id
+      - object_type
+      - action
+      - created_on
+      - server_request_id
+      - performed_by_type
+      - performed_by_id
+      title: ObjectLogSortField
+      type: string
     Organization:
       properties:
         address_1:
@@ -3958,6 +4041,20 @@ components:
       - pagination
       title: Pagination[InvoiceResponse]
       type: object
+    Pagination_ObjectLog_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/ObjectLog'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[ObjectLog]
+      type: object
     Pagination_Organization_:
       properties:
         pagination:
@@ -3971,6 +4068,20 @@ components:
       - results
       - pagination
       title: Pagination[Organization]
+      type: object
+    Pagination_RequestHistory_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/RequestHistory'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[RequestHistory]
       type: object
     Pagination_User_:
       properties:
@@ -4326,6 +4437,91 @@ components:
       - expire
       - delete
       title: RenewalMode
+      type: string
+    RequestHistory:
+      properties:
+        client_ip:
+          description: Client IP address
+          title: Client Ip
+          type: string
+        duration:
+          description: Request duration in milliseconds
+          title: Duration
+          type: number
+        method:
+          description: HTTP method
+          title: Method
+          type: string
+        path:
+          description: Request path
+          title: Path
+          type: string
+        performed_by_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ID of the actor who performed the request
+          title: Performed By Id
+        performed_by_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Type of the actor who performed the request
+          title: Performed By Type
+        request_body:
+          anyOf:
+          - type: object
+          - type: 'null'
+          description: Request body
+          title: Request Body
+        request_completed_at:
+          description: Timestamp when the request completed
+          format: date-time
+          title: Request Completed At
+          type: string
+        request_started_at:
+          description: Timestamp when the request started
+          format: date-time
+          title: Request Started At
+          type: string
+        response_body:
+          anyOf:
+          - type: object
+          - type: 'null'
+          description: Response body
+          title: Response Body
+        server_request_id:
+          description: Unique ID of the request
+          title: Server Request Id
+          type: string
+        status_code:
+          description: HTTP status code
+          title: Status Code
+          type: integer
+      required:
+      - server_request_id
+      - method
+      - path
+      - status_code
+      - duration
+      - client_ip
+      - request_started_at
+      - request_completed_at
+      title: RequestHistory
+      type: object
+    RequestHistorySortField:
+      enum:
+      - method
+      - path
+      - status_code
+      - duration
+      - server_request_id
+      - performed_by_type
+      - performed_by_id
+      - created_on
+      - request_started_at
+      - request_completed_at
+      title: RequestHistorySortField
       type: string
     ReservedDomainsBase:
       properties:
@@ -5333,12 +5529,422 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-11-25-093749
+  version: 2025-11-25-131913
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
 openapi: 3.1.0
 paths:
+  /v1/archive/object-logs:
+    get:
+      description: Retrieve paginated audit logs for a specific organization with
+        optional filtering and sorting
+      operationId: get_object_logs_v1_archive_object_logs_get
+      parameters:
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/ObjectLogSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: object_log_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Object Log Id
+      - in: query
+        name: object_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Object Type
+      - in: query
+        name: action
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/ObjectEventType'
+          - type: 'null'
+          title: Action
+      - in: query
+        name: server_request_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Request Id
+      - in: query
+        name: performed_by_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Performed By Type
+      - in: query
+        name: performed_by_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Performed By Id
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
+      - in: query
+        name: object_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Object Id
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_ObjectLog_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get organization logs
+      tags:
+      - archive
+  /v1/archive/object-logs/{object_id}:
+    get:
+      description: Retrieve paginated audit logs for a specific organization with
+        optional filtering and sorting
+      operationId: get_object_logs_by_object_id_v1_archive_object_logs__object_id__get
+      parameters:
+      - in: path
+        name: object_id
+        required: true
+        schema:
+          title: Object Id
+          type: string
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/ObjectLogSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: object_log_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Object Log Id
+      - in: query
+        name: object_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Object Type
+      - in: query
+        name: action
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/ObjectEventType'
+          - type: 'null'
+          title: Action
+      - in: query
+        name: server_request_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Request Id
+      - in: query
+        name: performed_by_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Performed By Type
+      - in: query
+        name: performed_by_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Performed By Id
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_ObjectLog_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get organization logs
+      tags:
+      - archive
+  /v1/archive/request-history:
+    get:
+      description: Retrieves a paginated list of request history logs
+      operationId: get_request_history_v1_archive_request_history_get
+      parameters:
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestHistorySortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: method
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Method
+      - in: query
+        name: path
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Path
+      - in: query
+        name: status_code
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Status Code
+      - in: query
+        name: min_status_code
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Min Status Code
+      - in: query
+        name: max_status_code
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Max Status Code
+      - in: query
+        name: min_duration
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min Duration
+      - in: query
+        name: max_duration
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Duration
+      - in: query
+        name: client_ip
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Client Ip
+      - in: query
+        name: server_request_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Server Request Id
+      - in: query
+        name: performed_by_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Performed By Type
+      - in: query
+        name: performed_by_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Performed By Id
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_RequestHistory_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Get request history logs
+      tags:
+      - archive
   /v1/auth/token:
     post:
       operationId: issue_organization_token_v1_auth_token_post
@@ -11276,3 +11882,4 @@ x-tagGroups:
   - domain_forward
   - rdap
   - domain_search
+  - archive

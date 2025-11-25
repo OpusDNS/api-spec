@@ -37,6 +37,137 @@ import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from '.
 import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
+ * Request type for GET ArchiveObjectLogs endpoint
+ *
+ * Get organization logs
+ * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ArchiveObjectLogs endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/archive/object-logs
+ *
+ * @see {@link GET_ArchiveObjectLogs_Request_Query} - Query parameters type
+ * @see {@link GET_ArchiveObjectLogs_Request_Path} - Path parameters type
+ * @see {@link GET_ArchiveObjectLogs_Request_Body} - Request body type
+ */
+export type GET_ArchiveObjectLogs_Request = {
+  parameters: {
+    query: operations['get_object_logs_v1_archive_object_logs_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/archive/object-logs
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/archive/object-logs endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/archive/object-logs
+ */
+export type GET_ArchiveObjectLogs_Request_Query = GET_ArchiveObjectLogs_Request['parameters']['query'];
+
+/**
+ * Request type for GET ArchiveObjectLogsObjectId endpoint
+ *
+ * Get organization logs
+ * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ArchiveObjectLogsObjectId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/archive/object-logs/{object_id}
+ *
+ * @see {@link GET_ArchiveObjectLogsObjectId_Request_Query} - Query parameters type
+ * @see {@link GET_ArchiveObjectLogsObjectId_Request_Path} - Path parameters type
+ * @see {@link GET_ArchiveObjectLogsObjectId_Request_Body} - Request body type
+ */
+export type GET_ArchiveObjectLogsObjectId_Request = {
+  parameters: {
+    query: operations['get_object_logs_by_object_id_v1_archive_object_logs__object_id__get']['parameters']['query'];
+    path: operations['get_object_logs_by_object_id_v1_archive_object_logs__object_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/archive/object-logs/{object_id}
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/archive/object-logs/{object_id} endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/archive/object-logs/{object_id}
+ */
+export type GET_ArchiveObjectLogsObjectId_Request_Query = GET_ArchiveObjectLogsObjectId_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/archive/object-logs/{object_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/archive/object-logs/{object_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/archive/object-logs/{object_id}
+ */
+export type GET_ArchiveObjectLogsObjectId_Request_Path = GET_ArchiveObjectLogsObjectId_Request['parameters']['path'];
+
+/**
+ * Request type for GET ArchiveRequestHistory endpoint
+ *
+ * Get request history logs
+ * Retrieves a paginated list of request history logs
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ArchiveRequestHistory endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/archive/request-history
+ *
+ * @see {@link GET_ArchiveRequestHistory_Request_Query} - Query parameters type
+ * @see {@link GET_ArchiveRequestHistory_Request_Path} - Path parameters type
+ * @see {@link GET_ArchiveRequestHistory_Request_Body} - Request body type
+ */
+export type GET_ArchiveRequestHistory_Request = {
+  parameters: {
+    query: operations['get_request_history_v1_archive_request_history_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/archive/request-history
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/archive/request-history endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/archive/request-history
+ */
+export type GET_ArchiveRequestHistory_Request_Query = GET_ArchiveRequestHistory_Request['parameters']['query'];
+
+/**
  * Request type for POST AuthToken endpoint
  *
  * Issue Organization Token

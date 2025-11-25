@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2032,6 +2032,140 @@ export const LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES = [
 ] as const satisfies [string, ...string[]] | LocalPresenceRequirementType[];
 
 /**
+ * ObjectEventType. Auto-generated enum for ObjectEventType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the ObjectEventType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = OBJECT_EVENT_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = OBJECT_EVENT_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link ObjectEventType} - The TypeScript type definition
+ */
+export const OBJECT_EVENT_TYPE = {
+  CREATED: "CREATED",
+  UPDATED: "UPDATED",
+  DELETED: "DELETED",
+  TRANSFER_STARTED: "TRANSFER_STARTED",
+  TRANSFER_COMPLETED: "TRANSFER_COMPLETED",
+  TRANSFER_OUT_STARTED: "TRANSFER_OUT_STARTED",
+  TRANSFER_OUT_COMPLETED: "TRANSFER_OUT_COMPLETED",
+  RENEWED: "RENEWED",
+  RESTORED: "RESTORED",
+  BILLING_TRANSACTION_RESERVED: "BILLING_TRANSACTION_RESERVED",
+  BILLING_TRANSACTION_SUCCEEDED: "BILLING_TRANSACTION_SUCCEEDED",
+  BILLING_TRANSACTION_FAILED: "BILLING_TRANSACTION_FAILED",
+  BILLING_TRANSACTION_CANCELLED: "BILLING_TRANSACTION_CANCELLED",
+} as const satisfies Record<string, ObjectEventType>;
+
+/**
+ * Array of all ObjectEventType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid ObjectEventType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of OBJECT_EVENT_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = OBJECT_EVENT_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link ObjectEventType} - The TypeScript type definition
+ * @see {@link OBJECT_EVENT_TYPE} - The object form of this enum
+ */
+export const OBJECT_EVENT_TYPE_VALUES = [
+  'CREATED',
+  'UPDATED',
+  'DELETED',
+  'TRANSFER_STARTED',
+  'TRANSFER_COMPLETED',
+  'TRANSFER_OUT_STARTED',
+  'TRANSFER_OUT_COMPLETED',
+  'RENEWED',
+  'RESTORED',
+  'BILLING_TRANSACTION_RESERVED',
+  'BILLING_TRANSACTION_SUCCEEDED',
+  'BILLING_TRANSACTION_FAILED',
+  'BILLING_TRANSACTION_CANCELLED'
+] as const satisfies [string, ...string[]] | ObjectEventType[];
+
+/**
+ * ObjectLogSortField. Auto-generated enum for ObjectLogSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the ObjectLogSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = OBJECT_LOG_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = OBJECT_LOG_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link ObjectLogSortField} - The TypeScript type definition
+ */
+export const OBJECT_LOG_SORT_FIELD = {
+  OBJECT_LOG_ID: "object_log_id",
+  OBJECT_ID: "object_id",
+  OBJECT_TYPE: "object_type",
+  ACTION: "action",
+  CREATED_ON: "created_on",
+  SERVER_REQUEST_ID: "server_request_id",
+  PERFORMED_BY_TYPE: "performed_by_type",
+  PERFORMED_BY_ID: "performed_by_id",
+} as const satisfies Record<string, ObjectLogSortField>;
+
+/**
+ * Array of all ObjectLogSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid ObjectLogSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of OBJECT_LOG_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = OBJECT_LOG_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link ObjectLogSortField} - The TypeScript type definition
+ * @see {@link OBJECT_LOG_SORT_FIELD} - The object form of this enum
+ */
+export const OBJECT_LOG_SORT_FIELD_VALUES = [
+  'object_log_id',
+  'object_id',
+  'object_type',
+  'action',
+  'created_on',
+  'server_request_id',
+  'performed_by_type',
+  'performed_by_id'
+] as const satisfies [string, ...string[]] | ObjectLogSortField[];
+
+/**
  * OrganizationStatus. Auto-generated enum for OrganizationStatus
  *
  * @remarks
@@ -2761,6 +2895,72 @@ export const RENEWAL_MODE_VALUES = [
   'expire',
   'delete'
 ] as const satisfies [string, ...string[]] | RenewalMode[];
+
+/**
+ * RequestHistorySortField. Auto-generated enum for RequestHistorySortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the RequestHistorySortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = REQUEST_HISTORY_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = REQUEST_HISTORY_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link RequestHistorySortField} - The TypeScript type definition
+ */
+export const REQUEST_HISTORY_SORT_FIELD = {
+  METHOD: "method",
+  PATH: "path",
+  STATUS_CODE: "status_code",
+  DURATION: "duration",
+  SERVER_REQUEST_ID: "server_request_id",
+  PERFORMED_BY_TYPE: "performed_by_type",
+  PERFORMED_BY_ID: "performed_by_id",
+  CREATED_ON: "created_on",
+  REQUEST_STARTED_AT: "request_started_at",
+  REQUEST_COMPLETED_AT: "request_completed_at",
+} as const satisfies Record<string, RequestHistorySortField>;
+
+/**
+ * Array of all RequestHistorySortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid RequestHistorySortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of REQUEST_HISTORY_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = REQUEST_HISTORY_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link RequestHistorySortField} - The TypeScript type definition
+ * @see {@link REQUEST_HISTORY_SORT_FIELD} - The object form of this enum
+ */
+export const REQUEST_HISTORY_SORT_FIELD_VALUES = [
+  'method',
+  'path',
+  'status_code',
+  'duration',
+  'server_request_id',
+  'performed_by_type',
+  'performed_by_id',
+  'created_on',
+  'request_started_at',
+  'request_completed_at'
+] as const satisfies [string, ...string[]] | RequestHistorySortField[];
 
 /**
  * ReservedSourceType. Auto-generated enum for ReservedSourceType

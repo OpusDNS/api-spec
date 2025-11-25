@@ -34,7 +34,175 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Problem, HTTPValidationError, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, Pagination_DomainForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_ObjectLog, HTTPValidationError, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, Pagination_DomainForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+
+/**
+ * Response types for GET ArchiveObjectLogs endpoint
+ *
+ * Get organization logs
+ * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ArchiveObjectLogs endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/archive/object-logs
+ *
+ * @see {@link GET_ArchiveObjectLogs_Response_200} - 200 response type
+ * @see {@link GET_ArchiveObjectLogs_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ArchiveObjectLogs_Response = GET_ArchiveObjectLogs_Response_200 | GET_ArchiveObjectLogs_Response_422;
+
+/**
+ * 200 response for GET ArchiveObjectLogs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ArchiveObjectLogs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/archive/object-logs
+ *
+ * @see {@link GET_ArchiveObjectLogs_Response} - The main response type definition
+ * @see {@link Pagination_ObjectLog} - The actual schema type definition
+ */
+export type GET_ArchiveObjectLogs_Response_200 = Pagination_ObjectLog
+
+/**
+ * 422 response for GET ArchiveObjectLogs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ArchiveObjectLogs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/archive/object-logs
+ *
+ * @see {@link GET_ArchiveObjectLogs_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ArchiveObjectLogs_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET ArchiveObjectLogsByObjectId endpoint
+ *
+ * Get organization logs
+ * Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ArchiveObjectLogsByObjectId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/archive/object-logs/{object_id}
+ *
+ * @see {@link GET_ArchiveObjectLogsByObjectId_Response_200} - 200 response type
+ * @see {@link GET_ArchiveObjectLogsByObjectId_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ArchiveObjectLogsByObjectId_Response = GET_ArchiveObjectLogsByObjectId_Response_200 | GET_ArchiveObjectLogsByObjectId_Response_422;
+
+/**
+ * 200 response for GET ArchiveObjectLogsByObjectId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ArchiveObjectLogsByObjectId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/archive/object-logs/{object_id}
+ *
+ * @see {@link GET_ArchiveObjectLogsByObjectId_Response} - The main response type definition
+ * @see {@link Pagination_ObjectLog} - The actual schema type definition
+ */
+export type GET_ArchiveObjectLogsByObjectId_Response_200 = Pagination_ObjectLog
+
+/**
+ * 422 response for GET ArchiveObjectLogsByObjectId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ArchiveObjectLogsByObjectId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/archive/object-logs/{object_id}
+ *
+ * @see {@link GET_ArchiveObjectLogsByObjectId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ArchiveObjectLogsByObjectId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET ArchiveRequestHistory endpoint
+ *
+ * Get request history logs
+ * Retrieves a paginated list of request history logs
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ArchiveRequestHistory endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/archive/request-history
+ *
+ * @see {@link GET_ArchiveRequestHistory_Response_200} - 200 response type
+ * @see {@link GET_ArchiveRequestHistory_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ArchiveRequestHistory_Response = GET_ArchiveRequestHistory_Response_200 | GET_ArchiveRequestHistory_Response_422;
+
+/**
+ * 200 response for GET ArchiveRequestHistory endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ArchiveRequestHistory endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/archive/request-history
+ *
+ * @see {@link GET_ArchiveRequestHistory_Response} - The main response type definition
+ * @see {@link Pagination_RequestHistory} - The actual schema type definition
+ */
+export type GET_ArchiveRequestHistory_Response_200 = Pagination_RequestHistory
+
+/**
+ * 422 response for GET ArchiveRequestHistory endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ArchiveRequestHistory endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/archive/request-history
+ *
+ * @see {@link GET_ArchiveRequestHistory_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ArchiveRequestHistory_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST AuthToken endpoint

@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardAlias, EventResponse, Invoice, Organization, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardAlias, EventResponse, Invoice, ObjectLog, Organization, RequestHistory, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -682,6 +682,20 @@ export type EventResponseArray = EventResponse[];
  */
 export type InvoiceArray = Invoice[];
 /**
+ * ObjectLog
+ *
+ * @remarks
+ * Array type for ObjectLog objects. Used when the API returns a collection of ObjectLog instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ObjectLogArray = await api.getObjectLogs();
+ * ```
+ *
+ * @see {@link ObjectLog} - The individual ObjectLog type definition
+ */
+export type ObjectLogArray = ObjectLog[];
+/**
  * Organization
  *
  * @remarks
@@ -695,6 +709,20 @@ export type InvoiceArray = Invoice[];
  * @see {@link Organization} - The individual Organization type definition
  */
 export type OrganizationArray = Organization[];
+/**
+ * RequestHistory
+ *
+ * @remarks
+ * Array type for RequestHistory objects. Used when the API returns a collection of RequestHistory instances.
+ *
+ * @example
+ * ```typescript
+ * const items: RequestHistoryArray = await api.getRequestHistorys();
+ * ```
+ *
+ * @see {@link RequestHistory} - The individual RequestHistory type definition
+ */
+export type RequestHistoryArray = RequestHistory[];
 /**
  * Period
  *

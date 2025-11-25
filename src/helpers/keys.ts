@@ -115,6 +115,7 @@ import { LaunchPhaseBase } from './schemas';
 import { LaunchPhasesBase } from './schemas';
 import { LocalPresenceBase } from './schemas';
 import { Nameserver } from './schemas';
+import { ObjectLog } from './schemas';
 import { Organization } from './schemas';
 import { OrganizationAttribute } from './schemas';
 import { OrganizationAttributeCreate } from './schemas';
@@ -136,6 +137,7 @@ import { PublicAuthRequestForm } from './schemas';
 import { RdapBase } from './schemas';
 import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
+import { RequestHistory } from './schemas';
 import { ReservedDomainsBase } from './schemas';
 import { RgpOperations } from './schemas';
 import { SldLength } from './schemas';
@@ -12850,6 +12852,268 @@ export const KEYS_NAMESERVER = [
 ] as const satisfies (keyof Nameserver)[];
 
 /**
+ * action property
+ *
+ * Action performed
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `action` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_ACTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_ACTION;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_ACTION = 'action' as keyof ObjectLog;
+/**
+ * Created On
+ *
+ * Timestamp when the log was created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_CREATED_ON;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_CREATED_ON = 'created_on' as keyof ObjectLog;
+/**
+ * Details
+ *
+ * Changes made to the object
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `details` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_DETAILS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_DETAILS;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_DETAILS = 'details' as keyof ObjectLog;
+/**
+ * Object Id
+ *
+ * ID of the object
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_id` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_OBJECT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_OBJECT_ID;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_OBJECT_ID = 'object_id' as keyof ObjectLog;
+/**
+ * Object Log Id
+ *
+ * Unique ID of the log
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_log_id` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_OBJECT_LOG_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_OBJECT_LOG_ID;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_OBJECT_LOG_ID = 'object_log_id' as keyof ObjectLog;
+/**
+ * Object Type
+ *
+ * Type of the object
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_type` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_OBJECT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_OBJECT_TYPE;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_OBJECT_TYPE = 'object_type' as keyof ObjectLog;
+/**
+ * Performed By Id
+ *
+ * ID of the actor who performed the action
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `performed_by_id` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_PERFORMED_BY_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_PERFORMED_BY_ID;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_PERFORMED_BY_ID = 'performed_by_id' as keyof ObjectLog;
+/**
+ * Performed By Type
+ *
+ * Type of the actor who performed the action
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `performed_by_type` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_PERFORMED_BY_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_PERFORMED_BY_TYPE;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_PERFORMED_BY_TYPE = 'performed_by_type' as keyof ObjectLog;
+/**
+ * Server Request Id
+ *
+ * Server request ID
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `server_request_id` property of ObjectLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objectlog[KEY_OBJECT_LOG_SERVER_REQUEST_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_LOG_SERVER_REQUEST_ID;
+ * const value = objectlog[propertyName];
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
+ */
+export const KEY_OBJECT_LOG_SERVER_REQUEST_ID = 'server_request_id' as keyof ObjectLog;
+
+/**
+ * Array of all ObjectLog property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ObjectLog objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_OBJECT_LOG) {
+ *   console.log(`Property: ${key}, Value: ${objectlog[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_OBJECT_LOG.includes(someKey);
+ * ```
+ *
+ * @see {@link ObjectLog} - The TypeScript type definition
+ */
+export const KEYS_OBJECT_LOG = [
+  KEY_OBJECT_LOG_ACTION,
+  KEY_OBJECT_LOG_CREATED_ON,
+  KEY_OBJECT_LOG_DETAILS,
+  KEY_OBJECT_LOG_OBJECT_ID,
+  KEY_OBJECT_LOG_OBJECT_LOG_ID,
+  KEY_OBJECT_LOG_OBJECT_TYPE,
+  KEY_OBJECT_LOG_PERFORMED_BY_ID,
+  KEY_OBJECT_LOG_PERFORMED_BY_TYPE,
+  KEY_OBJECT_LOG_SERVER_REQUEST_ID,
+] as const satisfies (keyof ObjectLog)[];
+
+/**
  * Address 1
  *
  * First line of the organization's address.
@@ -16730,6 +16994,350 @@ export const KEY_RELATION_SET_RELATIONS = 'relations' as keyof RelationSet;
 export const KEYS_RELATION_SET = [
   KEY_RELATION_SET_RELATIONS,
 ] as const satisfies (keyof RelationSet)[];
+
+/**
+ * Client Ip
+ *
+ * Client IP address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `client_ip` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_CLIENT_IP];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_CLIENT_IP;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_CLIENT_IP = 'client_ip' as keyof RequestHistory;
+/**
+ * Duration
+ *
+ * Request duration in milliseconds
+ *
+ * @type {number}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `duration` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_DURATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_DURATION;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_DURATION = 'duration' as keyof RequestHistory;
+/**
+ * Method
+ *
+ * HTTP method
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `method` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_METHOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_METHOD;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_METHOD = 'method' as keyof RequestHistory;
+/**
+ * Path
+ *
+ * Request path
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `path` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_PATH];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_PATH;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_PATH = 'path' as keyof RequestHistory;
+/**
+ * Performed By Id
+ *
+ * ID of the actor who performed the request
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `performed_by_id` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_PERFORMED_BY_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_PERFORMED_BY_ID;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_PERFORMED_BY_ID = 'performed_by_id' as keyof RequestHistory;
+/**
+ * Performed By Type
+ *
+ * Type of the actor who performed the request
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `performed_by_type` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_PERFORMED_BY_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_PERFORMED_BY_TYPE;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_PERFORMED_BY_TYPE = 'performed_by_type' as keyof RequestHistory;
+/**
+ * Request Body
+ *
+ * Request body
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_body` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_REQUEST_BODY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_REQUEST_BODY;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_REQUEST_BODY = 'request_body' as keyof RequestHistory;
+/**
+ * Request Completed At
+ *
+ * Timestamp when the request completed
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_completed_at` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_REQUEST_COMPLETED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_REQUEST_COMPLETED_AT;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_REQUEST_COMPLETED_AT = 'request_completed_at' as keyof RequestHistory;
+/**
+ * Request Started At
+ *
+ * Timestamp when the request started
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `request_started_at` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_REQUEST_STARTED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_REQUEST_STARTED_AT;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_REQUEST_STARTED_AT = 'request_started_at' as keyof RequestHistory;
+/**
+ * Response Body
+ *
+ * Response body
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `response_body` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_RESPONSE_BODY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_RESPONSE_BODY;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_RESPONSE_BODY = 'response_body' as keyof RequestHistory;
+/**
+ * Server Request Id
+ *
+ * Unique ID of the request
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `server_request_id` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_SERVER_REQUEST_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_SERVER_REQUEST_ID;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_SERVER_REQUEST_ID = 'server_request_id' as keyof RequestHistory;
+/**
+ * Status Code
+ *
+ * HTTP status code
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_code` property of RequestHistory objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requesthistory[KEY_REQUEST_HISTORY_STATUS_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_HISTORY_STATUS_CODE;
+ * const value = requesthistory[propertyName];
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
+ */
+export const KEY_REQUEST_HISTORY_STATUS_CODE = 'status_code' as keyof RequestHistory;
+
+/**
+ * Array of all RequestHistory property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RequestHistory objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REQUEST_HISTORY) {
+ *   console.log(`Property: ${key}, Value: ${requesthistory[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REQUEST_HISTORY.includes(someKey);
+ * ```
+ *
+ * @see {@link RequestHistory} - The TypeScript type definition
+ */
+export const KEYS_REQUEST_HISTORY = [
+  KEY_REQUEST_HISTORY_CLIENT_IP,
+  KEY_REQUEST_HISTORY_DURATION,
+  KEY_REQUEST_HISTORY_METHOD,
+  KEY_REQUEST_HISTORY_PATH,
+  KEY_REQUEST_HISTORY_PERFORMED_BY_ID,
+  KEY_REQUEST_HISTORY_PERFORMED_BY_TYPE,
+  KEY_REQUEST_HISTORY_REQUEST_BODY,
+  KEY_REQUEST_HISTORY_REQUEST_COMPLETED_AT,
+  KEY_REQUEST_HISTORY_REQUEST_STARTED_AT,
+  KEY_REQUEST_HISTORY_RESPONSE_BODY,
+  KEY_REQUEST_HISTORY_SERVER_REQUEST_ID,
+  KEY_REQUEST_HISTORY_STATUS_CODE,
+] as const satisfies (keyof RequestHistory)[];
 
 /**
  * source property

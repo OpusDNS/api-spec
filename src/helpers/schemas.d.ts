@@ -2064,6 +2064,54 @@ export type LocalPresenceRequirementType = components['schemas']['LocalPresenceR
  */
 export type Nameserver = components['schemas']['Nameserver'];
 /**
+ * ObjectEventType
+ *
+ * @remarks
+ * Type alias for the `ObjectEventType` OpenAPI schema.
+ * This type represents objecteventtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getObjectEventType();
+ * const item: ObjectEventType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ObjectEventType = components['schemas']['ObjectEventType'];
+/**
+ * ObjectLog
+ *
+ * @remarks
+ * Type alias for the `ObjectLog` OpenAPI schema.
+ * This type represents objectlog data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getObjectLog();
+ * const item: ObjectLog = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ObjectLog = components['schemas']['ObjectLog'];
+/**
+ * ObjectLogSortField
+ *
+ * @remarks
+ * Type alias for the `ObjectLogSortField` OpenAPI schema.
+ * This type represents objectlogsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getObjectLogSortField();
+ * const item: ObjectLogSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ObjectLogSortField = components['schemas']['ObjectLogSortField'];
+/**
  * Organization
  *
  * @remarks
@@ -2384,6 +2432,22 @@ export type Pagination_Event = components['schemas']['Pagination_EventResponse_'
  */
 export type Pagination_Invoice = components['schemas']['Pagination_InvoiceResponse_'];
 /**
+ * Pagination[ObjectLog]
+ *
+ * @remarks
+ * Type alias for the `Pagination_ObjectLog_` OpenAPI schema.
+ * This type represents pagination[objectlog] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_ObjectLog();
+ * const item: Pagination_ObjectLog = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_ObjectLog = components['schemas']['Pagination_ObjectLog_'];
+/**
  * Pagination[Organization]
  *
  * @remarks
@@ -2399,6 +2463,22 @@ export type Pagination_Invoice = components['schemas']['Pagination_InvoiceRespon
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_Organization = components['schemas']['Pagination_Organization_'];
+/**
+ * Pagination[RequestHistory]
+ *
+ * @remarks
+ * Type alias for the `Pagination_RequestHistory_` OpenAPI schema.
+ * This type represents pagination[requesthistory] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_RequestHistory();
+ * const item: Pagination_RequestHistory = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_RequestHistory = components['schemas']['Pagination_RequestHistory_'];
 /**
  * Pagination[User]
  *
@@ -2799,6 +2879,38 @@ export type RelationSet = components['schemas']['RelationSet'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type RenewalMode = components['schemas']['RenewalMode'];
+/**
+ * RequestHistory
+ *
+ * @remarks
+ * Type alias for the `RequestHistory` OpenAPI schema.
+ * This type represents requesthistory data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRequestHistory();
+ * const item: RequestHistory = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RequestHistory = components['schemas']['RequestHistory'];
+/**
+ * RequestHistorySortField
+ *
+ * @remarks
+ * Type alias for the `RequestHistorySortField` OpenAPI schema.
+ * This type represents requesthistorysortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRequestHistorySortField();
+ * const item: RequestHistorySortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RequestHistorySortField = components['schemas']['RequestHistorySortField'];
 /**
  * ReservedDomainsBase
  *

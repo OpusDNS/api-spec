@@ -1,5 +1,65 @@
 import { TypeId } from "typeid-js";
 export interface paths {
+    "/v1/archive/object-logs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get organization logs
+         * @description Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+         */
+        get: operations["get_object_logs_v1_archive_object_logs_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/archive/object-logs/{object_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get organization logs
+         * @description Retrieve paginated audit logs for a specific organization with optional filtering and sorting
+         */
+        get: operations["get_object_logs_by_object_id_v1_archive_object_logs__object_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/archive/request-history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get request history logs
+         * @description Retrieves a paginated list of request history logs
+         */
+        get: operations["get_request_history_v1_archive_request_history_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/auth/token": {
         parameters: {
             query?: never;
@@ -3405,6 +3465,62 @@ export interface components {
              */
             ip_addresses?: string[];
         };
+        /**
+         * ObjectEventType
+         * @enum {string}
+         */
+        ObjectEventType: "CREATED" | "UPDATED" | "DELETED" | "TRANSFER_STARTED" | "TRANSFER_COMPLETED" | "TRANSFER_OUT_STARTED" | "TRANSFER_OUT_COMPLETED" | "RENEWED" | "RESTORED" | "BILLING_TRANSACTION_RESERVED" | "BILLING_TRANSACTION_SUCCEEDED" | "BILLING_TRANSACTION_FAILED" | "BILLING_TRANSACTION_CANCELLED";
+        /** ObjectLog */
+        ObjectLog: {
+            /** @description Action performed */
+            action: components["schemas"]["ObjectEventType"];
+            /**
+             * Created On
+             * Format: date-time
+             * @description Timestamp when the log was created
+             */
+            created_on: Date;
+            /**
+             * Details
+             * @description Changes made to the object
+             */
+            details?: Record<string, never> | null;
+            /**
+             * Object Id
+             * @description ID of the object
+             */
+            object_id: string;
+            /**
+             * Object Log Id
+             * @description Unique ID of the log
+             */
+            object_log_id: string;
+            /**
+             * Object Type
+             * @description Type of the object
+             */
+            object_type: string;
+            /**
+             * Performed By Id
+             * @description ID of the actor who performed the action
+             */
+            performed_by_id?: string | null;
+            /**
+             * Performed By Type
+             * @description Type of the actor who performed the action
+             */
+            performed_by_type?: string | null;
+            /**
+             * Server Request Id
+             * @description Server request ID
+             */
+            server_request_id?: string | null;
+        };
+        /**
+         * ObjectLogSortField
+         * @enum {string}
+         */
+        ObjectLogSortField: "object_log_id" | "object_id" | "object_type" | "action" | "created_on" | "server_request_id" | "performed_by_type" | "performed_by_id";
         /** Organization */
         Organization: {
             /**
@@ -3939,11 +4055,23 @@ export interface components {
             /** Results */
             results: components["schemas"]["InvoiceResponse"][];
         };
+        /** Pagination[ObjectLog] */
+        Pagination_ObjectLog_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["ObjectLog"][];
+        };
         /** Pagination[Organization] */
         Pagination_Organization_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["Organization"][];
+        };
+        /** Pagination[RequestHistory] */
+        Pagination_RequestHistory_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["RequestHistory"][];
         };
         /** Pagination[User] */
         Pagination_User_: {
@@ -4143,6 +4271,76 @@ export interface components {
          * @enum {string}
          */
         RenewalMode: "renew" | "expire" | "delete";
+        /** RequestHistory */
+        RequestHistory: {
+            /**
+             * Client Ip
+             * @description Client IP address
+             */
+            client_ip: string;
+            /**
+             * Duration
+             * @description Request duration in milliseconds
+             */
+            duration: number;
+            /**
+             * Method
+             * @description HTTP method
+             */
+            method: string;
+            /**
+             * Path
+             * @description Request path
+             */
+            path: string;
+            /**
+             * Performed By Id
+             * @description ID of the actor who performed the request
+             */
+            performed_by_id?: string | null;
+            /**
+             * Performed By Type
+             * @description Type of the actor who performed the request
+             */
+            performed_by_type?: string | null;
+            /**
+             * Request Body
+             * @description Request body
+             */
+            request_body?: Record<string, never> | null;
+            /**
+             * Request Completed At
+             * Format: date-time
+             * @description Timestamp when the request completed
+             */
+            request_completed_at: Date;
+            /**
+             * Request Started At
+             * Format: date-time
+             * @description Timestamp when the request started
+             */
+            request_started_at: Date;
+            /**
+             * Response Body
+             * @description Response body
+             */
+            response_body?: Record<string, never> | null;
+            /**
+             * Server Request Id
+             * @description Unique ID of the request
+             */
+            server_request_id: string;
+            /**
+             * Status Code
+             * @description HTTP status code
+             */
+            status_code: number;
+        };
+        /**
+         * RequestHistorySortField
+         * @enum {string}
+         */
+        RequestHistorySortField: "method" | "path" | "status_code" | "duration" | "server_request_id" | "performed_by_type" | "performed_by_id" | "created_on" | "request_started_at" | "request_completed_at";
         /** ReservedDomainsBase */
         ReservedDomainsBase: {
             /** @description Source of reserved domain information */
@@ -4802,6 +5000,140 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    get_object_logs_v1_archive_object_logs_get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["ObjectLogSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
+                object_log_id?: string | null;
+                object_type?: string | null;
+                action?: components["schemas"]["ObjectEventType"] | null;
+                server_request_id?: string | null;
+                performed_by_type?: string | null;
+                performed_by_id?: string | null;
+                start_time?: Date | null;
+                end_time?: Date | null;
+                object_id?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_ObjectLog_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_object_logs_by_object_id_v1_archive_object_logs__object_id__get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["ObjectLogSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
+                object_log_id?: string | null;
+                object_type?: string | null;
+                action?: components["schemas"]["ObjectEventType"] | null;
+                server_request_id?: string | null;
+                performed_by_type?: string | null;
+                performed_by_id?: string | null;
+                start_time?: Date | null;
+                end_time?: Date | null;
+            };
+            header?: never;
+            path: {
+                object_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_ObjectLog_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_request_history_v1_archive_request_history_get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["RequestHistorySortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
+                method?: string | null;
+                path?: string | null;
+                status_code?: number | null;
+                min_status_code?: number | null;
+                max_status_code?: number | null;
+                min_duration?: number | null;
+                max_duration?: number | null;
+                client_ip?: string | null;
+                server_request_id?: string | null;
+                performed_by_type?: string | null;
+                performed_by_id?: string | null;
+                start_time?: Date | null;
+                end_time?: Date | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_RequestHistory_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     issue_organization_token_v1_auth_token_post: {
         parameters: {
             query?: never;
