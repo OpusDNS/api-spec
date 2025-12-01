@@ -41,7 +41,7 @@ jobs:
       - name: Set current OpenAPI version on temporary file
         uses: mikefarah/yq@master
         with:
-          cmd: yq e -i ".info.version = \"${{ steps.currentOpenApiVersion.outputs.result }}\"" openapi-ignore-version.yaml
+          cmd: yq e -i '.info.version = "${{ steps.currentOpenApiVersion.outputs.result }}"' openapi-ignore-version.yaml
 
       - name: Override OpenAPI spec
         run: |
