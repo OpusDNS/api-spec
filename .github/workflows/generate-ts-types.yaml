@@ -39,9 +39,8 @@ jobs:
           cp openapi.yaml openapi-ignore-version.yaml
 
       - name: Set current OpenAPI version on temporary file
-        uses: mikefarah/yq@master
-        with:
-          cmd: yq e -i '.info.version = "${{ steps.currentOpenApiVersion.outputs.result }}"' openapi-ignore-version.yaml
+        run: |
+          sed -i 's/^  version: .*/  version: ${{ steps.currentOpenApiVersion.outputs.result }}/' openapi-ignore-version.yaml
 
       - name: Override OpenAPI spec
         run: |
