@@ -28,9 +28,17 @@ jobs:
           name: openapi-spec
           github_token: ${{secrets.GH_PAT_OPENAPI_OPUSDNS_API}}
 
+      - name: Ignore OpenAPI version
+        uses: mikefarah/yq@master
+        shell: bash
+        run: |
+          cp openapi.yaml openapi-ignore-version.yaml
+          version=$(yq e '.info.version' src/openapi.yaml)
+          yq e -i ".info.version = \"${version}\"" openapi-ignore-version.yaml
+
       - name: Override OpenAPI spec
         run: |
-          mv openapi.yaml src/openapi.yaml
+          mv openapi-ignore-version.yaml src/openapi.yaml
 
       - uses: actions/setup-node@v4
         with:
@@ -43,14 +51,19 @@ jobs:
       - name: Generate TypeScript API Schema
         run: npm run generate:schema
 
+      - name: Generate TypeScript API helpers
+        run: npm run generate:helpers
+
       - name: Commit & Push Changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add src/schema.d.ts
+          git add .
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
+            mv openapi.yaml src/openapi.yaml
+            npm run generate:schema
             npm run generate:helpers
             git add .
             git commit -m "Update OpenAPI spec and types"
