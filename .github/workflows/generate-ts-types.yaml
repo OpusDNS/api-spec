@@ -28,13 +28,20 @@ jobs:
           name: openapi-spec
           github_token: ${{secrets.GH_PAT_OPENAPI_OPUSDNS_API}}
 
-      - name: Ignore OpenAPI version
+      - name: Get current OpenAPI version
         uses: mikefarah/yq@master
-        shell: bash
+        id: currentOpenApiVersion
+        with:
+          cmd: yq '.info.version' src/openapi.yaml
+
+      - name: Prepare temporary file with ignored OpenAPI version
         run: |
           cp openapi.yaml openapi-ignore-version.yaml
-          version=$(yq e '.info.version' src/openapi.yaml)
-          yq e -i ".info.version = \"${version}\"" openapi-ignore-version.yaml
+
+      - name: Set current OpenAPI version on temporary file
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq e -i ".info.version = \"${{ steps.currentOpenApiVersion.outputs.result }}\"" openapi-ignore-version.yaml
 
       - name: Override OpenAPI spec
         run: |
