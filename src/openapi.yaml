@@ -4781,6 +4781,21 @@ components:
       - both
       title: TransferAckType
       type: string
+    TransferLockPolicyBase:
+      properties:
+        supported_by_registrar:
+          description: Whether the registrar supports transfer locks
+          title: Supported By Registrar
+          type: boolean
+        supported_by_registry:
+          description: Whether the registry supports transfer locks
+          title: Supported By Registry
+          type: boolean
+      required:
+      - supported_by_registry
+      - supported_by_registrar
+      title: TransferLockPolicyBase
+      type: object
     TransferPoliciesBase:
       properties:
         authinfo_max_length:
@@ -4849,10 +4864,9 @@ components:
           - type: 'null'
           description: Whether an email confirmation is required to perform the transfer
           title: Transfer Email Required
-        transfer_lock_enabled:
-          description: Whether transfers are locked by default in our system
-          title: Transfer Lock Enabled
-          type: boolean
+        transfer_lock_policy:
+          $ref: '#/components/schemas/TransferLockPolicyBase'
+          description: Transfer lock policy
         transfer_nack:
           anyOf:
           - $ref: '#/components/schemas/TransferAckType'
@@ -4887,7 +4901,7 @@ components:
             according to the policy, 0 = real-time
           title: Transfer Time
       required:
-      - transfer_lock_enabled
+      - transfer_lock_policy
       - authinfo_required
       title: TransferPoliciesBase
       type: object
@@ -5534,7 +5548,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-01-143608
+  version: 2025-12-02-133836
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

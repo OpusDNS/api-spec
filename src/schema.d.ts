@@ -4506,6 +4506,19 @@ export interface components {
          * @enum {string}
          */
         TransferAckType: "none" | "registrar" | "registrant" | "both";
+        /** TransferLockPolicyBase */
+        TransferLockPolicyBase: {
+            /**
+             * Supported By Registrar
+             * @description Whether the registrar supports transfer locks
+             */
+            supported_by_registrar: boolean;
+            /**
+             * Supported By Registry
+             * @description Whether the registry supports transfer locks
+             */
+            supported_by_registry: boolean;
+        };
         /** TransferPoliciesBase */
         TransferPoliciesBase: {
             /**
@@ -4555,11 +4568,8 @@ export interface components {
              * @description Whether an email confirmation is required to perform the transfer
              */
             transfer_email_required?: boolean | null;
-            /**
-             * Transfer Lock Enabled
-             * @description Whether transfers are locked by default in our system
-             */
-            transfer_lock_enabled: boolean;
+            /** @description Transfer lock policy */
+            transfer_lock_policy: components["schemas"]["TransferLockPolicyBase"];
             /** @description Whether a transfer can be denied */
             transfer_nack?: components["schemas"]["TransferAckType"] | null;
             /**

@@ -3120,6 +3120,22 @@ export type TrademarkClaimsBase = components['schemas']['TrademarkClaimsBase'];
  */
 export type TransferAckType = components['schemas']['TransferAckType'];
 /**
+ * TransferLockPolicyBase
+ *
+ * @remarks
+ * Type alias for the `TransferLockPolicyBase` OpenAPI schema.
+ * This type represents transferlockpolicybase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTransferLockPolicyBase();
+ * const item: TransferLockPolicyBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TransferLockPolicyBase = components['schemas']['TransferLockPolicyBase'];
+/**
  * TransferPoliciesBase
  *
  * @remarks

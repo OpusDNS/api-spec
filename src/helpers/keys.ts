@@ -146,6 +146,7 @@ import { TldBase } from './schemas';
 import { TldResponseShort } from './schemas';
 import { TldSpecification } from './schemas';
 import { TrademarkClaimsBase } from './schemas';
+import { TransferLockPolicyBase } from './schemas';
 import { TransferPoliciesBase } from './schemas';
 import { User } from './schemas';
 import { UserAttributeBase } from './schemas';
@@ -18396,6 +18397,84 @@ export const KEYS_TRADEMARK_CLAIMS_BASE = [
 ] as const satisfies (keyof TrademarkClaimsBase)[];
 
 /**
+ * Supported By Registrar
+ *
+ * Whether the registrar supports transfer locks
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported_by_registrar` property of TransferLockPolicyBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferlockpolicybase[KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRAR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRAR;
+ * const value = transferlockpolicybase[propertyName];
+ * ```
+ *
+ * @see {@link TransferLockPolicyBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_LOCK_POLICY_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRAR = 'supported_by_registrar' as keyof TransferLockPolicyBase;
+/**
+ * Supported By Registry
+ *
+ * Whether the registry supports transfer locks
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `supported_by_registry` property of TransferLockPolicyBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferlockpolicybase[KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRY;
+ * const value = transferlockpolicybase[propertyName];
+ * ```
+ *
+ * @see {@link TransferLockPolicyBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_LOCK_POLICY_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRY = 'supported_by_registry' as keyof TransferLockPolicyBase;
+
+/**
+ * Array of all TransferLockPolicyBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TransferLockPolicyBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TRANSFER_LOCK_POLICY_BASE) {
+ *   console.log(`Property: ${key}, Value: ${transferlockpolicybase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TRANSFER_LOCK_POLICY_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link TransferLockPolicyBase} - The TypeScript type definition
+ */
+export const KEYS_TRANSFER_LOCK_POLICY_BASE = [
+  KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRAR,
+  KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRY,
+] as const satisfies (keyof TransferLockPolicyBase)[];
+
+/**
  * Authinfo Max Length
  *
  * Maximum length of the auth info
@@ -18647,31 +18726,30 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK = 'transfer_ack' as keyof T
  */
 export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED = 'transfer_email_required' as keyof TransferPoliciesBase;
 /**
- * Transfer Lock Enabled
+ * transfer_lock_policy property
  *
- * Whether transfers are locked by default in our system
+ * Transfer lock policy
  *
- * @type {boolean}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `transfer_lock_enabled` property of TransferPoliciesBase objects.
+ * This key constant provides type-safe access to the `transfer_lock_policy` property of TransferPoliciesBase objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED];
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY];
  * 
  * // Dynamic property access
- * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED;
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY;
  * const value = transferpoliciesbase[propertyName];
  * ```
  *
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED = 'transfer_lock_enabled' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY = 'transfer_lock_policy' as keyof TransferPoliciesBase;
 /**
  * transfer_nack property
  *
@@ -18804,7 +18882,7 @@ export const KEYS_TRANSFER_POLICIES_BASE = [
   KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED,
-  KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_ENABLED,
+  KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD,
   KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN,
