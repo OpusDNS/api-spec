@@ -1531,6 +1531,38 @@ export type DomainTransit = components['schemas']['DomainTransitResponse'];
  */
 export type DomainUpdate = components['schemas']['DomainUpdate'];
 /**
+ * DomainWithdrawRequest
+ *
+ * @remarks
+ * Type alias for the `DomainWithdrawRequest` OpenAPI schema.
+ * This type represents domainwithdrawrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainWithdrawRequest();
+ * const item: DomainWithdrawRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainWithdrawRequest = components['schemas']['DomainWithdrawRequest'];
+/**
+ * DomainWithdrawResponse
+ *
+ * @remarks
+ * Type alias for the `DomainWithdrawResponse` OpenAPI schema.
+ * This type represents domainwithdrawresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainWithdraw();
+ * const item: DomainWithdraw = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainWithdraw = components['schemas']['DomainWithdrawResponse'];
+/**
  * DomainsExpiringSoon
  *
  * @remarks

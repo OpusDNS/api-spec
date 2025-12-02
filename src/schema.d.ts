@@ -587,6 +587,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/tld-specific/at/{domain_reference}/withdraw": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Withdraw a nic.at domain */
+        post: operations["withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/tld-specific/de/{domain_reference}/transit": {
         parameters: {
             query?: never;
@@ -3015,6 +3032,27 @@ export interface components {
              * @description The new statuses of the domain
              */
             statuses?: components["schemas"]["DomainClientStatus"][] | null;
+        };
+        /** DomainWithdrawRequest */
+        DomainWithdrawRequest: {
+            /**
+             * Zone Delete
+             * @description Informs the registry whether the zone for that domain has been already deleted - as took from the docs: "(...) the registrar informs the registry that he has stopped the nameservice for the specified domain"
+             */
+            zone_delete: boolean;
+        };
+        /** DomainWithdrawResponse */
+        DomainWithdrawResponse: {
+            /**
+             * Name
+             * @description The domain name that was withdrawn
+             */
+            name: string;
+            /**
+             * Success
+             * @description Whether the withdraw operation was successful
+             */
+            success: boolean;
         };
         /** DomainsExpiringSoon */
         DomainsExpiringSoon: {
@@ -7705,6 +7743,58 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainSummaryResponse"];
+                };
+            };
+        };
+    };
+    withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainWithdrawRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainWithdrawResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

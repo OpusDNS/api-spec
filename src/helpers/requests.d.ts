@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainTransitRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveObjectLogs endpoint
@@ -2405,6 +2405,58 @@ export type DELETE_DomainsDomainReferenceTransfer_Request_Path = DELETE_DomainsD
  */
 export type GET_DomainsSummary_Request = {
 }
+
+/**
+ * Request type for POST DomainsTldSpecificAtDomainReferenceWithdraw endpoint
+ *
+ * Withdraw a nic.at domain
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST DomainsTldSpecificAtDomainReferenceWithdraw endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domains/tld-specific/at/{domain_reference}/withdraw
+ *
+ * @see {@link POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Query} - Query parameters type
+ * @see {@link POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Path} - Path parameters type
+ * @see {@link POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Body} - Request body type
+ */
+export type POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request = {
+  parameters: {
+    path: operations['withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post']['parameters']['path'];
+  };
+  requestBody: DomainWithdrawRequest;
+}
+/**
+ * Path parameters for POST /v1/domains/tld-specific/at/{domain_reference}/withdraw
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/domains/tld-specific/at/{domain_reference}/withdraw endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/domains/tld-specific/at/{domain_reference}/withdraw
+ */
+export type POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Path = POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/domains/tld-specific/at/{domain_reference}/withdraw
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/domains/tld-specific/at/{domain_reference}/withdraw endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/domains/tld-specific/at/{domain_reference}/withdraw
+ */
+export type POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Body = POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request['requestBody'];
 
 /**
  * Request type for POST DomainsTldSpecificDeDomainReferenceTransit endpoint

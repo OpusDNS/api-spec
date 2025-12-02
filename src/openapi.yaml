@@ -2427,6 +2427,33 @@ components:
           title: Statuses
       title: DomainUpdate
       type: object
+    DomainWithdrawRequest:
+      properties:
+        zone_delete:
+          description: 'Informs the registry whether the zone for that domain has
+            been already deleted - as took from the docs: "(...) the registrar informs
+            the registry that he has stopped the nameservice for the specified domain"'
+          title: Zone Delete
+          type: boolean
+      required:
+      - zone_delete
+      title: DomainWithdrawRequest
+      type: object
+    DomainWithdrawResponse:
+      properties:
+        name:
+          description: The domain name that was withdrawn
+          title: Name
+          type: string
+        success:
+          description: Whether the withdraw operation was successful
+          title: Success
+          type: boolean
+      required:
+      - name
+      - success
+      title: DomainWithdrawResponse
+      type: object
     DomainsExpiringSoon:
       properties:
         next_30_days:
@@ -5574,7 +5601,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-02-150412
+  version: 2025-12-02-151638
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8916,6 +8943,61 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Get domain summary
       tags:
+      - domain
+  /v1/domains/tld-specific/at/{domain_reference}/withdraw:
+    post:
+      operationId: withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainWithdrawRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainWithdrawResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Withdraw a nic.at domain
+      tags:
+      - domain
       - domain
   /v1/domains/tld-specific/de/{domain_reference}/transit:
     post:

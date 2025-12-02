@@ -96,6 +96,8 @@ import { DomainTransferIn } from './schemas';
 import { DomainTransitRequest } from './schemas';
 import { DomainTransit } from './schemas';
 import { DomainUpdate } from './schemas';
+import { DomainWithdrawRequest } from './schemas';
+import { DomainWithdraw } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
 import { EmailForwardAlias } from './schemas';
 import { EmailForwardAliasUpdate } from './schemas';
@@ -10026,6 +10028,135 @@ export const KEYS_DOMAIN_UPDATE = [
   KEY_DOMAIN_UPDATE_RENEWAL_MODE,
   KEY_DOMAIN_UPDATE_STATUSES,
 ] as const satisfies (keyof DomainUpdate)[];
+
+/**
+ * Zone Delete
+ *
+ * Informs the registry whether the zone for that domain has been already deleted - as took from the docs: "(...) the registrar informs the registry that he has stopped the nameservice for the specified domain"
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_delete` property of DomainWithdrawRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainwithdrawrequest[KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE;
+ * const value = domainwithdrawrequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainWithdrawRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_WITHDRAW_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE = 'zone_delete' as keyof DomainWithdrawRequest;
+
+/**
+ * Array of all DomainWithdrawRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainWithdrawRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_WITHDRAW_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${domainwithdrawrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_WITHDRAW_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainWithdrawRequest} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_WITHDRAW_REQUEST = [
+  KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE,
+] as const satisfies (keyof DomainWithdrawRequest)[];
+
+/**
+ * Name
+ *
+ * The domain name that was withdrawn
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainWithdraw objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainwithdraw[KEY_DOMAIN_WITHDRAW_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_WITHDRAW_NAME;
+ * const value = domainwithdraw[propertyName];
+ * ```
+ *
+ * @see {@link DomainWithdraw} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_WITHDRAW} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_WITHDRAW_NAME = 'name' as keyof DomainWithdraw;
+/**
+ * Success
+ *
+ * Whether the withdraw operation was successful
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `success` property of DomainWithdraw objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainwithdraw[KEY_DOMAIN_WITHDRAW_SUCCESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_WITHDRAW_SUCCESS;
+ * const value = domainwithdraw[propertyName];
+ * ```
+ *
+ * @see {@link DomainWithdraw} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_WITHDRAW} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_WITHDRAW_SUCCESS = 'success' as keyof DomainWithdraw;
+
+/**
+ * Array of all DomainWithdraw property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainWithdraw objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_WITHDRAW) {
+ *   console.log(`Property: ${key}, Value: ${domainwithdraw[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_WITHDRAW.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainWithdraw} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_WITHDRAW = [
+  KEY_DOMAIN_WITHDRAW_NAME,
+  KEY_DOMAIN_WITHDRAW_SUCCESS,
+] as const satisfies (keyof DomainWithdraw)[];
 
 /**
  * Next 30 Days
