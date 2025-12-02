@@ -93,6 +93,8 @@ import { DomainStatusesBase } from './schemas';
 import { DomainSummaryData } from './schemas';
 import { DomainSummary } from './schemas';
 import { DomainTransferIn } from './schemas';
+import { DomainTransitRequest } from './schemas';
+import { DomainTransit } from './schemas';
 import { DomainUpdate } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
 import { EmailForwardAlias } from './schemas';
@@ -9741,6 +9743,135 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
   KEY_DOMAIN_TRANSFER_IN_NAMESERVERS,
   KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,
 ] as const satisfies (keyof DomainTransferIn)[];
+
+/**
+ * Disconnect
+ *
+ * Disconnect the domain from current nameserver and update to DENIC nameserver
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disconnect` property of DomainTransitRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransitrequest[KEY_DOMAIN_TRANSIT_REQUEST_DISCONNECT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSIT_REQUEST_DISCONNECT;
+ * const value = domaintransitrequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransitRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSIT_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSIT_REQUEST_DISCONNECT = 'disconnect' as keyof DomainTransitRequest;
+
+/**
+ * Array of all DomainTransitRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransitRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSIT_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${domaintransitrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSIT_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransitRequest} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSIT_REQUEST = [
+  KEY_DOMAIN_TRANSIT_REQUEST_DISCONNECT,
+] as const satisfies (keyof DomainTransitRequest)[];
+
+/**
+ * Name
+ *
+ * The domain name that was transited
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainTransit objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransit[KEY_DOMAIN_TRANSIT_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSIT_NAME;
+ * const value = domaintransit[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransit} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSIT} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSIT_NAME = 'name' as keyof DomainTransit;
+/**
+ * Success
+ *
+ * Whether the transit operation was successful
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `success` property of DomainTransit objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransit[KEY_DOMAIN_TRANSIT_SUCCESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSIT_SUCCESS;
+ * const value = domaintransit[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransit} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSIT} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSIT_SUCCESS = 'success' as keyof DomainTransit;
+
+/**
+ * Array of all DomainTransit property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransit objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSIT) {
+ *   console.log(`Property: ${key}, Value: ${domaintransit[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSIT.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransit} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSIT = [
+  KEY_DOMAIN_TRANSIT_NAME,
+  KEY_DOMAIN_TRANSIT_SUCCESS,
+] as const satisfies (keyof DomainTransit)[];
 
 /**
  * Auth Code

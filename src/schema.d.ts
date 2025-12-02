@@ -587,6 +587,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/tld-specific/de/{domain_reference}/transit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Transit a DENIC domain */
+        post: operations["transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/transfer": {
         parameters: {
             query?: never;
@@ -2946,6 +2963,27 @@ export interface components {
             nameservers?: components["schemas"]["Nameserver"][] | null;
             /** @description The renewal mode of the domain */
             renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainTransitRequest */
+        DomainTransitRequest: {
+            /**
+             * Disconnect
+             * @description Disconnect the domain from current nameserver and update to DENIC nameserver
+             */
+            disconnect: boolean;
+        };
+        /** DomainTransitResponse */
+        DomainTransitResponse: {
+            /**
+             * Name
+             * @description The domain name that was transited
+             */
+            name: string;
+            /**
+             * Success
+             * @description Whether the transit operation was successful
+             */
+            success: boolean;
         };
         /** DomainUpdate */
         DomainUpdate: {
@@ -7667,6 +7705,58 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainSummaryResponse"];
+                };
+            };
+        };
+    };
+    transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainTransitRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainTransitResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

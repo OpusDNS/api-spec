@@ -1483,6 +1483,38 @@ export type DomainSummary = components['schemas']['DomainSummaryResponse'];
  */
 export type DomainTransferIn = components['schemas']['DomainTransferIn'];
 /**
+ * DomainTransitRequest
+ *
+ * @remarks
+ * Type alias for the `DomainTransitRequest` OpenAPI schema.
+ * This type represents domaintransitrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransitRequest();
+ * const item: DomainTransitRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransitRequest = components['schemas']['DomainTransitRequest'];
+/**
+ * DomainTransitResponse
+ *
+ * @remarks
+ * Type alias for the `DomainTransitResponse` OpenAPI schema.
+ * This type represents domaintransitresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransit();
+ * const item: DomainTransit = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransit = components['schemas']['DomainTransitResponse'];
+/**
  * DomainUpdate
  *
  * @remarks

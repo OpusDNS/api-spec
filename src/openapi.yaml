@@ -2357,6 +2357,32 @@ components:
       - auth_code
       title: DomainTransferIn
       type: object
+    DomainTransitRequest:
+      properties:
+        disconnect:
+          description: Disconnect the domain from current nameserver and update to
+            DENIC nameserver
+          title: Disconnect
+          type: boolean
+      required:
+      - disconnect
+      title: DomainTransitRequest
+      type: object
+    DomainTransitResponse:
+      properties:
+        name:
+          description: The domain name that was transited
+          title: Name
+          type: string
+        success:
+          description: Whether the transit operation was successful
+          title: Success
+          type: boolean
+      required:
+      - name
+      - success
+      title: DomainTransitResponse
+      type: object
     DomainUpdate:
       properties:
         auth_code:
@@ -5548,7 +5574,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-02-133836
+  version: 2025-12-02-150412
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8890,6 +8916,61 @@ paths:
       - OAuth2PasswordBearer: []
       summary: Get domain summary
       tags:
+      - domain
+  /v1/domains/tld-specific/de/{domain_reference}/transit:
+    post:
+      operationId: transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainTransitRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainTransitResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Transit a DENIC domain
+      tags:
+      - domain
       - domain
   /v1/domains/transfer:
     post:
