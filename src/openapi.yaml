@@ -5602,7 +5602,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-02-180143
+  version: 2025-12-03-100606
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8999,7 +8999,7 @@ paths:
       summary: Withdraw a nic.at domain
       tags:
       - domain
-      - domain
+      - domain_tld_specific
   /v1/domains/tld-specific/de/{domain_reference}/transit:
     post:
       operationId: transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post
@@ -9054,7 +9054,7 @@ paths:
       summary: Transit a DENIC domain
       tags:
       - domain
-      - domain
+      - domain_tld_specific
   /v1/domains/transfer:
     post:
       description: 'Start the transfer process for a domain <br>
@@ -12000,6 +12000,9 @@ tags:
     '
   name: domain
   x-displayName: Domain management
+- description: ''
+  name: domain_tld_specific
+  x-displayName: TLD specific domain management
 - description: 'Endpoints for searching domains.
 
     '
@@ -12054,6 +12057,7 @@ x-tagGroups:
 - name: Domains
   tags:
   - domain
+  - domain_tld_specific
   - contact
   - event
   - availability
