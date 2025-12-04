@@ -39,6 +39,12 @@ components:
           - type: 'null'
           description: Payment terms for the organization.
           title: Billing Model
+        credit_limit:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Credit limit for the organization.
+          title: Credit Limit
         customer_number:
           anyOf:
           - type: integer
@@ -5602,7 +5608,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-03-100606
+  version: 2025-12-04-003158
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

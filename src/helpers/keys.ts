@@ -269,6 +269,31 @@ export const KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE = [
  */
 export const KEY_BILLING_METADATA_BILLING_MODEL = 'billing_model' as keyof BillingMetadata;
 /**
+ * Credit Limit
+ *
+ * Credit limit for the organization.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `credit_limit` property of BillingMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = billingmetadata[KEY_BILLING_METADATA_CREDIT_LIMIT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BILLING_METADATA_CREDIT_LIMIT;
+ * const value = billingmetadata[propertyName];
+ * ```
+ *
+ * @see {@link BillingMetadata} - The TypeScript type definition
+ * @see {@link KEYS_BILLING_METADATA} - Array of all keys for this type
+ */
+export const KEY_BILLING_METADATA_CREDIT_LIMIT = 'credit_limit' as keyof BillingMetadata;
+/**
  * Customer Number
  *
  * Customer account number for the organization.
@@ -316,6 +341,7 @@ export const KEY_BILLING_METADATA_CUSTOMER_NUMBER = 'customer_number' as keyof B
  */
 export const KEYS_BILLING_METADATA = [
   KEY_BILLING_METADATA_BILLING_MODEL,
+  KEY_BILLING_METADATA_CREDIT_LIMIT,
   KEY_BILLING_METADATA_CUSTOMER_NUMBER,
 ] as const satisfies (keyof BillingMetadata)[];
 

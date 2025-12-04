@@ -1420,6 +1420,11 @@ export interface components {
              */
             billing_model?: string | null;
             /**
+             * Credit Limit
+             * @description Credit limit for the organization.
+             */
+            credit_limit?: number | null;
+            /**
              * Customer Number
              * @description Customer account number for the organization.
              */
