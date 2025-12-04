@@ -141,6 +141,7 @@ import { PublicAuthRequestForm } from './schemas';
 import { RdapBase } from './schemas';
 import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
+import { RequestAuthcode } from './schemas';
 import { RequestHistory } from './schemas';
 import { ReservedDomainsBase } from './schemas';
 import { RgpOperations } from './schemas';
@@ -17283,6 +17284,110 @@ export const KEY_RELATION_SET_RELATIONS = 'relations' as keyof RelationSet;
 export const KEYS_RELATION_SET = [
   KEY_RELATION_SET_RELATIONS,
 ] as const satisfies (keyof RelationSet)[];
+
+/**
+ * Detail
+ *
+ * Additional information about the result in case of failure
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `detail` property of RequestAuthcode objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requestauthcode[KEY_REQUEST_AUTHCODE_DETAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_AUTHCODE_DETAIL;
+ * const value = requestauthcode[propertyName];
+ * ```
+ *
+ * @see {@link RequestAuthcode} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_AUTHCODE} - Array of all keys for this type
+ */
+export const KEY_REQUEST_AUTHCODE_DETAIL = 'detail' as keyof RequestAuthcode;
+/**
+ * Name
+ *
+ * The domain name that had the auth code requested
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of RequestAuthcode objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requestauthcode[KEY_REQUEST_AUTHCODE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_AUTHCODE_NAME;
+ * const value = requestauthcode[propertyName];
+ * ```
+ *
+ * @see {@link RequestAuthcode} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_AUTHCODE} - Array of all keys for this type
+ */
+export const KEY_REQUEST_AUTHCODE_NAME = 'name' as keyof RequestAuthcode;
+/**
+ * Success
+ *
+ * Whether the request had a successful result from DNS Belgium
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `success` property of RequestAuthcode objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = requestauthcode[KEY_REQUEST_AUTHCODE_SUCCESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REQUEST_AUTHCODE_SUCCESS;
+ * const value = requestauthcode[propertyName];
+ * ```
+ *
+ * @see {@link RequestAuthcode} - The TypeScript type definition
+ * @see {@link KEYS_REQUEST_AUTHCODE} - Array of all keys for this type
+ */
+export const KEY_REQUEST_AUTHCODE_SUCCESS = 'success' as keyof RequestAuthcode;
+
+/**
+ * Array of all RequestAuthcode property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for RequestAuthcode objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REQUEST_AUTHCODE) {
+ *   console.log(`Property: ${key}, Value: ${requestauthcode[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REQUEST_AUTHCODE.includes(someKey);
+ * ```
+ *
+ * @see {@link RequestAuthcode} - The TypeScript type definition
+ */
+export const KEYS_REQUEST_AUTHCODE = [
+  KEY_REQUEST_AUTHCODE_DETAIL,
+  KEY_REQUEST_AUTHCODE_NAME,
+  KEY_REQUEST_AUTHCODE_SUCCESS,
+] as const satisfies (keyof RequestAuthcode)[];
 
 /**
  * Client Ip

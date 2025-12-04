@@ -4503,6 +4503,27 @@ components:
       - delete
       title: RenewalMode
       type: string
+    RequestAuthcodeResponse:
+      properties:
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional information about the result in case of failure
+          title: Detail
+        name:
+          description: The domain name that had the auth code requested
+          title: Name
+          type: string
+        success:
+          description: Whether the request had a successful result from DNS Belgium
+          title: Success
+          type: boolean
+      required:
+      - name
+      - success
+      title: RequestAuthcodeResponse
+      type: object
     RequestHistory:
       properties:
         client_ip:
@@ -5608,7 +5629,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-04-140616
+  version: 2025-12-04-142309
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9465,6 +9486,55 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Withdraw a nic.at domain
+      tags:
+      - domain
+      - domain_tld_specific
+  /v1/domains/tld-specific/be/{domain_reference}/auth_code/request:
+    post:
+      operationId: request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestAuthcodeResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Requests your auth code directly from DNS Belgium (registry)
       tags:
       - domain
       - domain_tld_specific

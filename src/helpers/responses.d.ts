@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_ObjectLog, HTTPValidationError, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, Pagination_DomainForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, DomainTransit, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_ObjectLog, HTTPValidationError, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, Pagination_DomainForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, Pagination_EmailForwardAlias, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveObjectLogs endpoint
@@ -4430,6 +4430,79 @@ export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Response_404 = Pr
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint
+ *
+ * Requests your auth code directly from DNS Belgium (registry)
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
+ *
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_200} - 200 response type
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_404} - 404 response type
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_422} - 422 response type
+ *
+
+ */
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response = POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_200 | POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_404 | POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_422;
+
+/**
+ * 200 response for POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
+ *
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response} - The main response type definition
+ * @see {@link RequestAuthcode} - The actual schema type definition
+ */
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_200 = RequestAuthcode
+
+/**
+ * 404 response for POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
+ *
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_404 = Problem
+
+/**
+ * 422 response for POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
+ *
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DomainsTldSpecificDeByDomainReferenceTransit endpoint

@@ -2944,6 +2944,22 @@ export type RelationSet = components['schemas']['RelationSet'];
  */
 export type RenewalMode = components['schemas']['RenewalMode'];
 /**
+ * RequestAuthcodeResponse
+ *
+ * @remarks
+ * Type alias for the `RequestAuthcodeResponse` OpenAPI schema.
+ * This type represents requestauthcoderesponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRequestAuthcode();
+ * const item: RequestAuthcode = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RequestAuthcode = components['schemas']['RequestAuthcodeResponse'];
+/**
  * RequestHistory
  *
  * @remarks

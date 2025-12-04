@@ -604,6 +604,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/tld-specific/be/{domain_reference}/auth_code/request": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Requests your auth code directly from DNS Belgium (registry) */
+        post: operations["request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/tld-specific/de/{domain_reference}/transit": {
         parameters: {
             query?: never;
@@ -4352,6 +4369,24 @@ export interface components {
          * @enum {string}
          */
         RenewalMode: "renew" | "expire" | "delete";
+        /** RequestAuthcodeResponse */
+        RequestAuthcodeResponse: {
+            /**
+             * Detail
+             * @description Additional information about the result in case of failure
+             */
+            detail?: string | null;
+            /**
+             * Name
+             * @description The domain name that had the auth code requested
+             */
+            name: string;
+            /**
+             * Success
+             * @description Whether the request had a successful result from DNS Belgium
+             */
+            success: boolean;
+        };
         /** RequestHistory */
         RequestHistory: {
             /**
@@ -7806,6 +7841,54 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainWithdrawResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RequestAuthcodeResponse"];
                 };
             };
             /** @description Not Found */
