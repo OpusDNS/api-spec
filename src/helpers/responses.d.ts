@@ -1518,11 +1518,12 @@ export type GET_DnsByZoneName_Response_422 = HTTPValidationError
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
  * @see {@link POST_DnsByZoneNameDnssecDisable_Response_200} - 200 response type
+ * @see {@link POST_DnsByZoneNameDnssecDisable_Response_400} - 400 response type
  * @see {@link POST_DnsByZoneNameDnssecDisable_Response_422} - 422 response type
  *
 
  */
-export type POST_DnsByZoneNameDnssecDisable_Response = POST_DnsByZoneNameDnssecDisable_Response_200 | POST_DnsByZoneNameDnssecDisable_Response_422;
+export type POST_DnsByZoneNameDnssecDisable_Response = POST_DnsByZoneNameDnssecDisable_Response_200 | POST_DnsByZoneNameDnssecDisable_Response_400 | POST_DnsByZoneNameDnssecDisable_Response_422;
 
 /**
  * 200 response for POST DnsByZoneNameDnssecDisable endpoint
@@ -1541,6 +1542,24 @@ export type POST_DnsByZoneNameDnssecDisable_Response = POST_DnsByZoneNameDnssecD
  * @see {@link DnsChanges} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecDisable_Response_200 = DnsChanges
+
+/**
+ * 400 response for POST DnsByZoneNameDnssecDisable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST DnsByZoneNameDnssecDisable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/dnssec/disable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecDisable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DnsByZoneNameDnssecDisable_Response_400 = Problem
 
 /**
  * 422 response for POST DnsByZoneNameDnssecDisable endpoint
@@ -1576,11 +1595,12 @@ export type POST_DnsByZoneNameDnssecDisable_Response_422 = HTTPValidationError
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  *
  * @see {@link POST_DnsByZoneNameDnssecEnable_Response_200} - 200 response type
+ * @see {@link POST_DnsByZoneNameDnssecEnable_Response_400} - 400 response type
  * @see {@link POST_DnsByZoneNameDnssecEnable_Response_422} - 422 response type
  *
 
  */
-export type POST_DnsByZoneNameDnssecEnable_Response = POST_DnsByZoneNameDnssecEnable_Response_200 | POST_DnsByZoneNameDnssecEnable_Response_422;
+export type POST_DnsByZoneNameDnssecEnable_Response = POST_DnsByZoneNameDnssecEnable_Response_200 | POST_DnsByZoneNameDnssecEnable_Response_400 | POST_DnsByZoneNameDnssecEnable_Response_422;
 
 /**
  * 200 response for POST DnsByZoneNameDnssecEnable endpoint
@@ -1599,6 +1619,24 @@ export type POST_DnsByZoneNameDnssecEnable_Response = POST_DnsByZoneNameDnssecEn
  * @see {@link DnsChanges} - The actual schema type definition
  */
 export type POST_DnsByZoneNameDnssecEnable_Response_200 = DnsChanges
+
+/**
+ * 400 response for POST DnsByZoneNameDnssecEnable endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST DnsByZoneNameDnssecEnable endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/{zone_name}/dnssec/enable
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link POST_DnsByZoneNameDnssecEnable_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DnsByZoneNameDnssecEnable_Response_400 = Problem
 
 /**
  * 422 response for POST DnsByZoneNameDnssecEnable endpoint

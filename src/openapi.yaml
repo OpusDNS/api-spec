@@ -5608,7 +5608,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-04-003158
+  version: 2025-12-04-140616
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7000,9 +7000,43 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                zones_list:
+                  description: Paginated list of DNS zones with their RRsets
+                  summary: List of zones
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 10
+                      total_items: 1
+                      total_pages: 1
+                    results:
+                    - created_on: '2025-11-18T12:43:35Z'
+                      dnssec_status: disabled
+                      domain_parts:
+                        domain: example
+                        subdomain: ''
+                        suffix: com
+                      name: example.com.
+                      rrsets:
+                      - name: example.com.
+                        records:
+                        - rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
+                            10800 3600 604800 300
+                        ttl: 3600
+                        type: SOA
+                      - name: example.com.
+                        records:
+                        - rdata: ns1.opusdns.com.
+                        - rdata: ns2.opusdns.net.
+                        ttl: 3600
+                        type: NS
+                      updated_on: '2025-11-18T12:43:35Z'
               schema:
                 $ref: '#/components/schemas/Pagination_DnsZoneResponse_'
-          description: Successful Response
+          description: List of DNS zones retrieved successfully
         '422':
           content:
             application/problem+json:
@@ -7182,7 +7216,7 @@ paths:
                       rrset_type: NS
                       ttl: 3600
                     - action: create_record
-                      record_data: ns2.opusdns.com.
+                      record_data: ns2.opusdns.net.
                       rrset_name: example.com.
                       rrset_type: NS
                       ttl: 3600
@@ -7280,9 +7314,43 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                domain_forwards:
+                  description: Paginated list of domain forwards organized by DNS
+                    zones with redirect configurations
+                  summary: Domain forwards by zone
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 10
+                      total_items: 1
+                      total_pages: 1
+                    results:
+                    - domain_forwards:
+                      - created_on: '2025-11-18T12:59:57Z'
+                        enabled: false
+                        hostname: example.com.
+                        https:
+                          created_on: '2025-11-18T12:59:57Z'
+                          redirects:
+                          - redirect_code: 302
+                            request_hostname: example.com.
+                            request_path: /
+                            request_protocol: https
+                            target_hostname: auth.example.com.
+                            target_path: /
+                            target_protocol: https
+                          updated_on: '2025-11-18T12:59:57Z'
+                          wildcard: false
+                        updated_on: '2025-11-18T12:59:57Z'
+                        wildcard: false
+                      zone_id: zone_01kabfvtysfqwv4dn89r3jepym
+                      zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/Pagination_DomainForwardZone_'
-          description: Successful Response
+          description: List of domain forwards grouped by DNS zones
         '401':
           content:
             application/problem+json:
@@ -7325,9 +7393,18 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                summary:
+                  description: Summary of DNS zones showing total count and breakdown
+                    by DNSSEC status
+                  summary: Zones summary
+                  value:
+                    total_zones: 1
+                    zones_by_dnssec:
+                      disabled: 1
               schema:
                 $ref: '#/components/schemas/DnsZoneSummary'
-          description: Successful Response
+          description: DNS zones summary retrieved successfully
       security:
       - OAuth2PasswordBearer: []
       summary: Get Zones Summary
@@ -7374,9 +7451,88 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_zone:
+                  description: A newly created zone with only SOA and NS records
+                  summary: Basic zone with default records
+                  value:
+                    created_on: '2025-11-18T12:43:35Z'
+                    dnssec_status: disabled
+                    domain_parts:
+                      domain: example
+                      subdomain: ''
+                      suffix: com
+                    name: example.com.
+                    rrsets:
+                    - name: example.com.
+                      records:
+                      - rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
+                          10800 3600 604800 300
+                      ttl: 3600
+                      type: SOA
+                    - name: example.com.
+                      records:
+                      - rdata: ns1.opusdns.com.
+                      - rdata: ns2.opusdns.net.
+                      ttl: 3600
+                      type: NS
+                    updated_on: '2025-11-18T12:43:35Z'
+                zone_with_records:
+                  description: A fully configured zone with A, CNAME, MX, TXT records
+                    and DNSSEC enabled
+                  summary: Zone with custom records and DNSSEC
+                  value:
+                    created_on: '2025-11-15T10:30:00Z'
+                    dnssec_status: enabled
+                    domain_parts:
+                      domain: example
+                      subdomain: ''
+                      suffix: com
+                    name: example.com.
+                    rrsets:
+                    - name: example.com.
+                      records:
+                      - rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111701
+                          10800 3600 604800 300
+                      ttl: 3600
+                      type: SOA
+                    - name: example.com.
+                      records:
+                      - rdata: ns1.opusdns.com.
+                      - rdata: ns2.opusdns.com.
+                      ttl: 3600
+                      type: NS
+                    - name: example.com.
+                      records:
+                      - rdata: 203.0.113.10
+                      ttl: 300
+                      type: A
+                    - name: www.example.com.
+                      records:
+                      - rdata: example.com.
+                      ttl: 300
+                      type: CNAME
+                    - name: example.com.
+                      records:
+                      - rdata: 10 mail.example.com.
+                      - rdata: 20 backup-mail.example.com.
+                      ttl: 300
+                      type: MX
+                    - name: example.com.
+                      records:
+                      - rdata: '"v=spf1 include:_spf.google.com ~all"'
+                      ttl: 300
+                      type: TXT
+                    - name: example.com.
+                      records:
+                      - rdata: 256 3 13 4epAMhnUgbFbAmKI2zbTXXFHGlVeHamiWLPdwJ8ehE9NgmvDNraqYF/0YdDcoc2elyelvi72KJyQfIR02axEeQ==
+                      - rdata: 257 3 13 Wx1Wk8Sl+PyanAWPYsCPw9qFv2Nv0U/MXoJGgpmdqgbLgtvPlVM1/66j/MFTOjk4ONGKGZoWbZ86ud18lWvacw==
+                      ttl: 300
+                      type: DNSKEY
+                    updated_on: '2025-11-17T14:20:00Z'
               schema:
                 $ref: '#/components/schemas/DnsZoneResponse'
-          description: Successful Response
+          description: DNS zone retrieved successfully
         '422':
           content:
             application/problem+json:
@@ -7404,9 +7560,64 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                dnssec_disabled:
+                  description: Changeset response showing DNSSEC keys and DS records
+                    removed
+                  summary: DNSSEC disabled for zone
+                  value:
+                    changes:
+                    - action: delete_record
+                      record_data: 256 3 13 5OmhbRQw0+xlqw4iYjM9SojiKkpfReE8LoMzzb3uDSvfvaePyreODC0Pf0eMti2hz/q9by5G7jh5nqQBRp8qAA==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: delete_record
+                      record_data: 257 3 13 4knSelKBhrAmgwkLMDbJGXmpdO2vkPf6uwGn52BQmlgWXjIXnGqv9CYPTwplRf4mRbFKFDkhU8dn9AsNOL+8EQ==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: delete_record
+                      record_data: 41074 13 2 0f8ad1e9b0de2eb958ba571208951e71330e6d9e2afa3c84ec6bd16d77bfc718
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: delete_record
+                      record_data: 41074 13 4 f2fa86164e45235537238dd5b86a6a2533fd17b1e8216c1d66d18ccfc79be4dca77e3bc6d76eb136e193c2cee0a6ea85
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: delete_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025111802
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: create_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025111803
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: disable_dnssec
+                    changeset_id: a2a336e2-de44-4e54-b160-1e25b117b0e9
+                    num_changes: 7
+                    zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/DnsChangesResponse'
-          description: Successful Response
+          description: DNSSEC disabled successfully
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DNS
+                detail: Additional error context.
+                status: 400
+                title: DNS Error
+                type: dns
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
         '422':
           content:
             application/problem+json:
@@ -7434,9 +7645,64 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                dnssec_enabled:
+                  description: Changeset response showing DNSSEC keys and DS records
+                    created
+                  summary: DNSSEC enabled for zone
+                  value:
+                    changes:
+                    - action: delete_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: create_record
+                      record_data: ns1.opusdns.com. hostmaster.opusdns.com. 2025111802
+                        10800 3600 604800 300
+                      rrset_name: example.com.
+                      rrset_type: SOA
+                      ttl: 3600
+                    - action: create_record
+                      record_data: 256 3 13 5OmhbRQw0+xlqw4iYjM9SojiKkpfReE8LoMzzb3uDSvfvaePyreODC0Pf0eMti2hz/q9by5G7jh5nqQBRp8qAA==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: create_record
+                      record_data: 257 3 13 4knSelKBhrAmgwkLMDbJGXmpdO2vkPf6uwGn52BQmlgWXjIXnGqv9CYPTwplRf4mRbFKFDkhU8dn9AsNOL+8EQ==
+                      rrset_name: example.com.
+                      rrset_type: DNSKEY
+                      ttl: 300
+                    - action: create_record
+                      record_data: 41074 13 2 0f8ad1e9b0de2eb958ba571208951e71330e6d9e2afa3c84ec6bd16d77bfc718
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: create_record
+                      record_data: 41074 13 4 f2fa86164e45235537238dd5b86a6a2533fd17b1e8216c1d66d18ccfc79be4dca77e3bc6d76eb136e193c2cee0a6ea85
+                      rrset_name: example.com.
+                      rrset_type: DS
+                      ttl: 300
+                    - action: enable_dnssec
+                    changeset_id: b89527a6-b46e-4d29-bd57-6a1b6b4915c7
+                    num_changes: 7
+                    zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/DnsChangesResponse'
-          description: Successful Response
+          description: DNSSEC enabled successfully
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DNS
+                detail: Additional error context.
+                status: 400
+                title: DNS Error
+                type: dns
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
         '422':
           content:
             application/problem+json:
@@ -7466,9 +7732,35 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                zone_domain_forwards:
+                  description: All domain forwards configured for a specific DNS zone
+                    with redirect configurations
+                  summary: Domain forwards for a zone
+                  value:
+                    domain_forwards:
+                    - created_on: '2025-11-18T12:59:57Z'
+                      enabled: false
+                      hostname: example.com.
+                      https:
+                        created_on: '2025-11-18T12:59:57Z'
+                        redirects:
+                        - redirect_code: 302
+                          request_hostname: example.com.
+                          request_path: /
+                          request_protocol: https
+                          target_hostname: auth.example.com
+                          target_path: /
+                          target_protocol: https
+                        updated_on: '2025-11-18T12:59:57Z'
+                        wildcard: false
+                      updated_on: '2025-11-18T12:59:57Z'
+                      wildcard: false
+                    zone_id: zone_01kabfvtysfqwv4dn89r3jepym
+                    zone_name: example.com.
               schema:
                 $ref: '#/components/schemas/DomainForwardZone'
-          description: Successful Response
+          description: Domain forwards for the specified zone retrieved successfully
         '401':
           content:
             application/problem+json:
@@ -7519,6 +7811,60 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              manage_mx_records:
+                description: Add a new mail server with higher priority and remove
+                  an old one
+                summary: Add and remove MX records
+                value:
+                  ops:
+                  - op: upsert
+                    record:
+                      name: '@'
+                      rdata: 5 new-mail.example.com.
+                      ttl: 300
+                      type: MX
+                  - op: remove
+                    record:
+                      name: '@'
+                      rdata: 10 old-mail.example.com.
+                      ttl: 300
+                      type: MX
+              remove_single_record:
+                description: Remove a specific record from an RRset
+                summary: Remove a single record
+                value:
+                  ops:
+                  - op: remove
+                    record:
+                      name: old-api
+                      rdata: 203.0.113.200
+                      ttl: 300
+                      type: A
+              update_txt_record:
+                description: Add or update a TXT record for SPF configuration
+                summary: Update TXT record
+                value:
+                  ops:
+                  - op: upsert
+                    record:
+                      name: '@'
+                      rdata: '"v=spf1 include:_spf.google.com include:mailgun.org
+                        ~all"'
+                      ttl: 300
+                      type: TXT
+              upsert_single_record:
+                description: Upsert a single A record (creates if doesn't exist, updates
+                  if exists)
+                summary: Add or update a single record
+                value:
+                  ops:
+                  - op: upsert
+                    record:
+                      name: api
+                      rdata: 203.0.113.100
+                      ttl: 300
+                      type: A
             schema:
               $ref: '#/components/schemas/DnsZoneRecordsPatchOps'
         required: true
@@ -7563,6 +7909,65 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              remove_single_rrset:
+                description: Remove all records for a specific name and type
+                summary: Remove a single RRset
+                value:
+                  ops:
+                  - op: remove
+                    rrset:
+                      name: old-service
+                      records: []
+                      ttl: 300
+                      type: A
+              upsert_and_remove:
+                description: Change www from CNAME to A record with multiple IPs (remove
+                  CNAME, add A records)
+                summary: Multiple operations
+                value:
+                  ops:
+                  - op: upsert
+                    rrset:
+                      name: www
+                      records:
+                      - rdata: 203.0.113.10
+                      - rdata: 203.0.113.11
+                      ttl: 300
+                      type: A
+                  - op: remove
+                    rrset:
+                      name: www
+                      records: []
+                      ttl: 300
+                      type: CNAME
+              upsert_mx_records:
+                description: Replace MX records with new mail server priorities
+                summary: Update MX records
+                value:
+                  ops:
+                  - op: upsert
+                    rrset:
+                      name: '@'
+                      records:
+                      - rdata: 10 mail1.example.com.
+                      - rdata: 20 mail2.example.com.
+                      - rdata: 30 mail3.example.com.
+                      ttl: 300
+                      type: MX
+              upsert_single_rrset:
+                description: Upsert an A record for a subdomain (creates if doesn't
+                  exist, updates if exists)
+                summary: Add or update a single RRset
+                value:
+                  ops:
+                  - op: upsert
+                    rrset:
+                      name: api
+                      records:
+                      - rdata: 203.0.113.50
+                      ttl: 300
+                      type: A
             schema:
               $ref: '#/components/schemas/DnsZoneRrsetsPatchOps'
         required: true
@@ -7606,6 +8011,63 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              update_a_record:
+                description: Replace all RRsets with a single A record for the zone
+                  apex
+                summary: Update A record
+                value:
+                  rrsets:
+                  - name: '@'
+                    records:
+                    - rdata: 203.0.113.10
+                    ttl: 300
+                    type: A
+              update_multiple_rrsets:
+                description: Replace all RRsets with multiple record sets (A, CNAME,
+                  MX)
+                summary: Update multiple RRsets
+                value:
+                  rrsets:
+                  - name: '@'
+                    records:
+                    - rdata: 203.0.113.10
+                    ttl: 300
+                    type: A
+                  - name: www
+                    records:
+                    - rdata: example.com.
+                    ttl: 300
+                    type: CNAME
+                  - name: '@'
+                    records:
+                    - rdata: 10 mail.example.com.
+                    - rdata: 20 backup-mail.example.com.
+                    ttl: 300
+                    type: MX
+              update_mx_records:
+                description: Replace all RRsets with MX records for email forwarding
+                  (returns 204 No Content)
+                summary: Update MX records
+                value:
+                  rrsets:
+                  - name: '@'
+                    records:
+                    - rdata: 10 mx1.mxforward.opusdns.dev.
+                    - rdata: 20 mx2.mxforward.opusdns.dev.
+                    ttl: 600
+                    type: MX
+              update_txt_records:
+                description: Replace all RRsets with TXT records (SPF, verification)
+                summary: Update TXT records
+                value:
+                  rrsets:
+                  - name: '@'
+                    records:
+                    - rdata: '"v=spf1 include:_spf.google.com ~all"'
+                    - rdata: '"google-site-verification=abc123def456"'
+                    ttl: 300
+                    type: TXT
             schema:
               $ref: '#/components/schemas/DnsZoneRrsetsCreate'
         required: true

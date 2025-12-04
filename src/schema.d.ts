@@ -6102,7 +6102,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description List of DNS zones retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -6186,7 +6186,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description List of domain forwards grouped by DNS zones */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -6247,7 +6247,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description DNS zones summary retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -6270,7 +6270,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description DNS zone retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -6332,13 +6332,29 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description DNSSEC disabled successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DnsChangesResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DNS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "DNS Error",
+                     *       "type": "dns"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -6364,13 +6380,29 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description DNSSEC enabled successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DnsChangesResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DNS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "DNS Error",
+                     *       "type": "dns"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -6396,7 +6428,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forwards for the specified zone retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
