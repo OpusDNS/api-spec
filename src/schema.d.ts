@@ -258,6 +258,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/dns/email-forwards": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List email forwards by zone
+         * @description Retrieves a paginated list of email forwards grouped by DNS zones.
+         */
+        get: operations["list_email_forwards_by_zone_v1_dns_email_forwards_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/dns/summary": {
         parameters: {
             query?: never;
@@ -339,6 +359,26 @@ export interface paths {
          * @description Retrieves all domain forwards configured for the specified DNS zone, including subdomains.
          */
         get: operations["list_zone_domain_forwards_v1_dns__zone_name__domain_forwards_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/dns/{zone_name}/email-forwards": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List email forwards for a zone
+         * @description Retrieves all email forwards configured for the specified DNS zone, including subdomains and all aliases.
+         */
+        get: operations["list_zone_email_forwards_v1_dns__zone_name__email_forwards_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -811,45 +851,99 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/email-forwards/{zone_name}/aliases": {
+    "/v1/email-forwards": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get Email Forward Aliases */
-        get: operations["get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get"];
+        /**
+         * List all email forwards
+         * @description Retrieves a paginated list of all email forwards for the organization.
+         */
+        get: operations["list_email_forwards_v1_email_forwards_get"];
         put?: never;
-        /** Create Email Forward Alias */
-        post: operations["create_email_forward_alias_v1_email_forwards__zone_name__aliases_post"];
-        /** Delete Email Forward Aliases */
-        delete: operations["delete_email_forward_aliases_v1_email_forwards__zone_name__aliases_delete"];
+        /**
+         * Create email forward configuration
+         * @description Creates an email forward configuration with optional aliases. Can be created enabled or disabled (default: disabled). Includes created_on and updated_on timestamps.
+         */
+        post: operations["create_email_forward_v1_email_forwards_post"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/email-forwards/{zone_name}/aliases/{alias}": {
+    "/v1/email-forwards/{email_forward_id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get Email Forward Alias */
-        get: operations["get_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__get"];
-        /** Update Email Forward Alias */
-        put: operations["update_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__put"];
+        /**
+         * Get email forward configuration
+         * @description Retrieves the email forward configuration for the specified zone including all aliases
+         */
+        get: operations["get_email_forward_v1_email_forwards__email_forward_id__get"];
+        put?: never;
         post?: never;
-        /** Delete Email Forward Alias */
-        delete: operations["delete_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__delete"];
+        /**
+         * Delete email forward configuration
+         * @description Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from ImprovMX).
+         */
+        delete: operations["delete_email_forward_v1_email_forwards__email_forward_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/email-forwards/{zone_name}/disable": {
+    "/v1/email-forwards/{email_forward_id}/aliases": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create email forward alias
+         * @description Creates a new email forward alias for the specified hostname.
+         */
+        post: operations["create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/email-forwards/{email_forward_id}/aliases/{alias_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Update email forward alias
+         * @description Updates the forward_to address for a specific email forward alias
+         */
+        put: operations["update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put"];
+        post?: never;
+        /**
+         * Delete email forward alias
+         * @description Deletes a specific email forward alias for the specified zone
+         */
+        delete: operations["delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/email-forwards/{email_forward_id}/disable": {
         parameters: {
             query?: never;
             header?: never;
@@ -862,11 +956,14 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Disable Email Forward */
-        patch: operations["disable_email_forward_v1_email_forwards__zone_name__disable_patch"];
+        /**
+         * Disable email forwarding
+         * @description Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forward provider. The email forward configuration is preserved but disabled.
+         */
+        patch: operations["disable_email_forward_v1_email_forwards__email_forward_id__disable_patch"];
         trace?: never;
     };
-    "/v1/email-forwards/{zone_name}/enable": {
+    "/v1/email-forwards/{email_forward_id}/enable": {
         parameters: {
             query?: never;
             header?: never;
@@ -879,8 +976,11 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        /** Enable Email Forward */
-        patch: operations["enable_email_forward_v1_email_forwards__zone_name__enable_patch"];
+        /**
+         * Enable email forwarding
+         * @description Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forward provider.
+         */
+        patch: operations["enable_email_forward_v1_email_forwards__email_forward_id__enable_patch"];
         trace?: never;
     };
     "/v1/events": {
@@ -3099,6 +3199,22 @@ export interface components {
             /** Alias */
             alias: string;
             /**
+             * Email Forward Alias Id
+             * Format: typeid
+             * @example email_forward_alias_01h45ytscbebyvny4gc8cr8ma2
+             */
+            email_forward_alias_id: TypeId<"email_forward_alias">;
+            /**
+             * Forward To
+             * Format: email
+             */
+            forward_to: string;
+        };
+        /** EmailForwardAliasCreate */
+        EmailForwardAliasCreate: {
+            /** Alias */
+            alias: string;
+            /**
              * Forward To
              * Format: email
              */
@@ -3112,6 +3228,69 @@ export interface components {
              */
             forward_to: string;
         };
+        /** EmailForwardCreate */
+        EmailForwardCreate: {
+            /**
+             * Aliases
+             * @default []
+             */
+            aliases: components["schemas"]["EmailForwardAliasCreate"][];
+            /**
+             * Enabled
+             * @default false
+             */
+            enabled: boolean;
+            /** Hostname */
+            hostname: string;
+        };
+        /** EmailForwardResponse */
+        EmailForwardResponse: {
+            /** Aliases */
+            aliases: components["schemas"]["EmailForwardAlias"][];
+            /**
+             * Created On
+             * Format: date-time
+             */
+            created_on: Date;
+            /**
+             * Email Forward Id
+             * Format: typeid
+             * @example email_forward_01h45ytscbebyvny4gc8cr8ma2
+             */
+            email_forward_id: TypeId<"email_forward">;
+            /** Enabled */
+            enabled: boolean;
+            /** Hostname */
+            hostname: string;
+            /**
+             * Updated On
+             * Format: date-time
+             */
+            updated_on: Date;
+        };
+        /**
+         * EmailForwardSortField
+         * @enum {string}
+         */
+        EmailForwardSortField: "hostname" | "enabled" | "created_on" | "updated_on";
+        /** EmailForwardZone */
+        EmailForwardZone: {
+            /** Email Forwards */
+            email_forwards: components["schemas"]["EmailForwardResponse"][];
+            /**
+             * Zone Id
+             * Format: typeid
+             * @example zone_01h45ytscbebyvny4gc8cr8ma2
+             */
+            zone_id: TypeId<"zone">;
+            /** Zone Name */
+            zone_name: string;
+        };
+        /**
+         * EmailForwardZoneSortField
+         * @enum {string}
+         */
+        EmailForwardZoneSortField: "name" | "created_on" | "updated_on";
         /**
          * EmailVerificationStatus
          * @enum {string}
@@ -4135,11 +4314,17 @@ export interface components {
             /** Results */
             results: components["schemas"]["DomainResponse"][];
         };
-        /** Pagination[EmailForwardAlias] */
-        Pagination_EmailForwardAlias_: {
+        /** Pagination[EmailForwardResponse] */
+        Pagination_EmailForwardResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["EmailForwardAlias"][];
+            results: components["schemas"]["EmailForwardResponse"][];
+        };
+        /** Pagination[EmailForwardZone] */
+        Pagination_EmailForwardZone_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["EmailForwardZone"][];
         };
         /** Pagination[EventResponse] */
         Pagination_EventResponse_: {
@@ -6273,6 +6458,73 @@ export interface operations {
             };
         };
     };
+    list_email_forwards_by_zone_v1_dns_email_forwards_get: {
+        parameters: {
+            query?: {
+                search?: string | null;
+                sort_by?: components["schemas"]["EmailForwardZoneSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_EmailForwardZone_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_zones_summary_v1_dns_summary_get: {
         parameters: {
             query?: never;
@@ -6305,7 +6557,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description DNS zone retrieved successfully */
+            /** @description Successful Response */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -6470,6 +6722,70 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardZone"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_zone_email_forwards_v1_dns__zone_name__email_forwards_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EmailForwardZone"];
                 };
             };
             /** @description Unauthorized */
@@ -8589,16 +8905,177 @@ export interface operations {
             };
         };
     };
-    get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get: {
+    list_email_forwards_v1_email_forwards_get: {
         parameters: {
             query?: {
+                search?: string | null;
+                enabled?: boolean | null;
+                sort_by?: components["schemas"]["EmailForwardSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
                 page?: number;
                 page_size?: number;
             };
             header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_EmailForwardResponse_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_email_forward_v1_email_forwards_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmailForwardCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EmailForwardResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_DOMAIN_ALREADY_ENABLED",
+                     *       "detail": "Email forward already exists for hostname: Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_email_forward_v1_email_forwards__email_forward_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
             path: {
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                email_forward_id: TypeId<"email_forward">;
             };
             cookie?: never;
         };
@@ -8610,7 +9087,55 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_EmailForwardAlias_"];
+                    "application/json": components["schemas"]["EmailForwardResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -8624,47 +9149,12 @@ export interface operations {
             };
         };
     };
-    create_email_forward_alias_v1_email_forwards__zone_name__aliases_post: {
+    delete_email_forward_v1_email_forwards__email_forward_id__delete: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailForwardAlias"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_email_forward_aliases_v1_email_forwards__zone_name__aliases_delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                email_forward_id: TypeId<"email_forward">;
             };
             cookie?: never;
         };
@@ -8677,6 +9167,38 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -8688,21 +9210,23 @@ export interface operations {
             };
         };
     };
-    get_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__get: {
+    create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                alias: string;
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                email_forward_id: TypeId<"email_forward">;
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmailForwardAliasCreate"];
+            };
+        };
         responses: {
             /** @description Successful Response */
-            200: {
+            201: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -8710,6 +9234,70 @@ export interface operations {
                     "application/json": components["schemas"]["EmailForwardAlias"];
                 };
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_ALIAS_ALREADY_EXISTS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-alias-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -8721,14 +9309,13 @@ export interface operations {
             };
         };
     };
-    update_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__put: {
+    update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                alias: string;
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                email_forward_id: TypeId<"email_forward">;
+                alias_id: TypeId<"email_forward_alias">;
             };
             cookie?: never;
         };
@@ -8739,11 +9326,61 @@ export interface operations {
         };
         responses: {
             /** @description Successful Response */
-            201: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["EmailForwardAlias"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -8756,14 +9393,13 @@ export interface operations {
             };
         };
     };
-    delete_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__delete: {
+    delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                alias: string;
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                email_forward_id: TypeId<"email_forward">;
+                alias_id: TypeId<"email_forward_alias">;
             };
             cookie?: never;
         };
@@ -8776,6 +9412,54 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -8787,13 +9471,12 @@ export interface operations {
             };
         };
     };
-    disable_email_forward_v1_email_forwards__zone_name__disable_patch: {
+    disable_email_forward_v1_email_forwards__email_forward_id__disable_patch: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                email_forward_id: TypeId<"email_forward">;
             };
             cookie?: never;
         };
@@ -8805,6 +9488,54 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {
@@ -8817,15 +9548,12 @@ export interface operations {
             };
         };
     };
-    enable_email_forward_v1_email_forwards__zone_name__enable_patch: {
+    enable_email_forward_v1_email_forwards__email_forward_id__enable_patch: {
         parameters: {
-            query?: {
-                auto_create_zone?: boolean;
-            };
+            query?: never;
             header?: never;
             path: {
-                /** @description DNS zone name (trailing dot optional) */
-                zone_name: string;
+                email_forward_id: TypeId<"email_forward">;
             };
             cookie?: never;
         };
@@ -8837,6 +9565,54 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
             };
             /** @description Validation Error */
             422: {

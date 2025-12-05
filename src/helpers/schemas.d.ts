@@ -1595,6 +1595,22 @@ export type DomainsExpiringSoon = components['schemas']['DomainsExpiringSoon'];
  */
 export type EmailForwardAlias = components['schemas']['EmailForwardAlias'];
 /**
+ * EmailForwardAliasCreate
+ *
+ * @remarks
+ * Type alias for the `EmailForwardAliasCreate` OpenAPI schema.
+ * This type represents emailforwardaliascreate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardAliasCreate();
+ * const item: EmailForwardAliasCreate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardAliasCreate = components['schemas']['EmailForwardAliasCreate'];
+/**
  * EmailForwardAliasUpdate
  *
  * @remarks
@@ -1610,6 +1626,86 @@ export type EmailForwardAlias = components['schemas']['EmailForwardAlias'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type EmailForwardAliasUpdate = components['schemas']['EmailForwardAliasUpdate'];
+/**
+ * EmailForwardCreate
+ *
+ * @remarks
+ * Type alias for the `EmailForwardCreate` OpenAPI schema.
+ * This type represents emailforwardcreate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardCreate();
+ * const item: EmailForwardCreate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardCreate = components['schemas']['EmailForwardCreate'];
+/**
+ * EmailForwardResponse
+ *
+ * @remarks
+ * Type alias for the `EmailForwardResponse` OpenAPI schema.
+ * This type represents emailforwardresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForward();
+ * const item: EmailForward = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForward = components['schemas']['EmailForwardResponse'];
+/**
+ * EmailForwardSortField
+ *
+ * @remarks
+ * Type alias for the `EmailForwardSortField` OpenAPI schema.
+ * This type represents emailforwardsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardSortField();
+ * const item: EmailForwardSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardSortField = components['schemas']['EmailForwardSortField'];
+/**
+ * EmailForwardZone
+ *
+ * @remarks
+ * Type alias for the `EmailForwardZone` OpenAPI schema.
+ * This type represents emailforwardzone data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardZone();
+ * const item: EmailForwardZone = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardZone = components['schemas']['EmailForwardZone'];
+/**
+ * EmailForwardZoneSortField
+ *
+ * @remarks
+ * Type alias for the `EmailForwardZoneSortField` OpenAPI schema.
+ * This type represents emailforwardzonesortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardZoneSortField();
+ * const item: EmailForwardZoneSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardZoneSortField = components['schemas']['EmailForwardZoneSortField'];
 /**
  * EmailVerificationStatus
  *
@@ -2448,21 +2544,37 @@ export type Pagination_DomainForward = components['schemas']['Pagination_DomainF
  */
 export type Pagination_Domain = components['schemas']['Pagination_DomainResponse_'];
 /**
- * Pagination[EmailForwardAlias]
+ * Pagination[EmailForwardResponse]
  *
  * @remarks
- * Type alias for the `Pagination_EmailForwardAlias_` OpenAPI schema.
- * This type represents pagination[emailforwardalias] data structures used in API requests and responses.
+ * Type alias for the `Pagination_EmailForwardResponse_` OpenAPI schema.
+ * This type represents pagination[emailforwardresponse] data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getPagination_EmailForwardAlias();
- * const item: Pagination_EmailForwardAlias = response.results;
+ * const response = await api.getPagination_EmailForward();
+ * const item: Pagination_EmailForward = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type Pagination_EmailForwardAlias = components['schemas']['Pagination_EmailForwardAlias_'];
+export type Pagination_EmailForward = components['schemas']['Pagination_EmailForwardResponse_'];
+/**
+ * Pagination[EmailForwardZone]
+ *
+ * @remarks
+ * Type alias for the `Pagination_EmailForwardZone_` OpenAPI schema.
+ * This type represents pagination[emailforwardzone] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_EmailForwardZone();
+ * const item: Pagination_EmailForwardZone = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_EmailForwardZone = components['schemas']['Pagination_EmailForwardZone_'];
 /**
  * Pagination[EventResponse]
  *

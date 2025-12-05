@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1390,6 +1390,112 @@ export const DOMAIN_STATUS_VALUES = [
   'failed',
   'invalid'
 ] as const satisfies [string, ...string[]] | DomainStatus[];
+
+/**
+ * EmailForwardSortField. Auto-generated enum for EmailForwardSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the EmailForwardSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = EMAIL_FORWARD_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = EMAIL_FORWARD_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link EmailForwardSortField} - The TypeScript type definition
+ */
+export const EMAIL_FORWARD_SORT_FIELD = {
+  HOSTNAME: "hostname",
+  ENABLED: "enabled",
+  CREATED_ON: "created_on",
+  UPDATED_ON: "updated_on",
+} as const satisfies Record<string, EmailForwardSortField>;
+
+/**
+ * Array of all EmailForwardSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid EmailForwardSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of EMAIL_FORWARD_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = EMAIL_FORWARD_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link EmailForwardSortField} - The TypeScript type definition
+ * @see {@link EMAIL_FORWARD_SORT_FIELD} - The object form of this enum
+ */
+export const EMAIL_FORWARD_SORT_FIELD_VALUES = [
+  'hostname',
+  'enabled',
+  'created_on',
+  'updated_on'
+] as const satisfies [string, ...string[]] | EmailForwardSortField[];
+
+/**
+ * EmailForwardZoneSortField. Auto-generated enum for EmailForwardZoneSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the EmailForwardZoneSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = EMAIL_FORWARD_ZONE_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link EmailForwardZoneSortField} - The TypeScript type definition
+ */
+export const EMAIL_FORWARD_ZONE_SORT_FIELD = {
+  NAME: "name",
+  CREATED_ON: "created_on",
+  UPDATED_ON: "updated_on",
+} as const satisfies Record<string, EmailForwardZoneSortField>;
+
+/**
+ * Array of all EmailForwardZoneSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid EmailForwardZoneSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link EmailForwardZoneSortField} - The TypeScript type definition
+ * @see {@link EMAIL_FORWARD_ZONE_SORT_FIELD} - The object form of this enum
+ */
+export const EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES = [
+  'name',
+  'created_on',
+  'updated_on'
+] as const satisfies [string, ...string[]] | EmailForwardZoneSortField[];
 
 /**
  * EmailVerificationStatus. Auto-generated enum for EmailVerificationStatus

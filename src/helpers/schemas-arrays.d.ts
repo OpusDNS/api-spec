@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardAlias, EventResponse, Invoice, ObjectLog, Organization, RequestHistory, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, RequestHistory, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -444,6 +444,48 @@ export type DomainStatusArray = DomainStatus[];
  */
 export type DomainClientStatusArray = DomainClientStatus[];
 /**
+ * EmailForwardAliasCreate
+ *
+ * @remarks
+ * Array type for EmailForwardAliasCreate objects. Used when the API returns a collection of EmailForwardAliasCreate instances.
+ *
+ * @example
+ * ```typescript
+ * const items: EmailForwardAliasCreateArray = await api.getEmailForwardAliasCreates();
+ * ```
+ *
+ * @see {@link EmailForwardAliasCreate} - The individual EmailForwardAliasCreate type definition
+ */
+export type EmailForwardAliasCreateArray = EmailForwardAliasCreate[];
+/**
+ * EmailForwardAlias
+ *
+ * @remarks
+ * Array type for EmailForwardAlias objects. Used when the API returns a collection of EmailForwardAlias instances.
+ *
+ * @example
+ * ```typescript
+ * const items: EmailForwardAliasArray = await api.getEmailForwardAliass();
+ * ```
+ *
+ * @see {@link EmailForwardAlias} - The individual EmailForwardAlias type definition
+ */
+export type EmailForwardAliasArray = EmailForwardAlias[];
+/**
+ * EmailForwardResponse
+ *
+ * @remarks
+ * Array type for EmailForwardResponse objects. Used when the API returns a collection of EmailForwardResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: EmailForwardArray = await api.getEmailForwards();
+ * ```
+ *
+ * @see {@link EmailForward} - The individual EmailForwardResponse type definition
+ */
+export type EmailForwardArray = EmailForward[];
+/**
  * PriceInfo
  *
  * @remarks
@@ -640,19 +682,19 @@ export type DomainForwardZoneArray = DomainForwardZone[];
  */
 export type DomainArray = Domain[];
 /**
- * EmailForwardAlias
+ * EmailForwardZone
  *
  * @remarks
- * Array type for EmailForwardAlias objects. Used when the API returns a collection of EmailForwardAlias instances.
+ * Array type for EmailForwardZone objects. Used when the API returns a collection of EmailForwardZone instances.
  *
  * @example
  * ```typescript
- * const items: EmailForwardAliasArray = await api.getEmailForwardAliass();
+ * const items: EmailForwardZoneArray = await api.getEmailForwardZones();
  * ```
  *
- * @see {@link EmailForwardAlias} - The individual EmailForwardAlias type definition
+ * @see {@link EmailForwardZone} - The individual EmailForwardZone type definition
  */
-export type EmailForwardAliasArray = EmailForwardAlias[];
+export type EmailForwardZoneArray = EmailForwardZone[];
 /**
  * EventResponse
  *

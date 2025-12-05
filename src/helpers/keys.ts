@@ -100,7 +100,11 @@ import { DomainWithdrawRequest } from './schemas';
 import { DomainWithdraw } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
 import { EmailForwardAlias } from './schemas';
+import { EmailForwardAliasCreate } from './schemas';
 import { EmailForwardAliasUpdate } from './schemas';
+import { EmailForwardCreate } from './schemas';
+import { EmailForward } from './schemas';
+import { EmailForwardZone } from './schemas';
 import { EventResponse } from './schemas';
 import { EventSchema } from './schemas';
 import { GeneralAvailabilityBase } from './schemas';
@@ -10316,6 +10320,31 @@ export const KEYS_DOMAINS_EXPIRING_SOON = [
  */
 export const KEY_EMAIL_FORWARD_ALIAS_ALIAS = 'alias' as keyof EmailForwardAlias;
 /**
+ * Email Forward Alias Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email_forward_alias_id` property of EmailForwardAlias objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardalias[KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID;
+ * const value = emailforwardalias[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardAlias} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID = 'email_forward_alias_id' as keyof EmailForwardAlias;
+/**
  * Forward To
  *
  *
@@ -10363,8 +10392,85 @@ export const KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO = 'forward_to' as keyof EmailFor
  */
 export const KEYS_EMAIL_FORWARD_ALIAS = [
   KEY_EMAIL_FORWARD_ALIAS_ALIAS,
+  KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID,
   KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO,
 ] as const satisfies (keyof EmailForwardAlias)[];
+
+/**
+ * Alias
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `alias` property of EmailForwardAliasCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardaliascreate[KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS;
+ * const value = emailforwardaliascreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardAliasCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS = 'alias' as keyof EmailForwardAliasCreate;
+/**
+ * Forward To
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `forward_to` property of EmailForwardAliasCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardaliascreate[KEY_EMAIL_FORWARD_ALIAS_CREATE_FORWARD_TO];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_CREATE_FORWARD_TO;
+ * const value = emailforwardaliascreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardAliasCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ALIAS_CREATE_FORWARD_TO = 'forward_to' as keyof EmailForwardAliasCreate;
+
+/**
+ * Array of all EmailForwardAliasCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardAliasCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_ALIAS_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardaliascreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_ALIAS_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardAliasCreate} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_ALIAS_CREATE = [
+  KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS,
+  KEY_EMAIL_FORWARD_ALIAS_CREATE_FORWARD_TO,
+] as const satisfies (keyof EmailForwardAliasCreate)[];
 
 /**
  * Forward To
@@ -10415,6 +10521,390 @@ export const KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO = 'forward_to' as keyof E
 export const KEYS_EMAIL_FORWARD_ALIAS_UPDATE = [
   KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO,
 ] as const satisfies (keyof EmailForwardAliasUpdate)[];
+
+/**
+ * Aliases
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `aliases` property of EmailForwardCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_ALIASES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATE_ALIASES;
+ * const value = emailforwardcreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATE_ALIASES = 'aliases' as keyof EmailForwardCreate;
+/**
+ * Enabled
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `enabled` property of EmailForwardCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATE_ENABLED;
+ * const value = emailforwardcreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATE_ENABLED = 'enabled' as keyof EmailForwardCreate;
+/**
+ * Hostname
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `hostname` property of EmailForwardCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardcreate[KEY_EMAIL_FORWARD_CREATE_HOSTNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATE_HOSTNAME;
+ * const value = emailforwardcreate[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATE_HOSTNAME = 'hostname' as keyof EmailForwardCreate;
+
+/**
+ * Array of all EmailForwardCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardCreate} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_CREATE = [
+  KEY_EMAIL_FORWARD_CREATE_ALIASES,
+  KEY_EMAIL_FORWARD_CREATE_ENABLED,
+  KEY_EMAIL_FORWARD_CREATE_HOSTNAME,
+] as const satisfies (keyof EmailForwardCreate)[];
+
+/**
+ * Aliases
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `aliases` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_ALIASES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ALIASES;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ALIASES = 'aliases' as keyof EmailForward;
+/**
+ * Created On
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_CREATED_ON;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_CREATED_ON = 'created_on' as keyof EmailForward;
+/**
+ * Email Forward Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email_forward_id` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForward;
+/**
+ * Enabled
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `enabled` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ENABLED;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ENABLED = 'enabled' as keyof EmailForward;
+/**
+ * Hostname
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `hostname` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_HOSTNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_HOSTNAME;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_HOSTNAME = 'hostname' as keyof EmailForward;
+/**
+ * Updated On
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of EmailForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforward[KEY_EMAIL_FORWARD_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_UPDATED_ON;
+ * const value = emailforward[propertyName];
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_UPDATED_ON = 'updated_on' as keyof EmailForward;
+
+/**
+ * Array of all EmailForward property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForward objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD) {
+ *   console.log(`Property: ${key}, Value: ${emailforward[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForward} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD = [
+  KEY_EMAIL_FORWARD_ALIASES,
+  KEY_EMAIL_FORWARD_CREATED_ON,
+  KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID,
+  KEY_EMAIL_FORWARD_ENABLED,
+  KEY_EMAIL_FORWARD_HOSTNAME,
+  KEY_EMAIL_FORWARD_UPDATED_ON,
+] as const satisfies (keyof EmailForward)[];
+
+/**
+ * Email Forwards
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email_forwards` property of EmailForwardZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardzone[KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS;
+ * const value = emailforwardzone[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardZone} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ZONE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS = 'email_forwards' as keyof EmailForwardZone;
+/**
+ * Zone Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_id` property of EmailForwardZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardzone[KEY_EMAIL_FORWARD_ZONE_ZONE_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ZONE_ZONE_ID;
+ * const value = emailforwardzone[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardZone} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ZONE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ZONE_ZONE_ID = 'zone_id' as keyof EmailForwardZone;
+/**
+ * Zone Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_name` property of EmailForwardZone objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardzone[KEY_EMAIL_FORWARD_ZONE_ZONE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ZONE_ZONE_NAME;
+ * const value = emailforwardzone[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardZone} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ZONE} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ZONE_ZONE_NAME = 'zone_name' as keyof EmailForwardZone;
+
+/**
+ * Array of all EmailForwardZone property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardZone objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_ZONE) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardzone[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_ZONE.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardZone} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_ZONE = [
+  KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS,
+  KEY_EMAIL_FORWARD_ZONE_ZONE_ID,
+  KEY_EMAIL_FORWARD_ZONE_ZONE_NAME,
+] as const satisfies (keyof EmailForwardZone)[];
 
 /**
  * Event Data

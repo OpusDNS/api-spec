@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardAlias, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveObjectLogs endpoint
@@ -841,6 +841,45 @@ export type GET_DnsDomainForwards_Request = {
 export type GET_DnsDomainForwards_Request_Query = GET_DnsDomainForwards_Request['parameters']['query'];
 
 /**
+ * Request type for GET DnsEmailForwards endpoint
+ *
+ * List email forwards by zone
+ * Retrieves a paginated list of email forwards grouped by DNS zones.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DnsEmailForwards endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/dns/email-forwards
+ *
+ * @see {@link GET_DnsEmailForwards_Request_Query} - Query parameters type
+ * @see {@link GET_DnsEmailForwards_Request_Path} - Path parameters type
+ * @see {@link GET_DnsEmailForwards_Request_Body} - Request body type
+ */
+export type GET_DnsEmailForwards_Request = {
+  parameters: {
+    query: operations['list_email_forwards_by_zone_v1_dns_email_forwards_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/dns/email-forwards
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/dns/email-forwards endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/dns/email-forwards
+ */
+export type GET_DnsEmailForwards_Request_Query = GET_DnsEmailForwards_Request['parameters']['query'];
+
+/**
  * Request type for GET DnsSummary endpoint
  *
  * Get Zones Summary
@@ -1062,6 +1101,47 @@ export type GET_DnsZoneNameDomainForwards_Request = {
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type GET_DnsZoneNameDomainForwards_Request_Path = GET_DnsZoneNameDomainForwards_Request['parameters']['path'];
+
+/**
+ * Request type for GET DnsZoneNameEmailForwards endpoint
+ *
+ * List email forwards for a zone
+ * Retrieves all email forwards configured for the specified DNS zone, including subdomains and all aliases.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DnsZoneNameEmailForwards endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/dns/{zone_name}/email-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ *
+ * @see {@link GET_DnsZoneNameEmailForwards_Request_Query} - Query parameters type
+ * @see {@link GET_DnsZoneNameEmailForwards_Request_Path} - Path parameters type
+ * @see {@link GET_DnsZoneNameEmailForwards_Request_Body} - Request body type
+ */
+export type GET_DnsZoneNameEmailForwards_Request = {
+  parameters: {
+    path: operations['list_zone_email_forwards_v1_dns__zone_name__email_forwards_get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/dns/{zone_name}/email-forwards
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/dns/{zone_name}/email-forwards endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/dns/{zone_name}/email-forwards
+ * @param zone_name (path) - DNS zone name (trailing dot optional)
+ */
+export type GET_DnsZoneNameEmailForwards_Request_Path = GET_DnsZoneNameEmailForwards_Request['parameters']['path'];
 
 /**
  * Request type for PATCH DnsZoneNameRecords endpoint
@@ -2588,380 +2668,381 @@ export type POST_DomainsTransfer_Request = {
 export type POST_DomainsTransfer_Request_Body = POST_DomainsTransfer_Request['requestBody'];
 
 /**
- * Request type for DELETE EmailForwardsZoneNameAliases endpoint
+ * Request type for GET EmailForwards endpoint
  *
- * Delete Email Forward Aliases
+ * List all email forwards
+ * Retrieves a paginated list of all email forwards for the organization.
  *
  * @remarks
- * This type defines the complete request structure for the DELETE EmailForwardsZoneNameAliases endpoint.
+ * This type defines the complete request structure for the GET EmailForwards endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/email-forwards/{zone_name}/aliases
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards
  *
- * @see {@link DELETE_EmailForwardsZoneNameAliases_Request_Query} - Query parameters type
- * @see {@link DELETE_EmailForwardsZoneNameAliases_Request_Path} - Path parameters type
- * @see {@link DELETE_EmailForwardsZoneNameAliases_Request_Body} - Request body type
+ * @see {@link GET_EmailForwards_Request_Query} - Query parameters type
+ * @see {@link GET_EmailForwards_Request_Path} - Path parameters type
+ * @see {@link GET_EmailForwards_Request_Body} - Request body type
  */
-export type DELETE_EmailForwardsZoneNameAliases_Request = {
+export type GET_EmailForwards_Request = {
   parameters: {
-    path: operations['delete_email_forward_aliases_v1_email_forwards__zone_name__aliases_delete']['parameters']['path'];
+    query: operations['list_email_forwards_v1_email_forwards_get']['parameters']['query'];
   };
 }
 /**
- * Path parameters for DELETE /v1/email-forwards/{zone_name}/aliases
+ * Query parameters for GET /v1/email-forwards
  *
  * @remarks
- * This type defines the path parameters for the DELETE /v1/email-forwards/{zone_name}/aliases endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{zone_name}/aliases
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type DELETE_EmailForwardsZoneNameAliases_Request_Path = DELETE_EmailForwardsZoneNameAliases_Request['parameters']['path'];
-
-/**
- * Request type for GET EmailForwardsZoneNameAliases endpoint
- *
- * Get Email Forward Aliases
- *
- * @remarks
- * This type defines the complete request structure for the GET EmailForwardsZoneNameAliases endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{zone_name}/aliases
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link GET_EmailForwardsZoneNameAliases_Request_Query} - Query parameters type
- * @see {@link GET_EmailForwardsZoneNameAliases_Request_Path} - Path parameters type
- * @see {@link GET_EmailForwardsZoneNameAliases_Request_Body} - Request body type
- */
-export type GET_EmailForwardsZoneNameAliases_Request = {
-  parameters: {
-    query: operations['get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get']['parameters']['query'];
-    path: operations['get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/email-forwards/{zone_name}/aliases
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/email-forwards/{zone_name}/aliases endpoint.
+ * This type defines the query parameters for the GET /v1/email-forwards endpoint.
  * It provides type safety for all query parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for query parameters.
  *
- * @path /v1/email-forwards/{zone_name}/aliases
+ * @path /v1/email-forwards
  */
-export type GET_EmailForwardsZoneNameAliases_Request_Query = GET_EmailForwardsZoneNameAliases_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/email-forwards/{zone_name}/aliases
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/email-forwards/{zone_name}/aliases endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{zone_name}/aliases
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type GET_EmailForwardsZoneNameAliases_Request_Path = GET_EmailForwardsZoneNameAliases_Request['parameters']['path'];
+export type GET_EmailForwards_Request_Query = GET_EmailForwards_Request['parameters']['query'];
 
 /**
- * Request type for POST EmailForwardsZoneNameAliases endpoint
+ * Request type for POST EmailForwards endpoint
  *
- * Create Email Forward Alias
+ * Create email forward configuration
+ * Creates an email forward configuration with optional aliases. Can be created enabled or disabled (default: disabled). Includes created_on and updated_on timestamps.
  *
  * @remarks
- * This type defines the complete request structure for the POST EmailForwardsZoneNameAliases endpoint.
+ * This type defines the complete request structure for the POST EmailForwards endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/email-forwards/{zone_name}/aliases
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards
  *
- * @see {@link POST_EmailForwardsZoneNameAliases_Request_Query} - Query parameters type
- * @see {@link POST_EmailForwardsZoneNameAliases_Request_Path} - Path parameters type
- * @see {@link POST_EmailForwardsZoneNameAliases_Request_Body} - Request body type
+ * @see {@link POST_EmailForwards_Request_Query} - Query parameters type
+ * @see {@link POST_EmailForwards_Request_Path} - Path parameters type
+ * @see {@link POST_EmailForwards_Request_Body} - Request body type
  */
-export type POST_EmailForwardsZoneNameAliases_Request = {
-  parameters: {
-    path: operations['create_email_forward_alias_v1_email_forwards__zone_name__aliases_post']['parameters']['path'];
-  };
-  requestBody: EmailForwardAlias;
+export type POST_EmailForwards_Request = {
+  requestBody: EmailForwardCreate;
 }
 /**
- * Path parameters for POST /v1/email-forwards/{zone_name}/aliases
+ * Request body for POST /v1/email-forwards
  *
  * @remarks
- * This type defines the path parameters for the POST /v1/email-forwards/{zone_name}/aliases endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{zone_name}/aliases
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type POST_EmailForwardsZoneNameAliases_Request_Path = POST_EmailForwardsZoneNameAliases_Request['parameters']['path'];
-/**
- * Request body for POST /v1/email-forwards/{zone_name}/aliases
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/email-forwards/{zone_name}/aliases endpoint.
+ * This type defines the request body structure for the POST /v1/email-forwards endpoint.
  * It provides type safety for the request body as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for request body structure.
  *
- * @path /v1/email-forwards/{zone_name}/aliases
+ * @path /v1/email-forwards
  */
-export type POST_EmailForwardsZoneNameAliases_Request_Body = POST_EmailForwardsZoneNameAliases_Request['requestBody'];
+export type POST_EmailForwards_Request_Body = POST_EmailForwards_Request['requestBody'];
 
 /**
- * Request type for DELETE EmailForwardsZoneNameAliasesAlias endpoint
+ * Request type for DELETE EmailForwardsEmailForwardId endpoint
  *
- * Delete Email Forward Alias
+ * Delete email forward configuration
+ * Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from ImprovMX).
  *
  * @remarks
- * This type defines the complete request structure for the DELETE EmailForwardsZoneNameAliasesAlias endpoint.
+ * This type defines the complete request structure for the DELETE EmailForwardsEmailForwardId endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/email-forwards/{zone_name}/aliases/{alias}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link DELETE_EmailForwardsZoneNameAliasesAlias_Request_Query} - Query parameters type
- * @see {@link DELETE_EmailForwardsZoneNameAliasesAlias_Request_Path} - Path parameters type
- * @see {@link DELETE_EmailForwardsZoneNameAliasesAlias_Request_Body} - Request body type
+ * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Query} - Query parameters type
+ * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Path} - Path parameters type
+ * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Body} - Request body type
  */
-export type DELETE_EmailForwardsZoneNameAliasesAlias_Request = {
+export type DELETE_EmailForwardsEmailForwardId_Request = {
   parameters: {
-    path: operations['delete_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__delete']['parameters']['path'];
+    path: operations['delete_email_forward_v1_email_forwards__email_forward_id__delete']['parameters']['path'];
   };
 }
 /**
- * Path parameters for DELETE /v1/email-forwards/{zone_name}/aliases/{alias}
+ * Path parameters for DELETE /v1/email-forwards/{email_forward_id}
  *
  * @remarks
- * This type defines the path parameters for the DELETE /v1/email-forwards/{zone_name}/aliases/{alias} endpoint.
+ * This type defines the path parameters for the DELETE /v1/email-forwards/{email_forward_id} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/email-forwards/{zone_name}/aliases/{alias}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}
  */
-export type DELETE_EmailForwardsZoneNameAliasesAlias_Request_Path = DELETE_EmailForwardsZoneNameAliasesAlias_Request['parameters']['path'];
+export type DELETE_EmailForwardsEmailForwardId_Request_Path = DELETE_EmailForwardsEmailForwardId_Request['parameters']['path'];
 
 /**
- * Request type for GET EmailForwardsZoneNameAliasesAlias endpoint
+ * Request type for GET EmailForwardsEmailForwardId endpoint
  *
- * Get Email Forward Alias
+ * Get email forward configuration
+ * Retrieves the email forward configuration for the specified zone including all aliases
  *
  * @remarks
- * This type defines the complete request structure for the GET EmailForwardsZoneNameAliasesAlias endpoint.
+ * This type defines the complete request structure for the GET EmailForwardsEmailForwardId endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/email-forwards/{zone_name}/aliases/{alias}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}
  *
- * @see {@link GET_EmailForwardsZoneNameAliasesAlias_Request_Query} - Query parameters type
- * @see {@link GET_EmailForwardsZoneNameAliasesAlias_Request_Path} - Path parameters type
- * @see {@link GET_EmailForwardsZoneNameAliasesAlias_Request_Body} - Request body type
+ * @see {@link GET_EmailForwardsEmailForwardId_Request_Query} - Query parameters type
+ * @see {@link GET_EmailForwardsEmailForwardId_Request_Path} - Path parameters type
+ * @see {@link GET_EmailForwardsEmailForwardId_Request_Body} - Request body type
  */
-export type GET_EmailForwardsZoneNameAliasesAlias_Request = {
+export type GET_EmailForwardsEmailForwardId_Request = {
   parameters: {
-    path: operations['get_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__get']['parameters']['path'];
+    path: operations['get_email_forward_v1_email_forwards__email_forward_id__get']['parameters']['path'];
   };
 }
 /**
- * Path parameters for GET /v1/email-forwards/{zone_name}/aliases/{alias}
+ * Path parameters for GET /v1/email-forwards/{email_forward_id}
  *
  * @remarks
- * This type defines the path parameters for the GET /v1/email-forwards/{zone_name}/aliases/{alias} endpoint.
+ * This type defines the path parameters for the GET /v1/email-forwards/{email_forward_id} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/email-forwards/{zone_name}/aliases/{alias}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}
  */
-export type GET_EmailForwardsZoneNameAliasesAlias_Request_Path = GET_EmailForwardsZoneNameAliasesAlias_Request['parameters']['path'];
+export type GET_EmailForwardsEmailForwardId_Request_Path = GET_EmailForwardsEmailForwardId_Request['parameters']['path'];
 
 /**
- * Request type for PUT EmailForwardsZoneNameAliasesAlias endpoint
+ * Request type for POST EmailForwardsEmailForwardIdAliases endpoint
  *
- * Update Email Forward Alias
+ * Create email forward alias
+ * Creates a new email forward alias for the specified hostname.
  *
  * @remarks
- * This type defines the complete request structure for the PUT EmailForwardsZoneNameAliasesAlias endpoint.
+ * This type defines the complete request structure for the POST EmailForwardsEmailForwardIdAliases endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/email-forwards/{zone_name}/aliases/{alias}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}/aliases
  *
- * @see {@link PUT_EmailForwardsZoneNameAliasesAlias_Request_Query} - Query parameters type
- * @see {@link PUT_EmailForwardsZoneNameAliasesAlias_Request_Path} - Path parameters type
- * @see {@link PUT_EmailForwardsZoneNameAliasesAlias_Request_Body} - Request body type
+ * @see {@link POST_EmailForwardsEmailForwardIdAliases_Request_Query} - Query parameters type
+ * @see {@link POST_EmailForwardsEmailForwardIdAliases_Request_Path} - Path parameters type
+ * @see {@link POST_EmailForwardsEmailForwardIdAliases_Request_Body} - Request body type
  */
-export type PUT_EmailForwardsZoneNameAliasesAlias_Request = {
+export type POST_EmailForwardsEmailForwardIdAliases_Request = {
   parameters: {
-    path: operations['update_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__put']['parameters']['path'];
+    path: operations['create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post']['parameters']['path'];
+  };
+  requestBody: EmailForwardAliasCreate;
+}
+/**
+ * Path parameters for POST /v1/email-forwards/{email_forward_id}/aliases
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/email-forwards/{email_forward_id}/aliases endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/aliases
+ */
+export type POST_EmailForwardsEmailForwardIdAliases_Request_Path = POST_EmailForwardsEmailForwardIdAliases_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/email-forwards/{email_forward_id}/aliases
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/email-forwards/{email_forward_id}/aliases endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/aliases
+ */
+export type POST_EmailForwardsEmailForwardIdAliases_Request_Body = POST_EmailForwardsEmailForwardIdAliases_Request['requestBody'];
+
+/**
+ * Request type for DELETE EmailForwardsEmailForwardIdAliasesAliasId endpoint
+ *
+ * Delete email forward alias
+ * Deletes a specific email forward alias for the specified zone
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE EmailForwardsEmailForwardIdAliasesAliasId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
+ *
+ * @see {@link DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Query} - Query parameters type
+ * @see {@link DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path} - Path parameters type
+ * @see {@link DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Body} - Request body type
+ */
+export type DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request = {
+  parameters: {
+    path: operations['delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/email-forwards/{email_forward_id}/aliases/{alias_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
+ */
+export type DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path = DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request['parameters']['path'];
+
+/**
+ * Request type for PUT EmailForwardsEmailForwardIdAliasesAliasId endpoint
+ *
+ * Update email forward alias
+ * Updates the forward_to address for a specific email forward alias
+ *
+ * @remarks
+ * This type defines the complete request structure for the PUT EmailForwardsEmailForwardIdAliasesAliasId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
+ *
+ * @see {@link PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Query} - Query parameters type
+ * @see {@link PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path} - Path parameters type
+ * @see {@link PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Body} - Request body type
+ */
+export type PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request = {
+  parameters: {
+    path: operations['update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put']['parameters']['path'];
   };
   requestBody: EmailForwardAliasUpdate;
 }
 /**
- * Path parameters for PUT /v1/email-forwards/{zone_name}/aliases/{alias}
+ * Path parameters for PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
  *
  * @remarks
- * This type defines the path parameters for the PUT /v1/email-forwards/{zone_name}/aliases/{alias} endpoint.
+ * This type defines the path parameters for the PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/email-forwards/{zone_name}/aliases/{alias}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
  */
-export type PUT_EmailForwardsZoneNameAliasesAlias_Request_Path = PUT_EmailForwardsZoneNameAliasesAlias_Request['parameters']['path'];
+export type PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path = PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request['parameters']['path'];
 /**
- * Request body for PUT /v1/email-forwards/{zone_name}/aliases/{alias}
+ * Request body for PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
  *
  * @remarks
- * This type defines the request body structure for the PUT /v1/email-forwards/{zone_name}/aliases/{alias} endpoint.
+ * This type defines the request body structure for the PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id} endpoint.
  * It provides type safety for the request body as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for request body structure.
  *
- * @path /v1/email-forwards/{zone_name}/aliases/{alias}
+ * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
  */
-export type PUT_EmailForwardsZoneNameAliasesAlias_Request_Body = PUT_EmailForwardsZoneNameAliasesAlias_Request['requestBody'];
+export type PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Body = PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request['requestBody'];
 
 /**
- * Request type for PATCH EmailForwardsZoneNameDisable endpoint
+ * Request type for PATCH EmailForwardsEmailForwardIdDisable endpoint
  *
- * Disable Email Forward
+ * Disable email forwarding
+ * Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forward provider. The email forward configuration is preserved but disabled.
  *
  * @remarks
- * This type defines the complete request structure for the PATCH EmailForwardsZoneNameDisable endpoint.
+ * This type defines the complete request structure for the PATCH EmailForwardsEmailForwardIdDisable endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/email-forwards/{zone_name}/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}/disable
  *
- * @see {@link PATCH_EmailForwardsZoneNameDisable_Request_Query} - Query parameters type
- * @see {@link PATCH_EmailForwardsZoneNameDisable_Request_Path} - Path parameters type
- * @see {@link PATCH_EmailForwardsZoneNameDisable_Request_Body} - Request body type
+ * @see {@link PATCH_EmailForwardsEmailForwardIdDisable_Request_Query} - Query parameters type
+ * @see {@link PATCH_EmailForwardsEmailForwardIdDisable_Request_Path} - Path parameters type
+ * @see {@link PATCH_EmailForwardsEmailForwardIdDisable_Request_Body} - Request body type
  */
-export type PATCH_EmailForwardsZoneNameDisable_Request = {
+export type PATCH_EmailForwardsEmailForwardIdDisable_Request = {
   parameters: {
-    path: operations['disable_email_forward_v1_email_forwards__zone_name__disable_patch']['parameters']['path'];
+    path: operations['disable_email_forward_v1_email_forwards__email_forward_id__disable_patch']['parameters']['path'];
   };
 }
 /**
- * Path parameters for PATCH /v1/email-forwards/{zone_name}/disable
+ * Path parameters for PATCH /v1/email-forwards/{email_forward_id}/disable
  *
  * @remarks
- * This type defines the path parameters for the PATCH /v1/email-forwards/{zone_name}/disable endpoint.
+ * This type defines the path parameters for the PATCH /v1/email-forwards/{email_forward_id}/disable endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/email-forwards/{zone_name}/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}/disable
  */
-export type PATCH_EmailForwardsZoneNameDisable_Request_Path = PATCH_EmailForwardsZoneNameDisable_Request['parameters']['path'];
+export type PATCH_EmailForwardsEmailForwardIdDisable_Request_Path = PATCH_EmailForwardsEmailForwardIdDisable_Request['parameters']['path'];
 
 /**
- * Request type for PATCH EmailForwardsZoneNameEnable endpoint
+ * Request type for PATCH EmailForwardsEmailForwardIdEnable endpoint
  *
- * Enable Email Forward
+ * Enable email forwarding
+ * Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forward provider.
  *
  * @remarks
- * This type defines the complete request structure for the PATCH EmailForwardsZoneNameEnable endpoint.
+ * This type defines the complete request structure for the PATCH EmailForwardsEmailForwardIdEnable endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/email-forwards/{zone_name}/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}/enable
  *
- * @see {@link PATCH_EmailForwardsZoneNameEnable_Request_Query} - Query parameters type
- * @see {@link PATCH_EmailForwardsZoneNameEnable_Request_Path} - Path parameters type
- * @see {@link PATCH_EmailForwardsZoneNameEnable_Request_Body} - Request body type
+ * @see {@link PATCH_EmailForwardsEmailForwardIdEnable_Request_Query} - Query parameters type
+ * @see {@link PATCH_EmailForwardsEmailForwardIdEnable_Request_Path} - Path parameters type
+ * @see {@link PATCH_EmailForwardsEmailForwardIdEnable_Request_Body} - Request body type
  */
-export type PATCH_EmailForwardsZoneNameEnable_Request = {
+export type PATCH_EmailForwardsEmailForwardIdEnable_Request = {
   parameters: {
-    query: operations['enable_email_forward_v1_email_forwards__zone_name__enable_patch']['parameters']['query'];
-    path: operations['enable_email_forward_v1_email_forwards__zone_name__enable_patch']['parameters']['path'];
+    path: operations['enable_email_forward_v1_email_forwards__email_forward_id__enable_patch']['parameters']['path'];
   };
 }
 /**
- * Query parameters for PATCH /v1/email-forwards/{zone_name}/enable
+ * Path parameters for PATCH /v1/email-forwards/{email_forward_id}/enable
  *
  * @remarks
- * This type defines the query parameters for the PATCH /v1/email-forwards/{zone_name}/enable endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/email-forwards/{zone_name}/enable
- */
-export type PATCH_EmailForwardsZoneNameEnable_Request_Query = PATCH_EmailForwardsZoneNameEnable_Request['parameters']['query'];
-/**
- * Path parameters for PATCH /v1/email-forwards/{zone_name}/enable
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/email-forwards/{zone_name}/enable endpoint.
+ * This type defines the path parameters for the PATCH /v1/email-forwards/{email_forward_id}/enable endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/email-forwards/{zone_name}/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
+ * @path /v1/email-forwards/{email_forward_id}/enable
  */
-export type PATCH_EmailForwardsZoneNameEnable_Request_Path = PATCH_EmailForwardsZoneNameEnable_Request['parameters']['path'];
+export type PATCH_EmailForwardsEmailForwardIdEnable_Request_Path = PATCH_EmailForwardsEmailForwardIdEnable_Request['parameters']['path'];
 
 /**
  * Request type for GET Events endpoint

@@ -2485,14 +2485,37 @@ components:
         alias:
           title: Alias
           type: string
+        email_forward_alias_id:
+          examples:
+          - email_forward_alias_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_alias_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Alias Id
+          type: string
+          x-typeid-prefix: email_forward_alias
         forward_to:
           format: email
           title: Forward To
           type: string
       required:
-      - forward_to
       - alias
+      - forward_to
+      - email_forward_alias_id
       title: EmailForwardAlias
+      type: object
+    EmailForwardAliasCreate:
+      properties:
+        alias:
+          title: Alias
+          type: string
+        forward_to:
+          format: email
+          title: Forward To
+          type: string
+      required:
+      - alias
+      - forward_to
+      title: EmailForwardAliasCreate
       type: object
     EmailForwardAliasUpdate:
       properties:
@@ -2504,6 +2527,102 @@ components:
       - forward_to
       title: EmailForwardAliasUpdate
       type: object
+    EmailForwardCreate:
+      properties:
+        aliases:
+          default: []
+          items:
+            $ref: '#/components/schemas/EmailForwardAliasCreate'
+          title: Aliases
+          type: array
+        enabled:
+          default: false
+          title: Enabled
+          type: boolean
+        hostname:
+          title: Hostname
+          type: string
+      required:
+      - hostname
+      title: EmailForwardCreate
+      type: object
+    EmailForwardResponse:
+      properties:
+        aliases:
+          items:
+            $ref: '#/components/schemas/EmailForwardAlias'
+          title: Aliases
+          type: array
+        created_on:
+          format: date-time
+          title: Created On
+          type: string
+        email_forward_id:
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
+          type: string
+          x-typeid-prefix: email_forward
+        enabled:
+          title: Enabled
+          type: boolean
+        hostname:
+          title: Hostname
+          type: string
+        updated_on:
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - email_forward_id
+      - hostname
+      - enabled
+      - aliases
+      - created_on
+      - updated_on
+      title: EmailForwardResponse
+      type: object
+    EmailForwardSortField:
+      enum:
+      - hostname
+      - enabled
+      - created_on
+      - updated_on
+      title: EmailForwardSortField
+      type: string
+    EmailForwardZone:
+      properties:
+        email_forwards:
+          items:
+            $ref: '#/components/schemas/EmailForwardResponse'
+          title: Email Forwards
+          type: array
+        zone_id:
+          examples:
+          - zone_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^zone_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Zone Id
+          type: string
+          x-typeid-prefix: zone
+        zone_name:
+          title: Zone Name
+          type: string
+      required:
+      - zone_id
+      - zone_name
+      - email_forwards
+      title: EmailForwardZone
+      type: object
+    EmailForwardZoneSortField:
+      enum:
+      - name
+      - created_on
+      - updated_on
+      title: EmailForwardZoneSortField
+      type: string
     EmailVerificationStatus:
       enum:
       - verified
@@ -4058,19 +4177,33 @@ components:
       - pagination
       title: Pagination[DomainResponse]
       type: object
-    Pagination_EmailForwardAlias_:
+    Pagination_EmailForwardResponse_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/EmailForwardAlias'
+            $ref: '#/components/schemas/EmailForwardResponse'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[EmailForwardAlias]
+      title: Pagination[EmailForwardResponse]
+      type: object
+    Pagination_EmailForwardZone_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/EmailForwardZone'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[EmailForwardZone]
       type: object
     Pagination_EventResponse_:
       properties:
@@ -5630,7 +5763,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-04-181757
+  version: 2025-12-05-091638
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7408,6 +7541,90 @@ paths:
       summary: List domain forwards by zone
       tags:
       - dns
+  /v1/dns/email-forwards:
+    get:
+      description: Retrieves a paginated list of email forwards grouped by DNS zones.
+      operationId: list_email_forwards_by_zone_v1_dns_email_forwards_get
+      parameters:
+      - in: query
+        name: search
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/EmailForwardZoneSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_EmailForwardZone_'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: List email forwards by zone
+      tags:
+      - dns
   /v1/dns/summary:
     get:
       operationId: get_zones_summary_v1_dns_summary_get
@@ -7473,88 +7690,9 @@ paths:
         '200':
           content:
             application/json:
-              examples:
-                basic_zone:
-                  description: A newly created zone with only SOA and NS records
-                  summary: Basic zone with default records
-                  value:
-                    created_on: '2025-11-18T12:43:35Z'
-                    dnssec_status: disabled
-                    domain_parts:
-                      domain: example
-                      subdomain: ''
-                      suffix: com
-                    name: example.com.
-                    rrsets:
-                    - name: example.com.
-                      records:
-                      - rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
-                          10800 3600 604800 300
-                      ttl: 3600
-                      type: SOA
-                    - name: example.com.
-                      records:
-                      - rdata: ns1.opusdns.com.
-                      - rdata: ns2.opusdns.net.
-                      ttl: 3600
-                      type: NS
-                    updated_on: '2025-11-18T12:43:35Z'
-                zone_with_records:
-                  description: A fully configured zone with A, CNAME, MX, TXT records
-                    and DNSSEC enabled
-                  summary: Zone with custom records and DNSSEC
-                  value:
-                    created_on: '2025-11-15T10:30:00Z'
-                    dnssec_status: enabled
-                    domain_parts:
-                      domain: example
-                      subdomain: ''
-                      suffix: com
-                    name: example.com.
-                    rrsets:
-                    - name: example.com.
-                      records:
-                      - rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111701
-                          10800 3600 604800 300
-                      ttl: 3600
-                      type: SOA
-                    - name: example.com.
-                      records:
-                      - rdata: ns1.opusdns.com.
-                      - rdata: ns2.opusdns.com.
-                      ttl: 3600
-                      type: NS
-                    - name: example.com.
-                      records:
-                      - rdata: 203.0.113.10
-                      ttl: 300
-                      type: A
-                    - name: www.example.com.
-                      records:
-                      - rdata: example.com.
-                      ttl: 300
-                      type: CNAME
-                    - name: example.com.
-                      records:
-                      - rdata: 10 mail.example.com.
-                      - rdata: 20 backup-mail.example.com.
-                      ttl: 300
-                      type: MX
-                    - name: example.com.
-                      records:
-                      - rdata: '"v=spf1 include:_spf.google.com ~all"'
-                      ttl: 300
-                      type: TXT
-                    - name: example.com.
-                      records:
-                      - rdata: 256 3 13 4epAMhnUgbFbAmKI2zbTXXFHGlVeHamiWLPdwJ8ehE9NgmvDNraqYF/0YdDcoc2elyelvi72KJyQfIR02axEeQ==
-                      - rdata: 257 3 13 Wx1Wk8Sl+PyanAWPYsCPw9qFv2Nv0U/MXoJGgpmdqgbLgtvPlVM1/66j/MFTOjk4ONGKGZoWbZ86ud18lWvacw==
-                      ttl: 300
-                      type: DNSKEY
-                    updated_on: '2025-11-17T14:20:00Z'
               schema:
                 $ref: '#/components/schemas/DnsZoneResponse'
-          description: DNS zone retrieved successfully
+          description: Successful Response
         '422':
           content:
             application/problem+json:
@@ -7816,6 +7954,62 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: List domain forwards for a zone
+      tags:
+      - dns
+  /v1/dns/{zone_name}/email-forwards:
+    get:
+      description: Retrieves all email forwards configured for the specified DNS zone,
+        including subdomains and all aliases.
+      operationId: list_zone_email_forwards_v1_dns__zone_name__email_forwards_get
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailForwardZone'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: List email forwards for a zone
       tags:
       - dns
   /v1/dns/{zone_name}/records:
@@ -10266,43 +10460,39 @@ paths:
       summary: Cancel a domain transfer
       tags:
       - domain
-  /v1/email-forwards/{zone_name}/aliases:
-    delete:
-      operationId: delete_email_forward_aliases_v1_email_forwards__zone_name__aliases_delete
-      parameters:
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
-        required: true
-        schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
-          type: string
-      responses:
-        '204':
-          description: Successful Response
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Delete Email Forward Aliases
-      tags:
-      - email_forward
+  /v1/email-forwards:
     get:
-      operationId: get_email_forward_aliases_v1_email_forwards__zone_name__aliases_get
+      description: Retrieves a paginated list of all email forwards for the organization.
+      operationId: list_email_forwards_v1_email_forwards_get
       parameters:
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
-        required: true
+      - in: query
+        name: search
+        required: false
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
-          type: string
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+      - in: query
+        name: enabled
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enabled
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/EmailForwardSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
       - in: query
         name: page
         required: false
@@ -10325,8 +10515,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_EmailForwardAlias_'
+                $ref: '#/components/schemas/Pagination_EmailForwardResponse_'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -10335,29 +10549,76 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Email Forward Aliases
+      summary: List all email forwards
       tags:
       - email_forward
     post:
-      operationId: create_email_forward_alias_v1_email_forwards__zone_name__aliases_post
-      parameters:
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
-        required: true
-        schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
-          type: string
+      description: 'Creates an email forward configuration with optional aliases.
+        Can be created enabled or disabled (default: disabled). Includes created_on
+        and updated_on timestamps.'
+      operationId: create_email_forward_v1_email_forwards_post
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EmailForwardAlias'
+              $ref: '#/components/schemas/EmailForwardCreate'
         required: true
       responses:
         '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailForwardResponse'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_DOMAIN_ALREADY_ENABLED
+                detail: 'Email forward already exists for hostname: Additional error
+                  context.'
+                status: 409
+                title: Email Forward Error
+                type: email-forward-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:
@@ -10366,30 +10627,54 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create Email Forward Alias
+      summary: Create email forward configuration
       tags:
       - email_forward
-  /v1/email-forwards/{zone_name}/aliases/{alias}:
+  /v1/email-forwards/{email_forward_id}:
     delete:
-      operationId: delete_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__delete
+      description: Permanently deletes the email forward configuration including all
+        aliases. If enabled, automatically disables first (removes DNS records and
+        unregisters from ImprovMX).
+      operationId: delete_email_forward_v1_email_forwards__email_forward_id__delete
       parameters:
       - in: path
-        name: alias
+        name: email_forward_id
         required: true
         schema:
-          title: Alias
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
           type: string
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
-        required: true
-        schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
-          type: string
+          x-typeid-prefix: email_forward
       responses:
         '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -10398,33 +10683,68 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Delete Email Forward Alias
+      summary: Delete email forward configuration
       tags:
       - email_forward
     get:
-      operationId: get_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__get
+      description: Retrieves the email forward configuration for the specified zone
+        including all aliases
+      operationId: get_email_forward_v1_email_forwards__email_forward_id__get
       parameters:
       - in: path
-        name: alias
+        name: email_forward_id
         required: true
         schema:
-          title: Alias
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
           type: string
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
-        required: true
-        schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
-          type: string
+          x-typeid-prefix: email_forward
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmailForwardAlias'
+                $ref: '#/components/schemas/EmailForwardResponse'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:
@@ -10433,26 +10753,200 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Get Email Forward Alias
+      summary: Get email forward configuration
+      tags:
+      - email_forward
+  /v1/email-forwards/{email_forward_id}/aliases:
+    post:
+      description: Creates a new email forward alias for the specified hostname.
+      operationId: create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post
+      parameters:
+      - in: path
+        name: email_forward_id
+        required: true
+        schema:
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
+          type: string
+          x-typeid-prefix: email_forward
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailForwardAliasCreate'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailForwardAlias'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_ALIAS_ALREADY_EXISTS
+                detail: Additional error context.
+                status: 409
+                title: Email Forward Error
+                type: email-forward-alias-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Create email forward alias
+      tags:
+      - email_forward
+  /v1/email-forwards/{email_forward_id}/aliases/{alias_id}:
+    delete:
+      description: Deletes a specific email forward alias for the specified zone
+      operationId: delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete
+      parameters:
+      - in: path
+        name: email_forward_id
+        required: true
+        schema:
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
+          type: string
+          x-typeid-prefix: email_forward
+      - in: path
+        name: alias_id
+        required: true
+        schema:
+          examples:
+          - email_forward_alias_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_alias_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Alias Id
+          type: string
+          x-typeid-prefix: email_forward_alias
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Delete email forward alias
       tags:
       - email_forward
     put:
-      operationId: update_email_forward_alias_v1_email_forwards__zone_name__aliases__alias__put
+      description: Updates the forward_to address for a specific email forward alias
+      operationId: update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put
       parameters:
       - in: path
-        name: alias
+        name: email_forward_id
         required: true
         schema:
-          title: Alias
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
           type: string
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
+          x-typeid-prefix: email_forward
+      - in: path
+        name: alias_id
         required: true
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
+          examples:
+          - email_forward_alias_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_alias_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Alias Id
           type: string
+          x-typeid-prefix: email_forward_alias
       requestBody:
         content:
           application/json:
@@ -10460,8 +10954,48 @@ paths:
               $ref: '#/components/schemas/EmailForwardAliasUpdate'
         required: true
       responses:
-        '201':
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailForwardAlias'
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:
@@ -10470,24 +11004,66 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Update Email Forward Alias
+      summary: Update email forward alias
       tags:
       - email_forward
-  /v1/email-forwards/{zone_name}/disable:
+  /v1/email-forwards/{email_forward_id}/disable:
     patch:
-      operationId: disable_email_forward_v1_email_forwards__zone_name__disable_patch
+      description: Disables email forwarding by removing MX and SPF DNS records and
+        unregistering the domain from the email forward provider. The email forward
+        configuration is preserved but disabled.
+      operationId: disable_email_forward_v1_email_forwards__email_forward_id__disable_patch
       parameters:
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
+      - in: path
+        name: email_forward_id
         required: true
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
           type: string
+          x-typeid-prefix: email_forward
       responses:
         '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:
@@ -10496,31 +11072,65 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Disable Email Forward
+      summary: Disable email forwarding
       tags:
       - email_forward
-  /v1/email-forwards/{zone_name}/enable:
+  /v1/email-forwards/{email_forward_id}/enable:
     patch:
-      operationId: enable_email_forward_v1_email_forwards__zone_name__enable_patch
+      description: Enables email forwarding by creating necessary MX and SPF DNS records
+        and registering the domain with the email forward provider.
+      operationId: enable_email_forward_v1_email_forwards__email_forward_id__enable_patch
       parameters:
-      - description: DNS zone name (trailing dot optional)
-        in: path
-        name: zone_name
+      - in: path
+        name: email_forward_id
         required: true
         schema:
-          description: DNS zone name (trailing dot optional)
-          title: Zone Name
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
           type: string
-      - in: query
-        name: auto_create_zone
-        required: false
-        schema:
-          default: false
-          title: Auto Create Zone
-          type: boolean
+          x-typeid-prefix: email_forward
       responses:
         '204':
           description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:
@@ -10529,7 +11139,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Enable Email Forward
+      summary: Enable email forwarding
       tags:
       - email_forward
   /v1/events:
