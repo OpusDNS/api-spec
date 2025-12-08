@@ -2546,6 +2546,150 @@ components:
       - hostname
       title: EmailForwardCreate
       type: object
+    EmailForwardLog:
+      properties:
+        created_on:
+          description: Timestamp when email was received by ImprovMX
+          format: date-time
+          title: Created On
+          type: string
+        domain:
+          description: Domain name
+          title: Domain
+          type: string
+        events:
+          description: List of processing events
+          items:
+            $ref: '#/components/schemas/EmailForwardLogEvent'
+          title: Events
+          type: array
+        final_status:
+          description: Final status of the email (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE,
+            HARD-BOUNCE)
+          title: Final Status
+          type: string
+        forward_email:
+          description: Forward destination email address
+          title: Forward Email
+          type: string
+        forward_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Forward destination name
+          title: Forward Name
+        hostname:
+          description: Hostname that received the email
+          title: Hostname
+          type: string
+        log_id:
+          description: Unique ID of the log from ImprovMX
+          title: Log Id
+          type: string
+        message_id:
+          description: Email message ID
+          title: Message Id
+          type: string
+        recipient_email:
+          description: Recipient email address (the alias)
+          title: Recipient Email
+          type: string
+        recipient_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Recipient name
+          title: Recipient Name
+        sender_email:
+          description: Sender email address
+          title: Sender Email
+          type: string
+        sender_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Sender name
+          title: Sender Name
+        subject:
+          description: Email subject
+          title: Subject
+          type: string
+        synced_on:
+          description: Timestamp when record was synced to ClickHouse
+          format: date-time
+          title: Synced On
+          type: string
+        transport:
+          description: Transport method (mx or smtp)
+          title: Transport
+          type: string
+      required:
+      - log_id
+      - domain
+      - sender_email
+      - recipient_email
+      - forward_email
+      - subject
+      - hostname
+      - message_id
+      - transport
+      - final_status
+      - created_on
+      - synced_on
+      title: EmailForwardLog
+      type: object
+    EmailForwardLogEvent:
+      properties:
+        code:
+          description: Event status code
+          title: Code
+          type: integer
+        created:
+          description: Timestamp when the event occurred
+          format: date-time
+          title: Created
+          type: string
+        id:
+          description: Event ID
+          title: Id
+          type: string
+        local:
+          description: ImprovMX server that processed the event
+          title: Local
+          type: string
+        message:
+          description: Event message
+          title: Message
+          type: string
+        server:
+          description: Server that processed the event
+          title: Server
+          type: string
+        status:
+          description: Event status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
+          title: Status
+          type: string
+      required:
+      - code
+      - created
+      - id
+      - local
+      - message
+      - server
+      - status
+      title: EmailForwardLogEvent
+      type: object
+    EmailForwardLogSortField:
+      enum:
+      - log_id
+      - sender_email
+      - recipient_email
+      - forward_email
+      - final_status
+      - created_on
+      - synced_on
+      title: EmailForwardLogSortField
+      type: string
     EmailForwardResponse:
       properties:
         aliases:
@@ -4177,6 +4321,20 @@ components:
       - pagination
       title: Pagination[DomainResponse]
       type: object
+    Pagination_EmailForwardLog_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/EmailForwardLog'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[EmailForwardLog]
+      type: object
     Pagination_EmailForwardResponse_:
       properties:
         pagination:
@@ -5763,12 +5921,193 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-05-133403
+  version: 2025-12-08-100654
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
 openapi: 3.1.0
 paths:
+  /v1/archive/email-forward-logs/alias/{email_forward_alias_id}:
+    get:
+      description: Retrieves a paginated list of email forward logs for a specific
+        email forward alias. Only returns logs created after the email forward was
+        created.
+      operationId: get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get
+      parameters:
+      - in: path
+        name: email_forward_alias_id
+        required: true
+        schema:
+          examples:
+          - email_forward_alias_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_alias_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Alias Id
+          type: string
+          x-typeid-prefix: email_forward_alias
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/EmailForwardLogSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: final_status
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Final Status
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_EmailForwardLog_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Retrieve email forward logs by alias
+      tags:
+      - archive
+  /v1/archive/email-forward-logs/{email_forward_id}:
+    get:
+      description: Retrieves a paginated list of email forward logs for a specific
+        email forward. Only returns logs created after the email forward was created.
+      operationId: get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get
+      parameters:
+      - in: path
+        name: email_forward_id
+        required: true
+        schema:
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
+          type: string
+          x-typeid-prefix: email_forward
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/EmailForwardLogSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: final_status
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Final Status
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_EmailForwardLog_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Retrieve email forward logs
+      tags:
+      - archive
   /v1/archive/object-logs:
     get:
       description: Retrieve all paginated audit logs with optional filtering and sorting

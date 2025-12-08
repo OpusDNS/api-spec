@@ -103,6 +103,8 @@ import { EmailForwardAlias } from './schemas';
 import { EmailForwardAliasCreate } from './schemas';
 import { EmailForwardAliasUpdate } from './schemas';
 import { EmailForwardCreate } from './schemas';
+import { EmailForwardLog } from './schemas';
+import { EmailForwardLogEvent } from './schemas';
 import { EmailForward } from './schemas';
 import { EmailForwardZone } from './schemas';
 import { EventResponse } from './schemas';
@@ -10623,6 +10625,672 @@ export const KEYS_EMAIL_FORWARD_CREATE = [
   KEY_EMAIL_FORWARD_CREATE_ENABLED,
   KEY_EMAIL_FORWARD_CREATE_HOSTNAME,
 ] as const satisfies (keyof EmailForwardCreate)[];
+
+/**
+ * Created On
+ *
+ * Timestamp when email was received by ImprovMX
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_CREATED_ON;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_CREATED_ON = 'created_on' as keyof EmailForwardLog;
+/**
+ * Domain
+ *
+ * Domain name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_DOMAIN;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_DOMAIN = 'domain' as keyof EmailForwardLog;
+/**
+ * Events
+ *
+ * List of processing events
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `events` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_EVENTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENTS;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENTS = 'events' as keyof EmailForwardLog;
+/**
+ * Final Status
+ *
+ * Final status of the email (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `final_status` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_FINAL_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_FINAL_STATUS;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_FINAL_STATUS = 'final_status' as keyof EmailForwardLog;
+/**
+ * Forward Email
+ *
+ * Forward destination email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `forward_email` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_FORWARD_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_FORWARD_EMAIL;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_FORWARD_EMAIL = 'forward_email' as keyof EmailForwardLog;
+/**
+ * Forward Name
+ *
+ * Forward destination name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `forward_name` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_FORWARD_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_FORWARD_NAME;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_FORWARD_NAME = 'forward_name' as keyof EmailForwardLog;
+/**
+ * Hostname
+ *
+ * Hostname that received the email
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `hostname` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_HOSTNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_HOSTNAME;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_HOSTNAME = 'hostname' as keyof EmailForwardLog;
+/**
+ * Log Id
+ *
+ * Unique ID of the log from ImprovMX
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `log_id` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_LOG_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_LOG_ID;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_LOG_ID = 'log_id' as keyof EmailForwardLog;
+/**
+ * Message Id
+ *
+ * Email message ID
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message_id` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_MESSAGE_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_MESSAGE_ID;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_MESSAGE_ID = 'message_id' as keyof EmailForwardLog;
+/**
+ * Recipient Email
+ *
+ * Recipient email address (the alias)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `recipient_email` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_RECIPIENT_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_RECIPIENT_EMAIL;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_EMAIL = 'recipient_email' as keyof EmailForwardLog;
+/**
+ * Recipient Name
+ *
+ * Recipient name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `recipient_name` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_RECIPIENT_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_RECIPIENT_NAME;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_NAME = 'recipient_name' as keyof EmailForwardLog;
+/**
+ * Sender Email
+ *
+ * Sender email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `sender_email` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_SENDER_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_SENDER_EMAIL;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_SENDER_EMAIL = 'sender_email' as keyof EmailForwardLog;
+/**
+ * Sender Name
+ *
+ * Sender name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `sender_name` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_SENDER_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_SENDER_NAME;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_SENDER_NAME = 'sender_name' as keyof EmailForwardLog;
+/**
+ * Subject
+ *
+ * Email subject
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `subject` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_SUBJECT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_SUBJECT;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_SUBJECT = 'subject' as keyof EmailForwardLog;
+/**
+ * Synced On
+ *
+ * Timestamp when record was synced to ClickHouse
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `synced_on` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_SYNCED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_SYNCED_ON;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_SYNCED_ON = 'synced_on' as keyof EmailForwardLog;
+/**
+ * Transport
+ *
+ * Transport method (mx or smtp)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transport` property of EmailForwardLog objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlog[KEY_EMAIL_FORWARD_LOG_TRANSPORT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_TRANSPORT;
+ * const value = emailforwardlog[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_TRANSPORT = 'transport' as keyof EmailForwardLog;
+
+/**
+ * Array of all EmailForwardLog property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardLog objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_LOG) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardlog[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_LOG.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardLog} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_LOG = [
+  KEY_EMAIL_FORWARD_LOG_CREATED_ON,
+  KEY_EMAIL_FORWARD_LOG_DOMAIN,
+  KEY_EMAIL_FORWARD_LOG_EVENTS,
+  KEY_EMAIL_FORWARD_LOG_FINAL_STATUS,
+  KEY_EMAIL_FORWARD_LOG_FORWARD_EMAIL,
+  KEY_EMAIL_FORWARD_LOG_FORWARD_NAME,
+  KEY_EMAIL_FORWARD_LOG_HOSTNAME,
+  KEY_EMAIL_FORWARD_LOG_LOG_ID,
+  KEY_EMAIL_FORWARD_LOG_MESSAGE_ID,
+  KEY_EMAIL_FORWARD_LOG_RECIPIENT_EMAIL,
+  KEY_EMAIL_FORWARD_LOG_RECIPIENT_NAME,
+  KEY_EMAIL_FORWARD_LOG_SENDER_EMAIL,
+  KEY_EMAIL_FORWARD_LOG_SENDER_NAME,
+  KEY_EMAIL_FORWARD_LOG_SUBJECT,
+  KEY_EMAIL_FORWARD_LOG_SYNCED_ON,
+  KEY_EMAIL_FORWARD_LOG_TRANSPORT,
+] as const satisfies (keyof EmailForwardLog)[];
+
+/**
+ * Code
+ *
+ * Event status code
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `code` property of EmailForwardLogEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlogevent[KEY_EMAIL_FORWARD_LOG_EVENT_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENT_CODE;
+ * const value = emailforwardlogevent[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENT_CODE = 'code' as keyof EmailForwardLogEvent;
+/**
+ * Created
+ *
+ * Timestamp when the event occurred
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created` property of EmailForwardLogEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlogevent[KEY_EMAIL_FORWARD_LOG_EVENT_CREATED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENT_CREATED;
+ * const value = emailforwardlogevent[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENT_CREATED = 'created' as keyof EmailForwardLogEvent;
+/**
+ * Id
+ *
+ * Event ID
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `id` property of EmailForwardLogEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlogevent[KEY_EMAIL_FORWARD_LOG_EVENT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENT_ID;
+ * const value = emailforwardlogevent[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENT_ID = 'id' as keyof EmailForwardLogEvent;
+/**
+ * Local
+ *
+ * ImprovMX server that processed the event
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `local` property of EmailForwardLogEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlogevent[KEY_EMAIL_FORWARD_LOG_EVENT_LOCAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENT_LOCAL;
+ * const value = emailforwardlogevent[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENT_LOCAL = 'local' as keyof EmailForwardLogEvent;
+/**
+ * Message
+ *
+ * Event message
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of EmailForwardLogEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlogevent[KEY_EMAIL_FORWARD_LOG_EVENT_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENT_MESSAGE;
+ * const value = emailforwardlogevent[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENT_MESSAGE = 'message' as keyof EmailForwardLogEvent;
+/**
+ * Server
+ *
+ * Server that processed the event
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `server` property of EmailForwardLogEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlogevent[KEY_EMAIL_FORWARD_LOG_EVENT_SERVER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENT_SERVER;
+ * const value = emailforwardlogevent[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENT_SERVER = 'server' as keyof EmailForwardLogEvent;
+/**
+ * Status
+ *
+ * Event status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of EmailForwardLogEvent objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardlogevent[KEY_EMAIL_FORWARD_LOG_EVENT_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_LOG_EVENT_STATUS;
+ * const value = emailforwardlogevent[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_LOG_EVENT_STATUS = 'status' as keyof EmailForwardLogEvent;
+
+/**
+ * Array of all EmailForwardLogEvent property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardLogEvent objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_LOG_EVENT) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardlogevent[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_LOG_EVENT.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardLogEvent} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_LOG_EVENT = [
+  KEY_EMAIL_FORWARD_LOG_EVENT_CODE,
+  KEY_EMAIL_FORWARD_LOG_EVENT_CREATED,
+  KEY_EMAIL_FORWARD_LOG_EVENT_ID,
+  KEY_EMAIL_FORWARD_LOG_EVENT_LOCAL,
+  KEY_EMAIL_FORWARD_LOG_EVENT_MESSAGE,
+  KEY_EMAIL_FORWARD_LOG_EVENT_SERVER,
+  KEY_EMAIL_FORWARD_LOG_EVENT_STATUS,
+] as const satisfies (keyof EmailForwardLogEvent)[];
 
 /**
  * Aliases

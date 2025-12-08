@@ -1,5 +1,45 @@
 import { TypeId } from "typeid-js";
 export interface paths {
+    "/v1/archive/email-forward-logs/alias/{email_forward_alias_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve email forward logs by alias
+         * @description Retrieves a paginated list of email forward logs for a specific email forward alias. Only returns logs created after the email forward was created.
+         */
+        get: operations["get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/archive/email-forward-logs/{email_forward_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve email forward logs
+         * @description Retrieves a paginated list of email forward logs for a specific email forward. Only returns logs created after the email forward was created.
+         */
+        get: operations["get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/archive/object-logs": {
         parameters: {
             query?: never;
@@ -3243,6 +3283,135 @@ export interface components {
             /** Hostname */
             hostname: string;
         };
+        /** EmailForwardLog */
+        EmailForwardLog: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description Timestamp when email was received by ImprovMX
+             */
+            created_on: Date;
+            /**
+             * Domain
+             * @description Domain name
+             */
+            domain: string;
+            /**
+             * Events
+             * @description List of processing events
+             */
+            events?: components["schemas"]["EmailForwardLogEvent"][];
+            /**
+             * Final Status
+             * @description Final status of the email (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
+             */
+            final_status: string;
+            /**
+             * Forward Email
+             * @description Forward destination email address
+             */
+            forward_email: string;
+            /**
+             * Forward Name
+             * @description Forward destination name
+             */
+            forward_name?: string | null;
+            /**
+             * Hostname
+             * @description Hostname that received the email
+             */
+            hostname: string;
+            /**
+             * Log Id
+             * @description Unique ID of the log from ImprovMX
+             */
+            log_id: string;
+            /**
+             * Message Id
+             * @description Email message ID
+             */
+            message_id: string;
+            /**
+             * Recipient Email
+             * @description Recipient email address (the alias)
+             */
+            recipient_email: string;
+            /**
+             * Recipient Name
+             * @description Recipient name
+             */
+            recipient_name?: string | null;
+            /**
+             * Sender Email
+             * @description Sender email address
+             */
+            sender_email: string;
+            /**
+             * Sender Name
+             * @description Sender name
+             */
+            sender_name?: string | null;
+            /**
+             * Subject
+             * @description Email subject
+             */
+            subject: string;
+            /**
+             * Synced On
+             * Format: date-time
+             * @description Timestamp when record was synced to ClickHouse
+             */
+            synced_on: Date;
+            /**
+             * Transport
+             * @description Transport method (mx or smtp)
+             */
+            transport: string;
+        };
+        /** EmailForwardLogEvent */
+        EmailForwardLogEvent: {
+            /**
+             * Code
+             * @description Event status code
+             */
+            code: number;
+            /**
+             * Created
+             * Format: date-time
+             * @description Timestamp when the event occurred
+             */
+            created: Date;
+            /**
+             * Id
+             * @description Event ID
+             */
+            id: string;
+            /**
+             * Local
+             * @description ImprovMX server that processed the event
+             */
+            local: string;
+            /**
+             * Message
+             * @description Event message
+             */
+            message: string;
+            /**
+             * Server
+             * @description Server that processed the event
+             */
+            server: string;
+            /**
+             * Status
+             * @description Event status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
+             */
+            status: string;
+        };
+        /**
+         * EmailForwardLogSortField
+         * @enum {string}
+         */
+        EmailForwardLogSortField: "log_id" | "sender_email" | "recipient_email" | "forward_email" | "final_status" | "created_on" | "synced_on";
         /** EmailForwardResponse */
         EmailForwardResponse: {
             /** Aliases */
@@ -4314,6 +4483,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["DomainResponse"][];
         };
+        /** Pagination[EmailForwardLog] */
+        Pagination_EmailForwardLog_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["EmailForwardLog"][];
+        };
         /** Pagination[EmailForwardResponse] */
         Pagination_EmailForwardResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -5311,6 +5486,84 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["EmailForwardLogSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
+                final_status?: string | null;
+                start_time?: Date | null;
+                end_time?: Date | null;
+            };
+            header?: never;
+            path: {
+                email_forward_alias_id: TypeId<"email_forward_alias">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_EmailForwardLog_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["EmailForwardLogSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
+                final_status?: string | null;
+                start_time?: Date | null;
+                end_time?: Date | null;
+            };
+            header?: never;
+            path: {
+                email_forward_id: TypeId<"email_forward">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_EmailForwardLog_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_object_logs_v1_archive_object_logs_get: {
         parameters: {
             query?: {

@@ -1643,6 +1643,54 @@ export type EmailForwardAliasUpdate = components['schemas']['EmailForwardAliasUp
  */
 export type EmailForwardCreate = components['schemas']['EmailForwardCreate'];
 /**
+ * EmailForwardLog
+ *
+ * @remarks
+ * Type alias for the `EmailForwardLog` OpenAPI schema.
+ * This type represents emailforwardlog data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardLog();
+ * const item: EmailForwardLog = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardLog = components['schemas']['EmailForwardLog'];
+/**
+ * EmailForwardLogEvent
+ *
+ * @remarks
+ * Type alias for the `EmailForwardLogEvent` OpenAPI schema.
+ * This type represents emailforwardlogevent data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardLogEvent();
+ * const item: EmailForwardLogEvent = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardLogEvent = components['schemas']['EmailForwardLogEvent'];
+/**
+ * EmailForwardLogSortField
+ *
+ * @remarks
+ * Type alias for the `EmailForwardLogSortField` OpenAPI schema.
+ * This type represents emailforwardlogsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardLogSortField();
+ * const item: EmailForwardLogSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardLogSortField = components['schemas']['EmailForwardLogSortField'];
+/**
  * EmailForwardResponse
  *
  * @remarks
@@ -2543,6 +2591,22 @@ export type Pagination_DomainForward = components['schemas']['Pagination_DomainF
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_Domain = components['schemas']['Pagination_DomainResponse_'];
+/**
+ * Pagination[EmailForwardLog]
+ *
+ * @remarks
+ * Type alias for the `Pagination_EmailForwardLog_` OpenAPI schema.
+ * This type represents pagination[emailforwardlog] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_EmailForwardLog();
+ * const item: Pagination_EmailForwardLog = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_EmailForwardLog = components['schemas']['Pagination_EmailForwardLog_'];
 /**
  * Pagination[EmailForwardResponse]
  *
