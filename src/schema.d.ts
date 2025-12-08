@@ -8460,6 +8460,24 @@ export interface operations {
                     "application/json": components["schemas"]["RequestAuthcodeResponse"];
                 };
             };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER",
+                     *       "detail": "There was an error transferring the domain",
+                     *       "domain_name": "Additional error context.",
+                     *       "reason": "An unspecified error occurred",
+                     *       "status": 400,
+                     *       "title": "Domain Transfer Error",
+                     *       "type": "domain-transfer"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Not Found */
             404: {
                 headers: {

@@ -4747,12 +4747,13 @@ export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Response_422 = HT
  * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
  *
  * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_200} - 200 response type
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_400} - 400 response type
  * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_404} - 404 response type
  * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_422} - 422 response type
  *
 
  */
-export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response = POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_200 | POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_404 | POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_422;
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response = POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_200 | POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_400 | POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_404 | POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_422;
 
 /**
  * 200 response for POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint
@@ -4770,6 +4771,23 @@ export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response =
  * @see {@link RequestAuthcode} - The actual schema type definition
  */
 export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_200 = RequestAuthcode
+
+/**
+ * 400 response for POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
+ *
+ * @see {@link POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Response_400 = Problem
 
 /**
  * 404 response for POST DomainsTldSpecificBeByDomainReferenceAuthCodeRequest endpoint
