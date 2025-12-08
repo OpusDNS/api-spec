@@ -37,57 +37,57 @@ import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from '.
 import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
- * Request type for GET ArchiveEmailForwardLogsAliasEmailForwardAliasId endpoint
+ * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
  *
  * Retrieve email forward logs by alias
  * Retrieves a paginated list of email forward logs for a specific email forward alias. Only returns logs created after the email forward was created.
  *
  * @remarks
- * This type defines the complete request structure for the GET ArchiveEmailForwardLogsAliasEmailForwardAliasId endpoint.
+ * This type defines the complete request structure for the GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  *
- * @see {@link GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request_Query} - Query parameters type
- * @see {@link GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request_Path} - Path parameters type
- * @see {@link GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request_Body} - Request body type
+ * @see {@link GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Query} - Query parameters type
+ * @see {@link GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Path} - Path parameters type
+ * @see {@link GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Body} - Request body type
  */
-export type GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request = {
+export type GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request = {
   parameters: {
-    query: operations['get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get']['parameters']['query'];
-    path: operations['get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get']['parameters']['path'];
+    query: operations['get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get']['parameters']['query'];
+    path: operations['get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get']['parameters']['path'];
   };
 }
 /**
- * Query parameters for GET /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * Query parameters for GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  *
  * @remarks
- * This type defines the query parameters for the GET /v1/archive/email-forward-logs/alias/{email_forward_alias_id} endpoint.
+ * This type defines the query parameters for the GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id} endpoint.
  * It provides type safety for all query parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for query parameters.
  *
- * @path /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  */
-export type GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request_Query = GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request['parameters']['query'];
+export type GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Query = GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request['parameters']['query'];
 /**
- * Path parameters for GET /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * Path parameters for GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  *
  * @remarks
- * This type defines the path parameters for the GET /v1/archive/email-forward-logs/alias/{email_forward_alias_id} endpoint.
+ * This type defines the path parameters for the GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id} endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  */
-export type GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request_Path = GET_ArchiveEmailForwardLogsAliasEmailForwardAliasId_Request['parameters']['path'];
+export type GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Path = GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request['parameters']['path'];
 
 /**
  * Request type for GET ArchiveEmailForwardLogsEmailForwardId endpoint

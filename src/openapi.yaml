@@ -5921,18 +5921,18 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-08-100654
+  version: 2025-12-08-144347
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
 openapi: 3.1.0
 paths:
-  /v1/archive/email-forward-logs/alias/{email_forward_alias_id}:
+  /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}:
     get:
       description: Retrieves a paginated list of email forward logs for a specific
         email forward alias. Only returns logs created after the email forward was
         created.
-      operationId: get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get
+      operationId: get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get
       parameters:
       - in: path
         name: email_forward_alias_id

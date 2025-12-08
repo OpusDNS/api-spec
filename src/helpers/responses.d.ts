@@ -37,60 +37,60 @@ import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray,
 import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, Pagination_EmailForward, EmailForward, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
- * Response types for GET ArchiveEmailForwardLogsAliasByEmailForwardAliasId endpoint
+ * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
  *
  * Retrieve email forward logs by alias
  * Retrieves a paginated list of email forward logs for a specific email forward alias. Only returns logs created after the email forward was created.
  *
  * @remarks
- * This type defines all possible response structures for the GET ArchiveEmailForwardLogsAliasByEmailForwardAliasId endpoint.
+ * This type defines all possible response structures for the GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  *
- * @see {@link GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response_200} - 200 response type
- * @see {@link GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response_422} - 422 response type
+ * @see {@link GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_200} - 200 response type
+ * @see {@link GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_422} - 422 response type
  *
 
  */
-export type GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response = GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response_200 | GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response_422;
+export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response = GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_200 | GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_422;
 
 /**
- * 200 response for GET ArchiveEmailForwardLogsAliasByEmailForwardAliasId endpoint
+ * 200 response for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
  *
  * @remarks
  * This type defines the response structure for the 200 status code
- * of the GET ArchiveEmailForwardLogsAliasByEmailForwardAliasId endpoint.
+ * of the GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  *
- * @see {@link GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response} - The main response type definition
+ * @see {@link GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response} - The main response type definition
  * @see {@link Pagination_EmailForwardLog} - The actual schema type definition
  */
-export type GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response_200 = Pagination_EmailForwardLog
+export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_200 = Pagination_EmailForwardLog
 
 /**
- * 422 response for GET ArchiveEmailForwardLogsAliasByEmailForwardAliasId endpoint
+ * 422 response for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the GET ArchiveEmailForwardLogsAliasByEmailForwardAliasId endpoint.
+ * of the GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/archive/email-forward-logs/alias/{email_forward_alias_id}
+ * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
  *
- * @see {@link GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response} - The main response type definition
+ * @see {@link GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type GET_ArchiveEmailForwardLogsAliasByEmailForwardAliasId_Response_422 = HTTPValidationError
+export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ArchiveEmailForwardLogsByEmailForwardId endpoint

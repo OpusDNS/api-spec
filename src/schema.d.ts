@@ -1,6 +1,6 @@
 import { TypeId } from "typeid-js";
 export interface paths {
-    "/v1/archive/email-forward-logs/alias/{email_forward_alias_id}": {
+    "/v1/archive/email-forward-logs/aliases/{email_forward_alias_id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -11,7 +11,7 @@ export interface paths {
          * Retrieve email forward logs by alias
          * @description Retrieves a paginated list of email forward logs for a specific email forward alias. Only returns logs created after the email forward was created.
          */
-        get: operations["get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get"];
+        get: operations["get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -5486,7 +5486,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    get_email_forward_logs_by_alias_v1_archive_email_forward_logs_alias__email_forward_alias_id__get: {
+    get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get: {
         parameters: {
             query?: {
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
