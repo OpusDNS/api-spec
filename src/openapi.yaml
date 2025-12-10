@@ -5922,7 +5922,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-09-194737
+  version: 2025-12-10-013047
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -13488,8 +13488,78 @@ tags:
     '
   name: availability
   x-displayName: Availability
-- description: 'Endpoints for submitting and tracking batch command execution (internal
-    preview).
+- description: 'Endpoints for submitting and tracking batch command execution.
+
+
+    The Jobs API enables asynchronous execution of bulk operations through batches.
+    Submit multiple commands in a single request and poll for completion status.
+
+
+    ## Supported Commands
+
+
+    | Command | Description |
+
+    |---------|-------------|
+
+    | `domain_create` | Register a new domain |
+
+    | `domain_update` | Modify domain settings (contacts, nameservers, renewal mode)
+    |
+
+    | `domain_transfer` | Initiate an inbound domain transfer |
+
+    | `dns_zone_create` | Create a new DNS zone with optional records |
+
+
+    ## Batch Lifecycle
+
+
+    Each job within a batch transitions through states:
+
+
+    1. **queued** - Awaiting processing
+
+    2. **running** - Currently being executed
+
+    3. **succeeded** - Completed successfully
+
+    4. **failed** - Execution failed (check `error_class` and `error_message`)
+
+    5. **canceled** - Job was canceled before completion
+
+    6. **dead_letter** - Permanently failed after exhausting retries
+
+
+    ## Usage Pattern
+
+
+    1. **Submit a batch** - `POST /v1/jobs` with an array of commands
+
+    2. **Poll for status** - `GET /v1/jobs/{batch_id}` to check progress
+
+    3. **Review results** - `GET /v1/jobs/{batch_id}/jobs` to see individual job outcomes
+
+
+    ## Limits
+
+
+    - Maximum **50,000 commands** per batch
+
+
+    ## Scheduling
+
+
+    Use `not_before` to schedule batch execution for a future time (UTC timestamp).
+    If not provided, processing begins immediately.
+
+
+    ## Idempotency
+
+
+    Each command can include an optional `idempotency_key` to prevent duplicate execution.
+    If a command with the same idempotency key has already been processed, it will
+    be skipped.
 
     '
   name: jobs
@@ -13578,3 +13648,4 @@ x-tagGroups:
   - rdap
   - domain_search
   - archive
+  - jobs
