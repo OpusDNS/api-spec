@@ -2909,6 +2909,7 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   AT_EXT_CONTACT_TYPE: "at-ext-contact:type",
   DE_CONTACT_TYPE: "DE_CONTACT_TYPE",
   DNSBE_TYPE: "dnsbe:type",
+  EURID_TYPE: "eurid:type",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -2935,7 +2936,8 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'at-ext-contact:type',
   'DE_CONTACT_TYPE',
-  'dnsbe:type'
+  'dnsbe:type',
+  'eurid:type'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**

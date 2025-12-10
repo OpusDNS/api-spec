@@ -4690,7 +4690,7 @@ export interface components {
          * @description Registry handle attribute types for type-safe attribute key access.
          * @enum {string}
          */
-        RegistryHandleAttributeType: "at-ext-contact:type" | "DE_CONTACT_TYPE" | "dnsbe:type";
+        RegistryHandleAttributeType: "at-ext-contact:type" | "DE_CONTACT_TYPE" | "dnsbe:type" | "eurid:type";
         /** RegistryLockBase */
         RegistryLockBase: {
             /**

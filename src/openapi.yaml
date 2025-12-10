@@ -4723,6 +4723,7 @@ components:
       - at-ext-contact:type
       - DE_CONTACT_TYPE
       - dnsbe:type
+      - eurid:type
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -5922,7 +5923,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-10-084326
+  version: 2025-12-10-161650
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
