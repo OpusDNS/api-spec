@@ -3435,7 +3435,7 @@ export type PATCH_DomainForwardsByHostnameDisable_Response_422 = HTTPValidationE
  * Response types for PATCH DomainForwardsByHostnameEnable endpoint
  *
  * Enable domain forward
- * Enables domain forwarding by creating necessary DNS records. Optionally auto-creates the zone and domain forward if they don't exist.
+ * Enables domain forwarding by creating necessary DNS records
  *
  * @remarks
  * This type defines all possible response structures for the PATCH DomainForwardsByHostnameEnable endpoint.

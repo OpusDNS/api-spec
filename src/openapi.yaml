@@ -5922,7 +5922,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-10-013047
+  version: 2025-12-10-084326
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9162,8 +9162,7 @@ paths:
       - domain_forward
   /v1/domain-forwards/{hostname}/enable:
     patch:
-      description: Enables domain forwarding by creating necessary DNS records. Optionally
-        auto-creates the zone and domain forward if they don't exist.
+      description: Enables domain forwarding by creating necessary DNS records
       operationId: enable_domain_forward_v1_domain_forwards__hostname__enable_patch
       parameters:
       - description: Hostname

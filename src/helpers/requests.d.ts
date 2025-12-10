@@ -1669,7 +1669,7 @@ export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwa
  * Request type for PATCH DomainForwardsHostnameEnable endpoint
  *
  * Enable domain forward
- * Enables domain forwarding by creating necessary DNS records. Optionally auto-creates the zone and domain forward if they don't exist.
+ * Enables domain forwarding by creating necessary DNS records
  *
  * @remarks
  * This type defines the complete request structure for the PATCH DomainForwardsHostnameEnable endpoint.

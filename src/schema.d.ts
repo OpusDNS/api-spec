@@ -549,7 +549,7 @@ export interface paths {
         head?: never;
         /**
          * Enable domain forward
-         * @description Enables domain forwarding by creating necessary DNS records. Optionally auto-creates the zone and domain forward if they don't exist.
+         * @description Enables domain forwarding by creating necessary DNS records
          */
         patch: operations["enable_domain_forward_v1_domain_forwards__hostname__enable_patch"];
         trace?: never;
