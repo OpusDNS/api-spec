@@ -3,7 +3,7 @@
     "@opusdns/api-spec-ts-generator": "^0.9.1"
   },
   "name": "@opusdns/api",
-  "version": "0.120.0",
+  "version": "0.121.0",
   "description": "TypeScript types for the OpusDNS OpenAPI specification",
   "main": "./src/index.ts",
   "module": "./src/index.ts",
