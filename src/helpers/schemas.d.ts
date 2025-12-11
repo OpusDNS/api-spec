@@ -3120,22 +3120,6 @@ export type RelationSet = components['schemas']['RelationSet'];
  */
 export type RenewalMode = components['schemas']['RenewalMode'];
 /**
- * RequestAuthcodeResponse
- *
- * @remarks
- * Type alias for the `RequestAuthcodeResponse` OpenAPI schema.
- * This type represents requestauthcoderesponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getRequestAuthcode();
- * const item: RequestAuthcode = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type RequestAuthcode = components['schemas']['RequestAuthcodeResponse'];
-/**
  * RequestHistory
  *
  * @remarks
@@ -3615,6 +3599,38 @@ export type WildcardHttpRedirectRequest = components['schemas']['WildcardHttpRed
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ZoneSortField = components['schemas']['ZoneSortField'];
+/**
+ * RequestAuthcodeResponse
+ *
+ * @remarks
+ * Type alias for the `api__domain__tld_specific__be__models__RequestAuthcodeResponse` OpenAPI schema.
+ * This type represents requestauthcoderesponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRequestAuthcode();
+ * const item: RequestAuthcode = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RequestAuthcode = components['schemas']['api__domain__tld_specific__be__models__RequestAuthcodeResponse'];
+/**
+ * RequestAuthcodeResponse
+ *
+ * @remarks
+ * Type alias for the `api__domain__tld_specific__eu__models__RequestAuthcodeResponse` OpenAPI schema.
+ * This type represents requestauthcoderesponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRequestAuthcode2();
+ * const item: RequestAuthcode2 = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RequestAuthcode2 = components['schemas']['api__domain__tld_specific__eu__models__RequestAuthcodeResponse'];
 /**
  * DomainAvailabilityResponse
  *

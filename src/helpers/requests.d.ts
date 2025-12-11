@@ -2735,6 +2735,44 @@ export type POST_DomainsTldSpecificDeDomainReferenceTransit_Request_Path = POST_
 export type POST_DomainsTldSpecificDeDomainReferenceTransit_Request_Body = POST_DomainsTldSpecificDeDomainReferenceTransit_Request['requestBody'];
 
 /**
+ * Request type for POST DomainsTldSpecificEuDomainReferenceAuthCodeRequest endpoint
+ *
+ * Requests your auth code directly from EURid (registry)
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST DomainsTldSpecificEuDomainReferenceAuthCodeRequest endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request
+ *
+ * @see {@link POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Query} - Query parameters type
+ * @see {@link POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Path} - Path parameters type
+ * @see {@link POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Body} - Request body type
+ */
+export type POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request = {
+  parameters: {
+    path: operations['request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request
+ */
+export type POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
+/**
  * Request type for POST DomainsTransfer endpoint
  *
  * Transfer a domain

@@ -718,6 +718,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/tld-specific/eu/{domain_reference}/auth_code/request": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Requests your auth code directly from EURid (registry) */
+        post: operations["request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/transfer": {
         parameters: {
             query?: never;
@@ -4729,24 +4746,6 @@ export interface components {
          * @enum {string}
          */
         RenewalMode: "renew" | "expire" | "delete";
-        /** RequestAuthcodeResponse */
-        RequestAuthcodeResponse: {
-            /**
-             * Detail
-             * @description Additional information about the result in case of failure
-             */
-            detail?: string | null;
-            /**
-             * Name
-             * @description The domain name that had the auth code requested
-             */
-            name: string;
-            /**
-             * Success
-             * @description Whether the request had a successful result from DNS Belgium
-             */
-            success: boolean;
-        };
         /** RequestHistory */
         RequestHistory: {
             /**
@@ -5458,6 +5457,52 @@ export interface components {
          * @enum {string}
          */
         ZoneSortField: "name" | "created_on" | "updated_on" | "dnssec_status";
+        /** RequestAuthcodeResponse */
+        api__domain__tld_specific__be__models__RequestAuthcodeResponse: {
+            /**
+             * Detail
+             * @description Additional information about the result in case of failure
+             */
+            detail?: string | null;
+            /**
+             * Name
+             * @description The domain name that had the auth code requested
+             */
+            name: string;
+            /**
+             * Success
+             * @description Whether the request had a successful result from DNS Belgium
+             */
+            success: boolean;
+        };
+        /** RequestAuthcodeResponse */
+        api__domain__tld_specific__eu__models__RequestAuthcodeResponse: {
+            /**
+             * Auth Code
+             * @description The auth code returned by EURid
+             */
+            auth_code?: string | null;
+            /**
+             * Auth Code Expires On
+             * @description The expiry date of the auth code
+             */
+            auth_code_expires_on?: Date | null;
+            /**
+             * Detail
+             * @description Additional information about the result in case of failure
+             */
+            detail?: string | null;
+            /**
+             * Name
+             * @description The domain name that had the auth code requested
+             */
+            name: string;
+            /**
+             * Success
+             * @description Whether the request had a successful result from EURid
+             */
+            success: boolean;
+        };
         /** DomainAvailabilityResponse */
         common__models__availability__datasource__DomainAvailabilityResponse: {
             meta: components["schemas"]["DomainAvailabilityMeta"];
@@ -8457,7 +8502,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["RequestAuthcodeResponse"];
+                    "application/json": components["schemas"]["api__domain__tld_specific__be__models__RequestAuthcodeResponse"];
                 };
             };
             /** @description Bad Request */
@@ -8528,6 +8573,72 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainTransitResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_NOT_FOUND",
+                     *       "detail": "Domain not found",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["api__domain__tld_specific__eu__models__RequestAuthcodeResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER",
+                     *       "detail": "There was an error transferring the domain",
+                     *       "domain_name": "Additional error context.",
+                     *       "reason": "An unspecified error occurred",
+                     *       "status": 400,
+                     *       "title": "Domain Transfer Error",
+                     *       "type": "domain-transfer"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Not Found */

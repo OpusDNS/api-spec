@@ -4797,27 +4797,6 @@ components:
       - delete
       title: RenewalMode
       type: string
-    RequestAuthcodeResponse:
-      properties:
-        detail:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Additional information about the result in case of failure
-          title: Detail
-        name:
-          description: The domain name that had the auth code requested
-          title: Name
-          type: string
-        success:
-          description: Whether the request had a successful result from DNS Belgium
-          title: Success
-          type: boolean
-      required:
-      - name
-      - success
-      title: RequestAuthcodeResponse
-      type: object
     RequestHistory:
       properties:
         client_ip:
@@ -5812,6 +5791,61 @@ components:
       - dnssec_status
       title: ZoneSortField
       type: string
+    api__domain__tld_specific__be__models__RequestAuthcodeResponse:
+      properties:
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional information about the result in case of failure
+          title: Detail
+        name:
+          description: The domain name that had the auth code requested
+          title: Name
+          type: string
+        success:
+          description: Whether the request had a successful result from DNS Belgium
+          title: Success
+          type: boolean
+      required:
+      - name
+      - success
+      title: RequestAuthcodeResponse
+      type: object
+    api__domain__tld_specific__eu__models__RequestAuthcodeResponse:
+      properties:
+        auth_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The auth code returned by EURid
+          title: Auth Code
+        auth_code_expires_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The expiry date of the auth code
+          title: Auth Code Expires On
+        detail:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional information about the result in case of failure
+          title: Detail
+        name:
+          description: The domain name that had the auth code requested
+          title: Name
+          type: string
+        success:
+          description: Whether the request had a successful result from EURid
+          title: Success
+          type: boolean
+      required:
+      - name
+      - success
+      title: RequestAuthcodeResponse
+      type: object
     common__models__availability__datasource__DomainAvailabilityResponse:
       properties:
         meta:
@@ -5923,7 +5957,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-10-161650
+  version: 2025-12-11-031623
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10046,7 +10080,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RequestAuthcodeResponse'
+                $ref: '#/components/schemas/api__domain__tld_specific__be__models__RequestAuthcodeResponse'
           description: Successful Response
         '400':
           content:
@@ -10139,6 +10173,69 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Transit a DENIC domain
+      tags:
+      - domain
+      - domain_tld_specific
+  /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request:
+    post:
+      operationId: request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api__domain__tld_specific__eu__models__RequestAuthcodeResponse'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_TRANSFER
+                detail: There was an error transferring the domain
+                domain_name: Additional error context.
+                reason: An unspecified error occurred
+                status: 400
+                title: Domain Transfer Error
+                type: domain-transfer
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_NOT_FOUND
+                detail: Domain not found
+                domain_name: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Requests your auth code directly from EURid (registry)
       tags:
       - domain
       - domain_tld_specific
