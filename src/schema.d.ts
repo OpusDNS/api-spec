@@ -475,7 +475,11 @@ export interface paths {
          */
         get: operations["list_domain_forwards_v1_domain_forwards_get"];
         put?: never;
-        post?: never;
+        /**
+         * Create a domain forward
+         * @description Creates a new domain forward configuration. Wildcard forwards can be created by using *.hostname (e.g., *.example.com).
+         */
+        post: operations["create_domain_forward_v2_v1_domain_forwards_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -500,8 +504,9 @@ export interface paths {
         get: operations["get_domain_forward_v1_domain_forwards__hostname__get"];
         put?: never;
         /**
-         * Create a domain forward
-         * @description Creates a new domain forward configuration for the specified hostname
+         * Create a domain forward (deprecated)
+         * @deprecated
+         * @description **DEPRECATED**: Use POST /v1/domain-forwards instead. Creates a new domain forward configuration for the specified hostname.
          */
         post: operations["create_domain_forward_v1_domain_forwards__hostname__post"];
         /**
@@ -2654,6 +2659,18 @@ export interface components {
             updated_on: Date;
             /** Wildcard */
             wildcard: boolean;
+        };
+        /** DomainForwardCreateRequest */
+        DomainForwardCreateRequest: {
+            /**
+             * Enabled
+             * @default false
+             */
+            enabled: boolean;
+            /** Hostname */
+            hostname: string;
+            http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+            https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
         };
         /** DomainForwardPatchOp */
         DomainForwardPatchOp: {
@@ -7346,6 +7363,104 @@ export interface operations {
             };
         };
     };
+    create_domain_forward_v2_v1_domain_forwards_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainForwardCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description Domain forward created successfully */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForward"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description DNS zone was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ZONE_NOT_FOUND",
+                     *       "detail": "Zone not found",
+                     *       "status": 404,
+                     *       "title": "DNS Error",
+                     *       "type": "dns-zone-not-found",
+                     *       "zone_name": "Zone example.com. not found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Domain forward already exists */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_ALREADY_EXISTS",
+                     *       "detail": "Domain forward already exists for example.com.",
+                     *       "status": 409,
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     patch_redirects_v1_domain_forwards_patch: {
         parameters: {
             query?: never;
@@ -7748,10 +7863,7 @@ export interface operations {
     };
     enable_domain_forward_v1_domain_forwards__hostname__enable_patch: {
         parameters: {
-            query?: {
-                /** @description Wildcard domain forwarding */
-                wildcard?: boolean;
-            };
+            query?: never;
             header?: never;
             path: {
                 /** @description Hostname */
@@ -7778,7 +7890,7 @@ export interface operations {
                      *       "code": "ERROR_DOMAIN_FORWARD_WILDCARD_NOT_SUPPORTED",
                      *       "detail": "Additional error context.",
                      *       "status": 400,
-                     *       "title": "Wildcard Not Supported",
+                     *       "title": "HTTPS Wildcard Not Supported",
                      *       "type": "domain-forward-wildcard-not-supported"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];

@@ -1035,6 +1035,22 @@ export type DomainDnssecData = components['schemas']['DomainDnssecDataResponse']
  */
 export type DomainForward = components['schemas']['DomainForward'];
 /**
+ * DomainForwardCreateRequest
+ *
+ * @remarks
+ * Type alias for the `DomainForwardCreateRequest` OpenAPI schema.
+ * This type represents domainforwardcreaterequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardCreateRequest();
+ * const item: DomainForwardCreateRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardCreateRequest = components['schemas']['DomainForwardCreateRequest'];
+/**
  * DomainForwardPatchOp
  *
  * @remarks

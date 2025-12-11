@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -1488,6 +1488,43 @@ export type PATCH_DomainForwards_Request = {
 export type PATCH_DomainForwards_Request_Body = PATCH_DomainForwards_Request['requestBody'];
 
 /**
+ * Request type for POST DomainForwards endpoint
+ *
+ * Create a domain forward
+ * Creates a new domain forward configuration. Wildcard forwards can be created by using *.hostname (e.g., *.example.com).
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST DomainForwards endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Request_Query} - Query parameters type
+ * @see {@link POST_DomainForwards_Request_Path} - Path parameters type
+ * @see {@link POST_DomainForwards_Request_Body} - Request body type
+ */
+export type POST_DomainForwards_Request = {
+  requestBody: DomainForwardCreateRequest;
+}
+/**
+ * Request body for POST /v1/domain-forwards
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/domain-forwards endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/domain-forwards
+ */
+export type POST_DomainForwards_Request_Body = POST_DomainForwards_Request['requestBody'];
+
+/**
  * Request type for DELETE DomainForwardsHostname endpoint
  *
  * Delete a domain forward
@@ -1572,8 +1609,8 @@ export type GET_DomainForwardsHostname_Request_Path = GET_DomainForwardsHostname
 /**
  * Request type for POST DomainForwardsHostname endpoint
  *
- * Create a domain forward
- * Creates a new domain forward configuration for the specified hostname
+ * Create a domain forward (deprecated)
+ * **DEPRECATED**: Use POST /v1/domain-forwards instead. Creates a new domain forward configuration for the specified hostname.
  *
  * @remarks
  * This type defines the complete request structure for the POST DomainForwardsHostname endpoint.
@@ -1681,7 +1718,6 @@ export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwa
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Query} - Query parameters type
  * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Path} - Path parameters type
@@ -1689,24 +1725,9 @@ export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwa
  */
 export type PATCH_DomainForwardsHostnameEnable_Request = {
   parameters: {
-    query: operations['enable_domain_forward_v1_domain_forwards__hostname__enable_patch']['parameters']['query'];
     path: operations['enable_domain_forward_v1_domain_forwards__hostname__enable_patch']['parameters']['path'];
   };
 }
-/**
- * Query parameters for PATCH /v1/domain-forwards/{hostname}/enable
- *
- * @remarks
- * This type defines the query parameters for the PATCH /v1/domain-forwards/{hostname}/enable endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/{hostname}/enable
- * @param wildcard (query) - Wildcard domain forwarding
- */
-export type PATCH_DomainForwardsHostnameEnable_Request_Query = PATCH_DomainForwardsHostnameEnable_Request['parameters']['query'];
 /**
  * Path parameters for PATCH /v1/domain-forwards/{hostname}/enable
  *

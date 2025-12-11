@@ -69,6 +69,7 @@ import { DomainCreate } from './schemas';
 import { DomainDnssecDataCreate } from './schemas';
 import { DomainDnssecData } from './schemas';
 import { DomainForward } from './schemas';
+import { DomainForwardCreateRequest } from './schemas';
 import { DomainForwardPatchOp } from './schemas';
 import { DomainForwardPatchOps } from './schemas';
 import { DomainForwardProtocolSetRequest } from './schemas';
@@ -6587,6 +6588,132 @@ export const KEYS_DOMAIN_FORWARD = [
   KEY_DOMAIN_FORWARD_UPDATED_ON,
   KEY_DOMAIN_FORWARD_WILDCARD,
 ] as const satisfies (keyof DomainForward)[];
+
+/**
+ * Enabled
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `enabled` property of DomainForwardCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardcreaterequest[KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED;
+ * const value = domainforwardcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED = 'enabled' as keyof DomainForwardCreateRequest;
+/**
+ * Hostname
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `hostname` property of DomainForwardCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardcreaterequest[KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME;
+ * const value = domainforwardcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME = 'hostname' as keyof DomainForwardCreateRequest;
+/**
+ * http property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `http` property of DomainForwardCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardcreaterequest[KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP;
+ * const value = domainforwardcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP = 'http' as keyof DomainForwardCreateRequest;
+/**
+ * https property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `https` property of DomainForwardCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardcreaterequest[KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTPS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTPS;
+ * const value = domainforwardcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTPS = 'https' as keyof DomainForwardCreateRequest;
+
+/**
+ * Array of all DomainForwardCreateRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardCreateRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_CREATE_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardcreaterequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_CREATE_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_CREATE_REQUEST = [
+  KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED,
+  KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME,
+  KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP,
+  KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTPS,
+] as const satisfies (keyof DomainForwardCreateRequest)[];
 
 /**
  * op property

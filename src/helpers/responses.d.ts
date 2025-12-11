@@ -2542,6 +2542,134 @@ export type PATCH_DomainForwards_Response_404 = Problem
 export type PATCH_DomainForwards_Response_422 = HTTPValidationError
 
 /**
+ * Response types for POST DomainForwards endpoint
+ *
+ * Create a domain forward
+ * Creates a new domain forward configuration. Wildcard forwards can be created by using *.hostname (e.g., *.example.com).
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainForwards endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Response_201} - 201 response type
+ * @see {@link POST_DomainForwards_Response_401} - 401 response type
+ * @see {@link POST_DomainForwards_Response_403} - 403 response type
+ * @see {@link POST_DomainForwards_Response_404} - 404 response type
+ * @see {@link POST_DomainForwards_Response_409} - 409 response type
+ * @see {@link POST_DomainForwards_Response_422} - 422 response type
+ *
+
+ */
+export type POST_DomainForwards_Response = POST_DomainForwards_Response_201 | POST_DomainForwards_Response_401 | POST_DomainForwards_Response_403 | POST_DomainForwards_Response_404 | POST_DomainForwards_Response_409 | POST_DomainForwards_Response_422;
+
+/**
+ * 201 response for POST DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Response} - The main response type definition
+ * @see {@link DomainForward} - The actual schema type definition
+ */
+export type POST_DomainForwards_Response_201 = DomainForward
+
+/**
+ * 401 response for POST DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwards_Response_401 = Problem
+
+/**
+ * 403 response for POST DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwards_Response_403 = Problem
+
+/**
+ * 404 response for POST DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwards_Response_404 = Problem
+
+/**
+ * 409 response for POST DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainForwards_Response_409 = Problem
+
+/**
+ * 422 response for POST DomainForwards endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainForwards endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards
+ *
+ * @see {@link POST_DomainForwards_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_DomainForwards_Response_422 = HTTPValidationError
+
+/**
  * Response types for DELETE DomainForwardsByHostname endpoint
  *
  * Delete a domain forward
@@ -2757,8 +2885,8 @@ export type GET_DomainForwardsByHostname_Response_422 = HTTPValidationError
 /**
  * Response types for POST DomainForwardsByHostname endpoint
  *
- * Create a domain forward
- * Creates a new domain forward configuration for the specified hostname
+ * Create a domain forward (deprecated)
+ * **DEPRECATED**: Use POST /v1/domain-forwards instead. Creates a new domain forward configuration for the specified hostname.
  *
  * @remarks
  * This type defines all possible response structures for the POST DomainForwardsByHostname endpoint.
@@ -3446,7 +3574,6 @@ export type PATCH_DomainForwardsByHostnameDisable_Response_422 = HTTPValidationE
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_400} - 400 response type
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_401} - 401 response type
@@ -3469,7 +3596,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response = PATCH_DomainForwards
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -3488,7 +3614,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_400 = Problem
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -3507,7 +3632,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_401 = Problem
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -3526,7 +3650,6 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_403 = Problem
  *
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
- * @param wildcard (query) - Wildcard domain forwarding
  *
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
