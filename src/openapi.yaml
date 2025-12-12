@@ -1769,6 +1769,21 @@ components:
       - updated_on
       title: DomainForwardZoneSortField
       type: string
+    DomainHostResponse:
+      properties:
+        host_id:
+          description: The host id of the host
+          examples:
+          - host_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^host_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Host Id
+          type: string
+          x-typeid-prefix: host
+      required:
+      - host_id
+      title: DomainHostResponse
+      type: object
     DomainLifecycleBase:
       properties:
         add_grace_period:
@@ -2014,6 +2029,12 @@ components:
           - type: 'null'
           description: When the domain expires
           title: Expires On
+        hosts:
+          description: The subordinate hosts of the domain
+          items:
+            $ref: '#/components/schemas/DomainHostResponse'
+          title: Hosts
+          type: array
         name:
           description: The domain name
           examples:
@@ -2021,7 +2042,7 @@ components:
           title: Name
           type: string
         nameservers:
-          description: All the domain statuses
+          description: The nameservers of the domain
           items:
             $ref: '#/components/schemas/Nameserver'
           title: Nameservers
@@ -5978,7 +5999,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-11-192124
+  version: 2025-12-12-074144
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

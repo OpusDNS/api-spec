@@ -1211,6 +1211,22 @@ export type DomainForwardZone = components['schemas']['DomainForwardZone'];
  */
 export type DomainForwardZoneSortField = components['schemas']['DomainForwardZoneSortField'];
 /**
+ * DomainHostResponse
+ *
+ * @remarks
+ * Type alias for the `DomainHostResponse` OpenAPI schema.
+ * This type represents domainhostresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainHost();
+ * const item: DomainHost = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainHost = components['schemas']['DomainHostResponse'];
+/**
  * DomainLifecycleBase
  *
  * @remarks

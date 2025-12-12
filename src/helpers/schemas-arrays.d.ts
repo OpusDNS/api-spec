@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, RequestHistory, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, ContactRoleType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, RequestHistory, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -401,6 +401,20 @@ export type SyncOperationTypeArray = SyncOperationType[];
  * @see {@link DomainContact} - The individual DomainContactResponse type definition
  */
 export type DomainContactArray = DomainContact[];
+/**
+ * DomainHostResponse
+ *
+ * @remarks
+ * Array type for DomainHostResponse objects. Used when the API returns a collection of DomainHostResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainHostArray = await api.getDomainHosts();
+ * ```
+ *
+ * @see {@link DomainHost} - The individual DomainHostResponse type definition
+ */
+export type DomainHostArray = DomainHost[];
 /**
  * DomainSearchSuggestionWithPrice
  *

@@ -2767,6 +2767,16 @@ export interface components {
          * @enum {string}
          */
         DomainForwardZoneSortField: "name" | "created_on" | "updated_on";
+        /** DomainHostResponse */
+        DomainHostResponse: {
+            /**
+             * Host Id
+             * Format: typeid
+             * @description The host id of the host
+             * @example host_01h45ytscbebyvny4gc8cr8ma2
+             */
+            host_id: TypeId<"host">;
+        };
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -2928,6 +2938,11 @@ export interface components {
              */
             expires_on?: Date | null;
             /**
+             * Hosts
+             * @description The subordinate hosts of the domain
+             */
+            hosts?: components["schemas"]["DomainHostResponse"][];
+            /**
              * Name
              * @description The domain name
              * @example example.com
@@ -2935,7 +2950,7 @@ export interface components {
             name: string;
             /**
              * Nameservers
-             * @description All the domain statuses
+             * @description The nameservers of the domain
              */
             nameservers?: components["schemas"]["Nameserver"][];
             /**

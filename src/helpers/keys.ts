@@ -78,6 +78,7 @@ import { DomainForwardRequest } from './schemas';
 import { DomainForwardSetRequest } from './schemas';
 import { DomainForwardSet } from './schemas';
 import { DomainForwardZone } from './schemas';
+import { DomainHost } from './schemas';
 import { DomainLifecycleBase } from './schemas';
 import { DomainNameParts } from './schemas';
 import { DomainPeriod } from './schemas';
@@ -7499,6 +7500,57 @@ export const KEYS_DOMAIN_FORWARD_ZONE = [
 ] as const satisfies (keyof DomainForwardZone)[];
 
 /**
+ * Host Id
+ *
+ * The host id of the host
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `host_id` property of DomainHost objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainhost[KEY_DOMAIN_HOST_HOST_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_HOST_HOST_ID;
+ * const value = domainhost[propertyName];
+ * ```
+ *
+ * @see {@link DomainHost} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_HOST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_HOST_HOST_ID = 'host_id' as keyof DomainHost;
+
+/**
+ * Array of all DomainHost property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainHost objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_HOST) {
+ *   console.log(`Property: ${key}, Value: ${domainhost[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_HOST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainHost} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_HOST = [
+  KEY_DOMAIN_HOST_HOST_ID,
+] as const satisfies (keyof DomainHost)[];
+
+/**
  * Add Grace Period
  *
  * Add grace period in days after registration in ISO 8601 format (e.g., 5D, 3D)
@@ -8420,6 +8472,32 @@ export const KEY_DOMAIN_DOMAIN_ID = 'domain_id' as keyof Domain;
  */
 export const KEY_DOMAIN_EXPIRES_ON = 'expires_on' as keyof Domain;
 /**
+ * Hosts
+ *
+ * The subordinate hosts of the domain
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `hosts` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_HOSTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_HOSTS;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_HOSTS = 'hosts' as keyof Domain;
+/**
  * Name
  *
  * The domain name
@@ -8448,7 +8526,7 @@ export const KEY_DOMAIN_NAME = 'name' as keyof Domain;
 /**
  * Nameservers
  *
- * All the domain statuses
+ * The nameservers of the domain
  *
  * @type {array}
  *
@@ -8758,6 +8836,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_DELETED_ON,
   KEY_DOMAIN_DOMAIN_ID,
   KEY_DOMAIN_EXPIRES_ON,
+  KEY_DOMAIN_HOSTS,
   KEY_DOMAIN_NAME,
   KEY_DOMAIN_NAMESERVERS,
   KEY_DOMAIN_OWNER_ID,
