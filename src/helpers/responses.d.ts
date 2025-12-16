@@ -2335,10 +2335,11 @@ export type GET_DnsEmailForwards_Response_422 = HTTPValidationError
  * @path /v1/dns/summary
  *
  * @see {@link GET_DnsSummary_Response_200} - 200 response type
+ * @see {@link GET_DnsSummary_Response_422} - 422 response type
  *
 
  */
-export type GET_DnsSummary_Response = GET_DnsSummary_Response_200;
+export type GET_DnsSummary_Response = GET_DnsSummary_Response_200 | GET_DnsSummary_Response_422;
 
 /**
  * 200 response for GET DnsSummary endpoint
@@ -2356,6 +2357,23 @@ export type GET_DnsSummary_Response = GET_DnsSummary_Response_200;
  * @see {@link DnsZoneSummary} - The actual schema type definition
  */
 export type GET_DnsSummary_Response_200 = DnsZoneSummary
+
+/**
+ * 422 response for GET DnsSummary endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DnsSummary endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/dns/summary
+ *
+ * @see {@link GET_DnsSummary_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DnsSummary_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainForwards endpoint
@@ -4760,10 +4778,11 @@ export type GET_DomainsCheck_Response_422 = HTTPValidationError
  * @path /v1/domains/summary
  *
  * @see {@link GET_DomainsSummary_Response_200} - 200 response type
+ * @see {@link GET_DomainsSummary_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainsSummary_Response = GET_DomainsSummary_Response_200;
+export type GET_DomainsSummary_Response = GET_DomainsSummary_Response_200 | GET_DomainsSummary_Response_422;
 
 /**
  * 200 response for GET DomainsSummary endpoint
@@ -4781,6 +4800,23 @@ export type GET_DomainsSummary_Response = GET_DomainsSummary_Response_200;
  * @see {@link DomainSummary} - The actual schema type definition
  */
 export type GET_DomainsSummary_Response_200 = DomainSummary
+
+/**
+ * 422 response for GET DomainsSummary endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainsSummary endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/summary
+ *
+ * @see {@link GET_DomainsSummary_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainsSummary_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST DomainsTldSpecificAtByDomainReferenceWithdraw endpoint
@@ -7553,10 +7589,11 @@ Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6
  * @see {@link GET_OrganizationsIpRestrictions_Response_200} - 200 response type
  * @see {@link GET_OrganizationsIpRestrictions_Response_401} - 401 response type
  * @see {@link GET_OrganizationsIpRestrictions_Response_403} - 403 response type
+ * @see {@link GET_OrganizationsIpRestrictions_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsIpRestrictions_Response = GET_OrganizationsIpRestrictions_Response_200 | GET_OrganizationsIpRestrictions_Response_401 | GET_OrganizationsIpRestrictions_Response_403;
+export type GET_OrganizationsIpRestrictions_Response = GET_OrganizationsIpRestrictions_Response_200 | GET_OrganizationsIpRestrictions_Response_401 | GET_OrganizationsIpRestrictions_Response_403 | GET_OrganizationsIpRestrictions_Response_422;
 
 /**
  * 200 response for GET OrganizationsIpRestrictions endpoint
@@ -7608,6 +7645,23 @@ export type GET_OrganizationsIpRestrictions_Response_401 = Problem
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_OrganizationsIpRestrictions_Response_403 = Problem
+
+/**
+ * 422 response for GET OrganizationsIpRestrictions endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsIpRestrictions endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/ip-restrictions
+ *
+ * @see {@link GET_OrganizationsIpRestrictions_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsIpRestrictions_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST OrganizationsIpRestrictions endpoint
@@ -7987,10 +8041,11 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HT
  *
  * @see {@link GET_OrganizationsRoles_Response_401} - 401 response type
  * @see {@link GET_OrganizationsRoles_Response_403} - 403 response type
+ * @see {@link GET_OrganizationsRoles_Response_422} - 422 response type
  *
 
  */
-export type GET_OrganizationsRoles_Response = GET_OrganizationsRoles_Response_401 | GET_OrganizationsRoles_Response_403;
+export type GET_OrganizationsRoles_Response = GET_OrganizationsRoles_Response_401 | GET_OrganizationsRoles_Response_403 | GET_OrganizationsRoles_Response_422;
 
 /**
  * 401 response for GET OrganizationsRoles endpoint
@@ -8025,6 +8080,23 @@ export type GET_OrganizationsRoles_Response_401 = Problem
  * @see {@link Problem} - The actual schema type definition
  */
 export type GET_OrganizationsRoles_Response_403 = Problem
+
+/**
+ * 422 response for GET OrganizationsRoles endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET OrganizationsRoles endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/organizations/roles
+ *
+ * @see {@link GET_OrganizationsRoles_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_OrganizationsRoles_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET OrganizationsUsers endpoint
@@ -8246,10 +8318,11 @@ export type GET_TldsByTld_Response_422 = HTTPValidationError
  * @path /v1/tlds/portfolio
  *
  * @see {@link GET_TldsPortfolio_Response_200} - 200 response type
+ * @see {@link GET_TldsPortfolio_Response_422} - 422 response type
  *
 
  */
-export type GET_TldsPortfolio_Response = GET_TldsPortfolio_Response_200;
+export type GET_TldsPortfolio_Response = GET_TldsPortfolio_Response_200 | GET_TldsPortfolio_Response_422;
 
 /**
  * 200 response for GET TldsPortfolio endpoint
@@ -8267,6 +8340,23 @@ export type GET_TldsPortfolio_Response = GET_TldsPortfolio_Response_200;
  * @see {@link TldResponseShort} - The actual schema type definition
  */
 export type GET_TldsPortfolio_Response_200 = TldResponseShortArray
+
+/**
+ * 422 response for GET TldsPortfolio endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET TldsPortfolio endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tlds/portfolio
+ *
+ * @see {@link GET_TldsPortfolio_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_TldsPortfolio_Response_422 = HTTPValidationError
 
 /**
  * Response types for POST Users endpoint

@@ -6873,6 +6873,15 @@ export interface operations {
                     "application/json": components["schemas"]["DnsZoneSummary"];
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     get_zone_v1_dns__zone_name__get: {
@@ -8556,6 +8565,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DomainSummaryResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -10759,6 +10777,15 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
         };
     };
     create_ip_restriction_v1_organizations_ip_restrictions_post: {
@@ -11065,6 +11092,15 @@ export interface operations {
                      *       "type": "permission-denied"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -11615,6 +11651,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["TldResponseShort"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

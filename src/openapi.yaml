@@ -5999,7 +5999,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-12-074144
+  version: 2025-12-16-155016
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8061,6 +8061,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/DnsZoneSummary'
           description: DNS zones summary retrieved successfully
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
       security:
       - OAuth2PasswordBearer: []
       summary: Get Zones Summary
@@ -10205,6 +10211,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/DomainSummaryResponse'
           description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
       security:
       - OAuth2PasswordBearer: []
       summary: Get domain summary
@@ -12472,6 +12484,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
       security:
       - OAuth2PasswordBearer: []
       summary: List IP restrictions
@@ -12743,6 +12761,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
       security:
       - OAuth2PasswordBearer: []
       summary: List all roles
@@ -13400,6 +13424,12 @@ paths:
                 title: Response Get Tld Portfolio V1 Tlds Portfolio Get
                 type: array
           description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
       security:
       - OAuth2PasswordBearer: []
       summary: Get the list of TLDs we support
