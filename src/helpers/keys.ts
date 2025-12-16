@@ -200,7 +200,7 @@ import { DomainAvailabilityCheck } from './schemas';
  * @see {@link AllowedNumberOfNameserverBase} - The TypeScript type definition
  * @see {@link KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE} - Array of all keys for this type
  */
-export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX = 'max' as keyof AllowedNumberOfNameserverBase;
+export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX: keyof AllowedNumberOfNameserverBase = 'max';
 /**
  * Min
  *
@@ -226,7 +226,7 @@ export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX = 'max' as keyof AllowedN
  * @see {@link AllowedNumberOfNameserverBase} - The TypeScript type definition
  * @see {@link KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE} - Array of all keys for this type
  */
-export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN = 'min' as keyof AllowedNumberOfNameserverBase;
+export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN: keyof AllowedNumberOfNameserverBase = 'min';
 
 /**
  * Array of all AllowedNumberOfNameserverBase property keys
@@ -277,7 +277,7 @@ export const KEYS_ALLOWED_NUMBER_OF_NAMESERVER_BASE = [
  * @see {@link BillingMetadata} - The TypeScript type definition
  * @see {@link KEYS_BILLING_METADATA} - Array of all keys for this type
  */
-export const KEY_BILLING_METADATA_BILLING_MODEL = 'billing_model' as keyof BillingMetadata;
+export const KEY_BILLING_METADATA_BILLING_MODEL: keyof BillingMetadata = 'billing_model';
 /**
  * Credit Limit
  *
@@ -302,7 +302,7 @@ export const KEY_BILLING_METADATA_BILLING_MODEL = 'billing_model' as keyof Billi
  * @see {@link BillingMetadata} - The TypeScript type definition
  * @see {@link KEYS_BILLING_METADATA} - Array of all keys for this type
  */
-export const KEY_BILLING_METADATA_CREDIT_LIMIT = 'credit_limit' as keyof BillingMetadata;
+export const KEY_BILLING_METADATA_CREDIT_LIMIT: keyof BillingMetadata = 'credit_limit';
 /**
  * Customer Number
  *
@@ -327,7 +327,7 @@ export const KEY_BILLING_METADATA_CREDIT_LIMIT = 'credit_limit' as keyof Billing
  * @see {@link BillingMetadata} - The TypeScript type definition
  * @see {@link KEYS_BILLING_METADATA} - Array of all keys for this type
  */
-export const KEY_BILLING_METADATA_CUSTOMER_NUMBER = 'customer_number' as keyof BillingMetadata;
+export const KEY_BILLING_METADATA_CUSTOMER_NUMBER: keyof BillingMetadata = 'customer_number';
 
 /**
  * Array of all BillingMetadata property keys
@@ -380,7 +380,7 @@ export const KEYS_BILLING_METADATA = [
  * @see {@link BillingPlan} - The TypeScript type definition
  * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
  */
-export const KEY_BILLING_PLAN_AMOUNT = 'amount' as keyof BillingPlan;
+export const KEY_BILLING_PLAN_AMOUNT: keyof BillingPlan = 'amount';
 /**
  * currency property
  *
@@ -405,7 +405,7 @@ export const KEY_BILLING_PLAN_AMOUNT = 'amount' as keyof BillingPlan;
  * @see {@link BillingPlan} - The TypeScript type definition
  * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
  */
-export const KEY_BILLING_PLAN_CURRENCY = 'currency' as keyof BillingPlan;
+export const KEY_BILLING_PLAN_CURRENCY: keyof BillingPlan = 'currency';
 /**
  * Name
  *
@@ -430,7 +430,7 @@ export const KEY_BILLING_PLAN_CURRENCY = 'currency' as keyof BillingPlan;
  * @see {@link BillingPlan} - The TypeScript type definition
  * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
  */
-export const KEY_BILLING_PLAN_NAME = 'name' as keyof BillingPlan;
+export const KEY_BILLING_PLAN_NAME: keyof BillingPlan = 'name';
 /**
  * Plan Id
  *
@@ -455,7 +455,7 @@ export const KEY_BILLING_PLAN_NAME = 'name' as keyof BillingPlan;
  * @see {@link BillingPlan} - The TypeScript type definition
  * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
  */
-export const KEY_BILLING_PLAN_PLAN_ID = 'plan_id' as keyof BillingPlan;
+export const KEY_BILLING_PLAN_PLAN_ID: keyof BillingPlan = 'plan_id';
 /**
  * Plan Level
  *
@@ -480,7 +480,7 @@ export const KEY_BILLING_PLAN_PLAN_ID = 'plan_id' as keyof BillingPlan;
  * @see {@link BillingPlan} - The TypeScript type definition
  * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
  */
-export const KEY_BILLING_PLAN_PLAN_LEVEL = 'plan_level' as keyof BillingPlan;
+export const KEY_BILLING_PLAN_PLAN_LEVEL: keyof BillingPlan = 'plan_level';
 /**
  * Type
  *
@@ -505,7 +505,7 @@ export const KEY_BILLING_PLAN_PLAN_LEVEL = 'plan_level' as keyof BillingPlan;
  * @see {@link BillingPlan} - The TypeScript type definition
  * @see {@link KEYS_BILLING_PLAN} - Array of all keys for this type
  */
-export const KEY_BILLING_PLAN_TYPE = 'type' as keyof BillingPlan;
+export const KEY_BILLING_PLAN_TYPE: keyof BillingPlan = 'type';
 
 /**
  * Array of all BillingPlan property keys
@@ -560,7 +560,7 @@ export const KEYS_BILLING_PLAN = [
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_ACTION = 'action' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_ACTION: keyof BillingTransaction = 'action';
 /**
  * Amount
  *
@@ -586,7 +586,7 @@ export const KEY_BILLING_TRANSACTION_ACTION = 'action' as keyof BillingTransacti
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_AMOUNT = 'amount' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_AMOUNT: keyof BillingTransaction = 'amount';
 /**
  * Billing Transaction Id
  *
@@ -611,7 +611,7 @@ export const KEY_BILLING_TRANSACTION_AMOUNT = 'amount' as keyof BillingTransacti
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_BILLING_TRANSACTION_ID = 'billing_transaction_id' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_BILLING_TRANSACTION_ID: keyof BillingTransaction = 'billing_transaction_id';
 /**
  * Completed On
  *
@@ -636,7 +636,7 @@ export const KEY_BILLING_TRANSACTION_BILLING_TRANSACTION_ID = 'billing_transacti
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_COMPLETED_ON = 'completed_on' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_COMPLETED_ON: keyof BillingTransaction = 'completed_on';
 /**
  * Created On
  *
@@ -662,7 +662,7 @@ export const KEY_BILLING_TRANSACTION_COMPLETED_ON = 'completed_on' as keyof Bill
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_CREATED_ON = 'created_on' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_CREATED_ON: keyof BillingTransaction = 'created_on';
 /**
  * currency property
  *
@@ -687,7 +687,7 @@ export const KEY_BILLING_TRANSACTION_CREATED_ON = 'created_on' as keyof BillingT
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_CURRENCY = 'currency' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_CURRENCY: keyof BillingTransaction = 'currency';
 /**
  * Price
  *
@@ -713,7 +713,7 @@ export const KEY_BILLING_TRANSACTION_CURRENCY = 'currency' as keyof BillingTrans
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_PRICE = 'price' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_PRICE: keyof BillingTransaction = 'price';
 /**
  * Product Reference
  *
@@ -738,7 +738,7 @@ export const KEY_BILLING_TRANSACTION_PRICE = 'price' as keyof BillingTransaction
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_PRODUCT_REFERENCE = 'product_reference' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_PRODUCT_REFERENCE: keyof BillingTransaction = 'product_reference';
 /**
  * product_type property
  *
@@ -763,7 +763,7 @@ export const KEY_BILLING_TRANSACTION_PRODUCT_REFERENCE = 'product_reference' as 
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_PRODUCT_TYPE = 'product_type' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_PRODUCT_TYPE: keyof BillingTransaction = 'product_type';
 /**
  * status property
  *
@@ -788,7 +788,7 @@ export const KEY_BILLING_TRANSACTION_PRODUCT_TYPE = 'product_type' as keyof Bill
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_STATUS = 'status' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_STATUS: keyof BillingTransaction = 'status';
 /**
  * Tax Amount
  *
@@ -814,7 +814,7 @@ export const KEY_BILLING_TRANSACTION_STATUS = 'status' as keyof BillingTransacti
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_TAX_AMOUNT = 'tax_amount' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_TAX_AMOUNT: keyof BillingTransaction = 'tax_amount';
 /**
  * Tax Rate
  *
@@ -840,7 +840,7 @@ export const KEY_BILLING_TRANSACTION_TAX_AMOUNT = 'tax_amount' as keyof BillingT
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_TAX_RATE = 'tax_rate' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_TAX_RATE: keyof BillingTransaction = 'tax_rate';
 /**
  * Updated On
  *
@@ -866,7 +866,7 @@ export const KEY_BILLING_TRANSACTION_TAX_RATE = 'tax_rate' as keyof BillingTrans
  * @see {@link BillingTransaction} - The TypeScript type definition
  * @see {@link KEYS_BILLING_TRANSACTION} - Array of all keys for this type
  */
-export const KEY_BILLING_TRANSACTION_UPDATED_ON = 'updated_on' as keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_UPDATED_ON: keyof BillingTransaction = 'updated_on';
 
 /**
  * Array of all BillingTransaction property keys
@@ -928,7 +928,7 @@ export const KEYS_BILLING_TRANSACTION = [
  * @see {@link ContactAttributeDefinition} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_ATTRIBUTE_DEFINITION} - Array of all keys for this type
  */
-export const KEY_CONTACT_ATTRIBUTE_DEFINITION_KEY = 'key' as keyof ContactAttributeDefinition;
+export const KEY_CONTACT_ATTRIBUTE_DEFINITION_KEY: keyof ContactAttributeDefinition = 'key';
 /**
  * type property
  *
@@ -953,7 +953,7 @@ export const KEY_CONTACT_ATTRIBUTE_DEFINITION_KEY = 'key' as keyof ContactAttrib
  * @see {@link ContactAttributeDefinition} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_ATTRIBUTE_DEFINITION} - Array of all keys for this type
  */
-export const KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE = 'type' as keyof ContactAttributeDefinition;
+export const KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE: keyof ContactAttributeDefinition = 'type';
 /**
  * Values
  *
@@ -978,7 +978,7 @@ export const KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE = 'type' as keyof ContactAttr
  * @see {@link ContactAttributeDefinition} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_ATTRIBUTE_DEFINITION} - Array of all keys for this type
  */
-export const KEY_CONTACT_ATTRIBUTE_DEFINITION_VALUES = 'values' as keyof ContactAttributeDefinition;
+export const KEY_CONTACT_ATTRIBUTE_DEFINITION_VALUES: keyof ContactAttributeDefinition = 'values';
 
 /**
  * Array of all ContactAttributeDefinition property keys
@@ -1031,7 +1031,7 @@ export const KEYS_CONTACT_ATTRIBUTE_DEFINITION = [
  * @see {@link ContactConfigBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CONFIG_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CONFIG_BASE_MAX = 'max' as keyof ContactConfigBase;
+export const KEY_CONTACT_CONFIG_BASE_MAX: keyof ContactConfigBase = 'max';
 /**
  * Min
  *
@@ -1057,7 +1057,7 @@ export const KEY_CONTACT_CONFIG_BASE_MAX = 'max' as keyof ContactConfigBase;
  * @see {@link ContactConfigBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CONFIG_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CONFIG_BASE_MIN = 'min' as keyof ContactConfigBase;
+export const KEY_CONTACT_CONFIG_BASE_MIN: keyof ContactConfigBase = 'min';
 /**
  * type property
  *
@@ -1082,7 +1082,7 @@ export const KEY_CONTACT_CONFIG_BASE_MIN = 'min' as keyof ContactConfigBase;
  * @see {@link ContactConfigBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CONFIG_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CONFIG_BASE_TYPE = 'type' as keyof ContactConfigBase;
+export const KEY_CONTACT_CONFIG_BASE_TYPE: keyof ContactConfigBase = 'type';
 
 /**
  * Array of all ContactConfigBase property keys
@@ -1135,7 +1135,7 @@ export const KEYS_CONTACT_CONFIG_BASE = [
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_CITY = 'city' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_CITY: keyof ContactCreate = 'city';
 /**
  * Country
  *
@@ -1161,7 +1161,7 @@ export const KEY_CONTACT_CREATE_CITY = 'city' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_COUNTRY = 'country' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_COUNTRY: keyof ContactCreate = 'country';
 /**
  * Disclose
  *
@@ -1187,7 +1187,7 @@ export const KEY_CONTACT_CREATE_COUNTRY = 'country' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_DISCLOSE = 'disclose' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_DISCLOSE: keyof ContactCreate = 'disclose';
 /**
  * Email
  *
@@ -1213,7 +1213,7 @@ export const KEY_CONTACT_CREATE_DISCLOSE = 'disclose' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_EMAIL = 'email' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_EMAIL: keyof ContactCreate = 'email';
 /**
  * Fax
  *
@@ -1238,7 +1238,7 @@ export const KEY_CONTACT_CREATE_EMAIL = 'email' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_FAX = 'fax' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_FAX: keyof ContactCreate = 'fax';
 /**
  * First Name
  *
@@ -1264,7 +1264,7 @@ export const KEY_CONTACT_CREATE_FAX = 'fax' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_FIRST_NAME = 'first_name' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_FIRST_NAME: keyof ContactCreate = 'first_name';
 /**
  * Last Name
  *
@@ -1290,7 +1290,7 @@ export const KEY_CONTACT_CREATE_FIRST_NAME = 'first_name' as keyof ContactCreate
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_LAST_NAME = 'last_name' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_LAST_NAME: keyof ContactCreate = 'last_name';
 /**
  * Org
  *
@@ -1315,7 +1315,7 @@ export const KEY_CONTACT_CREATE_LAST_NAME = 'last_name' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_ORG = 'org' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_ORG: keyof ContactCreate = 'org';
 /**
  * Phone
  *
@@ -1341,7 +1341,7 @@ export const KEY_CONTACT_CREATE_ORG = 'org' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_PHONE = 'phone' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_PHONE: keyof ContactCreate = 'phone';
 /**
  * Postal Code
  *
@@ -1367,7 +1367,7 @@ export const KEY_CONTACT_CREATE_PHONE = 'phone' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_POSTAL_CODE = 'postal_code' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_POSTAL_CODE: keyof ContactCreate = 'postal_code';
 /**
  * State
  *
@@ -1392,7 +1392,7 @@ export const KEY_CONTACT_CREATE_POSTAL_CODE = 'postal_code' as keyof ContactCrea
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_STATE = 'state' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_STATE: keyof ContactCreate = 'state';
 /**
  * Street
  *
@@ -1418,7 +1418,7 @@ export const KEY_CONTACT_CREATE_STATE = 'state' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_STREET = 'street' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_STREET: keyof ContactCreate = 'street';
 /**
  * Title
  *
@@ -1443,7 +1443,7 @@ export const KEY_CONTACT_CREATE_STREET = 'street' as keyof ContactCreate;
  * @see {@link ContactCreate} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_CREATE} - Array of all keys for this type
  */
-export const KEY_CONTACT_CREATE_TITLE = 'title' as keyof ContactCreate;
+export const KEY_CONTACT_CREATE_TITLE: keyof ContactCreate = 'title';
 
 /**
  * Array of all ContactCreate property keys
@@ -1505,7 +1505,7 @@ export const KEYS_CONTACT_CREATE = [
  * @see {@link ContactHandle} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_HANDLE} - Array of all keys for this type
  */
-export const KEY_CONTACT_HANDLE_ATTRIBUTES = 'attributes' as keyof ContactHandle;
+export const KEY_CONTACT_HANDLE_ATTRIBUTES: keyof ContactHandle = 'attributes';
 /**
  * Contact Id
  *
@@ -1531,7 +1531,7 @@ export const KEY_CONTACT_HANDLE_ATTRIBUTES = 'attributes' as keyof ContactHandle
  * @see {@link ContactHandle} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_HANDLE} - Array of all keys for this type
  */
-export const KEY_CONTACT_HANDLE_CONTACT_ID = 'contact_id' as keyof ContactHandle;
+export const KEY_CONTACT_HANDLE_CONTACT_ID: keyof ContactHandle = 'contact_id';
 
 /**
  * Array of all ContactHandle property keys
@@ -1583,7 +1583,7 @@ export const KEYS_CONTACT_HANDLE = [
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_CITY = 'city' as keyof Contact;
+export const KEY_CONTACT_CITY: keyof Contact = 'city';
 /**
  * Country
  *
@@ -1609,7 +1609,7 @@ export const KEY_CONTACT_CITY = 'city' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_COUNTRY = 'country' as keyof Contact;
+export const KEY_CONTACT_COUNTRY: keyof Contact = 'country';
 /**
  * Disclose
  *
@@ -1635,7 +1635,7 @@ export const KEY_CONTACT_COUNTRY = 'country' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_DISCLOSE = 'disclose' as keyof Contact;
+export const KEY_CONTACT_DISCLOSE: keyof Contact = 'disclose';
 /**
  * Email
  *
@@ -1661,7 +1661,7 @@ export const KEY_CONTACT_DISCLOSE = 'disclose' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_EMAIL = 'email' as keyof Contact;
+export const KEY_CONTACT_EMAIL: keyof Contact = 'email';
 /**
  * Fax
  *
@@ -1686,7 +1686,7 @@ export const KEY_CONTACT_EMAIL = 'email' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_FAX = 'fax' as keyof Contact;
+export const KEY_CONTACT_FAX: keyof Contact = 'fax';
 /**
  * First Name
  *
@@ -1712,7 +1712,7 @@ export const KEY_CONTACT_FAX = 'fax' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_FIRST_NAME = 'first_name' as keyof Contact;
+export const KEY_CONTACT_FIRST_NAME: keyof Contact = 'first_name';
 /**
  * Last Name
  *
@@ -1738,7 +1738,7 @@ export const KEY_CONTACT_FIRST_NAME = 'first_name' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_LAST_NAME = 'last_name' as keyof Contact;
+export const KEY_CONTACT_LAST_NAME: keyof Contact = 'last_name';
 /**
  * Org
  *
@@ -1763,7 +1763,7 @@ export const KEY_CONTACT_LAST_NAME = 'last_name' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_ORG = 'org' as keyof Contact;
+export const KEY_CONTACT_ORG: keyof Contact = 'org';
 /**
  * Phone
  *
@@ -1789,7 +1789,7 @@ export const KEY_CONTACT_ORG = 'org' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_PHONE = 'phone' as keyof Contact;
+export const KEY_CONTACT_PHONE: keyof Contact = 'phone';
 /**
  * Postal Code
  *
@@ -1815,7 +1815,7 @@ export const KEY_CONTACT_PHONE = 'phone' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_POSTAL_CODE = 'postal_code' as keyof Contact;
+export const KEY_CONTACT_POSTAL_CODE: keyof Contact = 'postal_code';
 /**
  * State
  *
@@ -1840,7 +1840,7 @@ export const KEY_CONTACT_POSTAL_CODE = 'postal_code' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_STATE = 'state' as keyof Contact;
+export const KEY_CONTACT_STATE: keyof Contact = 'state';
 /**
  * Street
  *
@@ -1866,7 +1866,7 @@ export const KEY_CONTACT_STATE = 'state' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_STREET = 'street' as keyof Contact;
+export const KEY_CONTACT_STREET: keyof Contact = 'street';
 /**
  * Title
  *
@@ -1891,7 +1891,7 @@ export const KEY_CONTACT_STREET = 'street' as keyof Contact;
  * @see {@link Contact} - The TypeScript type definition
  * @see {@link KEYS_CONTACT} - Array of all keys for this type
  */
-export const KEY_CONTACT_TITLE = 'title' as keyof Contact;
+export const KEY_CONTACT_TITLE: keyof Contact = 'title';
 
 /**
  * Array of all Contact property keys
@@ -1954,7 +1954,7 @@ export const KEYS_CONTACT = [
  * @see {@link ContactRoleAttributeRequirement} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT} - Array of all keys for this type
  */
-export const KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ATTRIBUTES = 'attributes' as keyof ContactRoleAttributeRequirement;
+export const KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ATTRIBUTES: keyof ContactRoleAttributeRequirement = 'attributes';
 /**
  * role property
  *
@@ -1979,7 +1979,7 @@ export const KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ATTRIBUTES = 'attributes' as
  * @see {@link ContactRoleAttributeRequirement} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT} - Array of all keys for this type
  */
-export const KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ROLE = 'role' as keyof ContactRoleAttributeRequirement;
+export const KEY_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT_ROLE: keyof ContactRoleAttributeRequirement = 'role';
 
 /**
  * Array of all ContactRoleAttributeRequirement property keys
@@ -2031,7 +2031,7 @@ export const KEYS_CONTACT_ROLE_ATTRIBUTE_REQUIREMENT = [
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_CITY = 'city' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_CITY: keyof ContactSchema = 'city';
 /**
  * Contact Id
  *
@@ -2056,7 +2056,7 @@ export const KEY_CONTACT_SCHEMA_CITY = 'city' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_CONTACT_ID = 'contact_id' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_CONTACT_ID: keyof ContactSchema = 'contact_id';
 /**
  * Country
  *
@@ -2082,7 +2082,7 @@ export const KEY_CONTACT_SCHEMA_CONTACT_ID = 'contact_id' as keyof ContactSchema
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_COUNTRY = 'country' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_COUNTRY: keyof ContactSchema = 'country';
 /**
  * Created On
  *
@@ -2108,7 +2108,7 @@ export const KEY_CONTACT_SCHEMA_COUNTRY = 'country' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_CREATED_ON = 'created_on' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_CREATED_ON: keyof ContactSchema = 'created_on';
 /**
  * Deleted On
  *
@@ -2133,7 +2133,7 @@ export const KEY_CONTACT_SCHEMA_CREATED_ON = 'created_on' as keyof ContactSchema
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_DELETED_ON = 'deleted_on' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_DELETED_ON: keyof ContactSchema = 'deleted_on';
 /**
  * Disclose
  *
@@ -2159,7 +2159,7 @@ export const KEY_CONTACT_SCHEMA_DELETED_ON = 'deleted_on' as keyof ContactSchema
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_DISCLOSE = 'disclose' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_DISCLOSE: keyof ContactSchema = 'disclose';
 /**
  * Email
  *
@@ -2185,7 +2185,7 @@ export const KEY_CONTACT_SCHEMA_DISCLOSE = 'disclose' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_EMAIL = 'email' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_EMAIL: keyof ContactSchema = 'email';
 /**
  * Fax
  *
@@ -2210,7 +2210,7 @@ export const KEY_CONTACT_SCHEMA_EMAIL = 'email' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_FAX = 'fax' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_FAX: keyof ContactSchema = 'fax';
 /**
  * First Name
  *
@@ -2236,7 +2236,7 @@ export const KEY_CONTACT_SCHEMA_FAX = 'fax' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_FIRST_NAME = 'first_name' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_FIRST_NAME: keyof ContactSchema = 'first_name';
 /**
  * Last Name
  *
@@ -2262,7 +2262,7 @@ export const KEY_CONTACT_SCHEMA_FIRST_NAME = 'first_name' as keyof ContactSchema
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_LAST_NAME = 'last_name' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_LAST_NAME: keyof ContactSchema = 'last_name';
 /**
  * Org
  *
@@ -2287,7 +2287,7 @@ export const KEY_CONTACT_SCHEMA_LAST_NAME = 'last_name' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_ORG = 'org' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_ORG: keyof ContactSchema = 'org';
 /**
  * Organization Id
  *
@@ -2313,7 +2313,7 @@ export const KEY_CONTACT_SCHEMA_ORG = 'org' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_ORGANIZATION_ID = 'organization_id' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_ORGANIZATION_ID: keyof ContactSchema = 'organization_id';
 /**
  * Phone
  *
@@ -2339,7 +2339,7 @@ export const KEY_CONTACT_SCHEMA_ORGANIZATION_ID = 'organization_id' as keyof Con
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_PHONE = 'phone' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_PHONE: keyof ContactSchema = 'phone';
 /**
  * Postal Code
  *
@@ -2365,7 +2365,7 @@ export const KEY_CONTACT_SCHEMA_PHONE = 'phone' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_POSTAL_CODE = 'postal_code' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_POSTAL_CODE: keyof ContactSchema = 'postal_code';
 /**
  * State
  *
@@ -2390,7 +2390,7 @@ export const KEY_CONTACT_SCHEMA_POSTAL_CODE = 'postal_code' as keyof ContactSche
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_STATE = 'state' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_STATE: keyof ContactSchema = 'state';
 /**
  * Street
  *
@@ -2416,7 +2416,7 @@ export const KEY_CONTACT_SCHEMA_STATE = 'state' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_STREET = 'street' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_STREET: keyof ContactSchema = 'street';
 /**
  * Title
  *
@@ -2441,7 +2441,7 @@ export const KEY_CONTACT_SCHEMA_STREET = 'street' as keyof ContactSchema;
  * @see {@link ContactSchema} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_CONTACT_SCHEMA_TITLE = 'title' as keyof ContactSchema;
+export const KEY_CONTACT_SCHEMA_TITLE: keyof ContactSchema = 'title';
 
 /**
  * Array of all ContactSchema property keys
@@ -2507,7 +2507,7 @@ export const KEYS_CONTACT_SCHEMA = [
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_CANCELED_ON = 'canceled_on' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_CANCELED_ON: keyof ContactVerificationApi = 'canceled_on';
 /**
  * Contact Id
  *
@@ -2533,7 +2533,7 @@ export const KEY_CONTACT_VERIFICATION_API_CANCELED_ON = 'canceled_on' as keyof C
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_CONTACT_ID = 'contact_id' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_CONTACT_ID: keyof ContactVerificationApi = 'contact_id';
 /**
  * Contact Verification Id
  *
@@ -2558,7 +2558,7 @@ export const KEY_CONTACT_VERIFICATION_API_CONTACT_ID = 'contact_id' as keyof Con
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID: keyof ContactVerificationApi = 'contact_verification_id';
 /**
  * Created On
  *
@@ -2584,7 +2584,7 @@ export const KEY_CONTACT_VERIFICATION_API_CONTACT_VERIFICATION_ID = 'contact_ver
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_CREATED_ON = 'created_on' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_CREATED_ON: keyof ContactVerificationApi = 'created_on';
 /**
  * status property
  *
@@ -2609,7 +2609,7 @@ export const KEY_CONTACT_VERIFICATION_API_CREATED_ON = 'created_on' as keyof Con
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_STATUS = 'status' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_STATUS: keyof ContactVerificationApi = 'status';
 /**
  * Token
  *
@@ -2635,7 +2635,7 @@ export const KEY_CONTACT_VERIFICATION_API_STATUS = 'status' as keyof ContactVeri
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_TOKEN = 'token' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_TOKEN: keyof ContactVerificationApi = 'token';
 /**
  * type property
  *
@@ -2660,7 +2660,7 @@ export const KEY_CONTACT_VERIFICATION_API_TOKEN = 'token' as keyof ContactVerifi
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_TYPE = 'type' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_TYPE: keyof ContactVerificationApi = 'type';
 /**
  * Updated On
  *
@@ -2686,7 +2686,7 @@ export const KEY_CONTACT_VERIFICATION_API_TYPE = 'type' as keyof ContactVerifica
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_UPDATED_ON = 'updated_on' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_UPDATED_ON: keyof ContactVerificationApi = 'updated_on';
 /**
  * Verified On
  *
@@ -2711,7 +2711,7 @@ export const KEY_CONTACT_VERIFICATION_API_UPDATED_ON = 'updated_on' as keyof Con
  * @see {@link ContactVerificationApi} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_API} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_API_VERIFIED_ON = 'verified_on' as keyof ContactVerificationApi;
+export const KEY_CONTACT_VERIFICATION_API_VERIFIED_ON: keyof ContactVerificationApi = 'verified_on';
 
 /**
  * Array of all ContactVerificationApi property keys
@@ -2769,7 +2769,7 @@ export const KEYS_CONTACT_VERIFICATION_API = [
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON = 'canceled_on' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON: keyof ContactVerificationEmail = 'canceled_on';
 /**
  * Contact Id
  *
@@ -2795,7 +2795,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_CANCELED_ON = 'canceled_on' as keyof
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID = 'contact_id' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID: keyof ContactVerificationEmail = 'contact_id';
 /**
  * Contact Verification Id
  *
@@ -2820,7 +2820,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_ID = 'contact_id' as keyof C
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID: keyof ContactVerificationEmail = 'contact_verification_id';
 /**
  * Created On
  *
@@ -2846,7 +2846,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_CONTACT_VERIFICATION_ID = 'contact_v
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_CREATED_ON = 'created_on' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_CREATED_ON: keyof ContactVerificationEmail = 'created_on';
 /**
  * status property
  *
@@ -2871,7 +2871,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_CREATED_ON = 'created_on' as keyof C
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_STATUS = 'status' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_STATUS: keyof ContactVerificationEmail = 'status';
 /**
  * type property
  *
@@ -2896,7 +2896,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_STATUS = 'status' as keyof ContactVe
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_TYPE = 'type' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_TYPE: keyof ContactVerificationEmail = 'type';
 /**
  * Updated On
  *
@@ -2922,7 +2922,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_TYPE = 'type' as keyof ContactVerifi
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON = 'updated_on' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON: keyof ContactVerificationEmail = 'updated_on';
 /**
  * Verified On
  *
@@ -2947,7 +2947,7 @@ export const KEY_CONTACT_VERIFICATION_EMAIL_UPDATED_ON = 'updated_on' as keyof C
  * @see {@link ContactVerificationEmail} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION_EMAIL} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON = 'verified_on' as keyof ContactVerificationEmail;
+export const KEY_CONTACT_VERIFICATION_EMAIL_VERIFIED_ON: keyof ContactVerificationEmail = 'verified_on';
 
 /**
  * Array of all ContactVerificationEmail property keys
@@ -3004,7 +3004,7 @@ export const KEYS_CONTACT_VERIFICATION_EMAIL = [
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_CANCELED_ON = 'canceled_on' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_CANCELED_ON: keyof ContactVerification = 'canceled_on';
 /**
  * Contact Id
  *
@@ -3030,7 +3030,7 @@ export const KEY_CONTACT_VERIFICATION_CANCELED_ON = 'canceled_on' as keyof Conta
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_CONTACT_ID = 'contact_id' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_CONTACT_ID: keyof ContactVerification = 'contact_id';
 /**
  * Contact Verification Id
  *
@@ -3055,7 +3055,7 @@ export const KEY_CONTACT_VERIFICATION_CONTACT_ID = 'contact_id' as keyof Contact
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID = 'contact_verification_id' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID: keyof ContactVerification = 'contact_verification_id';
 /**
  * Created On
  *
@@ -3081,7 +3081,7 @@ export const KEY_CONTACT_VERIFICATION_CONTACT_VERIFICATION_ID = 'contact_verific
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_CREATED_ON = 'created_on' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_CREATED_ON: keyof ContactVerification = 'created_on';
 /**
  * status property
  *
@@ -3106,7 +3106,7 @@ export const KEY_CONTACT_VERIFICATION_CREATED_ON = 'created_on' as keyof Contact
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_STATUS = 'status' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_STATUS: keyof ContactVerification = 'status';
 /**
  * type property
  *
@@ -3131,7 +3131,7 @@ export const KEY_CONTACT_VERIFICATION_STATUS = 'status' as keyof ContactVerifica
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_TYPE = 'type' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_TYPE: keyof ContactVerification = 'type';
 /**
  * Updated On
  *
@@ -3157,7 +3157,7 @@ export const KEY_CONTACT_VERIFICATION_TYPE = 'type' as keyof ContactVerification
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_UPDATED_ON = 'updated_on' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_UPDATED_ON: keyof ContactVerification = 'updated_on';
 /**
  * Verified On
  *
@@ -3182,7 +3182,7 @@ export const KEY_CONTACT_VERIFICATION_UPDATED_ON = 'updated_on' as keyof Contact
  * @see {@link ContactVerification} - The TypeScript type definition
  * @see {@link KEYS_CONTACT_VERIFICATION} - Array of all keys for this type
  */
-export const KEY_CONTACT_VERIFICATION_VERIFIED_ON = 'verified_on' as keyof ContactVerification;
+export const KEY_CONTACT_VERIFICATION_VERIFIED_ON: keyof ContactVerification = 'verified_on';
 
 /**
  * Array of all ContactVerification property keys
@@ -3239,7 +3239,7 @@ export const KEYS_CONTACT_VERIFICATION = [
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_AUTHINFO_REQUIRED = 'authinfo_required' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_AUTHINFO_REQUIRED: keyof ContactsBase = 'authinfo_required';
 /**
  * Is Thick
  *
@@ -3264,7 +3264,7 @@ export const KEY_CONTACTS_BASE_AUTHINFO_REQUIRED = 'authinfo_required' as keyof 
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_IS_THICK = 'is_thick' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_IS_THICK: keyof ContactsBase = 'is_thick';
 /**
  * Possible Attributes
  *
@@ -3290,7 +3290,7 @@ export const KEY_CONTACTS_BASE_IS_THICK = 'is_thick' as keyof ContactsBase;
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES = 'possible_attributes' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES: keyof ContactsBase = 'possible_attributes';
 /**
  * Privacy Proxy
  *
@@ -3315,7 +3315,7 @@ export const KEY_CONTACTS_BASE_POSSIBLE_ATTRIBUTES = 'possible_attributes' as ke
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_PRIVACY_PROXY = 'privacy_proxy' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_PRIVACY_PROXY: keyof ContactsBase = 'privacy_proxy';
 /**
  * registrant_change property
  *
@@ -3340,7 +3340,7 @@ export const KEY_CONTACTS_BASE_PRIVACY_PROXY = 'privacy_proxy' as keyof Contacts
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE = 'registrant_change' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE: keyof ContactsBase = 'registrant_change';
 /**
  * Required Attributes
  *
@@ -3366,7 +3366,7 @@ export const KEY_CONTACTS_BASE_REGISTRANT_CHANGE = 'registrant_change' as keyof 
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_REQUIRED_ATTRIBUTES = 'required_attributes' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_REQUIRED_ATTRIBUTES: keyof ContactsBase = 'required_attributes';
 /**
  * Support Check
  *
@@ -3391,7 +3391,7 @@ export const KEY_CONTACTS_BASE_REQUIRED_ATTRIBUTES = 'required_attributes' as ke
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_SUPPORT_CHECK = 'support_check' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_SUPPORT_CHECK: keyof ContactsBase = 'support_check';
 /**
  * Support Client Contact Id
  *
@@ -3416,7 +3416,7 @@ export const KEY_CONTACTS_BASE_SUPPORT_CHECK = 'support_check' as keyof Contacts
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID = 'support_client_contact_id' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID: keyof ContactsBase = 'support_client_contact_id';
 /**
  * Support Transfer
  *
@@ -3441,7 +3441,7 @@ export const KEY_CONTACTS_BASE_SUPPORT_CLIENT_CONTACT_ID = 'support_client_conta
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_SUPPORT_TRANSFER = 'support_transfer' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_SUPPORT_TRANSFER: keyof ContactsBase = 'support_transfer';
 /**
  * Supported Postal Types
  *
@@ -3466,7 +3466,7 @@ export const KEY_CONTACTS_BASE_SUPPORT_TRANSFER = 'support_transfer' as keyof Co
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES = 'supported_postal_types' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES: keyof ContactsBase = 'supported_postal_types';
 /**
  * Supported Roles
  *
@@ -3491,7 +3491,7 @@ export const KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES = 'supported_postal_types'
  * @see {@link ContactsBase} - The TypeScript type definition
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
-export const KEY_CONTACTS_BASE_SUPPORTED_ROLES = 'supported_roles' as keyof ContactsBase;
+export const KEY_CONTACTS_BASE_SUPPORTED_ROLES: keyof ContactsBase = 'supported_roles';
 
 /**
  * Array of all ContactsBase property keys
@@ -3550,7 +3550,7 @@ export const KEYS_CONTACTS_BASE = [
  * @see {@link DnsChange} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGE_ACTION = 'action' as keyof DnsChange;
+export const KEY_DNS_CHANGE_ACTION: keyof DnsChange = 'action';
 /**
  * Record Data
  *
@@ -3574,7 +3574,7 @@ export const KEY_DNS_CHANGE_ACTION = 'action' as keyof DnsChange;
  * @see {@link DnsChange} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGE_RECORD_DATA = 'record_data' as keyof DnsChange;
+export const KEY_DNS_CHANGE_RECORD_DATA: keyof DnsChange = 'record_data';
 /**
  * Rrset Name
  *
@@ -3598,7 +3598,7 @@ export const KEY_DNS_CHANGE_RECORD_DATA = 'record_data' as keyof DnsChange;
  * @see {@link DnsChange} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGE_RRSET_NAME = 'rrset_name' as keyof DnsChange;
+export const KEY_DNS_CHANGE_RRSET_NAME: keyof DnsChange = 'rrset_name';
 /**
  * rrset_type property
  *
@@ -3622,7 +3622,7 @@ export const KEY_DNS_CHANGE_RRSET_NAME = 'rrset_name' as keyof DnsChange;
  * @see {@link DnsChange} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGE_RRSET_TYPE = 'rrset_type' as keyof DnsChange;
+export const KEY_DNS_CHANGE_RRSET_TYPE: keyof DnsChange = 'rrset_type';
 /**
  * Ttl
  *
@@ -3646,7 +3646,7 @@ export const KEY_DNS_CHANGE_RRSET_TYPE = 'rrset_type' as keyof DnsChange;
  * @see {@link DnsChange} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGE} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGE_TTL = 'ttl' as keyof DnsChange;
+export const KEY_DNS_CHANGE_TTL: keyof DnsChange = 'ttl';
 
 /**
  * Array of all DnsChange property keys
@@ -3700,7 +3700,7 @@ export const KEYS_DNS_CHANGE = [
  * @see {@link DnsChanges} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGES_CHANGES = 'changes' as keyof DnsChanges;
+export const KEY_DNS_CHANGES_CHANGES: keyof DnsChanges = 'changes';
 /**
  * Changeset Id
  *
@@ -3724,7 +3724,7 @@ export const KEY_DNS_CHANGES_CHANGES = 'changes' as keyof DnsChanges;
  * @see {@link DnsChanges} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGES_CHANGESET_ID = 'changeset_id' as keyof DnsChanges;
+export const KEY_DNS_CHANGES_CHANGESET_ID: keyof DnsChanges = 'changeset_id';
 /**
  * Num Changes
  *
@@ -3749,7 +3749,7 @@ export const KEY_DNS_CHANGES_CHANGESET_ID = 'changeset_id' as keyof DnsChanges;
  * @see {@link DnsChanges} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGES_NUM_CHANGES = 'num_changes' as keyof DnsChanges;
+export const KEY_DNS_CHANGES_NUM_CHANGES: keyof DnsChanges = 'num_changes';
 /**
  * Zone Name
  *
@@ -3774,7 +3774,7 @@ export const KEY_DNS_CHANGES_NUM_CHANGES = 'num_changes' as keyof DnsChanges;
  * @see {@link DnsChanges} - The TypeScript type definition
  * @see {@link KEYS_DNS_CHANGES} - Array of all keys for this type
  */
-export const KEY_DNS_CHANGES_ZONE_NAME = 'zone_name' as keyof DnsChanges;
+export const KEY_DNS_CHANGES_ZONE_NAME: keyof DnsChanges = 'zone_name';
 
 /**
  * Array of all DnsChanges property keys
@@ -3826,7 +3826,7 @@ export const KEYS_DNS_CHANGES = [
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_ALLOWED_NUMBER_OF_NAMESERVER = 'allowed_number_of_nameserver' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_ALLOWED_NUMBER_OF_NAMESERVER: keyof DnsConfigurationBase = 'allowed_number_of_nameserver';
 /**
  * Czds Available
  *
@@ -3851,7 +3851,7 @@ export const KEY_DNS_CONFIGURATION_BASE_ALLOWED_NUMBER_OF_NAMESERVER = 'allowed_
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE = 'czds_available' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE: keyof DnsConfigurationBase = 'czds_available';
 /**
  * Dnssec Allowed
  *
@@ -3877,7 +3877,7 @@ export const KEY_DNS_CONFIGURATION_BASE_CZDS_AVAILABLE = 'czds_available' as key
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED = 'dnssec_allowed' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED: keyof DnsConfigurationBase = 'dnssec_allowed';
 /**
  * Dnssec Mandatory
  *
@@ -3902,7 +3902,7 @@ export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_ALLOWED = 'dnssec_allowed' as key
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY = 'dnssec_mandatory' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY: keyof DnsConfigurationBase = 'dnssec_mandatory';
 /**
  * dnssec_mode property
  *
@@ -3927,7 +3927,7 @@ export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MANDATORY = 'dnssec_mandatory' as
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE = 'dnssec_mode' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE: keyof DnsConfigurationBase = 'dnssec_mode';
 /**
  * Host Objects
  *
@@ -3953,7 +3953,7 @@ export const KEY_DNS_CONFIGURATION_BASE_DNSSEC_MODE = 'dnssec_mode' as keyof Dns
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS = 'host_objects' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS: keyof DnsConfigurationBase = 'host_objects';
 /**
  * Host Parent Check Tlds
  *
@@ -3978,7 +3978,7 @@ export const KEY_DNS_CONFIGURATION_BASE_HOST_OBJECTS = 'host_objects' as keyof D
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS = 'host_parent_check_tlds' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS: keyof DnsConfigurationBase = 'host_parent_check_tlds';
 /**
  * Registry Nameserver Check
  *
@@ -4004,7 +4004,7 @@ export const KEY_DNS_CONFIGURATION_BASE_HOST_PARENT_CHECK_TLDS = 'host_parent_ch
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK = 'registry_nameserver_check' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK: keyof DnsConfigurationBase = 'registry_nameserver_check';
 /**
  * Registry Root Nameserver Update
  *
@@ -4030,7 +4030,7 @@ export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_NAMESERVER_CHECK = 'registry_na
  * @see {@link DnsConfigurationBase} - The TypeScript type definition
  * @see {@link KEYS_DNS_CONFIGURATION_BASE} - Array of all keys for this type
  */
-export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_ROOT_NAMESERVER_UPDATE = 'registry_root_nameserver_update' as keyof DnsConfigurationBase;
+export const KEY_DNS_CONFIGURATION_BASE_REGISTRY_ROOT_NAMESERVER_UPDATE: keyof DnsConfigurationBase = 'registry_root_nameserver_update';
 
 /**
  * Array of all DnsConfigurationBase property keys
@@ -4088,7 +4088,7 @@ export const KEYS_DNS_CONFIGURATION_BASE = [
  * @see {@link DnsRecordCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_RECORD_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_RECORD_CREATE_RDATA = 'rdata' as keyof DnsRecordCreate;
+export const KEY_DNS_RECORD_CREATE_RDATA: keyof DnsRecordCreate = 'rdata';
 
 /**
  * Array of all DnsRecordCreate property keys
@@ -4137,7 +4137,7 @@ export const KEYS_DNS_RECORD_CREATE = [
  * @see {@link DnsRecordPatchOp} - The TypeScript type definition
  * @see {@link KEYS_DNS_RECORD_PATCH_OP} - Array of all keys for this type
  */
-export const KEY_DNS_RECORD_PATCH_OP_OP = 'op' as keyof DnsRecordPatchOp;
+export const KEY_DNS_RECORD_PATCH_OP_OP: keyof DnsRecordPatchOp = 'op';
 /**
  * record property
  *
@@ -4161,7 +4161,7 @@ export const KEY_DNS_RECORD_PATCH_OP_OP = 'op' as keyof DnsRecordPatchOp;
  * @see {@link DnsRecordPatchOp} - The TypeScript type definition
  * @see {@link KEYS_DNS_RECORD_PATCH_OP} - Array of all keys for this type
  */
-export const KEY_DNS_RECORD_PATCH_OP_RECORD = 'record' as keyof DnsRecordPatchOp;
+export const KEY_DNS_RECORD_PATCH_OP_RECORD: keyof DnsRecordPatchOp = 'record';
 
 /**
  * Array of all DnsRecordPatchOp property keys
@@ -4212,7 +4212,7 @@ export const KEYS_DNS_RECORD_PATCH_OP = [
  * @see {@link DnsRecord} - The TypeScript type definition
  * @see {@link KEYS_DNS_RECORD} - Array of all keys for this type
  */
-export const KEY_DNS_RECORD_RDATA = 'rdata' as keyof DnsRecord;
+export const KEY_DNS_RECORD_RDATA: keyof DnsRecord = 'rdata';
 
 /**
  * Array of all DnsRecord property keys
@@ -4262,7 +4262,7 @@ export const KEYS_DNS_RECORD = [
  * @see {@link DnsRrsetCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_CREATE_NAME = 'name' as keyof DnsRrsetCreate;
+export const KEY_DNS_RRSET_CREATE_NAME: keyof DnsRrsetCreate = 'name';
 /**
  * Records
  *
@@ -4287,7 +4287,7 @@ export const KEY_DNS_RRSET_CREATE_NAME = 'name' as keyof DnsRrsetCreate;
  * @see {@link DnsRrsetCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_CREATE_RECORDS = 'records' as keyof DnsRrsetCreate;
+export const KEY_DNS_RRSET_CREATE_RECORDS: keyof DnsRrsetCreate = 'records';
 /**
  * Ttl
  *
@@ -4312,7 +4312,7 @@ export const KEY_DNS_RRSET_CREATE_RECORDS = 'records' as keyof DnsRrsetCreate;
  * @see {@link DnsRrsetCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_CREATE_TTL = 'ttl' as keyof DnsRrsetCreate;
+export const KEY_DNS_RRSET_CREATE_TTL: keyof DnsRrsetCreate = 'ttl';
 /**
  * type property
  *
@@ -4336,7 +4336,7 @@ export const KEY_DNS_RRSET_CREATE_TTL = 'ttl' as keyof DnsRrsetCreate;
  * @see {@link DnsRrsetCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_CREATE_TYPE = 'type' as keyof DnsRrsetCreate;
+export const KEY_DNS_RRSET_CREATE_TYPE: keyof DnsRrsetCreate = 'type';
 
 /**
  * Array of all DnsRrsetCreate property keys
@@ -4389,7 +4389,7 @@ export const KEYS_DNS_RRSET_CREATE = [
  * @see {@link DnsRrsetPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_PATCH_NAME = 'name' as keyof DnsRrsetPatch;
+export const KEY_DNS_RRSET_PATCH_NAME: keyof DnsRrsetPatch = 'name';
 /**
  * Records
  *
@@ -4414,7 +4414,7 @@ export const KEY_DNS_RRSET_PATCH_NAME = 'name' as keyof DnsRrsetPatch;
  * @see {@link DnsRrsetPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_PATCH_RECORDS = 'records' as keyof DnsRrsetPatch;
+export const KEY_DNS_RRSET_PATCH_RECORDS: keyof DnsRrsetPatch = 'records';
 /**
  * Ttl
  *
@@ -4439,7 +4439,7 @@ export const KEY_DNS_RRSET_PATCH_RECORDS = 'records' as keyof DnsRrsetPatch;
  * @see {@link DnsRrsetPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_PATCH_TTL = 'ttl' as keyof DnsRrsetPatch;
+export const KEY_DNS_RRSET_PATCH_TTL: keyof DnsRrsetPatch = 'ttl';
 /**
  * type property
  *
@@ -4463,7 +4463,7 @@ export const KEY_DNS_RRSET_PATCH_TTL = 'ttl' as keyof DnsRrsetPatch;
  * @see {@link DnsRrsetPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_PATCH_TYPE = 'type' as keyof DnsRrsetPatch;
+export const KEY_DNS_RRSET_PATCH_TYPE: keyof DnsRrsetPatch = 'type';
 
 /**
  * Array of all DnsRrsetPatch property keys
@@ -4515,7 +4515,7 @@ export const KEYS_DNS_RRSET_PATCH = [
  * @see {@link DnsRrsetPatchOp} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_PATCH_OP} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_PATCH_OP_OP = 'op' as keyof DnsRrsetPatchOp;
+export const KEY_DNS_RRSET_PATCH_OP_OP: keyof DnsRrsetPatchOp = 'op';
 /**
  * rrset property
  *
@@ -4539,7 +4539,7 @@ export const KEY_DNS_RRSET_PATCH_OP_OP = 'op' as keyof DnsRrsetPatchOp;
  * @see {@link DnsRrsetPatchOp} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_PATCH_OP} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_PATCH_OP_RRSET = 'rrset' as keyof DnsRrsetPatchOp;
+export const KEY_DNS_RRSET_PATCH_OP_RRSET: keyof DnsRrsetPatchOp = 'rrset';
 
 /**
  * Array of all DnsRrsetPatchOp property keys
@@ -4590,7 +4590,7 @@ export const KEYS_DNS_RRSET_PATCH_OP = [
  * @see {@link DnsRrset} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_NAME = 'name' as keyof DnsRrset;
+export const KEY_DNS_RRSET_NAME: keyof DnsRrset = 'name';
 /**
  * Records
  *
@@ -4615,7 +4615,7 @@ export const KEY_DNS_RRSET_NAME = 'name' as keyof DnsRrset;
  * @see {@link DnsRrset} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_RECORDS = 'records' as keyof DnsRrset;
+export const KEY_DNS_RRSET_RECORDS: keyof DnsRrset = 'records';
 /**
  * Ttl
  *
@@ -4640,7 +4640,7 @@ export const KEY_DNS_RRSET_RECORDS = 'records' as keyof DnsRrset;
  * @see {@link DnsRrset} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_TTL = 'ttl' as keyof DnsRrset;
+export const KEY_DNS_RRSET_TTL: keyof DnsRrset = 'ttl';
 /**
  * type property
  *
@@ -4664,7 +4664,7 @@ export const KEY_DNS_RRSET_TTL = 'ttl' as keyof DnsRrset;
  * @see {@link DnsRrset} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_TYPE = 'type' as keyof DnsRrset;
+export const KEY_DNS_RRSET_TYPE: keyof DnsRrset = 'type';
 
 /**
  * Array of all DnsRrset property keys
@@ -4717,7 +4717,7 @@ export const KEYS_DNS_RRSET = [
  * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME = 'name' as keyof DnsRrsetWithOneRecordPatch;
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME: keyof DnsRrsetWithOneRecordPatch = 'name';
 /**
  * Rdata
  *
@@ -4742,7 +4742,7 @@ export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_NAME = 'name' as keyof DnsRrset
  * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA = 'rdata' as keyof DnsRrsetWithOneRecordPatch;
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA: keyof DnsRrsetWithOneRecordPatch = 'rdata';
 /**
  * Ttl
  *
@@ -4767,7 +4767,7 @@ export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_RDATA = 'rdata' as keyof DnsRrs
  * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL = 'ttl' as keyof DnsRrsetWithOneRecordPatch;
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL: keyof DnsRrsetWithOneRecordPatch = 'ttl';
 /**
  * type property
  *
@@ -4791,7 +4791,7 @@ export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TTL = 'ttl' as keyof DnsRrsetWi
  * @see {@link DnsRrsetWithOneRecordPatch} - The TypeScript type definition
  * @see {@link KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH} - Array of all keys for this type
  */
-export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE = 'type' as keyof DnsRrsetWithOneRecordPatch;
+export const KEY_DNS_RRSET_WITH_ONE_RECORD_PATCH_TYPE: keyof DnsRrsetWithOneRecordPatch = 'type';
 
 /**
  * Array of all DnsRrsetWithOneRecordPatch property keys
@@ -4843,7 +4843,7 @@ export const KEYS_DNS_RRSET_WITH_ONE_RECORD_PATCH = [
  * @see {@link DnsZoneCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_CREATE_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZoneCreate;
+export const KEY_DNS_ZONE_CREATE_DNSSEC_STATUS: keyof DnsZoneCreate = 'dnssec_status';
 /**
  * Name
  *
@@ -4868,7 +4868,7 @@ export const KEY_DNS_ZONE_CREATE_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZon
  * @see {@link DnsZoneCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_CREATE_NAME = 'name' as keyof DnsZoneCreate;
+export const KEY_DNS_ZONE_CREATE_NAME: keyof DnsZoneCreate = 'name';
 /**
  * Rrsets
  *
@@ -4893,7 +4893,7 @@ export const KEY_DNS_ZONE_CREATE_NAME = 'name' as keyof DnsZoneCreate;
  * @see {@link DnsZoneCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_CREATE_RRSETS = 'rrsets' as keyof DnsZoneCreate;
+export const KEY_DNS_ZONE_CREATE_RRSETS: keyof DnsZoneCreate = 'rrsets';
 
 /**
  * Array of all DnsZoneCreate property keys
@@ -4945,7 +4945,7 @@ export const KEYS_DNS_ZONE_CREATE = [
  * @see {@link DnsZoneRecordsPatchOps} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_RECORDS_PATCH_OPS} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS = 'ops' as keyof DnsZoneRecordsPatchOps;
+export const KEY_DNS_ZONE_RECORDS_PATCH_OPS_OPS: keyof DnsZoneRecordsPatchOps = 'ops';
 
 /**
  * Array of all DnsZoneRecordsPatchOps property keys
@@ -4996,7 +4996,7 @@ export const KEYS_DNS_ZONE_RECORDS_PATCH_OPS = [
  * @see {@link DnsZone} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_CREATED_ON = 'created_on' as keyof DnsZone;
+export const KEY_DNS_ZONE_CREATED_ON: keyof DnsZone = 'created_on';
 /**
  * dnssec_status property
  *
@@ -5020,7 +5020,7 @@ export const KEY_DNS_ZONE_CREATED_ON = 'created_on' as keyof DnsZone;
  * @see {@link DnsZone} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZone;
+export const KEY_DNS_ZONE_DNSSEC_STATUS: keyof DnsZone = 'dnssec_status';
 /**
  * domain_parts property
  *
@@ -5044,7 +5044,7 @@ export const KEY_DNS_ZONE_DNSSEC_STATUS = 'dnssec_status' as keyof DnsZone;
  * @see {@link DnsZone} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_DOMAIN_PARTS = 'domain_parts' as keyof DnsZone;
+export const KEY_DNS_ZONE_DOMAIN_PARTS: keyof DnsZone = 'domain_parts';
 /**
  * Name
  *
@@ -5069,7 +5069,7 @@ export const KEY_DNS_ZONE_DOMAIN_PARTS = 'domain_parts' as keyof DnsZone;
  * @see {@link DnsZone} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_NAME = 'name' as keyof DnsZone;
+export const KEY_DNS_ZONE_NAME: keyof DnsZone = 'name';
 /**
  * Rrsets
  *
@@ -5094,7 +5094,7 @@ export const KEY_DNS_ZONE_NAME = 'name' as keyof DnsZone;
  * @see {@link DnsZone} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_RRSETS = 'rrsets' as keyof DnsZone;
+export const KEY_DNS_ZONE_RRSETS: keyof DnsZone = 'rrsets';
 /**
  * Updated On
  *
@@ -5120,7 +5120,7 @@ export const KEY_DNS_ZONE_RRSETS = 'rrsets' as keyof DnsZone;
  * @see {@link DnsZone} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_UPDATED_ON = 'updated_on' as keyof DnsZone;
+export const KEY_DNS_ZONE_UPDATED_ON: keyof DnsZone = 'updated_on';
 
 /**
  * Array of all DnsZone property keys
@@ -5175,7 +5175,7 @@ export const KEYS_DNS_ZONE = [
  * @see {@link DnsZoneRrsetsCreate} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_RRSETS_CREATE} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_RRSETS_CREATE_RRSETS = 'rrsets' as keyof DnsZoneRrsetsCreate;
+export const KEY_DNS_ZONE_RRSETS_CREATE_RRSETS: keyof DnsZoneRrsetsCreate = 'rrsets';
 
 /**
  * Array of all DnsZoneRrsetsCreate property keys
@@ -5225,7 +5225,7 @@ export const KEYS_DNS_ZONE_RRSETS_CREATE = [
  * @see {@link DnsZoneRrsetsPatchOps} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_RRSETS_PATCH_OPS} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS = 'ops' as keyof DnsZoneRrsetsPatchOps;
+export const KEY_DNS_ZONE_RRSETS_PATCH_OPS_OPS: keyof DnsZoneRrsetsPatchOps = 'ops';
 
 /**
  * Array of all DnsZoneRrsetsPatchOps property keys
@@ -5276,7 +5276,7 @@ export const KEYS_DNS_ZONE_RRSETS_PATCH_OPS = [
  * @see {@link DnsZoneSummary} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_SUMMARY} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES = 'total_zones' as keyof DnsZoneSummary;
+export const KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES: keyof DnsZoneSummary = 'total_zones';
 /**
  * Zones By Dnssec
  *
@@ -5302,7 +5302,7 @@ export const KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES = 'total_zones' as keyof DnsZoneSu
  * @see {@link DnsZoneSummary} - The TypeScript type definition
  * @see {@link KEYS_DNS_ZONE_SUMMARY} - Array of all keys for this type
  */
-export const KEY_DNS_ZONE_SUMMARY_ZONES_BY_DNSSEC = 'zones_by_dnssec' as keyof DnsZoneSummary;
+export const KEY_DNS_ZONE_SUMMARY_ZONES_BY_DNSSEC: keyof DnsZoneSummary = 'zones_by_dnssec';
 
 /**
  * Array of all DnsZoneSummary property keys
@@ -5353,7 +5353,7 @@ export const KEYS_DNS_ZONE_SUMMARY = [
  * @see {@link DomainAvailability} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' as keyof DomainAvailability;
+export const KEY_DOMAIN_AVAILABILITY_DOMAIN: keyof DomainAvailability = 'domain';
 /**
  * status property
  *
@@ -5377,7 +5377,7 @@ export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' as keyof DomainAvailabili
  * @see {@link DomainAvailability} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_STATUS = 'status' as keyof DomainAvailability;
+export const KEY_DOMAIN_AVAILABILITY_STATUS: keyof DomainAvailability = 'status';
 
 /**
  * Array of all DomainAvailability property keys
@@ -5428,7 +5428,7 @@ export const KEYS_DOMAIN_AVAILABILITY = [
  * @see {@link DomainAvailabilityMeta} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY_META} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS = 'processing_time_ms' as keyof DomainAvailabilityMeta;
+export const KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS: keyof DomainAvailabilityMeta = 'processing_time_ms';
 /**
  * Total
  *
@@ -5453,7 +5453,7 @@ export const KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS = 'processing_time_
  * @see {@link DomainAvailabilityMeta} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY_META} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_META_TOTAL = 'total' as keyof DomainAvailabilityMeta;
+export const KEY_DOMAIN_AVAILABILITY_META_TOTAL: keyof DomainAvailabilityMeta = 'total';
 
 /**
  * Array of all DomainAvailabilityMeta property keys
@@ -5504,7 +5504,7 @@ export const KEYS_DOMAIN_AVAILABILITY_META = [
  * @see {@link DomainCheck} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CHECK} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CHECK_RESULTS = 'results' as keyof DomainCheck;
+export const KEY_DOMAIN_CHECK_RESULTS: keyof DomainCheck = 'results';
 
 /**
  * Array of all DomainCheck property keys
@@ -5555,7 +5555,7 @@ export const KEYS_DOMAIN_CHECK = [
  * @see {@link DomainContact} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CONTACT} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CONTACT_CONTACT_ID = 'contact_id' as keyof DomainContact;
+export const KEY_DOMAIN_CONTACT_CONTACT_ID: keyof DomainContact = 'contact_id';
 /**
  * contact_type property
  *
@@ -5580,7 +5580,7 @@ export const KEY_DOMAIN_CONTACT_CONTACT_ID = 'contact_id' as keyof DomainContact
  * @see {@link DomainContact} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CONTACT} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CONTACT_CONTACT_TYPE = 'contact_type' as keyof DomainContact;
+export const KEY_DOMAIN_CONTACT_CONTACT_TYPE: keyof DomainContact = 'contact_type';
 
 /**
  * Array of all DomainContact property keys
@@ -5631,7 +5631,7 @@ export const KEYS_DOMAIN_CONTACT = [
  * @see {@link DomainCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATE_AUTH_CODE = 'auth_code' as keyof DomainCreate;
+export const KEY_DOMAIN_CREATE_AUTH_CODE: keyof DomainCreate = 'auth_code';
 /**
  * Contacts
  *
@@ -5656,7 +5656,7 @@ export const KEY_DOMAIN_CREATE_AUTH_CODE = 'auth_code' as keyof DomainCreate;
  * @see {@link DomainCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATE_CONTACTS = 'contacts' as keyof DomainCreate;
+export const KEY_DOMAIN_CREATE_CONTACTS: keyof DomainCreate = 'contacts';
 /**
  * Create Zone
  *
@@ -5682,7 +5682,7 @@ export const KEY_DOMAIN_CREATE_CONTACTS = 'contacts' as keyof DomainCreate;
  * @see {@link DomainCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATE_CREATE_ZONE = 'create_zone' as keyof DomainCreate;
+export const KEY_DOMAIN_CREATE_CREATE_ZONE: keyof DomainCreate = 'create_zone';
 /**
  * Name
  *
@@ -5708,7 +5708,7 @@ export const KEY_DOMAIN_CREATE_CREATE_ZONE = 'create_zone' as keyof DomainCreate
  * @see {@link DomainCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATE_NAME = 'name' as keyof DomainCreate;
+export const KEY_DOMAIN_CREATE_NAME: keyof DomainCreate = 'name';
 /**
  * Nameservers
  *
@@ -5733,7 +5733,7 @@ export const KEY_DOMAIN_CREATE_NAME = 'name' as keyof DomainCreate;
  * @see {@link DomainCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATE_NAMESERVERS = 'nameservers' as keyof DomainCreate;
+export const KEY_DOMAIN_CREATE_NAMESERVERS: keyof DomainCreate = 'nameservers';
 /**
  * period property
  *
@@ -5758,7 +5758,7 @@ export const KEY_DOMAIN_CREATE_NAMESERVERS = 'nameservers' as keyof DomainCreate
  * @see {@link DomainCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATE_PERIOD = 'period' as keyof DomainCreate;
+export const KEY_DOMAIN_CREATE_PERIOD: keyof DomainCreate = 'period';
 /**
  * renewal_mode property
  *
@@ -5783,7 +5783,7 @@ export const KEY_DOMAIN_CREATE_PERIOD = 'period' as keyof DomainCreate;
  * @see {@link DomainCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATE_RENEWAL_MODE = 'renewal_mode' as keyof DomainCreate;
+export const KEY_DOMAIN_CREATE_RENEWAL_MODE: keyof DomainCreate = 'renewal_mode';
 
 /**
  * Array of all DomainCreate property keys
@@ -5839,7 +5839,7 @@ export const KEYS_DOMAIN_CREATE = [
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM = 'algorithm' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM: keyof DomainDnssecDataCreate = 'algorithm';
 /**
  * Digest
  *
@@ -5864,7 +5864,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_ALGORITHM = 'algorithm' as keyof Doma
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST = 'digest' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST: keyof DomainDnssecDataCreate = 'digest';
 /**
  * digest_type property
  *
@@ -5889,7 +5889,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST = 'digest' as keyof DomainDnss
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE = 'digest_type' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE: keyof DomainDnssecDataCreate = 'digest_type';
 /**
  * Flags
  *
@@ -5914,7 +5914,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_DIGEST_TYPE = 'digest_type' as keyof 
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_FLAGS = 'flags' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_FLAGS: keyof DomainDnssecDataCreate = 'flags';
 /**
  * Key Tag
  *
@@ -5939,7 +5939,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_FLAGS = 'flags' as keyof DomainDnssec
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_KEY_TAG = 'key_tag' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_KEY_TAG: keyof DomainDnssecDataCreate = 'key_tag';
 /**
  * Protocol
  *
@@ -5964,7 +5964,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_KEY_TAG = 'key_tag' as keyof DomainDn
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL = 'protocol' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL: keyof DomainDnssecDataCreate = 'protocol';
 /**
  * Public Key
  *
@@ -5989,7 +5989,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PROTOCOL = 'protocol' as keyof Domain
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY = 'public_key' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY: keyof DomainDnssecDataCreate = 'public_key';
 /**
  * record_type property
  *
@@ -6014,7 +6014,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATE_PUBLIC_KEY = 'public_key' as keyof Do
  * @see {@link DomainDnssecDataCreate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA_CREATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE = 'record_type' as keyof DomainDnssecDataCreate;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATE_RECORD_TYPE: keyof DomainDnssecDataCreate = 'record_type';
 
 /**
  * Array of all DomainDnssecDataCreate property keys
@@ -6071,7 +6071,7 @@ export const KEYS_DOMAIN_DNSSEC_DATA_CREATE = [
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_ALGORITHM = 'algorithm' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_ALGORITHM: keyof DomainDnssecData = 'algorithm';
 /**
  * Created On
  *
@@ -6097,7 +6097,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_ALGORITHM = 'algorithm' as keyof DomainDnsse
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_CREATED_ON = 'created_on' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_CREATED_ON: keyof DomainDnssecData = 'created_on';
 /**
  * Digest
  *
@@ -6122,7 +6122,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_CREATED_ON = 'created_on' as keyof DomainDns
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_DIGEST = 'digest' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_DIGEST: keyof DomainDnssecData = 'digest';
 /**
  * digest_type property
  *
@@ -6147,7 +6147,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_DIGEST = 'digest' as keyof DomainDnssecData;
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_DIGEST_TYPE = 'digest_type' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_DIGEST_TYPE: keyof DomainDnssecData = 'digest_type';
 /**
  * Domain Dnssec Data Id
  *
@@ -6172,7 +6172,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_DIGEST_TYPE = 'digest_type' as keyof DomainD
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_DNSSEC_DATA_ID = 'domain_dnssec_data_id' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_DNSSEC_DATA_ID: keyof DomainDnssecData = 'domain_dnssec_data_id';
 /**
  * Domain Id
  *
@@ -6198,7 +6198,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_DNSSEC_DATA_ID = 'domain_dnssec_data_
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_ID = 'domain_id' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_ID: keyof DomainDnssecData = 'domain_id';
 /**
  * Flags
  *
@@ -6223,7 +6223,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_DOMAIN_ID = 'domain_id' as keyof DomainDnsse
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_FLAGS = 'flags' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_FLAGS: keyof DomainDnssecData = 'flags';
 /**
  * Key Tag
  *
@@ -6248,7 +6248,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_FLAGS = 'flags' as keyof DomainDnssecData;
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_KEY_TAG = 'key_tag' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_KEY_TAG: keyof DomainDnssecData = 'key_tag';
 /**
  * Protocol
  *
@@ -6273,7 +6273,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_KEY_TAG = 'key_tag' as keyof DomainDnssecDat
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_PROTOCOL = 'protocol' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_PROTOCOL: keyof DomainDnssecData = 'protocol';
 /**
  * Public Key
  *
@@ -6298,7 +6298,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_PROTOCOL = 'protocol' as keyof DomainDnssecD
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY = 'public_key' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY: keyof DomainDnssecData = 'public_key';
 /**
  * record_type property
  *
@@ -6323,7 +6323,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_PUBLIC_KEY = 'public_key' as keyof DomainDns
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE = 'record_type' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE: keyof DomainDnssecData = 'record_type';
 /**
  * Updated On
  *
@@ -6349,7 +6349,7 @@ export const KEY_DOMAIN_DNSSEC_DATA_RECORD_TYPE = 'record_type' as keyof DomainD
  * @see {@link DomainDnssecData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_DNSSEC_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON = 'updated_on' as keyof DomainDnssecData;
+export const KEY_DOMAIN_DNSSEC_DATA_UPDATED_ON: keyof DomainDnssecData = 'updated_on';
 
 /**
  * Array of all DomainDnssecData property keys
@@ -6410,7 +6410,7 @@ export const KEYS_DOMAIN_DNSSEC_DATA = [
  * @see {@link DomainForward} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_CREATED_ON = 'created_on' as keyof DomainForward;
+export const KEY_DOMAIN_FORWARD_CREATED_ON: keyof DomainForward = 'created_on';
 /**
  * Enabled
  *
@@ -6435,7 +6435,7 @@ export const KEY_DOMAIN_FORWARD_CREATED_ON = 'created_on' as keyof DomainForward
  * @see {@link DomainForward} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_ENABLED = 'enabled' as keyof DomainForward;
+export const KEY_DOMAIN_FORWARD_ENABLED: keyof DomainForward = 'enabled';
 /**
  * Hostname
  *
@@ -6460,7 +6460,7 @@ export const KEY_DOMAIN_FORWARD_ENABLED = 'enabled' as keyof DomainForward;
  * @see {@link DomainForward} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_HOSTNAME = 'hostname' as keyof DomainForward;
+export const KEY_DOMAIN_FORWARD_HOSTNAME: keyof DomainForward = 'hostname';
 /**
  * http property
  *
@@ -6484,7 +6484,7 @@ export const KEY_DOMAIN_FORWARD_HOSTNAME = 'hostname' as keyof DomainForward;
  * @see {@link DomainForward} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_HTTP = 'http' as keyof DomainForward;
+export const KEY_DOMAIN_FORWARD_HTTP: keyof DomainForward = 'http';
 /**
  * https property
  *
@@ -6508,7 +6508,7 @@ export const KEY_DOMAIN_FORWARD_HTTP = 'http' as keyof DomainForward;
  * @see {@link DomainForward} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_HTTPS = 'https' as keyof DomainForward;
+export const KEY_DOMAIN_FORWARD_HTTPS: keyof DomainForward = 'https';
 /**
  * Updated On
  *
@@ -6533,7 +6533,7 @@ export const KEY_DOMAIN_FORWARD_HTTPS = 'https' as keyof DomainForward;
  * @see {@link DomainForward} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_UPDATED_ON = 'updated_on' as keyof DomainForward;
+export const KEY_DOMAIN_FORWARD_UPDATED_ON: keyof DomainForward = 'updated_on';
 /**
  * Wildcard
  *
@@ -6558,7 +6558,7 @@ export const KEY_DOMAIN_FORWARD_UPDATED_ON = 'updated_on' as keyof DomainForward
  * @see {@link DomainForward} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_WILDCARD = 'wildcard' as keyof DomainForward;
+export const KEY_DOMAIN_FORWARD_WILDCARD: keyof DomainForward = 'wildcard';
 
 /**
  * Array of all DomainForward property keys
@@ -6614,7 +6614,7 @@ export const KEYS_DOMAIN_FORWARD = [
  * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED = 'enabled' as keyof DomainForwardCreateRequest;
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED: keyof DomainForwardCreateRequest = 'enabled';
 /**
  * Hostname
  *
@@ -6639,7 +6639,7 @@ export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED = 'enabled' as keyof Doma
  * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME = 'hostname' as keyof DomainForwardCreateRequest;
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME: keyof DomainForwardCreateRequest = 'hostname';
 /**
  * http property
  *
@@ -6663,7 +6663,7 @@ export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME = 'hostname' as keyof Do
  * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP = 'http' as keyof DomainForwardCreateRequest;
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP: keyof DomainForwardCreateRequest = 'http';
 /**
  * https property
  *
@@ -6687,7 +6687,7 @@ export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP = 'http' as keyof DomainForw
  * @see {@link DomainForwardCreateRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_CREATE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTPS = 'https' as keyof DomainForwardCreateRequest;
+export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTPS: keyof DomainForwardCreateRequest = 'https';
 
 /**
  * Array of all DomainForwardCreateRequest property keys
@@ -6739,7 +6739,7 @@ export const KEYS_DOMAIN_FORWARD_CREATE_REQUEST = [
  * @see {@link DomainForwardPatchOp} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PATCH_OP} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PATCH_OP_OP = 'op' as keyof DomainForwardPatchOp;
+export const KEY_DOMAIN_FORWARD_PATCH_OP_OP: keyof DomainForwardPatchOp = 'op';
 /**
  * Redirect
  *
@@ -6763,7 +6763,7 @@ export const KEY_DOMAIN_FORWARD_PATCH_OP_OP = 'op' as keyof DomainForwardPatchOp
  * @see {@link DomainForwardPatchOp} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PATCH_OP} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PATCH_OP_REDIRECT = 'redirect' as keyof DomainForwardPatchOp;
+export const KEY_DOMAIN_FORWARD_PATCH_OP_REDIRECT: keyof DomainForwardPatchOp = 'redirect';
 
 /**
  * Array of all DomainForwardPatchOp property keys
@@ -6814,7 +6814,7 @@ export const KEYS_DOMAIN_FORWARD_PATCH_OP = [
  * @see {@link DomainForwardPatchOps} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PATCH_OPS} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PATCH_OPS_OPS = 'ops' as keyof DomainForwardPatchOps;
+export const KEY_DOMAIN_FORWARD_PATCH_OPS_OPS: keyof DomainForwardPatchOps = 'ops';
 
 /**
  * Array of all DomainForwardPatchOps property keys
@@ -6864,7 +6864,7 @@ export const KEYS_DOMAIN_FORWARD_PATCH_OPS = [
  * @see {@link DomainForwardProtocolSetRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS = 'redirects' as keyof DomainForwardProtocolSetRequest;
+export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS: keyof DomainForwardProtocolSetRequest = 'redirects';
 /**
  * Wildcard
  *
@@ -6888,7 +6888,7 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS = 'redirects' as 
  * @see {@link DomainForwardProtocolSetRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD = 'wildcard' as keyof DomainForwardProtocolSetRequest;
+export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD: keyof DomainForwardProtocolSetRequest = 'wildcard';
 
 /**
  * Array of all DomainForwardProtocolSetRequest property keys
@@ -6939,7 +6939,7 @@ export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST = [
  * @see {@link DomainForwardProtocolSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_CREATED_ON = 'created_on' as keyof DomainForwardProtocolSet;
+export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_CREATED_ON: keyof DomainForwardProtocolSet = 'created_on';
 /**
  * Redirects
  *
@@ -6964,7 +6964,7 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_CREATED_ON = 'created_on' as keyof 
  * @see {@link DomainForwardProtocolSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REDIRECTS = 'redirects' as keyof DomainForwardProtocolSet;
+export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REDIRECTS: keyof DomainForwardProtocolSet = 'redirects';
 /**
  * Updated On
  *
@@ -6989,7 +6989,7 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REDIRECTS = 'redirects' as keyof Do
  * @see {@link DomainForwardProtocolSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_UPDATED_ON = 'updated_on' as keyof DomainForwardProtocolSet;
+export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_UPDATED_ON: keyof DomainForwardProtocolSet = 'updated_on';
 /**
  * Wildcard
  *
@@ -7014,7 +7014,7 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_UPDATED_ON = 'updated_on' as keyof 
  * @see {@link DomainForwardProtocolSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_WILDCARD = 'wildcard' as keyof DomainForwardProtocolSet;
+export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_WILDCARD: keyof DomainForwardProtocolSet = 'wildcard';
 
 /**
  * Array of all DomainForwardProtocolSet property keys
@@ -7067,7 +7067,7 @@ export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET = [
  * @see {@link DomainForwardRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_REQUEST_ENABLED = 'enabled' as keyof DomainForwardRequest;
+export const KEY_DOMAIN_FORWARD_REQUEST_ENABLED: keyof DomainForwardRequest = 'enabled';
 /**
  * http property
  *
@@ -7091,7 +7091,7 @@ export const KEY_DOMAIN_FORWARD_REQUEST_ENABLED = 'enabled' as keyof DomainForwa
  * @see {@link DomainForwardRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_REQUEST_HTTP = 'http' as keyof DomainForwardRequest;
+export const KEY_DOMAIN_FORWARD_REQUEST_HTTP: keyof DomainForwardRequest = 'http';
 /**
  * https property
  *
@@ -7115,7 +7115,7 @@ export const KEY_DOMAIN_FORWARD_REQUEST_HTTP = 'http' as keyof DomainForwardRequ
  * @see {@link DomainForwardRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_REQUEST_HTTPS = 'https' as keyof DomainForwardRequest;
+export const KEY_DOMAIN_FORWARD_REQUEST_HTTPS: keyof DomainForwardRequest = 'https';
 /**
  * Wildcard
  *
@@ -7139,7 +7139,7 @@ export const KEY_DOMAIN_FORWARD_REQUEST_HTTPS = 'https' as keyof DomainForwardRe
  * @see {@link DomainForwardRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_REQUEST_WILDCARD = 'wildcard' as keyof DomainForwardRequest;
+export const KEY_DOMAIN_FORWARD_REQUEST_WILDCARD: keyof DomainForwardRequest = 'wildcard';
 
 /**
  * Array of all DomainForwardRequest property keys
@@ -7192,7 +7192,7 @@ export const KEYS_DOMAIN_FORWARD_REQUEST = [
  * @see {@link DomainForwardSetRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_SET_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_SET_REQUEST_REDIRECTS = 'redirects' as keyof DomainForwardSetRequest;
+export const KEY_DOMAIN_FORWARD_SET_REQUEST_REDIRECTS: keyof DomainForwardSetRequest = 'redirects';
 
 /**
  * Array of all DomainForwardSetRequest property keys
@@ -7242,7 +7242,7 @@ export const KEYS_DOMAIN_FORWARD_SET_REQUEST = [
  * @see {@link DomainForwardSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_SET_CREATED_ON = 'created_on' as keyof DomainForwardSet;
+export const KEY_DOMAIN_FORWARD_SET_CREATED_ON: keyof DomainForwardSet = 'created_on';
 /**
  * Hostname
  *
@@ -7267,7 +7267,7 @@ export const KEY_DOMAIN_FORWARD_SET_CREATED_ON = 'created_on' as keyof DomainFor
  * @see {@link DomainForwardSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_SET_HOSTNAME = 'hostname' as keyof DomainForwardSet;
+export const KEY_DOMAIN_FORWARD_SET_HOSTNAME: keyof DomainForwardSet = 'hostname';
 /**
  * protocol property
  *
@@ -7291,7 +7291,7 @@ export const KEY_DOMAIN_FORWARD_SET_HOSTNAME = 'hostname' as keyof DomainForward
  * @see {@link DomainForwardSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_SET_PROTOCOL = 'protocol' as keyof DomainForwardSet;
+export const KEY_DOMAIN_FORWARD_SET_PROTOCOL: keyof DomainForwardSet = 'protocol';
 /**
  * Redirects
  *
@@ -7316,7 +7316,7 @@ export const KEY_DOMAIN_FORWARD_SET_PROTOCOL = 'protocol' as keyof DomainForward
  * @see {@link DomainForwardSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_SET_REDIRECTS = 'redirects' as keyof DomainForwardSet;
+export const KEY_DOMAIN_FORWARD_SET_REDIRECTS: keyof DomainForwardSet = 'redirects';
 /**
  * Updated On
  *
@@ -7341,7 +7341,7 @@ export const KEY_DOMAIN_FORWARD_SET_REDIRECTS = 'redirects' as keyof DomainForwa
  * @see {@link DomainForwardSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_SET_UPDATED_ON = 'updated_on' as keyof DomainForwardSet;
+export const KEY_DOMAIN_FORWARD_SET_UPDATED_ON: keyof DomainForwardSet = 'updated_on';
 /**
  * Wildcard
  *
@@ -7366,7 +7366,7 @@ export const KEY_DOMAIN_FORWARD_SET_UPDATED_ON = 'updated_on' as keyof DomainFor
  * @see {@link DomainForwardSet} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_SET_WILDCARD = 'wildcard' as keyof DomainForwardSet;
+export const KEY_DOMAIN_FORWARD_SET_WILDCARD: keyof DomainForwardSet = 'wildcard';
 
 /**
  * Array of all DomainForwardSet property keys
@@ -7421,7 +7421,7 @@ export const KEYS_DOMAIN_FORWARD_SET = [
  * @see {@link DomainForwardZone} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_ZONE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS = 'domain_forwards' as keyof DomainForwardZone;
+export const KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS: keyof DomainForwardZone = 'domain_forwards';
 /**
  * Zone Id
  *
@@ -7446,7 +7446,7 @@ export const KEY_DOMAIN_FORWARD_ZONE_DOMAIN_FORWARDS = 'domain_forwards' as keyo
  * @see {@link DomainForwardZone} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_ZONE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_ZONE_ZONE_ID = 'zone_id' as keyof DomainForwardZone;
+export const KEY_DOMAIN_FORWARD_ZONE_ZONE_ID: keyof DomainForwardZone = 'zone_id';
 /**
  * Zone Name
  *
@@ -7471,7 +7471,7 @@ export const KEY_DOMAIN_FORWARD_ZONE_ZONE_ID = 'zone_id' as keyof DomainForwardZ
  * @see {@link DomainForwardZone} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_FORWARD_ZONE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_ZONE_ZONE_NAME = 'zone_name' as keyof DomainForwardZone;
+export const KEY_DOMAIN_FORWARD_ZONE_ZONE_NAME: keyof DomainForwardZone = 'zone_name';
 
 /**
  * Array of all DomainForwardZone property keys
@@ -7524,7 +7524,7 @@ export const KEYS_DOMAIN_FORWARD_ZONE = [
  * @see {@link DomainHost} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_HOST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_HOST_HOST_ID = 'host_id' as keyof DomainHost;
+export const KEY_DOMAIN_HOST_HOST_ID: keyof DomainHost = 'host_id';
 
 /**
  * Array of all DomainHost property keys
@@ -7574,7 +7574,7 @@ export const KEYS_DOMAIN_HOST = [
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD = 'add_grace_period' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD: keyof DomainLifecycleBase = 'add_grace_period';
 /**
  * Auto Renew Before Expiration
  *
@@ -7599,7 +7599,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD = 'add_grace_period' as 
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION = 'auto_renew_before_expiration' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION: keyof DomainLifecycleBase = 'auto_renew_before_expiration';
 /**
  * Delete Before Expiration
  *
@@ -7624,7 +7624,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION = 'auto_rene
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION = 'delete_before_expiration' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION: keyof DomainLifecycleBase = 'delete_before_expiration';
 /**
  * Delete Policy
  *
@@ -7649,7 +7649,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION = 'delete_before
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY = 'delete_policy' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY: keyof DomainLifecycleBase = 'delete_policy';
 /**
  * Explicit Renew
  *
@@ -7674,7 +7674,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY = 'delete_policy' as keyof 
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW = 'explicit_renew' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW: keyof DomainLifecycleBase = 'explicit_renew';
 /**
  * Grace Period
  *
@@ -7699,7 +7699,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW = 'explicit_renew' as keyo
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_GRACE_PERIOD = 'grace_period' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_GRACE_PERIOD: keyof DomainLifecycleBase = 'grace_period';
 /**
  * Pending Delete
  *
@@ -7724,7 +7724,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_GRACE_PERIOD = 'grace_period' as keyof Do
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_PENDING_DELETE = 'pending_delete' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_PENDING_DELETE: keyof DomainLifecycleBase = 'pending_delete';
 /**
  * Redemption Period
  *
@@ -7749,7 +7749,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_PENDING_DELETE = 'pending_delete' as keyo
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_REDEMPTION_PERIOD = 'redemption_period' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_REDEMPTION_PERIOD: keyof DomainLifecycleBase = 'redemption_period';
 /**
  * registration_periods property
  *
@@ -7774,7 +7774,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_REDEMPTION_PERIOD = 'redemption_period' a
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS = 'registration_periods' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS: keyof DomainLifecycleBase = 'registration_periods';
 /**
  * Registry Auto Renew
  *
@@ -7799,7 +7799,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRATION_PERIODS = 'registration_peri
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW = 'registry_auto_renew' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW: keyof DomainLifecycleBase = 'registry_auto_renew';
 /**
  * renewal_periods property
  *
@@ -7824,7 +7824,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW = 'registry_auto_rene
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS = 'renewal_periods' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS: keyof DomainLifecycleBase = 'renewal_periods';
 /**
  * rgp_operations property
  *
@@ -7849,7 +7849,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS = 'renewal_periods' as ke
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS = 'rgp_operations' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS: keyof DomainLifecycleBase = 'rgp_operations';
 /**
  * Sync After Operations
  *
@@ -7874,7 +7874,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS = 'rgp_operations' as keyo
  * @see {@link DomainLifecycleBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS = 'sync_after_operations' as keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS: keyof DomainLifecycleBase = 'sync_after_operations';
 
 /**
  * Array of all DomainLifecycleBase property keys
@@ -7935,7 +7935,7 @@ export const KEYS_DOMAIN_LIFECYCLE_BASE = [
  * @see {@link DomainNameParts} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_NAME_PARTS} - Array of all keys for this type
  */
-export const KEY_DOMAIN_NAME_PARTS_DOMAIN = 'domain' as keyof DomainNameParts;
+export const KEY_DOMAIN_NAME_PARTS_DOMAIN: keyof DomainNameParts = 'domain';
 /**
  * Subdomain
  *
@@ -7959,7 +7959,7 @@ export const KEY_DOMAIN_NAME_PARTS_DOMAIN = 'domain' as keyof DomainNameParts;
  * @see {@link DomainNameParts} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_NAME_PARTS} - Array of all keys for this type
  */
-export const KEY_DOMAIN_NAME_PARTS_SUBDOMAIN = 'subdomain' as keyof DomainNameParts;
+export const KEY_DOMAIN_NAME_PARTS_SUBDOMAIN: keyof DomainNameParts = 'subdomain';
 /**
  * Suffix
  *
@@ -7983,7 +7983,7 @@ export const KEY_DOMAIN_NAME_PARTS_SUBDOMAIN = 'subdomain' as keyof DomainNamePa
  * @see {@link DomainNameParts} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_NAME_PARTS} - Array of all keys for this type
  */
-export const KEY_DOMAIN_NAME_PARTS_SUFFIX = 'suffix' as keyof DomainNameParts;
+export const KEY_DOMAIN_NAME_PARTS_SUFFIX: keyof DomainNameParts = 'suffix';
 
 /**
  * Array of all DomainNameParts property keys
@@ -8035,7 +8035,7 @@ export const KEYS_DOMAIN_NAME_PARTS = [
  * @see {@link DomainPeriod} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_PERIOD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_PERIOD_UNIT = 'unit' as keyof DomainPeriod;
+export const KEY_DOMAIN_PERIOD_UNIT: keyof DomainPeriod = 'unit';
 /**
  * Value
  *
@@ -8061,7 +8061,7 @@ export const KEY_DOMAIN_PERIOD_UNIT = 'unit' as keyof DomainPeriod;
  * @see {@link DomainPeriod} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_PERIOD} - Array of all keys for this type
  */
-export const KEY_DOMAIN_PERIOD_VALUE = 'value' as keyof DomainPeriod;
+export const KEY_DOMAIN_PERIOD_VALUE: keyof DomainPeriod = 'value';
 
 /**
  * Array of all DomainPeriod property keys
@@ -8113,7 +8113,7 @@ export const KEYS_DOMAIN_PERIOD = [
  * @see {@link DomainRenewRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RENEW_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE = 'current_expiry_date' as keyof DomainRenewRequest;
+export const KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE: keyof DomainRenewRequest = 'current_expiry_date';
 /**
  * period property
  *
@@ -8138,7 +8138,7 @@ export const KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE = 'current_expiry_date
  * @see {@link DomainRenewRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RENEW_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RENEW_REQUEST_PERIOD = 'period' as keyof DomainRenewRequest;
+export const KEY_DOMAIN_RENEW_REQUEST_PERIOD: keyof DomainRenewRequest = 'period';
 
 /**
  * Array of all DomainRenewRequest property keys
@@ -8190,7 +8190,7 @@ export const KEYS_DOMAIN_RENEW_REQUEST = [
  * @see {@link DomainRenew} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RENEW} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RENEW_NAME = 'name' as keyof DomainRenew;
+export const KEY_DOMAIN_RENEW_NAME: keyof DomainRenew = 'name';
 /**
  * New Expiry Date
  *
@@ -8216,7 +8216,7 @@ export const KEY_DOMAIN_RENEW_NAME = 'name' as keyof DomainRenew;
  * @see {@link DomainRenew} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RENEW} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE = 'new_expiry_date' as keyof DomainRenew;
+export const KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE: keyof DomainRenew = 'new_expiry_date';
 /**
  * period_extended property
  *
@@ -8241,7 +8241,7 @@ export const KEY_DOMAIN_RENEW_NEW_EXPIRY_DATE = 'new_expiry_date' as keyof Domai
  * @see {@link DomainRenew} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RENEW} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RENEW_PERIOD_EXTENDED = 'period_extended' as keyof DomainRenew;
+export const KEY_DOMAIN_RENEW_PERIOD_EXTENDED: keyof DomainRenew = 'period_extended';
 
 /**
  * Array of all DomainRenew property keys
@@ -8293,7 +8293,7 @@ export const KEYS_DOMAIN_RENEW = [
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AUTH_CODE = 'auth_code' as keyof Domain;
+export const KEY_DOMAIN_AUTH_CODE: keyof Domain = 'auth_code';
 /**
  * Auth Code Expires On
  *
@@ -8318,7 +8318,7 @@ export const KEY_DOMAIN_AUTH_CODE = 'auth_code' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' as keyof Domain;
+export const KEY_DOMAIN_AUTH_CODE_EXPIRES_ON: keyof Domain = 'auth_code_expires_on';
 /**
  * Canceled On
  *
@@ -8343,7 +8343,7 @@ export const KEY_DOMAIN_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' as keyof D
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CANCELED_ON = 'canceled_on' as keyof Domain;
+export const KEY_DOMAIN_CANCELED_ON: keyof Domain = 'canceled_on';
 /**
  * Contacts
  *
@@ -8369,7 +8369,7 @@ export const KEY_DOMAIN_CANCELED_ON = 'canceled_on' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CONTACTS = 'contacts' as keyof Domain;
+export const KEY_DOMAIN_CONTACTS: keyof Domain = 'contacts';
 /**
  * Created On
  *
@@ -8395,7 +8395,7 @@ export const KEY_DOMAIN_CONTACTS = 'contacts' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_CREATED_ON = 'created_on' as keyof Domain;
+export const KEY_DOMAIN_CREATED_ON: keyof Domain = 'created_on';
 /**
  * Deleted On
  *
@@ -8420,7 +8420,7 @@ export const KEY_DOMAIN_CREATED_ON = 'created_on' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DELETED_ON = 'deleted_on' as keyof Domain;
+export const KEY_DOMAIN_DELETED_ON: keyof Domain = 'deleted_on';
 /**
  * Domain Id
  *
@@ -8445,7 +8445,7 @@ export const KEY_DOMAIN_DELETED_ON = 'deleted_on' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_DOMAIN_ID = 'domain_id' as keyof Domain;
+export const KEY_DOMAIN_DOMAIN_ID: keyof Domain = 'domain_id';
 /**
  * Expires On
  *
@@ -8470,7 +8470,7 @@ export const KEY_DOMAIN_DOMAIN_ID = 'domain_id' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_EXPIRES_ON = 'expires_on' as keyof Domain;
+export const KEY_DOMAIN_EXPIRES_ON: keyof Domain = 'expires_on';
 /**
  * Hosts
  *
@@ -8496,7 +8496,7 @@ export const KEY_DOMAIN_EXPIRES_ON = 'expires_on' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_HOSTS = 'hosts' as keyof Domain;
+export const KEY_DOMAIN_HOSTS: keyof Domain = 'hosts';
 /**
  * Name
  *
@@ -8522,7 +8522,7 @@ export const KEY_DOMAIN_HOSTS = 'hosts' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_NAME = 'name' as keyof Domain;
+export const KEY_DOMAIN_NAME: keyof Domain = 'name';
 /**
  * Nameservers
  *
@@ -8548,7 +8548,7 @@ export const KEY_DOMAIN_NAME = 'name' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_NAMESERVERS = 'nameservers' as keyof Domain;
+export const KEY_DOMAIN_NAMESERVERS: keyof Domain = 'nameservers';
 /**
  * Owner Id
  *
@@ -8574,7 +8574,7 @@ export const KEY_DOMAIN_NAMESERVERS = 'nameservers' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_OWNER_ID = 'owner_id' as keyof Domain;
+export const KEY_DOMAIN_OWNER_ID: keyof Domain = 'owner_id';
 /**
  * Registered On
  *
@@ -8599,7 +8599,7 @@ export const KEY_DOMAIN_OWNER_ID = 'owner_id' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' as keyof Domain;
+export const KEY_DOMAIN_REGISTERED_ON: keyof Domain = 'registered_on';
 /**
  * Registry Account Id
  *
@@ -8624,7 +8624,7 @@ export const KEY_DOMAIN_REGISTERED_ON = 'registered_on' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' as keyof Domain;
+export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID: keyof Domain = 'registry_account_id';
 /**
  * Registry Statuses
  *
@@ -8650,7 +8650,7 @@ export const KEY_DOMAIN_REGISTRY_ACCOUNT_ID = 'registry_account_id' as keyof Dom
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' as keyof Domain;
+export const KEY_DOMAIN_REGISTRY_STATUSES: keyof Domain = 'registry_statuses';
 /**
  * renewal_mode property
  *
@@ -8675,7 +8675,7 @@ export const KEY_DOMAIN_REGISTRY_STATUSES = 'registry_statuses' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RENEWAL_MODE = 'renewal_mode' as keyof Domain;
+export const KEY_DOMAIN_RENEWAL_MODE: keyof Domain = 'renewal_mode';
 /**
  * Roid
  *
@@ -8701,7 +8701,7 @@ export const KEY_DOMAIN_RENEWAL_MODE = 'renewal_mode' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_ROID = 'roid' as keyof Domain;
+export const KEY_DOMAIN_ROID: keyof Domain = 'roid';
 /**
  * Sld
  *
@@ -8727,7 +8727,7 @@ export const KEY_DOMAIN_ROID = 'roid' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SLD = 'sld' as keyof Domain;
+export const KEY_DOMAIN_SLD: keyof Domain = 'sld';
 /**
  * Tld
  *
@@ -8753,7 +8753,7 @@ export const KEY_DOMAIN_SLD = 'sld' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TLD = 'tld' as keyof Domain;
+export const KEY_DOMAIN_TLD: keyof Domain = 'tld';
 /**
  * Transfer Lock
  *
@@ -8779,7 +8779,7 @@ export const KEY_DOMAIN_TLD = 'tld' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_LOCK = 'transfer_lock' as keyof Domain;
+export const KEY_DOMAIN_TRANSFER_LOCK: keyof Domain = 'transfer_lock';
 /**
  * Updated On
  *
@@ -8805,7 +8805,7 @@ export const KEY_DOMAIN_TRANSFER_LOCK = 'transfer_lock' as keyof Domain;
  * @see {@link Domain} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_UPDATED_ON = 'updated_on' as keyof Domain;
+export const KEY_DOMAIN_UPDATED_ON: keyof Domain = 'updated_on';
 
 /**
  * Array of all Domain property keys
@@ -8875,7 +8875,7 @@ export const KEYS_DOMAIN = [
  * @see {@link DomainRestoreRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RESTORE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO = 'additional_info' as keyof DomainRestoreRequest;
+export const KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO: keyof DomainRestoreRequest = 'additional_info';
 /**
  * Auto Renew
  *
@@ -8901,7 +8901,7 @@ export const KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO = 'additional_info' as k
  * @see {@link DomainRestoreRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RESTORE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW = 'auto_renew' as keyof DomainRestoreRequest;
+export const KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW: keyof DomainRestoreRequest = 'auto_renew';
 /**
  * Reason
  *
@@ -8927,7 +8927,7 @@ export const KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW = 'auto_renew' as keyof Domai
  * @see {@link DomainRestoreRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RESTORE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RESTORE_REQUEST_REASON = 'reason' as keyof DomainRestoreRequest;
+export const KEY_DOMAIN_RESTORE_REQUEST_REASON: keyof DomainRestoreRequest = 'reason';
 
 /**
  * Array of all DomainRestoreRequest property keys
@@ -8980,7 +8980,7 @@ export const KEYS_DOMAIN_RESTORE_REQUEST = [
  * @see {@link DomainRestore} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RESTORE_DOMAIN_ID = 'domain_id' as keyof DomainRestore;
+export const KEY_DOMAIN_RESTORE_DOMAIN_ID: keyof DomainRestore = 'domain_id';
 /**
  * Expiration Date
  *
@@ -9006,7 +9006,7 @@ export const KEY_DOMAIN_RESTORE_DOMAIN_ID = 'domain_id' as keyof DomainRestore;
  * @see {@link DomainRestore} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RESTORE_EXPIRATION_DATE = 'expiration_date' as keyof DomainRestore;
+export const KEY_DOMAIN_RESTORE_EXPIRATION_DATE: keyof DomainRestore = 'expiration_date';
 /**
  * Name
  *
@@ -9032,7 +9032,7 @@ export const KEY_DOMAIN_RESTORE_EXPIRATION_DATE = 'expiration_date' as keyof Dom
  * @see {@link DomainRestore} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RESTORE_NAME = 'name' as keyof DomainRestore;
+export const KEY_DOMAIN_RESTORE_NAME: keyof DomainRestore = 'name';
 /**
  * Restored At
  *
@@ -9058,7 +9058,7 @@ export const KEY_DOMAIN_RESTORE_NAME = 'name' as keyof DomainRestore;
  * @see {@link DomainRestore} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_RESTORE_RESTORED_AT = 'restored_at' as keyof DomainRestore;
+export const KEY_DOMAIN_RESTORE_RESTORED_AT: keyof DomainRestore = 'restored_at';
 
 /**
  * Array of all DomainRestore property keys
@@ -9111,7 +9111,7 @@ export const KEYS_DOMAIN_RESTORE = [
  * @see {@link DomainSearchMeta} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_META} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS = 'processing_time_ms' as keyof DomainSearchMeta;
+export const KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS: keyof DomainSearchMeta = 'processing_time_ms';
 /**
  * Total
  *
@@ -9136,7 +9136,7 @@ export const KEY_DOMAIN_SEARCH_META_PROCESSING_TIME_MS = 'processing_time_ms' as
  * @see {@link DomainSearchMeta} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_META} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_META_TOTAL = 'total' as keyof DomainSearchMeta;
+export const KEY_DOMAIN_SEARCH_META_TOTAL: keyof DomainSearchMeta = 'total';
 
 /**
  * Array of all DomainSearchMeta property keys
@@ -9186,7 +9186,7 @@ export const KEYS_DOMAIN_SEARCH_META = [
  * @see {@link DomainSearch} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_META = 'meta' as keyof DomainSearch;
+export const KEY_DOMAIN_SEARCH_META: keyof DomainSearch = 'meta';
 /**
  * Results
  *
@@ -9211,7 +9211,7 @@ export const KEY_DOMAIN_SEARCH_META = 'meta' as keyof DomainSearch;
  * @see {@link DomainSearch} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_RESULTS = 'results' as keyof DomainSearch;
+export const KEY_DOMAIN_SEARCH_RESULTS: keyof DomainSearch = 'results';
 
 /**
  * Array of all DomainSearch property keys
@@ -9261,7 +9261,7 @@ export const KEYS_DOMAIN_SEARCH = [
  * @see {@link DomainSearchSuggestionPriceData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_AMOUNT = 'amount' as keyof DomainSearchSuggestionPriceData;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_AMOUNT: keyof DomainSearchSuggestionPriceData = 'amount';
 /**
  * Currency
  *
@@ -9286,7 +9286,7 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_AMOUNT = 'amount' as keyof 
  * @see {@link DomainSearchSuggestionPriceData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_CURRENCY = 'currency' as keyof DomainSearchSuggestionPriceData;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_CURRENCY: keyof DomainSearchSuggestionPriceData = 'currency';
 /**
  * period property
  *
@@ -9310,7 +9310,7 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_CURRENCY = 'currency' as ke
  * @see {@link DomainSearchSuggestionPriceData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_PERIOD = 'period' as keyof DomainSearchSuggestionPriceData;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA_PERIOD: keyof DomainSearchSuggestionPriceData = 'period';
 
 /**
  * Array of all DomainSearchSuggestionPriceData property keys
@@ -9362,7 +9362,7 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_PRICE_DATA = [
  * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE = 'available' as keyof DomainSearchSuggestionWithPrice;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE: keyof DomainSearchSuggestionWithPrice = 'available';
 /**
  * Domain
  *
@@ -9387,7 +9387,7 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_AVAILABLE = 'available' as 
  * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN = 'domain' as keyof DomainSearchSuggestionWithPrice;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN: keyof DomainSearchSuggestionWithPrice = 'domain';
 /**
  * Premium
  *
@@ -9412,7 +9412,7 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN = 'domain' as keyof 
  * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM = 'premium' as keyof DomainSearchSuggestionWithPrice;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM: keyof DomainSearchSuggestionWithPrice = 'premium';
 /**
  * price property
  *
@@ -9436,7 +9436,7 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM = 'premium' as keyo
  * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE = 'price' as keyof DomainSearchSuggestionWithPrice;
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE: keyof DomainSearchSuggestionWithPrice = 'price';
 
 /**
  * Array of all DomainSearchSuggestionWithPrice property keys
@@ -9490,7 +9490,7 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
  * @see {@link DomainStatusesBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_STATUSES_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_STATUSES_BASE_DEFAULT = 'default' as keyof DomainStatusesBase;
+export const KEY_DOMAIN_STATUSES_BASE_DEFAULT: keyof DomainStatusesBase = 'default';
 /**
  * Status Mapping
  *
@@ -9515,7 +9515,7 @@ export const KEY_DOMAIN_STATUSES_BASE_DEFAULT = 'default' as keyof DomainStatuse
  * @see {@link DomainStatusesBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_STATUSES_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_STATUSES_BASE_STATUS_MAPPING = 'status_mapping' as keyof DomainStatusesBase;
+export const KEY_DOMAIN_STATUSES_BASE_STATUS_MAPPING: keyof DomainStatusesBase = 'status_mapping';
 /**
  * Supported Statuses
  *
@@ -9541,7 +9541,7 @@ export const KEY_DOMAIN_STATUSES_BASE_STATUS_MAPPING = 'status_mapping' as keyof
  * @see {@link DomainStatusesBase} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_STATUSES_BASE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES = 'supported_statuses' as keyof DomainStatusesBase;
+export const KEY_DOMAIN_STATUSES_BASE_SUPPORTED_STATUSES: keyof DomainStatusesBase = 'supported_statuses';
 
 /**
  * Array of all DomainStatusesBase property keys
@@ -9594,7 +9594,7 @@ export const KEYS_DOMAIN_STATUSES_BASE = [
  * @see {@link DomainSummaryData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS = 'by_status' as keyof DomainSummaryData;
+export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS: keyof DomainSummaryData = 'by_status';
 /**
  * By Tld
  *
@@ -9620,7 +9620,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_BY_STATUS = 'by_status' as keyof DomainSumm
  * @see {@link DomainSummaryData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SUMMARY_DATA_BY_TLD = 'by_tld' as keyof DomainSummaryData;
+export const KEY_DOMAIN_SUMMARY_DATA_BY_TLD: keyof DomainSummaryData = 'by_tld';
 /**
  * expiring_soon property
  *
@@ -9645,7 +9645,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_BY_TLD = 'by_tld' as keyof DomainSummaryDat
  * @see {@link DomainSummaryData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON = 'expiring_soon' as keyof DomainSummaryData;
+export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON: keyof DomainSummaryData = 'expiring_soon';
 /**
  * Total Count
  *
@@ -9671,7 +9671,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON = 'expiring_soon' as keyof Do
  * @see {@link DomainSummaryData} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT = 'total_count' as keyof DomainSummaryData;
+export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT: keyof DomainSummaryData = 'total_count';
 
 /**
  * Array of all DomainSummaryData property keys
@@ -9724,7 +9724,7 @@ export const KEYS_DOMAIN_SUMMARY_DATA = [
  * @see {@link DomainSummary} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SUMMARY} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SUMMARY_DOMAINS = 'domains' as keyof DomainSummary;
+export const KEY_DOMAIN_SUMMARY_DOMAINS: keyof DomainSummary = 'domains';
 /**
  * Organization Id
  *
@@ -9750,7 +9750,7 @@ export const KEY_DOMAIN_SUMMARY_DOMAINS = 'domains' as keyof DomainSummary;
  * @see {@link DomainSummary} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_SUMMARY} - Array of all keys for this type
  */
-export const KEY_DOMAIN_SUMMARY_ORGANIZATION_ID = 'organization_id' as keyof DomainSummary;
+export const KEY_DOMAIN_SUMMARY_ORGANIZATION_ID: keyof DomainSummary = 'organization_id';
 
 /**
  * Array of all DomainSummary property keys
@@ -9801,7 +9801,7 @@ export const KEYS_DOMAIN_SUMMARY = [
  * @see {@link DomainTransferIn} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_IN_ATTRIBUTES = 'attributes' as keyof DomainTransferIn;
+export const KEY_DOMAIN_TRANSFER_IN_ATTRIBUTES: keyof DomainTransferIn = 'attributes';
 /**
  * Auth Code
  *
@@ -9827,7 +9827,7 @@ export const KEY_DOMAIN_TRANSFER_IN_ATTRIBUTES = 'attributes' as keyof DomainTra
  * @see {@link DomainTransferIn} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_IN_AUTH_CODE = 'auth_code' as keyof DomainTransferIn;
+export const KEY_DOMAIN_TRANSFER_IN_AUTH_CODE: keyof DomainTransferIn = 'auth_code';
 /**
  * Contacts
  *
@@ -9852,7 +9852,7 @@ export const KEY_DOMAIN_TRANSFER_IN_AUTH_CODE = 'auth_code' as keyof DomainTrans
  * @see {@link DomainTransferIn} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_IN_CONTACTS = 'contacts' as keyof DomainTransferIn;
+export const KEY_DOMAIN_TRANSFER_IN_CONTACTS: keyof DomainTransferIn = 'contacts';
 /**
  * Create Zone
  *
@@ -9878,7 +9878,7 @@ export const KEY_DOMAIN_TRANSFER_IN_CONTACTS = 'contacts' as keyof DomainTransfe
  * @see {@link DomainTransferIn} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE = 'create_zone' as keyof DomainTransferIn;
+export const KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE: keyof DomainTransferIn = 'create_zone';
 /**
  * Name
  *
@@ -9904,7 +9904,7 @@ export const KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE = 'create_zone' as keyof DomainT
  * @see {@link DomainTransferIn} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_IN_NAME = 'name' as keyof DomainTransferIn;
+export const KEY_DOMAIN_TRANSFER_IN_NAME: keyof DomainTransferIn = 'name';
 /**
  * Nameservers
  *
@@ -9929,7 +9929,7 @@ export const KEY_DOMAIN_TRANSFER_IN_NAME = 'name' as keyof DomainTransferIn;
  * @see {@link DomainTransferIn} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_IN_NAMESERVERS = 'nameservers' as keyof DomainTransferIn;
+export const KEY_DOMAIN_TRANSFER_IN_NAMESERVERS: keyof DomainTransferIn = 'nameservers';
 /**
  * renewal_mode property
  *
@@ -9954,7 +9954,7 @@ export const KEY_DOMAIN_TRANSFER_IN_NAMESERVERS = 'nameservers' as keyof DomainT
  * @see {@link DomainTransferIn} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE = 'renewal_mode' as keyof DomainTransferIn;
+export const KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE: keyof DomainTransferIn = 'renewal_mode';
 
 /**
  * Array of all DomainTransferIn property keys
@@ -10011,7 +10011,7 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
  * @see {@link DomainTransitRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSIT_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSIT_REQUEST_DISCONNECT = 'disconnect' as keyof DomainTransitRequest;
+export const KEY_DOMAIN_TRANSIT_REQUEST_DISCONNECT: keyof DomainTransitRequest = 'disconnect';
 
 /**
  * Array of all DomainTransitRequest property keys
@@ -10062,7 +10062,7 @@ export const KEYS_DOMAIN_TRANSIT_REQUEST = [
  * @see {@link DomainTransit} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSIT} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSIT_NAME = 'name' as keyof DomainTransit;
+export const KEY_DOMAIN_TRANSIT_NAME: keyof DomainTransit = 'name';
 /**
  * Success
  *
@@ -10088,7 +10088,7 @@ export const KEY_DOMAIN_TRANSIT_NAME = 'name' as keyof DomainTransit;
  * @see {@link DomainTransit} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_TRANSIT} - Array of all keys for this type
  */
-export const KEY_DOMAIN_TRANSIT_SUCCESS = 'success' as keyof DomainTransit;
+export const KEY_DOMAIN_TRANSIT_SUCCESS: keyof DomainTransit = 'success';
 
 /**
  * Array of all DomainTransit property keys
@@ -10139,7 +10139,7 @@ export const KEYS_DOMAIN_TRANSIT = [
  * @see {@link DomainUpdate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_UPDATE_AUTH_CODE = 'auth_code' as keyof DomainUpdate;
+export const KEY_DOMAIN_UPDATE_AUTH_CODE: keyof DomainUpdate = 'auth_code';
 /**
  * Contacts
  *
@@ -10164,7 +10164,7 @@ export const KEY_DOMAIN_UPDATE_AUTH_CODE = 'auth_code' as keyof DomainUpdate;
  * @see {@link DomainUpdate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_UPDATE_CONTACTS = 'contacts' as keyof DomainUpdate;
+export const KEY_DOMAIN_UPDATE_CONTACTS: keyof DomainUpdate = 'contacts';
 /**
  * Nameservers
  *
@@ -10189,7 +10189,7 @@ export const KEY_DOMAIN_UPDATE_CONTACTS = 'contacts' as keyof DomainUpdate;
  * @see {@link DomainUpdate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_UPDATE_NAMESERVERS = 'nameservers' as keyof DomainUpdate;
+export const KEY_DOMAIN_UPDATE_NAMESERVERS: keyof DomainUpdate = 'nameservers';
 /**
  * renewal_mode property
  *
@@ -10214,7 +10214,7 @@ export const KEY_DOMAIN_UPDATE_NAMESERVERS = 'nameservers' as keyof DomainUpdate
  * @see {@link DomainUpdate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_UPDATE_RENEWAL_MODE = 'renewal_mode' as keyof DomainUpdate;
+export const KEY_DOMAIN_UPDATE_RENEWAL_MODE: keyof DomainUpdate = 'renewal_mode';
 /**
  * Statuses
  *
@@ -10239,7 +10239,7 @@ export const KEY_DOMAIN_UPDATE_RENEWAL_MODE = 'renewal_mode' as keyof DomainUpda
  * @see {@link DomainUpdate} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
  */
-export const KEY_DOMAIN_UPDATE_STATUSES = 'statuses' as keyof DomainUpdate;
+export const KEY_DOMAIN_UPDATE_STATUSES: keyof DomainUpdate = 'statuses';
 
 /**
  * Array of all DomainUpdate property keys
@@ -10294,7 +10294,7 @@ export const KEYS_DOMAIN_UPDATE = [
  * @see {@link DomainWithdrawRequest} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_WITHDRAW_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE = 'zone_delete' as keyof DomainWithdrawRequest;
+export const KEY_DOMAIN_WITHDRAW_REQUEST_ZONE_DELETE: keyof DomainWithdrawRequest = 'zone_delete';
 
 /**
  * Array of all DomainWithdrawRequest property keys
@@ -10345,7 +10345,7 @@ export const KEYS_DOMAIN_WITHDRAW_REQUEST = [
  * @see {@link DomainWithdraw} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_WITHDRAW} - Array of all keys for this type
  */
-export const KEY_DOMAIN_WITHDRAW_NAME = 'name' as keyof DomainWithdraw;
+export const KEY_DOMAIN_WITHDRAW_NAME: keyof DomainWithdraw = 'name';
 /**
  * Success
  *
@@ -10371,7 +10371,7 @@ export const KEY_DOMAIN_WITHDRAW_NAME = 'name' as keyof DomainWithdraw;
  * @see {@link DomainWithdraw} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_WITHDRAW} - Array of all keys for this type
  */
-export const KEY_DOMAIN_WITHDRAW_SUCCESS = 'success' as keyof DomainWithdraw;
+export const KEY_DOMAIN_WITHDRAW_SUCCESS: keyof DomainWithdraw = 'success';
 
 /**
  * Array of all DomainWithdraw property keys
@@ -10423,7 +10423,7 @@ export const KEYS_DOMAIN_WITHDRAW = [
  * @see {@link DomainsExpiringSoon} - The TypeScript type definition
  * @see {@link KEYS_DOMAINS_EXPIRING_SOON} - Array of all keys for this type
  */
-export const KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS = 'next_30_days' as keyof DomainsExpiringSoon;
+export const KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS: keyof DomainsExpiringSoon = 'next_30_days';
 /**
  * Next 60 Days
  *
@@ -10449,7 +10449,7 @@ export const KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS = 'next_30_days' as keyof Do
  * @see {@link DomainsExpiringSoon} - The TypeScript type definition
  * @see {@link KEYS_DOMAINS_EXPIRING_SOON} - Array of all keys for this type
  */
-export const KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS = 'next_60_days' as keyof DomainsExpiringSoon;
+export const KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS: keyof DomainsExpiringSoon = 'next_60_days';
 /**
  * Next 90 Days
  *
@@ -10475,7 +10475,7 @@ export const KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS = 'next_60_days' as keyof Do
  * @see {@link DomainsExpiringSoon} - The TypeScript type definition
  * @see {@link KEYS_DOMAINS_EXPIRING_SOON} - Array of all keys for this type
  */
-export const KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS = 'next_90_days' as keyof DomainsExpiringSoon;
+export const KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS: keyof DomainsExpiringSoon = 'next_90_days';
 
 /**
  * Array of all DomainsExpiringSoon property keys
@@ -10527,7 +10527,7 @@ export const KEYS_DOMAINS_EXPIRING_SOON = [
  * @see {@link EmailForwardAlias} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ALIAS} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ALIAS_ALIAS = 'alias' as keyof EmailForwardAlias;
+export const KEY_EMAIL_FORWARD_ALIAS_ALIAS: keyof EmailForwardAlias = 'alias';
 /**
  * Email Forward Alias Id
  *
@@ -10552,7 +10552,7 @@ export const KEY_EMAIL_FORWARD_ALIAS_ALIAS = 'alias' as keyof EmailForwardAlias;
  * @see {@link EmailForwardAlias} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ALIAS} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID = 'email_forward_alias_id' as keyof EmailForwardAlias;
+export const KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID: keyof EmailForwardAlias = 'email_forward_alias_id';
 /**
  * Forward To
  *
@@ -10577,7 +10577,7 @@ export const KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID = 'email_forward_ali
  * @see {@link EmailForwardAlias} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ALIAS} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO = 'forward_to' as keyof EmailForwardAlias;
+export const KEY_EMAIL_FORWARD_ALIAS_FORWARD_TO: keyof EmailForwardAlias = 'forward_to';
 
 /**
  * Array of all EmailForwardAlias property keys
@@ -10629,7 +10629,7 @@ export const KEYS_EMAIL_FORWARD_ALIAS = [
  * @see {@link EmailForwardAliasCreate} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ALIAS_CREATE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS = 'alias' as keyof EmailForwardAliasCreate;
+export const KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS: keyof EmailForwardAliasCreate = 'alias';
 /**
  * Forward To
  *
@@ -10654,7 +10654,7 @@ export const KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS = 'alias' as keyof EmailForwar
  * @see {@link EmailForwardAliasCreate} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ALIAS_CREATE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ALIAS_CREATE_FORWARD_TO = 'forward_to' as keyof EmailForwardAliasCreate;
+export const KEY_EMAIL_FORWARD_ALIAS_CREATE_FORWARD_TO: keyof EmailForwardAliasCreate = 'forward_to';
 
 /**
  * Array of all EmailForwardAliasCreate property keys
@@ -10705,7 +10705,7 @@ export const KEYS_EMAIL_FORWARD_ALIAS_CREATE = [
  * @see {@link EmailForwardAliasUpdate} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ALIAS_UPDATE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO = 'forward_to' as keyof EmailForwardAliasUpdate;
+export const KEY_EMAIL_FORWARD_ALIAS_UPDATE_FORWARD_TO: keyof EmailForwardAliasUpdate = 'forward_to';
 
 /**
  * Array of all EmailForwardAliasUpdate property keys
@@ -10755,7 +10755,7 @@ export const KEYS_EMAIL_FORWARD_ALIAS_UPDATE = [
  * @see {@link EmailForwardCreate} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_CREATE_ALIASES = 'aliases' as keyof EmailForwardCreate;
+export const KEY_EMAIL_FORWARD_CREATE_ALIASES: keyof EmailForwardCreate = 'aliases';
 /**
  * Enabled
  *
@@ -10780,7 +10780,7 @@ export const KEY_EMAIL_FORWARD_CREATE_ALIASES = 'aliases' as keyof EmailForwardC
  * @see {@link EmailForwardCreate} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_CREATE_ENABLED = 'enabled' as keyof EmailForwardCreate;
+export const KEY_EMAIL_FORWARD_CREATE_ENABLED: keyof EmailForwardCreate = 'enabled';
 /**
  * Hostname
  *
@@ -10805,7 +10805,7 @@ export const KEY_EMAIL_FORWARD_CREATE_ENABLED = 'enabled' as keyof EmailForwardC
  * @see {@link EmailForwardCreate} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_CREATE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_CREATE_HOSTNAME = 'hostname' as keyof EmailForwardCreate;
+export const KEY_EMAIL_FORWARD_CREATE_HOSTNAME: keyof EmailForwardCreate = 'hostname';
 
 /**
  * Array of all EmailForwardCreate property keys
@@ -10858,7 +10858,7 @@ export const KEYS_EMAIL_FORWARD_CREATE = [
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_CREATED_ON = 'created_on' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_CREATED_ON: keyof EmailForwardLog = 'created_on';
 /**
  * Domain
  *
@@ -10884,7 +10884,7 @@ export const KEY_EMAIL_FORWARD_LOG_CREATED_ON = 'created_on' as keyof EmailForwa
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_DOMAIN = 'domain' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_DOMAIN: keyof EmailForwardLog = 'domain';
 /**
  * Events
  *
@@ -10910,7 +10910,7 @@ export const KEY_EMAIL_FORWARD_LOG_DOMAIN = 'domain' as keyof EmailForwardLog;
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENTS = 'events' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_EVENTS: keyof EmailForwardLog = 'events';
 /**
  * Final Status
  *
@@ -10936,7 +10936,7 @@ export const KEY_EMAIL_FORWARD_LOG_EVENTS = 'events' as keyof EmailForwardLog;
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_FINAL_STATUS = 'final_status' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_FINAL_STATUS: keyof EmailForwardLog = 'final_status';
 /**
  * Forward Email
  *
@@ -10962,7 +10962,7 @@ export const KEY_EMAIL_FORWARD_LOG_FINAL_STATUS = 'final_status' as keyof EmailF
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_FORWARD_EMAIL = 'forward_email' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_FORWARD_EMAIL: keyof EmailForwardLog = 'forward_email';
 /**
  * Forward Name
  *
@@ -10987,7 +10987,7 @@ export const KEY_EMAIL_FORWARD_LOG_FORWARD_EMAIL = 'forward_email' as keyof Emai
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_FORWARD_NAME = 'forward_name' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_FORWARD_NAME: keyof EmailForwardLog = 'forward_name';
 /**
  * Hostname
  *
@@ -11013,7 +11013,7 @@ export const KEY_EMAIL_FORWARD_LOG_FORWARD_NAME = 'forward_name' as keyof EmailF
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_HOSTNAME = 'hostname' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_HOSTNAME: keyof EmailForwardLog = 'hostname';
 /**
  * Log Id
  *
@@ -11039,7 +11039,7 @@ export const KEY_EMAIL_FORWARD_LOG_HOSTNAME = 'hostname' as keyof EmailForwardLo
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_LOG_ID = 'log_id' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_LOG_ID: keyof EmailForwardLog = 'log_id';
 /**
  * Message Id
  *
@@ -11065,7 +11065,7 @@ export const KEY_EMAIL_FORWARD_LOG_LOG_ID = 'log_id' as keyof EmailForwardLog;
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_MESSAGE_ID = 'message_id' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_MESSAGE_ID: keyof EmailForwardLog = 'message_id';
 /**
  * Recipient Email
  *
@@ -11091,7 +11091,7 @@ export const KEY_EMAIL_FORWARD_LOG_MESSAGE_ID = 'message_id' as keyof EmailForwa
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_EMAIL = 'recipient_email' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_EMAIL: keyof EmailForwardLog = 'recipient_email';
 /**
  * Recipient Name
  *
@@ -11116,7 +11116,7 @@ export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_EMAIL = 'recipient_email' as keyof 
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_NAME = 'recipient_name' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_NAME: keyof EmailForwardLog = 'recipient_name';
 /**
  * Sender Email
  *
@@ -11142,7 +11142,7 @@ export const KEY_EMAIL_FORWARD_LOG_RECIPIENT_NAME = 'recipient_name' as keyof Em
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_SENDER_EMAIL = 'sender_email' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_SENDER_EMAIL: keyof EmailForwardLog = 'sender_email';
 /**
  * Sender Name
  *
@@ -11167,7 +11167,7 @@ export const KEY_EMAIL_FORWARD_LOG_SENDER_EMAIL = 'sender_email' as keyof EmailF
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_SENDER_NAME = 'sender_name' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_SENDER_NAME: keyof EmailForwardLog = 'sender_name';
 /**
  * Subject
  *
@@ -11193,7 +11193,7 @@ export const KEY_EMAIL_FORWARD_LOG_SENDER_NAME = 'sender_name' as keyof EmailFor
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_SUBJECT = 'subject' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_SUBJECT: keyof EmailForwardLog = 'subject';
 /**
  * Synced On
  *
@@ -11219,7 +11219,7 @@ export const KEY_EMAIL_FORWARD_LOG_SUBJECT = 'subject' as keyof EmailForwardLog;
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_SYNCED_ON = 'synced_on' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_SYNCED_ON: keyof EmailForwardLog = 'synced_on';
 /**
  * Transport
  *
@@ -11245,7 +11245,7 @@ export const KEY_EMAIL_FORWARD_LOG_SYNCED_ON = 'synced_on' as keyof EmailForward
  * @see {@link EmailForwardLog} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_TRANSPORT = 'transport' as keyof EmailForwardLog;
+export const KEY_EMAIL_FORWARD_LOG_TRANSPORT: keyof EmailForwardLog = 'transport';
 
 /**
  * Array of all EmailForwardLog property keys
@@ -11311,7 +11311,7 @@ export const KEYS_EMAIL_FORWARD_LOG = [
  * @see {@link EmailForwardLogEvent} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENT_CODE = 'code' as keyof EmailForwardLogEvent;
+export const KEY_EMAIL_FORWARD_LOG_EVENT_CODE: keyof EmailForwardLogEvent = 'code';
 /**
  * Created
  *
@@ -11337,7 +11337,7 @@ export const KEY_EMAIL_FORWARD_LOG_EVENT_CODE = 'code' as keyof EmailForwardLogE
  * @see {@link EmailForwardLogEvent} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENT_CREATED = 'created' as keyof EmailForwardLogEvent;
+export const KEY_EMAIL_FORWARD_LOG_EVENT_CREATED: keyof EmailForwardLogEvent = 'created';
 /**
  * Id
  *
@@ -11363,7 +11363,7 @@ export const KEY_EMAIL_FORWARD_LOG_EVENT_CREATED = 'created' as keyof EmailForwa
  * @see {@link EmailForwardLogEvent} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENT_ID = 'id' as keyof EmailForwardLogEvent;
+export const KEY_EMAIL_FORWARD_LOG_EVENT_ID: keyof EmailForwardLogEvent = 'id';
 /**
  * Local
  *
@@ -11389,7 +11389,7 @@ export const KEY_EMAIL_FORWARD_LOG_EVENT_ID = 'id' as keyof EmailForwardLogEvent
  * @see {@link EmailForwardLogEvent} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENT_LOCAL = 'local' as keyof EmailForwardLogEvent;
+export const KEY_EMAIL_FORWARD_LOG_EVENT_LOCAL: keyof EmailForwardLogEvent = 'local';
 /**
  * Message
  *
@@ -11415,7 +11415,7 @@ export const KEY_EMAIL_FORWARD_LOG_EVENT_LOCAL = 'local' as keyof EmailForwardLo
  * @see {@link EmailForwardLogEvent} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENT_MESSAGE = 'message' as keyof EmailForwardLogEvent;
+export const KEY_EMAIL_FORWARD_LOG_EVENT_MESSAGE: keyof EmailForwardLogEvent = 'message';
 /**
  * Server
  *
@@ -11441,7 +11441,7 @@ export const KEY_EMAIL_FORWARD_LOG_EVENT_MESSAGE = 'message' as keyof EmailForwa
  * @see {@link EmailForwardLogEvent} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENT_SERVER = 'server' as keyof EmailForwardLogEvent;
+export const KEY_EMAIL_FORWARD_LOG_EVENT_SERVER: keyof EmailForwardLogEvent = 'server';
 /**
  * Status
  *
@@ -11467,7 +11467,7 @@ export const KEY_EMAIL_FORWARD_LOG_EVENT_SERVER = 'server' as keyof EmailForward
  * @see {@link EmailForwardLogEvent} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_LOG_EVENT} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_LOG_EVENT_STATUS = 'status' as keyof EmailForwardLogEvent;
+export const KEY_EMAIL_FORWARD_LOG_EVENT_STATUS: keyof EmailForwardLogEvent = 'status';
 
 /**
  * Array of all EmailForwardLogEvent property keys
@@ -11523,7 +11523,7 @@ export const KEYS_EMAIL_FORWARD_LOG_EVENT = [
  * @see {@link EmailForward} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ALIASES = 'aliases' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_ALIASES: keyof EmailForward = 'aliases';
 /**
  * Created On
  *
@@ -11548,7 +11548,7 @@ export const KEY_EMAIL_FORWARD_ALIASES = 'aliases' as keyof EmailForward;
  * @see {@link EmailForward} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_CREATED_ON = 'created_on' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_CREATED_ON: keyof EmailForward = 'created_on';
 /**
  * Email Forward Id
  *
@@ -11573,7 +11573,7 @@ export const KEY_EMAIL_FORWARD_CREATED_ON = 'created_on' as keyof EmailForward;
  * @see {@link EmailForward} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID = 'email_forward_id' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID: keyof EmailForward = 'email_forward_id';
 /**
  * Enabled
  *
@@ -11598,7 +11598,7 @@ export const KEY_EMAIL_FORWARD_EMAIL_FORWARD_ID = 'email_forward_id' as keyof Em
  * @see {@link EmailForward} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ENABLED = 'enabled' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_ENABLED: keyof EmailForward = 'enabled';
 /**
  * Hostname
  *
@@ -11623,7 +11623,7 @@ export const KEY_EMAIL_FORWARD_ENABLED = 'enabled' as keyof EmailForward;
  * @see {@link EmailForward} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_HOSTNAME = 'hostname' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_HOSTNAME: keyof EmailForward = 'hostname';
 /**
  * Updated On
  *
@@ -11648,7 +11648,7 @@ export const KEY_EMAIL_FORWARD_HOSTNAME = 'hostname' as keyof EmailForward;
  * @see {@link EmailForward} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_UPDATED_ON = 'updated_on' as keyof EmailForward;
+export const KEY_EMAIL_FORWARD_UPDATED_ON: keyof EmailForward = 'updated_on';
 
 /**
  * Array of all EmailForward property keys
@@ -11703,7 +11703,7 @@ export const KEYS_EMAIL_FORWARD = [
  * @see {@link EmailForwardZone} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ZONE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS = 'email_forwards' as keyof EmailForwardZone;
+export const KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS: keyof EmailForwardZone = 'email_forwards';
 /**
  * Zone Id
  *
@@ -11728,7 +11728,7 @@ export const KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS = 'email_forwards' as keyof E
  * @see {@link EmailForwardZone} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ZONE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ZONE_ZONE_ID = 'zone_id' as keyof EmailForwardZone;
+export const KEY_EMAIL_FORWARD_ZONE_ZONE_ID: keyof EmailForwardZone = 'zone_id';
 /**
  * Zone Name
  *
@@ -11753,7 +11753,7 @@ export const KEY_EMAIL_FORWARD_ZONE_ZONE_ID = 'zone_id' as keyof EmailForwardZon
  * @see {@link EmailForwardZone} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_ZONE} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_ZONE_ZONE_NAME = 'zone_name' as keyof EmailForwardZone;
+export const KEY_EMAIL_FORWARD_ZONE_ZONE_NAME: keyof EmailForwardZone = 'zone_name';
 
 /**
  * Array of all EmailForwardZone property keys
@@ -11805,7 +11805,7 @@ export const KEYS_EMAIL_FORWARD_ZONE = [
  * @see {@link EventResponse} - The TypeScript type definition
  * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
  */
-export const KEY_EVENT_RESPONSE_EVENT_DATA = 'event_data' as keyof EventResponse;
+export const KEY_EVENT_RESPONSE_EVENT_DATA: keyof EventResponse = 'event_data';
 /**
  * Event Id
  *
@@ -11830,7 +11830,7 @@ export const KEY_EVENT_RESPONSE_EVENT_DATA = 'event_data' as keyof EventResponse
  * @see {@link EventResponse} - The TypeScript type definition
  * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
  */
-export const KEY_EVENT_RESPONSE_EVENT_ID = 'event_id' as keyof EventResponse;
+export const KEY_EVENT_RESPONSE_EVENT_ID: keyof EventResponse = 'event_id';
 /**
  * Object Id
  *
@@ -11855,7 +11855,7 @@ export const KEY_EVENT_RESPONSE_EVENT_ID = 'event_id' as keyof EventResponse;
  * @see {@link EventResponse} - The TypeScript type definition
  * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
  */
-export const KEY_EVENT_RESPONSE_OBJECT_ID = 'object_id' as keyof EventResponse;
+export const KEY_EVENT_RESPONSE_OBJECT_ID: keyof EventResponse = 'object_id';
 /**
  * object_type property
  *
@@ -11880,7 +11880,7 @@ export const KEY_EVENT_RESPONSE_OBJECT_ID = 'object_id' as keyof EventResponse;
  * @see {@link EventResponse} - The TypeScript type definition
  * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
  */
-export const KEY_EVENT_RESPONSE_OBJECT_TYPE = 'object_type' as keyof EventResponse;
+export const KEY_EVENT_RESPONSE_OBJECT_TYPE: keyof EventResponse = 'object_type';
 /**
  * subtype property
  *
@@ -11905,7 +11905,7 @@ export const KEY_EVENT_RESPONSE_OBJECT_TYPE = 'object_type' as keyof EventRespon
  * @see {@link EventResponse} - The TypeScript type definition
  * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
  */
-export const KEY_EVENT_RESPONSE_SUBTYPE = 'subtype' as keyof EventResponse;
+export const KEY_EVENT_RESPONSE_SUBTYPE: keyof EventResponse = 'subtype';
 /**
  * type property
  *
@@ -11930,7 +11930,7 @@ export const KEY_EVENT_RESPONSE_SUBTYPE = 'subtype' as keyof EventResponse;
  * @see {@link EventResponse} - The TypeScript type definition
  * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
  */
-export const KEY_EVENT_RESPONSE_TYPE = 'type' as keyof EventResponse;
+export const KEY_EVENT_RESPONSE_TYPE: keyof EventResponse = 'type';
 
 /**
  * Array of all EventResponse property keys
@@ -11985,7 +11985,7 @@ export const KEYS_EVENT_RESPONSE = [
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON = 'acknowledged_on' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON: keyof EventSchema = 'acknowledged_on';
 /**
  * Created On
  *
@@ -12011,7 +12011,7 @@ export const KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON = 'acknowledged_on' as keyof Event
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_CREATED_ON = 'created_on' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_CREATED_ON: keyof EventSchema = 'created_on';
 /**
  * event_data property
  *
@@ -12036,7 +12036,7 @@ export const KEY_EVENT_SCHEMA_CREATED_ON = 'created_on' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_EVENT_DATA = 'event_data' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_EVENT_DATA: keyof EventSchema = 'event_data';
 /**
  * Event Id
  *
@@ -12061,7 +12061,7 @@ export const KEY_EVENT_SCHEMA_EVENT_DATA = 'event_data' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_EVENT_ID = 'event_id' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_EVENT_ID: keyof EventSchema = 'event_id';
 /**
  * Message Queue Id
  *
@@ -12086,7 +12086,7 @@ export const KEY_EVENT_SCHEMA_EVENT_ID = 'event_id' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID = 'message_queue_id' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID: keyof EventSchema = 'message_queue_id';
 /**
  * Object Id
  *
@@ -12111,7 +12111,7 @@ export const KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID = 'message_queue_id' as keyof Eve
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_OBJECT_ID = 'object_id' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_OBJECT_ID: keyof EventSchema = 'object_id';
 /**
  * object_type property
  *
@@ -12136,7 +12136,7 @@ export const KEY_EVENT_SCHEMA_OBJECT_ID = 'object_id' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_OBJECT_TYPE = 'object_type' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_OBJECT_TYPE: keyof EventSchema = 'object_type';
 /**
  * Source
  *
@@ -12162,7 +12162,7 @@ export const KEY_EVENT_SCHEMA_OBJECT_TYPE = 'object_type' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_SOURCE = 'source' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_SOURCE: keyof EventSchema = 'source';
 /**
  * Source Event Id
  *
@@ -12187,7 +12187,7 @@ export const KEY_EVENT_SCHEMA_SOURCE = 'source' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_SOURCE_EVENT_ID = 'source_event_id' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_SOURCE_EVENT_ID: keyof EventSchema = 'source_event_id';
 /**
  * subtype property
  *
@@ -12212,7 +12212,7 @@ export const KEY_EVENT_SCHEMA_SOURCE_EVENT_ID = 'source_event_id' as keyof Event
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_SUBTYPE = 'subtype' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_SUBTYPE: keyof EventSchema = 'subtype';
 /**
  * Target
  *
@@ -12237,7 +12237,7 @@ export const KEY_EVENT_SCHEMA_SUBTYPE = 'subtype' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_TARGET = 'target' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_TARGET: keyof EventSchema = 'target';
 /**
  * type property
  *
@@ -12262,7 +12262,7 @@ export const KEY_EVENT_SCHEMA_TARGET = 'target' as keyof EventSchema;
  * @see {@link EventSchema} - The TypeScript type definition
  * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
  */
-export const KEY_EVENT_SCHEMA_TYPE = 'type' as keyof EventSchema;
+export const KEY_EVENT_SCHEMA_TYPE: keyof EventSchema = 'type';
 
 /**
  * Array of all EventSchema property keys
@@ -12324,7 +12324,7 @@ export const KEYS_EVENT_SCHEMA = [
  * @see {@link GeneralAvailabilityBase} - The TypeScript type definition
  * @see {@link KEYS_GENERAL_AVAILABILITY_BASE} - Array of all keys for this type
  */
-export const KEY_GENERAL_AVAILABILITY_BASE_START_DATE = 'start_date' as keyof GeneralAvailabilityBase;
+export const KEY_GENERAL_AVAILABILITY_BASE_START_DATE: keyof GeneralAvailabilityBase = 'start_date';
 
 /**
  * Array of all GeneralAvailabilityBase property keys
@@ -12375,7 +12375,7 @@ export const KEYS_GENERAL_AVAILABILITY_BASE = [
  * @see {@link GetPrices} - The TypeScript type definition
  * @see {@link KEYS_GET_PRICES} - Array of all keys for this type
  */
-export const KEY_GET_PRICES_PRICES = 'prices' as keyof GetPrices;
+export const KEY_GET_PRICES_PRICES: keyof GetPrices = 'prices';
 
 /**
  * Array of all GetPrices property keys
@@ -12425,7 +12425,7 @@ export const KEYS_GET_PRICES = [
  * @see {@link HTTPValidationError} - The TypeScript type definition
  * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
  */
-export const KEY_H_T_T_P_VALIDATION_ERROR_ERRORS = 'errors' as keyof HTTPValidationError;
+export const KEY_H_T_T_P_VALIDATION_ERROR_ERRORS: keyof HTTPValidationError = 'errors';
 /**
  * Status code
  *
@@ -12450,7 +12450,7 @@ export const KEY_H_T_T_P_VALIDATION_ERROR_ERRORS = 'errors' as keyof HTTPValidat
  * @see {@link HTTPValidationError} - The TypeScript type definition
  * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
  */
-export const KEY_H_T_T_P_VALIDATION_ERROR_STATUS = 'status' as keyof HTTPValidationError;
+export const KEY_H_T_T_P_VALIDATION_ERROR_STATUS: keyof HTTPValidationError = 'status';
 /**
  * Problem Title
  *
@@ -12475,7 +12475,7 @@ export const KEY_H_T_T_P_VALIDATION_ERROR_STATUS = 'status' as keyof HTTPValidat
  * @see {@link HTTPValidationError} - The TypeScript type definition
  * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
  */
-export const KEY_H_T_T_P_VALIDATION_ERROR_TITLE = 'title' as keyof HTTPValidationError;
+export const KEY_H_T_T_P_VALIDATION_ERROR_TITLE: keyof HTTPValidationError = 'title';
 /**
  * Problem type
  *
@@ -12500,7 +12500,7 @@ export const KEY_H_T_T_P_VALIDATION_ERROR_TITLE = 'title' as keyof HTTPValidatio
  * @see {@link HTTPValidationError} - The TypeScript type definition
  * @see {@link KEYS_H_T_T_P_VALIDATION_ERROR} - Array of all keys for this type
  */
-export const KEY_H_T_T_P_VALIDATION_ERROR_TYPE = 'type' as keyof HTTPValidationError;
+export const KEY_H_T_T_P_VALIDATION_ERROR_TYPE: keyof HTTPValidationError = 'type';
 
 /**
  * Array of all HTTPValidationError property keys
@@ -12552,7 +12552,7 @@ export const KEYS_H_T_T_P_VALIDATION_ERROR = [
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_REDIRECT_CODE = 'redirect_code' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_REDIRECT_CODE: keyof HttpRedirectList = 'redirect_code';
 /**
  * Request Hostname
  *
@@ -12577,7 +12577,7 @@ export const KEY_HTTP_REDIRECT_LIST_REDIRECT_CODE = 'redirect_code' as keyof Htt
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_REQUEST_HOSTNAME = 'request_hostname' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_REQUEST_HOSTNAME: keyof HttpRedirectList = 'request_hostname';
 /**
  * Request Path
  *
@@ -12602,7 +12602,7 @@ export const KEY_HTTP_REDIRECT_LIST_REQUEST_HOSTNAME = 'request_hostname' as key
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_REQUEST_PATH = 'request_path' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_REQUEST_PATH: keyof HttpRedirectList = 'request_path';
 /**
  * request_protocol property
  *
@@ -12626,7 +12626,7 @@ export const KEY_HTTP_REDIRECT_LIST_REQUEST_PATH = 'request_path' as keyof HttpR
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_REQUEST_PROTOCOL = 'request_protocol' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_REQUEST_PROTOCOL: keyof HttpRedirectList = 'request_protocol';
 /**
  * Request Subdomain
  *
@@ -12650,7 +12650,7 @@ export const KEY_HTTP_REDIRECT_LIST_REQUEST_PROTOCOL = 'request_protocol' as key
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_REQUEST_SUBDOMAIN = 'request_subdomain' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_REQUEST_SUBDOMAIN: keyof HttpRedirectList = 'request_subdomain';
 /**
  * Target Hostname
  *
@@ -12675,7 +12675,7 @@ export const KEY_HTTP_REDIRECT_LIST_REQUEST_SUBDOMAIN = 'request_subdomain' as k
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_TARGET_HOSTNAME = 'target_hostname' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_TARGET_HOSTNAME: keyof HttpRedirectList = 'target_hostname';
 /**
  * Target Path
  *
@@ -12700,7 +12700,7 @@ export const KEY_HTTP_REDIRECT_LIST_TARGET_HOSTNAME = 'target_hostname' as keyof
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_TARGET_PATH = 'target_path' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_TARGET_PATH: keyof HttpRedirectList = 'target_path';
 /**
  * target_protocol property
  *
@@ -12724,7 +12724,7 @@ export const KEY_HTTP_REDIRECT_LIST_TARGET_PATH = 'target_path' as keyof HttpRed
  * @see {@link HttpRedirectList} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_LIST_TARGET_PROTOCOL = 'target_protocol' as keyof HttpRedirectList;
+export const KEY_HTTP_REDIRECT_LIST_TARGET_PROTOCOL: keyof HttpRedirectList = 'target_protocol';
 
 /**
  * Array of all HttpRedirectList property keys
@@ -12781,7 +12781,7 @@ export const KEYS_HTTP_REDIRECT_LIST = [
  * @see {@link HttpRedirectRemove} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REMOVE} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_HOSTNAME = 'request_hostname' as keyof HttpRedirectRemove;
+export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_HOSTNAME: keyof HttpRedirectRemove = 'request_hostname';
 /**
  * Request Path
  *
@@ -12806,7 +12806,7 @@ export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_HOSTNAME = 'request_hostname' as k
  * @see {@link HttpRedirectRemove} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REMOVE} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_PATH = 'request_path' as keyof HttpRedirectRemove;
+export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_PATH: keyof HttpRedirectRemove = 'request_path';
 /**
  * request_protocol property
  *
@@ -12830,7 +12830,7 @@ export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_PATH = 'request_path' as keyof Htt
  * @see {@link HttpRedirectRemove} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REMOVE} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_PROTOCOL = 'request_protocol' as keyof HttpRedirectRemove;
+export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_PROTOCOL: keyof HttpRedirectRemove = 'request_protocol';
 /**
  * Request Subdomain
  *
@@ -12854,7 +12854,7 @@ export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_PROTOCOL = 'request_protocol' as k
  * @see {@link HttpRedirectRemove} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REMOVE} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_SUBDOMAIN = 'request_subdomain' as keyof HttpRedirectRemove;
+export const KEY_HTTP_REDIRECT_REMOVE_REQUEST_SUBDOMAIN: keyof HttpRedirectRemove = 'request_subdomain';
 
 /**
  * Array of all HttpRedirectRemove property keys
@@ -12906,7 +12906,7 @@ export const KEYS_HTTP_REDIRECT_REMOVE = [
  * @see {@link HttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REQUEST_REDIRECT_CODE = 'redirect_code' as keyof HttpRedirectRequest;
+export const KEY_HTTP_REDIRECT_REQUEST_REDIRECT_CODE: keyof HttpRedirectRequest = 'redirect_code';
 /**
  * Request Path
  *
@@ -12931,7 +12931,7 @@ export const KEY_HTTP_REDIRECT_REQUEST_REDIRECT_CODE = 'redirect_code' as keyof 
  * @see {@link HttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REQUEST_REQUEST_PATH = 'request_path' as keyof HttpRedirectRequest;
+export const KEY_HTTP_REDIRECT_REQUEST_REQUEST_PATH: keyof HttpRedirectRequest = 'request_path';
 /**
  * Target Hostname
  *
@@ -12956,7 +12956,7 @@ export const KEY_HTTP_REDIRECT_REQUEST_REQUEST_PATH = 'request_path' as keyof Ht
  * @see {@link HttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REQUEST_TARGET_HOSTNAME = 'target_hostname' as keyof HttpRedirectRequest;
+export const KEY_HTTP_REDIRECT_REQUEST_TARGET_HOSTNAME: keyof HttpRedirectRequest = 'target_hostname';
 /**
  * Target Path
  *
@@ -12981,7 +12981,7 @@ export const KEY_HTTP_REDIRECT_REQUEST_TARGET_HOSTNAME = 'target_hostname' as ke
  * @see {@link HttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REQUEST_TARGET_PATH = 'target_path' as keyof HttpRedirectRequest;
+export const KEY_HTTP_REDIRECT_REQUEST_TARGET_PATH: keyof HttpRedirectRequest = 'target_path';
 /**
  * target_protocol property
  *
@@ -13005,7 +13005,7 @@ export const KEY_HTTP_REDIRECT_REQUEST_TARGET_PATH = 'target_path' as keyof Http
  * @see {@link HttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_REQUEST_TARGET_PROTOCOL = 'target_protocol' as keyof HttpRedirectRequest;
+export const KEY_HTTP_REDIRECT_REQUEST_TARGET_PROTOCOL: keyof HttpRedirectRequest = 'target_protocol';
 
 /**
  * Array of all HttpRedirectRequest property keys
@@ -13058,7 +13058,7 @@ export const KEYS_HTTP_REDIRECT_REQUEST = [
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_REDIRECT_CODE = 'redirect_code' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_REDIRECT_CODE: keyof HttpRedirectUpsert = 'redirect_code';
 /**
  * Request Hostname
  *
@@ -13083,7 +13083,7 @@ export const KEY_HTTP_REDIRECT_UPSERT_REDIRECT_CODE = 'redirect_code' as keyof H
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_HOSTNAME = 'request_hostname' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_HOSTNAME: keyof HttpRedirectUpsert = 'request_hostname';
 /**
  * Request Path
  *
@@ -13108,7 +13108,7 @@ export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_HOSTNAME = 'request_hostname' as k
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_PATH = 'request_path' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_PATH: keyof HttpRedirectUpsert = 'request_path';
 /**
  * request_protocol property
  *
@@ -13132,7 +13132,7 @@ export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_PATH = 'request_path' as keyof Htt
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_PROTOCOL = 'request_protocol' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_PROTOCOL: keyof HttpRedirectUpsert = 'request_protocol';
 /**
  * Request Subdomain
  *
@@ -13156,7 +13156,7 @@ export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_PROTOCOL = 'request_protocol' as k
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_SUBDOMAIN = 'request_subdomain' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_SUBDOMAIN: keyof HttpRedirectUpsert = 'request_subdomain';
 /**
  * Target Hostname
  *
@@ -13181,7 +13181,7 @@ export const KEY_HTTP_REDIRECT_UPSERT_REQUEST_SUBDOMAIN = 'request_subdomain' as
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_TARGET_HOSTNAME = 'target_hostname' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_TARGET_HOSTNAME: keyof HttpRedirectUpsert = 'target_hostname';
 /**
  * Target Path
  *
@@ -13206,7 +13206,7 @@ export const KEY_HTTP_REDIRECT_UPSERT_TARGET_HOSTNAME = 'target_hostname' as key
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_TARGET_PATH = 'target_path' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_TARGET_PATH: keyof HttpRedirectUpsert = 'target_path';
 /**
  * target_protocol property
  *
@@ -13230,7 +13230,7 @@ export const KEY_HTTP_REDIRECT_UPSERT_TARGET_PATH = 'target_path' as keyof HttpR
  * @see {@link HttpRedirectUpsert} - The TypeScript type definition
  * @see {@link KEYS_HTTP_REDIRECT_UPSERT} - Array of all keys for this type
  */
-export const KEY_HTTP_REDIRECT_UPSERT_TARGET_PROTOCOL = 'target_protocol' as keyof HttpRedirectUpsert;
+export const KEY_HTTP_REDIRECT_UPSERT_TARGET_PROTOCOL: keyof HttpRedirectUpsert = 'target_protocol';
 
 /**
  * Array of all HttpRedirectUpsert property keys
@@ -13288,7 +13288,7 @@ export const KEYS_HTTP_REDIRECT_UPSERT = [
  * @see {@link IdnBase} - The TypeScript type definition
  * @see {@link KEYS_IDN_BASE} - Array of all keys for this type
  */
-export const KEY_IDN_BASE_IDN_CAPABLE = 'idn_capable' as keyof IdnBase;
+export const KEY_IDN_BASE_IDN_CAPABLE: keyof IdnBase = 'idn_capable';
 /**
  * Idn Tables
  *
@@ -13313,7 +13313,7 @@ export const KEY_IDN_BASE_IDN_CAPABLE = 'idn_capable' as keyof IdnBase;
  * @see {@link IdnBase} - The TypeScript type definition
  * @see {@link KEYS_IDN_BASE} - Array of all keys for this type
  */
-export const KEY_IDN_BASE_IDN_TABLES = 'idn_tables' as keyof IdnBase;
+export const KEY_IDN_BASE_IDN_TABLES: keyof IdnBase = 'idn_tables';
 
 /**
  * Array of all IdnBase property keys
@@ -13365,7 +13365,7 @@ export const KEYS_IDN_BASE = [
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_AMOUNT = 'amount' as keyof Invoice;
+export const KEY_INVOICE_AMOUNT: keyof Invoice = 'amount';
 /**
  * currency property
  *
@@ -13390,7 +13390,7 @@ export const KEY_INVOICE_AMOUNT = 'amount' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_CURRENCY = 'currency' as keyof Invoice;
+export const KEY_INVOICE_CURRENCY: keyof Invoice = 'currency';
 /**
  * External Id
  *
@@ -13416,7 +13416,7 @@ export const KEY_INVOICE_CURRENCY = 'currency' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_EXTERNAL_ID = 'external_id' as keyof Invoice;
+export const KEY_INVOICE_EXTERNAL_ID: keyof Invoice = 'external_id';
 /**
  * Fees Amount
  *
@@ -13442,7 +13442,7 @@ export const KEY_INVOICE_EXTERNAL_ID = 'external_id' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_FEES_AMOUNT = 'fees_amount' as keyof Invoice;
+export const KEY_INVOICE_FEES_AMOUNT: keyof Invoice = 'fees_amount';
 /**
  * File Url
  *
@@ -13468,7 +13468,7 @@ export const KEY_INVOICE_FEES_AMOUNT = 'fees_amount' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_FILE_URL = 'file_url' as keyof Invoice;
+export const KEY_INVOICE_FILE_URL: keyof Invoice = 'file_url';
 /**
  * invoice_type property
  *
@@ -13493,7 +13493,7 @@ export const KEY_INVOICE_FILE_URL = 'file_url' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_INVOICE_TYPE = 'invoice_type' as keyof Invoice;
+export const KEY_INVOICE_INVOICE_TYPE: keyof Invoice = 'invoice_type';
 /**
  * Issuing Date
  *
@@ -13519,7 +13519,7 @@ export const KEY_INVOICE_INVOICE_TYPE = 'invoice_type' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_ISSUING_DATE = 'issuing_date' as keyof Invoice;
+export const KEY_INVOICE_ISSUING_DATE: keyof Invoice = 'issuing_date';
 /**
  * Number
  *
@@ -13545,7 +13545,7 @@ export const KEY_INVOICE_ISSUING_DATE = 'issuing_date' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_NUMBER = 'number' as keyof Invoice;
+export const KEY_INVOICE_NUMBER: keyof Invoice = 'number';
 /**
  * Payment Due Date
  *
@@ -13571,7 +13571,7 @@ export const KEY_INVOICE_NUMBER = 'number' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_PAYMENT_DUE_DATE = 'payment_due_date' as keyof Invoice;
+export const KEY_INVOICE_PAYMENT_DUE_DATE: keyof Invoice = 'payment_due_date';
 /**
  * Payment Overdue
  *
@@ -13597,7 +13597,7 @@ export const KEY_INVOICE_PAYMENT_DUE_DATE = 'payment_due_date' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_PAYMENT_OVERDUE = 'payment_overdue' as keyof Invoice;
+export const KEY_INVOICE_PAYMENT_OVERDUE: keyof Invoice = 'payment_overdue';
 /**
  * payment_status property
  *
@@ -13622,7 +13622,7 @@ export const KEY_INVOICE_PAYMENT_OVERDUE = 'payment_overdue' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_PAYMENT_STATUS = 'payment_status' as keyof Invoice;
+export const KEY_INVOICE_PAYMENT_STATUS: keyof Invoice = 'payment_status';
 /**
  * status property
  *
@@ -13647,7 +13647,7 @@ export const KEY_INVOICE_PAYMENT_STATUS = 'payment_status' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_STATUS = 'status' as keyof Invoice;
+export const KEY_INVOICE_STATUS: keyof Invoice = 'status';
 /**
  * Taxes Amount
  *
@@ -13673,7 +13673,7 @@ export const KEY_INVOICE_STATUS = 'status' as keyof Invoice;
  * @see {@link Invoice} - The TypeScript type definition
  * @see {@link KEYS_INVOICE} - Array of all keys for this type
  */
-export const KEY_INVOICE_TAXES_AMOUNT = 'taxes_amount' as keyof Invoice;
+export const KEY_INVOICE_TAXES_AMOUNT: keyof Invoice = 'taxes_amount';
 
 /**
  * Array of all Invoice property keys
@@ -13736,7 +13736,7 @@ export const KEYS_INVOICE = [
  * @see {@link IpRestrictionCreate} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION_CREATE} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_CREATE_IP_NETWORK = 'ip_network' as keyof IpRestrictionCreate;
+export const KEY_IP_RESTRICTION_CREATE_IP_NETWORK: keyof IpRestrictionCreate = 'ip_network';
 /**
  * Organization Id
  *
@@ -13761,7 +13761,7 @@ export const KEY_IP_RESTRICTION_CREATE_IP_NETWORK = 'ip_network' as keyof IpRest
  * @see {@link IpRestrictionCreate} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION_CREATE} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID = 'organization_id' as keyof IpRestrictionCreate;
+export const KEY_IP_RESTRICTION_CREATE_ORGANIZATION_ID: keyof IpRestrictionCreate = 'organization_id';
 
 /**
  * Array of all IpRestrictionCreate property keys
@@ -13812,7 +13812,7 @@ export const KEYS_IP_RESTRICTION_CREATE = [
  * @see {@link IpRestriction} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_CREATED_ON = 'created_on' as keyof IpRestriction;
+export const KEY_IP_RESTRICTION_CREATED_ON: keyof IpRestriction = 'created_on';
 /**
  * Ip Network
  *
@@ -13838,7 +13838,7 @@ export const KEY_IP_RESTRICTION_CREATED_ON = 'created_on' as keyof IpRestriction
  * @see {@link IpRestriction} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_IP_NETWORK = 'ip_network' as keyof IpRestriction;
+export const KEY_IP_RESTRICTION_IP_NETWORK: keyof IpRestriction = 'ip_network';
 /**
  * Ip Restriction Id
  *
@@ -13863,7 +13863,7 @@ export const KEY_IP_RESTRICTION_IP_NETWORK = 'ip_network' as keyof IpRestriction
  * @see {@link IpRestriction} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_IP_RESTRICTION_ID = 'ip_restriction_id' as keyof IpRestriction;
+export const KEY_IP_RESTRICTION_IP_RESTRICTION_ID: keyof IpRestriction = 'ip_restriction_id';
 /**
  * Last Used On
  *
@@ -13887,7 +13887,7 @@ export const KEY_IP_RESTRICTION_IP_RESTRICTION_ID = 'ip_restriction_id' as keyof
  * @see {@link IpRestriction} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_LAST_USED_ON = 'last_used_on' as keyof IpRestriction;
+export const KEY_IP_RESTRICTION_LAST_USED_ON: keyof IpRestriction = 'last_used_on';
 /**
  * Organization Id
  *
@@ -13912,7 +13912,7 @@ export const KEY_IP_RESTRICTION_LAST_USED_ON = 'last_used_on' as keyof IpRestric
  * @see {@link IpRestriction} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_ORGANIZATION_ID = 'organization_id' as keyof IpRestriction;
+export const KEY_IP_RESTRICTION_ORGANIZATION_ID: keyof IpRestriction = 'organization_id';
 
 /**
  * Array of all IpRestriction property keys
@@ -13966,7 +13966,7 @@ export const KEYS_IP_RESTRICTION = [
  * @see {@link IpRestrictionUpdate} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION_UPDATE} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_UPDATE_IP_NETWORK = 'ip_network' as keyof IpRestrictionUpdate;
+export const KEY_IP_RESTRICTION_UPDATE_IP_NETWORK: keyof IpRestrictionUpdate = 'ip_network';
 /**
  * Last Used On
  *
@@ -13991,7 +13991,7 @@ export const KEY_IP_RESTRICTION_UPDATE_IP_NETWORK = 'ip_network' as keyof IpRest
  * @see {@link IpRestrictionUpdate} - The TypeScript type definition
  * @see {@link KEYS_IP_RESTRICTION_UPDATE} - Array of all keys for this type
  */
-export const KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON = 'last_used_on' as keyof IpRestrictionUpdate;
+export const KEY_IP_RESTRICTION_UPDATE_LAST_USED_ON: keyof IpRestrictionUpdate = 'last_used_on';
 
 /**
  * Array of all IpRestrictionUpdate property keys
@@ -14042,7 +14042,7 @@ export const KEYS_IP_RESTRICTION_UPDATE = [
  * @see {@link LaunchPhaseBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASE_BASE_ALLOCATION = 'allocation' as keyof LaunchPhaseBase;
+export const KEY_LAUNCH_PHASE_BASE_ALLOCATION: keyof LaunchPhaseBase = 'allocation';
 /**
  * End Date
  *
@@ -14067,7 +14067,7 @@ export const KEY_LAUNCH_PHASE_BASE_ALLOCATION = 'allocation' as keyof LaunchPhas
  * @see {@link LaunchPhaseBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASE_BASE_END_DATE = 'end_date' as keyof LaunchPhaseBase;
+export const KEY_LAUNCH_PHASE_BASE_END_DATE: keyof LaunchPhaseBase = 'end_date';
 /**
  * Smd Required
  *
@@ -14092,7 +14092,7 @@ export const KEY_LAUNCH_PHASE_BASE_END_DATE = 'end_date' as keyof LaunchPhaseBas
  * @see {@link LaunchPhaseBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED = 'smd_required' as keyof LaunchPhaseBase;
+export const KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED: keyof LaunchPhaseBase = 'smd_required';
 /**
  * Start Date
  *
@@ -14117,7 +14117,7 @@ export const KEY_LAUNCH_PHASE_BASE_SMD_REQUIRED = 'smd_required' as keyof Launch
  * @see {@link LaunchPhaseBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASE_BASE_START_DATE = 'start_date' as keyof LaunchPhaseBase;
+export const KEY_LAUNCH_PHASE_BASE_START_DATE: keyof LaunchPhaseBase = 'start_date';
 /**
  * Supported
  *
@@ -14143,7 +14143,7 @@ export const KEY_LAUNCH_PHASE_BASE_START_DATE = 'start_date' as keyof LaunchPhas
  * @see {@link LaunchPhaseBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASE_BASE_SUPPORTED = 'supported' as keyof LaunchPhaseBase;
+export const KEY_LAUNCH_PHASE_BASE_SUPPORTED: keyof LaunchPhaseBase = 'supported';
 /**
  * type property
  *
@@ -14168,7 +14168,7 @@ export const KEY_LAUNCH_PHASE_BASE_SUPPORTED = 'supported' as keyof LaunchPhaseB
  * @see {@link LaunchPhaseBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASE_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASE_BASE_TYPE = 'type' as keyof LaunchPhaseBase;
+export const KEY_LAUNCH_PHASE_BASE_TYPE: keyof LaunchPhaseBase = 'type';
 
 /**
  * Array of all LaunchPhaseBase property keys
@@ -14222,7 +14222,7 @@ export const KEYS_LAUNCH_PHASE_BASE = [
  * @see {@link LaunchPhasesBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASES_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASES_BASE_GENERAL_AVAILABILITY = 'general_availability' as keyof LaunchPhasesBase;
+export const KEY_LAUNCH_PHASES_BASE_GENERAL_AVAILABILITY: keyof LaunchPhasesBase = 'general_availability';
 /**
  * Phases
  *
@@ -14247,7 +14247,7 @@ export const KEY_LAUNCH_PHASES_BASE_GENERAL_AVAILABILITY = 'general_availability
  * @see {@link LaunchPhasesBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASES_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASES_BASE_PHASES = 'phases' as keyof LaunchPhasesBase;
+export const KEY_LAUNCH_PHASES_BASE_PHASES: keyof LaunchPhasesBase = 'phases';
 /**
  * trademark_claims property
  *
@@ -14271,7 +14271,7 @@ export const KEY_LAUNCH_PHASES_BASE_PHASES = 'phases' as keyof LaunchPhasesBase;
  * @see {@link LaunchPhasesBase} - The TypeScript type definition
  * @see {@link KEYS_LAUNCH_PHASES_BASE} - Array of all keys for this type
  */
-export const KEY_LAUNCH_PHASES_BASE_TRADEMARK_CLAIMS = 'trademark_claims' as keyof LaunchPhasesBase;
+export const KEY_LAUNCH_PHASES_BASE_TRADEMARK_CLAIMS: keyof LaunchPhasesBase = 'trademark_claims';
 
 /**
  * Array of all LaunchPhasesBase property keys
@@ -14323,7 +14323,7 @@ export const KEYS_LAUNCH_PHASES_BASE = [
  * @see {@link LocalPresenceBase} - The TypeScript type definition
  * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
  */
-export const KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES = 'eligible_countries' as keyof LocalPresenceBase;
+export const KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES: keyof LocalPresenceBase = 'eligible_countries';
 /**
  * Required
  *
@@ -14349,7 +14349,7 @@ export const KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES = 'eligible_countries' a
  * @see {@link LocalPresenceBase} - The TypeScript type definition
  * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
  */
-export const KEY_LOCAL_PRESENCE_BASE_REQUIRED = 'required' as keyof LocalPresenceBase;
+export const KEY_LOCAL_PRESENCE_BASE_REQUIRED: keyof LocalPresenceBase = 'required';
 /**
  * Requirement
  *
@@ -14374,7 +14374,7 @@ export const KEY_LOCAL_PRESENCE_BASE_REQUIRED = 'required' as keyof LocalPresenc
  * @see {@link LocalPresenceBase} - The TypeScript type definition
  * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
  */
-export const KEY_LOCAL_PRESENCE_BASE_REQUIREMENT = 'requirement' as keyof LocalPresenceBase;
+export const KEY_LOCAL_PRESENCE_BASE_REQUIREMENT: keyof LocalPresenceBase = 'requirement';
 /**
  * Type
  *
@@ -14399,7 +14399,7 @@ export const KEY_LOCAL_PRESENCE_BASE_REQUIREMENT = 'requirement' as keyof LocalP
  * @see {@link LocalPresenceBase} - The TypeScript type definition
  * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
  */
-export const KEY_LOCAL_PRESENCE_BASE_TYPE = 'type' as keyof LocalPresenceBase;
+export const KEY_LOCAL_PRESENCE_BASE_TYPE: keyof LocalPresenceBase = 'type';
 
 /**
  * Array of all LocalPresenceBase property keys
@@ -14453,7 +14453,7 @@ export const KEYS_LOCAL_PRESENCE_BASE = [
  * @see {@link Nameserver} - The TypeScript type definition
  * @see {@link KEYS_NAMESERVER} - Array of all keys for this type
  */
-export const KEY_NAMESERVER_HOSTNAME = 'hostname' as keyof Nameserver;
+export const KEY_NAMESERVER_HOSTNAME: keyof Nameserver = 'hostname';
 /**
  * Ip Addresses
  *
@@ -14479,7 +14479,7 @@ export const KEY_NAMESERVER_HOSTNAME = 'hostname' as keyof Nameserver;
  * @see {@link Nameserver} - The TypeScript type definition
  * @see {@link KEYS_NAMESERVER} - Array of all keys for this type
  */
-export const KEY_NAMESERVER_IP_ADDRESSES = 'ip_addresses' as keyof Nameserver;
+export const KEY_NAMESERVER_IP_ADDRESSES: keyof Nameserver = 'ip_addresses';
 
 /**
  * Array of all Nameserver property keys
@@ -14530,7 +14530,7 @@ export const KEYS_NAMESERVER = [
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_ACTION = 'action' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_ACTION: keyof ObjectLog = 'action';
 /**
  * Created On
  *
@@ -14556,7 +14556,7 @@ export const KEY_OBJECT_LOG_ACTION = 'action' as keyof ObjectLog;
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_CREATED_ON = 'created_on' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_CREATED_ON: keyof ObjectLog = 'created_on';
 /**
  * Details
  *
@@ -14581,7 +14581,7 @@ export const KEY_OBJECT_LOG_CREATED_ON = 'created_on' as keyof ObjectLog;
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_DETAILS = 'details' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_DETAILS: keyof ObjectLog = 'details';
 /**
  * Object Id
  *
@@ -14607,7 +14607,7 @@ export const KEY_OBJECT_LOG_DETAILS = 'details' as keyof ObjectLog;
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_OBJECT_ID = 'object_id' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_OBJECT_ID: keyof ObjectLog = 'object_id';
 /**
  * Object Log Id
  *
@@ -14633,7 +14633,7 @@ export const KEY_OBJECT_LOG_OBJECT_ID = 'object_id' as keyof ObjectLog;
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_OBJECT_LOG_ID = 'object_log_id' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_OBJECT_LOG_ID: keyof ObjectLog = 'object_log_id';
 /**
  * Object Type
  *
@@ -14659,7 +14659,7 @@ export const KEY_OBJECT_LOG_OBJECT_LOG_ID = 'object_log_id' as keyof ObjectLog;
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_OBJECT_TYPE = 'object_type' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_OBJECT_TYPE: keyof ObjectLog = 'object_type';
 /**
  * Performed By Id
  *
@@ -14684,7 +14684,7 @@ export const KEY_OBJECT_LOG_OBJECT_TYPE = 'object_type' as keyof ObjectLog;
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_PERFORMED_BY_ID = 'performed_by_id' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_PERFORMED_BY_ID: keyof ObjectLog = 'performed_by_id';
 /**
  * Performed By Type
  *
@@ -14709,7 +14709,7 @@ export const KEY_OBJECT_LOG_PERFORMED_BY_ID = 'performed_by_id' as keyof ObjectL
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_PERFORMED_BY_TYPE = 'performed_by_type' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_PERFORMED_BY_TYPE: keyof ObjectLog = 'performed_by_type';
 /**
  * Server Request Id
  *
@@ -14734,7 +14734,7 @@ export const KEY_OBJECT_LOG_PERFORMED_BY_TYPE = 'performed_by_type' as keyof Obj
  * @see {@link ObjectLog} - The TypeScript type definition
  * @see {@link KEYS_OBJECT_LOG} - Array of all keys for this type
  */
-export const KEY_OBJECT_LOG_SERVER_REQUEST_ID = 'server_request_id' as keyof ObjectLog;
+export const KEY_OBJECT_LOG_SERVER_REQUEST_ID: keyof ObjectLog = 'server_request_id';
 
 /**
  * Array of all ObjectLog property keys
@@ -14792,7 +14792,7 @@ export const KEYS_OBJECT_LOG = [
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ADDRESS_1 = 'address_1' as keyof Organization;
+export const KEY_ORGANIZATION_ADDRESS_1: keyof Organization = 'address_1';
 /**
  * Address 2
  *
@@ -14817,7 +14817,7 @@ export const KEY_ORGANIZATION_ADDRESS_1 = 'address_1' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ADDRESS_2 = 'address_2' as keyof Organization;
+export const KEY_ORGANIZATION_ADDRESS_2: keyof Organization = 'address_2';
 /**
  * Attributes
  *
@@ -14842,7 +14842,7 @@ export const KEY_ORGANIZATION_ADDRESS_2 = 'address_2' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTES = 'attributes' as keyof Organization;
+export const KEY_ORGANIZATION_ATTRIBUTES: keyof Organization = 'attributes';
 /**
  * Business Number
  *
@@ -14867,7 +14867,7 @@ export const KEY_ORGANIZATION_ATTRIBUTES = 'attributes' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_BUSINESS_NUMBER = 'business_number' as keyof Organization;
+export const KEY_ORGANIZATION_BUSINESS_NUMBER: keyof Organization = 'business_number';
 /**
  * City
  *
@@ -14892,7 +14892,7 @@ export const KEY_ORGANIZATION_BUSINESS_NUMBER = 'business_number' as keyof Organ
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CITY = 'city' as keyof Organization;
+export const KEY_ORGANIZATION_CITY: keyof Organization = 'city';
 /**
  * Country Code
  *
@@ -14917,7 +14917,7 @@ export const KEY_ORGANIZATION_CITY = 'city' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_COUNTRY_CODE = 'country_code' as keyof Organization;
+export const KEY_ORGANIZATION_COUNTRY_CODE: keyof Organization = 'country_code';
 /**
  * Created On
  *
@@ -14943,7 +14943,7 @@ export const KEY_ORGANIZATION_COUNTRY_CODE = 'country_code' as keyof Organizatio
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATED_ON = 'created_on' as keyof Organization;
+export const KEY_ORGANIZATION_CREATED_ON: keyof Organization = 'created_on';
 /**
  * currency property
  *
@@ -14968,7 +14968,7 @@ export const KEY_ORGANIZATION_CREATED_ON = 'created_on' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CURRENCY = 'currency' as keyof Organization;
+export const KEY_ORGANIZATION_CURRENCY: keyof Organization = 'currency';
 /**
  * Default Locale
  *
@@ -14993,7 +14993,7 @@ export const KEY_ORGANIZATION_CURRENCY = 'currency' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_DEFAULT_LOCALE = 'default_locale' as keyof Organization;
+export const KEY_ORGANIZATION_DEFAULT_LOCALE: keyof Organization = 'default_locale';
 /**
  * Deleted On
  *
@@ -15018,7 +15018,7 @@ export const KEY_ORGANIZATION_DEFAULT_LOCALE = 'default_locale' as keyof Organiz
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_DELETED_ON = 'deleted_on' as keyof Organization;
+export const KEY_ORGANIZATION_DELETED_ON: keyof Organization = 'deleted_on';
 /**
  * Name
  *
@@ -15044,7 +15044,7 @@ export const KEY_ORGANIZATION_DELETED_ON = 'deleted_on' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_NAME = 'name' as keyof Organization;
+export const KEY_ORGANIZATION_NAME: keyof Organization = 'name';
 /**
  * Organization Id
  *
@@ -15070,7 +15070,7 @@ export const KEY_ORGANIZATION_NAME = 'name' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ORGANIZATION_ID = 'organization_id' as keyof Organization;
+export const KEY_ORGANIZATION_ORGANIZATION_ID: keyof Organization = 'organization_id';
 /**
  * Parent Organization Id
  *
@@ -15095,7 +15095,7 @@ export const KEY_ORGANIZATION_ORGANIZATION_ID = 'organization_id' as keyof Organ
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof Organization;
+export const KEY_ORGANIZATION_PARENT_ORGANIZATION_ID: keyof Organization = 'parent_organization_id';
 /**
  * Postal Code
  *
@@ -15120,7 +15120,7 @@ export const KEY_ORGANIZATION_PARENT_ORGANIZATION_ID = 'parent_organization_id' 
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_POSTAL_CODE = 'postal_code' as keyof Organization;
+export const KEY_ORGANIZATION_POSTAL_CODE: keyof Organization = 'postal_code';
 /**
  * State
  *
@@ -15145,7 +15145,7 @@ export const KEY_ORGANIZATION_POSTAL_CODE = 'postal_code' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_STATE = 'state' as keyof Organization;
+export const KEY_ORGANIZATION_STATE: keyof Organization = 'state';
 /**
  * status property
  *
@@ -15170,7 +15170,7 @@ export const KEY_ORGANIZATION_STATE = 'state' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_STATUS = 'status' as keyof Organization;
+export const KEY_ORGANIZATION_STATUS: keyof Organization = 'status';
 /**
  * Tax Id
  *
@@ -15195,7 +15195,7 @@ export const KEY_ORGANIZATION_STATUS = 'status' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_TAX_ID = 'tax_id' as keyof Organization;
+export const KEY_ORGANIZATION_TAX_ID: keyof Organization = 'tax_id';
 /**
  * Tax Id Type
  *
@@ -15220,7 +15220,7 @@ export const KEY_ORGANIZATION_TAX_ID = 'tax_id' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_TAX_ID_TYPE = 'tax_id_type' as keyof Organization;
+export const KEY_ORGANIZATION_TAX_ID_TYPE: keyof Organization = 'tax_id_type';
 /**
  * Tax Rate
  *
@@ -15245,7 +15245,7 @@ export const KEY_ORGANIZATION_TAX_ID_TYPE = 'tax_id_type' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_TAX_RATE = 'tax_rate' as keyof Organization;
+export const KEY_ORGANIZATION_TAX_RATE: keyof Organization = 'tax_rate';
 /**
  * Users
  *
@@ -15270,7 +15270,7 @@ export const KEY_ORGANIZATION_TAX_RATE = 'tax_rate' as keyof Organization;
  * @see {@link Organization} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_USERS = 'users' as keyof Organization;
+export const KEY_ORGANIZATION_USERS: keyof Organization = 'users';
 
 /**
  * Array of all Organization property keys
@@ -15340,7 +15340,7 @@ export const KEYS_ORGANIZATION = [
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON = 'created_on' as keyof OrganizationAttribute;
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON: keyof OrganizationAttribute = 'created_on';
 /**
  * Key
  *
@@ -15366,7 +15366,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_CREATED_ON = 'created_on' as keyof Organ
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_KEY = 'key' as keyof OrganizationAttribute;
+export const KEY_ORGANIZATION_ATTRIBUTE_KEY: keyof OrganizationAttribute = 'key';
 /**
  * Organization Attribute Id
  *
@@ -15391,7 +15391,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_KEY = 'key' as keyof OrganizationAttribu
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID = 'organization_attribute_id' as keyof OrganizationAttribute;
+export const KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID: keyof OrganizationAttribute = 'organization_attribute_id';
 /**
  * Private
  *
@@ -15417,7 +15417,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_ORGANIZATION_ATTRIBUTE_ID = 'organizatio
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_PRIVATE = 'private' as keyof OrganizationAttribute;
+export const KEY_ORGANIZATION_ATTRIBUTE_PRIVATE: keyof OrganizationAttribute = 'private';
 /**
  * Protected
  *
@@ -15443,7 +15443,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_PRIVATE = 'private' as keyof Organizatio
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_PROTECTED = 'protected' as keyof OrganizationAttribute;
+export const KEY_ORGANIZATION_ATTRIBUTE_PROTECTED: keyof OrganizationAttribute = 'protected';
 /**
  * Updated On
  *
@@ -15469,7 +15469,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_PROTECTED = 'protected' as keyof Organiz
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON = 'updated_on' as keyof OrganizationAttribute;
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON: keyof OrganizationAttribute = 'updated_on';
 /**
  * value property
  *
@@ -15494,7 +15494,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_UPDATED_ON = 'updated_on' as keyof Organ
  * @see {@link OrganizationAttribute} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_VALUE = 'value' as keyof OrganizationAttribute;
+export const KEY_ORGANIZATION_ATTRIBUTE_VALUE: keyof OrganizationAttribute = 'value';
 
 /**
  * Array of all OrganizationAttribute property keys
@@ -15551,7 +15551,7 @@ export const KEYS_ORGANIZATION_ATTRIBUTE = [
  * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY = 'key' as keyof OrganizationAttributeCreate;
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY: keyof OrganizationAttributeCreate = 'key';
 /**
  * Private
  *
@@ -15577,7 +15577,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_KEY = 'key' as keyof Organization
  * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE = 'private' as keyof OrganizationAttributeCreate;
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE: keyof OrganizationAttributeCreate = 'private';
 /**
  * Protected
  *
@@ -15603,7 +15603,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PRIVATE = 'private' as keyof Orga
  * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED = 'protected' as keyof OrganizationAttributeCreate;
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED: keyof OrganizationAttributeCreate = 'protected';
 /**
  * value property
  *
@@ -15628,7 +15628,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_PROTECTED = 'protected' as keyof 
  * @see {@link OrganizationAttributeCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE = 'value' as keyof OrganizationAttributeCreate;
+export const KEY_ORGANIZATION_ATTRIBUTE_CREATE_VALUE: keyof OrganizationAttributeCreate = 'value';
 
 /**
  * Array of all OrganizationAttributeCreate property keys
@@ -15682,7 +15682,7 @@ export const KEYS_ORGANIZATION_ATTRIBUTE_CREATE = [
  * @see {@link OrganizationAttribute2} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON = 'created_on' as keyof OrganizationAttribute2;
+export const KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON: keyof OrganizationAttribute2 = 'created_on';
 /**
  * Key
  *
@@ -15708,7 +15708,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE2_CREATED_ON = 'created_on' as keyof Orga
  * @see {@link OrganizationAttribute2} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE2_KEY = 'key' as keyof OrganizationAttribute2;
+export const KEY_ORGANIZATION_ATTRIBUTE2_KEY: keyof OrganizationAttribute2 = 'key';
 /**
  * Organization Attribute Id
  *
@@ -15733,7 +15733,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE2_KEY = 'key' as keyof OrganizationAttrib
  * @see {@link OrganizationAttribute2} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID = 'organization_attribute_id' as keyof OrganizationAttribute2;
+export const KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID: keyof OrganizationAttribute2 = 'organization_attribute_id';
 /**
  * Protected
  *
@@ -15759,7 +15759,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE2_ORGANIZATION_ATTRIBUTE_ID = 'organizati
  * @see {@link OrganizationAttribute2} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED = 'protected' as keyof OrganizationAttribute2;
+export const KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED: keyof OrganizationAttribute2 = 'protected';
 /**
  * Updated On
  *
@@ -15785,7 +15785,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE2_PROTECTED = 'protected' as keyof Organi
  * @see {@link OrganizationAttribute2} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON = 'updated_on' as keyof OrganizationAttribute2;
+export const KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON: keyof OrganizationAttribute2 = 'updated_on';
 /**
  * value property
  *
@@ -15810,7 +15810,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE2_UPDATED_ON = 'updated_on' as keyof Orga
  * @see {@link OrganizationAttribute2} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE2} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE2_VALUE = 'value' as keyof OrganizationAttribute2;
+export const KEY_ORGANIZATION_ATTRIBUTE2_VALUE: keyof OrganizationAttribute2 = 'value';
 
 /**
  * Array of all OrganizationAttribute2 property keys
@@ -15866,7 +15866,7 @@ export const KEYS_ORGANIZATION_ATTRIBUTE2 = [
  * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY = 'key' as keyof OrganizationAttributeUpdate;
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY: keyof OrganizationAttributeUpdate = 'key';
 /**
  * Private
  *
@@ -15892,7 +15892,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_KEY = 'key' as keyof Organization
  * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE = 'private' as keyof OrganizationAttributeUpdate;
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE: keyof OrganizationAttributeUpdate = 'private';
 /**
  * Protected
  *
@@ -15918,7 +15918,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PRIVATE = 'private' as keyof Orga
  * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED = 'protected' as keyof OrganizationAttributeUpdate;
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED: keyof OrganizationAttributeUpdate = 'protected';
 /**
  * value property
  *
@@ -15943,7 +15943,7 @@ export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_PROTECTED = 'protected' as keyof 
  * @see {@link OrganizationAttributeUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_ATTRIBUTE_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE = 'value' as keyof OrganizationAttributeUpdate;
+export const KEY_ORGANIZATION_ATTRIBUTE_UPDATE_VALUE: keyof OrganizationAttributeUpdate = 'value';
 
 /**
  * Array of all OrganizationAttributeUpdate property keys
@@ -15996,7 +15996,7 @@ export const KEYS_ORGANIZATION_ATTRIBUTE_UPDATE = [
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_ADDRESS_1 = 'address_1' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_ADDRESS_1: keyof OrganizationCreate = 'address_1';
 /**
  * Address 2
  *
@@ -16021,7 +16021,7 @@ export const KEY_ORGANIZATION_CREATE_ADDRESS_1 = 'address_1' as keyof Organizati
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_ADDRESS_2 = 'address_2' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_ADDRESS_2: keyof OrganizationCreate = 'address_2';
 /**
  * Attributes
  *
@@ -16047,7 +16047,7 @@ export const KEY_ORGANIZATION_CREATE_ADDRESS_2 = 'address_2' as keyof Organizati
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_ATTRIBUTES = 'attributes' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_ATTRIBUTES: keyof OrganizationCreate = 'attributes';
 /**
  * Business Number
  *
@@ -16072,7 +16072,7 @@ export const KEY_ORGANIZATION_CREATE_ATTRIBUTES = 'attributes' as keyof Organiza
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER = 'business_number' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER: keyof OrganizationCreate = 'business_number';
 /**
  * City
  *
@@ -16097,7 +16097,7 @@ export const KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER = 'business_number' as keyo
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_CITY = 'city' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_CITY: keyof OrganizationCreate = 'city';
 /**
  * Country Code
  *
@@ -16122,7 +16122,7 @@ export const KEY_ORGANIZATION_CREATE_CITY = 'city' as keyof OrganizationCreate;
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_COUNTRY_CODE = 'country_code' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_COUNTRY_CODE: keyof OrganizationCreate = 'country_code';
 /**
  * currency property
  *
@@ -16147,7 +16147,7 @@ export const KEY_ORGANIZATION_CREATE_COUNTRY_CODE = 'country_code' as keyof Orga
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_CURRENCY = 'currency' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_CURRENCY: keyof OrganizationCreate = 'currency';
 /**
  * Default Locale
  *
@@ -16172,7 +16172,7 @@ export const KEY_ORGANIZATION_CREATE_CURRENCY = 'currency' as keyof Organization
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_DEFAULT_LOCALE: keyof OrganizationCreate = 'default_locale';
 /**
  * Name
  *
@@ -16198,7 +16198,7 @@ export const KEY_ORGANIZATION_CREATE_DEFAULT_LOCALE = 'default_locale' as keyof 
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_NAME = 'name' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_NAME: keyof OrganizationCreate = 'name';
 /**
  * Parent Organization Id
  *
@@ -16223,7 +16223,7 @@ export const KEY_ORGANIZATION_CREATE_NAME = 'name' as keyof OrganizationCreate;
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID: keyof OrganizationCreate = 'parent_organization_id';
 /**
  * Postal Code
  *
@@ -16248,7 +16248,7 @@ export const KEY_ORGANIZATION_CREATE_PARENT_ORGANIZATION_ID = 'parent_organizati
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_POSTAL_CODE = 'postal_code' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_POSTAL_CODE: keyof OrganizationCreate = 'postal_code';
 /**
  * State
  *
@@ -16273,7 +16273,7 @@ export const KEY_ORGANIZATION_CREATE_POSTAL_CODE = 'postal_code' as keyof Organi
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_STATE = 'state' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_STATE: keyof OrganizationCreate = 'state';
 /**
  * Tax Id
  *
@@ -16298,7 +16298,7 @@ export const KEY_ORGANIZATION_CREATE_STATE = 'state' as keyof OrganizationCreate
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_TAX_ID = 'tax_id' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_TAX_ID: keyof OrganizationCreate = 'tax_id';
 /**
  * Tax Id Type
  *
@@ -16323,7 +16323,7 @@ export const KEY_ORGANIZATION_CREATE_TAX_ID = 'tax_id' as keyof OrganizationCrea
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_TAX_ID_TYPE: keyof OrganizationCreate = 'tax_id_type';
 /**
  * Tax Rate
  *
@@ -16348,7 +16348,7 @@ export const KEY_ORGANIZATION_CREATE_TAX_ID_TYPE = 'tax_id_type' as keyof Organi
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_TAX_RATE = 'tax_rate' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_TAX_RATE: keyof OrganizationCreate = 'tax_rate';
 /**
  * Users
  *
@@ -16374,7 +16374,7 @@ export const KEY_ORGANIZATION_CREATE_TAX_RATE = 'tax_rate' as keyof Organization
  * @see {@link OrganizationCreate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_CREATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_CREATE_USERS = 'users' as keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_USERS: keyof OrganizationCreate = 'users';
 
 /**
  * Array of all OrganizationCreate property keys
@@ -16439,7 +16439,7 @@ export const KEYS_ORGANIZATION_CREATE = [
  * @see {@link OrganizationToken} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_TOKEN} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN = 'access_token' as keyof OrganizationToken;
+export const KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN: keyof OrganizationToken = 'access_token';
 /**
  * Expires In
  *
@@ -16464,7 +16464,7 @@ export const KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN = 'access_token' as keyof Organ
  * @see {@link OrganizationToken} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_TOKEN} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_TOKEN_EXPIRES_IN = 'expires_in' as keyof OrganizationToken;
+export const KEY_ORGANIZATION_TOKEN_EXPIRES_IN: keyof OrganizationToken = 'expires_in';
 /**
  * Token Type
  *
@@ -16489,7 +16489,7 @@ export const KEY_ORGANIZATION_TOKEN_EXPIRES_IN = 'expires_in' as keyof Organizat
  * @see {@link OrganizationToken} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_TOKEN} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_TOKEN_TOKEN_TYPE = 'token_type' as keyof OrganizationToken;
+export const KEY_ORGANIZATION_TOKEN_TOKEN_TYPE: keyof OrganizationToken = 'token_type';
 
 /**
  * Array of all OrganizationToken property keys
@@ -16541,7 +16541,7 @@ export const KEYS_ORGANIZATION_TOKEN = [
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_ADDRESS_1 = 'address_1' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_ADDRESS_1: keyof OrganizationUpdate = 'address_1';
 /**
  * Address 2
  *
@@ -16566,7 +16566,7 @@ export const KEY_ORGANIZATION_UPDATE_ADDRESS_1 = 'address_1' as keyof Organizati
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_ADDRESS_2 = 'address_2' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_ADDRESS_2: keyof OrganizationUpdate = 'address_2';
 /**
  * Business Number
  *
@@ -16591,7 +16591,7 @@ export const KEY_ORGANIZATION_UPDATE_ADDRESS_2 = 'address_2' as keyof Organizati
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER = 'business_number' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER: keyof OrganizationUpdate = 'business_number';
 /**
  * City
  *
@@ -16616,7 +16616,7 @@ export const KEY_ORGANIZATION_UPDATE_BUSINESS_NUMBER = 'business_number' as keyo
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_CITY = 'city' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_CITY: keyof OrganizationUpdate = 'city';
 /**
  * Country Code
  *
@@ -16640,7 +16640,7 @@ export const KEY_ORGANIZATION_UPDATE_CITY = 'city' as keyof OrganizationUpdate;
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_COUNTRY_CODE = 'country_code' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_COUNTRY_CODE: keyof OrganizationUpdate = 'country_code';
 /**
  * Default Locale
  *
@@ -16665,7 +16665,7 @@ export const KEY_ORGANIZATION_UPDATE_COUNTRY_CODE = 'country_code' as keyof Orga
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_DEFAULT_LOCALE: keyof OrganizationUpdate = 'default_locale';
 /**
  * Name
  *
@@ -16690,7 +16690,7 @@ export const KEY_ORGANIZATION_UPDATE_DEFAULT_LOCALE = 'default_locale' as keyof 
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_NAME = 'name' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_NAME: keyof OrganizationUpdate = 'name';
 /**
  * Postal Code
  *
@@ -16715,7 +16715,7 @@ export const KEY_ORGANIZATION_UPDATE_NAME = 'name' as keyof OrganizationUpdate;
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_POSTAL_CODE = 'postal_code' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_POSTAL_CODE: keyof OrganizationUpdate = 'postal_code';
 /**
  * State
  *
@@ -16740,7 +16740,7 @@ export const KEY_ORGANIZATION_UPDATE_POSTAL_CODE = 'postal_code' as keyof Organi
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_STATE = 'state' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_STATE: keyof OrganizationUpdate = 'state';
 /**
  * Tax Id
  *
@@ -16765,7 +16765,7 @@ export const KEY_ORGANIZATION_UPDATE_STATE = 'state' as keyof OrganizationUpdate
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_TAX_ID = 'tax_id' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_TAX_ID: keyof OrganizationUpdate = 'tax_id';
 /**
  * Tax Id Type
  *
@@ -16790,7 +16790,7 @@ export const KEY_ORGANIZATION_UPDATE_TAX_ID = 'tax_id' as keyof OrganizationUpda
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE: keyof OrganizationUpdate = 'tax_id_type';
 /**
  * Tax Rate
  *
@@ -16815,7 +16815,7 @@ export const KEY_ORGANIZATION_UPDATE_TAX_ID_TYPE = 'tax_id_type' as keyof Organi
  * @see {@link OrganizationUpdate} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_UPDATE} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_UPDATE_TAX_RATE = 'tax_rate' as keyof OrganizationUpdate;
+export const KEY_ORGANIZATION_UPDATE_TAX_RATE: keyof OrganizationUpdate = 'tax_rate';
 
 /**
  * Array of all OrganizationUpdate property keys
@@ -16875,7 +16875,7 @@ export const KEYS_ORGANIZATION_UPDATE = [
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE = 'account_balance' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE: keyof OrganizationWithBillingData = 'account_balance';
 /**
  * active_plan property
  *
@@ -16899,7 +16899,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE = 'account_balan
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN = 'active_plan' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN: keyof OrganizationWithBillingData = 'active_plan';
 /**
  * Address 1
  *
@@ -16924,7 +16924,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN = 'active_plan' as k
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1 = 'address_1' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1: keyof OrganizationWithBillingData = 'address_1';
 /**
  * Address 2
  *
@@ -16949,7 +16949,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1 = 'address_1' as keyof
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2 = 'address_2' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2: keyof OrganizationWithBillingData = 'address_2';
 /**
  * Attributes
  *
@@ -16974,7 +16974,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2 = 'address_2' as keyof
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES = 'attributes' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES: keyof OrganizationWithBillingData = 'attributes';
 /**
  * billing_metadata property
  *
@@ -16998,7 +16998,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES = 'attributes' as key
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA = 'billing_metadata' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA: keyof OrganizationWithBillingData = 'billing_metadata';
 /**
  * Business Number
  *
@@ -17023,7 +17023,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA = 'billing_meta
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER = 'business_number' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER: keyof OrganizationWithBillingData = 'business_number';
 /**
  * City
  *
@@ -17048,7 +17048,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER = 'business_numb
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_CITY = 'city' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_CITY: keyof OrganizationWithBillingData = 'city';
 /**
  * Country Code
  *
@@ -17073,7 +17073,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_CITY = 'city' as keyof Organizat
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE = 'country_code' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE: keyof OrganizationWithBillingData = 'country_code';
 /**
  * Created On
  *
@@ -17099,7 +17099,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE = 'country_code' as
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_CREATED_ON = 'created_on' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_CREATED_ON: keyof OrganizationWithBillingData = 'created_on';
 /**
  * currency property
  *
@@ -17124,7 +17124,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_CREATED_ON = 'created_on' as key
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY = 'currency' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY: keyof OrganizationWithBillingData = 'currency';
 /**
  * Default Locale
  *
@@ -17149,7 +17149,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY = 'currency' as keyof O
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE = 'default_locale' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE: keyof OrganizationWithBillingData = 'default_locale';
 /**
  * Deleted On
  *
@@ -17174,7 +17174,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE = 'default_locale
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON = 'deleted_on' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON: keyof OrganizationWithBillingData = 'deleted_on';
 /**
  * Name
  *
@@ -17200,7 +17200,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON = 'deleted_on' as key
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_NAME = 'name' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_NAME: keyof OrganizationWithBillingData = 'name';
 /**
  * Organization Id
  *
@@ -17226,7 +17226,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_NAME = 'name' as keyof Organizat
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID = 'organization_id' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID: keyof OrganizationWithBillingData = 'organization_id';
 /**
  * Parent Organization Id
  *
@@ -17251,7 +17251,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID = 'organization_
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID = 'parent_organization_id' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID: keyof OrganizationWithBillingData = 'parent_organization_id';
 /**
  * Postal Code
  *
@@ -17276,7 +17276,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID = 'parent
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_POSTAL_CODE = 'postal_code' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_POSTAL_CODE: keyof OrganizationWithBillingData = 'postal_code';
 /**
  * State
  *
@@ -17301,7 +17301,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_POSTAL_CODE = 'postal_code' as k
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATE = 'state' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATE: keyof OrganizationWithBillingData = 'state';
 /**
  * status property
  *
@@ -17326,7 +17326,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATE = 'state' as keyof Organiz
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATUS = 'status' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATUS: keyof OrganizationWithBillingData = 'status';
 /**
  * Tax Id
  *
@@ -17351,7 +17351,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_STATUS = 'status' as keyof Organ
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID = 'tax_id' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID: keyof OrganizationWithBillingData = 'tax_id';
 /**
  * Tax Id Type
  *
@@ -17376,7 +17376,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID = 'tax_id' as keyof Organ
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID_TYPE = 'tax_id_type' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID_TYPE: keyof OrganizationWithBillingData = 'tax_id_type';
 /**
  * Tax Rate
  *
@@ -17401,7 +17401,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_ID_TYPE = 'tax_id_type' as k
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE = 'tax_rate' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE: keyof OrganizationWithBillingData = 'tax_rate';
 /**
  * Users
  *
@@ -17426,7 +17426,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE = 'tax_rate' as keyof O
  * @see {@link OrganizationWithBillingData} - The TypeScript type definition
  * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
  */
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_USERS = 'users' as keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_USERS: keyof OrganizationWithBillingData = 'users';
 
 /**
  * Array of all OrganizationWithBillingData property keys
@@ -17498,7 +17498,7 @@ export const KEYS_ORGANIZATION_WITH_BILLING_DATA = [
  * @see {@link PaginationMetadata} - The TypeScript type definition
  * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
  */
-export const KEY_PAGINATION_METADATA_CURRENT_PAGE = 'current_page' as keyof PaginationMetadata;
+export const KEY_PAGINATION_METADATA_CURRENT_PAGE: keyof PaginationMetadata = 'current_page';
 /**
  * Has Next Page
  *
@@ -17523,7 +17523,7 @@ export const KEY_PAGINATION_METADATA_CURRENT_PAGE = 'current_page' as keyof Pagi
  * @see {@link PaginationMetadata} - The TypeScript type definition
  * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
  */
-export const KEY_PAGINATION_METADATA_HAS_NEXT_PAGE = 'has_next_page' as keyof PaginationMetadata;
+export const KEY_PAGINATION_METADATA_HAS_NEXT_PAGE: keyof PaginationMetadata = 'has_next_page';
 /**
  * Has Previous Page
  *
@@ -17548,7 +17548,7 @@ export const KEY_PAGINATION_METADATA_HAS_NEXT_PAGE = 'has_next_page' as keyof Pa
  * @see {@link PaginationMetadata} - The TypeScript type definition
  * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
  */
-export const KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE = 'has_previous_page' as keyof PaginationMetadata;
+export const KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE: keyof PaginationMetadata = 'has_previous_page';
 /**
  * Page Size
  *
@@ -17573,7 +17573,7 @@ export const KEY_PAGINATION_METADATA_HAS_PREVIOUS_PAGE = 'has_previous_page' as 
  * @see {@link PaginationMetadata} - The TypeScript type definition
  * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
  */
-export const KEY_PAGINATION_METADATA_PAGE_SIZE = 'page_size' as keyof PaginationMetadata;
+export const KEY_PAGINATION_METADATA_PAGE_SIZE: keyof PaginationMetadata = 'page_size';
 /**
  * Total Items
  *
@@ -17598,7 +17598,7 @@ export const KEY_PAGINATION_METADATA_PAGE_SIZE = 'page_size' as keyof Pagination
  * @see {@link PaginationMetadata} - The TypeScript type definition
  * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
  */
-export const KEY_PAGINATION_METADATA_TOTAL_ITEMS = 'total_items' as keyof PaginationMetadata;
+export const KEY_PAGINATION_METADATA_TOTAL_ITEMS: keyof PaginationMetadata = 'total_items';
 /**
  * Total Pages
  *
@@ -17623,7 +17623,7 @@ export const KEY_PAGINATION_METADATA_TOTAL_ITEMS = 'total_items' as keyof Pagina
  * @see {@link PaginationMetadata} - The TypeScript type definition
  * @see {@link KEYS_PAGINATION_METADATA} - Array of all keys for this type
  */
-export const KEY_PAGINATION_METADATA_TOTAL_PAGES = 'total_pages' as keyof PaginationMetadata;
+export const KEY_PAGINATION_METADATA_TOTAL_PAGES: keyof PaginationMetadata = 'total_pages';
 
 /**
  * Array of all PaginationMetadata property keys
@@ -17678,7 +17678,7 @@ export const KEYS_PAGINATION_METADATA = [
  * @see {@link PasswordUpdate} - The TypeScript type definition
  * @see {@link KEYS_PASSWORD_UPDATE} - Array of all keys for this type
  */
-export const KEY_PASSWORD_UPDATE_NEW_PASSWORD = 'new_password' as keyof PasswordUpdate;
+export const KEY_PASSWORD_UPDATE_NEW_PASSWORD: keyof PasswordUpdate = 'new_password';
 
 /**
  * Array of all PasswordUpdate property keys
@@ -17728,7 +17728,7 @@ export const KEYS_PASSWORD_UPDATE = [
  * @see {@link Period} - The TypeScript type definition
  * @see {@link KEYS_PERIOD} - Array of all keys for this type
  */
-export const KEY_PERIOD_UNIT = 'unit' as keyof Period;
+export const KEY_PERIOD_UNIT: keyof Period = 'unit';
 /**
  * Value
  *
@@ -17754,7 +17754,7 @@ export const KEY_PERIOD_UNIT = 'unit' as keyof Period;
  * @see {@link Period} - The TypeScript type definition
  * @see {@link KEYS_PERIOD} - Array of all keys for this type
  */
-export const KEY_PERIOD_VALUE = 'value' as keyof Period;
+export const KEY_PERIOD_VALUE: keyof Period = 'value';
 
 /**
  * Array of all Period property keys
@@ -17805,7 +17805,7 @@ export const KEYS_PERIOD = [
  * @see {@link PermissionSet} - The TypeScript type definition
  * @see {@link KEYS_PERMISSION_SET} - Array of all keys for this type
  */
-export const KEY_PERMISSION_SET_PERMISSIONS = 'permissions' as keyof PermissionSet;
+export const KEY_PERMISSION_SET_PERMISSIONS: keyof PermissionSet = 'permissions';
 
 /**
  * Array of all PermissionSet property keys
@@ -17855,7 +17855,7 @@ export const KEYS_PERMISSION_SET = [
  * @see {@link PremiumDomainsBase} - The TypeScript type definition
  * @see {@link KEYS_PREMIUM_DOMAINS_BASE} - Array of all keys for this type
  */
-export const KEY_PREMIUM_DOMAINS_BASE_AFFECTS = 'affects' as keyof PremiumDomainsBase;
+export const KEY_PREMIUM_DOMAINS_BASE_AFFECTS: keyof PremiumDomainsBase = 'affects';
 /**
  * source property
  *
@@ -17880,7 +17880,7 @@ export const KEY_PREMIUM_DOMAINS_BASE_AFFECTS = 'affects' as keyof PremiumDomain
  * @see {@link PremiumDomainsBase} - The TypeScript type definition
  * @see {@link KEYS_PREMIUM_DOMAINS_BASE} - Array of all keys for this type
  */
-export const KEY_PREMIUM_DOMAINS_BASE_SOURCE = 'source' as keyof PremiumDomainsBase;
+export const KEY_PREMIUM_DOMAINS_BASE_SOURCE: keyof PremiumDomainsBase = 'source';
 /**
  * Supported
  *
@@ -17906,7 +17906,7 @@ export const KEY_PREMIUM_DOMAINS_BASE_SOURCE = 'source' as keyof PremiumDomainsB
  * @see {@link PremiumDomainsBase} - The TypeScript type definition
  * @see {@link KEYS_PREMIUM_DOMAINS_BASE} - Array of all keys for this type
  */
-export const KEY_PREMIUM_DOMAINS_BASE_SUPPORTED = 'supported' as keyof PremiumDomainsBase;
+export const KEY_PREMIUM_DOMAINS_BASE_SUPPORTED: keyof PremiumDomainsBase = 'supported';
 
 /**
  * Array of all PremiumDomainsBase property keys
@@ -17958,7 +17958,7 @@ export const KEYS_PREMIUM_DOMAINS_BASE = [
  * @see {@link PriceInfo} - The TypeScript type definition
  * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
  */
-export const KEY_PRICE_INFO_CURRENCY = 'currency' as keyof PriceInfo;
+export const KEY_PRICE_INFO_CURRENCY: keyof PriceInfo = 'currency';
 /**
  * period property
  *
@@ -17983,7 +17983,7 @@ export const KEY_PRICE_INFO_CURRENCY = 'currency' as keyof PriceInfo;
  * @see {@link PriceInfo} - The TypeScript type definition
  * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
  */
-export const KEY_PRICE_INFO_PERIOD = 'period' as keyof PriceInfo;
+export const KEY_PRICE_INFO_PERIOD: keyof PriceInfo = 'period';
 /**
  * Price
  *
@@ -18008,7 +18008,7 @@ export const KEY_PRICE_INFO_PERIOD = 'period' as keyof PriceInfo;
  * @see {@link PriceInfo} - The TypeScript type definition
  * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
  */
-export const KEY_PRICE_INFO_PRICE = 'price' as keyof PriceInfo;
+export const KEY_PRICE_INFO_PRICE: keyof PriceInfo = 'price';
 /**
  * Product Action
  *
@@ -18032,7 +18032,7 @@ export const KEY_PRICE_INFO_PRICE = 'price' as keyof PriceInfo;
  * @see {@link PriceInfo} - The TypeScript type definition
  * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
  */
-export const KEY_PRICE_INFO_PRODUCT_ACTION = 'product_action' as keyof PriceInfo;
+export const KEY_PRICE_INFO_PRODUCT_ACTION: keyof PriceInfo = 'product_action';
 /**
  * Product Class
  *
@@ -18056,7 +18056,7 @@ export const KEY_PRICE_INFO_PRODUCT_ACTION = 'product_action' as keyof PriceInfo
  * @see {@link PriceInfo} - The TypeScript type definition
  * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
  */
-export const KEY_PRICE_INFO_PRODUCT_CLASS = 'product_class' as keyof PriceInfo;
+export const KEY_PRICE_INFO_PRODUCT_CLASS: keyof PriceInfo = 'product_class';
 /**
  * Product Type
  *
@@ -18081,7 +18081,7 @@ export const KEY_PRICE_INFO_PRODUCT_CLASS = 'product_class' as keyof PriceInfo;
  * @see {@link PriceInfo} - The TypeScript type definition
  * @see {@link KEYS_PRICE_INFO} - Array of all keys for this type
  */
-export const KEY_PRICE_INFO_PRODUCT_TYPE = 'product_type' as keyof PriceInfo;
+export const KEY_PRICE_INFO_PRODUCT_TYPE: keyof PriceInfo = 'product_type';
 
 /**
  * Array of all PriceInfo property keys
@@ -18136,7 +18136,7 @@ export const KEYS_PRICE_INFO = [
  * @see {@link PricingPeriod} - The TypeScript type definition
  * @see {@link KEYS_PRICING_PERIOD} - Array of all keys for this type
  */
-export const KEY_PRICING_PERIOD_UNIT = 'unit' as keyof PricingPeriod;
+export const KEY_PRICING_PERIOD_UNIT: keyof PricingPeriod = 'unit';
 /**
  * Value
  *
@@ -18162,7 +18162,7 @@ export const KEY_PRICING_PERIOD_UNIT = 'unit' as keyof PricingPeriod;
  * @see {@link PricingPeriod} - The TypeScript type definition
  * @see {@link KEYS_PRICING_PERIOD} - Array of all keys for this type
  */
-export const KEY_PRICING_PERIOD_VALUE = 'value' as keyof PricingPeriod;
+export const KEY_PRICING_PERIOD_VALUE: keyof PricingPeriod = 'value';
 
 /**
  * Array of all PricingPeriod property keys
@@ -18212,7 +18212,7 @@ export const KEYS_PRICING_PERIOD = [
  * @see {@link Problem} - The TypeScript type definition
  * @see {@link KEYS_PROBLEM} - Array of all keys for this type
  */
-export const KEY_PROBLEM_DETAIL = 'detail' as keyof Problem;
+export const KEY_PROBLEM_DETAIL: keyof Problem = 'detail';
 /**
  * Status code
  *
@@ -18237,7 +18237,7 @@ export const KEY_PROBLEM_DETAIL = 'detail' as keyof Problem;
  * @see {@link Problem} - The TypeScript type definition
  * @see {@link KEYS_PROBLEM} - Array of all keys for this type
  */
-export const KEY_PROBLEM_STATUS = 'status' as keyof Problem;
+export const KEY_PROBLEM_STATUS: keyof Problem = 'status';
 /**
  * Problem Title
  *
@@ -18262,7 +18262,7 @@ export const KEY_PROBLEM_STATUS = 'status' as keyof Problem;
  * @see {@link Problem} - The TypeScript type definition
  * @see {@link KEYS_PROBLEM} - Array of all keys for this type
  */
-export const KEY_PROBLEM_TITLE = 'title' as keyof Problem;
+export const KEY_PROBLEM_TITLE: keyof Problem = 'title';
 /**
  * Problem type
  *
@@ -18287,7 +18287,7 @@ export const KEY_PROBLEM_TITLE = 'title' as keyof Problem;
  * @see {@link Problem} - The TypeScript type definition
  * @see {@link KEYS_PROBLEM} - Array of all keys for this type
  */
-export const KEY_PROBLEM_TYPE = 'type' as keyof Problem;
+export const KEY_PROBLEM_TYPE: keyof Problem = 'type';
 
 /**
  * Array of all Problem property keys
@@ -18341,7 +18341,7 @@ export const KEYS_PROBLEM = [
  * @see {@link PublicAuthRequestForm} - The TypeScript type definition
  * @see {@link KEYS_PUBLIC_AUTH_REQUEST_FORM} - Array of all keys for this type
  */
-export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_ID = 'client_id' as keyof PublicAuthRequestForm;
+export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_ID: keyof PublicAuthRequestForm = 'client_id';
 /**
  * Client Secret
  *
@@ -18367,7 +18367,7 @@ export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_ID = 'client_id' as keyof Publi
  * @see {@link PublicAuthRequestForm} - The TypeScript type definition
  * @see {@link KEYS_PUBLIC_AUTH_REQUEST_FORM} - Array of all keys for this type
  */
-export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_SECRET = 'client_secret' as keyof PublicAuthRequestForm;
+export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_SECRET: keyof PublicAuthRequestForm = 'client_secret';
 /**
  * Grant Type
  *
@@ -18393,7 +18393,7 @@ export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_SECRET = 'client_secret' as key
  * @see {@link PublicAuthRequestForm} - The TypeScript type definition
  * @see {@link KEYS_PUBLIC_AUTH_REQUEST_FORM} - Array of all keys for this type
  */
-export const KEY_PUBLIC_AUTH_REQUEST_FORM_GRANT_TYPE = 'grant_type' as keyof PublicAuthRequestForm;
+export const KEY_PUBLIC_AUTH_REQUEST_FORM_GRANT_TYPE: keyof PublicAuthRequestForm = 'grant_type';
 
 /**
  * Array of all PublicAuthRequestForm property keys
@@ -18445,7 +18445,7 @@ export const KEYS_PUBLIC_AUTH_REQUEST_FORM = [
  * @see {@link RdapBase} - The TypeScript type definition
  * @see {@link KEYS_RDAP_BASE} - Array of all keys for this type
  */
-export const KEY_RDAP_BASE_RDAP_SERVER = 'rdap_server' as keyof RdapBase;
+export const KEY_RDAP_BASE_RDAP_SERVER: keyof RdapBase = 'rdap_server';
 
 /**
  * Array of all RdapBase property keys
@@ -18495,7 +18495,7 @@ export const KEYS_RDAP_BASE = [
  * @see {@link RegistryLockBase} - The TypeScript type definition
  * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
  */
-export const KEY_REGISTRY_LOCK_BASE_PREVENTS = 'prevents' as keyof RegistryLockBase;
+export const KEY_REGISTRY_LOCK_BASE_PREVENTS: keyof RegistryLockBase = 'prevents';
 /**
  * Removal Process
  *
@@ -18520,7 +18520,7 @@ export const KEY_REGISTRY_LOCK_BASE_PREVENTS = 'prevents' as keyof RegistryLockB
  * @see {@link RegistryLockBase} - The TypeScript type definition
  * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
  */
-export const KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS = 'removal_process' as keyof RegistryLockBase;
+export const KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS: keyof RegistryLockBase = 'removal_process';
 /**
  * Requires Manual Request
  *
@@ -18545,7 +18545,7 @@ export const KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS = 'removal_process' as keyof
  * @see {@link RegistryLockBase} - The TypeScript type definition
  * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
  */
-export const KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST = 'requires_manual_request' as keyof RegistryLockBase;
+export const KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST: keyof RegistryLockBase = 'requires_manual_request';
 /**
  * Supported
  *
@@ -18571,7 +18571,7 @@ export const KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST = 'requires_manual_r
  * @see {@link RegistryLockBase} - The TypeScript type definition
  * @see {@link KEYS_REGISTRY_LOCK_BASE} - Array of all keys for this type
  */
-export const KEY_REGISTRY_LOCK_BASE_SUPPORTED = 'supported' as keyof RegistryLockBase;
+export const KEY_REGISTRY_LOCK_BASE_SUPPORTED: keyof RegistryLockBase = 'supported';
 
 /**
  * Array of all RegistryLockBase property keys
@@ -18624,7 +18624,7 @@ export const KEYS_REGISTRY_LOCK_BASE = [
  * @see {@link RelationSet} - The TypeScript type definition
  * @see {@link KEYS_RELATION_SET} - Array of all keys for this type
  */
-export const KEY_RELATION_SET_RELATIONS = 'relations' as keyof RelationSet;
+export const KEY_RELATION_SET_RELATIONS: keyof RelationSet = 'relations';
 
 /**
  * Array of all RelationSet property keys
@@ -18675,7 +18675,7 @@ export const KEYS_RELATION_SET = [
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_CLIENT_IP = 'client_ip' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_CLIENT_IP: keyof RequestHistory = 'client_ip';
 /**
  * Duration
  *
@@ -18701,7 +18701,7 @@ export const KEY_REQUEST_HISTORY_CLIENT_IP = 'client_ip' as keyof RequestHistory
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_DURATION = 'duration' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_DURATION: keyof RequestHistory = 'duration';
 /**
  * Method
  *
@@ -18727,7 +18727,7 @@ export const KEY_REQUEST_HISTORY_DURATION = 'duration' as keyof RequestHistory;
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_METHOD = 'method' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_METHOD: keyof RequestHistory = 'method';
 /**
  * Path
  *
@@ -18753,7 +18753,7 @@ export const KEY_REQUEST_HISTORY_METHOD = 'method' as keyof RequestHistory;
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_PATH = 'path' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_PATH: keyof RequestHistory = 'path';
 /**
  * Performed By Id
  *
@@ -18778,7 +18778,7 @@ export const KEY_REQUEST_HISTORY_PATH = 'path' as keyof RequestHistory;
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_PERFORMED_BY_ID = 'performed_by_id' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_PERFORMED_BY_ID: keyof RequestHistory = 'performed_by_id';
 /**
  * Performed By Type
  *
@@ -18803,7 +18803,7 @@ export const KEY_REQUEST_HISTORY_PERFORMED_BY_ID = 'performed_by_id' as keyof Re
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_PERFORMED_BY_TYPE = 'performed_by_type' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_PERFORMED_BY_TYPE: keyof RequestHistory = 'performed_by_type';
 /**
  * Request Body
  *
@@ -18828,7 +18828,7 @@ export const KEY_REQUEST_HISTORY_PERFORMED_BY_TYPE = 'performed_by_type' as keyo
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_REQUEST_BODY = 'request_body' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_REQUEST_BODY: keyof RequestHistory = 'request_body';
 /**
  * Request Completed At
  *
@@ -18854,7 +18854,7 @@ export const KEY_REQUEST_HISTORY_REQUEST_BODY = 'request_body' as keyof RequestH
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_REQUEST_COMPLETED_AT = 'request_completed_at' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_REQUEST_COMPLETED_AT: keyof RequestHistory = 'request_completed_at';
 /**
  * Request Started At
  *
@@ -18880,7 +18880,7 @@ export const KEY_REQUEST_HISTORY_REQUEST_COMPLETED_AT = 'request_completed_at' a
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_REQUEST_STARTED_AT = 'request_started_at' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_REQUEST_STARTED_AT: keyof RequestHistory = 'request_started_at';
 /**
  * Response Body
  *
@@ -18905,7 +18905,7 @@ export const KEY_REQUEST_HISTORY_REQUEST_STARTED_AT = 'request_started_at' as ke
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_RESPONSE_BODY = 'response_body' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_RESPONSE_BODY: keyof RequestHistory = 'response_body';
 /**
  * Server Request Id
  *
@@ -18931,7 +18931,7 @@ export const KEY_REQUEST_HISTORY_RESPONSE_BODY = 'response_body' as keyof Reques
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_SERVER_REQUEST_ID = 'server_request_id' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_SERVER_REQUEST_ID: keyof RequestHistory = 'server_request_id';
 /**
  * Status Code
  *
@@ -18957,7 +18957,7 @@ export const KEY_REQUEST_HISTORY_SERVER_REQUEST_ID = 'server_request_id' as keyo
  * @see {@link RequestHistory} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_HISTORY} - Array of all keys for this type
  */
-export const KEY_REQUEST_HISTORY_STATUS_CODE = 'status_code' as keyof RequestHistory;
+export const KEY_REQUEST_HISTORY_STATUS_CODE: keyof RequestHistory = 'status_code';
 
 /**
  * Array of all RequestHistory property keys
@@ -19018,7 +19018,7 @@ export const KEYS_REQUEST_HISTORY = [
  * @see {@link ReservedDomainsBase} - The TypeScript type definition
  * @see {@link KEYS_RESERVED_DOMAINS_BASE} - Array of all keys for this type
  */
-export const KEY_RESERVED_DOMAINS_BASE_SOURCE = 'source' as keyof ReservedDomainsBase;
+export const KEY_RESERVED_DOMAINS_BASE_SOURCE: keyof ReservedDomainsBase = 'source';
 /**
  * Supported
  *
@@ -19044,7 +19044,7 @@ export const KEY_RESERVED_DOMAINS_BASE_SOURCE = 'source' as keyof ReservedDomain
  * @see {@link ReservedDomainsBase} - The TypeScript type definition
  * @see {@link KEYS_RESERVED_DOMAINS_BASE} - Array of all keys for this type
  */
-export const KEY_RESERVED_DOMAINS_BASE_SUPPORTED = 'supported' as keyof ReservedDomainsBase;
+export const KEY_RESERVED_DOMAINS_BASE_SUPPORTED: keyof ReservedDomainsBase = 'supported';
 /**
  * Url
  *
@@ -19069,7 +19069,7 @@ export const KEY_RESERVED_DOMAINS_BASE_SUPPORTED = 'supported' as keyof Reserved
  * @see {@link ReservedDomainsBase} - The TypeScript type definition
  * @see {@link KEYS_RESERVED_DOMAINS_BASE} - Array of all keys for this type
  */
-export const KEY_RESERVED_DOMAINS_BASE_URL = 'url' as keyof ReservedDomainsBase;
+export const KEY_RESERVED_DOMAINS_BASE_URL: keyof ReservedDomainsBase = 'url';
 
 /**
  * Array of all ReservedDomainsBase property keys
@@ -19122,7 +19122,7 @@ export const KEYS_RESERVED_DOMAINS_BASE = [
  * @see {@link RgpOperations} - The TypeScript type definition
  * @see {@link KEYS_RGP_OPERATIONS} - Array of all keys for this type
  */
-export const KEY_RGP_OPERATIONS_REPORT = 'report' as keyof RgpOperations;
+export const KEY_RGP_OPERATIONS_REPORT: keyof RgpOperations = 'report';
 /**
  * Request
  *
@@ -19148,7 +19148,7 @@ export const KEY_RGP_OPERATIONS_REPORT = 'report' as keyof RgpOperations;
  * @see {@link RgpOperations} - The TypeScript type definition
  * @see {@link KEYS_RGP_OPERATIONS} - Array of all keys for this type
  */
-export const KEY_RGP_OPERATIONS_REQUEST = 'request' as keyof RgpOperations;
+export const KEY_RGP_OPERATIONS_REQUEST: keyof RgpOperations = 'request';
 
 /**
  * Array of all RgpOperations property keys
@@ -19200,7 +19200,7 @@ export const KEYS_RGP_OPERATIONS = [
  * @see {@link SldLength} - The TypeScript type definition
  * @see {@link KEYS_SLD_LENGTH} - Array of all keys for this type
  */
-export const KEY_SLD_LENGTH_MAX = 'max' as keyof SldLength;
+export const KEY_SLD_LENGTH_MAX: keyof SldLength = 'max';
 /**
  * Min
  *
@@ -19226,7 +19226,7 @@ export const KEY_SLD_LENGTH_MAX = 'max' as keyof SldLength;
  * @see {@link SldLength} - The TypeScript type definition
  * @see {@link KEYS_SLD_LENGTH} - Array of all keys for this type
  */
-export const KEY_SLD_LENGTH_MIN = 'min' as keyof SldLength;
+export const KEY_SLD_LENGTH_MIN: keyof SldLength = 'min';
 
 /**
  * Array of all SldLength property keys
@@ -19276,7 +19276,7 @@ export const KEYS_SLD_LENGTH = [
  * @see {@link SpiceDbRelationshipUpdate} - The TypeScript type definition
  * @see {@link KEYS_SPICE_DB_RELATIONSHIP_UPDATE} - Array of all keys for this type
  */
-export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD = 'add' as keyof SpiceDbRelationshipUpdate;
+export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD: keyof SpiceDbRelationshipUpdate = 'add';
 /**
  * Remove
  *
@@ -19300,7 +19300,7 @@ export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD = 'add' as keyof SpiceDbRelati
  * @see {@link SpiceDbRelationshipUpdate} - The TypeScript type definition
  * @see {@link KEYS_SPICE_DB_RELATIONSHIP_UPDATE} - Array of all keys for this type
  */
-export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE = 'remove' as keyof SpiceDbRelationshipUpdate;
+export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE: keyof SpiceDbRelationshipUpdate = 'remove';
 
 /**
  * Array of all SpiceDbRelationshipUpdate property keys
@@ -19352,7 +19352,7 @@ export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE = [
  * @see {@link TldBase} - The TypeScript type definition
  * @see {@link KEYS_TLD_BASE} - Array of all keys for this type
  */
-export const KEY_TLD_BASE_NAME = 'name' as keyof TldBase;
+export const KEY_TLD_BASE_NAME: keyof TldBase = 'name';
 /**
  * Third Level Structure
  *
@@ -19378,7 +19378,7 @@ export const KEY_TLD_BASE_NAME = 'name' as keyof TldBase;
  * @see {@link TldBase} - The TypeScript type definition
  * @see {@link KEYS_TLD_BASE} - Array of all keys for this type
  */
-export const KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE = 'third_level_structure' as keyof TldBase;
+export const KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE: keyof TldBase = 'third_level_structure';
 /**
  * type property
  *
@@ -19403,7 +19403,7 @@ export const KEY_TLD_BASE_THIRD_LEVEL_STRUCTURE = 'third_level_structure' as key
  * @see {@link TldBase} - The TypeScript type definition
  * @see {@link KEYS_TLD_BASE} - Array of all keys for this type
  */
-export const KEY_TLD_BASE_TYPE = 'type' as keyof TldBase;
+export const KEY_TLD_BASE_TYPE: keyof TldBase = 'type';
 
 /**
  * Array of all TldBase property keys
@@ -19455,7 +19455,7 @@ export const KEYS_TLD_BASE = [
  * @see {@link TldResponseShort} - The TypeScript type definition
  * @see {@link KEYS_TLD_RESPONSE_SHORT} - Array of all keys for this type
  */
-export const KEY_TLD_RESPONSE_SHORT_TLD = 'tld' as keyof TldResponseShort;
+export const KEY_TLD_RESPONSE_SHORT_TLD: keyof TldResponseShort = 'tld';
 /**
  * type property
  *
@@ -19479,7 +19479,7 @@ export const KEY_TLD_RESPONSE_SHORT_TLD = 'tld' as keyof TldResponseShort;
  * @see {@link TldResponseShort} - The TypeScript type definition
  * @see {@link KEYS_TLD_RESPONSE_SHORT} - Array of all keys for this type
  */
-export const KEY_TLD_RESPONSE_SHORT_TYPE = 'type' as keyof TldResponseShort;
+export const KEY_TLD_RESPONSE_SHORT_TYPE: keyof TldResponseShort = 'type';
 
 /**
  * Array of all TldResponseShort property keys
@@ -19530,7 +19530,7 @@ export const KEYS_TLD_RESPONSE_SHORT = [
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_CHARACTERS = 'characters' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_CHARACTERS: keyof TldSpecification = 'characters';
 /**
  * contacts property
  *
@@ -19555,7 +19555,7 @@ export const KEY_TLD_SPECIFICATION_CHARACTERS = 'characters' as keyof TldSpecifi
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_CONTACTS = 'contacts' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_CONTACTS: keyof TldSpecification = 'contacts';
 /**
  * dns_configuration property
  *
@@ -19580,7 +19580,7 @@ export const KEY_TLD_SPECIFICATION_CONTACTS = 'contacts' as keyof TldSpecificati
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_DNS_CONFIGURATION = 'dns_configuration' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_DNS_CONFIGURATION: keyof TldSpecification = 'dns_configuration';
 /**
  * domain_lifecycle property
  *
@@ -19605,7 +19605,7 @@ export const KEY_TLD_SPECIFICATION_DNS_CONFIGURATION = 'dns_configuration' as ke
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_DOMAIN_LIFECYCLE = 'domain_lifecycle' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_DOMAIN_LIFECYCLE: keyof TldSpecification = 'domain_lifecycle';
 /**
  * domain_statuses property
  *
@@ -19630,7 +19630,7 @@ export const KEY_TLD_SPECIFICATION_DOMAIN_LIFECYCLE = 'domain_lifecycle' as keyo
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_DOMAIN_STATUSES = 'domain_statuses' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_DOMAIN_STATUSES: keyof TldSpecification = 'domain_statuses';
 /**
  * idn property
  *
@@ -19655,7 +19655,7 @@ export const KEY_TLD_SPECIFICATION_DOMAIN_STATUSES = 'domain_statuses' as keyof 
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_IDN = 'idn' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_IDN: keyof TldSpecification = 'idn';
 /**
  * launch_phases property
  *
@@ -19680,7 +19680,7 @@ export const KEY_TLD_SPECIFICATION_IDN = 'idn' as keyof TldSpecification;
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_LAUNCH_PHASES = 'launch_phases' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_LAUNCH_PHASES: keyof TldSpecification = 'launch_phases';
 /**
  * local_presence property
  *
@@ -19705,7 +19705,7 @@ export const KEY_TLD_SPECIFICATION_LAUNCH_PHASES = 'launch_phases' as keyof TldS
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_LOCAL_PRESENCE = 'local_presence' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_LOCAL_PRESENCE: keyof TldSpecification = 'local_presence';
 /**
  * premium_domains property
  *
@@ -19730,7 +19730,7 @@ export const KEY_TLD_SPECIFICATION_LOCAL_PRESENCE = 'local_presence' as keyof Tl
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS = 'premium_domains' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS: keyof TldSpecification = 'premium_domains';
 /**
  * rdap property
  *
@@ -19755,7 +19755,7 @@ export const KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS = 'premium_domains' as keyof 
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_RDAP = 'rdap' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_RDAP: keyof TldSpecification = 'rdap';
 /**
  * registry_lock property
  *
@@ -19780,7 +19780,7 @@ export const KEY_TLD_SPECIFICATION_RDAP = 'rdap' as keyof TldSpecification;
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_REGISTRY_LOCK = 'registry_lock' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_REGISTRY_LOCK: keyof TldSpecification = 'registry_lock';
 /**
  * reserved_domains property
  *
@@ -19805,7 +19805,7 @@ export const KEY_TLD_SPECIFICATION_REGISTRY_LOCK = 'registry_lock' as keyof TldS
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_RESERVED_DOMAINS = 'reserved_domains' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_RESERVED_DOMAINS: keyof TldSpecification = 'reserved_domains';
 /**
  * Tlds
  *
@@ -19831,7 +19831,7 @@ export const KEY_TLD_SPECIFICATION_RESERVED_DOMAINS = 'reserved_domains' as keyo
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_TLDS = 'tlds' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_TLDS: keyof TldSpecification = 'tlds';
 /**
  * transfer_policies property
  *
@@ -19856,7 +19856,7 @@ export const KEY_TLD_SPECIFICATION_TLDS = 'tlds' as keyof TldSpecification;
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_TRANSFER_POLICIES = 'transfer_policies' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_TRANSFER_POLICIES: keyof TldSpecification = 'transfer_policies';
 /**
  * whois property
  *
@@ -19881,7 +19881,7 @@ export const KEY_TLD_SPECIFICATION_TRANSFER_POLICIES = 'transfer_policies' as ke
  * @see {@link TldSpecification} - The TypeScript type definition
  * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
  */
-export const KEY_TLD_SPECIFICATION_WHOIS = 'whois' as keyof TldSpecification;
+export const KEY_TLD_SPECIFICATION_WHOIS: keyof TldSpecification = 'whois';
 
 /**
  * Array of all TldSpecification property keys
@@ -19945,7 +19945,7 @@ export const KEYS_TLD_SPECIFICATION = [
  * @see {@link TrademarkClaimsBase} - The TypeScript type definition
  * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
  */
-export const KEY_TRADEMARK_CLAIMS_BASE_END_DATE = 'end_date' as keyof TrademarkClaimsBase;
+export const KEY_TRADEMARK_CLAIMS_BASE_END_DATE: keyof TrademarkClaimsBase = 'end_date';
 /**
  * Start Date
  *
@@ -19970,7 +19970,7 @@ export const KEY_TRADEMARK_CLAIMS_BASE_END_DATE = 'end_date' as keyof TrademarkC
  * @see {@link TrademarkClaimsBase} - The TypeScript type definition
  * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
  */
-export const KEY_TRADEMARK_CLAIMS_BASE_START_DATE = 'start_date' as keyof TrademarkClaimsBase;
+export const KEY_TRADEMARK_CLAIMS_BASE_START_DATE: keyof TrademarkClaimsBase = 'start_date';
 /**
  * Supported
  *
@@ -19996,7 +19996,7 @@ export const KEY_TRADEMARK_CLAIMS_BASE_START_DATE = 'start_date' as keyof Tradem
  * @see {@link TrademarkClaimsBase} - The TypeScript type definition
  * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
  */
-export const KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED = 'supported' as keyof TrademarkClaimsBase;
+export const KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED: keyof TrademarkClaimsBase = 'supported';
 /**
  * Tmch Required
  *
@@ -20021,7 +20021,7 @@ export const KEY_TRADEMARK_CLAIMS_BASE_SUPPORTED = 'supported' as keyof Trademar
  * @see {@link TrademarkClaimsBase} - The TypeScript type definition
  * @see {@link KEYS_TRADEMARK_CLAIMS_BASE} - Array of all keys for this type
  */
-export const KEY_TRADEMARK_CLAIMS_BASE_TMCH_REQUIRED = 'tmch_required' as keyof TrademarkClaimsBase;
+export const KEY_TRADEMARK_CLAIMS_BASE_TMCH_REQUIRED: keyof TrademarkClaimsBase = 'tmch_required';
 
 /**
  * Array of all TrademarkClaimsBase property keys
@@ -20075,7 +20075,7 @@ export const KEYS_TRADEMARK_CLAIMS_BASE = [
  * @see {@link TransferLockPolicyBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_LOCK_POLICY_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRAR = 'supported_by_registrar' as keyof TransferLockPolicyBase;
+export const KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRAR: keyof TransferLockPolicyBase = 'supported_by_registrar';
 /**
  * Supported By Registry
  *
@@ -20101,7 +20101,7 @@ export const KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRAR = 'supported_b
  * @see {@link TransferLockPolicyBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_LOCK_POLICY_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRY = 'supported_by_registry' as keyof TransferLockPolicyBase;
+export const KEY_TRANSFER_LOCK_POLICY_BASE_SUPPORTED_BY_REGISTRY: keyof TransferLockPolicyBase = 'supported_by_registry';
 
 /**
  * Array of all TransferLockPolicyBase property keys
@@ -20152,7 +20152,7 @@ export const KEYS_TRANSFER_LOCK_POLICY_BASE = [
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH = 'authinfo_max_length' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH: keyof TransferPoliciesBase = 'authinfo_max_length';
 /**
  * Authinfo Min Length
  *
@@ -20177,7 +20177,7 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH = 'authinfo_max_leng
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH = 'authinfo_min_length' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH: keyof TransferPoliciesBase = 'authinfo_min_length';
 /**
  * Authinfo Required
  *
@@ -20203,7 +20203,7 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH = 'authinfo_min_leng
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED = 'authinfo_required' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED: keyof TransferPoliciesBase = 'authinfo_required';
 /**
  * Authinfo Time Limited
  *
@@ -20228,7 +20228,7 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED = 'authinfo_required' 
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED = 'authinfo_time_limited' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED: keyof TransferPoliciesBase = 'authinfo_time_limited';
 /**
  * Authinfo Validity Period
  *
@@ -20253,7 +20253,7 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED = 'authinfo_time_l
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD = 'authinfo_validity_period' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD: keyof TransferPoliciesBase = 'authinfo_validity_period';
 /**
  * Info Contact Authinfo
  *
@@ -20278,7 +20278,7 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD = 'authinfo_val
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO = 'info_contact_authinfo' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO: keyof TransferPoliciesBase = 'info_contact_authinfo';
 /**
  * Info Domain Authinfo
  *
@@ -20303,7 +20303,7 @@ export const KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO = 'info_contact_au
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO = 'info_domain_authinfo' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO: keyof TransferPoliciesBase = 'info_domain_authinfo';
 /**
  * Post Transfer Requirements
  *
@@ -20328,7 +20328,7 @@ export const KEY_TRANSFER_POLICIES_BASE_INFO_DOMAIN_AUTHINFO = 'info_domain_auth
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS = 'post_transfer_requirements' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS: keyof TransferPoliciesBase = 'post_transfer_requirements';
 /**
  * transfer_ack property
  *
@@ -20353,7 +20353,7 @@ export const KEY_TRANSFER_POLICIES_BASE_POST_TRANSFER_REQUIREMENTS = 'post_trans
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK = 'transfer_ack' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK: keyof TransferPoliciesBase = 'transfer_ack';
 /**
  * Transfer Email Required
  *
@@ -20378,7 +20378,7 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_ACK = 'transfer_ack' as keyof T
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED = 'transfer_email_required' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED: keyof TransferPoliciesBase = 'transfer_email_required';
 /**
  * transfer_lock_policy property
  *
@@ -20403,7 +20403,7 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_EMAIL_REQUIRED = 'transfer_emai
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY = 'transfer_lock_policy' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY: keyof TransferPoliciesBase = 'transfer_lock_policy';
 /**
  * transfer_nack property
  *
@@ -20428,7 +20428,7 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_LOCK_POLICY = 'transfer_lock_po
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK = 'transfer_nack' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK: keyof TransferPoliciesBase = 'transfer_nack';
 /**
  * Transfer Renewal Period
  *
@@ -20453,7 +20453,7 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_NACK = 'transfer_nack' as keyof
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD = 'transfer_renewal_period' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD: keyof TransferPoliciesBase = 'transfer_renewal_period';
 /**
  * Transfer Renews Domain
  *
@@ -20478,7 +20478,7 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWAL_PERIOD = 'transfer_rene
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN = 'transfer_renews_domain' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN: keyof TransferPoliciesBase = 'transfer_renews_domain';
 /**
  * Transfer Time
  *
@@ -20503,7 +20503,7 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_RENEWS_DOMAIN = 'transfer_renew
  * @see {@link TransferPoliciesBase} - The TypeScript type definition
  * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
  */
-export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME = 'transfer_time' as keyof TransferPoliciesBase;
+export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME: keyof TransferPoliciesBase = 'transfer_time';
 
 /**
  * Array of all TransferPoliciesBase property keys
@@ -20568,7 +20568,7 @@ export const KEYS_TRANSFER_POLICIES_BASE = [
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_CREATED_ON = 'created_on' as keyof User;
+export const KEY_USER_CREATED_ON: keyof User = 'created_on';
 /**
  * Deleted On
  *
@@ -20593,7 +20593,7 @@ export const KEY_USER_CREATED_ON = 'created_on' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_DELETED_ON = 'deleted_on' as keyof User;
+export const KEY_USER_DELETED_ON: keyof User = 'deleted_on';
 /**
  * Email
  *
@@ -20619,7 +20619,7 @@ export const KEY_USER_DELETED_ON = 'deleted_on' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_EMAIL = 'email' as keyof User;
+export const KEY_USER_EMAIL: keyof User = 'email';
 /**
  * First Name
  *
@@ -20645,7 +20645,7 @@ export const KEY_USER_EMAIL = 'email' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_FIRST_NAME = 'first_name' as keyof User;
+export const KEY_USER_FIRST_NAME: keyof User = 'first_name';
 /**
  * Last Name
  *
@@ -20671,7 +20671,7 @@ export const KEY_USER_FIRST_NAME = 'first_name' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_LAST_NAME = 'last_name' as keyof User;
+export const KEY_USER_LAST_NAME: keyof User = 'last_name';
 /**
  * Locale
  *
@@ -20696,7 +20696,7 @@ export const KEY_USER_LAST_NAME = 'last_name' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_LOCALE = 'locale' as keyof User;
+export const KEY_USER_LOCALE: keyof User = 'locale';
 /**
  * Organization Id
  *
@@ -20722,7 +20722,7 @@ export const KEY_USER_LOCALE = 'locale' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_ORGANIZATION_ID = 'organization_id' as keyof User;
+export const KEY_USER_ORGANIZATION_ID: keyof User = 'organization_id';
 /**
  * Phone
  *
@@ -20747,7 +20747,7 @@ export const KEY_USER_ORGANIZATION_ID = 'organization_id' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_PHONE = 'phone' as keyof User;
+export const KEY_USER_PHONE: keyof User = 'phone';
 /**
  * status property
  *
@@ -20771,7 +20771,7 @@ export const KEY_USER_PHONE = 'phone' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_STATUS = 'status' as keyof User;
+export const KEY_USER_STATUS: keyof User = 'status';
 /**
  * Updated On
  *
@@ -20797,7 +20797,7 @@ export const KEY_USER_STATUS = 'status' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_UPDATED_ON = 'updated_on' as keyof User;
+export const KEY_USER_UPDATED_ON: keyof User = 'updated_on';
 /**
  * User Id
  *
@@ -20822,7 +20822,7 @@ export const KEY_USER_UPDATED_ON = 'updated_on' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_USER_ID = 'user_id' as keyof User;
+export const KEY_USER_USER_ID: keyof User = 'user_id';
 /**
  * Username
  *
@@ -20848,7 +20848,7 @@ export const KEY_USER_USER_ID = 'user_id' as keyof User;
  * @see {@link User} - The TypeScript type definition
  * @see {@link KEYS_USER} - Array of all keys for this type
  */
-export const KEY_USER_USERNAME = 'username' as keyof User;
+export const KEY_USER_USERNAME: keyof User = 'username';
 
 /**
  * Array of all User property keys
@@ -20910,7 +20910,7 @@ export const KEYS_USER = [
  * @see {@link UserAttributeBase} - The TypeScript type definition
  * @see {@link KEYS_USER_ATTRIBUTE_BASE} - Array of all keys for this type
  */
-export const KEY_USER_ATTRIBUTE_BASE_KEY = 'key' as keyof UserAttributeBase;
+export const KEY_USER_ATTRIBUTE_BASE_KEY: keyof UserAttributeBase = 'key';
 /**
  * value property
  *
@@ -20935,7 +20935,7 @@ export const KEY_USER_ATTRIBUTE_BASE_KEY = 'key' as keyof UserAttributeBase;
  * @see {@link UserAttributeBase} - The TypeScript type definition
  * @see {@link KEYS_USER_ATTRIBUTE_BASE} - Array of all keys for this type
  */
-export const KEY_USER_ATTRIBUTE_BASE_VALUE = 'value' as keyof UserAttributeBase;
+export const KEY_USER_ATTRIBUTE_BASE_VALUE: keyof UserAttributeBase = 'value';
 
 /**
  * Array of all UserAttributeBase property keys
@@ -20987,7 +20987,7 @@ export const KEYS_USER_ATTRIBUTE_BASE = [
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_EMAIL = 'email' as keyof UserCreate;
+export const KEY_USER_CREATE_EMAIL: keyof UserCreate = 'email';
 /**
  * First Name
  *
@@ -21013,7 +21013,7 @@ export const KEY_USER_CREATE_EMAIL = 'email' as keyof UserCreate;
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_FIRST_NAME = 'first_name' as keyof UserCreate;
+export const KEY_USER_CREATE_FIRST_NAME: keyof UserCreate = 'first_name';
 /**
  * Last Name
  *
@@ -21039,7 +21039,7 @@ export const KEY_USER_CREATE_FIRST_NAME = 'first_name' as keyof UserCreate;
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_LAST_NAME = 'last_name' as keyof UserCreate;
+export const KEY_USER_CREATE_LAST_NAME: keyof UserCreate = 'last_name';
 /**
  * Locale
  *
@@ -21064,7 +21064,7 @@ export const KEY_USER_CREATE_LAST_NAME = 'last_name' as keyof UserCreate;
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_LOCALE = 'locale' as keyof UserCreate;
+export const KEY_USER_CREATE_LOCALE: keyof UserCreate = 'locale';
 /**
  * Password
  *
@@ -21090,7 +21090,7 @@ export const KEY_USER_CREATE_LOCALE = 'locale' as keyof UserCreate;
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_PASSWORD = 'password' as keyof UserCreate;
+export const KEY_USER_CREATE_PASSWORD: keyof UserCreate = 'password';
 /**
  * Phone
  *
@@ -21115,7 +21115,7 @@ export const KEY_USER_CREATE_PASSWORD = 'password' as keyof UserCreate;
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_PHONE = 'phone' as keyof UserCreate;
+export const KEY_USER_CREATE_PHONE: keyof UserCreate = 'phone';
 /**
  * User Attributes
  *
@@ -21140,7 +21140,7 @@ export const KEY_USER_CREATE_PHONE = 'phone' as keyof UserCreate;
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_USER_ATTRIBUTES = 'user_attributes' as keyof UserCreate;
+export const KEY_USER_CREATE_USER_ATTRIBUTES: keyof UserCreate = 'user_attributes';
 /**
  * Username
  *
@@ -21166,7 +21166,7 @@ export const KEY_USER_CREATE_USER_ATTRIBUTES = 'user_attributes' as keyof UserCr
  * @see {@link UserCreate} - The TypeScript type definition
  * @see {@link KEYS_USER_CREATE} - Array of all keys for this type
  */
-export const KEY_USER_CREATE_USERNAME = 'username' as keyof UserCreate;
+export const KEY_USER_CREATE_USERNAME: keyof UserCreate = 'username';
 
 /**
  * Array of all UserCreate property keys
@@ -21223,7 +21223,7 @@ export const KEYS_USER_CREATE = [
  * @see {@link UserToken} - The TypeScript type definition
  * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
  */
-export const KEY_USER_TOKEN_ACCESS_TOKEN = 'access_token' as keyof UserToken;
+export const KEY_USER_TOKEN_ACCESS_TOKEN: keyof UserToken = 'access_token';
 /**
  * Expires In
  *
@@ -21248,7 +21248,7 @@ export const KEY_USER_TOKEN_ACCESS_TOKEN = 'access_token' as keyof UserToken;
  * @see {@link UserToken} - The TypeScript type definition
  * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
  */
-export const KEY_USER_TOKEN_EXPIRES_IN = 'expires_in' as keyof UserToken;
+export const KEY_USER_TOKEN_EXPIRES_IN: keyof UserToken = 'expires_in';
 /**
  * Refresh Expires In
  *
@@ -21273,7 +21273,7 @@ export const KEY_USER_TOKEN_EXPIRES_IN = 'expires_in' as keyof UserToken;
  * @see {@link UserToken} - The TypeScript type definition
  * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
  */
-export const KEY_USER_TOKEN_REFRESH_EXPIRES_IN = 'refresh_expires_in' as keyof UserToken;
+export const KEY_USER_TOKEN_REFRESH_EXPIRES_IN: keyof UserToken = 'refresh_expires_in';
 /**
  * Refresh Token
  *
@@ -21298,7 +21298,7 @@ export const KEY_USER_TOKEN_REFRESH_EXPIRES_IN = 'refresh_expires_in' as keyof U
  * @see {@link UserToken} - The TypeScript type definition
  * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
  */
-export const KEY_USER_TOKEN_REFRESH_TOKEN = 'refresh_token' as keyof UserToken;
+export const KEY_USER_TOKEN_REFRESH_TOKEN: keyof UserToken = 'refresh_token';
 /**
  * Token Type
  *
@@ -21323,7 +21323,7 @@ export const KEY_USER_TOKEN_REFRESH_TOKEN = 'refresh_token' as keyof UserToken;
  * @see {@link UserToken} - The TypeScript type definition
  * @see {@link KEYS_USER_TOKEN} - Array of all keys for this type
  */
-export const KEY_USER_TOKEN_TOKEN_TYPE = 'token_type' as keyof UserToken;
+export const KEY_USER_TOKEN_TOKEN_TYPE: keyof UserToken = 'token_type';
 
 /**
  * Array of all UserToken property keys
@@ -21377,7 +21377,7 @@ export const KEYS_USER_TOKEN = [
  * @see {@link UserUpdate} - The TypeScript type definition
  * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
  */
-export const KEY_USER_UPDATE_EMAIL = 'email' as keyof UserUpdate;
+export const KEY_USER_UPDATE_EMAIL: keyof UserUpdate = 'email';
 /**
  * First Name
  *
@@ -21402,7 +21402,7 @@ export const KEY_USER_UPDATE_EMAIL = 'email' as keyof UserUpdate;
  * @see {@link UserUpdate} - The TypeScript type definition
  * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
  */
-export const KEY_USER_UPDATE_FIRST_NAME = 'first_name' as keyof UserUpdate;
+export const KEY_USER_UPDATE_FIRST_NAME: keyof UserUpdate = 'first_name';
 /**
  * Last Name
  *
@@ -21427,7 +21427,7 @@ export const KEY_USER_UPDATE_FIRST_NAME = 'first_name' as keyof UserUpdate;
  * @see {@link UserUpdate} - The TypeScript type definition
  * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
  */
-export const KEY_USER_UPDATE_LAST_NAME = 'last_name' as keyof UserUpdate;
+export const KEY_USER_UPDATE_LAST_NAME: keyof UserUpdate = 'last_name';
 /**
  * Locale
  *
@@ -21452,7 +21452,7 @@ export const KEY_USER_UPDATE_LAST_NAME = 'last_name' as keyof UserUpdate;
  * @see {@link UserUpdate} - The TypeScript type definition
  * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
  */
-export const KEY_USER_UPDATE_LOCALE = 'locale' as keyof UserUpdate;
+export const KEY_USER_UPDATE_LOCALE: keyof UserUpdate = 'locale';
 /**
  * Phone
  *
@@ -21477,7 +21477,7 @@ export const KEY_USER_UPDATE_LOCALE = 'locale' as keyof UserUpdate;
  * @see {@link UserUpdate} - The TypeScript type definition
  * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
  */
-export const KEY_USER_UPDATE_PHONE = 'phone' as keyof UserUpdate;
+export const KEY_USER_UPDATE_PHONE: keyof UserUpdate = 'phone';
 /**
  * User Attributes
  *
@@ -21502,7 +21502,7 @@ export const KEY_USER_UPDATE_PHONE = 'phone' as keyof UserUpdate;
  * @see {@link UserUpdate} - The TypeScript type definition
  * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
  */
-export const KEY_USER_UPDATE_USER_ATTRIBUTES = 'user_attributes' as keyof UserUpdate;
+export const KEY_USER_UPDATE_USER_ATTRIBUTES: keyof UserUpdate = 'user_attributes';
 /**
  * Username
  *
@@ -21527,7 +21527,7 @@ export const KEY_USER_UPDATE_USER_ATTRIBUTES = 'user_attributes' as keyof UserUp
  * @see {@link UserUpdate} - The TypeScript type definition
  * @see {@link KEYS_USER_UPDATE} - Array of all keys for this type
  */
-export const KEY_USER_UPDATE_USERNAME = 'username' as keyof UserUpdate;
+export const KEY_USER_UPDATE_USERNAME: keyof UserUpdate = 'username';
 
 /**
  * Array of all UserUpdate property keys
@@ -21584,7 +21584,7 @@ export const KEYS_USER_UPDATE = [
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_CREATED_ON = 'created_on' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_CREATED_ON: keyof UserWithAttributes = 'created_on';
 /**
  * Deleted On
  *
@@ -21609,7 +21609,7 @@ export const KEY_USER_WITH_ATTRIBUTES_CREATED_ON = 'created_on' as keyof UserWit
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_DELETED_ON = 'deleted_on' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_DELETED_ON: keyof UserWithAttributes = 'deleted_on';
 /**
  * Email
  *
@@ -21635,7 +21635,7 @@ export const KEY_USER_WITH_ATTRIBUTES_DELETED_ON = 'deleted_on' as keyof UserWit
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_EMAIL = 'email' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_EMAIL: keyof UserWithAttributes = 'email';
 /**
  * First Name
  *
@@ -21661,7 +21661,7 @@ export const KEY_USER_WITH_ATTRIBUTES_EMAIL = 'email' as keyof UserWithAttribute
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_FIRST_NAME = 'first_name' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_FIRST_NAME: keyof UserWithAttributes = 'first_name';
 /**
  * Last Name
  *
@@ -21687,7 +21687,7 @@ export const KEY_USER_WITH_ATTRIBUTES_FIRST_NAME = 'first_name' as keyof UserWit
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_LAST_NAME = 'last_name' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_LAST_NAME: keyof UserWithAttributes = 'last_name';
 /**
  * Locale
  *
@@ -21712,7 +21712,7 @@ export const KEY_USER_WITH_ATTRIBUTES_LAST_NAME = 'last_name' as keyof UserWithA
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_LOCALE = 'locale' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_LOCALE: keyof UserWithAttributes = 'locale';
 /**
  * Organization Id
  *
@@ -21738,7 +21738,7 @@ export const KEY_USER_WITH_ATTRIBUTES_LOCALE = 'locale' as keyof UserWithAttribu
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID = 'organization_id' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID: keyof UserWithAttributes = 'organization_id';
 /**
  * Phone
  *
@@ -21763,7 +21763,7 @@ export const KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID = 'organization_id' as key
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_PHONE = 'phone' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_PHONE: keyof UserWithAttributes = 'phone';
 /**
  * status property
  *
@@ -21787,7 +21787,7 @@ export const KEY_USER_WITH_ATTRIBUTES_PHONE = 'phone' as keyof UserWithAttribute
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_STATUS = 'status' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_STATUS: keyof UserWithAttributes = 'status';
 /**
  * Updated On
  *
@@ -21813,7 +21813,7 @@ export const KEY_USER_WITH_ATTRIBUTES_STATUS = 'status' as keyof UserWithAttribu
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_UPDATED_ON = 'updated_on' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_UPDATED_ON: keyof UserWithAttributes = 'updated_on';
 /**
  * User Attributes
  *
@@ -21839,7 +21839,7 @@ export const KEY_USER_WITH_ATTRIBUTES_UPDATED_ON = 'updated_on' as keyof UserWit
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES = 'user_attributes' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES: keyof UserWithAttributes = 'user_attributes';
 /**
  * User Id
  *
@@ -21864,7 +21864,7 @@ export const KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES = 'user_attributes' as key
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_USER_ID = 'user_id' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_USER_ID: keyof UserWithAttributes = 'user_id';
 /**
  * Username
  *
@@ -21890,7 +21890,7 @@ export const KEY_USER_WITH_ATTRIBUTES_USER_ID = 'user_id' as keyof UserWithAttri
  * @see {@link UserWithAttributes} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
  */
-export const KEY_USER_WITH_ATTRIBUTES_USERNAME = 'username' as keyof UserWithAttributes;
+export const KEY_USER_WITH_ATTRIBUTES_USERNAME: keyof UserWithAttributes = 'username';
 
 /**
  * Array of all UserWithAttributes property keys
@@ -21953,7 +21953,7 @@ export const KEYS_USER_WITH_ATTRIBUTES = [
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON = 'created_on' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON: keyof UserWithRelationPermissions = 'created_on';
 /**
  * Deleted On
  *
@@ -21978,7 +21978,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON = 'created_on' as key
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON = 'deleted_on' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON: keyof UserWithRelationPermissions = 'deleted_on';
 /**
  * Email
  *
@@ -22004,7 +22004,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON = 'deleted_on' as key
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL = 'email' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL: keyof UserWithRelationPermissions = 'email';
 /**
  * First Name
  *
@@ -22030,7 +22030,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL = 'email' as keyof UserWit
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME = 'first_name' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME: keyof UserWithRelationPermissions = 'first_name';
 /**
  * Last Name
  *
@@ -22056,7 +22056,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME = 'first_name' as key
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME = 'last_name' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME: keyof UserWithRelationPermissions = 'last_name';
 /**
  * Locale
  *
@@ -22081,7 +22081,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME = 'last_name' as keyof
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE = 'locale' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE: keyof UserWithRelationPermissions = 'locale';
 /**
  * Organization Id
  *
@@ -22107,7 +22107,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE = 'locale' as keyof UserW
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID = 'organization_id' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID: keyof UserWithRelationPermissions = 'organization_id';
 /**
  * Permissions
  *
@@ -22131,7 +22131,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID = 'organization_
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS = 'permissions' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS: keyof UserWithRelationPermissions = 'permissions';
 /**
  * Phone
  *
@@ -22156,7 +22156,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS = 'permissions' as k
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_PHONE = 'phone' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_PHONE: keyof UserWithRelationPermissions = 'phone';
 /**
  * Relations
  *
@@ -22180,7 +22180,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_PHONE = 'phone' as keyof UserWit
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS = 'relations' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS: keyof UserWithRelationPermissions = 'relations';
 /**
  * status property
  *
@@ -22204,7 +22204,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS = 'relations' as keyof
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_STATUS = 'status' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_STATUS: keyof UserWithRelationPermissions = 'status';
 /**
  * Updated On
  *
@@ -22230,7 +22230,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_STATUS = 'status' as keyof UserW
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON = 'updated_on' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON: keyof UserWithRelationPermissions = 'updated_on';
 /**
  * User Attributes
  *
@@ -22256,7 +22256,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON = 'updated_on' as key
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES = 'user_attributes' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES: keyof UserWithRelationPermissions = 'user_attributes';
 /**
  * User Id
  *
@@ -22281,7 +22281,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES = 'user_attribut
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID = 'user_id' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID: keyof UserWithRelationPermissions = 'user_id';
 /**
  * Username
  *
@@ -22307,7 +22307,7 @@ export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID = 'user_id' as keyof Use
  * @see {@link UserWithRelationPermissions} - The TypeScript type definition
  * @see {@link KEYS_USER_WITH_RELATION_PERMISSIONS} - Array of all keys for this type
  */
-export const KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME = 'username' as keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME: keyof UserWithRelationPermissions = 'username';
 
 /**
  * Array of all UserWithRelationPermissions property keys
@@ -22371,7 +22371,7 @@ export const KEYS_USER_WITH_RELATION_PERMISSIONS = [
  * @see {@link ValidationError} - The TypeScript type definition
  * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
  */
-export const KEY_VALIDATION_ERROR_LOC = 'loc' as keyof ValidationError;
+export const KEY_VALIDATION_ERROR_LOC: keyof ValidationError = 'loc';
 /**
  * Message
  *
@@ -22396,7 +22396,7 @@ export const KEY_VALIDATION_ERROR_LOC = 'loc' as keyof ValidationError;
  * @see {@link ValidationError} - The TypeScript type definition
  * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
  */
-export const KEY_VALIDATION_ERROR_MSG = 'msg' as keyof ValidationError;
+export const KEY_VALIDATION_ERROR_MSG: keyof ValidationError = 'msg';
 /**
  * Error Type
  *
@@ -22421,7 +22421,7 @@ export const KEY_VALIDATION_ERROR_MSG = 'msg' as keyof ValidationError;
  * @see {@link ValidationError} - The TypeScript type definition
  * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
  */
-export const KEY_VALIDATION_ERROR_TYPE = 'type' as keyof ValidationError;
+export const KEY_VALIDATION_ERROR_TYPE: keyof ValidationError = 'type';
 
 /**
  * Array of all ValidationError property keys
@@ -22473,7 +22473,7 @@ export const KEYS_VALIDATION_ERROR = [
  * @see {@link WhoisBase} - The TypeScript type definition
  * @see {@link KEYS_WHOIS_BASE} - Array of all keys for this type
  */
-export const KEY_WHOIS_BASE_WHOIS_SERVER = 'whois_server' as keyof WhoisBase;
+export const KEY_WHOIS_BASE_WHOIS_SERVER: keyof WhoisBase = 'whois_server';
 
 /**
  * Array of all WhoisBase property keys
@@ -22522,7 +22522,7 @@ export const KEYS_WHOIS_BASE = [
  * @see {@link WildcardHttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_WILDCARD_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REDIRECT_CODE = 'redirect_code' as keyof WildcardHttpRedirectRequest;
+export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REDIRECT_CODE: keyof WildcardHttpRedirectRequest = 'redirect_code';
 /**
  * Request Path
  *
@@ -22547,7 +22547,7 @@ export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REDIRECT_CODE = 'redirect_code' 
  * @see {@link WildcardHttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_WILDCARD_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REQUEST_PATH = 'request_path' as keyof WildcardHttpRedirectRequest;
+export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REQUEST_PATH: keyof WildcardHttpRedirectRequest = 'request_path';
 /**
  * Request Subdomain
  *
@@ -22572,7 +22572,7 @@ export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REQUEST_PATH = 'request_path' as
  * @see {@link WildcardHttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_WILDCARD_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REQUEST_SUBDOMAIN = 'request_subdomain' as keyof WildcardHttpRedirectRequest;
+export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REQUEST_SUBDOMAIN: keyof WildcardHttpRedirectRequest = 'request_subdomain';
 /**
  * Target Hostname
  *
@@ -22597,7 +22597,7 @@ export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_REQUEST_SUBDOMAIN = 'request_sub
  * @see {@link WildcardHttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_WILDCARD_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_HOSTNAME = 'target_hostname' as keyof WildcardHttpRedirectRequest;
+export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_HOSTNAME: keyof WildcardHttpRedirectRequest = 'target_hostname';
 /**
  * Target Path
  *
@@ -22622,7 +22622,7 @@ export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_HOSTNAME = 'target_hostna
  * @see {@link WildcardHttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_WILDCARD_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_PATH = 'target_path' as keyof WildcardHttpRedirectRequest;
+export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_PATH: keyof WildcardHttpRedirectRequest = 'target_path';
 /**
  * target_protocol property
  *
@@ -22646,7 +22646,7 @@ export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_PATH = 'target_path' as k
  * @see {@link WildcardHttpRedirectRequest} - The TypeScript type definition
  * @see {@link KEYS_WILDCARD_HTTP_REDIRECT_REQUEST} - Array of all keys for this type
  */
-export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_PROTOCOL = 'target_protocol' as keyof WildcardHttpRedirectRequest;
+export const KEY_WILDCARD_HTTP_REDIRECT_REQUEST_TARGET_PROTOCOL: keyof WildcardHttpRedirectRequest = 'target_protocol';
 
 /**
  * Array of all WildcardHttpRedirectRequest property keys
@@ -22701,7 +22701,7 @@ export const KEYS_WILDCARD_HTTP_REDIRECT_REQUEST = [
  * @see {@link RequestAuthcode} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE_DETAIL = 'detail' as keyof RequestAuthcode;
+export const KEY_REQUEST_AUTHCODE_DETAIL: keyof RequestAuthcode = 'detail';
 /**
  * Name
  *
@@ -22727,7 +22727,7 @@ export const KEY_REQUEST_AUTHCODE_DETAIL = 'detail' as keyof RequestAuthcode;
  * @see {@link RequestAuthcode} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE_NAME = 'name' as keyof RequestAuthcode;
+export const KEY_REQUEST_AUTHCODE_NAME: keyof RequestAuthcode = 'name';
 /**
  * Success
  *
@@ -22753,7 +22753,7 @@ export const KEY_REQUEST_AUTHCODE_NAME = 'name' as keyof RequestAuthcode;
  * @see {@link RequestAuthcode} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE_SUCCESS = 'success' as keyof RequestAuthcode;
+export const KEY_REQUEST_AUTHCODE_SUCCESS: keyof RequestAuthcode = 'success';
 
 /**
  * Array of all RequestAuthcode property keys
@@ -22805,7 +22805,7 @@ export const KEYS_REQUEST_AUTHCODE = [
  * @see {@link RequestAuthcode2} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE2} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE2_AUTH_CODE = 'auth_code' as keyof RequestAuthcode2;
+export const KEY_REQUEST_AUTHCODE2_AUTH_CODE: keyof RequestAuthcode2 = 'auth_code';
 /**
  * Auth Code Expires On
  *
@@ -22830,7 +22830,7 @@ export const KEY_REQUEST_AUTHCODE2_AUTH_CODE = 'auth_code' as keyof RequestAuthc
  * @see {@link RequestAuthcode2} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE2} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE2_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' as keyof RequestAuthcode2;
+export const KEY_REQUEST_AUTHCODE2_AUTH_CODE_EXPIRES_ON: keyof RequestAuthcode2 = 'auth_code_expires_on';
 /**
  * Detail
  *
@@ -22855,7 +22855,7 @@ export const KEY_REQUEST_AUTHCODE2_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on'
  * @see {@link RequestAuthcode2} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE2} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE2_DETAIL = 'detail' as keyof RequestAuthcode2;
+export const KEY_REQUEST_AUTHCODE2_DETAIL: keyof RequestAuthcode2 = 'detail';
 /**
  * Name
  *
@@ -22881,7 +22881,7 @@ export const KEY_REQUEST_AUTHCODE2_DETAIL = 'detail' as keyof RequestAuthcode2;
  * @see {@link RequestAuthcode2} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE2} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE2_NAME = 'name' as keyof RequestAuthcode2;
+export const KEY_REQUEST_AUTHCODE2_NAME: keyof RequestAuthcode2 = 'name';
 /**
  * Success
  *
@@ -22907,7 +22907,7 @@ export const KEY_REQUEST_AUTHCODE2_NAME = 'name' as keyof RequestAuthcode2;
  * @see {@link RequestAuthcode2} - The TypeScript type definition
  * @see {@link KEYS_REQUEST_AUTHCODE2} - Array of all keys for this type
  */
-export const KEY_REQUEST_AUTHCODE2_SUCCESS = 'success' as keyof RequestAuthcode2;
+export const KEY_REQUEST_AUTHCODE2_SUCCESS: keyof RequestAuthcode2 = 'success';
 
 /**
  * Array of all RequestAuthcode2 property keys
@@ -22960,7 +22960,7 @@ export const KEYS_REQUEST_AUTHCODE2 = [
  * @see {@link DomainAvailabilityList} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY_LIST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' as keyof DomainAvailabilityList;
+export const KEY_DOMAIN_AVAILABILITY_LIST_META: keyof DomainAvailabilityList = 'meta';
 /**
  * Results
  *
@@ -22985,7 +22985,7 @@ export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' as keyof DomainAvailabil
  * @see {@link DomainAvailabilityList} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY_LIST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' as keyof DomainAvailabilityList;
+export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS: keyof DomainAvailabilityList = 'results';
 
 /**
  * Array of all DomainAvailabilityList property keys
@@ -23036,7 +23036,7 @@ export const KEYS_DOMAIN_AVAILABILITY_LIST = [
  * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE = 'available' as keyof DomainAvailabilityCheck;
+export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE: keyof DomainAvailabilityCheck = 'available';
 /**
  * Domain
  *
@@ -23062,7 +23062,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE = 'available' as keyof Doma
  * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN = 'domain' as keyof DomainAvailabilityCheck;
+export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN: keyof DomainAvailabilityCheck = 'domain';
 /**
  * Reason
  *
@@ -23086,7 +23086,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN = 'domain' as keyof DomainAvai
  * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
  * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
  */
-export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON = 'reason' as keyof DomainAvailabilityCheck;
+export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON: keyof DomainAvailabilityCheck = 'reason';
 
 /**
  * Array of all DomainAvailabilityCheck property keys
