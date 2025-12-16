@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@opusdns/api-spec-ts-generator": "^0.9.1"
+    "@opusdns/api-spec-ts-generator": "^0.19.0"
   },
   "name": "@opusdns/api",
   "version": "0.126.0",
