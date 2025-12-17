@@ -2320,7 +2320,7 @@ export interface components {
         };
         /** DnsRecordPatchOp */
         DnsRecordPatchOp: {
-            op: components["schemas"]["common__schemas__dns__PatchOp"];
+            op: components["schemas"]["common__schemas__domain_forward__PatchOp"];
             record: components["schemas"]["DnsRrsetWithOneRecordPatch"];
         };
         /** DnsRecordResponse */
@@ -2350,7 +2350,7 @@ export interface components {
         };
         /** DnsRrsetPatchOp */
         DnsRrsetPatchOp: {
-            op: components["schemas"]["common__schemas__dns__PatchOp"];
+            op: components["schemas"]["common__schemas__domain_forward__PatchOp"];
             rrset: components["schemas"]["DnsRrsetPatch"];
         };
         /** DnsRrsetResponse */
@@ -2680,7 +2680,7 @@ export interface components {
         };
         /** DomainForwardPatchOp */
         DomainForwardPatchOp: {
-            op: components["schemas"]["common__schemas__dns__PatchOp"];
+            op: components["schemas"]["common__schemas__domain_forward__PatchOp"];
             /** Redirect */
             redirect: components["schemas"]["HttpRedirectUpsert"] | components["schemas"]["HttpRedirectRemove"];
         };
@@ -5648,7 +5648,7 @@ export interface components {
          * PatchOp
          * @enum {string}
          */
-        common__schemas__dns__PatchOp: "upsert" | "remove";
+        common__schemas__domain_forward__PatchOp: "upsert" | "remove";
     };
     responses: never;
     parameters: never;

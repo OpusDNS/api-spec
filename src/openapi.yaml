@@ -1013,7 +1013,7 @@ components:
     DnsRecordPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/common__schemas__dns__PatchOp'
+          $ref: '#/components/schemas/common__schemas__domain_forward__PatchOp'
         record:
           $ref: '#/components/schemas/DnsRrsetWithOneRecordPatch'
       required:
@@ -1077,7 +1077,7 @@ components:
     DnsRrsetPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/common__schemas__dns__PatchOp'
+          $ref: '#/components/schemas/common__schemas__domain_forward__PatchOp'
         rrset:
           $ref: '#/components/schemas/DnsRrsetPatch'
       required:
@@ -1613,7 +1613,7 @@ components:
     DomainForwardPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/common__schemas__dns__PatchOp'
+          $ref: '#/components/schemas/common__schemas__domain_forward__PatchOp'
         redirect:
           anyOf:
           - $ref: '#/components/schemas/HttpRedirectUpsert'
@@ -6062,7 +6062,7 @@ components:
       - reason
       title: DomainAvailabilityResponse
       type: object
-    common__schemas__dns__PatchOp:
+    common__schemas__domain_forward__PatchOp:
       enum:
       - upsert
       - remove
@@ -6143,7 +6143,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-17-193633
+  version: 2025-12-17-225548
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
