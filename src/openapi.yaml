@@ -118,6 +118,7 @@ components:
           description: The action performed in the transaction
         amount:
           description: The amount of the transaction including VAT
+          pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
           title: Amount
           type: string
         billing_transaction_id:
@@ -145,6 +146,7 @@ components:
           description: The currency of the transaction
         price:
           description: The price of the product without sales tax
+          pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
           title: Price
           type: string
         product_reference:
@@ -163,10 +165,12 @@ components:
           description: The status of the transaction
         tax_amount:
           description: The tax amount of the transaction
+          pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
           title: Tax Amount
           type: string
         tax_rate:
           description: The tax rate of the transaction
+          pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
           title: Tax Rate
           type: string
         updated_on:
@@ -365,6 +369,7 @@ components:
         pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
         type: string
         x-typeid-prefix: contact
+      description: The contacts of the domain
       propertyNames:
         $ref: '#/components/schemas/DomainContactType'
       type: object
@@ -867,6 +872,14 @@ components:
       - expiration
       title: DeletePolicyType
       type: string
+    DeletedEvent:
+      properties:
+        date:
+          $ref: '#/components/schemas/EppDateTime'
+      required:
+      - date
+      title: DeletedEvent
+      type: object
     DnsChangeAction:
       enum:
       - create_zone
@@ -1000,7 +1013,7 @@ components:
     DnsRecordPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/PatchOp'
+          $ref: '#/components/schemas/common__schemas__dns__PatchOp'
         record:
           $ref: '#/components/schemas/DnsRrsetWithOneRecordPatch'
       required:
@@ -1064,7 +1077,7 @@ components:
     DnsRrsetPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/PatchOp'
+          $ref: '#/components/schemas/common__schemas__dns__PatchOp'
         rrset:
           $ref: '#/components/schemas/DnsRrsetPatch'
       required:
@@ -1340,6 +1353,7 @@ components:
         items:
           $ref: '#/components/schemas/ContactHandle'
         type: array
+      description: The contacts of the domain
       propertyNames:
         $ref: '#/components/schemas/DomainContactType'
       type: object
@@ -1599,7 +1613,7 @@ components:
     DomainForwardPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/PatchOp'
+          $ref: '#/components/schemas/common__schemas__dns__PatchOp'
         redirect:
           anyOf:
           - $ref: '#/components/schemas/HttpRedirectUpsert'
@@ -2203,7 +2217,8 @@ components:
       properties:
         amount:
           anyOf:
-          - type: string
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
           - type: 'null'
           title: Amount
         currency:
@@ -2816,6 +2831,10 @@ components:
       - canceled
       title: EmailVerificationStatus
       type: string
+    EmptyEvent:
+      properties: {}
+      title: EmptyEvent
+      type: object
     EppDateTime:
       anyOf:
       - format: date-time
@@ -2833,6 +2852,7 @@ components:
     EventResponse:
       properties:
         event_data:
+          additionalProperties: true
           title: Event Data
           type: object
         event_id:
@@ -3022,7 +3042,7 @@ components:
           title: Status code
           type: integer
         title:
-          title: Problem Title
+          title: Problem title
           type: string
         type:
           title: Problem type
@@ -3030,10 +3050,72 @@ components:
       required:
       - type
       - title
-      - errors
       - status
+      - errors
       title: RequestValidationError
       type: object
+    HostSchema:
+      properties:
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        domain_id:
+          default: None
+          description: The domain that the host object belongs to
+          examples:
+          - domain_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Domain Id
+          type: string
+          x-typeid-prefix: domain
+        host_id:
+          examples:
+          - host_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^host_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Host Id
+          type: string
+          x-typeid-prefix: host
+        hostname:
+          description: Hostname of the host object
+          title: Hostname
+          type: string
+        registry_account_id:
+          anyOf:
+          - examples:
+            - registry_account_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^registry_account_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: registry_account
+          - type: 'null'
+          description: The registry account that the host object belongs to
+          title: Registry Account Id
+        status:
+          $ref: '#/components/schemas/HostStatus'
+          default: inactive
+          description: Status of the host object
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - hostname
+      title: HostSchema
+      type: object
+    HostStatus:
+      enum:
+      - requested_create
+      - pending_create
+      - active
+      - inactive
+      - pending_delete
+      title: HostStatus
+      type: string
     HttpProtocol:
       enum:
       - http
@@ -3177,6 +3259,7 @@ components:
       properties:
         amount:
           description: Total invoice amount
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
           title: Amount
           type: string
         currency:
@@ -3188,6 +3271,7 @@ components:
           type: string
         fees_amount:
           description: Fees amount
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
           title: Fees Amount
           type: string
         file_url:
@@ -3223,6 +3307,7 @@ components:
           description: Invoice status
         taxes_amount:
           description: Taxes amount
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
           title: Taxes Amount
           type: string
       required:
@@ -3527,7 +3612,8 @@ components:
           type: string
         details:
           anyOf:
-          - type: object
+          - additionalProperties: true
+            type: object
           - type: 'null'
           description: Changes made to the object
           title: Details
@@ -3713,7 +3799,8 @@ components:
           title: Tax Id Type
         tax_rate:
           anyOf:
-          - type: string
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
           - type: 'null'
           description: Tax rate for the organization.
           title: Tax Rate
@@ -3966,7 +4053,8 @@ components:
         tax_rate:
           anyOf:
           - type: number
-          - type: string
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
           - type: 'null'
           description: Tax rate for the organization.
           title: Tax Rate
@@ -4090,7 +4178,8 @@ components:
         tax_rate:
           anyOf:
           - type: number
-          - type: string
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,6}|(?=[\d.]{1,11}0*$)\d{0,6}\.\d{0,4}0*$)
+            type: string
           - type: 'null'
           description: Tax rate for the organization.
           title: Tax Rate
@@ -4100,7 +4189,8 @@ components:
       properties:
         account_balance:
           anyOf:
-          - type: string
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
           - type: 'null'
           title: Account Balance
         active_plan:
@@ -4237,7 +4327,8 @@ components:
           title: Tax Id Type
         tax_rate:
           anyOf:
-          - type: string
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
           - type: 'null'
           description: Tax rate for the organization.
           title: Tax Rate
@@ -4500,12 +4591,6 @@ components:
       - new_password
       title: PasswordUpdate
       type: object
-    PatchOp:
-      enum:
-      - upsert
-      - remove
-      title: PatchOp
-      type: string
     Period:
       properties:
         unit:
@@ -4694,7 +4779,7 @@ components:
           title: Status code
           type: integer
         title:
-          title: Problem Title
+          title: Problem title
           type: string
         type:
           title: Problem type
@@ -4702,7 +4787,6 @@ components:
       required:
       - type
       - title
-      - detail
       - status
       title: Problem
       type: object
@@ -4832,6 +4916,17 @@ components:
           type: array
       title: RelationSet
       type: object
+    RenewalEvent:
+      properties:
+        registration_expiration_date:
+          description: The new expiration date/time after the domain has been renewed
+          format: date-time
+          title: Registration Expiration Date
+          type: string
+      required:
+      - registration_expiration_date
+      title: RenewalEvent
+      type: object
     RenewalMode:
       enum:
       - renew
@@ -4871,7 +4966,8 @@ components:
           title: Performed By Type
         request_body:
           anyOf:
-          - type: object
+          - additionalProperties: true
+            type: object
           - type: 'null'
           description: Request body
           title: Request Body
@@ -4887,7 +4983,8 @@ components:
           type: string
         response_body:
           anyOf:
-          - type: object
+          - additionalProperties: true
+            type: object
           - type: 'null'
           description: Response body
           title: Response Body
@@ -5177,6 +5274,31 @@ components:
       - both
       title: TransferAckType
       type: string
+    TransferEvent:
+      properties:
+        current_registrar:
+          title: Current Registrar
+          type: string
+        execution_date:
+          $ref: '#/components/schemas/EppDateTime'
+        expiration_date:
+          anyOf:
+          - $ref: '#/components/schemas/EppDateTime'
+          - type: 'null'
+        message:
+          title: Message
+          type: string
+        requesting_registrar:
+          title: Requesting Registrar
+          type: string
+      required:
+      - execution_date
+      - message
+      - requesting_registrar
+      - current_registrar
+      - expiration_date
+      title: TransferEvent
+      type: object
     TransferLockPolicyBase:
       properties:
         supported_by_registrar:
@@ -5401,6 +5523,22 @@ components:
       required:
       - key
       title: UserAttributeBase
+      type: object
+    UserAttributeResponse:
+      properties:
+        key:
+          description: Key of the attribute.
+          minLength: 1
+          title: Key
+          type: string
+        value:
+          anyOf:
+          - $ref: '#/components/schemas/JsonValue'
+          - type: 'null'
+          description: Value of the attribute.
+      required:
+      - key
+      title: UserAttributeResponse
       type: object
     UserCreate:
       properties:
@@ -5924,6 +6062,12 @@ components:
       - reason
       title: DomainAvailabilityResponse
       type: object
+    common__schemas__dns__PatchOp:
+      enum:
+      - upsert
+      - remove
+      title: PatchOp
+      type: string
   securitySchemes:
     APIKeyHeader:
       description: API key for the organization.
@@ -5999,7 +6143,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-16-173817
+  version: 2025-12-17-143316
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -13394,6 +13538,7 @@ paths:
               schema:
                 additionalProperties:
                   items:
+                    additionalProperties: true
                     type: object
                   type: array
                 title: Response Get Tld Specifications V1 Tlds  Get

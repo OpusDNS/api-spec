@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactRoleType, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, ObjectEventType, ObjectLogSortField, OrganizationStatus, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField, common__schemas__dns__PatchOp } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1880,6 +1880,62 @@ export const GRANT_TYPE_VALUES = [
 ] as const satisfies [string, ...string[]] | GrantType[];
 
 /**
+ * HostStatus. Auto-generated enum for HostStatus
+ *
+ * @remarks
+ * This constant provides both object and array forms for the HostStatus enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = HOST_STATUS.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = HOST_STATUS_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link HostStatus} - The TypeScript type definition
+ */
+export const HOST_STATUS = {
+  REQUESTED_CREATE: "requested_create",
+  PENDING_CREATE: "pending_create",
+  ACTIVE: "active",
+  INACTIVE: "inactive",
+  PENDING_DELETE: "pending_delete",
+} as const satisfies Record<string, HostStatus>;
+
+/**
+ * Array of all HostStatus enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid HostStatus enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of HOST_STATUS_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = HOST_STATUS_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link HostStatus} - The TypeScript type definition
+ * @see {@link HOST_STATUS} - The object form of this enum
+ */
+export const HOST_STATUS_VALUES = [
+  'requested_create',
+  'pending_create',
+  'active',
+  'inactive',
+  'pending_delete'
+] as const satisfies [string, ...string[]] | HostStatus[];
+
+/**
  * HttpProtocol. Auto-generated enum for HttpProtocol
  *
  * @remarks
@@ -2380,56 +2436,6 @@ export const ORGANIZATION_STATUS_VALUES = [
   'active',
   'inactive'
 ] as const satisfies [string, ...string[]] | OrganizationStatus[];
-
-/**
- * PatchOp. Auto-generated enum for PatchOp
- *
- * @remarks
- * This constant provides both object and array forms for the PatchOp enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PATCH_OP.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PATCH_OP_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PatchOp} - The TypeScript type definition
- */
-export const PATCH_OP = {
-  UPSERT: "upsert",
-  REMOVE: "remove",
-} as const satisfies Record<string, PatchOp>;
-
-/**
- * Array of all PatchOp enum values
- *
- * @remarks
- * This constant provides a array containing all valid PatchOp enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PATCH_OP_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PATCH_OP_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PatchOp} - The TypeScript type definition
- * @see {@link PATCH_OP} - The object form of this enum
- */
-export const PATCH_OP_VALUES = [
-  'upsert',
-  'remove'
-] as const satisfies [string, ...string[]] | PatchOp[];
 
 /**
  * PeriodUnit. Auto-generated enum for PeriodUnit
@@ -3557,4 +3563,54 @@ export const ZONE_SORT_FIELD_VALUES = [
   'updated_on',
   'dnssec_status'
 ] as const satisfies [string, ...string[]] | ZoneSortField[];
+
+/**
+ * PatchOp. Auto-generated enum for common__schemas__dns__PatchOp
+ *
+ * @remarks
+ * This constant provides both object and array forms for the common__schemas__dns__PatchOp enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = COMMON_SCHEMAS_DNS_PATCH_OP.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = COMMON_SCHEMAS_DNS_PATCH_OP_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link common__schemas__dns__PatchOp} - The TypeScript type definition
+ */
+export const COMMON_SCHEMAS_DNS_PATCH_OP = {
+  UPSERT: "upsert",
+  REMOVE: "remove",
+} as const satisfies Record<string, common__schemas__dns__PatchOp>;
+
+/**
+ * Array of all common__schemas__dns__PatchOp enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid common__schemas__dns__PatchOp enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of COMMON_SCHEMAS_DNS_PATCH_OP_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = COMMON_SCHEMAS_DNS_PATCH_OP_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link common__schemas__dns__PatchOp} - The TypeScript type definition
+ * @see {@link COMMON_SCHEMAS_DNS_PATCH_OP} - The object form of this enum
+ */
+export const COMMON_SCHEMAS_DNS_PATCH_OP_VALUES = [
+  'upsert',
+  'remove'
+] as const satisfies [string, ...string[]] | common__schemas__dns__PatchOp[];
 

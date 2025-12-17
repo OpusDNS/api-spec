@@ -1839,6 +1839,7 @@ export interface components {
              */
             contact_id: TypeId<"contact">;
         };
+        /** @description The contacts of the domain */
         ContactIdList: {
             [key: string]: TypeId<"contact">;
         };
@@ -2240,6 +2241,10 @@ export interface components {
          * @enum {string}
          */
         DeletePolicyType: "immediate" | "expiration";
+        /** DeletedEvent */
+        DeletedEvent: {
+            date: components["schemas"]["EppDateTime"];
+        };
         /**
          * DnsChangeAction
          * @enum {string}
@@ -2315,7 +2320,7 @@ export interface components {
         };
         /** DnsRecordPatchOp */
         DnsRecordPatchOp: {
-            op: components["schemas"]["PatchOp"];
+            op: components["schemas"]["common__schemas__dns__PatchOp"];
             record: components["schemas"]["DnsRrsetWithOneRecordPatch"];
         };
         /** DnsRecordResponse */
@@ -2345,7 +2350,7 @@ export interface components {
         };
         /** DnsRrsetPatchOp */
         DnsRrsetPatchOp: {
-            op: components["schemas"]["PatchOp"];
+            op: components["schemas"]["common__schemas__dns__PatchOp"];
             rrset: components["schemas"]["DnsRrsetPatch"];
         };
         /** DnsRrsetResponse */
@@ -2492,6 +2497,7 @@ export interface components {
          * @enum {string}
          */
         DomainClientStatus: "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold";
+        /** @description The contacts of the domain */
         DomainContactHandles: {
             [key: string]: components["schemas"]["ContactHandle"][];
         };
@@ -2674,7 +2680,7 @@ export interface components {
         };
         /** DomainForwardPatchOp */
         DomainForwardPatchOp: {
-            op: components["schemas"]["PatchOp"];
+            op: components["schemas"]["common__schemas__dns__PatchOp"];
             /** Redirect */
             redirect: components["schemas"]["HttpRedirectUpsert"] | components["schemas"]["HttpRedirectRemove"];
         };
@@ -3514,6 +3520,8 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
+        /** EmptyEvent */
+        EmptyEvent: Record<string, never>;
         EppDateTime: Date | string;
         /**
          * EventObjectType
@@ -3523,7 +3531,9 @@ export interface components {
         /** EventResponse */
         EventResponse: {
             /** Event Data */
-            event_data: Record<string, never>;
+            event_data: {
+                [key: string]: unknown;
+            };
             /**
              * Event Id
              * Format: typeid
@@ -3643,11 +3653,60 @@ export interface components {
             errors: components["schemas"]["ValidationError"][];
             /** Status code */
             status: number;
-            /** Problem Title */
+            /** Problem title */
             title: string;
             /** Problem type */
             type: string;
         };
+        /** HostSchema */
+        HostSchema: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Domain Id
+             * Format: typeid
+             * @description The domain that the host object belongs to
+             * @default None
+             * @example domain_01h45ytscbebyvny4gc8cr8ma2
+             */
+            domain_id: TypeId<"domain">;
+            /**
+             * Host Id
+             * Format: typeid
+             * @example host_01h45ytscbebyvny4gc8cr8ma2
+             */
+            host_id?: TypeId<"host">;
+            /**
+             * Hostname
+             * @description Hostname of the host object
+             */
+            hostname: string;
+            /**
+             * Registry Account Id
+             * @description The registry account that the host object belongs to
+             */
+            registry_account_id?: TypeId<"registry_account"> | null;
+            /**
+             * @description Status of the host object
+             * @default inactive
+             */
+            status: components["schemas"]["HostStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+        };
+        /**
+         * HostStatus
+         * @enum {string}
+         */
+        HostStatus: "requested_create" | "pending_create" | "active" | "inactive" | "pending_delete";
         /**
          * HttpProtocol
          * @enum {string}
@@ -3979,7 +4038,9 @@ export interface components {
              * Details
              * @description Changes made to the object
              */
-            details?: Record<string, never> | null;
+            details?: {
+                [key: string]: unknown;
+            } | null;
             /**
              * Object Id
              * @description ID of the object
@@ -4594,11 +4655,6 @@ export interface components {
              */
             new_password: string;
         };
-        /**
-         * PatchOp
-         * @enum {string}
-         */
-        PatchOp: "upsert" | "remove";
         /** Period */
         Period: {
             /** @description The unit of the period */
@@ -4688,10 +4744,10 @@ export interface components {
         /** Problem */
         Problem: {
             /** Problem detail */
-            detail: string | null;
+            detail?: string | null;
             /** Status code */
             status: number;
-            /** Problem Title */
+            /** Problem title */
             title: string;
             /** Problem type */
             type: string;
@@ -4773,6 +4829,15 @@ export interface components {
             /** Relations */
             relations?: components["schemas"]["Relation"][];
         };
+        /** RenewalEvent */
+        RenewalEvent: {
+            /**
+             * Registration Expiration Date
+             * Format: date-time
+             * @description The new expiration date/time after the domain has been renewed
+             */
+            registration_expiration_date: Date;
+        };
         /**
          * RenewalMode
          * @enum {string}
@@ -4814,7 +4879,9 @@ export interface components {
              * Request Body
              * @description Request body
              */
-            request_body?: Record<string, never> | null;
+            request_body?: {
+                [key: string]: unknown;
+            } | null;
             /**
              * Request Completed At
              * Format: date-time
@@ -4831,7 +4898,9 @@ export interface components {
              * Response Body
              * @description Response body
              */
-            response_body?: Record<string, never> | null;
+            response_body?: {
+                [key: string]: unknown;
+            } | null;
             /**
              * Server Request Id
              * @description Unique ID of the request
@@ -5013,6 +5082,17 @@ export interface components {
          * @enum {string}
          */
         TransferAckType: "none" | "registrar" | "registrant" | "both";
+        /** TransferEvent */
+        TransferEvent: {
+            /** Current Registrar */
+            current_registrar: string;
+            execution_date: components["schemas"]["EppDateTime"];
+            expiration_date: components["schemas"]["EppDateTime"] | null;
+            /** Message */
+            message: string;
+            /** Requesting Registrar */
+            requesting_registrar: string;
+        };
         /** TransferLockPolicyBase */
         TransferLockPolicyBase: {
             /**
@@ -5164,6 +5244,16 @@ export interface components {
         };
         /** UserAttributeBase */
         UserAttributeBase: {
+            /**
+             * Key
+             * @description Key of the attribute.
+             */
+            key: string;
+            /** @description Value of the attribute. */
+            value?: components["schemas"]["JsonValue"] | null;
+        };
+        /** UserAttributeResponse */
+        UserAttributeResponse: {
             /**
              * Key
              * @description Key of the attribute.
@@ -5554,6 +5644,11 @@ export interface components {
             /** Reason */
             reason: string | null;
         };
+        /**
+         * PatchOp
+         * @enum {string}
+         */
+        common__schemas__dns__PatchOp: "upsert" | "remove";
     };
     responses: never;
     parameters: never;
@@ -11620,7 +11715,9 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        [key: string]: Record<string, never>[];
+                        [key: string]: {
+                            [key: string]: unknown;
+                        }[];
                     };
                 };
             };

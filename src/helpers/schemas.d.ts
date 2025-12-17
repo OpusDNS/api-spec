@@ -251,7 +251,7 @@ export type ContactCreate = components['schemas']['ContactCreate'];
  */
 export type ContactHandle = components['schemas']['ContactHandle'];
 /**
- * ContactIdList
+ * ContactIdList. The contacts of the domain
  *
  * @remarks
  * Type alias for the `ContactIdList` OpenAPI schema.
@@ -442,6 +442,22 @@ export type Currency = components['schemas']['Currency'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DeletePolicyType = components['schemas']['DeletePolicyType'];
+/**
+ * DeletedEvent
+ *
+ * @remarks
+ * Type alias for the `DeletedEvent` OpenAPI schema.
+ * This type represents deletedevent data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDeletedEvent();
+ * const item: DeletedEvent = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DeletedEvent = components['schemas']['DeletedEvent'];
 /**
  * DnsChangeAction
  *
@@ -923,7 +939,7 @@ export type DomainCheck = components['schemas']['DomainCheckResponse'];
  */
 export type DomainClientStatus = components['schemas']['DomainClientStatus'];
 /**
- * DomainContactHandles
+ * DomainContactHandles. The contacts of the domain
  *
  * @remarks
  * Type alias for the `DomainContactHandles` OpenAPI schema.
@@ -1803,6 +1819,22 @@ export type EmailForwardZoneSortField = components['schemas']['EmailForwardZoneS
  */
 export type EmailVerificationStatus = components['schemas']['EmailVerificationStatus'];
 /**
+ * EmptyEvent
+ *
+ * @remarks
+ * Type alias for the `EmptyEvent` OpenAPI schema.
+ * This type represents emptyevent data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmptyEvent();
+ * const item: EmptyEvent = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmptyEvent = components['schemas']['EmptyEvent'];
+/**
  * EppDateTime
  *
  * @remarks
@@ -1978,6 +2010,38 @@ export type GrantType = components['schemas']['GrantType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type HTTPValidationError = components['schemas']['HTTPValidationError'];
+/**
+ * HostSchema
+ *
+ * @remarks
+ * Type alias for the `HostSchema` OpenAPI schema.
+ * This type represents hostschema data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getHostSchema();
+ * const item: HostSchema = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type HostSchema = components['schemas']['HostSchema'];
+/**
+ * HostStatus
+ *
+ * @remarks
+ * Type alias for the `HostStatus` OpenAPI schema.
+ * This type represents hoststatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getHostStatus();
+ * const item: HostStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type HostStatus = components['schemas']['HostStatus'];
 /**
  * HttpProtocol
  *
@@ -2784,22 +2848,6 @@ export type Pagination_User = components['schemas']['Pagination_User_'];
  */
 export type PasswordUpdate = components['schemas']['PasswordUpdate'];
 /**
- * PatchOp
- *
- * @remarks
- * Type alias for the `PatchOp` OpenAPI schema.
- * This type represents patchop data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPatchOp();
- * const item: PatchOp = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type PatchOp = components['schemas']['PatchOp'];
-/**
  * Period
  *
  * @remarks
@@ -3136,6 +3184,22 @@ export type Relation = components['schemas']['Relation'];
  */
 export type RelationSet = components['schemas']['RelationSet'];
 /**
+ * RenewalEvent
+ *
+ * @remarks
+ * Type alias for the `RenewalEvent` OpenAPI schema.
+ * This type represents renewalevent data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getRenewalEvent();
+ * const item: RenewalEvent = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type RenewalEvent = components['schemas']['RenewalEvent'];
+/**
  * RenewalMode
  *
  * @remarks
@@ -3392,6 +3456,22 @@ export type TrademarkClaimsBase = components['schemas']['TrademarkClaimsBase'];
  */
 export type TransferAckType = components['schemas']['TransferAckType'];
 /**
+ * TransferEvent
+ *
+ * @remarks
+ * Type alias for the `TransferEvent` OpenAPI schema.
+ * This type represents transferevent data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTransferEvent();
+ * const item: TransferEvent = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TransferEvent = components['schemas']['TransferEvent'];
+/**
  * TransferLockPolicyBase
  *
  * @remarks
@@ -3455,6 +3535,22 @@ export type User = components['schemas']['User'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type UserAttributeBase = components['schemas']['UserAttributeBase'];
+/**
+ * UserAttributeResponse
+ *
+ * @remarks
+ * Type alias for the `UserAttributeResponse` OpenAPI schema.
+ * This type represents userattributeresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getUserAttribute();
+ * const item: UserAttribute = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type UserAttribute = components['schemas']['UserAttributeResponse'];
 /**
  * UserCreate
  *
@@ -3695,3 +3791,19 @@ export type DomainAvailabilityList = components['schemas']['common__models__avai
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainAvailabilityCheck = components['schemas']['common__models__domain__domain__DomainAvailabilityResponse'];
+/**
+ * PatchOp
+ *
+ * @remarks
+ * Type alias for the `common__schemas__dns__PatchOp` OpenAPI schema.
+ * This type represents patchop data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPatchOp();
+ * const item: PatchOp = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PatchOp = components['schemas']['common__schemas__dns__PatchOp'];
