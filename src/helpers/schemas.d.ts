@@ -3795,7 +3795,7 @@ export type DomainAvailabilityCheck = components['schemas']['common__models__dom
  * PatchOp
  *
  * @remarks
- * Type alias for the `common__schemas__dns__PatchOp` OpenAPI schema.
+ * Type alias for the `common__schemas__domain_forward__PatchOp` OpenAPI schema.
  * This type represents patchop data structures used in API requests and responses.
  *
  * @example
@@ -3806,4 +3806,4 @@ export type DomainAvailabilityCheck = components['schemas']['common__models__dom
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type PatchOp = components['schemas']['common__schemas__dns__PatchOp'];
+export type PatchOp = components['schemas']['common__schemas__domain_forward__PatchOp'];
