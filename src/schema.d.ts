@@ -2320,7 +2320,7 @@ export interface components {
         };
         /** DnsRecordPatchOp */
         DnsRecordPatchOp: {
-            op: components["schemas"]["common__schemas__domain_forward__PatchOp"];
+            op: components["schemas"]["PatchOp"];
             record: components["schemas"]["DnsRrsetWithOneRecordPatch"];
         };
         /** DnsRecordResponse */
@@ -2350,7 +2350,7 @@ export interface components {
         };
         /** DnsRrsetPatchOp */
         DnsRrsetPatchOp: {
-            op: components["schemas"]["common__schemas__domain_forward__PatchOp"];
+            op: components["schemas"]["PatchOp"];
             rrset: components["schemas"]["DnsRrsetPatch"];
         };
         /** DnsRrsetResponse */
@@ -2680,7 +2680,7 @@ export interface components {
         };
         /** DomainForwardPatchOp */
         DomainForwardPatchOp: {
-            op: components["schemas"]["common__schemas__domain_forward__PatchOp"];
+            op: components["schemas"]["PatchOp"];
             /** Redirect */
             redirect: components["schemas"]["HttpRedirectUpsert"] | components["schemas"]["HttpRedirectRemove"];
         };
@@ -4655,6 +4655,11 @@ export interface components {
              */
             new_password: string;
         };
+        /**
+         * PatchOp
+         * @enum {string}
+         */
+        PatchOp: "upsert" | "remove";
         /** Period */
         Period: {
             /** @description The unit of the period */
@@ -5644,11 +5649,6 @@ export interface components {
             /** Reason */
             reason: string | null;
         };
-        /**
-         * PatchOp
-         * @enum {string}
-         */
-        common__schemas__domain_forward__PatchOp: "upsert" | "remove";
     };
     responses: never;
     parameters: never;

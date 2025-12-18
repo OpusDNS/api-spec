@@ -1013,7 +1013,7 @@ components:
     DnsRecordPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/common__schemas__domain_forward__PatchOp'
+          $ref: '#/components/schemas/PatchOp'
         record:
           $ref: '#/components/schemas/DnsRrsetWithOneRecordPatch'
       required:
@@ -1077,7 +1077,7 @@ components:
     DnsRrsetPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/common__schemas__domain_forward__PatchOp'
+          $ref: '#/components/schemas/PatchOp'
         rrset:
           $ref: '#/components/schemas/DnsRrsetPatch'
       required:
@@ -1613,7 +1613,7 @@ components:
     DomainForwardPatchOp:
       properties:
         op:
-          $ref: '#/components/schemas/common__schemas__domain_forward__PatchOp'
+          $ref: '#/components/schemas/PatchOp'
         redirect:
           anyOf:
           - $ref: '#/components/schemas/HttpRedirectUpsert'
@@ -4591,6 +4591,12 @@ components:
       - new_password
       title: PasswordUpdate
       type: object
+    PatchOp:
+      enum:
+      - upsert
+      - remove
+      title: PatchOp
+      type: string
     Period:
       properties:
         unit:
@@ -6062,12 +6068,6 @@ components:
       - reason
       title: DomainAvailabilityResponse
       type: object
-    common__schemas__domain_forward__PatchOp:
-      enum:
-      - upsert
-      - remove
-      title: PatchOp
-      type: string
   securitySchemes:
     APIKeyHeader:
       description: API key for the organization.
@@ -6143,7 +6143,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-18-094427
+  version: 2025-12-18-130936
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

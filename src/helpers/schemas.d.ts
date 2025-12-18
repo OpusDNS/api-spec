@@ -2848,6 +2848,22 @@ export type Pagination_User = components['schemas']['Pagination_User_'];
  */
 export type PasswordUpdate = components['schemas']['PasswordUpdate'];
 /**
+ * PatchOp
+ *
+ * @remarks
+ * Type alias for the `PatchOp` OpenAPI schema.
+ * This type represents patchop data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPatchOp();
+ * const item: PatchOp = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PatchOp = components['schemas']['PatchOp'];
+/**
  * Period
  *
  * @remarks
@@ -3791,19 +3807,3 @@ export type DomainAvailabilityList = components['schemas']['common__models__avai
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainAvailabilityCheck = components['schemas']['common__models__domain__domain__DomainAvailabilityResponse'];
-/**
- * PatchOp
- *
- * @remarks
- * Type alias for the `common__schemas__domain_forward__PatchOp` OpenAPI schema.
- * This type represents patchop data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPatchOp();
- * const item: PatchOp = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type PatchOp = components['schemas']['common__schemas__domain_forward__PatchOp'];
