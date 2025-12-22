@@ -92,6 +92,7 @@ import { DomainSearchMeta } from './schemas';
 import { DomainSearch } from './schemas';
 import { DomainSearchSuggestionPriceData } from './schemas';
 import { DomainSearchSuggestionWithPrice } from './schemas';
+import { DomainStatus2 } from './schemas';
 import { DomainStatusesBase } from './schemas';
 import { DomainSummaryData } from './schemas';
 import { DomainSummary } from './schemas';
@@ -9518,6 +9519,57 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE,
 ] as const satisfies (keyof DomainSearchSuggestionWithPrice)[];
+
+/**
+ * Status
+ *
+ * The status of the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of DomainStatus2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainstatus2[KEY_DOMAIN_STATUS2_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_STATUS2_STATUS;
+ * const value = domainstatus2[propertyName];
+ * ```
+ *
+ * @see {@link DomainStatus2} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_STATUS2} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_STATUS2_STATUS: keyof DomainStatus2 = 'status';
+
+/**
+ * Array of all DomainStatus2 property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainStatus2 objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_STATUS2) {
+ *   console.log(`Property: ${key}, Value: ${domainstatus2[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_STATUS2.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainStatus2} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_STATUS2 = [
+  KEY_DOMAIN_STATUS2_STATUS,
+] as const satisfies (keyof DomainStatus2)[];
 
 /**
  * Default

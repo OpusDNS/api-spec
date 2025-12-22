@@ -1749,7 +1749,7 @@ export interface components {
              */
             min: number;
             /** @description The type of contact */
-            type: components["schemas"]["ContactRoleType"];
+            type: components["schemas"]["DomainContactType"];
         };
         /** ContactCreate */
         ContactCreate: {
@@ -1925,13 +1925,8 @@ export interface components {
              */
             attributes: components["schemas"]["RegistryHandleAttributeType"][];
             /** @description The role this requirement applies to */
-            role: components["schemas"]["ContactRoleType"];
+            role: components["schemas"]["DomainContactType"];
         };
-        /**
-         * ContactRoleType
-         * @enum {string}
-         */
-        ContactRoleType: "registrant" | "admin" | "tech" | "billing";
         /** ContactSchema */
         ContactSchema: {
             /**
@@ -3104,6 +3099,14 @@ export interface components {
          * @enum {string}
          */
         DomainStatus: "ok" | "serverTransferProhibited" | "serverUpdateProhibited" | "serverDeleteProhibited" | "serverRenewProhibited" | "serverRestoreProhibited" | "serverHold" | "transferPeriod" | "renewPeriod" | "redemptionPeriod" | "pendingUpdate" | "pendingTransfer" | "pendingRestore" | "pendingRenew" | "pendingDelete" | "pendingCreate" | "inactive" | "autoRenewPeriod" | "addPeriod" | "deleted" | "clientTransferProhibited" | "clientUpdateProhibited" | "clientDeleteProhibited" | "clientRenewProhibited" | "clientHold" | "free" | "connect" | "failed" | "invalid";
+        /** DomainStatusResponse */
+        DomainStatusResponse: {
+            /**
+             * Status
+             * @description The status of the domain
+             */
+            status: string;
+        };
         /** DomainStatusesBase */
         DomainStatusesBase: {
             /**
@@ -3990,7 +3993,7 @@ export interface components {
              * Type
              * @description Who must meet the requirement
              */
-            type?: components["schemas"]["ContactRoleType"][] | null;
+            type?: components["schemas"]["DomainContactType"][] | null;
         };
         /**
          * LocalPresenceRequirementType

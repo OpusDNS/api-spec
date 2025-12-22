@@ -299,22 +299,6 @@ export type Contact = components['schemas']['ContactResponse'];
  */
 export type ContactRoleAttributeRequirement = components['schemas']['ContactRoleAttributeRequirement'];
 /**
- * ContactRoleType
- *
- * @remarks
- * Type alias for the `ContactRoleType` OpenAPI schema.
- * This type represents contactroletype data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getContactRoleType();
- * const item: ContactRoleType = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type ContactRoleType = components['schemas']['ContactRoleType'];
-/**
  * ContactSchema
  *
  * @remarks
@@ -1466,6 +1450,22 @@ export type DomainSortField = components['schemas']['DomainSortField'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainStatus = components['schemas']['DomainStatus'];
+/**
+ * DomainStatusResponse
+ *
+ * @remarks
+ * Type alias for the `DomainStatusResponse` OpenAPI schema.
+ * This type represents domainstatusresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainStatus2();
+ * const item: DomainStatus2 = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainStatus2 = components['schemas']['DomainStatusResponse'];
 /**
  * DomainStatusesBase
  *

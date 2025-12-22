@@ -240,7 +240,7 @@ components:
           title: Min
           type: integer
         type:
-          $ref: '#/components/schemas/ContactRoleType'
+          $ref: '#/components/schemas/DomainContactType'
           description: The type of contact
       required:
       - type
@@ -471,21 +471,13 @@ components:
           title: Attributes
           type: array
         role:
-          $ref: '#/components/schemas/ContactRoleType'
+          $ref: '#/components/schemas/DomainContactType'
           description: The role this requirement applies to
       required:
       - role
       - attributes
       title: ContactRoleAttributeRequirement
       type: object
-    ContactRoleType:
-      enum:
-      - registrant
-      - admin
-      - tech
-      - billing
-      title: ContactRoleType
-      type: string
     ContactSchema:
       properties:
         city:
@@ -2294,6 +2286,16 @@ components:
       - invalid
       title: DomainStatus
       type: string
+    DomainStatusResponse:
+      properties:
+        status:
+          description: The status of the domain
+          title: Status
+          type: string
+      required:
+      - status
+      title: DomainStatusResponse
+      type: object
     DomainStatusesBase:
       properties:
         default:
@@ -3544,7 +3546,7 @@ components:
         type:
           anyOf:
           - items:
-              $ref: '#/components/schemas/ContactRoleType'
+              $ref: '#/components/schemas/DomainContactType'
             type: array
           - type: 'null'
           description: Who must meet the requirement
@@ -6143,7 +6145,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-18-130936
+  version: 2025-12-22-091011
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
