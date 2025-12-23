@@ -4850,7 +4850,7 @@ export interface components {
          * RenewalMode
          * @enum {string}
          */
-        RenewalMode: "renew" | "expire" | "delete";
+        RenewalMode: "renew" | "expire";
         /** RequestHistory */
         RequestHistory: {
             /**

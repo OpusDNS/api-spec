@@ -3052,7 +3052,6 @@ export const RELATION_VALUES = [
 export const RENEWAL_MODE = {
   RENEW: "renew",
   EXPIRE: "expire",
-  DELETE: "delete",
 } as const satisfies Record<string, RenewalMode>;
 
 /**
@@ -3078,8 +3077,7 @@ export const RENEWAL_MODE = {
  */
 export const RENEWAL_MODE_VALUES = [
   'renew',
-  'expire',
-  'delete'
+  'expire'
 ] as const satisfies [string, ...string[]] | RenewalMode[];
 
 /**

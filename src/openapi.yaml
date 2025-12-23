@@ -4939,7 +4939,6 @@ components:
       enum:
       - renew
       - expire
-      - delete
       title: RenewalMode
       type: string
     RequestHistory:
@@ -6145,7 +6144,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-22-170801
+  version: 2025-12-23-120441
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
