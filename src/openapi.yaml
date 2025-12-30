@@ -29,6 +29,7 @@ components:
       - string
       - boolean
       - datetime
+      - integer
       title: AttributeType
       type: string
     BillingMetadata:
@@ -4858,6 +4859,23 @@ components:
       - DE_CONTACT_TYPE
       - dnsbe:type
       - eurid:type
+      - AFNIC_CONTACT_TYPE
+      - AFNIC_PP_FIRST_NAME
+      - AFNIC_PM_LEGAL_STATUS
+      - AFNIC_PM_SIREN
+      - AFNIC_PM_VAT
+      - AFNIC_PM_TRADEMARK
+      - AFNIC_PM_ASSOC_WALDEC
+      - AFNIC_PM_ASSOC_PUBL_DATE
+      - AFNIC_PM_ASSOC_PUBL_ANNOUNCE
+      - AFNIC_PM_ASSOC_PUBL_PAGE
+      - AFNIC_PM_ASSOC_DECL
+      - AFNIC_PM_DUNS
+      - AFNIC_PM_LOCAL
+      - AFNIC_ID_STATUS
+      - AFNIC_REACHABLE_MEDIA
+      - AFNIC_REACHABLE_STATUS
+      - AFNIC_RESTRICTED_PUBLICATION
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -6144,7 +6162,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-23-120441
+  version: 2025-12-30-174755
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

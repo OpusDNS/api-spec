@@ -99,6 +99,7 @@ export const ATTRIBUTE_TYPE = {
   STRING: "string",
   BOOLEAN: "boolean",
   DATETIME: "datetime",
+  INTEGER: "integer",
 } as const satisfies Record<string, AttributeType>;
 
 /**
@@ -126,7 +127,8 @@ export const ATTRIBUTE_TYPE_VALUES = [
   'enum',
   'string',
   'boolean',
-  'datetime'
+  'datetime',
+  'integer'
 ] as const satisfies [string, ...string[]] | AttributeType[];
 
 /**
@@ -2912,6 +2914,23 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   DE_CONTACT_TYPE: "DE_CONTACT_TYPE",
   DNSBE_TYPE: "dnsbe:type",
   EURID_TYPE: "eurid:type",
+  AFNIC_CONTACT_TYPE: "AFNIC_CONTACT_TYPE",
+  AFNIC_PP_FIRST_NAME: "AFNIC_PP_FIRST_NAME",
+  AFNIC_PM_LEGAL_STATUS: "AFNIC_PM_LEGAL_STATUS",
+  AFNIC_PM_SIREN: "AFNIC_PM_SIREN",
+  AFNIC_PM_VAT: "AFNIC_PM_VAT",
+  AFNIC_PM_TRADEMARK: "AFNIC_PM_TRADEMARK",
+  AFNIC_PM_ASSOC_WALDEC: "AFNIC_PM_ASSOC_WALDEC",
+  AFNIC_PM_ASSOC_PUBL_DATE: "AFNIC_PM_ASSOC_PUBL_DATE",
+  AFNIC_PM_ASSOC_PUBL_ANNOUNCE: "AFNIC_PM_ASSOC_PUBL_ANNOUNCE",
+  AFNIC_PM_ASSOC_PUBL_PAGE: "AFNIC_PM_ASSOC_PUBL_PAGE",
+  AFNIC_PM_ASSOC_DECL: "AFNIC_PM_ASSOC_DECL",
+  AFNIC_PM_DUNS: "AFNIC_PM_DUNS",
+  AFNIC_PM_LOCAL: "AFNIC_PM_LOCAL",
+  AFNIC_ID_STATUS: "AFNIC_ID_STATUS",
+  AFNIC_REACHABLE_MEDIA: "AFNIC_REACHABLE_MEDIA",
+  AFNIC_REACHABLE_STATUS: "AFNIC_REACHABLE_STATUS",
+  AFNIC_RESTRICTED_PUBLICATION: "AFNIC_RESTRICTED_PUBLICATION",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -2939,7 +2958,24 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'at-ext-contact:type',
   'DE_CONTACT_TYPE',
   'dnsbe:type',
-  'eurid:type'
+  'eurid:type',
+  'AFNIC_CONTACT_TYPE',
+  'AFNIC_PP_FIRST_NAME',
+  'AFNIC_PM_LEGAL_STATUS',
+  'AFNIC_PM_SIREN',
+  'AFNIC_PM_VAT',
+  'AFNIC_PM_TRADEMARK',
+  'AFNIC_PM_ASSOC_WALDEC',
+  'AFNIC_PM_ASSOC_PUBL_DATE',
+  'AFNIC_PM_ASSOC_PUBL_ANNOUNCE',
+  'AFNIC_PM_ASSOC_PUBL_PAGE',
+  'AFNIC_PM_ASSOC_DECL',
+  'AFNIC_PM_DUNS',
+  'AFNIC_PM_LOCAL',
+  'AFNIC_ID_STATUS',
+  'AFNIC_REACHABLE_MEDIA',
+  'AFNIC_REACHABLE_STATUS',
+  'AFNIC_RESTRICTED_PUBLICATION'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**
