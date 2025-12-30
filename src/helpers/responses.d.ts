@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_User, TldSpecification, User, UserWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -8135,9 +8135,9 @@ export type GET_OrganizationsUsers_Response = GET_OrganizationsUsers_Response_20
  * @path /v1/organizations/users
  *
  * @see {@link GET_OrganizationsUsers_Response} - The main response type definition
- * @see {@link Pagination_User} - The actual schema type definition
+ * @see {@link Pagination_UserPublic} - The actual schema type definition
  */
-export type GET_OrganizationsUsers_Response_200 = Pagination_User
+export type GET_OrganizationsUsers_Response_200 = Pagination_UserPublic
 
 /**
  * 401 response for GET OrganizationsUsers endpoint
@@ -8393,9 +8393,9 @@ export type POST_Users_Response = POST_Users_Response_200 | POST_Users_Response_
  * @path /v1/users
  *
  * @see {@link POST_Users_Response} - The main response type definition
- * @see {@link User} - The actual schema type definition
+ * @see {@link UserPublic} - The actual schema type definition
  */
-export type POST_Users_Response_200 = User
+export type POST_Users_Response_200 = UserPublic
 
 /**
  * 422 response for POST Users endpoint
@@ -8505,9 +8505,9 @@ export type GET_UsersByUserId_Response = GET_UsersByUserId_Response_200 | GET_Us
  * @path /v1/users/{user_id}
  *
  * @see {@link GET_UsersByUserId_Response} - The main response type definition
- * @see {@link UserWithAttributes} - The actual schema type definition
+ * @see {@link UserPublicWithAttributes} - The actual schema type definition
  */
-export type GET_UsersByUserId_Response_200 = UserWithAttributes
+export type GET_UsersByUserId_Response_200 = UserPublicWithAttributes
 
 /**
  * 422 response for GET UsersByUserId endpoint
@@ -8561,9 +8561,9 @@ export type PATCH_UsersByUserId_Response = PATCH_UsersByUserId_Response_200 | PA
  * @path /v1/users/{user_id}
  *
  * @see {@link PATCH_UsersByUserId_Response} - The main response type definition
- * @see {@link UserWithAttributes} - The actual schema type definition
+ * @see {@link UserPublicWithAttributes} - The actual schema type definition
  */
-export type PATCH_UsersByUserId_Response_200 = UserWithAttributes
+export type PATCH_UsersByUserId_Response_200 = UserPublicWithAttributes
 
 /**
  * 422 response for PATCH UsersByUserId endpoint

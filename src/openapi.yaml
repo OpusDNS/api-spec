@@ -4569,19 +4569,19 @@ components:
       - pagination
       title: Pagination[RequestHistory]
       type: object
-    Pagination_User_:
+    Pagination_UserPublic_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/User'
+            $ref: '#/components/schemas/UserPublic'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[User]
+      title: Pagination[UserPublic]
       type: object
     PasswordUpdate:
       properties:
@@ -5472,6 +5472,12 @@ components:
           minLength: 1
           title: First Name
           type: string
+        keycloak_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Keycloak user id
+          title: Keycloak User Id
         last_name:
           description: The user's last name
           minLength: 1
@@ -5626,93 +5632,92 @@ components:
       - password
       title: UserCreate
       type: object
-    UserStatus:
-      enum:
-      - active
-      - inactive
-      title: UserStatus
-      type: string
-    UserTokenResponse:
+    UserPublic:
       properties:
-        access_token:
-          title: Access Token
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
           type: string
-        expires_in:
-          title: Expires In
-          type: integer
-        refresh_expires_in:
-          title: Refresh Expires In
-          type: integer
-        refresh_token:
-          title: Refresh Token
-          type: string
-        token_type:
-          default: Bearer
-          title: Token Type
-          type: string
-      required:
-      - access_token
-      - expires_in
-      - refresh_token
-      - refresh_expires_in
-      title: UserTokenResponse
-      type: object
-    UserUpdate:
-      properties:
+        deleted_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date/time the entry was deleted on
+          title: Deleted On
         email:
-          anyOf:
-          - format: email
-            type: string
-          - type: 'null'
           description: The user's email address
+          format: email
           title: Email
+          type: string
         first_name:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
           description: The user's first name
+          minLength: 1
           title: First Name
+          type: string
         last_name:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
           description: The user's last name
+          minLength: 1
           title: Last Name
+          type: string
         locale:
-          anyOf:
-          - examples:
-            - en_US
-            type: string
-          - type: 'null'
-          description: The user's locale
+          examples:
+          - en_US
           title: Locale
+          type: string
+        organization_id:
+          default: None
+          description: The user's organization id
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
         phone:
           anyOf:
           - format: phone
             type: string
           - type: 'null'
           description: The user's phone number
+          examples:
+          - '+1.2125552368'
           title: Phone
-        user_attributes:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/UserAttributeBase'
-            type: array
-          - type: 'null'
-          description: User attributes
-          title: User Attributes
+        status:
+          $ref: '#/components/schemas/UserStatus'
+          readOnly: true
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+        user_id:
+          examples:
+          - user_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: User Id
+          type: string
+          x-typeid-prefix: user
         username:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
           description: The user's unique username
+          maxLength: 128
+          minLength: 3
+          pattern: ^[a-zA-Z0-9\-+_@.]+$
           title: Username
-      title: UserUpdate
+          type: string
+      required:
+      - username
+      - first_name
+      - last_name
+      - email
+      - locale
+      - status
+      title: UserPublic
       type: object
-    UserWithAttributes:
+    UserPublicWithAttributes:
       properties:
         created_on:
           description: The date/time the entry was created on
@@ -5809,7 +5814,93 @@ components:
       - email
       - locale
       - status
-      title: UserWithAttributes
+      title: UserPublicWithAttributes
+      type: object
+    UserStatus:
+      enum:
+      - active
+      - inactive
+      title: UserStatus
+      type: string
+    UserTokenResponse:
+      properties:
+        access_token:
+          title: Access Token
+          type: string
+        expires_in:
+          title: Expires In
+          type: integer
+        refresh_expires_in:
+          title: Refresh Expires In
+          type: integer
+        refresh_token:
+          title: Refresh Token
+          type: string
+        token_type:
+          default: Bearer
+          title: Token Type
+          type: string
+      required:
+      - access_token
+      - expires_in
+      - refresh_token
+      - refresh_expires_in
+      title: UserTokenResponse
+      type: object
+    UserUpdate:
+      properties:
+        email:
+          anyOf:
+          - format: email
+            type: string
+          - type: 'null'
+          description: The user's email address
+          title: Email
+        first_name:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The user's first name
+          title: First Name
+        last_name:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The user's last name
+          title: Last Name
+        locale:
+          anyOf:
+          - examples:
+            - en_US
+            type: string
+          - type: 'null'
+          description: The user's locale
+          title: Locale
+        phone:
+          anyOf:
+          - format: phone
+            type: string
+          - type: 'null'
+          description: The user's phone number
+          title: Phone
+        user_attributes:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/UserAttributeBase'
+            type: array
+          - type: 'null'
+          description: User attributes
+          title: User Attributes
+        username:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The user's unique username
+          title: Username
+      title: UserUpdate
       type: object
     UserWithRelationPermissions:
       properties:
@@ -6162,7 +6253,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-30-174755
+  version: 2025-12-30-205837
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -12962,7 +13053,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_User_'
+                $ref: '#/components/schemas/Pagination_UserPublic_'
           description: Successful Response
         '401':
           content:
@@ -13655,7 +13746,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserPublic'
           description: Successful Response
         '422':
           content:
@@ -13808,7 +13899,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserWithAttributes'
+                $ref: '#/components/schemas/UserPublicWithAttributes'
           description: Successful Response
         '422':
           content:
@@ -13847,7 +13938,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserWithAttributes'
+                $ref: '#/components/schemas/UserPublicWithAttributes'
           description: Successful Response
         '422':
           content:

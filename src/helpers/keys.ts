@@ -169,9 +169,10 @@ import { User } from './schemas';
 import { UserAttributeBase } from './schemas';
 import { UserAttribute } from './schemas';
 import { UserCreate } from './schemas';
+import { UserPublic } from './schemas';
+import { UserPublicWithAttributes } from './schemas';
 import { UserToken } from './schemas';
 import { UserUpdate } from './schemas';
-import { UserWithAttributes } from './schemas';
 import { UserWithRelationPermissions } from './schemas';
 import { ValidationError } from './schemas';
 import { WhoisBase } from './schemas';
@@ -21166,6 +21167,31 @@ export const KEY_USER_EMAIL: keyof User = 'email';
  */
 export const KEY_USER_FIRST_NAME: keyof User = 'first_name';
 /**
+ * Keycloak User Id
+ *
+ * Keycloak user id
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `keycloak_user_id` property of User objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = user[KEY_USER_KEYCLOAK_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_KEYCLOAK_USER_ID;
+ * const value = user[propertyName];
+ * ```
+ *
+ * @see {@link User} - The TypeScript type definition
+ * @see {@link KEYS_USER} - Array of all keys for this type
+ */
+export const KEY_USER_KEYCLOAK_USER_ID: keyof User = 'keycloak_user_id';
+/**
  * Last Name
  *
  * The user's last name
@@ -21394,6 +21420,7 @@ export const KEYS_USER = [
   KEY_USER_DELETED_ON,
   KEY_USER_EMAIL,
   KEY_USER_FIRST_NAME,
+  KEY_USER_KEYCLOAK_USER_ID,
   KEY_USER_LAST_NAME,
   KEY_USER_LOCALE,
   KEY_USER_ORGANIZATION_ID,
@@ -21796,6 +21823,717 @@ export const KEYS_USER_CREATE = [
 ] as const satisfies (keyof UserCreate)[];
 
 /**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_CREATED_ON;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_CREATED_ON: keyof UserPublic = 'created_on';
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_DELETED_ON;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_DELETED_ON: keyof UserPublic = 'deleted_on';
+/**
+ * Email
+ *
+ * The user's email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_EMAIL;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_EMAIL: keyof UserPublic = 'email';
+/**
+ * First Name
+ *
+ * The user's first name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_FIRST_NAME;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_FIRST_NAME: keyof UserPublic = 'first_name';
+/**
+ * Last Name
+ *
+ * The user's last name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_LAST_NAME;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_LAST_NAME: keyof UserPublic = 'last_name';
+/**
+ * Locale
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `locale` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_LOCALE;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_LOCALE: keyof UserPublic = 'locale';
+/**
+ * Organization Id
+ *
+ * The user's organization id
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_ORGANIZATION_ID;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_ORGANIZATION_ID: keyof UserPublic = 'organization_id';
+/**
+ * Phone
+ *
+ * The user's phone number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_PHONE;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_PHONE: keyof UserPublic = 'phone';
+/**
+ * status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_STATUS;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_STATUS: keyof UserPublic = 'status';
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_UPDATED_ON;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_UPDATED_ON: keyof UserPublic = 'updated_on';
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_USER_ID;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_USER_ID: keyof UserPublic = 'user_id';
+/**
+ * Username
+ *
+ * The user's unique username
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of UserPublic objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublic[KEY_USER_PUBLIC_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_USERNAME;
+ * const value = userpublic[propertyName];
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_USERNAME: keyof UserPublic = 'username';
+
+/**
+ * Array of all UserPublic property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserPublic objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_PUBLIC) {
+ *   console.log(`Property: ${key}, Value: ${userpublic[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_PUBLIC.includes(someKey);
+ * ```
+ *
+ * @see {@link UserPublic} - The TypeScript type definition
+ */
+export const KEYS_USER_PUBLIC = [
+  KEY_USER_PUBLIC_CREATED_ON,
+  KEY_USER_PUBLIC_DELETED_ON,
+  KEY_USER_PUBLIC_EMAIL,
+  KEY_USER_PUBLIC_FIRST_NAME,
+  KEY_USER_PUBLIC_LAST_NAME,
+  KEY_USER_PUBLIC_LOCALE,
+  KEY_USER_PUBLIC_ORGANIZATION_ID,
+  KEY_USER_PUBLIC_PHONE,
+  KEY_USER_PUBLIC_STATUS,
+  KEY_USER_PUBLIC_UPDATED_ON,
+  KEY_USER_PUBLIC_USER_ID,
+  KEY_USER_PUBLIC_USERNAME,
+] as const satisfies (keyof UserPublic)[];
+
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_CREATED_ON;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_CREATED_ON: keyof UserPublicWithAttributes = 'created_on';
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_DELETED_ON;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_DELETED_ON: keyof UserPublicWithAttributes = 'deleted_on';
+/**
+ * Email
+ *
+ * The user's email address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_EMAIL;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_EMAIL: keyof UserPublicWithAttributes = 'email';
+/**
+ * First Name
+ *
+ * The user's first name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_FIRST_NAME;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_FIRST_NAME: keyof UserPublicWithAttributes = 'first_name';
+/**
+ * Last Name
+ *
+ * The user's last name
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_LAST_NAME;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_LAST_NAME: keyof UserPublicWithAttributes = 'last_name';
+/**
+ * Locale
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `locale` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_LOCALE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_LOCALE;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_LOCALE: keyof UserPublicWithAttributes = 'locale';
+/**
+ * Organization Id
+ *
+ * The user's organization id
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_ORGANIZATION_ID;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_ORGANIZATION_ID: keyof UserPublicWithAttributes = 'organization_id';
+/**
+ * Phone
+ *
+ * The user's phone number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_PHONE;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_PHONE: keyof UserPublicWithAttributes = 'phone';
+/**
+ * status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_STATUS;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_STATUS: keyof UserPublicWithAttributes = 'status';
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_UPDATED_ON;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_UPDATED_ON: keyof UserPublicWithAttributes = 'updated_on';
+/**
+ * User Attributes
+ *
+ * All of the user attributes
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_attributes` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ATTRIBUTES;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ATTRIBUTES: keyof UserPublicWithAttributes = 'user_attributes';
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ID;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ID: keyof UserPublicWithAttributes = 'user_id';
+/**
+ * Username
+ *
+ * The user's unique username
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `username` property of UserPublicWithAttributes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = userpublicwithattributes[KEY_USER_PUBLIC_WITH_ATTRIBUTES_USERNAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_PUBLIC_WITH_ATTRIBUTES_USERNAME;
+ * const value = userpublicwithattributes[propertyName];
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ * @see {@link KEYS_USER_PUBLIC_WITH_ATTRIBUTES} - Array of all keys for this type
+ */
+export const KEY_USER_PUBLIC_WITH_ATTRIBUTES_USERNAME: keyof UserPublicWithAttributes = 'username';
+
+/**
+ * Array of all UserPublicWithAttributes property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserPublicWithAttributes objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_PUBLIC_WITH_ATTRIBUTES) {
+ *   console.log(`Property: ${key}, Value: ${userpublicwithattributes[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_PUBLIC_WITH_ATTRIBUTES.includes(someKey);
+ * ```
+ *
+ * @see {@link UserPublicWithAttributes} - The TypeScript type definition
+ */
+export const KEYS_USER_PUBLIC_WITH_ATTRIBUTES = [
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_CREATED_ON,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_DELETED_ON,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_EMAIL,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_FIRST_NAME,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_LAST_NAME,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_LOCALE,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_ORGANIZATION_ID,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_PHONE,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_STATUS,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_UPDATED_ON,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ATTRIBUTES,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_USER_ID,
+  KEY_USER_PUBLIC_WITH_ATTRIBUTES_USERNAME,
+] as const satisfies (keyof UserPublicWithAttributes)[];
+
+/**
  * Access Token
  *
  *
@@ -22154,375 +22892,6 @@ export const KEYS_USER_UPDATE = [
   KEY_USER_UPDATE_USER_ATTRIBUTES,
   KEY_USER_UPDATE_USERNAME,
 ] as const satisfies (keyof UserUpdate)[];
-
-/**
- * Created On
- *
- * The date/time the entry was created on
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `created_on` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_CREATED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_CREATED_ON;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_CREATED_ON: keyof UserWithAttributes = 'created_on';
-/**
- * Deleted On
- *
- * The date/time the entry was deleted on
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `deleted_on` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_DELETED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_DELETED_ON;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_DELETED_ON: keyof UserWithAttributes = 'deleted_on';
-/**
- * Email
- *
- * The user's email address
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `email` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_EMAIL];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_EMAIL;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_EMAIL: keyof UserWithAttributes = 'email';
-/**
- * First Name
- *
- * The user's first name
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `first_name` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_FIRST_NAME];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_FIRST_NAME;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_FIRST_NAME: keyof UserWithAttributes = 'first_name';
-/**
- * Last Name
- *
- * The user's last name
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `last_name` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_LAST_NAME];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_LAST_NAME;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_LAST_NAME: keyof UserWithAttributes = 'last_name';
-/**
- * Locale
- *
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `locale` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_LOCALE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_LOCALE;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_LOCALE: keyof UserWithAttributes = 'locale';
-/**
- * Organization Id
- *
- * The user's organization id
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `organization_id` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID: keyof UserWithAttributes = 'organization_id';
-/**
- * Phone
- *
- * The user's phone number
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `phone` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_PHONE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_PHONE;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_PHONE: keyof UserWithAttributes = 'phone';
-/**
- * status property
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `status` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_STATUS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_STATUS;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_STATUS: keyof UserWithAttributes = 'status';
-/**
- * Updated On
- *
- * The date/time the entry was last updated on
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `updated_on` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_UPDATED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_UPDATED_ON;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_UPDATED_ON: keyof UserWithAttributes = 'updated_on';
-/**
- * User Attributes
- *
- * All of the user attributes
- *
- * @type {object}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `user_attributes` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES: keyof UserWithAttributes = 'user_attributes';
-/**
- * User Id
- *
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `user_id` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_USER_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_USER_ID;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_USER_ID: keyof UserWithAttributes = 'user_id';
-/**
- * Username
- *
- * The user's unique username
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `username` property of UserWithAttributes objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = userwithattributes[KEY_USER_WITH_ATTRIBUTES_USERNAME];
- * 
- * // Dynamic property access
- * const propertyName = KEY_USER_WITH_ATTRIBUTES_USERNAME;
- * const value = userwithattributes[propertyName];
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- * @see {@link KEYS_USER_WITH_ATTRIBUTES} - Array of all keys for this type
- */
-export const KEY_USER_WITH_ATTRIBUTES_USERNAME: keyof UserWithAttributes = 'username';
-
-/**
- * Array of all UserWithAttributes property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for UserWithAttributes objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_USER_WITH_ATTRIBUTES) {
- *   console.log(`Property: ${key}, Value: ${userwithattributes[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_USER_WITH_ATTRIBUTES.includes(someKey);
- * ```
- *
- * @see {@link UserWithAttributes} - The TypeScript type definition
- */
-export const KEYS_USER_WITH_ATTRIBUTES = [
-  KEY_USER_WITH_ATTRIBUTES_CREATED_ON,
-  KEY_USER_WITH_ATTRIBUTES_DELETED_ON,
-  KEY_USER_WITH_ATTRIBUTES_EMAIL,
-  KEY_USER_WITH_ATTRIBUTES_FIRST_NAME,
-  KEY_USER_WITH_ATTRIBUTES_LAST_NAME,
-  KEY_USER_WITH_ATTRIBUTES_LOCALE,
-  KEY_USER_WITH_ATTRIBUTES_ORGANIZATION_ID,
-  KEY_USER_WITH_ATTRIBUTES_PHONE,
-  KEY_USER_WITH_ATTRIBUTES_STATUS,
-  KEY_USER_WITH_ATTRIBUTES_UPDATED_ON,
-  KEY_USER_WITH_ATTRIBUTES_USER_ATTRIBUTES,
-  KEY_USER_WITH_ATTRIBUTES_USER_ID,
-  KEY_USER_WITH_ATTRIBUTES_USERNAME,
-] as const satisfies (keyof UserWithAttributes)[];
 
 /**
  * Created On

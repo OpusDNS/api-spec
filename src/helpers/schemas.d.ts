@@ -2816,21 +2816,21 @@ export type Pagination_Organization = components['schemas']['Pagination_Organiza
  */
 export type Pagination_RequestHistory = components['schemas']['Pagination_RequestHistory_'];
 /**
- * Pagination[User]
+ * Pagination[UserPublic]
  *
  * @remarks
- * Type alias for the `Pagination_User_` OpenAPI schema.
- * This type represents pagination[user] data structures used in API requests and responses.
+ * Type alias for the `Pagination_UserPublic_` OpenAPI schema.
+ * This type represents pagination[userpublic] data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getPagination_User();
- * const item: Pagination_User = response.results;
+ * const response = await api.getPagination_UserPublic();
+ * const item: Pagination_UserPublic = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type Pagination_User = components['schemas']['Pagination_User_'];
+export type Pagination_UserPublic = components['schemas']['Pagination_UserPublic_'];
 /**
  * PasswordUpdate
  *
@@ -3584,6 +3584,38 @@ export type UserAttribute = components['schemas']['UserAttributeResponse'];
  */
 export type UserCreate = components['schemas']['UserCreate'];
 /**
+ * UserPublic
+ *
+ * @remarks
+ * Type alias for the `UserPublic` OpenAPI schema.
+ * This type represents userpublic data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getUserPublic();
+ * const item: UserPublic = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type UserPublic = components['schemas']['UserPublic'];
+/**
+ * UserPublicWithAttributes
+ *
+ * @remarks
+ * Type alias for the `UserPublicWithAttributes` OpenAPI schema.
+ * This type represents userpublicwithattributes data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getUserPublicWithAttributes();
+ * const item: UserPublicWithAttributes = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type UserPublicWithAttributes = components['schemas']['UserPublicWithAttributes'];
+/**
  * UserStatus
  *
  * @remarks
@@ -3631,22 +3663,6 @@ export type UserToken = components['schemas']['UserTokenResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type UserUpdate = components['schemas']['UserUpdate'];
-/**
- * UserWithAttributes
- *
- * @remarks
- * Type alias for the `UserWithAttributes` OpenAPI schema.
- * This type represents userwithattributes data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getUserWithAttributes();
- * const item: UserWithAttributes = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type UserWithAttributes = components['schemas']['UserWithAttributes'];
 /**
  * UserWithRelationPermissions
  *

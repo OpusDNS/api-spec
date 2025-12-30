@@ -4644,11 +4644,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["RequestHistory"][];
         };
-        /** Pagination[User] */
-        Pagination_User_: {
+        /** Pagination[UserPublic] */
+        Pagination_UserPublic_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["User"][];
+            results: components["schemas"]["UserPublic"][];
         };
         /** PasswordUpdate */
         PasswordUpdate: {
@@ -5208,6 +5208,11 @@ export interface components {
              */
             first_name: string;
             /**
+             * Keycloak User Id
+             * @description Keycloak user id
+             */
+            keycloak_user_id?: string | null;
+            /**
              * Last Name
              * @description The user's last name
              */
@@ -5316,67 +5321,75 @@ export interface components {
              */
             username: string;
         };
-        /**
-         * UserStatus
-         * @enum {string}
-         */
-        UserStatus: "active" | "inactive";
-        /** UserTokenResponse */
-        UserTokenResponse: {
-            /** Access Token */
-            access_token: string;
-            /** Expires In */
-            expires_in: number;
-            /** Refresh Expires In */
-            refresh_expires_in: number;
-            /** Refresh Token */
-            refresh_token: string;
+        /** UserPublic */
+        UserPublic: {
             /**
-             * Token Type
-             * @default Bearer
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
              */
-            token_type: string;
-        };
-        /** UserUpdate */
-        UserUpdate: {
+            created_on?: Date;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
             /**
              * Email
+             * Format: email
              * @description The user's email address
              */
-            email?: string | null;
+            email: string;
             /**
              * First Name
              * @description The user's first name
              */
-            first_name?: string | null;
+            first_name: string;
             /**
              * Last Name
              * @description The user's last name
              */
-            last_name?: string | null;
+            last_name: string;
             /**
              * Locale
-             * @description The user's locale
+             * @example en_US
              */
-            locale?: string | null;
+            locale: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The user's organization id
+             * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
             /**
              * Phone
              * @description The user's phone number
+             * @example +1.2125552368
              */
             phone?: string | null;
+            readonly status: components["schemas"]["UserStatus"];
             /**
-             * User Attributes
-             * @description User attributes
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
              */
-            user_attributes?: components["schemas"]["UserAttributeBase"][] | null;
+            updated_on?: Date;
+            /**
+             * User Id
+             * Format: typeid
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
+             */
+            user_id?: TypeId<"user">;
             /**
              * Username
              * @description The user's unique username
              */
-            username?: string | null;
+            username: string;
         };
-        /** UserWithAttributes */
-        UserWithAttributes: {
+        /** UserPublicWithAttributes */
+        UserPublicWithAttributes: {
             /**
              * Created On
              * Format: date-time
@@ -5458,6 +5471,65 @@ export interface components {
              * @description The user's unique username
              */
             username: string;
+        };
+        /**
+         * UserStatus
+         * @enum {string}
+         */
+        UserStatus: "active" | "inactive";
+        /** UserTokenResponse */
+        UserTokenResponse: {
+            /** Access Token */
+            access_token: string;
+            /** Expires In */
+            expires_in: number;
+            /** Refresh Expires In */
+            refresh_expires_in: number;
+            /** Refresh Token */
+            refresh_token: string;
+            /**
+             * Token Type
+             * @default Bearer
+             */
+            token_type: string;
+        };
+        /** UserUpdate */
+        UserUpdate: {
+            /**
+             * Email
+             * @description The user's email address
+             */
+            email?: string | null;
+            /**
+             * First Name
+             * @description The user's first name
+             */
+            first_name?: string | null;
+            /**
+             * Last Name
+             * @description The user's last name
+             */
+            last_name?: string | null;
+            /**
+             * Locale
+             * @description The user's locale
+             */
+            locale?: string | null;
+            /**
+             * Phone
+             * @description The user's phone number
+             */
+            phone?: string | null;
+            /**
+             * User Attributes
+             * @description User attributes
+             */
+            user_attributes?: components["schemas"]["UserAttributeBase"][] | null;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username?: string | null;
         };
         /** UserWithRelationPermissions */
         UserWithRelationPermissions: {
@@ -11221,7 +11293,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_User_"];
+                    "application/json": components["schemas"]["Pagination_UserPublic_"];
                 };
             };
             /** @description Unauthorized */
@@ -11830,7 +11902,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["User"];
+                    "application/json": components["schemas"]["UserPublic"];
                 };
             };
             /** @description Validation Error */
@@ -11941,7 +12013,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithAttributes"];
+                    "application/json": components["schemas"]["UserPublicWithAttributes"];
                 };
             };
             /** @description Validation Error */
@@ -12021,7 +12093,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithAttributes"];
+                    "application/json": components["schemas"]["UserPublicWithAttributes"];
                 };
             };
             /** @description Validation Error */
