@@ -2903,8 +2903,8 @@ export type GET_DomainForwardsByHostname_Response_422 = HTTPValidationError
 /**
  * Response types for POST DomainForwardsByHostname endpoint
  *
- * Create a domain forward (deprecated)
- * **DEPRECATED**: Use POST /v1/domain-forwards instead. Creates a new domain forward configuration for the specified hostname.
+ * Create domain forward set
+ * Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
  *
  * @remarks
  * This type defines all possible response structures for the POST DomainForwardsByHostname endpoint.
@@ -2941,9 +2941,9 @@ export type POST_DomainForwardsByHostname_Response = POST_DomainForwardsByHostna
  * @param hostname (path) - Hostname
  *
  * @see {@link POST_DomainForwardsByHostname_Response} - The main response type definition
- * @see {@link DomainForward} - The actual schema type definition
+ * @see {@link DomainForwardSet} - The actual schema type definition
  */
-export type POST_DomainForwardsByHostname_Response_201 = DomainForward
+export type POST_DomainForwardsByHostname_Response_201 = DomainForwardSet
 
 /**
  * 401 response for POST DomainForwardsByHostname endpoint
@@ -3251,8 +3251,8 @@ export type GET_DomainForwardsByHostnameByProtocol_Response_422 = HTTPValidation
 /**
  * Response types for POST DomainForwardsByHostnameByProtocol endpoint
  *
- * Create domain forward set
- * Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
+ * Create domain forward set (deprecated)
+ * Deprecated: Use POST /{hostname} with protocol in body instead. Creates a new domain forward set for a specific protocol (HTTP or HTTPS).
  *
  * @remarks
  * This type defines all possible response structures for the POST DomainForwardsByHostnameByProtocol endpoint.

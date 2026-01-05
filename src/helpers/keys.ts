@@ -75,7 +75,7 @@ import { DomainForwardPatchOp } from './schemas';
 import { DomainForwardPatchOps } from './schemas';
 import { DomainForwardProtocolSetRequest } from './schemas';
 import { DomainForwardProtocolSet } from './schemas';
-import { DomainForwardRequest } from './schemas';
+import { DomainForwardSetCreateRequest } from './schemas';
 import { DomainForwardSetRequest } from './schemas';
 import { DomainForwardSet } from './schemas';
 import { DomainForwardZone } from './schemas';
@@ -6590,31 +6590,6 @@ export const KEY_DOMAIN_FORWARD_HTTPS: keyof DomainForward = 'https';
  * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
  */
 export const KEY_DOMAIN_FORWARD_UPDATED_ON: keyof DomainForward = 'updated_on';
-/**
- * Wildcard
- *
- *
- * @type {boolean}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `wildcard` property of DomainForward objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforward[KEY_DOMAIN_FORWARD_WILDCARD];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_WILDCARD;
- * const value = domainforward[propertyName];
- * ```
- *
- * @see {@link DomainForward} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_WILDCARD: keyof DomainForward = 'wildcard';
 
 /**
  * Array of all DomainForward property keys
@@ -6643,7 +6618,6 @@ export const KEYS_DOMAIN_FORWARD = [
   KEY_DOMAIN_FORWARD_HTTP,
   KEY_DOMAIN_FORWARD_HTTPS,
   KEY_DOMAIN_FORWARD_UPDATED_ON,
-  KEY_DOMAIN_FORWARD_WILDCARD,
 ] as const satisfies (keyof DomainForward)[];
 
 /**
@@ -6921,30 +6895,6 @@ export const KEYS_DOMAIN_FORWARD_PATCH_OPS = [
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST} - Array of all keys for this type
  */
 export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS: keyof DomainForwardProtocolSetRequest = 'redirects';
-/**
- * Wildcard
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `wildcard` property of DomainForwardProtocolSetRequest objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforwardprotocolsetrequest[KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD;
- * const value = domainforwardprotocolsetrequest[propertyName];
- * ```
- *
- * @see {@link DomainForwardProtocolSetRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD: keyof DomainForwardProtocolSetRequest = 'wildcard';
 
 /**
  * Array of all DomainForwardProtocolSetRequest property keys
@@ -6968,7 +6918,6 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD: keyof DomainForwa
  */
 export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST = [
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_REDIRECTS,
-  KEY_DOMAIN_FORWARD_PROTOCOL_SET_REQUEST_WILDCARD,
 ] as const satisfies (keyof DomainForwardProtocolSetRequest)[];
 
 /**
@@ -7046,31 +6995,6 @@ export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_REDIRECTS: keyof DomainForwardProto
  * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET} - Array of all keys for this type
  */
 export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_UPDATED_ON: keyof DomainForwardProtocolSet = 'updated_on';
-/**
- * Wildcard
- *
- *
- * @type {boolean}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `wildcard` property of DomainForwardProtocolSet objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforwardprotocolset[KEY_DOMAIN_FORWARD_PROTOCOL_SET_WILDCARD];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_PROTOCOL_SET_WILDCARD;
- * const value = domainforwardprotocolset[propertyName];
- * ```
- *
- * @see {@link DomainForwardProtocolSet} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_PROTOCOL_SET} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_PROTOCOL_SET_WILDCARD: keyof DomainForwardProtocolSet = 'wildcard';
 
 /**
  * Array of all DomainForwardProtocolSet property keys
@@ -7096,133 +7020,82 @@ export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET = [
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_CREATED_ON,
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_REDIRECTS,
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_UPDATED_ON,
-  KEY_DOMAIN_FORWARD_PROTOCOL_SET_WILDCARD,
 ] as const satisfies (keyof DomainForwardProtocolSet)[];
 
 /**
- * Enabled
+ * protocol property
  *
  *
- * @type {boolean}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `enabled` property of DomainForwardRequest objects.
+ * This key constant provides type-safe access to the `protocol` property of DomainForwardSetCreateRequest objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = domainforwardrequest[KEY_DOMAIN_FORWARD_REQUEST_ENABLED];
+ * const value = domainforwardsetcreaterequest[KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_PROTOCOL];
  * 
  * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_REQUEST_ENABLED;
- * const value = domainforwardrequest[propertyName];
+ * const propertyName = KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_PROTOCOL;
+ * const value = domainforwardsetcreaterequest[propertyName];
  * ```
  *
- * @see {@link DomainForwardRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
+ * @see {@link DomainForwardSetCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_SET_CREATE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_REQUEST_ENABLED: keyof DomainForwardRequest = 'enabled';
+export const KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_PROTOCOL: keyof DomainForwardSetCreateRequest = 'protocol';
 /**
- * http property
+ * Redirects
  *
  *
+ * @type {array}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `http` property of DomainForwardRequest objects.
+ * This key constant provides type-safe access to the `redirects` property of DomainForwardSetCreateRequest objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = domainforwardrequest[KEY_DOMAIN_FORWARD_REQUEST_HTTP];
+ * const value = domainforwardsetcreaterequest[KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_REDIRECTS];
  * 
  * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_REQUEST_HTTP;
- * const value = domainforwardrequest[propertyName];
+ * const propertyName = KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_REDIRECTS;
+ * const value = domainforwardsetcreaterequest[propertyName];
  * ```
  *
- * @see {@link DomainForwardRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
+ * @see {@link DomainForwardSetCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_SET_CREATE_REQUEST} - Array of all keys for this type
  */
-export const KEY_DOMAIN_FORWARD_REQUEST_HTTP: keyof DomainForwardRequest = 'http';
-/**
- * https property
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `https` property of DomainForwardRequest objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforwardrequest[KEY_DOMAIN_FORWARD_REQUEST_HTTPS];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_REQUEST_HTTPS;
- * const value = domainforwardrequest[propertyName];
- * ```
- *
- * @see {@link DomainForwardRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_REQUEST_HTTPS: keyof DomainForwardRequest = 'https';
-/**
- * Wildcard
- *
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `wildcard` property of DomainForwardRequest objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforwardrequest[KEY_DOMAIN_FORWARD_REQUEST_WILDCARD];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_REQUEST_WILDCARD;
- * const value = domainforwardrequest[propertyName];
- * ```
- *
- * @see {@link DomainForwardRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_REQUEST} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_REQUEST_WILDCARD: keyof DomainForwardRequest = 'wildcard';
+export const KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_REDIRECTS: keyof DomainForwardSetCreateRequest = 'redirects';
 
 /**
- * Array of all DomainForwardRequest property keys
+ * Array of all DomainForwardSetCreateRequest property keys
  *
  * @remarks
- * This constant provides a readonly array containing all valid property keys for DomainForwardRequest objects.
+ * This constant provides a readonly array containing all valid property keys for DomainForwardSetCreateRequest objects.
  * Useful for iteration, validation, and generating dynamic UI components.
  *
  * @example
  * ```typescript
  * // Iterating through all keys
- * for (const key of KEYS_DOMAIN_FORWARD_REQUEST) {
- *   console.log(`Property: ${key}, Value: ${domainforwardrequest[key]}`);
+ * for (const key of KEYS_DOMAIN_FORWARD_SET_CREATE_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardsetcreaterequest[key]}`);
  * }
  * 
  * // Validation
- * const isValidKey = KEYS_DOMAIN_FORWARD_REQUEST.includes(someKey);
+ * const isValidKey = KEYS_DOMAIN_FORWARD_SET_CREATE_REQUEST.includes(someKey);
  * ```
  *
- * @see {@link DomainForwardRequest} - The TypeScript type definition
+ * @see {@link DomainForwardSetCreateRequest} - The TypeScript type definition
  */
-export const KEYS_DOMAIN_FORWARD_REQUEST = [
-  KEY_DOMAIN_FORWARD_REQUEST_ENABLED,
-  KEY_DOMAIN_FORWARD_REQUEST_HTTP,
-  KEY_DOMAIN_FORWARD_REQUEST_HTTPS,
-  KEY_DOMAIN_FORWARD_REQUEST_WILDCARD,
-] as const satisfies (keyof DomainForwardRequest)[];
+export const KEYS_DOMAIN_FORWARD_SET_CREATE_REQUEST = [
+  KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_PROTOCOL,
+  KEY_DOMAIN_FORWARD_SET_CREATE_REQUEST_REDIRECTS,
+] as const satisfies (keyof DomainForwardSetCreateRequest)[];
 
 /**
  * Redirects
@@ -7398,31 +7271,6 @@ export const KEY_DOMAIN_FORWARD_SET_REDIRECTS: keyof DomainForwardSet = 'redirec
  * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
  */
 export const KEY_DOMAIN_FORWARD_SET_UPDATED_ON: keyof DomainForwardSet = 'updated_on';
-/**
- * Wildcard
- *
- *
- * @type {boolean}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `wildcard` property of DomainForwardSet objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainforwardset[KEY_DOMAIN_FORWARD_SET_WILDCARD];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_FORWARD_SET_WILDCARD;
- * const value = domainforwardset[propertyName];
- * ```
- *
- * @see {@link DomainForwardSet} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_FORWARD_SET} - Array of all keys for this type
- */
-export const KEY_DOMAIN_FORWARD_SET_WILDCARD: keyof DomainForwardSet = 'wildcard';
 
 /**
  * Array of all DomainForwardSet property keys
@@ -7450,7 +7298,6 @@ export const KEYS_DOMAIN_FORWARD_SET = [
   KEY_DOMAIN_FORWARD_SET_PROTOCOL,
   KEY_DOMAIN_FORWARD_SET_REDIRECTS,
   KEY_DOMAIN_FORWARD_SET_UPDATED_ON,
-  KEY_DOMAIN_FORWARD_SET_WILDCARD,
 ] as const satisfies (keyof DomainForwardSet)[];
 
 /**

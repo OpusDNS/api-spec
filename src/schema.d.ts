@@ -504,11 +504,10 @@ export interface paths {
         get: operations["get_domain_forward_v1_domain_forwards__hostname__get"];
         put?: never;
         /**
-         * Create a domain forward (deprecated)
-         * @deprecated
-         * @description **DEPRECATED**: Use POST /v1/domain-forwards instead. Creates a new domain forward configuration for the specified hostname.
+         * Create domain forward set
+         * @description Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
          */
-        post: operations["create_domain_forward_v1_domain_forwards__hostname__post"];
+        post: operations["create_domain_forward_set_v1_domain_forwards__hostname__post"];
         /**
          * Delete a domain forward
          * @description Deletes the domain forward configuration for the specified hostname
@@ -577,10 +576,11 @@ export interface paths {
          */
         put: operations["update_domain_forward_set_v1_domain_forwards__hostname___protocol__put"];
         /**
-         * Create domain forward set
-         * @description Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
+         * Create domain forward set (deprecated)
+         * @deprecated
+         * @description Deprecated: Use POST /{hostname} with protocol in body instead. Creates a new domain forward set for a specific protocol (HTTP or HTTPS).
          */
-        post: operations["create_domain_forward_set_v1_domain_forwards__hostname___protocol__post"];
+        post: operations["create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post"];
         /**
          * Delete domain forward set
          * @description Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
@@ -2658,8 +2658,6 @@ export interface components {
              * Format: date-time
              */
             updated_on: Date;
-            /** Wildcard */
-            wildcard: boolean;
         };
         /** DomainForwardCreateRequest */
         DomainForwardCreateRequest: {
@@ -2688,8 +2686,6 @@ export interface components {
         DomainForwardProtocolSetRequest: {
             /** Redirects */
             redirects: (components["schemas"]["HttpRedirectRequest"] | components["schemas"]["WildcardHttpRedirectRequest"])[];
-            /** Wildcard */
-            wildcard?: boolean | null;
         };
         /** DomainForwardProtocolSetResponse */
         DomainForwardProtocolSetResponse: {
@@ -2705,20 +2701,12 @@ export interface components {
              * Format: date-time
              */
             updated_on: Date;
-            /** Wildcard */
-            wildcard: boolean;
         };
-        /** DomainForwardRequest */
-        DomainForwardRequest: {
-            /**
-             * Enabled
-             * @default false
-             */
-            enabled: boolean;
-            http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
-            https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
-            /** Wildcard */
-            wildcard?: boolean | null;
+        /** DomainForwardSetCreateRequest */
+        DomainForwardSetCreateRequest: {
+            protocol: components["schemas"]["HttpProtocol"];
+            /** Redirects */
+            redirects: (components["schemas"]["HttpRedirectRequest"] | components["schemas"]["WildcardHttpRedirectRequest"])[];
         };
         /** DomainForwardSetRequest */
         DomainForwardSetRequest: {
@@ -2742,8 +2730,6 @@ export interface components {
              * Format: date-time
              */
             updated_on: Date;
-            /** Wildcard */
-            wildcard: boolean;
         };
         /**
          * DomainForwardSortField
@@ -7814,7 +7800,7 @@ export interface operations {
             };
         };
     };
-    create_domain_forward_v1_domain_forwards__hostname__post: {
+    create_domain_forward_set_v1_domain_forwards__hostname__post: {
         parameters: {
             query?: never;
             header?: never;
@@ -7826,17 +7812,17 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["DomainForwardRequest"];
+                "application/json": components["schemas"]["DomainForwardSetCreateRequest"];
             };
         };
         responses: {
-            /** @description Domain forward created successfully */
+            /** @description Successful Response */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["DomainForward"];
+                    "application/json": components["schemas"]["DomainForwardSetResponse"];
                 };
             };
             /** @description Unauthorized */
@@ -7871,24 +7857,23 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description DNS zone was not found */
+            /** @description Not Found */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_ZONE_NOT_FOUND",
-                     *       "detail": "Zone not found",
+                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
+                     *       "detail": "Domain forward not found for Additional error context.",
                      *       "status": 404,
-                     *       "title": "DNS Error",
-                     *       "type": "dns-zone-not-found",
-                     *       "zone_name": "Zone example.com. not found"
+                     *       "title": "Domain Forward Error",
+                     *       "type": "domain-forward-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Domain forward already exists */
+            /** @description Conflict */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -7896,7 +7881,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_DOMAIN_FORWARD_ALREADY_EXISTS",
-                     *       "detail": "Domain forward already exists for example.com.",
+                     *       "detail": "Domain forward already exists for Additional error context.",
                      *       "status": 409,
                      *       "title": "Domain Forward Error",
                      *       "type": "domain-forward-already-exists"
@@ -8299,7 +8284,7 @@ export interface operations {
             };
         };
     };
-    create_domain_forward_set_v1_domain_forwards__hostname___protocol__post: {
+    create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post: {
         parameters: {
             query?: never;
             header?: never;

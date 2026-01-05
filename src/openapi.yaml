@@ -1571,12 +1571,8 @@ components:
           format: date-time
           title: Updated On
           type: string
-        wildcard:
-          title: Wildcard
-          type: boolean
       required:
       - hostname
-      - wildcard
       - enabled
       - updated_on
       - created_on
@@ -1637,11 +1633,6 @@ components:
             - $ref: '#/components/schemas/WildcardHttpRedirectRequest'
           title: Redirects
           type: array
-        wildcard:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Wildcard
       required:
       - redirects
       title: DomainForwardProtocolSetRequest
@@ -1661,36 +1652,27 @@ components:
           format: date-time
           title: Updated On
           type: string
-        wildcard:
-          title: Wildcard
-          type: boolean
       required:
-      - wildcard
       - redirects
       - updated_on
       - created_on
       title: DomainForwardProtocolSetResponse
       type: object
-    DomainForwardRequest:
+    DomainForwardSetCreateRequest:
       properties:
-        enabled:
-          default: false
-          title: Enabled
-          type: boolean
-        http:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-        https:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-        wildcard:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Wildcard
-      title: DomainForwardRequest
+        protocol:
+          $ref: '#/components/schemas/HttpProtocol'
+        redirects:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/HttpRedirectRequest'
+            - $ref: '#/components/schemas/WildcardHttpRedirectRequest'
+          title: Redirects
+          type: array
+      required:
+      - protocol
+      - redirects
+      title: DomainForwardSetCreateRequest
       type: object
     DomainForwardSetRequest:
       properties:
@@ -1725,13 +1707,9 @@ components:
           format: date-time
           title: Updated On
           type: string
-        wildcard:
-          title: Wildcard
-          type: boolean
       required:
       - hostname
       - protocol
-      - wildcard
       - redirects
       - updated_on
       - created_on
@@ -6253,7 +6231,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2025-12-30-205837
+  version: 2026-01-05-134959
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8169,9 +8147,7 @@ paths:
                             target_path: /
                             target_protocol: https
                           updated_on: '2025-11-18T12:59:57Z'
-                          wildcard: false
                         updated_on: '2025-11-18T12:59:57Z'
-                        wildcard: false
                       zone_id: zone_01kabfvtysfqwv4dn89r3jepym
                       zone_name: example.com.
               schema:
@@ -8590,9 +8566,7 @@ paths:
                           target_path: /
                           target_protocol: https
                         updated_on: '2025-11-18T12:59:57Z'
-                        wildcard: false
                       updated_on: '2025-11-18T12:59:57Z'
-                      wildcard: false
                     zone_id: zone_01kabfvtysfqwv4dn89r3jepym
                     zone_name: example.com.
               schema:
@@ -9150,6 +9124,7 @@ paths:
                 summary: HTTP domain forward
                 value:
                   enabled: false
+                  hostname: example.com.
                   http:
                     redirects:
                     - redirect_code: 301
@@ -9157,7 +9132,6 @@ paths:
                       target_hostname: example.com
                       target_path: /
                       target_protocol: https
-                    wildcard: false
                   https:
                     redirects:
                     - redirect_code: 302
@@ -9165,14 +9139,13 @@ paths:
                       target_hostname: auth.example.com
                       target_path: /
                       target_protocol: https
-                    wildcard: false
-                  wildcard: false
               http_to_https:
                 description: Create a HTTP domain forward with redirect from HTTP
                   to HTTPS
                 summary: HTTP to HTTPS
                 value:
                   enabled: false
+                  hostname: example.com.
                   https:
                     redirects:
                     - redirect_code: 301
@@ -9180,8 +9153,6 @@ paths:
                       target_hostname: example.com
                       target_path: /
                       target_protocol: https
-                    wildcard: false
-                  wildcard: false
             schema:
               $ref: '#/components/schemas/DomainForwardCreateRequest'
         required: true
@@ -9209,7 +9180,6 @@ paths:
                         target_path: /
                         target_protocol: https
                       updated_on: '2025-11-14T09:01:38'
-                      wildcard: false
                     https:
                       created_on: '2025-11-14T09:01:38'
                       redirects:
@@ -9221,9 +9191,7 @@ paths:
                         target_path: /
                         target_protocol: https
                       updated_on: '2025-11-14T09:01:38'
-                      wildcard: false
                     updated_on: '2025-11-14T09:01:38'
-                    wildcard: false
                 http_to_https_response:
                   description: Response when creating a HTTP to HTTPS domain forward
                   summary: Response for HTTP to HTTPS
@@ -9242,9 +9210,7 @@ paths:
                         target_path: /
                         target_protocol: https
                       updated_on: '2025-11-14T09:01:38'
-                      wildcard: false
                     updated_on: '2025-11-14T09:01:38'
-                    wildcard: false
               schema:
                 $ref: '#/components/schemas/DomainForward'
           description: Domain forward created successfully
@@ -9438,10 +9404,9 @@ paths:
       tags:
       - domain_forward
     post:
-      deprecated: true
-      description: '**DEPRECATED**: Use POST /v1/domain-forwards instead. Creates
-        a new domain forward configuration for the specified hostname.'
-      operationId: create_domain_forward_v1_domain_forwards__hostname__post
+      description: Creates a new domain forward set for a specific protocol (HTTP
+        or HTTPS). Raises an error if the set already exists.
+      operationId: create_domain_forward_set_v1_domain_forwards__hostname__post
       parameters:
       - description: Hostname
         in: path
@@ -9454,111 +9419,16 @@ paths:
       requestBody:
         content:
           application/json:
-            examples:
-              domain_forward:
-                description: Create a HTTP domain forward with redirect from HTTP
-                  to HTTPS and HTTPS to auth.example.com
-                summary: HTTP domain forward
-                value:
-                  enabled: false
-                  http:
-                    redirects:
-                    - redirect_code: 301
-                      request_path: /
-                      target_hostname: example.com
-                      target_path: /
-                      target_protocol: https
-                    wildcard: false
-                  https:
-                    redirects:
-                    - redirect_code: 302
-                      request_path: /
-                      target_hostname: auth.example.com
-                      target_path: /
-                      target_protocol: https
-                    wildcard: false
-                  wildcard: false
-              http_to_https:
-                description: Create a HTTP domain forward with redirect from HTTP
-                  to HTTPS
-                summary: HTTP to HTTPS
-                value:
-                  enabled: false
-                  https:
-                    redirects:
-                    - redirect_code: 301
-                      request_path: /
-                      target_hostname: example.com
-                      target_path: /
-                      target_protocol: https
-                    wildcard: false
-                  wildcard: false
             schema:
-              $ref: '#/components/schemas/DomainForwardRequest'
+              $ref: '#/components/schemas/DomainForwardSetCreateRequest'
         required: true
       responses:
         '201':
           content:
             application/json:
-              examples:
-                http_domain_forward_response:
-                  description: Response when creating a HTTP domain forward with redirect
-                    from HTTP to HTTPS and HTTPS to auth.example.com
-                  summary: Response for HTTP domain forward
-                  value:
-                    created_on: '2025-11-14T09:01:38'
-                    enabled: false
-                    hostname: example.com.
-                    http:
-                      created_on: '2025-11-14T09:01:38'
-                      redirects:
-                      - redirect_code: 301
-                        request_hostname: example.com.
-                        request_path: /
-                        request_protocol: http
-                        target_hostname: example.com
-                        target_path: /
-                        target_protocol: https
-                      updated_on: '2025-11-14T09:01:38'
-                      wildcard: false
-                    https:
-                      created_on: '2025-11-14T09:01:38'
-                      redirects:
-                      - redirect_code: 302
-                        request_hostname: example.com.
-                        request_path: /
-                        request_protocol: https
-                        target_hostname: auth.example.com
-                        target_path: /
-                        target_protocol: https
-                      updated_on: '2025-11-14T09:01:38'
-                      wildcard: false
-                    updated_on: '2025-11-14T09:01:38'
-                    wildcard: false
-                http_to_https_response:
-                  description: Response when creating a HTTP to HTTPS domain forward
-                  summary: Response for HTTP to HTTPS
-                  value:
-                    created_on: '2025-11-14T09:01:38'
-                    enabled: false
-                    hostname: example.com.
-                    http:
-                      created_on: '2025-11-14T09:01:38'
-                      redirects:
-                      - redirect_code: 301
-                        request_hostname: example.com.
-                        request_path: /
-                        request_protocol: http
-                        target_hostname: example.com
-                        target_path: /
-                        target_protocol: https
-                      updated_on: '2025-11-14T09:01:38'
-                      wildcard: false
-                    updated_on: '2025-11-14T09:01:38'
-                    wildcard: false
               schema:
-                $ref: '#/components/schemas/DomainForward'
-          description: Domain forward created successfully
+                $ref: '#/components/schemas/DomainForwardSetResponse'
+          description: Successful Response
         '401':
           content:
             application/problem+json:
@@ -9587,27 +9457,26 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_ZONE_NOT_FOUND
-                detail: Zone not found
+                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
+                detail: Domain forward not found for Additional error context.
                 status: 404
-                title: DNS Error
-                type: dns-zone-not-found
-                zone_name: Zone example.com. not found
+                title: Domain Forward Error
+                type: domain-forward-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: DNS zone was not found
+          description: Not Found
         '409':
           content:
             application/problem+json:
               example:
                 code: ERROR_DOMAIN_FORWARD_ALREADY_EXISTS
-                detail: Domain forward already exists for example.com.
+                detail: Domain forward already exists for Additional error context.
                 status: 409
                 title: Domain Forward Error
                 type: domain-forward-already-exists
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Domain forward already exists
+          description: Conflict
         '422':
           content:
             application/problem+json:
@@ -9616,7 +9485,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create a domain forward (deprecated)
+      summary: Create domain forward set
       tags:
       - domain_forward
   /v1/domain-forwards/{hostname}/disable:
@@ -9875,9 +9744,10 @@ paths:
       tags:
       - domain_forward
     post:
-      description: Creates a new domain forward set for a specific protocol (HTTP
-        or HTTPS). Raises an error if the set already exists.
-      operationId: create_domain_forward_set_v1_domain_forwards__hostname___protocol__post
+      deprecated: true
+      description: 'Deprecated: Use POST /{hostname} with protocol in body instead.
+        Creates a new domain forward set for a specific protocol (HTTP or HTTPS).'
+      operationId: create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post
       parameters:
       - in: path
         name: protocol
@@ -9961,7 +9831,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      summary: Create domain forward set
+      summary: Create domain forward set (deprecated)
       tags:
       - domain_forward
     put:

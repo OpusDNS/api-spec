@@ -1115,21 +1115,21 @@ export type DomainForwardProtocolSetRequest = components['schemas']['DomainForwa
  */
 export type DomainForwardProtocolSet = components['schemas']['DomainForwardProtocolSetResponse'];
 /**
- * DomainForwardRequest
+ * DomainForwardSetCreateRequest
  *
  * @remarks
- * Type alias for the `DomainForwardRequest` OpenAPI schema.
- * This type represents domainforwardrequest data structures used in API requests and responses.
+ * Type alias for the `DomainForwardSetCreateRequest` OpenAPI schema.
+ * This type represents domainforwardsetcreaterequest data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getDomainForwardRequest();
- * const item: DomainForwardRequest = response.results;
+ * const response = await api.getDomainForwardSetCreateRequest();
+ * const item: DomainForwardSetCreateRequest = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type DomainForwardRequest = components['schemas']['DomainForwardRequest'];
+export type DomainForwardSetCreateRequest = components['schemas']['DomainForwardSetCreateRequest'];
 /**
  * DomainForwardSetRequest
  *

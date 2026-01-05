@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -1609,8 +1609,8 @@ export type GET_DomainForwardsHostname_Request_Path = GET_DomainForwardsHostname
 /**
  * Request type for POST DomainForwardsHostname endpoint
  *
- * Create a domain forward (deprecated)
- * **DEPRECATED**: Use POST /v1/domain-forwards instead. Creates a new domain forward configuration for the specified hostname.
+ * Create domain forward set
+ * Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
  *
  * @remarks
  * This type defines the complete request structure for the POST DomainForwardsHostname endpoint.
@@ -1629,9 +1629,9 @@ export type GET_DomainForwardsHostname_Request_Path = GET_DomainForwardsHostname
  */
 export type POST_DomainForwardsHostname_Request = {
   parameters: {
-    path: operations['create_domain_forward_v1_domain_forwards__hostname__post']['parameters']['path'];
+    path: operations['create_domain_forward_set_v1_domain_forwards__hostname__post']['parameters']['path'];
   };
-  requestBody: DomainForwardRequest;
+  requestBody: DomainForwardSetCreateRequest;
 }
 /**
  * Path parameters for POST /v1/domain-forwards/{hostname}
@@ -1828,8 +1828,8 @@ export type GET_DomainForwardsHostnameProtocol_Request_Path = GET_DomainForwards
 /**
  * Request type for POST DomainForwardsHostnameProtocol endpoint
  *
- * Create domain forward set
- * Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
+ * Create domain forward set (deprecated)
+ * Deprecated: Use POST /{hostname} with protocol in body instead. Creates a new domain forward set for a specific protocol (HTTP or HTTPS).
  *
  * @remarks
  * This type defines the complete request structure for the POST DomainForwardsHostnameProtocol endpoint.
@@ -1848,7 +1848,7 @@ export type GET_DomainForwardsHostnameProtocol_Request_Path = GET_DomainForwards
  */
 export type POST_DomainForwardsHostnameProtocol_Request = {
   parameters: {
-    path: operations['create_domain_forward_set_v1_domain_forwards__hostname___protocol__post']['parameters']['path'];
+    path: operations['create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post']['parameters']['path'];
   };
   requestBody: DomainForwardSetRequest;
 }
