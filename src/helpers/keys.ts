@@ -33,6 +33,7 @@ import { AllowedNumberOfNameserverBase } from './schemas';
 import { BillingMetadata } from './schemas';
 import { BillingPlan } from './schemas';
 import { BillingTransaction } from './schemas';
+import { BrowserStatsBucket } from './schemas';
 import { ContactAttributeDefinition } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
@@ -70,14 +71,23 @@ import { DomainCreate } from './schemas';
 import { DomainDnssecDataCreate } from './schemas';
 import { DomainDnssecData } from './schemas';
 import { DomainForward } from './schemas';
+import { DomainForwardBrowserStats } from './schemas';
 import { DomainForwardCreateRequest } from './schemas';
+import { DomainForwardGeoStats } from './schemas';
+import { DomainForwardMetrics } from './schemas';
+import { DomainForwardMetricsTimeSeries } from './schemas';
 import { DomainForwardPatchOp } from './schemas';
 import { DomainForwardPatchOps } from './schemas';
+import { DomainForwardPlatformStats } from './schemas';
 import { DomainForwardProtocolSetRequest } from './schemas';
 import { DomainForwardProtocolSet } from './schemas';
+import { DomainForwardReferrerStats } from './schemas';
 import { DomainForwardSetCreateRequest } from './schemas';
 import { DomainForwardSetRequest } from './schemas';
 import { DomainForwardSet } from './schemas';
+import { DomainForwardStatusCodeStats } from './schemas';
+import { DomainForwardUserAgentStats } from './schemas';
+import { DomainForwardVisitsByKey } from './schemas';
 import { DomainForwardZone } from './schemas';
 import { DomainHost } from './schemas';
 import { DomainLifecycleBase } from './schemas';
@@ -114,6 +124,7 @@ import { EmailForwardZone } from './schemas';
 import { EventResponse } from './schemas';
 import { EventSchema } from './schemas';
 import { GeneralAvailabilityBase } from './schemas';
+import { GeoStatsBucket } from './schemas';
 import { GetPrices } from './schemas';
 import { HTTPValidationError } from './schemas';
 import { HostSchema } from './schemas';
@@ -144,12 +155,14 @@ import { PaginationMetadata } from './schemas';
 import { PasswordUpdate } from './schemas';
 import { Period } from './schemas';
 import { PermissionSet } from './schemas';
+import { PlatformStatsBucket } from './schemas';
 import { PremiumDomainsBase } from './schemas';
 import { PriceInfo } from './schemas';
 import { PricingPeriod } from './schemas';
 import { Problem } from './schemas';
 import { PublicAuthRequestForm } from './schemas';
 import { RdapBase } from './schemas';
+import { ReferrerStatsBucket } from './schemas';
 import { RegistryLockBase } from './schemas';
 import { RelationSet } from './schemas';
 import { RenewalEvent } from './schemas';
@@ -158,6 +171,8 @@ import { ReservedDomainsBase } from './schemas';
 import { RgpOperations } from './schemas';
 import { SldLength } from './schemas';
 import { SpiceDbRelationshipUpdate } from './schemas';
+import { StatusCodeStatsBucket } from './schemas';
+import { TimeSeriesBucket } from './schemas';
 import { TldBase } from './schemas';
 import { TldResponseShort } from './schemas';
 import { TldSpecification } from './schemas';
@@ -166,6 +181,7 @@ import { TransferEvent } from './schemas';
 import { TransferLockPolicyBase } from './schemas';
 import { TransferPoliciesBase } from './schemas';
 import { User } from './schemas';
+import { UserAgentStatsBucket } from './schemas';
 import { UserAttributeBase } from './schemas';
 import { UserAttribute } from './schemas';
 import { UserCreate } from './schemas';
@@ -175,6 +191,7 @@ import { UserToken } from './schemas';
 import { UserUpdate } from './schemas';
 import { UserWithRelationPermissions } from './schemas';
 import { ValidationError } from './schemas';
+import { VisitsByKeyBucket } from './schemas';
 import { WhoisBase } from './schemas';
 import { WildcardHttpRedirectRequest } from './schemas';
 import { RequestAuthcode } from './schemas';
@@ -910,6 +927,108 @@ export const KEYS_BILLING_TRANSACTION = [
   KEY_BILLING_TRANSACTION_TAX_RATE,
   KEY_BILLING_TRANSACTION_UPDATED_ON,
 ] as const satisfies (keyof BillingTransaction)[];
+
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of BrowserStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = browserstatsbucket[KEY_BROWSER_STATS_BUCKET_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BROWSER_STATS_BUCKET_KEY;
+ * const value = browserstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link BrowserStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_BROWSER_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_BROWSER_STATS_BUCKET_KEY: keyof BrowserStatsBucket = 'key';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of BrowserStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = browserstatsbucket[KEY_BROWSER_STATS_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BROWSER_STATS_BUCKET_TOTAL;
+ * const value = browserstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link BrowserStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_BROWSER_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_BROWSER_STATS_BUCKET_TOTAL: keyof BrowserStatsBucket = 'total';
+/**
+ * Unique
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unique` property of BrowserStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = browserstatsbucket[KEY_BROWSER_STATS_BUCKET_UNIQUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BROWSER_STATS_BUCKET_UNIQUE;
+ * const value = browserstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link BrowserStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_BROWSER_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_BROWSER_STATS_BUCKET_UNIQUE: keyof BrowserStatsBucket = 'unique';
+
+/**
+ * Array of all BrowserStatsBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for BrowserStatsBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_BROWSER_STATS_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${browserstatsbucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_BROWSER_STATS_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link BrowserStatsBucket} - The TypeScript type definition
+ */
+export const KEYS_BROWSER_STATS_BUCKET = [
+  KEY_BROWSER_STATS_BUCKET_KEY,
+  KEY_BROWSER_STATS_BUCKET_TOTAL,
+  KEY_BROWSER_STATS_BUCKET_UNIQUE,
+] as const satisfies (keyof BrowserStatsBucket)[];
 
 /**
  * key property
@@ -6621,6 +6740,56 @@ export const KEYS_DOMAIN_FORWARD = [
 ] as const satisfies (keyof DomainForward)[];
 
 /**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardBrowserStats objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardbrowserstats[KEY_DOMAIN_FORWARD_BROWSER_STATS_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_BROWSER_STATS_RESULTS;
+ * const value = domainforwardbrowserstats[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardBrowserStats} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_BROWSER_STATS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_BROWSER_STATS_RESULTS: keyof DomainForwardBrowserStats = 'results';
+
+/**
+ * Array of all DomainForwardBrowserStats property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardBrowserStats objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_BROWSER_STATS) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardbrowserstats[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_BROWSER_STATS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardBrowserStats} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_BROWSER_STATS = [
+  KEY_DOMAIN_FORWARD_BROWSER_STATS_RESULTS,
+] as const satisfies (keyof DomainForwardBrowserStats)[];
+
+/**
  * Enabled
  *
  *
@@ -6747,6 +6916,234 @@ export const KEYS_DOMAIN_FORWARD_CREATE_REQUEST = [
 ] as const satisfies (keyof DomainForwardCreateRequest)[];
 
 /**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardGeoStats objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardgeostats[KEY_DOMAIN_FORWARD_GEO_STATS_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_GEO_STATS_RESULTS;
+ * const value = domainforwardgeostats[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardGeoStats} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_GEO_STATS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_GEO_STATS_RESULTS: keyof DomainForwardGeoStats = 'results';
+
+/**
+ * Array of all DomainForwardGeoStats property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardGeoStats objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_GEO_STATS) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardgeostats[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_GEO_STATS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardGeoStats} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_GEO_STATS = [
+  KEY_DOMAIN_FORWARD_GEO_STATS_RESULTS,
+] as const satisfies (keyof DomainForwardGeoStats)[];
+
+/**
+ * Configured Forwards
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `configured_forwards` property of DomainForwardMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardmetrics[KEY_DOMAIN_FORWARD_METRICS_CONFIGURED_FORWARDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_METRICS_CONFIGURED_FORWARDS;
+ * const value = domainforwardmetrics[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardMetrics} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_METRICS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_METRICS_CONFIGURED_FORWARDS: keyof DomainForwardMetrics = 'configured_forwards';
+/**
+ * Invoked Forwards
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `invoked_forwards` property of DomainForwardMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardmetrics[KEY_DOMAIN_FORWARD_METRICS_INVOKED_FORWARDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_METRICS_INVOKED_FORWARDS;
+ * const value = domainforwardmetrics[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardMetrics} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_METRICS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_METRICS_INVOKED_FORWARDS: keyof DomainForwardMetrics = 'invoked_forwards';
+/**
+ * Total Visits
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_visits` property of DomainForwardMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardmetrics[KEY_DOMAIN_FORWARD_METRICS_TOTAL_VISITS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_METRICS_TOTAL_VISITS;
+ * const value = domainforwardmetrics[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardMetrics} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_METRICS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_METRICS_TOTAL_VISITS: keyof DomainForwardMetrics = 'total_visits';
+/**
+ * Unique Visits
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unique_visits` property of DomainForwardMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardmetrics[KEY_DOMAIN_FORWARD_METRICS_UNIQUE_VISITS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_METRICS_UNIQUE_VISITS;
+ * const value = domainforwardmetrics[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardMetrics} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_METRICS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_METRICS_UNIQUE_VISITS: keyof DomainForwardMetrics = 'unique_visits';
+
+/**
+ * Array of all DomainForwardMetrics property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardMetrics objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_METRICS) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardmetrics[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_METRICS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardMetrics} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_METRICS = [
+  KEY_DOMAIN_FORWARD_METRICS_CONFIGURED_FORWARDS,
+  KEY_DOMAIN_FORWARD_METRICS_INVOKED_FORWARDS,
+  KEY_DOMAIN_FORWARD_METRICS_TOTAL_VISITS,
+  KEY_DOMAIN_FORWARD_METRICS_UNIQUE_VISITS,
+] as const satisfies (keyof DomainForwardMetrics)[];
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardMetricsTimeSeries objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardmetricstimeseries[KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS;
+ * const value = domainforwardmetricstimeseries[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardMetricsTimeSeries} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_METRICS_TIME_SERIES} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS: keyof DomainForwardMetricsTimeSeries = 'results';
+
+/**
+ * Array of all DomainForwardMetricsTimeSeries property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardMetricsTimeSeries objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_METRICS_TIME_SERIES) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardmetricstimeseries[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_METRICS_TIME_SERIES.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardMetricsTimeSeries} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_METRICS_TIME_SERIES = [
+  KEY_DOMAIN_FORWARD_METRICS_TIME_SERIES_RESULTS,
+] as const satisfies (keyof DomainForwardMetricsTimeSeries)[];
+
+/**
  * op property
  *
  *
@@ -6869,6 +7266,56 @@ export const KEY_DOMAIN_FORWARD_PATCH_OPS_OPS: keyof DomainForwardPatchOps = 'op
 export const KEYS_DOMAIN_FORWARD_PATCH_OPS = [
   KEY_DOMAIN_FORWARD_PATCH_OPS_OPS,
 ] as const satisfies (keyof DomainForwardPatchOps)[];
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardPlatformStats objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardplatformstats[KEY_DOMAIN_FORWARD_PLATFORM_STATS_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_PLATFORM_STATS_RESULTS;
+ * const value = domainforwardplatformstats[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardPlatformStats} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_PLATFORM_STATS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_PLATFORM_STATS_RESULTS: keyof DomainForwardPlatformStats = 'results';
+
+/**
+ * Array of all DomainForwardPlatformStats property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardPlatformStats objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_PLATFORM_STATS) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardplatformstats[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_PLATFORM_STATS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardPlatformStats} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_PLATFORM_STATS = [
+  KEY_DOMAIN_FORWARD_PLATFORM_STATS_RESULTS,
+] as const satisfies (keyof DomainForwardPlatformStats)[];
 
 /**
  * Redirects
@@ -7021,6 +7468,56 @@ export const KEYS_DOMAIN_FORWARD_PROTOCOL_SET = [
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_REDIRECTS,
   KEY_DOMAIN_FORWARD_PROTOCOL_SET_UPDATED_ON,
 ] as const satisfies (keyof DomainForwardProtocolSet)[];
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardReferrerStats objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardreferrerstats[KEY_DOMAIN_FORWARD_REFERRER_STATS_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_REFERRER_STATS_RESULTS;
+ * const value = domainforwardreferrerstats[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardReferrerStats} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_REFERRER_STATS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_REFERRER_STATS_RESULTS: keyof DomainForwardReferrerStats = 'results';
+
+/**
+ * Array of all DomainForwardReferrerStats property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardReferrerStats objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_REFERRER_STATS) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardreferrerstats[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_REFERRER_STATS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardReferrerStats} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_REFERRER_STATS = [
+  KEY_DOMAIN_FORWARD_REFERRER_STATS_RESULTS,
+] as const satisfies (keyof DomainForwardReferrerStats)[];
 
 /**
  * protocol property
@@ -7299,6 +7796,156 @@ export const KEYS_DOMAIN_FORWARD_SET = [
   KEY_DOMAIN_FORWARD_SET_REDIRECTS,
   KEY_DOMAIN_FORWARD_SET_UPDATED_ON,
 ] as const satisfies (keyof DomainForwardSet)[];
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardStatusCodeStats objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardstatuscodestats[KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS;
+ * const value = domainforwardstatuscodestats[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardStatusCodeStats} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_STATUS_CODE_STATS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS: keyof DomainForwardStatusCodeStats = 'results';
+
+/**
+ * Array of all DomainForwardStatusCodeStats property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardStatusCodeStats objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_STATUS_CODE_STATS) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardstatuscodestats[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_STATUS_CODE_STATS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardStatusCodeStats} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_STATUS_CODE_STATS = [
+  KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS,
+] as const satisfies (keyof DomainForwardStatusCodeStats)[];
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardUserAgentStats objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwarduseragentstats[KEY_DOMAIN_FORWARD_USER_AGENT_STATS_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_USER_AGENT_STATS_RESULTS;
+ * const value = domainforwarduseragentstats[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardUserAgentStats} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_USER_AGENT_STATS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_USER_AGENT_STATS_RESULTS: keyof DomainForwardUserAgentStats = 'results';
+
+/**
+ * Array of all DomainForwardUserAgentStats property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardUserAgentStats objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_USER_AGENT_STATS) {
+ *   console.log(`Property: ${key}, Value: ${domainforwarduseragentstats[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_USER_AGENT_STATS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardUserAgentStats} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_USER_AGENT_STATS = [
+  KEY_DOMAIN_FORWARD_USER_AGENT_STATS_RESULTS,
+] as const satisfies (keyof DomainForwardUserAgentStats)[];
+
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of DomainForwardVisitsByKey objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforwardvisitsbykey[KEY_DOMAIN_FORWARD_VISITS_BY_KEY_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_VISITS_BY_KEY_RESULTS;
+ * const value = domainforwardvisitsbykey[propertyName];
+ * ```
+ *
+ * @see {@link DomainForwardVisitsByKey} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD_VISITS_BY_KEY} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_VISITS_BY_KEY_RESULTS: keyof DomainForwardVisitsByKey = 'results';
+
+/**
+ * Array of all DomainForwardVisitsByKey property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainForwardVisitsByKey objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_FORWARD_VISITS_BY_KEY) {
+ *   console.log(`Property: ${key}, Value: ${domainforwardvisitsbykey[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_FORWARD_VISITS_BY_KEY.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainForwardVisitsByKey} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_FORWARD_VISITS_BY_KEY = [
+  KEY_DOMAIN_FORWARD_VISITS_BY_KEY_RESULTS,
+] as const satisfies (keyof DomainForwardVisitsByKey)[];
 
 /**
  * Domain Forwards
@@ -12303,6 +12950,82 @@ export const KEY_GENERAL_AVAILABILITY_BASE_START_DATE: keyof GeneralAvailability
 export const KEYS_GENERAL_AVAILABILITY_BASE = [
   KEY_GENERAL_AVAILABILITY_BASE_START_DATE,
 ] as const satisfies (keyof GeneralAvailabilityBase)[];
+
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of GeoStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = geostatsbucket[KEY_GEO_STATS_BUCKET_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_GEO_STATS_BUCKET_KEY;
+ * const value = geostatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link GeoStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_GEO_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_GEO_STATS_BUCKET_KEY: keyof GeoStatsBucket = 'key';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of GeoStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = geostatsbucket[KEY_GEO_STATS_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_GEO_STATS_BUCKET_TOTAL;
+ * const value = geostatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link GeoStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_GEO_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_GEO_STATS_BUCKET_TOTAL: keyof GeoStatsBucket = 'total';
+
+/**
+ * Array of all GeoStatsBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for GeoStatsBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_GEO_STATS_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${geostatsbucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_GEO_STATS_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link GeoStatsBucket} - The TypeScript type definition
+ */
+export const KEYS_GEO_STATS_BUCKET = [
+  KEY_GEO_STATS_BUCKET_KEY,
+  KEY_GEO_STATS_BUCKET_TOTAL,
+] as const satisfies (keyof GeoStatsBucket)[];
 
 /**
  * Prices
@@ -17996,6 +18719,108 @@ export const KEYS_PERMISSION_SET = [
 ] as const satisfies (keyof PermissionSet)[];
 
 /**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of PlatformStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = platformstatsbucket[KEY_PLATFORM_STATS_BUCKET_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLATFORM_STATS_BUCKET_KEY;
+ * const value = platformstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link PlatformStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_PLATFORM_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_PLATFORM_STATS_BUCKET_KEY: keyof PlatformStatsBucket = 'key';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of PlatformStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = platformstatsbucket[KEY_PLATFORM_STATS_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLATFORM_STATS_BUCKET_TOTAL;
+ * const value = platformstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link PlatformStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_PLATFORM_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_PLATFORM_STATS_BUCKET_TOTAL: keyof PlatformStatsBucket = 'total';
+/**
+ * Unique
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unique` property of PlatformStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = platformstatsbucket[KEY_PLATFORM_STATS_BUCKET_UNIQUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PLATFORM_STATS_BUCKET_UNIQUE;
+ * const value = platformstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link PlatformStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_PLATFORM_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_PLATFORM_STATS_BUCKET_UNIQUE: keyof PlatformStatsBucket = 'unique';
+
+/**
+ * Array of all PlatformStatsBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PlatformStatsBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PLATFORM_STATS_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${platformstatsbucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PLATFORM_STATS_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link PlatformStatsBucket} - The TypeScript type definition
+ */
+export const KEYS_PLATFORM_STATS_BUCKET = [
+  KEY_PLATFORM_STATS_BUCKET_KEY,
+  KEY_PLATFORM_STATS_BUCKET_TOTAL,
+  KEY_PLATFORM_STATS_BUCKET_UNIQUE,
+] as const satisfies (keyof PlatformStatsBucket)[];
+
+/**
  * Affects
  *
  * What operations are affected by premium status
@@ -18634,6 +19459,108 @@ export const KEY_RDAP_BASE_RDAP_SERVER: keyof RdapBase = 'rdap_server';
 export const KEYS_RDAP_BASE = [
   KEY_RDAP_BASE_RDAP_SERVER,
 ] as const satisfies (keyof RdapBase)[];
+
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of ReferrerStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = referrerstatsbucket[KEY_REFERRER_STATS_BUCKET_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REFERRER_STATS_BUCKET_KEY;
+ * const value = referrerstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link ReferrerStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_REFERRER_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_REFERRER_STATS_BUCKET_KEY: keyof ReferrerStatsBucket = 'key';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of ReferrerStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = referrerstatsbucket[KEY_REFERRER_STATS_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REFERRER_STATS_BUCKET_TOTAL;
+ * const value = referrerstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link ReferrerStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_REFERRER_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_REFERRER_STATS_BUCKET_TOTAL: keyof ReferrerStatsBucket = 'total';
+/**
+ * Unique
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unique` property of ReferrerStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = referrerstatsbucket[KEY_REFERRER_STATS_BUCKET_UNIQUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_REFERRER_STATS_BUCKET_UNIQUE;
+ * const value = referrerstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link ReferrerStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_REFERRER_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_REFERRER_STATS_BUCKET_UNIQUE: keyof ReferrerStatsBucket = 'unique';
+
+/**
+ * Array of all ReferrerStatsBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ReferrerStatsBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_REFERRER_STATS_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${referrerstatsbucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_REFERRER_STATS_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link ReferrerStatsBucket} - The TypeScript type definition
+ */
+export const KEYS_REFERRER_STATS_BUCKET = [
+  KEY_REFERRER_STATS_BUCKET_KEY,
+  KEY_REFERRER_STATS_BUCKET_TOTAL,
+  KEY_REFERRER_STATS_BUCKET_UNIQUE,
+] as const satisfies (keyof ReferrerStatsBucket)[];
 
 /**
  * Prevents
@@ -19541,6 +20468,158 @@ export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE = [
   KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD,
   KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE,
 ] as const satisfies (keyof SpiceDbRelationshipUpdate)[];
+
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of StatusCodeStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statuscodestatsbucket[KEY_STATUS_CODE_STATS_BUCKET_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_CODE_STATS_BUCKET_KEY;
+ * const value = statuscodestatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link StatusCodeStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_CODE_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_STATUS_CODE_STATS_BUCKET_KEY: keyof StatusCodeStatsBucket = 'key';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of StatusCodeStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statuscodestatsbucket[KEY_STATUS_CODE_STATS_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_CODE_STATS_BUCKET_TOTAL;
+ * const value = statuscodestatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link StatusCodeStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_CODE_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_STATUS_CODE_STATS_BUCKET_TOTAL: keyof StatusCodeStatsBucket = 'total';
+
+/**
+ * Array of all StatusCodeStatsBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for StatusCodeStatsBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_STATUS_CODE_STATS_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${statuscodestatsbucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_STATUS_CODE_STATS_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link StatusCodeStatsBucket} - The TypeScript type definition
+ */
+export const KEYS_STATUS_CODE_STATS_BUCKET = [
+  KEY_STATUS_CODE_STATS_BUCKET_KEY,
+  KEY_STATUS_CODE_STATS_BUCKET_TOTAL,
+] as const satisfies (keyof StatusCodeStatsBucket)[];
+
+/**
+ * Timestamp
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `timestamp` property of TimeSeriesBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = timeseriesbucket[KEY_TIME_SERIES_BUCKET_TIMESTAMP];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TIME_SERIES_BUCKET_TIMESTAMP;
+ * const value = timeseriesbucket[propertyName];
+ * ```
+ *
+ * @see {@link TimeSeriesBucket} - The TypeScript type definition
+ * @see {@link KEYS_TIME_SERIES_BUCKET} - Array of all keys for this type
+ */
+export const KEY_TIME_SERIES_BUCKET_TIMESTAMP: keyof TimeSeriesBucket = 'timestamp';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of TimeSeriesBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = timeseriesbucket[KEY_TIME_SERIES_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TIME_SERIES_BUCKET_TOTAL;
+ * const value = timeseriesbucket[propertyName];
+ * ```
+ *
+ * @see {@link TimeSeriesBucket} - The TypeScript type definition
+ * @see {@link KEYS_TIME_SERIES_BUCKET} - Array of all keys for this type
+ */
+export const KEY_TIME_SERIES_BUCKET_TOTAL: keyof TimeSeriesBucket = 'total';
+
+/**
+ * Array of all TimeSeriesBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TimeSeriesBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TIME_SERIES_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${timeseriesbucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TIME_SERIES_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link TimeSeriesBucket} - The TypeScript type definition
+ */
+export const KEYS_TIME_SERIES_BUCKET = [
+  KEY_TIME_SERIES_BUCKET_TIMESTAMP,
+  KEY_TIME_SERIES_BUCKET_TOTAL,
+] as const satisfies (keyof TimeSeriesBucket)[];
 
 /**
  * Name
@@ -21277,6 +22356,108 @@ export const KEYS_USER = [
   KEY_USER_USER_ID,
   KEY_USER_USERNAME,
 ] as const satisfies (keyof User)[];
+
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of UserAgentStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = useragentstatsbucket[KEY_USER_AGENT_STATS_BUCKET_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_AGENT_STATS_BUCKET_KEY;
+ * const value = useragentstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link UserAgentStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_USER_AGENT_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_USER_AGENT_STATS_BUCKET_KEY: keyof UserAgentStatsBucket = 'key';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of UserAgentStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = useragentstatsbucket[KEY_USER_AGENT_STATS_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_AGENT_STATS_BUCKET_TOTAL;
+ * const value = useragentstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link UserAgentStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_USER_AGENT_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_USER_AGENT_STATS_BUCKET_TOTAL: keyof UserAgentStatsBucket = 'total';
+/**
+ * Unique
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unique` property of UserAgentStatsBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = useragentstatsbucket[KEY_USER_AGENT_STATS_BUCKET_UNIQUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_USER_AGENT_STATS_BUCKET_UNIQUE;
+ * const value = useragentstatsbucket[propertyName];
+ * ```
+ *
+ * @see {@link UserAgentStatsBucket} - The TypeScript type definition
+ * @see {@link KEYS_USER_AGENT_STATS_BUCKET} - Array of all keys for this type
+ */
+export const KEY_USER_AGENT_STATS_BUCKET_UNIQUE: keyof UserAgentStatsBucket = 'unique';
+
+/**
+ * Array of all UserAgentStatsBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for UserAgentStatsBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_USER_AGENT_STATS_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${useragentstatsbucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_USER_AGENT_STATS_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link UserAgentStatsBucket} - The TypeScript type definition
+ */
+export const KEYS_USER_AGENT_STATS_BUCKET = [
+  KEY_USER_AGENT_STATS_BUCKET_KEY,
+  KEY_USER_AGENT_STATS_BUCKET_TOTAL,
+  KEY_USER_AGENT_STATS_BUCKET_UNIQUE,
+] as const satisfies (keyof UserAgentStatsBucket)[];
 
 /**
  * Key
@@ -23260,6 +24441,108 @@ export const KEYS_VALIDATION_ERROR = [
   KEY_VALIDATION_ERROR_MSG,
   KEY_VALIDATION_ERROR_TYPE,
 ] as const satisfies (keyof ValidationError)[];
+
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of VisitsByKeyBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = visitsbykeybucket[KEY_VISITS_BY_KEY_BUCKET_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VISITS_BY_KEY_BUCKET_KEY;
+ * const value = visitsbykeybucket[propertyName];
+ * ```
+ *
+ * @see {@link VisitsByKeyBucket} - The TypeScript type definition
+ * @see {@link KEYS_VISITS_BY_KEY_BUCKET} - Array of all keys for this type
+ */
+export const KEY_VISITS_BY_KEY_BUCKET_KEY: keyof VisitsByKeyBucket = 'key';
+/**
+ * Total
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of VisitsByKeyBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = visitsbykeybucket[KEY_VISITS_BY_KEY_BUCKET_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VISITS_BY_KEY_BUCKET_TOTAL;
+ * const value = visitsbykeybucket[propertyName];
+ * ```
+ *
+ * @see {@link VisitsByKeyBucket} - The TypeScript type definition
+ * @see {@link KEYS_VISITS_BY_KEY_BUCKET} - Array of all keys for this type
+ */
+export const KEY_VISITS_BY_KEY_BUCKET_TOTAL: keyof VisitsByKeyBucket = 'total';
+/**
+ * Unique
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unique` property of VisitsByKeyBucket objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = visitsbykeybucket[KEY_VISITS_BY_KEY_BUCKET_UNIQUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VISITS_BY_KEY_BUCKET_UNIQUE;
+ * const value = visitsbykeybucket[propertyName];
+ * ```
+ *
+ * @see {@link VisitsByKeyBucket} - The TypeScript type definition
+ * @see {@link KEYS_VISITS_BY_KEY_BUCKET} - Array of all keys for this type
+ */
+export const KEY_VISITS_BY_KEY_BUCKET_UNIQUE: keyof VisitsByKeyBucket = 'unique';
+
+/**
+ * Array of all VisitsByKeyBucket property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for VisitsByKeyBucket objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_VISITS_BY_KEY_BUCKET) {
+ *   console.log(`Property: ${key}, Value: ${visitsbykeybucket[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_VISITS_BY_KEY_BUCKET.includes(someKey);
+ * ```
+ *
+ * @see {@link VisitsByKeyBucket} - The TypeScript type definition
+ */
+export const KEYS_VISITS_BY_KEY_BUCKET = [
+  KEY_VISITS_BY_KEY_BUCKET_KEY,
+  KEY_VISITS_BY_KEY_BUCKET_TOTAL,
+  KEY_VISITS_BY_KEY_BUCKET_UNIQUE,
+] as const satisfies (keyof VisitsByKeyBucket)[];
 
 /**
  * Whois Server

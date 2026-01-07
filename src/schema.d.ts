@@ -490,6 +490,159 @@ export interface paths {
         patch: operations["patch_redirects_v1_domain_forwards_patch"];
         trace?: never;
     };
+    "/v1/domain-forwards/metrics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Metrics */
+        get: operations["metrics_v1_domain_forwards_metrics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/browser": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Browser Stats */
+        get: operations["browser_stats_v1_domain_forwards_metrics_browser_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/geo": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Geo Stats */
+        get: operations["geo_stats_v1_domain_forwards_metrics_geo_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/platform": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Platform Stats */
+        get: operations["platform_stats_v1_domain_forwards_metrics_platform_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/referrer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Referrer Stats */
+        get: operations["referrer_stats_v1_domain_forwards_metrics_referrer_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/status-code": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Status Code Stats */
+        get: operations["status_code_stats_v1_domain_forwards_metrics_status_code_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/time-series": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Time Series */
+        get: operations["time_series_v1_domain_forwards_metrics_time_series_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/user-agent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** User Agent Stats */
+        get: operations["user_agent_stats_v1_domain_forwards_metrics_user_agent_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domain-forwards/metrics/visits-by-key": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Visits By Key */
+        get: operations["visits_by_key_v1_domain_forwards_metrics_visits_by_key_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domain-forwards/{hostname}": {
         parameters: {
             query?: never;
@@ -1721,6 +1874,15 @@ export interface components {
          * @enum {string}
          */
         BillingTransactionStatus: "pending" | "succeeded" | "failed" | "canceled";
+        /** BrowserStatsBucket */
+        BrowserStatsBucket: {
+            /** Key */
+            key: string;
+            /** Total */
+            total: number;
+            /** Unique */
+            unique: number;
+        };
         /**
          * ContactAttributeDefinition
          * @description Definition of a possible attribute for a TLD.
@@ -2659,6 +2821,11 @@ export interface components {
              */
             updated_on: Date;
         };
+        /** DomainForwardBrowserStatsResponse */
+        DomainForwardBrowserStatsResponse: {
+            /** Results */
+            results: components["schemas"]["BrowserStatsBucket"][];
+        };
         /** DomainForwardCreateRequest */
         DomainForwardCreateRequest: {
             /**
@@ -2671,6 +2838,27 @@ export interface components {
             http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
             https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
         };
+        /** DomainForwardGeoStatsResponse */
+        DomainForwardGeoStatsResponse: {
+            /** Results */
+            results: components["schemas"]["GeoStatsBucket"][];
+        };
+        /** DomainForwardMetricsResponse */
+        DomainForwardMetricsResponse: {
+            /** Configured Forwards */
+            configured_forwards: number;
+            /** Invoked Forwards */
+            invoked_forwards: number;
+            /** Total Visits */
+            total_visits: number;
+            /** Unique Visits */
+            unique_visits: number;
+        };
+        /** DomainForwardMetricsTimeSeriesResponse */
+        DomainForwardMetricsTimeSeriesResponse: {
+            /** Results */
+            results: components["schemas"]["TimeSeriesBucket"][];
+        };
         /** DomainForwardPatchOp */
         DomainForwardPatchOp: {
             op: components["schemas"]["PatchOp"];
@@ -2681,6 +2869,11 @@ export interface components {
         DomainForwardPatchOps: {
             /** Ops */
             ops: components["schemas"]["DomainForwardPatchOp"][];
+        };
+        /** DomainForwardPlatformStatsResponse */
+        DomainForwardPlatformStatsResponse: {
+            /** Results */
+            results: components["schemas"]["PlatformStatsBucket"][];
         };
         /** DomainForwardProtocolSetRequest */
         DomainForwardProtocolSetRequest: {
@@ -2701,6 +2894,11 @@ export interface components {
              * Format: date-time
              */
             updated_on: Date;
+        };
+        /** DomainForwardReferrerStatsResponse */
+        DomainForwardReferrerStatsResponse: {
+            /** Results */
+            results: components["schemas"]["ReferrerStatsBucket"][];
         };
         /** DomainForwardSetCreateRequest */
         DomainForwardSetCreateRequest: {
@@ -2736,6 +2934,21 @@ export interface components {
          * @enum {string}
          */
         DomainForwardSortField: "hostname" | "enabled" | "created_on" | "updated_on";
+        /** DomainForwardStatusCodeStatsResponse */
+        DomainForwardStatusCodeStatsResponse: {
+            /** Results */
+            results: components["schemas"]["StatusCodeStatsBucket"][];
+        };
+        /** DomainForwardUserAgentStatsResponse */
+        DomainForwardUserAgentStatsResponse: {
+            /** Results */
+            results: components["schemas"]["UserAgentStatsBucket"][];
+        };
+        /** DomainForwardVisitsByKeyResponse */
+        DomainForwardVisitsByKeyResponse: {
+            /** Results */
+            results: components["schemas"]["VisitsByKeyBucket"][];
+        };
         /** DomainForwardZone */
         DomainForwardZone: {
             /** Domain Forwards */
@@ -3624,6 +3837,13 @@ export interface components {
              */
             start_date: Date;
         };
+        /** GeoStatsBucket */
+        GeoStatsBucket: {
+            /** Key */
+            key: string;
+            /** Total */
+            total: number;
+        };
         /** GetPricesResponse */
         GetPricesResponse: {
             /**
@@ -3986,6 +4206,11 @@ export interface components {
          * @enum {string}
          */
         LocalPresenceRequirementType: "physical_address" | "business_entity";
+        /**
+         * MetricsGrouping
+         * @enum {string}
+         */
+        MetricsGrouping: "url" | "fqdn" | "domain" | "forward";
         /** Nameserver */
         Nameserver: {
             /**
@@ -4675,6 +4900,15 @@ export interface components {
             /** Permissions */
             permissions?: components["schemas"]["Permission"][];
         };
+        /** PlatformStatsBucket */
+        PlatformStatsBucket: {
+            /** Key */
+            key: string;
+            /** Total */
+            total: number;
+            /** Unique */
+            unique: number;
+        };
         /**
          * PostTransferRequirements
          * @enum {string}
@@ -4746,6 +4980,11 @@ export interface components {
             /** Problem type */
             type: string;
         };
+        /**
+         * Protocol
+         * @enum {string}
+         */
+        Protocol: "http" | "https";
         /** PublicAuthRequestForm */
         PublicAuthRequestForm: {
             /**
@@ -4779,6 +5018,15 @@ export interface components {
          * @enum {integer}
          */
         RedirectCode: 301 | 302 | 307 | 308;
+        /** ReferrerStatsBucket */
+        ReferrerStatsBucket: {
+            /** Key */
+            key: string;
+            /** Total */
+            total: number;
+            /** Unique */
+            unique: number;
+        };
         /**
          * RegistrantChangeType
          * @enum {string}
@@ -4971,6 +5219,13 @@ export interface components {
             /** Remove */
             remove?: components["schemas"]["Relation"][] | null;
         };
+        /** StatusCodeStatsBucket */
+        StatusCodeStatsBucket: {
+            /** Key */
+            key: string;
+            /** Total */
+            total: number;
+        };
         /**
          * SyncOperationType
          * @enum {string}
@@ -4981,6 +5236,21 @@ export interface components {
          * @enum {string}
          */
         TLDType: "gTLD" | "ccTLD";
+        /**
+         * TimeRange
+         * @enum {string}
+         */
+        TimeRange: "1h" | "1d" | "7d" | "30d";
+        /** TimeSeriesBucket */
+        TimeSeriesBucket: {
+            /**
+             * Timestamp
+             * Format: date-time
+             */
+            timestamp: Date;
+            /** Total */
+            total: number;
+        };
         /** TldBase */
         TldBase: {
             /**
@@ -5240,6 +5510,15 @@ export interface components {
              * @description The user's unique username
              */
             username: string;
+        };
+        /** UserAgentStatsBucket */
+        UserAgentStatsBucket: {
+            /** Key */
+            key: string;
+            /** Total */
+            total: number;
+            /** Unique */
+            unique: number;
         };
         /** UserAttributeBase */
         UserAttributeBase: {
@@ -5619,6 +5898,15 @@ export interface components {
          * @enum {string}
          */
         VerificationType: "api" | "email";
+        /** VisitsByKeyBucket */
+        VisitsByKeyBucket: {
+            /** Key */
+            key: string;
+            /** Total */
+            total: number;
+            /** Unique */
+            unique: number;
+        };
         /** WhoisBase */
         WhoisBase: {
             /**
@@ -7707,6 +7995,323 @@ export interface operations {
                      *       "type": "domain-forward-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    metrics_v1_domain_forwards_metrics_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardMetricsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    browser_stats_v1_domain_forwards_metrics_browser_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardBrowserStatsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    geo_stats_v1_domain_forwards_metrics_geo_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardGeoStatsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    platform_stats_v1_domain_forwards_metrics_platform_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardPlatformStatsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    referrer_stats_v1_domain_forwards_metrics_referrer_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardReferrerStatsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    status_code_stats_v1_domain_forwards_metrics_status_code_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardStatusCodeStatsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    time_series_v1_domain_forwards_metrics_time_series_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardMetricsTimeSeriesResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    user_agent_stats_v1_domain_forwards_metrics_user_agent_get: {
+        parameters: {
+            query?: {
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardUserAgentStatsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    visits_by_key_v1_domain_forwards_metrics_visits_by_key_get: {
+        parameters: {
+            query?: {
+                /** @description Grouping key: url, fqdn, domain, or forward */
+                grouping?: components["schemas"]["MetricsGrouping"];
+                hostname?: string | null;
+                /** @description Filter by protocol: http or https */
+                protocol?: components["schemas"]["Protocol"] | null;
+                /** @description Time range: 1h, 1d, 7d, or 30d */
+                time_range?: components["schemas"]["TimeRange"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DomainForwardVisitsByKeyResponse"];
                 };
             };
             /** @description Validation Error */

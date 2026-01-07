@@ -206,6 +206,23 @@ components:
       - canceled
       title: BillingTransactionStatus
       type: string
+    BrowserStatsBucket:
+      properties:
+        key:
+          title: Key
+          type: string
+        total:
+          title: Total
+          type: integer
+        unique:
+          title: Unique
+          type: integer
+      required:
+      - key
+      - total
+      - unique
+      title: BrowserStatsBucket
+      type: object
     ContactAttributeDefinition:
       description: Definition of a possible attribute for a TLD.
       properties:
@@ -1578,6 +1595,17 @@ components:
       - created_on
       title: DomainForward
       type: object
+    DomainForwardBrowserStatsResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/BrowserStatsBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardBrowserStatsResponse
+      type: object
     DomainForwardCreateRequest:
       properties:
         enabled:
@@ -1598,6 +1626,49 @@ components:
       required:
       - hostname
       title: DomainForwardCreateRequest
+      type: object
+    DomainForwardGeoStatsResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/GeoStatsBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardGeoStatsResponse
+      type: object
+    DomainForwardMetricsResponse:
+      properties:
+        configured_forwards:
+          title: Configured Forwards
+          type: integer
+        invoked_forwards:
+          title: Invoked Forwards
+          type: integer
+        total_visits:
+          title: Total Visits
+          type: integer
+        unique_visits:
+          title: Unique Visits
+          type: integer
+      required:
+      - invoked_forwards
+      - configured_forwards
+      - total_visits
+      - unique_visits
+      title: DomainForwardMetricsResponse
+      type: object
+    DomainForwardMetricsTimeSeriesResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/TimeSeriesBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardMetricsTimeSeriesResponse
       type: object
     DomainForwardPatchOp:
       properties:
@@ -1623,6 +1694,17 @@ components:
       required:
       - ops
       title: DomainForwardPatchOps
+      type: object
+    DomainForwardPlatformStatsResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/PlatformStatsBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardPlatformStatsResponse
       type: object
     DomainForwardProtocolSetRequest:
       properties:
@@ -1657,6 +1739,17 @@ components:
       - updated_on
       - created_on
       title: DomainForwardProtocolSetResponse
+      type: object
+    DomainForwardReferrerStatsResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/ReferrerStatsBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardReferrerStatsResponse
       type: object
     DomainForwardSetCreateRequest:
       properties:
@@ -1723,6 +1816,39 @@ components:
       - updated_on
       title: DomainForwardSortField
       type: string
+    DomainForwardStatusCodeStatsResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/StatusCodeStatsBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardStatusCodeStatsResponse
+      type: object
+    DomainForwardUserAgentStatsResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/UserAgentStatsBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardUserAgentStatsResponse
+      type: object
+    DomainForwardVisitsByKeyResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/VisitsByKeyBucket'
+          title: Results
+          type: array
+      required:
+      - results
+      title: DomainForwardVisitsByKeyResponse
+      type: object
     DomainForwardZone:
       properties:
         domain_forwards:
@@ -2994,6 +3120,19 @@ components:
       - start_date
       title: GeneralAvailabilityBase
       type: object
+    GeoStatsBucket:
+      properties:
+        key:
+          title: Key
+          type: string
+        total:
+          title: Total
+          type: integer
+      required:
+      - key
+      - total
+      title: GeoStatsBucket
+      type: object
     GetPricesResponse:
       properties:
         prices:
@@ -3539,6 +3678,14 @@ components:
       - physical_address
       - business_entity
       title: LocalPresenceRequirementType
+      type: string
+    MetricsGrouping:
+      enum:
+      - url
+      - fqdn
+      - domain
+      - forward
+      title: MetricsGrouping
       type: string
     Nameserver:
       properties:
@@ -4659,6 +4806,23 @@ components:
           type: array
       title: PermissionSet
       type: object
+    PlatformStatsBucket:
+      properties:
+        key:
+          title: Key
+          type: string
+        total:
+          title: Total
+          type: integer
+        unique:
+          title: Unique
+          type: integer
+      required:
+      - key
+      - total
+      - unique
+      title: PlatformStatsBucket
+      type: object
     PostTransferRequirements:
       enum:
       - update_contacts
@@ -4777,6 +4941,12 @@ components:
       - status
       title: Problem
       type: object
+    Protocol:
+      enum:
+      - http
+      - https
+      title: Protocol
+      type: string
     PublicAuthRequestForm:
       properties:
         client_id:
@@ -4824,6 +4994,23 @@ components:
       - 308
       title: RedirectCode
       type: integer
+    ReferrerStatsBucket:
+      properties:
+        key:
+          title: Key
+          type: string
+        total:
+          title: Total
+          type: integer
+        unique:
+          title: Unique
+          type: integer
+      required:
+      - key
+      - total
+      - unique
+      title: ReferrerStatsBucket
+      type: object
     RegistrantChangeType:
       enum:
       - update
@@ -5110,6 +5297,19 @@ components:
           title: Remove
       title: SpiceDbRelationshipUpdate
       type: object
+    StatusCodeStatsBucket:
+      properties:
+        key:
+          title: Key
+          type: string
+        total:
+          title: Total
+          type: integer
+      required:
+      - key
+      - total
+      title: StatusCodeStatsBucket
+      type: object
     SyncOperationType:
       enum:
       - registration
@@ -5123,6 +5323,28 @@ components:
       - ccTLD
       title: TLDType
       type: string
+    TimeRange:
+      enum:
+      - 1h
+      - 1d
+      - 7d
+      - 30d
+      title: TimeRange
+      type: string
+    TimeSeriesBucket:
+      properties:
+        timestamp:
+          format: date-time
+          title: Timestamp
+          type: string
+        total:
+          title: Total
+          type: integer
+      required:
+      - timestamp
+      - total
+      title: TimeSeriesBucket
+      type: object
     TldBase:
       properties:
         name:
@@ -5516,6 +5738,23 @@ components:
       - locale
       - status
       title: User
+      type: object
+    UserAgentStatsBucket:
+      properties:
+        key:
+          title: Key
+          type: string
+        total:
+          title: Total
+          type: integer
+        unique:
+          title: Unique
+          type: integer
+      required:
+      - key
+      - total
+      - unique
+      title: UserAgentStatsBucket
       type: object
     UserAttributeBase:
       properties:
@@ -6020,6 +6259,23 @@ components:
       - email
       title: VerificationType
       type: string
+    VisitsByKeyBucket:
+      properties:
+        key:
+          title: Key
+          type: string
+        total:
+          title: Total
+          type: integer
+        unique:
+          title: Unique
+          type: integer
+      required:
+      - key
+      - total
+      - unique
+      title: VisitsByKeyBucket
+      type: object
     WhoisBase:
       properties:
         whois_server:
@@ -6231,7 +6487,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-05-134959
+  version: 2026-01-07-115447
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -9272,6 +9528,446 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Create a domain forward
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics:
+    get:
+      operationId: metrics_v1_domain_forwards_metrics_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardMetricsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Metrics
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/browser:
+    get:
+      operationId: browser_stats_v1_domain_forwards_metrics_browser_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardBrowserStatsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Browser Stats
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/geo:
+    get:
+      operationId: geo_stats_v1_domain_forwards_metrics_geo_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardGeoStatsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Geo Stats
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/platform:
+    get:
+      operationId: platform_stats_v1_domain_forwards_metrics_platform_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardPlatformStatsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Platform Stats
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/referrer:
+    get:
+      operationId: referrer_stats_v1_domain_forwards_metrics_referrer_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardReferrerStatsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Referrer Stats
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/status-code:
+    get:
+      operationId: status_code_stats_v1_domain_forwards_metrics_status_code_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardStatusCodeStatsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Status Code Stats
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/time-series:
+    get:
+      operationId: time_series_v1_domain_forwards_metrics_time_series_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardMetricsTimeSeriesResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Time Series
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/user-agent:
+    get:
+      operationId: user_agent_stats_v1_domain_forwards_metrics_user_agent_get
+      parameters:
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardUserAgentStatsResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: User Agent Stats
+      tags:
+      - domain_forward
+  /v1/domain-forwards/metrics/visits-by-key:
+    get:
+      operationId: visits_by_key_v1_domain_forwards_metrics_visits_by_key_get
+      parameters:
+      - description: 'Grouping key: url, fqdn, domain, or forward'
+        in: query
+        name: grouping
+        required: false
+        schema:
+          $ref: '#/components/schemas/MetricsGrouping'
+          default: domain
+          description: 'Grouping key: url, fqdn, domain, or forward'
+      - in: query
+        name: hostname
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Hostname
+      - description: 'Filter by protocol: http or https'
+        in: query
+        name: protocol
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Protocol'
+          - type: 'null'
+          description: 'Filter by protocol: http or https'
+          title: Protocol
+      - description: 'Time range: 1h, 1d, 7d, or 30d'
+        in: query
+        name: time_range
+        required: false
+        schema:
+          $ref: '#/components/schemas/TimeRange'
+          default: 1d
+          description: 'Time range: 1h, 1d, 7d, or 30d'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainForwardVisitsByKeyResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Visits By Key
       tags:
       - domain_forward
   /v1/domain-forwards/{hostname}:

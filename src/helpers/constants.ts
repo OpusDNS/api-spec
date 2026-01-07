@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2202,6 +2202,60 @@ export const LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES = [
 ] as const satisfies [string, ...string[]] | LocalPresenceRequirementType[];
 
 /**
+ * MetricsGrouping. Auto-generated enum for MetricsGrouping
+ *
+ * @remarks
+ * This constant provides both object and array forms for the MetricsGrouping enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = METRICS_GROUPING.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = METRICS_GROUPING_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link MetricsGrouping} - The TypeScript type definition
+ */
+export const METRICS_GROUPING = {
+  URL: "url",
+  FQDN: "fqdn",
+  DOMAIN: "domain",
+  FORWARD: "forward",
+} as const satisfies Record<string, MetricsGrouping>;
+
+/**
+ * Array of all MetricsGrouping enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid MetricsGrouping enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of METRICS_GROUPING_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = METRICS_GROUPING_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link MetricsGrouping} - The TypeScript type definition
+ * @see {@link METRICS_GROUPING} - The object form of this enum
+ */
+export const METRICS_GROUPING_VALUES = [
+  'url',
+  'fqdn',
+  'domain',
+  'forward'
+] as const satisfies [string, ...string[]] | MetricsGrouping[];
+
+/**
  * ObjectEventType. Auto-generated enum for ObjectEventType
  *
  * @remarks
@@ -2818,6 +2872,56 @@ export const PREMIUM_SOURCE_TYPE_VALUES = [
 ] as const satisfies [string, ...string[]] | PremiumSourceType[];
 
 /**
+ * Protocol. Auto-generated enum for Protocol
+ *
+ * @remarks
+ * This constant provides both object and array forms for the Protocol enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = PROTOCOL.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = PROTOCOL_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link Protocol} - The TypeScript type definition
+ */
+export const PROTOCOL = {
+  HTTP: "http",
+  HTTPS: "https",
+} as const satisfies Record<string, Protocol>;
+
+/**
+ * Array of all Protocol enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid Protocol enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of PROTOCOL_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = PROTOCOL_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link Protocol} - The TypeScript type definition
+ * @see {@link PROTOCOL} - The object form of this enum
+ */
+export const PROTOCOL_VALUES = [
+  'http',
+  'https'
+] as const satisfies [string, ...string[]] | Protocol[];
+
+/**
  * RedirectCode. Auto-generated enum for RedirectCode
  *
  * @remarks
@@ -3385,6 +3489,60 @@ export const TLD_TYPE_VALUES = [
   'gTLD',
   'ccTLD'
 ] as const satisfies [string, ...string[]] | TLDType[];
+
+/**
+ * TimeRange. Auto-generated enum for TimeRange
+ *
+ * @remarks
+ * This constant provides both object and array forms for the TimeRange enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = TIME_RANGE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = TIME_RANGE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link TimeRange} - The TypeScript type definition
+ */
+export const TIME_RANGE = {
+  "1H": "1h",
+  "1D": "1d",
+  "7D": "7d",
+  "30D": "30d",
+} as const satisfies Record<string, TimeRange>;
+
+/**
+ * Array of all TimeRange enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid TimeRange enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of TIME_RANGE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = TIME_RANGE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link TimeRange} - The TypeScript type definition
+ * @see {@link TIME_RANGE} - The object form of this enum
+ */
+export const TIME_RANGE_VALUES = [
+  '1h',
+  '1d',
+  '7d',
+  '30d'
+] as const satisfies [string, ...string[]] | TimeRange[];
 
 /**
  * TransferAckType. Auto-generated enum for TransferAckType

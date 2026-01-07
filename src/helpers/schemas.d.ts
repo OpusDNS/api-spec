@@ -187,6 +187,22 @@ export type BillingTransactionSortField = components['schemas']['BillingTransact
  */
 export type BillingTransactionStatus = components['schemas']['BillingTransactionStatus'];
 /**
+ * BrowserStatsBucket
+ *
+ * @remarks
+ * Type alias for the `BrowserStatsBucket` OpenAPI schema.
+ * This type represents browserstatsbucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBrowserStatsBucket();
+ * const item: BrowserStatsBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BrowserStatsBucket = components['schemas']['BrowserStatsBucket'];
+/**
  * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
  *
  * @remarks
@@ -1035,6 +1051,22 @@ export type DomainDnssecData = components['schemas']['DomainDnssecDataResponse']
  */
 export type DomainForward = components['schemas']['DomainForward'];
 /**
+ * DomainForwardBrowserStatsResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardBrowserStatsResponse` OpenAPI schema.
+ * This type represents domainforwardbrowserstatsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardBrowserStats();
+ * const item: DomainForwardBrowserStats = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardBrowserStats = components['schemas']['DomainForwardBrowserStatsResponse'];
+/**
  * DomainForwardCreateRequest
  *
  * @remarks
@@ -1050,6 +1082,54 @@ export type DomainForward = components['schemas']['DomainForward'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainForwardCreateRequest = components['schemas']['DomainForwardCreateRequest'];
+/**
+ * DomainForwardGeoStatsResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardGeoStatsResponse` OpenAPI schema.
+ * This type represents domainforwardgeostatsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardGeoStats();
+ * const item: DomainForwardGeoStats = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardGeoStats = components['schemas']['DomainForwardGeoStatsResponse'];
+/**
+ * DomainForwardMetricsResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardMetricsResponse` OpenAPI schema.
+ * This type represents domainforwardmetricsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardMetrics();
+ * const item: DomainForwardMetrics = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardMetrics = components['schemas']['DomainForwardMetricsResponse'];
+/**
+ * DomainForwardMetricsTimeSeriesResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardMetricsTimeSeriesResponse` OpenAPI schema.
+ * This type represents domainforwardmetricstimeseriesresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardMetricsTimeSeries();
+ * const item: DomainForwardMetricsTimeSeries = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardMetricsTimeSeries = components['schemas']['DomainForwardMetricsTimeSeriesResponse'];
 /**
  * DomainForwardPatchOp
  *
@@ -1083,6 +1163,22 @@ export type DomainForwardPatchOp = components['schemas']['DomainForwardPatchOp']
  */
 export type DomainForwardPatchOps = components['schemas']['DomainForwardPatchOps'];
 /**
+ * DomainForwardPlatformStatsResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardPlatformStatsResponse` OpenAPI schema.
+ * This type represents domainforwardplatformstatsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardPlatformStats();
+ * const item: DomainForwardPlatformStats = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardPlatformStats = components['schemas']['DomainForwardPlatformStatsResponse'];
+/**
  * DomainForwardProtocolSetRequest
  *
  * @remarks
@@ -1114,6 +1210,22 @@ export type DomainForwardProtocolSetRequest = components['schemas']['DomainForwa
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainForwardProtocolSet = components['schemas']['DomainForwardProtocolSetResponse'];
+/**
+ * DomainForwardReferrerStatsResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardReferrerStatsResponse` OpenAPI schema.
+ * This type represents domainforwardreferrerstatsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardReferrerStats();
+ * const item: DomainForwardReferrerStats = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardReferrerStats = components['schemas']['DomainForwardReferrerStatsResponse'];
 /**
  * DomainForwardSetCreateRequest
  *
@@ -1178,6 +1290,54 @@ export type DomainForwardSet = components['schemas']['DomainForwardSetResponse']
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainForwardSortField = components['schemas']['DomainForwardSortField'];
+/**
+ * DomainForwardStatusCodeStatsResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardStatusCodeStatsResponse` OpenAPI schema.
+ * This type represents domainforwardstatuscodestatsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardStatusCodeStats();
+ * const item: DomainForwardStatusCodeStats = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardStatusCodeStats = components['schemas']['DomainForwardStatusCodeStatsResponse'];
+/**
+ * DomainForwardUserAgentStatsResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardUserAgentStatsResponse` OpenAPI schema.
+ * This type represents domainforwarduseragentstatsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardUserAgentStats();
+ * const item: DomainForwardUserAgentStats = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardUserAgentStats = components['schemas']['DomainForwardUserAgentStatsResponse'];
+/**
+ * DomainForwardVisitsByKeyResponse
+ *
+ * @remarks
+ * Type alias for the `DomainForwardVisitsByKeyResponse` OpenAPI schema.
+ * This type represents domainforwardvisitsbykeyresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainForwardVisitsByKey();
+ * const item: DomainForwardVisitsByKey = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainForwardVisitsByKey = components['schemas']['DomainForwardVisitsByKeyResponse'];
 /**
  * DomainForwardZone
  *
@@ -1963,6 +2123,22 @@ export type EventType = components['schemas']['EventType'];
  */
 export type GeneralAvailabilityBase = components['schemas']['GeneralAvailabilityBase'];
 /**
+ * GeoStatsBucket
+ *
+ * @remarks
+ * Type alias for the `GeoStatsBucket` OpenAPI schema.
+ * This type represents geostatsbucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getGeoStatsBucket();
+ * const item: GeoStatsBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type GeoStatsBucket = components['schemas']['GeoStatsBucket'];
+/**
  * GetPricesResponse
  *
  * @remarks
@@ -2351,6 +2527,22 @@ export type LocalPresenceBase = components['schemas']['LocalPresenceBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type LocalPresenceRequirementType = components['schemas']['LocalPresenceRequirementType'];
+/**
+ * MetricsGrouping
+ *
+ * @remarks
+ * Type alias for the `MetricsGrouping` OpenAPI schema.
+ * This type represents metricsgrouping data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMetricsGrouping();
+ * const item: MetricsGrouping = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MetricsGrouping = components['schemas']['MetricsGrouping'];
 /**
  * Nameserver
  *
@@ -2944,6 +3136,22 @@ export type Permission = components['schemas']['Permission'];
  */
 export type PermissionSet = components['schemas']['PermissionSet'];
 /**
+ * PlatformStatsBucket
+ *
+ * @remarks
+ * Type alias for the `PlatformStatsBucket` OpenAPI schema.
+ * This type represents platformstatsbucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPlatformStatsBucket();
+ * const item: PlatformStatsBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PlatformStatsBucket = components['schemas']['PlatformStatsBucket'];
+/**
  * PostTransferRequirements
  *
  * @remarks
@@ -3072,6 +3280,22 @@ export type PricingPeriod = components['schemas']['PricingPeriod'];
  */
 export type Problem = components['schemas']['Problem'];
 /**
+ * Protocol
+ *
+ * @remarks
+ * Type alias for the `Protocol` OpenAPI schema.
+ * This type represents protocol data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getProtocol();
+ * const item: Protocol = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Protocol = components['schemas']['Protocol'];
+/**
  * PublicAuthRequestForm
  *
  * @remarks
@@ -3119,6 +3343,22 @@ export type RdapBase = components['schemas']['RdapBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type RedirectCode = components['schemas']['RedirectCode'];
+/**
+ * ReferrerStatsBucket
+ *
+ * @remarks
+ * Type alias for the `ReferrerStatsBucket` OpenAPI schema.
+ * This type represents referrerstatsbucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getReferrerStatsBucket();
+ * const item: ReferrerStatsBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ReferrerStatsBucket = components['schemas']['ReferrerStatsBucket'];
 /**
  * RegistrantChangeType
  *
@@ -3360,6 +3600,22 @@ export type SortOrder = components['schemas']['SortOrder'];
  */
 export type SpiceDbRelationshipUpdate = components['schemas']['SpiceDbRelationshipUpdate'];
 /**
+ * StatusCodeStatsBucket
+ *
+ * @remarks
+ * Type alias for the `StatusCodeStatsBucket` OpenAPI schema.
+ * This type represents statuscodestatsbucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getStatusCodeStatsBucket();
+ * const item: StatusCodeStatsBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type StatusCodeStatsBucket = components['schemas']['StatusCodeStatsBucket'];
+/**
  * SyncOperationType
  *
  * @remarks
@@ -3391,6 +3647,38 @@ export type SyncOperationType = components['schemas']['SyncOperationType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type TLDType = components['schemas']['TLDType'];
+/**
+ * TimeRange
+ *
+ * @remarks
+ * Type alias for the `TimeRange` OpenAPI schema.
+ * This type represents timerange data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTimeRange();
+ * const item: TimeRange = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TimeRange = components['schemas']['TimeRange'];
+/**
+ * TimeSeriesBucket
+ *
+ * @remarks
+ * Type alias for the `TimeSeriesBucket` OpenAPI schema.
+ * This type represents timeseriesbucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTimeSeriesBucket();
+ * const item: TimeSeriesBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TimeSeriesBucket = components['schemas']['TimeSeriesBucket'];
 /**
  * TldBase
  *
@@ -3535,6 +3823,22 @@ export type TransferPoliciesBase = components['schemas']['TransferPoliciesBase']
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type User = components['schemas']['User'];
+/**
+ * UserAgentStatsBucket
+ *
+ * @remarks
+ * Type alias for the `UserAgentStatsBucket` OpenAPI schema.
+ * This type represents useragentstatsbucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getUserAgentStatsBucket();
+ * const item: UserAgentStatsBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type UserAgentStatsBucket = components['schemas']['UserAgentStatsBucket'];
 /**
  * UserAttributeBase
  *
@@ -3711,6 +4015,22 @@ export type ValidationError = components['schemas']['ValidationError'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type VerificationType = components['schemas']['VerificationType'];
+/**
+ * VisitsByKeyBucket
+ *
+ * @remarks
+ * Type alias for the `VisitsByKeyBucket` OpenAPI schema.
+ * This type represents visitsbykeybucket data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getVisitsByKeyBucket();
+ * const item: VisitsByKeyBucket = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type VisitsByKeyBucket = components['schemas']['VisitsByKeyBucket'];
 /**
  * WhoisBase
  *

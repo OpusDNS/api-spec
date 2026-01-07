@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainForwardPatchOp, HttpRedirectList, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, DomainContactType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, DomainContactType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -318,6 +318,48 @@ export type ContactHandleArray = ContactHandle[];
  */
 export type NameserverArray = Nameserver[];
 /**
+ * BrowserStatsBucket
+ *
+ * @remarks
+ * Array type for BrowserStatsBucket objects. Used when the API returns a collection of BrowserStatsBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: BrowserStatsBucketArray = await api.getBrowserStatsBuckets();
+ * ```
+ *
+ * @see {@link BrowserStatsBucket} - The individual BrowserStatsBucket type definition
+ */
+export type BrowserStatsBucketArray = BrowserStatsBucket[];
+/**
+ * GeoStatsBucket
+ *
+ * @remarks
+ * Array type for GeoStatsBucket objects. Used when the API returns a collection of GeoStatsBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: GeoStatsBucketArray = await api.getGeoStatsBuckets();
+ * ```
+ *
+ * @see {@link GeoStatsBucket} - The individual GeoStatsBucket type definition
+ */
+export type GeoStatsBucketArray = GeoStatsBucket[];
+/**
+ * TimeSeriesBucket
+ *
+ * @remarks
+ * Array type for TimeSeriesBucket objects. Used when the API returns a collection of TimeSeriesBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TimeSeriesBucketArray = await api.getTimeSeriesBuckets();
+ * ```
+ *
+ * @see {@link TimeSeriesBucket} - The individual TimeSeriesBucket type definition
+ */
+export type TimeSeriesBucketArray = TimeSeriesBucket[];
+/**
  * DomainForwardPatchOp
  *
  * @remarks
@@ -332,6 +374,20 @@ export type NameserverArray = Nameserver[];
  */
 export type DomainForwardPatchOpArray = DomainForwardPatchOp[];
 /**
+ * PlatformStatsBucket
+ *
+ * @remarks
+ * Array type for PlatformStatsBucket objects. Used when the API returns a collection of PlatformStatsBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PlatformStatsBucketArray = await api.getPlatformStatsBuckets();
+ * ```
+ *
+ * @see {@link PlatformStatsBucket} - The individual PlatformStatsBucket type definition
+ */
+export type PlatformStatsBucketArray = PlatformStatsBucket[];
+/**
  * HttpRedirectListResponse
  *
  * @remarks
@@ -345,6 +401,62 @@ export type DomainForwardPatchOpArray = DomainForwardPatchOp[];
  * @see {@link HttpRedirectList} - The individual HttpRedirectListResponse type definition
  */
 export type HttpRedirectListArray = HttpRedirectList[];
+/**
+ * ReferrerStatsBucket
+ *
+ * @remarks
+ * Array type for ReferrerStatsBucket objects. Used when the API returns a collection of ReferrerStatsBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ReferrerStatsBucketArray = await api.getReferrerStatsBuckets();
+ * ```
+ *
+ * @see {@link ReferrerStatsBucket} - The individual ReferrerStatsBucket type definition
+ */
+export type ReferrerStatsBucketArray = ReferrerStatsBucket[];
+/**
+ * StatusCodeStatsBucket
+ *
+ * @remarks
+ * Array type for StatusCodeStatsBucket objects. Used when the API returns a collection of StatusCodeStatsBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: StatusCodeStatsBucketArray = await api.getStatusCodeStatsBuckets();
+ * ```
+ *
+ * @see {@link StatusCodeStatsBucket} - The individual StatusCodeStatsBucket type definition
+ */
+export type StatusCodeStatsBucketArray = StatusCodeStatsBucket[];
+/**
+ * UserAgentStatsBucket
+ *
+ * @remarks
+ * Array type for UserAgentStatsBucket objects. Used when the API returns a collection of UserAgentStatsBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: UserAgentStatsBucketArray = await api.getUserAgentStatsBuckets();
+ * ```
+ *
+ * @see {@link UserAgentStatsBucket} - The individual UserAgentStatsBucket type definition
+ */
+export type UserAgentStatsBucketArray = UserAgentStatsBucket[];
+/**
+ * VisitsByKeyBucket
+ *
+ * @remarks
+ * Array type for VisitsByKeyBucket objects. Used when the API returns a collection of VisitsByKeyBucket instances.
+ *
+ * @example
+ * ```typescript
+ * const items: VisitsByKeyBucketArray = await api.getVisitsByKeyBuckets();
+ * ```
+ *
+ * @see {@link VisitsByKeyBucket} - The individual VisitsByKeyBucket type definition
+ */
+export type VisitsByKeyBucketArray = VisitsByKeyBucket[];
 /**
  * DomainForward
  *

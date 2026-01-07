@@ -1936,6 +1936,386 @@ export type PUT_DomainForwardsHostnameProtocol_Request_Path = PUT_DomainForwards
 export type PUT_DomainForwardsHostnameProtocol_Request_Body = PUT_DomainForwardsHostnameProtocol_Request['requestBody'];
 
 /**
+ * Request type for GET DomainForwardsMetrics endpoint
+ *
+ * Metrics
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetrics endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetrics_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetrics_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetrics_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetrics_Request = {
+  parameters: {
+    query: operations['metrics_v1_domain_forwards_metrics_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetrics_Request_Query = GET_DomainForwardsMetrics_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsBrowser endpoint
+ *
+ * Browser Stats
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsBrowser endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/browser
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsBrowser_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsBrowser_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsBrowser_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsBrowser_Request = {
+  parameters: {
+    query: operations['browser_stats_v1_domain_forwards_metrics_browser_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/browser
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/browser endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/browser
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsBrowser_Request_Query = GET_DomainForwardsMetricsBrowser_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsGeo endpoint
+ *
+ * Geo Stats
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsGeo endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/geo
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsGeo_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsGeo_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsGeo_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsGeo_Request = {
+  parameters: {
+    query: operations['geo_stats_v1_domain_forwards_metrics_geo_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/geo
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/geo endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/geo
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsGeo_Request_Query = GET_DomainForwardsMetricsGeo_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsPlatform endpoint
+ *
+ * Platform Stats
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsPlatform endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/platform
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsPlatform_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsPlatform_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsPlatform_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsPlatform_Request = {
+  parameters: {
+    query: operations['platform_stats_v1_domain_forwards_metrics_platform_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/platform
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/platform endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/platform
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsPlatform_Request_Query = GET_DomainForwardsMetricsPlatform_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsReferrer endpoint
+ *
+ * Referrer Stats
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsReferrer endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/referrer
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsReferrer_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsReferrer_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsReferrer_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsReferrer_Request = {
+  parameters: {
+    query: operations['referrer_stats_v1_domain_forwards_metrics_referrer_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/referrer
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/referrer endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/referrer
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsReferrer_Request_Query = GET_DomainForwardsMetricsReferrer_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsStatusCode endpoint
+ *
+ * Status Code Stats
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsStatusCode endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/status-code
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsStatusCode_Request = {
+  parameters: {
+    query: operations['status_code_stats_v1_domain_forwards_metrics_status_code_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/status-code
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/status-code endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/status-code
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsStatusCode_Request_Query = GET_DomainForwardsMetricsStatusCode_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsTimeSeries endpoint
+ *
+ * Time Series
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsTimeSeries endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/time-series
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsTimeSeries_Request = {
+  parameters: {
+    query: operations['time_series_v1_domain_forwards_metrics_time_series_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/time-series
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/time-series endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/time-series
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsTimeSeries_Request_Query = GET_DomainForwardsMetricsTimeSeries_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsUserAgent endpoint
+ *
+ * User Agent Stats
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsUserAgent endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/user-agent
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsUserAgent_Request = {
+  parameters: {
+    query: operations['user_agent_stats_v1_domain_forwards_metrics_user_agent_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/user-agent
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/user-agent endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/user-agent
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsUserAgent_Request_Query = GET_DomainForwardsMetricsUserAgent_Request['parameters']['query'];
+
+/**
+ * Request type for GET DomainForwardsMetricsVisitsByKey endpoint
+ *
+ * Visits By Key
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET DomainForwardsMetricsVisitsByKey endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domain-forwards/metrics/visits-by-key
+ * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Request_Query} - Query parameters type
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Request_Path} - Path parameters type
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Request_Body} - Request body type
+ */
+export type GET_DomainForwardsMetricsVisitsByKey_Request = {
+  parameters: {
+    query: operations['visits_by_key_v1_domain_forwards_metrics_visits_by_key_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/domain-forwards/metrics/visits-by-key
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domain-forwards/metrics/visits-by-key endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domain-forwards/metrics/visits-by-key
+ * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ */
+export type GET_DomainForwardsMetricsVisitsByKey_Request_Query = GET_DomainForwardsMetricsVisitsByKey_Request['parameters']['query'];
+
+/**
  * Request type for GET DomainSearchSuggest endpoint
  *
  * Suggest domains

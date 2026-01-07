@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -3673,6 +3673,558 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_403 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PATCH_DomainForwardsByHostnameEnable_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetrics endpoint
+ *
+ * Metrics
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetrics endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetrics_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetrics_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetrics_Response = GET_DomainForwardsMetrics_Response_200 | GET_DomainForwardsMetrics_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetrics endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetrics endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetrics_Response} - The main response type definition
+ * @see {@link DomainForwardMetrics} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetrics_Response_200 = DomainForwardMetrics
+
+/**
+ * 422 response for GET DomainForwardsMetrics endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetrics endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetrics_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetrics_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsBrowser endpoint
+ *
+ * Browser Stats
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsBrowser endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/browser
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsBrowser_Response = GET_DomainForwardsMetricsBrowser_Response_200 | GET_DomainForwardsMetricsBrowser_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsBrowser endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsBrowser endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/browser
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response} - The main response type definition
+ * @see {@link DomainForwardBrowserStats} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsBrowser_Response_200 = DomainForwardBrowserStats
+
+/**
+ * 422 response for GET DomainForwardsMetricsBrowser endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsBrowser endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/browser
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsBrowser_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsGeo endpoint
+ *
+ * Geo Stats
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsGeo endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/geo
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsGeo_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsGeo_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsGeo_Response = GET_DomainForwardsMetricsGeo_Response_200 | GET_DomainForwardsMetricsGeo_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsGeo endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsGeo endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/geo
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsGeo_Response} - The main response type definition
+ * @see {@link DomainForwardGeoStats} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsGeo_Response_200 = DomainForwardGeoStats
+
+/**
+ * 422 response for GET DomainForwardsMetricsGeo endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsGeo endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/geo
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsGeo_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsGeo_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsPlatform endpoint
+ *
+ * Platform Stats
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsPlatform endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/platform
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsPlatform_Response = GET_DomainForwardsMetricsPlatform_Response_200 | GET_DomainForwardsMetricsPlatform_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsPlatform endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsPlatform endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/platform
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response} - The main response type definition
+ * @see {@link DomainForwardPlatformStats} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsPlatform_Response_200 = DomainForwardPlatformStats
+
+/**
+ * 422 response for GET DomainForwardsMetricsPlatform endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsPlatform endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/platform
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsPlatform_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsReferrer endpoint
+ *
+ * Referrer Stats
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsReferrer endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/referrer
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsReferrer_Response = GET_DomainForwardsMetricsReferrer_Response_200 | GET_DomainForwardsMetricsReferrer_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsReferrer endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsReferrer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/referrer
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response} - The main response type definition
+ * @see {@link DomainForwardReferrerStats} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsReferrer_Response_200 = DomainForwardReferrerStats
+
+/**
+ * 422 response for GET DomainForwardsMetricsReferrer endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsReferrer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/referrer
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsReferrer_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsStatusCode endpoint
+ *
+ * Status Code Stats
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsStatusCode endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/status-code
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsStatusCode_Response = GET_DomainForwardsMetricsStatusCode_Response_200 | GET_DomainForwardsMetricsStatusCode_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsStatusCode endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsStatusCode endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/status-code
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response} - The main response type definition
+ * @see {@link DomainForwardStatusCodeStats} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsStatusCode_Response_200 = DomainForwardStatusCodeStats
+
+/**
+ * 422 response for GET DomainForwardsMetricsStatusCode endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsStatusCode endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/status-code
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsStatusCode_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsTimeSeries endpoint
+ *
+ * Time Series
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsTimeSeries endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/time-series
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsTimeSeries_Response = GET_DomainForwardsMetricsTimeSeries_Response_200 | GET_DomainForwardsMetricsTimeSeries_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsTimeSeries endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsTimeSeries endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/time-series
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response} - The main response type definition
+ * @see {@link DomainForwardMetricsTimeSeries} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsTimeSeries_Response_200 = DomainForwardMetricsTimeSeries
+
+/**
+ * 422 response for GET DomainForwardsMetricsTimeSeries endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsTimeSeries endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/time-series
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsTimeSeries_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsUserAgent endpoint
+ *
+ * User Agent Stats
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsUserAgent endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/user-agent
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsUserAgent_Response = GET_DomainForwardsMetricsUserAgent_Response_200 | GET_DomainForwardsMetricsUserAgent_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsUserAgent endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsUserAgent endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/user-agent
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response} - The main response type definition
+ * @see {@link DomainForwardUserAgentStats} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsUserAgent_Response_200 = DomainForwardUserAgentStats
+
+/**
+ * 422 response for GET DomainForwardsMetricsUserAgent endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsUserAgent endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/user-agent
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsUserAgent_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET DomainForwardsMetricsVisitsByKey endpoint
+ *
+ * Visits By Key
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET DomainForwardsMetricsVisitsByKey endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/visits-by-key
+ * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_422} - 422 response type
+ *
+
+ */
+export type GET_DomainForwardsMetricsVisitsByKey_Response = GET_DomainForwardsMetricsVisitsByKey_Response_200 | GET_DomainForwardsMetricsVisitsByKey_Response_422;
+
+/**
+ * 200 response for GET DomainForwardsMetricsVisitsByKey endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET DomainForwardsMetricsVisitsByKey endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/visits-by-key
+ * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response} - The main response type definition
+ * @see {@link DomainForwardVisitsByKey} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsVisitsByKey_Response_200 = DomainForwardVisitsByKey
+
+/**
+ * 422 response for GET DomainForwardsMetricsVisitsByKey endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET DomainForwardsMetricsVisitsByKey endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/visits-by-key
+ * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ *
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsVisitsByKey_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET DomainSearchSuggest endpoint
