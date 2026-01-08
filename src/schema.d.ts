@@ -2387,6 +2387,16 @@ export interface components {
              * @description Supported contact roles
              */
             supported_roles?: components["schemas"]["ContactConfigBase"][] | null;
+            /**
+             * Transfer Supported Roles
+             * @description Supported contact roles for transfer operations. Falls back to supported_roles if not specified.
+             */
+            transfer_supported_roles?: components["schemas"]["ContactConfigBase"][] | null;
+            /**
+             * Update Supported Roles
+             * @description Supported contact roles for update operations. Falls back to supported_roles if not specified.
+             */
+            update_supported_roles?: components["schemas"]["ContactConfigBase"][] | null;
         };
         /**
          * Currency

@@ -3618,6 +3618,56 @@ export const KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES: keyof ContactsBase = 'sup
  * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
  */
 export const KEY_CONTACTS_BASE_SUPPORTED_ROLES: keyof ContactsBase = 'supported_roles';
+/**
+ * Transfer Supported Roles
+ *
+ * Supported contact roles for transfer operations. Falls back to supported_roles if not specified.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_supported_roles` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_TRANSFER_SUPPORTED_ROLES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_TRANSFER_SUPPORTED_ROLES;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_TRANSFER_SUPPORTED_ROLES: keyof ContactsBase = 'transfer_supported_roles';
+/**
+ * Update Supported Roles
+ *
+ * Supported contact roles for update operations. Falls back to supported_roles if not specified.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `update_supported_roles` property of ContactsBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactsbase[KEY_CONTACTS_BASE_UPDATE_SUPPORTED_ROLES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACTS_BASE_UPDATE_SUPPORTED_ROLES;
+ * const value = contactsbase[propertyName];
+ * ```
+ *
+ * @see {@link ContactsBase} - The TypeScript type definition
+ * @see {@link KEYS_CONTACTS_BASE} - Array of all keys for this type
+ */
+export const KEY_CONTACTS_BASE_UPDATE_SUPPORTED_ROLES: keyof ContactsBase = 'update_supported_roles';
 
 /**
  * Array of all ContactsBase property keys
@@ -3651,6 +3701,8 @@ export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_SUPPORT_TRANSFER,
   KEY_CONTACTS_BASE_SUPPORTED_POSTAL_TYPES,
   KEY_CONTACTS_BASE_SUPPORTED_ROLES,
+  KEY_CONTACTS_BASE_TRANSFER_SUPPORTED_ROLES,
+  KEY_CONTACTS_BASE_UPDATE_SUPPORTED_ROLES,
 ] as const satisfies (keyof ContactsBase)[];
 
 /**

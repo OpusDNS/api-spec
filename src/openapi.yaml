@@ -868,6 +868,24 @@ components:
           - type: 'null'
           description: Supported contact roles
           title: Supported Roles
+        transfer_supported_roles:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ContactConfigBase'
+            type: array
+          - type: 'null'
+          description: Supported contact roles for transfer operations. Falls back
+            to supported_roles if not specified.
+          title: Transfer Supported Roles
+        update_supported_roles:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ContactConfigBase'
+            type: array
+          - type: 'null'
+          description: Supported contact roles for update operations. Falls back to
+            supported_roles if not specified.
+          title: Update Supported Roles
       title: ContactsBase
       type: object
     Currency:
@@ -6486,7 +6504,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-08-132858
+  version: 2026-01-08-220900
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
