@@ -9457,7 +9457,6 @@ export const KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW: keyof DomainRestoreRequest =
  *
  * Reason for restoring the domain
  *
- * @type {string}
  *
  *
  * @remarks

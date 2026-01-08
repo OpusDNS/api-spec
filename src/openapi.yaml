@@ -2244,9 +2244,11 @@ components:
           title: Auto Renew
           type: boolean
         reason:
+          anyOf:
+          - type: string
+          - type: 'null'
           description: Reason for restoring the domain
           title: Reason
-          type: string
       required:
       - reason
       title: DomainRestoreRequest
@@ -6484,7 +6486,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-08-111822
+  version: 2026-01-08-132858
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -3228,7 +3228,7 @@ export interface components {
              * Reason
              * @description Reason for restoring the domain
              */
-            reason: string;
+            reason: string | null;
         };
         /** DomainRestoreResponse */
         DomainRestoreResponse: {
