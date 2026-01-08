@@ -3501,28 +3501,19 @@ export interface components {
              * @example email_forward_alias_01h45ytscbebyvny4gc8cr8ma2
              */
             email_forward_alias_id: TypeId<"email_forward_alias">;
-            /**
-             * Forward To
-             * Format: email
-             */
+            /** Forward To */
             forward_to: string;
         };
         /** EmailForwardAliasCreate */
         EmailForwardAliasCreate: {
             /** Alias */
             alias: string;
-            /**
-             * Forward To
-             * Format: email
-             */
+            /** Forward To */
             forward_to: string;
         };
         /** EmailForwardAliasUpdate */
         EmailForwardAliasUpdate: {
-            /**
-             * Forward To
-             * Format: email
-             */
+            /** Forward To */
             forward_to: string;
         };
         /** EmailForwardCreate */
