@@ -3666,6 +3666,11 @@ export interface components {
             status: string;
         };
         /**
+         * EmailForwardLogFinalStatus
+         * @enum {string}
+         */
+        EmailForwardLogFinalStatus: "QUEUED" | "DELIVERED" | "REFUSED" | "SOFT-BOUNCE" | "HARD-BOUNCE";
+        /**
          * EmailForwardLogSortField
          * @enum {string}
          */
@@ -6015,7 +6020,7 @@ export interface operations {
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
                 page?: number;
-                final_status?: string | null;
+                final_status?: components["schemas"]["EmailForwardLogFinalStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
@@ -6054,7 +6059,7 @@ export interface operations {
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
                 page?: number;
-                final_status?: string | null;
+                final_status?: components["schemas"]["EmailForwardLogFinalStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
             };

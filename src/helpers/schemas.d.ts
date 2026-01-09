@@ -1883,6 +1883,22 @@ export type EmailForwardLog = components['schemas']['EmailForwardLog'];
  */
 export type EmailForwardLogEvent = components['schemas']['EmailForwardLogEvent'];
 /**
+ * EmailForwardLogFinalStatus
+ *
+ * @remarks
+ * Type alias for the `EmailForwardLogFinalStatus` OpenAPI schema.
+ * This type represents emailforwardlogfinalstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardLogFinalStatus();
+ * const item: EmailForwardLogFinalStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardLogFinalStatus = components['schemas']['EmailForwardLogFinalStatus'];
+/**
  * EmailForwardLogSortField
  *
  * @remarks
