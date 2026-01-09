@@ -6511,7 +6511,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-09-124349
+  version: 2026-01-09-125102
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6535,6 +6535,17 @@ paths:
           title: Email Forward Alias Id
           type: string
           x-typeid-prefix: email_forward_alias
+      - in: query
+        name: email_forward_id
+        required: true
+        schema:
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
+          type: string
+          x-typeid-prefix: email_forward
       - in: query
         name: sort_by
         required: false

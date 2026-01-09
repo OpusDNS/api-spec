@@ -6015,7 +6015,8 @@ export type $defs = Record<string, never>;
 export interface operations {
     get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get: {
         parameters: {
-            query?: {
+            query: {
+                email_forward_id: TypeId<"email_forward">;
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
