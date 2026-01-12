@@ -2510,6 +2510,8 @@ components:
           title: Attributes
         auth_code:
           description: The auth code for the domain
+          maxLength: 32
+          minLength: 6
           title: Auth Code
           type: string
         contacts:
@@ -6526,7 +6528,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-12-155420
+  version: 2026-01-12-160605
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
