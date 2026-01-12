@@ -3047,6 +3047,8 @@ export interface components {
              * @description Operations that trigger a sync with the registry
              */
             sync_after_operations?: components["schemas"]["SyncOperationType"][] | null;
+            /** @description List of allowed transfer renewal periods (eg. '1y') */
+            transfer_renewal_periods?: components["schemas"]["PeriodList"];
         };
         /** DomainNameParts */
         DomainNameParts: {
@@ -3407,6 +3409,8 @@ export interface components {
              * @description The name servers for the domain
              */
             nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description Additional registration period to add to the domain upon transfer completion. If omitted, the registry default policy will be applied. */
+            period?: components["schemas"]["DomainPeriod"] | null;
             /** @description The renewal mode of the domain */
             renewal_mode: components["schemas"]["RenewalMode"];
         };

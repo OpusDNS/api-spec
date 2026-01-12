@@ -2025,6 +2025,9 @@ components:
           - type: 'null'
           description: Operations that trigger a sync with the registry
           title: Sync After Operations
+        transfer_renewal_periods:
+          $ref: '#/components/schemas/PeriodList'
+          description: List of allowed transfer renewal periods (eg. '1y')
       title: DomainLifecycleBase
       type: object
     DomainNameParts:
@@ -2537,6 +2540,12 @@ components:
           - type: 'null'
           description: The name servers for the domain
           title: Nameservers
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPeriod'
+          - type: 'null'
+          description: Additional registration period to add to the domain upon transfer
+            completion. If omitted, the registry default policy will be applied.
         renewal_mode:
           $ref: '#/components/schemas/RenewalMode'
           description: The renewal mode of the domain
@@ -6528,7 +6537,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-12-160605
+  version: 2026-01-12-195219
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

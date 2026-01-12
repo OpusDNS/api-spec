@@ -8477,6 +8477,31 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS: keyof DomainLifecycleBase
  * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
  */
 export const KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS: keyof DomainLifecycleBase = 'sync_after_operations';
+/**
+ * transfer_renewal_periods property
+ *
+ * List of allowed transfer renewal periods (eg. '1y')
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `transfer_renewal_periods` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS: keyof DomainLifecycleBase = 'transfer_renewal_periods';
 
 /**
  * Array of all DomainLifecycleBase property keys
@@ -8512,6 +8537,7 @@ export const KEYS_DOMAIN_LIFECYCLE_BASE = [
   KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS,
   KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS,
   KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS,
+  KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS,
 ] as const satisfies (keyof DomainLifecycleBase)[];
 
 /**
@@ -10583,6 +10609,31 @@ export const KEY_DOMAIN_TRANSFER_IN_NAME: keyof DomainTransferIn = 'name';
  */
 export const KEY_DOMAIN_TRANSFER_IN_NAMESERVERS: keyof DomainTransferIn = 'nameservers';
 /**
+ * period property
+ *
+ * Additional registration period to add to the domain upon transfer completion. If omitted, the registry default policy will be applied.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainTransferIn objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferin[KEY_DOMAIN_TRANSFER_IN_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_IN_PERIOD;
+ * const value = domaintransferin[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferIn} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_IN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_IN_PERIOD: keyof DomainTransferIn = 'period';
+/**
  * renewal_mode property
  *
  * The renewal mode of the domain
@@ -10635,6 +10686,7 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
   KEY_DOMAIN_TRANSFER_IN_CREATE_ZONE,
   KEY_DOMAIN_TRANSFER_IN_NAME,
   KEY_DOMAIN_TRANSFER_IN_NAMESERVERS,
+  KEY_DOMAIN_TRANSFER_IN_PERIOD,
   KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,
 ] as const satisfies (keyof DomainTransferIn)[];
 
