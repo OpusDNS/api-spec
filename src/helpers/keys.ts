@@ -14386,7 +14386,6 @@ export const KEY_INVOICE_FEES_AMOUNT: keyof Invoice = 'fees_amount';
  *
  * URL to invoice PDF file
  *
- * @type {string}
  *
  *
  * @remarks

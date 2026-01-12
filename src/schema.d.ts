@@ -4016,7 +4016,7 @@ export interface components {
              * File Url
              * @description URL to invoice PDF file
              */
-            file_url: string;
+            file_url: string | null;
             /** @description Invoice type */
             invoice_type: components["schemas"]["InvoiceResponseType"];
             /**
