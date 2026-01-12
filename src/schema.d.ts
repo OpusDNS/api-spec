@@ -3512,19 +3512,19 @@ export interface components {
              */
             email_forward_alias_id: TypeId<"email_forward_alias">;
             /** Forward To */
-            forward_to: string;
+            forward_to: string[];
         };
         /** EmailForwardAliasCreate */
         EmailForwardAliasCreate: {
             /** Alias */
             alias: string;
             /** Forward To */
-            forward_to: string;
+            forward_to: string[];
         };
         /** EmailForwardAliasUpdate */
         EmailForwardAliasUpdate: {
             /** Forward To */
-            forward_to: string;
+            forward_to: string[];
         };
         /** EmailForwardCreate */
         EmailForwardCreate: {

@@ -2676,8 +2676,12 @@ components:
           type: string
           x-typeid-prefix: email_forward_alias
         forward_to:
+          items:
+            format: email
+            type: string
+          minItems: 1
           title: Forward To
-          type: string
+          type: array
       required:
       - alias
       - forward_to
@@ -2690,8 +2694,12 @@ components:
           title: Alias
           type: string
         forward_to:
+          items:
+            format: email
+            type: string
+          minItems: 1
           title: Forward To
-          type: string
+          type: array
       required:
       - alias
       - forward_to
@@ -2700,8 +2708,12 @@ components:
     EmailForwardAliasUpdate:
       properties:
         forward_to:
+          items:
+            format: email
+            type: string
+          minItems: 1
           title: Forward To
-          type: string
+          type: array
       required:
       - forward_to
       title: EmailForwardAliasUpdate
@@ -6512,7 +6524,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-09-181206
+  version: 2026-01-12-085937
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

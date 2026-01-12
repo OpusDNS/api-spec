@@ -11209,7 +11209,7 @@ export const KEY_EMAIL_FORWARD_ALIAS_EMAIL_FORWARD_ALIAS_ID: keyof EmailForwardA
  * Forward To
  *
  *
- * @type {string}
+ * @type {array}
  *
  *
  * @remarks
@@ -11286,7 +11286,7 @@ export const KEY_EMAIL_FORWARD_ALIAS_CREATE_ALIAS: keyof EmailForwardAliasCreate
  * Forward To
  *
  *
- * @type {string}
+ * @type {array}
  *
  *
  * @remarks
@@ -11337,7 +11337,7 @@ export const KEYS_EMAIL_FORWARD_ALIAS_CREATE = [
  * Forward To
  *
  *
- * @type {string}
+ * @type {array}
  *
  *
  * @remarks
