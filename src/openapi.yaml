@@ -3005,6 +3005,18 @@ components:
       type: string
     EventResponse:
       properties:
+        acknowledged_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the event was acknowledged
+          title: Acknowledged On
+        created_on:
+          description: When the event was created
+          format: date-time
+          title: Created On
+          type: string
         event_data:
           additionalProperties: true
           title: Event Data
@@ -3042,6 +3054,7 @@ components:
             (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION')
       required:
       - event_data
+      - created_on
       title: EventResponse
       type: object
     EventSchema:
@@ -6537,7 +6550,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-12-195219
+  version: 2026-01-13-160651
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

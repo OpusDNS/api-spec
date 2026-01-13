@@ -3742,6 +3742,17 @@ export interface components {
         EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "RAW" | "UNKNOWN";
         /** EventResponse */
         EventResponse: {
+            /**
+             * Acknowledged On
+             * @description When the event was acknowledged
+             */
+            acknowledged_on?: Date | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the event was created
+             */
+            created_on: Date;
             /** Event Data */
             event_data: {
                 [key: string]: unknown;

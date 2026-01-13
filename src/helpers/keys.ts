@@ -12486,6 +12486,57 @@ export const KEYS_EMAIL_FORWARD_ZONE = [
 ] as const satisfies (keyof EmailForwardZone)[];
 
 /**
+ * Acknowledged On
+ *
+ * When the event was acknowledged
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `acknowledged_on` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_ACKNOWLEDGED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_ACKNOWLEDGED_ON;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_ACKNOWLEDGED_ON: keyof EventResponse = 'acknowledged_on';
+/**
+ * Created On
+ *
+ * When the event was created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of EventResponse objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventresponse[KEY_EVENT_RESPONSE_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_RESPONSE_CREATED_ON;
+ * const value = eventresponse[propertyName];
+ * ```
+ *
+ * @see {@link EventResponse} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_RESPONSE} - Array of all keys for this type
+ */
+export const KEY_EVENT_RESPONSE_CREATED_ON: keyof EventResponse = 'created_on';
+/**
  * Event Data
  *
  *
@@ -12657,6 +12708,8 @@ export const KEY_EVENT_RESPONSE_TYPE: keyof EventResponse = 'type';
  * @see {@link EventResponse} - The TypeScript type definition
  */
 export const KEYS_EVENT_RESPONSE = [
+  KEY_EVENT_RESPONSE_ACKNOWLEDGED_ON,
+  KEY_EVENT_RESPONSE_CREATED_ON,
   KEY_EVENT_RESPONSE_EVENT_DATA,
   KEY_EVENT_RESPONSE_EVENT_ID,
   KEY_EVENT_RESPONSE_OBJECT_ID,
