@@ -9609,32 +9609,6 @@ export const KEYS_DOMAIN_RESTORE_REQUEST = [
  */
 export const KEY_DOMAIN_RESTORE_DOMAIN_ID: keyof DomainRestore = 'domain_id';
 /**
- * Expiration Date
- *
- * The new expiration date after restore
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `expiration_date` property of DomainRestore objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainrestore[KEY_DOMAIN_RESTORE_EXPIRATION_DATE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_RESTORE_EXPIRATION_DATE;
- * const value = domainrestore[propertyName];
- * ```
- *
- * @see {@link DomainRestore} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_RESTORE} - Array of all keys for this type
- */
-export const KEY_DOMAIN_RESTORE_EXPIRATION_DATE: keyof DomainRestore = 'expiration_date';
-/**
  * Name
  *
  * The name of the restored domain
@@ -9709,7 +9683,6 @@ export const KEY_DOMAIN_RESTORE_RESTORED_AT: keyof DomainRestore = 'restored_at'
  */
 export const KEYS_DOMAIN_RESTORE = [
   KEY_DOMAIN_RESTORE_DOMAIN_ID,
-  KEY_DOMAIN_RESTORE_EXPIRATION_DATE,
   KEY_DOMAIN_RESTORE_NAME,
   KEY_DOMAIN_RESTORE_RESTORED_AT,
 ] as const satisfies (keyof DomainRestore)[];

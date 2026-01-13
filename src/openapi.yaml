@@ -2283,11 +2283,6 @@ components:
           title: Domain Id
           type: string
           x-typeid-prefix: domain
-        expiration_date:
-          description: The new expiration date after restore
-          format: date-time
-          title: Expiration Date
-          type: string
         name:
           description: The name of the restored domain
           title: Name
@@ -2300,7 +2295,6 @@ components:
       required:
       - domain_id
       - name
-      - expiration_date
       - restored_at
       title: DomainRestoreResponse
       type: object
@@ -6550,7 +6544,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-13-160651
+  version: 2026-01-13-161713
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

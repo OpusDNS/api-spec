@@ -3252,12 +3252,6 @@ export interface components {
              */
             domain_id: TypeId<"domain">;
             /**
-             * Expiration Date
-             * Format: date-time
-             * @description The new expiration date after restore
-             */
-            expiration_date: Date;
-            /**
              * Name
              * @description The name of the restored domain
              */
