@@ -3231,12 +3231,6 @@ export interface components {
              */
             additional_info?: string | null;
             /**
-             * Auto Renew
-             * @description Whether to automatically renew the domain after restore
-             * @default true
-             */
-            auto_renew: boolean;
-            /**
              * Reason
              * @description Reason for restoring the domain
              */

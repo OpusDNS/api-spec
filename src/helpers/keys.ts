@@ -9505,32 +9505,6 @@ export const KEYS_DOMAIN = [
  */
 export const KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO: keyof DomainRestoreRequest = 'additional_info';
 /**
- * Auto Renew
- *
- * Whether to automatically renew the domain after restore
- *
- * @type {boolean}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `auto_renew` property of DomainRestoreRequest objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = domainrestorerequest[KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW];
- * 
- * // Dynamic property access
- * const propertyName = KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW;
- * const value = domainrestorerequest[propertyName];
- * ```
- *
- * @see {@link DomainRestoreRequest} - The TypeScript type definition
- * @see {@link KEYS_DOMAIN_RESTORE_REQUEST} - Array of all keys for this type
- */
-export const KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW: keyof DomainRestoreRequest = 'auto_renew';
-/**
  * Reason
  *
  * Reason for restoring the domain
@@ -9578,7 +9552,6 @@ export const KEY_DOMAIN_RESTORE_REQUEST_REASON: keyof DomainRestoreRequest = 're
  */
 export const KEYS_DOMAIN_RESTORE_REQUEST = [
   KEY_DOMAIN_RESTORE_REQUEST_ADDITIONAL_INFO,
-  KEY_DOMAIN_RESTORE_REQUEST_AUTO_RENEW,
   KEY_DOMAIN_RESTORE_REQUEST_REASON,
 ] as const satisfies (keyof DomainRestoreRequest)[];
 

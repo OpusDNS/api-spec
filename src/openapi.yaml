@@ -2259,11 +2259,6 @@ components:
           - type: 'null'
           description: Additional information to include in the restore operation
           title: Additional Info
-        auto_renew:
-          default: true
-          description: Whether to automatically renew the domain after restore
-          title: Auto Renew
-          type: boolean
         reason:
           anyOf:
           - type: string
@@ -6544,7 +6539,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-13-161713
+  version: 2026-01-14-103335
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
