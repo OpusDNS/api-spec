@@ -2755,10 +2755,9 @@ components:
           title: Events
           type: array
         final_status:
+          $ref: '#/components/schemas/EmailForwardLogStatus'
           description: Final status of the email (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE,
             HARD-BOUNCE)
-          title: Final Status
-          type: string
         forward_email:
           description: Forward destination email address
           title: Forward Email
@@ -2870,15 +2869,6 @@ components:
       - status
       title: EmailForwardLogEvent
       type: object
-    EmailForwardLogFinalStatus:
-      enum:
-      - QUEUED
-      - DELIVERED
-      - REFUSED
-      - SOFT-BOUNCE
-      - HARD-BOUNCE
-      title: EmailForwardLogFinalStatus
-      type: string
     EmailForwardLogSortField:
       enum:
       - log_id
@@ -2890,6 +2880,90 @@ components:
       - synced_on
       title: EmailForwardLogSortField
       type: string
+    EmailForwardLogStatus:
+      enum:
+      - QUEUED
+      - DELIVERED
+      - REFUSED
+      - SOFT-BOUNCE
+      - HARD-BOUNCE
+      title: EmailForwardLogStatus
+      type: string
+    EmailForwardMetrics:
+      properties:
+        by_status:
+          additionalProperties:
+            type: integer
+          description: Log counts grouped by status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE,
+            HARD-BOUNCE)
+          propertyNames:
+            $ref: '#/components/schemas/EmailForwardLogStatus'
+          title: By Status
+          type: object
+        filters:
+          $ref: '#/components/schemas/EmailForwardMetricsFilters'
+          description: Applied filters
+        rates:
+          $ref: '#/components/schemas/EmailForwardMetricsRates'
+          description: Rate percentages for each status
+        total_logs:
+          description: Total number of email forward logs
+          title: Total Logs
+          type: integer
+      required:
+      - total_logs
+      - by_status
+      - rates
+      - filters
+      title: EmailForwardMetrics
+      type: object
+    EmailForwardMetricsFilters:
+      properties:
+        domain:
+          description: Domain name
+          title: Domain
+          type: string
+        end_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: End time filter (RFC3339)
+          title: End Time
+        start_time:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Start time filter (RFC3339)
+          title: Start Time
+      required:
+      - domain
+      title: EmailForwardMetricsFilters
+      type: object
+    EmailForwardMetricsRates:
+      properties:
+        delivered:
+          description: Delivery rate percentage
+          title: Delivered
+          type: number
+        hard_bounce:
+          description: Hard bounce rate percentage
+          title: Hard Bounce
+          type: number
+        refused:
+          description: Refused rate percentage
+          title: Refused
+          type: number
+        soft_bounce:
+          description: Soft bounce rate percentage
+          title: Soft Bounce
+          type: number
+      required:
+      - delivered
+      - refused
+      - soft_bounce
+      - hard_bounce
+      title: EmailForwardMetricsRates
+      type: object
     EmailForwardResponse:
       properties:
         aliases:
@@ -6539,7 +6613,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-14-103335
+  version: 2026-01-15-094311
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6608,7 +6682,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - $ref: '#/components/schemas/EmailForwardLogFinalStatus'
+          - $ref: '#/components/schemas/EmailForwardLogStatus'
           - type: 'null'
           title: Final Status
       - in: query
@@ -6698,7 +6772,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - $ref: '#/components/schemas/EmailForwardLogFinalStatus'
+          - $ref: '#/components/schemas/EmailForwardLogStatus'
           - type: 'null'
           title: Final Status
       - in: query
@@ -12693,6 +12767,95 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       summary: Enable email forwarding
+      tags:
+      - email_forward
+  /v1/email-forwards/{email_forward_id}/metrics:
+    get:
+      description: Retrieves metrics and statistics for a specific email forward,
+        including delivery rates and status counts.
+      operationId: get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get
+      parameters:
+      - in: path
+        name: email_forward_id
+        required: true
+        schema:
+          examples:
+          - email_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Email Forward Id
+          type: string
+          x-typeid-prefix: email_forward
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailForwardMetrics'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_EMAIL_FORWARD_NOT_FOUND
+                detail: 'Email forward not found for hostname: Additional error context.'
+                status: 404
+                title: Email Forward Error
+                type: email-forward-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Retrieve email forward metrics
       tags:
       - email_forward
   /v1/events:

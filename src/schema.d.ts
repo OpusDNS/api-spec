@@ -1198,6 +1198,26 @@ export interface paths {
         patch: operations["enable_email_forward_v1_email_forwards__email_forward_id__enable_patch"];
         trace?: never;
     };
+    "/v1/email-forwards/{email_forward_id}/metrics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve email forward metrics
+         * @description Retrieves metrics and statistics for a specific email forward, including delivery rates and status counts.
+         */
+        get: operations["get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/events": {
         parameters: {
             query?: never;
@@ -3551,11 +3571,8 @@ export interface components {
              * @description List of processing events
              */
             events?: components["schemas"]["EmailForwardLogEvent"][];
-            /**
-             * Final Status
-             * @description Final status of the email (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
-             */
-            final_status: string;
+            /** @description Final status of the email (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE) */
+            final_status: components["schemas"]["EmailForwardLogStatus"];
             /**
              * Forward Email
              * @description Forward destination email address
@@ -3658,15 +3675,75 @@ export interface components {
             status: string;
         };
         /**
-         * EmailForwardLogFinalStatus
-         * @enum {string}
-         */
-        EmailForwardLogFinalStatus: "QUEUED" | "DELIVERED" | "REFUSED" | "SOFT-BOUNCE" | "HARD-BOUNCE";
-        /**
          * EmailForwardLogSortField
          * @enum {string}
          */
         EmailForwardLogSortField: "log_id" | "sender_email" | "recipient_email" | "forward_email" | "final_status" | "created_on" | "synced_on";
+        /**
+         * EmailForwardLogStatus
+         * @enum {string}
+         */
+        EmailForwardLogStatus: "QUEUED" | "DELIVERED" | "REFUSED" | "SOFT-BOUNCE" | "HARD-BOUNCE";
+        /** EmailForwardMetrics */
+        EmailForwardMetrics: {
+            /**
+             * By Status
+             * @description Log counts grouped by status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
+             */
+            by_status: {
+                [key: string]: number;
+            };
+            /** @description Applied filters */
+            filters: components["schemas"]["EmailForwardMetricsFilters"];
+            /** @description Rate percentages for each status */
+            rates: components["schemas"]["EmailForwardMetricsRates"];
+            /**
+             * Total Logs
+             * @description Total number of email forward logs
+             */
+            total_logs: number;
+        };
+        /** EmailForwardMetricsFilters */
+        EmailForwardMetricsFilters: {
+            /**
+             * Domain
+             * @description Domain name
+             */
+            domain: string;
+            /**
+             * End Time
+             * @description End time filter (RFC3339)
+             */
+            end_time?: string | null;
+            /**
+             * Start Time
+             * @description Start time filter (RFC3339)
+             */
+            start_time?: string | null;
+        };
+        /** EmailForwardMetricsRates */
+        EmailForwardMetricsRates: {
+            /**
+             * Delivered
+             * @description Delivery rate percentage
+             */
+            delivered: number;
+            /**
+             * Hard Bounce
+             * @description Hard bounce rate percentage
+             */
+            hard_bounce: number;
+            /**
+             * Refused
+             * @description Refused rate percentage
+             */
+            refused: number;
+            /**
+             * Soft Bounce
+             * @description Soft bounce rate percentage
+             */
+            soft_bounce: number;
+        };
         /** EmailForwardResponse */
         EmailForwardResponse: {
             /** Aliases */
@@ -6024,7 +6101,7 @@ export interface operations {
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
                 page?: number;
-                final_status?: components["schemas"]["EmailForwardLogFinalStatus"] | null;
+                final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
@@ -6063,7 +6140,7 @@ export interface operations {
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
                 page?: number;
-                final_status?: components["schemas"]["EmailForwardLogFinalStatus"] | null;
+                final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
@@ -10862,6 +10939,88 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
+                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Email Forward Error",
+                     *       "type": "email-forward-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get: {
+        parameters: {
+            query?: {
+                start_time?: Date | null;
+                end_time?: Date | null;
+            };
+            header?: never;
+            path: {
+                email_forward_id: TypeId<"email_forward">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EmailForwardMetrics"];
+                };
             };
             /** @description Unauthorized */
             401: {

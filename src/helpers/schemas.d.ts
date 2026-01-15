@@ -1883,22 +1883,6 @@ export type EmailForwardLog = components['schemas']['EmailForwardLog'];
  */
 export type EmailForwardLogEvent = components['schemas']['EmailForwardLogEvent'];
 /**
- * EmailForwardLogFinalStatus
- *
- * @remarks
- * Type alias for the `EmailForwardLogFinalStatus` OpenAPI schema.
- * This type represents emailforwardlogfinalstatus data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEmailForwardLogFinalStatus();
- * const item: EmailForwardLogFinalStatus = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EmailForwardLogFinalStatus = components['schemas']['EmailForwardLogFinalStatus'];
-/**
  * EmailForwardLogSortField
  *
  * @remarks
@@ -1914,6 +1898,70 @@ export type EmailForwardLogFinalStatus = components['schemas']['EmailForwardLogF
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type EmailForwardLogSortField = components['schemas']['EmailForwardLogSortField'];
+/**
+ * EmailForwardLogStatus
+ *
+ * @remarks
+ * Type alias for the `EmailForwardLogStatus` OpenAPI schema.
+ * This type represents emailforwardlogstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardLogStatus();
+ * const item: EmailForwardLogStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardLogStatus = components['schemas']['EmailForwardLogStatus'];
+/**
+ * EmailForwardMetrics
+ *
+ * @remarks
+ * Type alias for the `EmailForwardMetrics` OpenAPI schema.
+ * This type represents emailforwardmetrics data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardMetrics();
+ * const item: EmailForwardMetrics = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardMetrics = components['schemas']['EmailForwardMetrics'];
+/**
+ * EmailForwardMetricsFilters
+ *
+ * @remarks
+ * Type alias for the `EmailForwardMetricsFilters` OpenAPI schema.
+ * This type represents emailforwardmetricsfilters data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardMetricsFilters();
+ * const item: EmailForwardMetricsFilters = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardMetricsFilters = components['schemas']['EmailForwardMetricsFilters'];
+/**
+ * EmailForwardMetricsRates
+ *
+ * @remarks
+ * Type alias for the `EmailForwardMetricsRates` OpenAPI schema.
+ * This type represents emailforwardmetricsrates data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardMetricsRates();
+ * const item: EmailForwardMetricsRates = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardMetricsRates = components['schemas']['EmailForwardMetricsRates'];
 /**
  * EmailForwardResponse
  *

@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogFinalStatus, EmailForwardLogSortField, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1340,62 +1340,6 @@ export const DOMAIN_STATUS_VALUES = [
 ] as const satisfies [string, ...string[]] | DomainStatus[];
 
 /**
- * EmailForwardLogFinalStatus. Auto-generated enum for EmailForwardLogFinalStatus
- *
- * @remarks
- * This constant provides both object and array forms for the EmailForwardLogFinalStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EMAIL_FORWARD_LOG_FINAL_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EMAIL_FORWARD_LOG_FINAL_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EmailForwardLogFinalStatus} - The TypeScript type definition
- */
-export const EMAIL_FORWARD_LOG_FINAL_STATUS = {
-  QUEUED: "QUEUED",
-  DELIVERED: "DELIVERED",
-  REFUSED: "REFUSED",
-  SOFT_BOUNCE: "SOFT-BOUNCE",
-  HARD_BOUNCE: "HARD-BOUNCE",
-} as const satisfies Record<string, EmailForwardLogFinalStatus>;
-
-/**
- * Array of all EmailForwardLogFinalStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid EmailForwardLogFinalStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EMAIL_FORWARD_LOG_FINAL_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EMAIL_FORWARD_LOG_FINAL_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EmailForwardLogFinalStatus} - The TypeScript type definition
- * @see {@link EMAIL_FORWARD_LOG_FINAL_STATUS} - The object form of this enum
- */
-export const EMAIL_FORWARD_LOG_FINAL_STATUS_VALUES = [
-  'QUEUED',
-  'DELIVERED',
-  'REFUSED',
-  'SOFT-BOUNCE',
-  'HARD-BOUNCE'
-] as const satisfies [string, ...string[]] | EmailForwardLogFinalStatus[];
-
-/**
  * EmailForwardLogSortField. Auto-generated enum for EmailForwardLogSortField
  *
  * @remarks
@@ -1454,6 +1398,62 @@ export const EMAIL_FORWARD_LOG_SORT_FIELD_VALUES = [
   'created_on',
   'synced_on'
 ] as const satisfies [string, ...string[]] | EmailForwardLogSortField[];
+
+/**
+ * EmailForwardLogStatus. Auto-generated enum for EmailForwardLogStatus
+ *
+ * @remarks
+ * This constant provides both object and array forms for the EmailForwardLogStatus enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = EMAIL_FORWARD_LOG_STATUS.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = EMAIL_FORWARD_LOG_STATUS_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link EmailForwardLogStatus} - The TypeScript type definition
+ */
+export const EMAIL_FORWARD_LOG_STATUS = {
+  QUEUED: "QUEUED",
+  DELIVERED: "DELIVERED",
+  REFUSED: "REFUSED",
+  SOFT_BOUNCE: "SOFT-BOUNCE",
+  HARD_BOUNCE: "HARD-BOUNCE",
+} as const satisfies Record<string, EmailForwardLogStatus>;
+
+/**
+ * Array of all EmailForwardLogStatus enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid EmailForwardLogStatus enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of EMAIL_FORWARD_LOG_STATUS_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = EMAIL_FORWARD_LOG_STATUS_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link EmailForwardLogStatus} - The TypeScript type definition
+ * @see {@link EMAIL_FORWARD_LOG_STATUS} - The object form of this enum
+ */
+export const EMAIL_FORWARD_LOG_STATUS_VALUES = [
+  'QUEUED',
+  'DELIVERED',
+  'REFUSED',
+  'SOFT-BOUNCE',
+  'HARD-BOUNCE'
+] as const satisfies [string, ...string[]] | EmailForwardLogStatus[];
 
 /**
  * EmailForwardSortField. Auto-generated enum for EmailForwardSortField

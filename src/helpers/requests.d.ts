@@ -3590,6 +3590,59 @@ export type PATCH_EmailForwardsEmailForwardIdEnable_Request = {
 export type PATCH_EmailForwardsEmailForwardIdEnable_Request_Path = PATCH_EmailForwardsEmailForwardIdEnable_Request['parameters']['path'];
 
 /**
+ * Request type for GET EmailForwardsEmailForwardIdMetrics endpoint
+ *
+ * Retrieve email forward metrics
+ * Retrieves metrics and statistics for a specific email forward, including delivery rates and status counts.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET EmailForwardsEmailForwardIdMetrics endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/metrics
+ *
+ * @see {@link GET_EmailForwardsEmailForwardIdMetrics_Request_Query} - Query parameters type
+ * @see {@link GET_EmailForwardsEmailForwardIdMetrics_Request_Path} - Path parameters type
+ * @see {@link GET_EmailForwardsEmailForwardIdMetrics_Request_Body} - Request body type
+ */
+export type GET_EmailForwardsEmailForwardIdMetrics_Request = {
+  parameters: {
+    query: operations['get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get']['parameters']['query'];
+    path: operations['get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/email-forwards/{email_forward_id}/metrics
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/email-forwards/{email_forward_id}/metrics endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/metrics
+ */
+export type GET_EmailForwardsEmailForwardIdMetrics_Request_Query = GET_EmailForwardsEmailForwardIdMetrics_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/email-forwards/{email_forward_id}/metrics
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/email-forwards/{email_forward_id}/metrics endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/email-forwards/{email_forward_id}/metrics
+ */
+export type GET_EmailForwardsEmailForwardIdMetrics_Request_Path = GET_EmailForwardsEmailForwardIdMetrics_Request['parameters']['path'];
+
+/**
  * Request type for GET Events endpoint
  *
  * Get pending events
