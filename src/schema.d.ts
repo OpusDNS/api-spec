@@ -3533,6 +3533,26 @@ export interface components {
             /** Forward To */
             forward_to: string[];
         };
+        /** EmailForwardAliasMetrics */
+        EmailForwardAliasMetrics: {
+            /**
+             * Alias
+             * @description Email alias address
+             */
+            alias: string;
+            /**
+             * By Status
+             * @description Log counts grouped by status
+             */
+            by_status: {
+                [key: string]: number;
+            };
+            /**
+             * Total Logs
+             * @description Total number of logs for this alias
+             */
+            total_logs: number;
+        };
         /** EmailForwardAliasUpdate */
         EmailForwardAliasUpdate: {
             /** Forward To */
@@ -3687,6 +3707,16 @@ export interface components {
         /** EmailForwardMetrics */
         EmailForwardMetrics: {
             /**
+             * Alias Count
+             * @description Number of aliases
+             */
+            alias_count?: number | null;
+            /**
+             * By Alias
+             * @description Metrics breakdown per alias
+             */
+            by_alias?: components["schemas"]["EmailForwardAliasMetrics"][] | null;
+            /**
              * By Status
              * @description Log counts grouped by status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
              */
@@ -3716,6 +3746,11 @@ export interface components {
              */
             end_time?: string | null;
             /**
+             * Include Aliases
+             * @description Whether alias breakdown is included
+             */
+            include_aliases?: boolean | null;
+            /**
              * Start Time
              * @description Start time filter (RFC3339)
              */
@@ -3724,25 +3759,25 @@ export interface components {
         /** EmailForwardMetricsRates */
         EmailForwardMetricsRates: {
             /**
-             * Delivered
+             * Bounce Rate
+             * @description Bounce rate percentage
+             */
+            bounce_rate: number;
+            /**
+             * Delivery Rate
              * @description Delivery rate percentage
              */
-            delivered: number;
+            delivery_rate: number;
             /**
-             * Hard Bounce
-             * @description Hard bounce rate percentage
+             * Queued Rate
+             * @description Queued rate percentage
              */
-            hard_bounce: number;
+            queued_rate: number;
             /**
-             * Refused
+             * Refused Rate
              * @description Refused rate percentage
              */
-            refused: number;
-            /**
-             * Soft Bounce
-             * @description Soft bounce rate percentage
-             */
-            soft_bounce: number;
+            refused_rate: number;
         };
         /** EmailForwardResponse */
         EmailForwardResponse: {

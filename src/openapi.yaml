@@ -2705,6 +2705,30 @@ components:
       - forward_to
       title: EmailForwardAliasCreate
       type: object
+    EmailForwardAliasMetrics:
+      properties:
+        alias:
+          description: Email alias address
+          title: Alias
+          type: string
+        by_status:
+          additionalProperties:
+            type: integer
+          description: Log counts grouped by status
+          propertyNames:
+            $ref: '#/components/schemas/EmailForwardLogStatus'
+          title: By Status
+          type: object
+        total_logs:
+          description: Total number of logs for this alias
+          title: Total Logs
+          type: integer
+      required:
+      - alias
+      - total_logs
+      - by_status
+      title: EmailForwardAliasMetrics
+      type: object
     EmailForwardAliasUpdate:
       properties:
         forward_to:
@@ -2891,6 +2915,20 @@ components:
       type: string
     EmailForwardMetrics:
       properties:
+        alias_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Number of aliases
+          title: Alias Count
+        by_alias:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/EmailForwardAliasMetrics'
+            type: array
+          - type: 'null'
+          description: Metrics breakdown per alias
+          title: By Alias
         by_status:
           additionalProperties:
             type: integer
@@ -2929,6 +2967,12 @@ components:
           - type: 'null'
           description: End time filter (RFC3339)
           title: End Time
+        include_aliases:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Whether alias breakdown is included
+          title: Include Aliases
         start_time:
           anyOf:
           - type: string
@@ -2941,27 +2985,27 @@ components:
       type: object
     EmailForwardMetricsRates:
       properties:
-        delivered:
+        bounce_rate:
+          description: Bounce rate percentage
+          title: Bounce Rate
+          type: number
+        delivery_rate:
           description: Delivery rate percentage
-          title: Delivered
+          title: Delivery Rate
           type: number
-        hard_bounce:
-          description: Hard bounce rate percentage
-          title: Hard Bounce
+        queued_rate:
+          description: Queued rate percentage
+          title: Queued Rate
           type: number
-        refused:
+        refused_rate:
           description: Refused rate percentage
-          title: Refused
-          type: number
-        soft_bounce:
-          description: Soft bounce rate percentage
-          title: Soft Bounce
+          title: Refused Rate
           type: number
       required:
-      - delivered
-      - refused
-      - soft_bounce
-      - hard_bounce
+      - delivery_rate
+      - refused_rate
+      - queued_rate
+      - bounce_rate
       title: EmailForwardMetricsRates
       type: object
     EmailForwardResponse:
@@ -6613,7 +6657,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-15-094311
+  version: 2026-01-15-095407
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

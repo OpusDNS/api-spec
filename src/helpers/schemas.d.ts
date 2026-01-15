@@ -1819,6 +1819,22 @@ export type EmailForwardAlias = components['schemas']['EmailForwardAlias'];
  */
 export type EmailForwardAliasCreate = components['schemas']['EmailForwardAliasCreate'];
 /**
+ * EmailForwardAliasMetrics
+ *
+ * @remarks
+ * Type alias for the `EmailForwardAliasMetrics` OpenAPI schema.
+ * This type represents emailforwardaliasmetrics data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEmailForwardAliasMetrics();
+ * const item: EmailForwardAliasMetrics = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EmailForwardAliasMetrics = components['schemas']['EmailForwardAliasMetrics'];
+/**
  * EmailForwardAliasUpdate
  *
  * @remarks

@@ -115,6 +115,7 @@ import { DomainWithdraw } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
 import { EmailForwardAlias } from './schemas';
 import { EmailForwardAliasCreate } from './schemas';
+import { EmailForwardAliasMetrics } from './schemas';
 import { EmailForwardAliasUpdate } from './schemas';
 import { EmailForwardCreate } from './schemas';
 import { EmailForwardLog } from './schemas';
@@ -11335,6 +11336,111 @@ export const KEYS_EMAIL_FORWARD_ALIAS_CREATE = [
 ] as const satisfies (keyof EmailForwardAliasCreate)[];
 
 /**
+ * Alias
+ *
+ * Email alias address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `alias` property of EmailForwardAliasMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardaliasmetrics[KEY_EMAIL_FORWARD_ALIAS_METRICS_ALIAS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_METRICS_ALIAS;
+ * const value = emailforwardaliasmetrics[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardAliasMetrics} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS_METRICS} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ALIAS_METRICS_ALIAS: keyof EmailForwardAliasMetrics = 'alias';
+/**
+ * By Status
+ *
+ * Log counts grouped by status
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `by_status` property of EmailForwardAliasMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardaliasmetrics[KEY_EMAIL_FORWARD_ALIAS_METRICS_BY_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_METRICS_BY_STATUS;
+ * const value = emailforwardaliasmetrics[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardAliasMetrics} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS_METRICS} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ALIAS_METRICS_BY_STATUS: keyof EmailForwardAliasMetrics = 'by_status';
+/**
+ * Total Logs
+ *
+ * Total number of logs for this alias
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_logs` property of EmailForwardAliasMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardaliasmetrics[KEY_EMAIL_FORWARD_ALIAS_METRICS_TOTAL_LOGS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_ALIAS_METRICS_TOTAL_LOGS;
+ * const value = emailforwardaliasmetrics[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardAliasMetrics} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_ALIAS_METRICS} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_ALIAS_METRICS_TOTAL_LOGS: keyof EmailForwardAliasMetrics = 'total_logs';
+
+/**
+ * Array of all EmailForwardAliasMetrics property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EmailForwardAliasMetrics objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EMAIL_FORWARD_ALIAS_METRICS) {
+ *   console.log(`Property: ${key}, Value: ${emailforwardaliasmetrics[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EMAIL_FORWARD_ALIAS_METRICS.includes(someKey);
+ * ```
+ *
+ * @see {@link EmailForwardAliasMetrics} - The TypeScript type definition
+ */
+export const KEYS_EMAIL_FORWARD_ALIAS_METRICS = [
+  KEY_EMAIL_FORWARD_ALIAS_METRICS_ALIAS,
+  KEY_EMAIL_FORWARD_ALIAS_METRICS_BY_STATUS,
+  KEY_EMAIL_FORWARD_ALIAS_METRICS_TOTAL_LOGS,
+] as const satisfies (keyof EmailForwardAliasMetrics)[];
+
+/**
  * Forward To
  *
  *
@@ -12152,6 +12258,56 @@ export const KEYS_EMAIL_FORWARD_LOG_EVENT = [
 ] as const satisfies (keyof EmailForwardLogEvent)[];
 
 /**
+ * Alias Count
+ *
+ * Number of aliases
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `alias_count` property of EmailForwardMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardmetrics[KEY_EMAIL_FORWARD_METRICS_ALIAS_COUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_METRICS_ALIAS_COUNT;
+ * const value = emailforwardmetrics[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardMetrics} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_METRICS} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_METRICS_ALIAS_COUNT: keyof EmailForwardMetrics = 'alias_count';
+/**
+ * By Alias
+ *
+ * Metrics breakdown per alias
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `by_alias` property of EmailForwardMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardmetrics[KEY_EMAIL_FORWARD_METRICS_BY_ALIAS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_METRICS_BY_ALIAS;
+ * const value = emailforwardmetrics[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardMetrics} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_METRICS} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_METRICS_BY_ALIAS: keyof EmailForwardMetrics = 'by_alias';
+/**
  * By Status
  *
  * Log counts grouped by status (QUEUED, DELIVERED, REFUSED, SOFT-BOUNCE, HARD-BOUNCE)
@@ -12275,6 +12431,8 @@ export const KEY_EMAIL_FORWARD_METRICS_TOTAL_LOGS: keyof EmailForwardMetrics = '
  * @see {@link EmailForwardMetrics} - The TypeScript type definition
  */
 export const KEYS_EMAIL_FORWARD_METRICS = [
+  KEY_EMAIL_FORWARD_METRICS_ALIAS_COUNT,
+  KEY_EMAIL_FORWARD_METRICS_BY_ALIAS,
   KEY_EMAIL_FORWARD_METRICS_BY_STATUS,
   KEY_EMAIL_FORWARD_METRICS_FILTERS,
   KEY_EMAIL_FORWARD_METRICS_RATES,
@@ -12333,6 +12491,31 @@ export const KEY_EMAIL_FORWARD_METRICS_FILTERS_DOMAIN: keyof EmailForwardMetrics
  */
 export const KEY_EMAIL_FORWARD_METRICS_FILTERS_END_TIME: keyof EmailForwardMetricsFilters = 'end_time';
 /**
+ * Include Aliases
+ *
+ * Whether alias breakdown is included
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `include_aliases` property of EmailForwardMetricsFilters objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardmetricsfilters[KEY_EMAIL_FORWARD_METRICS_FILTERS_INCLUDE_ALIASES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_METRICS_FILTERS_INCLUDE_ALIASES;
+ * const value = emailforwardmetricsfilters[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardMetricsFilters} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_METRICS_FILTERS} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_METRICS_FILTERS_INCLUDE_ALIASES: keyof EmailForwardMetricsFilters = 'include_aliases';
+/**
  * Start Time
  *
  * Start time filter (RFC3339)
@@ -12381,11 +12564,38 @@ export const KEY_EMAIL_FORWARD_METRICS_FILTERS_START_TIME: keyof EmailForwardMet
 export const KEYS_EMAIL_FORWARD_METRICS_FILTERS = [
   KEY_EMAIL_FORWARD_METRICS_FILTERS_DOMAIN,
   KEY_EMAIL_FORWARD_METRICS_FILTERS_END_TIME,
+  KEY_EMAIL_FORWARD_METRICS_FILTERS_INCLUDE_ALIASES,
   KEY_EMAIL_FORWARD_METRICS_FILTERS_START_TIME,
 ] as const satisfies (keyof EmailForwardMetricsFilters)[];
 
 /**
- * Delivered
+ * Bounce Rate
+ *
+ * Bounce rate percentage
+ *
+ * @type {number}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `bounce_rate` property of EmailForwardMetricsRates objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_BOUNCE_RATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_BOUNCE_RATE;
+ * const value = emailforwardmetricsrates[propertyName];
+ * ```
+ *
+ * @see {@link EmailForwardMetricsRates} - The TypeScript type definition
+ * @see {@link KEYS_EMAIL_FORWARD_METRICS_RATES} - Array of all keys for this type
+ */
+export const KEY_EMAIL_FORWARD_METRICS_RATES_BOUNCE_RATE: keyof EmailForwardMetricsRates = 'bounce_rate';
+/**
+ * Delivery Rate
  *
  * Delivery rate percentage
  *
@@ -12393,51 +12603,51 @@ export const KEYS_EMAIL_FORWARD_METRICS_FILTERS = [
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `delivered` property of EmailForwardMetricsRates objects.
+ * This key constant provides type-safe access to the `delivery_rate` property of EmailForwardMetricsRates objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERED];
+ * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERY_RATE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERED;
+ * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERY_RATE;
  * const value = emailforwardmetricsrates[propertyName];
  * ```
  *
  * @see {@link EmailForwardMetricsRates} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_METRICS_RATES} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERED: keyof EmailForwardMetricsRates = 'delivered';
+export const KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERY_RATE: keyof EmailForwardMetricsRates = 'delivery_rate';
 /**
- * Hard Bounce
+ * Queued Rate
  *
- * Hard bounce rate percentage
+ * Queued rate percentage
  *
  * @type {number}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `hard_bounce` property of EmailForwardMetricsRates objects.
+ * This key constant provides type-safe access to the `queued_rate` property of EmailForwardMetricsRates objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_HARD_BOUNCE];
+ * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_QUEUED_RATE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_HARD_BOUNCE;
+ * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_QUEUED_RATE;
  * const value = emailforwardmetricsrates[propertyName];
  * ```
  *
  * @see {@link EmailForwardMetricsRates} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_METRICS_RATES} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_METRICS_RATES_HARD_BOUNCE: keyof EmailForwardMetricsRates = 'hard_bounce';
+export const KEY_EMAIL_FORWARD_METRICS_RATES_QUEUED_RATE: keyof EmailForwardMetricsRates = 'queued_rate';
 /**
- * Refused
+ * Refused Rate
  *
  * Refused rate percentage
  *
@@ -12445,49 +12655,23 @@ export const KEY_EMAIL_FORWARD_METRICS_RATES_HARD_BOUNCE: keyof EmailForwardMetr
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `refused` property of EmailForwardMetricsRates objects.
+ * This key constant provides type-safe access to the `refused_rate` property of EmailForwardMetricsRates objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED];
+ * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED_RATE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED;
+ * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED_RATE;
  * const value = emailforwardmetricsrates[propertyName];
  * ```
  *
  * @see {@link EmailForwardMetricsRates} - The TypeScript type definition
  * @see {@link KEYS_EMAIL_FORWARD_METRICS_RATES} - Array of all keys for this type
  */
-export const KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED: keyof EmailForwardMetricsRates = 'refused';
-/**
- * Soft Bounce
- *
- * Soft bounce rate percentage
- *
- * @type {number}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `soft_bounce` property of EmailForwardMetricsRates objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = emailforwardmetricsrates[KEY_EMAIL_FORWARD_METRICS_RATES_SOFT_BOUNCE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EMAIL_FORWARD_METRICS_RATES_SOFT_BOUNCE;
- * const value = emailforwardmetricsrates[propertyName];
- * ```
- *
- * @see {@link EmailForwardMetricsRates} - The TypeScript type definition
- * @see {@link KEYS_EMAIL_FORWARD_METRICS_RATES} - Array of all keys for this type
- */
-export const KEY_EMAIL_FORWARD_METRICS_RATES_SOFT_BOUNCE: keyof EmailForwardMetricsRates = 'soft_bounce';
+export const KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED_RATE: keyof EmailForwardMetricsRates = 'refused_rate';
 
 /**
  * Array of all EmailForwardMetricsRates property keys
@@ -12510,10 +12694,10 @@ export const KEY_EMAIL_FORWARD_METRICS_RATES_SOFT_BOUNCE: keyof EmailForwardMetr
  * @see {@link EmailForwardMetricsRates} - The TypeScript type definition
  */
 export const KEYS_EMAIL_FORWARD_METRICS_RATES = [
-  KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERED,
-  KEY_EMAIL_FORWARD_METRICS_RATES_HARD_BOUNCE,
-  KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED,
-  KEY_EMAIL_FORWARD_METRICS_RATES_SOFT_BOUNCE,
+  KEY_EMAIL_FORWARD_METRICS_RATES_BOUNCE_RATE,
+  KEY_EMAIL_FORWARD_METRICS_RATES_DELIVERY_RATE,
+  KEY_EMAIL_FORWARD_METRICS_RATES_QUEUED_RATE,
+  KEY_EMAIL_FORWARD_METRICS_RATES_REFUSED_RATE,
 ] as const satisfies (keyof EmailForwardMetricsRates)[];
 
 /**
