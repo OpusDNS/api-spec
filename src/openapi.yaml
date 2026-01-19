@@ -4965,6 +4965,8 @@ components:
       - view_domain_forwards
       - view_email_forwards
       - view_events
+      - view_parking
+      - manage_parking
       title: Permission
       type: string
     PermissionSet:
@@ -6657,7 +6659,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-15-095407
+  version: 2026-01-19-102149
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15022,6 +15024,11 @@ tags:
     '
   name: domain_forward
   x-displayName: Domain forwards
+- description: 'Endpoints for managing domain parking.
+
+    '
+  name: parking
+  x-displayName: Domain parking
 - description: 'Endpoints for interacting with events.
 
     '
@@ -15065,6 +15072,7 @@ x-tagGroups:
   - dns
   - email_forward
   - domain_forward
+  - parking
   - domain_search
   - archive
   - jobs
