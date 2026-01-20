@@ -5243,7 +5243,7 @@ export interface components {
          * @description Registry handle attribute types for type-safe attribute key access.
          * @enum {string}
          */
-        RegistryHandleAttributeType: "at-ext-contact:type" | "DE_CONTACT_TYPE" | "dnsbe:type" | "eurid:type" | "AFNIC_CONTACT_TYPE" | "AFNIC_PP_FIRST_NAME" | "AFNIC_PM_LEGAL_STATUS" | "AFNIC_PM_SIREN" | "AFNIC_PM_VAT" | "AFNIC_PM_TRADEMARK" | "AFNIC_PM_ASSOC_WALDEC" | "AFNIC_PM_ASSOC_PUBL_DATE" | "AFNIC_PM_ASSOC_PUBL_ANNOUNCE" | "AFNIC_PM_ASSOC_PUBL_PAGE" | "AFNIC_PM_ASSOC_DECL" | "AFNIC_PM_DUNS" | "AFNIC_PM_LOCAL" | "AFNIC_ID_STATUS" | "AFNIC_REACHABLE_MEDIA" | "AFNIC_REACHABLE_STATUS" | "AFNIC_RESTRICTED_PUBLICATION";
+        RegistryHandleAttributeType: "at-ext-contact:type" | "DE_CONTACT_TYPE" | "dnsbe:type" | "eurid:type" | "AFNIC_CONTACT_TYPE" | "AFNIC_PP_FIRST_NAME" | "AFNIC_PM_LEGAL_STATUS" | "AFNIC_PM_SIREN" | "AFNIC_PM_VAT" | "AFNIC_PM_TRADEMARK" | "AFNIC_PM_ASSOC_WALDEC" | "AFNIC_PM_ASSOC_PUBL_DATE" | "AFNIC_PM_ASSOC_PUBL_ANNOUNCE" | "AFNIC_PM_ASSOC_PUBL_PAGE" | "AFNIC_PM_ASSOC_DECL" | "AFNIC_PM_DUNS" | "AFNIC_PM_LOCAL" | "AFNIC_ID_STATUS" | "AFNIC_REACHABLE_MEDIA" | "AFNIC_REACHABLE_STATUS" | "AFNIC_RESTRICTED_PUBLICATION" | "ROTLD_CONTACT_TYPE" | "ROTLD_FISCAL_CODE" | "ROTLD_REGISTRATION_NUMBER";
         /** RegistryLockBase */
         RegistryLockBase: {
             /**
