@@ -6675,7 +6675,6 @@ components:
       type: object
   securitySchemes:
     APIKeyHeader:
-      description: API key for the organization.
       in: header
       name: X-Api-Key
       type: apiKey
@@ -6748,7 +6747,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-20-080953
+  version: 2026-01-20-154711
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -6853,6 +6852,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve email forward logs by alias
       tags:
       - archive
@@ -6943,6 +6943,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve email forward logs
       tags:
       - archive
@@ -7069,6 +7070,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve all object history
       tags:
       - archive
@@ -7194,6 +7196,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve object history
       tags:
       - archive
@@ -7352,6 +7355,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve request history logs
       tags:
       - archive
@@ -7465,6 +7469,7 @@ paths:
           description: Bad Gateway
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Check domain availability
       tags:
       - availability
@@ -7546,6 +7551,7 @@ paths:
           description: Bad Gateway
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Stream domain availability results
       tags:
       - availability
@@ -7656,6 +7662,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all contacts
       tags:
       - contact
@@ -7683,6 +7690,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create a contact
       tags:
       - contact
@@ -7902,6 +7910,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete a contact
       tags:
       - contact
@@ -7948,6 +7957,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve a contact
       tags:
       - contact
@@ -8002,6 +8012,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete contact verification
       tags:
       - contact
@@ -8059,6 +8070,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve contact verification by contact ID
       tags:
       - contact
@@ -8137,6 +8149,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Start contact verification
       tags:
       - contact
@@ -8224,6 +8237,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Complete contact verification by contact ID
       tags:
       - contact
@@ -8377,6 +8391,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List Zones
       tags:
       - dns
@@ -8597,6 +8612,7 @@ paths:
           description: Invalid request parameters
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create Zone
       tags:
       - dns
@@ -8713,6 +8729,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List domain forwards by zone
       tags:
       - dns
@@ -8797,6 +8814,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List email forwards by zone
       tags:
       - dns
@@ -8827,6 +8845,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get Zones Summary
       tags:
       - dns
@@ -8853,6 +8872,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete Zone
       tags:
       - dns
@@ -8882,6 +8902,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get Zone
       tags:
       - dns
@@ -8967,6 +8988,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Disable Dnssec
       tags:
       - dns
@@ -9052,6 +9074,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Enable Dnssec
       tags:
       - dns
@@ -9132,6 +9155,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List domain forwards for a zone
       tags:
       - dns
@@ -9188,6 +9212,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List email forwards for a zone
       tags:
       - dns
@@ -9286,6 +9311,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Patch Zone Records
       tags:
       - dns
@@ -9389,6 +9415,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Patch Zone Rrsets
       tags:
       - dns
@@ -9489,6 +9516,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update Zone Rrsets
       tags:
       - dns
@@ -9574,6 +9602,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List domain forwards
       tags:
       - domain_forward
@@ -9635,6 +9664,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Patch domain forward redirects
       tags:
       - domain_forward
@@ -9799,6 +9829,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create a domain forward
       tags:
       - domain_forward
@@ -9847,6 +9878,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Metrics
       tags:
       - domain_forward
@@ -9895,6 +9927,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Browser Stats
       tags:
       - domain_forward
@@ -9943,6 +9976,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Geo Stats
       tags:
       - domain_forward
@@ -9991,6 +10025,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Platform Stats
       tags:
       - domain_forward
@@ -10039,6 +10074,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Referrer Stats
       tags:
       - domain_forward
@@ -10087,6 +10123,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Status Code Stats
       tags:
       - domain_forward
@@ -10135,6 +10172,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Time Series
       tags:
       - domain_forward
@@ -10183,6 +10221,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: User Agent Stats
       tags:
       - domain_forward
@@ -10239,6 +10278,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Visits By Key
       tags:
       - domain_forward
@@ -10302,6 +10342,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete a domain forward
       tags:
       - domain_forward
@@ -10368,6 +10409,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get a domain forward
       tags:
       - domain_forward
@@ -10453,6 +10495,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create domain forward set
       tags:
       - domain_forward
@@ -10505,6 +10548,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Disable domain forward
       tags:
       - domain_forward
@@ -10568,6 +10612,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Enable domain forward
       tags:
       - domain_forward
@@ -10636,6 +10681,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete domain forward set
       tags:
       - domain_forward
@@ -10708,6 +10754,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get domain forward set
       tags:
       - domain_forward
@@ -10799,6 +10846,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create domain forward set (deprecated)
       tags:
       - domain_forward
@@ -10878,6 +10926,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update domain forward set
       tags:
       - domain_forward
@@ -10974,6 +11023,7 @@ paths:
           description: Bad Gateway
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Suggest domains
       tags:
       - domain_search
@@ -11176,6 +11226,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all domains
       tags:
       - domain
@@ -11242,6 +11293,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create a domain
       tags:
       - domain
@@ -11288,6 +11340,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Check domain availability
       tags:
       - domain
@@ -11311,6 +11364,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get domain summary
       tags:
       - domain
@@ -11365,6 +11419,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Withdraw a nic.at domain
       tags:
       - domain
@@ -11428,6 +11483,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Requests your auth code directly from DNS Belgium (registry)
       tags:
       - domain
@@ -11483,6 +11539,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Transit a DENIC domain
       tags:
       - domain
@@ -11546,6 +11603,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Requests your auth code directly from EURid (registry)
       tags:
       - domain
@@ -11634,6 +11692,7 @@ paths:
           description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Transfer a domain
       tags:
       - domain
@@ -11696,6 +11755,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete a domain
       tags:
       - domain
@@ -11744,6 +11804,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve a domain
       tags:
       - domain
@@ -11814,6 +11875,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update a domain
       tags:
       - domain
@@ -11859,6 +11921,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete DNSSEC data
       tags:
       - domain
@@ -11910,6 +11973,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve DNSSEC data
       tags:
       - domain
@@ -11977,6 +12041,7 @@ paths:
           description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update DNSSEC data
       tags:
       - domain
@@ -12021,6 +12086,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Disable DNSSEC for domains using our nameservers
       tags:
       - domain
@@ -12073,6 +12139,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Enable DNSSEC for domains using our nameservers
       tags:
       - domain
@@ -12118,6 +12185,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Renew a domain
       tags:
       - domain
@@ -12159,6 +12227,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Restore an eligible domain (during redemption period)
       tags:
       - domain
@@ -12219,6 +12288,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Cancel a domain transfer
       tags:
       - domain
@@ -12311,6 +12381,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all email forwards
       tags:
       - email_forward
@@ -12389,6 +12460,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create email forward configuration
       tags:
       - email_forward
@@ -12445,6 +12517,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete email forward configuration
       tags:
       - email_forward
@@ -12515,6 +12588,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get email forward configuration
       tags:
       - email_forward
@@ -12603,6 +12677,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create email forward alias
       tags:
       - email_forward
@@ -12680,6 +12755,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete email forward alias
       tags:
       - email_forward
@@ -12766,6 +12842,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update email forward alias
       tags:
       - email_forward
@@ -12834,6 +12911,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Disable email forwarding
       tags:
       - email_forward
@@ -12901,6 +12979,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Enable email forwarding
       tags:
       - email_forward
@@ -12990,6 +13069,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Retrieve email forward metrics
       tags:
       - email_forward
@@ -13095,6 +13175,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get pending events
       tags:
       - event
@@ -13154,6 +13235,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get event
       tags:
       - event
@@ -13208,6 +13290,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Acknowledge event
       tags:
       - event
@@ -13272,6 +13355,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all organizations
       tags:
       - organization
@@ -13323,6 +13407,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create an organization
       tags:
       - organization
@@ -13398,6 +13483,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List organization attributes
       tags:
       - organization
@@ -13469,6 +13555,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update organization attributes
       tags:
       - organization
@@ -13545,6 +13632,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List organization attributes
       tags:
       - organization
@@ -13617,6 +13705,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update organization attributes
       tags:
       - organization
@@ -13673,6 +13762,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List IP restrictions
       tags:
       - organization
@@ -13730,6 +13820,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create an IP restriction
       tags:
       - organization
@@ -13782,6 +13873,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete an IP restriction
       tags:
       - organization
@@ -13841,6 +13933,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get an IP restriction
       tags:
       - organization
@@ -13905,6 +13998,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update an IP restriction
       tags:
       - organization
@@ -13950,6 +14044,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all roles
       tags:
       - organization
@@ -14014,6 +14109,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all users
       tags:
       - organization
@@ -14068,6 +14164,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete an organization
       tags:
       - organization
@@ -14125,6 +14222,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get organization details
       tags:
       - organization
@@ -14188,6 +14286,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update an organization
       tags:
       - organization
@@ -14239,6 +14338,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all invoices for the organization
       tags:
       - organization
@@ -14319,6 +14419,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List product prices
       tags:
       - organization
@@ -14475,6 +14576,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List all transactions
       tags:
       - organization
@@ -14544,6 +14646,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get a specific transaction
       tags:
       - organization
@@ -14644,6 +14747,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: List parking entries
       tags:
       - parking
@@ -14689,6 +14793,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get list of Specifications for all TLDs we support
       tags:
       - tld
@@ -14714,6 +14819,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get the list of TLDs we support
       tags:
       - tld
@@ -14755,6 +14861,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get the TLD specification
       tags:
       - tld
@@ -14783,6 +14890,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Create a user
       tags:
       - user
@@ -14893,6 +15001,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Delete a user
       tags:
       - user
@@ -14936,6 +15045,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get a user
       tags:
       - user
@@ -14975,6 +15085,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update a user
       tags:
       - user
@@ -15009,6 +15120,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get user permissions
       tags:
       - user
@@ -15043,6 +15155,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Get user roles
       tags:
       - user
@@ -15082,6 +15195,7 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
       summary: Update user roles
       tags:
       - user
