@@ -4634,6 +4634,45 @@ export type GET_OrganizationsUsers_Request = {
 export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Request['parameters']['query'];
 
 /**
+ * Request type for GET Parking endpoint
+ *
+ * List parking entries
+ * Retrieves a paginated list of parking entries for the organization
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET Parking endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/parking
+ *
+ * @see {@link GET_Parking_Request_Query} - Query parameters type
+ * @see {@link GET_Parking_Request_Path} - Path parameters type
+ * @see {@link GET_Parking_Request_Body} - Request body type
+ */
+export type GET_Parking_Request = {
+  parameters: {
+    query: operations['list_parking_v1_parking_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/parking
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/parking endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/parking
+ */
+export type GET_Parking_Request_Query = GET_Parking_Request['parameters']['query'];
+
+/**
  * Request type for GET Tlds endpoint
  *
  * Get list of Specifications for all TLDs we support

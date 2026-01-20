@@ -1548,6 +1548,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/parking": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List parking entries
+         * @description Retrieves a paginated list of parking entries for the organization
+         */
+        get: operations["list_parking_v1_parking_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/tlds/": {
         parameters: {
             query?: never;
@@ -1903,6 +1923,11 @@ export interface components {
             /** Unique */
             unique: number;
         };
+        /**
+         * ComplianceStatus
+         * @enum {string}
+         */
+        ComplianceStatus: "preparing" | "pending" | "approved" | "disapproved";
         /**
          * ContactAttributeDefinition
          * @description Definition of a possible attribute for a TLD.
@@ -4970,6 +4995,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["Organization"][];
         };
+        /** Pagination[ParkingResponse] */
+        Pagination_ParkingResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["ParkingResponse"][];
+        };
         /** Pagination[RequestHistory] */
         Pagination_RequestHistory_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -4982,6 +5013,60 @@ export interface components {
             /** Results */
             results: components["schemas"]["UserPublic"][];
         };
+        /** ParkingResponse */
+        ParkingResponse: {
+            /** @description The compliance status of the parking ad */
+            compliance_status?: components["schemas"]["ComplianceStatus"] | null;
+            /**
+             * Content Language
+             * @description The primary language code for the ad content
+             */
+            content_language?: string | null;
+            /**
+             * Content Url
+             * @description The content URL for approved parking ads
+             */
+            content_url?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the parking entry was created
+             */
+            created_on: Date;
+            /**
+             * Domain
+             * @description The domain name for the parking ad
+             */
+            domain: string;
+            /**
+             * Enabled
+             * @description Whether parking is enabled
+             */
+            enabled: boolean;
+            /**
+             * Note
+             * @description Additional notes about the parking ad
+             */
+            note?: string | null;
+            /**
+             * Parking Id
+             * Format: typeid
+             * @description Unique identifier for the parking entry
+             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             */
+            parking_id: TypeId<"parking">;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description When the parking entry was last updated
+             */
+            updated_on: Date;
+        };
+        /**
+         * ParkingSortField
+         * @enum {string}
+         */
+        ParkingSortField: "domain" | "created_on" | "updated_on";
         /** PasswordUpdate */
         PasswordUpdate: {
             /**
@@ -12520,6 +12605,75 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["BillingTransactionResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_parking_v1_parking_get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["ParkingSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                search?: string | null;
+                enabled?: boolean | null;
+                compliance_status?: components["schemas"]["ComplianceStatus"] | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_ParkingResponse_"];
                 };
             };
             /** @description Unauthorized */

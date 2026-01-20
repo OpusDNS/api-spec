@@ -223,6 +223,14 @@ components:
       - unique
       title: BrowserStatsBucket
       type: object
+    ComplianceStatus:
+      enum:
+      - preparing
+      - pending
+      - approved
+      - disapproved
+      title: ComplianceStatus
+      type: string
     ContactAttributeDefinition:
       description: Definition of a possible attribute for a TLD.
       properties:
@@ -4850,6 +4858,20 @@ components:
       - pagination
       title: Pagination[Organization]
       type: object
+    Pagination_ParkingResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/ParkingResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[ParkingResponse]
+      type: object
     Pagination_RequestHistory_:
       properties:
         pagination:
@@ -4878,6 +4900,73 @@ components:
       - pagination
       title: Pagination[UserPublic]
       type: object
+    ParkingResponse:
+      properties:
+        compliance_status:
+          anyOf:
+          - $ref: '#/components/schemas/ComplianceStatus'
+          - type: 'null'
+          description: The compliance status of the parking ad
+        content_language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The primary language code for the ad content
+          title: Content Language
+        content_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The content URL for approved parking ads
+          title: Content Url
+        created_on:
+          description: When the parking entry was created
+          format: date-time
+          title: Created On
+          type: string
+        domain:
+          description: The domain name for the parking ad
+          title: Domain
+          type: string
+        enabled:
+          description: Whether parking is enabled
+          title: Enabled
+          type: boolean
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional notes about the parking ad
+          title: Note
+        parking_id:
+          description: Unique identifier for the parking entry
+          examples:
+          - parking_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Parking Id
+          type: string
+          x-typeid-prefix: parking
+        updated_on:
+          description: When the parking entry was last updated
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - parking_id
+      - domain
+      - enabled
+      - created_on
+      - updated_on
+      title: ParkingResponse
+      type: object
+    ParkingSortField:
+      enum:
+      - domain
+      - created_on
+      - updated_on
+      title: ParkingSortField
+      type: string
     PasswordUpdate:
       properties:
         new_password:
@@ -6659,7 +6748,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-19-102149
+  version: 2026-01-20-080953
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -14458,6 +14547,106 @@ paths:
       summary: Get a specific transaction
       tags:
       - organization
+  /v1/parking:
+    get:
+      description: Retrieves a paginated list of parking entries for the organization
+      operationId: list_parking_v1_parking_get
+      parameters:
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/ParkingSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: search
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Search
+      - in: query
+        name: enabled
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Enabled
+      - in: query
+        name: compliance_status
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/ComplianceStatus'
+          - type: 'null'
+          title: Compliance Status
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_ParkingResponse_'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: List parking entries
+      tags:
+      - parking
   /v1/tlds/:
     get:
       description: Retrieves a list of TLD Specifications we have support for

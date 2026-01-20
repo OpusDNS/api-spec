@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -358,6 +358,60 @@ export const BILLING_TRANSACTION_STATUS_VALUES = [
   'failed',
   'canceled'
 ] as const satisfies [string, ...string[]] | BillingTransactionStatus[];
+
+/**
+ * ComplianceStatus. Auto-generated enum for ComplianceStatus
+ *
+ * @remarks
+ * This constant provides both object and array forms for the ComplianceStatus enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = COMPLIANCE_STATUS.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = COMPLIANCE_STATUS_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link ComplianceStatus} - The TypeScript type definition
+ */
+export const COMPLIANCE_STATUS = {
+  PREPARING: "preparing",
+  PENDING: "pending",
+  APPROVED: "approved",
+  DISAPPROVED: "disapproved",
+} as const satisfies Record<string, ComplianceStatus>;
+
+/**
+ * Array of all ComplianceStatus enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid ComplianceStatus enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of COMPLIANCE_STATUS_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = COMPLIANCE_STATUS_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link ComplianceStatus} - The TypeScript type definition
+ * @see {@link COMPLIANCE_STATUS} - The object form of this enum
+ */
+export const COMPLIANCE_STATUS_VALUES = [
+  'preparing',
+  'pending',
+  'approved',
+  'disapproved'
+] as const satisfies [string, ...string[]] | ComplianceStatus[];
 
 /**
  * ContactSortField. Auto-generated enum for ContactSortField
@@ -2496,6 +2550,58 @@ export const ORGANIZATION_STATUS_VALUES = [
   'active',
   'inactive'
 ] as const satisfies [string, ...string[]] | OrganizationStatus[];
+
+/**
+ * ParkingSortField. Auto-generated enum for ParkingSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the ParkingSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = PARKING_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = PARKING_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link ParkingSortField} - The TypeScript type definition
+ */
+export const PARKING_SORT_FIELD = {
+  DOMAIN: "domain",
+  CREATED_ON: "created_on",
+  UPDATED_ON: "updated_on",
+} as const satisfies Record<string, ParkingSortField>;
+
+/**
+ * Array of all ParkingSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid ParkingSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of PARKING_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = PARKING_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link ParkingSortField} - The TypeScript type definition
+ * @see {@link PARKING_SORT_FIELD} - The object form of this enum
+ */
+export const PARKING_SORT_FIELD_VALUES = [
+  'domain',
+  'created_on',
+  'updated_on'
+] as const satisfies [string, ...string[]] | ParkingSortField[];
 
 /**
  * PatchOp. Auto-generated enum for PatchOp

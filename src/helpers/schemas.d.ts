@@ -203,6 +203,22 @@ export type BillingTransactionStatus = components['schemas']['BillingTransaction
  */
 export type BrowserStatsBucket = components['schemas']['BrowserStatsBucket'];
 /**
+ * ComplianceStatus
+ *
+ * @remarks
+ * Type alias for the `ComplianceStatus` OpenAPI schema.
+ * This type represents compliancestatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getComplianceStatus();
+ * const item: ComplianceStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ComplianceStatus = components['schemas']['ComplianceStatus'];
+/**
  * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
  *
  * @remarks
@@ -3072,6 +3088,22 @@ export type Pagination_ObjectLog = components['schemas']['Pagination_ObjectLog_'
  */
 export type Pagination_Organization = components['schemas']['Pagination_Organization_'];
 /**
+ * Pagination[ParkingResponse]
+ *
+ * @remarks
+ * Type alias for the `Pagination_ParkingResponse_` OpenAPI schema.
+ * This type represents pagination[parkingresponse] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_Parking();
+ * const item: Pagination_Parking = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_Parking = components['schemas']['Pagination_ParkingResponse_'];
+/**
  * Pagination[RequestHistory]
  *
  * @remarks
@@ -3103,6 +3135,38 @@ export type Pagination_RequestHistory = components['schemas']['Pagination_Reques
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_UserPublic = components['schemas']['Pagination_UserPublic_'];
+/**
+ * ParkingResponse
+ *
+ * @remarks
+ * Type alias for the `ParkingResponse` OpenAPI schema.
+ * This type represents parkingresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParking();
+ * const item: Parking = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Parking = components['schemas']['ParkingResponse'];
+/**
+ * ParkingSortField
+ *
+ * @remarks
+ * Type alias for the `ParkingSortField` OpenAPI schema.
+ * This type represents parkingsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingSortField();
+ * const item: ParkingSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingSortField = components['schemas']['ParkingSortField'];
 /**
  * PasswordUpdate
  *
