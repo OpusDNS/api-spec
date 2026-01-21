@@ -1059,6 +1059,11 @@ components:
       type: object
     DnsRecordResponse:
       properties:
+        protected:
+          default: false
+          description: Whether the record is protected
+          title: Protected
+          type: boolean
         rdata:
           title: Rdata
           type: string
@@ -6750,7 +6755,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-20-175334
+  version: 2026-01-21-134818
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8372,14 +8377,17 @@ paths:
                       rrsets:
                       - name: example.com.
                         records:
-                        - rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
+                        - protected: false
+                          rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
                             10800 3600 604800 300
                         ttl: 3600
                         type: SOA
                       - name: example.com.
                         records:
-                        - rdata: ns1.opusdns.com.
-                        - rdata: ns2.opusdns.net.
+                        - protected: false
+                          rdata: ns1.opusdns.com.
+                        - protected: false
+                          rdata: ns2.opusdns.net.
                         ttl: 3600
                         type: NS
                       updated_on: '2025-11-18T12:43:35Z'

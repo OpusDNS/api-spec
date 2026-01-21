@@ -4421,6 +4421,32 @@ export const KEYS_DNS_RECORD_PATCH_OP = [
 ] as const satisfies (keyof DnsRecordPatchOp)[];
 
 /**
+ * Protected
+ *
+ * Whether the record is protected
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected` property of DnsRecord objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrecord[KEY_DNS_RECORD_PROTECTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RECORD_PROTECTED;
+ * const value = dnsrecord[propertyName];
+ * ```
+ *
+ * @see {@link DnsRecord} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RECORD} - Array of all keys for this type
+ */
+export const KEY_DNS_RECORD_PROTECTED: keyof DnsRecord = 'protected';
+/**
  * Rdata
  *
  *
@@ -4467,6 +4493,7 @@ export const KEY_DNS_RECORD_RDATA: keyof DnsRecord = 'rdata';
  * @see {@link DnsRecord} - The TypeScript type definition
  */
 export const KEYS_DNS_RECORD = [
+  KEY_DNS_RECORD_PROTECTED,
   KEY_DNS_RECORD_RDATA,
 ] as const satisfies (keyof DnsRecord)[];
 

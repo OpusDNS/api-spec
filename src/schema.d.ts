@@ -2537,6 +2537,12 @@ export interface components {
         };
         /** DnsRecordResponse */
         DnsRecordResponse: {
+            /**
+             * Protected
+             * @description Whether the record is protected
+             * @default false
+             */
+            protected: boolean;
             /** Rdata */
             rdata: string;
         };
