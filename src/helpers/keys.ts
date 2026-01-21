@@ -156,7 +156,9 @@ import { OrganizationToken } from './schemas';
 import { OrganizationUpdate } from './schemas';
 import { OrganizationWithBillingData } from './schemas';
 import { PaginationMetadata } from './schemas';
+import { ParkingMetrics } from './schemas';
 import { Parking } from './schemas';
+import { ParkingStatistics } from './schemas';
 import { PasswordUpdate } from './schemas';
 import { Period } from './schemas';
 import { PermissionSet } from './schemas';
@@ -19222,6 +19224,83 @@ export const KEYS_PAGINATION_METADATA = [
 ] as const satisfies (keyof PaginationMetadata)[];
 
 /**
+ * Parking Id
+ *
+ * Unique identifier for the parking entry
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking_id` property of ParkingMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingmetrics[KEY_PARKING_METRICS_PARKING_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_METRICS_PARKING_ID;
+ * const value = parkingmetrics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingMetrics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_METRICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_METRICS_PARKING_ID: keyof ParkingMetrics = 'parking_id';
+/**
+ * statistics property
+ *
+ * Statistics for the parking entry
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `statistics` property of ParkingMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingmetrics[KEY_PARKING_METRICS_STATISTICS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_METRICS_STATISTICS;
+ * const value = parkingmetrics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingMetrics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_METRICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_METRICS_STATISTICS: keyof ParkingMetrics = 'statistics';
+
+/**
+ * Array of all ParkingMetrics property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingMetrics objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_METRICS) {
+ *   console.log(`Property: ${key}, Value: ${parkingmetrics[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_METRICS.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingMetrics} - The TypeScript type definition
+ */
+export const KEYS_PARKING_METRICS = [
+  KEY_PARKING_METRICS_PARKING_ID,
+  KEY_PARKING_METRICS_STATISTICS,
+] as const satisfies (keyof ParkingMetrics)[];
+
+/**
  * compliance_status property
  *
  * The compliance status of the parking ad
@@ -19483,6 +19562,192 @@ export const KEYS_PARKING = [
   KEY_PARKING_PARKING_ID,
   KEY_PARKING_UPDATED_ON,
 ] as const satisfies (keyof Parking)[];
+
+/**
+ * Conversions
+ *
+ * Number of conversions
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `conversions` property of ParkingStatistics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingstatistics[KEY_PARKING_STATISTICS_CONVERSIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_STATISTICS_CONVERSIONS;
+ * const value = parkingstatistics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_STATISTICS_CONVERSIONS: keyof ParkingStatistics = 'conversions';
+/**
+ * Profit
+ *
+ * Total profit
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `profit` property of ParkingStatistics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingstatistics[KEY_PARKING_STATISTICS_PROFIT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_STATISTICS_PROFIT;
+ * const value = parkingstatistics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_STATISTICS_PROFIT: keyof ParkingStatistics = 'profit';
+/**
+ * Revenue
+ *
+ * Total revenue
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `revenue` property of ParkingStatistics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingstatistics[KEY_PARKING_STATISTICS_REVENUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_STATISTICS_REVENUE;
+ * const value = parkingstatistics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_STATISTICS_REVENUE: keyof ParkingStatistics = 'revenue';
+/**
+ * Rpc
+ *
+ * Revenue per click
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rpc` property of ParkingStatistics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingstatistics[KEY_PARKING_STATISTICS_RPC];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_STATISTICS_RPC;
+ * const value = parkingstatistics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_STATISTICS_RPC: keyof ParkingStatistics = 'rpc';
+/**
+ * Rpm
+ *
+ * Revenue per mille (thousand views)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rpm` property of ParkingStatistics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingstatistics[KEY_PARKING_STATISTICS_RPM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_STATISTICS_RPM;
+ * const value = parkingstatistics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_STATISTICS_RPM: keyof ParkingStatistics = 'rpm';
+/**
+ * Views
+ *
+ * Number of views
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `views` property of ParkingStatistics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingstatistics[KEY_PARKING_STATISTICS_VIEWS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_STATISTICS_VIEWS;
+ * const value = parkingstatistics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_STATISTICS_VIEWS: keyof ParkingStatistics = 'views';
+
+/**
+ * Array of all ParkingStatistics property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingStatistics objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_STATISTICS) {
+ *   console.log(`Property: ${key}, Value: ${parkingstatistics[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_STATISTICS.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ */
+export const KEYS_PARKING_STATISTICS = [
+  KEY_PARKING_STATISTICS_CONVERSIONS,
+  KEY_PARKING_STATISTICS_PROFIT,
+  KEY_PARKING_STATISTICS_REVENUE,
+  KEY_PARKING_STATISTICS_RPC,
+  KEY_PARKING_STATISTICS_RPM,
+  KEY_PARKING_STATISTICS_VIEWS,
+] as const satisfies (keyof ParkingStatistics)[];
 
 /**
  * New Password

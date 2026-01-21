@@ -3136,6 +3136,22 @@ export type Pagination_RequestHistory = components['schemas']['Pagination_Reques
  */
 export type Pagination_UserPublic = components['schemas']['Pagination_UserPublic_'];
 /**
+ * ParkingMetricsResponse
+ *
+ * @remarks
+ * Type alias for the `ParkingMetricsResponse` OpenAPI schema.
+ * This type represents parkingmetricsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingMetrics();
+ * const item: ParkingMetrics = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingMetrics = components['schemas']['ParkingMetricsResponse'];
+/**
  * ParkingResponse
  *
  * @remarks
@@ -3167,6 +3183,22 @@ export type Parking = components['schemas']['ParkingResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ParkingSortField = components['schemas']['ParkingSortField'];
+/**
+ * ParkingStatistics
+ *
+ * @remarks
+ * Type alias for the `ParkingStatistics` OpenAPI schema.
+ * This type represents parkingstatistics data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingStatistics();
+ * const item: ParkingStatistics = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingStatistics = components['schemas']['ParkingStatistics'];
 /**
  * PasswordUpdate
  *

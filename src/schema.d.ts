@@ -1568,6 +1568,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/parking/{parking_id}/metrics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get metrics for a parking entry
+         * @description Retrieves metrics for a specific parking entry by ID
+         */
+        get: operations["get_parking_metrics_v1_parking__parking_id__metrics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/tlds/": {
         parameters: {
             query?: never;
@@ -5019,6 +5039,18 @@ export interface components {
             /** Results */
             results: components["schemas"]["UserPublic"][];
         };
+        /** ParkingMetricsResponse */
+        ParkingMetricsResponse: {
+            /**
+             * Parking Id
+             * Format: typeid
+             * @description Unique identifier for the parking entry
+             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             */
+            parking_id: TypeId<"parking">;
+            /** @description Statistics for the parking entry */
+            statistics: components["schemas"]["ParkingStatistics"];
+        };
         /** ParkingResponse */
         ParkingResponse: {
             /** @description The compliance status of the parking ad */
@@ -5073,6 +5105,39 @@ export interface components {
          * @enum {string}
          */
         ParkingSortField: "domain" | "created_on" | "updated_on";
+        /** ParkingStatistics */
+        ParkingStatistics: {
+            /**
+             * Conversions
+             * @description Number of conversions
+             */
+            conversions: number;
+            /**
+             * Profit
+             * @description Total profit
+             */
+            profit: string;
+            /**
+             * Revenue
+             * @description Total revenue
+             */
+            revenue: string;
+            /**
+             * Rpc
+             * @description Revenue per click
+             */
+            rpc: string;
+            /**
+             * Rpm
+             * @description Revenue per mille (thousand views)
+             */
+            rpm: string;
+            /**
+             * Views
+             * @description Number of views
+             */
+            views: number;
+        };
         /** PasswordUpdate */
         PasswordUpdate: {
             /**
@@ -12710,6 +12775,85 @@ export interface operations {
                      *       "status": 403,
                      *       "title": "Permission Denied",
                      *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_parking_metrics_v1_parking__parking_id__metrics_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                parking_id: TypeId<"parking">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ParkingMetricsResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PARKING_NOT_FOUND",
+                     *       "detail": "Parking not found for domain: parking_abc123",
+                     *       "status": 404,
+                     *       "title": "Parking Error",
+                     *       "type": "parking-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

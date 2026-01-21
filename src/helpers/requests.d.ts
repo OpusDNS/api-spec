@@ -4673,6 +4673,45 @@ export type GET_Parking_Request = {
 export type GET_Parking_Request_Query = GET_Parking_Request['parameters']['query'];
 
 /**
+ * Request type for GET ParkingParkingIdMetrics endpoint
+ *
+ * Get metrics for a parking entry
+ * Retrieves metrics for a specific parking entry by ID
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ParkingParkingIdMetrics endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/parking/{parking_id}/metrics
+ *
+ * @see {@link GET_ParkingParkingIdMetrics_Request_Query} - Query parameters type
+ * @see {@link GET_ParkingParkingIdMetrics_Request_Path} - Path parameters type
+ * @see {@link GET_ParkingParkingIdMetrics_Request_Body} - Request body type
+ */
+export type GET_ParkingParkingIdMetrics_Request = {
+  parameters: {
+    path: operations['get_parking_metrics_v1_parking__parking_id__metrics_get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/parking/{parking_id}/metrics
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/parking/{parking_id}/metrics endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/parking/{parking_id}/metrics
+ */
+export type GET_ParkingParkingIdMetrics_Request_Path = GET_ParkingParkingIdMetrics_Request['parameters']['path'];
+
+/**
  * Request type for GET Tlds endpoint
  *
  * Get list of Specifications for all TLDs we support
