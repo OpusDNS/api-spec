@@ -5577,6 +5577,12 @@ export interface components {
             launch_phases?: components["schemas"]["LaunchPhasesBase"] | null;
             /** @description Local presence requirements */
             local_presence?: components["schemas"]["LocalPresenceBase"] | null;
+            /**
+             * Parking Enabled
+             * @description Whether parking is enabled for this TLD
+             * @default false
+             */
+            parking_enabled: boolean;
             /** @description Premium domains configuration */
             premium_domains?: components["schemas"]["PremiumDomainsBase"] | null;
             /** @description RDAP configuration */

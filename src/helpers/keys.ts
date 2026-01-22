@@ -22209,6 +22209,32 @@ export const KEY_TLD_SPECIFICATION_LAUNCH_PHASES: keyof TldSpecification = 'laun
  */
 export const KEY_TLD_SPECIFICATION_LOCAL_PRESENCE: keyof TldSpecification = 'local_presence';
 /**
+ * Parking Enabled
+ *
+ * Whether parking is enabled for this TLD
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking_enabled` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_PARKING_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_PARKING_ENABLED;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_PARKING_ENABLED: keyof TldSpecification = 'parking_enabled';
+/**
  * premium_domains property
  *
  * Premium domains configuration
@@ -22414,6 +22440,7 @@ export const KEYS_TLD_SPECIFICATION = [
   KEY_TLD_SPECIFICATION_IDN,
   KEY_TLD_SPECIFICATION_LAUNCH_PHASES,
   KEY_TLD_SPECIFICATION_LOCAL_PRESENCE,
+  KEY_TLD_SPECIFICATION_PARKING_ENABLED,
   KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS,
   KEY_TLD_SPECIFICATION_RDAP,
   KEY_TLD_SPECIFICATION_REGISTRY_LOCK,
