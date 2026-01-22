@@ -287,7 +287,9 @@ components:
           title: Country
           type: string
         disclose:
-          description: Whether the contact should be disclosed
+          description: Whether the contact details should be disclosed. The Disclose
+            function may not work with all TLDs. Some registries still display the
+            data in Whois if, for example, the organization field is filled in.
           title: Disclose
           type: boolean
         email:
@@ -412,7 +414,9 @@ components:
           title: Country
           type: string
         disclose:
-          description: Whether the contact should be disclosed
+          description: Whether the contact details should be disclosed. The Disclose
+            function may not work with all TLDs. Some registries still display the
+            data in Whois if, for example, the organization field is filled in.
           title: Disclose
           type: boolean
         email:
@@ -537,7 +541,9 @@ components:
           description: The date/time the entry was deleted on
           title: Deleted On
         disclose:
-          description: Whether the contact should be disclosed
+          description: Whether the contact details should be disclosed. The Disclose
+            function may not work with all TLDs. Some registries still display the
+            data in Whois if, for example, the organization field is filled in.
           title: Disclose
           type: boolean
         email:
@@ -6818,7 +6824,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-22-101607
+  version: 2026-01-22-170829
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

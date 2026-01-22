@@ -1992,7 +1992,7 @@ export interface components {
             country: string;
             /**
              * Disclose
-             * @description Whether the contact should be disclosed
+             * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
              */
             disclose: boolean;
             /**
@@ -2084,7 +2084,7 @@ export interface components {
             country: string;
             /**
              * Disclose
-             * @description Whether the contact should be disclosed
+             * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
              */
             disclose: boolean;
             /**
@@ -2185,7 +2185,7 @@ export interface components {
             deleted_on?: Date | null;
             /**
              * Disclose
-             * @description Whether the contact should be disclosed
+             * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
              */
             disclose: boolean;
             /**

@@ -1298,7 +1298,7 @@ export const KEY_CONTACT_CREATE_COUNTRY: keyof ContactCreate = 'country';
 /**
  * Disclose
  *
- * Whether the contact should be disclosed
+ * Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
  *
  * @type {boolean}
  *
@@ -1746,7 +1746,7 @@ export const KEY_CONTACT_COUNTRY: keyof Contact = 'country';
 /**
  * Disclose
  *
- * Whether the contact should be disclosed
+ * Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
  *
  * @type {boolean}
  *
@@ -2270,7 +2270,7 @@ export const KEY_CONTACT_SCHEMA_DELETED_ON: keyof ContactSchema = 'deleted_on';
 /**
  * Disclose
  *
- * Whether the contact should be disclosed
+ * Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
  *
  * @type {boolean}
  *
