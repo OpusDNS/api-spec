@@ -3200,6 +3200,22 @@ export type ParkingSortField = components['schemas']['ParkingSortField'];
  */
 export type ParkingStatistics = components['schemas']['ParkingStatistics'];
 /**
+ * ParkingTotalMetricsResponse
+ *
+ * @remarks
+ * Type alias for the `ParkingTotalMetricsResponse` OpenAPI schema.
+ * This type represents parkingtotalmetricsresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingTotalMetrics();
+ * const item: ParkingTotalMetrics = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingTotalMetrics = components['schemas']['ParkingTotalMetricsResponse'];
+/**
  * PasswordUpdate
  *
  * @remarks

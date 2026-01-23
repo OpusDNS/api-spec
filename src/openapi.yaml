@@ -4913,21 +4913,23 @@ components:
       type: object
     ParkingMetricsResponse:
       properties:
-        parking_id:
-          description: Unique identifier for the parking entry
-          examples:
-          - parking_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Parking Id
-          type: string
-          x-typeid-prefix: parking
-        statistics:
+        metrics:
           $ref: '#/components/schemas/ParkingStatistics'
-          description: Statistics for the parking entry
+          description: Metrics for the parking entry
+        renewal_cost:
+          description: Yearly renewal cost for the parked domain
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Renewal Cost
+          type: string
+        revenue_progress:
+          description: Revenue progress percentage towards covering renewal cost
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Revenue Progress
+          type: string
       required:
-      - parking_id
-      - statistics
+      - metrics
+      - renewal_cost
+      - revenue_progress
       title: ParkingMetricsResponse
       type: object
     ParkingResponse:
@@ -5003,11 +5005,6 @@ components:
           description: Number of conversions
           title: Conversions
           type: integer
-        profit:
-          description: Total profit
-          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
-          title: Profit
-          type: string
         revenue:
           description: Total revenue
           pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
@@ -5033,8 +5030,21 @@ components:
       - rpc
       - rpm
       - revenue
-      - profit
       title: ParkingStatistics
+      type: object
+    ParkingTotalMetricsResponse:
+      properties:
+        total_count:
+          description: Total number of parking entries
+          title: Total Count
+          type: integer
+        total_metrics:
+          $ref: '#/components/schemas/ParkingStatistics'
+          description: Aggregated metrics for all parking entries
+      required:
+      - total_count
+      - total_metrics
+      title: ParkingTotalMetricsResponse
       type: object
     PasswordUpdate:
       properties:
@@ -6824,7 +6834,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-22-170829
+  version: 2026-01-23-124110
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -14831,6 +14841,72 @@ paths:
       summary: List parking entries
       tags:
       - parking
+  /v1/parking/metrics:
+    get:
+      description: Retrieves aggregated metrics for all parking entries of the organization
+      operationId: get_total_parking_metrics_v1_parking_metrics_get
+      parameters:
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParkingTotalMetricsResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get total metrics for all parking entries
+      tags:
+      - parking
   /v1/parking/{parking_id}/metrics:
     get:
       description: Retrieves metrics for a specific parking entry by ID
@@ -14847,6 +14923,24 @@ paths:
           title: Parking Id
           type: string
           x-typeid-prefix: parking
+      - in: query
+        name: start_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Start Time
+      - in: query
+        name: end_time
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: End Time
       responses:
         '200':
           content:

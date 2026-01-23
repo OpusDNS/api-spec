@@ -159,6 +159,7 @@ import { PaginationMetadata } from './schemas';
 import { ParkingMetrics } from './schemas';
 import { Parking } from './schemas';
 import { ParkingStatistics } from './schemas';
+import { ParkingTotalMetrics } from './schemas';
 import { PasswordUpdate } from './schemas';
 import { Period } from './schemas';
 import { PermissionSet } from './schemas';
@@ -19224,56 +19225,82 @@ export const KEYS_PAGINATION_METADATA = [
 ] as const satisfies (keyof PaginationMetadata)[];
 
 /**
- * Parking Id
+ * metrics property
  *
- * Unique identifier for the parking entry
+ * Metrics for the parking entry
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `metrics` property of ParkingMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingmetrics[KEY_PARKING_METRICS_METRICS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_METRICS_METRICS;
+ * const value = parkingmetrics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingMetrics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_METRICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_METRICS_METRICS: keyof ParkingMetrics = 'metrics';
+/**
+ * Renewal Cost
+ *
+ * Yearly renewal cost for the parked domain
  *
  * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `parking_id` property of ParkingMetrics objects.
+ * This key constant provides type-safe access to the `renewal_cost` property of ParkingMetrics objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = parkingmetrics[KEY_PARKING_METRICS_PARKING_ID];
+ * const value = parkingmetrics[KEY_PARKING_METRICS_RENEWAL_COST];
  * 
  * // Dynamic property access
- * const propertyName = KEY_PARKING_METRICS_PARKING_ID;
+ * const propertyName = KEY_PARKING_METRICS_RENEWAL_COST;
  * const value = parkingmetrics[propertyName];
  * ```
  *
  * @see {@link ParkingMetrics} - The TypeScript type definition
  * @see {@link KEYS_PARKING_METRICS} - Array of all keys for this type
  */
-export const KEY_PARKING_METRICS_PARKING_ID: keyof ParkingMetrics = 'parking_id';
+export const KEY_PARKING_METRICS_RENEWAL_COST: keyof ParkingMetrics = 'renewal_cost';
 /**
- * statistics property
+ * Revenue Progress
  *
- * Statistics for the parking entry
+ * Revenue progress percentage towards covering renewal cost
  *
+ * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `statistics` property of ParkingMetrics objects.
+ * This key constant provides type-safe access to the `revenue_progress` property of ParkingMetrics objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = parkingmetrics[KEY_PARKING_METRICS_STATISTICS];
+ * const value = parkingmetrics[KEY_PARKING_METRICS_REVENUE_PROGRESS];
  * 
  * // Dynamic property access
- * const propertyName = KEY_PARKING_METRICS_STATISTICS;
+ * const propertyName = KEY_PARKING_METRICS_REVENUE_PROGRESS;
  * const value = parkingmetrics[propertyName];
  * ```
  *
  * @see {@link ParkingMetrics} - The TypeScript type definition
  * @see {@link KEYS_PARKING_METRICS} - Array of all keys for this type
  */
-export const KEY_PARKING_METRICS_STATISTICS: keyof ParkingMetrics = 'statistics';
+export const KEY_PARKING_METRICS_REVENUE_PROGRESS: keyof ParkingMetrics = 'revenue_progress';
 
 /**
  * Array of all ParkingMetrics property keys
@@ -19296,8 +19323,9 @@ export const KEY_PARKING_METRICS_STATISTICS: keyof ParkingMetrics = 'statistics'
  * @see {@link ParkingMetrics} - The TypeScript type definition
  */
 export const KEYS_PARKING_METRICS = [
-  KEY_PARKING_METRICS_PARKING_ID,
-  KEY_PARKING_METRICS_STATISTICS,
+  KEY_PARKING_METRICS_METRICS,
+  KEY_PARKING_METRICS_RENEWAL_COST,
+  KEY_PARKING_METRICS_REVENUE_PROGRESS,
 ] as const satisfies (keyof ParkingMetrics)[];
 
 /**
@@ -19590,32 +19618,6 @@ export const KEYS_PARKING = [
  */
 export const KEY_PARKING_STATISTICS_CONVERSIONS: keyof ParkingStatistics = 'conversions';
 /**
- * Profit
- *
- * Total profit
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `profit` property of ParkingStatistics objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = parkingstatistics[KEY_PARKING_STATISTICS_PROFIT];
- * 
- * // Dynamic property access
- * const propertyName = KEY_PARKING_STATISTICS_PROFIT;
- * const value = parkingstatistics[propertyName];
- * ```
- *
- * @see {@link ParkingStatistics} - The TypeScript type definition
- * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
- */
-export const KEY_PARKING_STATISTICS_PROFIT: keyof ParkingStatistics = 'profit';
-/**
  * Revenue
  *
  * Total revenue
@@ -19742,12 +19744,88 @@ export const KEY_PARKING_STATISTICS_VIEWS: keyof ParkingStatistics = 'views';
  */
 export const KEYS_PARKING_STATISTICS = [
   KEY_PARKING_STATISTICS_CONVERSIONS,
-  KEY_PARKING_STATISTICS_PROFIT,
   KEY_PARKING_STATISTICS_REVENUE,
   KEY_PARKING_STATISTICS_RPC,
   KEY_PARKING_STATISTICS_RPM,
   KEY_PARKING_STATISTICS_VIEWS,
 ] as const satisfies (keyof ParkingStatistics)[];
+
+/**
+ * Total Count
+ *
+ * Total number of parking entries
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_count` property of ParkingTotalMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingtotalmetrics[KEY_PARKING_TOTAL_METRICS_TOTAL_COUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_TOTAL_METRICS_TOTAL_COUNT;
+ * const value = parkingtotalmetrics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingTotalMetrics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_TOTAL_METRICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_TOTAL_METRICS_TOTAL_COUNT: keyof ParkingTotalMetrics = 'total_count';
+/**
+ * total_metrics property
+ *
+ * Aggregated metrics for all parking entries
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_metrics` property of ParkingTotalMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingtotalmetrics[KEY_PARKING_TOTAL_METRICS_TOTAL_METRICS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_TOTAL_METRICS_TOTAL_METRICS;
+ * const value = parkingtotalmetrics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingTotalMetrics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_TOTAL_METRICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_TOTAL_METRICS_TOTAL_METRICS: keyof ParkingTotalMetrics = 'total_metrics';
+
+/**
+ * Array of all ParkingTotalMetrics property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingTotalMetrics objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_TOTAL_METRICS) {
+ *   console.log(`Property: ${key}, Value: ${parkingtotalmetrics[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_TOTAL_METRICS.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingTotalMetrics} - The TypeScript type definition
+ */
+export const KEYS_PARKING_TOTAL_METRICS = [
+  KEY_PARKING_TOTAL_METRICS_TOTAL_COUNT,
+  KEY_PARKING_TOTAL_METRICS_TOTAL_METRICS,
+] as const satisfies (keyof ParkingTotalMetrics)[];
 
 /**
  * New Password
