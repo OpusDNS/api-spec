@@ -3088,22 +3088,6 @@ export type Pagination_ObjectLog = components['schemas']['Pagination_ObjectLog_'
  */
 export type Pagination_Organization = components['schemas']['Pagination_Organization_'];
 /**
- * Pagination[ParkingResponse]
- *
- * @remarks
- * Type alias for the `Pagination_ParkingResponse_` OpenAPI schema.
- * This type represents pagination[parkingresponse] data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getPagination_Parking();
- * const item: Pagination_Parking = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type Pagination_Parking = components['schemas']['Pagination_ParkingResponse_'];
-/**
  * Pagination[RequestHistory]
  *
  * @remarks
@@ -3151,22 +3135,6 @@ export type Pagination_UserPublic = components['schemas']['Pagination_UserPublic
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ParkingMetrics = components['schemas']['ParkingMetricsResponse'];
-/**
- * ParkingResponse
- *
- * @remarks
- * Type alias for the `ParkingResponse` OpenAPI schema.
- * This type represents parkingresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getParking();
- * const item: Parking = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type Parking = components['schemas']['ParkingResponse'];
 /**
  * ParkingSortField
  *

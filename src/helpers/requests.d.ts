@@ -4648,6 +4648,8 @@ export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Reques
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/parking
+ * @param page (query) - Page number
+ * @param page_size (query) - Page size
  *
  * @see {@link GET_Parking_Request_Query} - Query parameters type
  * @see {@link GET_Parking_Request_Path} - Path parameters type
@@ -4669,6 +4671,8 @@ export type GET_Parking_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/parking
+ * @param page (query) - Page number
+ * @param page_size (query) - Page size
  */
 export type GET_Parking_Request_Query = GET_Parking_Request['parameters']['query'];
 
@@ -4676,7 +4680,7 @@ export type GET_Parking_Request_Query = GET_Parking_Request['parameters']['query
  * Request type for GET ParkingMetrics endpoint
  *
  * Get total metrics for all parking entries
- * Retrieves aggregated metrics for all parking entries of the organization
+ * Retrieves aggregated metrics for all parking entries of the organization.
  *
  * @remarks
  * This type defines the complete request structure for the GET ParkingMetrics endpoint.
@@ -4715,7 +4719,7 @@ export type GET_ParkingMetrics_Request_Query = GET_ParkingMetrics_Request['param
  * Request type for GET ParkingParkingIdMetrics endpoint
  *
  * Get metrics for a parking entry
- * Retrieves metrics for a specific parking entry by ID
+ * Retrieves metrics for a specific parking entry by ID.
  *
  * @remarks
  * This type defines the complete request structure for the GET ParkingParkingIdMetrics endpoint.

@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, ParkingMetrics, ParkingTotalMetrics, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -8866,32 +8866,16 @@ export type GET_OrganizationsUsers_Response_422 = HTTPValidationError
 
  *
  * @path /v1/parking
+ * @param page (query) - Page number
+ * @param page_size (query) - Page size
  *
- * @see {@link GET_Parking_Response_200} - 200 response type
  * @see {@link GET_Parking_Response_401} - 401 response type
  * @see {@link GET_Parking_Response_403} - 403 response type
  * @see {@link GET_Parking_Response_422} - 422 response type
  *
 
  */
-export type GET_Parking_Response = GET_Parking_Response_200 | GET_Parking_Response_401 | GET_Parking_Response_403 | GET_Parking_Response_422;
-
-/**
- * 200 response for GET Parking endpoint
- *
- * @remarks
- * This type defines the response structure for the 200 status code
- * of the GET Parking endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/parking
- *
- * @see {@link GET_Parking_Response} - The main response type definition
- * @see {@link Pagination_Parking} - The actual schema type definition
- */
-export type GET_Parking_Response_200 = Pagination_Parking
+export type GET_Parking_Response = GET_Parking_Response_401 | GET_Parking_Response_403 | GET_Parking_Response_422;
 
 /**
  * 401 response for GET Parking endpoint
@@ -8904,6 +8888,8 @@ export type GET_Parking_Response_200 = Pagination_Parking
 
  *
  * @path /v1/parking
+ * @param page (query) - Page number
+ * @param page_size (query) - Page size
  *
  * @see {@link GET_Parking_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -8921,6 +8907,8 @@ export type GET_Parking_Response_401 = Problem
 
  *
  * @path /v1/parking
+ * @param page (query) - Page number
+ * @param page_size (query) - Page size
  *
  * @see {@link GET_Parking_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -8938,6 +8926,8 @@ export type GET_Parking_Response_403 = Problem
 
  *
  * @path /v1/parking
+ * @param page (query) - Page number
+ * @param page_size (query) - Page size
  *
  * @see {@link GET_Parking_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -8948,7 +8938,7 @@ export type GET_Parking_Response_422 = HTTPValidationError
  * Response types for GET ParkingByParkingIdMetrics endpoint
  *
  * Get metrics for a parking entry
- * Retrieves metrics for a specific parking entry by ID
+ * Retrieves metrics for a specific parking entry by ID.
  *
  * @remarks
  * This type defines all possible response structures for the GET ParkingByParkingIdMetrics endpoint.
@@ -9058,7 +9048,7 @@ export type GET_ParkingByParkingIdMetrics_Response_422 = HTTPValidationError
  * Response types for GET ParkingMetrics endpoint
  *
  * Get total metrics for all parking entries
- * Retrieves aggregated metrics for all parking entries of the organization
+ * Retrieves aggregated metrics for all parking entries of the organization.
  *
  * @remarks
  * This type defines all possible response structures for the GET ParkingMetrics endpoint.
