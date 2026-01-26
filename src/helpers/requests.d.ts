@@ -4648,8 +4648,6 @@ export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Reques
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/parking
- * @param page (query) - Page number
- * @param page_size (query) - Page size
  *
  * @see {@link GET_Parking_Request_Query} - Query parameters type
  * @see {@link GET_Parking_Request_Path} - Path parameters type
@@ -4671,8 +4669,6 @@ export type GET_Parking_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/parking
- * @param page (query) - Page number
- * @param page_size (query) - Page size
  */
 export type GET_Parking_Request_Query = GET_Parking_Request['parameters']['query'];
 

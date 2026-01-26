@@ -4869,6 +4869,20 @@ components:
       - pagination
       title: Pagination[Organization]
       type: object
+    Pagination_ParkingResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/ParkingResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[ParkingResponse]
+      type: object
     Pagination_RequestHistory_:
       properties:
         pagination:
@@ -4917,6 +4931,66 @@ components:
       - renewal_cost
       - revenue_progress
       title: ParkingMetricsResponse
+      type: object
+    ParkingResponse:
+      properties:
+        compliance_status:
+          anyOf:
+          - $ref: '#/components/schemas/ComplianceStatus'
+          - type: 'null'
+          description: The compliance status of the parking ad
+        content_language:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The primary language code for the ad content
+          title: Content Language
+        content_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The content URL for approved parking ads
+          title: Content Url
+        created_on:
+          description: When the parking entry was created
+          format: date-time
+          title: Created On
+          type: string
+        domain:
+          description: The domain name for the parking ad
+          title: Domain
+          type: string
+        enabled:
+          description: Whether parking is enabled
+          title: Enabled
+          type: boolean
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional notes about the parking ad
+          title: Note
+        parking_id:
+          description: Unique identifier for the parking entry
+          examples:
+          - parking_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Parking Id
+          type: string
+          x-typeid-prefix: parking
+        updated_on:
+          description: When the parking entry was last updated
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - parking_id
+      - domain
+      - enabled
+      - created_on
+      - updated_on
+      title: ParkingResponse
       type: object
     ParkingSortField:
       enum:
@@ -6760,7 +6834,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-25-132304
+  version: 2026-01-26-081410
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -14671,23 +14745,19 @@ paths:
       description: Retrieves a paginated list of parking entries for the organization
       operationId: list_parking_v1_parking_get
       parameters:
-      - description: Page number
-        in: query
+      - in: query
         name: page
         required: false
         schema:
           default: 1
-          description: Page number
           minimum: 1
           title: Page
           type: integer
-      - description: Page size
-        in: query
+      - in: query
         name: page_size
         required: false
         schema:
           default: 10
-          description: Page size
           maximum: 1000
           minimum: 1
           title: Page Size
@@ -14733,9 +14803,7 @@ paths:
           content:
             application/json:
               schema:
-                additionalProperties: true
-                title: Response List Parking V1 Parking Get
-                type: object
+                $ref: '#/components/schemas/Pagination_ParkingResponse_'
           description: Successful Response
         '401':
           content:

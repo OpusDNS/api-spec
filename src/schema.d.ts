@@ -5041,6 +5041,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["Organization"][];
         };
+        /** Pagination[ParkingResponse] */
+        Pagination_ParkingResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["ParkingResponse"][];
+        };
         /** Pagination[RequestHistory] */
         Pagination_RequestHistory_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -5067,6 +5073,55 @@ export interface components {
              * @description Revenue progress percentage towards covering renewal cost
              */
             revenue_progress: string;
+        };
+        /** ParkingResponse */
+        ParkingResponse: {
+            /** @description The compliance status of the parking ad */
+            compliance_status?: components["schemas"]["ComplianceStatus"] | null;
+            /**
+             * Content Language
+             * @description The primary language code for the ad content
+             */
+            content_language?: string | null;
+            /**
+             * Content Url
+             * @description The content URL for approved parking ads
+             */
+            content_url?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description When the parking entry was created
+             */
+            created_on: Date;
+            /**
+             * Domain
+             * @description The domain name for the parking ad
+             */
+            domain: string;
+            /**
+             * Enabled
+             * @description Whether parking is enabled
+             */
+            enabled: boolean;
+            /**
+             * Note
+             * @description Additional notes about the parking ad
+             */
+            note?: string | null;
+            /**
+             * Parking Id
+             * Format: typeid
+             * @description Unique identifier for the parking entry
+             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             */
+            parking_id: TypeId<"parking">;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description When the parking entry was last updated
+             */
+            updated_on: Date;
         };
         /**
          * ParkingSortField
@@ -12703,9 +12758,7 @@ export interface operations {
     list_parking_v1_parking_get: {
         parameters: {
             query?: {
-                /** @description Page number */
                 page?: number;
-                /** @description Page size */
                 page_size?: number;
                 sort_by?: components["schemas"]["ParkingSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
@@ -12725,9 +12778,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
+                    "application/json": components["schemas"]["Pagination_ParkingResponse_"];
                 };
             };
             /** @description Unauthorized */
