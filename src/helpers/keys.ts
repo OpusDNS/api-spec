@@ -6776,6 +6776,30 @@ export const KEY_DOMAIN_FORWARD_HTTP: keyof DomainForward = 'http';
  */
 export const KEY_DOMAIN_FORWARD_HTTPS: keyof DomainForward = 'https';
 /**
+ * Parking Id
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking_id` property of DomainForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforward[KEY_DOMAIN_FORWARD_PARKING_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_PARKING_ID;
+ * const value = domainforward[propertyName];
+ * ```
+ *
+ * @see {@link DomainForward} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_PARKING_ID: keyof DomainForward = 'parking_id';
+/**
  * Updated On
  *
  *
@@ -6827,6 +6851,7 @@ export const KEYS_DOMAIN_FORWARD = [
   KEY_DOMAIN_FORWARD_HOSTNAME,
   KEY_DOMAIN_FORWARD_HTTP,
   KEY_DOMAIN_FORWARD_HTTPS,
+  KEY_DOMAIN_FORWARD_PARKING_ID,
   KEY_DOMAIN_FORWARD_UPDATED_ON,
 ] as const satisfies (keyof DomainForward)[];
 

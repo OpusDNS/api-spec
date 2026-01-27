@@ -1621,6 +1621,16 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DomainForwardProtocolSetResponse'
           - type: 'null'
+        parking_id:
+          anyOf:
+          - examples:
+            - parking_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: parking
+          - type: 'null'
+          title: Parking Id
         updated_on:
           format: date-time
           title: Updated On
@@ -1630,6 +1640,7 @@ components:
       - enabled
       - updated_on
       - created_on
+      - parking_id
       title: DomainForward
       type: object
     DomainForwardBrowserStatsResponse:
@@ -6909,7 +6920,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-27-072036
+  version: 2026-01-27-110709
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

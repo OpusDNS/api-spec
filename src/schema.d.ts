@@ -2956,6 +2956,8 @@ export interface components {
             hostname: string;
             http?: components["schemas"]["DomainForwardProtocolSetResponse"] | null;
             https?: components["schemas"]["DomainForwardProtocolSetResponse"] | null;
+            /** Parking Id */
+            parking_id: TypeId<"parking"> | null;
             /**
              * Updated On
              * Format: date-time
