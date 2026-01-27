@@ -4911,6 +4911,30 @@ components:
       - pagination
       title: Pagination[UserPublic]
       type: object
+    ParkingAgreementAcceptance:
+      description: Parking agreement acceptance details.
+      properties:
+        accepted:
+          description: Whether the agreement has been accepted
+          title: Accepted
+          type: boolean
+        url:
+          description: URL where the parking agreement can be found
+          format: uri
+          maxLength: 2083
+          minLength: 1
+          title: Url
+          type: string
+        version:
+          description: Version of the parking agreement being accepted
+          title: Version
+          type: string
+      required:
+      - version
+      - accepted
+      - url
+      title: ParkingAgreementAcceptance
+      type: object
     ParkingMetricsResponse:
       properties:
         metrics:
@@ -4991,6 +5015,56 @@ components:
       - created_on
       - updated_on
       title: ParkingResponse
+      type: object
+    ParkingSignupRequest:
+      description: Request to sign up for parking (accept parking agreement).
+      properties:
+        agreement:
+          $ref: '#/components/schemas/ParkingAgreementAcceptance'
+          description: Parking agreement acceptance
+      required:
+      - agreement
+      title: ParkingSignupRequest
+      type: object
+    ParkingSignupResponse:
+      description: Response after parking signup.
+      properties:
+        agreement_stored:
+          description: Whether the agreement acceptance was stored
+          title: Agreement Stored
+          type: boolean
+        success:
+          description: Whether the signup was successful
+          title: Success
+          type: boolean
+      required:
+      - success
+      - agreement_stored
+      title: ParkingSignupResponse
+      type: object
+    ParkingSignupStatusResponse:
+      description: Response for checking parking signup status.
+      properties:
+        accepted_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the agreement was accepted
+          title: Accepted At
+        agreement_version:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Version of the accepted agreement
+          title: Agreement Version
+        has_accepted_agreement:
+          description: Whether the organization has accepted the parking agreement
+          title: Has Accepted Agreement
+          type: boolean
+      required:
+      - has_accepted_agreement
+      title: ParkingSignupStatusResponse
       type: object
     ParkingSortField:
       enum:
@@ -6835,7 +6909,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-26-201029
+  version: 2026-01-27-072036
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -14906,6 +14980,106 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Get total metrics for all parking entries
+      tags:
+      - parking
+  /v1/parking/signup:
+    post:
+      description: Accept the parking agreement to enable parking features for your
+        organization.
+      operationId: signup_for_parking_v1_parking_signup_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParkingSignupRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParkingSignupResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      summary: Sign up for parking
+      tags:
+      - parking
+  /v1/parking/signup/status:
+    get:
+      description: Check if your organization has accepted the parking agreement.
+      operationId: get_parking_signup_status_v1_parking_signup_status_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParkingSignupStatusResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get parking signup status
       tags:
       - parking
   /v1/parking/{parking_id}/metrics:

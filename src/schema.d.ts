@@ -1588,6 +1588,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/parking/signup": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Sign up for parking
+         * @description Accept the parking agreement to enable parking features for your organization.
+         */
+        post: operations["signup_for_parking_v1_parking_signup_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/parking/signup/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get parking signup status
+         * @description Check if your organization has accepted the parking agreement.
+         */
+        get: operations["get_parking_signup_status_v1_parking_signup_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/parking/{parking_id}/metrics": {
         parameters: {
             query?: never;
@@ -5059,6 +5099,28 @@ export interface components {
             /** Results */
             results: components["schemas"]["UserPublic"][];
         };
+        /**
+         * ParkingAgreementAcceptance
+         * @description Parking agreement acceptance details.
+         */
+        ParkingAgreementAcceptance: {
+            /**
+             * Accepted
+             * @description Whether the agreement has been accepted
+             */
+            accepted: boolean;
+            /**
+             * Url
+             * Format: uri
+             * @description URL where the parking agreement can be found
+             */
+            url: string;
+            /**
+             * Version
+             * @description Version of the parking agreement being accepted
+             */
+            version: string;
+        };
         /** ParkingMetricsResponse */
         ParkingMetricsResponse: {
             /** @description Metrics for the parking entry */
@@ -5122,6 +5184,51 @@ export interface components {
              * @description When the parking entry was last updated
              */
             updated_on: Date;
+        };
+        /**
+         * ParkingSignupRequest
+         * @description Request to sign up for parking (accept parking agreement).
+         */
+        ParkingSignupRequest: {
+            /** @description Parking agreement acceptance */
+            agreement: components["schemas"]["ParkingAgreementAcceptance"];
+        };
+        /**
+         * ParkingSignupResponse
+         * @description Response after parking signup.
+         */
+        ParkingSignupResponse: {
+            /**
+             * Agreement Stored
+             * @description Whether the agreement acceptance was stored
+             */
+            agreement_stored: boolean;
+            /**
+             * Success
+             * @description Whether the signup was successful
+             */
+            success: boolean;
+        };
+        /**
+         * ParkingSignupStatusResponse
+         * @description Response for checking parking signup status.
+         */
+        ParkingSignupStatusResponse: {
+            /**
+             * Accepted At
+             * @description When the agreement was accepted
+             */
+            accepted_at?: Date | null;
+            /**
+             * Agreement Version
+             * @description Version of the accepted agreement
+             */
+            agreement_version?: string | null;
+            /**
+             * Has Accepted Agreement
+             * @description Whether the organization has accepted the parking agreement
+             */
+            has_accepted_agreement: boolean;
         };
         /**
          * ParkingSortField
@@ -12843,6 +12950,132 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ParkingTotalMetricsResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    signup_for_parking_v1_parking_signup_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ParkingSignupRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ParkingSignupResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_parking_signup_status_v1_parking_signup_status_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ParkingSignupStatusResponse"];
                 };
             };
             /** @description Unauthorized */

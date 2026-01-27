@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -9145,6 +9145,190 @@ export type GET_ParkingMetrics_Response_403 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ParkingMetrics_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST ParkingSignup endpoint
+ *
+ * Sign up for parking
+ * Accept the parking agreement to enable parking features for your organization.
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST ParkingSignup endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/parking/signup
+ *
+ * @see {@link POST_ParkingSignup_Response_200} - 200 response type
+ * @see {@link POST_ParkingSignup_Response_401} - 401 response type
+ * @see {@link POST_ParkingSignup_Response_403} - 403 response type
+ * @see {@link POST_ParkingSignup_Response_422} - 422 response type
+ *
+
+ */
+export type POST_ParkingSignup_Response = POST_ParkingSignup_Response_200 | POST_ParkingSignup_Response_401 | POST_ParkingSignup_Response_403 | POST_ParkingSignup_Response_422;
+
+/**
+ * 200 response for POST ParkingSignup endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST ParkingSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup
+ *
+ * @see {@link POST_ParkingSignup_Response} - The main response type definition
+ * @see {@link ParkingSignup} - The actual schema type definition
+ */
+export type POST_ParkingSignup_Response_200 = ParkingSignup
+
+/**
+ * 401 response for POST ParkingSignup endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST ParkingSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup
+ *
+ * @see {@link POST_ParkingSignup_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ParkingSignup_Response_401 = Problem
+
+/**
+ * 403 response for POST ParkingSignup endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST ParkingSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup
+ *
+ * @see {@link POST_ParkingSignup_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ParkingSignup_Response_403 = Problem
+
+/**
+ * 422 response for POST ParkingSignup endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST ParkingSignup endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup
+ *
+ * @see {@link POST_ParkingSignup_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_ParkingSignup_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET ParkingSignupStatus endpoint
+ *
+ * Get parking signup status
+ * Check if your organization has accepted the parking agreement.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ParkingSignupStatus endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/parking/signup/status
+ *
+ * @see {@link GET_ParkingSignupStatus_Response_200} - 200 response type
+ * @see {@link GET_ParkingSignupStatus_Response_401} - 401 response type
+ * @see {@link GET_ParkingSignupStatus_Response_403} - 403 response type
+ * @see {@link GET_ParkingSignupStatus_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ParkingSignupStatus_Response = GET_ParkingSignupStatus_Response_200 | GET_ParkingSignupStatus_Response_401 | GET_ParkingSignupStatus_Response_403 | GET_ParkingSignupStatus_Response_422;
+
+/**
+ * 200 response for GET ParkingSignupStatus endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ParkingSignupStatus endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup/status
+ *
+ * @see {@link GET_ParkingSignupStatus_Response} - The main response type definition
+ * @see {@link ParkingSignupStatus} - The actual schema type definition
+ */
+export type GET_ParkingSignupStatus_Response_200 = ParkingSignupStatus
+
+/**
+ * 401 response for GET ParkingSignupStatus endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET ParkingSignupStatus endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup/status
+ *
+ * @see {@link GET_ParkingSignupStatus_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_ParkingSignupStatus_Response_401 = Problem
+
+/**
+ * 403 response for GET ParkingSignupStatus endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET ParkingSignupStatus endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup/status
+ *
+ * @see {@link GET_ParkingSignupStatus_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_ParkingSignupStatus_Response_403 = Problem
+
+/**
+ * 422 response for GET ParkingSignupStatus endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ParkingSignupStatus endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/parking/signup/status
+ *
+ * @see {@link GET_ParkingSignupStatus_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ParkingSignupStatus_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Tlds endpoint

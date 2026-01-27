@@ -156,8 +156,12 @@ import { OrganizationToken } from './schemas';
 import { OrganizationUpdate } from './schemas';
 import { OrganizationWithBillingData } from './schemas';
 import { PaginationMetadata } from './schemas';
+import { ParkingAgreementAcceptance } from './schemas';
 import { ParkingMetrics } from './schemas';
 import { Parking } from './schemas';
+import { ParkingSignupRequest } from './schemas';
+import { ParkingSignup } from './schemas';
+import { ParkingSignupStatus } from './schemas';
 import { ParkingStatistics } from './schemas';
 import { ParkingTotalMetrics } from './schemas';
 import { PasswordUpdate } from './schemas';
@@ -19225,6 +19229,111 @@ export const KEYS_PAGINATION_METADATA = [
 ] as const satisfies (keyof PaginationMetadata)[];
 
 /**
+ * Accepted
+ *
+ * Whether the agreement has been accepted
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `accepted` property of ParkingAgreementAcceptance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingagreementacceptance[KEY_PARKING_AGREEMENT_ACCEPTANCE_ACCEPTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_AGREEMENT_ACCEPTANCE_ACCEPTED;
+ * const value = parkingagreementacceptance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingAgreementAcceptance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_AGREEMENT_ACCEPTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_AGREEMENT_ACCEPTANCE_ACCEPTED: keyof ParkingAgreementAcceptance = 'accepted';
+/**
+ * Url
+ *
+ * URL where the parking agreement can be found
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `url` property of ParkingAgreementAcceptance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingagreementacceptance[KEY_PARKING_AGREEMENT_ACCEPTANCE_URL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_AGREEMENT_ACCEPTANCE_URL;
+ * const value = parkingagreementacceptance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingAgreementAcceptance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_AGREEMENT_ACCEPTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_AGREEMENT_ACCEPTANCE_URL: keyof ParkingAgreementAcceptance = 'url';
+/**
+ * Version
+ *
+ * Version of the parking agreement being accepted
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of ParkingAgreementAcceptance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingagreementacceptance[KEY_PARKING_AGREEMENT_ACCEPTANCE_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_AGREEMENT_ACCEPTANCE_VERSION;
+ * const value = parkingagreementacceptance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingAgreementAcceptance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_AGREEMENT_ACCEPTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_AGREEMENT_ACCEPTANCE_VERSION: keyof ParkingAgreementAcceptance = 'version';
+
+/**
+ * Array of all ParkingAgreementAcceptance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingAgreementAcceptance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_AGREEMENT_ACCEPTANCE) {
+ *   console.log(`Property: ${key}, Value: ${parkingagreementacceptance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_AGREEMENT_ACCEPTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingAgreementAcceptance} - The TypeScript type definition
+ */
+export const KEYS_PARKING_AGREEMENT_ACCEPTANCE = [
+  KEY_PARKING_AGREEMENT_ACCEPTANCE_ACCEPTED,
+  KEY_PARKING_AGREEMENT_ACCEPTANCE_URL,
+  KEY_PARKING_AGREEMENT_ACCEPTANCE_VERSION,
+] as const satisfies (keyof ParkingAgreementAcceptance)[];
+
+/**
  * metrics property
  *
  * Metrics for the parking entry
@@ -19590,6 +19699,237 @@ export const KEYS_PARKING = [
   KEY_PARKING_PARKING_ID,
   KEY_PARKING_UPDATED_ON,
 ] as const satisfies (keyof Parking)[];
+
+/**
+ * agreement property
+ *
+ * Parking agreement acceptance
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `agreement` property of ParkingSignupRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingsignuprequest[KEY_PARKING_SIGNUP_REQUEST_AGREEMENT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_SIGNUP_REQUEST_AGREEMENT;
+ * const value = parkingsignuprequest[propertyName];
+ * ```
+ *
+ * @see {@link ParkingSignupRequest} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_SIGNUP_REQUEST} - Array of all keys for this type
+ */
+export const KEY_PARKING_SIGNUP_REQUEST_AGREEMENT: keyof ParkingSignupRequest = 'agreement';
+
+/**
+ * Array of all ParkingSignupRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingSignupRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_SIGNUP_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${parkingsignuprequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_SIGNUP_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingSignupRequest} - The TypeScript type definition
+ */
+export const KEYS_PARKING_SIGNUP_REQUEST = [
+  KEY_PARKING_SIGNUP_REQUEST_AGREEMENT,
+] as const satisfies (keyof ParkingSignupRequest)[];
+
+/**
+ * Agreement Stored
+ *
+ * Whether the agreement acceptance was stored
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `agreement_stored` property of ParkingSignup objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingsignup[KEY_PARKING_SIGNUP_AGREEMENT_STORED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_SIGNUP_AGREEMENT_STORED;
+ * const value = parkingsignup[propertyName];
+ * ```
+ *
+ * @see {@link ParkingSignup} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_SIGNUP} - Array of all keys for this type
+ */
+export const KEY_PARKING_SIGNUP_AGREEMENT_STORED: keyof ParkingSignup = 'agreement_stored';
+/**
+ * Success
+ *
+ * Whether the signup was successful
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `success` property of ParkingSignup objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingsignup[KEY_PARKING_SIGNUP_SUCCESS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_SIGNUP_SUCCESS;
+ * const value = parkingsignup[propertyName];
+ * ```
+ *
+ * @see {@link ParkingSignup} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_SIGNUP} - Array of all keys for this type
+ */
+export const KEY_PARKING_SIGNUP_SUCCESS: keyof ParkingSignup = 'success';
+
+/**
+ * Array of all ParkingSignup property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingSignup objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_SIGNUP) {
+ *   console.log(`Property: ${key}, Value: ${parkingsignup[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_SIGNUP.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingSignup} - The TypeScript type definition
+ */
+export const KEYS_PARKING_SIGNUP = [
+  KEY_PARKING_SIGNUP_AGREEMENT_STORED,
+  KEY_PARKING_SIGNUP_SUCCESS,
+] as const satisfies (keyof ParkingSignup)[];
+
+/**
+ * Accepted At
+ *
+ * When the agreement was accepted
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `accepted_at` property of ParkingSignupStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingsignupstatus[KEY_PARKING_SIGNUP_STATUS_ACCEPTED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_SIGNUP_STATUS_ACCEPTED_AT;
+ * const value = parkingsignupstatus[propertyName];
+ * ```
+ *
+ * @see {@link ParkingSignupStatus} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_SIGNUP_STATUS} - Array of all keys for this type
+ */
+export const KEY_PARKING_SIGNUP_STATUS_ACCEPTED_AT: keyof ParkingSignupStatus = 'accepted_at';
+/**
+ * Agreement Version
+ *
+ * Version of the accepted agreement
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `agreement_version` property of ParkingSignupStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingsignupstatus[KEY_PARKING_SIGNUP_STATUS_AGREEMENT_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_SIGNUP_STATUS_AGREEMENT_VERSION;
+ * const value = parkingsignupstatus[propertyName];
+ * ```
+ *
+ * @see {@link ParkingSignupStatus} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_SIGNUP_STATUS} - Array of all keys for this type
+ */
+export const KEY_PARKING_SIGNUP_STATUS_AGREEMENT_VERSION: keyof ParkingSignupStatus = 'agreement_version';
+/**
+ * Has Accepted Agreement
+ *
+ * Whether the organization has accepted the parking agreement
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `has_accepted_agreement` property of ParkingSignupStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingsignupstatus[KEY_PARKING_SIGNUP_STATUS_HAS_ACCEPTED_AGREEMENT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_SIGNUP_STATUS_HAS_ACCEPTED_AGREEMENT;
+ * const value = parkingsignupstatus[propertyName];
+ * ```
+ *
+ * @see {@link ParkingSignupStatus} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_SIGNUP_STATUS} - Array of all keys for this type
+ */
+export const KEY_PARKING_SIGNUP_STATUS_HAS_ACCEPTED_AGREEMENT: keyof ParkingSignupStatus = 'has_accepted_agreement';
+
+/**
+ * Array of all ParkingSignupStatus property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingSignupStatus objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_SIGNUP_STATUS) {
+ *   console.log(`Property: ${key}, Value: ${parkingsignupstatus[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_SIGNUP_STATUS.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingSignupStatus} - The TypeScript type definition
+ */
+export const KEYS_PARKING_SIGNUP_STATUS = [
+  KEY_PARKING_SIGNUP_STATUS_ACCEPTED_AT,
+  KEY_PARKING_SIGNUP_STATUS_AGREEMENT_VERSION,
+  KEY_PARKING_SIGNUP_STATUS_HAS_ACCEPTED_AGREEMENT,
+] as const satisfies (keyof ParkingSignupStatus)[];
 
 /**
  * Conversions

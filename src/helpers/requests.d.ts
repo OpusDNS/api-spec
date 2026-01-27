@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -4763,6 +4763,66 @@ export type GET_ParkingParkingIdMetrics_Request_Query = GET_ParkingParkingIdMetr
  * @path /v1/parking/{parking_id}/metrics
  */
 export type GET_ParkingParkingIdMetrics_Request_Path = GET_ParkingParkingIdMetrics_Request['parameters']['path'];
+
+/**
+ * Request type for POST ParkingSignup endpoint
+ *
+ * Sign up for parking
+ * Accept the parking agreement to enable parking features for your organization.
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST ParkingSignup endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/parking/signup
+ *
+ * @see {@link POST_ParkingSignup_Request_Query} - Query parameters type
+ * @see {@link POST_ParkingSignup_Request_Path} - Path parameters type
+ * @see {@link POST_ParkingSignup_Request_Body} - Request body type
+ */
+export type POST_ParkingSignup_Request = {
+  requestBody: ParkingSignupRequest;
+}
+/**
+ * Request body for POST /v1/parking/signup
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/parking/signup endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/parking/signup
+ */
+export type POST_ParkingSignup_Request_Body = POST_ParkingSignup_Request['requestBody'];
+
+/**
+ * Request type for GET ParkingSignupStatus endpoint
+ *
+ * Get parking signup status
+ * Check if your organization has accepted the parking agreement.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ParkingSignupStatus endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/parking/signup/status
+ *
+ * @see {@link GET_ParkingSignupStatus_Request_Query} - Query parameters type
+ * @see {@link GET_ParkingSignupStatus_Request_Path} - Path parameters type
+ * @see {@link GET_ParkingSignupStatus_Request_Body} - Request body type
+ */
+export type GET_ParkingSignupStatus_Request = {
+}
 
 /**
  * Request type for GET Tlds endpoint

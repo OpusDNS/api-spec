@@ -3136,6 +3136,22 @@ export type Pagination_RequestHistory = components['schemas']['Pagination_Reques
  */
 export type Pagination_UserPublic = components['schemas']['Pagination_UserPublic_'];
 /**
+ * ParkingAgreementAcceptance. Parking agreement acceptance details.
+ *
+ * @remarks
+ * Type alias for the `ParkingAgreementAcceptance` OpenAPI schema.
+ * This type represents parkingagreementacceptance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingAgreementAcceptance();
+ * const item: ParkingAgreementAcceptance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingAgreementAcceptance = components['schemas']['ParkingAgreementAcceptance'];
+/**
  * ParkingMetricsResponse
  *
  * @remarks
@@ -3167,6 +3183,54 @@ export type ParkingMetrics = components['schemas']['ParkingMetricsResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Parking = components['schemas']['ParkingResponse'];
+/**
+ * ParkingSignupRequest. Request to sign up for parking (accept parking agreement).
+ *
+ * @remarks
+ * Type alias for the `ParkingSignupRequest` OpenAPI schema.
+ * This type represents parkingsignuprequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingSignupRequest();
+ * const item: ParkingSignupRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingSignupRequest = components['schemas']['ParkingSignupRequest'];
+/**
+ * ParkingSignupResponse. Response after parking signup.
+ *
+ * @remarks
+ * Type alias for the `ParkingSignupResponse` OpenAPI schema.
+ * This type represents parkingsignupresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingSignup();
+ * const item: ParkingSignup = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingSignup = components['schemas']['ParkingSignupResponse'];
+/**
+ * ParkingSignupStatusResponse. Response for checking parking signup status.
+ *
+ * @remarks
+ * Type alias for the `ParkingSignupStatusResponse` OpenAPI schema.
+ * This type represents parkingsignupstatusresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingSignupStatus();
+ * const item: ParkingSignupStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingSignupStatus = components['schemas']['ParkingSignupStatusResponse'];
 /**
  * ParkingSortField
  *
