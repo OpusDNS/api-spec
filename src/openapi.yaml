@@ -1967,6 +1967,10 @@ components:
           description: Time before expiration to auto-renew a domain in ISO 8601 format
             (e.g., 5D, -7D)
           title: Auto Renew Before Expiration
+        default_transfer_renewal_period:
+          $ref: '#/components/schemas/PeriodStr'
+          description: Default period for transfer if no transfer_renewal_period is
+            specified
         delete_before_expiration:
           anyOf:
           - examples:
@@ -2058,6 +2062,8 @@ components:
         transfer_renewal_periods:
           $ref: '#/components/schemas/PeriodList'
           description: List of allowed transfer renewal periods (eg. '1y')
+      required:
+      - default_transfer_renewal_period
       title: DomainLifecycleBase
       type: object
     DomainNameParts:
@@ -5169,6 +5175,10 @@ components:
           $ref: '#/components/schemas/Period'
         type: array
       - type: 'null'
+    PeriodStr:
+      anyOf:
+      - $ref: '#/components/schemas/Period'
+      - type: 'null'
     PeriodUnit:
       enum:
       - y
@@ -6929,7 +6939,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-28-102622
+  version: 2026-01-28-123004
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

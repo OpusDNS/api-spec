@@ -3344,6 +3344,22 @@ export type Period = components['schemas']['Period'];
  */
 export type PeriodList = components['schemas']['PeriodList'];
 /**
+ * PeriodStr
+ *
+ * @remarks
+ * Type alias for the `PeriodStr` OpenAPI schema.
+ * This type represents periodstr data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPeriodStr();
+ * const item: PeriodStr = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PeriodStr = components['schemas']['PeriodStr'];
+/**
  * PeriodUnit
  *
  * @remarks

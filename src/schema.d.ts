@@ -3132,6 +3132,8 @@ export interface components {
              * @description Time before expiration to auto-renew a domain in ISO 8601 format (e.g., 5D, -7D)
              */
             auto_renew_before_expiration?: string | null;
+            /** @description Default period for transfer if no transfer_renewal_period is specified */
+            default_transfer_renewal_period: components["schemas"]["PeriodStr"];
             /**
              * Delete Before Expiration
              * @description Time before expiration to delete a domain in ISO 8601 format (e.g., 5D, -7D)
@@ -5299,6 +5301,7 @@ export interface components {
             value: number;
         };
         PeriodList: components["schemas"]["Period"][] | null;
+        PeriodStr: components["schemas"]["Period"] | null;
         /**
          * PeriodUnit
          * @enum {string}

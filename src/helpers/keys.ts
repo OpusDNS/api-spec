@@ -8267,6 +8267,31 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD: keyof DomainLifecycleBa
  */
 export const KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION: keyof DomainLifecycleBase = 'auto_renew_before_expiration';
 /**
+ * default_transfer_renewal_period property
+ *
+ * Default period for transfer if no transfer_renewal_period is specified
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `default_transfer_renewal_period` property of DomainLifecycleBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainlifecyclebase[KEY_DOMAIN_LIFECYCLE_BASE_DEFAULT_TRANSFER_RENEWAL_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_LIFECYCLE_BASE_DEFAULT_TRANSFER_RENEWAL_PERIOD;
+ * const value = domainlifecyclebase[propertyName];
+ * ```
+ *
+ * @see {@link DomainLifecycleBase} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_LIFECYCLE_BASE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_LIFECYCLE_BASE_DEFAULT_TRANSFER_RENEWAL_PERIOD: keyof DomainLifecycleBase = 'default_transfer_renewal_period';
+/**
  * Delete Before Expiration
  *
  * Time before expiration to delete a domain in ISO 8601 format (e.g., 5D, -7D)
@@ -8590,6 +8615,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS: keyof DomainLif
 export const KEYS_DOMAIN_LIFECYCLE_BASE = [
   KEY_DOMAIN_LIFECYCLE_BASE_ADD_GRACE_PERIOD,
   KEY_DOMAIN_LIFECYCLE_BASE_AUTO_RENEW_BEFORE_EXPIRATION,
+  KEY_DOMAIN_LIFECYCLE_BASE_DEFAULT_TRANSFER_RENEWAL_PERIOD,
   KEY_DOMAIN_LIFECYCLE_BASE_DELETE_BEFORE_EXPIRATION,
   KEY_DOMAIN_LIFECYCLE_BASE_DELETE_POLICY,
   KEY_DOMAIN_LIFECYCLE_BASE_EXPLICIT_RENEW,
