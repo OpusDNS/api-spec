@@ -6528,7 +6528,7 @@ export interface operations {
                 object_type?: string | null;
                 action?: components["schemas"]["ObjectEventType"] | null;
                 server_request_id?: string | null;
-                performed_by_type?: string | null;
+                performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
                 performed_by_id?: string | null;
                 created_before?: Date | null;
                 created_after?: Date | null;
@@ -6571,7 +6571,7 @@ export interface operations {
                 object_type?: string | null;
                 action?: components["schemas"]["ObjectEventType"] | null;
                 server_request_id?: string | null;
-                performed_by_type?: string | null;
+                performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
                 performed_by_id?: string | null;
                 created_before?: Date | null;
                 created_after?: Date | null;
