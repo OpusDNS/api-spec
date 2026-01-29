@@ -3313,6 +3313,13 @@ components:
       - VERIFICATION
       title: EventType
       type: string
+    ExecutingEntity:
+      enum:
+      - user
+      - organization
+      - system
+      title: ExecutingEntity
+      type: string
     GeneralAvailabilityBase:
       properties:
         start_date:
@@ -3355,6 +3362,22 @@ components:
       - password
       - refresh_token
       title: GrantType
+      type: string
+    HTTPMethod:
+      description: "HTTP methods and descriptions\n\nMethods from the following RFCs\
+        \ are all observed:\n\n    * RFC 9110: HTTP Semantics, obsoletes 7231, which\
+        \ obsoleted 2616\n    * RFC 5789: PATCH Method for HTTP"
+      enum:
+      - CONNECT
+      - DELETE
+      - GET
+      - HEAD
+      - OPTIONS
+      - PATCH
+      - POST
+      - PUT
+      - TRACE
+      title: HTTPMethod
       type: string
     HTTPValidationError:
       properties:
@@ -3971,10 +3994,9 @@ components:
           title: Performed By Id
         performed_by_type:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/ExecutingEntity'
           - type: 'null'
           description: Type of the actor who performed the action
-          title: Performed By Type
         server_request_id:
           anyOf:
           - type: string
@@ -5568,6 +5590,7 @@ components:
       properties:
         client_ip:
           description: Client IP address
+          format: ipvanyaddress
           title: Client Ip
           type: string
         duration:
@@ -5575,9 +5598,8 @@ components:
           title: Duration
           type: number
         method:
+          $ref: '#/components/schemas/HTTPMethod'
           description: HTTP method
-          title: Method
-          type: string
         path:
           description: Request path
           title: Path
@@ -5590,10 +5612,9 @@ components:
           title: Performed By Id
         performed_by_type:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/ExecutingEntity'
           - type: 'null'
           description: Type of the actor who performed the request
-          title: Performed By Type
         request_body:
           anyOf:
           - additionalProperties: true
@@ -6939,7 +6960,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-28-123004
+  version: 2026-01-29-080310
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7222,23 +7243,23 @@ paths:
           - type: 'null'
           title: Performed By Id
       - in: query
-        name: start_time
+        name: created_before
         required: false
         schema:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
-          title: Start Time
+          title: Created Before
       - in: query
-        name: end_time
+        name: created_after
         required: false
         schema:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
-          title: End Time
+          title: Created After
       - in: query
         name: object_id
         required: false
@@ -7356,23 +7377,23 @@ paths:
           - type: 'null'
           title: Performed By Id
       - in: query
-        name: start_time
+        name: created_before
         required: false
         schema:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
-          title: Start Time
+          title: Created Before
       - in: query
-        name: end_time
+        name: created_after
         required: false
         schema:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
-          title: End Time
+          title: Created After
       responses:
         '200':
           content:
@@ -7431,7 +7452,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/HTTPMethod'
           - type: 'null'
           title: Method
       - in: query
@@ -7487,7 +7508,8 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: string
+          - format: ipvanyaddress
+            type: string
           - type: 'null'
           title: Client Ip
       - in: query
@@ -7503,7 +7525,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/ExecutingEntity'
           - type: 'null'
           title: Performed By Type
       - in: query
@@ -7515,23 +7537,23 @@ paths:
           - type: 'null'
           title: Performed By Id
       - in: query
-        name: start_time
+        name: request_started_before
         required: false
         schema:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
-          title: Start Time
+          title: Request Started Before
       - in: query
-        name: end_time
+        name: request_started_after
         required: false
         schema:
           anyOf:
           - format: date-time
             type: string
           - type: 'null'
-          title: End Time
+          title: Request Started After
       responses:
         '200':
           content:

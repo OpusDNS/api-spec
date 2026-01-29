@@ -4064,6 +4064,11 @@ export interface components {
          * @enum {string}
          */
         EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "VERIFICATION";
+        /**
+         * ExecutingEntity
+         * @enum {string}
+         */
+        ExecutingEntity: "user" | "organization" | "system";
         /** GeneralAvailabilityBase */
         GeneralAvailabilityBase: {
             /**
@@ -4093,6 +4098,17 @@ export interface components {
          * @enum {string}
          */
         GrantType: "client_credentials" | "password" | "refresh_token";
+        /**
+         * HTTPMethod
+         * @description HTTP methods and descriptions
+         *
+         *     Methods from the following RFCs are all observed:
+         *
+         *         * RFC 9110: HTTP Semantics, obsoletes 7231, which obsoleted 2616
+         *         * RFC 5789: PATCH Method for HTTP
+         * @enum {string}
+         */
+        HTTPMethod: "CONNECT" | "DELETE" | "GET" | "HEAD" | "OPTIONS" | "PATCH" | "POST" | "PUT" | "TRACE";
         /** RequestValidationError */
         HTTPValidationError: {
             errors: components["schemas"]["ValidationError"][];
@@ -4511,11 +4527,8 @@ export interface components {
              * @description ID of the actor who performed the action
              */
             performed_by_id?: string | null;
-            /**
-             * Performed By Type
-             * @description Type of the actor who performed the action
-             */
-            performed_by_type?: string | null;
+            /** @description Type of the actor who performed the action */
+            performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
             /**
              * Server Request Id
              * @description Server request ID
@@ -5506,6 +5519,7 @@ export interface components {
         RequestHistory: {
             /**
              * Client Ip
+             * Format: ipvanyaddress
              * @description Client IP address
              */
             client_ip: string;
@@ -5514,11 +5528,8 @@ export interface components {
              * @description Request duration in milliseconds
              */
             duration: number;
-            /**
-             * Method
-             * @description HTTP method
-             */
-            method: string;
+            /** @description HTTP method */
+            method: components["schemas"]["HTTPMethod"];
             /**
              * Path
              * @description Request path
@@ -5529,11 +5540,8 @@ export interface components {
              * @description ID of the actor who performed the request
              */
             performed_by_id?: string | null;
-            /**
-             * Performed By Type
-             * @description Type of the actor who performed the request
-             */
-            performed_by_type?: string | null;
+            /** @description Type of the actor who performed the request */
+            performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
             /**
              * Request Body
              * @description Request body
@@ -6522,8 +6530,8 @@ export interface operations {
                 server_request_id?: string | null;
                 performed_by_type?: string | null;
                 performed_by_id?: string | null;
-                start_time?: Date | null;
-                end_time?: Date | null;
+                created_before?: Date | null;
+                created_after?: Date | null;
                 object_id?: string | null;
             };
             header?: never;
@@ -6565,8 +6573,8 @@ export interface operations {
                 server_request_id?: string | null;
                 performed_by_type?: string | null;
                 performed_by_id?: string | null;
-                start_time?: Date | null;
-                end_time?: Date | null;
+                created_before?: Date | null;
+                created_after?: Date | null;
             };
             header?: never;
             path: {
@@ -6603,7 +6611,7 @@ export interface operations {
                 sort_order?: components["schemas"]["SortOrder"];
                 page_size?: number;
                 page?: number;
-                method?: string | null;
+                method?: components["schemas"]["HTTPMethod"] | null;
                 path?: string | null;
                 status_code?: number | null;
                 min_status_code?: number | null;
@@ -6612,10 +6620,10 @@ export interface operations {
                 max_duration?: number | null;
                 client_ip?: string | null;
                 server_request_id?: string | null;
-                performed_by_type?: string | null;
+                performed_by_type?: components["schemas"]["ExecutingEntity"] | null;
                 performed_by_id?: string | null;
-                start_time?: Date | null;
-                end_time?: Date | null;
+                request_started_before?: Date | null;
+                request_started_after?: Date | null;
             };
             header?: never;
             path?: never;

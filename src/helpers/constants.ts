@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, GrantType, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, GrantType, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -1888,6 +1888,58 @@ export const EVENT_TYPE_VALUES = [
 ] as const satisfies [string, ...string[]] | EventType[];
 
 /**
+ * ExecutingEntity. Auto-generated enum for ExecutingEntity
+ *
+ * @remarks
+ * This constant provides both object and array forms for the ExecutingEntity enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = EXECUTING_ENTITY.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = EXECUTING_ENTITY_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link ExecutingEntity} - The TypeScript type definition
+ */
+export const EXECUTING_ENTITY = {
+  USER: "user",
+  ORGANIZATION: "organization",
+  SYSTEM: "system",
+} as const satisfies Record<string, ExecutingEntity>;
+
+/**
+ * Array of all ExecutingEntity enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid ExecutingEntity enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of EXECUTING_ENTITY_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = EXECUTING_ENTITY_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link ExecutingEntity} - The TypeScript type definition
+ * @see {@link EXECUTING_ENTITY} - The object form of this enum
+ */
+export const EXECUTING_ENTITY_VALUES = [
+  'user',
+  'organization',
+  'system'
+] as const satisfies [string, ...string[]] | ExecutingEntity[];
+
+/**
  * GrantType. Auto-generated enum for GrantType
  *
  * @remarks
@@ -1938,6 +1990,75 @@ export const GRANT_TYPE_VALUES = [
   'password',
   'refresh_token'
 ] as const satisfies [string, ...string[]] | GrantType[];
+
+/**
+ * HTTPMethod. HTTP methods and descriptions
+
+Methods from the following RFCs are all observed:
+
+    * RFC 9110: HTTP Semantics, obsoletes 7231, which obsoleted 2616
+    * RFC 5789: PATCH Method for HTTP
+ *
+ * @remarks
+ * This constant provides both object and array forms for the HTTPMethod enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = HTTP_METHOD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = HTTP_METHOD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link HTTPMethod} - The TypeScript type definition
+ */
+export const HTTP_METHOD = {
+  CONNECT: "CONNECT",
+  DELETE: "DELETE",
+  GET: "GET",
+  HEAD: "HEAD",
+  OPTIONS: "OPTIONS",
+  PATCH: "PATCH",
+  POST: "POST",
+  PUT: "PUT",
+  TRACE: "TRACE",
+} as const satisfies Record<string, HTTPMethod>;
+
+/**
+ * Array of all HTTPMethod enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid HTTPMethod enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of HTTP_METHOD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = HTTP_METHOD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link HTTPMethod} - The TypeScript type definition
+ * @see {@link HTTP_METHOD} - The object form of this enum
+ */
+export const HTTP_METHOD_VALUES = [
+  'CONNECT',
+  'DELETE',
+  'GET',
+  'HEAD',
+  'OPTIONS',
+  'PATCH',
+  'POST',
+  'PUT',
+  'TRACE'
+] as const satisfies [string, ...string[]] | HTTPMethod[];
 
 /**
  * HostStatus. Auto-generated enum for HostStatus

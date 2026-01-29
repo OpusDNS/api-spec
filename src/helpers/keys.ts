@@ -16311,7 +16311,7 @@ export const KEY_OBJECT_LOG_OBJECT_TYPE: keyof ObjectLog = 'object_type';
  */
 export const KEY_OBJECT_LOG_PERFORMED_BY_ID: keyof ObjectLog = 'performed_by_id';
 /**
- * Performed By Type
+ * performed_by_type property
  *
  * Type of the actor who performed the action
  *
@@ -21522,11 +21522,10 @@ export const KEY_REQUEST_HISTORY_CLIENT_IP: keyof RequestHistory = 'client_ip';
  */
 export const KEY_REQUEST_HISTORY_DURATION: keyof RequestHistory = 'duration';
 /**
- * Method
+ * method property
  *
  * HTTP method
  *
- * @type {string}
  *
  *
  * @remarks
@@ -21599,7 +21598,7 @@ export const KEY_REQUEST_HISTORY_PATH: keyof RequestHistory = 'path';
  */
 export const KEY_REQUEST_HISTORY_PERFORMED_BY_ID: keyof RequestHistory = 'performed_by_id';
 /**
- * Performed By Type
+ * performed_by_type property
  *
  * Type of the actor who performed the request
  *

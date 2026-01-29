@@ -2203,6 +2203,22 @@ export type EventSubtype = components['schemas']['EventSubtype'];
  */
 export type EventType = components['schemas']['EventType'];
 /**
+ * ExecutingEntity
+ *
+ * @remarks
+ * Type alias for the `ExecutingEntity` OpenAPI schema.
+ * This type represents executingentity data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getExecutingEntity();
+ * const item: ExecutingEntity = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ExecutingEntity = components['schemas']['ExecutingEntity'];
+/**
  * GeneralAvailabilityBase
  *
  * @remarks
@@ -2266,6 +2282,27 @@ export type GetPrices = components['schemas']['GetPricesResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type GrantType = components['schemas']['GrantType'];
+/**
+ * HTTPMethod. HTTP methods and descriptions
+
+Methods from the following RFCs are all observed:
+
+    * RFC 9110: HTTP Semantics, obsoletes 7231, which obsoleted 2616
+    * RFC 5789: PATCH Method for HTTP
+ *
+ * @remarks
+ * Type alias for the `HTTPMethod` OpenAPI schema.
+ * This type represents httpmethod data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getHTTPMethod();
+ * const item: HTTPMethod = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type HTTPMethod = components['schemas']['HTTPMethod'];
 /**
  * RequestValidationError
  *
