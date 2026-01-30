@@ -3593,32 +3593,13 @@ export type PATCH_DomainForwardsByHostnameDisable_Response_422 = HTTPValidationE
  * @path /v1/domain-forwards/{hostname}/enable
  * @param hostname (path) - Hostname
  *
- * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_400} - 400 response type
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_401} - 401 response type
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_403} - 403 response type
  * @see {@link PATCH_DomainForwardsByHostnameEnable_Response_422} - 422 response type
  *
 
  */
-export type PATCH_DomainForwardsByHostnameEnable_Response = PATCH_DomainForwardsByHostnameEnable_Response_400 | PATCH_DomainForwardsByHostnameEnable_Response_401 | PATCH_DomainForwardsByHostnameEnable_Response_403 | PATCH_DomainForwardsByHostnameEnable_Response_422;
-
-/**
- * 400 response for PATCH DomainForwardsByHostnameEnable endpoint
- *
- * @remarks
- * This type defines the response structure for the 400 status code
- * of the PATCH DomainForwardsByHostnameEnable endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname
- *
- * @see {@link PATCH_DomainForwardsByHostnameEnable_Response} - The main response type definition
- * @see {@link Problem} - The actual schema type definition
- */
-export type PATCH_DomainForwardsByHostnameEnable_Response_400 = Problem
+export type PATCH_DomainForwardsByHostnameEnable_Response = PATCH_DomainForwardsByHostnameEnable_Response_401 | PATCH_DomainForwardsByHostnameEnable_Response_403 | PATCH_DomainForwardsByHostnameEnable_Response_422;
 
 /**
  * 401 response for PATCH DomainForwardsByHostnameEnable endpoint

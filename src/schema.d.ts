@@ -9096,22 +9096,6 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_WILDCARD_NOT_SUPPORTED",
-                     *       "detail": "Additional error context.",
-                     *       "status": 400,
-                     *       "title": "HTTPS Wildcard Not Supported",
-                     *       "type": "domain-forward-wildcard-not-supported"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
             /** @description Unauthorized */
             401: {
                 headers: {

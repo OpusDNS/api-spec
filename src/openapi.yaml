@@ -6960,7 +6960,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-29-081753
+  version: 2026-01-30-115347
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10785,18 +10785,6 @@ paths:
       responses:
         '204':
           description: Successful Response
-        '400':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_DOMAIN_FORWARD_WILDCARD_NOT_SUPPORTED
-                detail: Additional error context.
-                status: 400
-                title: HTTPS Wildcard Not Supported
-                type: domain-forward-wildcard-not-supported
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Bad Request
         '401':
           content:
             application/problem+json:
