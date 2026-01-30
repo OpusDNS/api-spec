@@ -2950,6 +2950,12 @@ export interface components {
              * Format: date-time
              */
             created_on: Date;
+            /**
+             * Domain Forward Id
+             * Format: typeid
+             * @example domain_forward_01h45ytscbebyvny4gc8cr8ma2
+             */
+            domain_forward_id: TypeId<"domain_forward">;
             /** Enabled */
             enabled: boolean;
             /** Hostname */

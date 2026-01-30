@@ -1607,6 +1607,14 @@ components:
           format: date-time
           title: Created On
           type: string
+        domain_forward_id:
+          examples:
+          - domain_forward_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^domain_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Domain Forward Id
+          type: string
+          x-typeid-prefix: domain_forward
         enabled:
           title: Enabled
           type: boolean
@@ -1636,6 +1644,7 @@ components:
           title: Updated On
           type: string
       required:
+      - domain_forward_id
       - hostname
       - enabled
       - updated_on
@@ -6960,7 +6969,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-30-115347
+  version: 2026-01-30-145433
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8895,6 +8904,7 @@ paths:
                     results:
                     - domain_forwards:
                       - created_on: '2025-11-18T12:59:57Z'
+                        domain_forward_id: domain_forward_01jx0000000000000000000001
                         enabled: false
                         hostname: example.com.
                         https:
@@ -9321,6 +9331,7 @@ paths:
                   value:
                     domain_forwards:
                     - created_on: '2025-11-18T12:59:57Z'
+                      domain_forward_id: domain_forward_01jx0000000000000000000001
                       enabled: false
                       hostname: example.com.
                       https:
@@ -9942,6 +9953,7 @@ paths:
                   summary: Response for HTTP domain forward
                   value:
                     created_on: '2025-11-14T09:01:38'
+                    domain_forward_id: domain_forward_01jx0000000000000000000001
                     enabled: false
                     hostname: example.com.
                     http:
@@ -9972,6 +9984,7 @@ paths:
                   summary: Response for HTTP to HTTPS
                   value:
                     created_on: '2025-11-14T09:01:38'
+                    domain_forward_id: domain_forward_01jx0000000000000000000002
                     enabled: false
                     hostname: example.com.
                     http:

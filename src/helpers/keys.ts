@@ -6678,6 +6678,31 @@ export const KEYS_DOMAIN_DNSSEC_DATA = [
  */
 export const KEY_DOMAIN_FORWARD_CREATED_ON: keyof DomainForward = 'created_on';
 /**
+ * Domain Forward Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_forward_id` property of DomainForward objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainforward[KEY_DOMAIN_FORWARD_DOMAIN_FORWARD_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_FORWARD_DOMAIN_FORWARD_ID;
+ * const value = domainforward[propertyName];
+ * ```
+ *
+ * @see {@link DomainForward} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_FORWARD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_FORWARD_DOMAIN_FORWARD_ID: keyof DomainForward = 'domain_forward_id';
+/**
  * Enabled
  *
  *
@@ -6847,6 +6872,7 @@ export const KEY_DOMAIN_FORWARD_UPDATED_ON: keyof DomainForward = 'updated_on';
  */
 export const KEYS_DOMAIN_FORWARD = [
   KEY_DOMAIN_FORWARD_CREATED_ON,
+  KEY_DOMAIN_FORWARD_DOMAIN_FORWARD_ID,
   KEY_DOMAIN_FORWARD_ENABLED,
   KEY_DOMAIN_FORWARD_HOSTNAME,
   KEY_DOMAIN_FORWARD_HTTP,
