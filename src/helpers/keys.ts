@@ -19462,6 +19462,31 @@ export const KEY_PARKING_METRICS_METRICS: keyof ParkingMetrics = 'metrics';
  */
 export const KEY_PARKING_METRICS_RENEWAL_COST: keyof ParkingMetrics = 'renewal_cost';
 /**
+ * renewal_cost_currency property
+ *
+ * Currency code for renewal cost (e.g., USD, EUR)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_cost_currency` property of ParkingMetrics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingmetrics[KEY_PARKING_METRICS_RENEWAL_COST_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_METRICS_RENEWAL_COST_CURRENCY;
+ * const value = parkingmetrics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingMetrics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_METRICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_METRICS_RENEWAL_COST_CURRENCY: keyof ParkingMetrics = 'renewal_cost_currency';
+/**
  * Revenue Progress
  *
  * Revenue progress percentage towards covering renewal cost
@@ -19511,6 +19536,7 @@ export const KEY_PARKING_METRICS_REVENUE_PROGRESS: keyof ParkingMetrics = 'reven
 export const KEYS_PARKING_METRICS = [
   KEY_PARKING_METRICS_METRICS,
   KEY_PARKING_METRICS_RENEWAL_COST,
+  KEY_PARKING_METRICS_RENEWAL_COST_CURRENCY,
   KEY_PARKING_METRICS_REVENUE_PROGRESS,
 ] as const satisfies (keyof ParkingMetrics)[];
 
@@ -20061,6 +20087,31 @@ export const KEY_PARKING_STATISTICS_CONVERSIONS: keyof ParkingStatistics = 'conv
  */
 export const KEY_PARKING_STATISTICS_REVENUE: keyof ParkingStatistics = 'revenue';
 /**
+ * revenue_currency property
+ *
+ * Currency code for revenue (e.g., USD, EUR)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `revenue_currency` property of ParkingStatistics objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingstatistics[KEY_PARKING_STATISTICS_REVENUE_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_STATISTICS_REVENUE_CURRENCY;
+ * const value = parkingstatistics[propertyName];
+ * ```
+ *
+ * @see {@link ParkingStatistics} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_STATISTICS} - Array of all keys for this type
+ */
+export const KEY_PARKING_STATISTICS_REVENUE_CURRENCY: keyof ParkingStatistics = 'revenue_currency';
+/**
  * Rpc
  *
  * Revenue per click
@@ -20162,6 +20213,7 @@ export const KEY_PARKING_STATISTICS_VIEWS: keyof ParkingStatistics = 'views';
 export const KEYS_PARKING_STATISTICS = [
   KEY_PARKING_STATISTICS_CONVERSIONS,
   KEY_PARKING_STATISTICS_REVENUE,
+  KEY_PARKING_STATISTICS_REVENUE_CURRENCY,
   KEY_PARKING_STATISTICS_RPC,
   KEY_PARKING_STATISTICS_RPM,
   KEY_PARKING_STATISTICS_VIEWS,

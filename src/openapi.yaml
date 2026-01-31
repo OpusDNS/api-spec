@@ -4993,6 +4993,9 @@ components:
           pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
           title: Renewal Cost
           type: string
+        renewal_cost_currency:
+          $ref: '#/components/schemas/Currency'
+          description: Currency code for renewal cost (e.g., USD, EUR)
         revenue_progress:
           description: Revenue progress percentage towards covering renewal cost
           pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
@@ -5001,6 +5004,7 @@ components:
       required:
       - metrics
       - renewal_cost
+      - renewal_cost_currency
       - revenue_progress
       title: ParkingMetricsResponse
       type: object
@@ -5132,6 +5136,9 @@ components:
           pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
           title: Revenue
           type: string
+        revenue_currency:
+          $ref: '#/components/schemas/Currency'
+          description: Currency code for revenue (e.g., USD, EUR)
         rpc:
           description: Revenue per click
           pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
@@ -5152,6 +5159,7 @@ components:
       - rpc
       - rpm
       - revenue
+      - revenue_currency
       title: ParkingStatistics
       type: object
     ParkingTotalMetricsResponse:
@@ -6969,7 +6977,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-01-30-145433
+  version: 2026-01-31-195140
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -5153,6 +5153,8 @@ export interface components {
              * @description Yearly renewal cost for the parked domain
              */
             renewal_cost: string;
+            /** @description Currency code for renewal cost (e.g., USD, EUR) */
+            renewal_cost_currency: components["schemas"]["Currency"];
             /**
              * Revenue Progress
              * @description Revenue progress percentage towards covering renewal cost
@@ -5270,6 +5272,8 @@ export interface components {
              * @description Total revenue
              */
             revenue: string;
+            /** @description Currency code for revenue (e.g., USD, EUR) */
+            revenue_currency: components["schemas"]["Currency"];
             /**
              * Rpc
              * @description Revenue per click
