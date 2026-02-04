@@ -14182,6 +14182,31 @@ export const KEYS_HOST_SCHEMA = [
 ] as const satisfies (keyof HostSchema)[];
 
 /**
+ * Protected
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected` property of HttpRedirectList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = httpredirectlist[KEY_HTTP_REDIRECT_LIST_PROTECTED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_HTTP_REDIRECT_LIST_PROTECTED;
+ * const value = httpredirectlist[propertyName];
+ * ```
+ *
+ * @see {@link HttpRedirectList} - The TypeScript type definition
+ * @see {@link KEYS_HTTP_REDIRECT_LIST} - Array of all keys for this type
+ */
+export const KEY_HTTP_REDIRECT_LIST_PROTECTED: keyof HttpRedirectList = 'protected';
+/**
  * redirect_code property
  *
  *
@@ -14399,6 +14424,7 @@ export const KEY_HTTP_REDIRECT_LIST_TARGET_PROTOCOL: keyof HttpRedirectList = 't
  * @see {@link HttpRedirectList} - The TypeScript type definition
  */
 export const KEYS_HTTP_REDIRECT_LIST = [
+  KEY_HTTP_REDIRECT_LIST_PROTECTED,
   KEY_HTTP_REDIRECT_LIST_REDIRECT_CODE,
   KEY_HTTP_REDIRECT_LIST_REQUEST_HOSTNAME,
   KEY_HTTP_REDIRECT_LIST_REQUEST_PATH,

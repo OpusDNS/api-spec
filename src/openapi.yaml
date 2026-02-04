@@ -3481,6 +3481,10 @@ components:
       type: string
     HttpRedirectListResponse:
       properties:
+        protected:
+          default: false
+          title: Protected
+          type: boolean
         redirect_code:
           $ref: '#/components/schemas/RedirectCode'
         request_hostname:
@@ -3569,9 +3573,7 @@ components:
           title: Request Path
           type: string
         request_protocol:
-          anyOf:
-          - $ref: '#/components/schemas/HttpProtocol'
-          - type: 'null'
+          $ref: '#/components/schemas/HttpProtocol'
         request_subdomain:
           anyOf:
           - type: string
@@ -3591,6 +3593,7 @@ components:
       - target_hostname
       - target_path
       - redirect_code
+      - request_protocol
       - request_hostname
       title: HttpRedirectUpsert
       type: object
@@ -6978,7 +6981,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-04-121336
+  version: 2026-02-04-165829
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8919,7 +8922,8 @@ paths:
                         https:
                           created_on: '2025-11-18T12:59:57Z'
                           redirects:
-                          - redirect_code: 302
+                          - protected: false
+                            redirect_code: 302
                             request_hostname: example.com.
                             request_path: /
                             request_protocol: https
@@ -9346,7 +9350,8 @@ paths:
                       https:
                         created_on: '2025-11-18T12:59:57Z'
                         redirects:
-                        - redirect_code: 302
+                        - protected: false
+                          redirect_code: 302
                           request_hostname: example.com.
                           request_path: /
                           request_protocol: https
@@ -9968,7 +9973,8 @@ paths:
                     http:
                       created_on: '2025-11-14T09:01:38'
                       redirects:
-                      - redirect_code: 301
+                      - protected: false
+                        redirect_code: 301
                         request_hostname: example.com.
                         request_path: /
                         request_protocol: http
@@ -9979,7 +9985,8 @@ paths:
                     https:
                       created_on: '2025-11-14T09:01:38'
                       redirects:
-                      - redirect_code: 302
+                      - protected: false
+                        redirect_code: 302
                         request_hostname: example.com.
                         request_path: /
                         request_protocol: https
@@ -9999,7 +10006,8 @@ paths:
                     http:
                       created_on: '2025-11-14T09:01:38'
                       redirects:
-                      - redirect_code: 301
+                      - protected: false
+                        redirect_code: 301
                         request_hostname: example.com.
                         request_path: /
                         request_protocol: http

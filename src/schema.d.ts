@@ -4181,6 +4181,11 @@ export interface components {
         HttpProtocol: "http" | "https";
         /** HttpRedirectListResponse */
         HttpRedirectListResponse: {
+            /**
+             * Protected
+             * @default false
+             */
+            protected: boolean;
             redirect_code: components["schemas"]["RedirectCode"];
             /** Request Hostname */
             request_hostname: string;
@@ -4223,7 +4228,7 @@ export interface components {
             request_hostname: string;
             /** Request Path */
             request_path: string;
-            request_protocol?: components["schemas"]["HttpProtocol"] | null;
+            request_protocol: components["schemas"]["HttpProtocol"];
             /** Request Subdomain */
             request_subdomain?: string | null;
             /** Target Hostname */
