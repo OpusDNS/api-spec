@@ -3824,7 +3824,7 @@ export interface components {
          * EmailForwardLogStatus
          * @enum {string}
          */
-        EmailForwardLogStatus: "QUEUED" | "DELIVERED" | "REFUSED" | "SOFT-BOUNCE" | "HARD-BOUNCE";
+        EmailForwardLogStatus: "UNKNOWN" | "QUEUED" | "DELIVERED" | "REFUSED" | "SOFT-BOUNCE" | "HARD-BOUNCE";
         /** EmailForwardMetrics */
         EmailForwardMetrics: {
             /**

@@ -1473,6 +1473,7 @@ export const EMAIL_FORWARD_LOG_SORT_FIELD_VALUES = [
  * @see {@link EmailForwardLogStatus} - The TypeScript type definition
  */
 export const EMAIL_FORWARD_LOG_STATUS = {
+  UNKNOWN: "UNKNOWN",
   QUEUED: "QUEUED",
   DELIVERED: "DELIVERED",
   REFUSED: "REFUSED",
@@ -1502,6 +1503,7 @@ export const EMAIL_FORWARD_LOG_STATUS = {
  * @see {@link EMAIL_FORWARD_LOG_STATUS} - The object form of this enum
  */
 export const EMAIL_FORWARD_LOG_STATUS_VALUES = [
+  'UNKNOWN',
   'QUEUED',
   'DELIVERED',
   'REFUSED',
