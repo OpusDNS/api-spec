@@ -8459,6 +8459,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8494,6 +8495,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8529,6 +8531,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8564,6 +8567,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8599,6 +8603,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8634,6 +8639,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8669,6 +8675,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8704,6 +8711,7 @@ export interface operations {
         parameters: {
             query?: {
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
@@ -8741,6 +8749,7 @@ export interface operations {
                 /** @description Grouping key: url, fqdn, domain, or forward */
                 grouping?: components["schemas"]["MetricsGrouping"];
                 hostname?: string | null;
+                domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */

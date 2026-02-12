@@ -6984,7 +6984,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-09-152424
+  version: 2026-02-12-132707
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10095,6 +10095,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10144,6 +10152,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10193,6 +10209,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10242,6 +10266,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10291,6 +10323,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10340,6 +10380,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10389,6 +10437,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10438,6 +10494,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
@@ -10495,6 +10559,14 @@ paths:
           - type: string
           - type: 'null'
           title: Hostname
+      - in: query
+        name: domain
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
       - description: 'Filter by protocol: http or https'
         in: query
         name: protocol
