@@ -5829,6 +5829,11 @@ export interface components {
              */
             authinfo_min_length?: number | null;
             /**
+             * Authinfo Pattern
+             * @description Regex pattern for validating auth info
+             */
+            authinfo_pattern?: string | null;
+            /**
              * Authinfo Required
              * @description Whether an auth info is required for transfers
              */

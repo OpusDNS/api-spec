@@ -23432,6 +23432,31 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH: keyof TransferPolic
  */
 export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH: keyof TransferPoliciesBase = 'authinfo_min_length';
 /**
+ * Authinfo Pattern
+ *
+ * Regex pattern for validating auth info
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_pattern` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_AUTHINFO_PATTERN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_AUTHINFO_PATTERN;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_PATTERN: keyof TransferPoliciesBase = 'authinfo_pattern';
+/**
  * Authinfo Required
  *
  * Whether an auth info is required for transfers
@@ -23781,6 +23806,7 @@ export const KEY_TRANSFER_POLICIES_BASE_TRANSFER_TIME: keyof TransferPoliciesBas
 export const KEYS_TRANSFER_POLICIES_BASE = [
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MAX_LENGTH,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH,
+  KEY_TRANSFER_POLICIES_BASE_AUTHINFO_PATTERN,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD,

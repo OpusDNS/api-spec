@@ -6045,6 +6045,12 @@ components:
           - type: 'null'
           description: Minimum length of the auth info
           title: Authinfo Min Length
+        authinfo_pattern:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Regex pattern for validating auth info
+          title: Authinfo Pattern
         authinfo_required:
           description: Whether an auth info is required for transfers
           title: Authinfo Required
@@ -6984,7 +6990,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-12-132707
+  version: 2026-02-12-143602
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
