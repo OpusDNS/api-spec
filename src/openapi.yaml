@@ -5648,6 +5648,8 @@ components:
           anyOf:
           - additionalProperties: true
             type: object
+          - items: {}
+            type: array
           - type: 'null'
           description: Request body
           title: Request Body
@@ -5665,6 +5667,8 @@ components:
           anyOf:
           - additionalProperties: true
             type: object
+          - items: {}
+            type: array
           - type: 'null'
           description: Response body
           title: Response Body
@@ -6995,7 +6999,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-16-094947
+  version: 2026-02-16-130939
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

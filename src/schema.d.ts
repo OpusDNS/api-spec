@@ -5569,7 +5569,7 @@ export interface components {
              */
             request_body?: {
                 [key: string]: unknown;
-            } | null;
+            } | unknown[] | null;
             /**
              * Request Completed At
              * Format: date-time
@@ -5588,7 +5588,7 @@ export interface components {
              */
             response_body?: {
                 [key: string]: unknown;
-            } | null;
+            } | unknown[] | null;
             /**
              * Server Request Id
              * @description Unique ID of the request
