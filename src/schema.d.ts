@@ -2655,6 +2655,12 @@ export interface components {
         DnsRrsetResponse: {
             /** Name */
             name: string;
+            /**
+             * Protected
+             * @description Whether the RRset is protected
+             * @default false
+             */
+            protected: boolean;
             /** Records */
             records?: components["schemas"]["DnsRecordResponse"][];
             /** Ttl */

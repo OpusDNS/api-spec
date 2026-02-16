@@ -1137,6 +1137,11 @@ components:
         name:
           title: Name
           type: string
+        protected:
+          default: false
+          description: Whether the RRset is protected
+          title: Protected
+          type: boolean
         records:
           items:
             $ref: '#/components/schemas/DnsRecordResponse'
@@ -6990,7 +6995,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-12-143602
+  version: 2026-02-16-094947
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8612,6 +8617,7 @@ paths:
                       name: example.com.
                       rrsets:
                       - name: example.com.
+                        protected: false
                         records:
                         - protected: false
                           rdata: ns1.opusdns.com. hostmaster.opusdns.com. 2025111801
@@ -8619,6 +8625,7 @@ paths:
                         ttl: 3600
                         type: SOA
                       - name: example.com.
+                        protected: false
                         records:
                         - protected: false
                           rdata: ns1.opusdns.com.
