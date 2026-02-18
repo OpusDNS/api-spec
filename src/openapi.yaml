@@ -6999,7 +6999,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-16-130939
+  version: 2026-02-18-101602
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8122,33 +8122,7 @@ paths:
             application/problem+json:
               example:
                 code: ERROR_CONTACT_IN_USE
-                detail: Contact is linked to one or more domains
-                domain_ids:
-                - A
-                - d
-                - d
-                - i
-                - t
-                - i
-                - o
-                - n
-                - a
-                - l
-                - ' '
-                - e
-                - r
-                - r
-                - o
-                - r
-                - ' '
-                - c
-                - o
-                - n
-                - t
-                - e
-                - x
-                - t
-                - .
+                detail: Additional error context.
                 status: 409
                 title: Contact Management Error
                 type: contact-in-use
