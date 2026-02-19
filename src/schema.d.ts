@@ -8448,6 +8448,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8484,6 +8486,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8520,6 +8524,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8556,6 +8562,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8592,6 +8600,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8628,6 +8638,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8664,6 +8676,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8700,6 +8714,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;
@@ -8738,6 +8754,8 @@ export interface operations {
                 protocol?: components["schemas"]["Protocol"] | null;
                 /** @description Time range: 1h, 1d, 7d, or 30d */
                 time_range?: components["schemas"]["TimeRange"];
+                /** @description Exclude platform values: Unknown, Bot */
+                exclude_bots?: boolean;
             };
             header?: never;
             path?: never;

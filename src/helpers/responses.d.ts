@@ -3670,6 +3670,7 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_422 = HTTPValidationEr
  * @path /v1/domain-forwards/metrics
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetrics_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetrics_Response_422} - 422 response type
@@ -3691,6 +3692,7 @@ export type GET_DomainForwardsMetrics_Response = GET_DomainForwardsMetrics_Respo
  * @path /v1/domain-forwards/metrics
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetrics_Response} - The main response type definition
  * @see {@link DomainForwardMetrics} - The actual schema type definition
@@ -3710,6 +3712,7 @@ export type GET_DomainForwardsMetrics_Response_200 = DomainForwardMetrics
  * @path /v1/domain-forwards/metrics
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetrics_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -3731,6 +3734,7 @@ export type GET_DomainForwardsMetrics_Response_422 = HTTPValidationError
  * @path /v1/domain-forwards/metrics/browser
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsBrowser_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsBrowser_Response_422} - 422 response type
@@ -3752,6 +3756,7 @@ export type GET_DomainForwardsMetricsBrowser_Response = GET_DomainForwardsMetric
  * @path /v1/domain-forwards/metrics/browser
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsBrowser_Response} - The main response type definition
  * @see {@link DomainForwardBrowserStats} - The actual schema type definition
@@ -3771,6 +3776,7 @@ export type GET_DomainForwardsMetricsBrowser_Response_200 = DomainForwardBrowser
  * @path /v1/domain-forwards/metrics/browser
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsBrowser_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -3792,6 +3798,7 @@ export type GET_DomainForwardsMetricsBrowser_Response_422 = HTTPValidationError
  * @path /v1/domain-forwards/metrics/geo
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsGeo_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsGeo_Response_422} - 422 response type
@@ -3813,6 +3820,7 @@ export type GET_DomainForwardsMetricsGeo_Response = GET_DomainForwardsMetricsGeo
  * @path /v1/domain-forwards/metrics/geo
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsGeo_Response} - The main response type definition
  * @see {@link DomainForwardGeoStats} - The actual schema type definition
@@ -3832,6 +3840,7 @@ export type GET_DomainForwardsMetricsGeo_Response_200 = DomainForwardGeoStats
  * @path /v1/domain-forwards/metrics/geo
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsGeo_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -3853,6 +3862,7 @@ export type GET_DomainForwardsMetricsGeo_Response_422 = HTTPValidationError
  * @path /v1/domain-forwards/metrics/platform
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsPlatform_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsPlatform_Response_422} - 422 response type
@@ -3874,6 +3884,7 @@ export type GET_DomainForwardsMetricsPlatform_Response = GET_DomainForwardsMetri
  * @path /v1/domain-forwards/metrics/platform
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsPlatform_Response} - The main response type definition
  * @see {@link DomainForwardPlatformStats} - The actual schema type definition
@@ -3893,6 +3904,7 @@ export type GET_DomainForwardsMetricsPlatform_Response_200 = DomainForwardPlatfo
  * @path /v1/domain-forwards/metrics/platform
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsPlatform_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -3914,6 +3926,7 @@ export type GET_DomainForwardsMetricsPlatform_Response_422 = HTTPValidationError
  * @path /v1/domain-forwards/metrics/referrer
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsReferrer_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsReferrer_Response_422} - 422 response type
@@ -3935,6 +3948,7 @@ export type GET_DomainForwardsMetricsReferrer_Response = GET_DomainForwardsMetri
  * @path /v1/domain-forwards/metrics/referrer
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsReferrer_Response} - The main response type definition
  * @see {@link DomainForwardReferrerStats} - The actual schema type definition
@@ -3954,6 +3968,7 @@ export type GET_DomainForwardsMetricsReferrer_Response_200 = DomainForwardReferr
  * @path /v1/domain-forwards/metrics/referrer
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsReferrer_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -3975,6 +3990,7 @@ export type GET_DomainForwardsMetricsReferrer_Response_422 = HTTPValidationError
  * @path /v1/domain-forwards/metrics/status-code
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsStatusCode_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsStatusCode_Response_422} - 422 response type
@@ -3996,6 +4012,7 @@ export type GET_DomainForwardsMetricsStatusCode_Response = GET_DomainForwardsMet
  * @path /v1/domain-forwards/metrics/status-code
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsStatusCode_Response} - The main response type definition
  * @see {@link DomainForwardStatusCodeStats} - The actual schema type definition
@@ -4015,6 +4032,7 @@ export type GET_DomainForwardsMetricsStatusCode_Response_200 = DomainForwardStat
  * @path /v1/domain-forwards/metrics/status-code
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsStatusCode_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -4036,6 +4054,7 @@ export type GET_DomainForwardsMetricsStatusCode_Response_422 = HTTPValidationErr
  * @path /v1/domain-forwards/metrics/time-series
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_422} - 422 response type
@@ -4057,6 +4076,7 @@ export type GET_DomainForwardsMetricsTimeSeries_Response = GET_DomainForwardsMet
  * @path /v1/domain-forwards/metrics/time-series
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsTimeSeries_Response} - The main response type definition
  * @see {@link DomainForwardMetricsTimeSeries} - The actual schema type definition
@@ -4076,6 +4096,7 @@ export type GET_DomainForwardsMetricsTimeSeries_Response_200 = DomainForwardMetr
  * @path /v1/domain-forwards/metrics/time-series
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsTimeSeries_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -4097,6 +4118,7 @@ export type GET_DomainForwardsMetricsTimeSeries_Response_422 = HTTPValidationErr
  * @path /v1/domain-forwards/metrics/user-agent
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsUserAgent_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsUserAgent_Response_422} - 422 response type
@@ -4118,6 +4140,7 @@ export type GET_DomainForwardsMetricsUserAgent_Response = GET_DomainForwardsMetr
  * @path /v1/domain-forwards/metrics/user-agent
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsUserAgent_Response} - The main response type definition
  * @see {@link DomainForwardUserAgentStats} - The actual schema type definition
@@ -4137,6 +4160,7 @@ export type GET_DomainForwardsMetricsUserAgent_Response_200 = DomainForwardUserA
  * @path /v1/domain-forwards/metrics/user-agent
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsUserAgent_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -4159,6 +4183,7 @@ export type GET_DomainForwardsMetricsUserAgent_Response_422 = HTTPValidationErro
  * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_200} - 200 response type
  * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_422} - 422 response type
@@ -4181,6 +4206,7 @@ export type GET_DomainForwardsMetricsVisitsByKey_Response = GET_DomainForwardsMe
  * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response} - The main response type definition
  * @see {@link DomainForwardVisitsByKey} - The actual schema type definition
@@ -4201,6 +4227,7 @@ export type GET_DomainForwardsMetricsVisitsByKey_Response_200 = DomainForwardVis
  * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
  * @param protocol (query) - Filter by protocol: http or https
  * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition

@@ -6999,7 +6999,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-18-101602
+  version: 2026-02-19-084235
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10112,6 +10112,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10169,6 +10178,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10226,6 +10244,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10283,6 +10310,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10340,6 +10376,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10397,6 +10442,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10454,6 +10508,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10511,6 +10574,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
@@ -10576,6 +10648,15 @@ paths:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
           description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Exclude platform values: Unknown, Bot'
+        in: query
+        name: exclude_bots
+        required: false
+        schema:
+          default: false
+          description: 'Exclude platform values: Unknown, Bot'
+          title: Exclude Bots
+          type: boolean
       responses:
         '200':
           content:
