@@ -6999,7 +6999,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-19-084235
+  version: 2026-02-19-084534
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -12825,7 +12825,7 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_EMAIL_FORWARD_DOMAIN_ALREADY_ENABLED
+                code: ERROR_EMAIL_FORWARD_ALREADY_EXISTS
                 detail: 'Email forward already exists for hostname: Additional error
                   context.'
                 status: 409

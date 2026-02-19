@@ -10779,7 +10779,7 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_EMAIL_FORWARD_DOMAIN_ALREADY_ENABLED",
+                     *       "code": "ERROR_EMAIL_FORWARD_ALREADY_EXISTS",
                      *       "detail": "Email forward already exists for hostname: Additional error context.",
                      *       "status": 409,
                      *       "title": "Email Forward Error",
