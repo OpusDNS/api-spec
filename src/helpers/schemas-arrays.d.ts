@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, RegistryHandleAttributeType, ContactAttributeDefinition, ContactRoleAttributeRequirement, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, DomainContactType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, Parking, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, AttributeCondition, DomainContactType, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, Parking, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -108,19 +108,33 @@ export type IpRestrictionArray = IpRestriction[];
  */
 export type TldResponseShortArray = TldResponseShort[];
 /**
- * RegistryHandleAttributeType. Registry handle attribute types for type-safe attribute key access.
+ * AttributeCondition
  *
  * @remarks
- * Array type for RegistryHandleAttributeType objects. Used when the API returns a collection of RegistryHandleAttributeType instances.
+ * Array type for AttributeCondition objects. Used when the API returns a collection of AttributeCondition instances.
  *
  * @example
  * ```typescript
- * const items: RegistryHandleAttributeTypeArray = await api.getRegistryHandleAttributeTypes();
+ * const items: AttributeConditionArray = await api.getAttributeConditions();
  * ```
  *
- * @see {@link RegistryHandleAttributeType} - The individual RegistryHandleAttributeType type definition
+ * @see {@link AttributeCondition} - The individual AttributeCondition type definition
  */
-export type RegistryHandleAttributeTypeArray = RegistryHandleAttributeType[];
+export type AttributeConditionArray = AttributeCondition[];
+/**
+ * DomainContactType
+ *
+ * @remarks
+ * Array type for DomainContactType objects. Used when the API returns a collection of DomainContactType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainContactTypeArray = await api.getDomainContactTypes();
+ * ```
+ *
+ * @see {@link DomainContactType} - The individual DomainContactType type definition
+ */
+export type DomainContactTypeArray = DomainContactType[];
 /**
  * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
  *
@@ -135,20 +149,6 @@ export type RegistryHandleAttributeTypeArray = RegistryHandleAttributeType[];
  * @see {@link ContactAttributeDefinition} - The individual ContactAttributeDefinition type definition
  */
 export type ContactAttributeDefinitionArray = ContactAttributeDefinition[];
-/**
- * ContactRoleAttributeRequirement. Attribute requirements for a specific contact role.
- *
- * @remarks
- * Array type for ContactRoleAttributeRequirement objects. Used when the API returns a collection of ContactRoleAttributeRequirement instances.
- *
- * @example
- * ```typescript
- * const items: ContactRoleAttributeRequirementArray = await api.getContactRoleAttributeRequirements();
- * ```
- *
- * @see {@link ContactRoleAttributeRequirement} - The individual ContactRoleAttributeRequirement type definition
- */
-export type ContactRoleAttributeRequirementArray = ContactRoleAttributeRequirement[];
 /**
  * PostalAddressType
  *
@@ -695,20 +695,6 @@ export type LaunchPhaseBaseArray = LaunchPhaseBase[];
  * @see {@link LocalPresenceRequirementType} - The individual LocalPresenceRequirementType type definition
  */
 export type LocalPresenceRequirementTypeArray = LocalPresenceRequirementType[];
-/**
- * DomainContactType
- *
- * @remarks
- * Array type for DomainContactType objects. Used when the API returns a collection of DomainContactType instances.
- *
- * @example
- * ```typescript
- * const items: DomainContactTypeArray = await api.getDomainContactTypes();
- * ```
- *
- * @see {@link DomainContactType} - The individual DomainContactType type definition
- */
-export type DomainContactTypeArray = DomainContactType[];
 /**
  * OrganizationAttribute
  *

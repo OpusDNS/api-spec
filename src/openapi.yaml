@@ -23,6 +23,28 @@ components:
       - max
       title: AllowedNumberOfNameserverBase
       type: object
+    AttributeCondition:
+      properties:
+        field:
+          $ref: '#/components/schemas/RegistryHandleAttributeType'
+          description: The attribute key to evaluate
+        operator:
+          $ref: '#/components/schemas/ConditionOperator'
+          description: The comparison operator
+        value:
+          anyOf:
+          - type: string
+          - items:
+              type: string
+            type: array
+          description: The value(s) to compare against
+          title: Value
+      required:
+      - field
+      - operator
+      - value
+      title: AttributeCondition
+      type: object
     AttributeType:
       enum:
       - enum
@@ -231,12 +253,43 @@ components:
       - disapproved
       title: ComplianceStatus
       type: string
+    ConditionOperator:
+      enum:
+      - equals
+      - not_equals
+      - in
+      - not_in
+      title: ConditionOperator
+      type: string
     ContactAttributeDefinition:
       description: Definition of a possible attribute for a TLD.
       properties:
+        conditions:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AttributeCondition'
+            type: array
+          - type: 'null'
+          description: Conditions that must ALL be true for this attribute to be active.
+            None means always active.
+          title: Conditions
+        contact_roles:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DomainContactType'
+            type: array
+          - type: 'null'
+          description: Contact roles this attribute applies to. None means all roles.
+          title: Contact Roles
         key:
           $ref: '#/components/schemas/RegistryHandleAttributeType'
           description: Unique identifier for the attribute
+        required:
+          default: false
+          description: Whether this attribute is required when its conditions are
+            met
+          title: Required
+          type: boolean
         type:
           $ref: '#/components/schemas/AttributeType'
           description: Type of the attribute (e.g., 'enum', 'string', 'boolean')
@@ -490,23 +543,6 @@ components:
       - country
       - disclose
       title: ContactResponse
-      type: object
-    ContactRoleAttributeRequirement:
-      description: Attribute requirements for a specific contact role.
-      properties:
-        attributes:
-          description: List of required attribute keys for this role
-          items:
-            $ref: '#/components/schemas/RegistryHandleAttributeType'
-          title: Attributes
-          type: array
-        role:
-          $ref: '#/components/schemas/DomainContactType'
-          description: The role this requirement applies to
-      required:
-      - role
-      - attributes
-      title: ContactRoleAttributeRequirement
       type: object
     ContactSchema:
       properties:
@@ -842,12 +878,6 @@ components:
           - $ref: '#/components/schemas/RegistrantChangeType'
           - type: 'null'
           description: Whether the registrant can change through update or trade
-        required_attributes:
-          description: List of attribute requirements by role
-          items:
-            $ref: '#/components/schemas/ContactRoleAttributeRequirement'
-          title: Required Attributes
-          type: array
         support_check:
           anyOf:
           - type: boolean
@@ -7001,7 +7031,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-19-201124
+  version: 2026-02-20-105000
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

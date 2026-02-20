@@ -59,6 +59,22 @@ export type AllocationMethodType = components['schemas']['AllocationMethodType']
  */
 export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
 /**
+ * AttributeCondition
+ *
+ * @remarks
+ * Type alias for the `AttributeCondition` OpenAPI schema.
+ * This type represents attributecondition data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getAttributeCondition();
+ * const item: AttributeCondition = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type AttributeCondition = components['schemas']['AttributeCondition'];
+/**
  * AttributeType
  *
  * @remarks
@@ -219,6 +235,22 @@ export type BrowserStatsBucket = components['schemas']['BrowserStatsBucket'];
  */
 export type ComplianceStatus = components['schemas']['ComplianceStatus'];
 /**
+ * ConditionOperator
+ *
+ * @remarks
+ * Type alias for the `ConditionOperator` OpenAPI schema.
+ * This type represents conditionoperator data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getConditionOperator();
+ * const item: ConditionOperator = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ConditionOperator = components['schemas']['ConditionOperator'];
+/**
  * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
  *
  * @remarks
@@ -314,22 +346,6 @@ export type ContactIdList = components['schemas']['ContactIdList'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Contact = components['schemas']['ContactResponse'];
-/**
- * ContactRoleAttributeRequirement. Attribute requirements for a specific contact role.
- *
- * @remarks
- * Type alias for the `ContactRoleAttributeRequirement` OpenAPI schema.
- * This type represents contactroleattributerequirement data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getContactRoleAttributeRequirement();
- * const item: ContactRoleAttributeRequirement = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type ContactRoleAttributeRequirement = components['schemas']['ContactRoleAttributeRequirement'];
 /**
  * ContactSchema
  *

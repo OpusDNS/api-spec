@@ -1859,6 +1859,18 @@ export interface components {
              */
             min: number;
         };
+        /** AttributeCondition */
+        AttributeCondition: {
+            /** @description The attribute key to evaluate */
+            field: components["schemas"]["RegistryHandleAttributeType"];
+            /** @description The comparison operator */
+            operator: components["schemas"]["ConditionOperator"];
+            /**
+             * Value
+             * @description The value(s) to compare against
+             */
+            value: string | string[];
+        };
         /**
          * AttributeType
          * @enum {string}
@@ -2009,12 +2021,33 @@ export interface components {
          */
         ComplianceStatus: "preparing" | "pending" | "approved" | "disapproved";
         /**
+         * ConditionOperator
+         * @enum {string}
+         */
+        ConditionOperator: "equals" | "not_equals" | "in" | "not_in";
+        /**
          * ContactAttributeDefinition
          * @description Definition of a possible attribute for a TLD.
          */
         ContactAttributeDefinition: {
+            /**
+             * Conditions
+             * @description Conditions that must ALL be true for this attribute to be active. None means always active.
+             */
+            conditions?: components["schemas"]["AttributeCondition"][] | null;
+            /**
+             * Contact Roles
+             * @description Contact roles this attribute applies to. None means all roles.
+             */
+            contact_roles?: components["schemas"]["DomainContactType"][] | null;
             /** @description Unique identifier for the attribute */
             key: components["schemas"]["RegistryHandleAttributeType"];
+            /**
+             * Required
+             * @description Whether this attribute is required when its conditions are met
+             * @default false
+             */
+            required: boolean;
             /** @description Type of the attribute (e.g., 'enum', 'string', 'boolean') */
             type: components["schemas"]["AttributeType"];
             /**
@@ -2200,19 +2233,6 @@ export interface components {
              * @description The title of the contact
              */
             title?: string | null;
-        };
-        /**
-         * ContactRoleAttributeRequirement
-         * @description Attribute requirements for a specific contact role.
-         */
-        ContactRoleAttributeRequirement: {
-            /**
-             * Attributes
-             * @description List of required attribute keys for this role
-             */
-            attributes: components["schemas"]["RegistryHandleAttributeType"][];
-            /** @description The role this requirement applies to */
-            role: components["schemas"]["DomainContactType"];
         };
         /** ContactSchema */
         ContactSchema: {
@@ -2482,11 +2502,6 @@ export interface components {
             privacy_proxy?: boolean | null;
             /** @description Whether the registrant can change through update or trade */
             registrant_change?: components["schemas"]["RegistrantChangeType"] | null;
-            /**
-             * Required Attributes
-             * @description List of attribute requirements by role
-             */
-            required_attributes?: components["schemas"]["ContactRoleAttributeRequirement"][];
             /**
              * Support Check
              * @description Whether the registry supports contact checks
