@@ -181,6 +181,60 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/contacts/attribute-links": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Link a contact to a contact attribute set */
+        post: operations["create_attribute_link_v1_contacts_attribute_links_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/attribute-sets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List contact attribute sets */
+        get: operations["list_attribute_sets_v1_contacts_attribute_sets_get"];
+        put?: never;
+        /** Create a contact attribute set */
+        post: operations["create_attribute_set_v1_contacts_attribute_sets_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/attribute-sets/{contact_attribute_set_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieve a contact attribute set */
+        get: operations["get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get"];
+        put?: never;
+        post?: never;
+        /** Delete a contact attribute set */
+        delete: operations["delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update a contact attribute set */
+        patch: operations["update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch"];
+        trace?: never;
+    };
     "/v1/contacts/verification": {
         parameters: {
             query?: never;
@@ -223,10 +277,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /**
-         * Retrieve a contact
-         * @description Retrieves a contact object
-         */
+        /** Retrieve a contact */
         get: operations["get_contact_v1_contacts__contact_id__get"];
         put?: never;
         post?: never;
@@ -2056,6 +2107,159 @@ export interface components {
              */
             values?: string[] | null;
         };
+        /** ContactAttributeLinkCreate */
+        ContactAttributeLinkCreate: {
+            /**
+             * Contact Attribute Set Id
+             * Format: typeid
+             * @description The attribute set to link to the contact
+             * @example contact_attribute_set_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @description The contact to link
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_id: TypeId<"contact">;
+        };
+        /** ContactAttributeLinkDetail */
+        ContactAttributeLinkDetail: {
+            /**
+             * Attributes
+             * @description The attributes from the linked set
+             */
+            attributes: {
+                [key: string]: string;
+            };
+            /**
+             * Contact Attribute Set Id
+             * Format: typeid
+             * @description The attribute set linked to the contact
+             * @example contact_attribute_set_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            /**
+             * Label
+             * @description The label of the linked attribute set
+             */
+            label: string;
+            /**
+             * Tld
+             * @description The TLD this link applies to
+             */
+            tld: string;
+        };
+        /** ContactAttributeLinkResponse */
+        ContactAttributeLinkResponse: {
+            /**
+             * Contact Attribute Link Id
+             * Format: typeid
+             * @description The unique identifier of the link
+             * @example contact_attribute_link_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_attribute_link_id: TypeId<"contact_attribute_link">;
+            /**
+             * Contact Attribute Set Id
+             * Format: typeid
+             * @description The attribute set linked to the contact
+             * @example contact_attribute_set_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @description The contact this link belongs to
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_id: TypeId<"contact">;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on: Date;
+            /**
+             * Tld
+             * @description The TLD this link applies to
+             */
+            tld: string;
+        };
+        /** ContactAttributeSetCreate */
+        ContactAttributeSetCreate: {
+            /**
+             * Attributes
+             * @description Key-value map of contact attributes for this set
+             */
+            attributes: {
+                [key: string]: string;
+            };
+            /**
+             * Label
+             * @description A human-readable label explaining the purpose of this attribute set
+             */
+            label: string;
+            /**
+             * Tld
+             * @description The TLD this attribute set applies to (e.g. 'de', '.de', 'DE')
+             */
+            tld: string;
+        };
+        /** ContactAttributeSetResponse */
+        ContactAttributeSetResponse: {
+            /**
+             * Attributes
+             * @description Key-value map of contact attributes for this set
+             */
+            attributes: {
+                [key: string]: string;
+            };
+            /**
+             * Contact Attribute Set Id
+             * Format: typeid
+             * @description The unique identifier of the attribute set
+             * @example contact_attribute_set_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on: Date;
+            /**
+             * Label
+             * @description A human-readable label explaining the purpose of this attribute set
+             */
+            label: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization that owns this attribute set
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Tld
+             * @description The TLD this attribute set applies to
+             */
+            tld: string;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on: Date;
+        };
+        /** ContactAttributeSetUpdate */
+        ContactAttributeSetUpdate: {
+            /**
+             * Label
+             * @description A human-readable label explaining the purpose of this attribute set
+             */
+            label?: string | null;
+        };
         /** ContactConfigBase */
         ContactConfigBase: {
             /**
@@ -2114,6 +2318,107 @@ export interface components {
              * @description The organization of the contact
              */
             org?: string | null;
+            /**
+             * Phone
+             * Format: phone
+             * @description The contact's phone number
+             * @example +1.2125552368
+             */
+            phone: string;
+            /**
+             * Postal Code
+             * @description The postal code of the contact
+             */
+            postal_code: string;
+            /**
+             * State
+             * @description The state of the contact
+             */
+            state?: string | null;
+            /**
+             * Street
+             * @description The address of the contact
+             */
+            street: string;
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title?: string | null;
+        };
+        /** ContactDetailResponse */
+        ContactDetailResponse: {
+            /**
+             * Attribute Sets
+             * @description Linked attribute sets for this contact
+             */
+            attribute_sets?: components["schemas"]["ContactAttributeLinkDetail"][];
+            /**
+             * City
+             * @description The city of the contact
+             */
+            city: string;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_id?: TypeId<"contact">;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
+             * Disclose
+             * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
+             */
+            disclose: boolean;
+            /**
+             * Email
+             * Format: email
+             * @description The email of the contact
+             */
+            email: string;
+            /**
+             * Fax
+             * @description The contacts's fax number
+             */
+            fax?: string | null;
+            /**
+             * First Name
+             * @description The first name of the contact
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The last name of the contact
+             */
+            last_name: string;
+            /**
+             * Org
+             * @description The organization of the contact
+             */
+            org?: string | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The organization that owns the domain
+             * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
             /**
              * Phone
              * Format: phone
@@ -5058,6 +5363,12 @@ export interface components {
             /** Results */
             results: components["schemas"]["BillingTransactionResponse"][];
         };
+        /** Pagination[ContactAttributeSetResponse] */
+        Pagination_ContactAttributeSetResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["ContactAttributeSetResponse"][];
+        };
         /** Pagination[ContactSchema] */
         Pagination_ContactSchema_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -6947,6 +7258,279 @@ export interface operations {
             };
         };
     };
+    create_attribute_link_v1_contacts_attribute_links_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactAttributeLinkCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactAttributeLinkResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_ATTRIBUTE_LINK_ALREADY_EXISTS",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "A contact attribute link already exists for this contact and TLD",
+                     *       "status": 409,
+                     *       "title": "Contact Attribute Set Error",
+                     *       "tld": "",
+                     *       "type": "contact-attribute-link-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_attribute_sets_v1_contacts_attribute_sets_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by TLD (e.g. 'de', '.de', 'DE') */
+                tld?: string | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_ContactAttributeSetResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_attribute_set_v1_contacts_attribute_sets_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactAttributeSetCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactAttributeSetResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactAttributeSetResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_ATTRIBUTE_SET_NOT_FOUND",
+                     *       "contact_attribute_set_id": "Additional error context.",
+                     *       "detail": "Contact attribute set not found",
+                     *       "status": 404,
+                     *       "title": "Contact Attribute Set Error",
+                     *       "type": "contact-attribute-set-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_ATTRIBUTE_SET_NOT_FOUND",
+                     *       "contact_attribute_set_id": "Additional error context.",
+                     *       "detail": "Contact attribute set not found",
+                     *       "status": 404,
+                     *       "title": "Contact Attribute Set Error",
+                     *       "type": "contact-attribute-set-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactAttributeSetUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactAttributeSetResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_ATTRIBUTE_SET_NOT_FOUND",
+                     *       "contact_attribute_set_id": "Additional error context.",
+                     *       "detail": "Contact attribute set not found",
+                     *       "status": 404,
+                     *       "title": "Contact Attribute Set Error",
+                     *       "type": "contact-attribute-set-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_verification_by_token_v1_contacts_verification_get: {
         parameters: {
             query: {
@@ -7130,7 +7714,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ContactSchema"];
+                    "application/json": components["schemas"]["ContactDetailResponse"];
                 };
             };
             /** @description Not Found */

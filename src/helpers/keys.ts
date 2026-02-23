@@ -36,8 +36,15 @@ import { BillingPlan } from './schemas';
 import { BillingTransaction } from './schemas';
 import { BrowserStatsBucket } from './schemas';
 import { ContactAttributeDefinition } from './schemas';
+import { ContactAttributeLinkCreate } from './schemas';
+import { ContactAttributeLinkDetail } from './schemas';
+import { ContactAttributeLink } from './schemas';
+import { ContactAttributeSetCreate } from './schemas';
+import { ContactAttributeSet } from './schemas';
+import { ContactAttributeSetUpdate } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
+import { ContactDetail } from './schemas';
 import { ContactHandle } from './schemas';
 import { Contact } from './schemas';
 import { ContactSchema } from './schemas';
@@ -1326,6 +1333,743 @@ export const KEYS_CONTACT_ATTRIBUTE_DEFINITION = [
 ] as const satisfies (keyof ContactAttributeDefinition)[];
 
 /**
+ * Contact Attribute Set Id
+ *
+ * The attribute set to link to the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_attribute_set_id` property of ContactAttributeLinkCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelinkcreate[KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID;
+ * const value = contactattributelinkcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLinkCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID: keyof ContactAttributeLinkCreate = 'contact_attribute_set_id';
+/**
+ * Contact Id
+ *
+ * The contact to link
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactAttributeLinkCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelinkcreate[KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID;
+ * const value = contactattributelinkcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLinkCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID: keyof ContactAttributeLinkCreate = 'contact_id';
+
+/**
+ * Array of all ContactAttributeLinkCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttributeLinkCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTRIBUTE_LINK_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${contactattributelinkcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTRIBUTE_LINK_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttributeLinkCreate} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTRIBUTE_LINK_CREATE = [
+  KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID,
+  KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID,
+] as const satisfies (keyof ContactAttributeLinkCreate)[];
+
+/**
+ * Attributes
+ *
+ * The attributes from the linked set
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of ContactAttributeLinkDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelinkdetail[KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_ATTRIBUTES;
+ * const value = contactattributelinkdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLinkDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_ATTRIBUTES: keyof ContactAttributeLinkDetail = 'attributes';
+/**
+ * Contact Attribute Set Id
+ *
+ * The attribute set linked to the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_attribute_set_id` property of ContactAttributeLinkDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelinkdetail[KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_CONTACT_ATTRIBUTE_SET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_CONTACT_ATTRIBUTE_SET_ID;
+ * const value = contactattributelinkdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLinkDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_CONTACT_ATTRIBUTE_SET_ID: keyof ContactAttributeLinkDetail = 'contact_attribute_set_id';
+/**
+ * Label
+ *
+ * The label of the linked attribute set
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of ContactAttributeLinkDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelinkdetail[KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_LABEL;
+ * const value = contactattributelinkdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLinkDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_LABEL: keyof ContactAttributeLinkDetail = 'label';
+/**
+ * Tld
+ *
+ * The TLD this link applies to
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tld` property of ContactAttributeLinkDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelinkdetail[KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_TLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_TLD;
+ * const value = contactattributelinkdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLinkDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_TLD: keyof ContactAttributeLinkDetail = 'tld';
+
+/**
+ * Array of all ContactAttributeLinkDetail property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttributeLinkDetail objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTRIBUTE_LINK_DETAIL) {
+ *   console.log(`Property: ${key}, Value: ${contactattributelinkdetail[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTRIBUTE_LINK_DETAIL.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttributeLinkDetail} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTRIBUTE_LINK_DETAIL = [
+  KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_ATTRIBUTES,
+  KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_CONTACT_ATTRIBUTE_SET_ID,
+  KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_LABEL,
+  KEY_CONTACT_ATTRIBUTE_LINK_DETAIL_TLD,
+] as const satisfies (keyof ContactAttributeLinkDetail)[];
+
+/**
+ * Contact Attribute Link Id
+ *
+ * The unique identifier of the link
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_attribute_link_id` property of ContactAttributeLink objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelink[KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_LINK_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_LINK_ID;
+ * const value = contactattributelink[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLink} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_LINK_ID: keyof ContactAttributeLink = 'contact_attribute_link_id';
+/**
+ * Contact Attribute Set Id
+ *
+ * The attribute set linked to the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_attribute_set_id` property of ContactAttributeLink objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelink[KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_SET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_SET_ID;
+ * const value = contactattributelink[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLink} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_SET_ID: keyof ContactAttributeLink = 'contact_attribute_set_id';
+/**
+ * Contact Id
+ *
+ * The contact this link belongs to
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactAttributeLink objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelink[KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ID;
+ * const value = contactattributelink[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLink} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ID: keyof ContactAttributeLink = 'contact_id';
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ContactAttributeLink objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelink[KEY_CONTACT_ATTRIBUTE_LINK_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CREATED_ON;
+ * const value = contactattributelink[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLink} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_CREATED_ON: keyof ContactAttributeLink = 'created_on';
+/**
+ * Tld
+ *
+ * The TLD this link applies to
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tld` property of ContactAttributeLink objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributelink[KEY_CONTACT_ATTRIBUTE_LINK_TLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_TLD;
+ * const value = contactattributelink[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeLink} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_LINK_TLD: keyof ContactAttributeLink = 'tld';
+
+/**
+ * Array of all ContactAttributeLink property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttributeLink objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTRIBUTE_LINK) {
+ *   console.log(`Property: ${key}, Value: ${contactattributelink[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTRIBUTE_LINK.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttributeLink} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTRIBUTE_LINK = [
+  KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_LINK_ID,
+  KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ATTRIBUTE_SET_ID,
+  KEY_CONTACT_ATTRIBUTE_LINK_CONTACT_ID,
+  KEY_CONTACT_ATTRIBUTE_LINK_CREATED_ON,
+  KEY_CONTACT_ATTRIBUTE_LINK_TLD,
+] as const satisfies (keyof ContactAttributeLink)[];
+
+/**
+ * Attributes
+ *
+ * Key-value map of contact attributes for this set
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of ContactAttributeSetCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributesetcreate[KEY_CONTACT_ATTRIBUTE_SET_CREATE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_CREATE_ATTRIBUTES;
+ * const value = contactattributesetcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSetCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_CREATE_ATTRIBUTES: keyof ContactAttributeSetCreate = 'attributes';
+/**
+ * Label
+ *
+ * A human-readable label explaining the purpose of this attribute set
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of ContactAttributeSetCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributesetcreate[KEY_CONTACT_ATTRIBUTE_SET_CREATE_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_CREATE_LABEL;
+ * const value = contactattributesetcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSetCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_CREATE_LABEL: keyof ContactAttributeSetCreate = 'label';
+/**
+ * Tld
+ *
+ * The TLD this attribute set applies to (e.g. 'de', '.de', 'DE')
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tld` property of ContactAttributeSetCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributesetcreate[KEY_CONTACT_ATTRIBUTE_SET_CREATE_TLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_CREATE_TLD;
+ * const value = contactattributesetcreate[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSetCreate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET_CREATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_CREATE_TLD: keyof ContactAttributeSetCreate = 'tld';
+
+/**
+ * Array of all ContactAttributeSetCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttributeSetCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTRIBUTE_SET_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${contactattributesetcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTRIBUTE_SET_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttributeSetCreate} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTRIBUTE_SET_CREATE = [
+  KEY_CONTACT_ATTRIBUTE_SET_CREATE_ATTRIBUTES,
+  KEY_CONTACT_ATTRIBUTE_SET_CREATE_LABEL,
+  KEY_CONTACT_ATTRIBUTE_SET_CREATE_TLD,
+] as const satisfies (keyof ContactAttributeSetCreate)[];
+
+/**
+ * Attributes
+ *
+ * Key-value map of contact attributes for this set
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_ATTRIBUTES;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_ATTRIBUTES: keyof ContactAttributeSet = 'attributes';
+/**
+ * Contact Attribute Set Id
+ *
+ * The unique identifier of the attribute set
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_attribute_set_id` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_CONTACT_ATTRIBUTE_SET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_CONTACT_ATTRIBUTE_SET_ID;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_CONTACT_ATTRIBUTE_SET_ID: keyof ContactAttributeSet = 'contact_attribute_set_id';
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_CREATED_ON;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_CREATED_ON: keyof ContactAttributeSet = 'created_on';
+/**
+ * Label
+ *
+ * A human-readable label explaining the purpose of this attribute set
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_LABEL;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_LABEL: keyof ContactAttributeSet = 'label';
+/**
+ * Organization Id
+ *
+ * The organization that owns this attribute set
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_ORGANIZATION_ID;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_ORGANIZATION_ID: keyof ContactAttributeSet = 'organization_id';
+/**
+ * Tld
+ *
+ * The TLD this attribute set applies to
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tld` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_TLD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_TLD;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_TLD: keyof ContactAttributeSet = 'tld';
+/**
+ * Updated On
+ *
+ * The date/time the entry was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_UPDATED_ON;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_UPDATED_ON: keyof ContactAttributeSet = 'updated_on';
+
+/**
+ * Array of all ContactAttributeSet property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttributeSet objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTRIBUTE_SET) {
+ *   console.log(`Property: ${key}, Value: ${contactattributeset[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTRIBUTE_SET.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTRIBUTE_SET = [
+  KEY_CONTACT_ATTRIBUTE_SET_ATTRIBUTES,
+  KEY_CONTACT_ATTRIBUTE_SET_CONTACT_ATTRIBUTE_SET_ID,
+  KEY_CONTACT_ATTRIBUTE_SET_CREATED_ON,
+  KEY_CONTACT_ATTRIBUTE_SET_LABEL,
+  KEY_CONTACT_ATTRIBUTE_SET_ORGANIZATION_ID,
+  KEY_CONTACT_ATTRIBUTE_SET_TLD,
+  KEY_CONTACT_ATTRIBUTE_SET_UPDATED_ON,
+] as const satisfies (keyof ContactAttributeSet)[];
+
+/**
+ * Label
+ *
+ * A human-readable label explaining the purpose of this attribute set
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of ContactAttributeSetUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributesetupdate[KEY_CONTACT_ATTRIBUTE_SET_UPDATE_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_UPDATE_LABEL;
+ * const value = contactattributesetupdate[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSetUpdate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET_UPDATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_UPDATE_LABEL: keyof ContactAttributeSetUpdate = 'label';
+
+/**
+ * Array of all ContactAttributeSetUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttributeSetUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTRIBUTE_SET_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${contactattributesetupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTRIBUTE_SET_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttributeSetUpdate} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTRIBUTE_SET_UPDATE = [
+  KEY_CONTACT_ATTRIBUTE_SET_UPDATE_LABEL,
+] as const satisfies (keyof ContactAttributeSetUpdate)[];
+
+/**
  * Max
  *
  * Maximum contacts per domain name
@@ -1799,6 +2543,510 @@ export const KEYS_CONTACT_CREATE = [
   KEY_CONTACT_CREATE_STREET,
   KEY_CONTACT_CREATE_TITLE,
 ] as const satisfies (keyof ContactCreate)[];
+
+/**
+ * Attribute Sets
+ *
+ * Linked attribute sets for this contact
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attribute_sets` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_ATTRIBUTE_SETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_ATTRIBUTE_SETS;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_ATTRIBUTE_SETS: keyof ContactDetail = 'attribute_sets';
+/**
+ * City
+ *
+ * The city of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_CITY;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_CITY: keyof ContactDetail = 'city';
+/**
+ * Contact Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_CONTACT_ID;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_CONTACT_ID: keyof ContactDetail = 'contact_id';
+/**
+ * Country
+ *
+ * The country of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_COUNTRY;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_COUNTRY: keyof ContactDetail = 'country';
+/**
+ * Created On
+ *
+ * The date/time the entry was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_CREATED_ON;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_CREATED_ON: keyof ContactDetail = 'created_on';
+/**
+ * Deleted On
+ *
+ * The date/time the entry was deleted on
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deleted_on` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_DELETED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_DELETED_ON;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_DELETED_ON: keyof ContactDetail = 'deleted_on';
+/**
+ * Disclose
+ *
+ * Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disclose` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_DISCLOSE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_DISCLOSE;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_DISCLOSE: keyof ContactDetail = 'disclose';
+/**
+ * Email
+ *
+ * The email of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_EMAIL;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_EMAIL: keyof ContactDetail = 'email';
+/**
+ * Fax
+ *
+ * The contacts's fax number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fax` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_FAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_FAX;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_FAX: keyof ContactDetail = 'fax';
+/**
+ * First Name
+ *
+ * The first name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_FIRST_NAME;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_FIRST_NAME: keyof ContactDetail = 'first_name';
+/**
+ * Last Name
+ *
+ * The last name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_LAST_NAME;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_LAST_NAME: keyof ContactDetail = 'last_name';
+/**
+ * Org
+ *
+ * The organization of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `org` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_ORG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_ORG;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_ORG: keyof ContactDetail = 'org';
+/**
+ * Organization Id
+ *
+ * The organization that owns the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_ORGANIZATION_ID;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_ORGANIZATION_ID: keyof ContactDetail = 'organization_id';
+/**
+ * Phone
+ *
+ * The contact's phone number
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_PHONE;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_PHONE: keyof ContactDetail = 'phone';
+/**
+ * Postal Code
+ *
+ * The postal code of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_POSTAL_CODE;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_POSTAL_CODE: keyof ContactDetail = 'postal_code';
+/**
+ * State
+ *
+ * The state of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_STATE;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_STATE: keyof ContactDetail = 'state';
+/**
+ * Street
+ *
+ * The address of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `street` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_STREET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_STREET;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_STREET: keyof ContactDetail = 'street';
+/**
+ * Title
+ *
+ * The title of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ContactDetail objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactdetail[KEY_CONTACT_DETAIL_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_DETAIL_TITLE;
+ * const value = contactdetail[propertyName];
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_DETAIL} - Array of all keys for this type
+ */
+export const KEY_CONTACT_DETAIL_TITLE: keyof ContactDetail = 'title';
+
+/**
+ * Array of all ContactDetail property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactDetail objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_DETAIL) {
+ *   console.log(`Property: ${key}, Value: ${contactdetail[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_DETAIL.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactDetail} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_DETAIL = [
+  KEY_CONTACT_DETAIL_ATTRIBUTE_SETS,
+  KEY_CONTACT_DETAIL_CITY,
+  KEY_CONTACT_DETAIL_CONTACT_ID,
+  KEY_CONTACT_DETAIL_COUNTRY,
+  KEY_CONTACT_DETAIL_CREATED_ON,
+  KEY_CONTACT_DETAIL_DELETED_ON,
+  KEY_CONTACT_DETAIL_DISCLOSE,
+  KEY_CONTACT_DETAIL_EMAIL,
+  KEY_CONTACT_DETAIL_FAX,
+  KEY_CONTACT_DETAIL_FIRST_NAME,
+  KEY_CONTACT_DETAIL_LAST_NAME,
+  KEY_CONTACT_DETAIL_ORG,
+  KEY_CONTACT_DETAIL_ORGANIZATION_ID,
+  KEY_CONTACT_DETAIL_PHONE,
+  KEY_CONTACT_DETAIL_POSTAL_CODE,
+  KEY_CONTACT_DETAIL_STATE,
+  KEY_CONTACT_DETAIL_STREET,
+  KEY_CONTACT_DETAIL_TITLE,
+] as const satisfies (keyof ContactDetail)[];
 
 /**
  * Attributes

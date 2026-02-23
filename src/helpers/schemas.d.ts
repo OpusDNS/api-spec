@@ -267,6 +267,102 @@ export type ConditionOperator = components['schemas']['ConditionOperator'];
  */
 export type ContactAttributeDefinition = components['schemas']['ContactAttributeDefinition'];
 /**
+ * ContactAttributeLinkCreate
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeLinkCreate` OpenAPI schema.
+ * This type represents contactattributelinkcreate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeLinkCreate();
+ * const item: ContactAttributeLinkCreate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeLinkCreate = components['schemas']['ContactAttributeLinkCreate'];
+/**
+ * ContactAttributeLinkDetail
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeLinkDetail` OpenAPI schema.
+ * This type represents contactattributelinkdetail data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeLinkDetail();
+ * const item: ContactAttributeLinkDetail = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeLinkDetail = components['schemas']['ContactAttributeLinkDetail'];
+/**
+ * ContactAttributeLinkResponse
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeLinkResponse` OpenAPI schema.
+ * This type represents contactattributelinkresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeLink();
+ * const item: ContactAttributeLink = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeLink = components['schemas']['ContactAttributeLinkResponse'];
+/**
+ * ContactAttributeSetCreate
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeSetCreate` OpenAPI schema.
+ * This type represents contactattributesetcreate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeSetCreate();
+ * const item: ContactAttributeSetCreate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeSetCreate = components['schemas']['ContactAttributeSetCreate'];
+/**
+ * ContactAttributeSetResponse
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeSetResponse` OpenAPI schema.
+ * This type represents contactattributesetresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeSet();
+ * const item: ContactAttributeSet = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeSet = components['schemas']['ContactAttributeSetResponse'];
+/**
+ * ContactAttributeSetUpdate
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeSetUpdate` OpenAPI schema.
+ * This type represents contactattributesetupdate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeSetUpdate();
+ * const item: ContactAttributeSetUpdate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeSetUpdate = components['schemas']['ContactAttributeSetUpdate'];
+/**
  * ContactConfigBase
  *
  * @remarks
@@ -298,6 +394,22 @@ export type ContactConfigBase = components['schemas']['ContactConfigBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ContactCreate = components['schemas']['ContactCreate'];
+/**
+ * ContactDetailResponse
+ *
+ * @remarks
+ * Type alias for the `ContactDetailResponse` OpenAPI schema.
+ * This type represents contactdetailresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactDetail();
+ * const item: ContactDetail = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactDetail = components['schemas']['ContactDetailResponse'];
 /**
  * ContactHandle
  *
@@ -2948,6 +3060,22 @@ export type PaginationMetadata = components['schemas']['PaginationMetadata'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_BillingTransaction = components['schemas']['Pagination_BillingTransactionResponse_'];
+/**
+ * Pagination[ContactAttributeSetResponse]
+ *
+ * @remarks
+ * Type alias for the `Pagination_ContactAttributeSetResponse_` OpenAPI schema.
+ * This type represents pagination[contactattributesetresponse] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_ContactAttributeSet();
+ * const item: Pagination_ContactAttributeSet = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_ContactAttributeSet = components['schemas']['Pagination_ContactAttributeSetResponse_'];
 /**
  * Pagination[ContactSchema]
  *

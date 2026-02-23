@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, AttributeCondition, DomainContactType, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, Parking, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, AttributeCondition, DomainContactType, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, ContactSchema, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, Parking, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -135,6 +135,20 @@ export type AttributeConditionArray = AttributeCondition[];
  * @see {@link DomainContactType} - The individual DomainContactType type definition
  */
 export type DomainContactTypeArray = DomainContactType[];
+/**
+ * ContactAttributeLinkDetail
+ *
+ * @remarks
+ * Array type for ContactAttributeLinkDetail objects. Used when the API returns a collection of ContactAttributeLinkDetail instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactAttributeLinkDetailArray = await api.getContactAttributeLinkDetails();
+ * ```
+ *
+ * @see {@link ContactAttributeLinkDetail} - The individual ContactAttributeLinkDetail type definition
+ */
+export type ContactAttributeLinkDetailArray = ContactAttributeLinkDetail[];
 /**
  * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
  *
@@ -765,6 +779,20 @@ export type UserCreateArray = UserCreate[];
  * @see {@link BillingTransaction} - The individual BillingTransactionResponse type definition
  */
 export type BillingTransactionArray = BillingTransaction[];
+/**
+ * ContactAttributeSetResponse
+ *
+ * @remarks
+ * Array type for ContactAttributeSetResponse objects. Used when the API returns a collection of ContactAttributeSetResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactAttributeSetArray = await api.getContactAttributeSets();
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The individual ContactAttributeSetResponse type definition
+ */
+export type ContactAttributeSetArray = ContactAttributeSet[];
 /**
  * ContactSchema
  *

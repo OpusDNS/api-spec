@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactSchema, ContactSchema, ContactAttributeLink, Pagination_ContactAttributeSet, ContactAttributeSet, ContactDetail, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -677,6 +677,411 @@ export type POST_Contacts_Response_201 = ContactSchema
 export type POST_Contacts_Response_422 = HTTPValidationError
 
 /**
+ * Response types for POST ContactsAttributeLinks endpoint
+ *
+ * Link a contact to a contact attribute set
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST ContactsAttributeLinks endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/attribute-links
+ *
+ * @see {@link POST_ContactsAttributeLinks_Response_201} - 201 response type
+ * @see {@link POST_ContactsAttributeLinks_Response_404} - 404 response type
+ * @see {@link POST_ContactsAttributeLinks_Response_409} - 409 response type
+ * @see {@link POST_ContactsAttributeLinks_Response_422} - 422 response type
+ *
+
+ */
+export type POST_ContactsAttributeLinks_Response = POST_ContactsAttributeLinks_Response_201 | POST_ContactsAttributeLinks_Response_404 | POST_ContactsAttributeLinks_Response_409 | POST_ContactsAttributeLinks_Response_422;
+
+/**
+ * 201 response for POST ContactsAttributeLinks endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST ContactsAttributeLinks endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-links
+ *
+ * @see {@link POST_ContactsAttributeLinks_Response} - The main response type definition
+ * @see {@link ContactAttributeLink} - The actual schema type definition
+ */
+export type POST_ContactsAttributeLinks_Response_201 = ContactAttributeLink
+
+/**
+ * 404 response for POST ContactsAttributeLinks endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST ContactsAttributeLinks endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-links
+ *
+ * @see {@link POST_ContactsAttributeLinks_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ContactsAttributeLinks_Response_404 = Problem
+
+/**
+ * 409 response for POST ContactsAttributeLinks endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST ContactsAttributeLinks endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-links
+ *
+ * @see {@link POST_ContactsAttributeLinks_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ContactsAttributeLinks_Response_409 = Problem
+
+/**
+ * 422 response for POST ContactsAttributeLinks endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST ContactsAttributeLinks endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-links
+ *
+ * @see {@link POST_ContactsAttributeLinks_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_ContactsAttributeLinks_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET ContactsAttributeSets endpoint
+ *
+ * List contact attribute sets
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ContactsAttributeSets endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets
+ * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
+ *
+ * @see {@link GET_ContactsAttributeSets_Response_200} - 200 response type
+ * @see {@link GET_ContactsAttributeSets_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ContactsAttributeSets_Response = GET_ContactsAttributeSets_Response_200 | GET_ContactsAttributeSets_Response_422;
+
+/**
+ * 200 response for GET ContactsAttributeSets endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ContactsAttributeSets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets
+ * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
+ *
+ * @see {@link GET_ContactsAttributeSets_Response} - The main response type definition
+ * @see {@link Pagination_ContactAttributeSet} - The actual schema type definition
+ */
+export type GET_ContactsAttributeSets_Response_200 = Pagination_ContactAttributeSet
+
+/**
+ * 422 response for GET ContactsAttributeSets endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ContactsAttributeSets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets
+ * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
+ *
+ * @see {@link GET_ContactsAttributeSets_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ContactsAttributeSets_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST ContactsAttributeSets endpoint
+ *
+ * Create a contact attribute set
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST ContactsAttributeSets endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets
+ *
+ * @see {@link POST_ContactsAttributeSets_Response_201} - 201 response type
+ * @see {@link POST_ContactsAttributeSets_Response_422} - 422 response type
+ *
+
+ */
+export type POST_ContactsAttributeSets_Response = POST_ContactsAttributeSets_Response_201 | POST_ContactsAttributeSets_Response_422;
+
+/**
+ * 201 response for POST ContactsAttributeSets endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST ContactsAttributeSets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets
+ *
+ * @see {@link POST_ContactsAttributeSets_Response} - The main response type definition
+ * @see {@link ContactAttributeSet} - The actual schema type definition
+ */
+export type POST_ContactsAttributeSets_Response_201 = ContactAttributeSet
+
+/**
+ * 422 response for POST ContactsAttributeSets endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST ContactsAttributeSets endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets
+ *
+ * @see {@link POST_ContactsAttributeSets_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_ContactsAttributeSets_Response_422 = HTTPValidationError
+
+/**
+ * Response types for DELETE ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * Delete a contact attribute set
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_404} - 404 response type
+ * @see {@link DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_422} - 422 response type
+ *
+
+ */
+export type DELETE_ContactsAttributeSetsByContactAttributeSetId_Response = DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_404 | DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_422;
+
+/**
+ * 404 response for DELETE ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link DELETE_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_404 = Problem
+
+/**
+ * 422 response for DELETE ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link DELETE_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_ContactsAttributeSetsByContactAttributeSetId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * Retrieve a contact attribute set
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link GET_ContactsAttributeSetsByContactAttributeSetId_Response_200} - 200 response type
+ * @see {@link GET_ContactsAttributeSetsByContactAttributeSetId_Response_404} - 404 response type
+ * @see {@link GET_ContactsAttributeSetsByContactAttributeSetId_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ContactsAttributeSetsByContactAttributeSetId_Response = GET_ContactsAttributeSetsByContactAttributeSetId_Response_200 | GET_ContactsAttributeSetsByContactAttributeSetId_Response_404 | GET_ContactsAttributeSetsByContactAttributeSetId_Response_422;
+
+/**
+ * 200 response for GET ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link GET_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link ContactAttributeSet} - The actual schema type definition
+ */
+export type GET_ContactsAttributeSetsByContactAttributeSetId_Response_200 = ContactAttributeSet
+
+/**
+ * 404 response for GET ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link GET_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_ContactsAttributeSetsByContactAttributeSetId_Response_404 = Problem
+
+/**
+ * 422 response for GET ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link GET_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ContactsAttributeSetsByContactAttributeSetId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * Update a contact attribute set
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_200} - 200 response type
+ * @see {@link PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_404} - 404 response type
+ * @see {@link PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_ContactsAttributeSetsByContactAttributeSetId_Response = PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_200 | PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_404 | PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_422;
+
+/**
+ * 200 response for PATCH ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link PATCH_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link ContactAttributeSet} - The actual schema type definition
+ */
+export type PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_200 = ContactAttributeSet
+
+/**
+ * 404 response for PATCH ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link PATCH_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_404 = Problem
+
+/**
+ * 422 response for PATCH ContactsAttributeSetsByContactAttributeSetId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH ContactsAttributeSetsByContactAttributeSetId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link PATCH_ContactsAttributeSetsByContactAttributeSetId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_ContactsAttributeSetsByContactAttributeSetId_Response_422 = HTTPValidationError
+
+/**
  * Response types for DELETE ContactsByContactId endpoint
  *
  * Delete a contact
@@ -754,7 +1159,6 @@ export type DELETE_ContactsByContactId_Response_422 = HTTPValidationError
  * Response types for GET ContactsByContactId endpoint
  *
  * Retrieve a contact
- * Retrieves a contact object
  *
  * @remarks
  * This type defines all possible response structures for the GET ContactsByContactId endpoint.
@@ -786,9 +1190,9 @@ export type GET_ContactsByContactId_Response = GET_ContactsByContactId_Response_
  * @path /v1/contacts/{contact_id}
  *
  * @see {@link GET_ContactsByContactId_Response} - The main response type definition
- * @see {@link ContactSchema} - The actual schema type definition
+ * @see {@link ContactDetail} - The actual schema type definition
  */
-export type GET_ContactsByContactId_Response_200 = ContactSchema
+export type GET_ContactsByContactId_Response_200 = ContactDetail
 
 /**
  * 404 response for GET ContactsByContactId endpoint

@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ContactCreate, ContactAttributeLinkCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -462,6 +462,246 @@ export type POST_Contacts_Request = {
 export type POST_Contacts_Request_Body = POST_Contacts_Request['requestBody'];
 
 /**
+ * Request type for POST ContactsAttributeLinks endpoint
+ *
+ * Link a contact to a contact attribute set
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST ContactsAttributeLinks endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/attribute-links
+ *
+ * @see {@link POST_ContactsAttributeLinks_Request_Query} - Query parameters type
+ * @see {@link POST_ContactsAttributeLinks_Request_Path} - Path parameters type
+ * @see {@link POST_ContactsAttributeLinks_Request_Body} - Request body type
+ */
+export type POST_ContactsAttributeLinks_Request = {
+  requestBody: ContactAttributeLinkCreate;
+}
+/**
+ * Request body for POST /v1/contacts/attribute-links
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/contacts/attribute-links endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/contacts/attribute-links
+ */
+export type POST_ContactsAttributeLinks_Request_Body = POST_ContactsAttributeLinks_Request['requestBody'];
+
+/**
+ * Request type for GET ContactsAttributeSets endpoint
+ *
+ * List contact attribute sets
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ContactsAttributeSets endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/attribute-sets
+ * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
+ *
+ * @see {@link GET_ContactsAttributeSets_Request_Query} - Query parameters type
+ * @see {@link GET_ContactsAttributeSets_Request_Path} - Path parameters type
+ * @see {@link GET_ContactsAttributeSets_Request_Body} - Request body type
+ */
+export type GET_ContactsAttributeSets_Request = {
+  parameters: {
+    query: operations['list_attribute_sets_v1_contacts_attribute_sets_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/contacts/attribute-sets
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/contacts/attribute-sets endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/contacts/attribute-sets
+ * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
+ */
+export type GET_ContactsAttributeSets_Request_Query = GET_ContactsAttributeSets_Request['parameters']['query'];
+
+/**
+ * Request type for POST ContactsAttributeSets endpoint
+ *
+ * Create a contact attribute set
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST ContactsAttributeSets endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/attribute-sets
+ *
+ * @see {@link POST_ContactsAttributeSets_Request_Query} - Query parameters type
+ * @see {@link POST_ContactsAttributeSets_Request_Path} - Path parameters type
+ * @see {@link POST_ContactsAttributeSets_Request_Body} - Request body type
+ */
+export type POST_ContactsAttributeSets_Request = {
+  requestBody: ContactAttributeSetCreate;
+}
+/**
+ * Request body for POST /v1/contacts/attribute-sets
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/contacts/attribute-sets endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/contacts/attribute-sets
+ */
+export type POST_ContactsAttributeSets_Request_Body = POST_ContactsAttributeSets_Request['requestBody'];
+
+/**
+ * Request type for DELETE ContactsAttributeSetsContactAttributeSetId endpoint
+ *
+ * Delete a contact attribute set
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE ContactsAttributeSetsContactAttributeSetId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Query} - Query parameters type
+ * @see {@link DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Path} - Path parameters type
+ * @see {@link DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Body} - Request body type
+ */
+export type DELETE_ContactsAttributeSetsContactAttributeSetId_Request = {
+  parameters: {
+    path: operations['delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ */
+export type DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Path = DELETE_ContactsAttributeSetsContactAttributeSetId_Request['parameters']['path'];
+
+/**
+ * Request type for GET ContactsAttributeSetsContactAttributeSetId endpoint
+ *
+ * Retrieve a contact attribute set
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ContactsAttributeSetsContactAttributeSetId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link GET_ContactsAttributeSetsContactAttributeSetId_Request_Query} - Query parameters type
+ * @see {@link GET_ContactsAttributeSetsContactAttributeSetId_Request_Path} - Path parameters type
+ * @see {@link GET_ContactsAttributeSetsContactAttributeSetId_Request_Body} - Request body type
+ */
+export type GET_ContactsAttributeSetsContactAttributeSetId_Request = {
+  parameters: {
+    path: operations['get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ */
+export type GET_ContactsAttributeSetsContactAttributeSetId_Request_Path = GET_ContactsAttributeSetsContactAttributeSetId_Request['parameters']['path'];
+
+/**
+ * Request type for PATCH ContactsAttributeSetsContactAttributeSetId endpoint
+ *
+ * Update a contact attribute set
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH ContactsAttributeSetsContactAttributeSetId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @see {@link PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Query} - Query parameters type
+ * @see {@link PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Path} - Path parameters type
+ * @see {@link PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Body} - Request body type
+ */
+export type PATCH_ContactsAttributeSetsContactAttributeSetId_Request = {
+  parameters: {
+    path: operations['update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch']['parameters']['path'];
+  };
+  requestBody: ContactAttributeSetUpdate;
+}
+/**
+ * Path parameters for PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ */
+export type PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Path = PATCH_ContactsAttributeSetsContactAttributeSetId_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ *
+ * @remarks
+ * This type defines the request body structure for the PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
+ */
+export type PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Body = PATCH_ContactsAttributeSetsContactAttributeSetId_Request['requestBody'];
+
+/**
  * Request type for DELETE ContactsContactId endpoint
  *
  * Delete a contact
@@ -504,7 +744,6 @@ export type DELETE_ContactsContactId_Request_Path = DELETE_ContactsContactId_Req
  * Request type for GET ContactsContactId endpoint
  *
  * Retrieve a contact
- * Retrieves a contact object
  *
  * @remarks
  * This type defines the complete request structure for the GET ContactsContactId endpoint.
