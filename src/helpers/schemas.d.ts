@@ -267,22 +267,6 @@ export type ConditionOperator = components['schemas']['ConditionOperator'];
  */
 export type ContactAttributeDefinition = components['schemas']['ContactAttributeDefinition'];
 /**
- * ContactAttributeLinkCreate
- *
- * @remarks
- * Type alias for the `ContactAttributeLinkCreate` OpenAPI schema.
- * This type represents contactattributelinkcreate data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getContactAttributeLinkCreate();
- * const item: ContactAttributeLinkCreate = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type ContactAttributeLinkCreate = components['schemas']['ContactAttributeLinkCreate'];
-/**
  * ContactAttributeLinkDetail
  *
  * @remarks
@@ -3077,21 +3061,21 @@ export type Pagination_BillingTransaction = components['schemas']['Pagination_Bi
  */
 export type Pagination_ContactAttributeSet = components['schemas']['Pagination_ContactAttributeSetResponse_'];
 /**
- * Pagination[ContactSchema]
+ * Pagination[ContactDetailResponse]
  *
  * @remarks
- * Type alias for the `Pagination_ContactSchema_` OpenAPI schema.
- * This type represents pagination[contactschema] data structures used in API requests and responses.
+ * Type alias for the `Pagination_ContactDetailResponse_` OpenAPI schema.
+ * This type represents pagination[contactdetailresponse] data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getPagination_ContactSchema();
- * const item: Pagination_ContactSchema = response.results;
+ * const response = await api.getPagination_ContactDetail();
+ * const item: Pagination_ContactDetail = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type Pagination_ContactSchema = components['schemas']['Pagination_ContactSchema_'];
+export type Pagination_ContactDetail = components['schemas']['Pagination_ContactDetailResponse_'];
 /**
  * Pagination[DnsZoneResponse]
  *

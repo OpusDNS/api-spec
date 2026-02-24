@@ -306,31 +306,6 @@ components:
       - type
       title: ContactAttributeDefinition
       type: object
-    ContactAttributeLinkCreate:
-      properties:
-        contact_attribute_set_id:
-          description: The attribute set to link to the contact
-          examples:
-          - contact_attribute_set_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^contact_attribute_set_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Contact Attribute Set Id
-          type: string
-          x-typeid-prefix: contact_attribute_set
-        contact_id:
-          description: The contact to link
-          examples:
-          - contact_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Contact Id
-          type: string
-          x-typeid-prefix: contact
-      required:
-      - contact_id
-      - contact_attribute_set_id
-      title: ContactAttributeLinkCreate
-      type: object
     ContactAttributeLinkDetail:
       properties:
         attributes:
@@ -5132,19 +5107,19 @@ components:
       - pagination
       title: Pagination[ContactAttributeSetResponse]
       type: object
-    Pagination_ContactSchema_:
+    Pagination_ContactDetailResponse_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/ContactSchema'
+            $ref: '#/components/schemas/ContactDetailResponse'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[ContactSchema]
+      title: Pagination[ContactDetailResponse]
       type: object
     Pagination_DnsZoneResponse_:
       properties:
@@ -7375,7 +7350,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-23-085935
+  version: 2026-02-24-090615
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8281,7 +8256,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ContactSchema_'
+                $ref: '#/components/schemas/Pagination_ContactDetailResponse_'
           description: Successful Response
         '422':
           content:
@@ -8321,72 +8296,6 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Create a contact
-      tags:
-      - contact
-  /v1/contacts/attribute-links:
-    post:
-      operationId: create_attribute_link_v1_contacts_attribute_links_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ContactAttributeLinkCreate'
-        required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ContactAttributeLinkResponse'
-          description: Successful Response
-        '404':
-          content:
-            application/problem+json:
-              examples:
-                Contact Attribute Set Error:
-                  value:
-                    code: ERROR_CONTACT_ATTRIBUTE_SET_NOT_FOUND
-                    contact_attribute_set_id: Additional error context.
-                    detail: Contact attribute set not found
-                    status: 404
-                    title: Contact Attribute Set Error
-                    type: contact-attribute-set-not-found
-                Contact Management Error:
-                  value:
-                    code: ERROR_CONTACT_NOT_FOUND
-                    contact_id: Additional error context.
-                    detail: Contact not found
-                    status: 404
-                    title: Contact Management Error
-                    type: contact-not-found
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Not Found
-        '409':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_CONTACT_ATTRIBUTE_LINK_ALREADY_EXISTS
-                contact_id: Additional error context.
-                detail: A contact attribute link already exists for this contact and
-                  TLD
-                status: 409
-                title: Contact Attribute Set Error
-                tld: ''
-                type: contact-attribute-link-already-exists
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Conflict
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
-      summary: Link a contact to a contact attribute set
       tags:
       - contact
   /v1/contacts/attribute-sets:
@@ -8454,6 +8363,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/ContactAttributeSetResponse'
           description: Successful Response
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_ATTRIBUTE_SET_LABEL_ALREADY_EXISTS
+                detail: A contact attribute set with label 'Additional error context.'
+                  already exists
+                label: Additional error context.
+                status: 409
+                title: Contact Attribute Set Error
+                type: contact-attribute-set-label-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:
@@ -8595,6 +8518,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_ATTRIBUTE_SET_LABEL_ALREADY_EXISTS
+                detail: A contact attribute set with label 'Additional error context.'
+                  already exists
+                label: Additional error context.
+                status: 409
+                title: Contact Attribute Set Error
+                type: contact-attribute-set-label-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
         '422':
           content:
             application/problem+json:
@@ -8845,6 +8782,89 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Retrieve a contact
+      tags:
+      - contact
+  /v1/contacts/{contact_id}/link/{contact_attribute_set_id}:
+    patch:
+      operationId: create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      - in: path
+        name: contact_attribute_set_id
+        required: true
+        schema:
+          examples:
+          - contact_attribute_set_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_attribute_set_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Attribute Set Id
+          type: string
+          x-typeid-prefix: contact_attribute_set
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactAttributeLinkResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              examples:
+                Contact Attribute Set Error:
+                  value:
+                    code: ERROR_CONTACT_ATTRIBUTE_SET_NOT_FOUND
+                    contact_attribute_set_id: Additional error context.
+                    detail: Contact attribute set not found
+                    status: 404
+                    title: Contact Attribute Set Error
+                    type: contact-attribute-set-not-found
+                Contact Management Error:
+                  value:
+                    code: ERROR_CONTACT_NOT_FOUND
+                    contact_id: Additional error context.
+                    detail: Contact not found
+                    status: 404
+                    title: Contact Management Error
+                    type: contact-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_ATTRIBUTE_LINK_ALREADY_EXISTS
+                contact_id: Additional error context.
+                detail: A contact attribute link already exists for this contact and
+                  TLD
+                status: 409
+                title: Contact Attribute Set Error
+                tld: ''
+                type: contact-attribute-link-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Link a contact to a contact attribute set
       tags:
       - contact
   /v1/contacts/{contact_id}/verification:

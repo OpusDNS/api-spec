@@ -36,7 +36,6 @@ import { BillingPlan } from './schemas';
 import { BillingTransaction } from './schemas';
 import { BrowserStatsBucket } from './schemas';
 import { ContactAttributeDefinition } from './schemas';
-import { ContactAttributeLinkCreate } from './schemas';
 import { ContactAttributeLinkDetail } from './schemas';
 import { ContactAttributeLink } from './schemas';
 import { ContactAttributeSetCreate } from './schemas';
@@ -1331,84 +1330,6 @@ export const KEYS_CONTACT_ATTRIBUTE_DEFINITION = [
   KEY_CONTACT_ATTRIBUTE_DEFINITION_TYPE,
   KEY_CONTACT_ATTRIBUTE_DEFINITION_VALUES,
 ] as const satisfies (keyof ContactAttributeDefinition)[];
-
-/**
- * Contact Attribute Set Id
- *
- * The attribute set to link to the contact
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `contact_attribute_set_id` property of ContactAttributeLinkCreate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = contactattributelinkcreate[KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID;
- * const value = contactattributelinkcreate[propertyName];
- * ```
- *
- * @see {@link ContactAttributeLinkCreate} - The TypeScript type definition
- * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_CREATE} - Array of all keys for this type
- */
-export const KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID: keyof ContactAttributeLinkCreate = 'contact_attribute_set_id';
-/**
- * Contact Id
- *
- * The contact to link
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `contact_id` property of ContactAttributeLinkCreate objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = contactattributelinkcreate[KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID;
- * const value = contactattributelinkcreate[propertyName];
- * ```
- *
- * @see {@link ContactAttributeLinkCreate} - The TypeScript type definition
- * @see {@link KEYS_CONTACT_ATTRIBUTE_LINK_CREATE} - Array of all keys for this type
- */
-export const KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID: keyof ContactAttributeLinkCreate = 'contact_id';
-
-/**
- * Array of all ContactAttributeLinkCreate property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for ContactAttributeLinkCreate objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_CONTACT_ATTRIBUTE_LINK_CREATE) {
- *   console.log(`Property: ${key}, Value: ${contactattributelinkcreate[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_CONTACT_ATTRIBUTE_LINK_CREATE.includes(someKey);
- * ```
- *
- * @see {@link ContactAttributeLinkCreate} - The TypeScript type definition
- */
-export const KEYS_CONTACT_ATTRIBUTE_LINK_CREATE = [
-  KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ATTRIBUTE_SET_ID,
-  KEY_CONTACT_ATTRIBUTE_LINK_CREATE_CONTACT_ID,
-] as const satisfies (keyof ContactAttributeLinkCreate)[];
 
 /**
  * Attributes

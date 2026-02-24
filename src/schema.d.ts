@@ -181,23 +181,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/contacts/attribute-links": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Link a contact to a contact attribute set */
-        post: operations["create_attribute_link_v1_contacts_attribute_links_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/contacts/attribute-sets": {
         parameters: {
             query?: never;
@@ -289,6 +272,23 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/v1/contacts/{contact_id}/link/{contact_attribute_set_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Link a contact to a contact attribute set */
+        patch: operations["create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch"];
         trace?: never;
     };
     "/v1/contacts/{contact_id}/verification": {
@@ -2106,23 +2106,6 @@ export interface components {
              * @description Allowed values for enum types
              */
             values?: string[] | null;
-        };
-        /** ContactAttributeLinkCreate */
-        ContactAttributeLinkCreate: {
-            /**
-             * Contact Attribute Set Id
-             * Format: typeid
-             * @description The attribute set to link to the contact
-             * @example contact_attribute_set_01h45ytscbebyvny4gc8cr8ma2
-             */
-            contact_attribute_set_id: TypeId<"contact_attribute_set">;
-            /**
-             * Contact Id
-             * Format: typeid
-             * @description The contact to link
-             * @example contact_01h45ytscbebyvny4gc8cr8ma2
-             */
-            contact_id: TypeId<"contact">;
         };
         /** ContactAttributeLinkDetail */
         ContactAttributeLinkDetail: {
@@ -5369,11 +5352,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["ContactAttributeSetResponse"][];
         };
-        /** Pagination[ContactSchema] */
-        Pagination_ContactSchema_: {
+        /** Pagination[ContactDetailResponse] */
+        Pagination_ContactDetailResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["ContactSchema"][];
+            results: components["schemas"]["ContactDetailResponse"][];
         };
         /** Pagination[DnsZoneResponse] */
         Pagination_DnsZoneResponse_: {
@@ -7211,7 +7194,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_ContactSchema_"];
+                    "application/json": components["schemas"]["Pagination_ContactDetailResponse_"];
                 };
             };
             /** @description Validation Error */
@@ -7245,66 +7228,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ContactSchema"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    create_attribute_link_v1_contacts_attribute_links_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ContactAttributeLinkCreate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ContactAttributeLinkResponse"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_CONTACT_ATTRIBUTE_LINK_ALREADY_EXISTS",
-                     *       "contact_id": "Additional error context.",
-                     *       "detail": "A contact attribute link already exists for this contact and TLD",
-                     *       "status": 409,
-                     *       "title": "Contact Attribute Set Error",
-                     *       "tld": "",
-                     *       "type": "contact-attribute-link-already-exists"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -7372,6 +7295,23 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ContactAttributeSetResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_ATTRIBUTE_SET_LABEL_ALREADY_EXISTS",
+                     *       "detail": "A contact attribute set with label 'Additional error context.' already exists",
+                     *       "label": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Contact Attribute Set Error",
+                     *       "type": "contact-attribute-set-label-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -7516,6 +7456,23 @@ export interface operations {
                      *       "status": 404,
                      *       "title": "Contact Attribute Set Error",
                      *       "type": "contact-attribute-set-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_ATTRIBUTE_SET_LABEL_ALREADY_EXISTS",
+                     *       "detail": "A contact attribute set with label 'Additional error context.' already exists",
+                     *       "label": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Contact Attribute Set Error",
+                     *       "type": "contact-attribute-set-label-already-exists"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -7792,6 +7749,65 @@ export interface operations {
                      *       "status": 409,
                      *       "title": "Contact Management Error",
                      *       "type": "contact-in-use"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: TypeId<"contact">;
+                contact_attribute_set_id: TypeId<"contact_attribute_set">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactAttributeLinkResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_ATTRIBUTE_LINK_ALREADY_EXISTS",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "A contact attribute link already exists for this contact and TLD",
+                     *       "status": 409,
+                     *       "title": "Contact Attribute Set Error",
+                     *       "tld": "",
+                     *       "type": "contact-attribute-link-already-exists"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
