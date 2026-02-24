@@ -3391,7 +3391,6 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   NOMINET_CO_NO: "NOMINET_CO_NO",
   NOMINET_TRAD_NAME: "NOMINET_TRAD_NAME",
   CIRA_CPR: "CIRA_CPR",
-  CIRA_CONTACT_TYPE: "CIRA_CONTACT_TYPE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -3445,8 +3444,7 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'NOMINET_CONTACT_TYPE',
   'NOMINET_CO_NO',
   'NOMINET_TRAD_NAME',
-  'CIRA_CPR',
-  'CIRA_CONTACT_TYPE'
+  'CIRA_CPR'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**

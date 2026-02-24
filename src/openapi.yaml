@@ -5883,7 +5883,6 @@ components:
       - NOMINET_CO_NO
       - NOMINET_TRAD_NAME
       - CIRA_CPR
-      - CIRA_CONTACT_TYPE
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -7351,7 +7350,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-24-091419
+  version: 2026-02-24-151641
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
