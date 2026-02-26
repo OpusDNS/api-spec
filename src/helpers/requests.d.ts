@@ -2179,7 +2179,8 @@ export type PUT_DomainForwardsHostnameProtocol_Request_Body = PUT_DomainForwards
 /**
  * Request type for GET DomainForwardsMetrics endpoint
  *
- * Metrics
+ * Get domain forward metrics
+ * Retrieves overall metrics for domain forwards including total and unique visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetrics endpoint.
@@ -2223,7 +2224,8 @@ export type GET_DomainForwardsMetrics_Request_Query = GET_DomainForwardsMetrics_
 /**
  * Request type for GET DomainForwardsMetricsBrowser endpoint
  *
- * Browser Stats
+ * Get browser statistics
+ * Retrieves visitor traffic broken down by browser type (Chrome, Safari, Firefox, etc.) with total and unique visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsBrowser endpoint.
@@ -2267,7 +2269,8 @@ export type GET_DomainForwardsMetricsBrowser_Request_Query = GET_DomainForwardsM
 /**
  * Request type for GET DomainForwardsMetricsGeo endpoint
  *
- * Geo Stats
+ * Get geographic statistics
+ * Retrieves visitor traffic broken down by geographic location (country code) with visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsGeo endpoint.
@@ -2311,7 +2314,8 @@ export type GET_DomainForwardsMetricsGeo_Request_Query = GET_DomainForwardsMetri
 /**
  * Request type for GET DomainForwardsMetricsPlatform endpoint
  *
- * Platform Stats
+ * Get platform statistics
+ * Retrieves visitor traffic broken down by platform (Windows, Macintosh, iOS, Android, Linux) with total and unique visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsPlatform endpoint.
@@ -2355,7 +2359,8 @@ export type GET_DomainForwardsMetricsPlatform_Request_Query = GET_DomainForwards
 /**
  * Request type for GET DomainForwardsMetricsReferrer endpoint
  *
- * Referrer Stats
+ * Get referrer statistics
+ * Retrieves visitor referral sources (where traffic came from) with total and unique visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsReferrer endpoint.
@@ -2399,7 +2404,8 @@ export type GET_DomainForwardsMetricsReferrer_Request_Query = GET_DomainForwards
 /**
  * Request type for GET DomainForwardsMetricsStatusCode endpoint
  *
- * Status Code Stats
+ * Get HTTP status code statistics
+ * Retrieves distribution of HTTP redirect status codes (301, 302, 307, 308) used across forwards.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsStatusCode endpoint.
@@ -2443,7 +2449,8 @@ export type GET_DomainForwardsMetricsStatusCode_Request_Query = GET_DomainForwar
 /**
  * Request type for GET DomainForwardsMetricsTimeSeries endpoint
  *
- * Time Series
+ * Get domain forward time series metrics
+ * Retrieves visit counts bucketed by time intervals (hourly, daily) for the specified time range.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsTimeSeries endpoint.
@@ -2487,7 +2494,8 @@ export type GET_DomainForwardsMetricsTimeSeries_Request_Query = GET_DomainForwar
 /**
  * Request type for GET DomainForwardsMetricsUserAgent endpoint
  *
- * User Agent Stats
+ * Get user agent statistics
+ * Retrieves visitor traffic broken down by user agent string with total and unique visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsUserAgent endpoint.
@@ -2531,7 +2539,8 @@ export type GET_DomainForwardsMetricsUserAgent_Request_Query = GET_DomainForward
 /**
  * Request type for GET DomainForwardsMetricsVisitsByKey endpoint
  *
- * Visits By Key
+ * Get visits grouped by key
+ * Retrieves visit metrics grouped by a specified key (url, fqdn, domain, or forward) with total and unique visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsVisitsByKey endpoint.

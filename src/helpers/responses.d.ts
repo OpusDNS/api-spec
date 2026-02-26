@@ -4098,7 +4098,8 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_422 = HTTPValidationEr
 /**
  * Response types for GET DomainForwardsMetrics endpoint
  *
- * Metrics
+ * Get domain forward metrics
+ * Retrieves overall metrics for domain forwards including total and unique visit counts.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetrics endpoint.
@@ -4113,11 +4114,13 @@ export type PATCH_DomainForwardsByHostnameEnable_Response_422 = HTTPValidationEr
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetrics_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetrics_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetrics_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetrics_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetrics_Response = GET_DomainForwardsMetrics_Response_200 | GET_DomainForwardsMetrics_Response_422;
+export type GET_DomainForwardsMetrics_Response = GET_DomainForwardsMetrics_Response_200 | GET_DomainForwardsMetrics_Response_401 | GET_DomainForwardsMetrics_Response_403 | GET_DomainForwardsMetrics_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetrics endpoint
@@ -4138,6 +4141,46 @@ export type GET_DomainForwardsMetrics_Response = GET_DomainForwardsMetrics_Respo
  * @see {@link DomainForwardMetrics} - The actual schema type definition
  */
 export type GET_DomainForwardsMetrics_Response_200 = DomainForwardMetrics
+
+/**
+ * 401 response for GET DomainForwardsMetrics endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetrics endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetrics_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetrics_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetrics endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetrics endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetrics_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetrics_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetrics endpoint
@@ -4162,7 +4205,8 @@ export type GET_DomainForwardsMetrics_Response_422 = HTTPValidationError
 /**
  * Response types for GET DomainForwardsMetricsBrowser endpoint
  *
- * Browser Stats
+ * Get browser statistics
+ * Retrieves visitor traffic broken down by browser type (Chrome, Safari, Firefox, etc.) with total and unique visit counts.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsBrowser endpoint.
@@ -4177,11 +4221,13 @@ export type GET_DomainForwardsMetrics_Response_422 = HTTPValidationError
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsBrowser_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsBrowser_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsBrowser_Response = GET_DomainForwardsMetricsBrowser_Response_200 | GET_DomainForwardsMetricsBrowser_Response_422;
+export type GET_DomainForwardsMetricsBrowser_Response = GET_DomainForwardsMetricsBrowser_Response_200 | GET_DomainForwardsMetricsBrowser_Response_401 | GET_DomainForwardsMetricsBrowser_Response_403 | GET_DomainForwardsMetricsBrowser_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsBrowser endpoint
@@ -4202,6 +4248,46 @@ export type GET_DomainForwardsMetricsBrowser_Response = GET_DomainForwardsMetric
  * @see {@link DomainForwardBrowserStats} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsBrowser_Response_200 = DomainForwardBrowserStats
+
+/**
+ * 401 response for GET DomainForwardsMetricsBrowser endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsBrowser endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/browser
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsBrowser_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsBrowser endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsBrowser endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/browser
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsBrowser_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsBrowser_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsBrowser endpoint
@@ -4226,7 +4312,8 @@ export type GET_DomainForwardsMetricsBrowser_Response_422 = HTTPValidationError
 /**
  * Response types for GET DomainForwardsMetricsGeo endpoint
  *
- * Geo Stats
+ * Get geographic statistics
+ * Retrieves visitor traffic broken down by geographic location (country code) with visit counts.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsGeo endpoint.
@@ -4241,11 +4328,13 @@ export type GET_DomainForwardsMetricsBrowser_Response_422 = HTTPValidationError
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsGeo_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsGeo_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsGeo_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsGeo_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsGeo_Response = GET_DomainForwardsMetricsGeo_Response_200 | GET_DomainForwardsMetricsGeo_Response_422;
+export type GET_DomainForwardsMetricsGeo_Response = GET_DomainForwardsMetricsGeo_Response_200 | GET_DomainForwardsMetricsGeo_Response_401 | GET_DomainForwardsMetricsGeo_Response_403 | GET_DomainForwardsMetricsGeo_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsGeo endpoint
@@ -4266,6 +4355,46 @@ export type GET_DomainForwardsMetricsGeo_Response = GET_DomainForwardsMetricsGeo
  * @see {@link DomainForwardGeoStats} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsGeo_Response_200 = DomainForwardGeoStats
+
+/**
+ * 401 response for GET DomainForwardsMetricsGeo endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsGeo endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/geo
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsGeo_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsGeo_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsGeo endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsGeo endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/geo
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsGeo_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsGeo_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsGeo endpoint
@@ -4290,7 +4419,8 @@ export type GET_DomainForwardsMetricsGeo_Response_422 = HTTPValidationError
 /**
  * Response types for GET DomainForwardsMetricsPlatform endpoint
  *
- * Platform Stats
+ * Get platform statistics
+ * Retrieves visitor traffic broken down by platform (Windows, Macintosh, iOS, Android, Linux) with total and unique visit counts.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsPlatform endpoint.
@@ -4305,11 +4435,13 @@ export type GET_DomainForwardsMetricsGeo_Response_422 = HTTPValidationError
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsPlatform_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsPlatform_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsPlatform_Response = GET_DomainForwardsMetricsPlatform_Response_200 | GET_DomainForwardsMetricsPlatform_Response_422;
+export type GET_DomainForwardsMetricsPlatform_Response = GET_DomainForwardsMetricsPlatform_Response_200 | GET_DomainForwardsMetricsPlatform_Response_401 | GET_DomainForwardsMetricsPlatform_Response_403 | GET_DomainForwardsMetricsPlatform_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsPlatform endpoint
@@ -4330,6 +4462,46 @@ export type GET_DomainForwardsMetricsPlatform_Response = GET_DomainForwardsMetri
  * @see {@link DomainForwardPlatformStats} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsPlatform_Response_200 = DomainForwardPlatformStats
+
+/**
+ * 401 response for GET DomainForwardsMetricsPlatform endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsPlatform endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/platform
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsPlatform_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsPlatform endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsPlatform endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/platform
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsPlatform_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsPlatform_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsPlatform endpoint
@@ -4354,7 +4526,8 @@ export type GET_DomainForwardsMetricsPlatform_Response_422 = HTTPValidationError
 /**
  * Response types for GET DomainForwardsMetricsReferrer endpoint
  *
- * Referrer Stats
+ * Get referrer statistics
+ * Retrieves visitor referral sources (where traffic came from) with total and unique visit counts.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsReferrer endpoint.
@@ -4369,11 +4542,13 @@ export type GET_DomainForwardsMetricsPlatform_Response_422 = HTTPValidationError
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsReferrer_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsReferrer_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsReferrer_Response = GET_DomainForwardsMetricsReferrer_Response_200 | GET_DomainForwardsMetricsReferrer_Response_422;
+export type GET_DomainForwardsMetricsReferrer_Response = GET_DomainForwardsMetricsReferrer_Response_200 | GET_DomainForwardsMetricsReferrer_Response_401 | GET_DomainForwardsMetricsReferrer_Response_403 | GET_DomainForwardsMetricsReferrer_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsReferrer endpoint
@@ -4394,6 +4569,46 @@ export type GET_DomainForwardsMetricsReferrer_Response = GET_DomainForwardsMetri
  * @see {@link DomainForwardReferrerStats} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsReferrer_Response_200 = DomainForwardReferrerStats
+
+/**
+ * 401 response for GET DomainForwardsMetricsReferrer endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsReferrer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/referrer
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsReferrer_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsReferrer endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsReferrer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/referrer
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsReferrer_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsReferrer_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsReferrer endpoint
@@ -4418,7 +4633,8 @@ export type GET_DomainForwardsMetricsReferrer_Response_422 = HTTPValidationError
 /**
  * Response types for GET DomainForwardsMetricsStatusCode endpoint
  *
- * Status Code Stats
+ * Get HTTP status code statistics
+ * Retrieves distribution of HTTP redirect status codes (301, 302, 307, 308) used across forwards.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsStatusCode endpoint.
@@ -4433,11 +4649,13 @@ export type GET_DomainForwardsMetricsReferrer_Response_422 = HTTPValidationError
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsStatusCode_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsStatusCode_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsStatusCode_Response = GET_DomainForwardsMetricsStatusCode_Response_200 | GET_DomainForwardsMetricsStatusCode_Response_422;
+export type GET_DomainForwardsMetricsStatusCode_Response = GET_DomainForwardsMetricsStatusCode_Response_200 | GET_DomainForwardsMetricsStatusCode_Response_401 | GET_DomainForwardsMetricsStatusCode_Response_403 | GET_DomainForwardsMetricsStatusCode_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsStatusCode endpoint
@@ -4458,6 +4676,46 @@ export type GET_DomainForwardsMetricsStatusCode_Response = GET_DomainForwardsMet
  * @see {@link DomainForwardStatusCodeStats} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsStatusCode_Response_200 = DomainForwardStatusCodeStats
+
+/**
+ * 401 response for GET DomainForwardsMetricsStatusCode endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsStatusCode endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/status-code
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsStatusCode_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsStatusCode endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsStatusCode endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/status-code
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsStatusCode_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsStatusCode_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsStatusCode endpoint
@@ -4482,7 +4740,8 @@ export type GET_DomainForwardsMetricsStatusCode_Response_422 = HTTPValidationErr
 /**
  * Response types for GET DomainForwardsMetricsTimeSeries endpoint
  *
- * Time Series
+ * Get domain forward time series metrics
+ * Retrieves visit counts bucketed by time intervals (hourly, daily) for the specified time range.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsTimeSeries endpoint.
@@ -4497,11 +4756,13 @@ export type GET_DomainForwardsMetricsStatusCode_Response_422 = HTTPValidationErr
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsTimeSeries_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsTimeSeries_Response = GET_DomainForwardsMetricsTimeSeries_Response_200 | GET_DomainForwardsMetricsTimeSeries_Response_422;
+export type GET_DomainForwardsMetricsTimeSeries_Response = GET_DomainForwardsMetricsTimeSeries_Response_200 | GET_DomainForwardsMetricsTimeSeries_Response_401 | GET_DomainForwardsMetricsTimeSeries_Response_403 | GET_DomainForwardsMetricsTimeSeries_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsTimeSeries endpoint
@@ -4522,6 +4783,46 @@ export type GET_DomainForwardsMetricsTimeSeries_Response = GET_DomainForwardsMet
  * @see {@link DomainForwardMetricsTimeSeries} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsTimeSeries_Response_200 = DomainForwardMetricsTimeSeries
+
+/**
+ * 401 response for GET DomainForwardsMetricsTimeSeries endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsTimeSeries endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/time-series
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsTimeSeries_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsTimeSeries endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsTimeSeries endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/time-series
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsTimeSeries_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsTimeSeries_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsTimeSeries endpoint
@@ -4546,7 +4847,8 @@ export type GET_DomainForwardsMetricsTimeSeries_Response_422 = HTTPValidationErr
 /**
  * Response types for GET DomainForwardsMetricsUserAgent endpoint
  *
- * User Agent Stats
+ * Get user agent statistics
+ * Retrieves visitor traffic broken down by user agent string with total and unique visit counts.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsUserAgent endpoint.
@@ -4561,11 +4863,13 @@ export type GET_DomainForwardsMetricsTimeSeries_Response_422 = HTTPValidationErr
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsUserAgent_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsUserAgent_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsUserAgent_Response = GET_DomainForwardsMetricsUserAgent_Response_200 | GET_DomainForwardsMetricsUserAgent_Response_422;
+export type GET_DomainForwardsMetricsUserAgent_Response = GET_DomainForwardsMetricsUserAgent_Response_200 | GET_DomainForwardsMetricsUserAgent_Response_401 | GET_DomainForwardsMetricsUserAgent_Response_403 | GET_DomainForwardsMetricsUserAgent_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsUserAgent endpoint
@@ -4586,6 +4890,46 @@ export type GET_DomainForwardsMetricsUserAgent_Response = GET_DomainForwardsMetr
  * @see {@link DomainForwardUserAgentStats} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsUserAgent_Response_200 = DomainForwardUserAgentStats
+
+/**
+ * 401 response for GET DomainForwardsMetricsUserAgent endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsUserAgent endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/user-agent
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsUserAgent_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsUserAgent endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsUserAgent endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/user-agent
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsUserAgent_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsUserAgent_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsUserAgent endpoint
@@ -4610,7 +4954,8 @@ export type GET_DomainForwardsMetricsUserAgent_Response_422 = HTTPValidationErro
 /**
  * Response types for GET DomainForwardsMetricsVisitsByKey endpoint
  *
- * Visits By Key
+ * Get visits grouped by key
+ * Retrieves visit metrics grouped by a specified key (url, fqdn, domain, or forward) with total and unique visit counts.
  *
  * @remarks
  * This type defines all possible response structures for the GET DomainForwardsMetricsVisitsByKey endpoint.
@@ -4626,11 +4971,13 @@ export type GET_DomainForwardsMetricsUserAgent_Response_422 = HTTPValidationErro
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_200} - 200 response type
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_401} - 401 response type
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_403} - 403 response type
  * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response_422} - 422 response type
  *
 
  */
-export type GET_DomainForwardsMetricsVisitsByKey_Response = GET_DomainForwardsMetricsVisitsByKey_Response_200 | GET_DomainForwardsMetricsVisitsByKey_Response_422;
+export type GET_DomainForwardsMetricsVisitsByKey_Response = GET_DomainForwardsMetricsVisitsByKey_Response_200 | GET_DomainForwardsMetricsVisitsByKey_Response_401 | GET_DomainForwardsMetricsVisitsByKey_Response_403 | GET_DomainForwardsMetricsVisitsByKey_Response_422;
 
 /**
  * 200 response for GET DomainForwardsMetricsVisitsByKey endpoint
@@ -4652,6 +4999,48 @@ export type GET_DomainForwardsMetricsVisitsByKey_Response = GET_DomainForwardsMe
  * @see {@link DomainForwardVisitsByKey} - The actual schema type definition
  */
 export type GET_DomainForwardsMetricsVisitsByKey_Response_200 = DomainForwardVisitsByKey
+
+/**
+ * 401 response for GET DomainForwardsMetricsVisitsByKey endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET DomainForwardsMetricsVisitsByKey endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/visits-by-key
+ * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsVisitsByKey_Response_401 = Problem
+
+/**
+ * 403 response for GET DomainForwardsMetricsVisitsByKey endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the GET DomainForwardsMetricsVisitsByKey endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domain-forwards/metrics/visits-by-key
+ * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param protocol (query) - Filter by protocol: http or https
+ * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
+ *
+ * @see {@link GET_DomainForwardsMetricsVisitsByKey_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_DomainForwardsMetricsVisitsByKey_Response_403 = Problem
 
 /**
  * 422 response for GET DomainForwardsMetricsVisitsByKey endpoint

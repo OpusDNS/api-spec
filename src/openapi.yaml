@@ -7350,7 +7350,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-26-130702
+  version: 2026-02-26-130807
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10482,9 +10482,106 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                domain_forwards_list:
+                  description: Paginated list of domain forwards with multiple protocols
+                    and redirect configurations
+                  summary: Domain forwards list
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 10
+                      total_items: 3
+                      total_pages: 1
+                    results:
+                    - created_on: '2025-02-20T10:30:45'
+                      domain_forward_id: domain_forward_01jx0000000000000000000001
+                      enabled: true
+                      hostname: example.com.
+                      http:
+                        created_on: '2025-02-20T10:30:45'
+                        redirects:
+                        - protected: false
+                          redirect_code: 301
+                          request_hostname: example.com.
+                          request_path: /
+                          request_protocol: http
+                          target_hostname: example.com
+                          target_path: /
+                          target_protocol: https
+                        updated_on: '2025-02-20T10:30:45'
+                      https:
+                        created_on: '2025-02-20T10:30:45'
+                        redirects:
+                        - protected: false
+                          redirect_code: 302
+                          request_hostname: example.com.
+                          request_path: /
+                          request_protocol: https
+                          target_hostname: www.example.com
+                          target_path: /
+                          target_protocol: https
+                        updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45'
+                    - created_on: '2025-02-20T10:30:45'
+                      domain_forward_id: domain_forward_01jx0000000000000000000002
+                      enabled: false
+                      hostname: api.example.com.
+                      https:
+                        created_on: '2025-02-20T10:30:45'
+                        redirects:
+                        - protected: false
+                          redirect_code: 308
+                          request_hostname: api.example.com.
+                          request_path: /v1
+                          request_protocol: https
+                          target_hostname: api-v2.example.com
+                          target_path: /v1
+                          target_protocol: https
+                        updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45'
+                    - created_on: '2025-02-20T10:30:45'
+                      domain_forward_id: domain_forward_01jx0000000000000000000003
+                      enabled: true
+                      hostname: old.example.com.
+                      http:
+                        created_on: '2025-02-20T10:30:45'
+                        redirects:
+                        - protected: false
+                          redirect_code: 301
+                          request_hostname: old.example.com.
+                          request_path: /blog
+                          request_protocol: http
+                          target_hostname: example.com
+                          target_path: /news
+                          target_protocol: https
+                        - protected: false
+                          redirect_code: 301
+                          request_hostname: old.example.com.
+                          request_path: /
+                          request_protocol: http
+                          target_hostname: example.com
+                          target_path: /
+                          target_protocol: https
+                        updated_on: '2025-02-20T10:30:45'
+                      https:
+                        created_on: '2025-02-20T10:30:45'
+                        redirects:
+                        - protected: false
+                          redirect_code: 301
+                          request_hostname: old.example.com.
+                          request_path: /
+                          request_protocol: https
+                          target_hostname: example.com
+                          target_path: /
+                          target_protocol: https
+                        updated_on: '2025-02-20T10:30:45'
+                      updated_on: '2025-02-20T10:30:45'
               schema:
                 $ref: '#/components/schemas/Pagination_DomainForward_'
-          description: Successful Response
+          description: List of domain forwards retrieved successfully
         '401':
           content:
             application/problem+json:
@@ -10534,7 +10631,7 @@ paths:
         required: true
       responses:
         '204':
-          description: Successful Response
+          description: Domain forward redirects updated successfully.
         '401':
           content:
             application/problem+json:
@@ -10591,10 +10688,12 @@ paths:
         content:
           application/json:
             examples:
-              domain_forward:
-                description: Create a HTTP domain forward with redirect from HTTP
-                  to HTTPS and HTTPS to auth.example.com
-                summary: HTTP domain forward
+              http_and_https_forwards:
+                description: Create a domain forward with both HTTP and HTTPS protocols
+                  configured. HTTP requests are redirected with 301 (Moved Permanently)
+                  to HTTPS, while HTTPS requests are redirected with 302 (Found) to
+                  a different target (e.g., auth service).
+                summary: HTTP and HTTPS domain forwards
                 value:
                   enabled: false
                   hostname: example.com.
@@ -10612,10 +10711,11 @@ paths:
                       target_hostname: auth.example.com
                       target_path: /
                       target_protocol: https
-              http_to_https:
-                description: Create a HTTP domain forward with redirect from HTTP
-                  to HTTPS
-                summary: HTTP to HTTPS
+              http_to_https_only:
+                description: Create a domain forward with only HTTPS protocol configured.
+                  This is useful for HTTPS-only services where you want to redirect
+                  HTTPS traffic without handling HTTP.
+                summary: HTTPS-only forward
                 value:
                   enabled: false
                   hostname: example.com.
@@ -10634,17 +10734,18 @@ paths:
           content:
             application/json:
               examples:
-                http_domain_forward_response:
-                  description: Response when creating a HTTP domain forward with redirect
-                    from HTTP to HTTPS and HTTPS to auth.example.com
-                  summary: Response for HTTP domain forward
+                http_and_https_response:
+                  description: Response when creating a domain forward with both HTTP
+                    and HTTPS protocols. The forward is created but initially disabled
+                    (enabled=false) until DNS records are provisioned.
+                  summary: Response for HTTP and HTTPS forwards
                   value:
-                    created_on: '2025-11-14T09:01:38'
+                    created_on: '2025-02-20T10:30:45'
                     domain_forward_id: domain_forward_01jx0000000000000000000001
                     enabled: false
                     hostname: example.com.
                     http:
-                      created_on: '2025-11-14T09:01:38'
+                      created_on: '2025-02-20T10:30:45'
                       redirects:
                       - protected: false
                         redirect_code: 301
@@ -10654,9 +10755,9 @@ paths:
                         target_hostname: example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-11-14T09:01:38'
+                      updated_on: '2025-02-20T10:30:45'
                     https:
-                      created_on: '2025-11-14T09:01:38'
+                      created_on: '2025-02-20T10:30:45'
                       redirects:
                       - protected: false
                         redirect_code: 302
@@ -10666,18 +10767,19 @@ paths:
                         target_hostname: auth.example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-11-14T09:01:38'
-                    updated_on: '2025-11-14T09:01:38'
-                http_to_https_response:
-                  description: Response when creating a HTTP to HTTPS domain forward
-                  summary: Response for HTTP to HTTPS
+                      updated_on: '2025-02-20T10:30:45'
+                    updated_on: '2025-02-20T10:30:45'
+                https_only_response:
+                  description: Response when creating a HTTPS-only domain forward
+                    with minimal protocol configuration.
+                  summary: Response for HTTPS-only forward
                   value:
-                    created_on: '2025-11-14T09:01:38'
+                    created_on: '2025-02-20T10:30:45'
                     domain_forward_id: domain_forward_01jx0000000000000000000002
                     enabled: false
                     hostname: example.com.
                     http:
-                      created_on: '2025-11-14T09:01:38'
+                      created_on: '2025-02-20T10:30:45'
                       redirects:
                       - protected: false
                         redirect_code: 301
@@ -10687,8 +10789,8 @@ paths:
                         target_hostname: example.com
                         target_path: /
                         target_protocol: https
-                      updated_on: '2025-11-14T09:01:38'
-                    updated_on: '2025-11-14T09:01:38'
+                      updated_on: '2025-02-20T10:30:45'
+                    updated_on: '2025-02-20T10:30:45'
               schema:
                 $ref: '#/components/schemas/DomainForward'
           description: Domain forward created successfully
@@ -10740,7 +10842,7 @@ paths:
                 type: domain-forward-already-exists
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Domain forward already exists
+          description: Domain forward already exists for this hostname
         '422':
           content:
             application/problem+json:
@@ -10755,6 +10857,8 @@ paths:
       - domain_forward
   /v1/domain-forwards/metrics:
     get:
+      description: Retrieves overall metrics for domain forwards including total and
+        unique visit counts.
       operationId: metrics_v1_domain_forwards_metrics_get
       parameters:
       - in: query
@@ -10804,9 +10908,59 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_metrics:
+                  description: Basic metrics showing 1 invoked forward with 1,250
+                    total visits
+                  summary: Basic metrics example
+                  value:
+                    configured_forwards: 3
+                    invoked_forwards: 1
+                    total_visits: 1250
+                    unique_visits: 847
+                comprehensive_metrics:
+                  description: Comprehensive metrics showing 5 invoked forwards with
+                    15,842 total visits
+                  summary: Comprehensive metrics example
+                  value:
+                    configured_forwards: 12
+                    invoked_forwards: 5
+                    total_visits: 15842
+                    unique_visits: 9234
               schema:
                 $ref: '#/components/schemas/DomainForwardMetricsResponse'
-          description: Successful Response
+          description: Domain forward metrics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -10816,11 +10970,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Metrics
+      summary: Get domain forward metrics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/browser:
     get:
+      description: Retrieves visitor traffic broken down by browser type (Chrome,
+        Safari, Firefox, etc.) with total and unique visit counts.
       operationId: browser_stats_v1_domain_forwards_metrics_browser_get
       parameters:
       - in: query
@@ -10870,9 +11026,82 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_browser_stats:
+                  description: Shows top 4 browsers with visit counts and unique visitor
+                    counts
+                  summary: Basic browser statistics
+                  value:
+                    results:
+                    - key: Chrome
+                      total: 450
+                      unique: 320
+                    - key: Safari
+                      total: 280
+                      unique: 195
+                    - key: Firefox
+                      total: 195
+                      unique: 145
+                    - key: Edge
+                      total: 145
+                      unique: 107
+                comprehensive_browser_stats:
+                  description: Shows extended browser list with detailed visitor tracking
+                  summary: Comprehensive browser statistics
+                  value:
+                    results:
+                    - key: Chrome
+                      total: 6200
+                      unique: 4125
+                    - key: Safari
+                      total: 3850
+                      unique: 2680
+                    - key: Firefox
+                      total: 2680
+                      unique: 1950
+                    - key: Edge
+                      total: 1890
+                      unique: 1375
+                    - key: Opera
+                      total: 890
+                      unique: 620
+                    - key: Samsung Internet
+                      total: 452
+                      unique: 325
               schema:
                 $ref: '#/components/schemas/DomainForwardBrowserStatsResponse'
-          description: Successful Response
+          description: Browser statistics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -10882,11 +11111,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Browser Stats
+      summary: Get browser statistics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/geo:
     get:
+      description: Retrieves visitor traffic broken down by geographic location (country
+        code) with visit counts.
       operationId: geo_stats_v1_domain_forwards_metrics_geo_get
       parameters:
       - in: query
@@ -10936,9 +11167,75 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_geo_stats:
+                  description: Shows visits by country for top 4 regions
+                  summary: Basic geographic statistics
+                  value:
+                    results:
+                    - key: US
+                      total: 450
+                    - key: GB
+                      total: 220
+                    - key: DE
+                      total: 180
+                    - key: FR
+                      total: 145
+                comprehensive_geo_stats:
+                  description: Shows detailed geographic distribution across 8 countries
+                  summary: Comprehensive geographic statistics
+                  value:
+                    results:
+                    - key: US
+                      total: 5800
+                    - key: GB
+                      total: 2100
+                    - key: DE
+                      total: 1850
+                    - key: FR
+                      total: 1450
+                    - key: CA
+                      total: 980
+                    - key: AU
+                      total: 750
+                    - key: JP
+                      total: 620
+                    - key: IN
+                      total: 520
               schema:
                 $ref: '#/components/schemas/DomainForwardGeoStatsResponse'
-          description: Successful Response
+          description: Geographic statistics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -10948,11 +11245,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Geo Stats
+      summary: Get geographic statistics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/platform:
     get:
+      description: Retrieves visitor traffic broken down by platform (Windows, Macintosh,
+        iOS, Android, Linux) with total and unique visit counts.
       operationId: platform_stats_v1_domain_forwards_metrics_platform_get
       parameters:
       - in: query
@@ -11002,9 +11301,80 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_platform_stats:
+                  description: Shows distribution of visits across desktop and mobile
+                    platforms
+                  summary: Basic platform statistics
+                  value:
+                    results:
+                    - key: Windows
+                      total: 520
+                      unique: 380
+                    - key: Macintosh
+                      total: 350
+                      unique: 245
+                    - key: iOS
+                      total: 280
+                      unique: 200
+                    - key: Android
+                      total: 100
+                      unique: 75
+                comprehensive_platform_stats:
+                  description: Shows detailed platform breakdown including Linux and
+                    other systems
+                  summary: Comprehensive platform statistics
+                  value:
+                    results:
+                    - key: Windows
+                      total: 7200
+                      unique: 5100
+                    - key: Macintosh
+                      total: 4800
+                      unique: 3400
+                    - key: iOS
+                      total: 2100
+                      unique: 1500
+                    - key: Android
+                      total: 1250
+                      unique: 900
+                    - key: Linux
+                      total: 492
+                      unique: 350
               schema:
                 $ref: '#/components/schemas/DomainForwardPlatformStatsResponse'
-          description: Successful Response
+          description: Platform statistics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -11014,11 +11384,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Platform Stats
+      summary: Get platform statistics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/referrer:
     get:
+      description: Retrieves visitor referral sources (where traffic came from) with
+        total and unique visit counts.
       operationId: referrer_stats_v1_domain_forwards_metrics_referrer_get
       parameters:
       - in: query
@@ -11068,9 +11440,82 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_referrer_stats:
+                  description: Shows top referral sources directing traffic to forwards
+                  summary: Basic referrer statistics
+                  value:
+                    results:
+                    - key: https://google.com
+                      total: 450
+                      unique: 325
+                    - key: https://twitter.com
+                      total: 280
+                      unique: 195
+                    - key: direct
+                      total: 240
+                      unique: 180
+                    - key: https://reddit.com
+                      total: 95
+                      unique: 75
+                comprehensive_referrer_stats:
+                  description: Shows extended list of referral sources including unique
+                    visitor counts
+                  summary: Comprehensive referrer statistics
+                  value:
+                    results:
+                    - key: https://google.com
+                      total: 5800
+                      unique: 4200
+                    - key: https://twitter.com
+                      total: 3200
+                      unique: 2300
+                    - key: direct
+                      total: 2900
+                      unique: 2100
+                    - key: https://reddit.com
+                      total: 1450
+                      unique: 1050
+                    - key: https://linkedin.com
+                      total: 980
+                      unique: 720
+                    - key: https://facebook.com
+                      total: 512
+                      unique: 380
               schema:
                 $ref: '#/components/schemas/DomainForwardReferrerStatsResponse'
-          description: Successful Response
+          description: Referrer statistics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -11080,11 +11525,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Referrer Stats
+      summary: Get referrer statistics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/status-code:
     get:
+      description: Retrieves distribution of HTTP redirect status codes (301, 302,
+        307, 308) used across forwards.
       operationId: status_code_stats_v1_domain_forwards_metrics_status_code_get
       parameters:
       - in: query
@@ -11134,9 +11581,68 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_status_code_stats:
+                  description: Shows distribution of HTTP redirect status codes (301,
+                    302, 307, 308)
+                  summary: Basic status code statistics
+                  value:
+                    results:
+                    - key: '301'
+                      total: 520
+                    - key: '302'
+                      total: 430
+                    - key: '307'
+                      total: 285
+                    - key: '308'
+                      total: 15
+                comprehensive_status_code_stats:
+                  description: Shows detailed redirect code usage patterns at scale
+                  summary: Comprehensive status code statistics
+                  value:
+                    results:
+                    - key: '301'
+                      total: 6800
+                    - key: '302'
+                      total: 5200
+                    - key: '307'
+                      total: 2850
+                    - key: '308'
+                      total: 992
               schema:
                 $ref: '#/components/schemas/DomainForwardStatusCodeStatsResponse'
-          description: Successful Response
+          description: Status code statistics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -11146,11 +11652,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Status Code Stats
+      summary: Get HTTP status code statistics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/time-series:
     get:
+      description: Retrieves visit counts bucketed by time intervals (hourly, daily)
+        for the specified time range.
       operationId: time_series_v1_domain_forwards_metrics_time_series_get
       parameters:
       - in: query
@@ -11200,9 +11708,114 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                daily_time_series:
+                  description: Shows visit counts bucketed by day over a 7-day period
+                  summary: Daily time series example
+                  value:
+                    results:
+                    - timestamp: '2025-02-20T12:00:00'
+                      total: 2500
+                    - timestamp: '2025-02-19T12:00:00'
+                      total: 2350
+                    - timestamp: '2025-02-18T12:00:00'
+                      total: 2200
+                    - timestamp: '2025-02-17T12:00:00'
+                      total: 2050
+                    - timestamp: '2025-02-16T12:00:00'
+                      total: 1900
+                    - timestamp: '2025-02-15T12:00:00'
+                      total: 1750
+                    - timestamp: '2025-02-14T12:00:00'
+                      total: 1600
+                hourly_time_series:
+                  description: Shows visit counts bucketed by hour over a 24-hour
+                    period
+                  summary: Hourly time series example
+                  value:
+                    results:
+                    - timestamp: '2025-02-20T12:00:00'
+                      total: 150
+                    - timestamp: '2025-02-20T11:00:00'
+                      total: 140
+                    - timestamp: '2025-02-20T10:00:00'
+                      total: 130
+                    - timestamp: '2025-02-20T09:00:00'
+                      total: 120
+                    - timestamp: '2025-02-20T08:00:00'
+                      total: 110
+                    - timestamp: '2025-02-20T07:00:00'
+                      total: 100
+                    - timestamp: '2025-02-20T06:00:00'
+                      total: 90
+                    - timestamp: '2025-02-20T05:00:00'
+                      total: 80
+                    - timestamp: '2025-02-20T04:00:00'
+                      total: 70
+                    - timestamp: '2025-02-20T03:00:00'
+                      total: 60
+                    - timestamp: '2025-02-20T02:00:00'
+                      total: 50
+                    - timestamp: '2025-02-20T01:00:00'
+                      total: 40
+                    - timestamp: '2025-02-20T00:00:00'
+                      total: 30
+                    - timestamp: '2025-02-19T23:00:00'
+                      total: 20
+                    - timestamp: '2025-02-19T22:00:00'
+                      total: 10
+                    - timestamp: '2025-02-19T21:00:00'
+                      total: 0
+                    - timestamp: '2025-02-19T20:00:00'
+                      total: -10
+                    - timestamp: '2025-02-19T19:00:00'
+                      total: -20
+                    - timestamp: '2025-02-19T18:00:00'
+                      total: -30
+                    - timestamp: '2025-02-19T17:00:00'
+                      total: -40
+                    - timestamp: '2025-02-19T16:00:00'
+                      total: -50
+                    - timestamp: '2025-02-19T15:00:00'
+                      total: -60
+                    - timestamp: '2025-02-19T14:00:00'
+                      total: -70
+                    - timestamp: '2025-02-19T13:00:00'
+                      total: -80
               schema:
                 $ref: '#/components/schemas/DomainForwardMetricsTimeSeriesResponse'
-          description: Successful Response
+          description: Time series metrics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -11212,11 +11825,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Time Series
+      summary: Get domain forward time series metrics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/user-agent:
     get:
+      description: Retrieves visitor traffic broken down by user agent string with
+        total and unique visit counts.
       operationId: user_agent_stats_v1_domain_forwards_metrics_user_agent_get
       parameters:
       - in: query
@@ -11266,9 +11881,74 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                basic_user_agent_stats:
+                  description: Shows top 3 user agents with visit distribution
+                  summary: Basic user agent statistics
+                  value:
+                    results:
+                    - key: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                      total: 320
+                      unique: 245
+                    - key: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+                      total: 220
+                      unique: 165
+                    - key: Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X)
+                        AppleWebKit/605.1.15
+                      total: 180
+                      unique: 140
+                comprehensive_user_agent_stats:
+                  description: Shows extended user agent list with detailed metrics
+                  summary: Comprehensive user agent statistics
+                  value:
+                    results:
+                    - key: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                      total: 4200
+                      unique: 3100
+                    - key: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+                      total: 2850
+                      unique: 2100
+                    - key: Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X)
+                        AppleWebKit/605.1.15
+                      total: 1850
+                      unique: 1350
+                    - key: Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36
+                      total: 920
+                      unique: 680
               schema:
                 $ref: '#/components/schemas/DomainForwardUserAgentStatsResponse'
-          description: Successful Response
+          description: User agent statistics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -11278,11 +11958,13 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: User Agent Stats
+      summary: Get user agent statistics
       tags:
       - domain_forward
   /v1/domain-forwards/metrics/visits-by-key:
     get:
+      description: Retrieves visit metrics grouped by a specified key (url, fqdn,
+        domain, or forward) with total and unique visit counts.
       operationId: visits_by_key_v1_domain_forwards_metrics_visits_by_key_get
       parameters:
       - description: 'Grouping key: url, fqdn, domain, or forward'
@@ -11340,9 +12022,87 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                visits_by_domain:
+                  description: Shows visit distribution when grouped by domain
+                  summary: Visits grouped by domain
+                  value:
+                    results:
+                    - key: example.com
+                      total: 1065
+                      unique: 770
+                    - key: subdomain.example.com
+                      total: 520
+                      unique: 380
+                    - key: api.example.com
+                      total: 310
+                      unique: 220
+                visits_by_forward:
+                  description: Shows visit distribution when grouped by source-to-destination
+                    forward mapping
+                  summary: Visits grouped by forward
+                  value:
+                    results:
+                    - key: example.com -> dest1.example.com
+                      total: 680
+                      unique: 480
+                    - key: subdomain.example.com -> dest2.example.com
+                      total: 520
+                      unique: 380
+                    - key: api.example.com -> api-v2.example.com
+                      total: 310
+                      unique: 220
+                visits_by_url:
+                  description: Shows visit distribution when grouped by request URL
+                  summary: Visits grouped by URL
+                  value:
+                    results:
+                    - key: example.com/
+                      total: 450
+                      unique: 320
+                    - key: example.com/about
+                      total: 280
+                      unique: 195
+                    - key: example.com/blog
+                      total: 240
+                      unique: 180
+                    - key: example.com/contact
+                      total: 95
+                      unique: 75
               schema:
                 $ref: '#/components/schemas/DomainForwardVisitsByKeyResponse'
-          description: Successful Response
+          description: Visits by key statistics retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                detail: Cannot specify both 'hostname' and 'domain'. Use 'hostname'
+                  for exact match or 'domain' to filter by domain including all subdomains.
+          description: Invalid query parameters
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -11352,7 +12112,7 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Visits By Key
+      summary: Get visits grouped by key
       tags:
       - domain_forward
   /v1/domain-forwards/{hostname}:
@@ -11370,7 +12130,7 @@ paths:
           type: string
       responses:
         '204':
-          description: Successful Response
+          description: Domain forward deleted successfully. No content returned.
         '401':
           content:
             application/problem+json:
@@ -11435,9 +12195,44 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                single_domain_forward:
+                  description: Detailed view of a single domain forward with all protocols
+                    and redirects
+                  summary: Single domain forward
+                  value:
+                    created_on: '2025-02-20T10:30:45'
+                    domain_forward_id: domain_forward_01jx0000000000000000000001
+                    enabled: true
+                    hostname: example.com.
+                    http:
+                      created_on: '2025-02-20T10:30:45'
+                      redirects:
+                      - protected: false
+                        redirect_code: 301
+                        request_hostname: example.com.
+                        request_path: /
+                        request_protocol: http
+                        target_hostname: example.com
+                        target_path: /
+                        target_protocol: https
+                      updated_on: '2025-02-20T10:30:45'
+                    https:
+                      created_on: '2025-02-20T10:30:45'
+                      redirects:
+                      - protected: false
+                        redirect_code: 302
+                        request_hostname: example.com.
+                        request_path: /
+                        request_protocol: https
+                        target_hostname: www.example.com
+                        target_path: /
+                        target_protocol: https
+                      updated_on: '2025-02-20T10:30:45'
+                    updated_on: '2025-02-20T10:30:45'
               schema:
                 $ref: '#/components/schemas/DomainForward'
-          description: Successful Response
+          description: Domain forward retrieved successfully
         '401':
           content:
             application/problem+json:
@@ -11509,9 +12304,27 @@ paths:
         '201':
           content:
             application/json:
+              examples:
+                created_protocol_set:
+                  description: New domain forward protocol set with HTTP redirects
+                  summary: Protocol set created
+                  value:
+                    created_on: '2025-02-20T10:30:45'
+                    hostname: example.com.
+                    protocol: http
+                    redirects:
+                    - protected: false
+                      redirect_code: 301
+                      request_hostname: example.com.
+                      request_path: /
+                      request_protocol: http
+                      target_hostname: example.com
+                      target_path: /
+                      target_protocol: https
+                    updated_on: '2025-02-20T10:30:45'
               schema:
                 $ref: '#/components/schemas/DomainForwardSetResponse'
-          description: Successful Response
+          description: Domain forward protocol set created successfully
         '401':
           content:
             application/problem+json:
@@ -11588,7 +12401,8 @@ paths:
           type: string
       responses:
         '204':
-          description: Successful Response
+          description: Domain forward disabled successfully. DNS records have been
+            removed but configuration is preserved.
         '401':
           content:
             application/problem+json:
@@ -11640,7 +12454,8 @@ paths:
           type: string
       responses:
         '204':
-          description: Successful Response
+          description: Domain forward enabled successfully. DNS records have been
+            created.
         '401':
           content:
             application/problem+json:
@@ -11697,7 +12512,8 @@ paths:
           type: string
       responses:
         '204':
-          description: Successful Response
+          description: Domain forward protocol set deleted successfully. No content
+            returned.
         '401':
           content:
             application/problem+json:
@@ -11768,9 +12584,44 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                http_protocol_set:
+                  description: Domain forward set containing HTTP protocol redirects
+                  summary: HTTP protocol set
+                  value:
+                    created_on: '2025-02-20T10:30:45'
+                    hostname: example.com.
+                    protocol: http
+                    redirects:
+                    - protected: false
+                      redirect_code: 301
+                      request_hostname: example.com.
+                      request_path: /
+                      request_protocol: http
+                      target_hostname: example.com
+                      target_path: /
+                      target_protocol: https
+                    updated_on: '2025-02-20T10:30:45'
+                https_protocol_set:
+                  description: Domain forward set containing HTTPS protocol redirects
+                  summary: HTTPS protocol set
+                  value:
+                    created_on: '2025-02-20T10:30:45'
+                    hostname: example.com.
+                    protocol: https
+                    redirects:
+                    - protected: false
+                      redirect_code: 302
+                      request_hostname: example.com.
+                      request_path: /
+                      request_protocol: https
+                      target_hostname: www.example.com
+                      target_path: /
+                      target_protocol: https
+                    updated_on: '2025-02-20T10:30:45'
               schema:
                 $ref: '#/components/schemas/DomainForwardSetResponse'
-          description: Successful Response
+          description: Domain forward set retrieved successfully
         '401':
           content:
             application/problem+json:
@@ -11848,9 +12699,27 @@ paths:
         '201':
           content:
             application/json:
+              examples:
+                created_protocol_set:
+                  description: New domain forward protocol set with HTTP redirects
+                  summary: Protocol set created
+                  value:
+                    created_on: '2025-02-20T10:30:45'
+                    hostname: example.com.
+                    protocol: http
+                    redirects:
+                    - protected: false
+                      redirect_code: 301
+                      request_hostname: example.com.
+                      request_path: /
+                      request_protocol: http
+                      target_hostname: example.com
+                      target_path: /
+                      target_protocol: https
+                    updated_on: '2025-02-20T10:30:45'
               schema:
                 $ref: '#/components/schemas/DomainForwardSetResponse'
-          description: Successful Response
+          description: Domain forward protocol set created successfully
         '401':
           content:
             application/problem+json:
@@ -11940,9 +12809,28 @@ paths:
         '200':
           content:
             application/json:
+              examples:
+                updated_protocol_set:
+                  description: Updated domain forward protocol set with new redirect
+                    configuration
+                  summary: Protocol set updated
+                  value:
+                    created_on: '2025-02-20T10:30:45'
+                    hostname: example.com.
+                    protocol: https
+                    redirects:
+                    - protected: false
+                      redirect_code: 302
+                      request_hostname: example.com.
+                      request_path: /
+                      request_protocol: https
+                      target_hostname: www.example.com
+                      target_path: /
+                      target_protocol: https
+                    updated_on: '2025-02-20T10:30:45'
               schema:
                 $ref: '#/components/schemas/DomainForwardSetResponse'
-          description: Successful Response
+          description: Domain forward protocol set updated successfully
         '401':
           content:
             application/problem+json:

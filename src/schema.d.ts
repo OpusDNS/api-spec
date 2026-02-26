@@ -548,7 +548,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Metrics */
+        /**
+         * Get domain forward metrics
+         * @description Retrieves overall metrics for domain forwards including total and unique visit counts.
+         */
         get: operations["metrics_v1_domain_forwards_metrics_get"];
         put?: never;
         post?: never;
@@ -565,7 +568,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Browser Stats */
+        /**
+         * Get browser statistics
+         * @description Retrieves visitor traffic broken down by browser type (Chrome, Safari, Firefox, etc.) with total and unique visit counts.
+         */
         get: operations["browser_stats_v1_domain_forwards_metrics_browser_get"];
         put?: never;
         post?: never;
@@ -582,7 +588,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Geo Stats */
+        /**
+         * Get geographic statistics
+         * @description Retrieves visitor traffic broken down by geographic location (country code) with visit counts.
+         */
         get: operations["geo_stats_v1_domain_forwards_metrics_geo_get"];
         put?: never;
         post?: never;
@@ -599,7 +608,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Platform Stats */
+        /**
+         * Get platform statistics
+         * @description Retrieves visitor traffic broken down by platform (Windows, Macintosh, iOS, Android, Linux) with total and unique visit counts.
+         */
         get: operations["platform_stats_v1_domain_forwards_metrics_platform_get"];
         put?: never;
         post?: never;
@@ -616,7 +628,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Referrer Stats */
+        /**
+         * Get referrer statistics
+         * @description Retrieves visitor referral sources (where traffic came from) with total and unique visit counts.
+         */
         get: operations["referrer_stats_v1_domain_forwards_metrics_referrer_get"];
         put?: never;
         post?: never;
@@ -633,7 +648,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Status Code Stats */
+        /**
+         * Get HTTP status code statistics
+         * @description Retrieves distribution of HTTP redirect status codes (301, 302, 307, 308) used across forwards.
+         */
         get: operations["status_code_stats_v1_domain_forwards_metrics_status_code_get"];
         put?: never;
         post?: never;
@@ -650,7 +668,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Time Series */
+        /**
+         * Get domain forward time series metrics
+         * @description Retrieves visit counts bucketed by time intervals (hourly, daily) for the specified time range.
+         */
         get: operations["time_series_v1_domain_forwards_metrics_time_series_get"];
         put?: never;
         post?: never;
@@ -667,7 +688,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** User Agent Stats */
+        /**
+         * Get user agent statistics
+         * @description Retrieves visitor traffic broken down by user agent string with total and unique visit counts.
+         */
         get: operations["user_agent_stats_v1_domain_forwards_metrics_user_agent_get"];
         put?: never;
         post?: never;
@@ -684,7 +708,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Visits By Key */
+        /**
+         * Get visits grouped by key
+         * @description Retrieves visit metrics grouped by a specified key (url, fqdn, domain, or forward) with total and unique visit counts.
+         */
         get: operations["visits_by_key_v1_domain_forwards_metrics_visits_by_key_get"];
         put?: never;
         post?: never;
@@ -8825,7 +8852,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description List of domain forwards retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -8948,7 +8975,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Domain forward already exists */
+            /** @description Domain forward already exists for this hostname */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -8988,7 +9015,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward redirects updated successfully. */
             204: {
                 headers: {
                     [name: string]: unknown;
@@ -9072,13 +9099,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward metrics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardMetricsResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9110,13 +9181,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Browser statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardBrowserStatsResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9148,13 +9263,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Geographic statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardGeoStatsResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9186,13 +9345,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Platform statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardPlatformStatsResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9224,13 +9427,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Referrer statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardReferrerStatsResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9262,13 +9509,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Status code statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardStatusCodeStatsResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9300,13 +9591,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Time series metrics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardMetricsTimeSeriesResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9338,13 +9673,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description User agent statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardUserAgentStatsResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9378,13 +9757,57 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Visits by key statistics retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": components["schemas"]["DomainForwardVisitsByKeyResponse"];
+                };
+            };
+            /** @description Invalid query parameters */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "detail": "Cannot specify both 'hostname' and 'domain'. Use 'hostname' for exact match or 'domain' to filter by domain including all subdomains."
+                     *     } */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */
@@ -9410,7 +9833,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -9494,7 +9917,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward protocol set created successfully */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -9590,7 +10013,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward deleted successfully. No content returned. */
             204: {
                 headers: {
                     [name: string]: unknown;
@@ -9668,7 +10091,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward disabled successfully. DNS records have been removed but configuration is preserved. */
             204: {
                 headers: {
                     [name: string]: unknown;
@@ -9730,7 +10153,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward enabled successfully. DNS records have been created. */
             204: {
                 headers: {
                     [name: string]: unknown;
@@ -9793,7 +10216,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward set retrieved successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -9878,7 +10301,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward protocol set updated successfully */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -9963,7 +10386,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward protocol set created successfully */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -10060,7 +10483,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description Domain forward protocol set deleted successfully. No content returned. */
             204: {
                 headers: {
                     [name: string]: unknown;
