@@ -4485,22 +4485,6 @@ export type VisitsByKeyBucket = components['schemas']['VisitsByKeyBucket'];
  */
 export type WhoisBase = components['schemas']['WhoisBase'];
 /**
- * WildcardHttpRedirectRequest
- *
- * @remarks
- * Type alias for the `WildcardHttpRedirectRequest` OpenAPI schema.
- * This type represents wildcardhttpredirectrequest data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getWildcardHttpRedirectRequest();
- * const item: WildcardHttpRedirectRequest = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type WildcardHttpRedirectRequest = components['schemas']['WildcardHttpRedirectRequest'];
-/**
  * ZoneSortField
  *
  * @remarks

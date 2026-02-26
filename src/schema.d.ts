@@ -806,12 +806,7 @@ export interface paths {
          * @description Updates an existing domain forward set for a specific protocol (HTTP or HTTPS). All existing redirects for this protocol are replaced with the provided redirects. Raises an error if the set does not exist.
          */
         put: operations["update_domain_forward_set_v1_domain_forwards__hostname___protocol__put"];
-        /**
-         * Create domain forward set (deprecated)
-         * @deprecated
-         * @description Deprecated: Use POST /{hostname} with protocol in body instead. Creates a new domain forward set for a specific protocol (HTTP or HTTPS).
-         */
-        post: operations["create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post"];
+        post?: never;
         /**
          * Delete domain forward set
          * @description Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
@@ -3363,7 +3358,7 @@ export interface components {
         /** DomainForwardProtocolSetRequest */
         DomainForwardProtocolSetRequest: {
             /** Redirects */
-            redirects: (components["schemas"]["HttpRedirectRequest"] | components["schemas"]["WildcardHttpRedirectRequest"])[];
+            redirects: components["schemas"]["HttpRedirectRequest"][];
         };
         /** DomainForwardProtocolSetResponse */
         DomainForwardProtocolSetResponse: {
@@ -3389,12 +3384,12 @@ export interface components {
         DomainForwardSetCreateRequest: {
             protocol: components["schemas"]["HttpProtocol"];
             /** Redirects */
-            redirects: (components["schemas"]["HttpRedirectRequest"] | components["schemas"]["WildcardHttpRedirectRequest"])[];
+            redirects: components["schemas"]["HttpRedirectRequest"][];
         };
         /** DomainForwardSetRequest */
         DomainForwardSetRequest: {
             /** Redirects */
-            redirects: (components["schemas"]["HttpRedirectRequest"] | components["schemas"]["WildcardHttpRedirectRequest"])[];
+            redirects: components["schemas"]["HttpRedirectRequest"][];
         };
         /** DomainForwardSetResponse */
         DomainForwardSetResponse: {
@@ -6707,19 +6702,6 @@ export interface components {
              * @description WHOIS server
              */
             whois_server?: string | null;
-        };
-        /** WildcardHttpRedirectRequest */
-        WildcardHttpRedirectRequest: {
-            redirect_code: components["schemas"]["RedirectCode"];
-            /** Request Path */
-            request_path: string;
-            /** Request Subdomain */
-            request_subdomain: string;
-            /** Target Hostname */
-            target_hostname: string;
-            /** Target Path */
-            target_path: string;
-            target_protocol: components["schemas"]["HttpProtocol"];
         };
         /**
          * ZoneSortField
@@ -10354,107 +10336,6 @@ export interface operations {
                      *       "status": 404,
                      *       "title": "Domain Forward Error",
                      *       "type": "domain-forward-not-found"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                protocol: components["schemas"]["HttpProtocol"];
-                /** @description Hostname */
-                hostname: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DomainForwardSetRequest"];
-            };
-        };
-        responses: {
-            /** @description Domain forward protocol set created successfully */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["DomainForwardSetResponse"];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_NOT_EXISTS",
-                     *       "detail": "Domain forward not found for Additional error context.",
-                     *       "status": 404,
-                     *       "title": "Domain Forward Error",
-                     *       "type": "domain-forward-not-found"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_FORWARD_ALREADY_EXISTS",
-                     *       "detail": "Domain forward already exists for Additional error context.",
-                     *       "status": 409,
-                     *       "title": "Domain Forward Error",
-                     *       "type": "domain-forward-already-exists"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

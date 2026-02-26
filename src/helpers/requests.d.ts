@@ -2067,61 +2067,6 @@ export type GET_DomainForwardsHostnameProtocol_Request = {
 export type GET_DomainForwardsHostnameProtocol_Request_Path = GET_DomainForwardsHostnameProtocol_Request['parameters']['path'];
 
 /**
- * Request type for POST DomainForwardsHostnameProtocol endpoint
- *
- * Create domain forward set (deprecated)
- * Deprecated: Use POST /{hostname} with protocol in body instead. Creates a new domain forward set for a specific protocol (HTTP or HTTPS).
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainForwardsHostnameProtocol endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- *
- * @see {@link POST_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
- * @see {@link POST_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
- * @see {@link POST_DomainForwardsHostnameProtocol_Request_Body} - Request body type
- */
-export type POST_DomainForwardsHostnameProtocol_Request = {
-  parameters: {
-    path: operations['create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post']['parameters']['path'];
-  };
-  requestBody: DomainForwardSetRequest;
-}
-/**
- * Path parameters for POST /v1/domain-forwards/{hostname}/{protocol}
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domain-forwards/{hostname}/{protocol} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- */
-export type POST_DomainForwardsHostnameProtocol_Request_Path = POST_DomainForwardsHostnameProtocol_Request['parameters']['path'];
-/**
- * Request body for POST /v1/domain-forwards/{hostname}/{protocol}
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domain-forwards/{hostname}/{protocol} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- */
-export type POST_DomainForwardsHostnameProtocol_Request_Body = POST_DomainForwardsHostnameProtocol_Request['requestBody'];
-
-/**
  * Request type for PUT DomainForwardsHostnameProtocol endpoint
  *
  * Update domain forward set

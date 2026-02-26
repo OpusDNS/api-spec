@@ -2107,9 +2107,7 @@ components:
       properties:
         redirects:
           items:
-            anyOf:
-            - $ref: '#/components/schemas/HttpRedirectRequest'
-            - $ref: '#/components/schemas/WildcardHttpRedirectRequest'
+            $ref: '#/components/schemas/HttpRedirectRequest'
           title: Redirects
           type: array
       required:
@@ -2154,9 +2152,7 @@ components:
           $ref: '#/components/schemas/HttpProtocol'
         redirects:
           items:
-            anyOf:
-            - $ref: '#/components/schemas/HttpRedirectRequest'
-            - $ref: '#/components/schemas/WildcardHttpRedirectRequest'
+            $ref: '#/components/schemas/HttpRedirectRequest'
           title: Redirects
           type: array
       required:
@@ -2168,9 +2164,7 @@ components:
       properties:
         redirects:
           items:
-            anyOf:
-            - $ref: '#/components/schemas/HttpRedirectRequest'
-            - $ref: '#/components/schemas/WildcardHttpRedirectRequest'
+            $ref: '#/components/schemas/HttpRedirectRequest'
           title: Redirects
           type: array
       required:
@@ -7142,33 +7136,6 @@ components:
           title: Whois Server
       title: WhoisBase
       type: object
-    WildcardHttpRedirectRequest:
-      properties:
-        redirect_code:
-          $ref: '#/components/schemas/RedirectCode'
-        request_path:
-          title: Request Path
-          type: string
-        request_subdomain:
-          title: Request Subdomain
-          type: string
-        target_hostname:
-          title: Target Hostname
-          type: string
-        target_path:
-          title: Target Path
-          type: string
-        target_protocol:
-          $ref: '#/components/schemas/HttpProtocol'
-      required:
-      - request_path
-      - target_protocol
-      - target_hostname
-      - target_path
-      - redirect_code
-      - request_subdomain
-      title: WildcardHttpRedirectRequest
-      type: object
     ZoneSortField:
       enum:
       - name
@@ -7350,7 +7317,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-26-130807
+  version: 2026-02-26-134941
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -12668,116 +12635,6 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Get domain forward set
-      tags:
-      - domain_forward
-    post:
-      deprecated: true
-      description: 'Deprecated: Use POST /{hostname} with protocol in body instead.
-        Creates a new domain forward set for a specific protocol (HTTP or HTTPS).'
-      operationId: create_domain_forward_set_deprecated_v1_domain_forwards__hostname___protocol__post
-      parameters:
-      - in: path
-        name: protocol
-        required: true
-        schema:
-          $ref: '#/components/schemas/HttpProtocol'
-      - description: Hostname
-        in: path
-        name: hostname
-        required: true
-        schema:
-          description: Hostname
-          title: Hostname
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DomainForwardSetRequest'
-        required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              examples:
-                created_protocol_set:
-                  description: New domain forward protocol set with HTTP redirects
-                  summary: Protocol set created
-                  value:
-                    created_on: '2025-02-20T10:30:45'
-                    hostname: example.com.
-                    protocol: http
-                    redirects:
-                    - protected: false
-                      redirect_code: 301
-                      request_hostname: example.com.
-                      request_path: /
-                      request_protocol: http
-                      target_hostname: example.com
-                      target_path: /
-                      target_protocol: https
-                    updated_on: '2025-02-20T10:30:45'
-              schema:
-                $ref: '#/components/schemas/DomainForwardSetResponse'
-          description: Domain forward protocol set created successfully
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '403':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_PERMISSION_DENIED
-                detail: Insufficient permissions to perform this action
-                status: 403
-                title: Permission Denied
-                type: permission-denied
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Forbidden
-        '404':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_DOMAIN_FORWARD_NOT_EXISTS
-                detail: Domain forward not found for Additional error context.
-                status: 404
-                title: Domain Forward Error
-                type: domain-forward-not-found
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Not Found
-        '409':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_DOMAIN_FORWARD_ALREADY_EXISTS
-                detail: Domain forward already exists for Additional error context.
-                status: 409
-                title: Domain Forward Error
-                type: domain-forward-already-exists
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Conflict
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
-      summary: Create domain forward set (deprecated)
       tags:
       - domain_forward
     put:
