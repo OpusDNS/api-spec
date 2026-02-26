@@ -7350,7 +7350,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-25-211607
+  version: 2026-02-26-130702
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -13454,6 +13454,32 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              catch_all:
+                description: Use '*' as alias to forward all unmatched emails for
+                  the hostname.
+                summary: Catch-all email forwarding
+                value:
+                  aliases:
+                  - alias: '*'
+                    forward_to:
+                    - inbox@example.net
+                  enabled: true
+                  hostname: example.com.
+              email_forward:
+                description: Create email forwarding with named aliases for a hostname.
+                summary: Standard email forwarding setup
+                value:
+                  aliases:
+                  - alias: sales
+                    forward_to:
+                    - sales-team@example.net
+                  - alias: support
+                    forward_to:
+                    - support@example.net
+                    - oncall@example.net
+                  enabled: false
+                  hostname: mail.example.com.
             schema:
               $ref: '#/components/schemas/EmailForwardCreate'
         required: true
@@ -13461,9 +13487,45 @@ paths:
         '201':
           content:
             application/json:
+              examples:
+                catch_all_email_forwarding_response:
+                  description: Response when creating email forwarding with a catch-all
+                    alias.
+                  summary: Response for catch-all email forwarding setup
+                  value:
+                    aliases:
+                    - alias: '*'
+                      email_forward_alias_id: email_forward_alias_01jx0000000000000000000003
+                      forward_to:
+                      - inbox@example.net
+                    created_on: '2025-11-14T09:01:38'
+                    email_forward_id: email_forward_01jx0000000000000000000002
+                    enabled: true
+                    hostname: example.com.
+                    updated_on: '2025-11-14T09:01:38'
+                standard_email_forwarding_response:
+                  description: Response when creating email forwarding with named
+                    aliases.
+                  summary: Response for standard email forwarding setup
+                  value:
+                    aliases:
+                    - alias: sales
+                      email_forward_alias_id: email_forward_alias_01jx0000000000000000000001
+                      forward_to:
+                      - sales-team@example.net
+                    - alias: support
+                      email_forward_alias_id: email_forward_alias_01jx0000000000000000000002
+                      forward_to:
+                      - support@example.net
+                      - oncall@example.net
+                    created_on: '2025-11-14T09:01:38'
+                    email_forward_id: email_forward_01jx0000000000000000000001
+                    enabled: false
+                    hostname: mail.example.com.
+                    updated_on: '2025-11-14T09:01:38'
               schema:
                 $ref: '#/components/schemas/EmailForwardResponse'
-          description: Successful Response
+          description: Email forwarding created successfully
         '401':
           content:
             application/problem+json:
@@ -13492,27 +13554,27 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_EMAIL_FORWARD_NOT_FOUND
-                detail: 'Email forward not found for hostname: Additional error context.'
+                code: ERROR_ZONE_NOT_FOUND
+                detail: Zone not found
                 status: 404
-                title: Email Forward Error
-                type: email-forward-not-found
+                title: DNS Error
+                type: dns-zone-not-found
+                zone_name: Zone example.com. not found
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Not Found
+          description: DNS zone was not found
         '409':
           content:
             application/problem+json:
               example:
                 code: ERROR_EMAIL_FORWARD_ALREADY_EXISTS
-                detail: 'Email forward already exists for hostname: Additional error
-                  context.'
+                detail: 'Email forward already exists for hostname: mail.example.com'
                 status: 409
                 title: Email Forward Error
                 type: email-forward-already-exists
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Conflict
+          description: Email forwarding configuration already exists
         '422':
           content:
             application/problem+json:
@@ -13529,7 +13591,7 @@ paths:
     delete:
       description: Permanently deletes the email forward configuration including all
         aliases. If enabled, automatically disables first (removes DNS records and
-        unregisters from ImprovMX).
+        unregisters from the email forwarding provider).
       operationId: delete_email_forward_v1_email_forwards__email_forward_id__delete
       parameters:
       - in: path
@@ -13583,8 +13645,8 @@ paths:
       tags:
       - email_forward
     get:
-      description: Retrieves the email forward configuration for the specified zone
-        including all aliases
+      description: Retrieves the email forward configuration for the specified email
+        forward including all aliases
       operationId: get_email_forward_v1_email_forwards__email_forward_id__get
       parameters:
       - in: path
@@ -13655,7 +13717,9 @@ paths:
       - email_forward
   /v1/email-forwards/{email_forward_id}/aliases:
     post:
-      description: Creates a new email forward alias for the specified hostname.
+      description: Creates a new email forward alias for the specified email forward.
+        Use '*' as the alias name to configure a catch-all alias that forwards all
+        unmatched emails for the domain.
       operationId: create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post
       parameters:
       - in: path
@@ -13672,6 +13736,22 @@ paths:
       requestBody:
         content:
           application/json:
+            examples:
+              catch_all_alias:
+                description: Use '*' to configure a catch-all alias.
+                summary: Catch-all alias
+                value:
+                  alias: '*'
+                  forward_to:
+                  - catchall@example.net
+              named_alias:
+                description: Create a regular alias for email forwarding.
+                summary: Named alias
+                value:
+                  alias: support
+                  forward_to:
+                  - support@example.net
+                  - oncall@example.net
             schema:
               $ref: '#/components/schemas/EmailForwardAliasCreate'
         required: true
@@ -13679,9 +13759,27 @@ paths:
         '201':
           content:
             application/json:
+              examples:
+                catch_all_alias_response:
+                  description: Response when creating a catch-all alias.
+                  summary: Response for catch-all alias
+                  value:
+                    alias: '*'
+                    email_forward_alias_id: email_forward_alias_01jx0000000000000000000005
+                    forward_to:
+                    - catchall@example.net
+                named_alias_response:
+                  description: Response when creating a regular alias.
+                  summary: Response for named alias
+                  value:
+                    alias: support
+                    email_forward_alias_id: email_forward_alias_01jx0000000000000000000004
+                    forward_to:
+                    - support@example.net
+                    - oncall@example.net
               schema:
                 $ref: '#/components/schemas/EmailForwardAlias'
-          description: Successful Response
+          description: Email forwarding alias created successfully
         '401':
           content:
             application/problem+json:
@@ -13711,25 +13809,25 @@ paths:
             application/problem+json:
               example:
                 code: ERROR_EMAIL_FORWARD_NOT_FOUND
-                detail: 'Email forward not found for hostname: Additional error context.'
+                detail: 'Email forward not found for ID: email_forward_01jx0000000000000000000009'
                 status: 404
                 title: Email Forward Error
                 type: email-forward-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Not Found
+          description: Email forwarding configuration was not found
         '409':
           content:
             application/problem+json:
               example:
                 code: ERROR_EMAIL_FORWARD_ALIAS_ALREADY_EXISTS
-                detail: Additional error context.
+                detail: Alias already exists
                 status: 409
                 title: Email Forward Error
                 type: email-forward-alias-already-exists
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Conflict
+          description: Email forwarding alias already exists
         '422':
           content:
             application/problem+json:
@@ -13744,7 +13842,8 @@ paths:
       - email_forward
   /v1/email-forwards/{email_forward_id}/aliases/{alias_id}:
     delete:
-      description: Deletes a specific email forward alias for the specified zone
+      description: Deletes a specific email forward alias specified by email_forward_alias_id
+        for the specified email forward
       operationId: delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete
       parameters:
       - in: path
@@ -13800,11 +13899,12 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_EMAIL_FORWARD_NOT_FOUND
-                detail: 'Email forward not found for hostname: Additional error context.'
+                code: ERROR_EMAIL_FORWARD_ALIAS_NOT_FOUND
+                detail: Alias could not be found
+                email_forward_id: Additional error context.
                 status: 404
                 title: Email Forward Error
-                type: email-forward-not-found
+                type: email-forward-alias-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
@@ -13822,6 +13922,7 @@ paths:
       - email_forward
     put:
       description: Updates the forward_to address for a specific email forward alias
+        specified by email_forward_alias_id
       operationId: update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put
       parameters:
       - in: path
@@ -13887,11 +13988,12 @@ paths:
           content:
             application/problem+json:
               example:
-                code: ERROR_EMAIL_FORWARD_NOT_FOUND
-                detail: 'Email forward not found for hostname: Additional error context.'
+                code: ERROR_EMAIL_FORWARD_ALIAS_NOT_FOUND
+                detail: Alias could not be found
+                email_forward_id: Additional error context.
                 status: 404
                 title: Email Forward Error
-                type: email-forward-not-found
+                type: email-forward-alias-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
@@ -13910,7 +14012,7 @@ paths:
   /v1/email-forwards/{email_forward_id}/disable:
     patch:
       description: Disables email forwarding by removing MX and SPF DNS records and
-        unregistering the domain from the email forward provider. The email forward
+        unregistering the domain from the email forwarding provider. The email forward
         configuration is preserved but disabled.
       operationId: disable_email_forward_v1_email_forwards__email_forward_id__disable_patch
       parameters:
@@ -13979,7 +14081,7 @@ paths:
   /v1/email-forwards/{email_forward_id}/enable:
     patch:
       description: Enables email forwarding by creating necessary MX and SPF DNS records
-        and registering the domain with the email forward provider.
+        and registering the domain with the email forwarding provider.
       operationId: enable_email_forward_v1_email_forwards__email_forward_id__enable_patch
       parameters:
       - in: path

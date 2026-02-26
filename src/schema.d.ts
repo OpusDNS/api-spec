@@ -1150,14 +1150,14 @@ export interface paths {
         };
         /**
          * Get email forward configuration
-         * @description Retrieves the email forward configuration for the specified zone including all aliases
+         * @description Retrieves the email forward configuration for the specified email forward including all aliases
          */
         get: operations["get_email_forward_v1_email_forwards__email_forward_id__get"];
         put?: never;
         post?: never;
         /**
          * Delete email forward configuration
-         * @description Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from ImprovMX).
+         * @description Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from the email forwarding provider).
          */
         delete: operations["delete_email_forward_v1_email_forwards__email_forward_id__delete"];
         options?: never;
@@ -1176,7 +1176,7 @@ export interface paths {
         put?: never;
         /**
          * Create email forward alias
-         * @description Creates a new email forward alias for the specified hostname.
+         * @description Creates a new email forward alias for the specified email forward. Use '*' as the alias name to configure a catch-all alias that forwards all unmatched emails for the domain.
          */
         post: operations["create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post"];
         delete?: never;
@@ -1195,13 +1195,13 @@ export interface paths {
         get?: never;
         /**
          * Update email forward alias
-         * @description Updates the forward_to address for a specific email forward alias
+         * @description Updates the forward_to address for a specific email forward alias specified by email_forward_alias_id
          */
         put: operations["update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put"];
         post?: never;
         /**
          * Delete email forward alias
-         * @description Deletes a specific email forward alias for the specified zone
+         * @description Deletes a specific email forward alias specified by email_forward_alias_id for the specified email forward
          */
         delete: operations["delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete"];
         options?: never;
@@ -1224,7 +1224,7 @@ export interface paths {
         head?: never;
         /**
          * Disable email forwarding
-         * @description Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forward provider. The email forward configuration is preserved but disabled.
+         * @description Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forwarding provider. The email forward configuration is preserved but disabled.
          */
         patch: operations["disable_email_forward_v1_email_forwards__email_forward_id__disable_patch"];
         trace?: never;
@@ -1244,7 +1244,7 @@ export interface paths {
         head?: never;
         /**
          * Enable email forwarding
-         * @description Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forward provider.
+         * @description Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forwarding provider.
          */
         patch: operations["enable_email_forward_v1_email_forwards__email_forward_id__enable_patch"];
         trace?: never;
@@ -11330,7 +11330,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Email forwarding created successfully */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -11371,23 +11371,24 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Not Found */
+            /** @description DNS zone was not found */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
-                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "code": "ERROR_ZONE_NOT_FOUND",
+                     *       "detail": "Zone not found",
                      *       "status": 404,
-                     *       "title": "Email Forward Error",
-                     *       "type": "email-forward-not-found"
+                     *       "title": "DNS Error",
+                     *       "type": "dns-zone-not-found",
+                     *       "zone_name": "Zone example.com. not found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Conflict */
+            /** @description Email forwarding configuration already exists */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -11395,7 +11396,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_EMAIL_FORWARD_ALREADY_EXISTS",
-                     *       "detail": "Email forward already exists for hostname: Additional error context.",
+                     *       "detail": "Email forward already exists for hostname: mail.example.com",
                      *       "status": 409,
                      *       "title": "Email Forward Error",
                      *       "type": "email-forward-already-exists"
@@ -11569,7 +11570,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Successful Response */
+            /** @description Email forwarding alias created successfully */
             201: {
                 headers: {
                     [name: string]: unknown;
@@ -11610,7 +11611,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Not Found */
+            /** @description Email forwarding configuration was not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -11618,7 +11619,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
-                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "detail": "Email forward not found for ID: email_forward_01jx0000000000000000000009",
                      *       "status": 404,
                      *       "title": "Email Forward Error",
                      *       "type": "email-forward-not-found"
@@ -11626,7 +11627,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Conflict */
+            /** @description Email forwarding alias already exists */
             409: {
                 headers: {
                     [name: string]: unknown;
@@ -11634,7 +11635,7 @@ export interface operations {
                 content: {
                     /** @example {
                      *       "code": "ERROR_EMAIL_FORWARD_ALIAS_ALREADY_EXISTS",
-                     *       "detail": "Additional error context.",
+                     *       "detail": "Alias already exists",
                      *       "status": 409,
                      *       "title": "Email Forward Error",
                      *       "type": "email-forward-alias-already-exists"
@@ -11717,11 +11718,12 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
-                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "code": "ERROR_EMAIL_FORWARD_ALIAS_NOT_FOUND",
+                     *       "detail": "Alias could not be found",
+                     *       "email_forward_id": "Additional error context.",
                      *       "status": 404,
                      *       "title": "Email Forward Error",
-                     *       "type": "email-forward-not-found"
+                     *       "type": "email-forward-alias-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -11795,11 +11797,12 @@ export interface operations {
                 };
                 content: {
                     /** @example {
-                     *       "code": "ERROR_EMAIL_FORWARD_NOT_FOUND",
-                     *       "detail": "Email forward not found for hostname: Additional error context.",
+                     *       "code": "ERROR_EMAIL_FORWARD_ALIAS_NOT_FOUND",
+                     *       "detail": "Alias could not be found",
+                     *       "email_forward_id": "Additional error context.",
                      *       "status": 404,
                      *       "title": "Email Forward Error",
-                     *       "type": "email-forward-not-found"
+                     *       "type": "email-forward-alias-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

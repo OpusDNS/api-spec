@@ -3551,7 +3551,7 @@ export type POST_EmailForwards_Request_Body = POST_EmailForwards_Request['reques
  * Request type for DELETE EmailForwardsEmailForwardId endpoint
  *
  * Delete email forward configuration
- * Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from ImprovMX).
+ * Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from the email forwarding provider).
  *
  * @remarks
  * This type defines the complete request structure for the DELETE EmailForwardsEmailForwardId endpoint.
@@ -3590,7 +3590,7 @@ export type DELETE_EmailForwardsEmailForwardId_Request_Path = DELETE_EmailForwar
  * Request type for GET EmailForwardsEmailForwardId endpoint
  *
  * Get email forward configuration
- * Retrieves the email forward configuration for the specified zone including all aliases
+ * Retrieves the email forward configuration for the specified email forward including all aliases
  *
  * @remarks
  * This type defines the complete request structure for the GET EmailForwardsEmailForwardId endpoint.
@@ -3629,7 +3629,7 @@ export type GET_EmailForwardsEmailForwardId_Request_Path = GET_EmailForwardsEmai
  * Request type for POST EmailForwardsEmailForwardIdAliases endpoint
  *
  * Create email forward alias
- * Creates a new email forward alias for the specified hostname.
+ * Creates a new email forward alias for the specified email forward. Use '*' as the alias name to configure a catch-all alias that forwards all unmatched emails for the domain.
  *
  * @remarks
  * This type defines the complete request structure for the POST EmailForwardsEmailForwardIdAliases endpoint.
@@ -3682,7 +3682,7 @@ export type POST_EmailForwardsEmailForwardIdAliases_Request_Body = POST_EmailFor
  * Request type for DELETE EmailForwardsEmailForwardIdAliasesAliasId endpoint
  *
  * Delete email forward alias
- * Deletes a specific email forward alias for the specified zone
+ * Deletes a specific email forward alias specified by email_forward_alias_id for the specified email forward
  *
  * @remarks
  * This type defines the complete request structure for the DELETE EmailForwardsEmailForwardIdAliasesAliasId endpoint.
@@ -3721,7 +3721,7 @@ export type DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path = DELE
  * Request type for PUT EmailForwardsEmailForwardIdAliasesAliasId endpoint
  *
  * Update email forward alias
- * Updates the forward_to address for a specific email forward alias
+ * Updates the forward_to address for a specific email forward alias specified by email_forward_alias_id
  *
  * @remarks
  * This type defines the complete request structure for the PUT EmailForwardsEmailForwardIdAliasesAliasId endpoint.
@@ -3774,7 +3774,7 @@ export type PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Body = PUT_Ema
  * Request type for PATCH EmailForwardsEmailForwardIdDisable endpoint
  *
  * Disable email forwarding
- * Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forward provider. The email forward configuration is preserved but disabled.
+ * Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forwarding provider. The email forward configuration is preserved but disabled.
  *
  * @remarks
  * This type defines the complete request structure for the PATCH EmailForwardsEmailForwardIdDisable endpoint.
@@ -3813,7 +3813,7 @@ export type PATCH_EmailForwardsEmailForwardIdDisable_Request_Path = PATCH_EmailF
  * Request type for PATCH EmailForwardsEmailForwardIdEnable endpoint
  *
  * Enable email forwarding
- * Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forward provider.
+ * Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forwarding provider.
  *
  * @remarks
  * This type defines the complete request structure for the PATCH EmailForwardsEmailForwardIdEnable endpoint.

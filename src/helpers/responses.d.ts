@@ -6482,7 +6482,7 @@ export type POST_EmailForwards_Response_422 = HTTPValidationError
  * Response types for DELETE EmailForwardsByEmailForwardId endpoint
  *
  * Delete email forward configuration
- * Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from ImprovMX).
+ * Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from the email forwarding provider).
  *
  * @remarks
  * This type defines all possible response structures for the DELETE EmailForwardsByEmailForwardId endpoint.
@@ -6556,7 +6556,7 @@ export type DELETE_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationEr
  * Response types for GET EmailForwardsByEmailForwardId endpoint
  *
  * Get email forward configuration
- * Retrieves the email forward configuration for the specified zone including all aliases
+ * Retrieves the email forward configuration for the specified email forward including all aliases
  *
  * @remarks
  * This type defines all possible response structures for the GET EmailForwardsByEmailForwardId endpoint.
@@ -6666,7 +6666,7 @@ export type GET_EmailForwardsByEmailForwardId_Response_422 = HTTPValidationError
  * Response types for POST EmailForwardsByEmailForwardIdAliases endpoint
  *
  * Create email forward alias
- * Creates a new email forward alias for the specified hostname.
+ * Creates a new email forward alias for the specified email forward. Use '*' as the alias name to configure a catch-all alias that forwards all unmatched emails for the domain.
  *
  * @remarks
  * This type defines all possible response structures for the POST EmailForwardsByEmailForwardIdAliases endpoint.
@@ -6794,7 +6794,7 @@ export type POST_EmailForwardsByEmailForwardIdAliases_Response_422 = HTTPValidat
  * Response types for DELETE EmailForwardsByEmailForwardIdAliasesByAliasId endpoint
  *
  * Delete email forward alias
- * Deletes a specific email forward alias for the specified zone
+ * Deletes a specific email forward alias specified by email_forward_alias_id for the specified email forward
  *
  * @remarks
  * This type defines all possible response structures for the DELETE EmailForwardsByEmailForwardIdAliasesByAliasId endpoint.
@@ -6886,7 +6886,7 @@ export type DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_422 = 
  * Response types for PUT EmailForwardsByEmailForwardIdAliasesByAliasId endpoint
  *
  * Update email forward alias
- * Updates the forward_to address for a specific email forward alias
+ * Updates the forward_to address for a specific email forward alias specified by email_forward_alias_id
  *
  * @remarks
  * This type defines all possible response structures for the PUT EmailForwardsByEmailForwardIdAliasesByAliasId endpoint.
@@ -6996,7 +6996,7 @@ export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_422 = HTT
  * Response types for PATCH EmailForwardsByEmailForwardIdDisable endpoint
  *
  * Disable email forwarding
- * Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forward provider. The email forward configuration is preserved but disabled.
+ * Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forwarding provider. The email forward configuration is preserved but disabled.
  *
  * @remarks
  * This type defines all possible response structures for the PATCH EmailForwardsByEmailForwardIdDisable endpoint.
@@ -7088,7 +7088,7 @@ export type PATCH_EmailForwardsByEmailForwardIdDisable_Response_422 = HTTPValida
  * Response types for PATCH EmailForwardsByEmailForwardIdEnable endpoint
  *
  * Enable email forwarding
- * Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forward provider.
+ * Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forwarding provider.
  *
  * @remarks
  * This type defines all possible response structures for the PATCH EmailForwardsByEmailForwardIdEnable endpoint.
