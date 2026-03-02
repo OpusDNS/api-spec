@@ -596,7 +596,44 @@ components:
       - disclose
       title: ContactCreate
       type: object
-    ContactDetailResponse:
+    ContactHandle:
+      properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/RegistryHandleAttributeType'
+            type: object
+          - type: 'null'
+          description: Additional attributes related to the contact
+          title: Attributes
+        contact_id:
+          description: The contact id of the contact
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      required:
+      - contact_id
+      title: ContactHandle
+      type: object
+    ContactIdList:
+      additionalProperties:
+        examples:
+        - contact_01h45ytscbebyvny4gc8cr8ma2
+        format: typeid
+        pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+        type: string
+        x-typeid-prefix: contact
+      description: The contacts of the domain
+      propertyNames:
+        $ref: '#/components/schemas/DomainContactType'
+      type: object
+    ContactResponse:
       properties:
         attribute_sets:
           description: Linked attribute sets for this contact
@@ -627,13 +664,6 @@ components:
           format: date-time
           title: Created On
           type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
         disclose:
           description: Whether the contact details should be disclosed. The Disclose
             function may not work with all TLDs. Some registries still display the
@@ -720,133 +750,6 @@ components:
       - postal_code
       - country
       - disclose
-      title: ContactDetailResponse
-      type: object
-    ContactHandle:
-      properties:
-        attributes:
-          anyOf:
-          - additionalProperties:
-              type: string
-            propertyNames:
-              $ref: '#/components/schemas/RegistryHandleAttributeType'
-            type: object
-          - type: 'null'
-          description: Additional attributes related to the contact
-          title: Attributes
-        contact_id:
-          description: The contact id of the contact
-          examples:
-          - contact_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Contact Id
-          type: string
-          x-typeid-prefix: contact
-      required:
-      - contact_id
-      title: ContactHandle
-      type: object
-    ContactIdList:
-      additionalProperties:
-        examples:
-        - contact_01h45ytscbebyvny4gc8cr8ma2
-        format: typeid
-        pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-        type: string
-        x-typeid-prefix: contact
-      description: The contacts of the domain
-      propertyNames:
-        $ref: '#/components/schemas/DomainContactType'
-      type: object
-    ContactResponse:
-      properties:
-        city:
-          description: The city of the contact
-          minLength: 1
-          title: City
-          type: string
-        country:
-          description: The country of the contact
-          pattern: ^\w{2}$
-          title: Country
-          type: string
-        disclose:
-          description: Whether the contact details should be disclosed. The Disclose
-            function may not work with all TLDs. Some registries still display the
-            data in Whois if, for example, the organization field is filled in.
-          title: Disclose
-          type: boolean
-        email:
-          description: The email of the contact
-          format: email
-          title: Email
-          type: string
-        fax:
-          anyOf:
-          - format: phone
-            type: string
-          - type: 'null'
-          description: The contacts's fax number
-          title: Fax
-        first_name:
-          description: The first name of the contact
-          minLength: 1
-          title: First Name
-          type: string
-        last_name:
-          description: The last name of the contact
-          minLength: 1
-          title: Last Name
-          type: string
-        org:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
-          description: The organization of the contact
-          title: Org
-        phone:
-          description: The contact's phone number
-          examples:
-          - '+1.2125552368'
-          format: phone
-          title: Phone
-          type: string
-        postal_code:
-          description: The postal code of the contact
-          minLength: 1
-          title: Postal Code
-          type: string
-        state:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
-          description: The state of the contact
-          title: State
-        street:
-          description: The address of the contact
-          minLength: 1
-          title: Street
-          type: string
-        title:
-          anyOf:
-          - minLength: 1
-            type: string
-          - type: 'null'
-          description: The title of the contact
-          title: Title
-      required:
-      - first_name
-      - last_name
-      - email
-      - phone
-      - street
-      - city
-      - postal_code
-      - country
-      - disclose
       title: ContactResponse
       type: object
     ContactSchema:
@@ -874,13 +777,6 @@ components:
           format: date-time
           title: Created On
           type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
         disclose:
           description: Whether the contact details should be disclosed. The Disclose
             function may not work with all TLDs. Some registries still display the
@@ -5101,19 +4997,19 @@ components:
       - pagination
       title: Pagination[ContactAttributeSetResponse]
       type: object
-    Pagination_ContactDetailResponse_:
+    Pagination_ContactResponse_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/ContactDetailResponse'
+            $ref: '#/components/schemas/ContactResponse'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[ContactDetailResponse]
+      title: Pagination[ContactResponse]
       type: object
     Pagination_DnsZoneResponse_:
       properties:
@@ -7317,7 +7213,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-02-26-134941
+  version: 2026-03-02-094357
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8223,7 +8119,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ContactDetailResponse_'
+                $ref: '#/components/schemas/Pagination_ContactResponse_'
           description: Successful Response
         '422':
           content:
@@ -8724,7 +8620,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactDetailResponse'
+                $ref: '#/components/schemas/ContactResponse'
           description: Successful Response
         '404':
           content:

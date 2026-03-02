@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_ContactDetail, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, ContactDetail, ContactAttributeLink, ContactVerification, Contact, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -599,9 +599,9 @@ export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Res
  * @path /v1/contacts
  *
  * @see {@link GET_Contacts_Response} - The main response type definition
- * @see {@link Pagination_ContactDetail} - The actual schema type definition
+ * @see {@link Pagination_Contact} - The actual schema type definition
  */
-export type GET_Contacts_Response_200 = Pagination_ContactDetail
+export type GET_Contacts_Response_200 = Pagination_Contact
 
 /**
  * 422 response for GET Contacts endpoint
@@ -1135,9 +1135,9 @@ export type GET_ContactsByContactId_Response = GET_ContactsByContactId_Response_
  * @path /v1/contacts/{contact_id}
  *
  * @see {@link GET_ContactsByContactId_Response} - The main response type definition
- * @see {@link ContactDetail} - The actual schema type definition
+ * @see {@link Contact} - The actual schema type definition
  */
-export type GET_ContactsByContactId_Response_200 = ContactDetail
+export type GET_ContactsByContactId_Response_200 = Contact
 
 /**
  * 404 response for GET ContactsByContactId endpoint

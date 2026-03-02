@@ -379,22 +379,6 @@ export type ContactConfigBase = components['schemas']['ContactConfigBase'];
  */
 export type ContactCreate = components['schemas']['ContactCreate'];
 /**
- * ContactDetailResponse
- *
- * @remarks
- * Type alias for the `ContactDetailResponse` OpenAPI schema.
- * This type represents contactdetailresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getContactDetail();
- * const item: ContactDetail = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type ContactDetail = components['schemas']['ContactDetailResponse'];
-/**
  * ContactHandle
  *
  * @remarks
@@ -3061,21 +3045,21 @@ export type Pagination_BillingTransaction = components['schemas']['Pagination_Bi
  */
 export type Pagination_ContactAttributeSet = components['schemas']['Pagination_ContactAttributeSetResponse_'];
 /**
- * Pagination[ContactDetailResponse]
+ * Pagination[ContactResponse]
  *
  * @remarks
- * Type alias for the `Pagination_ContactDetailResponse_` OpenAPI schema.
- * This type represents pagination[contactdetailresponse] data structures used in API requests and responses.
+ * Type alias for the `Pagination_ContactResponse_` OpenAPI schema.
+ * This type represents pagination[contactresponse] data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getPagination_ContactDetail();
- * const item: Pagination_ContactDetail = response.results;
+ * const response = await api.getPagination_Contact();
+ * const item: Pagination_Contact = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type Pagination_ContactDetail = components['schemas']['Pagination_ContactDetailResponse_'];
+export type Pagination_Contact = components['schemas']['Pagination_ContactResponse_'];
 /**
  * Pagination[DnsZoneResponse]
  *

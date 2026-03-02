@@ -2351,8 +2351,29 @@ export interface components {
              */
             title?: string | null;
         };
-        /** ContactDetailResponse */
-        ContactDetailResponse: {
+        /** ContactHandle */
+        ContactHandle: {
+            /**
+             * Attributes
+             * @description Additional attributes related to the contact
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
+             * Contact Id
+             * Format: typeid
+             * @description The contact id of the contact
+             * @example contact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            contact_id: TypeId<"contact">;
+        };
+        /** @description The contacts of the domain */
+        ContactIdList: {
+            [key: string]: TypeId<"contact">;
+        };
+        /** ContactResponse */
+        ContactResponse: {
             /**
              * Attribute Sets
              * @description Linked attribute sets for this contact
@@ -2380,11 +2401,6 @@ export interface components {
              * @description The date/time the entry was created on
              */
             created_on?: Date;
-            /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
             /**
              * Disclose
              * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
@@ -2452,98 +2468,6 @@ export interface components {
              */
             title?: string | null;
         };
-        /** ContactHandle */
-        ContactHandle: {
-            /**
-             * Attributes
-             * @description Additional attributes related to the contact
-             */
-            attributes?: {
-                [key: string]: string;
-            } | null;
-            /**
-             * Contact Id
-             * Format: typeid
-             * @description The contact id of the contact
-             * @example contact_01h45ytscbebyvny4gc8cr8ma2
-             */
-            contact_id: TypeId<"contact">;
-        };
-        /** @description The contacts of the domain */
-        ContactIdList: {
-            [key: string]: TypeId<"contact">;
-        };
-        /** ContactResponse */
-        ContactResponse: {
-            /**
-             * City
-             * @description The city of the contact
-             */
-            city: string;
-            /**
-             * Country
-             * @description The country of the contact
-             */
-            country: string;
-            /**
-             * Disclose
-             * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
-             */
-            disclose: boolean;
-            /**
-             * Email
-             * Format: email
-             * @description The email of the contact
-             */
-            email: string;
-            /**
-             * Fax
-             * @description The contacts's fax number
-             */
-            fax?: string | null;
-            /**
-             * First Name
-             * @description The first name of the contact
-             */
-            first_name: string;
-            /**
-             * Last Name
-             * @description The last name of the contact
-             */
-            last_name: string;
-            /**
-             * Org
-             * @description The organization of the contact
-             */
-            org?: string | null;
-            /**
-             * Phone
-             * Format: phone
-             * @description The contact's phone number
-             * @example +1.2125552368
-             */
-            phone: string;
-            /**
-             * Postal Code
-             * @description The postal code of the contact
-             */
-            postal_code: string;
-            /**
-             * State
-             * @description The state of the contact
-             */
-            state?: string | null;
-            /**
-             * Street
-             * @description The address of the contact
-             */
-            street: string;
-            /**
-             * Title
-             * @description The title of the contact
-             */
-            title?: string | null;
-        };
         /** ContactSchema */
         ContactSchema: {
             /**
@@ -2568,11 +2492,6 @@ export interface components {
              * @description The date/time the entry was created on
              */
             created_on?: Date;
-            /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
             /**
              * Disclose
              * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
@@ -5374,11 +5293,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["ContactAttributeSetResponse"][];
         };
-        /** Pagination[ContactDetailResponse] */
-        Pagination_ContactDetailResponse_: {
+        /** Pagination[ContactResponse] */
+        Pagination_ContactResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["ContactDetailResponse"][];
+            results: components["schemas"]["ContactResponse"][];
         };
         /** Pagination[DnsZoneResponse] */
         Pagination_DnsZoneResponse_: {
@@ -7203,7 +7122,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_ContactDetailResponse_"];
+                    "application/json": components["schemas"]["Pagination_ContactResponse_"];
                 };
             };
             /** @description Validation Error */
@@ -7680,7 +7599,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ContactDetailResponse"];
+                    "application/json": components["schemas"]["ContactResponse"];
                 };
             };
             /** @description Not Found */
