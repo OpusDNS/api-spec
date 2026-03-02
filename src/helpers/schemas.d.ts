@@ -331,6 +331,22 @@ export type ContactAttributeSetCreate = components['schemas']['ContactAttributeS
  */
 export type ContactAttributeSet = components['schemas']['ContactAttributeSetResponse'];
 /**
+ * ContactAttributeSetSortField
+ *
+ * @remarks
+ * Type alias for the `ContactAttributeSetSortField` OpenAPI schema.
+ * This type represents contactattributesetsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttributeSetSortField();
+ * const item: ContactAttributeSetSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttributeSetSortField = components['schemas']['ContactAttributeSetSortField'];
+/**
  * ContactAttributeSetUpdate
  *
  * @remarks

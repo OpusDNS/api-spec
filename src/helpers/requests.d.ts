@@ -475,7 +475,6 @@ export type POST_Contacts_Request_Body = POST_Contacts_Request['requestBody'];
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/contacts/attribute-sets
- * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
  *
  * @see {@link GET_ContactsAttributeSets_Request_Query} - Query parameters type
  * @see {@link GET_ContactsAttributeSets_Request_Path} - Path parameters type
@@ -497,7 +496,6 @@ export type GET_ContactsAttributeSets_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/contacts/attribute-sets
- * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
  */
 export type GET_ContactsAttributeSets_Request_Query = GET_ContactsAttributeSets_Request['parameters']['query'];
 

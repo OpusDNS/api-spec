@@ -689,7 +689,6 @@ export type POST_Contacts_Response_422 = HTTPValidationError
 
  *
  * @path /v1/contacts/attribute-sets
- * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
  *
  * @see {@link GET_ContactsAttributeSets_Response_200} - 200 response type
  * @see {@link GET_ContactsAttributeSets_Response_422} - 422 response type
@@ -709,7 +708,6 @@ export type GET_ContactsAttributeSets_Response = GET_ContactsAttributeSets_Respo
 
  *
  * @path /v1/contacts/attribute-sets
- * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
  *
  * @see {@link GET_ContactsAttributeSets_Response} - The main response type definition
  * @see {@link Pagination_ContactAttributeSet} - The actual schema type definition
@@ -727,7 +725,6 @@ export type GET_ContactsAttributeSets_Response_200 = Pagination_ContactAttribute
 
  *
  * @path /v1/contacts/attribute-sets
- * @param tld (query) - Filter by TLD (e.g. 'de', '.de', 'DE')
  *
  * @see {@link GET_ContactsAttributeSets_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition

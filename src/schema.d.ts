@@ -2263,6 +2263,11 @@ export interface components {
              */
             updated_on: Date;
         };
+        /**
+         * ContactAttributeSetSortField
+         * @enum {string}
+         */
+        ContactAttributeSetSortField: "label" | "tld" | "created_on" | "updated_on";
         /** ContactAttributeSetUpdate */
         ContactAttributeSetUpdate: {
             /**
@@ -7178,8 +7183,10 @@ export interface operations {
     list_attribute_sets_v1_contacts_attribute_sets_get: {
         parameters: {
             query?: {
-                /** @description Filter by TLD (e.g. 'de', '.de', 'DE') */
+                sort_by?: components["schemas"]["ContactAttributeSetSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
                 tld?: string | null;
+                label?: string | null;
                 page?: number;
                 page_size?: number;
             };

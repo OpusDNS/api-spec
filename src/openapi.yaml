@@ -477,6 +477,14 @@ components:
       - updated_on
       title: ContactAttributeSetResponse
       type: object
+    ContactAttributeSetSortField:
+      enum:
+      - label
+      - tld
+      - created_on
+      - updated_on
+      title: ContactAttributeSetSortField
+      type: string
     ContactAttributeSetUpdate:
       properties:
         label:
@@ -7218,7 +7226,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-02-094551
+  version: 2026-03-02-095654
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8170,16 +8178,34 @@ paths:
     get:
       operationId: list_attribute_sets_v1_contacts_attribute_sets_get
       parameters:
-      - description: Filter by TLD (e.g. 'de', '.de', 'DE')
-        in: query
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/ContactAttributeSetSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
         name: tld
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
-          description: Filter by TLD (e.g. 'de', '.de', 'DE')
           title: Tld
+      - in: query
+        name: label
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label
       - in: query
         name: page
         required: false
