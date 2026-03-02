@@ -1830,6 +1830,32 @@ export const KEY_CONTACT_ATTRIBUTE_SET_CREATED_ON: keyof ContactAttributeSet = '
  */
 export const KEY_CONTACT_ATTRIBUTE_SET_LABEL: keyof ContactAttributeSet = 'label';
 /**
+ * Linked Contacts
+ *
+ * Number of contacts linked to this attribute set
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `linked_contacts` property of ContactAttributeSet objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattributeset[KEY_CONTACT_ATTRIBUTE_SET_LINKED_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTRIBUTE_SET_LINKED_CONTACTS;
+ * const value = contactattributeset[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttributeSet} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTRIBUTE_SET} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTRIBUTE_SET_LINKED_CONTACTS: keyof ContactAttributeSet = 'linked_contacts';
+/**
  * Organization Id
  *
  * The organization that owns this attribute set
@@ -1933,6 +1959,7 @@ export const KEYS_CONTACT_ATTRIBUTE_SET = [
   KEY_CONTACT_ATTRIBUTE_SET_CONTACT_ATTRIBUTE_SET_ID,
   KEY_CONTACT_ATTRIBUTE_SET_CREATED_ON,
   KEY_CONTACT_ATTRIBUTE_SET_LABEL,
+  KEY_CONTACT_ATTRIBUTE_SET_LINKED_CONTACTS,
   KEY_CONTACT_ATTRIBUTE_SET_ORGANIZATION_ID,
   KEY_CONTACT_ATTRIBUTE_SET_TLD,
   KEY_CONTACT_ATTRIBUTE_SET_UPDATED_ON,

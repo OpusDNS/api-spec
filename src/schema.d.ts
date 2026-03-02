@@ -2239,6 +2239,12 @@ export interface components {
              */
             label: string;
             /**
+             * Linked Contacts
+             * @description Number of contacts linked to this attribute set
+             * @default 0
+             */
+            linked_contacts: number;
+            /**
              * Organization Id
              * Format: typeid
              * @description The organization that owns this attribute set
