@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, AttributeCondition, DomainContactType, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, Parking, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, AttributeCondition, DomainContactType, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, Parking, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -710,6 +710,20 @@ export type ValidationErrorArray = ValidationError[];
  */
 export type LaunchPhaseBaseArray = LaunchPhaseBase[];
 /**
+ * LegalRequirementOperationType
+ *
+ * @remarks
+ * Array type for LegalRequirementOperationType objects. Used when the API returns a collection of LegalRequirementOperationType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: LegalRequirementOperationTypeArray = await api.getLegalRequirementOperationTypes();
+ * ```
+ *
+ * @see {@link LegalRequirementOperationType} - The individual LegalRequirementOperationType type definition
+ */
+export type LegalRequirementOperationTypeArray = LegalRequirementOperationType[];
+/**
  * LocalPresenceRequirementType
  *
  * @remarks
@@ -1045,6 +1059,20 @@ export type PremiumAffectsTypeArray = PremiumAffectsType[];
  * @see {@link Relation} - The individual Relation type definition
  */
 export type RelationArray = Relation[];
+/**
+ * LegalRequirementBase
+ *
+ * @remarks
+ * Array type for LegalRequirementBase objects. Used when the API returns a collection of LegalRequirementBase instances.
+ *
+ * @example
+ * ```typescript
+ * const items: LegalRequirementBaseArray = await api.getLegalRequirementBases();
+ * ```
+ *
+ * @see {@link LegalRequirementBase} - The individual LegalRequirementBase type definition
+ */
+export type LegalRequirementBaseArray = LegalRequirementBase[];
 /**
  * TldBase
  *

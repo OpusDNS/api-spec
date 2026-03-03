@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, GrantType, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, GrantType, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2493,6 +2493,110 @@ export const LAUNCH_PHASE_TYPE_VALUES = [
   'landrush',
   'eap'
 ] as const satisfies [string, ...string[]] | LaunchPhaseType[];
+
+/**
+ * LegalRequirementOperationType. Auto-generated enum for LegalRequirementOperationType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the LegalRequirementOperationType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = LEGAL_REQUIREMENT_OPERATION_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link LegalRequirementOperationType} - The TypeScript type definition
+ */
+export const LEGAL_REQUIREMENT_OPERATION_TYPE = {
+  REGISTRATION: "registration",
+  TRANSFER: "transfer",
+  RENEWAL: "renewal",
+  REGISTRANT_CHANGE: "registrant_change",
+} as const satisfies Record<string, LegalRequirementOperationType>;
+
+/**
+ * Array of all LegalRequirementOperationType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid LegalRequirementOperationType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link LegalRequirementOperationType} - The TypeScript type definition
+ * @see {@link LEGAL_REQUIREMENT_OPERATION_TYPE} - The object form of this enum
+ */
+export const LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES = [
+  'registration',
+  'transfer',
+  'renewal',
+  'registrant_change'
+] as const satisfies [string, ...string[]] | LegalRequirementOperationType[];
+
+/**
+ * LegalRequirementType. Auto-generated enum for LegalRequirementType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the LegalRequirementType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = LEGAL_REQUIREMENT_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = LEGAL_REQUIREMENT_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link LegalRequirementType} - The TypeScript type definition
+ */
+export const LEGAL_REQUIREMENT_TYPE = {
+  NOTICE: "notice",
+  CONFIRMATION: "confirmation",
+} as const satisfies Record<string, LegalRequirementType>;
+
+/**
+ * Array of all LegalRequirementType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid LegalRequirementType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of LEGAL_REQUIREMENT_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = LEGAL_REQUIREMENT_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link LegalRequirementType} - The TypeScript type definition
+ * @see {@link LEGAL_REQUIREMENT_TYPE} - The object form of this enum
+ */
+export const LEGAL_REQUIREMENT_TYPE_VALUES = [
+  'notice',
+  'confirmation'
+] as const satisfies [string, ...string[]] | LegalRequirementType[];
 
 /**
  * LocalPresenceRequirementType. Auto-generated enum for LocalPresenceRequirementType

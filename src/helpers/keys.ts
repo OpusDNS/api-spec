@@ -148,6 +148,7 @@ import { IpRestriction } from './schemas';
 import { IpRestrictionUpdate } from './schemas';
 import { LaunchPhaseBase } from './schemas';
 import { LaunchPhasesBase } from './schemas';
+import { LegalRequirementBase } from './schemas';
 import { LocalPresenceBase } from './schemas';
 import { Nameserver } from './schemas';
 import { ObjectLog } from './schemas';
@@ -16852,6 +16853,136 @@ export const KEYS_LAUNCH_PHASES_BASE = [
 ] as const satisfies (keyof LaunchPhasesBase)[];
 
 /**
+ * Key
+ *
+ * Unique identifier for the legal requirement
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of LegalRequirementBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = legalrequirementbase[KEY_LEGAL_REQUIREMENT_BASE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LEGAL_REQUIREMENT_BASE_KEY;
+ * const value = legalrequirementbase[propertyName];
+ * ```
+ *
+ * @see {@link LegalRequirementBase} - The TypeScript type definition
+ * @see {@link KEYS_LEGAL_REQUIREMENT_BASE} - Array of all keys for this type
+ */
+export const KEY_LEGAL_REQUIREMENT_BASE_KEY: keyof LegalRequirementBase = 'key';
+/**
+ * Operations
+ *
+ * Operations this requirement applies to
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operations` property of LegalRequirementBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = legalrequirementbase[KEY_LEGAL_REQUIREMENT_BASE_OPERATIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LEGAL_REQUIREMENT_BASE_OPERATIONS;
+ * const value = legalrequirementbase[propertyName];
+ * ```
+ *
+ * @see {@link LegalRequirementBase} - The TypeScript type definition
+ * @see {@link KEYS_LEGAL_REQUIREMENT_BASE} - Array of all keys for this type
+ */
+export const KEY_LEGAL_REQUIREMENT_BASE_OPERATIONS: keyof LegalRequirementBase = 'operations';
+/**
+ * type property
+ *
+ * Whether this is an informational notice or requires explicit confirmation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of LegalRequirementBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = legalrequirementbase[KEY_LEGAL_REQUIREMENT_BASE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LEGAL_REQUIREMENT_BASE_TYPE;
+ * const value = legalrequirementbase[propertyName];
+ * ```
+ *
+ * @see {@link LegalRequirementBase} - The TypeScript type definition
+ * @see {@link KEYS_LEGAL_REQUIREMENT_BASE} - Array of all keys for this type
+ */
+export const KEY_LEGAL_REQUIREMENT_BASE_TYPE: keyof LegalRequirementBase = 'type';
+/**
+ * Url
+ *
+ * Link to the legal document
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `url` property of LegalRequirementBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = legalrequirementbase[KEY_LEGAL_REQUIREMENT_BASE_URL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LEGAL_REQUIREMENT_BASE_URL;
+ * const value = legalrequirementbase[propertyName];
+ * ```
+ *
+ * @see {@link LegalRequirementBase} - The TypeScript type definition
+ * @see {@link KEYS_LEGAL_REQUIREMENT_BASE} - Array of all keys for this type
+ */
+export const KEY_LEGAL_REQUIREMENT_BASE_URL: keyof LegalRequirementBase = 'url';
+
+/**
+ * Array of all LegalRequirementBase property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for LegalRequirementBase objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_LEGAL_REQUIREMENT_BASE) {
+ *   console.log(`Property: ${key}, Value: ${legalrequirementbase[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_LEGAL_REQUIREMENT_BASE.includes(someKey);
+ * ```
+ *
+ * @see {@link LegalRequirementBase} - The TypeScript type definition
+ */
+export const KEYS_LEGAL_REQUIREMENT_BASE = [
+  KEY_LEGAL_REQUIREMENT_BASE_KEY,
+  KEY_LEGAL_REQUIREMENT_BASE_OPERATIONS,
+  KEY_LEGAL_REQUIREMENT_BASE_TYPE,
+  KEY_LEGAL_REQUIREMENT_BASE_URL,
+] as const satisfies (keyof LegalRequirementBase)[];
+
+/**
  * Eligible Countries
  *
  * ISO 3166-1 Alpha-2 country code
@@ -23631,6 +23762,32 @@ export const KEY_TLD_SPECIFICATION_IDN: keyof TldSpecification = 'idn';
  */
 export const KEY_TLD_SPECIFICATION_LAUNCH_PHASES: keyof TldSpecification = 'launch_phases';
 /**
+ * Legal Requirements
+ *
+ * Legal requirements that must be met for this TLD
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `legal_requirements` property of TldSpecification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tldspecification[KEY_TLD_SPECIFICATION_LEGAL_REQUIREMENTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TLD_SPECIFICATION_LEGAL_REQUIREMENTS;
+ * const value = tldspecification[propertyName];
+ * ```
+ *
+ * @see {@link TldSpecification} - The TypeScript type definition
+ * @see {@link KEYS_TLD_SPECIFICATION} - Array of all keys for this type
+ */
+export const KEY_TLD_SPECIFICATION_LEGAL_REQUIREMENTS: keyof TldSpecification = 'legal_requirements';
+/**
  * local_presence property
  *
  * Local presence requirements
@@ -23886,6 +24043,7 @@ export const KEYS_TLD_SPECIFICATION = [
   KEY_TLD_SPECIFICATION_DOMAIN_STATUSES,
   KEY_TLD_SPECIFICATION_IDN,
   KEY_TLD_SPECIFICATION_LAUNCH_PHASES,
+  KEY_TLD_SPECIFICATION_LEGAL_REQUIREMENTS,
   KEY_TLD_SPECIFICATION_LOCAL_PRESENCE,
   KEY_TLD_SPECIFICATION_PARKING_ENABLED,
   KEY_TLD_SPECIFICATION_PREMIUM_DOMAINS,

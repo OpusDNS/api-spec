@@ -4122,6 +4122,51 @@ components:
       - general_availability
       title: LaunchPhasesBase
       type: object
+    LegalRequirementBase:
+      properties:
+        key:
+          description: Unique identifier for the legal requirement
+          title: Key
+          type: string
+        operations:
+          description: Operations this requirement applies to
+          items:
+            $ref: '#/components/schemas/LegalRequirementOperationType'
+          title: Operations
+          type: array
+        type:
+          $ref: '#/components/schemas/LegalRequirementType'
+          description: Whether this is an informational notice or requires explicit
+            confirmation
+        url:
+          anyOf:
+          - format: uri
+            maxLength: 2083
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: Link to the legal document
+          title: Url
+      required:
+      - key
+      - type
+      - operations
+      title: LegalRequirementBase
+      type: object
+    LegalRequirementOperationType:
+      enum:
+      - registration
+      - transfer
+      - renewal
+      - registrant_change
+      title: LegalRequirementOperationType
+      type: string
+    LegalRequirementType:
+      enum:
+      - notice
+      - confirmation
+      title: LegalRequirementType
+      type: string
     LocalPresenceBase:
       properties:
         eligible_countries:
@@ -6160,6 +6205,12 @@ components:
           - $ref: '#/components/schemas/LaunchPhasesBase'
           - type: 'null'
           description: Launch phases configuration
+        legal_requirements:
+          description: Legal requirements that must be met for this TLD
+          items:
+            $ref: '#/components/schemas/LegalRequirementBase'
+          title: Legal Requirements
+          type: array
         local_presence:
           anyOf:
           - $ref: '#/components/schemas/LocalPresenceBase'
@@ -7226,7 +7277,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-02-095654
+  version: 2026-03-03-135652
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

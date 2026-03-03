@@ -2741,6 +2741,54 @@ export type LaunchPhaseType = components['schemas']['LaunchPhaseType'];
  */
 export type LaunchPhasesBase = components['schemas']['LaunchPhasesBase'];
 /**
+ * LegalRequirementBase
+ *
+ * @remarks
+ * Type alias for the `LegalRequirementBase` OpenAPI schema.
+ * This type represents legalrequirementbase data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLegalRequirementBase();
+ * const item: LegalRequirementBase = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LegalRequirementBase = components['schemas']['LegalRequirementBase'];
+/**
+ * LegalRequirementOperationType
+ *
+ * @remarks
+ * Type alias for the `LegalRequirementOperationType` OpenAPI schema.
+ * This type represents legalrequirementoperationtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLegalRequirementOperationType();
+ * const item: LegalRequirementOperationType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LegalRequirementOperationType = components['schemas']['LegalRequirementOperationType'];
+/**
+ * LegalRequirementType
+ *
+ * @remarks
+ * Type alias for the `LegalRequirementType` OpenAPI schema.
+ * This type represents legalrequirementtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getLegalRequirementType();
+ * const item: LegalRequirementType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type LegalRequirementType = components['schemas']['LegalRequirementType'];
+/**
  * LocalPresenceBase
  *
  * @remarks

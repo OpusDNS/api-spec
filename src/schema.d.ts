@@ -4702,6 +4702,36 @@ export interface components {
             phases: components["schemas"]["LaunchPhaseBase"][];
             trademark_claims?: components["schemas"]["TrademarkClaimsBase"] | null;
         };
+        /** LegalRequirementBase */
+        LegalRequirementBase: {
+            /**
+             * Key
+             * @description Unique identifier for the legal requirement
+             */
+            key: string;
+            /**
+             * Operations
+             * @description Operations this requirement applies to
+             */
+            operations: components["schemas"]["LegalRequirementOperationType"][];
+            /** @description Whether this is an informational notice or requires explicit confirmation */
+            type: components["schemas"]["LegalRequirementType"];
+            /**
+             * Url
+             * @description Link to the legal document
+             */
+            url?: string | null;
+        };
+        /**
+         * LegalRequirementOperationType
+         * @enum {string}
+         */
+        LegalRequirementOperationType: "registration" | "transfer" | "renewal" | "registrant_change";
+        /**
+         * LegalRequirementType
+         * @enum {string}
+         */
+        LegalRequirementType: "notice" | "confirmation";
         /** LocalPresenceBase */
         LocalPresenceBase: {
             /**
@@ -6005,6 +6035,11 @@ export interface components {
             idn: components["schemas"]["IdnBase"];
             /** @description Launch phases configuration */
             launch_phases?: components["schemas"]["LaunchPhasesBase"] | null;
+            /**
+             * Legal Requirements
+             * @description Legal requirements that must be met for this TLD
+             */
+            legal_requirements?: components["schemas"]["LegalRequirementBase"][];
             /** @description Local presence requirements */
             local_presence?: components["schemas"]["LocalPresenceBase"] | null;
             /**
