@@ -14389,6 +14389,22 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_USER_CANNOT_DELETE_SELF",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "User Management Error",
+                     *       "type": "user-cannot-delete-self"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Conflict */
             409: {
                 headers: {
