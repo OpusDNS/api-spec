@@ -12530,7 +12530,7 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["OrganizationSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                q?: string | null;
+                search?: string | null;
                 country_code?: string | null;
                 page?: number;
                 page_size?: number;
@@ -13306,7 +13306,7 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["UserSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                q?: string | null;
+                search?: string | null;
                 page?: number;
                 page_size?: number;
             };
