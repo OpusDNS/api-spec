@@ -651,6 +651,22 @@ export type DnsChanges = components['schemas']['DnsChangesResponse'];
  */
 export type DnsConfigurationBase = components['schemas']['DnsConfigurationBase'];
 /**
+ * DnsProtectedReason
+ *
+ * @remarks
+ * Type alias for the `DnsProtectedReason` OpenAPI schema.
+ * This type represents dnsprotectedreason data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsProtectedReason();
+ * const item: DnsProtectedReason = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsProtectedReason = components['schemas']['DnsProtectedReason'];
+/**
  * DnsRecordCreate
  *
  * @remarks

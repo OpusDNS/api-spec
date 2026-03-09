@@ -1287,6 +1287,15 @@ components:
       - host_objects
       title: DnsConfigurationBase
       type: object
+    DnsProtectedReason:
+      enum:
+      - SYSTEM_MANAGED_SOA
+      - SYSTEM_MANAGED_NS
+      - EMAIL_FORWARD
+      - DOMAIN_FORWARD
+      - GENERIC
+      title: DnsProtectedReason
+      type: string
     DnsRecordCreate:
       properties:
         rdata:
@@ -1314,6 +1323,11 @@ components:
           description: Whether the record is protected
           title: Protected
           type: boolean
+        protected_reason:
+          anyOf:
+          - $ref: '#/components/schemas/DnsProtectedReason'
+          - type: 'null'
+          description: Reason why the record is protected
         rdata:
           title: Rdata
           type: string
@@ -1386,6 +1400,11 @@ components:
           description: Whether the RRset is protected
           title: Protected
           type: boolean
+        protected_reason:
+          anyOf:
+          - $ref: '#/components/schemas/DnsProtectedReason'
+          - type: 'null'
+          description: Reason why the RRset is protected
         records:
           items:
             $ref: '#/components/schemas/DnsRecordResponse'
@@ -7277,7 +7296,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-06-182612
+  version: 2026-03-09-100152
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

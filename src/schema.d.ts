@@ -2860,6 +2860,11 @@ export interface components {
              */
             registry_root_nameserver_update: number;
         };
+        /**
+         * DnsProtectedReason
+         * @enum {string}
+         */
+        DnsProtectedReason: "SYSTEM_MANAGED_SOA" | "SYSTEM_MANAGED_NS" | "EMAIL_FORWARD" | "DOMAIN_FORWARD" | "GENERIC";
         /** DnsRecordCreate */
         DnsRecordCreate: {
             /** Rdata */
@@ -2878,6 +2883,8 @@ export interface components {
              * @default false
              */
             protected: boolean;
+            /** @description Reason why the record is protected */
+            protected_reason?: components["schemas"]["DnsProtectedReason"] | null;
             /** Rdata */
             rdata: string;
         };
@@ -2916,6 +2923,8 @@ export interface components {
              * @default false
              */
             protected: boolean;
+            /** @description Reason why the RRset is protected */
+            protected_reason?: components["schemas"]["DnsProtectedReason"] | null;
             /** Records */
             records?: components["schemas"]["DnsRecordResponse"][];
             /** Ttl */

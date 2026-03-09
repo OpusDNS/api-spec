@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, GrantType, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, GrantType, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -732,6 +732,62 @@ export const DNS_CHANGE_ACTION_VALUES = [
   'enable_dnssec',
   'disable_dnssec'
 ] as const satisfies [string, ...string[]] | DnsChangeAction[];
+
+/**
+ * DnsProtectedReason. Auto-generated enum for DnsProtectedReason
+ *
+ * @remarks
+ * This constant provides both object and array forms for the DnsProtectedReason enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = DNS_PROTECTED_REASON.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = DNS_PROTECTED_REASON_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link DnsProtectedReason} - The TypeScript type definition
+ */
+export const DNS_PROTECTED_REASON = {
+  SYSTEM_MANAGED_SOA: "SYSTEM_MANAGED_SOA",
+  SYSTEM_MANAGED_NS: "SYSTEM_MANAGED_NS",
+  EMAIL_FORWARD: "EMAIL_FORWARD",
+  DOMAIN_FORWARD: "DOMAIN_FORWARD",
+  GENERIC: "GENERIC",
+} as const satisfies Record<string, DnsProtectedReason>;
+
+/**
+ * Array of all DnsProtectedReason enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid DnsProtectedReason enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of DNS_PROTECTED_REASON_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = DNS_PROTECTED_REASON_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link DnsProtectedReason} - The TypeScript type definition
+ * @see {@link DNS_PROTECTED_REASON} - The object form of this enum
+ */
+export const DNS_PROTECTED_REASON_VALUES = [
+  'SYSTEM_MANAGED_SOA',
+  'SYSTEM_MANAGED_NS',
+  'EMAIL_FORWARD',
+  'DOMAIN_FORWARD',
+  'GENERIC'
+] as const satisfies [string, ...string[]] | DnsProtectedReason[];
 
 /**
  * DnsRrsetType. Auto-generated enum for DnsRrsetType

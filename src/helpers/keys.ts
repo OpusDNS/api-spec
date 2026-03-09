@@ -5303,6 +5303,31 @@ export const KEYS_DNS_RECORD_PATCH_OP = [
  */
 export const KEY_DNS_RECORD_PROTECTED: keyof DnsRecord = 'protected';
 /**
+ * protected_reason property
+ *
+ * Reason why the record is protected
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected_reason` property of DnsRecord objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrecord[KEY_DNS_RECORD_PROTECTED_REASON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RECORD_PROTECTED_REASON;
+ * const value = dnsrecord[propertyName];
+ * ```
+ *
+ * @see {@link DnsRecord} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RECORD} - Array of all keys for this type
+ */
+export const KEY_DNS_RECORD_PROTECTED_REASON: keyof DnsRecord = 'protected_reason';
+/**
  * Rdata
  *
  *
@@ -5350,6 +5375,7 @@ export const KEY_DNS_RECORD_RDATA: keyof DnsRecord = 'rdata';
  */
 export const KEYS_DNS_RECORD = [
   KEY_DNS_RECORD_PROTECTED,
+  KEY_DNS_RECORD_PROTECTED_REASON,
   KEY_DNS_RECORD_RDATA,
 ] as const satisfies (keyof DnsRecord)[];
 
@@ -5733,6 +5759,31 @@ export const KEY_DNS_RRSET_NAME: keyof DnsRrset = 'name';
  */
 export const KEY_DNS_RRSET_PROTECTED: keyof DnsRrset = 'protected';
 /**
+ * protected_reason property
+ *
+ * Reason why the RRset is protected
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `protected_reason` property of DnsRrset objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnsrrset[KEY_DNS_RRSET_PROTECTED_REASON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_RRSET_PROTECTED_REASON;
+ * const value = dnsrrset[propertyName];
+ * ```
+ *
+ * @see {@link DnsRrset} - The TypeScript type definition
+ * @see {@link KEYS_DNS_RRSET} - Array of all keys for this type
+ */
+export const KEY_DNS_RRSET_PROTECTED_REASON: keyof DnsRrset = 'protected_reason';
+/**
  * Records
  *
  *
@@ -5830,6 +5881,7 @@ export const KEY_DNS_RRSET_TYPE: keyof DnsRrset = 'type';
 export const KEYS_DNS_RRSET = [
   KEY_DNS_RRSET_NAME,
   KEY_DNS_RRSET_PROTECTED,
+  KEY_DNS_RRSET_PROTECTED_REASON,
   KEY_DNS_RRSET_RECORDS,
   KEY_DNS_RRSET_TTL,
   KEY_DNS_RRSET_TYPE,
