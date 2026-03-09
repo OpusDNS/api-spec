@@ -3013,6 +3013,22 @@ export type OrganizationAttributeUpdate = components['schemas']['OrganizationAtt
  */
 export type OrganizationCreate = components['schemas']['OrganizationCreate'];
 /**
+ * OrganizationSortField
+ *
+ * @remarks
+ * Type alias for the `OrganizationSortField` OpenAPI schema.
+ * This type represents organizationsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getOrganizationSortField();
+ * const item: OrganizationSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type OrganizationSortField = components['schemas']['OrganizationSortField'];
+/**
  * OrganizationStatus
  *
  * @remarks
@@ -4420,6 +4436,22 @@ export type UserPublic = components['schemas']['UserPublic'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type UserPublicWithAttributes = components['schemas']['UserPublicWithAttributes'];
+/**
+ * UserSortField
+ *
+ * @remarks
+ * Type alias for the `UserSortField` OpenAPI schema.
+ * This type represents usersortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getUserSortField();
+ * const item: UserSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type UserSortField = components['schemas']['UserSortField'];
 /**
  * UserStatus
  *

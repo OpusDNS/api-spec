@@ -5139,6 +5139,11 @@ export interface components {
             users?: components["schemas"]["UserCreate"][];
         };
         /**
+         * OrganizationSortField
+         * @enum {string}
+         */
+        OrganizationSortField: "created_on" | "name" | "country_code";
+        /**
          * OrganizationStatus
          * @enum {string}
          */
@@ -6499,6 +6504,11 @@ export interface components {
              */
             username: string;
         };
+        /**
+         * UserSortField
+         * @enum {string}
+         */
+        UserSortField: "created_on" | "username" | "email";
         /**
          * UserStatus
          * @enum {string}
@@ -12518,6 +12528,10 @@ export interface operations {
     list_organizations_v1_organizations_get: {
         parameters: {
             query?: {
+                sort_by?: components["schemas"]["OrganizationSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                q?: string | null;
+                country_code?: string | null;
                 page?: number;
                 page_size?: number;
             };
@@ -13290,6 +13304,9 @@ export interface operations {
     list_users_v1_organizations_users_get: {
         parameters: {
             query?: {
+                sort_by?: components["schemas"]["UserSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                q?: string | null;
                 page?: number;
                 page_size?: number;
             };

@@ -4744,6 +4744,13 @@ components:
       - name
       title: OrganizationCreate
       type: object
+    OrganizationSortField:
+      enum:
+      - created_on
+      - name
+      - country_code
+      title: OrganizationSortField
+      type: string
     OrganizationStatus:
       enum:
       - active
@@ -6862,6 +6869,13 @@ components:
       - status
       title: UserPublicWithAttributes
       type: object
+    UserSortField:
+      enum:
+      - created_on
+      - username
+      - email
+      title: UserSortField
+      type: string
     UserStatus:
       enum:
       - active
@@ -7296,7 +7310,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-09-100152
+  version: 2026-03-09-181800
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15205,6 +15219,36 @@ paths:
       operationId: list_organizations_v1_organizations_get
       parameters:
       - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrganizationSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: q
+        required: false
+        schema:
+          anyOf:
+          - maxLength: 200
+            type: string
+          - type: 'null'
+          title: Q
+      - in: query
+        name: country_code
+        required: false
+        schema:
+          anyOf:
+          - pattern: ^\w{2}$
+            type: string
+          - type: 'null'
+          title: Country Code
+      - in: query
         name: page
         required: false
         schema:
@@ -15958,6 +16002,27 @@ paths:
       description: Retrieves a paginated list of users under the current organization
       operationId: list_users_v1_organizations_users_get
       parameters:
+      - in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/UserSortField'
+          default: created_on
+      - in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+      - in: query
+        name: q
+        required: false
+        schema:
+          anyOf:
+          - maxLength: 200
+            type: string
+          - type: 'null'
+          title: Q
       - in: query
         name: page
         required: false

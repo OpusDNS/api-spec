@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, GrantType, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, GrantType, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2893,6 +2893,58 @@ export const OBJECT_LOG_SORT_FIELD_VALUES = [
 ] as const satisfies [string, ...string[]] | ObjectLogSortField[];
 
 /**
+ * OrganizationSortField. Auto-generated enum for OrganizationSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the OrganizationSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = ORGANIZATION_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = ORGANIZATION_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link OrganizationSortField} - The TypeScript type definition
+ */
+export const ORGANIZATION_SORT_FIELD = {
+  CREATED_ON: "created_on",
+  NAME: "name",
+  COUNTRY_CODE: "country_code",
+} as const satisfies Record<string, OrganizationSortField>;
+
+/**
+ * Array of all OrganizationSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid OrganizationSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of ORGANIZATION_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = ORGANIZATION_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link OrganizationSortField} - The TypeScript type definition
+ * @see {@link ORGANIZATION_SORT_FIELD} - The object form of this enum
+ */
+export const ORGANIZATION_SORT_FIELD_VALUES = [
+  'created_on',
+  'name',
+  'country_code'
+] as const satisfies [string, ...string[]] | OrganizationSortField[];
+
+/**
  * OrganizationStatus. Auto-generated enum for OrganizationStatus
  *
  * @remarks
@@ -4176,6 +4228,58 @@ export const TRANSFER_ACK_TYPE_VALUES = [
   'registrant',
   'both'
 ] as const satisfies [string, ...string[]] | TransferAckType[];
+
+/**
+ * UserSortField. Auto-generated enum for UserSortField
+ *
+ * @remarks
+ * This constant provides both object and array forms for the UserSortField enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = USER_SORT_FIELD.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = USER_SORT_FIELD_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link UserSortField} - The TypeScript type definition
+ */
+export const USER_SORT_FIELD = {
+  CREATED_ON: "created_on",
+  USERNAME: "username",
+  EMAIL: "email",
+} as const satisfies Record<string, UserSortField>;
+
+/**
+ * Array of all UserSortField enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid UserSortField enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of USER_SORT_FIELD_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = USER_SORT_FIELD_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link UserSortField} - The TypeScript type definition
+ * @see {@link USER_SORT_FIELD} - The object form of this enum
+ */
+export const USER_SORT_FIELD_VALUES = [
+  'created_on',
+  'username',
+  'email'
+] as const satisfies [string, ...string[]] | UserSortField[];
 
 /**
  * UserStatus. Auto-generated enum for UserStatus
