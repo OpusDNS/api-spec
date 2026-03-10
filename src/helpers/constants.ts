@@ -2019,6 +2019,8 @@ export const EVENT_TYPE = {
   DELETION: "DELETION",
   INBOUND_TRANSFER: "INBOUND_TRANSFER",
   OUTBOUND_TRANSFER: "OUTBOUND_TRANSFER",
+  TRANSIT: "TRANSIT",
+  WITHDRAW: "WITHDRAW",
   VERIFICATION: "VERIFICATION",
 } as const satisfies Record<string, EventType>;
 
@@ -2050,6 +2052,8 @@ export const EVENT_TYPE_VALUES = [
   'DELETION',
   'INBOUND_TRANSFER',
   'OUTBOUND_TRANSFER',
+  'TRANSIT',
+  'WITHDRAW',
   'VERIFICATION'
 ] as const satisfies [string, ...string[]] | EventType[];
 

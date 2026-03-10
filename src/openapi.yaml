@@ -3582,6 +3582,8 @@ components:
       - DELETION
       - INBOUND_TRANSFER
       - OUTBOUND_TRANSFER
+      - TRANSIT
+      - WITHDRAW
       - VERIFICATION
       title: EventType
       type: string
@@ -7310,7 +7312,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-10-081619
+  version: 2026-03-10-150732
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
