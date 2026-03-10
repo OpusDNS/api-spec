@@ -7076,8 +7076,8 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
-            /** @description Bad Gateway */
-            502: {
+            /** @description Internal Server Error */
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -7085,9 +7085,9 @@ export interface operations {
                     /** @example {
                      *       "code": "ERROR_AVAILABILITY_PROVIDER",
                      *       "detail": "Additional error context.",
-                     *       "status": 502,
+                     *       "status": 500,
                      *       "title": "Availability Error",
-                     *       "type": "availability-provider"
+                     *       "type": "availability-internal"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
@@ -7142,8 +7142,8 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
-            /** @description Bad Gateway */
-            502: {
+            /** @description Internal Server Error */
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -7151,9 +7151,9 @@ export interface operations {
                     /** @example {
                      *       "code": "ERROR_AVAILABILITY_PROVIDER",
                      *       "detail": "Additional error context.",
-                     *       "status": 502,
+                     *       "status": 500,
                      *       "title": "Availability Error",
-                     *       "type": "availability-provider"
+                     *       "type": "availability-internal"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

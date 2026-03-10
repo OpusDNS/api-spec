@@ -7310,7 +7310,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-09-184015
+  version: 2026-03-10-081619
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -8019,18 +8019,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-        '502':
+        '500':
           content:
             application/problem+json:
               example:
                 code: ERROR_AVAILABILITY_PROVIDER
                 detail: Additional error context.
-                status: 502
+                status: 500
                 title: Availability Error
-                type: availability-provider
+                type: availability-internal
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Bad Gateway
+          description: Internal Server Error
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -8101,18 +8101,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-        '502':
+        '500':
           content:
             application/problem+json:
               example:
                 code: ERROR_AVAILABILITY_PROVIDER
                 detail: Additional error context.
-                status: 502
+                status: 500
                 title: Availability Error
-                type: availability-provider
+                type: availability-internal
               schema:
                 $ref: '#/components/schemas/Problem'
-          description: Bad Gateway
+          description: Internal Server Error
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
