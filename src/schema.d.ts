@@ -6333,9 +6333,8 @@ export interface components {
             /**
              * Password
              * @description Plaintext password for hashing during creation
-             * @example correcthorsebatterystaple
              */
-            password: string;
+            password?: string | null;
             /**
              * Phone
              * @description The user's phone number

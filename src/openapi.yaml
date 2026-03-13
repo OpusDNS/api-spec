@@ -6649,11 +6649,13 @@ components:
           title: Locale
           type: string
         password:
+          anyOf:
+          - examples:
+            - correcthorsebatterystaple
+            type: string
+          - type: 'null'
           description: Plaintext password for hashing during creation
-          examples:
-          - correcthorsebatterystaple
           title: Password
-          type: string
         phone:
           anyOf:
           - format: phone
@@ -6684,7 +6686,6 @@ components:
       - last_name
       - email
       - locale
-      - password
       title: UserCreate
       type: object
     UserPublic:
@@ -7312,7 +7313,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-10-150732
+  version: 2026-03-13-142632
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

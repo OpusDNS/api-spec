@@ -25639,7 +25639,6 @@ export const KEY_USER_CREATE_LOCALE: keyof UserCreate = 'locale';
  *
  * Plaintext password for hashing during creation
  *
- * @type {string}
  *
  *
  * @remarks
