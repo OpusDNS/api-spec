@@ -7313,7 +7313,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-13-142632
+  version: 2026-03-13-185605
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -7995,6 +7995,7 @@ paths:
             '
           items:
             type: string
+          maxItems: 1000
           title: Domains
           type: array
       responses:
@@ -8068,6 +8069,7 @@ paths:
             '
           items:
             type: string
+          maxItems: 1000
           title: Domains
           type: array
       responses:
