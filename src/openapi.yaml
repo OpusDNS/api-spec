@@ -4415,6 +4415,12 @@ components:
           - type: 'null'
           description: The date/time the entry was deleted on
           title: Deleted On
+        keycloak_organization_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Keycloak organization id
+          title: Keycloak Organization Id
         name:
           description: Name of the organization.
           minLength: 1
@@ -4950,6 +4956,12 @@ components:
           - type: 'null'
           description: The date/time the entry was deleted on
           title: Deleted On
+        keycloak_organization_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Keycloak organization id
+          title: Keycloak Organization Id
         name:
           description: Name of the organization.
           minLength: 1
@@ -7313,7 +7325,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-13-185605
+  version: 2026-03-16-092857
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -4899,6 +4899,11 @@ export interface components {
              */
             deleted_on?: Date | null;
             /**
+             * Keycloak Organization Id
+             * @description Keycloak organization id
+             */
+            keycloak_organization_id?: string | null;
+            /**
              * Name
              * @description Name of the organization.
              */
@@ -5271,6 +5276,11 @@ export interface components {
              * @description The date/time the entry was deleted on
              */
             deleted_on?: Date | null;
+            /**
+             * Keycloak Organization Id
+             * @description Keycloak organization id
+             */
+            keycloak_organization_id?: string | null;
             /**
              * Name
              * @description Name of the organization.

@@ -17755,6 +17755,31 @@ export const KEY_ORGANIZATION_DEFAULT_LOCALE: keyof Organization = 'default_loca
  */
 export const KEY_ORGANIZATION_DELETED_ON: keyof Organization = 'deleted_on';
 /**
+ * Keycloak Organization Id
+ *
+ * Keycloak organization id
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `keycloak_organization_id` property of Organization objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organization[KEY_ORGANIZATION_KEYCLOAK_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_KEYCLOAK_ORGANIZATION_ID;
+ * const value = organization[propertyName];
+ * ```
+ *
+ * @see {@link Organization} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_KEYCLOAK_ORGANIZATION_ID: keyof Organization = 'keycloak_organization_id';
+/**
  * Name
  *
  * Name of the organization.
@@ -18038,6 +18063,7 @@ export const KEYS_ORGANIZATION = [
   KEY_ORGANIZATION_CURRENCY,
   KEY_ORGANIZATION_DEFAULT_LOCALE,
   KEY_ORGANIZATION_DELETED_ON,
+  KEY_ORGANIZATION_KEYCLOAK_ORGANIZATION_ID,
   KEY_ORGANIZATION_NAME,
   KEY_ORGANIZATION_ORGANIZATION_ID,
   KEY_ORGANIZATION_PARENT_ORGANIZATION_ID,
@@ -19911,6 +19937,31 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE: keyof Organizati
  */
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON: keyof OrganizationWithBillingData = 'deleted_on';
 /**
+ * Keycloak Organization Id
+ *
+ * Keycloak organization id
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `keycloak_organization_id` property of OrganizationWithBillingData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = organizationwithbillingdata[KEY_ORGANIZATION_WITH_BILLING_DATA_KEYCLOAK_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_ORGANIZATION_WITH_BILLING_DATA_KEYCLOAK_ORGANIZATION_ID;
+ * const value = organizationwithbillingdata[propertyName];
+ * ```
+ *
+ * @see {@link OrganizationWithBillingData} - The TypeScript type definition
+ * @see {@link KEYS_ORGANIZATION_WITH_BILLING_DATA} - Array of all keys for this type
+ */
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_KEYCLOAK_ORGANIZATION_ID: keyof OrganizationWithBillingData = 'keycloak_organization_id';
+/**
  * Name
  *
  * Name of the organization.
@@ -20197,6 +20248,7 @@ export const KEYS_ORGANIZATION_WITH_BILLING_DATA = [
   KEY_ORGANIZATION_WITH_BILLING_DATA_CURRENCY,
   KEY_ORGANIZATION_WITH_BILLING_DATA_DEFAULT_LOCALE,
   KEY_ORGANIZATION_WITH_BILLING_DATA_DELETED_ON,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_KEYCLOAK_ORGANIZATION_ID,
   KEY_ORGANIZATION_WITH_BILLING_DATA_NAME,
   KEY_ORGANIZATION_WITH_BILLING_DATA_ORGANIZATION_ID,
   KEY_ORGANIZATION_WITH_BILLING_DATA_PARENT_ORGANIZATION_ID,
