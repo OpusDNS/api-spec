@@ -150,7 +150,11 @@ export interface paths {
          */
         get: operations["stream_availability_v1_availability_stream_get"];
         put?: never;
-        post?: never;
+        /**
+         * Stream domain availability results
+         * @description Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
+         */
+        post: operations["stream_availability_post_v1_availability_stream_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3049,6 +3053,11 @@ export interface components {
             processing_time_ms: number;
             /** Total */
             total: number;
+        };
+        /** DomainAvailabilityRequest */
+        DomainAvailabilityRequest: {
+            /** Domains */
+            domains: string[];
         };
         /**
          * DomainAvailabilityStatus
@@ -7116,6 +7125,71 @@ export interface operations {
             cookie?: never;
         };
         requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/event-stream": string;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AVAILABILITY_PROVIDER",
+                     *       "detail": "Additional error context.",
+                     *       "status": 500,
+                     *       "title": "Availability Error",
+                     *       "type": "availability-internal"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    stream_availability_post_v1_availability_stream_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DomainAvailabilityRequest"];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {

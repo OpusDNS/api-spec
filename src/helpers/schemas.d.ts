@@ -1035,6 +1035,22 @@ export type DomainAvailability = components['schemas']['DomainAvailability'];
  */
 export type DomainAvailabilityMeta = components['schemas']['DomainAvailabilityMeta'];
 /**
+ * DomainAvailabilityRequest
+ *
+ * @remarks
+ * Type alias for the `DomainAvailabilityRequest` OpenAPI schema.
+ * This type represents domainavailabilityrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainAvailabilityRequest();
+ * const item: DomainAvailabilityRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainAvailabilityRequest = components['schemas']['DomainAvailabilityRequest'];
+/**
  * DomainAvailabilityStatus
  *
  * @remarks

@@ -565,6 +565,80 @@ Specify one or more domains to check for availability.
 export type GET_AvailabilityStream_Response_500 = Problem
 
 /**
+ * Response types for POST AvailabilityStream endpoint
+ *
+ * Stream domain availability results
+ * Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AvailabilityStream endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/availability/stream
+ *
+ * @see {@link POST_AvailabilityStream_Response_401} - 401 response type
+ * @see {@link POST_AvailabilityStream_Response_422} - 422 response type
+ * @see {@link POST_AvailabilityStream_Response_500} - 500 response type
+ *
+
+ */
+export type POST_AvailabilityStream_Response = POST_AvailabilityStream_Response_401 | POST_AvailabilityStream_Response_422 | POST_AvailabilityStream_Response_500;
+
+/**
+ * 401 response for POST AvailabilityStream endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AvailabilityStream endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/availability/stream
+ *
+ * @see {@link POST_AvailabilityStream_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AvailabilityStream_Response_401 = Problem
+
+/**
+ * 422 response for POST AvailabilityStream endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AvailabilityStream endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/availability/stream
+ *
+ * @see {@link POST_AvailabilityStream_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_AvailabilityStream_Response_422 = HTTPValidationError
+
+/**
+ * 500 response for POST AvailabilityStream endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 500 status code
+ * of the POST AvailabilityStream endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/availability/stream
+ *
+ * @see {@link POST_AvailabilityStream_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AvailabilityStream_Response_500 = Problem
+
+/**
  * Response types for GET Contacts endpoint
  *
  * List all contacts

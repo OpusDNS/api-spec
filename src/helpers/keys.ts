@@ -70,6 +70,7 @@ import { DnsZoneRrsetsPatchOps } from './schemas';
 import { DnsZoneSummary } from './schemas';
 import { DomainAvailability } from './schemas';
 import { DomainAvailabilityMeta } from './schemas';
+import { DomainAvailabilityRequest } from './schemas';
 import { DomainCheck } from './schemas';
 import { DomainContact } from './schemas';
 import { DomainCreate } from './schemas';
@@ -6673,6 +6674,56 @@ export const KEYS_DOMAIN_AVAILABILITY_META = [
   KEY_DOMAIN_AVAILABILITY_META_PROCESSING_TIME_MS,
   KEY_DOMAIN_AVAILABILITY_META_TOTAL,
 ] as const satisfies (keyof DomainAvailabilityMeta)[];
+
+/**
+ * Domains
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domains` property of DomainAvailabilityRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilityrequest[KEY_DOMAIN_AVAILABILITY_REQUEST_DOMAINS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_REQUEST_DOMAINS;
+ * const value = domainavailabilityrequest[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityRequest} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_REQUEST} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_REQUEST_DOMAINS: keyof DomainAvailabilityRequest = 'domains';
+
+/**
+ * Array of all DomainAvailabilityRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainAvailabilityRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_AVAILABILITY_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${domainavailabilityrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_AVAILABILITY_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainAvailabilityRequest} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_AVAILABILITY_REQUEST = [
+  KEY_DOMAIN_AVAILABILITY_REQUEST_DOMAINS,
+] as const satisfies (keyof DomainAvailabilityRequest)[];
 
 /**
  * Results

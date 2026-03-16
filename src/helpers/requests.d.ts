@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -384,6 +384,43 @@ Specify one or more domains to check for availability.
 
  */
 export type GET_AvailabilityStream_Request_Query = GET_AvailabilityStream_Request['parameters']['query'];
+
+/**
+ * Request type for POST AvailabilityStream endpoint
+ *
+ * Stream domain availability results
+ * Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST AvailabilityStream endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/availability/stream
+ *
+ * @see {@link POST_AvailabilityStream_Request_Query} - Query parameters type
+ * @see {@link POST_AvailabilityStream_Request_Path} - Path parameters type
+ * @see {@link POST_AvailabilityStream_Request_Body} - Request body type
+ */
+export type POST_AvailabilityStream_Request = {
+  requestBody: DomainAvailabilityRequest;
+}
+/**
+ * Request body for POST /v1/availability/stream
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/availability/stream endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/availability/stream
+ */
+export type POST_AvailabilityStream_Request_Body = POST_AvailabilityStream_Request['requestBody'];
 
 /**
  * Request type for GET Contacts endpoint
