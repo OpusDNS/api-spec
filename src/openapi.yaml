@@ -251,6 +251,7 @@ components:
       - pending
       - approved
       - disapproved
+      - expired
       title: ComplianceStatus
       type: string
     ConditionOperator:
@@ -7338,7 +7339,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-19-090256
+  version: 2026-03-19-143831
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

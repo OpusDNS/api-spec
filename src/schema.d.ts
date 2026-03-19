@@ -2096,7 +2096,7 @@ export interface components {
          * ComplianceStatus
          * @enum {string}
          */
-        ComplianceStatus: "preparing" | "pending" | "approved" | "disapproved";
+        ComplianceStatus: "preparing" | "pending" | "approved" | "disapproved" | "expired";
         /**
          * ConditionOperator
          * @enum {string}

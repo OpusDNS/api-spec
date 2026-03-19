@@ -383,6 +383,7 @@ export const COMPLIANCE_STATUS = {
   PENDING: "pending",
   APPROVED: "approved",
   DISAPPROVED: "disapproved",
+  EXPIRED: "expired",
 } as const satisfies Record<string, ComplianceStatus>;
 
 /**
@@ -410,7 +411,8 @@ export const COMPLIANCE_STATUS_VALUES = [
   'preparing',
   'pending',
   'approved',
-  'disapproved'
+  'disapproved',
+  'expired'
 ] as const satisfies [string, ...string[]] | ComplianceStatus[];
 
 /**
