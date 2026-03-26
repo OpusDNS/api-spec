@@ -190,6 +190,7 @@ import { ReservedDomainsBase } from './schemas';
 import { RgpOperations } from './schemas';
 import { SldLength } from './schemas';
 import { SpiceDbRelationshipUpdate } from './schemas';
+import { StatusChanges } from './schemas';
 import { StatusCodeStatsBucket } from './schemas';
 import { TimeSeriesBucket } from './schemas';
 import { TldBase } from './schemas';
@@ -11961,6 +11962,31 @@ export const KEY_DOMAIN_UPDATE_NAMESERVERS: keyof DomainUpdate = 'nameservers';
  */
 export const KEY_DOMAIN_UPDATE_RENEWAL_MODE: keyof DomainUpdate = 'renewal_mode';
 /**
+ * status_changes property
+ *
+ * Statuses to add or remove relative to current state
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_changes` property of DomainUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdate[KEY_DOMAIN_UPDATE_STATUS_CHANGES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_STATUS_CHANGES;
+ * const value = domainupdate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_STATUS_CHANGES: keyof DomainUpdate = 'status_changes';
+/**
  * Statuses
  *
  * The new statuses of the domain
@@ -12011,6 +12037,7 @@ export const KEYS_DOMAIN_UPDATE = [
   KEY_DOMAIN_UPDATE_CONTACTS,
   KEY_DOMAIN_UPDATE_NAMESERVERS,
   KEY_DOMAIN_UPDATE_RENEWAL_MODE,
+  KEY_DOMAIN_UPDATE_STATUS_CHANGES,
   KEY_DOMAIN_UPDATE_STATUSES,
 ] as const satisfies (keyof DomainUpdate)[];
 
@@ -23409,6 +23436,84 @@ export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE = [
   KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD,
   KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE,
 ] as const satisfies (keyof SpiceDbRelationshipUpdate)[];
+
+/**
+ * Add
+ *
+ * Statuses to add to the domain
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `add` property of StatusChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statuschanges[KEY_STATUS_CHANGES_ADD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_CHANGES_ADD;
+ * const value = statuschanges[propertyName];
+ * ```
+ *
+ * @see {@link StatusChanges} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_CHANGES} - Array of all keys for this type
+ */
+export const KEY_STATUS_CHANGES_ADD: keyof StatusChanges = 'add';
+/**
+ * Remove
+ *
+ * Statuses to remove from the domain
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `remove` property of StatusChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statuschanges[KEY_STATUS_CHANGES_REMOVE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_CHANGES_REMOVE;
+ * const value = statuschanges[propertyName];
+ * ```
+ *
+ * @see {@link StatusChanges} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_CHANGES} - Array of all keys for this type
+ */
+export const KEY_STATUS_CHANGES_REMOVE: keyof StatusChanges = 'remove';
+
+/**
+ * Array of all StatusChanges property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for StatusChanges objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_STATUS_CHANGES) {
+ *   console.log(`Property: ${key}, Value: ${statuschanges[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_STATUS_CHANGES.includes(someKey);
+ * ```
+ *
+ * @see {@link StatusChanges} - The TypeScript type definition
+ */
+export const KEYS_STATUS_CHANGES = [
+  KEY_STATUS_CHANGES_ADD,
+  KEY_STATUS_CHANGES_REMOVE,
+] as const satisfies (keyof StatusChanges)[];
 
 /**
  * Key

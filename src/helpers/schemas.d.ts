@@ -4133,6 +4133,22 @@ export type SortOrder = components['schemas']['SortOrder'];
  */
 export type SpiceDbRelationshipUpdate = components['schemas']['SpiceDbRelationshipUpdate'];
 /**
+ * StatusChanges
+ *
+ * @remarks
+ * Type alias for the `StatusChanges` OpenAPI schema.
+ * This type represents statuschanges data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getStatusChanges();
+ * const item: StatusChanges = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type StatusChanges = components['schemas']['StatusChanges'];
+/**
  * StatusCodeStatsBucket
  *
  * @remarks

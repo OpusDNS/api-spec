@@ -3868,6 +3868,8 @@ export interface components {
             nameservers?: components["schemas"]["Nameserver"][] | null;
             /** @description The new renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"] | null;
+            /** @description Statuses to add or remove relative to current state */
+            status_changes?: components["schemas"]["StatusChanges"] | null;
             /**
              * Statuses
              * @description The new statuses of the domain
@@ -5988,6 +5990,19 @@ export interface components {
             add?: components["schemas"]["Relation"][] | null;
             /** Remove */
             remove?: components["schemas"]["Relation"][] | null;
+        };
+        /** StatusChanges */
+        StatusChanges: {
+            /**
+             * Add
+             * @description Statuses to add to the domain
+             */
+            add?: components["schemas"]["DomainClientStatus"][];
+            /**
+             * Remove
+             * @description Statuses to remove from the domain
+             */
+            remove?: components["schemas"]["DomainClientStatus"][];
         };
         /** StatusCodeStatsBucket */
         StatusCodeStatsBucket: {
