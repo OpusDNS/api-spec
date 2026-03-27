@@ -1151,6 +1151,54 @@ components:
       enum:
       - USD
       - EUR
+      - JPY
+      - GBP
+      - CNY
+      - AUD
+      - CAD
+      - CHF
+      - HKD
+      - SGD
+      - SEK
+      - KRW
+      - NOK
+      - NZD
+      - INR
+      - MXN
+      - TWD
+      - ZAR
+      - BRL
+      - DKK
+      - PLN
+      - THB
+      - IDR
+      - HUF
+      - CZK
+      - TRY
+      - ILS
+      - PHP
+      - MYR
+      - RON
+      - SAR
+      - AED
+      - CLP
+      - COP
+      - ARS
+      - VND
+      - EGP
+      - NGN
+      - PKR
+      - UAH
+      - KZT
+      - QAR
+      - KWD
+      - BHD
+      - OMR
+      - MAD
+      - RUB
+      - BGN
+      - PEN
+      - JOD
       title: Currency
       type: string
     DeletePolicyType:
@@ -7360,7 +7408,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-26-142512
+  version: 2026-03-27-090254
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
