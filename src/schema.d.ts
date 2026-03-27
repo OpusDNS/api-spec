@@ -2786,7 +2786,7 @@ export interface components {
          * Currency
          * @enum {string}
          */
-        Currency: "USD" | "EUR" | "JPY" | "GBP" | "CNY" | "AUD" | "CAD" | "CHF" | "HKD" | "SGD" | "SEK" | "KRW" | "NOK" | "NZD" | "INR" | "MXN" | "TWD" | "ZAR" | "BRL" | "DKK" | "PLN" | "THB" | "IDR" | "HUF" | "CZK" | "TRY" | "ILS" | "PHP" | "MYR" | "RON" | "SAR" | "AED" | "CLP" | "COP" | "ARS" | "VND" | "EGP" | "NGN" | "PKR" | "UAH" | "KZT" | "QAR" | "KWD" | "BHD" | "OMR" | "MAD" | "RUB" | "BGN" | "PEN" | "JOD";
+        Currency: "USD" | "EUR";
         /**
          * DeletePolicyType
          * @enum {string}
