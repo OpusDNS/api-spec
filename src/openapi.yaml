@@ -54,6 +54,19 @@ components:
       - integer
       title: AttributeType
       type: string
+    BatchSortField:
+      enum:
+      - created_on
+      - started_at
+      - finished_at
+      title: BatchSortField
+      type: string
+    BatchStatus:
+      enum:
+      - pending
+      - complete
+      title: BatchStatus
+      type: string
     BillingMetadata:
       properties:
         billing_model:
@@ -244,6 +257,21 @@ components:
       - total
       - unique
       title: BrowserStatsBucket
+      type: object
+    CommandError:
+      properties:
+        error:
+          description: Error message
+          title: Error
+          type: string
+        index:
+          description: Index of the failed command in the request
+          title: Index
+          type: integer
+      required:
+      - index
+      - error
+      title: CommandError
       type: object
     ComplianceStatus:
       enum:
@@ -609,6 +637,308 @@ components:
       - country
       - disclose
       title: ContactCreate
+      type: object
+    ContactCreateBulkCommand:
+      properties:
+        command:
+          const: contact_create_bulk
+          default: contact_create_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/ContactCreateBulkPayload'
+          description: Bulk contact creation payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: ContactCreateBulkCommand
+      type: object
+    ContactCreateBulkInstance:
+      properties:
+        city:
+          description: City
+          minLength: 1
+          title: City
+          type: string
+        country:
+          anyOf:
+          - pattern: ^\w{2}$
+            type: string
+          - type: 'null'
+          description: Override country for this contact
+          title: Country
+        disclose:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Override disclose setting for this contact
+          title: Disclose
+        email:
+          description: Email address of the contact
+          format: email
+          title: Email
+          type: string
+        fax:
+          anyOf:
+          - format: phone
+            type: string
+          - type: 'null'
+          description: Fax number in international format
+          title: Fax
+        first_name:
+          description: First name of the contact
+          minLength: 1
+          title: First Name
+          type: string
+        last_name:
+          description: Last name of the contact
+          minLength: 1
+          title: Last Name
+          type: string
+        org:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Override organization for this contact
+          title: Org
+        phone:
+          description: Phone number in international format
+          format: phone
+          title: Phone
+          type: string
+        postal_code:
+          description: Postal code
+          minLength: 1
+          title: Postal Code
+          type: string
+        state:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Override state for this contact
+          title: State
+        street:
+          description: Street address
+          minLength: 1
+          title: Street
+          type: string
+        title:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Override title for this contact
+          title: Title
+      required:
+      - first_name
+      - last_name
+      - email
+      - phone
+      - street
+      - city
+      - postal_code
+      title: ContactCreateBulkInstance
+      type: object
+    ContactCreateBulkPayload:
+      properties:
+        instances:
+          description: List of contacts to create (1-1000)
+          items:
+            $ref: '#/components/schemas/ContactCreateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/ContactCreateBulkTemplate'
+          description: Shared settings for all contacts
+      required:
+      - template
+      - instances
+      title: ContactCreateBulkPayload
+      type: object
+    ContactCreateBulkTemplate:
+      properties:
+        country:
+          description: The country of the contacts
+          pattern: ^\w{2}$
+          title: Country
+          type: string
+        disclose:
+          description: Whether contact details should be disclosed in WHOIS
+          title: Disclose
+          type: boolean
+        org:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Organization name
+          title: Org
+        state:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: State/province
+          title: State
+        title:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Contact title
+          title: Title
+      required:
+      - country
+      - disclose
+      title: ContactCreateBulkTemplate
+      type: object
+    ContactCreateCommand:
+      properties:
+        command:
+          const: contact_create
+          default: contact_create
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/ContactCreatePayloadData'
+          description: Contact creation payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: ContactCreateCommand
+      type: object
+    ContactCreatePayloadData:
+      properties:
+        city:
+          description: The city of the contact
+          minLength: 1
+          title: City
+          type: string
+        country:
+          description: The country of the contact
+          pattern: ^\w{2}$
+          title: Country
+          type: string
+        disclose:
+          description: Whether the contact details should be disclosed. The Disclose
+            function may not work with all TLDs. Some registries still display the
+            data in Whois if, for example, the organization field is filled in.
+          title: Disclose
+          type: boolean
+        email:
+          description: The email of the contact
+          format: email
+          title: Email
+          type: string
+        fax:
+          anyOf:
+          - format: phone
+            type: string
+          - type: 'null'
+          description: The contacts's fax number
+          title: Fax
+        first_name:
+          description: The first name of the contact
+          minLength: 1
+          title: First Name
+          type: string
+        last_name:
+          description: The last name of the contact
+          minLength: 1
+          title: Last Name
+          type: string
+        org:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The organization of the contact
+          title: Org
+        phone:
+          description: The contact's phone number
+          examples:
+          - '+1.2125552368'
+          format: phone
+          title: Phone
+          type: string
+        postal_code:
+          description: The postal code of the contact
+          minLength: 1
+          title: Postal Code
+          type: string
+        state:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The state of the contact
+          title: State
+        street:
+          description: The address of the contact
+          minLength: 1
+          title: Street
+          type: string
+        title:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The title of the contact
+          title: Title
+      required:
+      - first_name
+      - last_name
+      - email
+      - phone
+      - street
+      - city
+      - postal_code
+      - country
+      - disclose
+      title: ContactCreatePayloadData
+      type: object
+    ContactCreateWorkerPayload:
+      properties:
+        contact:
+          $ref: '#/components/schemas/ContactCreatePayloadData'
+        operation:
+          title: Operation
+          type: string
+        type:
+          enum:
+          - contact_create
+          - contact_create_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - contact
+      title: ContactCreateWorkerPayload
       type: object
     ContactHandle:
       properties:
@@ -1147,6 +1477,54 @@ components:
           title: Update Supported Roles
       title: ContactsBase
       type: object
+    CreateJobBatchResponse:
+      properties:
+        batch_id:
+          description: TypeID identifying this batch
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+        errors:
+          description: Details of failed commands
+          items:
+            $ref: '#/components/schemas/CommandError'
+          title: Errors
+          type: array
+        jobs_created:
+          description: Number of jobs successfully created
+          title: Jobs Created
+          type: integer
+        jobs_failed:
+          description: Number of jobs that failed to create
+          title: Jobs Failed
+          type: integer
+        status_url:
+          description: URL to check batch status
+          title: Status Url
+          type: string
+        total_commands:
+          description: Total commands in the batch
+          title: Total Commands
+          type: integer
+      required:
+      - batch_id
+      - jobs_created
+      - jobs_failed
+      - total_commands
+      - status_url
+      title: CreateJobBatchResponse
+      type: object
+    CreateReportReq:
+      properties:
+        report_type:
+          $ref: '#/components/schemas/ReportType'
+          default: domain_inventory
+      title: CreateReportReq
+      type: object
     Currency:
       enum:
       - USD
@@ -1479,6 +1857,284 @@ components:
       - name
       title: DnsZoneCreate
       type: object
+    DnsZoneCreateBulkCommand:
+      properties:
+        command:
+          const: dns_zone_create_bulk
+          default: dns_zone_create_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DnsZoneCreateBulkPayload'
+          description: Bulk DNS zone creation payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DnsZoneCreateBulkCommand
+      type: object
+    DnsZoneCreateBulkInstance:
+      properties:
+        name:
+          description: The DNS zone name (e.g., example.com)
+          title: Name
+          type: string
+        rrsets:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DnsRrsetCreate'
+            type: array
+          - type: 'null'
+          description: Override RRsets for this zone
+          title: Rrsets
+      required:
+      - name
+      title: DnsZoneCreateBulkInstance
+      type: object
+    DnsZoneCreateBulkPayload:
+      properties:
+        instances:
+          description: List of zones to create (1-1000)
+          items:
+            $ref: '#/components/schemas/DnsZoneCreateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/DnsZoneCreateBulkTemplate'
+          description: Shared RRsets for all zones
+      required:
+      - template
+      - instances
+      title: DnsZoneCreateBulkPayload
+      type: object
+    DnsZoneCreateBulkTemplate:
+      properties:
+        rrsets:
+          description: DNS record sets to create
+          items:
+            $ref: '#/components/schemas/DnsRrsetCreate'
+          title: Rrsets
+          type: array
+      title: DnsZoneCreateBulkTemplate
+      type: object
+    DnsZoneCreateCommand:
+      properties:
+        command:
+          const: dns_zone_create
+          default: dns_zone_create
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DnsZoneCreatePayloadData'
+          description: DNS zone creation payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DnsZoneCreateCommand
+      type: object
+    DnsZoneCreatePayloadData:
+      properties:
+        dnssec_status:
+          $ref: '#/components/schemas/DnssecStatus'
+          default: disabled
+        name:
+          title: Name
+          type: string
+        rrsets:
+          items:
+            $ref: '#/components/schemas/DnsRrsetCreate'
+          title: Rrsets
+          type: array
+      required:
+      - name
+      title: DnsZoneCreatePayloadData
+      type: object
+    DnsZoneCreateWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        type:
+          enum:
+          - dns_zone_create
+          - dns_zone_create_bulk
+          title: Type
+          type: string
+        zone:
+          $ref: '#/components/schemas/DnsZoneCreatePayloadData'
+      required:
+      - type
+      - operation
+      - zone
+      title: DnsZoneCreateWorkerPayload
+      type: object
+    DnsZonePatchRecordsBulkCommand:
+      properties:
+        command:
+          const: dns_zone_patch_records_bulk
+          default: dns_zone_patch_records_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DnsZonePatchRecordsBulkPayload'
+          description: DNS zone patch records bulk payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DnsZonePatchRecordsBulkCommand
+      type: object
+    DnsZonePatchRecordsBulkInstance:
+      properties:
+        ops:
+          items:
+            $ref: '#/components/schemas/DnsRecordPatchOp'
+          maxItems: 100
+          minItems: 1
+          title: Ops
+          type: array
+        zone_name:
+          description: DNS zone name to patch
+          title: Zone Name
+          type: string
+      required:
+      - zone_name
+      - ops
+      title: DnsZonePatchRecordsBulkInstance
+      type: object
+    DnsZonePatchRecordsBulkPayload:
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/DnsZonePatchRecordsBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: DnsZonePatchRecordsBulkPayload
+      type: object
+    DnsZonePatchRecordsWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        type:
+          const: dns_zone_patch_records_bulk
+          title: Type
+          type: string
+        zone:
+          $ref: '#/components/schemas/DnsZonePatchRecordsBulkInstance'
+      required:
+      - type
+      - operation
+      - zone
+      title: DnsZonePatchRecordsWorkerPayload
+      type: object
+    DnsZonePatchRrsetsBulkCommand:
+      properties:
+        command:
+          const: dns_zone_patch_rrsets_bulk
+          default: dns_zone_patch_rrsets_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DnsZonePatchRrsetsBulkPayload'
+          description: DNS zone patch rrsets bulk payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DnsZonePatchRrsetsBulkCommand
+      type: object
+    DnsZonePatchRrsetsBulkInstance:
+      properties:
+        ops:
+          items:
+            $ref: '#/components/schemas/DnsRrsetPatchOp'
+          maxItems: 100
+          minItems: 1
+          title: Ops
+          type: array
+        zone_name:
+          description: DNS zone name to patch
+          title: Zone Name
+          type: string
+      required:
+      - zone_name
+      - ops
+      title: DnsZonePatchRrsetsBulkInstance
+      type: object
+    DnsZonePatchRrsetsBulkPayload:
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/DnsZonePatchRrsetsBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: DnsZonePatchRrsetsBulkPayload
+      type: object
+    DnsZonePatchRrsetsWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        type:
+          const: dns_zone_patch_rrsets_bulk
+          title: Type
+          type: string
+        zone:
+          $ref: '#/components/schemas/DnsZonePatchRrsetsBulkInstance'
+      required:
+      - type
+      - operation
+      - zone
+      title: DnsZonePatchRrsetsWorkerPayload
+      type: object
     DnsZoneRecordsPatchOps:
       properties:
         ops:
@@ -1556,6 +2212,138 @@ components:
       required:
       - total_zones
       title: DnsZoneSummary
+      type: object
+    DnsZoneUpdateBulkCommand:
+      properties:
+        command:
+          const: dns_zone_update_bulk
+          default: dns_zone_update_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DnsZoneUpdateBulkPayload'
+          description: Bulk DNS zone update payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DnsZoneUpdateBulkCommand
+      type: object
+    DnsZoneUpdateBulkInstance:
+      properties:
+        name:
+          description: The DNS zone name (e.g., example.com)
+          title: Name
+          type: string
+        rrsets:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DnsRrsetCreate'
+            type: array
+          - type: 'null'
+          description: Override RRsets for this zone
+          title: Rrsets
+      required:
+      - name
+      title: DnsZoneUpdateBulkInstance
+      type: object
+    DnsZoneUpdateBulkPayload:
+      properties:
+        instances:
+          description: List of zones to update (1-1000)
+          items:
+            $ref: '#/components/schemas/DnsZoneUpdateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/DnsZoneUpdateBulkTemplate'
+          description: Shared RRsets for all zones
+      required:
+      - template
+      - instances
+      title: DnsZoneUpdateBulkPayload
+      type: object
+    DnsZoneUpdateBulkTemplate:
+      properties:
+        rrsets:
+          description: DNS record sets to update
+          items:
+            $ref: '#/components/schemas/DnsRrsetCreate'
+          title: Rrsets
+          type: array
+      title: DnsZoneUpdateBulkTemplate
+      type: object
+    DnsZoneUpdateCommand:
+      properties:
+        command:
+          const: dns_zone_update
+          default: dns_zone_update
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DnsZoneUpdatePayloadData'
+          description: DNS zone update payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DnsZoneUpdateCommand
+      type: object
+    DnsZoneUpdatePayloadData:
+      properties:
+        dnssec_status:
+          $ref: '#/components/schemas/DnssecStatus'
+          default: disabled
+        name:
+          title: Name
+          type: string
+        rrsets:
+          items:
+            $ref: '#/components/schemas/DnsRrsetCreate'
+          title: Rrsets
+          type: array
+      required:
+      - name
+      title: DnsZoneUpdatePayloadData
+      type: object
+    DnsZoneUpdateWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        type:
+          enum:
+          - dns_zone_update
+          - dns_zone_update_bulk
+          title: Type
+          type: string
+        zone:
+          $ref: '#/components/schemas/DnsZoneUpdatePayloadData'
+      required:
+      - type
+      - operation
+      - zone
+      title: DnsZoneUpdateWorkerPayload
       type: object
     DnssecAlgorithm:
       enum:
@@ -1758,6 +2546,229 @@ components:
       - renewal_mode
       - period
       title: DomainCreate
+      type: object
+    DomainCreateBulkCommand:
+      properties:
+        command:
+          const: domain_create_bulk
+          default: domain_create_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DomainCreateBulkPayload'
+          description: Bulk domain creation payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DomainCreateBulkCommand
+      type: object
+    DomainCreateBulkInstance:
+      properties:
+        auth_code:
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
+          description: Override auth code for this domain
+          title: Auth Code
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          - type: 'null'
+          description: Override contacts for this domain
+          title: Contacts
+        create_zone:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Override create_zone for this domain
+          title: Create Zone
+        name:
+          description: The domain to be created
+          title: Name
+          type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: Override nameservers for this domain
+          title: Nameservers
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPeriod'
+          - type: 'null'
+          description: Override registration period for this domain
+        renewal_mode:
+          anyOf:
+          - $ref: '#/components/schemas/RenewalMode'
+          - type: 'null'
+          description: Override renewal mode for this domain
+      required:
+      - name
+      title: DomainCreateBulkInstance
+      type: object
+    DomainCreateBulkPayload:
+      properties:
+        instances:
+          description: List of domains to create (1-1000)
+          items:
+            $ref: '#/components/schemas/DomainCreateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/DomainCreateBulkTemplate'
+          description: Shared settings for all domains
+      required:
+      - template
+      - instances
+      title: DomainCreateBulkPayload
+      type: object
+    DomainCreateBulkTemplate:
+      properties:
+        auth_code:
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
+          description: The auth code used for the domain
+          title: Auth Code
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          description: The contacts of the domain
+          title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
+        period:
+          $ref: '#/components/schemas/DomainPeriod'
+          description: The registration period of the domain
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
+      required:
+      - period
+      - contacts
+      - renewal_mode
+      title: DomainCreateBulkTemplate
+      type: object
+    DomainCreateCommand:
+      properties:
+        command:
+          const: domain_create
+          default: domain_create
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DomainCreatePayloadData'
+          description: Domain creation payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DomainCreateCommand
+      type: object
+    DomainCreatePayloadData:
+      properties:
+        auth_code:
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
+          description: The auth code used for the domain
+          title: Auth Code
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          description: The contacts of the domain
+          title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone for the domain on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
+        name:
+          description: The domain to be created
+          title: Name
+          type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
+        period:
+          $ref: '#/components/schemas/DomainPeriod'
+          description: The registration period of the domain
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
+      required:
+      - name
+      - contacts
+      - renewal_mode
+      - period
+      title: DomainCreatePayloadData
+      type: object
+    DomainCreateWorkerPayload:
+      properties:
+        domain:
+          $ref: '#/components/schemas/DomainCreatePayloadData'
+        operation:
+          title: Operation
+          type: string
+        type:
+          enum:
+          - domain_create
+          - domain_create_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - domain
+      title: DomainCreateWorkerPayload
       type: object
     DomainDnssecDataCreate:
       properties:
@@ -2809,6 +3820,174 @@ components:
       - domains
       title: DomainSummaryResponse
       type: object
+    DomainTransferBulkCommand:
+      properties:
+        command:
+          const: domain_transfer_bulk
+          default: domain_transfer_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DomainTransferBulkPayload'
+          description: Bulk domain transfer payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DomainTransferBulkCommand
+      type: object
+    DomainTransferBulkInstance:
+      properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Override attributes for this domain
+          title: Attributes
+        auth_code:
+          description: The auth code for this domain (required)
+          title: Auth Code
+          type: string
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          - type: 'null'
+          description: Override contacts for this domain
+          title: Contacts
+        create_zone:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Override create_zone for this domain
+          title: Create Zone
+        name:
+          description: The domain to transfer
+          title: Name
+          type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: Override nameservers for this domain
+          title: Nameservers
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPeriod'
+          - type: 'null'
+          description: Override period for this domain
+        renewal_mode:
+          anyOf:
+          - $ref: '#/components/schemas/RenewalMode'
+          - type: 'null'
+          description: Override renewal mode for this domain
+      required:
+      - name
+      - auth_code
+      title: DomainTransferBulkInstance
+      type: object
+    DomainTransferBulkPayload:
+      properties:
+        instances:
+          description: List of domains to transfer (1-1000)
+          items:
+            $ref: '#/components/schemas/DomainTransferBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/DomainTransferBulkTemplate'
+          description: Shared settings for all domains
+      required:
+      - template
+      - instances
+      title: DomainTransferBulkPayload
+      type: object
+    DomainTransferBulkTemplate:
+      properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Additional attributes of the domain
+          title: Attributes
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          description: The contacts of the domain
+          title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPeriod'
+          - type: 'null'
+          description: Additional registration period to add upon transfer completion
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
+      required:
+      - contacts
+      - renewal_mode
+      title: DomainTransferBulkTemplate
+      type: object
+    DomainTransferCommand:
+      properties:
+        command:
+          const: domain_transfer
+          default: domain_transfer
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DomainTransferPayloadData'
+          description: Domain transfer payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DomainTransferCommand
+      type: object
     DomainTransferIn:
       properties:
         attributes:
@@ -2865,6 +4044,82 @@ components:
       - renewal_mode
       - auth_code
       title: DomainTransferIn
+      type: object
+    DomainTransferPayloadData:
+      properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Additional attributes of the domain
+          title: Attributes
+        auth_code:
+          description: The auth code for the domain
+          maxLength: 32
+          minLength: 6
+          title: Auth Code
+          type: string
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          description: The contacts of the domain
+          title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone for the domain on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
+        name:
+          description: The domain to be created
+          title: Name
+          type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPeriod'
+          - type: 'null'
+          description: Additional registration period to add to the domain upon transfer
+            completion. If omitted, the registry default policy will be applied.
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
+      required:
+      - name
+      - contacts
+      - renewal_mode
+      - auth_code
+      title: DomainTransferPayloadData
+      type: object
+    DomainTransferWorkerPayload:
+      properties:
+        domain:
+          $ref: '#/components/schemas/DomainTransferPayloadData'
+        operation:
+          title: Operation
+          type: string
+        type:
+          enum:
+          - domain_transfer
+          - domain_transfer_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - domain
+      title: DomainTransferWorkerPayload
       type: object
     DomainTransitRequest:
       properties:
@@ -2940,6 +4195,241 @@ components:
           description: The new statuses of the domain
           title: Statuses
       title: DomainUpdate
+      type: object
+    DomainUpdateBulkCommand:
+      properties:
+        command:
+          const: domain_update_bulk
+          default: domain_update_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DomainUpdateBulkPayload'
+          description: Bulk domain update payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DomainUpdateBulkCommand
+      type: object
+    DomainUpdateBulkInstance:
+      properties:
+        auth_code:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: Override auth code for this domain
+          title: Auth Code
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          - type: 'null'
+          description: Override contacts for this domain
+          title: Contacts
+        domain_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The domain ID to update
+          title: Domain Id
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The domain name to update
+          title: Name
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: Override nameservers for this domain
+          title: Nameservers
+        renewal_mode:
+          anyOf:
+          - $ref: '#/components/schemas/RenewalMode'
+          - type: 'null'
+          description: Override renewal mode for this domain
+        status_changes:
+          anyOf:
+          - $ref: '#/components/schemas/StatusChanges'
+          - type: 'null'
+          description: Override status changes for this domain
+        statuses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DomainClientStatus'
+            type: array
+          - type: 'null'
+          description: Override statuses for this domain
+          title: Statuses
+      title: DomainUpdateBulkInstance
+      type: object
+    DomainUpdateBulkPayload:
+      properties:
+        instances:
+          description: List of domains to update (1-1000)
+          items:
+            $ref: '#/components/schemas/DomainUpdateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/DomainUpdateBulkTemplate'
+          description: Shared settings for all domain updates
+      required:
+      - template
+      - instances
+      title: DomainUpdateBulkPayload
+      type: object
+    DomainUpdateBulkTemplate:
+      properties:
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          - type: 'null'
+          description: The new contacts of the domain
+          title: Contacts
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The new name servers for the domain
+          title: Nameservers
+        renewal_mode:
+          anyOf:
+          - $ref: '#/components/schemas/RenewalMode'
+          - type: 'null'
+          description: The new renewal mode of the domain
+        status_changes:
+          anyOf:
+          - $ref: '#/components/schemas/StatusChanges'
+          - type: 'null'
+          description: Statuses to add or remove relative to current state
+        statuses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DomainClientStatus'
+            type: array
+          - type: 'null'
+          description: The new statuses of the domain
+          title: Statuses
+      title: DomainUpdateBulkTemplate
+      type: object
+    DomainUpdateCommand:
+      properties:
+        command:
+          const: domain_update
+          default: domain_update
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DomainUpdatePayloadData'
+          description: Domain update payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DomainUpdateCommand
+      type: object
+    DomainUpdatePayloadData:
+      properties:
+        auth_code:
+          anyOf:
+          - minLength: 1
+            type: string
+          - type: 'null'
+          description: The new auth code for the domain
+          title: Auth Code
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          - type: 'null'
+          description: The new contacts of the domain
+          examples:
+          - admin: contact_01h45ytscbebyvny4gc8cr8ma2
+            billing: contact_01h45ytscbebyvny4gc8cr8ma2
+            registrant: contact_01h45ytscbebyvny4gc8cr8ma2
+            tech: contact_01h45ytscbebyvny4gc8cr8ma2
+          title: Contacts
+        domain_id:
+          description: Domain ID to update
+          title: Domain Id
+          type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The new name servers for the domain
+          title: Nameservers
+        renewal_mode:
+          anyOf:
+          - $ref: '#/components/schemas/RenewalMode'
+          - type: 'null'
+          description: The new renewal mode of the domain
+        status_changes:
+          anyOf:
+          - $ref: '#/components/schemas/StatusChanges'
+          - type: 'null'
+          description: Statuses to add or remove relative to current state
+        statuses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/DomainClientStatus'
+            type: array
+          - type: 'null'
+          description: The new statuses of the domain
+          title: Statuses
+      required:
+      - domain_id
+      title: DomainUpdatePayloadData
+      type: object
+    DomainUpdateWorkerPayload:
+      properties:
+        domain:
+          $ref: '#/components/schemas/DomainUpdatePayloadData'
+        operation:
+          title: Operation
+          type: string
+        type:
+          enum:
+          - domain_update
+          - domain_update_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - domain
+      title: DomainUpdateWorkerPayload
       type: object
     DomainWithdrawRequest:
       properties:
@@ -4097,6 +5587,377 @@ components:
           title: Last Used On
       title: IpRestrictionUpdate
       type: object
+    JobBatchMetadataResponse:
+      properties:
+        batch_id:
+          description: TypeID identifying this batch
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+        created_on:
+          description: Timestamp when the batch was created (UTC)
+          format: date-time
+          title: Created On
+          type: string
+        finished_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp when the last job finished (UTC)
+          title: Finished At
+        job_counts:
+          $ref: '#/components/schemas/JobCountsByStatus'
+          description: Number of jobs in each status
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Human-readable label for this batch
+          title: Label
+        started_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp when the first job started (UTC)
+          title: Started At
+        status:
+          $ref: '#/components/schemas/BatchStatus'
+          description: 'Batch status: pending (jobs still processing) or complete
+            (all done)'
+        total_jobs:
+          description: Total number of jobs in this batch
+          title: Total Jobs
+          type: integer
+      required:
+      - batch_id
+      - status
+      - job_counts
+      - total_jobs
+      - created_on
+      title: JobBatchMetadataResponse
+      type: object
+    JobBatchRequest:
+      properties:
+        commands:
+          description: List of commands to execute
+          items:
+            discriminator:
+              mapping:
+                contact_create: '#/components/schemas/ContactCreateCommand'
+                contact_create_bulk: '#/components/schemas/ContactCreateBulkCommand'
+                dns_zone_create: '#/components/schemas/DnsZoneCreateCommand'
+                dns_zone_create_bulk: '#/components/schemas/DnsZoneCreateBulkCommand'
+                dns_zone_patch_records_bulk: '#/components/schemas/DnsZonePatchRecordsBulkCommand'
+                dns_zone_patch_rrsets_bulk: '#/components/schemas/DnsZonePatchRrsetsBulkCommand'
+                dns_zone_update: '#/components/schemas/DnsZoneUpdateCommand'
+                dns_zone_update_bulk: '#/components/schemas/DnsZoneUpdateBulkCommand'
+                domain_create: '#/components/schemas/DomainCreateCommand'
+                domain_create_bulk: '#/components/schemas/DomainCreateBulkCommand'
+                domain_transfer: '#/components/schemas/DomainTransferCommand'
+                domain_transfer_bulk: '#/components/schemas/DomainTransferBulkCommand'
+                domain_update: '#/components/schemas/DomainUpdateCommand'
+                domain_update_bulk: '#/components/schemas/DomainUpdateBulkCommand'
+                parking_create_bulk: '#/components/schemas/ParkingCreateBulkCommand'
+                parking_delete_bulk: '#/components/schemas/ParkingDeleteBulkCommand'
+                parking_disable_bulk: '#/components/schemas/ParkingDisableBulkCommand'
+                parking_enable_bulk: '#/components/schemas/ParkingEnableBulkCommand'
+              propertyName: command
+            oneOf:
+            - $ref: '#/components/schemas/DomainCreateCommand'
+            - $ref: '#/components/schemas/DomainUpdateCommand'
+            - $ref: '#/components/schemas/DomainTransferCommand'
+            - $ref: '#/components/schemas/DnsZoneCreateCommand'
+            - $ref: '#/components/schemas/DnsZoneUpdateCommand'
+            - $ref: '#/components/schemas/DomainCreateBulkCommand'
+            - $ref: '#/components/schemas/DomainTransferBulkCommand'
+            - $ref: '#/components/schemas/DomainUpdateBulkCommand'
+            - $ref: '#/components/schemas/DnsZoneCreateBulkCommand'
+            - $ref: '#/components/schemas/DnsZoneUpdateBulkCommand'
+            - $ref: '#/components/schemas/DnsZonePatchRrsetsBulkCommand'
+            - $ref: '#/components/schemas/DnsZonePatchRecordsBulkCommand'
+            - $ref: '#/components/schemas/ContactCreateBulkCommand'
+            - $ref: '#/components/schemas/ContactCreateCommand'
+            - $ref: '#/components/schemas/ParkingCreateBulkCommand'
+            - $ref: '#/components/schemas/ParkingEnableBulkCommand'
+            - $ref: '#/components/schemas/ParkingDisableBulkCommand'
+            - $ref: '#/components/schemas/ParkingDeleteBulkCommand'
+          maxItems: 50000
+          title: Commands
+          type: array
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Human-readable label for this batch
+          title: Label
+        not_before:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Earliest time jobs can execute (UTC). If not provided, jobs
+            run immediately.
+          title: Not Before
+        paused:
+          default: false
+          description: If true, jobs are created in paused state and must be explicitly
+            resumed
+          title: Paused
+          type: boolean
+      required:
+      - commands
+      title: JobBatchRequest
+      type: object
+    JobBatchStatusResponse:
+      properties:
+        batch_id:
+          description: TypeID identifying this batch. All jobs in a batch share the
+            same batch_id, while each job has its own unique job_id.
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+        blocked:
+          default: 0
+          description: Number of jobs waiting for eligibility (scheduled, serial blocked,
+            or no tokens)
+          title: Blocked
+          type: integer
+        canceled:
+          description: Number of jobs that were canceled
+          title: Canceled
+          type: integer
+        dead_letter:
+          description: Number of jobs that permanently failed after exhausting retries
+          title: Dead Letter
+          type: integer
+        failed:
+          description: Number of jobs that failed execution
+          title: Failed
+          type: integer
+        paused:
+          default: 0
+          description: Number of jobs in paused state
+          title: Paused
+          type: integer
+        progress_percentage:
+          description: Completion percentage (0-100)
+          title: Progress Percentage
+          type: number
+        queued:
+          description: Number of jobs awaiting processing
+          title: Queued
+          type: integer
+        running:
+          description: Number of jobs currently being executed
+          title: Running
+          type: integer
+        succeeded:
+          description: Number of jobs that completed successfully
+          title: Succeeded
+          type: integer
+        total:
+          description: Total number of jobs in the batch
+          title: Total
+          type: integer
+      required:
+      - batch_id
+      - total
+      - queued
+      - running
+      - succeeded
+      - failed
+      - canceled
+      - dead_letter
+      - progress_percentage
+      title: JobBatchStatusResponse
+      type: object
+    JobCountsByStatus:
+      properties:
+        blocked:
+          default: 0
+          title: Blocked
+          type: integer
+        canceled:
+          default: 0
+          title: Canceled
+          type: integer
+        dead_letter:
+          default: 0
+          title: Dead Letter
+          type: integer
+        failed:
+          default: 0
+          title: Failed
+          type: integer
+        paused:
+          default: 0
+          title: Paused
+          type: integer
+        queued:
+          default: 0
+          title: Queued
+          type: integer
+        running:
+          default: 0
+          title: Running
+          type: integer
+        succeeded:
+          default: 0
+          title: Succeeded
+          type: integer
+      title: JobCountsByStatus
+      type: object
+    JobResponse:
+      properties:
+        attempts:
+          description: Number of execution attempts made for this job
+          title: Attempts
+          type: integer
+        command:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Command name (e.g., 'domain_create', 'dns_zone_update')
+          title: Command
+        created_on:
+          description: Timestamp when the job was created (UTC)
+          format: date-time
+          title: Created On
+          type: string
+        display:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Human-readable description of this job
+          title: Display
+        error_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Error type if the job failed (e.g., ValidationError, TimeoutError)
+          title: Error Class
+        error_message:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Detailed error message if the job failed
+          title: Error Message
+        finished_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp when job execution completed (UTC)
+          title: Finished At
+        job_id:
+          description: Unique identifier for this individual job
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^job_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Job Id
+          type: string
+          x-typeid-prefix: job
+        operation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Operation type (e.g., 'create', 'update', 'transfer')
+          title: Operation
+        paused_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp when job was paused (UTC)
+          title: Paused At
+        payload:
+          anyOf:
+          - discriminator:
+              mapping:
+                contact_create: '#/components/schemas/ContactCreateWorkerPayload'
+                contact_create_bulk: '#/components/schemas/ContactCreateWorkerPayload'
+                dns_zone_create: '#/components/schemas/DnsZoneCreateWorkerPayload'
+                dns_zone_create_bulk: '#/components/schemas/DnsZoneCreateWorkerPayload'
+                dns_zone_patch_records_bulk: '#/components/schemas/DnsZonePatchRecordsWorkerPayload'
+                dns_zone_patch_rrsets_bulk: '#/components/schemas/DnsZonePatchRrsetsWorkerPayload'
+                dns_zone_update: '#/components/schemas/DnsZoneUpdateWorkerPayload'
+                dns_zone_update_bulk: '#/components/schemas/DnsZoneUpdateWorkerPayload'
+                domain_create: '#/components/schemas/DomainCreateWorkerPayload'
+                domain_create_bulk: '#/components/schemas/DomainCreateWorkerPayload'
+                domain_transfer: '#/components/schemas/DomainTransferWorkerPayload'
+                domain_transfer_bulk: '#/components/schemas/DomainTransferWorkerPayload'
+                domain_update: '#/components/schemas/DomainUpdateWorkerPayload'
+                domain_update_bulk: '#/components/schemas/DomainUpdateWorkerPayload'
+                parking_create_bulk: '#/components/schemas/ParkingCreateWorkerPayload'
+                parking_delete_bulk: '#/components/schemas/ParkingDeleteWorkerPayload'
+                parking_disable_bulk: '#/components/schemas/ParkingDisableWorkerPayload'
+                parking_enable_bulk: '#/components/schemas/ParkingEnableWorkerPayload'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/DomainCreateWorkerPayload'
+            - $ref: '#/components/schemas/DomainUpdateWorkerPayload'
+            - $ref: '#/components/schemas/DomainTransferWorkerPayload'
+            - $ref: '#/components/schemas/DnsZoneCreateWorkerPayload'
+            - $ref: '#/components/schemas/DnsZoneUpdateWorkerPayload'
+            - $ref: '#/components/schemas/DnsZonePatchRrsetsWorkerPayload'
+            - $ref: '#/components/schemas/DnsZonePatchRecordsWorkerPayload'
+            - $ref: '#/components/schemas/ContactCreateWorkerPayload'
+            - $ref: '#/components/schemas/ParkingCreateWorkerPayload'
+            - $ref: '#/components/schemas/ParkingEnableWorkerPayload'
+            - $ref: '#/components/schemas/ParkingDisableWorkerPayload'
+            - $ref: '#/components/schemas/ParkingDeleteWorkerPayload'
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: The original request payload for this job
+          title: Payload
+        resource_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Resource identifier for this job
+          title: Resource Key
+        started_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Timestamp when job execution began (UTC)
+          title: Started At
+        status:
+          $ref: '#/components/schemas/JobStatus'
+          description: 'Current job status: queued, running, succeeded, failed, canceled,
+            or dead_letter'
+      required:
+      - job_id
+      - status
+      - created_on
+      - attempts
+      title: JobResponse
+      type: object
+    JobStatus:
+      enum:
+      - blocked
+      - queued
+      - paused
+      - running
+      - succeeded
+      - failed
+      - canceled
+      - dead_letter
+      title: JobStatus
+      type: string
     JsonValue: {}
     LaunchPhaseBase:
       properties:
@@ -5254,6 +7115,34 @@ components:
       - pagination
       title: Pagination[InvoiceResponse]
       type: object
+    Pagination_JobBatchMetadataResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/JobBatchMetadataResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[JobBatchMetadataResponse]
+      type: object
+    Pagination_JobResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/JobResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: Pagination[JobResponse]
+      type: object
     Pagination_ObjectLog_:
       properties:
         pagination:
@@ -5324,6 +7213,15 @@ components:
       - pagination
       title: Pagination[UserPublic]
       type: object
+    ParkingActionPayloadData:
+      properties:
+        parking_id:
+          title: Parking Id
+          type: string
+      required:
+      - parking_id
+      title: ParkingActionPayloadData
+      type: object
     ParkingAgreementAcceptance:
       description: Parking agreement acceptance details.
       properties:
@@ -5347,6 +7245,317 @@ components:
       - accepted
       - url
       title: ParkingAgreementAcceptance
+      type: object
+    ParkingCreateBulkCommand:
+      properties:
+        command:
+          const: parking_create_bulk
+          default: parking_create_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/ParkingCreateBulkPayload'
+          description: Bulk parking creation payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: ParkingCreateBulkCommand
+      type: object
+    ParkingCreateBulkInstance:
+      properties:
+        domain:
+          description: The domain name for the parking ad
+          title: Domain
+          type: string
+        enabled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Override enabled setting for this domain
+          title: Enabled
+      required:
+      - domain
+      title: ParkingCreateBulkInstance
+      type: object
+    ParkingCreateBulkPayload:
+      properties:
+        instances:
+          description: List of parking entries to create (1-1000)
+          items:
+            $ref: '#/components/schemas/ParkingCreateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/ParkingCreateBulkTemplate'
+          description: Shared settings for all parking entries
+      required:
+      - template
+      - instances
+      title: ParkingCreateBulkPayload
+      type: object
+    ParkingCreateBulkTemplate:
+      properties:
+        enabled:
+          default: false
+          description: Whether to enable parking immediately after creation
+          title: Enabled
+          type: boolean
+      title: ParkingCreateBulkTemplate
+      type: object
+    ParkingCreatePayloadData:
+      properties:
+        domain:
+          title: Domain
+          type: string
+        enabled:
+          default: false
+          title: Enabled
+          type: boolean
+      required:
+      - domain
+      title: ParkingCreatePayloadData
+      type: object
+    ParkingCreateWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        parking:
+          $ref: '#/components/schemas/ParkingCreatePayloadData'
+        type:
+          const: parking_create_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - parking
+      title: ParkingCreateWorkerPayload
+      type: object
+    ParkingDeleteBulkCommand:
+      properties:
+        command:
+          const: parking_delete_bulk
+          default: parking_delete_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/ParkingDeleteBulkPayload'
+          description: Bulk parking delete payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: ParkingDeleteBulkCommand
+      type: object
+    ParkingDeleteBulkInstance:
+      properties:
+        parking_id:
+          description: The parking ID of the entry to delete
+          examples:
+          - parking_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Parking Id
+          type: string
+          x-typeid-prefix: parking
+      required:
+      - parking_id
+      title: ParkingDeleteBulkInstance
+      type: object
+    ParkingDeleteBulkPayload:
+      properties:
+        instances:
+          description: List of parking entries to delete (1-1000)
+          items:
+            $ref: '#/components/schemas/ParkingDeleteBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: ParkingDeleteBulkPayload
+      type: object
+    ParkingDeleteWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        parking:
+          $ref: '#/components/schemas/ParkingActionPayloadData'
+        type:
+          const: parking_delete_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - parking
+      title: ParkingDeleteWorkerPayload
+      type: object
+    ParkingDisableBulkCommand:
+      properties:
+        command:
+          const: parking_disable_bulk
+          default: parking_disable_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/ParkingDisableBulkPayload'
+          description: Bulk parking disable payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: ParkingDisableBulkCommand
+      type: object
+    ParkingDisableBulkInstance:
+      properties:
+        parking_id:
+          description: The parking ID of the entry to disable
+          examples:
+          - parking_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Parking Id
+          type: string
+          x-typeid-prefix: parking
+      required:
+      - parking_id
+      title: ParkingDisableBulkInstance
+      type: object
+    ParkingDisableBulkPayload:
+      properties:
+        instances:
+          description: List of parking entries to disable (1-1000)
+          items:
+            $ref: '#/components/schemas/ParkingDisableBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: ParkingDisableBulkPayload
+      type: object
+    ParkingDisableWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        parking:
+          $ref: '#/components/schemas/ParkingActionPayloadData'
+        type:
+          const: parking_disable_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - parking
+      title: ParkingDisableWorkerPayload
+      type: object
+    ParkingEnableBulkCommand:
+      properties:
+        command:
+          const: parking_enable_bulk
+          default: parking_enable_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/ParkingEnableBulkPayload'
+          description: Bulk parking enable payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: ParkingEnableBulkCommand
+      type: object
+    ParkingEnableBulkInstance:
+      properties:
+        parking_id:
+          description: The parking ID of the entry to enable
+          examples:
+          - parking_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Parking Id
+          type: string
+          x-typeid-prefix: parking
+      required:
+      - parking_id
+      title: ParkingEnableBulkInstance
+      type: object
+    ParkingEnableBulkPayload:
+      properties:
+        instances:
+          description: List of parking entries to enable (1-1000)
+          items:
+            $ref: '#/components/schemas/ParkingEnableBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: ParkingEnableBulkPayload
+      type: object
+    ParkingEnableWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        parking:
+          $ref: '#/components/schemas/ParkingActionPayloadData'
+        type:
+          const: parking_enable_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - operation
+      - parking
+      title: ParkingEnableWorkerPayload
       type: object
     ParkingMetricsResponse:
       properties:
@@ -5813,6 +8022,78 @@ components:
       - client_secret
       title: PublicAuthRequestForm
       type: object
+    PublicReportListRes:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/PublicReportRes'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: PublicReportListRes
+      type: object
+    PublicReportRes:
+      properties:
+        created_on:
+          format: date-time
+          title: Created On
+          type: string
+        file_size_bytes:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: File Size Bytes
+        generated_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Generated On
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        record_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Record Count
+        report_id:
+          examples:
+          - report_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^report_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Report Id
+          type: string
+          x-typeid-prefix: report
+        report_type:
+          $ref: '#/components/schemas/ReportType'
+        status:
+          $ref: '#/components/schemas/ReportStatus'
+        trigger_type:
+          $ref: '#/components/schemas/ReportTriggerType'
+        updated_on:
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - report_id
+      - organization_id
+      - report_type
+      - status
+      - trigger_type
+      - created_on
+      - updated_on
+      title: PublicReportRes
+      type: object
     RdapBase:
       properties:
         rdap_server:
@@ -5972,6 +8253,27 @@ components:
       - renew
       - expire
       title: RenewalMode
+      type: string
+    ReportStatus:
+      enum:
+      - pending
+      - generating
+      - completed
+      - failed
+      title: ReportStatus
+      type: string
+    ReportTriggerType:
+      enum:
+      - on_demand
+      - scheduled
+      title: ReportTriggerType
+      type: string
+    ReportType:
+      enum:
+      - domain_inventory
+      - dns_zone_summary
+      - dns_zone_records
+      title: ReportType
       type: string
     RequestHistory:
       properties:
@@ -7360,7 +9662,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-27-093944
+  version: 2026-03-31-182147
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15327,6 +17629,1129 @@ paths:
       summary: Acknowledge event
       tags:
       - event
+  /v1/job/{job_id}:
+    delete:
+      operationId: delete_job_v1_job__job_id__delete
+      parameters:
+      - description: Job ID
+        in: path
+        name: job_id
+        required: true
+        schema:
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^job_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Job Id
+          type: string
+          x-typeid-prefix: job
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_JOB_NOT_FOUND
+                detail: No job found with id 'Additional error context.'
+                job_id: Additional error context.
+                status: 404
+                title: Batch Operation Error
+                type: job-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Delete (cancel) a queued job
+      tags:
+      - jobs
+    get:
+      operationId: get_job_v1_job__job_id__get
+      parameters:
+      - description: Job ID
+        in: path
+        name: job_id
+        required: true
+        schema:
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^job_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Job Id
+          type: string
+          x-typeid-prefix: job
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_JOB_NOT_FOUND
+                detail: No job found with id 'Additional error context.'
+                job_id: Additional error context.
+                status: 404
+                title: Batch Operation Error
+                type: job-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get individual job details
+      tags:
+      - jobs
+  /v1/job/{job_id}/pause:
+    post:
+      operationId: pause_job_v1_job__job_id__pause_post
+      parameters:
+      - description: Job ID
+        in: path
+        name: job_id
+        required: true
+        schema:
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^job_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Job Id
+          type: string
+          x-typeid-prefix: job
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_JOB_NOT_FOUND
+                detail: No job found with id 'Additional error context.'
+                job_id: Additional error context.
+                status: 404
+                title: Batch Operation Error
+                type: job-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Pause a job
+      tags:
+      - jobs
+  /v1/job/{job_id}/resume:
+    post:
+      operationId: resume_job_v1_job__job_id__resume_post
+      parameters:
+      - description: Job ID
+        in: path
+        name: job_id
+        required: true
+        schema:
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^job_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Job Id
+          type: string
+          x-typeid-prefix: job
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_JOB_NOT_FOUND
+                detail: No job found with id 'Additional error context.'
+                job_id: Additional error context.
+                status: 404
+                title: Batch Operation Error
+                type: job-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Resume a paused job
+      tags:
+      - jobs
+  /v1/jobs:
+    get:
+      operationId: list_batches_v1_jobs_get
+      parameters:
+      - description: Filter by batch status (pending or complete)
+        in: query
+        name: status
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BatchStatus'
+          - type: 'null'
+          description: Filter by batch status (pending or complete)
+          title: Status
+      - description: Sort field
+        in: query
+        name: sort_by
+        required: false
+        schema:
+          $ref: '#/components/schemas/BatchSortField'
+          default: created_on
+          description: Sort field
+      - description: Sort order
+        in: query
+        name: sort_order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+          default: desc
+          description: Sort order
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_JobBatchMetadataResponse_'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List batches for organization
+      tags:
+      - jobs
+    post:
+      operationId: create_batch_v1_jobs_post
+      requestBody:
+        content:
+          application/json:
+            examples:
+              bulk_dns_zone_create:
+                description: Create multiple DNS zones with the same RRsets. Useful
+                  for setting up identical DNS configurations across many domains.
+                summary: Bulk DNS zone creation
+                value:
+                  commands:
+                  - command: dns_zone_create_bulk
+                    idempotency_key: bulk-zones-2025-01
+                    payload:
+                      instances:
+                      - name: zone1.com
+                      - name: zone2.com
+                      - name: zone3.com
+                      template:
+                        rrsets:
+                        - name: '@'
+                          records:
+                          - rdata: 192.0.2.1
+                          ttl: 300
+                          type: A
+                        - name: www
+                          records:
+                          - rdata: 192.0.2.2
+                          ttl: 300
+                          type: A
+                    version: v1
+              bulk_dns_zone_patch_records:
+                description: Patch individual records across multiple DNS zones. Each
+                  zone can have different patch operations. Use 'upsert' to add/update
+                  records and 'remove' to delete specific records by rdata.
+                summary: Bulk DNS zone patch records
+                value:
+                  commands:
+                  - command: dns_zone_patch_records_bulk
+                    idempotency_key: bulk-patch-records-2025-01
+                    payload:
+                      instances:
+                      - ops:
+                        - op: upsert
+                          record:
+                            name: www
+                            rdata: 192.0.2.100
+                            ttl: 300
+                            type: A
+                        - op: remove
+                          record:
+                            name: www
+                            rdata: 192.0.2.1
+                            ttl: 300
+                            type: A
+                        zone_name: zone1.com
+                      - ops:
+                        - op: upsert
+                          record:
+                            name: mail
+                            rdata: 10 mail.zone2.com.
+                            ttl: 3600
+                            type: MX
+                        zone_name: zone2.com
+                    version: v1
+              bulk_dns_zone_patch_rrsets:
+                description: Patch rrsets across multiple DNS zones. Each zone can
+                  have different patch operations. Use 'upsert' to add/update rrsets
+                  and 'remove' to delete them.
+                summary: Bulk DNS zone patch rrsets
+                value:
+                  commands:
+                  - command: dns_zone_patch_rrsets_bulk
+                    idempotency_key: bulk-patch-rrsets-2025-01
+                    payload:
+                      instances:
+                      - ops:
+                        - op: upsert
+                          rrset:
+                            name: api
+                            records:
+                            - rdata: 192.0.2.10
+                            ttl: 300
+                            type: A
+                        - op: remove
+                          rrset:
+                            name: old
+                            records: []
+                            ttl: 300
+                            type: A
+                        zone_name: zone1.com
+                      - ops:
+                        - op: upsert
+                          rrset:
+                            name: api
+                            records:
+                            - rdata: 192.0.2.20
+                            ttl: 300
+                            type: A
+                        zone_name: zone2.com
+                    version: v1
+              bulk_dns_zone_update:
+                description: Update multiple DNS zones with the same RRsets. Useful
+                  for applying identical DNS record changes across many zones.
+                summary: Bulk DNS zone update
+                value:
+                  commands:
+                  - command: dns_zone_update_bulk
+                    idempotency_key: bulk-zone-updates-2025-01
+                    payload:
+                      instances:
+                      - name: zone1.com
+                      - name: zone2.com
+                      - name: zone3.com
+                      template:
+                        rrsets:
+                        - name: '@'
+                          records:
+                          - rdata: 192.0.2.100
+                          ttl: 300
+                          type: A
+                        - name: www
+                          records:
+                          - rdata: 192.0.2.101
+                          ttl: 300
+                          type: A
+                    version: v1
+              bulk_domain_create:
+                description: Create multiple domains with shared settings using a
+                  single bulk command. Template values apply to all domains; instances
+                  can override specific fields.
+                summary: Bulk domain creation
+                value:
+                  commands:
+                  - command: domain_create_bulk
+                    idempotency_key: bulk-create-2025-01
+                    payload:
+                      instances:
+                      - name: domain1.com
+                      - name: domain2.com
+                      - name: domain3.com
+                        period:
+                          unit: y
+                          value: 2
+                      template:
+                        contacts:
+                          admin: contact_01kc433yvre99af2wasxhtpswf
+                          billing: contact_01kc433yvre99af2wasxhtpswf
+                          registrant: contact_01kc433yvre99af2wasxhtpswf
+                          tech: contact_01kc433yvre99af2wasxhtpswf
+                        create_zone: true
+                        nameservers:
+                        - hostname: ns1.example.com
+                          ip_addresses: []
+                        - hostname: ns2.example.com
+                          ip_addresses: []
+                        period:
+                          unit: y
+                          value: 1
+                        renewal_mode: renew
+                    version: v1
+              bulk_domain_transfer:
+                description: Transfer multiple domains with shared settings. Each
+                  domain requires its own auth_code in the instance, while contacts
+                  and nameservers come from the template.
+                summary: Bulk domain transfer
+                value:
+                  commands:
+                  - command: domain_transfer_bulk
+                    idempotency_key: bulk-transfer-2025-01
+                    payload:
+                      instances:
+                      - auth_code: AUTH123ABC
+                        name: transfer1.com
+                      - auth_code: AUTH456DEF
+                        name: transfer2.com
+                      - auth_code: AUTH789GHI
+                        name: transfer3.com
+                      template:
+                        contacts:
+                          admin: contact_01kc433yvre99af2wasxhtpswf
+                          billing: contact_01kc433yvre99af2wasxhtpswf
+                          registrant: contact_01kc433yvre99af2wasxhtpswf
+                          tech: contact_01kc433yvre99af2wasxhtpswf
+                        create_zone: false
+                        nameservers:
+                        - hostname: ns1.example.com
+                          ip_addresses: []
+                        - hostname: ns2.example.com
+                          ip_addresses: []
+                        renewal_mode: renew
+                    version: v1
+              bulk_parking_create:
+                description: Create multiple parking entries with shared settings
+                  using a single bulk command. Template values apply to all entries;
+                  instances can override the enabled setting.
+                summary: Bulk parking creation
+                value:
+                  commands:
+                  - command: parking_create_bulk
+                    idempotency_key: bulk-parking-create-2025-01
+                    payload:
+                      instances:
+                      - domain: parked1.com
+                      - domain: parked2.com
+                      - domain: parked3.com
+                        enabled: false
+                      template:
+                        enabled: true
+                    version: v1
+              bulk_parking_delete:
+                description: Delete multiple parking entries at once by specifying
+                  their parking IDs.
+                summary: Bulk parking delete
+                value:
+                  commands:
+                  - command: parking_delete_bulk
+                    idempotency_key: bulk-parking-delete-2025-01
+                    payload:
+                      instances:
+                      - parking_id: parking_01kfzcw9vze6crvqd6mhdw8rkc
+                      - parking_id: parking_01kfzcw9w0e3qvme8v2ftq49qd
+                      - parking_id: parking_01kfzcw9w1ebbse9qcrkdxsv6b
+                    version: v1
+              bulk_parking_disable:
+                description: Disable multiple parking entries at once by specifying
+                  their parking IDs.
+                summary: Bulk parking disable
+                value:
+                  commands:
+                  - command: parking_disable_bulk
+                    idempotency_key: bulk-parking-disable-2025-01
+                    payload:
+                      instances:
+                      - parking_id: parking_01kfzcw9vze6crvqd6mhdw8rkc
+                      - parking_id: parking_01kfzcw9w0e3qvme8v2ftq49qd
+                      - parking_id: parking_01kfzcw9w1ebbse9qcrkdxsv6b
+                    version: v1
+              bulk_parking_enable:
+                description: Enable multiple parking entries at once by specifying
+                  their parking IDs.
+                summary: Bulk parking enable
+                value:
+                  commands:
+                  - command: parking_enable_bulk
+                    idempotency_key: bulk-parking-enable-2025-01
+                    payload:
+                      instances:
+                      - parking_id: parking_01kfzcw9vze6crvqd6mhdw8rkc
+                      - parking_id: parking_01kfzcw9w0e3qvme8v2ftq49qd
+                      - parking_id: parking_01kfzcw9w1ebbse9qcrkdxsv6b
+                    version: v1
+              bulk_updates:
+                description: Submit multiple domain update commands in a single batch
+                summary: Bulk domain updates
+                value:
+                  commands:
+                  - command: domain_update
+                    idempotency_key: update-domain-001
+                    payload:
+                      contacts: {}
+                      domain_id: domain_01kc433yxxf69vnhtvd03tm0fa
+                      renewal_mode: renew
+                    version: v1
+                  - command: domain_update
+                    idempotency_key: update-domain-002
+                    payload:
+                      contacts: {}
+                      domain_id: domain_01kc433z02f55ttp31ef952nhb
+                      renewal_mode: renew
+                    version: v1
+                  - command: domain_update
+                    idempotency_key: update-domain-003
+                    payload:
+                      contacts: {}
+                      domain_id: domain_01kc433z1yfg8ajdcndxf1rftd
+                      renewal_mode: renew
+                    version: v1
+              dns_zone:
+                description: Submit a batch with a DNS zone creation command
+                summary: Create a DNS zone
+                value:
+                  commands:
+                  - command: dns_zone_create
+                    idempotency_key: create-zone-example-com
+                    payload:
+                      dnssec_status: disabled
+                      name: example.com
+                      rrsets:
+                      - name: '@'
+                        records:
+                        - rdata: 192.0.2.1
+                        - rdata: 192.0.2.2
+                        ttl: 3600
+                        type: A
+                      - name: www
+                        records:
+                        - rdata: example.com.
+                        ttl: 3600
+                        type: CNAME
+                      - name: '@'
+                        records:
+                        - rdata: '"v=spf1 include:_spf.example.com ~all"'
+                        ttl: 3600
+                        type: TXT
+                    version: v1
+              dns_zone_update:
+                description: Submit a batch with a DNS zone update command to modify
+                  existing records
+                summary: Update a DNS zone
+                value:
+                  commands:
+                  - command: dns_zone_update
+                    idempotency_key: update-zone-example-com
+                    payload:
+                      dnssec_status: disabled
+                      name: example.com
+                      rrsets:
+                      - name: '@'
+                        records:
+                        - rdata: 192.0.2.10
+                        - rdata: 192.0.2.11
+                        ttl: 3600
+                        type: A
+                      - name: mail
+                        records:
+                        - rdata: 10 mail.example.com.
+                        ttl: 3600
+                        type: MX
+                    version: v1
+              scheduled:
+                description: Submit a batch with not_before set to schedule future
+                  execution
+                summary: Scheduled batch
+                value:
+                  commands:
+                  - command: domain_create
+                    idempotency_key: scheduled-create-001
+                    payload:
+                      contacts:
+                        admin: contact_01kc433yvre99af2wasxhtpswf
+                        billing: contact_01kc433yvre99af2wasxhtpswf
+                        registrant: contact_01kc433yvre99af2wasxhtpswf
+                        tech: contact_01kc433yvre99af2wasxhtpswf
+                      create_zone: false
+                      name: scheduled-example.com
+                      period:
+                        unit: y
+                        value: 1
+                      renewal_mode: renew
+                    version: v1
+                  not_before: '2025-06-01T00:00:00Z'
+              single_contact:
+                description: Submit a batch with one contact creation command
+                summary: Create a single contact
+                value:
+                  commands:
+                  - command: contact_create
+                    idempotency_key: contact-john-doe-001
+                    payload:
+                      city: New York
+                      country: US
+                      disclose: false
+                      email: john.doe@example.com
+                      first_name: John
+                      last_name: Doe
+                      phone: +1 212-555-1234
+                      postal_code: '10001'
+                      street: 123 Main St
+                    version: v1
+              single_domain:
+                description: Submit a batch with one domain registration command
+                summary: Create a single domain
+                value:
+                  commands:
+                  - command: domain_create
+                    idempotency_key: create-example-com-001
+                    payload:
+                      contacts:
+                        admin: contact_01kc433yvre99af2wasxhtpswf
+                        billing: contact_01kc433yvre99af2wasxhtpswf
+                        registrant: contact_01kc433yvre99af2wasxhtpswf
+                        tech: contact_01kc433yvre99af2wasxhtpswf
+                      create_zone: false
+                      name: example.com
+                      nameservers:
+                      - hostname: ns1.example.com
+                        ip_addresses: []
+                      - hostname: ns2.example.com
+                        ip_addresses: []
+                      period:
+                        unit: y
+                        value: 1
+                      renewal_mode: renew
+                    version: v1
+            schema:
+              $ref: '#/components/schemas/JobBatchRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              examples:
+                bulk_update_response:
+                  description: Response when creating a batch with multiple domain
+                    updates
+                  summary: Bulk update batch created
+                  value:
+                    batch_id: batch_01kc433z64f6qacp9zn27mqz02
+                    errors: []
+                    jobs_created: 3
+                    jobs_failed: 0
+                    status_url: /v1/jobs/batch_01kc433z64f6qacp9zn27mqz02
+                    total_commands: 3
+                single_domain_response:
+                  description: Response when creating a batch with one domain registration
+                  summary: Single domain batch created
+                  value:
+                    batch_id: batch_01kc433z42eak962tsgjx2pgd6
+                    errors: []
+                    jobs_created: 1
+                    jobs_failed: 0
+                    status_url: /v1/jobs/batch_01kc433z42eak962tsgjx2pgd6
+                    total_commands: 1
+              schema:
+                $ref: '#/components/schemas/CreateJobBatchResponse'
+          description: Batch created successfully
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_EMPTY
+                detail: Additional error context.
+                status: 400
+                title: Batch Operation Error
+                type: batch-empty
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_JOB_CREATION_FAILED
+                command: Additional error context.
+                detail: Failed to create job for command 'Additional error context.'
+                status: 503
+                title: Batch Operation Error
+                type: batch-job-creation
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create a batch of commands for async execution
+      tags:
+      - jobs
+  /v1/jobs/{batch_id}:
+    delete:
+      operationId: delete_batch_v1_jobs__batch_id__delete
+      parameters:
+      - description: Batch ID
+        in: path
+        name: batch_id
+        required: true
+        schema:
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_NOT_FOUND
+                correlation_id: Additional error context.
+                detail: No batch found with correlation_id 'Additional error context.'
+                status: 404
+                title: Batch Operation Error
+                type: batch-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Delete (cancel) all queued jobs in a batch
+      tags:
+      - jobs
+    get:
+      operationId: get_batch_v1_jobs__batch_id__get
+      parameters:
+      - description: Batch ID
+        in: path
+        name: batch_id
+        required: true
+        schema:
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                completed:
+                  description: A fully processed batch with mostly successful jobs
+                    and a few failures
+                  summary: Batch completed
+                  value:
+                    batch_id: batch_01h45ytscbebyvny4gc8cr8ma3
+                    canceled: 0
+                    dead_letter: 0
+                    failed: 2
+                    progress_percentage: 100.0
+                    queued: 0
+                    running: 0
+                    succeeded: 98
+                    total: 100
+                in_progress:
+                  description: A batch that is still being processed with jobs in
+                    various states
+                  summary: Batch in progress
+                  value:
+                    batch_id: batch_01h45ytscbebyvny4gc8cr8ma2
+                    canceled: 0
+                    dead_letter: 0
+                    failed: 0
+                    progress_percentage: 50.0
+                    queued: 3
+                    running: 2
+                    succeeded: 5
+                    total: 10
+                with_dead_letter:
+                  description: A completed batch where some jobs permanently failed
+                    after exhausting retries
+                  summary: Batch with dead letter jobs
+                  value:
+                    batch_id: batch_01h45ytscbebyvny4gc8cr8ma4
+                    canceled: 0
+                    dead_letter: 2
+                    failed: 3
+                    progress_percentage: 100.0
+                    queued: 0
+                    running: 0
+                    succeeded: 45
+                    total: 50
+              schema:
+                $ref: '#/components/schemas/JobBatchStatusResponse'
+          description: Batch status retrieved successfully
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_NOT_FOUND
+                correlation_id: Additional error context.
+                detail: No batch found with correlation_id 'Additional error context.'
+                status: 404
+                title: Batch Operation Error
+                type: batch-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_STATUS_FETCH_FAILED
+                correlation_id: Additional error context.
+                detail: Failed to fetch batch status for correlation_id 'Additional
+                  error context.'
+                status: 503
+                title: Batch Operation Error
+                type: batch-status-fetch
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get batch details and execution status
+      tags:
+      - jobs
+  /v1/jobs/{batch_id}/jobs:
+    get:
+      operationId: get_batch_jobs_v1_jobs__batch_id__jobs_get
+      parameters:
+      - description: Batch ID
+        in: path
+        name: batch_id
+        required: true
+        schema:
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+      - description: Filter by job status (repeatable)
+        in: query
+        name: status
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/JobStatus'
+            type: array
+          - type: 'null'
+          description: Filter by job status (repeatable)
+          title: Status
+      - description: Sort field
+        in: query
+        name: sort_by
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/BatchSortField'
+          - type: 'null'
+          description: Sort field
+          title: Sort By
+      - description: Sort order
+        in: query
+        name: sort_order
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SortOrder'
+          - type: 'null'
+          description: Sort order
+          title: Sort Order
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                failed_jobs:
+                  description: Jobs that failed execution, filtered by status parameter
+                  summary: Failed jobs filtered
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 100
+                      total_items: 2
+                      total_pages: 1
+                    results:
+                    - attempts: 1
+                      created_on: '2025-01-15T10:00:00Z'
+                      error_class: ValidationError
+                      error_message: Domain name contains invalid characters
+                      finished_at: '2025-01-15T10:00:06Z'
+                      job_id: job_01h45ytscbebyvny4gc8cr8ma6
+                      started_at: '2025-01-15T10:00:05Z'
+                      status: failed
+                    - attempts: 5
+                      created_on: '2025-01-15T10:00:00Z'
+                      error_class: RegistryError
+                      error_message: Registry unavailable after 5 retry attempts
+                      finished_at: '2025-01-15T10:15:30Z'
+                      job_id: job_01h45ytscbebyvny4gc8cr8ma7
+                      started_at: '2025-01-15T10:05:00Z'
+                      status: dead_letter
+                mixed_status:
+                  description: A batch with jobs in various states of completion
+                  summary: Jobs with mixed statuses
+                  value:
+                    pagination:
+                      current_page: 1
+                      has_next_page: false
+                      has_previous_page: false
+                      page_size: 100
+                      total_items: 4
+                      total_pages: 1
+                    results:
+                    - attempts: 1
+                      created_on: '2025-01-15T10:00:00Z'
+                      finished_at: '2025-01-15T10:00:12Z'
+                      job_id: job_01h45ytscbebyvny4gc8cr8ma2
+                      started_at: '2025-01-15T10:00:05Z'
+                      status: succeeded
+                    - attempts: 1
+                      created_on: '2025-01-15T10:00:00Z'
+                      finished_at: '2025-01-15T10:00:15Z'
+                      job_id: job_01h45ytscbebyvny4gc8cr8ma3
+                      started_at: '2025-01-15T10:00:06Z'
+                      status: succeeded
+                    - attempts: 1
+                      created_on: '2025-01-15T10:00:00Z'
+                      job_id: job_01h45ytscbebyvny4gc8cr8ma4
+                      started_at: '2025-01-15T10:00:07Z'
+                      status: running
+                    - attempts: 0
+                      created_on: '2025-01-15T10:00:00Z'
+                      job_id: job_01h45ytscbebyvny4gc8cr8ma5
+                      status: queued
+              schema:
+                $ref: '#/components/schemas/Pagination_JobResponse_'
+          description: Batch jobs retrieved successfully
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_NOT_FOUND
+                correlation_id: Additional error context.
+                detail: No batch found with correlation_id 'Additional error context.'
+                status: 404
+                title: Batch Operation Error
+                type: batch-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_STATUS_FETCH_FAILED
+                correlation_id: Additional error context.
+                detail: Failed to fetch batch status for correlation_id 'Additional
+                  error context.'
+                status: 503
+                title: Batch Operation Error
+                type: batch-status-fetch
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get individual jobs within a batch
+      tags:
+      - jobs
+  /v1/jobs/{batch_id}/pause:
+    post:
+      operationId: pause_batch_v1_jobs__batch_id__pause_post
+      parameters:
+      - description: Batch ID
+        in: path
+        name: batch_id
+        required: true
+        schema:
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_NOT_FOUND
+                correlation_id: Additional error context.
+                detail: No batch found with correlation_id 'Additional error context.'
+                status: 404
+                title: Batch Operation Error
+                type: batch-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Pause all eligible jobs in a batch
+      tags:
+      - jobs
+  /v1/jobs/{batch_id}/resume:
+    post:
+      operationId: resume_batch_v1_jobs__batch_id__resume_post
+      parameters:
+      - description: Batch ID
+        in: path
+        name: batch_id
+        required: true
+        schema:
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_NOT_FOUND
+                correlation_id: Additional error context.
+                detail: No batch found with correlation_id 'Additional error context.'
+                status: 404
+                title: Batch Operation Error
+                type: batch-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Resume all paused jobs in a batch
+      tags:
+      - jobs
   /v1/organizations:
     get:
       description: Retrieves a paginated list of organizations under the current organization
@@ -17090,6 +20515,177 @@ paths:
       summary: Get metrics for a parking entry
       tags:
       - parking
+  /v1/reports:
+    get:
+      operationId: list_reports_v1_reports_get
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: report_type
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ReportType'
+            type: array
+          - type: 'null'
+          title: Report Type
+      - in: query
+        name: status
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ReportStatus'
+            type: array
+          - type: 'null'
+          title: Status
+      - in: query
+        name: trigger_type
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/ReportTriggerType'
+          - type: 'null'
+          title: Trigger Type
+      - in: query
+        name: created_after
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created After
+      - in: query
+        name: created_before
+        required: false
+        schema:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Created Before
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicReportListRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List Reports
+      tags:
+      - report
+    post:
+      operationId: create_report_v1_reports_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/CreateReportReq'
+              - type: 'null'
+              title: Req
+      responses:
+        '202':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create Report
+      tags:
+      - report
+  /v1/reports/{report_id}:
+    get:
+      operationId: get_report_v1_reports__report_id__get
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          title: Report Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicReportRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get Report
+      tags:
+      - report
+  /v1/reports/{report_id}/download:
+    get:
+      operationId: download_report_v1_reports__report_id__download_get
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          title: Report Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Download Report
+      tags:
+      - report
   /v1/tlds/:
     get:
       description: Retrieves a list of TLD Specifications we have support for
@@ -17569,80 +21165,74 @@ tags:
     '
   name: availability
   x-displayName: Availability
-- description: 'Endpoints for submitting and tracking batch command execution.
-
-
-    The Jobs API enables asynchronous execution of bulk operations through batches.
-    Submit multiple commands in a single request and poll for completion status.
-
-
-    ## Supported Commands
-
-
-    | Command | Description |
-
-    |---------|-------------|
-
-    | `domain_create` | Register a new domain |
-
-    | `domain_update` | Modify domain settings (contacts, nameservers, renewal mode)
-    |
-
-    | `domain_transfer` | Initiate an inbound domain transfer |
-
-    | `dns_zone_create` | Create a new DNS zone with optional records |
-
-
-    ## Batch Lifecycle
-
-
-    Each job within a batch transitions through states:
-
-
-    1. **queued** - Awaiting processing
-
-    2. **running** - Currently being executed
-
-    3. **succeeded** - Completed successfully
-
-    4. **failed** - Execution failed (check `error_class` and `error_message`)
-
-    5. **canceled** - Job was canceled before completion
-
-    6. **dead_letter** - Permanently failed after exhausting retries
-
-
-    ## Usage Pattern
-
-
-    1. **Submit a batch** - `POST /v1/jobs` with an array of commands
-
-    2. **Poll for status** - `GET /v1/jobs/{batch_id}` to check progress
-
-    3. **Review results** - `GET /v1/jobs/{batch_id}/jobs` to see individual job outcomes
-
-
-    ## Limits
-
-
-    - Maximum **50,000 commands** per batch
-
-
-    ## Scheduling
-
-
-    Use `not_before` to schedule batch execution for a future time (UTC timestamp).
-    If not provided, processing begins immediately.
-
-
-    ## Idempotency
-
-
-    Each command can include an optional `idempotency_key` to prevent duplicate execution.
-    If a command with the same idempotency key has already been processed, it will
-    be skipped.
-
-    '
+- description: "Endpoints for submitting and tracking batch command execution.\n\n\
+    The Jobs API enables asynchronous execution of bulk operations through batches.\
+    \ Submit multiple commands in a single request and poll for completion status.\n\
+    \n## Supported Commands\n\n### Single-resource commands\n\n| Command | Description\
+    \ |\n|---------|-------------|\n| `domain_create` | Register a new domain |\n\
+    | `domain_update` | Modify domain settings (contacts, nameservers, statuses, renewal\
+    \ mode) |\n| `domain_transfer` | Initiate an inbound domain transfer |\n| `dns_zone_create`\
+    \ | Create a new DNS zone with optional records |\n| `dns_zone_update` | Update\
+    \ an existing DNS zone |\n| `contact_create` | Create a new contact |\n\n### Bulk\
+    \ commands (template + instances)\n\nBulk commands use a **template + instances**\
+    \ pattern. The template defines shared settings applied to all items, while each\
+    \ instance specifies a target resource and optional per-resource overrides.\n\n\
+    | Command | Description |\n|---------|-------------|\n| `domain_create_bulk` |\
+    \ Register multiple domains |\n| `domain_update_bulk` | Update multiple domains\
+    \ (statuses, nameservers, contacts, renewal mode) |\n| `domain_transfer_bulk`\
+    \ | Transfer multiple domains |\n| `dns_zone_create_bulk` | Create multiple DNS\
+    \ zones |\n| `dns_zone_update_bulk` | Update multiple DNS zones |\n| `dns_zone_patch_rrsets_bulk`\
+    \ | Patch DNS record sets across zones |\n| `dns_zone_patch_records_bulk` | Patch\
+    \ individual DNS records across zones |\n| `contact_create_bulk` | Create multiple\
+    \ contacts |\n| `parking_create_bulk` | Create parking pages for multiple domains\
+    \ |\n| `parking_enable_bulk` | Enable parking on multiple domains |\n| `parking_disable_bulk`\
+    \ | Disable parking on multiple domains |\n| `parking_delete_bulk` | Delete parking\
+    \ pages for multiple domains |\n\n## Batch Lifecycle\n\nEach job within a batch\
+    \ transitions through states:\n\n1. **blocked** \u2014 Waiting for eligibility\
+    \ (scheduled via `not_before`, or awaiting capacity)\n2. **queued** \u2014 Eligible\
+    \ and awaiting processing\n3. **paused** \u2014 Paused; must be explicitly resumed\
+    \ to continue\n4. **running** \u2014 Currently being executed\n5. **succeeded**\
+    \ \u2014 Completed successfully\n6. **failed** \u2014 Execution failed (check\
+    \ `error_class` and `error_message`)\n7. **canceled** \u2014 Job was canceled\
+    \ before completion\n8. **dead_letter** \u2014 Permanently failed after exhausting\
+    \ retries\n\nA batch itself has a `status` field that is either `pending` (jobs\
+    \ are still in progress) or `complete` (all jobs have reached a terminal state).\n\
+    \n## Usage Pattern\n\n1. **Submit a batch** \u2014 `POST /v1/jobs` with an array\
+    \ of commands\n2. **Poll for status** \u2014 `GET /v1/jobs/{batch_id}` to check\
+    \ progress counts and `progress_percentage`\n3. **Review results** \u2014 `GET\
+    \ /v1/jobs/{batch_id}/jobs` to see individual job outcomes\n\n## Managing Batches\n\
+    \n- **Pause** \u2014 `POST /v1/jobs/{batch_id}/pause` pauses all eligible jobs\
+    \ in the batch\n- **Resume** \u2014 `POST /v1/jobs/{batch_id}/resume` resumes\
+    \ all paused jobs\n- **Cancel** \u2014 `DELETE /v1/jobs/{batch_id}` cancels all\
+    \ pending jobs in the batch\n\nIndividual jobs can also be paused, resumed, or\
+    \ canceled via the `/v1/job/{job_id}` endpoints.\n\n## Limits\n\n- Maximum **50,000\
+    \ commands** per batch\n- Bulk commands support up to **1,000 instances** per\
+    \ command\n\n## Scheduling\n\nUse `not_before` to schedule batch execution for\
+    \ a future time (UTC timestamp). If not provided, processing begins as soon as\
+    \ a worker is available.\n\n## Idempotency\n\nEach command can include an optional\
+    \ `idempotency_key` to prevent duplicate execution. If a command with the same\
+    \ idempotency key has already been processed, it will be skipped.\n\n## Domain\
+    \ Status Updates in Batches\n\nThe `domain_update` and `domain_update_bulk` commands\
+    \ support two mutually exclusive approaches for modifying domain statuses. These\
+    \ work the same way as the `PATCH /v1/domains/{domain_reference}` endpoint \u2014\
+    \ see the [Domain management](#tag/Domain-management) documentation for full details\
+    \ on `statuses` vs `status_changes`.\n\n### Using `status_changes` in bulk templates\n\
+    \nThe `domain_update_bulk` command is particularly useful with `status_changes`\
+    \ when you need to apply the same relative status change across many domains.\
+    \ Set `status_changes` in the **template** and list the target domains as **instances**.\
+    \ Each instance identifies a domain by either `name` or `domain_id` (but not both):\n\
+    \n```json\n{\n  \"command\": \"domain_update_bulk\",\n  \"payload\": {\n    \"\
+    template\": {\n      \"status_changes\": {\n        \"add\": [\"clientTransferProhibited\"\
+    ]\n      }\n    },\n    \"instances\": [\n      { \"name\": \"example.com\" },\n\
+    \      { \"name\": \"example.net\" },\n      { \"name\": \"example.org\" }\n \
+    \   ]\n  }\n}\n```\n\n### Per-domain overrides\n\nIf an instance provides its\
+    \ own `statuses` or `status_changes` field, it completely overrides the template's\
+    \ status settings for that domain. This lets you apply a default change to most\
+    \ domains while handling exceptions individually:\n\n```json\n{\n  \"command\"\
+    : \"domain_update_bulk\",\n  \"payload\": {\n    \"template\": {\n      \"status_changes\"\
+    : {\n        \"add\": [\"clientTransferProhibited\"]\n      }\n    },\n    \"\
+    instances\": [\n      { \"name\": \"example.com\" },\n      { \"name\": \"special-case.com\"\
+    , \"status_changes\": { \"remove\": [\"clientHold\"] } }\n    ]\n  }\n}\n```\n"
   name: jobs
   x-displayName: Jobs
 - description: 'Endpoints for creating and managing contacts.
@@ -17655,9 +21245,50 @@ tags:
     '
   name: dns
   x-displayName: DNS Management
-- description: 'Endpoints for creating and managing domains.
-
-    '
+- description: "Endpoints for creating and managing domains.\n\n## Domain References\n\
+    \nMost domain endpoints accept a `domain_reference` path parameter. This can be\
+    \ either the **domain ID** (e.g., `domain_01jt7deb8mftf8261a54v6m3ey`) or the\
+    \ **domain name** (e.g., `example.com`). Both are interchangeable wherever `domain_reference`\
+    \ appears.\n\n## Transfer Lock\n\nThe `transfer_lock` field on a domain response\
+    \ reflects whether the domain has the `clientTransferProhibited` status. Setting\
+    \ or removing `clientTransferProhibited` via the `statuses` or `status_changes`\
+    \ fields will automatically update `transfer_lock` accordingly. The `transfer_lock`\
+    \ field itself is read-only.\n\n## DNS Zone Creation\n\nWhen creating or transferring\
+    \ a domain, you can set `create_zone` to `true` to automatically provision a DNS\
+    \ zone on OpusDNS nameserver infrastructure. Zone creation and nameserver assignment\
+    \ are handled asynchronously after the domain operation completes, so there may\
+    \ be a short delay before the zone is created and nameservers are active.\n\n\
+    ## Updating Domain Statuses\n\n`PATCH /v1/domains/{domain_reference}` supports\
+    \ two mutually exclusive approaches for modifying client statuses. You **cannot**\
+    \ use both in the same request.\n\n### Option 1: `statuses` (absolute / declarative)\n\
+    \nProvide the **complete list** of client statuses the domain should have. The\
+    \ API computes the diff against the current state and adds or removes statuses\
+    \ accordingly.\n\n```json\n{\n  \"statuses\": [\"clientTransferProhibited\", \"\
+    clientDeleteProhibited\"]\n}\n```\n\nUse this when you know exactly which statuses\
+    \ the domain should end up with. Any current client statuses not in the list will\
+    \ be removed.\n\n### Option 2: `status_changes` (relative / delta)\n\nSpecify\
+    \ which statuses to **add** and/or **remove** relative to the domain's current\
+    \ state. Statuses not mentioned are left unchanged.\n\n```json\n{\n  \"status_changes\"\
+    : {\n    \"add\": [\"clientTransferProhibited\"],\n    \"remove\": [\"clientHold\"\
+    ]\n  }\n}\n```\n\nUse this when you want to make a targeted change without needing\
+    \ to know the domain's full current status set. This is especially useful in bulk\
+    \ operations where different domains may have different existing statuses.\n\n\
+    ### Validation rules\n\n- At least one of `add` or `remove` must contain a value\n\
+    - A status cannot appear in both `add` and `remove`\n- Only client statuses are\
+    \ accepted \u2014 server statuses cannot be modified\n\n### When to use which\n\
+    \n| Scenario | Recommended approach |\n|----------|---------------------|\n| Setting\
+    \ up a domain's statuses for the first time | `statuses` |\n| Locking many domains\
+    \ for transfer without touching other statuses | `status_changes` with `add` |\n\
+    | Releasing a hold on a specific domain | `status_changes` with `remove` |\n|\
+    \ Replacing all statuses as part of a known workflow | `statuses` |\n| Applying\
+    \ the same change across a batch of domains with varying existing statuses | `status_changes`\
+    \ via `domain_update_bulk` |\n\n### Blocking statuses\n\nSome statuses prevent\
+    \ domain updates entirely. If the domain has any of the following, the update\
+    \ will be rejected:\n\n- `clientUpdateProhibited`\n- `serverUpdateProhibited`\n\
+    - `pendingTransfer`\n- `pendingRestore`\n- `pendingDelete`\n- `redemptionPeriod`\n\
+    \nTo update a domain that has `clientUpdateProhibited`, you can remove that status\
+    \ in a request that makes no other changes, or remove it first and then make additional\
+    \ changes in a follow-up request.\n"
   name: domain
   x-displayName: Domain management
 - description: ''
@@ -17708,7 +21339,46 @@ tags:
     \ the whole system.\n"
   name: user
   x-displayName: Users
-- description: Endpoints for generating and downloading inventory reports.
+- description: "Endpoints for generating and downloading inventory reports.\n\nReports\
+    \ provide exportable snapshots of your domain and DNS data. Reports are generated\
+    \ asynchronously and can be downloaded as ZIP files once complete.\n\n## Report\
+    \ Types\n\n| Type | Description |\n|------|-------------|\n| `domain_inventory`\
+    \ | Full inventory of all domains in the organization |\n| `dns_zone_summary`\
+    \ | Summary of all DNS zones and their configuration |\n| `dns_zone_records` |\
+    \ Detailed export of all DNS records across zones |\n\n## Report Lifecycle\n\n\
+    A report transitions through the following statuses:\n\n1. **pending** \u2014\
+    \ Report has been queued for generation\n2. **generating** \u2014 Report is being\
+    \ built\n3. **completed** \u2014 Report is ready for download\n4. **failed** \u2014\
+    \ Generation failed\n\n## Usage Pattern\n\n1. **Request a report** \u2014 `POST\
+    \ /v1/reports` with the desired `report_type`\n2. **Poll for completion** \u2014\
+    \ `GET /v1/reports/{report_id}` until `status` is `completed`\n3. **Download**\
+    \ \u2014 `GET /v1/reports/{report_id}/download` returns the report as a streamed\
+    \ ZIP file\n\n## Downloading Reports\n\n`GET /v1/reports/{report_id}/download`\
+    \ streams the report file directly to the client. The report **must** have status\
+    \ `completed` before it can be downloaded \u2014 calling this endpoint on a report\
+    \ that is still `pending` or `generating` returns `409 Conflict`.\n\n**Response\
+    \ details:**\n\n| Header | Value |\n|--------|-------|\n| `Content-Type` | `application/zip`\
+    \ |\n| `Content-Disposition` | `attachment; filename={report_type}-{report_id}.zip`\
+    \ |\n| `Content-Length` | File size in bytes (included when known) |\n\nThe response\
+    \ body is streamed in chunks, so clients should read the body incrementally rather\
+    \ than buffering it entirely in memory. When `Content-Length` is present, it can\
+    \ be used to display download progress.\n\n## Trigger Types\n\n| Type | Description\
+    \ |\n|------|-------------|\n| `on_demand` | Manually requested via the API |\n\
+    | `scheduled` | Automatically generated on a recurring schedule |\n\n## Rate Limiting\n\
+    \nReport creation is rate-limited at two levels:\n\n- **Cooldown** \u2014 After\
+    \ creating a report, you must wait **5 minutes** before requesting another report\
+    \ of the same type. Requests during the cooldown return `429 Too Many Requests`\
+    \ with a `Retry-After` header.\n- **Hourly limit** \u2014 Only **one report per\
+    \ type per organization per clock hour** (UTC) can be generated. Duplicate requests\
+    \ within the same hour will not produce an additional report.\n\n## Retention\n\
+    \nThe **30 most recent reports** of each type are kept per organization. Older\
+    \ reports and their associated files are automatically deleted when a new report\
+    \ is generated.\n\n## Listing Reports\n\nUse `GET /v1/reports` to list reports\
+    \ with optional filters:\n\n| Parameter | Description |\n|-----------|-------------|\n\
+    | `report_type` | Filter by report type (repeatable) |\n| `status` | Filter by\
+    \ report status (repeatable) |\n| `trigger_type` | Filter by trigger type |\n\
+    | `created_after` | Only reports created after this timestamp |\n| `created_before`\
+    \ | Only reports created before this timestamp |\n"
   name: report
   x-displayName: Reports
 x-tagGroups:

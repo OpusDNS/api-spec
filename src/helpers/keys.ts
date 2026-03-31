@@ -35,6 +35,7 @@ import { BillingMetadata } from './schemas';
 import { BillingPlan } from './schemas';
 import { BillingTransaction } from './schemas';
 import { BrowserStatsBucket } from './schemas';
+import { CommandError } from './schemas';
 import { ContactAttributeDefinition } from './schemas';
 import { ContactAttributeLinkDetail } from './schemas';
 import { ContactAttributeLink } from './schemas';
@@ -43,6 +44,13 @@ import { ContactAttributeSet } from './schemas';
 import { ContactAttributeSetUpdate } from './schemas';
 import { ContactConfigBase } from './schemas';
 import { ContactCreate } from './schemas';
+import { ContactCreateBulkCommand } from './schemas';
+import { ContactCreateBulkInstance } from './schemas';
+import { ContactCreateBulkPayload } from './schemas';
+import { ContactCreateBulkTemplate } from './schemas';
+import { ContactCreateCommand } from './schemas';
+import { ContactCreatePayloadData } from './schemas';
+import { ContactCreateWorkerPayload } from './schemas';
 import { ContactHandle } from './schemas';
 import { Contact } from './schemas';
 import { ContactSchema } from './schemas';
@@ -50,6 +58,8 @@ import { ContactVerificationApi } from './schemas';
 import { ContactVerificationEmail } from './schemas';
 import { ContactVerification } from './schemas';
 import { ContactsBase } from './schemas';
+import { CreateJobBatch } from './schemas';
+import { CreateReportReq } from './schemas';
 import { DeletedEvent } from './schemas';
 import { DnsChange } from './schemas';
 import { DnsChanges } from './schemas';
@@ -63,17 +73,46 @@ import { DnsRrsetPatchOp } from './schemas';
 import { DnsRrset } from './schemas';
 import { DnsRrsetWithOneRecordPatch } from './schemas';
 import { DnsZoneCreate } from './schemas';
+import { DnsZoneCreateBulkCommand } from './schemas';
+import { DnsZoneCreateBulkInstance } from './schemas';
+import { DnsZoneCreateBulkPayload } from './schemas';
+import { DnsZoneCreateBulkTemplate } from './schemas';
+import { DnsZoneCreateCommand } from './schemas';
+import { DnsZoneCreatePayloadData } from './schemas';
+import { DnsZoneCreateWorkerPayload } from './schemas';
+import { DnsZonePatchRecordsBulkCommand } from './schemas';
+import { DnsZonePatchRecordsBulkInstance } from './schemas';
+import { DnsZonePatchRecordsBulkPayload } from './schemas';
+import { DnsZonePatchRecordsWorkerPayload } from './schemas';
+import { DnsZonePatchRrsetsBulkCommand } from './schemas';
+import { DnsZonePatchRrsetsBulkInstance } from './schemas';
+import { DnsZonePatchRrsetsBulkPayload } from './schemas';
+import { DnsZonePatchRrsetsWorkerPayload } from './schemas';
 import { DnsZoneRecordsPatchOps } from './schemas';
 import { DnsZone } from './schemas';
 import { DnsZoneRrsetsCreate } from './schemas';
 import { DnsZoneRrsetsPatchOps } from './schemas';
 import { DnsZoneSummary } from './schemas';
+import { DnsZoneUpdateBulkCommand } from './schemas';
+import { DnsZoneUpdateBulkInstance } from './schemas';
+import { DnsZoneUpdateBulkPayload } from './schemas';
+import { DnsZoneUpdateBulkTemplate } from './schemas';
+import { DnsZoneUpdateCommand } from './schemas';
+import { DnsZoneUpdatePayloadData } from './schemas';
+import { DnsZoneUpdateWorkerPayload } from './schemas';
 import { DomainAvailability } from './schemas';
 import { DomainAvailabilityMeta } from './schemas';
 import { DomainAvailabilityRequest } from './schemas';
 import { DomainCheck } from './schemas';
 import { DomainContact } from './schemas';
 import { DomainCreate } from './schemas';
+import { DomainCreateBulkCommand } from './schemas';
+import { DomainCreateBulkInstance } from './schemas';
+import { DomainCreateBulkPayload } from './schemas';
+import { DomainCreateBulkTemplate } from './schemas';
+import { DomainCreateCommand } from './schemas';
+import { DomainCreatePayloadData } from './schemas';
+import { DomainCreateWorkerPayload } from './schemas';
 import { DomainDnssecDataCreate } from './schemas';
 import { DomainDnssecData } from './schemas';
 import { DomainForward } from './schemas';
@@ -112,10 +151,24 @@ import { DomainStatus2 } from './schemas';
 import { DomainStatusesBase } from './schemas';
 import { DomainSummaryData } from './schemas';
 import { DomainSummary } from './schemas';
+import { DomainTransferBulkCommand } from './schemas';
+import { DomainTransferBulkInstance } from './schemas';
+import { DomainTransferBulkPayload } from './schemas';
+import { DomainTransferBulkTemplate } from './schemas';
+import { DomainTransferCommand } from './schemas';
 import { DomainTransferIn } from './schemas';
+import { DomainTransferPayloadData } from './schemas';
+import { DomainTransferWorkerPayload } from './schemas';
 import { DomainTransitRequest } from './schemas';
 import { DomainTransit } from './schemas';
 import { DomainUpdate } from './schemas';
+import { DomainUpdateBulkCommand } from './schemas';
+import { DomainUpdateBulkInstance } from './schemas';
+import { DomainUpdateBulkPayload } from './schemas';
+import { DomainUpdateBulkTemplate } from './schemas';
+import { DomainUpdateCommand } from './schemas';
+import { DomainUpdatePayloadData } from './schemas';
+import { DomainUpdateWorkerPayload } from './schemas';
 import { DomainWithdrawRequest } from './schemas';
 import { DomainWithdraw } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
@@ -147,6 +200,11 @@ import { Invoice } from './schemas';
 import { IpRestrictionCreate } from './schemas';
 import { IpRestriction } from './schemas';
 import { IpRestrictionUpdate } from './schemas';
+import { JobBatchMetadata } from './schemas';
+import { JobBatchRequest } from './schemas';
+import { JobBatchStatus } from './schemas';
+import { JobCountsByStatus } from './schemas';
+import { Job } from './schemas';
 import { LaunchPhaseBase } from './schemas';
 import { LaunchPhasesBase } from './schemas';
 import { LegalRequirementBase } from './schemas';
@@ -163,7 +221,26 @@ import { OrganizationToken } from './schemas';
 import { OrganizationUpdate } from './schemas';
 import { OrganizationWithBillingData } from './schemas';
 import { PaginationMetadata } from './schemas';
+import { ParkingActionPayloadData } from './schemas';
 import { ParkingAgreementAcceptance } from './schemas';
+import { ParkingCreateBulkCommand } from './schemas';
+import { ParkingCreateBulkInstance } from './schemas';
+import { ParkingCreateBulkPayload } from './schemas';
+import { ParkingCreateBulkTemplate } from './schemas';
+import { ParkingCreatePayloadData } from './schemas';
+import { ParkingCreateWorkerPayload } from './schemas';
+import { ParkingDeleteBulkCommand } from './schemas';
+import { ParkingDeleteBulkInstance } from './schemas';
+import { ParkingDeleteBulkPayload } from './schemas';
+import { ParkingDeleteWorkerPayload } from './schemas';
+import { ParkingDisableBulkCommand } from './schemas';
+import { ParkingDisableBulkInstance } from './schemas';
+import { ParkingDisableBulkPayload } from './schemas';
+import { ParkingDisableWorkerPayload } from './schemas';
+import { ParkingEnableBulkCommand } from './schemas';
+import { ParkingEnableBulkInstance } from './schemas';
+import { ParkingEnableBulkPayload } from './schemas';
+import { ParkingEnableWorkerPayload } from './schemas';
 import { ParkingMetrics } from './schemas';
 import { Parking } from './schemas';
 import { ParkingSignupRequest } from './schemas';
@@ -180,6 +257,8 @@ import { PriceInfo } from './schemas';
 import { PricingPeriod } from './schemas';
 import { Problem } from './schemas';
 import { PublicAuthRequestForm } from './schemas';
+import { PublicReportListRes } from './schemas';
+import { PublicReportRes } from './schemas';
 import { RdapBase } from './schemas';
 import { ReferrerStatsBucket } from './schemas';
 import { RegistryLockBase } from './schemas';
@@ -1150,6 +1229,84 @@ export const KEYS_BROWSER_STATS_BUCKET = [
   KEY_BROWSER_STATS_BUCKET_TOTAL,
   KEY_BROWSER_STATS_BUCKET_UNIQUE,
 ] as const satisfies (keyof BrowserStatsBucket)[];
+
+/**
+ * Error
+ *
+ * Error message
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `error` property of CommandError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = commanderror[KEY_COMMAND_ERROR_ERROR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_COMMAND_ERROR_ERROR;
+ * const value = commanderror[propertyName];
+ * ```
+ *
+ * @see {@link CommandError} - The TypeScript type definition
+ * @see {@link KEYS_COMMAND_ERROR} - Array of all keys for this type
+ */
+export const KEY_COMMAND_ERROR_ERROR: keyof CommandError = 'error';
+/**
+ * Index
+ *
+ * Index of the failed command in the request
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `index` property of CommandError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = commanderror[KEY_COMMAND_ERROR_INDEX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_COMMAND_ERROR_INDEX;
+ * const value = commanderror[propertyName];
+ * ```
+ *
+ * @see {@link CommandError} - The TypeScript type definition
+ * @see {@link KEYS_COMMAND_ERROR} - Array of all keys for this type
+ */
+export const KEY_COMMAND_ERROR_INDEX: keyof CommandError = 'index';
+
+/**
+ * Array of all CommandError property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for CommandError objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_COMMAND_ERROR) {
+ *   console.log(`Property: ${key}, Value: ${commanderror[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_COMMAND_ERROR.includes(someKey);
+ * ```
+ *
+ * @see {@link CommandError} - The TypeScript type definition
+ */
+export const KEYS_COMMAND_ERROR = [
+  KEY_COMMAND_ERROR_ERROR,
+  KEY_COMMAND_ERROR_INDEX,
+] as const satisfies (keyof CommandError)[];
 
 /**
  * Conditions
@@ -2492,6 +2649,1338 @@ export const KEYS_CONTACT_CREATE = [
   KEY_CONTACT_CREATE_STREET,
   KEY_CONTACT_CREATE_TITLE,
 ] as const satisfies (keyof ContactCreate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of ContactCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkcommand[KEY_CONTACT_CREATE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_COMMAND_COMMAND;
+ * const value = contactcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_COMMAND_COMMAND: keyof ContactCreateBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of ContactCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkcommand[KEY_CONTACT_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = contactcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof ContactCreateBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk contact creation payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of ContactCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkcommand[KEY_CONTACT_CREATE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_COMMAND_PAYLOAD;
+ * const value = contactcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_COMMAND_PAYLOAD: keyof ContactCreateBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of ContactCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkcommand[KEY_CONTACT_CREATE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_COMMAND_VERSION;
+ * const value = contactcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_COMMAND_VERSION: keyof ContactCreateBulkCommand = 'version';
+
+/**
+ * Array of all ContactCreateBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreateBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${contactcreatebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreateBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_BULK_COMMAND = [
+  KEY_CONTACT_CREATE_BULK_COMMAND_COMMAND,
+  KEY_CONTACT_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_CONTACT_CREATE_BULK_COMMAND_PAYLOAD,
+  KEY_CONTACT_CREATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof ContactCreateBulkCommand)[];
+
+/**
+ * City
+ *
+ * City
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_CITY;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_CITY: keyof ContactCreateBulkInstance = 'city';
+/**
+ * Country
+ *
+ * Override country for this contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_COUNTRY;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_COUNTRY: keyof ContactCreateBulkInstance = 'country';
+/**
+ * Disclose
+ *
+ * Override disclose setting for this contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disclose` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_DISCLOSE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_DISCLOSE;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_DISCLOSE: keyof ContactCreateBulkInstance = 'disclose';
+/**
+ * Email
+ *
+ * Email address of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_EMAIL;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_EMAIL: keyof ContactCreateBulkInstance = 'email';
+/**
+ * Fax
+ *
+ * Fax number in international format
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fax` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_FAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_FAX;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_FAX: keyof ContactCreateBulkInstance = 'fax';
+/**
+ * First Name
+ *
+ * First name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_FIRST_NAME;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_FIRST_NAME: keyof ContactCreateBulkInstance = 'first_name';
+/**
+ * Last Name
+ *
+ * Last name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_LAST_NAME;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_LAST_NAME: keyof ContactCreateBulkInstance = 'last_name';
+/**
+ * Org
+ *
+ * Override organization for this contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `org` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_ORG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_ORG;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_ORG: keyof ContactCreateBulkInstance = 'org';
+/**
+ * Phone
+ *
+ * Phone number in international format
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_PHONE;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_PHONE: keyof ContactCreateBulkInstance = 'phone';
+/**
+ * Postal Code
+ *
+ * Postal code
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_POSTAL_CODE;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_POSTAL_CODE: keyof ContactCreateBulkInstance = 'postal_code';
+/**
+ * State
+ *
+ * Override state for this contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_STATE;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_STATE: keyof ContactCreateBulkInstance = 'state';
+/**
+ * Street
+ *
+ * Street address
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `street` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_STREET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_STREET;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_STREET: keyof ContactCreateBulkInstance = 'street';
+/**
+ * Title
+ *
+ * Override title for this contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ContactCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkinstance[KEY_CONTACT_CREATE_BULK_INSTANCE_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_INSTANCE_TITLE;
+ * const value = contactcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_INSTANCE_TITLE: keyof ContactCreateBulkInstance = 'title';
+
+/**
+ * Array of all ContactCreateBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreateBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${contactcreatebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_BULK_INSTANCE = [
+  KEY_CONTACT_CREATE_BULK_INSTANCE_CITY,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_COUNTRY,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_DISCLOSE,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_EMAIL,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_FAX,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_FIRST_NAME,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_LAST_NAME,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_ORG,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_PHONE,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_POSTAL_CODE,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_STATE,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_STREET,
+  KEY_CONTACT_CREATE_BULK_INSTANCE_TITLE,
+] as const satisfies (keyof ContactCreateBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of contacts to create (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of ContactCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkpayload[KEY_CONTACT_CREATE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_PAYLOAD_INSTANCES;
+ * const value = contactcreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_PAYLOAD_INSTANCES: keyof ContactCreateBulkPayload = 'instances';
+/**
+ * template property
+ *
+ * Shared settings for all contacts
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `template` property of ContactCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulkpayload[KEY_CONTACT_CREATE_BULK_PAYLOAD_TEMPLATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_PAYLOAD_TEMPLATE;
+ * const value = contactcreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_PAYLOAD_TEMPLATE: keyof ContactCreateBulkPayload = 'template';
+
+/**
+ * Array of all ContactCreateBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreateBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${contactcreatebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreateBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_BULK_PAYLOAD = [
+  KEY_CONTACT_CREATE_BULK_PAYLOAD_INSTANCES,
+  KEY_CONTACT_CREATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof ContactCreateBulkPayload)[];
+
+/**
+ * Country
+ *
+ * The country of the contacts
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of ContactCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulktemplate[KEY_CONTACT_CREATE_BULK_TEMPLATE_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_TEMPLATE_COUNTRY;
+ * const value = contactcreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_TEMPLATE_COUNTRY: keyof ContactCreateBulkTemplate = 'country';
+/**
+ * Disclose
+ *
+ * Whether contact details should be disclosed in WHOIS
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disclose` property of ContactCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulktemplate[KEY_CONTACT_CREATE_BULK_TEMPLATE_DISCLOSE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_TEMPLATE_DISCLOSE;
+ * const value = contactcreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_TEMPLATE_DISCLOSE: keyof ContactCreateBulkTemplate = 'disclose';
+/**
+ * Org
+ *
+ * Organization name
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `org` property of ContactCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulktemplate[KEY_CONTACT_CREATE_BULK_TEMPLATE_ORG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_TEMPLATE_ORG;
+ * const value = contactcreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_TEMPLATE_ORG: keyof ContactCreateBulkTemplate = 'org';
+/**
+ * State
+ *
+ * State/province
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of ContactCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulktemplate[KEY_CONTACT_CREATE_BULK_TEMPLATE_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_TEMPLATE_STATE;
+ * const value = contactcreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_TEMPLATE_STATE: keyof ContactCreateBulkTemplate = 'state';
+/**
+ * Title
+ *
+ * Contact title
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ContactCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatebulktemplate[KEY_CONTACT_CREATE_BULK_TEMPLATE_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_BULK_TEMPLATE_TITLE;
+ * const value = contactcreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_BULK_TEMPLATE_TITLE: keyof ContactCreateBulkTemplate = 'title';
+
+/**
+ * Array of all ContactCreateBulkTemplate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreateBulkTemplate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_BULK_TEMPLATE) {
+ *   console.log(`Property: ${key}, Value: ${contactcreatebulktemplate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_BULK_TEMPLATE.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreateBulkTemplate} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_BULK_TEMPLATE = [
+  KEY_CONTACT_CREATE_BULK_TEMPLATE_COUNTRY,
+  KEY_CONTACT_CREATE_BULK_TEMPLATE_DISCLOSE,
+  KEY_CONTACT_CREATE_BULK_TEMPLATE_ORG,
+  KEY_CONTACT_CREATE_BULK_TEMPLATE_STATE,
+  KEY_CONTACT_CREATE_BULK_TEMPLATE_TITLE,
+] as const satisfies (keyof ContactCreateBulkTemplate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of ContactCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatecommand[KEY_CONTACT_CREATE_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_COMMAND_COMMAND;
+ * const value = contactcreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_COMMAND_COMMAND: keyof ContactCreateCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of ContactCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatecommand[KEY_CONTACT_CREATE_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_COMMAND_IDEMPOTENCY_KEY;
+ * const value = contactcreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_COMMAND_IDEMPOTENCY_KEY: keyof ContactCreateCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Contact creation payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of ContactCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatecommand[KEY_CONTACT_CREATE_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_COMMAND_PAYLOAD;
+ * const value = contactcreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_COMMAND_PAYLOAD: keyof ContactCreateCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of ContactCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatecommand[KEY_CONTACT_CREATE_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_COMMAND_VERSION;
+ * const value = contactcreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_COMMAND_VERSION: keyof ContactCreateCommand = 'version';
+
+/**
+ * Array of all ContactCreateCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreateCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${contactcreatecommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreateCommand} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_COMMAND = [
+  KEY_CONTACT_CREATE_COMMAND_COMMAND,
+  KEY_CONTACT_CREATE_COMMAND_IDEMPOTENCY_KEY,
+  KEY_CONTACT_CREATE_COMMAND_PAYLOAD,
+  KEY_CONTACT_CREATE_COMMAND_VERSION,
+] as const satisfies (keyof ContactCreateCommand)[];
+
+/**
+ * City
+ *
+ * The city of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `city` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_CITY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_CITY;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_CITY: keyof ContactCreatePayloadData = 'city';
+/**
+ * Country
+ *
+ * The country of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `country` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_COUNTRY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_COUNTRY;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_COUNTRY: keyof ContactCreatePayloadData = 'country';
+/**
+ * Disclose
+ *
+ * Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `disclose` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_DISCLOSE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_DISCLOSE;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_DISCLOSE: keyof ContactCreatePayloadData = 'disclose';
+/**
+ * Email
+ *
+ * The email of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_EMAIL;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_EMAIL: keyof ContactCreatePayloadData = 'email';
+/**
+ * Fax
+ *
+ * The contacts's fax number
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fax` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_FAX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_FAX;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_FAX: keyof ContactCreatePayloadData = 'fax';
+/**
+ * First Name
+ *
+ * The first name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `first_name` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_FIRST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_FIRST_NAME;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_FIRST_NAME: keyof ContactCreatePayloadData = 'first_name';
+/**
+ * Last Name
+ *
+ * The last name of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_name` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_LAST_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_LAST_NAME;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_LAST_NAME: keyof ContactCreatePayloadData = 'last_name';
+/**
+ * Org
+ *
+ * The organization of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `org` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_ORG];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_ORG;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_ORG: keyof ContactCreatePayloadData = 'org';
+/**
+ * Phone
+ *
+ * The contact's phone number
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `phone` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_PHONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_PHONE;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_PHONE: keyof ContactCreatePayloadData = 'phone';
+/**
+ * Postal Code
+ *
+ * The postal code of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `postal_code` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_POSTAL_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_POSTAL_CODE;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_POSTAL_CODE: keyof ContactCreatePayloadData = 'postal_code';
+/**
+ * State
+ *
+ * The state of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_STATE;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_STATE: keyof ContactCreatePayloadData = 'state';
+/**
+ * Street
+ *
+ * The address of the contact
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `street` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_STREET];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_STREET;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_STREET: keyof ContactCreatePayloadData = 'street';
+/**
+ * Title
+ *
+ * The title of the contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ContactCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreatepayloaddata[KEY_CONTACT_CREATE_PAYLOAD_DATA_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_PAYLOAD_DATA_TITLE;
+ * const value = contactcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_PAYLOAD_DATA_TITLE: keyof ContactCreatePayloadData = 'title';
+
+/**
+ * Array of all ContactCreatePayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreatePayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${contactcreatepayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreatePayloadData} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_PAYLOAD_DATA = [
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_CITY,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_COUNTRY,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_DISCLOSE,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_EMAIL,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_FAX,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_FIRST_NAME,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_LAST_NAME,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_ORG,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_PHONE,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_POSTAL_CODE,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_STATE,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_STREET,
+  KEY_CONTACT_CREATE_PAYLOAD_DATA_TITLE,
+] as const satisfies (keyof ContactCreatePayloadData)[];
+
+/**
+ * contact property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact` property of ContactCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreateworkerpayload[KEY_CONTACT_CREATE_WORKER_PAYLOAD_CONTACT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_WORKER_PAYLOAD_CONTACT;
+ * const value = contactcreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_WORKER_PAYLOAD_CONTACT: keyof ContactCreateWorkerPayload = 'contact';
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of ContactCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreateworkerpayload[KEY_CONTACT_CREATE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_WORKER_PAYLOAD_OPERATION;
+ * const value = contactcreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_WORKER_PAYLOAD_OPERATION: keyof ContactCreateWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ContactCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreateworkerpayload[KEY_CONTACT_CREATE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_WORKER_PAYLOAD_TYPE;
+ * const value = contactcreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_WORKER_PAYLOAD_TYPE: keyof ContactCreateWorkerPayload = 'type';
+
+/**
+ * Array of all ContactCreateWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreateWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${contactcreateworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreateWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_WORKER_PAYLOAD = [
+  KEY_CONTACT_CREATE_WORKER_PAYLOAD_CONTACT,
+  KEY_CONTACT_CREATE_WORKER_PAYLOAD_OPERATION,
+  KEY_CONTACT_CREATE_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof ContactCreateWorkerPayload)[];
 
 /**
  * Attributes
@@ -4569,6 +6058,241 @@ export const KEYS_CONTACTS_BASE = [
 ] as const satisfies (keyof ContactsBase)[];
 
 /**
+ * Batch Id
+ *
+ * TypeID identifying this batch
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `batch_id` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_BATCH_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_BATCH_ID;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_BATCH_ID: keyof CreateJobBatch = 'batch_id';
+/**
+ * Errors
+ *
+ * Details of failed commands
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `errors` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_ERRORS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_ERRORS;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_ERRORS: keyof CreateJobBatch = 'errors';
+/**
+ * Jobs Created
+ *
+ * Number of jobs successfully created
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `jobs_created` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_JOBS_CREATED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_JOBS_CREATED;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_JOBS_CREATED: keyof CreateJobBatch = 'jobs_created';
+/**
+ * Jobs Failed
+ *
+ * Number of jobs that failed to create
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `jobs_failed` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_JOBS_FAILED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_JOBS_FAILED;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_JOBS_FAILED: keyof CreateJobBatch = 'jobs_failed';
+/**
+ * Status Url
+ *
+ * URL to check batch status
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_url` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_STATUS_URL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_STATUS_URL;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_STATUS_URL: keyof CreateJobBatch = 'status_url';
+/**
+ * Total Commands
+ *
+ * Total commands in the batch
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_commands` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_TOTAL_COMMANDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_TOTAL_COMMANDS;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_TOTAL_COMMANDS: keyof CreateJobBatch = 'total_commands';
+
+/**
+ * Array of all CreateJobBatch property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for CreateJobBatch objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CREATE_JOB_BATCH) {
+ *   console.log(`Property: ${key}, Value: ${createjobbatch[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CREATE_JOB_BATCH.includes(someKey);
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ */
+export const KEYS_CREATE_JOB_BATCH = [
+  KEY_CREATE_JOB_BATCH_BATCH_ID,
+  KEY_CREATE_JOB_BATCH_ERRORS,
+  KEY_CREATE_JOB_BATCH_JOBS_CREATED,
+  KEY_CREATE_JOB_BATCH_JOBS_FAILED,
+  KEY_CREATE_JOB_BATCH_STATUS_URL,
+  KEY_CREATE_JOB_BATCH_TOTAL_COMMANDS,
+] as const satisfies (keyof CreateJobBatch)[];
+
+/**
+ * report_type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `report_type` property of CreateReportReq objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createreportreq[KEY_CREATE_REPORT_REQ_REPORT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_REPORT_REQ_REPORT_TYPE;
+ * const value = createreportreq[propertyName];
+ * ```
+ *
+ * @see {@link CreateReportReq} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_REPORT_REQ} - Array of all keys for this type
+ */
+export const KEY_CREATE_REPORT_REQ_REPORT_TYPE: keyof CreateReportReq = 'report_type';
+
+/**
+ * Array of all CreateReportReq property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for CreateReportReq objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CREATE_REPORT_REQ) {
+ *   console.log(`Property: ${key}, Value: ${createreportreq[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CREATE_REPORT_REQ.includes(someKey);
+ * ```
+ *
+ * @see {@link CreateReportReq} - The TypeScript type definition
+ */
+export const KEYS_CREATE_REPORT_REQ = [
+  KEY_CREATE_REPORT_REQ_REPORT_TYPE,
+] as const satisfies (keyof CreateReportReq)[];
+
+/**
  * date property
  *
  *
@@ -6118,6 +7842,1385 @@ export const KEYS_DNS_ZONE_CREATE = [
 ] as const satisfies (keyof DnsZoneCreate)[];
 
 /**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DnsZoneCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkcommand[KEY_DNS_ZONE_CREATE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_COMMAND_COMMAND;
+ * const value = dnszonecreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_COMMAND_COMMAND: keyof DnsZoneCreateBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DnsZoneCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkcommand[KEY_DNS_ZONE_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = dnszonecreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof DnsZoneCreateBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk DNS zone creation payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DnsZoneCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkcommand[KEY_DNS_ZONE_CREATE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_COMMAND_PAYLOAD;
+ * const value = dnszonecreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_COMMAND_PAYLOAD: keyof DnsZoneCreateBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DnsZoneCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkcommand[KEY_DNS_ZONE_CREATE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_COMMAND_VERSION;
+ * const value = dnszonecreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_COMMAND_VERSION: keyof DnsZoneCreateBulkCommand = 'version';
+
+/**
+ * Array of all DnsZoneCreateBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreateBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreatebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_BULK_COMMAND = [
+  KEY_DNS_ZONE_CREATE_BULK_COMMAND_COMMAND,
+  KEY_DNS_ZONE_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DNS_ZONE_CREATE_BULK_COMMAND_PAYLOAD,
+  KEY_DNS_ZONE_CREATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DnsZoneCreateBulkCommand)[];
+
+/**
+ * Name
+ *
+ * The DNS zone name (e.g., example.com)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsZoneCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkinstance[KEY_DNS_ZONE_CREATE_BULK_INSTANCE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_INSTANCE_NAME;
+ * const value = dnszonecreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_INSTANCE_NAME: keyof DnsZoneCreateBulkInstance = 'name';
+/**
+ * Rrsets
+ *
+ * Override RRsets for this zone
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkinstance[KEY_DNS_ZONE_CREATE_BULK_INSTANCE_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_INSTANCE_RRSETS;
+ * const value = dnszonecreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_INSTANCE_RRSETS: keyof DnsZoneCreateBulkInstance = 'rrsets';
+
+/**
+ * Array of all DnsZoneCreateBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreateBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreatebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_BULK_INSTANCE = [
+  KEY_DNS_ZONE_CREATE_BULK_INSTANCE_NAME,
+  KEY_DNS_ZONE_CREATE_BULK_INSTANCE_RRSETS,
+] as const satisfies (keyof DnsZoneCreateBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of zones to create (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of DnsZoneCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkpayload[KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_INSTANCES;
+ * const value = dnszonecreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_INSTANCES: keyof DnsZoneCreateBulkPayload = 'instances';
+/**
+ * template property
+ *
+ * Shared RRsets for all zones
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `template` property of DnsZoneCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkpayload[KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_TEMPLATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_TEMPLATE;
+ * const value = dnszonecreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_TEMPLATE: keyof DnsZoneCreateBulkPayload = 'template';
+
+/**
+ * Array of all DnsZoneCreateBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreateBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreatebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_BULK_PAYLOAD = [
+  KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_INSTANCES,
+  KEY_DNS_ZONE_CREATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DnsZoneCreateBulkPayload)[];
+
+/**
+ * Rrsets
+ *
+ * DNS record sets to create
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulktemplate[KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_RRSETS;
+ * const value = dnszonecreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_RRSETS: keyof DnsZoneCreateBulkTemplate = 'rrsets';
+
+/**
+ * Array of all DnsZoneCreateBulkTemplate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreateBulkTemplate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_BULK_TEMPLATE) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreatebulktemplate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_BULK_TEMPLATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkTemplate} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_BULK_TEMPLATE = [
+  KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_RRSETS,
+] as const satisfies (keyof DnsZoneCreateBulkTemplate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DnsZoneCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatecommand[KEY_DNS_ZONE_CREATE_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_COMMAND_COMMAND;
+ * const value = dnszonecreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_COMMAND_COMMAND: keyof DnsZoneCreateCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DnsZoneCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatecommand[KEY_DNS_ZONE_CREATE_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_COMMAND_IDEMPOTENCY_KEY;
+ * const value = dnszonecreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_COMMAND_IDEMPOTENCY_KEY: keyof DnsZoneCreateCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * DNS zone creation payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DnsZoneCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatecommand[KEY_DNS_ZONE_CREATE_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_COMMAND_PAYLOAD;
+ * const value = dnszonecreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_COMMAND_PAYLOAD: keyof DnsZoneCreateCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DnsZoneCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatecommand[KEY_DNS_ZONE_CREATE_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_COMMAND_VERSION;
+ * const value = dnszonecreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_COMMAND_VERSION: keyof DnsZoneCreateCommand = 'version';
+
+/**
+ * Array of all DnsZoneCreateCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreateCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreatecommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreateCommand} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_COMMAND = [
+  KEY_DNS_ZONE_CREATE_COMMAND_COMMAND,
+  KEY_DNS_ZONE_CREATE_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DNS_ZONE_CREATE_COMMAND_PAYLOAD,
+  KEY_DNS_ZONE_CREATE_COMMAND_VERSION,
+] as const satisfies (keyof DnsZoneCreateCommand)[];
+
+/**
+ * dnssec_status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZoneCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatepayloaddata[KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_DNSSEC_STATUS;
+ * const value = dnszonecreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_DNSSEC_STATUS: keyof DnsZoneCreatePayloadData = 'dnssec_status';
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsZoneCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatepayloaddata[KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_NAME;
+ * const value = dnszonecreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_NAME: keyof DnsZoneCreatePayloadData = 'name';
+/**
+ * Rrsets
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatepayloaddata[KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_RRSETS;
+ * const value = dnszonecreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_RRSETS: keyof DnsZoneCreatePayloadData = 'rrsets';
+
+/**
+ * Array of all DnsZoneCreatePayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreatePayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreatepayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreatePayloadData} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA = [
+  KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_DNSSEC_STATUS,
+  KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_NAME,
+  KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_RRSETS,
+] as const satisfies (keyof DnsZoneCreatePayloadData)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of DnsZoneCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreateworkerpayload[KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_OPERATION;
+ * const value = dnszonecreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_OPERATION: keyof DnsZoneCreateWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsZoneCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreateworkerpayload[KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_TYPE;
+ * const value = dnszonecreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_TYPE: keyof DnsZoneCreateWorkerPayload = 'type';
+/**
+ * zone property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone` property of DnsZoneCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreateworkerpayload[KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_ZONE;
+ * const value = dnszonecreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_ZONE: keyof DnsZoneCreateWorkerPayload = 'zone';
+
+/**
+ * Array of all DnsZoneCreateWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreateWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreateworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreateWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_WORKER_PAYLOAD = [
+  KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_OPERATION,
+  KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_TYPE,
+  KEY_DNS_ZONE_CREATE_WORKER_PAYLOAD_ZONE,
+] as const satisfies (keyof DnsZoneCreateWorkerPayload)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DnsZonePatchRecordsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsbulkcommand[KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_COMMAND;
+ * const value = dnszonepatchrecordsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_COMMAND: keyof DnsZonePatchRecordsBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DnsZonePatchRecordsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsbulkcommand[KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = dnszonepatchrecordsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_IDEMPOTENCY_KEY: keyof DnsZonePatchRecordsBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * DNS zone patch records bulk payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DnsZonePatchRecordsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsbulkcommand[KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_PAYLOAD;
+ * const value = dnszonepatchrecordsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_PAYLOAD: keyof DnsZonePatchRecordsBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DnsZonePatchRecordsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsbulkcommand[KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_VERSION;
+ * const value = dnszonepatchrecordsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_VERSION: keyof DnsZonePatchRecordsBulkCommand = 'version';
+
+/**
+ * Array of all DnsZonePatchRecordsBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRecordsBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrecordsbulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND = [
+  KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_COMMAND,
+  KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_PAYLOAD,
+  KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DnsZonePatchRecordsBulkCommand)[];
+
+/**
+ * Ops
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ops` property of DnsZonePatchRecordsBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsbulkinstance[KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_OPS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_OPS;
+ * const value = dnszonepatchrecordsbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_OPS: keyof DnsZonePatchRecordsBulkInstance = 'ops';
+/**
+ * Zone Name
+ *
+ * DNS zone name to patch
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_name` property of DnsZonePatchRecordsBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsbulkinstance[KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_ZONE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_ZONE_NAME;
+ * const value = dnszonepatchrecordsbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_ZONE_NAME: keyof DnsZonePatchRecordsBulkInstance = 'zone_name';
+
+/**
+ * Array of all DnsZonePatchRecordsBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRecordsBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrecordsbulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE = [
+  KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_OPS,
+  KEY_DNS_ZONE_PATCH_RECORDS_BULK_INSTANCE_ZONE_NAME,
+] as const satisfies (keyof DnsZonePatchRecordsBulkInstance)[];
+
+/**
+ * Instances
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of DnsZonePatchRecordsBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsbulkpayload[KEY_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD_INSTANCES;
+ * const value = dnszonepatchrecordsbulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD_INSTANCES: keyof DnsZonePatchRecordsBulkPayload = 'instances';
+
+/**
+ * Array of all DnsZonePatchRecordsBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRecordsBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrecordsbulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD = [
+  KEY_DNS_ZONE_PATCH_RECORDS_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof DnsZonePatchRecordsBulkPayload)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of DnsZonePatchRecordsWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsworkerpayload[KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_OPERATION;
+ * const value = dnszonepatchrecordsworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_OPERATION: keyof DnsZonePatchRecordsWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsZonePatchRecordsWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsworkerpayload[KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_TYPE;
+ * const value = dnszonepatchrecordsworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_TYPE: keyof DnsZonePatchRecordsWorkerPayload = 'type';
+/**
+ * zone property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone` property of DnsZonePatchRecordsWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrecordsworkerpayload[KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_ZONE;
+ * const value = dnszonepatchrecordsworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_ZONE: keyof DnsZonePatchRecordsWorkerPayload = 'zone';
+
+/**
+ * Array of all DnsZonePatchRecordsWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRecordsWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrecordsworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD = [
+  KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_OPERATION,
+  KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_TYPE,
+  KEY_DNS_ZONE_PATCH_RECORDS_WORKER_PAYLOAD_ZONE,
+] as const satisfies (keyof DnsZonePatchRecordsWorkerPayload)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DnsZonePatchRrsetsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsbulkcommand[KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_COMMAND;
+ * const value = dnszonepatchrrsetsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_COMMAND: keyof DnsZonePatchRrsetsBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DnsZonePatchRrsetsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsbulkcommand[KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = dnszonepatchrrsetsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_IDEMPOTENCY_KEY: keyof DnsZonePatchRrsetsBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * DNS zone patch rrsets bulk payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DnsZonePatchRrsetsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsbulkcommand[KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_PAYLOAD;
+ * const value = dnszonepatchrrsetsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_PAYLOAD: keyof DnsZonePatchRrsetsBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DnsZonePatchRrsetsBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsbulkcommand[KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_VERSION;
+ * const value = dnszonepatchrrsetsbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_VERSION: keyof DnsZonePatchRrsetsBulkCommand = 'version';
+
+/**
+ * Array of all DnsZonePatchRrsetsBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRrsetsBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrrsetsbulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND = [
+  KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_COMMAND,
+  KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_PAYLOAD,
+  KEY_DNS_ZONE_PATCH_RRSETS_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DnsZonePatchRrsetsBulkCommand)[];
+
+/**
+ * Ops
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ops` property of DnsZonePatchRrsetsBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsbulkinstance[KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_OPS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_OPS;
+ * const value = dnszonepatchrrsetsbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_OPS: keyof DnsZonePatchRrsetsBulkInstance = 'ops';
+/**
+ * Zone Name
+ *
+ * DNS zone name to patch
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_name` property of DnsZonePatchRrsetsBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsbulkinstance[KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_ZONE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_ZONE_NAME;
+ * const value = dnszonepatchrrsetsbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_ZONE_NAME: keyof DnsZonePatchRrsetsBulkInstance = 'zone_name';
+
+/**
+ * Array of all DnsZonePatchRrsetsBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRrsetsBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrrsetsbulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE = [
+  KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_OPS,
+  KEY_DNS_ZONE_PATCH_RRSETS_BULK_INSTANCE_ZONE_NAME,
+] as const satisfies (keyof DnsZonePatchRrsetsBulkInstance)[];
+
+/**
+ * Instances
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of DnsZonePatchRrsetsBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsbulkpayload[KEY_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD_INSTANCES;
+ * const value = dnszonepatchrrsetsbulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD_INSTANCES: keyof DnsZonePatchRrsetsBulkPayload = 'instances';
+
+/**
+ * Array of all DnsZonePatchRrsetsBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRrsetsBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrrsetsbulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD = [
+  KEY_DNS_ZONE_PATCH_RRSETS_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof DnsZonePatchRrsetsBulkPayload)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of DnsZonePatchRrsetsWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsworkerpayload[KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_OPERATION;
+ * const value = dnszonepatchrrsetsworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_OPERATION: keyof DnsZonePatchRrsetsWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsZonePatchRrsetsWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsworkerpayload[KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_TYPE;
+ * const value = dnszonepatchrrsetsworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_TYPE: keyof DnsZonePatchRrsetsWorkerPayload = 'type';
+/**
+ * zone property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone` property of DnsZonePatchRrsetsWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonepatchrrsetsworkerpayload[KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_ZONE;
+ * const value = dnszonepatchrrsetsworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_ZONE: keyof DnsZonePatchRrsetsWorkerPayload = 'zone';
+
+/**
+ * Array of all DnsZonePatchRrsetsWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZonePatchRrsetsWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszonepatchrrsetsworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD = [
+  KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_OPERATION,
+  KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_TYPE,
+  KEY_DNS_ZONE_PATCH_RRSETS_WORKER_PAYLOAD_ZONE,
+] as const satisfies (keyof DnsZonePatchRrsetsWorkerPayload)[];
+
+/**
  * Ops
  *
  *
@@ -6524,6 +9627,671 @@ export const KEYS_DNS_ZONE_SUMMARY = [
   KEY_DNS_ZONE_SUMMARY_TOTAL_ZONES,
   KEY_DNS_ZONE_SUMMARY_ZONES_BY_DNSSEC,
 ] as const satisfies (keyof DnsZoneSummary)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DnsZoneUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkcommand[KEY_DNS_ZONE_UPDATE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_COMMAND_COMMAND;
+ * const value = dnszoneupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_COMMAND_COMMAND: keyof DnsZoneUpdateBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DnsZoneUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkcommand[KEY_DNS_ZONE_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = dnszoneupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof DnsZoneUpdateBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk DNS zone update payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DnsZoneUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkcommand[KEY_DNS_ZONE_UPDATE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_COMMAND_PAYLOAD;
+ * const value = dnszoneupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_COMMAND_PAYLOAD: keyof DnsZoneUpdateBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DnsZoneUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkcommand[KEY_DNS_ZONE_UPDATE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_COMMAND_VERSION;
+ * const value = dnszoneupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_COMMAND_VERSION: keyof DnsZoneUpdateBulkCommand = 'version';
+
+/**
+ * Array of all DnsZoneUpdateBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneUpdateBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_UPDATE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${dnszoneupdatebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_UPDATE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_UPDATE_BULK_COMMAND = [
+  KEY_DNS_ZONE_UPDATE_BULK_COMMAND_COMMAND,
+  KEY_DNS_ZONE_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DNS_ZONE_UPDATE_BULK_COMMAND_PAYLOAD,
+  KEY_DNS_ZONE_UPDATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DnsZoneUpdateBulkCommand)[];
+
+/**
+ * Name
+ *
+ * The DNS zone name (e.g., example.com)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsZoneUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkinstance[KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_NAME;
+ * const value = dnszoneupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_NAME: keyof DnsZoneUpdateBulkInstance = 'name';
+/**
+ * Rrsets
+ *
+ * Override RRsets for this zone
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkinstance[KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_RRSETS;
+ * const value = dnszoneupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_RRSETS: keyof DnsZoneUpdateBulkInstance = 'rrsets';
+
+/**
+ * Array of all DnsZoneUpdateBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneUpdateBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_UPDATE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${dnszoneupdatebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_UPDATE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_UPDATE_BULK_INSTANCE = [
+  KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_NAME,
+  KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_RRSETS,
+] as const satisfies (keyof DnsZoneUpdateBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of zones to update (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of DnsZoneUpdateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkpayload[KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_INSTANCES;
+ * const value = dnszoneupdatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_INSTANCES: keyof DnsZoneUpdateBulkPayload = 'instances';
+/**
+ * template property
+ *
+ * Shared RRsets for all zones
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `template` property of DnsZoneUpdateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkpayload[KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_TEMPLATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_TEMPLATE;
+ * const value = dnszoneupdatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_TEMPLATE: keyof DnsZoneUpdateBulkPayload = 'template';
+
+/**
+ * Array of all DnsZoneUpdateBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneUpdateBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_UPDATE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszoneupdatebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_UPDATE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_UPDATE_BULK_PAYLOAD = [
+  KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_INSTANCES,
+  KEY_DNS_ZONE_UPDATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DnsZoneUpdateBulkPayload)[];
+
+/**
+ * Rrsets
+ *
+ * DNS record sets to update
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneUpdateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulktemplate[KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_RRSETS;
+ * const value = dnszoneupdatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_RRSETS: keyof DnsZoneUpdateBulkTemplate = 'rrsets';
+
+/**
+ * Array of all DnsZoneUpdateBulkTemplate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneUpdateBulkTemplate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_UPDATE_BULK_TEMPLATE) {
+ *   console.log(`Property: ${key}, Value: ${dnszoneupdatebulktemplate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_UPDATE_BULK_TEMPLATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkTemplate} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_UPDATE_BULK_TEMPLATE = [
+  KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_RRSETS,
+] as const satisfies (keyof DnsZoneUpdateBulkTemplate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DnsZoneUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatecommand[KEY_DNS_ZONE_UPDATE_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_COMMAND_COMMAND;
+ * const value = dnszoneupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_COMMAND_COMMAND: keyof DnsZoneUpdateCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DnsZoneUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatecommand[KEY_DNS_ZONE_UPDATE_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_COMMAND_IDEMPOTENCY_KEY;
+ * const value = dnszoneupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_COMMAND_IDEMPOTENCY_KEY: keyof DnsZoneUpdateCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * DNS zone update payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DnsZoneUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatecommand[KEY_DNS_ZONE_UPDATE_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_COMMAND_PAYLOAD;
+ * const value = dnszoneupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_COMMAND_PAYLOAD: keyof DnsZoneUpdateCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DnsZoneUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatecommand[KEY_DNS_ZONE_UPDATE_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_COMMAND_VERSION;
+ * const value = dnszoneupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_COMMAND_VERSION: keyof DnsZoneUpdateCommand = 'version';
+
+/**
+ * Array of all DnsZoneUpdateCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneUpdateCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_UPDATE_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${dnszoneupdatecommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_UPDATE_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneUpdateCommand} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_UPDATE_COMMAND = [
+  KEY_DNS_ZONE_UPDATE_COMMAND_COMMAND,
+  KEY_DNS_ZONE_UPDATE_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DNS_ZONE_UPDATE_COMMAND_PAYLOAD,
+  KEY_DNS_ZONE_UPDATE_COMMAND_VERSION,
+] as const satisfies (keyof DnsZoneUpdateCommand)[];
+
+/**
+ * dnssec_status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZoneUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatepayloaddata[KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_DNSSEC_STATUS;
+ * const value = dnszoneupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_DNSSEC_STATUS: keyof DnsZoneUpdatePayloadData = 'dnssec_status';
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DnsZoneUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatepayloaddata[KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_NAME;
+ * const value = dnszoneupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_NAME: keyof DnsZoneUpdatePayloadData = 'name';
+/**
+ * Rrsets
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `rrsets` property of DnsZoneUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatepayloaddata[KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_RRSETS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_RRSETS;
+ * const value = dnszoneupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_RRSETS: keyof DnsZoneUpdatePayloadData = 'rrsets';
+
+/**
+ * Array of all DnsZoneUpdatePayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneUpdatePayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${dnszoneupdatepayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneUpdatePayloadData} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA = [
+  KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_DNSSEC_STATUS,
+  KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_NAME,
+  KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_RRSETS,
+] as const satisfies (keyof DnsZoneUpdatePayloadData)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of DnsZoneUpdateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdateworkerpayload[KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_OPERATION;
+ * const value = dnszoneupdateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_OPERATION: keyof DnsZoneUpdateWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsZoneUpdateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdateworkerpayload[KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_TYPE;
+ * const value = dnszoneupdateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_TYPE: keyof DnsZoneUpdateWorkerPayload = 'type';
+/**
+ * zone property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone` property of DnsZoneUpdateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdateworkerpayload[KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_ZONE;
+ * const value = dnszoneupdateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_ZONE: keyof DnsZoneUpdateWorkerPayload = 'zone';
+
+/**
+ * Array of all DnsZoneUpdateWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneUpdateWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_UPDATE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${dnszoneupdateworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_UPDATE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneUpdateWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_UPDATE_WORKER_PAYLOAD = [
+  KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_OPERATION,
+  KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_TYPE,
+  KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_ZONE,
+] as const satisfies (keyof DnsZoneUpdateWorkerPayload)[];
 
 /**
  * Domain
@@ -7060,6 +10828,1038 @@ export const KEYS_DOMAIN_CREATE = [
   KEY_DOMAIN_CREATE_PERIOD,
   KEY_DOMAIN_CREATE_RENEWAL_MODE,
 ] as const satisfies (keyof DomainCreate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DomainCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkcommand[KEY_DOMAIN_CREATE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_COMMAND_COMMAND;
+ * const value = domaincreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_COMMAND_COMMAND: keyof DomainCreateBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DomainCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkcommand[KEY_DOMAIN_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = domaincreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof DomainCreateBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk domain creation payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DomainCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkcommand[KEY_DOMAIN_CREATE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_COMMAND_PAYLOAD;
+ * const value = domaincreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_COMMAND_PAYLOAD: keyof DomainCreateBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DomainCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkcommand[KEY_DOMAIN_CREATE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_COMMAND_VERSION;
+ * const value = domaincreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_COMMAND_VERSION: keyof DomainCreateBulkCommand = 'version';
+
+/**
+ * Array of all DomainCreateBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreateBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${domaincreatebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreateBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_BULK_COMMAND = [
+  KEY_DOMAIN_CREATE_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_CREATE_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_CREATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainCreateBulkCommand)[];
+
+/**
+ * Auth Code
+ *
+ * Override auth code for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_AUTH_CODE;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_AUTH_CODE: keyof DomainCreateBulkInstance = 'auth_code';
+/**
+ * Contacts
+ *
+ * Override contacts for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_CONTACTS;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_CONTACTS: keyof DomainCreateBulkInstance = 'contacts';
+/**
+ * Create Zone
+ *
+ * Override create_zone for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_CREATE_ZONE;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_CREATE_ZONE: keyof DomainCreateBulkInstance = 'create_zone';
+/**
+ * Name
+ *
+ * The domain to be created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_NAME;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_NAME: keyof DomainCreateBulkInstance = 'name';
+/**
+ * Nameservers
+ *
+ * Override nameservers for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_NAMESERVERS;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_NAMESERVERS: keyof DomainCreateBulkInstance = 'nameservers';
+/**
+ * period property
+ *
+ * Override registration period for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_PERIOD;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_PERIOD: keyof DomainCreateBulkInstance = 'period';
+/**
+ * renewal_mode property
+ *
+ * Override renewal mode for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_RENEWAL_MODE;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_RENEWAL_MODE: keyof DomainCreateBulkInstance = 'renewal_mode';
+
+/**
+ * Array of all DomainCreateBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreateBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${domaincreatebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_BULK_INSTANCE = [
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_AUTH_CODE,
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_CONTACTS,
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_CREATE_ZONE,
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_NAME,
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_NAMESERVERS,
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_PERIOD,
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_RENEWAL_MODE,
+] as const satisfies (keyof DomainCreateBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of domains to create (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of DomainCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkpayload[KEY_DOMAIN_CREATE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_PAYLOAD_INSTANCES;
+ * const value = domaincreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_PAYLOAD_INSTANCES: keyof DomainCreateBulkPayload = 'instances';
+/**
+ * template property
+ *
+ * Shared settings for all domains
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `template` property of DomainCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkpayload[KEY_DOMAIN_CREATE_BULK_PAYLOAD_TEMPLATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_PAYLOAD_TEMPLATE;
+ * const value = domaincreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_PAYLOAD_TEMPLATE: keyof DomainCreateBulkPayload = 'template';
+
+/**
+ * Array of all DomainCreateBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreateBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${domaincreatebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreateBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_BULK_PAYLOAD = [
+  KEY_DOMAIN_CREATE_BULK_PAYLOAD_INSTANCES,
+  KEY_DOMAIN_CREATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DomainCreateBulkPayload)[];
+
+/**
+ * Auth Code
+ *
+ * The auth code used for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulktemplate[KEY_DOMAIN_CREATE_BULK_TEMPLATE_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_TEMPLATE_AUTH_CODE;
+ * const value = domaincreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_AUTH_CODE: keyof DomainCreateBulkTemplate = 'auth_code';
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulktemplate[KEY_DOMAIN_CREATE_BULK_TEMPLATE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_TEMPLATE_CONTACTS;
+ * const value = domaincreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_CONTACTS: keyof DomainCreateBulkTemplate = 'contacts';
+/**
+ * Create Zone
+ *
+ * Create a zone on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulktemplate[KEY_DOMAIN_CREATE_BULK_TEMPLATE_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_TEMPLATE_CREATE_ZONE;
+ * const value = domaincreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_CREATE_ZONE: keyof DomainCreateBulkTemplate = 'create_zone';
+/**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulktemplate[KEY_DOMAIN_CREATE_BULK_TEMPLATE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_TEMPLATE_NAMESERVERS;
+ * const value = domaincreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_NAMESERVERS: keyof DomainCreateBulkTemplate = 'nameservers';
+/**
+ * period property
+ *
+ * The registration period of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulktemplate[KEY_DOMAIN_CREATE_BULK_TEMPLATE_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_TEMPLATE_PERIOD;
+ * const value = domaincreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_PERIOD: keyof DomainCreateBulkTemplate = 'period';
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulktemplate[KEY_DOMAIN_CREATE_BULK_TEMPLATE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_TEMPLATE_RENEWAL_MODE;
+ * const value = domaincreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_RENEWAL_MODE: keyof DomainCreateBulkTemplate = 'renewal_mode';
+
+/**
+ * Array of all DomainCreateBulkTemplate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreateBulkTemplate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_BULK_TEMPLATE) {
+ *   console.log(`Property: ${key}, Value: ${domaincreatebulktemplate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_BULK_TEMPLATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_BULK_TEMPLATE = [
+  KEY_DOMAIN_CREATE_BULK_TEMPLATE_AUTH_CODE,
+  KEY_DOMAIN_CREATE_BULK_TEMPLATE_CONTACTS,
+  KEY_DOMAIN_CREATE_BULK_TEMPLATE_CREATE_ZONE,
+  KEY_DOMAIN_CREATE_BULK_TEMPLATE_NAMESERVERS,
+  KEY_DOMAIN_CREATE_BULK_TEMPLATE_PERIOD,
+  KEY_DOMAIN_CREATE_BULK_TEMPLATE_RENEWAL_MODE,
+] as const satisfies (keyof DomainCreateBulkTemplate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DomainCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatecommand[KEY_DOMAIN_CREATE_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_COMMAND_COMMAND;
+ * const value = domaincreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_COMMAND_COMMAND: keyof DomainCreateCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DomainCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatecommand[KEY_DOMAIN_CREATE_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_COMMAND_IDEMPOTENCY_KEY;
+ * const value = domaincreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_COMMAND_IDEMPOTENCY_KEY: keyof DomainCreateCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Domain creation payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DomainCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatecommand[KEY_DOMAIN_CREATE_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_COMMAND_PAYLOAD;
+ * const value = domaincreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_COMMAND_PAYLOAD: keyof DomainCreateCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DomainCreateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatecommand[KEY_DOMAIN_CREATE_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_COMMAND_VERSION;
+ * const value = domaincreatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_COMMAND_VERSION: keyof DomainCreateCommand = 'version';
+
+/**
+ * Array of all DomainCreateCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreateCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${domaincreatecommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreateCommand} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_COMMAND = [
+  KEY_DOMAIN_CREATE_COMMAND_COMMAND,
+  KEY_DOMAIN_CREATE_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_CREATE_COMMAND_PAYLOAD,
+  KEY_DOMAIN_CREATE_COMMAND_VERSION,
+] as const satisfies (keyof DomainCreateCommand)[];
+
+/**
+ * Auth Code
+ *
+ * The auth code used for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE: keyof DomainCreatePayloadData = 'auth_code';
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS: keyof DomainCreatePayloadData = 'contacts';
+/**
+ * Create Zone
+ *
+ * Create a zone for the domain on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE: keyof DomainCreatePayloadData = 'create_zone';
+/**
+ * Name
+ *
+ * The domain to be created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME: keyof DomainCreatePayloadData = 'name';
+/**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS: keyof DomainCreatePayloadData = 'nameservers';
+/**
+ * period property
+ *
+ * The registration period of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD: keyof DomainCreatePayloadData = 'period';
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE: keyof DomainCreatePayloadData = 'renewal_mode';
+
+/**
+ * Array of all DomainCreatePayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreatePayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domaincreatepayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_PAYLOAD_DATA = [
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE,
+] as const satisfies (keyof DomainCreatePayloadData)[];
+
+/**
+ * domain property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of DomainCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreateworkerpayload[KEY_DOMAIN_CREATE_WORKER_PAYLOAD_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_WORKER_PAYLOAD_DOMAIN;
+ * const value = domaincreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_WORKER_PAYLOAD_DOMAIN: keyof DomainCreateWorkerPayload = 'domain';
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of DomainCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreateworkerpayload[KEY_DOMAIN_CREATE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_WORKER_PAYLOAD_OPERATION;
+ * const value = domaincreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_WORKER_PAYLOAD_OPERATION: keyof DomainCreateWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DomainCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreateworkerpayload[KEY_DOMAIN_CREATE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_WORKER_PAYLOAD_TYPE;
+ * const value = domaincreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_WORKER_PAYLOAD_TYPE: keyof DomainCreateWorkerPayload = 'type';
+
+/**
+ * Array of all DomainCreateWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreateWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${domaincreateworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreateWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_WORKER_PAYLOAD = [
+  KEY_DOMAIN_CREATE_WORKER_PAYLOAD_DOMAIN,
+  KEY_DOMAIN_CREATE_WORKER_PAYLOAD_OPERATION,
+  KEY_DOMAIN_CREATE_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof DomainCreateWorkerPayload)[];
 
 /**
  * algorithm property
@@ -11498,6 +16298,756 @@ export const KEYS_DOMAIN_SUMMARY = [
 ] as const satisfies (keyof DomainSummary)[];
 
 /**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DomainTransferBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkcommand[KEY_DOMAIN_TRANSFER_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_COMMAND_COMMAND;
+ * const value = domaintransferbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_COMMAND_COMMAND: keyof DomainTransferBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DomainTransferBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkcommand[KEY_DOMAIN_TRANSFER_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = domaintransferbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_COMMAND_IDEMPOTENCY_KEY: keyof DomainTransferBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk domain transfer payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DomainTransferBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkcommand[KEY_DOMAIN_TRANSFER_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_COMMAND_PAYLOAD;
+ * const value = domaintransferbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_COMMAND_PAYLOAD: keyof DomainTransferBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DomainTransferBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkcommand[KEY_DOMAIN_TRANSFER_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_COMMAND_VERSION;
+ * const value = domaintransferbulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_COMMAND_VERSION: keyof DomainTransferBulkCommand = 'version';
+
+/**
+ * Array of all DomainTransferBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferbulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_BULK_COMMAND = [
+  KEY_DOMAIN_TRANSFER_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_TRANSFER_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_TRANSFER_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_TRANSFER_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainTransferBulkCommand)[];
+
+/**
+ * Attributes
+ *
+ * Override attributes for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_ATTRIBUTES;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_ATTRIBUTES: keyof DomainTransferBulkInstance = 'attributes';
+/**
+ * Auth Code
+ *
+ * The auth code for this domain (required)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_AUTH_CODE;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_AUTH_CODE: keyof DomainTransferBulkInstance = 'auth_code';
+/**
+ * Contacts
+ *
+ * Override contacts for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CONTACTS;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CONTACTS: keyof DomainTransferBulkInstance = 'contacts';
+/**
+ * Create Zone
+ *
+ * Override create_zone for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CREATE_ZONE;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CREATE_ZONE: keyof DomainTransferBulkInstance = 'create_zone';
+/**
+ * Name
+ *
+ * The domain to transfer
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAME;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAME: keyof DomainTransferBulkInstance = 'name';
+/**
+ * Nameservers
+ *
+ * Override nameservers for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAMESERVERS;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAMESERVERS: keyof DomainTransferBulkInstance = 'nameservers';
+/**
+ * period property
+ *
+ * Override period for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_PERIOD;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_PERIOD: keyof DomainTransferBulkInstance = 'period';
+/**
+ * renewal_mode property
+ *
+ * Override renewal mode for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_RENEWAL_MODE;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_RENEWAL_MODE: keyof DomainTransferBulkInstance = 'renewal_mode';
+
+/**
+ * Array of all DomainTransferBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferbulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_BULK_INSTANCE = [
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_ATTRIBUTES,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_AUTH_CODE,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CONTACTS,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CREATE_ZONE,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAME,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAMESERVERS,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_PERIOD,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_RENEWAL_MODE,
+] as const satisfies (keyof DomainTransferBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of domains to transfer (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of DomainTransferBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkpayload[KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_INSTANCES;
+ * const value = domaintransferbulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_INSTANCES: keyof DomainTransferBulkPayload = 'instances';
+/**
+ * template property
+ *
+ * Shared settings for all domains
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `template` property of DomainTransferBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkpayload[KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_TEMPLATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_TEMPLATE;
+ * const value = domaintransferbulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_TEMPLATE: keyof DomainTransferBulkPayload = 'template';
+
+/**
+ * Array of all DomainTransferBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferbulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_BULK_PAYLOAD = [
+  KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_INSTANCES,
+  KEY_DOMAIN_TRANSFER_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DomainTransferBulkPayload)[];
+
+/**
+ * Attributes
+ *
+ * Additional attributes of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainTransferBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulktemplate[KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_ATTRIBUTES;
+ * const value = domaintransferbulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_ATTRIBUTES: keyof DomainTransferBulkTemplate = 'attributes';
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainTransferBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulktemplate[KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CONTACTS;
+ * const value = domaintransferbulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CONTACTS: keyof DomainTransferBulkTemplate = 'contacts';
+/**
+ * Create Zone
+ *
+ * Create a zone on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainTransferBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulktemplate[KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CREATE_ZONE;
+ * const value = domaintransferbulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CREATE_ZONE: keyof DomainTransferBulkTemplate = 'create_zone';
+/**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainTransferBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulktemplate[KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_NAMESERVERS;
+ * const value = domaintransferbulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_NAMESERVERS: keyof DomainTransferBulkTemplate = 'nameservers';
+/**
+ * period property
+ *
+ * Additional registration period to add upon transfer completion
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainTransferBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulktemplate[KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_PERIOD;
+ * const value = domaintransferbulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_PERIOD: keyof DomainTransferBulkTemplate = 'period';
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainTransferBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulktemplate[KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_RENEWAL_MODE;
+ * const value = domaintransferbulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_RENEWAL_MODE: keyof DomainTransferBulkTemplate = 'renewal_mode';
+
+/**
+ * Array of all DomainTransferBulkTemplate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferBulkTemplate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferbulktemplate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferBulkTemplate} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_BULK_TEMPLATE = [
+  KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_ATTRIBUTES,
+  KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CONTACTS,
+  KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_CREATE_ZONE,
+  KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_NAMESERVERS,
+  KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_PERIOD,
+  KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_RENEWAL_MODE,
+] as const satisfies (keyof DomainTransferBulkTemplate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DomainTransferCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransfercommand[KEY_DOMAIN_TRANSFER_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_COMMAND_COMMAND;
+ * const value = domaintransfercommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_COMMAND_COMMAND: keyof DomainTransferCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DomainTransferCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransfercommand[KEY_DOMAIN_TRANSFER_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_COMMAND_IDEMPOTENCY_KEY;
+ * const value = domaintransfercommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_COMMAND_IDEMPOTENCY_KEY: keyof DomainTransferCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Domain transfer payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DomainTransferCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransfercommand[KEY_DOMAIN_TRANSFER_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_COMMAND_PAYLOAD;
+ * const value = domaintransfercommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_COMMAND_PAYLOAD: keyof DomainTransferCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DomainTransferCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransfercommand[KEY_DOMAIN_TRANSFER_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_COMMAND_VERSION;
+ * const value = domaintransfercommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_COMMAND_VERSION: keyof DomainTransferCommand = 'version';
+
+/**
+ * Array of all DomainTransferCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${domaintransfercommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferCommand} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_COMMAND = [
+  KEY_DOMAIN_TRANSFER_COMMAND_COMMAND,
+  KEY_DOMAIN_TRANSFER_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_TRANSFER_COMMAND_PAYLOAD,
+  KEY_DOMAIN_TRANSFER_COMMAND_VERSION,
+] as const satisfies (keyof DomainTransferCommand)[];
+
+/**
  * Attributes
  *
  * Additional attributes of the domain
@@ -11731,6 +17281,342 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
   KEY_DOMAIN_TRANSFER_IN_PERIOD,
   KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,
 ] as const satisfies (keyof DomainTransferIn)[];
+
+/**
+ * Attributes
+ *
+ * Additional attributes of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES: keyof DomainTransferPayloadData = 'attributes';
+/**
+ * Auth Code
+ *
+ * The auth code for the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE: keyof DomainTransferPayloadData = 'auth_code';
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS: keyof DomainTransferPayloadData = 'contacts';
+/**
+ * Create Zone
+ *
+ * Create a zone for the domain on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE: keyof DomainTransferPayloadData = 'create_zone';
+/**
+ * Name
+ *
+ * The domain to be created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME: keyof DomainTransferPayloadData = 'name';
+/**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS: keyof DomainTransferPayloadData = 'nameservers';
+/**
+ * period property
+ *
+ * Additional registration period to add to the domain upon transfer completion. If omitted, the registry default policy will be applied.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD: keyof DomainTransferPayloadData = 'period';
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE: keyof DomainTransferPayloadData = 'renewal_mode';
+
+/**
+ * Array of all DomainTransferPayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferPayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferpayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA = [
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE,
+] as const satisfies (keyof DomainTransferPayloadData)[];
+
+/**
+ * domain property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of DomainTransferWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferworkerpayload[KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_DOMAIN;
+ * const value = domaintransferworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_DOMAIN: keyof DomainTransferWorkerPayload = 'domain';
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of DomainTransferWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferworkerpayload[KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_OPERATION;
+ * const value = domaintransferworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_OPERATION: keyof DomainTransferWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DomainTransferWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferworkerpayload[KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_TYPE;
+ * const value = domaintransferworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_TYPE: keyof DomainTransferWorkerPayload = 'type';
+
+/**
+ * Array of all DomainTransferWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_WORKER_PAYLOAD = [
+  KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_DOMAIN,
+  KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_OPERATION,
+  KEY_DOMAIN_TRANSFER_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof DomainTransferWorkerPayload)[];
 
 /**
  * Disconnect
@@ -12040,6 +17926,1035 @@ export const KEYS_DOMAIN_UPDATE = [
   KEY_DOMAIN_UPDATE_STATUS_CHANGES,
   KEY_DOMAIN_UPDATE_STATUSES,
 ] as const satisfies (keyof DomainUpdate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DomainUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkcommand[KEY_DOMAIN_UPDATE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_COMMAND_COMMAND;
+ * const value = domainupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_COMMAND_COMMAND: keyof DomainUpdateBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DomainUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkcommand[KEY_DOMAIN_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = domainupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof DomainUpdateBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk domain update payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DomainUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkcommand[KEY_DOMAIN_UPDATE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_COMMAND_PAYLOAD;
+ * const value = domainupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_COMMAND_PAYLOAD: keyof DomainUpdateBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DomainUpdateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkcommand[KEY_DOMAIN_UPDATE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_COMMAND_VERSION;
+ * const value = domainupdatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_COMMAND_VERSION: keyof DomainUpdateBulkCommand = 'version';
+
+/**
+ * Array of all DomainUpdateBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdateBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${domainupdatebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdateBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE_BULK_COMMAND = [
+  KEY_DOMAIN_UPDATE_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_UPDATE_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_UPDATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainUpdateBulkCommand)[];
+
+/**
+ * Auth Code
+ *
+ * Override auth code for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE: keyof DomainUpdateBulkInstance = 'auth_code';
+/**
+ * Contacts
+ *
+ * Override contacts for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS: keyof DomainUpdateBulkInstance = 'contacts';
+/**
+ * Domain Id
+ *
+ * The domain ID to update
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_id` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID: keyof DomainUpdateBulkInstance = 'domain_id';
+/**
+ * Name
+ *
+ * The domain name to update
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAME;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAME: keyof DomainUpdateBulkInstance = 'name';
+/**
+ * Nameservers
+ *
+ * Override nameservers for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAMESERVERS;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAMESERVERS: keyof DomainUpdateBulkInstance = 'nameservers';
+/**
+ * renewal_mode property
+ *
+ * Override renewal mode for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_RENEWAL_MODE;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_RENEWAL_MODE: keyof DomainUpdateBulkInstance = 'renewal_mode';
+/**
+ * status_changes property
+ *
+ * Override status changes for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_changes` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUS_CHANGES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUS_CHANGES;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUS_CHANGES: keyof DomainUpdateBulkInstance = 'status_changes';
+/**
+ * Statuses
+ *
+ * Override statuses for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `statuses` property of DomainUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkinstance[KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUSES;
+ * const value = domainupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUSES: keyof DomainUpdateBulkInstance = 'statuses';
+
+/**
+ * Array of all DomainUpdateBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdateBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${domainupdatebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE_BULK_INSTANCE = [
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE,
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_CONTACTS,
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_DOMAIN_ID,
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAME,
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_NAMESERVERS,
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_RENEWAL_MODE,
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUS_CHANGES,
+  KEY_DOMAIN_UPDATE_BULK_INSTANCE_STATUSES,
+] as const satisfies (keyof DomainUpdateBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of domains to update (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of DomainUpdateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkpayload[KEY_DOMAIN_UPDATE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_PAYLOAD_INSTANCES;
+ * const value = domainupdatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_PAYLOAD_INSTANCES: keyof DomainUpdateBulkPayload = 'instances';
+/**
+ * template property
+ *
+ * Shared settings for all domain updates
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `template` property of DomainUpdateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulkpayload[KEY_DOMAIN_UPDATE_BULK_PAYLOAD_TEMPLATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_PAYLOAD_TEMPLATE;
+ * const value = domainupdatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_PAYLOAD_TEMPLATE: keyof DomainUpdateBulkPayload = 'template';
+
+/**
+ * Array of all DomainUpdateBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdateBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${domainupdatebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdateBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE_BULK_PAYLOAD = [
+  KEY_DOMAIN_UPDATE_BULK_PAYLOAD_INSTANCES,
+  KEY_DOMAIN_UPDATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DomainUpdateBulkPayload)[];
+
+/**
+ * Contacts
+ *
+ * The new contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainUpdateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulktemplate[KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS;
+ * const value = domainupdatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS: keyof DomainUpdateBulkTemplate = 'contacts';
+/**
+ * Nameservers
+ *
+ * The new name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainUpdateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulktemplate[KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS;
+ * const value = domainupdatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS: keyof DomainUpdateBulkTemplate = 'nameservers';
+/**
+ * renewal_mode property
+ *
+ * The new renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainUpdateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulktemplate[KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE;
+ * const value = domainupdatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE: keyof DomainUpdateBulkTemplate = 'renewal_mode';
+/**
+ * status_changes property
+ *
+ * Statuses to add or remove relative to current state
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_changes` property of DomainUpdateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulktemplate[KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUS_CHANGES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUS_CHANGES;
+ * const value = domainupdatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUS_CHANGES: keyof DomainUpdateBulkTemplate = 'status_changes';
+/**
+ * Statuses
+ *
+ * The new statuses of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `statuses` property of DomainUpdateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatebulktemplate[KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUSES;
+ * const value = domainupdatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUSES: keyof DomainUpdateBulkTemplate = 'statuses';
+
+/**
+ * Array of all DomainUpdateBulkTemplate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdateBulkTemplate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE_BULK_TEMPLATE) {
+ *   console.log(`Property: ${key}, Value: ${domainupdatebulktemplate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE_BULK_TEMPLATE.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdateBulkTemplate} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE_BULK_TEMPLATE = [
+  KEY_DOMAIN_UPDATE_BULK_TEMPLATE_CONTACTS,
+  KEY_DOMAIN_UPDATE_BULK_TEMPLATE_NAMESERVERS,
+  KEY_DOMAIN_UPDATE_BULK_TEMPLATE_RENEWAL_MODE,
+  KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUS_CHANGES,
+  KEY_DOMAIN_UPDATE_BULK_TEMPLATE_STATUSES,
+] as const satisfies (keyof DomainUpdateBulkTemplate)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of DomainUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatecommand[KEY_DOMAIN_UPDATE_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_COMMAND_COMMAND;
+ * const value = domainupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_COMMAND_COMMAND: keyof DomainUpdateCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of DomainUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatecommand[KEY_DOMAIN_UPDATE_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_COMMAND_IDEMPOTENCY_KEY;
+ * const value = domainupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_COMMAND_IDEMPOTENCY_KEY: keyof DomainUpdateCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Domain update payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of DomainUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatecommand[KEY_DOMAIN_UPDATE_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_COMMAND_PAYLOAD;
+ * const value = domainupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_COMMAND_PAYLOAD: keyof DomainUpdateCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of DomainUpdateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatecommand[KEY_DOMAIN_UPDATE_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_COMMAND_VERSION;
+ * const value = domainupdatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_COMMAND_VERSION: keyof DomainUpdateCommand = 'version';
+
+/**
+ * Array of all DomainUpdateCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdateCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${domainupdatecommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdateCommand} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE_COMMAND = [
+  KEY_DOMAIN_UPDATE_COMMAND_COMMAND,
+  KEY_DOMAIN_UPDATE_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_UPDATE_COMMAND_PAYLOAD,
+  KEY_DOMAIN_UPDATE_COMMAND_VERSION,
+] as const satisfies (keyof DomainUpdateCommand)[];
+
+/**
+ * Auth Code
+ *
+ * The new auth code for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatepayloaddata[KEY_DOMAIN_UPDATE_PAYLOAD_DATA_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_PAYLOAD_DATA_AUTH_CODE;
+ * const value = domainupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_AUTH_CODE: keyof DomainUpdatePayloadData = 'auth_code';
+/**
+ * Contacts
+ *
+ * The new contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatepayloaddata[KEY_DOMAIN_UPDATE_PAYLOAD_DATA_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_PAYLOAD_DATA_CONTACTS;
+ * const value = domainupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_CONTACTS: keyof DomainUpdatePayloadData = 'contacts';
+/**
+ * Domain Id
+ *
+ * Domain ID to update
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_id` property of DomainUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatepayloaddata[KEY_DOMAIN_UPDATE_PAYLOAD_DATA_DOMAIN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_PAYLOAD_DATA_DOMAIN_ID;
+ * const value = domainupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_DOMAIN_ID: keyof DomainUpdatePayloadData = 'domain_id';
+/**
+ * Nameservers
+ *
+ * The new name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatepayloaddata[KEY_DOMAIN_UPDATE_PAYLOAD_DATA_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_PAYLOAD_DATA_NAMESERVERS;
+ * const value = domainupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_NAMESERVERS: keyof DomainUpdatePayloadData = 'nameservers';
+/**
+ * renewal_mode property
+ *
+ * The new renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatepayloaddata[KEY_DOMAIN_UPDATE_PAYLOAD_DATA_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_PAYLOAD_DATA_RENEWAL_MODE;
+ * const value = domainupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_RENEWAL_MODE: keyof DomainUpdatePayloadData = 'renewal_mode';
+/**
+ * status_changes property
+ *
+ * Statuses to add or remove relative to current state
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_changes` property of DomainUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatepayloaddata[KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUS_CHANGES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUS_CHANGES;
+ * const value = domainupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUS_CHANGES: keyof DomainUpdatePayloadData = 'status_changes';
+/**
+ * Statuses
+ *
+ * The new statuses of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `statuses` property of DomainUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdatepayloaddata[KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUSES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUSES;
+ * const value = domainupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUSES: keyof DomainUpdatePayloadData = 'statuses';
+
+/**
+ * Array of all DomainUpdatePayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdatePayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domainupdatepayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdatePayloadData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE_PAYLOAD_DATA = [
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_AUTH_CODE,
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_CONTACTS,
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_DOMAIN_ID,
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_NAMESERVERS,
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_RENEWAL_MODE,
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUS_CHANGES,
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUSES,
+] as const satisfies (keyof DomainUpdatePayloadData)[];
+
+/**
+ * domain property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of DomainUpdateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdateworkerpayload[KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_DOMAIN;
+ * const value = domainupdateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_DOMAIN: keyof DomainUpdateWorkerPayload = 'domain';
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of DomainUpdateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdateworkerpayload[KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_OPERATION;
+ * const value = domainupdateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_OPERATION: keyof DomainUpdateWorkerPayload = 'operation';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DomainUpdateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainupdateworkerpayload[KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_TYPE;
+ * const value = domainupdateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link DomainUpdateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_TYPE: keyof DomainUpdateWorkerPayload = 'type';
+
+/**
+ * Array of all DomainUpdateWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainUpdateWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${domainupdateworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainUpdateWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD = [
+  KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_DOMAIN,
+  KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_OPERATION,
+  KEY_DOMAIN_UPDATE_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof DomainUpdateWorkerPayload)[];
 
 /**
  * Zone Delete
@@ -16702,6 +23617,1315 @@ export const KEYS_IP_RESTRICTION_UPDATE = [
 ] as const satisfies (keyof IpRestrictionUpdate)[];
 
 /**
+ * Batch Id
+ *
+ * TypeID identifying this batch
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `batch_id` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_BATCH_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_BATCH_ID;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_BATCH_ID: keyof JobBatchMetadata = 'batch_id';
+/**
+ * Created On
+ *
+ * Timestamp when the batch was created (UTC)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_CREATED_ON;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_CREATED_ON: keyof JobBatchMetadata = 'created_on';
+/**
+ * Finished At
+ *
+ * Timestamp when the last job finished (UTC)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `finished_at` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_FINISHED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_FINISHED_AT;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_FINISHED_AT: keyof JobBatchMetadata = 'finished_at';
+/**
+ * job_counts property
+ *
+ * Number of jobs in each status
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `job_counts` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_JOB_COUNTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_JOB_COUNTS;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_JOB_COUNTS: keyof JobBatchMetadata = 'job_counts';
+/**
+ * Label
+ *
+ * Human-readable label for this batch
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_LABEL;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_LABEL: keyof JobBatchMetadata = 'label';
+/**
+ * Started At
+ *
+ * Timestamp when the first job started (UTC)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `started_at` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_STARTED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_STARTED_AT;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_STARTED_AT: keyof JobBatchMetadata = 'started_at';
+/**
+ * status property
+ *
+ * Batch status: pending (jobs still processing) or complete (all done)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_STATUS;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_STATUS: keyof JobBatchMetadata = 'status';
+/**
+ * Total Jobs
+ *
+ * Total number of jobs in this batch
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total_jobs` property of JobBatchMetadata objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchmetadata[KEY_JOB_BATCH_METADATA_TOTAL_JOBS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_METADATA_TOTAL_JOBS;
+ * const value = jobbatchmetadata[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_METADATA} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_METADATA_TOTAL_JOBS: keyof JobBatchMetadata = 'total_jobs';
+
+/**
+ * Array of all JobBatchMetadata property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for JobBatchMetadata objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_JOB_BATCH_METADATA) {
+ *   console.log(`Property: ${key}, Value: ${jobbatchmetadata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_JOB_BATCH_METADATA.includes(someKey);
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The TypeScript type definition
+ */
+export const KEYS_JOB_BATCH_METADATA = [
+  KEY_JOB_BATCH_METADATA_BATCH_ID,
+  KEY_JOB_BATCH_METADATA_CREATED_ON,
+  KEY_JOB_BATCH_METADATA_FINISHED_AT,
+  KEY_JOB_BATCH_METADATA_JOB_COUNTS,
+  KEY_JOB_BATCH_METADATA_LABEL,
+  KEY_JOB_BATCH_METADATA_STARTED_AT,
+  KEY_JOB_BATCH_METADATA_STATUS,
+  KEY_JOB_BATCH_METADATA_TOTAL_JOBS,
+] as const satisfies (keyof JobBatchMetadata)[];
+
+/**
+ * Commands
+ *
+ * List of commands to execute
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `commands` property of JobBatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchrequest[KEY_JOB_BATCH_REQUEST_COMMANDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_REQUEST_COMMANDS;
+ * const value = jobbatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_REQUEST_COMMANDS: keyof JobBatchRequest = 'commands';
+/**
+ * Label
+ *
+ * Human-readable label for this batch
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of JobBatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchrequest[KEY_JOB_BATCH_REQUEST_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_REQUEST_LABEL;
+ * const value = jobbatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_REQUEST_LABEL: keyof JobBatchRequest = 'label';
+/**
+ * Not Before
+ *
+ * Earliest time jobs can execute (UTC). If not provided, jobs run immediately.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `not_before` property of JobBatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchrequest[KEY_JOB_BATCH_REQUEST_NOT_BEFORE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_REQUEST_NOT_BEFORE;
+ * const value = jobbatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_REQUEST_NOT_BEFORE: keyof JobBatchRequest = 'not_before';
+/**
+ * Paused
+ *
+ * If true, jobs are created in paused state and must be explicitly resumed
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `paused` property of JobBatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchrequest[KEY_JOB_BATCH_REQUEST_PAUSED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_REQUEST_PAUSED;
+ * const value = jobbatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_REQUEST_PAUSED: keyof JobBatchRequest = 'paused';
+
+/**
+ * Array of all JobBatchRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for JobBatchRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_JOB_BATCH_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${jobbatchrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_JOB_BATCH_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link JobBatchRequest} - The TypeScript type definition
+ */
+export const KEYS_JOB_BATCH_REQUEST = [
+  KEY_JOB_BATCH_REQUEST_COMMANDS,
+  KEY_JOB_BATCH_REQUEST_LABEL,
+  KEY_JOB_BATCH_REQUEST_NOT_BEFORE,
+  KEY_JOB_BATCH_REQUEST_PAUSED,
+] as const satisfies (keyof JobBatchRequest)[];
+
+/**
+ * Batch Id
+ *
+ * TypeID identifying this batch. All jobs in a batch share the same batch_id, while each job has its own unique job_id.
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `batch_id` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_BATCH_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_BATCH_ID;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_BATCH_ID: keyof JobBatchStatus = 'batch_id';
+/**
+ * Blocked
+ *
+ * Number of jobs waiting for eligibility (scheduled, serial blocked, or no tokens)
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `blocked` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_BLOCKED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_BLOCKED;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_BLOCKED: keyof JobBatchStatus = 'blocked';
+/**
+ * Canceled
+ *
+ * Number of jobs that were canceled
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `canceled` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_CANCELED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_CANCELED;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_CANCELED: keyof JobBatchStatus = 'canceled';
+/**
+ * Dead Letter
+ *
+ * Number of jobs that permanently failed after exhausting retries
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dead_letter` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_DEAD_LETTER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_DEAD_LETTER;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_DEAD_LETTER: keyof JobBatchStatus = 'dead_letter';
+/**
+ * Failed
+ *
+ * Number of jobs that failed execution
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `failed` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_FAILED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_FAILED;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_FAILED: keyof JobBatchStatus = 'failed';
+/**
+ * Paused
+ *
+ * Number of jobs in paused state
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `paused` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_PAUSED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_PAUSED;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_PAUSED: keyof JobBatchStatus = 'paused';
+/**
+ * Progress Percentage
+ *
+ * Completion percentage (0-100)
+ *
+ * @type {number}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `progress_percentage` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_PROGRESS_PERCENTAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_PROGRESS_PERCENTAGE;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_PROGRESS_PERCENTAGE: keyof JobBatchStatus = 'progress_percentage';
+/**
+ * Queued
+ *
+ * Number of jobs awaiting processing
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `queued` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_QUEUED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_QUEUED;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_QUEUED: keyof JobBatchStatus = 'queued';
+/**
+ * Running
+ *
+ * Number of jobs currently being executed
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `running` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_RUNNING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_RUNNING;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_RUNNING: keyof JobBatchStatus = 'running';
+/**
+ * Succeeded
+ *
+ * Number of jobs that completed successfully
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `succeeded` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_SUCCEEDED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_SUCCEEDED;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_SUCCEEDED: keyof JobBatchStatus = 'succeeded';
+/**
+ * Total
+ *
+ * Total number of jobs in the batch
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `total` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_TOTAL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_TOTAL;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_TOTAL: keyof JobBatchStatus = 'total';
+
+/**
+ * Array of all JobBatchStatus property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for JobBatchStatus objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_JOB_BATCH_STATUS) {
+ *   console.log(`Property: ${key}, Value: ${jobbatchstatus[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_JOB_BATCH_STATUS.includes(someKey);
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ */
+export const KEYS_JOB_BATCH_STATUS = [
+  KEY_JOB_BATCH_STATUS_BATCH_ID,
+  KEY_JOB_BATCH_STATUS_BLOCKED,
+  KEY_JOB_BATCH_STATUS_CANCELED,
+  KEY_JOB_BATCH_STATUS_DEAD_LETTER,
+  KEY_JOB_BATCH_STATUS_FAILED,
+  KEY_JOB_BATCH_STATUS_PAUSED,
+  KEY_JOB_BATCH_STATUS_PROGRESS_PERCENTAGE,
+  KEY_JOB_BATCH_STATUS_QUEUED,
+  KEY_JOB_BATCH_STATUS_RUNNING,
+  KEY_JOB_BATCH_STATUS_SUCCEEDED,
+  KEY_JOB_BATCH_STATUS_TOTAL,
+] as const satisfies (keyof JobBatchStatus)[];
+
+/**
+ * Blocked
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `blocked` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_BLOCKED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_BLOCKED;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_BLOCKED: keyof JobCountsByStatus = 'blocked';
+/**
+ * Canceled
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `canceled` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_CANCELED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_CANCELED;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_CANCELED: keyof JobCountsByStatus = 'canceled';
+/**
+ * Dead Letter
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dead_letter` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_DEAD_LETTER];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_DEAD_LETTER;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_DEAD_LETTER: keyof JobCountsByStatus = 'dead_letter';
+/**
+ * Failed
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `failed` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_FAILED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_FAILED;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_FAILED: keyof JobCountsByStatus = 'failed';
+/**
+ * Paused
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `paused` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_PAUSED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_PAUSED;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_PAUSED: keyof JobCountsByStatus = 'paused';
+/**
+ * Queued
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `queued` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_QUEUED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_QUEUED;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_QUEUED: keyof JobCountsByStatus = 'queued';
+/**
+ * Running
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `running` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_RUNNING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_RUNNING;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_RUNNING: keyof JobCountsByStatus = 'running';
+/**
+ * Succeeded
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `succeeded` property of JobCountsByStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobcountsbystatus[KEY_JOB_COUNTS_BY_STATUS_SUCCEEDED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COUNTS_BY_STATUS_SUCCEEDED;
+ * const value = jobcountsbystatus[propertyName];
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_COUNTS_BY_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_COUNTS_BY_STATUS_SUCCEEDED: keyof JobCountsByStatus = 'succeeded';
+
+/**
+ * Array of all JobCountsByStatus property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for JobCountsByStatus objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_JOB_COUNTS_BY_STATUS) {
+ *   console.log(`Property: ${key}, Value: ${jobcountsbystatus[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_JOB_COUNTS_BY_STATUS.includes(someKey);
+ * ```
+ *
+ * @see {@link JobCountsByStatus} - The TypeScript type definition
+ */
+export const KEYS_JOB_COUNTS_BY_STATUS = [
+  KEY_JOB_COUNTS_BY_STATUS_BLOCKED,
+  KEY_JOB_COUNTS_BY_STATUS_CANCELED,
+  KEY_JOB_COUNTS_BY_STATUS_DEAD_LETTER,
+  KEY_JOB_COUNTS_BY_STATUS_FAILED,
+  KEY_JOB_COUNTS_BY_STATUS_PAUSED,
+  KEY_JOB_COUNTS_BY_STATUS_QUEUED,
+  KEY_JOB_COUNTS_BY_STATUS_RUNNING,
+  KEY_JOB_COUNTS_BY_STATUS_SUCCEEDED,
+] as const satisfies (keyof JobCountsByStatus)[];
+
+/**
+ * Attempts
+ *
+ * Number of execution attempts made for this job
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attempts` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_ATTEMPTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_ATTEMPTS;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_ATTEMPTS: keyof Job = 'attempts';
+/**
+ * Command
+ *
+ * Command name (e.g., 'domain_create', 'dns_zone_update')
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_COMMAND;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_COMMAND: keyof Job = 'command';
+/**
+ * Created On
+ *
+ * Timestamp when the job was created (UTC)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_CREATED_ON;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_CREATED_ON: keyof Job = 'created_on';
+/**
+ * Display
+ *
+ * Human-readable description of this job
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `display` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_DISPLAY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_DISPLAY;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_DISPLAY: keyof Job = 'display';
+/**
+ * Error Class
+ *
+ * Error type if the job failed (e.g., ValidationError, TimeoutError)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `error_class` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_ERROR_CLASS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_ERROR_CLASS;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_ERROR_CLASS: keyof Job = 'error_class';
+/**
+ * Error Message
+ *
+ * Detailed error message if the job failed
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `error_message` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_ERROR_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_ERROR_MESSAGE;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_ERROR_MESSAGE: keyof Job = 'error_message';
+/**
+ * Finished At
+ *
+ * Timestamp when job execution completed (UTC)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `finished_at` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_FINISHED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_FINISHED_AT;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_FINISHED_AT: keyof Job = 'finished_at';
+/**
+ * Job Id
+ *
+ * Unique identifier for this individual job
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `job_id` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_JOB_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_JOB_ID;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_JOB_ID: keyof Job = 'job_id';
+/**
+ * Operation
+ *
+ * Operation type (e.g., 'create', 'update', 'transfer')
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_OPERATION;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_OPERATION: keyof Job = 'operation';
+/**
+ * Paused At
+ *
+ * Timestamp when job was paused (UTC)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `paused_at` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_PAUSED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_PAUSED_AT;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_PAUSED_AT: keyof Job = 'paused_at';
+/**
+ * Payload
+ *
+ * The original request payload for this job
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_PAYLOAD;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_PAYLOAD: keyof Job = 'payload';
+/**
+ * Resource Key
+ *
+ * Resource identifier for this job
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `resource_key` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_RESOURCE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_RESOURCE_KEY;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_RESOURCE_KEY: keyof Job = 'resource_key';
+/**
+ * Started At
+ *
+ * Timestamp when job execution began (UTC)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `started_at` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_STARTED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_STARTED_AT;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_STARTED_AT: keyof Job = 'started_at';
+/**
+ * status property
+ *
+ * Current job status: queued, running, succeeded, failed, canceled, or dead_letter
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_STATUS;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_STATUS: keyof Job = 'status';
+
+/**
+ * Array of all Job property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Job objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_JOB) {
+ *   console.log(`Property: ${key}, Value: ${job[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_JOB.includes(someKey);
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ */
+export const KEYS_JOB = [
+  KEY_JOB_ATTEMPTS,
+  KEY_JOB_COMMAND,
+  KEY_JOB_CREATED_ON,
+  KEY_JOB_DISPLAY,
+  KEY_JOB_ERROR_CLASS,
+  KEY_JOB_ERROR_MESSAGE,
+  KEY_JOB_FINISHED_AT,
+  KEY_JOB_JOB_ID,
+  KEY_JOB_OPERATION,
+  KEY_JOB_PAUSED_AT,
+  KEY_JOB_PAYLOAD,
+  KEY_JOB_RESOURCE_KEY,
+  KEY_JOB_STARTED_AT,
+  KEY_JOB_STATUS,
+] as const satisfies (keyof Job)[];
+
+/**
  * allocation property
  *
  * Allocation method
@@ -20520,6 +28744,56 @@ export const KEYS_PAGINATION_METADATA = [
 ] as const satisfies (keyof PaginationMetadata)[];
 
 /**
+ * Parking Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking_id` property of ParkingActionPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingactionpayloaddata[KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID;
+ * const value = parkingactionpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ParkingActionPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ACTION_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID: keyof ParkingActionPayloadData = 'parking_id';
+
+/**
+ * Array of all ParkingActionPayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingActionPayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_ACTION_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${parkingactionpayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_ACTION_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingActionPayloadData} - The TypeScript type definition
+ */
+export const KEYS_PARKING_ACTION_PAYLOAD_DATA = [
+  KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID,
+] as const satisfies (keyof ParkingActionPayloadData)[];
+
+/**
  * Accepted
  *
  * Whether the agreement has been accepted
@@ -20623,6 +28897,1513 @@ export const KEYS_PARKING_AGREEMENT_ACCEPTANCE = [
   KEY_PARKING_AGREEMENT_ACCEPTANCE_URL,
   KEY_PARKING_AGREEMENT_ACCEPTANCE_VERSION,
 ] as const satisfies (keyof ParkingAgreementAcceptance)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of ParkingCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkcommand[KEY_PARKING_CREATE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_COMMAND_COMMAND;
+ * const value = parkingcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_COMMAND_COMMAND: keyof ParkingCreateBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of ParkingCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkcommand[KEY_PARKING_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = parkingcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof ParkingCreateBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk parking creation payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of ParkingCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkcommand[KEY_PARKING_CREATE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_COMMAND_PAYLOAD;
+ * const value = parkingcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_COMMAND_PAYLOAD: keyof ParkingCreateBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of ParkingCreateBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkcommand[KEY_PARKING_CREATE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_COMMAND_VERSION;
+ * const value = parkingcreatebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_COMMAND_VERSION: keyof ParkingCreateBulkCommand = 'version';
+
+/**
+ * Array of all ParkingCreateBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingCreateBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_CREATE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${parkingcreatebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_CREATE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingCreateBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_PARKING_CREATE_BULK_COMMAND = [
+  KEY_PARKING_CREATE_BULK_COMMAND_COMMAND,
+  KEY_PARKING_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_PARKING_CREATE_BULK_COMMAND_PAYLOAD,
+  KEY_PARKING_CREATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof ParkingCreateBulkCommand)[];
+
+/**
+ * Domain
+ *
+ * The domain name for the parking ad
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of ParkingCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkinstance[KEY_PARKING_CREATE_BULK_INSTANCE_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_INSTANCE_DOMAIN;
+ * const value = parkingcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_INSTANCE_DOMAIN: keyof ParkingCreateBulkInstance = 'domain';
+/**
+ * Enabled
+ *
+ * Override enabled setting for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `enabled` property of ParkingCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkinstance[KEY_PARKING_CREATE_BULK_INSTANCE_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_INSTANCE_ENABLED;
+ * const value = parkingcreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_INSTANCE_ENABLED: keyof ParkingCreateBulkInstance = 'enabled';
+
+/**
+ * Array of all ParkingCreateBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingCreateBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_CREATE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${parkingcreatebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_CREATE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingCreateBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_PARKING_CREATE_BULK_INSTANCE = [
+  KEY_PARKING_CREATE_BULK_INSTANCE_DOMAIN,
+  KEY_PARKING_CREATE_BULK_INSTANCE_ENABLED,
+] as const satisfies (keyof ParkingCreateBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of parking entries to create (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of ParkingCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkpayload[KEY_PARKING_CREATE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_PAYLOAD_INSTANCES;
+ * const value = parkingcreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_PAYLOAD_INSTANCES: keyof ParkingCreateBulkPayload = 'instances';
+/**
+ * template property
+ *
+ * Shared settings for all parking entries
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `template` property of ParkingCreateBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulkpayload[KEY_PARKING_CREATE_BULK_PAYLOAD_TEMPLATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_PAYLOAD_TEMPLATE;
+ * const value = parkingcreatebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_PAYLOAD_TEMPLATE: keyof ParkingCreateBulkPayload = 'template';
+
+/**
+ * Array of all ParkingCreateBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingCreateBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_CREATE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingcreatebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_CREATE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingCreateBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_CREATE_BULK_PAYLOAD = [
+  KEY_PARKING_CREATE_BULK_PAYLOAD_INSTANCES,
+  KEY_PARKING_CREATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof ParkingCreateBulkPayload)[];
+
+/**
+ * Enabled
+ *
+ * Whether to enable parking immediately after creation
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `enabled` property of ParkingCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatebulktemplate[KEY_PARKING_CREATE_BULK_TEMPLATE_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_BULK_TEMPLATE_ENABLED;
+ * const value = parkingcreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_BULK_TEMPLATE_ENABLED: keyof ParkingCreateBulkTemplate = 'enabled';
+
+/**
+ * Array of all ParkingCreateBulkTemplate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingCreateBulkTemplate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_CREATE_BULK_TEMPLATE) {
+ *   console.log(`Property: ${key}, Value: ${parkingcreatebulktemplate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_CREATE_BULK_TEMPLATE.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingCreateBulkTemplate} - The TypeScript type definition
+ */
+export const KEYS_PARKING_CREATE_BULK_TEMPLATE = [
+  KEY_PARKING_CREATE_BULK_TEMPLATE_ENABLED,
+] as const satisfies (keyof ParkingCreateBulkTemplate)[];
+
+/**
+ * Domain
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain` property of ParkingCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatepayloaddata[KEY_PARKING_CREATE_PAYLOAD_DATA_DOMAIN];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_PAYLOAD_DATA_DOMAIN;
+ * const value = parkingcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_PAYLOAD_DATA_DOMAIN: keyof ParkingCreatePayloadData = 'domain';
+/**
+ * Enabled
+ *
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `enabled` property of ParkingCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreatepayloaddata[KEY_PARKING_CREATE_PAYLOAD_DATA_ENABLED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_PAYLOAD_DATA_ENABLED;
+ * const value = parkingcreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_PAYLOAD_DATA_ENABLED: keyof ParkingCreatePayloadData = 'enabled';
+
+/**
+ * Array of all ParkingCreatePayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingCreatePayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_CREATE_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${parkingcreatepayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_CREATE_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingCreatePayloadData} - The TypeScript type definition
+ */
+export const KEYS_PARKING_CREATE_PAYLOAD_DATA = [
+  KEY_PARKING_CREATE_PAYLOAD_DATA_DOMAIN,
+  KEY_PARKING_CREATE_PAYLOAD_DATA_ENABLED,
+] as const satisfies (keyof ParkingCreatePayloadData)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of ParkingCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreateworkerpayload[KEY_PARKING_CREATE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_WORKER_PAYLOAD_OPERATION;
+ * const value = parkingcreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_WORKER_PAYLOAD_OPERATION: keyof ParkingCreateWorkerPayload = 'operation';
+/**
+ * parking property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking` property of ParkingCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreateworkerpayload[KEY_PARKING_CREATE_WORKER_PAYLOAD_PARKING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_WORKER_PAYLOAD_PARKING;
+ * const value = parkingcreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_WORKER_PAYLOAD_PARKING: keyof ParkingCreateWorkerPayload = 'parking';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ParkingCreateWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingcreateworkerpayload[KEY_PARKING_CREATE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_CREATE_WORKER_PAYLOAD_TYPE;
+ * const value = parkingcreateworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingCreateWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_CREATE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_CREATE_WORKER_PAYLOAD_TYPE: keyof ParkingCreateWorkerPayload = 'type';
+
+/**
+ * Array of all ParkingCreateWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingCreateWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_CREATE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingcreateworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_CREATE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingCreateWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_CREATE_WORKER_PAYLOAD = [
+  KEY_PARKING_CREATE_WORKER_PAYLOAD_OPERATION,
+  KEY_PARKING_CREATE_WORKER_PAYLOAD_PARKING,
+  KEY_PARKING_CREATE_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof ParkingCreateWorkerPayload)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of ParkingDeleteBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeletebulkcommand[KEY_PARKING_DELETE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_BULK_COMMAND_COMMAND;
+ * const value = parkingdeletebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_BULK_COMMAND_COMMAND: keyof ParkingDeleteBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of ParkingDeleteBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeletebulkcommand[KEY_PARKING_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = parkingdeletebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof ParkingDeleteBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk parking delete payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of ParkingDeleteBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeletebulkcommand[KEY_PARKING_DELETE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_BULK_COMMAND_PAYLOAD;
+ * const value = parkingdeletebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_BULK_COMMAND_PAYLOAD: keyof ParkingDeleteBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of ParkingDeleteBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeletebulkcommand[KEY_PARKING_DELETE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_BULK_COMMAND_VERSION;
+ * const value = parkingdeletebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_BULK_COMMAND_VERSION: keyof ParkingDeleteBulkCommand = 'version';
+
+/**
+ * Array of all ParkingDeleteBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDeleteBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DELETE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${parkingdeletebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DELETE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DELETE_BULK_COMMAND = [
+  KEY_PARKING_DELETE_BULK_COMMAND_COMMAND,
+  KEY_PARKING_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_PARKING_DELETE_BULK_COMMAND_PAYLOAD,
+  KEY_PARKING_DELETE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof ParkingDeleteBulkCommand)[];
+
+/**
+ * Parking Id
+ *
+ * The parking ID of the entry to delete
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking_id` property of ParkingDeleteBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeletebulkinstance[KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID;
+ * const value = parkingdeletebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID: keyof ParkingDeleteBulkInstance = 'parking_id';
+
+/**
+ * Array of all ParkingDeleteBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDeleteBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DELETE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${parkingdeletebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DELETE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DELETE_BULK_INSTANCE = [
+  KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID,
+] as const satisfies (keyof ParkingDeleteBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of parking entries to delete (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of ParkingDeleteBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeletebulkpayload[KEY_PARKING_DELETE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_BULK_PAYLOAD_INSTANCES;
+ * const value = parkingdeletebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_BULK_PAYLOAD_INSTANCES: keyof ParkingDeleteBulkPayload = 'instances';
+
+/**
+ * Array of all ParkingDeleteBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDeleteBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DELETE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingdeletebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DELETE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DELETE_BULK_PAYLOAD = [
+  KEY_PARKING_DELETE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof ParkingDeleteBulkPayload)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of ParkingDeleteWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeleteworkerpayload[KEY_PARKING_DELETE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_WORKER_PAYLOAD_OPERATION;
+ * const value = parkingdeleteworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_WORKER_PAYLOAD_OPERATION: keyof ParkingDeleteWorkerPayload = 'operation';
+/**
+ * parking property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking` property of ParkingDeleteWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeleteworkerpayload[KEY_PARKING_DELETE_WORKER_PAYLOAD_PARKING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_WORKER_PAYLOAD_PARKING;
+ * const value = parkingdeleteworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_WORKER_PAYLOAD_PARKING: keyof ParkingDeleteWorkerPayload = 'parking';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ParkingDeleteWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdeleteworkerpayload[KEY_PARKING_DELETE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DELETE_WORKER_PAYLOAD_TYPE;
+ * const value = parkingdeleteworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDeleteWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DELETE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DELETE_WORKER_PAYLOAD_TYPE: keyof ParkingDeleteWorkerPayload = 'type';
+
+/**
+ * Array of all ParkingDeleteWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDeleteWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DELETE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingdeleteworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DELETE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDeleteWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DELETE_WORKER_PAYLOAD = [
+  KEY_PARKING_DELETE_WORKER_PAYLOAD_OPERATION,
+  KEY_PARKING_DELETE_WORKER_PAYLOAD_PARKING,
+  KEY_PARKING_DELETE_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof ParkingDeleteWorkerPayload)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of ParkingDisableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisablebulkcommand[KEY_PARKING_DISABLE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_BULK_COMMAND_COMMAND;
+ * const value = parkingdisablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_BULK_COMMAND_COMMAND: keyof ParkingDisableBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of ParkingDisableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisablebulkcommand[KEY_PARKING_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = parkingdisablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof ParkingDisableBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk parking disable payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of ParkingDisableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisablebulkcommand[KEY_PARKING_DISABLE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_BULK_COMMAND_PAYLOAD;
+ * const value = parkingdisablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_BULK_COMMAND_PAYLOAD: keyof ParkingDisableBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of ParkingDisableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisablebulkcommand[KEY_PARKING_DISABLE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_BULK_COMMAND_VERSION;
+ * const value = parkingdisablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_BULK_COMMAND_VERSION: keyof ParkingDisableBulkCommand = 'version';
+
+/**
+ * Array of all ParkingDisableBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDisableBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DISABLE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${parkingdisablebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DISABLE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDisableBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DISABLE_BULK_COMMAND = [
+  KEY_PARKING_DISABLE_BULK_COMMAND_COMMAND,
+  KEY_PARKING_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_PARKING_DISABLE_BULK_COMMAND_PAYLOAD,
+  KEY_PARKING_DISABLE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof ParkingDisableBulkCommand)[];
+
+/**
+ * Parking Id
+ *
+ * The parking ID of the entry to disable
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking_id` property of ParkingDisableBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisablebulkinstance[KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID;
+ * const value = parkingdisablebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID: keyof ParkingDisableBulkInstance = 'parking_id';
+
+/**
+ * Array of all ParkingDisableBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDisableBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DISABLE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${parkingdisablebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DISABLE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDisableBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DISABLE_BULK_INSTANCE = [
+  KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID,
+] as const satisfies (keyof ParkingDisableBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of parking entries to disable (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of ParkingDisableBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisablebulkpayload[KEY_PARKING_DISABLE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_BULK_PAYLOAD_INSTANCES;
+ * const value = parkingdisablebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_BULK_PAYLOAD_INSTANCES: keyof ParkingDisableBulkPayload = 'instances';
+
+/**
+ * Array of all ParkingDisableBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDisableBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DISABLE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingdisablebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DISABLE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDisableBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DISABLE_BULK_PAYLOAD = [
+  KEY_PARKING_DISABLE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof ParkingDisableBulkPayload)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of ParkingDisableWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisableworkerpayload[KEY_PARKING_DISABLE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_WORKER_PAYLOAD_OPERATION;
+ * const value = parkingdisableworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_WORKER_PAYLOAD_OPERATION: keyof ParkingDisableWorkerPayload = 'operation';
+/**
+ * parking property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking` property of ParkingDisableWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisableworkerpayload[KEY_PARKING_DISABLE_WORKER_PAYLOAD_PARKING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_WORKER_PAYLOAD_PARKING;
+ * const value = parkingdisableworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_WORKER_PAYLOAD_PARKING: keyof ParkingDisableWorkerPayload = 'parking';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ParkingDisableWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingdisableworkerpayload[KEY_PARKING_DISABLE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_DISABLE_WORKER_PAYLOAD_TYPE;
+ * const value = parkingdisableworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingDisableWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_DISABLE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_DISABLE_WORKER_PAYLOAD_TYPE: keyof ParkingDisableWorkerPayload = 'type';
+
+/**
+ * Array of all ParkingDisableWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingDisableWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_DISABLE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingdisableworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_DISABLE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingDisableWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_DISABLE_WORKER_PAYLOAD = [
+  KEY_PARKING_DISABLE_WORKER_PAYLOAD_OPERATION,
+  KEY_PARKING_DISABLE_WORKER_PAYLOAD_PARKING,
+  KEY_PARKING_DISABLE_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof ParkingDisableWorkerPayload)[];
+
+/**
+ * Command
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `command` property of ParkingEnableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenablebulkcommand[KEY_PARKING_ENABLE_BULK_COMMAND_COMMAND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_BULK_COMMAND_COMMAND;
+ * const value = parkingenablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_BULK_COMMAND_COMMAND: keyof ParkingEnableBulkCommand = 'command';
+/**
+ * Idempotency Key
+ *
+ * Idempotency key for this bulk command
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `idempotency_key` property of ParkingEnableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenablebulkcommand[KEY_PARKING_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY;
+ * const value = parkingenablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY: keyof ParkingEnableBulkCommand = 'idempotency_key';
+/**
+ * payload property
+ *
+ * Bulk parking enable payload
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of ParkingEnableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenablebulkcommand[KEY_PARKING_ENABLE_BULK_COMMAND_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_BULK_COMMAND_PAYLOAD;
+ * const value = parkingenablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_BULK_COMMAND_PAYLOAD: keyof ParkingEnableBulkCommand = 'payload';
+/**
+ * Version
+ *
+ * Command version
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of ParkingEnableBulkCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenablebulkcommand[KEY_PARKING_ENABLE_BULK_COMMAND_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_BULK_COMMAND_VERSION;
+ * const value = parkingenablebulkcommand[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableBulkCommand} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_BULK_COMMAND} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_BULK_COMMAND_VERSION: keyof ParkingEnableBulkCommand = 'version';
+
+/**
+ * Array of all ParkingEnableBulkCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingEnableBulkCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_ENABLE_BULK_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${parkingenablebulkcommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_ENABLE_BULK_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingEnableBulkCommand} - The TypeScript type definition
+ */
+export const KEYS_PARKING_ENABLE_BULK_COMMAND = [
+  KEY_PARKING_ENABLE_BULK_COMMAND_COMMAND,
+  KEY_PARKING_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_PARKING_ENABLE_BULK_COMMAND_PAYLOAD,
+  KEY_PARKING_ENABLE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof ParkingEnableBulkCommand)[];
+
+/**
+ * Parking Id
+ *
+ * The parking ID of the entry to enable
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking_id` property of ParkingEnableBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenablebulkinstance[KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID;
+ * const value = parkingenablebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID: keyof ParkingEnableBulkInstance = 'parking_id';
+
+/**
+ * Array of all ParkingEnableBulkInstance property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingEnableBulkInstance objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_ENABLE_BULK_INSTANCE) {
+ *   console.log(`Property: ${key}, Value: ${parkingenablebulkinstance[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_ENABLE_BULK_INSTANCE.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingEnableBulkInstance} - The TypeScript type definition
+ */
+export const KEYS_PARKING_ENABLE_BULK_INSTANCE = [
+  KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID,
+] as const satisfies (keyof ParkingEnableBulkInstance)[];
+
+/**
+ * Instances
+ *
+ * List of parking entries to enable (1-1000)
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instances` property of ParkingEnableBulkPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenablebulkpayload[KEY_PARKING_ENABLE_BULK_PAYLOAD_INSTANCES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_BULK_PAYLOAD_INSTANCES;
+ * const value = parkingenablebulkpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableBulkPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_BULK_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_BULK_PAYLOAD_INSTANCES: keyof ParkingEnableBulkPayload = 'instances';
+
+/**
+ * Array of all ParkingEnableBulkPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingEnableBulkPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_ENABLE_BULK_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingenablebulkpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_ENABLE_BULK_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingEnableBulkPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_ENABLE_BULK_PAYLOAD = [
+  KEY_PARKING_ENABLE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof ParkingEnableBulkPayload)[];
+
+/**
+ * Operation
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `operation` property of ParkingEnableWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenableworkerpayload[KEY_PARKING_ENABLE_WORKER_PAYLOAD_OPERATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_WORKER_PAYLOAD_OPERATION;
+ * const value = parkingenableworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_WORKER_PAYLOAD_OPERATION: keyof ParkingEnableWorkerPayload = 'operation';
+/**
+ * parking property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `parking` property of ParkingEnableWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenableworkerpayload[KEY_PARKING_ENABLE_WORKER_PAYLOAD_PARKING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_WORKER_PAYLOAD_PARKING;
+ * const value = parkingenableworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_WORKER_PAYLOAD_PARKING: keyof ParkingEnableWorkerPayload = 'parking';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ParkingEnableWorkerPayload objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = parkingenableworkerpayload[KEY_PARKING_ENABLE_WORKER_PAYLOAD_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PARKING_ENABLE_WORKER_PAYLOAD_TYPE;
+ * const value = parkingenableworkerpayload[propertyName];
+ * ```
+ *
+ * @see {@link ParkingEnableWorkerPayload} - The TypeScript type definition
+ * @see {@link KEYS_PARKING_ENABLE_WORKER_PAYLOAD} - Array of all keys for this type
+ */
+export const KEY_PARKING_ENABLE_WORKER_PAYLOAD_TYPE: keyof ParkingEnableWorkerPayload = 'type';
+
+/**
+ * Array of all ParkingEnableWorkerPayload property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ParkingEnableWorkerPayload objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PARKING_ENABLE_WORKER_PAYLOAD) {
+ *   console.log(`Property: ${key}, Value: ${parkingenableworkerpayload[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PARKING_ENABLE_WORKER_PAYLOAD.includes(someKey);
+ * ```
+ *
+ * @see {@link ParkingEnableWorkerPayload} - The TypeScript type definition
+ */
+export const KEYS_PARKING_ENABLE_WORKER_PAYLOAD = [
+  KEY_PARKING_ENABLE_WORKER_PAYLOAD_OPERATION,
+  KEY_PARKING_ENABLE_WORKER_PAYLOAD_PARKING,
+  KEY_PARKING_ENABLE_WORKER_PAYLOAD_TYPE,
+] as const satisfies (keyof ParkingEnableWorkerPayload)[];
 
 /**
  * metrics property
@@ -22378,6 +32159,359 @@ export const KEYS_PUBLIC_AUTH_REQUEST_FORM = [
   KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_SECRET,
   KEY_PUBLIC_AUTH_REQUEST_FORM_GRANT_TYPE,
 ] as const satisfies (keyof PublicAuthRequestForm)[];
+
+/**
+ * pagination property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `pagination` property of PublicReportListRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportlistres[KEY_PUBLIC_REPORT_LIST_RES_PAGINATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_LIST_RES_PAGINATION;
+ * const value = publicreportlistres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportListRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_LIST_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_LIST_RES_PAGINATION: keyof PublicReportListRes = 'pagination';
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of PublicReportListRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportlistres[KEY_PUBLIC_REPORT_LIST_RES_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_LIST_RES_RESULTS;
+ * const value = publicreportlistres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportListRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_LIST_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_LIST_RES_RESULTS: keyof PublicReportListRes = 'results';
+
+/**
+ * Array of all PublicReportListRes property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PublicReportListRes objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PUBLIC_REPORT_LIST_RES) {
+ *   console.log(`Property: ${key}, Value: ${publicreportlistres[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PUBLIC_REPORT_LIST_RES.includes(someKey);
+ * ```
+ *
+ * @see {@link PublicReportListRes} - The TypeScript type definition
+ */
+export const KEYS_PUBLIC_REPORT_LIST_RES = [
+  KEY_PUBLIC_REPORT_LIST_RES_PAGINATION,
+  KEY_PUBLIC_REPORT_LIST_RES_RESULTS,
+] as const satisfies (keyof PublicReportListRes)[];
+
+/**
+ * Created On
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_CREATED_ON;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_CREATED_ON: keyof PublicReportRes = 'created_on';
+/**
+ * File Size Bytes
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `file_size_bytes` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_FILE_SIZE_BYTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_FILE_SIZE_BYTES;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_FILE_SIZE_BYTES: keyof PublicReportRes = 'file_size_bytes';
+/**
+ * Generated On
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `generated_on` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_GENERATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_GENERATED_ON;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_GENERATED_ON: keyof PublicReportRes = 'generated_on';
+/**
+ * Organization Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_ORGANIZATION_ID;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_ORGANIZATION_ID: keyof PublicReportRes = 'organization_id';
+/**
+ * Record Count
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `record_count` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_RECORD_COUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_RECORD_COUNT;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_RECORD_COUNT: keyof PublicReportRes = 'record_count';
+/**
+ * Report Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `report_id` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_REPORT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_REPORT_ID;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_REPORT_ID: keyof PublicReportRes = 'report_id';
+/**
+ * report_type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `report_type` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_REPORT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_REPORT_TYPE;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_REPORT_TYPE: keyof PublicReportRes = 'report_type';
+/**
+ * status property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_STATUS;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_STATUS: keyof PublicReportRes = 'status';
+/**
+ * trigger_type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `trigger_type` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_TRIGGER_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_TRIGGER_TYPE;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_TRIGGER_TYPE: keyof PublicReportRes = 'trigger_type';
+/**
+ * Updated On
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of PublicReportRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = publicreportres[KEY_PUBLIC_REPORT_RES_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PUBLIC_REPORT_RES_UPDATED_ON;
+ * const value = publicreportres[propertyName];
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ * @see {@link KEYS_PUBLIC_REPORT_RES} - Array of all keys for this type
+ */
+export const KEY_PUBLIC_REPORT_RES_UPDATED_ON: keyof PublicReportRes = 'updated_on';
+
+/**
+ * Array of all PublicReportRes property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PublicReportRes objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PUBLIC_REPORT_RES) {
+ *   console.log(`Property: ${key}, Value: ${publicreportres[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PUBLIC_REPORT_RES.includes(someKey);
+ * ```
+ *
+ * @see {@link PublicReportRes} - The TypeScript type definition
+ */
+export const KEYS_PUBLIC_REPORT_RES = [
+  KEY_PUBLIC_REPORT_RES_CREATED_ON,
+  KEY_PUBLIC_REPORT_RES_FILE_SIZE_BYTES,
+  KEY_PUBLIC_REPORT_RES_GENERATED_ON,
+  KEY_PUBLIC_REPORT_RES_ORGANIZATION_ID,
+  KEY_PUBLIC_REPORT_RES_RECORD_COUNT,
+  KEY_PUBLIC_REPORT_RES_REPORT_ID,
+  KEY_PUBLIC_REPORT_RES_REPORT_TYPE,
+  KEY_PUBLIC_REPORT_RES_STATUS,
+  KEY_PUBLIC_REPORT_RES_TRIGGER_TYPE,
+  KEY_PUBLIC_REPORT_RES_UPDATED_ON,
+] as const satisfies (keyof PublicReportRes)[];
 
 /**
  * Rdap Server

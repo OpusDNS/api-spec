@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -7852,6 +7852,812 @@ export type PATCH_EventsByEventId_Response_404 = Problem
 export type PATCH_EventsByEventId_Response_422 = HTTPValidationError
 
 /**
+ * Response types for DELETE JobByJobId endpoint
+ *
+ * Delete (cancel) a queued job
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE JobByJobId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link DELETE_JobByJobId_Response_404} - 404 response type
+ * @see {@link DELETE_JobByJobId_Response_422} - 422 response type
+ *
+
+ */
+export type DELETE_JobByJobId_Response = DELETE_JobByJobId_Response_404 | DELETE_JobByJobId_Response_422;
+
+/**
+ * 404 response for DELETE JobByJobId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE JobByJobId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link DELETE_JobByJobId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_JobByJobId_Response_404 = Problem
+
+/**
+ * 422 response for DELETE JobByJobId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE JobByJobId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link DELETE_JobByJobId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_JobByJobId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET JobByJobId endpoint
+ *
+ * Get individual job details
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET JobByJobId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link GET_JobByJobId_Response_200} - 200 response type
+ * @see {@link GET_JobByJobId_Response_404} - 404 response type
+ * @see {@link GET_JobByJobId_Response_422} - 422 response type
+ *
+
+ */
+export type GET_JobByJobId_Response = GET_JobByJobId_Response_200 | GET_JobByJobId_Response_404 | GET_JobByJobId_Response_422;
+
+/**
+ * 200 response for GET JobByJobId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET JobByJobId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link GET_JobByJobId_Response} - The main response type definition
+ * @see {@link Job} - The actual schema type definition
+ */
+export type GET_JobByJobId_Response_200 = Job
+
+/**
+ * 404 response for GET JobByJobId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET JobByJobId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link GET_JobByJobId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_JobByJobId_Response_404 = Problem
+
+/**
+ * 422 response for GET JobByJobId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET JobByJobId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link GET_JobByJobId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_JobByJobId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST JobByJobIdPause endpoint
+ *
+ * Pause a job
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST JobByJobIdPause endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/job/{job_id}/pause
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdPause_Response_404} - 404 response type
+ * @see {@link POST_JobByJobIdPause_Response_422} - 422 response type
+ *
+
+ */
+export type POST_JobByJobIdPause_Response = POST_JobByJobIdPause_Response_404 | POST_JobByJobIdPause_Response_422;
+
+/**
+ * 404 response for POST JobByJobIdPause endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST JobByJobIdPause endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/pause
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdPause_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_JobByJobIdPause_Response_404 = Problem
+
+/**
+ * 422 response for POST JobByJobIdPause endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST JobByJobIdPause endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/pause
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdPause_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_JobByJobIdPause_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST JobByJobIdResume endpoint
+ *
+ * Resume a paused job
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST JobByJobIdResume endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/job/{job_id}/resume
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdResume_Response_200} - 200 response type
+ * @see {@link POST_JobByJobIdResume_Response_404} - 404 response type
+ * @see {@link POST_JobByJobIdResume_Response_422} - 422 response type
+ *
+
+ */
+export type POST_JobByJobIdResume_Response = POST_JobByJobIdResume_Response_200 | POST_JobByJobIdResume_Response_404 | POST_JobByJobIdResume_Response_422;
+
+/**
+ * 200 response for POST JobByJobIdResume endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST JobByJobIdResume endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/resume
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdResume_Response} - The main response type definition
+ * @see {@link Job} - The actual schema type definition
+ */
+export type POST_JobByJobIdResume_Response_200 = Job
+
+/**
+ * 404 response for POST JobByJobIdResume endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST JobByJobIdResume endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/resume
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdResume_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_JobByJobIdResume_Response_404 = Problem
+
+/**
+ * 422 response for POST JobByJobIdResume endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST JobByJobIdResume endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/resume
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdResume_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_JobByJobIdResume_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET Jobs endpoint
+ *
+ * List batches for organization
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Jobs endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs
+ * @param status (query) - Filter by batch status (pending or complete)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_Jobs_Response_200} - 200 response type
+ * @see {@link GET_Jobs_Response_422} - 422 response type
+ *
+
+ */
+export type GET_Jobs_Response = GET_Jobs_Response_200 | GET_Jobs_Response_422;
+
+/**
+ * 200 response for GET Jobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Jobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs
+ * @param status (query) - Filter by batch status (pending or complete)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_Jobs_Response} - The main response type definition
+ * @see {@link Pagination_JobBatchMetadata} - The actual schema type definition
+ */
+export type GET_Jobs_Response_200 = Pagination_JobBatchMetadata
+
+/**
+ * 422 response for GET Jobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Jobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs
+ * @param status (query) - Filter by batch status (pending or complete)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_Jobs_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_Jobs_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST Jobs endpoint
+ *
+ * Create a batch of commands for async execution
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Jobs endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs
+ *
+ * @see {@link POST_Jobs_Response_201} - 201 response type
+ * @see {@link POST_Jobs_Response_400} - 400 response type
+ * @see {@link POST_Jobs_Response_422} - 422 response type
+ * @see {@link POST_Jobs_Response_503} - 503 response type
+ *
+
+ */
+export type POST_Jobs_Response = POST_Jobs_Response_201 | POST_Jobs_Response_400 | POST_Jobs_Response_422 | POST_Jobs_Response_503;
+
+/**
+ * 201 response for POST Jobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST Jobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs
+ *
+ * @see {@link POST_Jobs_Response} - The main response type definition
+ * @see {@link CreateJobBatch} - The actual schema type definition
+ */
+export type POST_Jobs_Response_201 = CreateJobBatch
+
+/**
+ * 400 response for POST Jobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST Jobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs
+ *
+ * @see {@link POST_Jobs_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Jobs_Response_400 = Problem
+
+/**
+ * 422 response for POST Jobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Jobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs
+ *
+ * @see {@link POST_Jobs_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_Jobs_Response_422 = HTTPValidationError
+
+/**
+ * 503 response for POST Jobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 503 status code
+ * of the POST Jobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs
+ *
+ * @see {@link POST_Jobs_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Jobs_Response_503 = Problem
+
+/**
+ * Response types for DELETE JobsByBatchId endpoint
+ *
+ * Delete (cancel) all queued jobs in a batch
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE JobsByBatchId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link DELETE_JobsByBatchId_Response_404} - 404 response type
+ * @see {@link DELETE_JobsByBatchId_Response_422} - 422 response type
+ *
+
+ */
+export type DELETE_JobsByBatchId_Response = DELETE_JobsByBatchId_Response_404 | DELETE_JobsByBatchId_Response_422;
+
+/**
+ * 404 response for DELETE JobsByBatchId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE JobsByBatchId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link DELETE_JobsByBatchId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_JobsByBatchId_Response_404 = Problem
+
+/**
+ * 422 response for DELETE JobsByBatchId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE JobsByBatchId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link DELETE_JobsByBatchId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_JobsByBatchId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET JobsByBatchId endpoint
+ *
+ * Get batch details and execution status
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET JobsByBatchId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link GET_JobsByBatchId_Response_200} - 200 response type
+ * @see {@link GET_JobsByBatchId_Response_404} - 404 response type
+ * @see {@link GET_JobsByBatchId_Response_422} - 422 response type
+ * @see {@link GET_JobsByBatchId_Response_503} - 503 response type
+ *
+
+ */
+export type GET_JobsByBatchId_Response = GET_JobsByBatchId_Response_200 | GET_JobsByBatchId_Response_404 | GET_JobsByBatchId_Response_422 | GET_JobsByBatchId_Response_503;
+
+/**
+ * 200 response for GET JobsByBatchId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET JobsByBatchId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link GET_JobsByBatchId_Response} - The main response type definition
+ * @see {@link JobBatchStatus} - The actual schema type definition
+ */
+export type GET_JobsByBatchId_Response_200 = JobBatchStatus
+
+/**
+ * 404 response for GET JobsByBatchId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET JobsByBatchId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link GET_JobsByBatchId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_JobsByBatchId_Response_404 = Problem
+
+/**
+ * 422 response for GET JobsByBatchId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET JobsByBatchId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link GET_JobsByBatchId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_JobsByBatchId_Response_422 = HTTPValidationError
+
+/**
+ * 503 response for GET JobsByBatchId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 503 status code
+ * of the GET JobsByBatchId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link GET_JobsByBatchId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_JobsByBatchId_Response_503 = Problem
+
+/**
+ * Response types for GET JobsByBatchIdJobs endpoint
+ *
+ * Get individual jobs within a batch
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET JobsByBatchIdJobs endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param batch_id (path) - Batch ID
+ * @param status (query) - Filter by job status (repeatable)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_JobsByBatchIdJobs_Response_200} - 200 response type
+ * @see {@link GET_JobsByBatchIdJobs_Response_404} - 404 response type
+ * @see {@link GET_JobsByBatchIdJobs_Response_422} - 422 response type
+ * @see {@link GET_JobsByBatchIdJobs_Response_503} - 503 response type
+ *
+
+ */
+export type GET_JobsByBatchIdJobs_Response = GET_JobsByBatchIdJobs_Response_200 | GET_JobsByBatchIdJobs_Response_404 | GET_JobsByBatchIdJobs_Response_422 | GET_JobsByBatchIdJobs_Response_503;
+
+/**
+ * 200 response for GET JobsByBatchIdJobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET JobsByBatchIdJobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param batch_id (path) - Batch ID
+ * @param status (query) - Filter by job status (repeatable)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_JobsByBatchIdJobs_Response} - The main response type definition
+ * @see {@link Pagination_Job} - The actual schema type definition
+ */
+export type GET_JobsByBatchIdJobs_Response_200 = Pagination_Job
+
+/**
+ * 404 response for GET JobsByBatchIdJobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET JobsByBatchIdJobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param batch_id (path) - Batch ID
+ * @param status (query) - Filter by job status (repeatable)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_JobsByBatchIdJobs_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_JobsByBatchIdJobs_Response_404 = Problem
+
+/**
+ * 422 response for GET JobsByBatchIdJobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET JobsByBatchIdJobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param batch_id (path) - Batch ID
+ * @param status (query) - Filter by job status (repeatable)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_JobsByBatchIdJobs_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_JobsByBatchIdJobs_Response_422 = HTTPValidationError
+
+/**
+ * 503 response for GET JobsByBatchIdJobs endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 503 status code
+ * of the GET JobsByBatchIdJobs endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param batch_id (path) - Batch ID
+ * @param status (query) - Filter by job status (repeatable)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_JobsByBatchIdJobs_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_JobsByBatchIdJobs_Response_503 = Problem
+
+/**
+ * Response types for POST JobsByBatchIdPause endpoint
+ *
+ * Pause all eligible jobs in a batch
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST JobsByBatchIdPause endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/pause
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsByBatchIdPause_Response_404} - 404 response type
+ * @see {@link POST_JobsByBatchIdPause_Response_422} - 422 response type
+ *
+
+ */
+export type POST_JobsByBatchIdPause_Response = POST_JobsByBatchIdPause_Response_404 | POST_JobsByBatchIdPause_Response_422;
+
+/**
+ * 404 response for POST JobsByBatchIdPause endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST JobsByBatchIdPause endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/pause
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsByBatchIdPause_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_JobsByBatchIdPause_Response_404 = Problem
+
+/**
+ * 422 response for POST JobsByBatchIdPause endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST JobsByBatchIdPause endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/pause
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsByBatchIdPause_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_JobsByBatchIdPause_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST JobsByBatchIdResume endpoint
+ *
+ * Resume all paused jobs in a batch
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST JobsByBatchIdResume endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/resume
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsByBatchIdResume_Response_404} - 404 response type
+ * @see {@link POST_JobsByBatchIdResume_Response_422} - 422 response type
+ *
+
+ */
+export type POST_JobsByBatchIdResume_Response = POST_JobsByBatchIdResume_Response_404 | POST_JobsByBatchIdResume_Response_422;
+
+/**
+ * 404 response for POST JobsByBatchIdResume endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST JobsByBatchIdResume endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/resume
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsByBatchIdResume_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_JobsByBatchIdResume_Response_404 = Problem
+
+/**
+ * 422 response for POST JobsByBatchIdResume endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST JobsByBatchIdResume endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/resume
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsByBatchIdResume_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_JobsByBatchIdResume_Response_422 = HTTPValidationError
+
+/**
  * Response types for GET Organizations endpoint
  *
  * List all organizations
@@ -10102,6 +10908,190 @@ export type GET_ParkingSignupStatus_Response_403 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ParkingSignupStatus_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET Reports endpoint
+ *
+ * List Reports
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Reports endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/reports
+ *
+ * @see {@link GET_Reports_Response_200} - 200 response type
+ * @see {@link GET_Reports_Response_422} - 422 response type
+ *
+
+ */
+export type GET_Reports_Response = GET_Reports_Response_200 | GET_Reports_Response_422;
+
+/**
+ * 200 response for GET Reports endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Reports endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/reports
+ *
+ * @see {@link GET_Reports_Response} - The main response type definition
+ * @see {@link PublicReportListRes} - The actual schema type definition
+ */
+export type GET_Reports_Response_200 = PublicReportListRes
+
+/**
+ * 422 response for GET Reports endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Reports endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/reports
+ *
+ * @see {@link GET_Reports_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_Reports_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST Reports endpoint
+ *
+ * Create Report
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Reports endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/reports
+ *
+ * @see {@link POST_Reports_Response_422} - 422 response type
+ *
+
+ */
+export type POST_Reports_Response = POST_Reports_Response_422;
+
+/**
+ * 422 response for POST Reports endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Reports endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/reports
+ *
+ * @see {@link POST_Reports_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_Reports_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET ReportsByReportId endpoint
+ *
+ * Get Report
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ReportsByReportId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/reports/{report_id}
+ *
+ * @see {@link GET_ReportsByReportId_Response_200} - 200 response type
+ * @see {@link GET_ReportsByReportId_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ReportsByReportId_Response = GET_ReportsByReportId_Response_200 | GET_ReportsByReportId_Response_422;
+
+/**
+ * 200 response for GET ReportsByReportId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ReportsByReportId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/reports/{report_id}
+ *
+ * @see {@link GET_ReportsByReportId_Response} - The main response type definition
+ * @see {@link PublicReportRes} - The actual schema type definition
+ */
+export type GET_ReportsByReportId_Response_200 = PublicReportRes
+
+/**
+ * 422 response for GET ReportsByReportId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ReportsByReportId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/reports/{report_id}
+ *
+ * @see {@link GET_ReportsByReportId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ReportsByReportId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET ReportsByReportIdDownload endpoint
+ *
+ * Download Report
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ReportsByReportIdDownload endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/reports/{report_id}/download
+ *
+ * @see {@link GET_ReportsByReportIdDownload_Response_422} - 422 response type
+ *
+
+ */
+export type GET_ReportsByReportIdDownload_Response = GET_ReportsByReportIdDownload_Response_422;
+
+/**
+ * 422 response for GET ReportsByReportIdDownload endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ReportsByReportIdDownload endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/reports/{report_id}/download
+ *
+ * @see {@link GET_ReportsByReportIdDownload_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ReportsByReportIdDownload_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Tlds endpoint

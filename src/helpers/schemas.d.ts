@@ -91,6 +91,38 @@ export type AttributeCondition = components['schemas']['AttributeCondition'];
  */
 export type AttributeType = components['schemas']['AttributeType'];
 /**
+ * BatchSortField
+ *
+ * @remarks
+ * Type alias for the `BatchSortField` OpenAPI schema.
+ * This type represents batchsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBatchSortField();
+ * const item: BatchSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BatchSortField = components['schemas']['BatchSortField'];
+/**
+ * BatchStatus
+ *
+ * @remarks
+ * Type alias for the `BatchStatus` OpenAPI schema.
+ * This type represents batchstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBatchStatus();
+ * const item: BatchStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BatchStatus = components['schemas']['BatchStatus'];
+/**
  * BillingMetadata
  *
  * @remarks
@@ -218,6 +250,22 @@ export type BillingTransactionStatus = components['schemas']['BillingTransaction
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type BrowserStatsBucket = components['schemas']['BrowserStatsBucket'];
+/**
+ * CommandError
+ *
+ * @remarks
+ * Type alias for the `CommandError` OpenAPI schema.
+ * This type represents commanderror data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getCommandError();
+ * const item: CommandError = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type CommandError = components['schemas']['CommandError'];
 /**
  * ComplianceStatus
  *
@@ -395,6 +443,118 @@ export type ContactConfigBase = components['schemas']['ContactConfigBase'];
  */
 export type ContactCreate = components['schemas']['ContactCreate'];
 /**
+ * ContactCreateBulkCommand
+ *
+ * @remarks
+ * Type alias for the `ContactCreateBulkCommand` OpenAPI schema.
+ * This type represents contactcreatebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreateBulkCommand();
+ * const item: ContactCreateBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreateBulkCommand = components['schemas']['ContactCreateBulkCommand'];
+/**
+ * ContactCreateBulkInstance
+ *
+ * @remarks
+ * Type alias for the `ContactCreateBulkInstance` OpenAPI schema.
+ * This type represents contactcreatebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreateBulkInstance();
+ * const item: ContactCreateBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreateBulkInstance = components['schemas']['ContactCreateBulkInstance'];
+/**
+ * ContactCreateBulkPayload
+ *
+ * @remarks
+ * Type alias for the `ContactCreateBulkPayload` OpenAPI schema.
+ * This type represents contactcreatebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreateBulkPayload();
+ * const item: ContactCreateBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreateBulkPayload = components['schemas']['ContactCreateBulkPayload'];
+/**
+ * ContactCreateBulkTemplate
+ *
+ * @remarks
+ * Type alias for the `ContactCreateBulkTemplate` OpenAPI schema.
+ * This type represents contactcreatebulktemplate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreateBulkTemplate();
+ * const item: ContactCreateBulkTemplate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreateBulkTemplate = components['schemas']['ContactCreateBulkTemplate'];
+/**
+ * ContactCreateCommand
+ *
+ * @remarks
+ * Type alias for the `ContactCreateCommand` OpenAPI schema.
+ * This type represents contactcreatecommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreateCommand();
+ * const item: ContactCreateCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreateCommand = components['schemas']['ContactCreateCommand'];
+/**
+ * ContactCreatePayloadData
+ *
+ * @remarks
+ * Type alias for the `ContactCreatePayloadData` OpenAPI schema.
+ * This type represents contactcreatepayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreatePayloadData();
+ * const item: ContactCreatePayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreatePayloadData = components['schemas']['ContactCreatePayloadData'];
+/**
+ * ContactCreateWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `ContactCreateWorkerPayload` OpenAPI schema.
+ * This type represents contactcreateworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreateWorkerPayload();
+ * const item: ContactCreateWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreateWorkerPayload = components['schemas']['ContactCreateWorkerPayload'];
+/**
  * ContactHandle
  *
  * @remarks
@@ -538,6 +698,38 @@ export type ContactVerification = components['schemas']['ContactVerificationResp
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ContactsBase = components['schemas']['ContactsBase'];
+/**
+ * CreateJobBatchResponse
+ *
+ * @remarks
+ * Type alias for the `CreateJobBatchResponse` OpenAPI schema.
+ * This type represents createjobbatchresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getCreateJobBatch();
+ * const item: CreateJobBatch = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type CreateJobBatch = components['schemas']['CreateJobBatchResponse'];
+/**
+ * CreateReportReq
+ *
+ * @remarks
+ * Type alias for the `CreateReportReq` OpenAPI schema.
+ * This type represents createreportreq data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getCreateReportReq();
+ * const item: CreateReportReq = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type CreateReportReq = components['schemas']['CreateReportReq'];
 /**
  * Currency
  *
@@ -827,6 +1019,246 @@ export type DnsRrsetWithOneRecordPatch = components['schemas']['DnsRrsetWithOneR
  */
 export type DnsZoneCreate = components['schemas']['DnsZoneCreate'];
 /**
+ * DnsZoneCreateBulkCommand
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreateBulkCommand` OpenAPI schema.
+ * This type represents dnszonecreatebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreateBulkCommand();
+ * const item: DnsZoneCreateBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreateBulkCommand = components['schemas']['DnsZoneCreateBulkCommand'];
+/**
+ * DnsZoneCreateBulkInstance
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreateBulkInstance` OpenAPI schema.
+ * This type represents dnszonecreatebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreateBulkInstance();
+ * const item: DnsZoneCreateBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreateBulkInstance = components['schemas']['DnsZoneCreateBulkInstance'];
+/**
+ * DnsZoneCreateBulkPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreateBulkPayload` OpenAPI schema.
+ * This type represents dnszonecreatebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreateBulkPayload();
+ * const item: DnsZoneCreateBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreateBulkPayload = components['schemas']['DnsZoneCreateBulkPayload'];
+/**
+ * DnsZoneCreateBulkTemplate
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreateBulkTemplate` OpenAPI schema.
+ * This type represents dnszonecreatebulktemplate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreateBulkTemplate();
+ * const item: DnsZoneCreateBulkTemplate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreateBulkTemplate = components['schemas']['DnsZoneCreateBulkTemplate'];
+/**
+ * DnsZoneCreateCommand
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreateCommand` OpenAPI schema.
+ * This type represents dnszonecreatecommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreateCommand();
+ * const item: DnsZoneCreateCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreateCommand = components['schemas']['DnsZoneCreateCommand'];
+/**
+ * DnsZoneCreatePayloadData
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreatePayloadData` OpenAPI schema.
+ * This type represents dnszonecreatepayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreatePayloadData();
+ * const item: DnsZoneCreatePayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreatePayloadData = components['schemas']['DnsZoneCreatePayloadData'];
+/**
+ * DnsZoneCreateWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreateWorkerPayload` OpenAPI schema.
+ * This type represents dnszonecreateworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreateWorkerPayload();
+ * const item: DnsZoneCreateWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreateWorkerPayload = components['schemas']['DnsZoneCreateWorkerPayload'];
+/**
+ * DnsZonePatchRecordsBulkCommand
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRecordsBulkCommand` OpenAPI schema.
+ * This type represents dnszonepatchrecordsbulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRecordsBulkCommand();
+ * const item: DnsZonePatchRecordsBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRecordsBulkCommand = components['schemas']['DnsZonePatchRecordsBulkCommand'];
+/**
+ * DnsZonePatchRecordsBulkInstance
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRecordsBulkInstance` OpenAPI schema.
+ * This type represents dnszonepatchrecordsbulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRecordsBulkInstance();
+ * const item: DnsZonePatchRecordsBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRecordsBulkInstance = components['schemas']['DnsZonePatchRecordsBulkInstance'];
+/**
+ * DnsZonePatchRecordsBulkPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRecordsBulkPayload` OpenAPI schema.
+ * This type represents dnszonepatchrecordsbulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRecordsBulkPayload();
+ * const item: DnsZonePatchRecordsBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRecordsBulkPayload = components['schemas']['DnsZonePatchRecordsBulkPayload'];
+/**
+ * DnsZonePatchRecordsWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRecordsWorkerPayload` OpenAPI schema.
+ * This type represents dnszonepatchrecordsworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRecordsWorkerPayload();
+ * const item: DnsZonePatchRecordsWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRecordsWorkerPayload = components['schemas']['DnsZonePatchRecordsWorkerPayload'];
+/**
+ * DnsZonePatchRrsetsBulkCommand
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRrsetsBulkCommand` OpenAPI schema.
+ * This type represents dnszonepatchrrsetsbulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRrsetsBulkCommand();
+ * const item: DnsZonePatchRrsetsBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRrsetsBulkCommand = components['schemas']['DnsZonePatchRrsetsBulkCommand'];
+/**
+ * DnsZonePatchRrsetsBulkInstance
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRrsetsBulkInstance` OpenAPI schema.
+ * This type represents dnszonepatchrrsetsbulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRrsetsBulkInstance();
+ * const item: DnsZonePatchRrsetsBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRrsetsBulkInstance = components['schemas']['DnsZonePatchRrsetsBulkInstance'];
+/**
+ * DnsZonePatchRrsetsBulkPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRrsetsBulkPayload` OpenAPI schema.
+ * This type represents dnszonepatchrrsetsbulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRrsetsBulkPayload();
+ * const item: DnsZonePatchRrsetsBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRrsetsBulkPayload = components['schemas']['DnsZonePatchRrsetsBulkPayload'];
+/**
+ * DnsZonePatchRrsetsWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZonePatchRrsetsWorkerPayload` OpenAPI schema.
+ * This type represents dnszonepatchrrsetsworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZonePatchRrsetsWorkerPayload();
+ * const item: DnsZonePatchRrsetsWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZonePatchRrsetsWorkerPayload = components['schemas']['DnsZonePatchRrsetsWorkerPayload'];
+/**
  * DnsZoneRecordsPatchOps
  *
  * @remarks
@@ -906,6 +1338,118 @@ export type DnsZoneRrsetsPatchOps = components['schemas']['DnsZoneRrsetsPatchOps
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DnsZoneSummary = components['schemas']['DnsZoneSummary'];
+/**
+ * DnsZoneUpdateBulkCommand
+ *
+ * @remarks
+ * Type alias for the `DnsZoneUpdateBulkCommand` OpenAPI schema.
+ * This type represents dnszoneupdatebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneUpdateBulkCommand();
+ * const item: DnsZoneUpdateBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneUpdateBulkCommand = components['schemas']['DnsZoneUpdateBulkCommand'];
+/**
+ * DnsZoneUpdateBulkInstance
+ *
+ * @remarks
+ * Type alias for the `DnsZoneUpdateBulkInstance` OpenAPI schema.
+ * This type represents dnszoneupdatebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneUpdateBulkInstance();
+ * const item: DnsZoneUpdateBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneUpdateBulkInstance = components['schemas']['DnsZoneUpdateBulkInstance'];
+/**
+ * DnsZoneUpdateBulkPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZoneUpdateBulkPayload` OpenAPI schema.
+ * This type represents dnszoneupdatebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneUpdateBulkPayload();
+ * const item: DnsZoneUpdateBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneUpdateBulkPayload = components['schemas']['DnsZoneUpdateBulkPayload'];
+/**
+ * DnsZoneUpdateBulkTemplate
+ *
+ * @remarks
+ * Type alias for the `DnsZoneUpdateBulkTemplate` OpenAPI schema.
+ * This type represents dnszoneupdatebulktemplate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneUpdateBulkTemplate();
+ * const item: DnsZoneUpdateBulkTemplate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneUpdateBulkTemplate = components['schemas']['DnsZoneUpdateBulkTemplate'];
+/**
+ * DnsZoneUpdateCommand
+ *
+ * @remarks
+ * Type alias for the `DnsZoneUpdateCommand` OpenAPI schema.
+ * This type represents dnszoneupdatecommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneUpdateCommand();
+ * const item: DnsZoneUpdateCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneUpdateCommand = components['schemas']['DnsZoneUpdateCommand'];
+/**
+ * DnsZoneUpdatePayloadData
+ *
+ * @remarks
+ * Type alias for the `DnsZoneUpdatePayloadData` OpenAPI schema.
+ * This type represents dnszoneupdatepayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneUpdatePayloadData();
+ * const item: DnsZoneUpdatePayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneUpdatePayloadData = components['schemas']['DnsZoneUpdatePayloadData'];
+/**
+ * DnsZoneUpdateWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `DnsZoneUpdateWorkerPayload` OpenAPI schema.
+ * This type represents dnszoneupdateworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneUpdateWorkerPayload();
+ * const item: DnsZoneUpdateWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneUpdateWorkerPayload = components['schemas']['DnsZoneUpdateWorkerPayload'];
 /**
  * DnssecAlgorithm
  *
@@ -1162,6 +1706,118 @@ export type DomainContactType = components['schemas']['DomainContactType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainCreate = components['schemas']['DomainCreate'];
+/**
+ * DomainCreateBulkCommand
+ *
+ * @remarks
+ * Type alias for the `DomainCreateBulkCommand` OpenAPI schema.
+ * This type represents domaincreatebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreateBulkCommand();
+ * const item: DomainCreateBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreateBulkCommand = components['schemas']['DomainCreateBulkCommand'];
+/**
+ * DomainCreateBulkInstance
+ *
+ * @remarks
+ * Type alias for the `DomainCreateBulkInstance` OpenAPI schema.
+ * This type represents domaincreatebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreateBulkInstance();
+ * const item: DomainCreateBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreateBulkInstance = components['schemas']['DomainCreateBulkInstance'];
+/**
+ * DomainCreateBulkPayload
+ *
+ * @remarks
+ * Type alias for the `DomainCreateBulkPayload` OpenAPI schema.
+ * This type represents domaincreatebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreateBulkPayload();
+ * const item: DomainCreateBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreateBulkPayload = components['schemas']['DomainCreateBulkPayload'];
+/**
+ * DomainCreateBulkTemplate
+ *
+ * @remarks
+ * Type alias for the `DomainCreateBulkTemplate` OpenAPI schema.
+ * This type represents domaincreatebulktemplate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreateBulkTemplate();
+ * const item: DomainCreateBulkTemplate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreateBulkTemplate = components['schemas']['DomainCreateBulkTemplate'];
+/**
+ * DomainCreateCommand
+ *
+ * @remarks
+ * Type alias for the `DomainCreateCommand` OpenAPI schema.
+ * This type represents domaincreatecommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreateCommand();
+ * const item: DomainCreateCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreateCommand = components['schemas']['DomainCreateCommand'];
+/**
+ * DomainCreatePayloadData
+ *
+ * @remarks
+ * Type alias for the `DomainCreatePayloadData` OpenAPI schema.
+ * This type represents domaincreatepayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreatePayloadData();
+ * const item: DomainCreatePayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreatePayloadData = components['schemas']['DomainCreatePayloadData'];
+/**
+ * DomainCreateWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `DomainCreateWorkerPayload` OpenAPI schema.
+ * This type represents domaincreateworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreateWorkerPayload();
+ * const item: DomainCreateWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreateWorkerPayload = components['schemas']['DomainCreateWorkerPayload'];
 /**
  * DomainDnssecDataCreate
  *
@@ -1835,6 +2491,86 @@ export type DomainSummaryData = components['schemas']['DomainSummaryData'];
  */
 export type DomainSummary = components['schemas']['DomainSummaryResponse'];
 /**
+ * DomainTransferBulkCommand
+ *
+ * @remarks
+ * Type alias for the `DomainTransferBulkCommand` OpenAPI schema.
+ * This type represents domaintransferbulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransferBulkCommand();
+ * const item: DomainTransferBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransferBulkCommand = components['schemas']['DomainTransferBulkCommand'];
+/**
+ * DomainTransferBulkInstance
+ *
+ * @remarks
+ * Type alias for the `DomainTransferBulkInstance` OpenAPI schema.
+ * This type represents domaintransferbulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransferBulkInstance();
+ * const item: DomainTransferBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransferBulkInstance = components['schemas']['DomainTransferBulkInstance'];
+/**
+ * DomainTransferBulkPayload
+ *
+ * @remarks
+ * Type alias for the `DomainTransferBulkPayload` OpenAPI schema.
+ * This type represents domaintransferbulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransferBulkPayload();
+ * const item: DomainTransferBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransferBulkPayload = components['schemas']['DomainTransferBulkPayload'];
+/**
+ * DomainTransferBulkTemplate
+ *
+ * @remarks
+ * Type alias for the `DomainTransferBulkTemplate` OpenAPI schema.
+ * This type represents domaintransferbulktemplate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransferBulkTemplate();
+ * const item: DomainTransferBulkTemplate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransferBulkTemplate = components['schemas']['DomainTransferBulkTemplate'];
+/**
+ * DomainTransferCommand
+ *
+ * @remarks
+ * Type alias for the `DomainTransferCommand` OpenAPI schema.
+ * This type represents domaintransfercommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransferCommand();
+ * const item: DomainTransferCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransferCommand = components['schemas']['DomainTransferCommand'];
+/**
  * DomainTransferIn
  *
  * @remarks
@@ -1850,6 +2586,38 @@ export type DomainSummary = components['schemas']['DomainSummaryResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainTransferIn = components['schemas']['DomainTransferIn'];
+/**
+ * DomainTransferPayloadData
+ *
+ * @remarks
+ * Type alias for the `DomainTransferPayloadData` OpenAPI schema.
+ * This type represents domaintransferpayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransferPayloadData();
+ * const item: DomainTransferPayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransferPayloadData = components['schemas']['DomainTransferPayloadData'];
+/**
+ * DomainTransferWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `DomainTransferWorkerPayload` OpenAPI schema.
+ * This type represents domaintransferworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTransferWorkerPayload();
+ * const item: DomainTransferWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTransferWorkerPayload = components['schemas']['DomainTransferWorkerPayload'];
 /**
  * DomainTransitRequest
  *
@@ -1898,6 +2666,118 @@ export type DomainTransit = components['schemas']['DomainTransitResponse'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainUpdate = components['schemas']['DomainUpdate'];
+/**
+ * DomainUpdateBulkCommand
+ *
+ * @remarks
+ * Type alias for the `DomainUpdateBulkCommand` OpenAPI schema.
+ * This type represents domainupdatebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainUpdateBulkCommand();
+ * const item: DomainUpdateBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainUpdateBulkCommand = components['schemas']['DomainUpdateBulkCommand'];
+/**
+ * DomainUpdateBulkInstance
+ *
+ * @remarks
+ * Type alias for the `DomainUpdateBulkInstance` OpenAPI schema.
+ * This type represents domainupdatebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainUpdateBulkInstance();
+ * const item: DomainUpdateBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainUpdateBulkInstance = components['schemas']['DomainUpdateBulkInstance'];
+/**
+ * DomainUpdateBulkPayload
+ *
+ * @remarks
+ * Type alias for the `DomainUpdateBulkPayload` OpenAPI schema.
+ * This type represents domainupdatebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainUpdateBulkPayload();
+ * const item: DomainUpdateBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainUpdateBulkPayload = components['schemas']['DomainUpdateBulkPayload'];
+/**
+ * DomainUpdateBulkTemplate
+ *
+ * @remarks
+ * Type alias for the `DomainUpdateBulkTemplate` OpenAPI schema.
+ * This type represents domainupdatebulktemplate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainUpdateBulkTemplate();
+ * const item: DomainUpdateBulkTemplate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainUpdateBulkTemplate = components['schemas']['DomainUpdateBulkTemplate'];
+/**
+ * DomainUpdateCommand
+ *
+ * @remarks
+ * Type alias for the `DomainUpdateCommand` OpenAPI schema.
+ * This type represents domainupdatecommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainUpdateCommand();
+ * const item: DomainUpdateCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainUpdateCommand = components['schemas']['DomainUpdateCommand'];
+/**
+ * DomainUpdatePayloadData
+ *
+ * @remarks
+ * Type alias for the `DomainUpdatePayloadData` OpenAPI schema.
+ * This type represents domainupdatepayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainUpdatePayloadData();
+ * const item: DomainUpdatePayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainUpdatePayloadData = components['schemas']['DomainUpdatePayloadData'];
+/**
+ * DomainUpdateWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `DomainUpdateWorkerPayload` OpenAPI schema.
+ * This type represents domainupdateworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainUpdateWorkerPayload();
+ * const item: DomainUpdateWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainUpdateWorkerPayload = components['schemas']['DomainUpdateWorkerPayload'];
 /**
  * DomainWithdrawRequest
  *
@@ -2709,6 +3589,102 @@ You can update the IP network range or the last usage timestamp.
  */
 export type IpRestrictionUpdate = components['schemas']['IpRestrictionUpdate'];
 /**
+ * JobBatchMetadataResponse
+ *
+ * @remarks
+ * Type alias for the `JobBatchMetadataResponse` OpenAPI schema.
+ * This type represents jobbatchmetadataresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getJobBatchMetadata();
+ * const item: JobBatchMetadata = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type JobBatchMetadata = components['schemas']['JobBatchMetadataResponse'];
+/**
+ * JobBatchRequest
+ *
+ * @remarks
+ * Type alias for the `JobBatchRequest` OpenAPI schema.
+ * This type represents jobbatchrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getJobBatchRequest();
+ * const item: JobBatchRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type JobBatchRequest = components['schemas']['JobBatchRequest'];
+/**
+ * JobBatchStatusResponse
+ *
+ * @remarks
+ * Type alias for the `JobBatchStatusResponse` OpenAPI schema.
+ * This type represents jobbatchstatusresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getJobBatchStatus();
+ * const item: JobBatchStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type JobBatchStatus = components['schemas']['JobBatchStatusResponse'];
+/**
+ * JobCountsByStatus
+ *
+ * @remarks
+ * Type alias for the `JobCountsByStatus` OpenAPI schema.
+ * This type represents jobcountsbystatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getJobCountsByStatus();
+ * const item: JobCountsByStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type JobCountsByStatus = components['schemas']['JobCountsByStatus'];
+/**
+ * JobResponse
+ *
+ * @remarks
+ * Type alias for the `JobResponse` OpenAPI schema.
+ * This type represents jobresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getJob();
+ * const item: Job = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Job = components['schemas']['JobResponse'];
+/**
+ * JobStatus
+ *
+ * @remarks
+ * Type alias for the `JobStatus` OpenAPI schema.
+ * This type represents jobstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getJobStatus();
+ * const item: JobStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type JobStatus = components['schemas']['JobStatus'];
+/**
  * JsonValue
  *
  * @remarks
@@ -3317,6 +4293,38 @@ export type Pagination_Event = components['schemas']['Pagination_EventResponse_'
  */
 export type Pagination_Invoice = components['schemas']['Pagination_InvoiceResponse_'];
 /**
+ * Pagination[JobBatchMetadataResponse]
+ *
+ * @remarks
+ * Type alias for the `Pagination_JobBatchMetadataResponse_` OpenAPI schema.
+ * This type represents pagination[jobbatchmetadataresponse] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_JobBatchMetadata();
+ * const item: Pagination_JobBatchMetadata = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_JobBatchMetadata = components['schemas']['Pagination_JobBatchMetadataResponse_'];
+/**
+ * Pagination[JobResponse]
+ *
+ * @remarks
+ * Type alias for the `Pagination_JobResponse_` OpenAPI schema.
+ * This type represents pagination[jobresponse] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_Job();
+ * const item: Pagination_Job = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_Job = components['schemas']['Pagination_JobResponse_'];
+/**
  * Pagination[ObjectLog]
  *
  * @remarks
@@ -3397,6 +4405,22 @@ export type Pagination_RequestHistory = components['schemas']['Pagination_Reques
  */
 export type Pagination_UserPublic = components['schemas']['Pagination_UserPublic_'];
 /**
+ * ParkingActionPayloadData
+ *
+ * @remarks
+ * Type alias for the `ParkingActionPayloadData` OpenAPI schema.
+ * This type represents parkingactionpayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingActionPayloadData();
+ * const item: ParkingActionPayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingActionPayloadData = components['schemas']['ParkingActionPayloadData'];
+/**
  * ParkingAgreementAcceptance. Parking agreement acceptance details.
  *
  * @remarks
@@ -3412,6 +4436,294 @@ export type Pagination_UserPublic = components['schemas']['Pagination_UserPublic
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ParkingAgreementAcceptance = components['schemas']['ParkingAgreementAcceptance'];
+/**
+ * ParkingCreateBulkCommand
+ *
+ * @remarks
+ * Type alias for the `ParkingCreateBulkCommand` OpenAPI schema.
+ * This type represents parkingcreatebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingCreateBulkCommand();
+ * const item: ParkingCreateBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingCreateBulkCommand = components['schemas']['ParkingCreateBulkCommand'];
+/**
+ * ParkingCreateBulkInstance
+ *
+ * @remarks
+ * Type alias for the `ParkingCreateBulkInstance` OpenAPI schema.
+ * This type represents parkingcreatebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingCreateBulkInstance();
+ * const item: ParkingCreateBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingCreateBulkInstance = components['schemas']['ParkingCreateBulkInstance'];
+/**
+ * ParkingCreateBulkPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingCreateBulkPayload` OpenAPI schema.
+ * This type represents parkingcreatebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingCreateBulkPayload();
+ * const item: ParkingCreateBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingCreateBulkPayload = components['schemas']['ParkingCreateBulkPayload'];
+/**
+ * ParkingCreateBulkTemplate
+ *
+ * @remarks
+ * Type alias for the `ParkingCreateBulkTemplate` OpenAPI schema.
+ * This type represents parkingcreatebulktemplate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingCreateBulkTemplate();
+ * const item: ParkingCreateBulkTemplate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingCreateBulkTemplate = components['schemas']['ParkingCreateBulkTemplate'];
+/**
+ * ParkingCreatePayloadData
+ *
+ * @remarks
+ * Type alias for the `ParkingCreatePayloadData` OpenAPI schema.
+ * This type represents parkingcreatepayloaddata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingCreatePayloadData();
+ * const item: ParkingCreatePayloadData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingCreatePayloadData = components['schemas']['ParkingCreatePayloadData'];
+/**
+ * ParkingCreateWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingCreateWorkerPayload` OpenAPI schema.
+ * This type represents parkingcreateworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingCreateWorkerPayload();
+ * const item: ParkingCreateWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingCreateWorkerPayload = components['schemas']['ParkingCreateWorkerPayload'];
+/**
+ * ParkingDeleteBulkCommand
+ *
+ * @remarks
+ * Type alias for the `ParkingDeleteBulkCommand` OpenAPI schema.
+ * This type represents parkingdeletebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDeleteBulkCommand();
+ * const item: ParkingDeleteBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDeleteBulkCommand = components['schemas']['ParkingDeleteBulkCommand'];
+/**
+ * ParkingDeleteBulkInstance
+ *
+ * @remarks
+ * Type alias for the `ParkingDeleteBulkInstance` OpenAPI schema.
+ * This type represents parkingdeletebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDeleteBulkInstance();
+ * const item: ParkingDeleteBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDeleteBulkInstance = components['schemas']['ParkingDeleteBulkInstance'];
+/**
+ * ParkingDeleteBulkPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingDeleteBulkPayload` OpenAPI schema.
+ * This type represents parkingdeletebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDeleteBulkPayload();
+ * const item: ParkingDeleteBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDeleteBulkPayload = components['schemas']['ParkingDeleteBulkPayload'];
+/**
+ * ParkingDeleteWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingDeleteWorkerPayload` OpenAPI schema.
+ * This type represents parkingdeleteworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDeleteWorkerPayload();
+ * const item: ParkingDeleteWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDeleteWorkerPayload = components['schemas']['ParkingDeleteWorkerPayload'];
+/**
+ * ParkingDisableBulkCommand
+ *
+ * @remarks
+ * Type alias for the `ParkingDisableBulkCommand` OpenAPI schema.
+ * This type represents parkingdisablebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDisableBulkCommand();
+ * const item: ParkingDisableBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDisableBulkCommand = components['schemas']['ParkingDisableBulkCommand'];
+/**
+ * ParkingDisableBulkInstance
+ *
+ * @remarks
+ * Type alias for the `ParkingDisableBulkInstance` OpenAPI schema.
+ * This type represents parkingdisablebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDisableBulkInstance();
+ * const item: ParkingDisableBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDisableBulkInstance = components['schemas']['ParkingDisableBulkInstance'];
+/**
+ * ParkingDisableBulkPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingDisableBulkPayload` OpenAPI schema.
+ * This type represents parkingdisablebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDisableBulkPayload();
+ * const item: ParkingDisableBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDisableBulkPayload = components['schemas']['ParkingDisableBulkPayload'];
+/**
+ * ParkingDisableWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingDisableWorkerPayload` OpenAPI schema.
+ * This type represents parkingdisableworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingDisableWorkerPayload();
+ * const item: ParkingDisableWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingDisableWorkerPayload = components['schemas']['ParkingDisableWorkerPayload'];
+/**
+ * ParkingEnableBulkCommand
+ *
+ * @remarks
+ * Type alias for the `ParkingEnableBulkCommand` OpenAPI schema.
+ * This type represents parkingenablebulkcommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingEnableBulkCommand();
+ * const item: ParkingEnableBulkCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingEnableBulkCommand = components['schemas']['ParkingEnableBulkCommand'];
+/**
+ * ParkingEnableBulkInstance
+ *
+ * @remarks
+ * Type alias for the `ParkingEnableBulkInstance` OpenAPI schema.
+ * This type represents parkingenablebulkinstance data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingEnableBulkInstance();
+ * const item: ParkingEnableBulkInstance = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingEnableBulkInstance = components['schemas']['ParkingEnableBulkInstance'];
+/**
+ * ParkingEnableBulkPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingEnableBulkPayload` OpenAPI schema.
+ * This type represents parkingenablebulkpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingEnableBulkPayload();
+ * const item: ParkingEnableBulkPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingEnableBulkPayload = components['schemas']['ParkingEnableBulkPayload'];
+/**
+ * ParkingEnableWorkerPayload
+ *
+ * @remarks
+ * Type alias for the `ParkingEnableWorkerPayload` OpenAPI schema.
+ * This type represents parkingenableworkerpayload data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getParkingEnableWorkerPayload();
+ * const item: ParkingEnableWorkerPayload = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ParkingEnableWorkerPayload = components['schemas']['ParkingEnableWorkerPayload'];
 /**
  * ParkingMetricsResponse
  *
@@ -3845,6 +5157,38 @@ export type Protocol = components['schemas']['Protocol'];
  */
 export type PublicAuthRequestForm = components['schemas']['PublicAuthRequestForm'];
 /**
+ * PublicReportListRes
+ *
+ * @remarks
+ * Type alias for the `PublicReportListRes` OpenAPI schema.
+ * This type represents publicreportlistres data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPublicReportListRes();
+ * const item: PublicReportListRes = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PublicReportListRes = components['schemas']['PublicReportListRes'];
+/**
+ * PublicReportRes
+ *
+ * @remarks
+ * Type alias for the `PublicReportRes` OpenAPI schema.
+ * This type represents publicreportres data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPublicReportRes();
+ * const item: PublicReportRes = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PublicReportRes = components['schemas']['PublicReportRes'];
+/**
  * RdapBase
  *
  * @remarks
@@ -4004,6 +5348,54 @@ export type RenewalEvent = components['schemas']['RenewalEvent'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type RenewalMode = components['schemas']['RenewalMode'];
+/**
+ * ReportStatus
+ *
+ * @remarks
+ * Type alias for the `ReportStatus` OpenAPI schema.
+ * This type represents reportstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getReportStatus();
+ * const item: ReportStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ReportStatus = components['schemas']['ReportStatus'];
+/**
+ * ReportTriggerType
+ *
+ * @remarks
+ * Type alias for the `ReportTriggerType` OpenAPI schema.
+ * This type represents reporttriggertype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getReportTriggerType();
+ * const item: ReportTriggerType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ReportTriggerType = components['schemas']['ReportTriggerType'];
+/**
+ * ReportType
+ *
+ * @remarks
+ * Type alias for the `ReportType` OpenAPI schema.
+ * This type represents reporttype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getReportType();
+ * const item: ReportType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ReportType = components['schemas']['ReportType'];
 /**
  * RequestHistory
  *

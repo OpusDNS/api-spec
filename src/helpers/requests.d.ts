@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -4008,6 +4008,466 @@ export type PATCH_EventsEventId_Request = {
 export type PATCH_EventsEventId_Request_Path = PATCH_EventsEventId_Request['parameters']['path'];
 
 /**
+ * Request type for DELETE JobJobId endpoint
+ *
+ * Delete (cancel) a queued job
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE JobJobId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link DELETE_JobJobId_Request_Query} - Query parameters type
+ * @see {@link DELETE_JobJobId_Request_Path} - Path parameters type
+ * @see {@link DELETE_JobJobId_Request_Body} - Request body type
+ */
+export type DELETE_JobJobId_Request = {
+  parameters: {
+    path: operations['delete_job_v1_job__job_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/job/{job_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/job/{job_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ */
+export type DELETE_JobJobId_Request_Path = DELETE_JobJobId_Request['parameters']['path'];
+
+/**
+ * Request type for GET JobJobId endpoint
+ *
+ * Get individual job details
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET JobJobId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link GET_JobJobId_Request_Query} - Query parameters type
+ * @see {@link GET_JobJobId_Request_Path} - Path parameters type
+ * @see {@link GET_JobJobId_Request_Body} - Request body type
+ */
+export type GET_JobJobId_Request = {
+  parameters: {
+    path: operations['get_job_v1_job__job_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/job/{job_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/job/{job_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/job/{job_id}
+ * @param job_id (path) - Job ID
+ */
+export type GET_JobJobId_Request_Path = GET_JobJobId_Request['parameters']['path'];
+
+/**
+ * Request type for POST JobJobIdPause endpoint
+ *
+ * Pause a job
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST JobJobIdPause endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/job/{job_id}/pause
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobJobIdPause_Request_Query} - Query parameters type
+ * @see {@link POST_JobJobIdPause_Request_Path} - Path parameters type
+ * @see {@link POST_JobJobIdPause_Request_Body} - Request body type
+ */
+export type POST_JobJobIdPause_Request = {
+  parameters: {
+    path: operations['pause_job_v1_job__job_id__pause_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/job/{job_id}/pause
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/job/{job_id}/pause endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/job/{job_id}/pause
+ * @param job_id (path) - Job ID
+ */
+export type POST_JobJobIdPause_Request_Path = POST_JobJobIdPause_Request['parameters']['path'];
+
+/**
+ * Request type for POST JobJobIdResume endpoint
+ *
+ * Resume a paused job
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST JobJobIdResume endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/job/{job_id}/resume
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobJobIdResume_Request_Query} - Query parameters type
+ * @see {@link POST_JobJobIdResume_Request_Path} - Path parameters type
+ * @see {@link POST_JobJobIdResume_Request_Body} - Request body type
+ */
+export type POST_JobJobIdResume_Request = {
+  parameters: {
+    path: operations['resume_job_v1_job__job_id__resume_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/job/{job_id}/resume
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/job/{job_id}/resume endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/job/{job_id}/resume
+ * @param job_id (path) - Job ID
+ */
+export type POST_JobJobIdResume_Request_Path = POST_JobJobIdResume_Request['parameters']['path'];
+
+/**
+ * Request type for GET Jobs endpoint
+ *
+ * List batches for organization
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET Jobs endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs
+ * @param status (query) - Filter by batch status (pending or complete)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_Jobs_Request_Query} - Query parameters type
+ * @see {@link GET_Jobs_Request_Path} - Path parameters type
+ * @see {@link GET_Jobs_Request_Body} - Request body type
+ */
+export type GET_Jobs_Request = {
+  parameters: {
+    query: operations['list_batches_v1_jobs_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/jobs
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/jobs endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/jobs
+ * @param status (query) - Filter by batch status (pending or complete)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ */
+export type GET_Jobs_Request_Query = GET_Jobs_Request['parameters']['query'];
+
+/**
+ * Request type for POST Jobs endpoint
+ *
+ * Create a batch of commands for async execution
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST Jobs endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs
+ *
+ * @see {@link POST_Jobs_Request_Query} - Query parameters type
+ * @see {@link POST_Jobs_Request_Path} - Path parameters type
+ * @see {@link POST_Jobs_Request_Body} - Request body type
+ */
+export type POST_Jobs_Request = {
+  requestBody: JobBatchRequest;
+}
+/**
+ * Request body for POST /v1/jobs
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/jobs endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/jobs
+ */
+export type POST_Jobs_Request_Body = POST_Jobs_Request['requestBody'];
+
+/**
+ * Request type for DELETE JobsBatchId endpoint
+ *
+ * Delete (cancel) all queued jobs in a batch
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE JobsBatchId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link DELETE_JobsBatchId_Request_Query} - Query parameters type
+ * @see {@link DELETE_JobsBatchId_Request_Path} - Path parameters type
+ * @see {@link DELETE_JobsBatchId_Request_Body} - Request body type
+ */
+export type DELETE_JobsBatchId_Request = {
+  parameters: {
+    path: operations['delete_batch_v1_jobs__batch_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/jobs/{batch_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/jobs/{batch_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ */
+export type DELETE_JobsBatchId_Request_Path = DELETE_JobsBatchId_Request['parameters']['path'];
+
+/**
+ * Request type for GET JobsBatchId endpoint
+ *
+ * Get batch details and execution status
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET JobsBatchId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link GET_JobsBatchId_Request_Query} - Query parameters type
+ * @see {@link GET_JobsBatchId_Request_Path} - Path parameters type
+ * @see {@link GET_JobsBatchId_Request_Body} - Request body type
+ */
+export type GET_JobsBatchId_Request = {
+  parameters: {
+    path: operations['get_batch_v1_jobs__batch_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/jobs/{batch_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/jobs/{batch_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/jobs/{batch_id}
+ * @param batch_id (path) - Batch ID
+ */
+export type GET_JobsBatchId_Request_Path = GET_JobsBatchId_Request['parameters']['path'];
+
+/**
+ * Request type for GET JobsBatchIdJobs endpoint
+ *
+ * Get individual jobs within a batch
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET JobsBatchIdJobs endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param batch_id (path) - Batch ID
+ * @param status (query) - Filter by job status (repeatable)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ *
+ * @see {@link GET_JobsBatchIdJobs_Request_Query} - Query parameters type
+ * @see {@link GET_JobsBatchIdJobs_Request_Path} - Path parameters type
+ * @see {@link GET_JobsBatchIdJobs_Request_Body} - Request body type
+ */
+export type GET_JobsBatchIdJobs_Request = {
+  parameters: {
+    query: operations['get_batch_jobs_v1_jobs__batch_id__jobs_get']['parameters']['query'];
+    path: operations['get_batch_jobs_v1_jobs__batch_id__jobs_get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/jobs/{batch_id}/jobs
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/jobs/{batch_id}/jobs endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param status (query) - Filter by job status (repeatable)
+ * @param sort_by (query) - Sort field
+ * @param sort_order (query) - Sort order
+ */
+export type GET_JobsBatchIdJobs_Request_Query = GET_JobsBatchIdJobs_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/jobs/{batch_id}/jobs
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/jobs/{batch_id}/jobs endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/jobs/{batch_id}/jobs
+ * @param batch_id (path) - Batch ID
+ */
+export type GET_JobsBatchIdJobs_Request_Path = GET_JobsBatchIdJobs_Request['parameters']['path'];
+
+/**
+ * Request type for POST JobsBatchIdPause endpoint
+ *
+ * Pause all eligible jobs in a batch
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST JobsBatchIdPause endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs/{batch_id}/pause
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsBatchIdPause_Request_Query} - Query parameters type
+ * @see {@link POST_JobsBatchIdPause_Request_Path} - Path parameters type
+ * @see {@link POST_JobsBatchIdPause_Request_Body} - Request body type
+ */
+export type POST_JobsBatchIdPause_Request = {
+  parameters: {
+    path: operations['pause_batch_v1_jobs__batch_id__pause_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/jobs/{batch_id}/pause
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/jobs/{batch_id}/pause endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/jobs/{batch_id}/pause
+ * @param batch_id (path) - Batch ID
+ */
+export type POST_JobsBatchIdPause_Request_Path = POST_JobsBatchIdPause_Request['parameters']['path'];
+
+/**
+ * Request type for POST JobsBatchIdResume endpoint
+ *
+ * Resume all paused jobs in a batch
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST JobsBatchIdResume endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs/{batch_id}/resume
+ * @param batch_id (path) - Batch ID
+ *
+ * @see {@link POST_JobsBatchIdResume_Request_Query} - Query parameters type
+ * @see {@link POST_JobsBatchIdResume_Request_Path} - Path parameters type
+ * @see {@link POST_JobsBatchIdResume_Request_Body} - Request body type
+ */
+export type POST_JobsBatchIdResume_Request = {
+  parameters: {
+    path: operations['resume_batch_v1_jobs__batch_id__resume_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/jobs/{batch_id}/resume
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/jobs/{batch_id}/resume endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/jobs/{batch_id}/resume
+ * @param batch_id (path) - Batch ID
+ */
+export type POST_JobsBatchIdResume_Request_Path = POST_JobsBatchIdResume_Request['parameters']['path'];
+
+/**
  * Request type for GET Organizations endpoint
  *
  * List all organizations
@@ -5071,6 +5531,156 @@ export type POST_ParkingSignup_Request_Body = POST_ParkingSignup_Request['reques
  */
 export type GET_ParkingSignupStatus_Request = {
 }
+
+/**
+ * Request type for GET Reports endpoint
+ *
+ * List Reports
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET Reports endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/reports
+ *
+ * @see {@link GET_Reports_Request_Query} - Query parameters type
+ * @see {@link GET_Reports_Request_Path} - Path parameters type
+ * @see {@link GET_Reports_Request_Body} - Request body type
+ */
+export type GET_Reports_Request = {
+  parameters: {
+    query: operations['list_reports_v1_reports_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/reports
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/reports endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/reports
+ */
+export type GET_Reports_Request_Query = GET_Reports_Request['parameters']['query'];
+
+/**
+ * Request type for POST Reports endpoint
+ *
+ * Create Report
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST Reports endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/reports
+ *
+ * @see {@link POST_Reports_Request_Query} - Query parameters type
+ * @see {@link POST_Reports_Request_Path} - Path parameters type
+ * @see {@link POST_Reports_Request_Body} - Request body type
+ */
+export type POST_Reports_Request = {
+  requestBody: unknown;
+}
+/**
+ * Request body for POST /v1/reports
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/reports endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/reports
+ */
+export type POST_Reports_Request_Body = POST_Reports_Request['requestBody'];
+
+/**
+ * Request type for GET ReportsReportId endpoint
+ *
+ * Get Report
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ReportsReportId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/reports/{report_id}
+ *
+ * @see {@link GET_ReportsReportId_Request_Query} - Query parameters type
+ * @see {@link GET_ReportsReportId_Request_Path} - Path parameters type
+ * @see {@link GET_ReportsReportId_Request_Body} - Request body type
+ */
+export type GET_ReportsReportId_Request = {
+  parameters: {
+    path: operations['get_report_v1_reports__report_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/reports/{report_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/reports/{report_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/reports/{report_id}
+ */
+export type GET_ReportsReportId_Request_Path = GET_ReportsReportId_Request['parameters']['path'];
+
+/**
+ * Request type for GET ReportsReportIdDownload endpoint
+ *
+ * Download Report
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ReportsReportIdDownload endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/reports/{report_id}/download
+ *
+ * @see {@link GET_ReportsReportIdDownload_Request_Query} - Query parameters type
+ * @see {@link GET_ReportsReportIdDownload_Request_Path} - Path parameters type
+ * @see {@link GET_ReportsReportIdDownload_Request_Body} - Request body type
+ */
+export type GET_ReportsReportIdDownload_Request = {
+  parameters: {
+    path: operations['download_report_v1_reports__report_id__download_get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/reports/{report_id}/download
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/reports/{report_id}/download endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/reports/{report_id}/download
+ */
+export type GET_ReportsReportIdDownload_Request_Path = GET_ReportsReportIdDownload_Request['parameters']['path'];
 
 /**
  * Request type for GET Tlds endpoint

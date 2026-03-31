@@ -1339,6 +1339,145 @@ export interface paths {
         patch: operations["acknowledge_event_v1_events__event_id__patch"];
         trace?: never;
     };
+    "/v1/job/{job_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get individual job details */
+        get: operations["get_job_v1_job__job_id__get"];
+        put?: never;
+        post?: never;
+        /** Delete (cancel) a queued job */
+        delete: operations["delete_job_v1_job__job_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/job/{job_id}/pause": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Pause a job */
+        post: operations["pause_job_v1_job__job_id__pause_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/job/{job_id}/resume": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resume a paused job */
+        post: operations["resume_job_v1_job__job_id__resume_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/jobs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List batches for organization */
+        get: operations["list_batches_v1_jobs_get"];
+        put?: never;
+        /** Create a batch of commands for async execution */
+        post: operations["create_batch_v1_jobs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/jobs/{batch_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get batch details and execution status */
+        get: operations["get_batch_v1_jobs__batch_id__get"];
+        put?: never;
+        post?: never;
+        /** Delete (cancel) all queued jobs in a batch */
+        delete: operations["delete_batch_v1_jobs__batch_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/jobs/{batch_id}/jobs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get individual jobs within a batch */
+        get: operations["get_batch_jobs_v1_jobs__batch_id__jobs_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/jobs/{batch_id}/pause": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Pause all eligible jobs in a batch */
+        post: operations["pause_batch_v1_jobs__batch_id__pause_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/jobs/{batch_id}/resume": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resume all paused jobs in a batch */
+        post: operations["resume_batch_v1_jobs__batch_id__resume_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations": {
         parameters: {
             query?: never;
@@ -1725,6 +1864,58 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/reports": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Reports */
+        get: operations["list_reports_v1_reports_get"];
+        put?: never;
+        /** Create Report */
+        post: operations["create_report_v1_reports_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/reports/{report_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Report */
+        get: operations["get_report_v1_reports__report_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/reports/{report_id}/download": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Download Report */
+        get: operations["download_report_v1_reports__report_id__download_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/tlds/": {
         parameters: {
             query?: never;
@@ -1953,6 +2144,16 @@ export interface components {
          * @enum {string}
          */
         AttributeType: "enum" | "string" | "boolean" | "datetime" | "integer";
+        /**
+         * BatchSortField
+         * @enum {string}
+         */
+        BatchSortField: "created_on" | "started_at" | "finished_at";
+        /**
+         * BatchStatus
+         * @enum {string}
+         */
+        BatchStatus: "pending" | "complete";
         /** BillingMetadata */
         BillingMetadata: {
             /**
@@ -2091,6 +2292,19 @@ export interface components {
             total: number;
             /** Unique */
             unique: number;
+        };
+        /** CommandError */
+        CommandError: {
+            /**
+             * Error
+             * @description Error message
+             */
+            error: string;
+            /**
+             * Index
+             * @description Index of the failed command in the request
+             */
+            index: number;
         };
         /**
          * ComplianceStatus
@@ -2365,6 +2579,238 @@ export interface components {
              * @description The title of the contact
              */
             title?: string | null;
+        };
+        /** ContactCreateBulkCommand */
+        ContactCreateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "contact_create_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk contact creation payload */
+            payload: components["schemas"]["ContactCreateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** ContactCreateBulkInstance */
+        ContactCreateBulkInstance: {
+            /**
+             * City
+             * @description City
+             */
+            city: string;
+            /**
+             * Country
+             * @description Override country for this contact
+             */
+            country?: string | null;
+            /**
+             * Disclose
+             * @description Override disclose setting for this contact
+             */
+            disclose?: boolean | null;
+            /**
+             * Email
+             * Format: email
+             * @description Email address of the contact
+             */
+            email: string;
+            /**
+             * Fax
+             * @description Fax number in international format
+             */
+            fax?: string | null;
+            /**
+             * First Name
+             * @description First name of the contact
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description Last name of the contact
+             */
+            last_name: string;
+            /**
+             * Org
+             * @description Override organization for this contact
+             */
+            org?: string | null;
+            /**
+             * Phone
+             * Format: phone
+             * @description Phone number in international format
+             */
+            phone: string;
+            /**
+             * Postal Code
+             * @description Postal code
+             */
+            postal_code: string;
+            /**
+             * State
+             * @description Override state for this contact
+             */
+            state?: string | null;
+            /**
+             * Street
+             * @description Street address
+             */
+            street: string;
+            /**
+             * Title
+             * @description Override title for this contact
+             */
+            title?: string | null;
+        };
+        /** ContactCreateBulkPayload */
+        ContactCreateBulkPayload: {
+            /**
+             * Instances
+             * @description List of contacts to create (1-1000)
+             */
+            instances: components["schemas"]["ContactCreateBulkInstance"][];
+            /** @description Shared settings for all contacts */
+            template: components["schemas"]["ContactCreateBulkTemplate"];
+        };
+        /** ContactCreateBulkTemplate */
+        ContactCreateBulkTemplate: {
+            /**
+             * Country
+             * @description The country of the contacts
+             */
+            country: string;
+            /**
+             * Disclose
+             * @description Whether contact details should be disclosed in WHOIS
+             */
+            disclose: boolean;
+            /**
+             * Org
+             * @description Organization name
+             */
+            org?: string | null;
+            /**
+             * State
+             * @description State/province
+             */
+            state?: string | null;
+            /**
+             * Title
+             * @description Contact title
+             */
+            title?: string | null;
+        };
+        /** ContactCreateCommand */
+        ContactCreateCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "contact_create";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description Contact creation payload */
+            payload: components["schemas"]["ContactCreatePayloadData"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** ContactCreatePayloadData */
+        ContactCreatePayloadData: {
+            /**
+             * City
+             * @description The city of the contact
+             */
+            city: string;
+            /**
+             * Country
+             * @description The country of the contact
+             */
+            country: string;
+            /**
+             * Disclose
+             * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
+             */
+            disclose: boolean;
+            /**
+             * Email
+             * Format: email
+             * @description The email of the contact
+             */
+            email: string;
+            /**
+             * Fax
+             * @description The contacts's fax number
+             */
+            fax?: string | null;
+            /**
+             * First Name
+             * @description The first name of the contact
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The last name of the contact
+             */
+            last_name: string;
+            /**
+             * Org
+             * @description The organization of the contact
+             */
+            org?: string | null;
+            /**
+             * Phone
+             * Format: phone
+             * @description The contact's phone number
+             * @example +1.2125552368
+             */
+            phone: string;
+            /**
+             * Postal Code
+             * @description The postal code of the contact
+             */
+            postal_code: string;
+            /**
+             * State
+             * @description The state of the contact
+             */
+            state?: string | null;
+            /**
+             * Street
+             * @description The address of the contact
+             */
+            street: string;
+            /**
+             * Title
+             * @description The title of the contact
+             */
+            title?: string | null;
+        };
+        /** ContactCreateWorkerPayload */
+        ContactCreateWorkerPayload: {
+            contact: components["schemas"]["ContactCreatePayloadData"];
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "contact_create" | "contact_create_bulk";
         };
         /** ContactHandle */
         ContactHandle: {
@@ -2782,6 +3228,46 @@ export interface components {
              */
             update_supported_roles?: components["schemas"]["ContactConfigBase"][] | null;
         };
+        /** CreateJobBatchResponse */
+        CreateJobBatchResponse: {
+            /**
+             * Batch Id
+             * Format: typeid
+             * @description TypeID identifying this batch
+             * @example batch_01h45ytscbebyvny4gc8cr8ma2
+             */
+            batch_id: TypeId<"batch">;
+            /**
+             * Errors
+             * @description Details of failed commands
+             */
+            errors?: components["schemas"]["CommandError"][];
+            /**
+             * Jobs Created
+             * @description Number of jobs successfully created
+             */
+            jobs_created: number;
+            /**
+             * Jobs Failed
+             * @description Number of jobs that failed to create
+             */
+            jobs_failed: number;
+            /**
+             * Status Url
+             * @description URL to check batch status
+             */
+            status_url: string;
+            /**
+             * Total Commands
+             * @description Total commands in the batch
+             */
+            total_commands: number;
+        };
+        /** CreateReportReq */
+        CreateReportReq: {
+            /** @default domain_inventory */
+            report_type: components["schemas"]["ReportType"];
+        };
         /**
          * Currency
          * @enum {string}
@@ -2959,6 +3445,193 @@ export interface components {
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetCreate"][];
         };
+        /** DnsZoneCreateBulkCommand */
+        DnsZoneCreateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "dns_zone_create_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk DNS zone creation payload */
+            payload: components["schemas"]["DnsZoneCreateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DnsZoneCreateBulkInstance */
+        DnsZoneCreateBulkInstance: {
+            /**
+             * Name
+             * @description The DNS zone name (e.g., example.com)
+             */
+            name: string;
+            /**
+             * Rrsets
+             * @description Override RRsets for this zone
+             */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][] | null;
+        };
+        /** DnsZoneCreateBulkPayload */
+        DnsZoneCreateBulkPayload: {
+            /**
+             * Instances
+             * @description List of zones to create (1-1000)
+             */
+            instances: components["schemas"]["DnsZoneCreateBulkInstance"][];
+            /** @description Shared RRsets for all zones */
+            template: components["schemas"]["DnsZoneCreateBulkTemplate"];
+        };
+        /** DnsZoneCreateBulkTemplate */
+        DnsZoneCreateBulkTemplate: {
+            /**
+             * Rrsets
+             * @description DNS record sets to create
+             */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][];
+        };
+        /** DnsZoneCreateCommand */
+        DnsZoneCreateCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "dns_zone_create";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description DNS zone creation payload */
+            payload: components["schemas"]["DnsZoneCreatePayloadData"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DnsZoneCreatePayloadData */
+        DnsZoneCreatePayloadData: {
+            /** @default disabled */
+            dnssec_status: components["schemas"]["DnssecStatus"];
+            /** Name */
+            name: string;
+            /** Rrsets */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][];
+        };
+        /** DnsZoneCreateWorkerPayload */
+        DnsZoneCreateWorkerPayload: {
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "dns_zone_create" | "dns_zone_create_bulk";
+            zone: components["schemas"]["DnsZoneCreatePayloadData"];
+        };
+        /** DnsZonePatchRecordsBulkCommand */
+        DnsZonePatchRecordsBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "dns_zone_patch_records_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description DNS zone patch records bulk payload */
+            payload: components["schemas"]["DnsZonePatchRecordsBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DnsZonePatchRecordsBulkInstance */
+        DnsZonePatchRecordsBulkInstance: {
+            /** Ops */
+            ops: components["schemas"]["DnsRecordPatchOp"][];
+            /**
+             * Zone Name
+             * @description DNS zone name to patch
+             */
+            zone_name: string;
+        };
+        /** DnsZonePatchRecordsBulkPayload */
+        DnsZonePatchRecordsBulkPayload: {
+            /** Instances */
+            instances: components["schemas"]["DnsZonePatchRecordsBulkInstance"][];
+        };
+        /** DnsZonePatchRecordsWorkerPayload */
+        DnsZonePatchRecordsWorkerPayload: {
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "dns_zone_patch_records_bulk";
+            zone: components["schemas"]["DnsZonePatchRecordsBulkInstance"];
+        };
+        /** DnsZonePatchRrsetsBulkCommand */
+        DnsZonePatchRrsetsBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "dns_zone_patch_rrsets_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description DNS zone patch rrsets bulk payload */
+            payload: components["schemas"]["DnsZonePatchRrsetsBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DnsZonePatchRrsetsBulkInstance */
+        DnsZonePatchRrsetsBulkInstance: {
+            /** Ops */
+            ops: components["schemas"]["DnsRrsetPatchOp"][];
+            /**
+             * Zone Name
+             * @description DNS zone name to patch
+             */
+            zone_name: string;
+        };
+        /** DnsZonePatchRrsetsBulkPayload */
+        DnsZonePatchRrsetsBulkPayload: {
+            /** Instances */
+            instances: components["schemas"]["DnsZonePatchRrsetsBulkInstance"][];
+        };
+        /** DnsZonePatchRrsetsWorkerPayload */
+        DnsZonePatchRrsetsWorkerPayload: {
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "dns_zone_patch_rrsets_bulk";
+            zone: components["schemas"]["DnsZonePatchRrsetsBulkInstance"];
+        };
         /** DnsZoneRecordsPatchOps */
         DnsZoneRecordsPatchOps: {
             /** Ops */
@@ -3010,6 +3683,99 @@ export interface components {
             zones_by_dnssec?: {
                 [key: string]: number;
             };
+        };
+        /** DnsZoneUpdateBulkCommand */
+        DnsZoneUpdateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "dns_zone_update_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk DNS zone update payload */
+            payload: components["schemas"]["DnsZoneUpdateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DnsZoneUpdateBulkInstance */
+        DnsZoneUpdateBulkInstance: {
+            /**
+             * Name
+             * @description The DNS zone name (e.g., example.com)
+             */
+            name: string;
+            /**
+             * Rrsets
+             * @description Override RRsets for this zone
+             */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][] | null;
+        };
+        /** DnsZoneUpdateBulkPayload */
+        DnsZoneUpdateBulkPayload: {
+            /**
+             * Instances
+             * @description List of zones to update (1-1000)
+             */
+            instances: components["schemas"]["DnsZoneUpdateBulkInstance"][];
+            /** @description Shared RRsets for all zones */
+            template: components["schemas"]["DnsZoneUpdateBulkTemplate"];
+        };
+        /** DnsZoneUpdateBulkTemplate */
+        DnsZoneUpdateBulkTemplate: {
+            /**
+             * Rrsets
+             * @description DNS record sets to update
+             */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][];
+        };
+        /** DnsZoneUpdateCommand */
+        DnsZoneUpdateCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "dns_zone_update";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description DNS zone update payload */
+            payload: components["schemas"]["DnsZoneUpdatePayloadData"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DnsZoneUpdatePayloadData */
+        DnsZoneUpdatePayloadData: {
+            /** @default disabled */
+            dnssec_status: components["schemas"]["DnssecStatus"];
+            /** Name */
+            name: string;
+            /** Rrsets */
+            rrsets?: components["schemas"]["DnsRrsetCreate"][];
+        };
+        /** DnsZoneUpdateWorkerPayload */
+        DnsZoneUpdateWorkerPayload: {
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "dns_zone_update" | "dns_zone_update_bulk";
+            zone: components["schemas"]["DnsZoneUpdatePayloadData"];
         };
         /**
          * DnssecAlgorithm
@@ -3127,6 +3893,162 @@ export interface components {
             period: components["schemas"]["DomainPeriod"];
             /** @description The renewal mode of the domain */
             renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainCreateBulkCommand */
+        DomainCreateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_create_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain creation payload */
+            payload: components["schemas"]["DomainCreateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainCreateBulkInstance */
+        DomainCreateBulkInstance: {
+            /**
+             * Auth Code
+             * @description Override auth code for this domain
+             */
+            auth_code?: string | null;
+            /**
+             * Contacts
+             * @description Override contacts for this domain
+             */
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /**
+             * Create Zone
+             * @description Override create_zone for this domain
+             */
+            create_zone?: boolean | null;
+            /**
+             * Name
+             * @description The domain to be created
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description Override nameservers for this domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description Override registration period for this domain */
+            period?: components["schemas"]["DomainPeriod"] | null;
+            /** @description Override renewal mode for this domain */
+            renewal_mode?: components["schemas"]["RenewalMode"] | null;
+        };
+        /** DomainCreateBulkPayload */
+        DomainCreateBulkPayload: {
+            /**
+             * Instances
+             * @description List of domains to create (1-1000)
+             */
+            instances: components["schemas"]["DomainCreateBulkInstance"][];
+            /** @description Shared settings for all domains */
+            template: components["schemas"]["DomainCreateBulkTemplate"];
+        };
+        /** DomainCreateBulkTemplate */
+        DomainCreateBulkTemplate: {
+            /**
+             * Auth Code
+             * @description The auth code used for the domain
+             */
+            auth_code?: string | null;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description The registration period of the domain */
+            period: components["schemas"]["DomainPeriod"];
+            /** @description The renewal mode of the domain */
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainCreateCommand */
+        DomainCreateCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_create";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description Domain creation payload */
+            payload: components["schemas"]["DomainCreatePayloadData"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainCreatePayloadData */
+        DomainCreatePayloadData: {
+            /**
+             * Auth Code
+             * @description The auth code used for the domain
+             */
+            auth_code?: string | null;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone for the domain on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
+             * Name
+             * @description The domain to be created
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description The registration period of the domain */
+            period: components["schemas"]["DomainPeriod"];
+            /** @description The renewal mode of the domain */
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainCreateWorkerPayload */
+        DomainCreateWorkerPayload: {
+            domain: components["schemas"]["DomainCreatePayloadData"];
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "domain_create" | "domain_create_bulk";
         };
         /** DomainDnssecDataCreate */
         DomainDnssecDataCreate: {
@@ -3782,6 +4704,127 @@ export interface components {
              */
             organization_id: TypeId<"organization">;
         };
+        /** DomainTransferBulkCommand */
+        DomainTransferBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_transfer_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain transfer payload */
+            payload: components["schemas"]["DomainTransferBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainTransferBulkInstance */
+        DomainTransferBulkInstance: {
+            /**
+             * Attributes
+             * @description Override attributes for this domain
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
+             * Auth Code
+             * @description The auth code for this domain (required)
+             */
+            auth_code: string;
+            /**
+             * Contacts
+             * @description Override contacts for this domain
+             */
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /**
+             * Create Zone
+             * @description Override create_zone for this domain
+             */
+            create_zone?: boolean | null;
+            /**
+             * Name
+             * @description The domain to transfer
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description Override nameservers for this domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description Override period for this domain */
+            period?: components["schemas"]["DomainPeriod"] | null;
+            /** @description Override renewal mode for this domain */
+            renewal_mode?: components["schemas"]["RenewalMode"] | null;
+        };
+        /** DomainTransferBulkPayload */
+        DomainTransferBulkPayload: {
+            /**
+             * Instances
+             * @description List of domains to transfer (1-1000)
+             */
+            instances: components["schemas"]["DomainTransferBulkInstance"][];
+            /** @description Shared settings for all domains */
+            template: components["schemas"]["DomainTransferBulkTemplate"];
+        };
+        /** DomainTransferBulkTemplate */
+        DomainTransferBulkTemplate: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description Additional registration period to add upon transfer completion */
+            period?: components["schemas"]["DomainPeriod"] | null;
+            /** @description The renewal mode of the domain */
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainTransferCommand */
+        DomainTransferCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_transfer";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description Domain transfer payload */
+            payload: components["schemas"]["DomainTransferPayloadData"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
         /** DomainTransferIn */
         DomainTransferIn: {
             /**
@@ -3821,6 +4864,57 @@ export interface components {
             period?: components["schemas"]["DomainPeriod"] | null;
             /** @description The renewal mode of the domain */
             renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainTransferPayloadData */
+        DomainTransferPayloadData: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
+             * Auth Code
+             * @description The auth code for the domain
+             */
+            auth_code: string;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone for the domain on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
+             * Name
+             * @description The domain to be created
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description Additional registration period to add to the domain upon transfer completion. If omitted, the registry default policy will be applied. */
+            period?: components["schemas"]["DomainPeriod"] | null;
+            /** @description The renewal mode of the domain */
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainTransferWorkerPayload */
+        DomainTransferWorkerPayload: {
+            domain: components["schemas"]["DomainTransferPayloadData"];
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "domain_transfer" | "domain_transfer_bulk";
         };
         /** DomainTransitRequest */
         DomainTransitRequest: {
@@ -3875,6 +4969,166 @@ export interface components {
              * @description The new statuses of the domain
              */
             statuses?: components["schemas"]["DomainClientStatus"][] | null;
+        };
+        /** DomainUpdateBulkCommand */
+        DomainUpdateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_update_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain update payload */
+            payload: components["schemas"]["DomainUpdateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainUpdateBulkInstance */
+        DomainUpdateBulkInstance: {
+            /**
+             * Auth Code
+             * @description Override auth code for this domain
+             */
+            auth_code?: string | null;
+            /**
+             * Contacts
+             * @description Override contacts for this domain
+             */
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /**
+             * Domain Id
+             * @description The domain ID to update
+             */
+            domain_id?: string | null;
+            /**
+             * Name
+             * @description The domain name to update
+             */
+            name?: string | null;
+            /**
+             * Nameservers
+             * @description Override nameservers for this domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description Override renewal mode for this domain */
+            renewal_mode?: components["schemas"]["RenewalMode"] | null;
+            /** @description Override status changes for this domain */
+            status_changes?: components["schemas"]["StatusChanges"] | null;
+            /**
+             * Statuses
+             * @description Override statuses for this domain
+             */
+            statuses?: components["schemas"]["DomainClientStatus"][] | null;
+        };
+        /** DomainUpdateBulkPayload */
+        DomainUpdateBulkPayload: {
+            /**
+             * Instances
+             * @description List of domains to update (1-1000)
+             */
+            instances: components["schemas"]["DomainUpdateBulkInstance"][];
+            /** @description Shared settings for all domain updates */
+            template: components["schemas"]["DomainUpdateBulkTemplate"];
+        };
+        /** DomainUpdateBulkTemplate */
+        DomainUpdateBulkTemplate: {
+            /**
+             * Contacts
+             * @description The new contacts of the domain
+             */
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /**
+             * Nameservers
+             * @description The new name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description The new renewal mode of the domain */
+            renewal_mode?: components["schemas"]["RenewalMode"] | null;
+            /** @description Statuses to add or remove relative to current state */
+            status_changes?: components["schemas"]["StatusChanges"] | null;
+            /**
+             * Statuses
+             * @description The new statuses of the domain
+             */
+            statuses?: components["schemas"]["DomainClientStatus"][] | null;
+        };
+        /** DomainUpdateCommand */
+        DomainUpdateCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_update";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this command
+             */
+            idempotency_key?: string | null;
+            /** @description Domain update payload */
+            payload: components["schemas"]["DomainUpdatePayloadData"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainUpdatePayloadData */
+        DomainUpdatePayloadData: {
+            /**
+             * Auth Code
+             * @description The new auth code for the domain
+             */
+            auth_code?: string | null;
+            /**
+             * Contacts
+             * @description The new contacts of the domain
+             * @example {
+             *       "admin": "contact_01h45ytscbebyvny4gc8cr8ma2",
+             *       "billing": "contact_01h45ytscbebyvny4gc8cr8ma2",
+             *       "registrant": "contact_01h45ytscbebyvny4gc8cr8ma2",
+             *       "tech": "contact_01h45ytscbebyvny4gc8cr8ma2"
+             *     }
+             */
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /**
+             * Domain Id
+             * @description Domain ID to update
+             */
+            domain_id: string;
+            /**
+             * Nameservers
+             * @description The new name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description The new renewal mode of the domain */
+            renewal_mode?: components["schemas"]["RenewalMode"] | null;
+            /** @description Statuses to add or remove relative to current state */
+            status_changes?: components["schemas"]["StatusChanges"] | null;
+            /**
+             * Statuses
+             * @description The new statuses of the domain
+             */
+            statuses?: components["schemas"]["DomainClientStatus"][] | null;
+        };
+        /** DomainUpdateWorkerPayload */
+        DomainUpdateWorkerPayload: {
+            domain: components["schemas"]["DomainUpdatePayloadData"];
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "domain_update" | "domain_update_bulk";
         };
         /** DomainWithdrawRequest */
         DomainWithdrawRequest: {
@@ -4679,6 +5933,255 @@ export interface components {
              */
             last_used_on?: Date | null;
         };
+        /** JobBatchMetadataResponse */
+        JobBatchMetadataResponse: {
+            /**
+             * Batch Id
+             * Format: typeid
+             * @description TypeID identifying this batch
+             * @example batch_01h45ytscbebyvny4gc8cr8ma2
+             */
+            batch_id: TypeId<"batch">;
+            /**
+             * Created On
+             * Format: date-time
+             * @description Timestamp when the batch was created (UTC)
+             */
+            created_on: Date;
+            /**
+             * Finished At
+             * @description Timestamp when the last job finished (UTC)
+             */
+            finished_at?: Date | null;
+            /** @description Number of jobs in each status */
+            job_counts: components["schemas"]["JobCountsByStatus"];
+            /**
+             * Label
+             * @description Human-readable label for this batch
+             */
+            label?: string | null;
+            /**
+             * Started At
+             * @description Timestamp when the first job started (UTC)
+             */
+            started_at?: Date | null;
+            /** @description Batch status: pending (jobs still processing) or complete (all done) */
+            status: components["schemas"]["BatchStatus"];
+            /**
+             * Total Jobs
+             * @description Total number of jobs in this batch
+             */
+            total_jobs: number;
+        };
+        /** JobBatchRequest */
+        JobBatchRequest: {
+            /**
+             * Commands
+             * @description List of commands to execute
+             */
+            commands: (components["schemas"]["DomainCreateCommand"] | components["schemas"]["DomainUpdateCommand"] | components["schemas"]["DomainTransferCommand"] | components["schemas"]["DnsZoneCreateCommand"] | components["schemas"]["DnsZoneUpdateCommand"] | components["schemas"]["DomainCreateBulkCommand"] | components["schemas"]["DomainTransferBulkCommand"] | components["schemas"]["DomainUpdateBulkCommand"] | components["schemas"]["DnsZoneCreateBulkCommand"] | components["schemas"]["DnsZoneUpdateBulkCommand"] | components["schemas"]["DnsZonePatchRrsetsBulkCommand"] | components["schemas"]["DnsZonePatchRecordsBulkCommand"] | components["schemas"]["ContactCreateBulkCommand"] | components["schemas"]["ContactCreateCommand"] | components["schemas"]["ParkingCreateBulkCommand"] | components["schemas"]["ParkingEnableBulkCommand"] | components["schemas"]["ParkingDisableBulkCommand"] | components["schemas"]["ParkingDeleteBulkCommand"])[];
+            /**
+             * Label
+             * @description Human-readable label for this batch
+             */
+            label?: string | null;
+            /**
+             * Not Before
+             * @description Earliest time jobs can execute (UTC). If not provided, jobs run immediately.
+             */
+            not_before?: Date | null;
+            /**
+             * Paused
+             * @description If true, jobs are created in paused state and must be explicitly resumed
+             * @default false
+             */
+            paused: boolean;
+        };
+        /** JobBatchStatusResponse */
+        JobBatchStatusResponse: {
+            /**
+             * Batch Id
+             * Format: typeid
+             * @description TypeID identifying this batch. All jobs in a batch share the same batch_id, while each job has its own unique job_id.
+             * @example batch_01h45ytscbebyvny4gc8cr8ma2
+             */
+            batch_id: TypeId<"batch">;
+            /**
+             * Blocked
+             * @description Number of jobs waiting for eligibility (scheduled, serial blocked, or no tokens)
+             * @default 0
+             */
+            blocked: number;
+            /**
+             * Canceled
+             * @description Number of jobs that were canceled
+             */
+            canceled: number;
+            /**
+             * Dead Letter
+             * @description Number of jobs that permanently failed after exhausting retries
+             */
+            dead_letter: number;
+            /**
+             * Failed
+             * @description Number of jobs that failed execution
+             */
+            failed: number;
+            /**
+             * Paused
+             * @description Number of jobs in paused state
+             * @default 0
+             */
+            paused: number;
+            /**
+             * Progress Percentage
+             * @description Completion percentage (0-100)
+             */
+            progress_percentage: number;
+            /**
+             * Queued
+             * @description Number of jobs awaiting processing
+             */
+            queued: number;
+            /**
+             * Running
+             * @description Number of jobs currently being executed
+             */
+            running: number;
+            /**
+             * Succeeded
+             * @description Number of jobs that completed successfully
+             */
+            succeeded: number;
+            /**
+             * Total
+             * @description Total number of jobs in the batch
+             */
+            total: number;
+        };
+        /** JobCountsByStatus */
+        JobCountsByStatus: {
+            /**
+             * Blocked
+             * @default 0
+             */
+            blocked: number;
+            /**
+             * Canceled
+             * @default 0
+             */
+            canceled: number;
+            /**
+             * Dead Letter
+             * @default 0
+             */
+            dead_letter: number;
+            /**
+             * Failed
+             * @default 0
+             */
+            failed: number;
+            /**
+             * Paused
+             * @default 0
+             */
+            paused: number;
+            /**
+             * Queued
+             * @default 0
+             */
+            queued: number;
+            /**
+             * Running
+             * @default 0
+             */
+            running: number;
+            /**
+             * Succeeded
+             * @default 0
+             */
+            succeeded: number;
+        };
+        /** JobResponse */
+        JobResponse: {
+            /**
+             * Attempts
+             * @description Number of execution attempts made for this job
+             */
+            attempts: number;
+            /**
+             * Command
+             * @description Command name (e.g., 'domain_create', 'dns_zone_update')
+             */
+            command?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description Timestamp when the job was created (UTC)
+             */
+            created_on: Date;
+            /**
+             * Display
+             * @description Human-readable description of this job
+             */
+            display?: string | null;
+            /**
+             * Error Class
+             * @description Error type if the job failed (e.g., ValidationError, TimeoutError)
+             */
+            error_class?: string | null;
+            /**
+             * Error Message
+             * @description Detailed error message if the job failed
+             */
+            error_message?: string | null;
+            /**
+             * Finished At
+             * @description Timestamp when job execution completed (UTC)
+             */
+            finished_at?: Date | null;
+            /**
+             * Job Id
+             * Format: typeid
+             * @description Unique identifier for this individual job
+             * @example job_01h45ytscbebyvny4gc8cr8ma2
+             */
+            job_id: TypeId<"job">;
+            /**
+             * Operation
+             * @description Operation type (e.g., 'create', 'update', 'transfer')
+             */
+            operation?: string | null;
+            /**
+             * Paused At
+             * @description Timestamp when job was paused (UTC)
+             */
+            paused_at?: Date | null;
+            /**
+             * Payload
+             * @description The original request payload for this job
+             */
+            payload?: (components["schemas"]["DomainCreateWorkerPayload"] | components["schemas"]["DomainUpdateWorkerPayload"] | components["schemas"]["DomainTransferWorkerPayload"] | components["schemas"]["DnsZoneCreateWorkerPayload"] | components["schemas"]["DnsZoneUpdateWorkerPayload"] | components["schemas"]["DnsZonePatchRrsetsWorkerPayload"] | components["schemas"]["DnsZonePatchRecordsWorkerPayload"] | components["schemas"]["ContactCreateWorkerPayload"] | components["schemas"]["ParkingCreateWorkerPayload"] | components["schemas"]["ParkingEnableWorkerPayload"] | components["schemas"]["ParkingDisableWorkerPayload"] | components["schemas"]["ParkingDeleteWorkerPayload"]) | {
+                [key: string]: unknown;
+            } | null;
+            /**
+             * Resource Key
+             * @description Resource identifier for this job
+             */
+            resource_key?: string | null;
+            /**
+             * Started At
+             * @description Timestamp when job execution began (UTC)
+             */
+            started_at?: Date | null;
+            /** @description Current job status: queued, running, succeeded, failed, canceled, or dead_letter */
+            status: components["schemas"]["JobStatus"];
+        };
+        /**
+         * JobStatus
+         * @enum {string}
+         */
+        JobStatus: "blocked" | "queued" | "paused" | "running" | "succeeded" | "failed" | "canceled" | "dead_letter";
         JsonValue: unknown;
         /** LaunchPhaseBase */
         LaunchPhaseBase: {
@@ -5429,6 +6932,18 @@ export interface components {
             /** Results */
             results: components["schemas"]["InvoiceResponse"][];
         };
+        /** Pagination[JobBatchMetadataResponse] */
+        Pagination_JobBatchMetadataResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["JobBatchMetadataResponse"][];
+        };
+        /** Pagination[JobResponse] */
+        Pagination_JobResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["JobResponse"][];
+        };
         /** Pagination[ObjectLog] */
         Pagination_ObjectLog_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -5459,6 +6974,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["UserPublic"][];
         };
+        /** ParkingActionPayloadData */
+        ParkingActionPayloadData: {
+            /** Parking Id */
+            parking_id: string;
+        };
         /**
          * ParkingAgreementAcceptance
          * @description Parking agreement acceptance details.
@@ -5480,6 +7000,230 @@ export interface components {
              * @description Version of the parking agreement being accepted
              */
             version: string;
+        };
+        /** ParkingCreateBulkCommand */
+        ParkingCreateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "parking_create_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk parking creation payload */
+            payload: components["schemas"]["ParkingCreateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** ParkingCreateBulkInstance */
+        ParkingCreateBulkInstance: {
+            /**
+             * Domain
+             * @description The domain name for the parking ad
+             */
+            domain: string;
+            /**
+             * Enabled
+             * @description Override enabled setting for this domain
+             */
+            enabled?: boolean | null;
+        };
+        /** ParkingCreateBulkPayload */
+        ParkingCreateBulkPayload: {
+            /**
+             * Instances
+             * @description List of parking entries to create (1-1000)
+             */
+            instances: components["schemas"]["ParkingCreateBulkInstance"][];
+            /** @description Shared settings for all parking entries */
+            template: components["schemas"]["ParkingCreateBulkTemplate"];
+        };
+        /** ParkingCreateBulkTemplate */
+        ParkingCreateBulkTemplate: {
+            /**
+             * Enabled
+             * @description Whether to enable parking immediately after creation
+             * @default false
+             */
+            enabled: boolean;
+        };
+        /** ParkingCreatePayloadData */
+        ParkingCreatePayloadData: {
+            /** Domain */
+            domain: string;
+            /**
+             * Enabled
+             * @default false
+             */
+            enabled: boolean;
+        };
+        /** ParkingCreateWorkerPayload */
+        ParkingCreateWorkerPayload: {
+            /** Operation */
+            operation: string;
+            parking: components["schemas"]["ParkingCreatePayloadData"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "parking_create_bulk";
+        };
+        /** ParkingDeleteBulkCommand */
+        ParkingDeleteBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "parking_delete_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk parking delete payload */
+            payload: components["schemas"]["ParkingDeleteBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** ParkingDeleteBulkInstance */
+        ParkingDeleteBulkInstance: {
+            /**
+             * Parking Id
+             * Format: typeid
+             * @description The parking ID of the entry to delete
+             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             */
+            parking_id: TypeId<"parking">;
+        };
+        /** ParkingDeleteBulkPayload */
+        ParkingDeleteBulkPayload: {
+            /**
+             * Instances
+             * @description List of parking entries to delete (1-1000)
+             */
+            instances: components["schemas"]["ParkingDeleteBulkInstance"][];
+        };
+        /** ParkingDeleteWorkerPayload */
+        ParkingDeleteWorkerPayload: {
+            /** Operation */
+            operation: string;
+            parking: components["schemas"]["ParkingActionPayloadData"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "parking_delete_bulk";
+        };
+        /** ParkingDisableBulkCommand */
+        ParkingDisableBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "parking_disable_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk parking disable payload */
+            payload: components["schemas"]["ParkingDisableBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** ParkingDisableBulkInstance */
+        ParkingDisableBulkInstance: {
+            /**
+             * Parking Id
+             * Format: typeid
+             * @description The parking ID of the entry to disable
+             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             */
+            parking_id: TypeId<"parking">;
+        };
+        /** ParkingDisableBulkPayload */
+        ParkingDisableBulkPayload: {
+            /**
+             * Instances
+             * @description List of parking entries to disable (1-1000)
+             */
+            instances: components["schemas"]["ParkingDisableBulkInstance"][];
+        };
+        /** ParkingDisableWorkerPayload */
+        ParkingDisableWorkerPayload: {
+            /** Operation */
+            operation: string;
+            parking: components["schemas"]["ParkingActionPayloadData"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "parking_disable_bulk";
+        };
+        /** ParkingEnableBulkCommand */
+        ParkingEnableBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "parking_enable_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk parking enable payload */
+            payload: components["schemas"]["ParkingEnableBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** ParkingEnableBulkInstance */
+        ParkingEnableBulkInstance: {
+            /**
+             * Parking Id
+             * Format: typeid
+             * @description The parking ID of the entry to enable
+             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             */
+            parking_id: TypeId<"parking">;
+        };
+        /** ParkingEnableBulkPayload */
+        ParkingEnableBulkPayload: {
+            /**
+             * Instances
+             * @description List of parking entries to enable (1-1000)
+             */
+            instances: components["schemas"]["ParkingEnableBulkInstance"][];
+        };
+        /** ParkingEnableWorkerPayload */
+        ParkingEnableWorkerPayload: {
+            /** Operation */
+            operation: string;
+            parking: components["schemas"]["ParkingActionPayloadData"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "parking_enable_bulk";
         };
         /** ParkingMetricsResponse */
         ParkingMetricsResponse: {
@@ -5782,6 +7526,46 @@ export interface components {
              */
             grant_type: string;
         };
+        /** PublicReportListRes */
+        PublicReportListRes: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["PublicReportRes"][];
+        };
+        /** PublicReportRes */
+        PublicReportRes: {
+            /**
+             * Created On
+             * Format: date-time
+             */
+            created_on: Date;
+            /** File Size Bytes */
+            file_size_bytes?: number | null;
+            /** Generated On */
+            generated_on?: Date | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /** Record Count */
+            record_count?: number | null;
+            /**
+             * Report Id
+             * Format: typeid
+             * @example report_01h45ytscbebyvny4gc8cr8ma2
+             */
+            report_id: TypeId<"report">;
+            report_type: components["schemas"]["ReportType"];
+            status: components["schemas"]["ReportStatus"];
+            trigger_type: components["schemas"]["ReportTriggerType"];
+            /**
+             * Updated On
+             * Format: date-time
+             */
+            updated_on: Date;
+        };
         /** RdapBase */
         RdapBase: {
             /**
@@ -5862,6 +7646,21 @@ export interface components {
          * @enum {string}
          */
         RenewalMode: "renew" | "expire";
+        /**
+         * ReportStatus
+         * @enum {string}
+         */
+        ReportStatus: "pending" | "generating" | "completed" | "failed";
+        /**
+         * ReportTriggerType
+         * @enum {string}
+         */
+        ReportTriggerType: "on_demand" | "scheduled";
+        /**
+         * ReportType
+         * @enum {string}
+         */
+        ReportType: "domain_inventory" | "dns_zone_summary" | "dns_zone_records";
         /** RequestHistory */
         RequestHistory: {
             /**
@@ -12623,6 +14422,584 @@ export interface operations {
             };
         };
     };
+    get_job_v1_job__job_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Job ID */
+                job_id: TypeId<"job">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_JOB_NOT_FOUND",
+                     *       "detail": "No job found with id 'Additional error context.'",
+                     *       "job_id": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "job-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_job_v1_job__job_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Job ID */
+                job_id: TypeId<"job">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_JOB_NOT_FOUND",
+                     *       "detail": "No job found with id 'Additional error context.'",
+                     *       "job_id": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "job-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    pause_job_v1_job__job_id__pause_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Job ID */
+                job_id: TypeId<"job">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_JOB_NOT_FOUND",
+                     *       "detail": "No job found with id 'Additional error context.'",
+                     *       "job_id": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "job-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resume_job_v1_job__job_id__resume_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Job ID */
+                job_id: TypeId<"job">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_JOB_NOT_FOUND",
+                     *       "detail": "No job found with id 'Additional error context.'",
+                     *       "job_id": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "job-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_batches_v1_jobs_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by batch status (pending or complete) */
+                status?: components["schemas"]["BatchStatus"] | null;
+                /** @description Sort field */
+                sort_by?: components["schemas"]["BatchSortField"];
+                /** @description Sort order */
+                sort_order?: components["schemas"]["SortOrder"];
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_JobBatchMetadataResponse_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_batch_v1_jobs_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["JobBatchRequest"];
+            };
+        };
+        responses: {
+            /** @description Batch created successfully */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreateJobBatchResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_EMPTY",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-empty"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_JOB_CREATION_FAILED",
+                     *       "command": "Additional error context.",
+                     *       "detail": "Failed to create job for command 'Additional error context.'",
+                     *       "status": 503,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-job-creation"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_batch_v1_jobs__batch_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Batch ID */
+                batch_id: TypeId<"batch">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Batch status retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobBatchStatusResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_NOT_FOUND",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "No batch found with correlation_id 'Additional error context.'",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_STATUS_FETCH_FAILED",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "Failed to fetch batch status for correlation_id 'Additional error context.'",
+                     *       "status": 503,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-status-fetch"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    delete_batch_v1_jobs__batch_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Batch ID */
+                batch_id: TypeId<"batch">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_NOT_FOUND",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "No batch found with correlation_id 'Additional error context.'",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_batch_jobs_v1_jobs__batch_id__jobs_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by job status (repeatable) */
+                status?: components["schemas"]["JobStatus"][] | null;
+                /** @description Sort field */
+                sort_by?: components["schemas"]["BatchSortField"] | null;
+                /** @description Sort order */
+                sort_order?: components["schemas"]["SortOrder"] | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path: {
+                /** @description Batch ID */
+                batch_id: TypeId<"batch">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Batch jobs retrieved successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_JobResponse_"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_NOT_FOUND",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "No batch found with correlation_id 'Additional error context.'",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_STATUS_FETCH_FAILED",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "Failed to fetch batch status for correlation_id 'Additional error context.'",
+                     *       "status": 503,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-status-fetch"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    pause_batch_v1_jobs__batch_id__pause_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Batch ID */
+                batch_id: TypeId<"batch">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_NOT_FOUND",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "No batch found with correlation_id 'Additional error context.'",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resume_batch_v1_jobs__batch_id__resume_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Batch ID */
+                batch_id: TypeId<"batch">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_NOT_FOUND",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "No batch found with correlation_id 'Additional error context.'",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_organizations_v1_organizations_get: {
         parameters: {
             query?: {
@@ -14226,6 +16603,138 @@ export interface operations {
                      *       "type": "parking-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_reports_v1_reports_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+                report_type?: components["schemas"]["ReportType"][] | null;
+                status?: components["schemas"]["ReportStatus"][] | null;
+                trigger_type?: components["schemas"]["ReportTriggerType"] | null;
+                created_after?: Date | null;
+                created_before?: Date | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicReportListRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_report_v1_reports_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["CreateReportReq"] | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_report_v1_reports__report_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                report_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicReportRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    download_report_v1_reports__report_id__download_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                report_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */

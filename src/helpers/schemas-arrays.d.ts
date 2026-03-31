@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, TldResponseShort, AttributeCondition, DomainContactType, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsRecordPatchOp, DnsRrset, DnsRrsetPatchOp, DomainAvailabilityCheck, ContactHandle, Nameserver, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainClientStatus, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, ObjectLog, Organization, Parking, RequestHistory, UserPublic, Period, Permission, PremiumAffectsType, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainDnssecDataResponse
@@ -51,6 +51,20 @@ export type DomainDnssecDataArray = DomainDnssecData[];
  * @see {@link DomainDnssecDataCreate} - The individual DomainDnssecDataCreate type definition
  */
 export type DomainDnssecDataCreateArray = DomainDnssecDataCreate[];
+/**
+ * JobStatus
+ *
+ * @remarks
+ * Array type for JobStatus objects. Used when the API returns a collection of JobStatus instances.
+ *
+ * @example
+ * ```typescript
+ * const items: JobStatusArray = await api.getJobStatuss();
+ * ```
+ *
+ * @see {@link JobStatus} - The individual JobStatus type definition
+ */
+export type JobStatusArray = JobStatus[];
 /**
  * OrganizationAttributeResponse
  *
@@ -94,6 +108,34 @@ export type OrganizationAttributeUpdateArray = OrganizationAttributeUpdate[];
  */
 export type IpRestrictionArray = IpRestriction[];
 /**
+ * ReportType
+ *
+ * @remarks
+ * Array type for ReportType objects. Used when the API returns a collection of ReportType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ReportTypeArray = await api.getReportTypes();
+ * ```
+ *
+ * @see {@link ReportType} - The individual ReportType type definition
+ */
+export type ReportTypeArray = ReportType[];
+/**
+ * ReportStatus
+ *
+ * @remarks
+ * Array type for ReportStatus objects. Used when the API returns a collection of ReportStatus instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ReportStatusArray = await api.getReportStatuss();
+ * ```
+ *
+ * @see {@link ReportStatus} - The individual ReportStatus type definition
+ */
+export type ReportStatusArray = ReportStatus[];
+/**
  * TldResponseShort
  *
  * @remarks
@@ -135,6 +177,20 @@ export type AttributeConditionArray = AttributeCondition[];
  * @see {@link DomainContactType} - The individual DomainContactType type definition
  */
 export type DomainContactTypeArray = DomainContactType[];
+/**
+ * ContactCreateBulkInstance
+ *
+ * @remarks
+ * Array type for ContactCreateBulkInstance objects. Used when the API returns a collection of ContactCreateBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactCreateBulkInstanceArray = await api.getContactCreateBulkInstances();
+ * ```
+ *
+ * @see {@link ContactCreateBulkInstance} - The individual ContactCreateBulkInstance type definition
+ */
+export type ContactCreateBulkInstanceArray = ContactCreateBulkInstance[];
 /**
  * ContactAttributeLinkDetail
  *
@@ -192,6 +248,20 @@ export type PostalAddressTypeArray = PostalAddressType[];
  */
 export type ContactConfigBaseArray = ContactConfigBase[];
 /**
+ * CommandError
+ *
+ * @remarks
+ * Array type for CommandError objects. Used when the API returns a collection of CommandError instances.
+ *
+ * @example
+ * ```typescript
+ * const items: CommandErrorArray = await api.getCommandErrors();
+ * ```
+ *
+ * @see {@link CommandError} - The individual CommandError type definition
+ */
+export type CommandErrorArray = CommandError[];
+/**
  * DnsChangeResponse
  *
  * @remarks
@@ -248,6 +318,20 @@ export type DnsRecordArray = DnsRecord[];
  */
 export type DnsRrsetCreateArray = DnsRrsetCreate[];
 /**
+ * DnsZoneCreateBulkInstance
+ *
+ * @remarks
+ * Array type for DnsZoneCreateBulkInstance objects. Used when the API returns a collection of DnsZoneCreateBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DnsZoneCreateBulkInstanceArray = await api.getDnsZoneCreateBulkInstances();
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkInstance} - The individual DnsZoneCreateBulkInstance type definition
+ */
+export type DnsZoneCreateBulkInstanceArray = DnsZoneCreateBulkInstance[];
+/**
  * DnsRecordPatchOp
  *
  * @remarks
@@ -261,6 +345,48 @@ export type DnsRrsetCreateArray = DnsRrsetCreate[];
  * @see {@link DnsRecordPatchOp} - The individual DnsRecordPatchOp type definition
  */
 export type DnsRecordPatchOpArray = DnsRecordPatchOp[];
+/**
+ * DnsZonePatchRecordsBulkInstance
+ *
+ * @remarks
+ * Array type for DnsZonePatchRecordsBulkInstance objects. Used when the API returns a collection of DnsZonePatchRecordsBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DnsZonePatchRecordsBulkInstanceArray = await api.getDnsZonePatchRecordsBulkInstances();
+ * ```
+ *
+ * @see {@link DnsZonePatchRecordsBulkInstance} - The individual DnsZonePatchRecordsBulkInstance type definition
+ */
+export type DnsZonePatchRecordsBulkInstanceArray = DnsZonePatchRecordsBulkInstance[];
+/**
+ * DnsRrsetPatchOp
+ *
+ * @remarks
+ * Array type for DnsRrsetPatchOp objects. Used when the API returns a collection of DnsRrsetPatchOp instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DnsRrsetPatchOpArray = await api.getDnsRrsetPatchOps();
+ * ```
+ *
+ * @see {@link DnsRrsetPatchOp} - The individual DnsRrsetPatchOp type definition
+ */
+export type DnsRrsetPatchOpArray = DnsRrsetPatchOp[];
+/**
+ * DnsZonePatchRrsetsBulkInstance
+ *
+ * @remarks
+ * Array type for DnsZonePatchRrsetsBulkInstance objects. Used when the API returns a collection of DnsZonePatchRrsetsBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DnsZonePatchRrsetsBulkInstanceArray = await api.getDnsZonePatchRrsetsBulkInstances();
+ * ```
+ *
+ * @see {@link DnsZonePatchRrsetsBulkInstance} - The individual DnsZonePatchRrsetsBulkInstance type definition
+ */
+export type DnsZonePatchRrsetsBulkInstanceArray = DnsZonePatchRrsetsBulkInstance[];
 /**
  * DnsRrsetResponse
  *
@@ -276,19 +402,19 @@ export type DnsRecordPatchOpArray = DnsRecordPatchOp[];
  */
 export type DnsRrsetArray = DnsRrset[];
 /**
- * DnsRrsetPatchOp
+ * DnsZoneUpdateBulkInstance
  *
  * @remarks
- * Array type for DnsRrsetPatchOp objects. Used when the API returns a collection of DnsRrsetPatchOp instances.
+ * Array type for DnsZoneUpdateBulkInstance objects. Used when the API returns a collection of DnsZoneUpdateBulkInstance instances.
  *
  * @example
  * ```typescript
- * const items: DnsRrsetPatchOpArray = await api.getDnsRrsetPatchOps();
+ * const items: DnsZoneUpdateBulkInstanceArray = await api.getDnsZoneUpdateBulkInstances();
  * ```
  *
- * @see {@link DnsRrsetPatchOp} - The individual DnsRrsetPatchOp type definition
+ * @see {@link DnsZoneUpdateBulkInstance} - The individual DnsZoneUpdateBulkInstance type definition
  */
-export type DnsRrsetPatchOpArray = DnsRrsetPatchOp[];
+export type DnsZoneUpdateBulkInstanceArray = DnsZoneUpdateBulkInstance[];
 /**
  * DomainAvailabilityResponse
  *
@@ -331,6 +457,20 @@ export type ContactHandleArray = ContactHandle[];
  * @see {@link Nameserver} - The individual Nameserver type definition
  */
 export type NameserverArray = Nameserver[];
+/**
+ * DomainCreateBulkInstance
+ *
+ * @remarks
+ * Array type for DomainCreateBulkInstance objects. Used when the API returns a collection of DomainCreateBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainCreateBulkInstanceArray = await api.getDomainCreateBulkInstances();
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The individual DomainCreateBulkInstance type definition
+ */
+export type DomainCreateBulkInstanceArray = DomainCreateBulkInstance[];
 /**
  * BrowserStatsBucket
  *
@@ -584,6 +724,20 @@ export type DomainSearchSuggestionWithPriceArray = DomainSearchSuggestionWithPri
  */
 export type DomainStatusArray = DomainStatus[];
 /**
+ * DomainTransferBulkInstance
+ *
+ * @remarks
+ * Array type for DomainTransferBulkInstance objects. Used when the API returns a collection of DomainTransferBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainTransferBulkInstanceArray = await api.getDomainTransferBulkInstances();
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The individual DomainTransferBulkInstance type definition
+ */
+export type DomainTransferBulkInstanceArray = DomainTransferBulkInstance[];
+/**
  * DomainClientStatus
  *
  * @remarks
@@ -597,6 +751,20 @@ export type DomainStatusArray = DomainStatus[];
  * @see {@link DomainClientStatus} - The individual DomainClientStatus type definition
  */
 export type DomainClientStatusArray = DomainClientStatus[];
+/**
+ * DomainUpdateBulkInstance
+ *
+ * @remarks
+ * Array type for DomainUpdateBulkInstance objects. Used when the API returns a collection of DomainUpdateBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainUpdateBulkInstanceArray = await api.getDomainUpdateBulkInstances();
+ * ```
+ *
+ * @see {@link DomainUpdateBulkInstance} - The individual DomainUpdateBulkInstance type definition
+ */
+export type DomainUpdateBulkInstanceArray = DomainUpdateBulkInstance[];
 /**
  * EmailForwardAliasCreate
  *
@@ -934,6 +1102,34 @@ export type EventResponseArray = EventResponse[];
  */
 export type InvoiceArray = Invoice[];
 /**
+ * JobBatchMetadataResponse
+ *
+ * @remarks
+ * Array type for JobBatchMetadataResponse objects. Used when the API returns a collection of JobBatchMetadataResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: JobBatchMetadataArray = await api.getJobBatchMetadatas();
+ * ```
+ *
+ * @see {@link JobBatchMetadata} - The individual JobBatchMetadataResponse type definition
+ */
+export type JobBatchMetadataArray = JobBatchMetadata[];
+/**
+ * JobResponse
+ *
+ * @remarks
+ * Array type for JobResponse objects. Used when the API returns a collection of JobResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: JobArray = await api.getJobs();
+ * ```
+ *
+ * @see {@link Job} - The individual JobResponse type definition
+ */
+export type JobArray = Job[];
+/**
  * ObjectLog
  *
  * @remarks
@@ -1004,6 +1200,62 @@ export type RequestHistoryArray = RequestHistory[];
  */
 export type UserPublicArray = UserPublic[];
 /**
+ * ParkingCreateBulkInstance
+ *
+ * @remarks
+ * Array type for ParkingCreateBulkInstance objects. Used when the API returns a collection of ParkingCreateBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ParkingCreateBulkInstanceArray = await api.getParkingCreateBulkInstances();
+ * ```
+ *
+ * @see {@link ParkingCreateBulkInstance} - The individual ParkingCreateBulkInstance type definition
+ */
+export type ParkingCreateBulkInstanceArray = ParkingCreateBulkInstance[];
+/**
+ * ParkingDeleteBulkInstance
+ *
+ * @remarks
+ * Array type for ParkingDeleteBulkInstance objects. Used when the API returns a collection of ParkingDeleteBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ParkingDeleteBulkInstanceArray = await api.getParkingDeleteBulkInstances();
+ * ```
+ *
+ * @see {@link ParkingDeleteBulkInstance} - The individual ParkingDeleteBulkInstance type definition
+ */
+export type ParkingDeleteBulkInstanceArray = ParkingDeleteBulkInstance[];
+/**
+ * ParkingDisableBulkInstance
+ *
+ * @remarks
+ * Array type for ParkingDisableBulkInstance objects. Used when the API returns a collection of ParkingDisableBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ParkingDisableBulkInstanceArray = await api.getParkingDisableBulkInstances();
+ * ```
+ *
+ * @see {@link ParkingDisableBulkInstance} - The individual ParkingDisableBulkInstance type definition
+ */
+export type ParkingDisableBulkInstanceArray = ParkingDisableBulkInstance[];
+/**
+ * ParkingEnableBulkInstance
+ *
+ * @remarks
+ * Array type for ParkingEnableBulkInstance objects. Used when the API returns a collection of ParkingEnableBulkInstance instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ParkingEnableBulkInstanceArray = await api.getParkingEnableBulkInstances();
+ * ```
+ *
+ * @see {@link ParkingEnableBulkInstance} - The individual ParkingEnableBulkInstance type definition
+ */
+export type ParkingEnableBulkInstanceArray = ParkingEnableBulkInstance[];
+/**
  * Period
  *
  * @remarks
@@ -1045,6 +1297,20 @@ export type PermissionArray = Permission[];
  * @see {@link PremiumAffectsType} - The individual PremiumAffectsType type definition
  */
 export type PremiumAffectsTypeArray = PremiumAffectsType[];
+/**
+ * PublicReportRes
+ *
+ * @remarks
+ * Array type for PublicReportRes objects. Used when the API returns a collection of PublicReportRes instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PublicReportResArray = await api.getPublicReportRess();
+ * ```
+ *
+ * @see {@link PublicReportRes} - The individual PublicReportRes type definition
+ */
+export type PublicReportResArray = PublicReportRes[];
 /**
  * Relation
  *
