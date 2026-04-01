@@ -9602,12 +9602,12 @@ components:
 info:
   description: "# Authentication\n\nOpusDNS supports API authentication in two ways:\n\
     \n- Direct API key authentication using the `X-Api-Key` header\n- OAuth token\
-    \ authentication using the `/v1/auth/token` endpoint\n\n## Creating an API key\
-    \ in the Dashboard\n\nYou can create API keys from the OpusDNS Dashboard.\n\n\
-    - Create a new API key in the dashboard under [API Credentials](https://app.opusdns.com/developer/api-credentials)\n\
-    \nStore the generated key securely when it is shown to you.\n## Authentication\
-    \ options\n\n### Option 1: `X-Api-Key` header\n\nSend your full OpusDNS API key\
-    \ in the `X-Api-Key` header on each request:\n\n```http\nGET /v1/domains HTTP/1.1\n\
+    \ authentication using the `/v1/auth/token` [endpoint](https://developers.opusdns.com/#tag/authentication/POST/v1/auth/token)\n\
+    \n## Creating an API key in the Dashboard\n\n+ Create a new API key from the OpusDNS\
+    \ Dashboard under [API Credentials](https://app.opusdns.com/developer/api-credentials)\n\
+    + Store the generated key securely when it is shown to you.\n\n## Using the API\
+    \ key\n\n### Option 1: `X-Api-Key` header\n\nSend your full OpusDNS API key in\
+    \ the `X-Api-Key` header on each request:\n\n```http\nGET /v1/domains HTTP/1.1\n\
     Host: sandbox.opusdns.com\nX-Api-Key: opk_your_full_api_key_here\n```\n\nThis\
     \ is the most direct way to authenticate.\n\n### Option 2: OAuth token flow\n\n\
     OpusDNS also supports retrieving a bearer token from the token endpoint:\n\n```http\n\
@@ -9649,10 +9649,12 @@ info:
     \ We are happy to help!\n\n# Open-source SDKs and libraries\n\nWe're constantly\
     \ building new features and services from SDKs and plugins to other exciting tools.\
     \ Check out [our GitHub](https://github.com/OpusDNS/) to see the latest developments\
-    \ and try them out yourself!\n\n\n"
+    \ and try them out yourself!\n\n### OpusDNS Go Client\n\nWe offer a client implementation\
+    \ for go that supports all the features of our API.  \nCheck out the client [here](https://github.com/OpusDNS/opusdns-go-client)!\n\
+    \n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-01-081711
+  version: 2026-04-01-083726
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
