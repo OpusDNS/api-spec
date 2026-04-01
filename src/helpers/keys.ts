@@ -34910,6 +34910,32 @@ export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_PATTERN: keyof TransferPolicies
  */
 export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED: keyof TransferPoliciesBase = 'authinfo_required';
 /**
+ * Authinfo Set By Registrar
+ *
+ * Whether the registrar can set the auth info, or whether the registry controls it
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `authinfo_set_by_registrar` property of TransferPoliciesBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = transferpoliciesbase[KEY_TRANSFER_POLICIES_BASE_AUTHINFO_SET_BY_REGISTRAR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TRANSFER_POLICIES_BASE_AUTHINFO_SET_BY_REGISTRAR;
+ * const value = transferpoliciesbase[propertyName];
+ * ```
+ *
+ * @see {@link TransferPoliciesBase} - The TypeScript type definition
+ * @see {@link KEYS_TRANSFER_POLICIES_BASE} - Array of all keys for this type
+ */
+export const KEY_TRANSFER_POLICIES_BASE_AUTHINFO_SET_BY_REGISTRAR: keyof TransferPoliciesBase = 'authinfo_set_by_registrar';
+/**
  * Authinfo Time Limited
  *
  * Whether an auth info has a time limit
@@ -35235,6 +35261,7 @@ export const KEYS_TRANSFER_POLICIES_BASE = [
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_MIN_LENGTH,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_PATTERN,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_REQUIRED,
+  KEY_TRANSFER_POLICIES_BASE_AUTHINFO_SET_BY_REGISTRAR,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_TIME_LIMITED,
   KEY_TRANSFER_POLICIES_BASE_AUTHINFO_VALIDITY_PERIOD,
   KEY_TRANSFER_POLICIES_BASE_INFO_CONTACT_AUTHINFO,

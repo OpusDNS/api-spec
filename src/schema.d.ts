@@ -7988,6 +7988,12 @@ export interface components {
              */
             authinfo_required: boolean;
             /**
+             * Authinfo Set By Registrar
+             * @description Whether the registrar can set the auth info, or whether the registry controls it
+             * @default true
+             */
+            authinfo_set_by_registrar: boolean;
+            /**
              * Authinfo Time Limited
              * @description Whether an auth info has a time limit
              */

@@ -8748,6 +8748,12 @@ components:
           description: Whether an auth info is required for transfers
           title: Authinfo Required
           type: boolean
+        authinfo_set_by_registrar:
+          default: true
+          description: Whether the registrar can set the auth info, or whether the
+            registry controls it
+          title: Authinfo Set By Registrar
+          type: boolean
         authinfo_time_limited:
           anyOf:
           - type: boolean
@@ -9664,7 +9670,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-01-072443
+  version: 2026-04-01-073138
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
