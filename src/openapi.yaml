@@ -8171,6 +8171,8 @@ components:
       - NOMINET_CO_NO
       - NOMINET_TRAD_NAME
       - CIRA_CPR
+      - SIDN_LEGAL_FORM
+      - SIDN_LEGAL_REG_NO
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -9662,7 +9664,7 @@ info:
     '
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-03-31-182147
+  version: 2026-04-01-072443
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
