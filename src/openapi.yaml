@@ -9600,77 +9600,59 @@ components:
           tokenUrl: token
       type: oauth2
 info:
-  description: '# Authentication
-
-
-    Describes authentication approach.
-
-
-
-    # Resource IDs
-
-
-    The API uses extensively [Type IDs](https://github.com/jetify-com/typeid): type-safe,
-    K-sortable, globally unique identifier inspired by Stripe IDs. They can be easily
-    identified with a format like `prefix_01jxe1nzrmf78scaqbkjx0va0f`. The `prefix`
-    gives context to the ID - some examples include `user`, `organization`, `domain`.
-    The rest of the ID is a 128-bit UUIDv7 encoded as a 26-character string using
-    a modified base32 encoding. See [formal specification for details](https://github.com/jetify-com/typeid/tree/main/spec).
-
-
-    This approach allows using unique IDs (UUIDv7), preventing iteration attacks,
-    while also easily identifying the "namespace" of the ID. `01975c1f-a15a-7f6c-a5ce-b75fe33de079`
-    is hardly distuingishable from `01975c1f-f120-7874-8dc2-de7d728bf261` by humans
-    on first glance. However, when represented as Type IDs, they could be represented
-    as `user_01jxe1z8atfxpabknqbzhkvr3s` and `domain_01jxe1zw90f1t8vgpyfns8qwk1`,
-    immediately making it easier to differentiate between them.
-
-
-    Additionally, this gives type safety and additional validation that can be done.
-    There''s [libraries available for many languages to make handling Type IDs easier](https://github.com/jetify-com/typeid?tab=readme-ov-file#official-implementations-by-jetify).
-    We''re using them ourselves on the backend to quickly catch mistakes like passing
-    the wrong Type ID (passing a user ID like `user_01jxe1z8atfxpabknqbzhkvr3s` where
-    a domain ID `domain_01jxe1zw90f1t8vgpyfns8qwk1` was expected).
-
-
-
-    # Sandbox Environment
-
-
-    We provide a free sandbox environment where you can test and make sure your integration
-    with OpusDNS runs smoothly. The sandbox is completely isolated, meaning all domains,
-    configurations, and actions inside this environment have no effect on your live
-    data or production systems. It is a full test system for safe experimentation
-    and completely free to use.
-
-
-    Please register a new sandbox account at https://app.sandbox.opusdns.com and create
-    a new API key there.
-
-
-    This sandbox provides a separate dashboard at [app.sandbox.opusdns.com](https://app.sandbox.opusdns.com).
-
-
-    The sandbox API Base URL is `https://sandbox.opusdns.com`.
-
-
-    If you have any questions about the API or run into issues, please open a ticket
-    at support@opusdns.com. We are happy to help!
-
-
-    # Open-source SDKs and libraries
-
-
-    We''re constantly building new features and services from SDKs and plugins to
-    other exciting tools. Check out [our GitHub](https://github.com/OpusDNS/) to see
-    the latest developments and try them out yourself!
-
-
-
-    '
+  description: "# Authentication\n\nOpusDNS supports API authentication in two ways:\n\
+    \n- Direct API key authentication using the `X-Api-Key` header\n- OAuth token\
+    \ authentication using the `/v1/auth/token` endpoint\n\n## Creating an API key\
+    \ in the Dashboard\n\nYou can create API keys from the OpusDNS Dashboard.\n\n\
+    - Create a new API key in the dashboard under [API Credentials](https://app.opusdns.com/developer/api-credentials)\n\
+    \nStore the generated key securely when it is shown to you.\n## Authentication\
+    \ options\n\n### Option 1: `X-Api-Key` header\n\nSend your full OpusDNS API key\
+    \ in the `X-Api-Key` header on each request:\n\n```http\nGET /v1/domains HTTP/1.1\n\
+    Host: sandbox.opusdns.com\nX-Api-Key: opk_your_full_api_key_here\n```\n\nThis\
+    \ is the most direct way to authenticate.\n\n### Option 2: OAuth token flow\n\n\
+    OpusDNS also supports retrieving a bearer token from the token endpoint:\n\n```http\n\
+    POST /v1/auth/token HTTP/1.1\nHost: sandbox.opusdns.com\nContent-Type: application/x-www-form-urlencoded\n\
+    \ngrant_type=client_credentials&client_id=organization_...&client_secret=...\n\
+    ```\n\nSuccessful responses return a bearer token and expiry:\n\n```json\n{\n\
+    \  \"access_token\": \"eyJ...\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\"\
+    : 3600\n}\n```\n\nYou can then use that token on subsequent requests:\n\n```http\n\
+    GET /v1/domains HTTP/1.1\nHost: sandbox.opusdns.com\nAuthorization: Bearer eyJ...\n\
+    ```\n\nYou can use this method when:\n\n- Your platform prefers standard OAuth-style\
+    \ bearer tokens\n- You want short-lived access tokens instead of sending the API\
+    \ key on every request\n- Your HTTP tooling already expects `Authorization: Bearer\
+    \ ...`\n\n\n\n\n# Resource IDs\n\nThe API uses extensively [Type IDs](https://github.com/jetify-com/typeid):\
+    \ type-safe, K-sortable, globally unique identifier inspired by Stripe IDs. They\
+    \ can be easily identified with a format like `prefix_01jxe1nzrmf78scaqbkjx0va0f`.\
+    \ The `prefix` gives context to the ID - some examples include `user`, `organization`,\
+    \ `domain`. The rest of the ID is a 128-bit UUIDv7 encoded as a 26-character string\
+    \ using a modified base32 encoding. See [formal specification for details](https://github.com/jetify-com/typeid/tree/main/spec).\n\
+    \nThis approach allows using unique IDs (UUIDv7), preventing iteration attacks,\
+    \ while also easily identifying the \"namespace\" of the ID. `01975c1f-a15a-7f6c-a5ce-b75fe33de079`\
+    \ is hardly distuingishable from `01975c1f-f120-7874-8dc2-de7d728bf261` by humans\
+    \ on first glance. However, when represented as Type IDs, they could be represented\
+    \ as `user_01jxe1z8atfxpabknqbzhkvr3s` and `domain_01jxe1zw90f1t8vgpyfns8qwk1`,\
+    \ immediately making it easier to differentiate between them.\n\nAdditionally,\
+    \ this gives type safety and additional validation that can be done. There's [libraries\
+    \ available for many languages to make handling Type IDs easier](https://github.com/jetify-com/typeid?tab=readme-ov-file#official-implementations-by-jetify).\
+    \ We're using them ourselves on the backend to quickly catch mistakes like passing\
+    \ the wrong Type ID (passing a user ID like `user_01jxe1z8atfxpabknqbzhkvr3s`\
+    \ where a domain ID `domain_01jxe1zw90f1t8vgpyfns8qwk1` was expected).\n\n\n#\
+    \ Sandbox Environment\n\nWe provide a free sandbox environment where you can test\
+    \ and make sure your integration with OpusDNS runs smoothly. The sandbox is completely\
+    \ isolated, meaning all domains, configurations, and actions inside this environment\
+    \ have no effect on your live data or production systems. It is a full test system\
+    \ for safe experimentation and completely free to use.\n\nPlease register a new\
+    \ sandbox account at https://app.sandbox.opusdns.com and create a new API key\
+    \ there.\n\nThis sandbox provides a separate dashboard at [app.sandbox.opusdns.com](https://app.sandbox.opusdns.com).\n\
+    \nThe sandbox API Base URL is `https://sandbox.opusdns.com`.\n\nIf you have any\
+    \ questions about the API or run into issues, please open a ticket at support@opusdns.com.\
+    \ We are happy to help!\n\n# Open-source SDKs and libraries\n\nWe're constantly\
+    \ building new features and services from SDKs and plugins to other exciting tools.\
+    \ Check out [our GitHub](https://github.com/OpusDNS/) to see the latest developments\
+    \ and try them out yourself!\n\n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-01-073138
+  version: 2026-04-01-081711
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
