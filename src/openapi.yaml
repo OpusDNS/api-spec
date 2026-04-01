@@ -9600,19 +9600,19 @@ components:
           tokenUrl: token
       type: oauth2
 info:
-  description: "# Authentication\n\nOpusDNS supports API authentication in two ways:\n\
+  description: "## Authentication\n\nOpusDNS supports API authentication in two ways:\n\
     \n- Direct API key authentication using the `X-Api-Key` header\n- OAuth token\
     \ authentication using the `/v1/auth/token` [endpoint](https://developers.opusdns.com/#tag/authentication/POST/v1/auth/token)\n\
-    \n## Creating an API key in the Dashboard\n\n+ Create a new API key from the OpusDNS\
-    \ Dashboard under [API Credentials](https://app.opusdns.com/developer/api-credentials)\n\
-    + Store the generated key securely when it is shown to you.\n\n## Using the API\
-    \ key\n\n### Option 1: `X-Api-Key` header\n\nSend your full OpusDNS API key in\
+    \n### Creating an API key in the Dashboard\n\n+ Create a new API key from the\
+    \ OpusDNS Dashboard under [API Credentials](https://app.opusdns.com/developer/api-credentials)\n\
+    + Store the generated key securely when it is shown to you.\n\n### Using the API\
+    \ key\n\n#### Option 1: `X-Api-Key` header\n\nSend your full OpusDNS API key in\
     \ the `X-Api-Key` header on each request:\n\n```http\nGET /v1/domains HTTP/1.1\n\
     Host: sandbox.opusdns.com\nX-Api-Key: opk_your_full_api_key_here\n```\n\nThis\
-    \ is the most direct way to authenticate.\n\n### Option 2: OAuth token flow\n\n\
-    OpusDNS also supports retrieving a bearer token from the token endpoint:\n\n```http\n\
-    POST /v1/auth/token HTTP/1.1\nHost: sandbox.opusdns.com\nContent-Type: application/x-www-form-urlencoded\n\
-    \ngrant_type=client_credentials&client_id=organization_...&client_secret=...\n\
+    \ is the most direct way to authenticate.\n\n#### Option 2: OAuth token flow\n\
+    \nOpusDNS also supports retrieving a bearer token from the token endpoint:\n\n\
+    ```http\nPOST /v1/auth/token HTTP/1.1\nHost: sandbox.opusdns.com\nContent-Type:\
+    \ application/x-www-form-urlencoded\n\ngrant_type=client_credentials&client_id=organization_...&client_secret=...\n\
     ```\n\nSuccessful responses return a bearer token and expiry:\n\n```json\n{\n\
     \  \"access_token\": \"eyJ...\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\"\
     : 3600\n}\n```\n\nYou can then use that token on subsequent requests:\n\n```http\n\
@@ -9620,7 +9620,7 @@ info:
     ```\n\nYou can use this method when:\n\n- Your platform prefers standard OAuth-style\
     \ bearer tokens\n- You want short-lived access tokens instead of sending the API\
     \ key on every request\n- Your HTTP tooling already expects `Authorization: Bearer\
-    \ ...`\n\n\n\n\n# Resource IDs\n\nThe API uses extensively [Type IDs](https://github.com/jetify-com/typeid):\
+    \ ...`\n\n\n\n\n## Resource IDs\n\nThe API uses extensively [Type IDs](https://github.com/jetify-com/typeid):\
     \ type-safe, K-sortable, globally unique identifier inspired by Stripe IDs. They\
     \ can be easily identified with a format like `prefix_01jxe1nzrmf78scaqbkjx0va0f`.\
     \ The `prefix` gives context to the ID - some examples include `user`, `organization`,\
@@ -9636,7 +9636,7 @@ info:
     \ available for many languages to make handling Type IDs easier](https://github.com/jetify-com/typeid?tab=readme-ov-file#official-implementations-by-jetify).\
     \ We're using them ourselves on the backend to quickly catch mistakes like passing\
     \ the wrong Type ID (passing a user ID like `user_01jxe1z8atfxpabknqbzhkvr3s`\
-    \ where a domain ID `domain_01jxe1zw90f1t8vgpyfns8qwk1` was expected).\n\n\n#\
+    \ where a domain ID `domain_01jxe1zw90f1t8vgpyfns8qwk1` was expected).\n\n\n##\
     \ Sandbox Environment\n\nWe provide a free sandbox environment where you can test\
     \ and make sure your integration with OpusDNS runs smoothly. The sandbox is completely\
     \ isolated, meaning all domains, configurations, and actions inside this environment\
@@ -9646,15 +9646,15 @@ info:
     \ there.\n\nThis sandbox provides a separate dashboard at [app.sandbox.opusdns.com](https://app.sandbox.opusdns.com).\n\
     \nThe sandbox API Base URL is `https://sandbox.opusdns.com`.\n\nIf you have any\
     \ questions about the API or run into issues, please open a ticket at support@opusdns.com.\
-    \ We are happy to help!\n\n# Open-source SDKs and libraries\n\nWe're constantly\
+    \ We are happy to help!\n\n## Open-source SDKs and libraries\n\nWe're constantly\
     \ building new features and services from SDKs and plugins to other exciting tools.\
     \ Check out [our GitHub](https://github.com/OpusDNS/) to see the latest developments\
-    \ and try them out yourself!\n\n### OpusDNS Go Client\n\nWe offer a client implementation\
+    \ and try them out yourself!\n\n#### OpusDNS Go Client\n\nWe offer a client implementation\
     \ for go that supports all the features of our API.  \nCheck out the client [here](https://github.com/OpusDNS/opusdns-go-client)!\n\
-    \n"
+    \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-01-083726
+  version: 2026-04-01-093850
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21160,13 +21160,13 @@ tags:
 - description: "Endpoints for submitting and tracking batch command execution.\n\n\
     The Jobs API enables asynchronous execution of bulk operations through batches.\
     \ Submit multiple commands in a single request and poll for completion status.\n\
-    \n## Supported Commands\n\n### Single-resource commands\n\n| Command | Description\
+    \n### Supported Commands\n\n#### Single-resource commands\n\n| Command | Description\
     \ |\n|---------|-------------|\n| `domain_create` | Register a new domain |\n\
     | `domain_update` | Modify domain settings (contacts, nameservers, statuses, renewal\
     \ mode) |\n| `domain_transfer` | Initiate an inbound domain transfer |\n| `dns_zone_create`\
     \ | Create a new DNS zone with optional records |\n| `dns_zone_update` | Update\
-    \ an existing DNS zone |\n| `contact_create` | Create a new contact |\n\n### Bulk\
-    \ commands (template + instances)\n\nBulk commands use a **template + instances**\
+    \ an existing DNS zone |\n| `contact_create` | Create a new contact |\n\n####\
+    \ Bulk commands (template + instances)\n\nBulk commands use a **template + instances**\
     \ pattern. The template defines shared settings applied to all items, while each\
     \ instance specifies a target resource and optional per-resource overrides.\n\n\
     | Command | Description |\n|---------|-------------|\n| `domain_create_bulk` |\
@@ -21179,7 +21179,7 @@ tags:
     \ contacts |\n| `parking_create_bulk` | Create parking pages for multiple domains\
     \ |\n| `parking_enable_bulk` | Enable parking on multiple domains |\n| `parking_disable_bulk`\
     \ | Disable parking on multiple domains |\n| `parking_delete_bulk` | Delete parking\
-    \ pages for multiple domains |\n\n## Batch Lifecycle\n\nEach job within a batch\
+    \ pages for multiple domains |\n\n### Batch Lifecycle\n\nEach job within a batch\
     \ transitions through states:\n\n1. **blocked** \u2014 Waiting for eligibility\
     \ (scheduled via `not_before`, or awaiting capacity)\n2. **queued** \u2014 Eligible\
     \ and awaiting processing\n3. **paused** \u2014 Paused; must be explicitly resumed\
@@ -21189,26 +21189,26 @@ tags:
     \ before completion\n8. **dead_letter** \u2014 Permanently failed after exhausting\
     \ retries\n\nA batch itself has a `status` field that is either `pending` (jobs\
     \ are still in progress) or `complete` (all jobs have reached a terminal state).\n\
-    \n## Usage Pattern\n\n1. **Submit a batch** \u2014 `POST /v1/jobs` with an array\
+    \n### Usage Pattern\n\n1. **Submit a batch** \u2014 `POST /v1/jobs` with an array\
     \ of commands\n2. **Poll for status** \u2014 `GET /v1/jobs/{batch_id}` to check\
     \ progress counts and `progress_percentage`\n3. **Review results** \u2014 `GET\
-    \ /v1/jobs/{batch_id}/jobs` to see individual job outcomes\n\n## Managing Batches\n\
+    \ /v1/jobs/{batch_id}/jobs` to see individual job outcomes\n\n### Managing Batches\n\
     \n- **Pause** \u2014 `POST /v1/jobs/{batch_id}/pause` pauses all eligible jobs\
     \ in the batch\n- **Resume** \u2014 `POST /v1/jobs/{batch_id}/resume` resumes\
     \ all paused jobs\n- **Cancel** \u2014 `DELETE /v1/jobs/{batch_id}` cancels all\
     \ pending jobs in the batch\n\nIndividual jobs can also be paused, resumed, or\
-    \ canceled via the `/v1/job/{job_id}` endpoints.\n\n## Limits\n\n- Maximum **50,000\
+    \ canceled via the `/v1/job/{job_id}` endpoints.\n\n### Limits\n\n- Maximum **50,000\
     \ commands** per batch\n- Bulk commands support up to **1,000 instances** per\
-    \ command\n\n## Scheduling\n\nUse `not_before` to schedule batch execution for\
+    \ command\n\n### Scheduling\n\nUse `not_before` to schedule batch execution for\
     \ a future time (UTC timestamp). If not provided, processing begins as soon as\
-    \ a worker is available.\n\n## Idempotency\n\nEach command can include an optional\
+    \ a worker is available.\n\n### Idempotency\n\nEach command can include an optional\
     \ `idempotency_key` to prevent duplicate execution. If a command with the same\
-    \ idempotency key has already been processed, it will be skipped.\n\n## Domain\
+    \ idempotency key has already been processed, it will be skipped.\n\n### Domain\
     \ Status Updates in Batches\n\nThe `domain_update` and `domain_update_bulk` commands\
     \ support two mutually exclusive approaches for modifying domain statuses. These\
     \ work the same way as the `PATCH /v1/domains/{domain_reference}` endpoint \u2014\
     \ see the [Domain management](#tag/Domain-management) documentation for full details\
-    \ on `statuses` vs `status_changes`.\n\n### Using `status_changes` in bulk templates\n\
+    \ on `statuses` vs `status_changes`.\n\n#### Using `status_changes` in bulk templates\n\
     \nThe `domain_update_bulk` command is particularly useful with `status_changes`\
     \ when you need to apply the same relative status change across many domains.\
     \ Set `status_changes` in the **template** and list the target domains as **instances**.\
@@ -21217,7 +21217,7 @@ tags:
     template\": {\n      \"status_changes\": {\n        \"add\": [\"clientTransferProhibited\"\
     ]\n      }\n    },\n    \"instances\": [\n      { \"name\": \"example.com\" },\n\
     \      { \"name\": \"example.net\" },\n      { \"name\": \"example.org\" }\n \
-    \   ]\n  }\n}\n```\n\n### Per-domain overrides\n\nIf an instance provides its\
+    \   ]\n  }\n}\n```\n\n#### Per-domain overrides\n\nIf an instance provides its\
     \ own `statuses` or `status_changes` field, it completely overrides the template's\
     \ status settings for that domain. This lets you apply a default change to most\
     \ domains while handling exceptions individually:\n\n```json\n{\n  \"command\"\
@@ -21237,44 +21237,44 @@ tags:
     '
   name: dns
   x-displayName: DNS Management
-- description: "Endpoints for creating and managing domains.\n\n## Domain References\n\
+- description: "Endpoints for creating and managing domains.\n\n### Domain References\n\
     \nMost domain endpoints accept a `domain_reference` path parameter. This can be\
     \ either the **domain ID** (e.g., `domain_01jt7deb8mftf8261a54v6m3ey`) or the\
     \ **domain name** (e.g., `example.com`). Both are interchangeable wherever `domain_reference`\
-    \ appears.\n\n## Transfer Lock\n\nThe `transfer_lock` field on a domain response\
+    \ appears.\n\n### Transfer Lock\n\nThe `transfer_lock` field on a domain response\
     \ reflects whether the domain has the `clientTransferProhibited` status. Setting\
     \ or removing `clientTransferProhibited` via the `statuses` or `status_changes`\
     \ fields will automatically update `transfer_lock` accordingly. The `transfer_lock`\
-    \ field itself is read-only.\n\n## DNS Zone Creation\n\nWhen creating or transferring\
+    \ field itself is read-only.\n\n### DNS Zone Creation\n\nWhen creating or transferring\
     \ a domain, you can set `create_zone` to `true` to automatically provision a DNS\
     \ zone on OpusDNS nameserver infrastructure. Zone creation and nameserver assignment\
     \ are handled asynchronously after the domain operation completes, so there may\
     \ be a short delay before the zone is created and nameservers are active.\n\n\
-    ## Updating Domain Statuses\n\n`PATCH /v1/domains/{domain_reference}` supports\
+    ### Updating Domain Statuses\n\n`PATCH /v1/domains/{domain_reference}` supports\
     \ two mutually exclusive approaches for modifying client statuses. You **cannot**\
-    \ use both in the same request.\n\n### Option 1: `statuses` (absolute / declarative)\n\
+    \ use both in the same request.\n\n#### Option 1: `statuses` (absolute / declarative)\n\
     \nProvide the **complete list** of client statuses the domain should have. The\
     \ API computes the diff against the current state and adds or removes statuses\
     \ accordingly.\n\n```json\n{\n  \"statuses\": [\"clientTransferProhibited\", \"\
     clientDeleteProhibited\"]\n}\n```\n\nUse this when you know exactly which statuses\
     \ the domain should end up with. Any current client statuses not in the list will\
-    \ be removed.\n\n### Option 2: `status_changes` (relative / delta)\n\nSpecify\
+    \ be removed.\n\n#### Option 2: `status_changes` (relative / delta)\n\nSpecify\
     \ which statuses to **add** and/or **remove** relative to the domain's current\
     \ state. Statuses not mentioned are left unchanged.\n\n```json\n{\n  \"status_changes\"\
     : {\n    \"add\": [\"clientTransferProhibited\"],\n    \"remove\": [\"clientHold\"\
     ]\n  }\n}\n```\n\nUse this when you want to make a targeted change without needing\
     \ to know the domain's full current status set. This is especially useful in bulk\
     \ operations where different domains may have different existing statuses.\n\n\
-    ### Validation rules\n\n- At least one of `add` or `remove` must contain a value\n\
+    #### Validation rules\n\n- At least one of `add` or `remove` must contain a value\n\
     - A status cannot appear in both `add` and `remove`\n- Only client statuses are\
-    \ accepted \u2014 server statuses cannot be modified\n\n### When to use which\n\
+    \ accepted \u2014 server statuses cannot be modified\n\n#### When to use which\n\
     \n| Scenario | Recommended approach |\n|----------|---------------------|\n| Setting\
     \ up a domain's statuses for the first time | `statuses` |\n| Locking many domains\
     \ for transfer without touching other statuses | `status_changes` with `add` |\n\
     | Releasing a hold on a specific domain | `status_changes` with `remove` |\n|\
     \ Replacing all statuses as part of a known workflow | `statuses` |\n| Applying\
     \ the same change across a batch of domains with varying existing statuses | `status_changes`\
-    \ via `domain_update_bulk` |\n\n### Blocking statuses\n\nSome statuses prevent\
+    \ via `domain_update_bulk` |\n\n#### Blocking statuses\n\nSome statuses prevent\
     \ domain updates entirely. If the domain has any of the following, the update\
     \ will be rejected:\n\n- `clientUpdateProhibited`\n- `serverUpdateProhibited`\n\
     - `pendingTransfer`\n- `pendingRestore`\n- `pendingDelete`\n- `redemptionPeriod`\n\
@@ -21333,19 +21333,19 @@ tags:
   x-displayName: Users
 - description: "Endpoints for generating and downloading inventory reports.\n\nReports\
     \ provide exportable snapshots of your domain and DNS data. Reports are generated\
-    \ asynchronously and can be downloaded as ZIP files once complete.\n\n## Report\
+    \ asynchronously and can be downloaded as ZIP files once complete.\n\n### Report\
     \ Types\n\n| Type | Description |\n|------|-------------|\n| `domain_inventory`\
     \ | Full inventory of all domains in the organization |\n| `dns_zone_summary`\
     \ | Summary of all DNS zones and their configuration |\n| `dns_zone_records` |\
-    \ Detailed export of all DNS records across zones |\n\n## Report Lifecycle\n\n\
+    \ Detailed export of all DNS records across zones |\n\n### Report Lifecycle\n\n\
     A report transitions through the following statuses:\n\n1. **pending** \u2014\
     \ Report has been queued for generation\n2. **generating** \u2014 Report is being\
     \ built\n3. **completed** \u2014 Report is ready for download\n4. **failed** \u2014\
-    \ Generation failed\n\n## Usage Pattern\n\n1. **Request a report** \u2014 `POST\
+    \ Generation failed\n\n### Usage Pattern\n\n1. **Request a report** \u2014 `POST\
     \ /v1/reports` with the desired `report_type`\n2. **Poll for completion** \u2014\
     \ `GET /v1/reports/{report_id}` until `status` is `completed`\n3. **Download**\
     \ \u2014 `GET /v1/reports/{report_id}/download` returns the report as a streamed\
-    \ ZIP file\n\n## Downloading Reports\n\n`GET /v1/reports/{report_id}/download`\
+    \ ZIP file\n\n### Downloading Reports\n\n`GET /v1/reports/{report_id}/download`\
     \ streams the report file directly to the client. The report **must** have status\
     \ `completed` before it can be downloaded \u2014 calling this endpoint on a report\
     \ that is still `pending` or `generating` returns `409 Conflict`.\n\n**Response\
@@ -21354,19 +21354,19 @@ tags:
     \ |\n| `Content-Length` | File size in bytes (included when known) |\n\nThe response\
     \ body is streamed in chunks, so clients should read the body incrementally rather\
     \ than buffering it entirely in memory. When `Content-Length` is present, it can\
-    \ be used to display download progress.\n\n## Trigger Types\n\n| Type | Description\
+    \ be used to display download progress.\n\n### Trigger Types\n\n| Type | Description\
     \ |\n|------|-------------|\n| `on_demand` | Manually requested via the API |\n\
-    | `scheduled` | Automatically generated on a recurring schedule |\n\n## Rate Limiting\n\
-    \nReport creation is rate-limited at two levels:\n\n- **Cooldown** \u2014 After\
-    \ creating a report, you must wait **5 minutes** before requesting another report\
-    \ of the same type. Requests during the cooldown return `429 Too Many Requests`\
-    \ with a `Retry-After` header.\n- **Hourly limit** \u2014 Only **one report per\
-    \ type per organization per clock hour** (UTC) can be generated. Duplicate requests\
-    \ within the same hour will not produce an additional report.\n\n## Retention\n\
-    \nThe **30 most recent reports** of each type are kept per organization. Older\
-    \ reports and their associated files are automatically deleted when a new report\
-    \ is generated.\n\n## Listing Reports\n\nUse `GET /v1/reports` to list reports\
-    \ with optional filters:\n\n| Parameter | Description |\n|-----------|-------------|\n\
+    | `scheduled` | Automatically generated on a recurring schedule |\n\n### Rate\
+    \ Limiting\n\nReport creation is rate-limited at two levels:\n\n- **Cooldown**\
+    \ \u2014 After creating a report, you must wait **5 minutes** before requesting\
+    \ another report of the same type. Requests during the cooldown return `429 Too\
+    \ Many Requests` with a `Retry-After` header.\n- **Hourly limit** \u2014 Only\
+    \ **one report per type per organization per clock hour** (UTC) can be generated.\
+    \ Duplicate requests within the same hour will not produce an additional report.\n\
+    \n### Retention\n\nThe **30 most recent reports** of each type are kept per organization.\
+    \ Older reports and their associated files are automatically deleted when a new\
+    \ report is generated.\n\n### Listing Reports\n\nUse `GET /v1/reports` to list\
+    \ reports with optional filters:\n\n| Parameter | Description |\n|-----------|-------------|\n\
     | `report_type` | Filter by report type (repeatable) |\n| `status` | Filter by\
     \ report status (repeatable) |\n| `trigger_type` | Filter by trigger type |\n\
     | `created_after` | Only reports created after this timestamp |\n| `created_before`\
