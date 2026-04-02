@@ -9656,7 +9656,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-02-142331
+  version: 2026-04-02-151435
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21333,19 +21333,31 @@ tags:
     \ the whole system.\n"
   name: user
   x-displayName: Users
-- description: "Endpoints for generating and downloading inventory reports.\n\nReports\
-    \ provide exportable snapshots of your domain and DNS data. Reports are generated\
+- description: "Endpoints for generating and downloading reports.\n\nReports provide\
+    \ exportable snapshots of your domain, DNS, and billing data. Reports are generated\
     \ asynchronously and can be downloaded as ZIP files once complete.\n\n### Report\
     \ Types\n\n| Type | Description |\n|------|-------------|\n| `domain_inventory`\
     \ | Full inventory of all domains in the organization |\n| `dns_zone_summary`\
     \ | Summary of all DNS zones and their configuration |\n| `dns_zone_records` |\
-    \ Detailed export of all DNS records across zones |\n\n### Report Lifecycle\n\n\
-    A report transitions through the following statuses:\n\n1. **pending** \u2014\
-    \ Report has been queued for generation\n2. **generating** \u2014 Report is being\
-    \ built\n3. **completed** \u2014 Report is ready for download\n4. **failed** \u2014\
-    \ Generation failed\n\n### Usage Pattern\n\n1. **Request a report** \u2014 `POST\
-    \ /v1/reports` with the desired `report_type`\n2. **Poll for completion** \u2014\
-    \ `GET /v1/reports/{report_id}` until `status` is `completed`\n3. **Download**\
+    \ Detailed export of all DNS records across zones |\n| `billing_transactions`\
+    \ | Billing transactions for the current month to date |\n| `billing_transactions_monthly`\
+    \ | Billing transactions for the previous calendar month |\n\n### Billing Transaction\
+    \ Reports\n\nBilling transaction reports export all completed transactions as\
+    \ a CSV with the following columns: `product_reference`, `action`, `period`, `product_type`,\
+    \ `amount`, `currency`, `completed_on`.\n\nThere are two billing report types:\n\
+    \n- **`billing_transactions`** \u2014 On-demand report covering the current month\
+    \ to date (1st of the month through the time of the request). Request this via\
+    \ the API like any other report type.\n- **`billing_transactions_monthly`** \u2014\
+    \ Automatically generated on the 1st of each month at 5 AM UTC, covering the full\
+    \ previous calendar month. These are scheduled reports and do not need to be manually\
+    \ requested.\n\nBoth types maintain their own retention of 30 reports each, so\
+    \ requesting on-demand reports will not displace the monthly archive.\n\n### Report\
+    \ Lifecycle\n\nA report transitions through the following statuses:\n\n1. **pending**\
+    \ \u2014 Report has been queued for generation\n2. **generating** \u2014 Report\
+    \ is being built\n3. **completed** \u2014 Report is ready for download\n4. **failed**\
+    \ \u2014 Generation failed\n\n### Usage Pattern\n\n1. **Request a report** \u2014\
+    \ `POST /v1/reports` with the desired `report_type`\n2. **Poll for completion**\
+    \ \u2014 `GET /v1/reports/{report_id}` until `status` is `completed`\n3. **Download**\
     \ \u2014 `GET /v1/reports/{report_id}/download` returns the report as a streamed\
     \ ZIP file\n\n### Downloading Reports\n\n`GET /v1/reports/{report_id}/download`\
     \ streams the report file directly to the client. The report **must** have status\
