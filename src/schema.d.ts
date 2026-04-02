@@ -7660,7 +7660,7 @@ export interface components {
          * ReportType
          * @enum {string}
          */
-        ReportType: "domain_inventory" | "dns_zone_summary" | "dns_zone_records";
+        ReportType: "domain_inventory" | "dns_zone_summary" | "dns_zone_records" | "billing_transactions" | "billing_transactions_monthly";
         /** RequestHistory */
         RequestHistory: {
             /**

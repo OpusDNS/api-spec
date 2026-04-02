@@ -8275,6 +8275,8 @@ components:
       - domain_inventory
       - dns_zone_summary
       - dns_zone_records
+      - billing_transactions
+      - billing_transactions_monthly
       title: ReportType
       type: string
     RequestHistory:
@@ -9654,7 +9656,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-01-093850
+  version: 2026-04-02-142331
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
