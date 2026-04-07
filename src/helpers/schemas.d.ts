@@ -3291,22 +3291,6 @@ export type GeoStatsBucket = components['schemas']['GeoStatsBucket'];
  */
 export type GetPrices = components['schemas']['GetPricesResponse'];
 /**
- * GrantType
- *
- * @remarks
- * Type alias for the `GrantType` OpenAPI schema.
- * This type represents granttype data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getGrantType();
- * const item: GrantType = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type GrantType = components['schemas']['GrantType'];
-/**
  * HTTPMethod. HTTP methods and descriptions
 
 Methods from the following RFCs are all observed:

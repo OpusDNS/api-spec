@@ -331,11 +331,10 @@ export type GET_ArchiveRequestHistory_Response_422 = HTTPValidationError
  * @path /v1/auth/token
  *
  * @see {@link POST_AuthToken_Response_401} - 401 response type
- * @see {@link POST_AuthToken_Response_422} - 422 response type
  *
 
  */
-export type POST_AuthToken_Response = POST_AuthToken_Response_401 | POST_AuthToken_Response_422;
+export type POST_AuthToken_Response = POST_AuthToken_Response_401;
 
 /**
  * 401 response for POST AuthToken endpoint
@@ -353,23 +352,6 @@ export type POST_AuthToken_Response = POST_AuthToken_Response_401 | POST_AuthTok
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_AuthToken_Response_401 = Problem
-
-/**
- * 422 response for POST AuthToken endpoint
- *
- * @remarks
- * This type defines the response structure for the 422 status code
- * of the POST AuthToken endpoint.
- * It provides type safety for handling this specific response as defined in the OpenAPI specification.
- *
-
- *
- * @path /v1/auth/token
- *
- * @see {@link POST_AuthToken_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
- */
-export type POST_AuthToken_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Availability endpoint

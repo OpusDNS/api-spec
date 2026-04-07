@@ -5139,13 +5139,6 @@ components:
       - prices
       title: GetPricesResponse
       type: object
-    GrantType:
-      enum:
-      - client_credentials
-      - password
-      - refresh_token
-      title: GrantType
-      type: string
     HTTPMethod:
       description: "HTTP methods and descriptions\n\nMethods from the following RFCs\
         \ are all observed:\n\n    * RFC 9110: HTTP Semantics, obsoletes 7231, which\
@@ -9612,16 +9605,20 @@ info:
     \ the `X-Api-Key` header on each request:\n\n```http\nGET /v1/domains HTTP/1.1\n\
     Host: sandbox.opusdns.com\nX-Api-Key: opk_your_full_api_key_here\n```\n\nThis\
     \ is the most direct way to authenticate.\n\n#### Option 2: OAuth token flow\n\
-    \nOpusDNS also supports retrieving a bearer token from the token endpoint:\n\n\
-    ```http\nPOST /v1/auth/token HTTP/1.1\nHost: sandbox.opusdns.com\nContent-Type:\
-    \ application/x-www-form-urlencoded\n\ngrant_type=client_credentials&client_id=organization_...&client_secret=...\n\
-    ```\n\nSuccessful responses return a bearer token and expiry:\n\n```json\n{\n\
-    \  \"access_token\": \"eyJ...\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\"\
-    : 3600\n}\n```\n\nYou can then use that token on subsequent requests:\n\n```http\n\
-    GET /v1/domains HTTP/1.1\nHost: sandbox.opusdns.com\nAuthorization: Bearer eyJ...\n\
-    ```\n\nYou can use this method when:\n\n- Your platform prefers standard OAuth-style\
-    \ bearer tokens\n- You want short-lived access tokens instead of sending the API\
-    \ key on every request\n- Your HTTP tooling already expects `Authorization: Bearer\
+    \nOpusDNS also supports retrieving a bearer token from the token endpoint. The\
+    \ endpoint accepts both `application/x-www-form-urlencoded` (per the OAuth 2.0\
+    \ spec) and `application/json`:\n\n```http\nPOST /v1/auth/token HTTP/1.1\nHost:\
+    \ sandbox.opusdns.com\nContent-Type: application/x-www-form-urlencoded\n\ngrant_type=client_credentials&client_id=organization_...&client_secret=...\n\
+    ```\n\nOr with JSON:\n\n```http\nPOST /v1/auth/token HTTP/1.1\nHost: sandbox.opusdns.com\n\
+    Content-Type: application/json\n\n{\"grant_type\": \"client_credentials\", \"\
+    client_id\": \"organization_...\", \"client_secret\": \"...\"}\n```\n\nSuccessful\
+    \ responses return a bearer token and expiry:\n\n```json\n{\n  \"access_token\"\
+    : \"eyJ...\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600\n}\n```\n\
+    \nYou can then use that token on subsequent requests:\n\n```http\nGET /v1/domains\
+    \ HTTP/1.1\nHost: sandbox.opusdns.com\nAuthorization: Bearer eyJ...\n```\n\nYou\
+    \ can use this method when:\n\n- Your platform prefers standard OAuth-style bearer\
+    \ tokens\n- You want short-lived access tokens instead of sending the API key\
+    \ on every request\n- Your HTTP tooling already expects `Authorization: Bearer\
     \ ...`\n\n\n\n\n## Resource IDs\n\nThe API uses extensively [Type IDs](https://github.com/jetify-com/typeid):\
     \ type-safe, K-sortable, globally unique identifier inspired by Stripe IDs. They\
     \ can be easily identified with a format like `prefix_01jxe1nzrmf78scaqbkjx0va0f`.\
@@ -9656,7 +9653,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-02-151435
+  version: 2026-04-07-204206
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10274,6 +10271,9 @@ paths:
       operationId: issue_organization_token_v1_auth_token_post
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicAuthRequestForm'
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/PublicAuthRequestForm'
@@ -10299,12 +10299,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unauthorized
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
       security:
       - APIKeyHeader: []
       - OAuth2PasswordBearer: []

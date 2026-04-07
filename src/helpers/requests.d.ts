@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -293,7 +293,21 @@ export type GET_ArchiveRequestHistory_Request_Query = GET_ArchiveRequestHistory_
  * @see {@link POST_AuthToken_Request_Body} - Request body type
  */
 export type POST_AuthToken_Request = {
+  requestBody: PublicAuthRequestForm;
 }
+/**
+ * Request body for POST /v1/auth/token
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/auth/token endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/auth/token
+ */
+export type POST_AuthToken_Request_Body = POST_AuthToken_Request['requestBody'];
 
 /**
  * Request type for GET Availability endpoint

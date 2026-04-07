@@ -5635,11 +5635,6 @@ export interface components {
             prices: components["schemas"]["PriceInfo"][];
         };
         /**
-         * GrantType
-         * @enum {string}
-         */
-        GrantType: "client_credentials" | "password" | "refresh_token";
-        /**
          * HTTPMethod
          * @description HTTP methods and descriptions
          *
@@ -8826,6 +8821,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
+                "application/json": components["schemas"]["PublicAuthRequestForm"];
                 "application/x-www-form-urlencoded": components["schemas"]["PublicAuthRequestForm"];
             };
         };
@@ -8853,15 +8849,6 @@ export interface operations {
                      *       "type": "authentication"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
