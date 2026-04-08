@@ -9653,7 +9653,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-07-204206
+  version: 2026-04-08-115618
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10332,7 +10332,7 @@ paths:
             '
           items:
             type: string
-          maxItems: 1000
+          maxItems: 50
           title: Domains
           type: array
       responses:
@@ -10360,18 +10360,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-        '500':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AVAILABILITY_PROVIDER
-                detail: Additional error context.
-                status: 500
-                title: Availability Error
-                type: availability-internal
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Internal Server Error
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -10380,6 +10368,7 @@ paths:
       - availability
   /v1/availability/stream:
     get:
+      deprecated: true
       description: Stream domain availability results using Server-Sent Events (SSE)
         until the `done` event is received.
       operationId: stream_availability_v1_availability_stream_get
@@ -10443,18 +10432,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-        '500':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AVAILABILITY_PROVIDER
-                detail: Additional error context.
-                status: 500
-                title: Availability Error
-                type: availability-internal
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Internal Server Error
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -10505,18 +10482,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-        '500':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AVAILABILITY_PROVIDER
-                detail: Additional error context.
-                status: 500
-                title: Availability Error
-                type: availability-internal
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Internal Server Error
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

@@ -146,6 +146,7 @@ export interface paths {
         };
         /**
          * Stream domain availability results
+         * @deprecated
          * @description Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
          */
         get: operations["stream_availability_v1_availability_stream_get"];
@@ -8901,22 +8902,6 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
-            /** @description Internal Server Error */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AVAILABILITY_PROVIDER",
-                     *       "detail": "Additional error context.",
-                     *       "status": 500,
-                     *       "title": "Availability Error",
-                     *       "type": "availability-internal"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
         };
     };
     stream_availability_v1_availability_stream_get: {
@@ -8967,22 +8952,6 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
-            /** @description Internal Server Error */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AVAILABILITY_PROVIDER",
-                     *       "detail": "Additional error context.",
-                     *       "status": 500,
-                     *       "title": "Availability Error",
-                     *       "type": "availability-internal"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
         };
     };
     stream_availability_post_v1_availability_stream_post: {
@@ -9030,22 +8999,6 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Internal Server Error */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AVAILABILITY_PROVIDER",
-                     *       "detail": "Additional error context.",
-                     *       "status": 500,
-                     *       "title": "Availability Error",
-                     *       "type": "availability-internal"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
