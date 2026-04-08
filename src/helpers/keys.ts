@@ -253,6 +253,8 @@ import { Period } from './schemas';
 import { PermissionSet } from './schemas';
 import { PlatformStatsBucket } from './schemas';
 import { PremiumDomainsBase } from './schemas';
+import { PremiumPricingAction } from './schemas';
+import { PremiumPricing } from './schemas';
 import { PriceInfo } from './schemas';
 import { PricingPeriod } from './schemas';
 import { Problem } from './schemas';
@@ -31674,6 +31676,162 @@ export const KEYS_PREMIUM_DOMAINS_BASE = [
 ] as const satisfies (keyof PremiumDomainsBase)[];
 
 /**
+ * Action
+ *
+ * The action (e.g., create, renew, transfer)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `action` property of PremiumPricingAction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpricingaction[KEY_PREMIUM_PRICING_ACTION_ACTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICING_ACTION_ACTION;
+ * const value = premiumpricingaction[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPricingAction} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICING_ACTION} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICING_ACTION_ACTION: keyof PremiumPricingAction = 'action';
+/**
+ * Currency
+ *
+ * Currency of the price
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of PremiumPricingAction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpricingaction[KEY_PREMIUM_PRICING_ACTION_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICING_ACTION_CURRENCY;
+ * const value = premiumpricingaction[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPricingAction} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICING_ACTION} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICING_ACTION_CURRENCY: keyof PremiumPricingAction = 'currency';
+/**
+ * Price
+ *
+ * Customer-facing price after markup
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `price` property of PremiumPricingAction objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpricingaction[KEY_PREMIUM_PRICING_ACTION_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICING_ACTION_PRICE;
+ * const value = premiumpricingaction[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPricingAction} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICING_ACTION} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICING_ACTION_PRICE: keyof PremiumPricingAction = 'price';
+
+/**
+ * Array of all PremiumPricingAction property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PremiumPricingAction objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PREMIUM_PRICING_ACTION) {
+ *   console.log(`Property: ${key}, Value: ${premiumpricingaction[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PREMIUM_PRICING_ACTION.includes(someKey);
+ * ```
+ *
+ * @see {@link PremiumPricingAction} - The TypeScript type definition
+ */
+export const KEYS_PREMIUM_PRICING_ACTION = [
+  KEY_PREMIUM_PRICING_ACTION_ACTION,
+  KEY_PREMIUM_PRICING_ACTION_CURRENCY,
+  KEY_PREMIUM_PRICING_ACTION_PRICE,
+] as const satisfies (keyof PremiumPricingAction)[];
+
+/**
+ * Prices
+ *
+ * Premium prices per action
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `prices` property of PremiumPricing objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpricing[KEY_PREMIUM_PRICING_PRICES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICING_PRICES;
+ * const value = premiumpricing[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPricing} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICING} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICING_PRICES: keyof PremiumPricing = 'prices';
+
+/**
+ * Array of all PremiumPricing property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PremiumPricing objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PREMIUM_PRICING) {
+ *   console.log(`Property: ${key}, Value: ${premiumpricing[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PREMIUM_PRICING.includes(someKey);
+ * ```
+ *
+ * @see {@link PremiumPricing} - The TypeScript type definition
+ */
+export const KEYS_PREMIUM_PRICING = [
+  KEY_PREMIUM_PRICING_PRICES,
+] as const satisfies (keyof PremiumPricing)[];
+
+/**
  * Currency
  *
  *
@@ -38267,6 +38425,57 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE: keyof DomainAvailabilityCh
  */
 export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN: keyof DomainAvailabilityCheck = 'domain';
 /**
+ * Is Premium
+ *
+ * Whether this is a premium domain
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `is_premium` property of DomainAvailabilityCheck objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitycheck[KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM;
+ * const value = domainavailabilitycheck[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM: keyof DomainAvailabilityCheck = 'is_premium';
+/**
+ * premium_pricing property
+ *
+ * Premium pricing details, present when domain is premium and pricing is available
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `premium_pricing` property of DomainAvailabilityCheck objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitycheck[KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING;
+ * const value = domainavailabilitycheck[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING: keyof DomainAvailabilityCheck = 'premium_pricing';
+/**
  * Reason
  *
  *
@@ -38314,5 +38523,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON: keyof DomainAvailabilityCheck
 export const KEYS_DOMAIN_AVAILABILITY_CHECK = [
   KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE,
   KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN,
+  KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM,
+  KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING,
   KEY_DOMAIN_AVAILABILITY_CHECK_REASON,
 ] as const satisfies (keyof DomainAvailabilityCheck)[];

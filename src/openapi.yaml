@@ -7906,6 +7906,39 @@ components:
       - supported
       title: PremiumDomainsBase
       type: object
+    PremiumPricingAction:
+      properties:
+        action:
+          description: The action (e.g., create, renew, transfer)
+          title: Action
+          type: string
+        currency:
+          description: Currency of the price
+          title: Currency
+          type: string
+        price:
+          description: Customer-facing price after markup
+          pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+          title: Price
+          type: string
+      required:
+      - action
+      - price
+      - currency
+      title: PremiumPricingAction
+      type: object
+    PremiumPricingResponse:
+      properties:
+        prices:
+          description: Premium prices per action
+          items:
+            $ref: '#/components/schemas/PremiumPricingAction'
+          title: Prices
+          type: array
+      required:
+      - prices
+      title: PremiumPricingResponse
+      type: object
     PremiumSourceType:
       enum:
       - EPP
@@ -9572,6 +9605,17 @@ components:
           - example.com
           title: Domain
           type: string
+        is_premium:
+          default: false
+          description: Whether this is a premium domain
+          title: Is Premium
+          type: boolean
+        premium_pricing:
+          anyOf:
+          - $ref: '#/components/schemas/PremiumPricingResponse'
+          - type: 'null'
+          description: Premium pricing details, present when domain is premium and
+            pricing is available
         reason:
           anyOf:
           - type: string
@@ -9653,7 +9697,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-08-115618
+  version: 2026-04-08-180509
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

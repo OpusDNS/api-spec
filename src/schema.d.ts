@@ -7456,6 +7456,32 @@ export interface components {
              */
             supported: boolean;
         };
+        /** PremiumPricingAction */
+        PremiumPricingAction: {
+            /**
+             * Action
+             * @description The action (e.g., create, renew, transfer)
+             */
+            action: string;
+            /**
+             * Currency
+             * @description Currency of the price
+             */
+            currency: string;
+            /**
+             * Price
+             * @description Customer-facing price after markup
+             */
+            price: string;
+        };
+        /** PremiumPricingResponse */
+        PremiumPricingResponse: {
+            /**
+             * Prices
+             * @description Premium prices per action
+             */
+            prices: components["schemas"]["PremiumPricingAction"][];
+        };
         /**
          * PremiumSourceType
          * @enum {string}
@@ -8588,6 +8614,14 @@ export interface components {
              * @example example.com
              */
             domain: string;
+            /**
+             * Is Premium
+             * @description Whether this is a premium domain
+             * @default false
+             */
+            is_premium: boolean;
+            /** @description Premium pricing details, present when domain is premium and pricing is available */
+            premium_pricing?: components["schemas"]["PremiumPricingResponse"] | null;
             /** Reason */
             reason: string | null;
         };

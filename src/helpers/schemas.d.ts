@@ -5045,6 +5045,38 @@ export type PremiumAffectsType = components['schemas']['PremiumAffectsType'];
  */
 export type PremiumDomainsBase = components['schemas']['PremiumDomainsBase'];
 /**
+ * PremiumPricingAction
+ *
+ * @remarks
+ * Type alias for the `PremiumPricingAction` OpenAPI schema.
+ * This type represents premiumpricingaction data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPremiumPricingAction();
+ * const item: PremiumPricingAction = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PremiumPricingAction = components['schemas']['PremiumPricingAction'];
+/**
+ * PremiumPricingResponse
+ *
+ * @remarks
+ * Type alias for the `PremiumPricingResponse` OpenAPI schema.
+ * This type represents premiumpricingresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPremiumPricing();
+ * const item: PremiumPricing = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type PremiumPricing = components['schemas']['PremiumPricingResponse'];
+/**
  * PremiumSourceType
  *
  * @remarks
