@@ -2522,6 +2522,15 @@ components:
           description: Create a zone for the domain on OpusDNS nameserver infrastructure
           title: Create Zone
           type: boolean
+        expected_price:
+          anyOf:
+          - minimum: 0.0
+            type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
         name:
           description: The domain to be created
           title: Name
@@ -2694,7 +2703,7 @@ components:
           description: Idempotency key for this command
           title: Idempotency Key
         payload:
-          $ref: '#/components/schemas/DomainCreatePayloadData'
+          $ref: '#/components/schemas/DomainCreatePayloadData-Input'
           description: Domain creation payload
         version:
           default: v1
@@ -2705,7 +2714,7 @@ components:
       - payload
       title: DomainCreateCommand
       type: object
-    DomainCreatePayloadData:
+    DomainCreatePayloadData-Input:
       properties:
         auth_code:
           anyOf:
@@ -2726,6 +2735,68 @@ components:
           description: Create a zone for the domain on OpusDNS nameserver infrastructure
           title: Create Zone
           type: boolean
+        expected_price:
+          anyOf:
+          - minimum: 0.0
+            type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
+        name:
+          description: The domain to be created
+          title: Name
+          type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
+        period:
+          $ref: '#/components/schemas/DomainPeriod'
+          description: The registration period of the domain
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
+      required:
+      - name
+      - contacts
+      - renewal_mode
+      - period
+      title: DomainCreatePayloadData
+      type: object
+    DomainCreatePayloadData-Output:
+      properties:
+        auth_code:
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
+          description: The auth code used for the domain
+          title: Auth Code
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          description: The contacts of the domain
+          title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone for the domain on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
+        expected_price:
+          anyOf:
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
         name:
           description: The domain to be created
           title: Name
@@ -2754,7 +2825,7 @@ components:
     DomainCreateWorkerPayload:
       properties:
         domain:
-          $ref: '#/components/schemas/DomainCreatePayloadData'
+          $ref: '#/components/schemas/DomainCreatePayloadData-Output'
         operation:
           title: Operation
           type: string
@@ -3409,6 +3480,15 @@ components:
           format: date-time
           title: Current Expiry Date
           type: string
+        expected_price:
+          anyOf:
+          - minimum: 0.0
+            type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
         period:
           $ref: '#/components/schemas/DomainPeriod'
           description: How long to extend the domain registration
@@ -3596,6 +3676,15 @@ components:
           - type: 'null'
           description: Additional information to include in the restore operation
           title: Additional Info
+        expected_price:
+          anyOf:
+          - minimum: 0.0
+            type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
         reason:
           anyOf:
           - type: string
@@ -3982,7 +4071,7 @@ components:
           description: Idempotency key for this command
           title: Idempotency Key
         payload:
-          $ref: '#/components/schemas/DomainTransferPayloadData'
+          $ref: '#/components/schemas/DomainTransferPayloadData-Input'
           description: Domain transfer payload
         version:
           default: v1
@@ -4022,6 +4111,15 @@ components:
           description: Create a zone for the domain on OpusDNS nameserver infrastructure
           title: Create Zone
           type: boolean
+        expected_price:
+          anyOf:
+          - minimum: 0.0
+            type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
         name:
           description: The domain to be created
           title: Name
@@ -4050,7 +4148,7 @@ components:
       - auth_code
       title: DomainTransferIn
       type: object
-    DomainTransferPayloadData:
+    DomainTransferPayloadData-Input:
       properties:
         attributes:
           anyOf:
@@ -4079,6 +4177,79 @@ components:
           description: Create a zone for the domain on OpusDNS nameserver infrastructure
           title: Create Zone
           type: boolean
+        expected_price:
+          anyOf:
+          - minimum: 0.0
+            type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
+        name:
+          description: The domain to be created
+          title: Name
+          type: string
+        nameservers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Nameserver'
+            type: array
+          - type: 'null'
+          description: The name servers for the domain
+          title: Nameservers
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/DomainPeriod'
+          - type: 'null'
+          description: Additional registration period to add to the domain upon transfer
+            completion. If omitted, the registry default policy will be applied.
+        renewal_mode:
+          $ref: '#/components/schemas/RenewalMode'
+          description: The renewal mode of the domain
+      required:
+      - name
+      - contacts
+      - renewal_mode
+      - auth_code
+      title: DomainTransferPayloadData
+      type: object
+    DomainTransferPayloadData-Output:
+      properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Additional attributes of the domain
+          title: Attributes
+        auth_code:
+          description: The auth code for the domain
+          maxLength: 32
+          minLength: 6
+          title: Auth Code
+          type: string
+        contacts:
+          anyOf:
+          - $ref: '#/components/schemas/DomainContactHandles'
+          - $ref: '#/components/schemas/ContactIdList'
+          description: The contacts of the domain
+          title: Contacts
+        create_zone:
+          default: false
+          description: Create a zone for the domain on OpusDNS nameserver infrastructure
+          title: Create Zone
+          type: boolean
+        expected_price:
+          anyOf:
+          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+            type: string
+          - type: 'null'
+          description: Expected price for premium domain confirmation
+          title: Expected Price
         name:
           description: The domain to be created
           title: Name
@@ -4110,7 +4281,7 @@ components:
     DomainTransferWorkerPayload:
       properties:
         domain:
-          $ref: '#/components/schemas/DomainTransferPayloadData'
+          $ref: '#/components/schemas/DomainTransferPayloadData-Output'
         operation:
           title: Operation
           type: string
@@ -9702,7 +9873,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-09-170030
+  version: 2026-04-09-205352
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -3881,6 +3881,11 @@ export interface components {
              */
             create_zone: boolean;
             /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: number | string | null;
+            /**
              * Name
              * @description The domain to be created
              */
@@ -3999,7 +4004,7 @@ export interface components {
              */
             idempotency_key?: string | null;
             /** @description Domain creation payload */
-            payload: components["schemas"]["DomainCreatePayloadData"];
+            payload: components["schemas"]["DomainCreatePayloadData-Input"];
             /**
              * Version
              * @description Command version
@@ -4008,7 +4013,7 @@ export interface components {
             version: string;
         };
         /** DomainCreatePayloadData */
-        DomainCreatePayloadData: {
+        "DomainCreatePayloadData-Input": {
             /**
              * Auth Code
              * @description The auth code used for the domain
@@ -4026,6 +4031,49 @@ export interface components {
              */
             create_zone: boolean;
             /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: number | string | null;
+            /**
+             * Name
+             * @description The domain to be created
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description The registration period of the domain */
+            period: components["schemas"]["DomainPeriod"];
+            /** @description The renewal mode of the domain */
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainCreatePayloadData */
+        "DomainCreatePayloadData-Output": {
+            /**
+             * Auth Code
+             * @description The auth code used for the domain
+             */
+            auth_code?: string | null;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone for the domain on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: string | null;
+            /**
              * Name
              * @description The domain to be created
              */
@@ -4042,7 +4090,7 @@ export interface components {
         };
         /** DomainCreateWorkerPayload */
         DomainCreateWorkerPayload: {
-            domain: components["schemas"]["DomainCreatePayloadData"];
+            domain: components["schemas"]["DomainCreatePayloadData-Output"];
             /** Operation */
             operation: string;
             /**
@@ -4429,6 +4477,11 @@ export interface components {
              * @description Current expiration date of the domain for validation
              */
             current_expiry_date: Date;
+            /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: number | string | null;
             /** @description How long to extend the domain registration */
             period: components["schemas"]["DomainPeriod"];
         };
@@ -4579,6 +4632,11 @@ export interface components {
              * @description Additional information to include in the restore operation
              */
             additional_info?: string | null;
+            /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: number | string | null;
             /**
              * Reason
              * @description Reason for restoring the domain
@@ -4824,7 +4882,7 @@ export interface components {
              */
             idempotency_key?: string | null;
             /** @description Domain transfer payload */
-            payload: components["schemas"]["DomainTransferPayloadData"];
+            payload: components["schemas"]["DomainTransferPayloadData-Input"];
             /**
              * Version
              * @description Command version
@@ -4858,6 +4916,11 @@ export interface components {
              */
             create_zone: boolean;
             /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: number | string | null;
+            /**
              * Name
              * @description The domain to be created
              */
@@ -4873,7 +4936,7 @@ export interface components {
             renewal_mode: components["schemas"]["RenewalMode"];
         };
         /** DomainTransferPayloadData */
-        DomainTransferPayloadData: {
+        "DomainTransferPayloadData-Input": {
             /**
              * Attributes
              * @description Additional attributes of the domain
@@ -4898,6 +4961,56 @@ export interface components {
              */
             create_zone: boolean;
             /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: number | string | null;
+            /**
+             * Name
+             * @description The domain to be created
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description The name servers for the domain
+             */
+            nameservers?: components["schemas"]["Nameserver"][] | null;
+            /** @description Additional registration period to add to the domain upon transfer completion. If omitted, the registry default policy will be applied. */
+            period?: components["schemas"]["DomainPeriod"] | null;
+            /** @description The renewal mode of the domain */
+            renewal_mode: components["schemas"]["RenewalMode"];
+        };
+        /** DomainTransferPayloadData */
+        "DomainTransferPayloadData-Output": {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
+             * Auth Code
+             * @description The auth code for the domain
+             */
+            auth_code: string;
+            /**
+             * Contacts
+             * @description The contacts of the domain
+             */
+            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            /**
+             * Create Zone
+             * @description Create a zone for the domain on OpusDNS nameserver infrastructure
+             * @default false
+             */
+            create_zone: boolean;
+            /**
+             * Expected Price
+             * @description Expected price for premium domain confirmation
+             */
+            expected_price?: string | null;
+            /**
              * Name
              * @description The domain to be created
              */
@@ -4914,7 +5027,7 @@ export interface components {
         };
         /** DomainTransferWorkerPayload */
         DomainTransferWorkerPayload: {
-            domain: components["schemas"]["DomainTransferPayloadData"];
+            domain: components["schemas"]["DomainTransferPayloadData-Output"];
             /** Operation */
             operation: string;
             /**
