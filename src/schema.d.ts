@@ -4498,6 +4498,12 @@ export interface components {
              */
             hosts?: components["schemas"]["DomainHostResponse"][];
             /**
+             * Is Premium
+             * @description Whether this is a premium domain
+             * @default false
+             */
+            is_premium: boolean;
+            /**
              * Name
              * @description The domain name
              * @example example.com

@@ -15024,6 +15024,32 @@ export const KEY_DOMAIN_EXPIRES_ON: keyof Domain = 'expires_on';
  */
 export const KEY_DOMAIN_HOSTS: keyof Domain = 'hosts';
 /**
+ * Is Premium
+ *
+ * Whether this is a premium domain
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `is_premium` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_IS_PREMIUM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_IS_PREMIUM;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_IS_PREMIUM: keyof Domain = 'is_premium';
+/**
  * Name
  *
  * The domain name
@@ -15363,6 +15389,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_DOMAIN_ID,
   KEY_DOMAIN_EXPIRES_ON,
   KEY_DOMAIN_HOSTS,
+  KEY_DOMAIN_IS_PREMIUM,
   KEY_DOMAIN_NAME,
   KEY_DOMAIN_NAMESERVERS,
   KEY_DOMAIN_OWNER_ID,
