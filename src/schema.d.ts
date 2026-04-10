@@ -3883,6 +3883,7 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
+             * @example 12.50
              */
             expected_price?: string | null;
             /**
@@ -4033,6 +4034,7 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
+             * @example 12.50
              */
             expected_price?: string | null;
             /**
@@ -4442,6 +4444,7 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
+             * @example 12.50
              */
             expected_price?: string | null;
             /** @description How long to extend the domain registration */
@@ -4597,6 +4600,7 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
+             * @example 12.50
              */
             expected_price?: string | null;
             /**
@@ -4880,6 +4884,7 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
+             * @example 12.50
              */
             expected_price?: string | null;
             /**
@@ -4925,6 +4930,7 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
+             * @example 12.50
              */
             expected_price?: string | null;
             /**
