@@ -9756,7 +9756,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-10-145131
+  version: 2026-04-10-204100
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15972,6 +15972,7 @@ paths:
           content:
             application/problem+json:
               example:
+                code: ERROR_POLICY_VALIDATION
                 detail: Additional error context.
                 status: 422
                 title: Policy Validation Error
@@ -16321,6 +16322,7 @@ paths:
           content:
             application/problem+json:
               example:
+                code: ERROR_POLICY_VALIDATION
                 detail: Additional error context.
                 status: 422
                 title: Policy Validation Error

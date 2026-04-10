@@ -12912,6 +12912,7 @@ export interface operations {
                 };
                 content: {
                     /** @example {
+                     *       "code": "ERROR_POLICY_VALIDATION",
                      *       "detail": "Additional error context.",
                      *       "status": 422,
                      *       "title": "Policy Validation Error",
@@ -13174,6 +13175,7 @@ export interface operations {
                 };
                 content: {
                     /** @example {
+                     *       "code": "ERROR_POLICY_VALIDATION",
                      *       "detail": "Additional error context.",
                      *       "status": 422,
                      *       "title": "Policy Validation Error",
