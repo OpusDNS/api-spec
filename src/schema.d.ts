@@ -3884,7 +3884,7 @@ export interface components {
              * Expected Price
              * @description Expected price for premium domain confirmation
              */
-            expected_price?: number | string | null;
+            expected_price?: string | null;
             /**
              * Name
              * @description The domain to be created
@@ -4443,7 +4443,7 @@ export interface components {
              * Expected Price
              * @description Expected price for premium domain confirmation
              */
-            expected_price?: number | string | null;
+            expected_price?: string | null;
             /** @description How long to extend the domain registration */
             period: components["schemas"]["DomainPeriod"];
         };
@@ -4598,7 +4598,7 @@ export interface components {
              * Expected Price
              * @description Expected price for premium domain confirmation
              */
-            expected_price?: number | string | null;
+            expected_price?: string | null;
             /**
              * Reason
              * @description Reason for restoring the domain
@@ -4881,7 +4881,7 @@ export interface components {
              * Expected Price
              * @description Expected price for premium domain confirmation
              */
-            expected_price?: number | string | null;
+            expected_price?: string | null;
             /**
              * Name
              * @description The domain to be created

@@ -2524,8 +2524,6 @@ components:
           type: boolean
         expected_price:
           anyOf:
-          - minimum: 0.0
-            type: number
           - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
             type: string
           - type: 'null'
@@ -3427,8 +3425,6 @@ components:
           type: string
         expected_price:
           anyOf:
-          - minimum: 0.0
-            type: number
           - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
             type: string
           - type: 'null'
@@ -3623,8 +3619,6 @@ components:
           title: Additional Info
         expected_price:
           anyOf:
-          - minimum: 0.0
-            type: number
           - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
             type: string
           - type: 'null'
@@ -4058,8 +4052,6 @@ components:
           type: boolean
         expected_price:
           anyOf:
-          - minimum: 0.0
-            type: number
           - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
             type: string
           - type: 'null'
@@ -9752,7 +9744,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-10-133524
+  version: 2026-04-10-140958
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
