@@ -111,6 +111,7 @@ import { DomainCreateBulkInstance } from './schemas';
 import { DomainCreateBulkPayload } from './schemas';
 import { DomainCreateBulkTemplate } from './schemas';
 import { DomainCreateCommand } from './schemas';
+import { DomainCreatePayloadData } from './schemas';
 import { DomainCreateWorkerPayload } from './schemas';
 import { DomainDnssecDataCreate } from './schemas';
 import { DomainDnssecData } from './schemas';
@@ -156,6 +157,7 @@ import { DomainTransferBulkPayload } from './schemas';
 import { DomainTransferBulkTemplate } from './schemas';
 import { DomainTransferCommand } from './schemas';
 import { DomainTransferIn } from './schemas';
+import { DomainTransferPayloadData } from './schemas';
 import { DomainTransferWorkerPayload } from './schemas';
 import { DomainTransitRequest } from './schemas';
 import { DomainTransit } from './schemas';
@@ -11579,6 +11581,240 @@ export const KEYS_DOMAIN_CREATE_COMMAND = [
 ] as const satisfies (keyof DomainCreateCommand)[];
 
 /**
+ * Auth Code
+ *
+ * The auth code used for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE: keyof DomainCreatePayloadData = 'auth_code';
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS: keyof DomainCreatePayloadData = 'contacts';
+/**
+ * Create Zone
+ *
+ * Create a zone for the domain on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE: keyof DomainCreatePayloadData = 'create_zone';
+/**
+ * Expected Price
+ *
+ * Expected price for premium domain confirmation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expected_price` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_EXPECTED_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_EXPECTED_PRICE;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_EXPECTED_PRICE: keyof DomainCreatePayloadData = 'expected_price';
+/**
+ * Name
+ *
+ * The domain to be created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME: keyof DomainCreatePayloadData = 'name';
+/**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS: keyof DomainCreatePayloadData = 'nameservers';
+/**
+ * period property
+ *
+ * The registration period of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD: keyof DomainCreatePayloadData = 'period';
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE: keyof DomainCreatePayloadData = 'renewal_mode';
+
+/**
+ * Array of all DomainCreatePayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreatePayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domaincreatepayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_PAYLOAD_DATA = [
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_EXPECTED_PRICE,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAME,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_NAMESERVERS,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_PERIOD,
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE,
+] as const satisfies (keyof DomainCreatePayloadData)[];
+
+/**
  * domain property
  *
  *
@@ -17204,6 +17440,267 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
   KEY_DOMAIN_TRANSFER_IN_PERIOD,
   KEY_DOMAIN_TRANSFER_IN_RENEWAL_MODE,
 ] as const satisfies (keyof DomainTransferIn)[];
+
+/**
+ * Attributes
+ *
+ * Additional attributes of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES: keyof DomainTransferPayloadData = 'attributes';
+/**
+ * Auth Code
+ *
+ * The auth code for the domain
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `auth_code` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE: keyof DomainTransferPayloadData = 'auth_code';
+/**
+ * Contacts
+ *
+ * The contacts of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contacts` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS: keyof DomainTransferPayloadData = 'contacts';
+/**
+ * Create Zone
+ *
+ * Create a zone for the domain on OpusDNS nameserver infrastructure
+ *
+ * @type {boolean}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `create_zone` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE: keyof DomainTransferPayloadData = 'create_zone';
+/**
+ * Expected Price
+ *
+ * Expected price for premium domain confirmation
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expected_price` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_EXPECTED_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_EXPECTED_PRICE;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_EXPECTED_PRICE: keyof DomainTransferPayloadData = 'expected_price';
+/**
+ * Name
+ *
+ * The domain to be created
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME: keyof DomainTransferPayloadData = 'name';
+/**
+ * Nameservers
+ *
+ * The name servers for the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `nameservers` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS: keyof DomainTransferPayloadData = 'nameservers';
+/**
+ * period property
+ *
+ * Additional registration period to add to the domain upon transfer completion. If omitted, the registry default policy will be applied.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `period` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD: keyof DomainTransferPayloadData = 'period';
+/**
+ * renewal_mode property
+ *
+ * The renewal mode of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_mode` property of DomainTransferPayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferpayloaddata[KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE;
+ * const value = domaintransferpayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE: keyof DomainTransferPayloadData = 'renewal_mode';
+
+/**
+ * Array of all DomainTransferPayloadData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTransferPayloadData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA) {
+ *   console.log(`Property: ${key}, Value: ${domaintransferpayloaddata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTransferPayloadData} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TRANSFER_PAYLOAD_DATA = [
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_ATTRIBUTES,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_AUTH_CODE,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CONTACTS,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_CREATE_ZONE,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_EXPECTED_PRICE,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAME,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_NAMESERVERS,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_PERIOD,
+  KEY_DOMAIN_TRANSFER_PAYLOAD_DATA_RENEWAL_MODE,
+] as const satisfies (keyof DomainTransferPayloadData)[];
 
 /**
  * domain property

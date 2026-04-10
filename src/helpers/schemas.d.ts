@@ -1790,34 +1790,18 @@ export type DomainCreateCommand = components['schemas']['DomainCreateCommand'];
  * DomainCreatePayloadData
  *
  * @remarks
- * Type alias for the `DomainCreatePayloadData-Input` OpenAPI schema.
+ * Type alias for the `DomainCreatePayloadData` OpenAPI schema.
  * This type represents domaincreatepayloaddata data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getDomainCreatePayloadData-Input();
- * const item: DomainCreatePayloadData-Input = response.results;
+ * const response = await api.getDomainCreatePayloadData();
+ * const item: DomainCreatePayloadData = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type DomainCreatePayloadData-Input = components['schemas']['DomainCreatePayloadData-Input'];
-/**
- * DomainCreatePayloadData
- *
- * @remarks
- * Type alias for the `DomainCreatePayloadData-Output` OpenAPI schema.
- * This type represents domaincreatepayloaddata data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getDomainCreatePayloadData-Output();
- * const item: DomainCreatePayloadData-Output = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type DomainCreatePayloadData-Output = components['schemas']['DomainCreatePayloadData-Output'];
+export type DomainCreatePayloadData = components['schemas']['DomainCreatePayloadData'];
 /**
  * DomainCreateWorkerPayload
  *
@@ -2606,34 +2590,18 @@ export type DomainTransferIn = components['schemas']['DomainTransferIn'];
  * DomainTransferPayloadData
  *
  * @remarks
- * Type alias for the `DomainTransferPayloadData-Input` OpenAPI schema.
+ * Type alias for the `DomainTransferPayloadData` OpenAPI schema.
  * This type represents domaintransferpayloaddata data structures used in API requests and responses.
  *
  * @example
  * ```typescript
- * const response = await api.getDomainTransferPayloadData-Input();
- * const item: DomainTransferPayloadData-Input = response.results;
+ * const response = await api.getDomainTransferPayloadData();
+ * const item: DomainTransferPayloadData = response.results;
  * ```
  *
  * @see {@link components} - The OpenAPI components schema definition
  */
-export type DomainTransferPayloadData-Input = components['schemas']['DomainTransferPayloadData-Input'];
-/**
- * DomainTransferPayloadData
- *
- * @remarks
- * Type alias for the `DomainTransferPayloadData-Output` OpenAPI schema.
- * This type represents domaintransferpayloaddata data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getDomainTransferPayloadData-Output();
- * const item: DomainTransferPayloadData-Output = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type DomainTransferPayloadData-Output = components['schemas']['DomainTransferPayloadData-Output'];
+export type DomainTransferPayloadData = components['schemas']['DomainTransferPayloadData'];
 /**
  * DomainTransferWorkerPayload
  *
