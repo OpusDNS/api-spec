@@ -6164,6 +6164,11 @@ export interface components {
              */
             display?: string | null;
             /**
+             * Domain Name
+             * @description Domain name associated with this job
+             */
+            domain_name?: string | null;
+            /**
              * Error Class
              * @description Error type if the job failed (e.g., ValidationError, TimeoutError)
              */

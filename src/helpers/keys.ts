@@ -24822,6 +24822,31 @@ export const KEY_JOB_CREATED_ON: keyof Job = 'created_on';
  */
 export const KEY_JOB_DISPLAY: keyof Job = 'display';
 /**
+ * Domain Name
+ *
+ * Domain name associated with this job
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_name` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_DOMAIN_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_DOMAIN_NAME;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_DOMAIN_NAME: keyof Job = 'domain_name';
+/**
  * Error Class
  *
  * Error type if the job failed (e.g., ValidationError, TimeoutError)
@@ -25098,6 +25123,7 @@ export const KEYS_JOB = [
   KEY_JOB_COMMAND,
   KEY_JOB_CREATED_ON,
   KEY_JOB_DISPLAY,
+  KEY_JOB_DOMAIN_NAME,
   KEY_JOB_ERROR_CLASS,
   KEY_JOB_ERROR_MESSAGE,
   KEY_JOB_FINISHED_AT,
