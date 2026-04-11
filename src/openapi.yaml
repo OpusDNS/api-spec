@@ -9762,7 +9762,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-10-211246
+  version: 2026-04-11-180046
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -18638,19 +18638,50 @@ paths:
                       total_pages: 1
                     results:
                     - attempts: 1
+                      command: domain_create_bulk
                       created_on: '2025-01-15T10:00:00Z'
+                      display: Create Domain 'invalid-domain.com'
+                      domain_name: invalid-domain.com
                       error_class: ValidationError
                       error_message: Domain name contains invalid characters
                       finished_at: '2025-01-15T10:00:06Z'
                       job_id: job_01h45ytscbebyvny4gc8cr8ma6
+                      operation: create
+                      payload:
+                        domain:
+                          contacts:
+                            admin:
+                            - contact_id: contact_01h45ytscbebyvny4gc8ab1
+                          name: invalid-domain.com
+                          period:
+                            unit: y
+                            value: 1
+                          renewal_mode: renew
+                        operation: create
+                        type: domain_create_bulk
+                      resource_key: invalid-domain.com
                       started_at: '2025-01-15T10:00:05Z'
                       status: failed
                     - attempts: 5
+                      command: domain_update_bulk
                       created_on: '2025-01-15T10:00:00Z'
+                      display: Update Domain 'flaky-domain.com'
+                      domain_name: flaky-domain.com
                       error_class: RegistryError
                       error_message: Registry unavailable after 5 retry attempts
                       finished_at: '2025-01-15T10:15:30Z'
                       job_id: job_01h45ytscbebyvny4gc8cr8ma7
+                      operation: update
+                      payload:
+                        domain:
+                          domain_id: domain_01h45ytscbebyvny4gc8cr8x3
+                          nameservers:
+                          - hostname: ns1.example.com
+                          - hostname: ns2.example.com
+                          renewal_mode: renew
+                        operation: update
+                        type: domain_update_bulk
+                      resource_key: domain_01h45ytscbebyvny4gc8cr8x3
                       started_at: '2025-01-15T10:05:00Z'
                       status: dead_letter
                 mixed_status:
@@ -18666,25 +18697,94 @@ paths:
                       total_pages: 1
                     results:
                     - attempts: 1
+                      command: domain_update_bulk
                       created_on: '2025-01-15T10:00:00Z'
+                      display: Update Domain 'example.com'
+                      domain_name: example.com
                       finished_at: '2025-01-15T10:00:12Z'
                       job_id: job_01h45ytscbebyvny4gc8cr8ma2
+                      operation: update
+                      payload:
+                        domain:
+                          contacts:
+                            admin:
+                            - contact_id: contact_01h45ytscbebyvny4gc8ab1
+                            tech:
+                            - contact_id: contact_01h45ytscbebyvny4gc8ab1
+                          domain_id: domain_01h45ytscbebyvny4gc8cr8x1
+                          nameservers:
+                          - hostname: ns1.example.com
+                          - hostname: ns2.example.com
+                          renewal_mode: renew
+                        operation: update
+                        type: domain_update_bulk
+                      resource_key: domain_01h45ytscbebyvny4gc8cr8x1
                       started_at: '2025-01-15T10:00:05Z'
                       status: succeeded
                     - attempts: 1
+                      command: domain_update_bulk
                       created_on: '2025-01-15T10:00:00Z'
+                      display: Update Domain 'example.org'
+                      domain_name: example.org
                       finished_at: '2025-01-15T10:00:15Z'
                       job_id: job_01h45ytscbebyvny4gc8cr8ma3
+                      operation: update
+                      payload:
+                        domain:
+                          domain_id: domain_01h45ytscbebyvny4gc8cr8x2
+                          renewal_mode: expire
+                          status_changes:
+                            add:
+                            - clientHold
+                            remove: []
+                        operation: update
+                        type: domain_update_bulk
+                      resource_key: domain_01h45ytscbebyvny4gc8cr8x2
                       started_at: '2025-01-15T10:00:06Z'
                       status: succeeded
                     - attempts: 1
+                      command: domain_create_bulk
                       created_on: '2025-01-15T10:00:00Z'
+                      display: Create Domain 'newdomain.com'
+                      domain_name: newdomain.com
                       job_id: job_01h45ytscbebyvny4gc8cr8ma4
+                      operation: create
+                      payload:
+                        domain:
+                          contacts:
+                            admin:
+                            - contact_id: contact_01h45ytscbebyvny4gc8ab1
+                            registrant:
+                            - contact_id: contact_01h45ytscbebyvny4gc8ab1
+                            tech:
+                            - contact_id: contact_01h45ytscbebyvny4gc8ab1
+                          create_zone: false
+                          name: newdomain.com
+                          nameservers:
+                          - hostname: ns1.example.com
+                          - hostname: ns2.example.com
+                          period:
+                            unit: y
+                            value: 1
+                          renewal_mode: renew
+                        operation: create
+                        type: domain_create_bulk
+                      resource_key: newdomain.com
                       started_at: '2025-01-15T10:00:07Z'
                       status: running
                     - attempts: 0
+                      command: dns_zone_create_bulk
                       created_on: '2025-01-15T10:00:00Z'
+                      display: Create DNS Zone 'example.net'
                       job_id: job_01h45ytscbebyvny4gc8cr8ma5
+                      operation: create
+                      payload:
+                        operation: create
+                        type: dns_zone_create_bulk
+                        zone:
+                          name: example.net
+                          rrsets: []
+                      resource_key: example.net
                       status: queued
               schema:
                 $ref: '#/components/schemas/Pagination_JobResponse_'
