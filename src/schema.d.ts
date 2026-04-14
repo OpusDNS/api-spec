@@ -3469,6 +3469,8 @@ export interface components {
         };
         /** DnsZoneCreateBulkInstance */
         DnsZoneCreateBulkInstance: {
+            /** @description Override DNSSEC status for this zone */
+            dnssec_status?: components["schemas"]["DnssecStatus"] | null;
             /**
              * Name
              * @description The DNS zone name (e.g., example.com)
@@ -3492,6 +3494,11 @@ export interface components {
         };
         /** DnsZoneCreateBulkTemplate */
         DnsZoneCreateBulkTemplate: {
+            /**
+             * @description DNSSEC status for all zones
+             * @default disabled
+             */
+            dnssec_status: components["schemas"]["DnssecStatus"];
             /**
              * Rrsets
              * @description DNS record sets to create
@@ -3708,6 +3715,8 @@ export interface components {
         };
         /** DnsZoneUpdateBulkInstance */
         DnsZoneUpdateBulkInstance: {
+            /** @description Override DNSSEC status for this zone */
+            dnssec_status?: components["schemas"]["DnssecStatus"] | null;
             /**
              * Name
              * @description The DNS zone name (e.g., example.com)
@@ -3731,6 +3740,8 @@ export interface components {
         };
         /** DnsZoneUpdateBulkTemplate */
         DnsZoneUpdateBulkTemplate: {
+            /** @description DNSSEC status for all zones */
+            dnssec_status?: components["schemas"]["DnssecStatus"] | null;
             /**
              * Rrsets
              * @description DNS record sets to update

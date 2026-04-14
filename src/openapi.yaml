@@ -1884,6 +1884,11 @@ components:
       type: object
     DnsZoneCreateBulkInstance:
       properties:
+        dnssec_status:
+          anyOf:
+          - $ref: '#/components/schemas/DnssecStatus'
+          - type: 'null'
+          description: Override DNSSEC status for this zone
         name:
           description: The DNS zone name (e.g., example.com)
           title: Name
@@ -1920,6 +1925,10 @@ components:
       type: object
     DnsZoneCreateBulkTemplate:
       properties:
+        dnssec_status:
+          $ref: '#/components/schemas/DnssecStatus'
+          default: disabled
+          description: DNSSEC status for all zones
         rrsets:
           description: DNS record sets to create
           items:
@@ -2240,6 +2249,11 @@ components:
       type: object
     DnsZoneUpdateBulkInstance:
       properties:
+        dnssec_status:
+          anyOf:
+          - $ref: '#/components/schemas/DnssecStatus'
+          - type: 'null'
+          description: Override DNSSEC status for this zone
         name:
           description: The DNS zone name (e.g., example.com)
           title: Name
@@ -2276,6 +2290,11 @@ components:
       type: object
     DnsZoneUpdateBulkTemplate:
       properties:
+        dnssec_status:
+          anyOf:
+          - $ref: '#/components/schemas/DnssecStatus'
+          - type: 'null'
+          description: DNSSEC status for all zones
         rrsets:
           description: DNS record sets to update
           items:
@@ -9783,7 +9802,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-14-085620
+  version: 2026-04-14-135714
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -17982,6 +18001,7 @@ paths:
                       - name: zone2.com
                       - name: zone3.com
                       template:
+                        dnssec_status: disabled
                         rrsets:
                         - name: '@'
                           records:

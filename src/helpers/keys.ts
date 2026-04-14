@@ -7973,6 +7973,31 @@ export const KEYS_DNS_ZONE_CREATE_BULK_COMMAND = [
 ] as const satisfies (keyof DnsZoneCreateBulkCommand)[];
 
 /**
+ * dnssec_status property
+ *
+ * Override DNSSEC status for this zone
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZoneCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulkinstance[KEY_DNS_ZONE_CREATE_BULK_INSTANCE_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_INSTANCE_DNSSEC_STATUS;
+ * const value = dnszonecreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_INSTANCE_DNSSEC_STATUS: keyof DnsZoneCreateBulkInstance = 'dnssec_status';
+/**
  * Name
  *
  * The DNS zone name (e.g., example.com)
@@ -8045,6 +8070,7 @@ export const KEY_DNS_ZONE_CREATE_BULK_INSTANCE_RRSETS: keyof DnsZoneCreateBulkIn
  * @see {@link DnsZoneCreateBulkInstance} - The TypeScript type definition
  */
 export const KEYS_DNS_ZONE_CREATE_BULK_INSTANCE = [
+  KEY_DNS_ZONE_CREATE_BULK_INSTANCE_DNSSEC_STATUS,
   KEY_DNS_ZONE_CREATE_BULK_INSTANCE_NAME,
   KEY_DNS_ZONE_CREATE_BULK_INSTANCE_RRSETS,
 ] as const satisfies (keyof DnsZoneCreateBulkInstance)[];
@@ -8127,6 +8153,31 @@ export const KEYS_DNS_ZONE_CREATE_BULK_PAYLOAD = [
 ] as const satisfies (keyof DnsZoneCreateBulkPayload)[];
 
 /**
+ * dnssec_status property
+ *
+ * DNSSEC status for all zones
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZoneCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatebulktemplate[KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_DNSSEC_STATUS;
+ * const value = dnszonecreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_DNSSEC_STATUS: keyof DnsZoneCreateBulkTemplate = 'dnssec_status';
+/**
  * Rrsets
  *
  * DNS record sets to create
@@ -8174,6 +8225,7 @@ export const KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_RRSETS: keyof DnsZoneCreateBulkTe
  * @see {@link DnsZoneCreateBulkTemplate} - The TypeScript type definition
  */
 export const KEYS_DNS_ZONE_CREATE_BULK_TEMPLATE = [
+  KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_DNSSEC_STATUS,
   KEY_DNS_ZONE_CREATE_BULK_TEMPLATE_RRSETS,
 ] as const satisfies (keyof DnsZoneCreateBulkTemplate)[];
 
@@ -9760,6 +9812,31 @@ export const KEYS_DNS_ZONE_UPDATE_BULK_COMMAND = [
 ] as const satisfies (keyof DnsZoneUpdateBulkCommand)[];
 
 /**
+ * dnssec_status property
+ *
+ * Override DNSSEC status for this zone
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZoneUpdateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulkinstance[KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_DNSSEC_STATUS;
+ * const value = dnszoneupdatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_DNSSEC_STATUS: keyof DnsZoneUpdateBulkInstance = 'dnssec_status';
+/**
  * Name
  *
  * The DNS zone name (e.g., example.com)
@@ -9832,6 +9909,7 @@ export const KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_RRSETS: keyof DnsZoneUpdateBulkIn
  * @see {@link DnsZoneUpdateBulkInstance} - The TypeScript type definition
  */
 export const KEYS_DNS_ZONE_UPDATE_BULK_INSTANCE = [
+  KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_DNSSEC_STATUS,
   KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_NAME,
   KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_RRSETS,
 ] as const satisfies (keyof DnsZoneUpdateBulkInstance)[];
@@ -9914,6 +9992,31 @@ export const KEYS_DNS_ZONE_UPDATE_BULK_PAYLOAD = [
 ] as const satisfies (keyof DnsZoneUpdateBulkPayload)[];
 
 /**
+ * dnssec_status property
+ *
+ * DNSSEC status for all zones
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `dnssec_status` property of DnsZoneUpdateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatebulktemplate[KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_DNSSEC_STATUS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_DNSSEC_STATUS;
+ * const value = dnszoneupdatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_DNSSEC_STATUS: keyof DnsZoneUpdateBulkTemplate = 'dnssec_status';
+/**
  * Rrsets
  *
  * DNS record sets to update
@@ -9961,6 +10064,7 @@ export const KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_RRSETS: keyof DnsZoneUpdateBulkTe
  * @see {@link DnsZoneUpdateBulkTemplate} - The TypeScript type definition
  */
 export const KEYS_DNS_ZONE_UPDATE_BULK_TEMPLATE = [
+  KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_DNSSEC_STATUS,
   KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_RRSETS,
 ] as const satisfies (keyof DnsZoneUpdateBulkTemplate)[];
 
