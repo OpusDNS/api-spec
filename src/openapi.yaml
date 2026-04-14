@@ -7908,6 +7908,7 @@ components:
       - view_events
       - view_parking
       - manage_parking
+      - manage_tags
       title: Permission
       type: string
     PermissionSet:
@@ -9782,7 +9783,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-14-081732
+  version: 2026-04-14-085620
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21576,6 +21577,9 @@ tags:
     \ | Only reports created before this timestamp |\n"
   name: report
   x-displayName: Reports
+- description: Endpoints for creating new Tags
+  name: tag
+  x-displayName: Tags
 x-tagGroups:
 - name: Account management
   tags:
@@ -21590,6 +21594,7 @@ x-tagGroups:
   - contact
   - event
   - availability
+  - tag
 - name: Services
   tags:
   - dns

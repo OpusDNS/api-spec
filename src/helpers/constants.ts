@@ -3329,6 +3329,7 @@ export const PERMISSION = {
   VIEW_EVENTS: "view_events",
   VIEW_PARKING: "view_parking",
   MANAGE_PARKING: "manage_parking",
+  MANAGE_TAGS: "manage_tags",
 } as const satisfies Record<string, Permission>;
 
 /**
@@ -3395,7 +3396,8 @@ export const PERMISSION_VALUES = [
   'view_email_forwards',
   'view_events',
   'view_parking',
-  'manage_parking'
+  'manage_parking',
+  'manage_tags'
 ] as const satisfies [string, ...string[]] | Permission[];
 
 /**
