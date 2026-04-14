@@ -6712,13 +6712,20 @@ export interface components {
         OrganizationStatus: "active" | "inactive";
         /** OrganizationTokenResponse */
         OrganizationTokenResponse: {
-            /** Access Token */
+            /**
+             * Access Token
+             * @example eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5vcHVzZG5zLmNvbSJ9.signature
+             */
             access_token: string;
-            /** Expires In */
+            /**
+             * Expires In
+             * @example 3600
+             */
             expires_in: number;
             /**
              * Token Type
              * @default Bearer
+             * @example Bearer
              */
             token_type: string;
         };
@@ -7586,12 +7593,14 @@ export interface components {
             client_id: TypeId<"organization">;
             /**
              * Client Secret
-             * @description Client secret for authentication.
+             * @description Your client secret.
+             * @example TLKI8chiHU1s123VUgEAMLZDvX6cVW
              */
             client_secret: string;
             /**
              * Grant Type
              * @description The grant type for the authentication request (should always be 'client_credentials').
+             * @example client_credentials
              */
             grant_type: string;
         };
@@ -8423,17 +8432,30 @@ export interface components {
         UserStatus: "active" | "inactive";
         /** UserTokenResponse */
         UserTokenResponse: {
-            /** Access Token */
+            /**
+             * Access Token
+             * @example eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5vcHVzZG5zLmNvbSJ9.signature
+             */
             access_token: string;
-            /** Expires In */
+            /**
+             * Expires In
+             * @example 3600
+             */
             expires_in: number;
-            /** Refresh Expires In */
+            /**
+             * Refresh Expires In
+             * @example 86400
+             */
             refresh_expires_in: number;
-            /** Refresh Token */
+            /**
+             * Refresh Token
+             * @example eyJhbGciOiJSUzI1NiJ9.eyJ0eXBlIjoicmVmcmVzaCJ9.signature
+             */
             refresh_token: string;
             /**
              * Token Type
              * @default Bearer
+             * @example Bearer
              */
             token_type: string;
         };

@@ -32451,7 +32451,7 @@ export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_ID: keyof PublicAuthRequestForm
 /**
  * Client Secret
  *
- * Client secret for authentication.
+ * Your client secret.
  *
  * @type {string}
  *

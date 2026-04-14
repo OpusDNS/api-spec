@@ -6706,13 +6706,19 @@ components:
     OrganizationTokenResponse:
       properties:
         access_token:
+          examples:
+          - eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5vcHVzZG5zLmNvbSJ9.signature
           title: Access Token
           type: string
         expires_in:
+          examples:
+          - 3600
           title: Expires In
           type: integer
         token_type:
           default: Bearer
+          examples:
+          - Bearer
           title: Token Type
           type: string
       required:
@@ -8099,12 +8105,16 @@ components:
           type: string
           x-typeid-prefix: organization
         client_secret:
-          description: Client secret for authentication.
+          description: Your client secret.
+          examples:
+          - TLKI8chiHU1s123VUgEAMLZDvX6cVW
           title: Client Secret
           type: string
         grant_type:
           description: The grant type for the authentication request (should always
             be 'client_credentials').
+          examples:
+          - client_credentials
           title: Grant Type
           type: string
       required:
@@ -9338,19 +9348,29 @@ components:
     UserTokenResponse:
       properties:
         access_token:
+          examples:
+          - eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5vcHVzZG5zLmNvbSJ9.signature
           title: Access Token
           type: string
         expires_in:
+          examples:
+          - 3600
           title: Expires In
           type: integer
         refresh_expires_in:
+          examples:
+          - 86400
           title: Refresh Expires In
           type: integer
         refresh_token:
+          examples:
+          - eyJhbGciOiJSUzI1NiJ9.eyJ0eXBlIjoicmVmcmVzaCJ9.signature
           title: Refresh Token
           type: string
         token_type:
           default: Bearer
+          examples:
+          - Bearer
           title: Token Type
           type: string
       required:
@@ -9762,7 +9782,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-11-180046
+  version: 2026-04-14-081732
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -10409,7 +10429,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
           description: Unauthorized
       security:
-      - APIKeyHeader: []
       - OAuth2PasswordBearer: []
       summary: Issue Organization Token
       tags:
