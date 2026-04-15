@@ -3521,7 +3521,12 @@ export const POSTAL_ADDRESS_TYPE_VALUES = [
  */
 export const PREMIUM_AFFECTS_TYPE = {
   REGISTRATION: "registration",
+  DELETE: "delete",
   RENEWAL: "renewal",
+  UPDATE: "update",
+  TRANSFER: "transfer",
+  RESTORE: "restore",
+  CUSTOM: "custom",
 } as const satisfies Record<string, PremiumAffectsType>;
 
 /**
@@ -3547,7 +3552,12 @@ export const PREMIUM_AFFECTS_TYPE = {
  */
 export const PREMIUM_AFFECTS_TYPE_VALUES = [
   'registration',
-  'renewal'
+  'delete',
+  'renewal',
+  'update',
+  'transfer',
+  'restore',
+  'custom'
 ] as const satisfies [string, ...string[]] | PremiumAffectsType[];
 
 /**

@@ -7971,7 +7971,12 @@ components:
     PremiumAffectsType:
       enum:
       - registration
+      - delete
       - renewal
+      - update
+      - transfer
+      - restore
+      - custom
       title: PremiumAffectsType
       type: string
     PremiumDomainsBase:
@@ -9802,7 +9807,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-14-135714
+  version: 2026-04-15-160751
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

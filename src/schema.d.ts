@@ -7505,7 +7505,7 @@ export interface components {
          * PremiumAffectsType
          * @enum {string}
          */
-        PremiumAffectsType: "registration" | "renewal";
+        PremiumAffectsType: "registration" | "delete" | "renewal" | "update" | "transfer" | "restore" | "custom";
         /** PremiumDomainsBase */
         PremiumDomainsBase: {
             /**
