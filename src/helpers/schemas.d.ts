@@ -2203,6 +2203,22 @@ export type DomainForwardZoneSortField = components['schemas']['DomainForwardZon
  */
 export type DomainHost = components['schemas']['DomainHostResponse'];
 /**
+ * DomainIncludeField
+ *
+ * @remarks
+ * Type alias for the `DomainIncludeField` OpenAPI schema.
+ * This type represents domainincludefield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainIncludeField();
+ * const item: DomainIncludeField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainIncludeField = components['schemas']['DomainIncludeField'];
+/**
  * DomainLifecycleBase
  *
  * @remarks
@@ -2490,6 +2506,22 @@ export type DomainSummaryData = components['schemas']['DomainSummaryData'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainSummary = components['schemas']['DomainSummaryResponse'];
+/**
+ * DomainTagEnrichedResponse
+ *
+ * @remarks
+ * Type alias for the `DomainTagEnrichedResponse` OpenAPI schema.
+ * This type represents domaintagenrichedresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainTagEnriched();
+ * const item: DomainTagEnriched = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainTagEnriched = components['schemas']['DomainTagEnrichedResponse'];
 /**
  * DomainTransferBulkCommand
  *
@@ -5604,6 +5636,22 @@ export type SyncOperationType = components['schemas']['SyncOperationType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type TLDType = components['schemas']['TLDType'];
+/**
+ * TagColor
+ *
+ * @remarks
+ * Type alias for the `TagColor` OpenAPI schema.
+ * This type represents tagcolor data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTagColor();
+ * const item: TagColor = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TagColor = components['schemas']['TagColor'];
 /**
  * TimeRange
  *

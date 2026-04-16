@@ -4351,6 +4351,11 @@ export interface components {
              */
             host_id: TypeId<"host">;
         };
+        /**
+         * DomainIncludeField
+         * @enum {string}
+         */
+        DomainIncludeField: "tags";
         /** DomainLifecycleBase */
         DomainLifecycleBase: {
             /**
@@ -4583,6 +4588,11 @@ export interface components {
              */
             sld: string;
             /**
+             * Tags
+             * @description Tags assigned to this domain. Only included when ?include=tags is specified.
+             */
+            tags?: components["schemas"]["DomainTagEnrichedResponse"][] | null;
+            /**
              * Tld
              * @description The top level domain of the domain
              * @example com
@@ -4745,6 +4755,23 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
+        };
+        /** DomainTagEnrichedResponse */
+        DomainTagEnrichedResponse: {
+            /** @description The color of the tag */
+            color: components["schemas"]["TagColor"];
+            /**
+             * Label
+             * @description The label of the tag
+             */
+            label: string;
+            /**
+             * Tag Id
+             * Format: typeid
+             * @description The unique identifier of the tag
+             * @example tag_01h45ytscbebyvny4gc8cr8ma2
+             */
+            tag_id: TypeId<"tag">;
         };
         /** DomainTransferBulkCommand */
         DomainTransferBulkCommand: {
@@ -7909,6 +7936,11 @@ export interface components {
          * @enum {string}
          */
         TLDType: "gTLD" | "ccTLD";
+        /**
+         * TagColor
+         * @enum {string}
+         */
+        TagColor: "color-1" | "color-2" | "color-3" | "color-4" | "color-5" | "color-6" | "color-7" | "color-8" | "color-9" | "color-10";
         /**
          * TimeRange
          * @enum {string}
@@ -12466,6 +12498,10 @@ export interface operations {
                 registered_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
+                /** @description Filter domains by tag IDs (OR semantics). Can be specified multiple times. */
+                tag_ids?: TypeId<"tag">[] | null;
+                /** @description Include additional data in the response. Can be specified multiple times. */
+                include?: components["schemas"]["DomainIncludeField"][] | null;
                 page?: number;
                 page_size?: number;
             };
@@ -12963,7 +12999,10 @@ export interface operations {
     };
     get_domain_v1_domains__domain_reference__get: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Include additional data in the response. */
+                include?: components["schemas"]["DomainIncludeField"][] | null;
+            };
             header?: never;
             path: {
                 domain_reference: TypeId<"domain"> | string;

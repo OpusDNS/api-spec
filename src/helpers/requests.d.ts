@@ -2640,6 +2640,8 @@ export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Requ
  *
  * @path /v1/domains
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
+ * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Domains_Request_Query} - Query parameters type
  * @see {@link GET_Domains_Request_Path} - Path parameters type
@@ -2662,6 +2664,8 @@ export type GET_Domains_Request = {
  *
  * @path /v1/domains
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
+ * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  */
 export type GET_Domains_Request_Query = GET_Domains_Request['parameters']['query'];
 
@@ -2801,6 +2805,7 @@ export type DELETE_DomainsDomainReference_Request_Path = DELETE_DomainsDomainRef
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domains/{domain_reference}
+ * @param include (query) - Include additional data in the response.
  *
  * @see {@link GET_DomainsDomainReference_Request_Query} - Query parameters type
  * @see {@link GET_DomainsDomainReference_Request_Path} - Path parameters type
@@ -2808,9 +2813,24 @@ export type DELETE_DomainsDomainReference_Request_Path = DELETE_DomainsDomainRef
  */
 export type GET_DomainsDomainReference_Request = {
   parameters: {
+    query: operations['get_domain_v1_domains__domain_reference__get']['parameters']['query'];
     path: operations['get_domain_v1_domains__domain_reference__get']['parameters']['path'];
   };
 }
+/**
+ * Query parameters for GET /v1/domains/{domain_reference}
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/domains/{domain_reference} endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/domains/{domain_reference}
+ * @param include (query) - Include additional data in the response.
+ */
+export type GET_DomainsDomainReference_Request_Query = GET_DomainsDomainReference_Request['parameters']['query'];
 /**
  * Path parameters for GET /v1/domains/{domain_reference}
  *

@@ -5048,6 +5048,8 @@ export type GET_DomainSearchSuggest_Response_502 = Problem
  *
  * @path /v1/domains
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
+ * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Domains_Response_200} - 200 response type
  * @see {@link GET_Domains_Response_422} - 422 response type
@@ -5068,6 +5070,8 @@ export type GET_Domains_Response = GET_Domains_Response_200 | GET_Domains_Respon
  *
  * @path /v1/domains
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
+ * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Domains_Response} - The main response type definition
  * @see {@link Pagination_Domain} - The actual schema type definition
@@ -5086,6 +5090,8 @@ export type GET_Domains_Response_200 = Pagination_Domain
  *
  * @path /v1/domains
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
+ * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Domains_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
@@ -5291,6 +5297,7 @@ export type DELETE_DomainsByDomainReference_Response_422 = HTTPValidationError
 
  *
  * @path /v1/domains/{domain_reference}
+ * @param include (query) - Include additional data in the response.
  *
  * @see {@link GET_DomainsByDomainReference_Response_200} - 200 response type
  * @see {@link GET_DomainsByDomainReference_Response_404} - 404 response type
@@ -5311,6 +5318,7 @@ export type GET_DomainsByDomainReference_Response = GET_DomainsByDomainReference
 
  *
  * @path /v1/domains/{domain_reference}
+ * @param include (query) - Include additional data in the response.
  *
  * @see {@link GET_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Domain} - The actual schema type definition
@@ -5328,6 +5336,7 @@ export type GET_DomainsByDomainReference_Response_200 = Domain
 
  *
  * @path /v1/domains/{domain_reference}
+ * @param include (query) - Include additional data in the response.
  *
  * @see {@link GET_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
@@ -5345,6 +5354,7 @@ export type GET_DomainsByDomainReference_Response_404 = Problem
 
  *
  * @path /v1/domains/{domain_reference}
+ * @param include (query) - Include additional data in the response.
  *
  * @see {@link GET_DomainsByDomainReference_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition

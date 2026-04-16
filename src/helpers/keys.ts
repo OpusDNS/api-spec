@@ -151,6 +151,7 @@ import { DomainStatus2 } from './schemas';
 import { DomainStatusesBase } from './schemas';
 import { DomainSummaryData } from './schemas';
 import { DomainSummary } from './schemas';
+import { DomainTagEnriched } from './schemas';
 import { DomainTransferBulkCommand } from './schemas';
 import { DomainTransferBulkInstance } from './schemas';
 import { DomainTransferBulkPayload } from './schemas';
@@ -15463,6 +15464,31 @@ export const KEY_DOMAIN_ROID: keyof Domain = 'roid';
  */
 export const KEY_DOMAIN_SLD: keyof Domain = 'sld';
 /**
+ * Tags
+ *
+ * Tags assigned to this domain. Only included when ?include=tags is specified.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tags` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_TAGS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TAGS;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TAGS: keyof Domain = 'tags';
+/**
  * Tld
  *
  * The top level domain of the domain
@@ -15581,6 +15607,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_RENEWAL_MODE,
   KEY_DOMAIN_ROID,
   KEY_DOMAIN_SLD,
+  KEY_DOMAIN_TAGS,
   KEY_DOMAIN_TLD,
   KEY_DOMAIN_TRANSFER_LOCK,
   KEY_DOMAIN_UPDATED_ON,
@@ -16533,6 +16560,110 @@ export const KEYS_DOMAIN_SUMMARY = [
   KEY_DOMAIN_SUMMARY_DOMAINS,
   KEY_DOMAIN_SUMMARY_ORGANIZATION_ID,
 ] as const satisfies (keyof DomainSummary)[];
+
+/**
+ * color property
+ *
+ * The color of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `color` property of DomainTagEnriched objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintagenriched[KEY_DOMAIN_TAG_ENRICHED_COLOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TAG_ENRICHED_COLOR;
+ * const value = domaintagenriched[propertyName];
+ * ```
+ *
+ * @see {@link DomainTagEnriched} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TAG_ENRICHED} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TAG_ENRICHED_COLOR: keyof DomainTagEnriched = 'color';
+/**
+ * Label
+ *
+ * The label of the tag
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of DomainTagEnriched objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintagenriched[KEY_DOMAIN_TAG_ENRICHED_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TAG_ENRICHED_LABEL;
+ * const value = domaintagenriched[propertyName];
+ * ```
+ *
+ * @see {@link DomainTagEnriched} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TAG_ENRICHED} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TAG_ENRICHED_LABEL: keyof DomainTagEnriched = 'label';
+/**
+ * Tag Id
+ *
+ * The unique identifier of the tag
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tag_id` property of DomainTagEnriched objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintagenriched[KEY_DOMAIN_TAG_ENRICHED_TAG_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TAG_ENRICHED_TAG_ID;
+ * const value = domaintagenriched[propertyName];
+ * ```
+ *
+ * @see {@link DomainTagEnriched} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TAG_ENRICHED} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TAG_ENRICHED_TAG_ID: keyof DomainTagEnriched = 'tag_id';
+
+/**
+ * Array of all DomainTagEnriched property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainTagEnriched objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_TAG_ENRICHED) {
+ *   console.log(`Property: ${key}, Value: ${domaintagenriched[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_TAG_ENRICHED.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainTagEnriched} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_TAG_ENRICHED = [
+  KEY_DOMAIN_TAG_ENRICHED_COLOR,
+  KEY_DOMAIN_TAG_ENRICHED_LABEL,
+  KEY_DOMAIN_TAG_ENRICHED_TAG_ID,
+] as const satisfies (keyof DomainTagEnriched)[];
 
 /**
  * Command

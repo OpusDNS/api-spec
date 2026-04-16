@@ -21,8 +21,22 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainTagEnriched, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
+/**
+ * DomainIncludeField
+ *
+ * @remarks
+ * Array type for DomainIncludeField objects. Used when the API returns a collection of DomainIncludeField instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainIncludeFieldArray = await api.getDomainIncludeFields();
+ * ```
+ *
+ * @see {@link DomainIncludeField} - The individual DomainIncludeField type definition
+ */
+export type DomainIncludeFieldArray = DomainIncludeField[];
 /**
  * DomainDnssecDataResponse
  *
@@ -695,6 +709,20 @@ export type DomainContactArray = DomainContact[];
  * @see {@link DomainHost} - The individual DomainHostResponse type definition
  */
 export type DomainHostArray = DomainHost[];
+/**
+ * DomainTagEnrichedResponse
+ *
+ * @remarks
+ * Array type for DomainTagEnrichedResponse objects. Used when the API returns a collection of DomainTagEnrichedResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: DomainTagEnrichedArray = await api.getDomainTagEnricheds();
+ * ```
+ *
+ * @see {@link DomainTagEnriched} - The individual DomainTagEnrichedResponse type definition
+ */
+export type DomainTagEnrichedArray = DomainTagEnriched[];
 /**
  * DomainSearchSuggestionWithPrice
  *
