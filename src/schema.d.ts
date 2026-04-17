@@ -7942,6 +7942,11 @@ export interface components {
          */
         TagColor: "color-1" | "color-2" | "color-3" | "color-4" | "color-5" | "color-6" | "color-7" | "color-8" | "color-9" | "color-10";
         /**
+         * TagFilterMode
+         * @enum {string}
+         */
+        TagFilterMode: "match_any" | "match_all";
+        /**
          * TimeRange
          * @enum {string}
          */
@@ -12480,6 +12485,9 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["DomainSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by tag IDs. Can be specified multiple times. */
+                tag_ids?: TypeId<"tag">[] | null;
+                tag_mode?: components["schemas"]["TagFilterMode"];
                 name?: string | null;
                 search?: string | null;
                 tld?: string | null;
@@ -12498,8 +12506,6 @@ export interface operations {
                 registered_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
-                /** @description Filter domains by tag IDs (OR semantics). Can be specified multiple times. */
-                tag_ids?: TypeId<"tag">[] | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
                 page?: number;

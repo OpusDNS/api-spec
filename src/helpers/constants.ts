@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BatchSortField, BatchStatus, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainIncludeField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, JobStatus, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReportStatus, ReportTriggerType, ReportType, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TagColor, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationType, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BatchSortField, BatchStatus, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainIncludeField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, JobStatus, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReportStatus, ReportTriggerType, ReportType, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TagColor, TagFilterMode, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationType, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -4528,6 +4528,56 @@ export const TAG_COLOR_VALUES = [
   'color-9',
   'color-10'
 ] as const satisfies [string, ...string[]] | TagColor[];
+
+/**
+ * TagFilterMode. Auto-generated enum for TagFilterMode
+ *
+ * @remarks
+ * This constant provides both object and array forms for the TagFilterMode enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = TAG_FILTER_MODE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = TAG_FILTER_MODE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link TagFilterMode} - The TypeScript type definition
+ */
+export const TAG_FILTER_MODE = {
+  MATCH_ANY: "match_any",
+  MATCH_ALL: "match_all",
+} as const satisfies Record<string, TagFilterMode>;
+
+/**
+ * Array of all TagFilterMode enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid TagFilterMode enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of TAG_FILTER_MODE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = TAG_FILTER_MODE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link TagFilterMode} - The TypeScript type definition
+ * @see {@link TAG_FILTER_MODE} - The object form of this enum
+ */
+export const TAG_FILTER_MODE_VALUES = [
+  'match_any',
+  'match_all'
+] as const satisfies [string, ...string[]] | TagFilterMode[];
 
 /**
  * TimeRange. Auto-generated enum for TimeRange

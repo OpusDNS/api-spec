@@ -5047,8 +5047,8 @@ export type GET_DomainSearchSuggest_Response_502 = Problem
 
  *
  * @path /v1/domains
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
- * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Domains_Response_200} - 200 response type
@@ -5069,8 +5069,8 @@ export type GET_Domains_Response = GET_Domains_Response_200 | GET_Domains_Respon
 
  *
  * @path /v1/domains
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
- * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Domains_Response} - The main response type definition
@@ -5089,8 +5089,8 @@ export type GET_Domains_Response_200 = Pagination_Domain
 
  *
  * @path /v1/domains
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
- * @param tag_ids (query) - Filter domains by tag IDs (OR semantics). Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Domains_Response} - The main response type definition

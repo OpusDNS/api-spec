@@ -5653,6 +5653,22 @@ export type TLDType = components['schemas']['TLDType'];
  */
 export type TagColor = components['schemas']['TagColor'];
 /**
+ * TagFilterMode
+ *
+ * @remarks
+ * Type alias for the `TagFilterMode` OpenAPI schema.
+ * This type represents tagfiltermode data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTagFilterMode();
+ * const item: TagFilterMode = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TagFilterMode = components['schemas']['TagFilterMode'];
+/**
  * TimeRange
  *
  * @remarks
