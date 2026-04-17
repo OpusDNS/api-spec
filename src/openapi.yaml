@@ -2543,12 +2543,9 @@ components:
           type: boolean
         expected_price:
           anyOf:
-          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
-            type: string
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
           - type: 'null'
           description: Expected price for premium domain confirmation
-          examples:
-          - '12.50'
           title: Expected Price
         name:
           description: The domain to be created
@@ -2756,12 +2753,9 @@ components:
           type: boolean
         expected_price:
           anyOf:
-          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
-            type: string
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
           - type: 'null'
           description: Expected price for premium domain confirmation
-          examples:
-          - '12.50'
           title: Expected Price
         name:
           description: The domain to be created
@@ -3453,12 +3447,9 @@ components:
           type: string
         expected_price:
           anyOf:
-          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
-            type: string
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
           - type: 'null'
           description: Expected price for premium domain confirmation
-          examples:
-          - '12.50'
           title: Expected Price
         period:
           $ref: '#/components/schemas/DomainPeriod'
@@ -3658,12 +3649,9 @@ components:
           title: Additional Info
         expected_price:
           anyOf:
-          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
-            type: string
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
           - type: 'null'
           description: Expected price for premium domain confirmation
-          examples:
-          - '12.50'
           title: Expected Price
         reason:
           anyOf:
@@ -4118,12 +4106,9 @@ components:
           type: boolean
         expected_price:
           anyOf:
-          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
-            type: string
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
           - type: 'null'
           description: Expected price for premium domain confirmation
-          examples:
-          - '12.50'
           title: Expected Price
         name:
           description: The domain to be created
@@ -4184,12 +4169,9 @@ components:
           type: boolean
         expected_price:
           anyOf:
-          - pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
-            type: string
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
           - type: 'null'
           description: Expected price for premium domain confirmation
-          examples:
-          - '12.50'
           title: Expected Price
         name:
           description: The domain to be created
@@ -8649,6 +8631,11 @@ components:
       - total
       title: StatusCodeStatsBucket
       type: object
+    StrictMoneyDecimal:
+      examples:
+      - '12.50'
+      pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+      type: string
     SyncOperationType:
       enum:
       - registration
@@ -9866,7 +9853,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-17-091139
+  version: 2026-04-17-200229
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

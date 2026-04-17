@@ -3894,9 +3894,8 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
-             * @example 12.50
              */
-            expected_price?: string | null;
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
              * @description The domain to be created
@@ -4045,9 +4044,8 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
-             * @example 12.50
              */
-            expected_price?: string | null;
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
              * @description The domain to be created
@@ -4460,9 +4458,8 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
-             * @example 12.50
              */
-            expected_price?: string | null;
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /** @description How long to extend the domain registration */
             period: components["schemas"]["DomainPeriod"];
         };
@@ -4621,9 +4618,8 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
-             * @example 12.50
              */
-            expected_price?: string | null;
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Reason
              * @description Reason for restoring the domain
@@ -4922,9 +4918,8 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
-             * @example 12.50
              */
-            expected_price?: string | null;
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
              * @description The domain to be created
@@ -4968,9 +4963,8 @@ export interface components {
             /**
              * Expected Price
              * @description Expected price for premium domain confirmation
-             * @example 12.50
              */
-            expected_price?: string | null;
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
              * @description The domain to be created
@@ -7926,6 +7920,8 @@ export interface components {
             /** Total */
             total: number;
         };
+        /** @example 12.50 */
+        StrictMoneyDecimal: string;
         /**
          * SyncOperationType
          * @enum {string}

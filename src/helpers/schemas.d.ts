@@ -5605,6 +5605,22 @@ export type StatusChanges = components['schemas']['StatusChanges'];
  */
 export type StatusCodeStatsBucket = components['schemas']['StatusCodeStatsBucket'];
 /**
+ * StrictMoneyDecimal
+ *
+ * @remarks
+ * Type alias for the `StrictMoneyDecimal` OpenAPI schema.
+ * This type represents strictmoneydecimal data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getStrictMoneyDecimal();
+ * const item: StrictMoneyDecimal = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type StrictMoneyDecimal = components['schemas']['StrictMoneyDecimal'];
+/**
  * SyncOperationType
  *
  * @remarks
