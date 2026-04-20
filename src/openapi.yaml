@@ -52,6 +52,7 @@ components:
       - boolean
       - datetime
       - integer
+      - country_code
       title: AttributeType
       type: string
     BatchSortField:
@@ -8320,6 +8321,9 @@ components:
       - CIRA_CPR
       - SIDN_LEGAL_FORM
       - SIDN_LEGAL_REG_NO
+      - US_NEXUS_CATEGORY
+      - US_NEXUS_COUNTRY_CODE
+      - US_APP_PURPOSE
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -9853,7 +9857,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-17-200229
+  version: 2026-04-20-065304
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

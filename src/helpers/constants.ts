@@ -100,6 +100,7 @@ export const ATTRIBUTE_TYPE = {
   BOOLEAN: "boolean",
   DATETIME: "datetime",
   INTEGER: "integer",
+  COUNTRY_CODE: "country_code",
 } as const satisfies Record<string, AttributeType>;
 
 /**
@@ -128,7 +129,8 @@ export const ATTRIBUTE_TYPE_VALUES = [
   'string',
   'boolean',
   'datetime',
-  'integer'
+  'integer',
+  'country_code'
 ] as const satisfies [string, ...string[]] | AttributeType[];
 
 /**
@@ -3837,6 +3839,9 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   CIRA_CPR: "CIRA_CPR",
   SIDN_LEGAL_FORM: "SIDN_LEGAL_FORM",
   SIDN_LEGAL_REG_NO: "SIDN_LEGAL_REG_NO",
+  US_NEXUS_CATEGORY: "US_NEXUS_CATEGORY",
+  US_NEXUS_COUNTRY_CODE: "US_NEXUS_COUNTRY_CODE",
+  US_APP_PURPOSE: "US_APP_PURPOSE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -3892,7 +3897,10 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'NOMINET_TRAD_NAME',
   'CIRA_CPR',
   'SIDN_LEGAL_FORM',
-  'SIDN_LEGAL_REG_NO'
+  'SIDN_LEGAL_REG_NO',
+  'US_NEXUS_CATEGORY',
+  'US_NEXUS_COUNTRY_CODE',
+  'US_APP_PURPOSE'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**
