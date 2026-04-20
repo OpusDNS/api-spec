@@ -1807,16 +1807,21 @@ components:
       - AAAA
       - ALIAS
       - CAA
+      - CERT
       - CNAME
       - DNSKEY
       - DS
+      - HTTPS
       - MX
+      - NAPTR
       - NS
       - PTR
       - TXT
       - SOA
       - SRV
       - SMIMEA
+      - SSHFP
+      - SVCB
       - TLSA
       - URI
       title: DnsRrsetType
@@ -9857,7 +9862,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-20-065304
+  version: 2026-04-20-134700
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -11862,6 +11867,39 @@ paths:
         content:
           application/json:
             examples:
+              advanced_services_setup:
+                description: A zone using HTTPS, SVCB, NAPTR, SSHFP, and CERT record
+                  types
+                summary: Advanced service binding and security record types
+                value:
+                  dnssec_status: disabled
+                  name: example.com
+                  rrsets:
+                  - name: _443._https
+                    records:
+                    - rdata: 1 . alpn=h2,h3 port=443 ipv4hint=192.0.2.1
+                    ttl: 300
+                    type: HTTPS
+                  - name: svc
+                    records:
+                    - rdata: 1 svc.example.net. alpn=bar port=8004
+                    ttl: 300
+                    type: SVCB
+                  - name: sip
+                    records:
+                    - rdata: 100 10 "s" "SIP+D2U" "" _sip._udp.example.com.
+                    ttl: 300
+                    type: NAPTR
+                  - name: host
+                    records:
+                    - rdata: 4 2 123456789abcdef67890123456789abcdef67890123456789abcdef6789abcde
+                    ttl: 300
+                    type: SSHFP
+                  - name: cert
+                    records:
+                    - rdata: 1 12345 1 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQ==
+                    ttl: 300
+                    type: CERT
               business_setup:
                 description: A comprehensive setup for a business with multiple subdomains
                   and services
@@ -12807,6 +12845,47 @@ paths:
                       records: []
                       ttl: 300
                       type: A
+              upsert_advanced_rrsets:
+                description: Add HTTPS, SVCB, NAPTR, SSHFP, and CERT records in a
+                  single patch
+                summary: Upsert advanced service binding and security RRsets
+                value:
+                  ops:
+                  - op: upsert
+                    rrset:
+                      name: _443._https
+                      records:
+                      - rdata: 1 . alpn=h2,h3 port=443 ipv4hint=192.0.2.1
+                      ttl: 300
+                      type: HTTPS
+                  - op: upsert
+                    rrset:
+                      name: svc
+                      records:
+                      - rdata: 1 svc.example.net. alpn=bar port=8004
+                      ttl: 300
+                      type: SVCB
+                  - op: upsert
+                    rrset:
+                      name: sip
+                      records:
+                      - rdata: 100 10 "s" "SIP+D2U" "" _sip._udp.example.com.
+                      ttl: 300
+                      type: NAPTR
+                  - op: upsert
+                    rrset:
+                      name: host
+                      records:
+                      - rdata: 4 2 123456789abcdef67890123456789abcdef67890123456789abcdef6789abcde
+                      ttl: 300
+                      type: SSHFP
+                  - op: upsert
+                    rrset:
+                      name: cert
+                      records:
+                      - rdata: 1 12345 1 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQ==
+                      ttl: 300
+                      type: CERT
               upsert_and_remove:
                 description: Change www from CNAME to A record with multiple IPs (remove
                   CNAME, add A records)
@@ -12910,6 +12989,37 @@ paths:
                     - rdata: 203.0.113.10
                     ttl: 300
                     type: A
+              update_advanced_rrsets:
+                description: Replace all RRsets with HTTPS, SVCB, NAPTR, SSHFP, and
+                  CERT records
+                summary: Update with advanced service binding and security RRsets
+                value:
+                  rrsets:
+                  - name: _443._https
+                    records:
+                    - rdata: 1 . alpn=h2,h3 port=443 ipv4hint=192.0.2.1
+                    ttl: 300
+                    type: HTTPS
+                  - name: svc
+                    records:
+                    - rdata: 1 svc.example.net. alpn=bar port=8004
+                    ttl: 300
+                    type: SVCB
+                  - name: sip
+                    records:
+                    - rdata: 100 10 "s" "SIP+D2U" "" _sip._udp.example.com.
+                    ttl: 300
+                    type: NAPTR
+                  - name: host
+                    records:
+                    - rdata: 4 2 123456789abcdef67890123456789abcdef67890123456789abcdef6789abcde
+                    ttl: 300
+                    type: SSHFP
+                  - name: cert
+                    records:
+                    - rdata: 1 12345 1 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQ==
+                    ttl: 300
+                    type: CERT
               update_multiple_rrsets:
                 description: Replace all RRsets with multiple record sets (A, CNAME,
                   MX)
