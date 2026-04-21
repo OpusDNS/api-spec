@@ -10118,7 +10118,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-21-143327
+  version: 2026-04-21-172930
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -22321,58 +22321,112 @@ tags:
     \ Register multiple domains |\n| `domain_update_bulk` | Update multiple domains\
     \ (statuses, nameservers, contacts, renewal mode) |\n| `domain_transfer_bulk`\
     \ | Transfer multiple domains |\n| `dns_zone_create_bulk` | Create multiple DNS\
-    \ zones |\n| `dns_zone_update_bulk` | Update multiple DNS zones |\n| `dns_zone_patch_rrsets_bulk`\
-    \ | Patch DNS record sets across zones |\n| `dns_zone_patch_records_bulk` | Patch\
-    \ individual DNS records across zones |\n| `contact_create_bulk` | Create multiple\
-    \ contacts |\n| `parking_create_bulk` | Create parking pages for multiple domains\
-    \ |\n| `parking_enable_bulk` | Enable parking on multiple domains |\n| `parking_disable_bulk`\
-    \ | Disable parking on multiple domains |\n| `parking_delete_bulk` | Delete parking\
-    \ pages for multiple domains |\n\n### Batch Lifecycle\n\nEach job within a batch\
-    \ transitions through states:\n\n1. **blocked** \u2014 Waiting for eligibility\
-    \ (scheduled via `not_before`, or awaiting capacity)\n2. **queued** \u2014 Eligible\
-    \ and awaiting processing\n3. **paused** \u2014 Paused; must be explicitly resumed\
-    \ to continue\n4. **running** \u2014 Currently being executed\n5. **succeeded**\
-    \ \u2014 Completed successfully\n6. **failed** \u2014 Execution failed (check\
-    \ `error_class` and `error_message`)\n7. **canceled** \u2014 Job was canceled\
-    \ before completion\n8. **dead_letter** \u2014 Permanently failed after exhausting\
-    \ retries\n\nA batch itself has a `status` field that is either `pending` (jobs\
-    \ are still in progress) or `complete` (all jobs have reached a terminal state).\n\
-    \n### Usage Pattern\n\n1. **Submit a batch** \u2014 `POST /v1/jobs` with an array\
-    \ of commands\n2. **Poll for status** \u2014 `GET /v1/jobs/{batch_id}` to check\
-    \ progress counts and `progress_percentage`\n3. **Review results** \u2014 `GET\
-    \ /v1/jobs/{batch_id}/jobs` to see individual job outcomes\n\n### Managing Batches\n\
-    \n- **Pause** \u2014 `POST /v1/jobs/{batch_id}/pause` pauses all eligible jobs\
-    \ in the batch\n- **Resume** \u2014 `POST /v1/jobs/{batch_id}/resume` resumes\
-    \ all paused jobs\n- **Cancel** \u2014 `DELETE /v1/jobs/{batch_id}` cancels all\
-    \ pending jobs in the batch\n\nIndividual jobs can also be paused, resumed, or\
-    \ canceled via the `/v1/job/{job_id}` endpoints.\n\n### Limits\n\n- Maximum **50,000\
-    \ commands** per batch\n- Bulk commands support up to **1,000 instances** per\
-    \ command\n\n### Scheduling\n\nUse `not_before` to schedule batch execution for\
-    \ a future time (UTC timestamp). If not provided, processing begins as soon as\
-    \ a worker is available.\n\n### Idempotency\n\nEach command can include an optional\
-    \ `idempotency_key` to prevent duplicate execution. If a command with the same\
-    \ idempotency key has already been processed, it will be skipped.\n\n### Domain\
-    \ Status Updates in Batches\n\nThe `domain_update` and `domain_update_bulk` commands\
-    \ support two mutually exclusive approaches for modifying domain statuses. These\
-    \ work the same way as the `PATCH /v1/domains/{domain_reference}` endpoint \u2014\
-    \ see the [Domain management](#tag/Domain-management) documentation for full details\
-    \ on `statuses` vs `status_changes`.\n\n#### Using `status_changes` in bulk templates\n\
-    \nThe `domain_update_bulk` command is particularly useful with `status_changes`\
-    \ when you need to apply the same relative status change across many domains.\
-    \ Set `status_changes` in the **template** and list the target domains as **instances**.\
-    \ Each instance identifies a domain by either `name` or `domain_id` (but not both):\n\
-    \n```json\n{\n  \"command\": \"domain_update_bulk\",\n  \"payload\": {\n    \"\
-    template\": {\n      \"status_changes\": {\n        \"add\": [\"clientTransferProhibited\"\
+    \ zones |\n| `dns_zone_update_bulk` | Replace rrsets (and zone attributes like\
+    \ DNSSEC) across multiple DNS zones |\n| `dns_zone_patch_rrsets_bulk` | Upsert\
+    \ or remove entire rrsets (by name + type) across multiple zones |\n| `dns_zone_patch_records_bulk`\
+    \ | Upsert or remove individual rdata values across multiple zones |\n| `contact_create_bulk`\
+    \ | Create multiple contacts |\n| `parking_create_bulk` | Create parking pages\
+    \ for multiple domains |\n| `parking_enable_bulk` | Enable parking on multiple\
+    \ domains |\n| `parking_disable_bulk` | Disable parking on multiple domains |\n\
+    | `parking_delete_bulk` | Delete parking pages for multiple domains |\n\n### Batch\
+    \ Lifecycle\n\nEach job within a batch transitions through states:\n\n1. **blocked**\
+    \ \u2014 Waiting for eligibility (scheduled via `not_before`, or awaiting capacity)\n\
+    2. **queued** \u2014 Eligible and awaiting processing\n3. **paused** \u2014 Paused;\
+    \ must be explicitly resumed to continue\n4. **running** \u2014 Currently being\
+    \ executed\n5. **succeeded** \u2014 Completed successfully\n6. **failed** \u2014\
+    \ Execution failed (check `error_class` and `error_message`)\n7. **canceled**\
+    \ \u2014 Job was canceled before completion\n8. **dead_letter** \u2014 Permanently\
+    \ failed after exhausting retries\n\nA batch itself has a `status` field that\
+    \ is either `pending` (jobs are still in progress) or `complete` (all jobs have\
+    \ reached a terminal state).\n\n### Usage Pattern\n\n1. **Submit a batch** \u2014\
+    \ `POST /v1/jobs` with an array of commands\n2. **Poll for status** \u2014 `GET\
+    \ /v1/jobs/{batch_id}` to check progress counts and `progress_percentage`\n3.\
+    \ **Review results** \u2014 `GET /v1/jobs/{batch_id}/jobs` to see individual job\
+    \ outcomes\n\n### Managing Batches\n\n- **Pause** \u2014 `POST /v1/jobs/{batch_id}/pause`\
+    \ pauses all eligible jobs in the batch\n- **Resume** \u2014 `POST /v1/jobs/{batch_id}/resume`\
+    \ resumes all paused jobs\n- **Cancel** \u2014 `DELETE /v1/jobs/{batch_id}` cancels\
+    \ all pending jobs in the batch\n\nIndividual jobs can also be paused, resumed,\
+    \ or canceled via the `/v1/job/{job_id}` endpoints.\n\n### Limits\n\n- Maximum\
+    \ **50,000 commands** per batch\n- Bulk commands support up to **1,000 instances**\
+    \ per command\n\n### Scheduling\n\nUse `not_before` to schedule batch execution\
+    \ for a future time (UTC timestamp). If not provided, processing begins as soon\
+    \ as a worker is available.\n\n### Idempotency\n\nEach command can include an\
+    \ optional `idempotency_key` to prevent duplicate execution. If a command with\
+    \ the same idempotency key has already been processed, it will be skipped.\n\n\
+    ### Domain Status Updates in Batches\n\nThe `domain_update` and `domain_update_bulk`\
+    \ commands support two mutually exclusive approaches for modifying domain statuses.\
+    \ These work the same way as the `PATCH /v1/domains/{domain_reference}` endpoint\
+    \ \u2014 see the [Domain management](#tag/Domain-management) documentation for\
+    \ full details on `statuses` vs `status_changes`.\n\n#### Using `status_changes`\
+    \ in bulk templates\n\nThe `domain_update_bulk` command is particularly useful\
+    \ with `status_changes` when you need to apply the same relative status change\
+    \ across many domains. Set `status_changes` in the **template** and list the target\
+    \ domains as **instances**. Each instance identifies a domain by either `name`\
+    \ or `domain_id` (but not both):\n\n```json\n{\n  \"command\": \"domain_update_bulk\"\
+    ,\n  \"payload\": {\n    \"template\": {\n      \"status_changes\": {\n      \
+    \  \"add\": [\"clientTransferProhibited\"]\n      }\n    },\n    \"instances\"\
+    : [\n      { \"name\": \"example.com\" },\n      { \"name\": \"example.net\" },\n\
+    \      { \"name\": \"example.org\" }\n    ]\n  }\n}\n```\n\n#### Per-domain overrides\n\
+    \nIf an instance provides its own `statuses` or `status_changes` field, it completely\
+    \ overrides the template's status settings for that domain. This lets you apply\
+    \ a default change to most domains while handling exceptions individually:\n\n\
+    ```json\n{\n  \"command\": \"domain_update_bulk\",\n  \"payload\": {\n    \"template\"\
+    : {\n      \"status_changes\": {\n        \"add\": [\"clientTransferProhibited\"\
     ]\n      }\n    },\n    \"instances\": [\n      { \"name\": \"example.com\" },\n\
-    \      { \"name\": \"example.net\" },\n      { \"name\": \"example.org\" }\n \
-    \   ]\n  }\n}\n```\n\n#### Per-domain overrides\n\nIf an instance provides its\
-    \ own `statuses` or `status_changes` field, it completely overrides the template's\
-    \ status settings for that domain. This lets you apply a default change to most\
-    \ domains while handling exceptions individually:\n\n```json\n{\n  \"command\"\
-    : \"domain_update_bulk\",\n  \"payload\": {\n    \"template\": {\n      \"status_changes\"\
-    : {\n        \"add\": [\"clientTransferProhibited\"]\n      }\n    },\n    \"\
-    instances\": [\n      { \"name\": \"example.com\" },\n      { \"name\": \"special-case.com\"\
-    , \"status_changes\": { \"remove\": [\"clientHold\"] } }\n    ]\n  }\n}\n```\n"
+    \      { \"name\": \"special-case.com\", \"status_changes\": { \"remove\": [\"\
+    clientHold\"] } }\n    ]\n  }\n}\n```\n\n### DNS Zone Bulk Commands\n\nThe three\
+    \ `dns_zone_*_bulk` commands operate at different levels of granularity. Picking\
+    \ the right one depends on how much of the zone's existing state you want to preserve.\n\
+    \n| Command | Operates on | Use when |\n|---------|-------------|----------|\n\
+    | `dns_zone_update_bulk` | Whole zone | Resetting rrsets (or zone attributes like\
+    \ DNSSEC) across many zones |\n| `dns_zone_patch_rrsets_bulk` | Whole rrsets by\
+    \ `(name, type)` | Replacing *all* records of a given type at a given name |\n\
+    | `dns_zone_patch_records_bulk` | Individual rdata values | Adding or removing\
+    \ a single record without touching siblings |\n\nThese are the bulk equivalents\
+    \ of the single-zone `PUT` and `PATCH` DNS endpoints \u2014 see the [DNS Management](#tag/DNS-Management)\
+    \ documentation for the underlying semantics. The bulk variants accept up to **100\
+    \ ops per instance** for the two patch commands.\n\n#### `dns_zone_update_bulk`\n\
+    \nBulk equivalent of `PUT /v1/dns/{zone_name}/rrsets` plus zone-level attribute\
+    \ updates. For each zone, whatever rrsets you supply become the zone's rrsets\
+    \ \u2014 anything not listed is removed. System-managed record types (SOA, DNSKEY,\
+    \ DS) cannot be set via this command. This is also the command to flip DNSSEC\
+    \ on or off across many zones.\n\nPayload: `template` (shared `rrsets` and `dnssec_status`)\
+    \ + `instances[]` (per-zone overrides).\n\n```json\n{\n  \"command\": \"dns_zone_update_bulk\"\
+    ,\n  \"payload\": {\n    \"template\": {\n      \"rrsets\": [\n        {\"name\"\
+    : \"@\", \"type\": \"A\", \"ttl\": 300, \"records\": [{\"rdata\": \"203.0.113.10\"\
+    }]}\n      ],\n      \"dnssec_status\": \"enabled\"\n    },\n    \"instances\"\
+    : [\n      { \"name\": \"example.com\" },\n      {\n        \"name\": \"example.net\"\
+    ,\n        \"rrsets\": [\n          {\"name\": \"@\", \"type\": \"A\", \"ttl\"\
+    : 300, \"records\": [{\"rdata\": \"203.0.113.20\"}]}\n        ]\n      }\n   \
+    \ ]\n  }\n}\n```\n\n#### `dns_zone_patch_rrsets_bulk`\n\nBulk equivalent of `PATCH\
+    \ /v1/dns/{zone_name}/rrsets`. Each instance is `{ zone_name, ops[] }`, where\
+    \ each op targets an rrset by `(name, type)`:\n\n- `op: \"upsert\"` \u2014 create\
+    \ or **replace** the rrset with the records you provide. Any prior records for\
+    \ that `(name, type)` are discarded.\n- `op: \"remove\"` \u2014 delete the entire\
+    \ rrset (pass `records: []`).\n\n```json\n{\n  \"command\": \"dns_zone_patch_rrsets_bulk\"\
+    ,\n  \"payload\": {\n    \"instances\": [\n      {\n        \"zone_name\": \"\
+    example.com\",\n        \"ops\": [\n          {\n            \"op\": \"upsert\"\
+    ,\n            \"rrset\": {\n              \"name\": \"www\", \"type\": \"A\"\
+    , \"ttl\": 300,\n              \"records\": [\n                {\"rdata\": \"\
+    203.0.113.10\"},\n                {\"rdata\": \"203.0.113.11\"}\n            \
+    \  ]\n            }\n          },\n          {\n            \"op\": \"remove\"\
+    ,\n            \"rrset\": {\"name\": \"old\", \"type\": \"CNAME\", \"ttl\": 300,\
+    \ \"records\": []}\n          }\n        ]\n      }\n    ]\n  }\n}\n```\n\n####\
+    \ `dns_zone_patch_records_bulk`\n\nBulk equivalent of `PATCH /v1/dns/{zone_name}/records`.\
+    \ Each instance is `{ zone_name, ops[] }`, where each op targets a single `rdata`\
+    \ value inside an rrset. Note the op payload uses a single `rdata` field, not\
+    \ `records[]`.\n\n- `op: \"upsert\"` \u2014 add or update that one rdata value\
+    \ (creates the rrset if it doesn't exist). Sibling records in the rrset are untouched.\n\
+    - `op: \"remove\"` \u2014 remove just that one rdata value. Other records in the\
+    \ rrset remain.\n\n```json\n{\n  \"command\": \"dns_zone_patch_records_bulk\"\
+    ,\n  \"payload\": {\n    \"instances\": [\n      {\n        \"zone_name\": \"\
+    example.com\",\n        \"ops\": [\n          {\n            \"op\": \"upsert\"\
+    ,\n            \"record\": {\n              \"name\": \"@\", \"type\": \"MX\"\
+    , \"ttl\": 300,\n              \"rdata\": \"5 new-mail.example.com.\"\n      \
+    \      }\n          },\n          {\n            \"op\": \"remove\",\n       \
+    \     \"record\": {\n              \"name\": \"@\", \"type\": \"MX\", \"ttl\"\
+    : 300,\n              \"rdata\": \"10 old-mail.example.com.\"\n            }\n\
+    \          }\n        ]\n      }\n    ]\n  }\n}\n```\n"
   name: jobs
   x-displayName: Jobs
 - description: 'Endpoints for creating and managing contacts.
@@ -22380,9 +22434,60 @@ tags:
     '
   name: contact
   x-displayName: Contacts
-- description: 'Endpoints for managing DNS records.
-
-    '
+- description: "Endpoints for managing DNS zones and records.\n\n### Zone, RRset,\
+    \ and Record\n\nOpusDNS uses standard DNS terminology, and the distinction matters\
+    \ when choosing which endpoint to call:\n\n- **Zone** \u2014 a DNS zone (e.g.,\
+    \ `example.com`). Contains many rrsets.\n- **RRset (Resource Record Set)** \u2014\
+    \ all records that share the same `(name, type)` tuple within a zone (e.g., the\
+    \ set of all `A` records for `www.example.com`). An rrset is the smallest unit\
+    \ DNS resolvers return in a query response.\n- **Record** \u2014 a single `rdata`\
+    \ value inside an rrset (e.g., `203.0.113.10`). An rrset contains one or more\
+    \ records.\n\nThree different update endpoints let you operate at different levels\
+    \ of granularity:\n\n| Endpoint | Scope | Semantics |\n|----------|-------|-----------|\n\
+    | `PUT /v1/dns/{zone_name}/rrsets` | Whole zone | Replaces all user-managed rrsets\
+    \ in the zone |\n| `PATCH /v1/dns/{zone_name}/rrsets` | RRset-level | Upserts\
+    \ or removes entire rrsets by `(name, type)` |\n| `PATCH /v1/dns/{zone_name}/records`\
+    \ | Record-level | Upserts or removes individual rdata values inside an rrset\
+    \ |\n\n### `PUT /v1/dns/{zone_name}/rrsets` \u2014 Replace all rrsets\n\nSupply\
+    \ the complete set of rrsets the zone should contain. Any existing user-managed\
+    \ rrset **not** in the request is removed. System-managed record types (SOA, DNSKEY,\
+    \ DS) are managed by OpusDNS and cannot be set or removed via this endpoint.\n\
+    \nUse this when you have authoritative, end-state data for a zone and want to\
+    \ reset it to that state.\n\n### `PATCH /v1/dns/{zone_name}/rrsets` \u2014 Upsert\
+    \ or remove whole rrsets\n\nSubmit an `ops[]` array where each op targets an rrset\
+    \ by `(name, type)`:\n\n- `op: \"upsert\"` \u2014 create or **replace** the rrset\
+    \ at `(name, type)` with the records you provide. Any records that previously\
+    \ existed at that `(name, type)` are discarded.\n- `op: \"remove\"` \u2014 delete\
+    \ the entire rrset at `(name, type)` (pass `records: []`).\n\n```json\n{\n  \"\
+    ops\": [\n    {\n      \"op\": \"upsert\",\n      \"rrset\": {\n        \"name\"\
+    : \"www\",\n        \"type\": \"A\",\n        \"ttl\": 300,\n        \"records\"\
+    : [\n          {\"rdata\": \"203.0.113.10\"},\n          {\"rdata\": \"203.0.113.11\"\
+    }\n        ]\n      }\n    },\n    {\n      \"op\": \"remove\",\n      \"rrset\"\
+    : {\"name\": \"old\", \"type\": \"CNAME\", \"ttl\": 300, \"records\": []}\n  \
+    \  }\n  ]\n}\n```\n\nUse this when you want to define the complete set of records\
+    \ for a given `(name, type)` \u2014 e.g., \"`www` should have exactly these two\
+    \ A records\". Any other A records for `www` that currently exist will be removed.\n\
+    \n### `PATCH /v1/dns/{zone_name}/records` \u2014 Upsert or remove individual records\n\
+    \nSubmit an `ops[]` array where each op targets a single `rdata` value inside\
+    \ an rrset. Note the op payload uses a single `rdata` field, not `records[]`.\n\
+    \n- `op: \"upsert\"` \u2014 add or update that one rdata value. The containing\
+    \ rrset is created if it doesn't exist; sibling records in the rrset are left\
+    \ alone.\n- `op: \"remove\"` \u2014 remove just that one rdata value. Other records\
+    \ in the same rrset remain.\n\n```json\n{\n  \"ops\": [\n    {\n      \"op\":\
+    \ \"upsert\",\n      \"record\": {\n        \"name\": \"@\", \"type\": \"MX\"\
+    , \"ttl\": 300,\n        \"rdata\": \"5 new-mail.example.com.\"\n      }\n   \
+    \ },\n    {\n      \"op\": \"remove\",\n      \"record\": {\n        \"name\"\
+    : \"@\", \"type\": \"MX\", \"ttl\": 300,\n        \"rdata\": \"10 old-mail.example.com.\"\
+    \n      }\n    }\n  ]\n}\n```\n\nUse this when you need to surgically add or remove\
+    \ an individual record without disturbing sibling records in the same rrset \u2014\
+    \ e.g., \"add one more MX target\", \"rotate one A record IP out of a pool\".\n\
+    \n### Choosing the right endpoint\n\n| Scenario | Endpoint |\n|----------|----------|\n\
+    | Migrating a zone from another provider; want to set it to a known state | `PUT\
+    \ /rrsets` |\n| Replacing *all* records of a given name+type (e.g., the full MX\
+    \ set) | `PATCH /rrsets` with `upsert` |\n| Adding or removing a single record\
+    \ without touching its siblings | `PATCH /records` |\n| Swapping a name from CNAME\
+    \ to A | `PATCH /rrsets` with `remove` + `upsert` |\n\nFor bulk variants that\
+    \ operate across many zones in a single request, see the [Jobs](#tag/Jobs) documentation.\n"
   name: dns
   x-displayName: DNS Management
 - description: "Endpoints for creating and managing domains.\n\n### Domain References\n\
