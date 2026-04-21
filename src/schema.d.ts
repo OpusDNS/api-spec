@@ -1917,6 +1917,98 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/tags": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List tags
+         * @description Retrieves a paginated list of tags
+         */
+        get: operations["list_tags_v1_tags_get"];
+        put?: never;
+        /**
+         * Create a tag
+         * @description Create a new tag
+         */
+        post: operations["create_tag_v1_tags_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/tags/objects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk tag or untag objects
+         * @description Add, remove, or replace tags on multiple objects at once. 'replace' is mutually exclusive with 'add' and 'remove'.
+         */
+        post: operations["bulk_update_object_tags_v1_tags_objects_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/tags/{tag_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get a tag
+         * @description Retrieve a single tag by its ID
+         */
+        get: operations["get_tag_v1_tags__tag_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a tag
+         * @description Delete a tag
+         */
+        delete: operations["delete_tag_v1_tags__tag_id__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update a tag
+         * @description Update a tag's label, description, or color
+         */
+        patch: operations["update_tag_v1_tags__tag_id__patch"];
+        trace?: never;
+    };
+    "/v1/tags/{tag_id}/objects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Tag or untag objects
+         * @description Add or remove objects from a tag. Objects are matched by the tag's type (e.g. a DOMAIN tag only accepts domain IDs).
+         */
+        post: operations["update_tag_objects_v1_tags__tag_id__objects_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/tlds/": {
         parameters: {
             query?: never;
@@ -2293,6 +2385,31 @@ export interface components {
             total: number;
             /** Unique */
             unique: number;
+        };
+        /** BulkObjectTagChanges */
+        BulkObjectTagChanges: {
+            /**
+             * Add
+             * @description Tag IDs to add to the objects.
+             */
+            add?: TypeId<"tag">[];
+            /**
+             * Objects
+             * @description Object references to operate on. TypeIDs and resource names may be mixed.
+             */
+            objects: string[];
+            /**
+             * Remove
+             * @description Tag IDs to remove from the objects.
+             */
+            remove?: TypeId<"tag">[];
+            /**
+             * Replace
+             * @description Tag IDs to set as the complete tag set for the objects, replacing any existing tags. Mutually exclusive with 'add' and 'remove'. An empty list removes all tags.
+             */
+            replace?: TypeId<"tag">[] | null;
+            /** @description The object/tag type (e.g. DOMAIN, CONTACT, ZONE) */
+            type: components["schemas"]["TagType"];
         };
         /** CommandError */
         CommandError: {
@@ -6440,6 +6557,37 @@ export interface components {
          * @enum {string}
          */
         ObjectLogSortField: "object_log_id" | "object_id" | "object_type" | "action" | "created_on" | "server_request_id" | "performed_by_type" | "performed_by_id";
+        /** ObjectTagChanges */
+        ObjectTagChanges: {
+            /**
+             * Add
+             * @description Object TypeIDs or resource names to tag. TypeIDs and names may be mixed.
+             */
+            add?: string[];
+            /**
+             * Remove
+             * @description Object TypeIDs or resource names to untag. TypeIDs and names may be mixed.
+             */
+            remove?: string[];
+        };
+        /** ObjectTagChangesResponse */
+        ObjectTagChangesResponse: {
+            /**
+             * Added
+             * @description Number of objects tagged
+             */
+            added: number;
+            /**
+             * Removed
+             * @description Number of objects untagged
+             */
+            removed: number;
+            /**
+             * Unresolved
+             * @description References that could not be resolved
+             */
+            unresolved?: string[];
+        };
         /** Organization */
         Organization: {
             /**
@@ -7049,6 +7197,12 @@ export interface components {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["RequestHistory"][];
+        };
+        /** Pagination[TagResponse] */
+        Pagination_TagResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["TagResponse"][];
         };
         /** Pagination[UserPublic] */
         Pagination_UserPublic_: {
@@ -7937,11 +8091,98 @@ export interface components {
          * @enum {string}
          */
         TagColor: "color-1" | "color-2" | "color-3" | "color-4" | "color-5" | "color-6" | "color-7" | "color-8" | "color-9" | "color-10";
+        /** TagCreate */
+        TagCreate: {
+            /**
+             * @description The color of the tag
+             * @default color-1
+             */
+            color: components["schemas"]["TagColor"] | null;
+            /**
+             * Description
+             * @description Optional description of the tag
+             */
+            description?: string | null;
+            /**
+             * Label
+             * @description A human-readable label for the tag
+             */
+            label: string;
+            /** @description Which category a tag applies to, cannot be changed once created */
+            type: components["schemas"]["TagType"];
+        };
         /**
          * TagFilterMode
          * @enum {string}
          */
         TagFilterMode: "match_any" | "match_all";
+        /** TagResponse */
+        TagResponse: {
+            /** @description The color of the tag */
+            color: components["schemas"]["TagColor"];
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the tag was created on
+             */
+            created_on: Date;
+            /**
+             * Description
+             * @description Optional description of the tag
+             */
+            description?: string | null;
+            /**
+             * Label
+             * @description The label of the tag
+             */
+            label: string;
+            /**
+             * Object Count
+             * @description Number of objects tagged with this tag
+             * @default 0
+             */
+            object_count: number;
+            /**
+             * Tag Id
+             * Format: typeid
+             * @description The unique identifier of the tag
+             * @example tag_01h45ytscbebyvny4gc8cr8ma2
+             */
+            tag_id: TypeId<"tag">;
+            /** @description Which category a tag applies to, cannot be changed once created */
+            type: components["schemas"]["TagType"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the tag was last updated on
+             */
+            updated_on: Date;
+        };
+        /**
+         * TagSortField
+         * @enum {string}
+         */
+        TagSortField: "label" | "created_on" | "updated_on";
+        /**
+         * TagType
+         * @enum {string}
+         */
+        TagType: "DOMAIN" | "CONTACT" | "ZONE";
+        /** TagUpdate */
+        TagUpdate: {
+            /** @description The color of the tag */
+            color?: components["schemas"]["TagColor"] | null;
+            /**
+             * Description
+             * @description Optional description of the tag
+             */
+            description?: string | null;
+            /**
+             * Label
+             * @description A human-readable label for the tag
+             */
+            label?: string | null;
+        };
         /**
          * TimeRange
          * @enum {string}
@@ -16843,6 +17084,487 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_tags_v1_tags_get: {
+        parameters: {
+            query?: {
+                sort_by?: components["schemas"]["TagSortField"];
+                sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by tag types (OR semantics) */
+                tag_types?: components["schemas"]["TagType"][] | null;
+                search?: string | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Pagination_TagResponse_"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_tag_v1_tags_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TagCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TagResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TAG_LABEL_ALREADY_EXISTS",
+                     *       "detail": "A tag with label 'Additional error context.' already exists",
+                     *       "label": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Tag Management Error",
+                     *       "type": "tag-label-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_update_object_tags_v1_tags_objects_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkObjectTagChanges"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ObjectTagChangesResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ILLEGAL_OBJECT_TYPE_FOR_TAG",
+                     *       "detail": "One or more provided object ids are not valid for this tag",
+                     *       "object_ids": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "Tag Management Error",
+                     *       "type": "illegal-object-type-tag"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TAG_NOT_FOUND",
+                     *       "detail": "Tag not found",
+                     *       "status": 404,
+                     *       "tag_id": "Additional error context.",
+                     *       "title": "Tag Management Error",
+                     *       "type": "tag-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_tag_v1_tags__tag_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: TypeId<"tag">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TagResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TAG_NOT_FOUND",
+                     *       "detail": "Tag not found",
+                     *       "status": 404,
+                     *       "tag_id": "Additional error context.",
+                     *       "title": "Tag Management Error",
+                     *       "type": "tag-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_tag_v1_tags__tag_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: TypeId<"tag">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TAG_NOT_FOUND",
+                     *       "detail": "Tag not found",
+                     *       "status": 404,
+                     *       "tag_id": "Additional error context.",
+                     *       "title": "Tag Management Error",
+                     *       "type": "tag-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_tag_v1_tags__tag_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: TypeId<"tag">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TagUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TagResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TAG_NOT_FOUND",
+                     *       "detail": "Tag not found",
+                     *       "status": 404,
+                     *       "tag_id": "Additional error context.",
+                     *       "title": "Tag Management Error",
+                     *       "type": "tag-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TAG_LABEL_ALREADY_EXISTS",
+                     *       "detail": "A tag with label 'Additional error context.' already exists",
+                     *       "label": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Tag Management Error",
+                     *       "type": "tag-label-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_tag_objects_v1_tags__tag_id__objects_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: TypeId<"tag">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ObjectTagChanges"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ObjectTagChangesResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_TAG_NOT_FOUND",
+                     *       "detail": "Tag not found",
+                     *       "status": 404,
+                     *       "tag_id": "Additional error context.",
+                     *       "title": "Tag Management Error",
+                     *       "type": "tag-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */

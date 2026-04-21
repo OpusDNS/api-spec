@@ -251,6 +251,22 @@ export type BillingTransactionStatus = components['schemas']['BillingTransaction
  */
 export type BrowserStatsBucket = components['schemas']['BrowserStatsBucket'];
 /**
+ * BulkObjectTagChanges
+ *
+ * @remarks
+ * Type alias for the `BulkObjectTagChanges` OpenAPI schema.
+ * This type represents bulkobjecttagchanges data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getBulkObjectTagChanges();
+ * const item: BulkObjectTagChanges = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type BulkObjectTagChanges = components['schemas']['BulkObjectTagChanges'];
+/**
  * CommandError
  *
  * @remarks
@@ -3925,6 +3941,38 @@ export type ObjectLog = components['schemas']['ObjectLog'];
  */
 export type ObjectLogSortField = components['schemas']['ObjectLogSortField'];
 /**
+ * ObjectTagChanges
+ *
+ * @remarks
+ * Type alias for the `ObjectTagChanges` OpenAPI schema.
+ * This type represents objecttagchanges data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getObjectTagChanges();
+ * const item: ObjectTagChanges = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ObjectTagChanges = components['schemas']['ObjectTagChanges'];
+/**
+ * ObjectTagChangesResponse
+ *
+ * @remarks
+ * Type alias for the `ObjectTagChangesResponse` OpenAPI schema.
+ * This type represents objecttagchangesresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getObjectTagChanges2();
+ * const item: ObjectTagChanges2 = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ObjectTagChanges2 = components['schemas']['ObjectTagChangesResponse'];
+/**
  * Organization
  *
  * @remarks
@@ -4404,6 +4452,22 @@ export type Pagination_Parking = components['schemas']['Pagination_ParkingRespon
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type Pagination_RequestHistory = components['schemas']['Pagination_RequestHistory_'];
+/**
+ * Pagination[TagResponse]
+ *
+ * @remarks
+ * Type alias for the `Pagination_TagResponse_` OpenAPI schema.
+ * This type represents pagination[tagresponse] data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getPagination_Tag();
+ * const item: Pagination_Tag = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Pagination_Tag = components['schemas']['Pagination_TagResponse_'];
 /**
  * Pagination[UserPublic]
  *
@@ -5669,6 +5733,22 @@ export type TLDType = components['schemas']['TLDType'];
  */
 export type TagColor = components['schemas']['TagColor'];
 /**
+ * TagCreate
+ *
+ * @remarks
+ * Type alias for the `TagCreate` OpenAPI schema.
+ * This type represents tagcreate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTagCreate();
+ * const item: TagCreate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TagCreate = components['schemas']['TagCreate'];
+/**
  * TagFilterMode
  *
  * @remarks
@@ -5684,6 +5764,70 @@ export type TagColor = components['schemas']['TagColor'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type TagFilterMode = components['schemas']['TagFilterMode'];
+/**
+ * TagResponse
+ *
+ * @remarks
+ * Type alias for the `TagResponse` OpenAPI schema.
+ * This type represents tagresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTag();
+ * const item: Tag = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Tag = components['schemas']['TagResponse'];
+/**
+ * TagSortField
+ *
+ * @remarks
+ * Type alias for the `TagSortField` OpenAPI schema.
+ * This type represents tagsortfield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTagSortField();
+ * const item: TagSortField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TagSortField = components['schemas']['TagSortField'];
+/**
+ * TagType
+ *
+ * @remarks
+ * Type alias for the `TagType` OpenAPI schema.
+ * This type represents tagtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTagType();
+ * const item: TagType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TagType = components['schemas']['TagType'];
+/**
+ * TagUpdate
+ *
+ * @remarks
+ * Type alias for the `TagUpdate` OpenAPI schema.
+ * This type represents tagupdate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTagUpdate();
+ * const item: TagUpdate = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TagUpdate = components['schemas']['TagUpdate'];
 /**
  * TimeRange
  *

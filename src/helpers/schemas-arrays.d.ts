@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainTagEnriched, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainTagEnriched, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainIncludeField
@@ -149,6 +149,20 @@ export type ReportTypeArray = ReportType[];
  * @see {@link ReportStatus} - The individual ReportStatus type definition
  */
 export type ReportStatusArray = ReportStatus[];
+/**
+ * TagType
+ *
+ * @remarks
+ * Array type for TagType objects. Used when the API returns a collection of TagType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TagTypeArray = await api.getTagTypes();
+ * ```
+ *
+ * @see {@link TagType} - The individual TagType type definition
+ */
+export type TagTypeArray = TagType[];
 /**
  * TldResponseShort
  *
@@ -1213,6 +1227,20 @@ export type ParkingArray = Parking[];
  * @see {@link RequestHistory} - The individual RequestHistory type definition
  */
 export type RequestHistoryArray = RequestHistory[];
+/**
+ * TagResponse
+ *
+ * @remarks
+ * Array type for TagResponse objects. Used when the API returns a collection of TagResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TagArray = await api.getTags();
+ * ```
+ *
+ * @see {@link Tag} - The individual TagResponse type definition
+ */
+export type TagArray = Tag[];
 /**
  * UserPublic
  *

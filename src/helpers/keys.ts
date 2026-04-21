@@ -35,6 +35,7 @@ import { BillingMetadata } from './schemas';
 import { BillingPlan } from './schemas';
 import { BillingTransaction } from './schemas';
 import { BrowserStatsBucket } from './schemas';
+import { BulkObjectTagChanges } from './schemas';
 import { CommandError } from './schemas';
 import { ContactAttributeDefinition } from './schemas';
 import { ContactAttributeLinkDetail } from './schemas';
@@ -212,6 +213,8 @@ import { LegalRequirementBase } from './schemas';
 import { LocalPresenceBase } from './schemas';
 import { Nameserver } from './schemas';
 import { ObjectLog } from './schemas';
+import { ObjectTagChanges } from './schemas';
+import { ObjectTagChanges2 } from './schemas';
 import { Organization } from './schemas';
 import { OrganizationAttribute } from './schemas';
 import { OrganizationAttributeCreate } from './schemas';
@@ -274,6 +277,9 @@ import { SldLength } from './schemas';
 import { SpiceDbRelationshipUpdate } from './schemas';
 import { StatusChanges } from './schemas';
 import { StatusCodeStatsBucket } from './schemas';
+import { TagCreate } from './schemas';
+import { Tag } from './schemas';
+import { TagUpdate } from './schemas';
 import { TimeSeriesBucket } from './schemas';
 import { TldBase } from './schemas';
 import { TldResponseShort } from './schemas';
@@ -1232,6 +1238,163 @@ export const KEYS_BROWSER_STATS_BUCKET = [
   KEY_BROWSER_STATS_BUCKET_TOTAL,
   KEY_BROWSER_STATS_BUCKET_UNIQUE,
 ] as const satisfies (keyof BrowserStatsBucket)[];
+
+/**
+ * Add
+ *
+ * Tag IDs to add to the objects.
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `add` property of BulkObjectTagChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = bulkobjecttagchanges[KEY_BULK_OBJECT_TAG_CHANGES_ADD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BULK_OBJECT_TAG_CHANGES_ADD;
+ * const value = bulkobjecttagchanges[propertyName];
+ * ```
+ *
+ * @see {@link BulkObjectTagChanges} - The TypeScript type definition
+ * @see {@link KEYS_BULK_OBJECT_TAG_CHANGES} - Array of all keys for this type
+ */
+export const KEY_BULK_OBJECT_TAG_CHANGES_ADD: keyof BulkObjectTagChanges = 'add';
+/**
+ * Objects
+ *
+ * Object references to operate on. TypeIDs and resource names may be mixed.
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `objects` property of BulkObjectTagChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = bulkobjecttagchanges[KEY_BULK_OBJECT_TAG_CHANGES_OBJECTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BULK_OBJECT_TAG_CHANGES_OBJECTS;
+ * const value = bulkobjecttagchanges[propertyName];
+ * ```
+ *
+ * @see {@link BulkObjectTagChanges} - The TypeScript type definition
+ * @see {@link KEYS_BULK_OBJECT_TAG_CHANGES} - Array of all keys for this type
+ */
+export const KEY_BULK_OBJECT_TAG_CHANGES_OBJECTS: keyof BulkObjectTagChanges = 'objects';
+/**
+ * Remove
+ *
+ * Tag IDs to remove from the objects.
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `remove` property of BulkObjectTagChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = bulkobjecttagchanges[KEY_BULK_OBJECT_TAG_CHANGES_REMOVE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BULK_OBJECT_TAG_CHANGES_REMOVE;
+ * const value = bulkobjecttagchanges[propertyName];
+ * ```
+ *
+ * @see {@link BulkObjectTagChanges} - The TypeScript type definition
+ * @see {@link KEYS_BULK_OBJECT_TAG_CHANGES} - Array of all keys for this type
+ */
+export const KEY_BULK_OBJECT_TAG_CHANGES_REMOVE: keyof BulkObjectTagChanges = 'remove';
+/**
+ * Replace
+ *
+ * Tag IDs to set as the complete tag set for the objects, replacing any existing tags. Mutually exclusive with 'add' and 'remove'. An empty list removes all tags.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `replace` property of BulkObjectTagChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = bulkobjecttagchanges[KEY_BULK_OBJECT_TAG_CHANGES_REPLACE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BULK_OBJECT_TAG_CHANGES_REPLACE;
+ * const value = bulkobjecttagchanges[propertyName];
+ * ```
+ *
+ * @see {@link BulkObjectTagChanges} - The TypeScript type definition
+ * @see {@link KEYS_BULK_OBJECT_TAG_CHANGES} - Array of all keys for this type
+ */
+export const KEY_BULK_OBJECT_TAG_CHANGES_REPLACE: keyof BulkObjectTagChanges = 'replace';
+/**
+ * type property
+ *
+ * The object/tag type (e.g. DOMAIN, CONTACT, ZONE)
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of BulkObjectTagChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = bulkobjecttagchanges[KEY_BULK_OBJECT_TAG_CHANGES_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_BULK_OBJECT_TAG_CHANGES_TYPE;
+ * const value = bulkobjecttagchanges[propertyName];
+ * ```
+ *
+ * @see {@link BulkObjectTagChanges} - The TypeScript type definition
+ * @see {@link KEYS_BULK_OBJECT_TAG_CHANGES} - Array of all keys for this type
+ */
+export const KEY_BULK_OBJECT_TAG_CHANGES_TYPE: keyof BulkObjectTagChanges = 'type';
+
+/**
+ * Array of all BulkObjectTagChanges property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for BulkObjectTagChanges objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_BULK_OBJECT_TAG_CHANGES) {
+ *   console.log(`Property: ${key}, Value: ${bulkobjecttagchanges[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_BULK_OBJECT_TAG_CHANGES.includes(someKey);
+ * ```
+ *
+ * @see {@link BulkObjectTagChanges} - The TypeScript type definition
+ */
+export const KEYS_BULK_OBJECT_TAG_CHANGES = [
+  KEY_BULK_OBJECT_TAG_CHANGES_ADD,
+  KEY_BULK_OBJECT_TAG_CHANGES_OBJECTS,
+  KEY_BULK_OBJECT_TAG_CHANGES_REMOVE,
+  KEY_BULK_OBJECT_TAG_CHANGES_REPLACE,
+  KEY_BULK_OBJECT_TAG_CHANGES_TYPE,
+] as const satisfies (keyof BulkObjectTagChanges)[];
 
 /**
  * Error
@@ -26252,6 +26415,189 @@ export const KEYS_OBJECT_LOG = [
 ] as const satisfies (keyof ObjectLog)[];
 
 /**
+ * Add
+ *
+ * Object TypeIDs or resource names to tag. TypeIDs and names may be mixed.
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `add` property of ObjectTagChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objecttagchanges[KEY_OBJECT_TAG_CHANGES_ADD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_TAG_CHANGES_ADD;
+ * const value = objecttagchanges[propertyName];
+ * ```
+ *
+ * @see {@link ObjectTagChanges} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_TAG_CHANGES} - Array of all keys for this type
+ */
+export const KEY_OBJECT_TAG_CHANGES_ADD: keyof ObjectTagChanges = 'add';
+/**
+ * Remove
+ *
+ * Object TypeIDs or resource names to untag. TypeIDs and names may be mixed.
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `remove` property of ObjectTagChanges objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objecttagchanges[KEY_OBJECT_TAG_CHANGES_REMOVE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_TAG_CHANGES_REMOVE;
+ * const value = objecttagchanges[propertyName];
+ * ```
+ *
+ * @see {@link ObjectTagChanges} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_TAG_CHANGES} - Array of all keys for this type
+ */
+export const KEY_OBJECT_TAG_CHANGES_REMOVE: keyof ObjectTagChanges = 'remove';
+
+/**
+ * Array of all ObjectTagChanges property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ObjectTagChanges objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_OBJECT_TAG_CHANGES) {
+ *   console.log(`Property: ${key}, Value: ${objecttagchanges[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_OBJECT_TAG_CHANGES.includes(someKey);
+ * ```
+ *
+ * @see {@link ObjectTagChanges} - The TypeScript type definition
+ */
+export const KEYS_OBJECT_TAG_CHANGES = [
+  KEY_OBJECT_TAG_CHANGES_ADD,
+  KEY_OBJECT_TAG_CHANGES_REMOVE,
+] as const satisfies (keyof ObjectTagChanges)[];
+
+/**
+ * Added
+ *
+ * Number of objects tagged
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `added` property of ObjectTagChanges2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objecttagchanges2[KEY_OBJECT_TAG_CHANGES2_ADDED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_TAG_CHANGES2_ADDED;
+ * const value = objecttagchanges2[propertyName];
+ * ```
+ *
+ * @see {@link ObjectTagChanges2} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_TAG_CHANGES2} - Array of all keys for this type
+ */
+export const KEY_OBJECT_TAG_CHANGES2_ADDED: keyof ObjectTagChanges2 = 'added';
+/**
+ * Removed
+ *
+ * Number of objects untagged
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `removed` property of ObjectTagChanges2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objecttagchanges2[KEY_OBJECT_TAG_CHANGES2_REMOVED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_TAG_CHANGES2_REMOVED;
+ * const value = objecttagchanges2[propertyName];
+ * ```
+ *
+ * @see {@link ObjectTagChanges2} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_TAG_CHANGES2} - Array of all keys for this type
+ */
+export const KEY_OBJECT_TAG_CHANGES2_REMOVED: keyof ObjectTagChanges2 = 'removed';
+/**
+ * Unresolved
+ *
+ * References that could not be resolved
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `unresolved` property of ObjectTagChanges2 objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = objecttagchanges2[KEY_OBJECT_TAG_CHANGES2_UNRESOLVED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_OBJECT_TAG_CHANGES2_UNRESOLVED;
+ * const value = objecttagchanges2[propertyName];
+ * ```
+ *
+ * @see {@link ObjectTagChanges2} - The TypeScript type definition
+ * @see {@link KEYS_OBJECT_TAG_CHANGES2} - Array of all keys for this type
+ */
+export const KEY_OBJECT_TAG_CHANGES2_UNRESOLVED: keyof ObjectTagChanges2 = 'unresolved';
+
+/**
+ * Array of all ObjectTagChanges2 property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ObjectTagChanges2 objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_OBJECT_TAG_CHANGES2) {
+ *   console.log(`Property: ${key}, Value: ${objecttagchanges2[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_OBJECT_TAG_CHANGES2.includes(someKey);
+ * ```
+ *
+ * @see {@link ObjectTagChanges2} - The TypeScript type definition
+ */
+export const KEYS_OBJECT_TAG_CHANGES2 = [
+  KEY_OBJECT_TAG_CHANGES2_ADDED,
+  KEY_OBJECT_TAG_CHANGES2_REMOVED,
+  KEY_OBJECT_TAG_CHANGES2_UNRESOLVED,
+] as const satisfies (keyof ObjectTagChanges2)[];
+
+/**
  * Address 1
  *
  * First line of the organization's address.
@@ -34326,6 +34672,474 @@ export const KEYS_STATUS_CODE_STATS_BUCKET = [
   KEY_STATUS_CODE_STATS_BUCKET_KEY,
   KEY_STATUS_CODE_STATS_BUCKET_TOTAL,
 ] as const satisfies (keyof StatusCodeStatsBucket)[];
+
+/**
+ * color property
+ *
+ * The color of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `color` property of TagCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tagcreate[KEY_TAG_CREATE_COLOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_CREATE_COLOR;
+ * const value = tagcreate[propertyName];
+ * ```
+ *
+ * @see {@link TagCreate} - The TypeScript type definition
+ * @see {@link KEYS_TAG_CREATE} - Array of all keys for this type
+ */
+export const KEY_TAG_CREATE_COLOR: keyof TagCreate = 'color';
+/**
+ * Description
+ *
+ * Optional description of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `description` property of TagCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tagcreate[KEY_TAG_CREATE_DESCRIPTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_CREATE_DESCRIPTION;
+ * const value = tagcreate[propertyName];
+ * ```
+ *
+ * @see {@link TagCreate} - The TypeScript type definition
+ * @see {@link KEYS_TAG_CREATE} - Array of all keys for this type
+ */
+export const KEY_TAG_CREATE_DESCRIPTION: keyof TagCreate = 'description';
+/**
+ * Label
+ *
+ * A human-readable label for the tag
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of TagCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tagcreate[KEY_TAG_CREATE_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_CREATE_LABEL;
+ * const value = tagcreate[propertyName];
+ * ```
+ *
+ * @see {@link TagCreate} - The TypeScript type definition
+ * @see {@link KEYS_TAG_CREATE} - Array of all keys for this type
+ */
+export const KEY_TAG_CREATE_LABEL: keyof TagCreate = 'label';
+/**
+ * type property
+ *
+ * Which category a tag applies to, cannot be changed once created
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of TagCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tagcreate[KEY_TAG_CREATE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_CREATE_TYPE;
+ * const value = tagcreate[propertyName];
+ * ```
+ *
+ * @see {@link TagCreate} - The TypeScript type definition
+ * @see {@link KEYS_TAG_CREATE} - Array of all keys for this type
+ */
+export const KEY_TAG_CREATE_TYPE: keyof TagCreate = 'type';
+
+/**
+ * Array of all TagCreate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TagCreate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TAG_CREATE) {
+ *   console.log(`Property: ${key}, Value: ${tagcreate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TAG_CREATE.includes(someKey);
+ * ```
+ *
+ * @see {@link TagCreate} - The TypeScript type definition
+ */
+export const KEYS_TAG_CREATE = [
+  KEY_TAG_CREATE_COLOR,
+  KEY_TAG_CREATE_DESCRIPTION,
+  KEY_TAG_CREATE_LABEL,
+  KEY_TAG_CREATE_TYPE,
+] as const satisfies (keyof TagCreate)[];
+
+/**
+ * color property
+ *
+ * The color of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `color` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_COLOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_COLOR;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_COLOR: keyof Tag = 'color';
+/**
+ * Created On
+ *
+ * The date/time the tag was created on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_on` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_CREATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_CREATED_ON;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_CREATED_ON: keyof Tag = 'created_on';
+/**
+ * Description
+ *
+ * Optional description of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `description` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_DESCRIPTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_DESCRIPTION;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_DESCRIPTION: keyof Tag = 'description';
+/**
+ * Label
+ *
+ * The label of the tag
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_LABEL;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_LABEL: keyof Tag = 'label';
+/**
+ * Object Count
+ *
+ * Number of objects tagged with this tag
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `object_count` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_OBJECT_COUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_OBJECT_COUNT;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_OBJECT_COUNT: keyof Tag = 'object_count';
+/**
+ * Tag Id
+ *
+ * The unique identifier of the tag
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tag_id` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_TAG_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_TAG_ID;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_TAG_ID: keyof Tag = 'tag_id';
+/**
+ * type property
+ *
+ * Which category a tag applies to, cannot be changed once created
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_TYPE;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_TYPE: keyof Tag = 'type';
+/**
+ * Updated On
+ *
+ * The date/time the tag was last updated on
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_on` property of Tag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tag[KEY_TAG_UPDATED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_UPDATED_ON;
+ * const value = tag[propertyName];
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ * @see {@link KEYS_TAG} - Array of all keys for this type
+ */
+export const KEY_TAG_UPDATED_ON: keyof Tag = 'updated_on';
+
+/**
+ * Array of all Tag property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Tag objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TAG) {
+ *   console.log(`Property: ${key}, Value: ${tag[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TAG.includes(someKey);
+ * ```
+ *
+ * @see {@link Tag} - The TypeScript type definition
+ */
+export const KEYS_TAG = [
+  KEY_TAG_COLOR,
+  KEY_TAG_CREATED_ON,
+  KEY_TAG_DESCRIPTION,
+  KEY_TAG_LABEL,
+  KEY_TAG_OBJECT_COUNT,
+  KEY_TAG_TAG_ID,
+  KEY_TAG_TYPE,
+  KEY_TAG_UPDATED_ON,
+] as const satisfies (keyof Tag)[];
+
+/**
+ * color property
+ *
+ * The color of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `color` property of TagUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tagupdate[KEY_TAG_UPDATE_COLOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_UPDATE_COLOR;
+ * const value = tagupdate[propertyName];
+ * ```
+ *
+ * @see {@link TagUpdate} - The TypeScript type definition
+ * @see {@link KEYS_TAG_UPDATE} - Array of all keys for this type
+ */
+export const KEY_TAG_UPDATE_COLOR: keyof TagUpdate = 'color';
+/**
+ * Description
+ *
+ * Optional description of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `description` property of TagUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tagupdate[KEY_TAG_UPDATE_DESCRIPTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_UPDATE_DESCRIPTION;
+ * const value = tagupdate[propertyName];
+ * ```
+ *
+ * @see {@link TagUpdate} - The TypeScript type definition
+ * @see {@link KEYS_TAG_UPDATE} - Array of all keys for this type
+ */
+export const KEY_TAG_UPDATE_DESCRIPTION: keyof TagUpdate = 'description';
+/**
+ * Label
+ *
+ * A human-readable label for the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of TagUpdate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = tagupdate[KEY_TAG_UPDATE_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_TAG_UPDATE_LABEL;
+ * const value = tagupdate[propertyName];
+ * ```
+ *
+ * @see {@link TagUpdate} - The TypeScript type definition
+ * @see {@link KEYS_TAG_UPDATE} - Array of all keys for this type
+ */
+export const KEY_TAG_UPDATE_LABEL: keyof TagUpdate = 'label';
+
+/**
+ * Array of all TagUpdate property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for TagUpdate objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_TAG_UPDATE) {
+ *   console.log(`Property: ${key}, Value: ${tagupdate[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_TAG_UPDATE.includes(someKey);
+ * ```
+ *
+ * @see {@link TagUpdate} - The TypeScript type definition
+ */
+export const KEYS_TAG_UPDATE = [
+  KEY_TAG_UPDATE_COLOR,
+  KEY_TAG_UPDATE_DESCRIPTION,
+  KEY_TAG_UPDATE_LABEL,
+] as const satisfies (keyof TagUpdate)[];
 
 /**
  * Timestamp

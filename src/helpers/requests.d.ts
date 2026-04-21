@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
@@ -5715,6 +5715,305 @@ export type GET_ReportsReportIdDownload_Request = {
  * @path /v1/reports/{report_id}/download
  */
 export type GET_ReportsReportIdDownload_Request_Path = GET_ReportsReportIdDownload_Request['parameters']['path'];
+
+/**
+ * Request type for GET Tags endpoint
+ *
+ * List tags
+ * Retrieves a paginated list of tags
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET Tags endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tags
+ * @param tag_types (query) - Filter by tag types (OR semantics)
+ *
+ * @see {@link GET_Tags_Request_Query} - Query parameters type
+ * @see {@link GET_Tags_Request_Path} - Path parameters type
+ * @see {@link GET_Tags_Request_Body} - Request body type
+ */
+export type GET_Tags_Request = {
+  parameters: {
+    query: operations['list_tags_v1_tags_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/tags
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/tags endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/tags
+ * @param tag_types (query) - Filter by tag types (OR semantics)
+ */
+export type GET_Tags_Request_Query = GET_Tags_Request['parameters']['query'];
+
+/**
+ * Request type for POST Tags endpoint
+ *
+ * Create a tag
+ * Create a new tag
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST Tags endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tags
+ *
+ * @see {@link POST_Tags_Request_Query} - Query parameters type
+ * @see {@link POST_Tags_Request_Path} - Path parameters type
+ * @see {@link POST_Tags_Request_Body} - Request body type
+ */
+export type POST_Tags_Request = {
+  requestBody: TagCreate;
+}
+/**
+ * Request body for POST /v1/tags
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/tags endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/tags
+ */
+export type POST_Tags_Request_Body = POST_Tags_Request['requestBody'];
+
+/**
+ * Request type for POST TagsObjects endpoint
+ *
+ * Bulk tag or untag objects
+ * Add, remove, or replace tags on multiple objects at once. 'replace' is mutually exclusive with 'add' and 'remove'.
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST TagsObjects endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tags/objects
+ *
+ * @see {@link POST_TagsObjects_Request_Query} - Query parameters type
+ * @see {@link POST_TagsObjects_Request_Path} - Path parameters type
+ * @see {@link POST_TagsObjects_Request_Body} - Request body type
+ */
+export type POST_TagsObjects_Request = {
+  requestBody: BulkObjectTagChanges;
+}
+/**
+ * Request body for POST /v1/tags/objects
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/tags/objects endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/tags/objects
+ */
+export type POST_TagsObjects_Request_Body = POST_TagsObjects_Request['requestBody'];
+
+/**
+ * Request type for DELETE TagsTagId endpoint
+ *
+ * Delete a tag
+ * Delete a tag
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE TagsTagId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link DELETE_TagsTagId_Request_Query} - Query parameters type
+ * @see {@link DELETE_TagsTagId_Request_Path} - Path parameters type
+ * @see {@link DELETE_TagsTagId_Request_Body} - Request body type
+ */
+export type DELETE_TagsTagId_Request = {
+  parameters: {
+    path: operations['delete_tag_v1_tags__tag_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/tags/{tag_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/tags/{tag_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/tags/{tag_id}
+ */
+export type DELETE_TagsTagId_Request_Path = DELETE_TagsTagId_Request['parameters']['path'];
+
+/**
+ * Request type for GET TagsTagId endpoint
+ *
+ * Get a tag
+ * Retrieve a single tag by its ID
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET TagsTagId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link GET_TagsTagId_Request_Query} - Query parameters type
+ * @see {@link GET_TagsTagId_Request_Path} - Path parameters type
+ * @see {@link GET_TagsTagId_Request_Body} - Request body type
+ */
+export type GET_TagsTagId_Request = {
+  parameters: {
+    path: operations['get_tag_v1_tags__tag_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/tags/{tag_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/tags/{tag_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/tags/{tag_id}
+ */
+export type GET_TagsTagId_Request_Path = GET_TagsTagId_Request['parameters']['path'];
+
+/**
+ * Request type for PATCH TagsTagId endpoint
+ *
+ * Update a tag
+ * Update a tag's label, description, or color
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH TagsTagId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link PATCH_TagsTagId_Request_Query} - Query parameters type
+ * @see {@link PATCH_TagsTagId_Request_Path} - Path parameters type
+ * @see {@link PATCH_TagsTagId_Request_Body} - Request body type
+ */
+export type PATCH_TagsTagId_Request = {
+  parameters: {
+    path: operations['update_tag_v1_tags__tag_id__patch']['parameters']['path'];
+  };
+  requestBody: TagUpdate;
+}
+/**
+ * Path parameters for PATCH /v1/tags/{tag_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the PATCH /v1/tags/{tag_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/tags/{tag_id}
+ */
+export type PATCH_TagsTagId_Request_Path = PATCH_TagsTagId_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/tags/{tag_id}
+ *
+ * @remarks
+ * This type defines the request body structure for the PATCH /v1/tags/{tag_id} endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/tags/{tag_id}
+ */
+export type PATCH_TagsTagId_Request_Body = PATCH_TagsTagId_Request['requestBody'];
+
+/**
+ * Request type for POST TagsTagIdObjects endpoint
+ *
+ * Tag or untag objects
+ * Add or remove objects from a tag. Objects are matched by the tag's type (e.g. a DOMAIN tag only accepts domain IDs).
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST TagsTagIdObjects endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/tags/{tag_id}/objects
+ *
+ * @see {@link POST_TagsTagIdObjects_Request_Query} - Query parameters type
+ * @see {@link POST_TagsTagIdObjects_Request_Path} - Path parameters type
+ * @see {@link POST_TagsTagIdObjects_Request_Body} - Request body type
+ */
+export type POST_TagsTagIdObjects_Request = {
+  parameters: {
+    path: operations['update_tag_objects_v1_tags__tag_id__objects_post']['parameters']['path'];
+  };
+  requestBody: ObjectTagChanges;
+}
+/**
+ * Path parameters for POST /v1/tags/{tag_id}/objects
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/tags/{tag_id}/objects endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/tags/{tag_id}/objects
+ */
+export type POST_TagsTagIdObjects_Request_Path = POST_TagsTagIdObjects_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/tags/{tag_id}/objects
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/tags/{tag_id}/objects endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/tags/{tag_id}/objects
+ */
+export type POST_TagsTagIdObjects_Request_Body = POST_TagsTagIdObjects_Request['requestBody'];
 
 /**
  * Request type for GET Tlds endpoint

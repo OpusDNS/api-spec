@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint
@@ -11024,6 +11024,654 @@ export type GET_ReportsByReportIdDownload_Response = GET_ReportsByReportIdDownlo
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_ReportsByReportIdDownload_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET Tags endpoint
+ *
+ * List tags
+ * Retrieves a paginated list of tags
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET Tags endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tags
+ * @param tag_types (query) - Filter by tag types (OR semantics)
+ *
+ * @see {@link GET_Tags_Response_200} - 200 response type
+ * @see {@link GET_Tags_Response_401} - 401 response type
+ * @see {@link GET_Tags_Response_422} - 422 response type
+ *
+
+ */
+export type GET_Tags_Response = GET_Tags_Response_200 | GET_Tags_Response_401 | GET_Tags_Response_422;
+
+/**
+ * 200 response for GET Tags endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET Tags endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags
+ * @param tag_types (query) - Filter by tag types (OR semantics)
+ *
+ * @see {@link GET_Tags_Response} - The main response type definition
+ * @see {@link Pagination_Tag} - The actual schema type definition
+ */
+export type GET_Tags_Response_200 = Pagination_Tag
+
+/**
+ * 401 response for GET Tags endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET Tags endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags
+ * @param tag_types (query) - Filter by tag types (OR semantics)
+ *
+ * @see {@link GET_Tags_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_Tags_Response_401 = Problem
+
+/**
+ * 422 response for GET Tags endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET Tags endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags
+ * @param tag_types (query) - Filter by tag types (OR semantics)
+ *
+ * @see {@link GET_Tags_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_Tags_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST Tags endpoint
+ *
+ * Create a tag
+ * Create a new tag
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST Tags endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tags
+ *
+ * @see {@link POST_Tags_Response_201} - 201 response type
+ * @see {@link POST_Tags_Response_401} - 401 response type
+ * @see {@link POST_Tags_Response_409} - 409 response type
+ * @see {@link POST_Tags_Response_422} - 422 response type
+ *
+
+ */
+export type POST_Tags_Response = POST_Tags_Response_201 | POST_Tags_Response_401 | POST_Tags_Response_409 | POST_Tags_Response_422;
+
+/**
+ * 201 response for POST Tags endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST Tags endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags
+ *
+ * @see {@link POST_Tags_Response} - The main response type definition
+ * @see {@link Tag} - The actual schema type definition
+ */
+export type POST_Tags_Response_201 = Tag
+
+/**
+ * 401 response for POST Tags endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST Tags endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags
+ *
+ * @see {@link POST_Tags_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Tags_Response_401 = Problem
+
+/**
+ * 409 response for POST Tags endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST Tags endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags
+ *
+ * @see {@link POST_Tags_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Tags_Response_409 = Problem
+
+/**
+ * 422 response for POST Tags endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST Tags endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags
+ *
+ * @see {@link POST_Tags_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_Tags_Response_422 = HTTPValidationError
+
+/**
+ * Response types for DELETE TagsByTagId endpoint
+ *
+ * Delete a tag
+ * Delete a tag
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE TagsByTagId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link DELETE_TagsByTagId_Response_401} - 401 response type
+ * @see {@link DELETE_TagsByTagId_Response_404} - 404 response type
+ * @see {@link DELETE_TagsByTagId_Response_422} - 422 response type
+ *
+
+ */
+export type DELETE_TagsByTagId_Response = DELETE_TagsByTagId_Response_401 | DELETE_TagsByTagId_Response_404 | DELETE_TagsByTagId_Response_422;
+
+/**
+ * 401 response for DELETE TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link DELETE_TagsByTagId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_TagsByTagId_Response_401 = Problem
+
+/**
+ * 404 response for DELETE TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link DELETE_TagsByTagId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_TagsByTagId_Response_404 = Problem
+
+/**
+ * 422 response for DELETE TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link DELETE_TagsByTagId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_TagsByTagId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for GET TagsByTagId endpoint
+ *
+ * Get a tag
+ * Retrieve a single tag by its ID
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET TagsByTagId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link GET_TagsByTagId_Response_200} - 200 response type
+ * @see {@link GET_TagsByTagId_Response_401} - 401 response type
+ * @see {@link GET_TagsByTagId_Response_404} - 404 response type
+ * @see {@link GET_TagsByTagId_Response_422} - 422 response type
+ *
+
+ */
+export type GET_TagsByTagId_Response = GET_TagsByTagId_Response_200 | GET_TagsByTagId_Response_401 | GET_TagsByTagId_Response_404 | GET_TagsByTagId_Response_422;
+
+/**
+ * 200 response for GET TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link GET_TagsByTagId_Response} - The main response type definition
+ * @see {@link Tag} - The actual schema type definition
+ */
+export type GET_TagsByTagId_Response_200 = Tag
+
+/**
+ * 401 response for GET TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link GET_TagsByTagId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_TagsByTagId_Response_401 = Problem
+
+/**
+ * 404 response for GET TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link GET_TagsByTagId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_TagsByTagId_Response_404 = Problem
+
+/**
+ * 422 response for GET TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link GET_TagsByTagId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_TagsByTagId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for PATCH TagsByTagId endpoint
+ *
+ * Update a tag
+ * Update a tag's label, description, or color
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH TagsByTagId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link PATCH_TagsByTagId_Response_200} - 200 response type
+ * @see {@link PATCH_TagsByTagId_Response_401} - 401 response type
+ * @see {@link PATCH_TagsByTagId_Response_404} - 404 response type
+ * @see {@link PATCH_TagsByTagId_Response_409} - 409 response type
+ * @see {@link PATCH_TagsByTagId_Response_422} - 422 response type
+ *
+
+ */
+export type PATCH_TagsByTagId_Response = PATCH_TagsByTagId_Response_200 | PATCH_TagsByTagId_Response_401 | PATCH_TagsByTagId_Response_404 | PATCH_TagsByTagId_Response_409 | PATCH_TagsByTagId_Response_422;
+
+/**
+ * 200 response for PATCH TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link PATCH_TagsByTagId_Response} - The main response type definition
+ * @see {@link Tag} - The actual schema type definition
+ */
+export type PATCH_TagsByTagId_Response_200 = Tag
+
+/**
+ * 401 response for PATCH TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link PATCH_TagsByTagId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_TagsByTagId_Response_401 = Problem
+
+/**
+ * 404 response for PATCH TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link PATCH_TagsByTagId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_TagsByTagId_Response_404 = Problem
+
+/**
+ * 409 response for PATCH TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the PATCH TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link PATCH_TagsByTagId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_TagsByTagId_Response_409 = Problem
+
+/**
+ * 422 response for PATCH TagsByTagId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH TagsByTagId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}
+ *
+ * @see {@link PATCH_TagsByTagId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_TagsByTagId_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST TagsByTagIdObjects endpoint
+ *
+ * Tag or untag objects
+ * Add or remove objects from a tag. Objects are matched by the tag's type (e.g. a DOMAIN tag only accepts domain IDs).
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST TagsByTagIdObjects endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}/objects
+ *
+ * @see {@link POST_TagsByTagIdObjects_Response_200} - 200 response type
+ * @see {@link POST_TagsByTagIdObjects_Response_401} - 401 response type
+ * @see {@link POST_TagsByTagIdObjects_Response_404} - 404 response type
+ * @see {@link POST_TagsByTagIdObjects_Response_422} - 422 response type
+ *
+
+ */
+export type POST_TagsByTagIdObjects_Response = POST_TagsByTagIdObjects_Response_200 | POST_TagsByTagIdObjects_Response_401 | POST_TagsByTagIdObjects_Response_404 | POST_TagsByTagIdObjects_Response_422;
+
+/**
+ * 200 response for POST TagsByTagIdObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST TagsByTagIdObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}/objects
+ *
+ * @see {@link POST_TagsByTagIdObjects_Response} - The main response type definition
+ * @see {@link ObjectTagChanges2} - The actual schema type definition
+ */
+export type POST_TagsByTagIdObjects_Response_200 = ObjectTagChanges2
+
+/**
+ * 401 response for POST TagsByTagIdObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST TagsByTagIdObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}/objects
+ *
+ * @see {@link POST_TagsByTagIdObjects_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_TagsByTagIdObjects_Response_401 = Problem
+
+/**
+ * 404 response for POST TagsByTagIdObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST TagsByTagIdObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}/objects
+ *
+ * @see {@link POST_TagsByTagIdObjects_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_TagsByTagIdObjects_Response_404 = Problem
+
+/**
+ * 422 response for POST TagsByTagIdObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST TagsByTagIdObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/{tag_id}/objects
+ *
+ * @see {@link POST_TagsByTagIdObjects_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_TagsByTagIdObjects_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST TagsObjects endpoint
+ *
+ * Bulk tag or untag objects
+ * Add, remove, or replace tags on multiple objects at once. 'replace' is mutually exclusive with 'add' and 'remove'.
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST TagsObjects endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/tags/objects
+ *
+ * @see {@link POST_TagsObjects_Response_200} - 200 response type
+ * @see {@link POST_TagsObjects_Response_400} - 400 response type
+ * @see {@link POST_TagsObjects_Response_401} - 401 response type
+ * @see {@link POST_TagsObjects_Response_404} - 404 response type
+ * @see {@link POST_TagsObjects_Response_422} - 422 response type
+ *
+
+ */
+export type POST_TagsObjects_Response = POST_TagsObjects_Response_200 | POST_TagsObjects_Response_400 | POST_TagsObjects_Response_401 | POST_TagsObjects_Response_404 | POST_TagsObjects_Response_422;
+
+/**
+ * 200 response for POST TagsObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST TagsObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/objects
+ *
+ * @see {@link POST_TagsObjects_Response} - The main response type definition
+ * @see {@link ObjectTagChanges2} - The actual schema type definition
+ */
+export type POST_TagsObjects_Response_200 = ObjectTagChanges2
+
+/**
+ * 400 response for POST TagsObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST TagsObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/objects
+ *
+ * @see {@link POST_TagsObjects_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_TagsObjects_Response_400 = Problem
+
+/**
+ * 401 response for POST TagsObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST TagsObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/objects
+ *
+ * @see {@link POST_TagsObjects_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_TagsObjects_Response_401 = Problem
+
+/**
+ * 404 response for POST TagsObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST TagsObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/objects
+ *
+ * @see {@link POST_TagsObjects_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_TagsObjects_Response_404 = Problem
+
+/**
+ * 422 response for POST TagsObjects endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST TagsObjects endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/tags/objects
+ *
+ * @see {@link POST_TagsObjects_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_TagsObjects_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Tlds endpoint
