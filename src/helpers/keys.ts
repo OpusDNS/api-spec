@@ -38843,6 +38843,31 @@ export const KEYS_DOMAIN_AVAILABILITY_LIST = [
  */
 export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE: keyof DomainAvailabilityCheck = 'available';
 /**
+ * Claim Key
+ *
+ * Claim key, if trademark notice acceptance is required
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `claim_key` property of DomainAvailabilityCheck objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainavailabilitycheck[KEY_DOMAIN_AVAILABILITY_CHECK_CLAIM_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_AVAILABILITY_CHECK_CLAIM_KEY;
+ * const value = domainavailabilitycheck[propertyName];
+ * ```
+ *
+ * @see {@link DomainAvailabilityCheck} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_AVAILABILITY_CHECK} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_AVAILABILITY_CHECK_CLAIM_KEY: keyof DomainAvailabilityCheck = 'claim_key';
+/**
  * Domain
  *
  * The domain name
@@ -38966,6 +38991,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_REASON: keyof DomainAvailabilityCheck
  */
 export const KEYS_DOMAIN_AVAILABILITY_CHECK = [
   KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE,
+  KEY_DOMAIN_AVAILABILITY_CHECK_CLAIM_KEY,
   KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN,
   KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM,
   KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING,

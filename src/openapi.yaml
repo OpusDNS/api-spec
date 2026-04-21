@@ -9765,6 +9765,12 @@ components:
         available:
           title: Available
           type: boolean
+        claim_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Claim key, if trademark notice acceptance is required
+          title: Claim Key
         domain:
           description: The domain name
           examples:
@@ -9863,7 +9869,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-20-173548
+  version: 2026-04-21-115243
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
