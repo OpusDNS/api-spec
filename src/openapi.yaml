@@ -8562,6 +8562,7 @@ components:
       - dns_zone_records
       - domain_forwards
       - expiring_domains
+      - email_forwards
       - billing_transactions
       - billing_transactions_monthly
       title: ReportType
@@ -10119,7 +10120,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-21-224426
+  version: 2026-04-22-010242
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

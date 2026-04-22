@@ -4180,6 +4180,7 @@ export const REPORT_TYPE = {
   DNS_ZONE_RECORDS: "dns_zone_records",
   DOMAIN_FORWARDS: "domain_forwards",
   EXPIRING_DOMAINS: "expiring_domains",
+  EMAIL_FORWARDS: "email_forwards",
   BILLING_TRANSACTIONS: "billing_transactions",
   BILLING_TRANSACTIONS_MONTHLY: "billing_transactions_monthly",
 } as const satisfies Record<string, ReportType>;
@@ -4211,6 +4212,7 @@ export const REPORT_TYPE_VALUES = [
   'dns_zone_records',
   'domain_forwards',
   'expiring_domains',
+  'email_forwards',
   'billing_transactions',
   'billing_transactions_monthly'
 ] as const satisfies [string, ...string[]] | ReportType[];
