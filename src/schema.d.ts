@@ -7695,6 +7695,27 @@ export interface components {
              */
             supported: boolean;
         };
+        /**
+         * PremiumPriceEntryRes
+         * @description A single premium price entry for a specific action
+         */
+        PremiumPriceEntryRes: {
+            /**
+             * Action
+             * @description The action (e.g., create, renew, transfer)
+             */
+            action: string;
+            /**
+             * Currency
+             * @description Currency of the price
+             */
+            currency: string;
+            /**
+             * Price
+             * @description Customer-facing price after markup
+             */
+            price: string;
+        };
         /** PremiumPricingAction */
         PremiumPricingAction: {
             /**
@@ -7712,6 +7733,17 @@ export interface components {
              * @description Customer-facing price after markup
              */
             price: string;
+        };
+        /**
+         * PremiumPricingRes
+         * @description Premium pricing details for a domain
+         */
+        PremiumPricingRes: {
+            /**
+             * Prices
+             * @description Premium prices per action
+             */
+            prices: components["schemas"]["PremiumPriceEntryRes"][];
         };
         /** PremiumPricingResponse */
         PremiumPricingResponse: {

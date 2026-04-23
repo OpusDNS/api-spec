@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainTagEnriched, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainTagEnriched, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * DomainIncludeField
@@ -1353,6 +1353,20 @@ export type PermissionArray = Permission[];
  * @see {@link PremiumAffectsType} - The individual PremiumAffectsType type definition
  */
 export type PremiumAffectsTypeArray = PremiumAffectsType[];
+/**
+ * PremiumPriceEntryRes. A single premium price entry for a specific action
+ *
+ * @remarks
+ * Array type for PremiumPriceEntryRes objects. Used when the API returns a collection of PremiumPriceEntryRes instances.
+ *
+ * @example
+ * ```typescript
+ * const items: PremiumPriceEntryResArray = await api.getPremiumPriceEntryRess();
+ * ```
+ *
+ * @see {@link PremiumPriceEntryRes} - The individual PremiumPriceEntryRes type definition
+ */
+export type PremiumPriceEntryResArray = PremiumPriceEntryRes[];
 /**
  * PremiumPricingAction
  *

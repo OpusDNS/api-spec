@@ -257,7 +257,9 @@ import { Period } from './schemas';
 import { PermissionSet } from './schemas';
 import { PlatformStatsBucket } from './schemas';
 import { PremiumDomainsBase } from './schemas';
+import { PremiumPriceEntryRes } from './schemas';
 import { PremiumPricingAction } from './schemas';
+import { PremiumPricingRes } from './schemas';
 import { PremiumPricing } from './schemas';
 import { PriceInfo } from './schemas';
 import { PricingPeriod } from './schemas';
@@ -32474,6 +32476,111 @@ export const KEYS_PREMIUM_DOMAINS_BASE = [
  *
  *
  * @remarks
+ * This key constant provides type-safe access to the `action` property of PremiumPriceEntryRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpriceentryres[KEY_PREMIUM_PRICE_ENTRY_RES_ACTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICE_ENTRY_RES_ACTION;
+ * const value = premiumpriceentryres[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPriceEntryRes} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICE_ENTRY_RES} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICE_ENTRY_RES_ACTION: keyof PremiumPriceEntryRes = 'action';
+/**
+ * Currency
+ *
+ * Currency of the price
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `currency` property of PremiumPriceEntryRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpriceentryres[KEY_PREMIUM_PRICE_ENTRY_RES_CURRENCY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICE_ENTRY_RES_CURRENCY;
+ * const value = premiumpriceentryres[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPriceEntryRes} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICE_ENTRY_RES} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICE_ENTRY_RES_CURRENCY: keyof PremiumPriceEntryRes = 'currency';
+/**
+ * Price
+ *
+ * Customer-facing price after markup
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `price` property of PremiumPriceEntryRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpriceentryres[KEY_PREMIUM_PRICE_ENTRY_RES_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICE_ENTRY_RES_PRICE;
+ * const value = premiumpriceentryres[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPriceEntryRes} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICE_ENTRY_RES} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICE_ENTRY_RES_PRICE: keyof PremiumPriceEntryRes = 'price';
+
+/**
+ * Array of all PremiumPriceEntryRes property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PremiumPriceEntryRes objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PREMIUM_PRICE_ENTRY_RES) {
+ *   console.log(`Property: ${key}, Value: ${premiumpriceentryres[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PREMIUM_PRICE_ENTRY_RES.includes(someKey);
+ * ```
+ *
+ * @see {@link PremiumPriceEntryRes} - The TypeScript type definition
+ */
+export const KEYS_PREMIUM_PRICE_ENTRY_RES = [
+  KEY_PREMIUM_PRICE_ENTRY_RES_ACTION,
+  KEY_PREMIUM_PRICE_ENTRY_RES_CURRENCY,
+  KEY_PREMIUM_PRICE_ENTRY_RES_PRICE,
+] as const satisfies (keyof PremiumPriceEntryRes)[];
+
+/**
+ * Action
+ *
+ * The action (e.g., create, renew, transfer)
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
  * This key constant provides type-safe access to the `action` property of PremiumPricingAction objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
@@ -32569,6 +32676,57 @@ export const KEYS_PREMIUM_PRICING_ACTION = [
   KEY_PREMIUM_PRICING_ACTION_CURRENCY,
   KEY_PREMIUM_PRICING_ACTION_PRICE,
 ] as const satisfies (keyof PremiumPricingAction)[];
+
+/**
+ * Prices
+ *
+ * Premium prices per action
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `prices` property of PremiumPricingRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = premiumpricingres[KEY_PREMIUM_PRICING_RES_PRICES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_PREMIUM_PRICING_RES_PRICES;
+ * const value = premiumpricingres[propertyName];
+ * ```
+ *
+ * @see {@link PremiumPricingRes} - The TypeScript type definition
+ * @see {@link KEYS_PREMIUM_PRICING_RES} - Array of all keys for this type
+ */
+export const KEY_PREMIUM_PRICING_RES_PRICES: keyof PremiumPricingRes = 'prices';
+
+/**
+ * Array of all PremiumPricingRes property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for PremiumPricingRes objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_PREMIUM_PRICING_RES) {
+ *   console.log(`Property: ${key}, Value: ${premiumpricingres[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_PREMIUM_PRICING_RES.includes(someKey);
+ * ```
+ *
+ * @see {@link PremiumPricingRes} - The TypeScript type definition
+ */
+export const KEYS_PREMIUM_PRICING_RES = [
+  KEY_PREMIUM_PRICING_RES_PRICES,
+] as const satisfies (keyof PremiumPricingRes)[];
 
 /**
  * Prices
