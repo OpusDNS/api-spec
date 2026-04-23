@@ -3888,8 +3888,7 @@ export interface components {
         };
         /** DnsZoneUpdatePayloadData */
         DnsZoneUpdatePayloadData: {
-            /** @default disabled */
-            dnssec_status: components["schemas"]["DnssecStatus"];
+            dnssec_status?: components["schemas"]["DnssecStatus"] | null;
             /** Name */
             name: string;
             /** Rrsets */

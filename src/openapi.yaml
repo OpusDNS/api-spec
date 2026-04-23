@@ -2401,8 +2401,9 @@ components:
     DnsZoneUpdatePayloadData:
       properties:
         dnssec_status:
-          $ref: '#/components/schemas/DnssecStatus'
-          default: disabled
+          anyOf:
+          - $ref: '#/components/schemas/DnssecStatus'
+          - type: 'null'
         name:
           title: Name
           type: string
@@ -10120,7 +10121,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-22-010242
+  version: 2026-04-23-132311
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -18770,7 +18771,6 @@ paths:
                   - command: dns_zone_update
                     idempotency_key: update-zone-example-com
                     payload:
-                      dnssec_status: disabled
                       name: example.com
                       rrsets:
                       - name: '@'
