@@ -10121,7 +10121,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-23-132311
+  version: 2026-04-23-182347
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15865,6 +15865,14 @@ paths:
           - type: boolean
           - type: 'null'
           title: Transfer Lock
+      - in: query
+        name: is_premium
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Premium
       - in: query
         name: created_after
         required: false

@@ -12734,6 +12734,7 @@ export interface operations {
                 tld?: string | null;
                 sld?: string | null;
                 transfer_lock?: boolean | null;
+                is_premium?: boolean | null;
                 created_after?: Date | null;
                 created_before?: Date | null;
                 updated_after?: Date | null;
