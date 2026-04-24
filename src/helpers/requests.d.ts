@@ -1363,10 +1363,23 @@ export type DELETE_DnsZoneName_Request_Path = DELETE_DnsZoneName_Request['parame
  */
 export type GET_DnsZoneName_Request = {
   parameters: {
+    query: operations['get_zone_v1_dns__zone_name__get']['parameters']['query'];
     path: operations['get_zone_v1_dns__zone_name__get']['parameters']['path'];
   };
-  requestBody: unknown;
 }
+/**
+ * Query parameters for GET /v1/dns/{zone_name}
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/dns/{zone_name} endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/dns/{zone_name}
+ */
+export type GET_DnsZoneName_Request_Query = GET_DnsZoneName_Request['parameters']['query'];
 /**
  * Path parameters for GET /v1/dns/{zone_name}
  *
@@ -1381,19 +1394,6 @@ export type GET_DnsZoneName_Request = {
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type GET_DnsZoneName_Request_Path = GET_DnsZoneName_Request['parameters']['path'];
-/**
- * Request body for GET /v1/dns/{zone_name}
- *
- * @remarks
- * This type defines the request body structure for the GET /v1/dns/{zone_name} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/dns/{zone_name}
- */
-export type GET_DnsZoneName_Request_Body = GET_DnsZoneName_Request['requestBody'];
 
 /**
  * Request type for POST DnsZoneNameDnssecDisable endpoint

@@ -10126,7 +10126,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-24-122704
+  version: 2026-04-24-152800
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -12690,16 +12690,16 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              anyOf:
-              - items:
-                  $ref: '#/components/schemas/ZoneIncludeField'
-                type: array
-              - type: 'null'
-              title: Include
+      - in: query
+        name: include
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ZoneIncludeField'
+            type: array
+          - type: 'null'
+          title: Include
       responses:
         '200':
           content:

@@ -10633,7 +10633,9 @@ export interface operations {
     };
     get_zone_v1_dns__zone_name__get: {
         parameters: {
-            query?: never;
+            query?: {
+                include?: components["schemas"]["ZoneIncludeField"][] | null;
+            };
             header?: never;
             path: {
                 /** @description DNS zone name (trailing dot optional) */
@@ -10641,11 +10643,7 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["ZoneIncludeField"][] | null;
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {
