@@ -10899,7 +10899,6 @@ export const KEYS_DOMAIN_CONTACT = [
  *
  * Additional attributes of the domain
  *
- * @type {object}
  *
  *
  * @remarks
@@ -11883,7 +11882,6 @@ export const KEYS_DOMAIN_CREATE_COMMAND = [
  *
  * Additional attributes of the domain
  *
- * @type {object}
  *
  *
  * @remarks
@@ -17536,7 +17534,6 @@ export const KEYS_DOMAIN_TRANSFER_COMMAND = [
  *
  * Additional attributes of the domain
  *
- * @type {object}
  *
  *
  * @remarks
@@ -17798,7 +17795,6 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
  *
  * Additional attributes of the domain
  *
- * @type {object}
  *
  *
  * @remarks

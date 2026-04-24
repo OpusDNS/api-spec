@@ -4005,7 +4005,7 @@ export interface components {
              */
             attributes?: {
                 [key: string]: string;
-            };
+            } | null;
             /**
              * Auth Code
              * @description The auth code used for the domain
@@ -4162,7 +4162,7 @@ export interface components {
              */
             attributes?: {
                 [key: string]: string;
-            };
+            } | null;
             /**
              * Auth Code
              * @description The auth code used for the domain
@@ -5019,7 +5019,7 @@ export interface components {
              */
             attributes?: {
                 [key: string]: string;
-            };
+            } | null;
             /**
              * Auth Code
              * @description The auth code for the domain
@@ -5064,7 +5064,7 @@ export interface components {
              */
             attributes?: {
                 [key: string]: string;
-            };
+            } | null;
             /**
              * Auth Code
              * @description The auth code for the domain
