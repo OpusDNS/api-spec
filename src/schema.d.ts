@@ -3396,10 +3396,6 @@ export interface components {
          * @enum {string}
          */
         DeletePolicyType: "immediate" | "expiration";
-        /** DeletedEvent */
-        DeletedEvent: {
-            date: components["schemas"]["EppDateTime"];
-        };
         /**
          * DnsChangeAction
          * @enum {string}
@@ -5674,9 +5670,6 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
-        /** EmptyEvent */
-        EmptyEvent: Record<string, never>;
-        EppDateTime: Date | string;
         /**
          * EventObjectType
          * @enum {string}
@@ -5696,7 +5689,7 @@ export interface components {
              */
             created_on: Date;
             /** Event Data */
-            event_data: {
+            event_data?: {
                 [key: string]: unknown;
             };
             /**
@@ -7922,15 +7915,6 @@ export interface components {
             /** Relations */
             relations?: components["schemas"]["Relation"][];
         };
-        /** RenewalEvent */
-        RenewalEvent: {
-            /**
-             * Registration Expiration Date
-             * Format: date-time
-             * @description The new expiration date/time after the domain has been renewed
-             */
-            registration_expiration_date: Date;
-        };
         /**
          * RenewalMode
          * @enum {string}
@@ -8347,17 +8331,6 @@ export interface components {
          * @enum {string}
          */
         TransferAckType: "none" | "registrar" | "registrant" | "both";
-        /** TransferEvent */
-        TransferEvent: {
-            /** Current Registrar */
-            current_registrar: string;
-            execution_date: components["schemas"]["EppDateTime"];
-            expiration_date: components["schemas"]["EppDateTime"] | null;
-            /** Message */
-            message: string;
-            /** Requesting Registrar */
-            requesting_registrar: string;
-        };
         /** TransferLockPolicyBase */
         TransferLockPolicyBase: {
             /**
