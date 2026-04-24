@@ -21,8 +21,22 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainTagEnriched, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { ZoneIncludeField, DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, TagEnriched, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
+/**
+ * ZoneIncludeField
+ *
+ * @remarks
+ * Array type for ZoneIncludeField objects. Used when the API returns a collection of ZoneIncludeField instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ZoneIncludeFieldArray = await api.getZoneIncludeFields();
+ * ```
+ *
+ * @see {@link ZoneIncludeField} - The individual ZoneIncludeField type definition
+ */
+export type ZoneIncludeFieldArray = ZoneIncludeField[];
 /**
  * DomainIncludeField
  *
@@ -430,6 +444,20 @@ export type DnsZonePatchRrsetsBulkInstanceArray = DnsZonePatchRrsetsBulkInstance
  */
 export type DnsRrsetArray = DnsRrset[];
 /**
+ * TagEnrichedResponse
+ *
+ * @remarks
+ * Array type for TagEnrichedResponse objects. Used when the API returns a collection of TagEnrichedResponse instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TagEnrichedArray = await api.getTagEnricheds();
+ * ```
+ *
+ * @see {@link TagEnriched} - The individual TagEnrichedResponse type definition
+ */
+export type TagEnrichedArray = TagEnriched[];
+/**
  * DnsZoneUpdateBulkInstance
  *
  * @remarks
@@ -723,20 +751,6 @@ export type DomainContactArray = DomainContact[];
  * @see {@link DomainHost} - The individual DomainHostResponse type definition
  */
 export type DomainHostArray = DomainHost[];
-/**
- * DomainTagEnrichedResponse
- *
- * @remarks
- * Array type for DomainTagEnrichedResponse objects. Used when the API returns a collection of DomainTagEnrichedResponse instances.
- *
- * @example
- * ```typescript
- * const items: DomainTagEnrichedArray = await api.getDomainTagEnricheds();
- * ```
- *
- * @see {@link DomainTagEnriched} - The individual DomainTagEnrichedResponse type definition
- */
-export type DomainTagEnrichedArray = DomainTagEnriched[];
 /**
  * DomainSearchSuggestionWithPrice
  *

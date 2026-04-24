@@ -2232,6 +2232,15 @@ components:
           format: date-time
           title: Created On
           type: string
+        dns_zone_id:
+          description: The unique identifier of the zone
+          examples:
+          - zone_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^zone_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Dns Zone Id
+          type: string
+          x-typeid-prefix: zone
         dnssec_status:
           $ref: '#/components/schemas/DnssecStatus'
           default: disabled
@@ -2245,6 +2254,15 @@ components:
             $ref: '#/components/schemas/DnsRrsetResponse'
           title: Rrsets
           type: array
+        tags:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/TagEnrichedResponse'
+            type: array
+          - type: 'null'
+          description: Tags assigned to this zone. Only included when ?include=tags
+            is specified.
+          title: Tags
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -2252,6 +2270,7 @@ components:
           type: string
       required:
       - name
+      - dns_zone_id
       title: DnsZoneResponse
       type: object
     DnsZoneRrsetsCreate:
@@ -3680,7 +3699,7 @@ components:
         tags:
           anyOf:
           - items:
-              $ref: '#/components/schemas/DomainTagEnrichedResponse'
+              $ref: '#/components/schemas/TagEnrichedResponse'
             type: array
           - type: 'null'
           description: Tags assigned to this domain. Only included when ?include=tags
@@ -3952,31 +3971,6 @@ components:
       - organization_id
       - domains
       title: DomainSummaryResponse
-      type: object
-    DomainTagEnrichedResponse:
-      properties:
-        color:
-          $ref: '#/components/schemas/TagColor'
-          description: The color of the tag
-        label:
-          description: The label of the tag
-          minLength: 1
-          title: Label
-          type: string
-        tag_id:
-          description: The unique identifier of the tag
-          examples:
-          - tag_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^tag_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Tag Id
-          type: string
-          x-typeid-prefix: tag
-      required:
-      - tag_id
-      - label
-      - color
-      title: DomainTagEnrichedResponse
       type: object
     DomainTransferBulkCommand:
       properties:
@@ -8869,6 +8863,31 @@ components:
       - type
       title: TagCreate
       type: object
+    TagEnrichedResponse:
+      properties:
+        color:
+          $ref: '#/components/schemas/TagColor'
+          description: The color of the tag
+        label:
+          description: The label of the tag
+          minLength: 1
+          title: Label
+          type: string
+        tag_id:
+          description: The unique identifier of the tag
+          examples:
+          - tag_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^tag_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Tag Id
+          type: string
+          x-typeid-prefix: tag
+      required:
+      - tag_id
+      - label
+      - color
+      title: TagEnrichedResponse
+      type: object
     TagFilterMode:
       enum:
       - match_any
@@ -9970,6 +9989,11 @@ components:
           title: Whois Server
       title: WhoisBase
       type: object
+    ZoneIncludeField:
+      enum:
+      - tags
+      title: ZoneIncludeField
+      type: string
     ZoneSortField:
       enum:
       - name
@@ -10156,7 +10180,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-23-230452
+  version: 2026-04-24-085952
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -12012,6 +12036,29 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - description: Filter by tag IDs. Can be specified multiple times.
+        in: query
+        name: tag_ids
+        required: false
+        schema:
+          anyOf:
+          - items:
+              examples:
+              - tag_01h45ytscbebyvny4gc8cr8ma2
+              format: typeid
+              pattern: ^tag_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+              type: string
+              x-typeid-prefix: tag
+            type: array
+          - type: 'null'
+          description: Filter by tag IDs. Can be specified multiple times.
+          title: Tag Ids
+      - in: query
+        name: tag_mode
+        required: false
+        schema:
+          $ref: '#/components/schemas/TagFilterMode'
+          default: match_any
       - in: query
         name: dnssec_status
         required: false
@@ -12080,6 +12127,20 @@ paths:
             type: string
           - type: 'null'
           title: Updated Before
+      - description: Include additional data in the response. Can be specified multiple
+          times.
+        in: query
+        name: include
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ZoneIncludeField'
+            type: array
+          - type: 'null'
+          description: Include additional data in the response. Can be specified multiple
+            times.
+          title: Include
       - in: query
         name: page
         required: false
@@ -12115,6 +12176,7 @@ paths:
                       total_pages: 1
                     results:
                     - created_on: '2025-11-18T12:43:35Z'
+                      dns_zone_id: zone_01kpwv13k2f329vastjvrckwjs
                       dnssec_status: disabled
                       domain_parts:
                         domain: example
@@ -12682,6 +12744,16 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - items:
+                  $ref: '#/components/schemas/ZoneIncludeField'
+                type: array
+              - type: 'null'
+              title: Include
       responses:
         '200':
           content:

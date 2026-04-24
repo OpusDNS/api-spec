@@ -1137,6 +1137,8 @@ export type GET_ContactsVerify_Request_Query = GET_ContactsVerify_Request['param
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/dns
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Dns_Request_Query} - Query parameters type
  * @see {@link GET_Dns_Request_Path} - Path parameters type
@@ -1158,6 +1160,8 @@ export type GET_Dns_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/dns
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  */
 export type GET_Dns_Request_Query = GET_Dns_Request['parameters']['query'];
 
@@ -1361,6 +1365,7 @@ export type GET_DnsZoneName_Request = {
   parameters: {
     path: operations['get_zone_v1_dns__zone_name__get']['parameters']['path'];
   };
+  requestBody: unknown;
 }
 /**
  * Path parameters for GET /v1/dns/{zone_name}
@@ -1376,6 +1381,19 @@ export type GET_DnsZoneName_Request = {
  * @param zone_name (path) - DNS zone name (trailing dot optional)
  */
 export type GET_DnsZoneName_Request_Path = GET_DnsZoneName_Request['parameters']['path'];
+/**
+ * Request body for GET /v1/dns/{zone_name}
+ *
+ * @remarks
+ * This type defines the request body structure for the GET /v1/dns/{zone_name} endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/dns/{zone_name}
+ */
+export type GET_DnsZoneName_Request_Body = GET_DnsZoneName_Request['requestBody'];
 
 /**
  * Request type for POST DnsZoneNameDnssecDisable endpoint

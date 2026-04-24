@@ -3770,6 +3770,13 @@ export interface components {
              * @description The date/time the entry was created on
              */
             created_on?: Date;
+            /**
+             * Dns Zone Id
+             * Format: typeid
+             * @description The unique identifier of the zone
+             * @example zone_01h45ytscbebyvny4gc8cr8ma2
+             */
+            dns_zone_id: TypeId<"zone">;
             /** @default disabled */
             dnssec_status: components["schemas"]["DnssecStatus"];
             domain_parts?: components["schemas"]["DomainNameParts"];
@@ -3777,6 +3784,11 @@ export interface components {
             name: string;
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetResponse"][];
+            /**
+             * Tags
+             * @description Tags assigned to this zone. Only included when ?include=tags is specified.
+             */
+            tags?: components["schemas"]["TagEnrichedResponse"][] | null;
             /**
              * Updated On
              * Format: date-time
@@ -4704,7 +4716,7 @@ export interface components {
              * Tags
              * @description Tags assigned to this domain. Only included when ?include=tags is specified.
              */
-            tags?: components["schemas"]["DomainTagEnrichedResponse"][] | null;
+            tags?: components["schemas"]["TagEnrichedResponse"][] | null;
             /**
              * Tld
              * @description The top level domain of the domain
@@ -4867,23 +4879,6 @@ export interface components {
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
-        };
-        /** DomainTagEnrichedResponse */
-        DomainTagEnrichedResponse: {
-            /** @description The color of the tag */
-            color: components["schemas"]["TagColor"];
-            /**
-             * Label
-             * @description The label of the tag
-             */
-            label: string;
-            /**
-             * Tag Id
-             * Format: typeid
-             * @description The unique identifier of the tag
-             * @example tag_01h45ytscbebyvny4gc8cr8ma2
-             */
-            tag_id: TypeId<"tag">;
         };
         /** DomainTransferBulkCommand */
         DomainTransferBulkCommand: {
@@ -8142,6 +8137,23 @@ export interface components {
             /** @description Which category a tag applies to, cannot be changed once created */
             type: components["schemas"]["TagType"];
         };
+        /** TagEnrichedResponse */
+        TagEnrichedResponse: {
+            /** @description The color of the tag */
+            color: components["schemas"]["TagColor"];
+            /**
+             * Label
+             * @description The label of the tag
+             */
+            label: string;
+            /**
+             * Tag Id
+             * Format: typeid
+             * @description The unique identifier of the tag
+             * @example tag_01h45ytscbebyvny4gc8cr8ma2
+             */
+            tag_id: TypeId<"tag">;
+        };
         /**
          * TagFilterMode
          * @enum {string}
@@ -8932,6 +8944,11 @@ export interface components {
              */
             whois_server?: string | null;
         };
+        /**
+         * ZoneIncludeField
+         * @enum {string}
+         */
+        ZoneIncludeField: "tags";
         /**
          * ZoneSortField
          * @enum {string}
@@ -10387,6 +10404,9 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["ZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by tag IDs. Can be specified multiple times. */
+                tag_ids?: TypeId<"tag">[] | null;
+                tag_mode?: components["schemas"]["TagFilterMode"];
                 dnssec_status?: components["schemas"]["DnssecStatus"] | null;
                 name?: string | null;
                 search?: string | null;
@@ -10395,6 +10415,8 @@ export interface operations {
                 created_before?: Date | null;
                 updated_after?: Date | null;
                 updated_before?: Date | null;
+                /** @description Include additional data in the response. Can be specified multiple times. */
+                include?: components["schemas"]["ZoneIncludeField"][] | null;
                 page?: number;
                 page_size?: number;
             };
@@ -10646,7 +10668,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["ZoneIncludeField"][] | null;
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {

@@ -2523,22 +2523,6 @@ export type DomainSummaryData = components['schemas']['DomainSummaryData'];
  */
 export type DomainSummary = components['schemas']['DomainSummaryResponse'];
 /**
- * DomainTagEnrichedResponse
- *
- * @remarks
- * Type alias for the `DomainTagEnrichedResponse` OpenAPI schema.
- * This type represents domaintagenrichedresponse data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getDomainTagEnriched();
- * const item: DomainTagEnriched = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type DomainTagEnriched = components['schemas']['DomainTagEnrichedResponse'];
-/**
  * DomainTransferBulkCommand
  *
  * @remarks
@@ -5781,6 +5765,22 @@ export type TagColor = components['schemas']['TagColor'];
  */
 export type TagCreate = components['schemas']['TagCreate'];
 /**
+ * TagEnrichedResponse
+ *
+ * @remarks
+ * Type alias for the `TagEnrichedResponse` OpenAPI schema.
+ * This type represents tagenrichedresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getTagEnriched();
+ * const item: TagEnriched = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type TagEnriched = components['schemas']['TagEnrichedResponse'];
+/**
  * TagFilterMode
  *
  * @remarks
@@ -6276,6 +6276,22 @@ export type VisitsByKeyBucket = components['schemas']['VisitsByKeyBucket'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type WhoisBase = components['schemas']['WhoisBase'];
+/**
+ * ZoneIncludeField
+ *
+ * @remarks
+ * Type alias for the `ZoneIncludeField` OpenAPI schema.
+ * This type represents zoneincludefield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getZoneIncludeField();
+ * const item: ZoneIncludeField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ZoneIncludeField = components['schemas']['ZoneIncludeField'];
 /**
  * ZoneSortField
  *
