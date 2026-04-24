@@ -1214,6 +1214,7 @@ export const DNSSEC_STATUS_VALUES = [
  */
 export const DOMAIN_ATTRIBUTE_KEY = {
   AUTO_RENEW_PERIOD: "auto_renew_period",
+  MUSIC_REGISTRANT_ATTESTATION: "music_registrant_attestation",
 } as const satisfies Record<string, DomainAttributeKey>;
 
 /**
@@ -1238,7 +1239,8 @@ export const DOMAIN_ATTRIBUTE_KEY = {
  * @see {@link DOMAIN_ATTRIBUTE_KEY} - The object form of this enum
  */
 export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
-  'auto_renew_period'
+  'auto_renew_period',
+  'music_registrant_attestation'
 ] as const satisfies [string, ...string[]] | DomainAttributeKey[];
 
 /**

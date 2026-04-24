@@ -10895,6 +10895,32 @@ export const KEYS_DOMAIN_CONTACT = [
 ] as const satisfies (keyof DomainContact)[];
 
 /**
+ * Attributes
+ *
+ * Additional attributes of the domain
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreate[KEY_DOMAIN_CREATE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_ATTRIBUTES;
+ * const value = domaincreate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_ATTRIBUTES: keyof DomainCreate = 'attributes';
+/**
  * Auth Code
  *
  * The auth code used for the domain
@@ -11118,6 +11144,7 @@ export const KEY_DOMAIN_CREATE_RENEWAL_MODE: keyof DomainCreate = 'renewal_mode'
  * @see {@link DomainCreate} - The TypeScript type definition
  */
 export const KEYS_DOMAIN_CREATE = [
+  KEY_DOMAIN_CREATE_ATTRIBUTES,
   KEY_DOMAIN_CREATE_AUTH_CODE,
   KEY_DOMAIN_CREATE_CONTACTS,
   KEY_DOMAIN_CREATE_CREATE_ZONE,
@@ -11852,6 +11879,32 @@ export const KEYS_DOMAIN_CREATE_COMMAND = [
 ] as const satisfies (keyof DomainCreateCommand)[];
 
 /**
+ * Attributes
+ *
+ * Additional attributes of the domain
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatepayloaddata[KEY_DOMAIN_CREATE_PAYLOAD_DATA_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_PAYLOAD_DATA_ATTRIBUTES;
+ * const value = domaincreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_ATTRIBUTES: keyof DomainCreatePayloadData = 'attributes';
+/**
  * Auth Code
  *
  * The auth code used for the domain
@@ -12075,6 +12128,7 @@ export const KEY_DOMAIN_CREATE_PAYLOAD_DATA_RENEWAL_MODE: keyof DomainCreatePayl
  * @see {@link DomainCreatePayloadData} - The TypeScript type definition
  */
 export const KEYS_DOMAIN_CREATE_PAYLOAD_DATA = [
+  KEY_DOMAIN_CREATE_PAYLOAD_DATA_ATTRIBUTES,
   KEY_DOMAIN_CREATE_PAYLOAD_DATA_AUTH_CODE,
   KEY_DOMAIN_CREATE_PAYLOAD_DATA_CONTACTS,
   KEY_DOMAIN_CREATE_PAYLOAD_DATA_CREATE_ZONE,
@@ -17482,6 +17536,7 @@ export const KEYS_DOMAIN_TRANSFER_COMMAND = [
  *
  * Additional attributes of the domain
  *
+ * @type {object}
  *
  *
  * @remarks
@@ -17743,6 +17798,7 @@ export const KEYS_DOMAIN_TRANSFER_IN = [
  *
  * Additional attributes of the domain
  *
+ * @type {object}
  *
  *
  * @remarks

@@ -2497,6 +2497,7 @@ components:
     DomainAttributeKey:
       enum:
       - auto_renew_period
+      - music_registrant_attestation
       title: DomainAttributeKey
       type: string
     DomainAvailability:
@@ -2604,6 +2605,14 @@ components:
       type: string
     DomainCreate:
       properties:
+        attributes:
+          additionalProperties:
+            type: string
+          description: Additional attributes of the domain
+          propertyNames:
+            $ref: '#/components/schemas/DomainAttributeKey'
+          title: Attributes
+          type: object
         auth_code:
           anyOf:
           - maxLength: 32
@@ -2814,6 +2823,14 @@ components:
       type: object
     DomainCreatePayloadData:
       properties:
+        attributes:
+          additionalProperties:
+            type: string
+          description: Additional attributes of the domain
+          propertyNames:
+            $ref: '#/components/schemas/DomainAttributeKey'
+          title: Attributes
+          type: object
         auth_code:
           anyOf:
           - maxLength: 32
@@ -4135,15 +4152,13 @@ components:
     DomainTransferIn:
       properties:
         attributes:
-          anyOf:
-          - additionalProperties:
-              type: string
-            propertyNames:
-              $ref: '#/components/schemas/DomainAttributeKey'
-            type: object
-          - type: 'null'
+          additionalProperties:
+            type: string
           description: Additional attributes of the domain
+          propertyNames:
+            $ref: '#/components/schemas/DomainAttributeKey'
           title: Attributes
+          type: object
         auth_code:
           description: The auth code for the domain
           maxLength: 32
@@ -4198,15 +4213,13 @@ components:
     DomainTransferPayloadData:
       properties:
         attributes:
-          anyOf:
-          - additionalProperties:
-              type: string
-            propertyNames:
-              $ref: '#/components/schemas/DomainAttributeKey'
-            type: object
-          - type: 'null'
+          additionalProperties:
+            type: string
           description: Additional attributes of the domain
+          propertyNames:
+            $ref: '#/components/schemas/DomainAttributeKey'
           title: Attributes
+          type: object
         auth_code:
           description: The auth code for the domain
           maxLength: 32
@@ -10126,7 +10139,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-24-152800
+  version: 2026-04-24-162344
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -18855,6 +18868,7 @@ paths:
                   - command: domain_create
                     idempotency_key: scheduled-create-001
                     payload:
+                      attributes: {}
                       contacts:
                         admin: contact_01kc433yvre99af2wasxhtpswf
                         billing: contact_01kc433yvre99af2wasxhtpswf
@@ -18894,6 +18908,7 @@ paths:
                   - command: domain_create
                     idempotency_key: create-example-com-001
                     payload:
+                      attributes: {}
                       contacts:
                         admin: contact_01kc433yvre99af2wasxhtpswf
                         billing: contact_01kc433yvre99af2wasxhtpswf

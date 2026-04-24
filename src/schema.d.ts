@@ -3942,7 +3942,7 @@ export interface components {
          * DomainAttributeKey
          * @enum {string}
          */
-        DomainAttributeKey: "auto_renew_period";
+        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation";
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -3999,6 +3999,13 @@ export interface components {
         DomainContactType: "registrant" | "admin" | "tech" | "billing";
         /** DomainCreate */
         DomainCreate: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain
+             */
+            attributes?: {
+                [key: string]: string;
+            };
             /**
              * Auth Code
              * @description The auth code used for the domain
@@ -4149,6 +4156,13 @@ export interface components {
         };
         /** DomainCreatePayloadData */
         DomainCreatePayloadData: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain
+             */
+            attributes?: {
+                [key: string]: string;
+            };
             /**
              * Auth Code
              * @description The auth code used for the domain
@@ -5005,7 +5019,7 @@ export interface components {
              */
             attributes?: {
                 [key: string]: string;
-            } | null;
+            };
             /**
              * Auth Code
              * @description The auth code for the domain
@@ -5050,7 +5064,7 @@ export interface components {
              */
             attributes?: {
                 [key: string]: string;
-            } | null;
+            };
             /**
              * Auth Code
              * @description The auth code for the domain
