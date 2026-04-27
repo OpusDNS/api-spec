@@ -1514,7 +1514,7 @@ export interface paths {
          * List organization attributes
          * @description Retrieves a list of organization attributes for the current organization
          */
-        get: operations["get_attributes_v1_organizations_attributes_get"];
+        get: operations["get_current_organization_attributes_v1_organizations_attributes_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1524,7 +1524,7 @@ export interface paths {
          * Update organization attributes
          * @description Updates one or more organization attributes for the current organization
          */
-        patch: operations["update_attributes_v1_organizations_attributes_patch"];
+        patch: operations["update_current_organization_attributes_v1_organizations_attributes_patch"];
         trace?: never;
     };
     "/v1/organizations/ip-restrictions": {
@@ -1672,7 +1672,7 @@ export interface paths {
          * List organization attributes
          * @description Retrieves a list of organization attributes for the specified organization
          */
-        get: operations["get_attributes_v1_organizations__organization_id__attributes_get"];
+        get: operations["get_organization_attributes_v1_organizations__organization_id__attributes_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1682,7 +1682,7 @@ export interface paths {
          * Update organization attributes
          * @description Updates one or more organization attributes for the specified organization
          */
-        patch: operations["update_attributes_v1_organizations__organization_id__attributes_patch"];
+        patch: operations["update_organization_attributes_v1_organizations__organization_id__attributes_patch"];
         trace?: never;
     };
     "/v1/organizations/{organization_id}/billing/invoices": {
@@ -15555,10 +15555,9 @@ export interface operations {
             };
         };
     };
-    get_attributes_v1_organizations_attributes_get: {
+    get_current_organization_attributes_v1_organizations_attributes_get: {
         parameters: {
             query?: {
-                organization_id?: TypeId<"organization"> | null;
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
             };
@@ -15620,11 +15619,9 @@ export interface operations {
             };
         };
     };
-    update_attributes_v1_organizations_attributes_patch: {
+    update_current_organization_attributes_v1_organizations_attributes_patch: {
         parameters: {
-            query?: {
-                organization_id?: TypeId<"organization"> | null;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -16323,7 +16320,7 @@ export interface operations {
             };
         };
     };
-    get_attributes_v1_organizations__organization_id__attributes_get: {
+    get_organization_attributes_v1_organizations__organization_id__attributes_get: {
         parameters: {
             query?: {
                 /** @description Optional list of attribute keys to filter */
@@ -16331,7 +16328,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                organization_id: TypeId<"organization"> | null;
+                organization_id: TypeId<"organization">;
             };
             cookie?: never;
         };
@@ -16389,12 +16386,12 @@ export interface operations {
             };
         };
     };
-    update_attributes_v1_organizations__organization_id__attributes_patch: {
+    update_organization_attributes_v1_organizations__organization_id__attributes_patch: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                organization_id: TypeId<"organization"> | null;
+                organization_id: TypeId<"organization">;
             };
             cookie?: never;
         };

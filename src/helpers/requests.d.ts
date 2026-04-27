@@ -4618,7 +4618,7 @@ export type POST_Organizations_Request_Body = POST_Organizations_Request['reques
  */
 export type GET_OrganizationsAttributes_Request = {
   parameters: {
-    query: operations['get_attributes_v1_organizations_attributes_get']['parameters']['query'];
+    query: operations['get_current_organization_attributes_v1_organizations_attributes_get']['parameters']['query'];
   };
 }
 /**
@@ -4657,24 +4657,8 @@ export type GET_OrganizationsAttributes_Request_Query = GET_OrganizationsAttribu
  * @see {@link PATCH_OrganizationsAttributes_Request_Body} - Request body type
  */
 export type PATCH_OrganizationsAttributes_Request = {
-  parameters: {
-    query: operations['update_attributes_v1_organizations_attributes_patch']['parameters']['query'];
-  };
   requestBody: OrganizationAttributeUpdateArray;
 }
-/**
- * Query parameters for PATCH /v1/organizations/attributes
- *
- * @remarks
- * This type defines the query parameters for the PATCH /v1/organizations/attributes endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/attributes
- */
-export type PATCH_OrganizationsAttributes_Request_Query = PATCH_OrganizationsAttributes_Request['parameters']['query'];
 /**
  * Request body for PATCH /v1/organizations/attributes
  *
@@ -5048,8 +5032,8 @@ export type PATCH_OrganizationsOrganizationId_Request_Body = PATCH_Organizations
  */
 export type GET_OrganizationsOrganizationIdAttributes_Request = {
   parameters: {
-    query: operations['get_attributes_v1_organizations__organization_id__attributes_get']['parameters']['query'];
-    path: operations['get_attributes_v1_organizations__organization_id__attributes_get']['parameters']['path'];
+    query: operations['get_organization_attributes_v1_organizations__organization_id__attributes_get']['parameters']['query'];
+    path: operations['get_organization_attributes_v1_organizations__organization_id__attributes_get']['parameters']['path'];
   };
 }
 /**
@@ -5102,7 +5086,7 @@ export type GET_OrganizationsOrganizationIdAttributes_Request_Path = GET_Organiz
  */
 export type PATCH_OrganizationsOrganizationIdAttributes_Request = {
   parameters: {
-    path: operations['update_attributes_v1_organizations__organization_id__attributes_patch']['parameters']['path'];
+    path: operations['update_organization_attributes_v1_organizations__organization_id__attributes_patch']['parameters']['path'];
   };
   requestBody: OrganizationAttributeUpdateArray;
 }

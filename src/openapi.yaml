@@ -10199,7 +10199,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-27-182502
+  version: 2026-04-27-193424
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19712,21 +19712,8 @@ paths:
   /v1/organizations/attributes:
     get:
       description: Retrieves a list of organization attributes for the current organization
-      operationId: get_attributes_v1_organizations_attributes_get
+      operationId: get_current_organization_attributes_v1_organizations_attributes_get
       parameters:
-      - in: query
-        name: organization_id
-        required: false
-        schema:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
-          title: Organization Id
       - description: Optional list of attribute keys to filter
         in: query
         name: keys
@@ -19746,7 +19733,8 @@ paths:
               schema:
                 items:
                   $ref: '#/components/schemas/OrganizationAttributeResponse'
-                title: Response Get Attributes V1 Organizations Attributes Get
+                title: Response Get Current Organization Attributes V1 Organizations
+                  Attributes Get
                 type: array
           description: Successful Response
         '401':
@@ -19787,21 +19775,7 @@ paths:
       - organization
     patch:
       description: Updates one or more organization attributes for the current organization
-      operationId: update_attributes_v1_organizations_attributes_patch
-      parameters:
-      - in: query
-        name: organization_id
-        required: false
-        schema:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
-          title: Organization Id
+      operationId: update_current_organization_attributes_v1_organizations_attributes_patch
       requestBody:
         content:
           application/json:
@@ -19818,7 +19792,8 @@ paths:
               schema:
                 items:
                   $ref: '#/components/schemas/OrganizationAttributeResponse'
-                title: Response Update Attributes V1 Organizations Attributes Patch
+                title: Response Update Current Organization Attributes V1 Organizations
+                  Attributes Patch
                 type: array
           description: Successful Response
         '401':
@@ -20462,21 +20437,19 @@ paths:
   /v1/organizations/{organization_id}/attributes:
     get:
       description: Retrieves a list of organization attributes for the specified organization
-      operationId: get_attributes_v1_organizations__organization_id__attributes_get
+      operationId: get_organization_attributes_v1_organizations__organization_id__attributes_get
       parameters:
       - in: path
         name: organization_id
         required: true
         schema:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
           title: Organization Id
+          type: string
+          x-typeid-prefix: organization
       - description: Optional list of attribute keys to filter
         in: query
         name: keys
@@ -20496,8 +20469,8 @@ paths:
               schema:
                 items:
                   $ref: '#/components/schemas/OrganizationAttributeResponse'
-                title: Response Get Attributes V1 Organizations  Organization Id  Attributes
-                  Get
+                title: Response Get Organization Attributes V1 Organizations  Organization
+                  Id  Attributes Get
                 type: array
           description: Successful Response
         '401':
@@ -20538,21 +20511,19 @@ paths:
       - organization
     patch:
       description: Updates one or more organization attributes for the specified organization
-      operationId: update_attributes_v1_organizations__organization_id__attributes_patch
+      operationId: update_organization_attributes_v1_organizations__organization_id__attributes_patch
       parameters:
       - in: path
         name: organization_id
         required: true
         schema:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
           title: Organization Id
+          type: string
+          x-typeid-prefix: organization
       requestBody:
         content:
           application/json:
@@ -20569,8 +20540,8 @@ paths:
               schema:
                 items:
                   $ref: '#/components/schemas/OrganizationAttributeResponse'
-                title: Response Update Attributes V1 Organizations  Organization Id  Attributes
-                  Patch
+                title: Response Update Organization Attributes V1 Organizations  Organization
+                  Id  Attributes Patch
                 type: array
           description: Successful Response
         '401':
