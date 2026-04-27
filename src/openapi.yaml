@@ -2629,6 +2629,14 @@ components:
           - type: 'null'
           description: The auth code used for the domain
           title: Auth Code
+        claims_notice_acceptance_hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: During the claims phase domain names that match a trademark
+            registered in the Trademark Clearinghouse require an acceptance by the
+            registrant.
+          title: The accept_hash of the related claims notice
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
@@ -2849,6 +2857,14 @@ components:
           - type: 'null'
           description: The auth code used for the domain
           title: Auth Code
+        claims_notice_acceptance_hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: During the claims phase domain names that match a trademark
+            registered in the Trademark Clearinghouse require an acceptance by the
+            registrant.
+          title: The accept_hash of the related claims notice
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
@@ -10153,7 +10169,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-27-163825
+  version: 2026-04-27-175347
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

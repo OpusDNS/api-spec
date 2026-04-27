@@ -4012,6 +4012,11 @@ export interface components {
              */
             auth_code?: string | null;
             /**
+             * The accept_hash of the related claims notice
+             * @description During the claims phase domain names that match a trademark registered in the Trademark Clearinghouse require an acceptance by the registrant.
+             */
+            claims_notice_acceptance_hash?: string | null;
+            /**
              * Contacts
              * @description The contacts of the domain
              */
@@ -4168,6 +4173,11 @@ export interface components {
              * @description The auth code used for the domain
              */
             auth_code?: string | null;
+            /**
+             * The accept_hash of the related claims notice
+             * @description During the claims phase domain names that match a trademark registered in the Trademark Clearinghouse require an acceptance by the registrant.
+             */
+            claims_notice_acceptance_hash?: string | null;
             /**
              * Contacts
              * @description The contacts of the domain
