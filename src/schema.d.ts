@@ -3849,7 +3849,7 @@ export interface components {
             name: string;
             /**
              * Rrsets
-             * @description Override RRsets for this zone
+             * @description Override RRsets for this zone. Omit to inherit the template (or leave records unchanged if the template also omits rrsets). Provide an empty list to delete all records.
              */
             rrsets?: components["schemas"]["DnsRrsetCreate"][] | null;
         };
@@ -3869,9 +3869,9 @@ export interface components {
             dnssec_status?: components["schemas"]["DnssecStatus"] | null;
             /**
              * Rrsets
-             * @description DNS record sets to update
+             * @description DNS record sets to apply to every zone. Omit to leave each zone's RRsets unchanged (useful for bulk DNSSEC toggles). Provide an empty list to delete all records.
              */
-            rrsets?: components["schemas"]["DnsRrsetCreate"][];
+            rrsets?: components["schemas"]["DnsRrsetCreate"][] | null;
         };
         /** DnsZoneUpdateCommand */
         DnsZoneUpdateCommand: {

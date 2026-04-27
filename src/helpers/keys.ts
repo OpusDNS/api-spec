@@ -10032,7 +10032,7 @@ export const KEY_DNS_ZONE_UPDATE_BULK_INSTANCE_NAME: keyof DnsZoneUpdateBulkInst
 /**
  * Rrsets
  *
- * Override RRsets for this zone
+ * Override RRsets for this zone. Omit to inherit the template (or leave records unchanged if the template also omits rrsets). Provide an empty list to delete all records.
  *
  *
  *
@@ -10186,9 +10186,8 @@ export const KEY_DNS_ZONE_UPDATE_BULK_TEMPLATE_DNSSEC_STATUS: keyof DnsZoneUpdat
 /**
  * Rrsets
  *
- * DNS record sets to update
+ * DNS record sets to apply to every zone. Omit to leave each zone's RRsets unchanged (useful for bulk DNSSEC toggles). Provide an empty list to delete all records.
  *
- * @type {array}
  *
  *
  * @remarks
