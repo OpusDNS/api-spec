@@ -1396,6 +1396,31 @@ export const KEYS_BULK_OBJECT_TAG_CHANGES = [
 ] as const satisfies (keyof BulkObjectTagChanges)[];
 
 /**
+ * Code
+ *
+ * Stable semantic error code for known failure modes (e.g. 'ERROR_BATCH_EMPTY'); null for ad-hoc failures. Matches the 'code' field in top-level error responses.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `code` property of CommandError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = commanderror[KEY_COMMAND_ERROR_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_COMMAND_ERROR_CODE;
+ * const value = commanderror[propertyName];
+ * ```
+ *
+ * @see {@link CommandError} - The TypeScript type definition
+ * @see {@link KEYS_COMMAND_ERROR} - Array of all keys for this type
+ */
+export const KEY_COMMAND_ERROR_CODE: keyof CommandError = 'code';
+/**
  * Error
  *
  * Error message
@@ -1447,6 +1472,81 @@ export const KEY_COMMAND_ERROR_ERROR: keyof CommandError = 'error';
  * @see {@link KEYS_COMMAND_ERROR} - Array of all keys for this type
  */
 export const KEY_COMMAND_ERROR_INDEX: keyof CommandError = 'index';
+/**
+ * Instance Index
+ *
+ * Index within the bulk command's instances[] for per-instance failures
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instance_index` property of CommandError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = commanderror[KEY_COMMAND_ERROR_INSTANCE_INDEX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_COMMAND_ERROR_INSTANCE_INDEX;
+ * const value = commanderror[propertyName];
+ * ```
+ *
+ * @see {@link CommandError} - The TypeScript type definition
+ * @see {@link KEYS_COMMAND_ERROR} - Array of all keys for this type
+ */
+export const KEY_COMMAND_ERROR_INSTANCE_INDEX: keyof CommandError = 'instance_index';
+/**
+ * Resource Key
+ *
+ * Resource identifier (zone name, domain name, contact email) for per-instance failures
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `resource_key` property of CommandError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = commanderror[KEY_COMMAND_ERROR_RESOURCE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_COMMAND_ERROR_RESOURCE_KEY;
+ * const value = commanderror[propertyName];
+ * ```
+ *
+ * @see {@link CommandError} - The TypeScript type definition
+ * @see {@link KEYS_COMMAND_ERROR} - Array of all keys for this type
+ */
+export const KEY_COMMAND_ERROR_RESOURCE_KEY: keyof CommandError = 'resource_key';
+/**
+ * Type
+ *
+ * RFC 9457 problem type identifier derived from the exception class (e.g. 'value', 'batch-empty'). Matches the 'type' field in top-level error responses.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of CommandError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = commanderror[KEY_COMMAND_ERROR_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_COMMAND_ERROR_TYPE;
+ * const value = commanderror[propertyName];
+ * ```
+ *
+ * @see {@link CommandError} - The TypeScript type definition
+ * @see {@link KEYS_COMMAND_ERROR} - Array of all keys for this type
+ */
+export const KEY_COMMAND_ERROR_TYPE: keyof CommandError = 'type';
 
 /**
  * Array of all CommandError property keys
@@ -1469,8 +1569,12 @@ export const KEY_COMMAND_ERROR_INDEX: keyof CommandError = 'index';
  * @see {@link CommandError} - The TypeScript type definition
  */
 export const KEYS_COMMAND_ERROR = [
+  KEY_COMMAND_ERROR_CODE,
   KEY_COMMAND_ERROR_ERROR,
   KEY_COMMAND_ERROR_INDEX,
+  KEY_COMMAND_ERROR_INSTANCE_INDEX,
+  KEY_COMMAND_ERROR_RESOURCE_KEY,
+  KEY_COMMAND_ERROR_TYPE,
 ] as const satisfies (keyof CommandError)[];
 
 /**

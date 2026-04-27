@@ -325,6 +325,14 @@ components:
       type: object
     CommandError:
       properties:
+        code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Stable semantic error code for known failure modes (e.g. 'ERROR_BATCH_EMPTY');
+            null for ad-hoc failures. Matches the 'code' field in top-level error
+            responses.
+          title: Code
         error:
           description: Error message
           title: Error
@@ -333,6 +341,28 @@ components:
           description: Index of the failed command in the request
           title: Index
           type: integer
+        instance_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Index within the bulk command's instances[] for per-instance
+            failures
+          title: Instance Index
+        resource_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Resource identifier (zone name, domain name, contact email)
+            for per-instance failures
+          title: Resource Key
+        type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: RFC 9457 problem type identifier derived from the exception
+            class (e.g. 'value', 'batch-empty'). Matches the 'type' field in top-level
+            error responses.
+          title: Type
       required:
       - index
       - error
@@ -10169,7 +10199,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-27-175347
+  version: 2026-04-27-182502
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

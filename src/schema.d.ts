@@ -2414,6 +2414,11 @@ export interface components {
         /** CommandError */
         CommandError: {
             /**
+             * Code
+             * @description Stable semantic error code for known failure modes (e.g. 'ERROR_BATCH_EMPTY'); null for ad-hoc failures. Matches the 'code' field in top-level error responses.
+             */
+            code?: string | null;
+            /**
              * Error
              * @description Error message
              */
@@ -2423,6 +2428,21 @@ export interface components {
              * @description Index of the failed command in the request
              */
             index: number;
+            /**
+             * Instance Index
+             * @description Index within the bulk command's instances[] for per-instance failures
+             */
+            instance_index?: number | null;
+            /**
+             * Resource Key
+             * @description Resource identifier (zone name, domain name, contact email) for per-instance failures
+             */
+            resource_key?: string | null;
+            /**
+             * Type
+             * @description RFC 9457 problem type identifier derived from the exception class (e.g. 'value', 'batch-empty'). Matches the 'type' field in top-level error responses.
+             */
+            type?: string | null;
         };
         /**
          * ComplianceStatus
