@@ -10153,7 +10153,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-27-130908
+  version: 2026-04-27-163825
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19811,156 +19811,6 @@ paths:
       summary: Update organization attributes
       tags:
       - organization
-  /v1/organizations/attributes/{organization_id}:
-    get:
-      description: Retrieves a list of organization attributes for the specified organization
-      operationId: get_attributes_v1_organizations_attributes__organization_id__get
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
-          title: Organization Id
-      - description: Optional list of attribute keys to filter
-        in: query
-        name: keys
-        required: false
-        schema:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          description: Optional list of attribute keys to filter
-          title: Keys
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/OrganizationAttributeResponse'
-                title: Response Get Attributes V1 Organizations Attributes  Organization
-                  Id  Get
-                type: array
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '403':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_PERMISSION_DENIED
-                detail: Insufficient permissions to perform this action
-                status: 403
-                title: Permission Denied
-                type: permission-denied
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Forbidden
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
-      summary: List organization attributes
-      tags:
-      - organization
-    patch:
-      description: Updates one or more organization attributes for the specified organization
-      operationId: update_attributes_v1_organizations_attributes__organization_id__patch
-      parameters:
-      - in: path
-        name: organization_id
-        required: true
-        schema:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
-          title: Organization Id
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/OrganizationAttributeUpdate'
-              title: Attributes
-              type: array
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/OrganizationAttributeResponse'
-                title: Response Update Attributes V1 Organizations Attributes  Organization
-                  Id  Patch
-                type: array
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '403':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_PERMISSION_DENIED
-                detail: Insufficient permissions to perform this action
-                status: 403
-                title: Permission Denied
-                type: permission-denied
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Forbidden
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
-      summary: Update organization attributes
-      tags:
-      - organization
   /v1/organizations/ip-restrictions:
     get:
       description: 'List all IP restrictions for the organization.
@@ -20561,6 +20411,156 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Update an organization
+      tags:
+      - organization
+  /v1/organizations/{organization_id}/attributes:
+    get:
+      description: Retrieves a list of organization attributes for the specified organization
+      operationId: get_attributes_v1_organizations__organization_id__attributes_get
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - organization_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: organization
+          - type: 'null'
+          title: Organization Id
+      - description: Optional list of attribute keys to filter
+        in: query
+        name: keys
+        required: false
+        schema:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: Optional list of attribute keys to filter
+          title: Keys
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OrganizationAttributeResponse'
+                title: Response Get Attributes V1 Organizations  Organization Id  Attributes
+                  Get
+                type: array
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List organization attributes
+      tags:
+      - organization
+    patch:
+      description: Updates one or more organization attributes for the specified organization
+      operationId: update_attributes_v1_organizations__organization_id__attributes_patch
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - organization_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: organization
+          - type: 'null'
+          title: Organization Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/OrganizationAttributeUpdate'
+              title: Attributes
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OrganizationAttributeResponse'
+                title: Response Update Attributes V1 Organizations  Organization Id  Attributes
+                  Patch
+                type: array
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Insufficient permissions to perform this action
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Update organization attributes
       tags:
       - organization
   /v1/organizations/{organization_id}/billing/invoices:

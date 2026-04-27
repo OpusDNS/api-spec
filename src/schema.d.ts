@@ -1527,30 +1527,6 @@ export interface paths {
         patch: operations["update_attributes_v1_organizations_attributes_patch"];
         trace?: never;
     };
-    "/v1/organizations/attributes/{organization_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List organization attributes
-         * @description Retrieves a list of organization attributes for the specified organization
-         */
-        get: operations["get_attributes_v1_organizations_attributes__organization_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Update organization attributes
-         * @description Updates one or more organization attributes for the specified organization
-         */
-        patch: operations["update_attributes_v1_organizations_attributes__organization_id__patch"];
-        trace?: never;
-    };
     "/v1/organizations/ip-restrictions": {
         parameters: {
             query?: never;
@@ -1683,6 +1659,30 @@ export interface paths {
          * @description Updates details for a specific organization
          */
         patch: operations["update_organization_v1_organizations__organization_id__patch"];
+        trace?: never;
+    };
+    "/v1/organizations/{organization_id}/attributes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List organization attributes
+         * @description Retrieves a list of organization attributes for the specified organization
+         */
+        get: operations["get_attributes_v1_organizations__organization_id__attributes_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update organization attributes
+         * @description Updates one or more organization attributes for the specified organization
+         */
+        patch: operations["update_attributes_v1_organizations__organization_id__attributes_patch"];
         trace?: never;
     };
     "/v1/organizations/{organization_id}/billing/invoices": {
@@ -15657,139 +15657,6 @@ export interface operations {
             };
         };
     };
-    get_attributes_v1_organizations_attributes__organization_id__get: {
-        parameters: {
-            query?: {
-                /** @description Optional list of attribute keys to filter */
-                keys?: string[] | null;
-            };
-            header?: never;
-            path: {
-                organization_id: TypeId<"organization"> | null;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_attributes_v1_organizations_attributes__organization_id__patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                organization_id: TypeId<"organization"> | null;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OrganizationAttributeUpdate"][];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     list_ip_restrictions_v1_organizations_ip_restrictions_get: {
         parameters: {
             query?: never;
@@ -16381,6 +16248,139 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Organization"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_attributes_v1_organizations__organization_id__attributes_get: {
+        parameters: {
+            query?: {
+                /** @description Optional list of attribute keys to filter */
+                keys?: string[] | null;
+            };
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization"> | null;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_attributes_v1_organizations__organization_id__attributes_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: TypeId<"organization"> | null;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationAttributeUpdate"][];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationAttributeResponse"][];
                 };
             };
             /** @description Unauthorized */

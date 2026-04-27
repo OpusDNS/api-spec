@@ -4690,114 +4690,6 @@ export type PATCH_OrganizationsAttributes_Request_Query = PATCH_OrganizationsAtt
 export type PATCH_OrganizationsAttributes_Request_Body = PATCH_OrganizationsAttributes_Request['requestBody'];
 
 /**
- * Request type for GET OrganizationsAttributesOrganizationId endpoint
- *
- * List organization attributes
- * Retrieves a list of organization attributes for the specified organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsAttributesOrganizationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/attributes/{organization_id}
- * @param keys (query) - Optional list of attribute keys to filter
- *
- * @see {@link GET_OrganizationsAttributesOrganizationId_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsAttributesOrganizationId_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsAttributesOrganizationId_Request_Body} - Request body type
- */
-export type GET_OrganizationsAttributesOrganizationId_Request = {
-  parameters: {
-    query: operations['get_attributes_v1_organizations_attributes__organization_id__get']['parameters']['query'];
-    path: operations['get_attributes_v1_organizations_attributes__organization_id__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations/attributes/{organization_id}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations/attributes/{organization_id} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/attributes/{organization_id}
- * @param keys (query) - Optional list of attribute keys to filter
- */
-export type GET_OrganizationsAttributesOrganizationId_Request_Query = GET_OrganizationsAttributesOrganizationId_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/organizations/attributes/{organization_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/attributes/{organization_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/attributes/{organization_id}
- */
-export type GET_OrganizationsAttributesOrganizationId_Request_Path = GET_OrganizationsAttributesOrganizationId_Request['parameters']['path'];
-
-/**
- * Request type for PATCH OrganizationsAttributesOrganizationId endpoint
- *
- * Update organization attributes
- * Updates one or more organization attributes for the specified organization
- *
- * @remarks
- * This type defines the complete request structure for the PATCH OrganizationsAttributesOrganizationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/attributes/{organization_id}
- *
- * @see {@link PATCH_OrganizationsAttributesOrganizationId_Request_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsAttributesOrganizationId_Request_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsAttributesOrganizationId_Request_Body} - Request body type
- */
-export type PATCH_OrganizationsAttributesOrganizationId_Request = {
-  parameters: {
-    path: operations['update_attributes_v1_organizations_attributes__organization_id__patch']['parameters']['path'];
-  };
-  requestBody: OrganizationAttributeUpdateArray;
-}
-/**
- * Path parameters for PATCH /v1/organizations/attributes/{organization_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/organizations/attributes/{organization_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/attributes/{organization_id}
- */
-export type PATCH_OrganizationsAttributesOrganizationId_Request_Path = PATCH_OrganizationsAttributesOrganizationId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/organizations/attributes/{organization_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/organizations/attributes/{organization_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations/attributes/{organization_id}
- */
-export type PATCH_OrganizationsAttributesOrganizationId_Request_Body = PATCH_OrganizationsAttributesOrganizationId_Request['requestBody'];
-
-/**
  * Request type for GET OrganizationsIpRestrictions endpoint
  *
  * List IP restrictions
@@ -5132,6 +5024,114 @@ export type PATCH_OrganizationsOrganizationId_Request_Path = PATCH_Organizations
  * @path /v1/organizations/{organization_id}
  */
 export type PATCH_OrganizationsOrganizationId_Request_Body = PATCH_OrganizationsOrganizationId_Request['requestBody'];
+
+/**
+ * Request type for GET OrganizationsOrganizationIdAttributes endpoint
+ *
+ * List organization attributes
+ * Retrieves a list of organization attributes for the specified organization
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET OrganizationsOrganizationIdAttributes endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/attributes
+ * @param keys (query) - Optional list of attribute keys to filter
+ *
+ * @see {@link GET_OrganizationsOrganizationIdAttributes_Request_Query} - Query parameters type
+ * @see {@link GET_OrganizationsOrganizationIdAttributes_Request_Path} - Path parameters type
+ * @see {@link GET_OrganizationsOrganizationIdAttributes_Request_Body} - Request body type
+ */
+export type GET_OrganizationsOrganizationIdAttributes_Request = {
+  parameters: {
+    query: operations['get_attributes_v1_organizations__organization_id__attributes_get']['parameters']['query'];
+    path: operations['get_attributes_v1_organizations__organization_id__attributes_get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/organizations/{organization_id}/attributes
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/organizations/{organization_id}/attributes endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/organizations/{organization_id}/attributes
+ * @param keys (query) - Optional list of attribute keys to filter
+ */
+export type GET_OrganizationsOrganizationIdAttributes_Request_Query = GET_OrganizationsOrganizationIdAttributes_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/organizations/{organization_id}/attributes
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/organizations/{organization_id}/attributes endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/attributes
+ */
+export type GET_OrganizationsOrganizationIdAttributes_Request_Path = GET_OrganizationsOrganizationIdAttributes_Request['parameters']['path'];
+
+/**
+ * Request type for PATCH OrganizationsOrganizationIdAttributes endpoint
+ *
+ * Update organization attributes
+ * Updates one or more organization attributes for the specified organization
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH OrganizationsOrganizationIdAttributes endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/organizations/{organization_id}/attributes
+ *
+ * @see {@link PATCH_OrganizationsOrganizationIdAttributes_Request_Query} - Query parameters type
+ * @see {@link PATCH_OrganizationsOrganizationIdAttributes_Request_Path} - Path parameters type
+ * @see {@link PATCH_OrganizationsOrganizationIdAttributes_Request_Body} - Request body type
+ */
+export type PATCH_OrganizationsOrganizationIdAttributes_Request = {
+  parameters: {
+    path: operations['update_attributes_v1_organizations__organization_id__attributes_patch']['parameters']['path'];
+  };
+  requestBody: OrganizationAttributeUpdateArray;
+}
+/**
+ * Path parameters for PATCH /v1/organizations/{organization_id}/attributes
+ *
+ * @remarks
+ * This type defines the path parameters for the PATCH /v1/organizations/{organization_id}/attributes endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/organizations/{organization_id}/attributes
+ */
+export type PATCH_OrganizationsOrganizationIdAttributes_Request_Path = PATCH_OrganizationsOrganizationIdAttributes_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/organizations/{organization_id}/attributes
+ *
+ * @remarks
+ * This type defines the request body structure for the PATCH /v1/organizations/{organization_id}/attributes endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/organizations/{organization_id}/attributes
+ */
+export type PATCH_OrganizationsOrganizationIdAttributes_Request_Body = PATCH_OrganizationsOrganizationIdAttributes_Request['requestBody'];
 
 /**
  * Request type for GET OrganizationsOrganizationIdBillingInvoices endpoint
