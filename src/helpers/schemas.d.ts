@@ -603,6 +603,22 @@ export type ContactHandle = components['schemas']['ContactHandle'];
  */
 export type ContactIdList = components['schemas']['ContactIdList'];
 /**
+ * ContactIncludeField
+ *
+ * @remarks
+ * Type alias for the `ContactIncludeField` OpenAPI schema.
+ * This type represents contactincludefield data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactIncludeField();
+ * const item: ContactIncludeField = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactIncludeField = components['schemas']['ContactIncludeField'];
+/**
  * ContactResponse
  *
  * @remarks

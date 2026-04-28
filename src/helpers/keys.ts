@@ -4741,6 +4741,31 @@ export const KEY_CONTACT_STATE: keyof Contact = 'state';
  */
 export const KEY_CONTACT_STREET: keyof Contact = 'street';
 /**
+ * Tags
+ *
+ * Tags assigned to this contact
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tags` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_TAGS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_TAGS;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_TAGS: keyof Contact = 'tags';
+/**
  * Title
  *
  * The title of the contact
@@ -4803,6 +4828,7 @@ export const KEYS_CONTACT = [
   KEY_CONTACT_POSTAL_CODE,
   KEY_CONTACT_STATE,
   KEY_CONTACT_STREET,
+  KEY_CONTACT_TAGS,
   KEY_CONTACT_TITLE,
 ] as const satisfies (keyof Contact)[];
 

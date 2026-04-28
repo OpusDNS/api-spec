@@ -574,6 +574,8 @@ export type POST_AvailabilityStream_Response_422 = HTTPValidationError
 
  *
  * @path /v1/contacts
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Contacts_Response_200} - 200 response type
  * @see {@link GET_Contacts_Response_422} - 422 response type
@@ -593,6 +595,8 @@ export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Res
 
  *
  * @path /v1/contacts
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Contacts_Response} - The main response type definition
  * @see {@link Pagination_Contact} - The actual schema type definition
@@ -610,6 +614,8 @@ export type GET_Contacts_Response_200 = Pagination_Contact
 
  *
  * @path /v1/contacts
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Contacts_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition

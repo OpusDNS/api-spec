@@ -2971,6 +2971,11 @@ export interface components {
         ContactIdList: {
             [key: string]: TypeId<"contact">;
         };
+        /**
+         * ContactIncludeField
+         * @enum {string}
+         */
+        ContactIncludeField: "tags";
         /** ContactResponse */
         ContactResponse: {
             /**
@@ -3061,6 +3066,11 @@ export interface components {
              * @description The address of the contact
              */
             street: string;
+            /**
+             * Tags
+             * @description Tags assigned to this contact
+             */
+            tags?: components["schemas"]["TagEnrichedResponse"][] | null;
             /**
              * Title
              * @description The title of the contact
@@ -9466,6 +9476,9 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["ContactSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by tag IDs. Can be specified multiple times. */
+                tag_ids?: TypeId<"tag">[] | null;
+                tag_mode?: components["schemas"]["TagFilterMode"];
                 first_name?: string | null;
                 last_name?: string | null;
                 email?: string | null;
@@ -9473,6 +9486,8 @@ export interface operations {
                 country?: string | null;
                 created_after?: Date | null;
                 created_before?: Date | null;
+                /** @description Include additional data in the response. Can be specified multiple times. */
+                include?: components["schemas"]["ContactIncludeField"][] | null;
                 page?: number;
                 page_size?: number;
             };
@@ -9952,7 +9967,9 @@ export interface operations {
     };
     get_contact_v1_contacts__contact_id__get: {
         parameters: {
-            query?: never;
+            query?: {
+                include?: components["schemas"]["ContactIncludeField"][] | null;
+            };
             header?: never;
             path: {
                 contact_id: TypeId<"contact">;

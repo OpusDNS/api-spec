@@ -451,6 +451,8 @@ export type POST_AvailabilityStream_Request_Body = POST_AvailabilityStream_Reque
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/contacts
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Contacts_Request_Query} - Query parameters type
  * @see {@link GET_Contacts_Request_Path} - Path parameters type
@@ -472,6 +474,8 @@ export type GET_Contacts_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/contacts
+ * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param include (query) - Include additional data in the response. Can be specified multiple times.
  */
 export type GET_Contacts_Request_Query = GET_Contacts_Request['parameters']['query'];
 
@@ -774,9 +778,23 @@ export type DELETE_ContactsContactId_Request_Path = DELETE_ContactsContactId_Req
  */
 export type GET_ContactsContactId_Request = {
   parameters: {
+    query: operations['get_contact_v1_contacts__contact_id__get']['parameters']['query'];
     path: operations['get_contact_v1_contacts__contact_id__get']['parameters']['path'];
   };
 }
+/**
+ * Query parameters for GET /v1/contacts/{contact_id}
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/contacts/{contact_id} endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/contacts/{contact_id}
+ */
+export type GET_ContactsContactId_Request_Query = GET_ContactsContactId_Request['parameters']['query'];
 /**
  * Path parameters for GET /v1/contacts/{contact_id}
  *
