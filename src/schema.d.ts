@@ -9038,10 +9038,10 @@ export interface components {
             /** Available */
             available: boolean;
             /**
-             * Claim Key
-             * @description Claim key, if trademark notice acceptance is required
+             * Claims Key
+             * @description Claims key, if claims notice acceptance is required
              */
-            claim_key?: string | null;
+            claims_key?: string | null;
             /**
              * Domain
              * @description The domain name
