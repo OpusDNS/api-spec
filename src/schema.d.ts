@@ -3386,6 +3386,11 @@ export interface components {
              */
             batch_id: TypeId<"batch">;
             /**
+             * Duplicates
+             * @description Per-command details for duplicates, including pointers to the existing jobs/batches
+             */
+            duplicates?: components["schemas"]["DuplicateCommand"][];
+            /**
              * Errors
              * @description Details of failed commands
              */
@@ -3396,13 +3401,19 @@ export interface components {
              */
             jobs_created: number;
             /**
+             * Jobs Duplicated
+             * @description Number of commands skipped because their idempotency_key matched a previously-submitted job
+             * @default 0
+             */
+            jobs_duplicated: number;
+            /**
              * Jobs Failed
              * @description Number of jobs that failed to create
              */
             jobs_failed: number;
             /**
              * Status Url
-             * @description URL to check batch status
+             * @description URL to check batch status. May 404 if jobs_created is 0 — see duplicates[].existing_batch_id for prior batches.
              */
             status_url: string;
             /**
@@ -5404,6 +5415,36 @@ export interface components {
              * @description Number of domains expiring in the next 90 days
              */
             next_90_days: number;
+        };
+        /** DuplicateCommand */
+        DuplicateCommand: {
+            /**
+             * Existing Batch Id
+             * @description batch_id of the batch the existing job belongs to. Use this with /v1/jobs/{batch_id} to check status — the batch_id returned at the top level of this response will 404 if no new jobs were created.
+             */
+            existing_batch_id?: TypeId<"batch"> | null;
+            /**
+             * Existing Job Id
+             * Format: typeid
+             * @description ID of the previously-created job whose idempotency_key matched this command
+             * @example job_01h45ytscbebyvny4gc8cr8ma2
+             */
+            existing_job_id: TypeId<"job">;
+            /**
+             * Index
+             * @description Index of the duplicate command in the request
+             */
+            index: number;
+            /**
+             * Instance Index
+             * @description Index within a bulk command's instances[] for per-instance duplicates
+             */
+            instance_index?: number | null;
+            /**
+             * Resource Key
+             * @description Resource identifier (zone name, domain name, contact email) for this duplicate
+             */
+            resource_key?: string | null;
         };
         /** EmailForwardAlias */
         EmailForwardAlias: {

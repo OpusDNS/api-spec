@@ -2859,6 +2859,22 @@ export type DomainWithdraw = components['schemas']['DomainWithdrawResponse'];
  */
 export type DomainsExpiringSoon = components['schemas']['DomainsExpiringSoon'];
 /**
+ * DuplicateCommand
+ *
+ * @remarks
+ * Type alias for the `DuplicateCommand` OpenAPI schema.
+ * This type represents duplicatecommand data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDuplicateCommand();
+ * const item: DuplicateCommand = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DuplicateCommand = components['schemas']['DuplicateCommand'];
+/**
  * EmailForwardAlias
  *
  * @remarks

@@ -172,6 +172,7 @@ import { DomainUpdateWorkerPayload } from './schemas';
 import { DomainWithdrawRequest } from './schemas';
 import { DomainWithdraw } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
+import { DuplicateCommand } from './schemas';
 import { EmailForwardAlias } from './schemas';
 import { EmailForwardAliasCreate } from './schemas';
 import { EmailForwardAliasMetrics } from './schemas';
@@ -6379,6 +6380,32 @@ export const KEYS_CONTACTS_BASE = [
  */
 export const KEY_CREATE_JOB_BATCH_BATCH_ID: keyof CreateJobBatch = 'batch_id';
 /**
+ * Duplicates
+ *
+ * Per-command details for duplicates, including pointers to the existing jobs/batches
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `duplicates` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_DUPLICATES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_DUPLICATES;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_DUPLICATES: keyof CreateJobBatch = 'duplicates';
+/**
  * Errors
  *
  * Details of failed commands
@@ -6431,6 +6458,32 @@ export const KEY_CREATE_JOB_BATCH_ERRORS: keyof CreateJobBatch = 'errors';
  */
 export const KEY_CREATE_JOB_BATCH_JOBS_CREATED: keyof CreateJobBatch = 'jobs_created';
 /**
+ * Jobs Duplicated
+ *
+ * Number of commands skipped because their idempotency_key matched a previously-submitted job
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `jobs_duplicated` property of CreateJobBatch objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = createjobbatch[KEY_CREATE_JOB_BATCH_JOBS_DUPLICATED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CREATE_JOB_BATCH_JOBS_DUPLICATED;
+ * const value = createjobbatch[propertyName];
+ * ```
+ *
+ * @see {@link CreateJobBatch} - The TypeScript type definition
+ * @see {@link KEYS_CREATE_JOB_BATCH} - Array of all keys for this type
+ */
+export const KEY_CREATE_JOB_BATCH_JOBS_DUPLICATED: keyof CreateJobBatch = 'jobs_duplicated';
+/**
  * Jobs Failed
  *
  * Number of jobs that failed to create
@@ -6459,7 +6512,7 @@ export const KEY_CREATE_JOB_BATCH_JOBS_FAILED: keyof CreateJobBatch = 'jobs_fail
 /**
  * Status Url
  *
- * URL to check batch status
+ * URL to check batch status. May 404 if jobs_created is 0 — see duplicates[].existing_batch_id for prior batches.
  *
  * @type {string}
  *
@@ -6531,8 +6584,10 @@ export const KEY_CREATE_JOB_BATCH_TOTAL_COMMANDS: keyof CreateJobBatch = 'total_
  */
 export const KEYS_CREATE_JOB_BATCH = [
   KEY_CREATE_JOB_BATCH_BATCH_ID,
+  KEY_CREATE_JOB_BATCH_DUPLICATES,
   KEY_CREATE_JOB_BATCH_ERRORS,
   KEY_CREATE_JOB_BATCH_JOBS_CREATED,
+  KEY_CREATE_JOB_BATCH_JOBS_DUPLICATED,
   KEY_CREATE_JOB_BATCH_JOBS_FAILED,
   KEY_CREATE_JOB_BATCH_STATUS_URL,
   KEY_CREATE_JOB_BATCH_TOTAL_COMMANDS,
@@ -19904,6 +19959,162 @@ export const KEYS_DOMAINS_EXPIRING_SOON = [
   KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS,
   KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS,
 ] as const satisfies (keyof DomainsExpiringSoon)[];
+
+/**
+ * Existing Batch Id
+ *
+ * batch_id of the batch the existing job belongs to. Use this with /v1/jobs/{batch_id} to check status — the batch_id returned at the top level of this response will 404 if no new jobs were created.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `existing_batch_id` property of DuplicateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = duplicatecommand[KEY_DUPLICATE_COMMAND_EXISTING_BATCH_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DUPLICATE_COMMAND_EXISTING_BATCH_ID;
+ * const value = duplicatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DuplicateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DUPLICATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DUPLICATE_COMMAND_EXISTING_BATCH_ID: keyof DuplicateCommand = 'existing_batch_id';
+/**
+ * Existing Job Id
+ *
+ * ID of the previously-created job whose idempotency_key matched this command
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `existing_job_id` property of DuplicateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = duplicatecommand[KEY_DUPLICATE_COMMAND_EXISTING_JOB_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DUPLICATE_COMMAND_EXISTING_JOB_ID;
+ * const value = duplicatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DuplicateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DUPLICATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DUPLICATE_COMMAND_EXISTING_JOB_ID: keyof DuplicateCommand = 'existing_job_id';
+/**
+ * Index
+ *
+ * Index of the duplicate command in the request
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `index` property of DuplicateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = duplicatecommand[KEY_DUPLICATE_COMMAND_INDEX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DUPLICATE_COMMAND_INDEX;
+ * const value = duplicatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DuplicateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DUPLICATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DUPLICATE_COMMAND_INDEX: keyof DuplicateCommand = 'index';
+/**
+ * Instance Index
+ *
+ * Index within a bulk command's instances[] for per-instance duplicates
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `instance_index` property of DuplicateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = duplicatecommand[KEY_DUPLICATE_COMMAND_INSTANCE_INDEX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DUPLICATE_COMMAND_INSTANCE_INDEX;
+ * const value = duplicatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DuplicateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DUPLICATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DUPLICATE_COMMAND_INSTANCE_INDEX: keyof DuplicateCommand = 'instance_index';
+/**
+ * Resource Key
+ *
+ * Resource identifier (zone name, domain name, contact email) for this duplicate
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `resource_key` property of DuplicateCommand objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = duplicatecommand[KEY_DUPLICATE_COMMAND_RESOURCE_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DUPLICATE_COMMAND_RESOURCE_KEY;
+ * const value = duplicatecommand[propertyName];
+ * ```
+ *
+ * @see {@link DuplicateCommand} - The TypeScript type definition
+ * @see {@link KEYS_DUPLICATE_COMMAND} - Array of all keys for this type
+ */
+export const KEY_DUPLICATE_COMMAND_RESOURCE_KEY: keyof DuplicateCommand = 'resource_key';
+
+/**
+ * Array of all DuplicateCommand property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DuplicateCommand objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DUPLICATE_COMMAND) {
+ *   console.log(`Property: ${key}, Value: ${duplicatecommand[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DUPLICATE_COMMAND.includes(someKey);
+ * ```
+ *
+ * @see {@link DuplicateCommand} - The TypeScript type definition
+ */
+export const KEYS_DUPLICATE_COMMAND = [
+  KEY_DUPLICATE_COMMAND_EXISTING_BATCH_ID,
+  KEY_DUPLICATE_COMMAND_EXISTING_JOB_ID,
+  KEY_DUPLICATE_COMMAND_INDEX,
+  KEY_DUPLICATE_COMMAND_INSTANCE_INDEX,
+  KEY_DUPLICATE_COMMAND_RESOURCE_KEY,
+] as const satisfies (keyof DuplicateCommand)[];
 
 /**
  * Alias

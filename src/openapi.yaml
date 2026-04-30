@@ -1596,6 +1596,13 @@ components:
           title: Batch Id
           type: string
           x-typeid-prefix: batch
+        duplicates:
+          description: Per-command details for duplicates, including pointers to the
+            existing jobs/batches
+          items:
+            $ref: '#/components/schemas/DuplicateCommand'
+          title: Duplicates
+          type: array
         errors:
           description: Details of failed commands
           items:
@@ -1606,12 +1613,19 @@ components:
           description: Number of jobs successfully created
           title: Jobs Created
           type: integer
+        jobs_duplicated:
+          default: 0
+          description: Number of commands skipped because their idempotency_key matched
+            a previously-submitted job
+          title: Jobs Duplicated
+          type: integer
         jobs_failed:
           description: Number of jobs that failed to create
           title: Jobs Failed
           type: integer
         status_url:
-          description: URL to check batch status
+          description: "URL to check batch status. May 404 if jobs_created is 0 \u2014\
+            \ see duplicates[].existing_batch_id for prior batches."
           title: Status Url
           type: string
         total_commands:
@@ -4719,6 +4733,54 @@ components:
       - next_60_days
       - next_90_days
       title: DomainsExpiringSoon
+      type: object
+    DuplicateCommand:
+      properties:
+        existing_batch_id:
+          anyOf:
+          - examples:
+            - batch_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: batch
+          - type: 'null'
+          description: "batch_id of the batch the existing job belongs to. Use this\
+            \ with /v1/jobs/{batch_id} to check status \u2014 the batch_id returned\
+            \ at the top level of this response will 404 if no new jobs were created."
+          title: Existing Batch Id
+        existing_job_id:
+          description: ID of the previously-created job whose idempotency_key matched
+            this command
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^job_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Existing Job Id
+          type: string
+          x-typeid-prefix: job
+        index:
+          description: Index of the duplicate command in the request
+          title: Index
+          type: integer
+        instance_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Index within a bulk command's instances[] for per-instance
+            duplicates
+          title: Instance Index
+        resource_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Resource identifier (zone name, domain name, contact email)
+            for this duplicate
+          title: Resource Key
+      required:
+      - index
+      - existing_job_id
+      title: DuplicateCommand
       type: object
     EmailForwardAlias:
       properties:
@@ -10212,7 +10274,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-29-122519
+  version: 2026-04-30-022644
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
