@@ -6434,13 +6434,14 @@ This process can take up to 5 days, until the transfer is approved
  *
  * @see {@link POST_DomainsTransfer_Response_201} - 201 response type
  * @see {@link POST_DomainsTransfer_Response_400} - 400 response type
+ * @see {@link POST_DomainsTransfer_Response_403} - 403 response type
  * @see {@link POST_DomainsTransfer_Response_404} - 404 response type
  * @see {@link POST_DomainsTransfer_Response_409} - 409 response type
  * @see {@link POST_DomainsTransfer_Response_422} - 422 response type
  *
 
  */
-export type POST_DomainsTransfer_Response = POST_DomainsTransfer_Response_201 | POST_DomainsTransfer_Response_400 | POST_DomainsTransfer_Response_404 | POST_DomainsTransfer_Response_409 | POST_DomainsTransfer_Response_422;
+export type POST_DomainsTransfer_Response = POST_DomainsTransfer_Response_201 | POST_DomainsTransfer_Response_400 | POST_DomainsTransfer_Response_403 | POST_DomainsTransfer_Response_404 | POST_DomainsTransfer_Response_409 | POST_DomainsTransfer_Response_422;
 
 /**
  * 201 response for POST DomainsTransfer endpoint
@@ -6475,6 +6476,23 @@ export type POST_DomainsTransfer_Response_201 = Domain
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_DomainsTransfer_Response_400 = Problem
+
+/**
+ * 403 response for POST DomainsTransfer endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 403 status code
+ * of the POST DomainsTransfer endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/transfer
+ *
+ * @see {@link POST_DomainsTransfer_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainsTransfer_Response_403 = Problem
 
 /**
  * 404 response for POST DomainsTransfer endpoint

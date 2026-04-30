@@ -10279,7 +10279,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-30-152802
+  version: 2026-04-30-202536
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -16697,6 +16697,15 @@ paths:
                     title: Domain Management Error
                     tld: Additional error context.
                     type: domain-tld-not-available
+                Domain Transfer AuthInfo Malformed:
+                  value:
+                    code: ERROR_DOMAIN_TRANSFER_AUTHINFO_MALFORMED
+                    detail: There was an error transferring the domain
+                    domain_name: Additional error context.
+                    reason: 'Domain transfer failed: AuthInfo is missing or malformed'
+                    status: 400
+                    title: Domain Transfer AuthInfo Malformed
+                    type: domain-transfer-auth-info-malformed
                 Domain Transfer Error:
                   value:
                     code: ERROR_DOMAIN_TRANSFER
@@ -16709,6 +16718,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Bad Request
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_TRANSFER_INVALID_AUTH_CODE
+                detail: There was an error transferring the domain
+                domain_name: Additional error context.
+                reason: Domain transfer failed, invalid auth code provided
+                status: 403
+                title: Domain Transfer Error
+                type: domain-transfer-invalid-auth
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '404':
           content:
             application/problem+json:
@@ -16725,13 +16748,34 @@ paths:
         '409':
           content:
             application/problem+json:
-              example:
-                code: ERROR_DOMAIN_EXISTS
-                detail: Domain already exists
-                domain_name: Additional error context.
-                status: 409
-                title: Domain Management Error
-                type: domain-exists
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_DOMAIN_EXISTS
+                    detail: Domain already exists
+                    domain_name: Additional error context.
+                    status: 409
+                    title: Domain Management Error
+                    type: domain-exists
+                Domain Transfer Already Owned:
+                  value:
+                    code: ERROR_DOMAIN_TRANSFER_ALREADY_OWNED
+                    detail: There was an error transferring the domain
+                    domain_name: Additional error context.
+                    reason: Domain is already managed by your registry account; transfer
+                      is not applicable
+                    status: 409
+                    title: Domain Transfer Already Owned
+                    type: domain-transfer-already-owned
+                Domain Transfer Error:
+                  value:
+                    code: ERROR_DOMAIN_TRANSFER_NOT_ALLOWED
+                    detail: There was an error transferring the domain
+                    domain_name: Additional error context.
+                    reason: Domain transfer was rejected by the registry
+                    status: 409
+                    title: Domain Transfer Error
+                    type: domain-transfer-rejected
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict

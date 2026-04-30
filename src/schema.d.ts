@@ -13324,6 +13324,24 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_TRANSFER_INVALID_AUTH_CODE",
+                     *       "detail": "There was an error transferring the domain",
+                     *       "domain_name": "Additional error context.",
+                     *       "reason": "Domain transfer failed, invalid auth code provided",
+                     *       "status": 403,
+                     *       "title": "Domain Transfer Error",
+                     *       "type": "domain-transfer-invalid-auth"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
             /** @description Not Found */
             404: {
                 headers: {
@@ -13347,14 +13365,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_EXISTS",
-                     *       "detail": "Domain already exists",
-                     *       "domain_name": "Additional error context.",
-                     *       "status": 409,
-                     *       "title": "Domain Management Error",
-                     *       "type": "domain-exists"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
