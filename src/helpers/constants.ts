@@ -3409,6 +3409,7 @@ export const PERMISSION = {
   HAS_ACCEPTED_TOS: "has_accepted_tos",
   MANAGE_API_KEYS: "manage_api_keys",
   MANAGE_BILLING: "manage_billing",
+  MANAGE_CHATS: "manage_chats",
   MANAGE_CMS_CONTENT: "manage_cms_content",
   MANAGE_CONTACTS: "manage_contacts",
   MANAGE_DNS_ZONES: "manage_dns_zones",
@@ -3419,9 +3420,12 @@ export const PERMISSION = {
   MANAGE_HOSTS: "manage_hosts",
   MANAGE_JOBS: "manage_jobs",
   MANAGE_OPUSDNS_API_KEYS: "manage_opusdns_api_keys",
+  MANAGE_PARKING: "manage_parking",
   MANAGE_PRODUCTS: "manage_products",
+  MANAGE_REGISTRAR_CREDENTIALS: "manage_registrar_credentials",
   MANAGE_RESELLER: "manage_reseller",
   MANAGE_SUB_ZONES: "manage_sub_zones",
+  MANAGE_TAGS: "manage_tags",
   MANAGE_USERS: "manage_users",
   MANAGE_USER_RELATIONS: "manage_user_relations",
   PLAN_MANAGER: "plan_manager",
@@ -3438,8 +3442,6 @@ export const PERMISSION = {
   VIEW_EMAIL_FORWARDS: "view_email_forwards",
   VIEW_EVENTS: "view_events",
   VIEW_PARKING: "view_parking",
-  MANAGE_PARKING: "manage_parking",
-  MANAGE_TAGS: "manage_tags",
 } as const satisfies Record<string, Permission>;
 
 /**
@@ -3477,6 +3479,7 @@ export const PERMISSION_VALUES = [
   'has_accepted_tos',
   'manage_api_keys',
   'manage_billing',
+  'manage_chats',
   'manage_cms_content',
   'manage_contacts',
   'manage_dns_zones',
@@ -3487,9 +3490,12 @@ export const PERMISSION_VALUES = [
   'manage_hosts',
   'manage_jobs',
   'manage_opusdns_api_keys',
+  'manage_parking',
   'manage_products',
+  'manage_registrar_credentials',
   'manage_reseller',
   'manage_sub_zones',
+  'manage_tags',
   'manage_users',
   'manage_user_relations',
   'plan_manager',
@@ -3505,9 +3511,7 @@ export const PERMISSION_VALUES = [
   'view_domain_forwards',
   'view_email_forwards',
   'view_events',
-  'view_parking',
-  'manage_parking',
-  'manage_tags'
+  'view_parking'
 ] as const satisfies [string, ...string[]] | Permission[];
 
 /**
@@ -3987,6 +3991,7 @@ export const RELATION = {
   ADMIN: "admin",
   API_ADMIN: "api_admin",
   BILLING_MANAGER: "billing_manager",
+  CHAT_MANAGER: "chat_manager",
   CLIENT_API_KEY: "client_api_key",
   CMS_CONTENT_EDITOR: "cms_content_editor",
   CONTACT_MANAGER: "contact_manager",
@@ -4001,6 +4006,7 @@ export const RELATION = {
   OWNER: "owner",
   PARENT: "parent",
   PRODUCT_MANAGER: "product_manager",
+  REGISTRAR_CREDENTIAL_MANAGER: "registrar_credential_manager",
   RESELLER_MANAGER: "reseller_manager",
   ROOT_ADMIN: "root_admin",
   SELF: "self",
@@ -4032,6 +4038,7 @@ export const RELATION_VALUES = [
   'admin',
   'api_admin',
   'billing_manager',
+  'chat_manager',
   'client_api_key',
   'cms_content_editor',
   'contact_manager',
@@ -4046,6 +4053,7 @@ export const RELATION_VALUES = [
   'owner',
   'parent',
   'product_manager',
+  'registrar_credential_manager',
   'reseller_manager',
   'root_admin',
   'self'

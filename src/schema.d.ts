@@ -7733,7 +7733,7 @@ export interface components {
          * Permission
          * @enum {string}
          */
-        Permission: "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "corporate_plan" | "create" | "delete" | "delete_domain_forwards" | "enterprise_plan" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_domain_forwards" | "manage_email_forwards" | "manage_events" | "manage_hosts" | "manage_jobs" | "manage_opusdns_api_keys" | "manage_products" | "manage_reseller" | "manage_sub_zones" | "manage_users" | "manage_user_relations" | "plan_manager" | "premium_plan" | "renew_expire" | "starter_plan" | "transfer_trade" | "update" | "update_domain_forwards" | "verify" | "view" | "view_audit_logs" | "view_domain_forwards" | "view_email_forwards" | "view_events" | "view_parking" | "manage_parking" | "manage_tags";
+        Permission: "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "corporate_plan" | "create" | "delete" | "delete_domain_forwards" | "enterprise_plan" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_chats" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_domain_forwards" | "manage_email_forwards" | "manage_events" | "manage_hosts" | "manage_jobs" | "manage_opusdns_api_keys" | "manage_parking" | "manage_products" | "manage_registrar_credentials" | "manage_reseller" | "manage_sub_zones" | "manage_tags" | "manage_users" | "manage_user_relations" | "plan_manager" | "premium_plan" | "renew_expire" | "starter_plan" | "transfer_trade" | "update" | "update_domain_forwards" | "verify" | "view" | "view_audit_logs" | "view_domain_forwards" | "view_email_forwards" | "view_events" | "view_parking";
         /** PermissionSet */
         PermissionSet: {
             /** Permissions */
@@ -8004,7 +8004,7 @@ export interface components {
          * Relation
          * @enum {string}
          */
-        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_forward_manager" | "domain_manager" | "email_forward_manager" | "events_manager" | "host_manager" | "member" | "opusdns_internal_api_key" | "organization_manager" | "owner" | "parent" | "product_manager" | "reseller_manager" | "root_admin" | "self";
+        Relation: "accepted_tos" | "admin" | "api_admin" | "billing_manager" | "chat_manager" | "client_api_key" | "cms_content_editor" | "contact_manager" | "domain_forward_manager" | "domain_manager" | "email_forward_manager" | "events_manager" | "host_manager" | "member" | "opusdns_internal_api_key" | "organization_manager" | "owner" | "parent" | "product_manager" | "registrar_credential_manager" | "reseller_manager" | "root_admin" | "self";
         /** RelationSet */
         RelationSet: {
             /** Relations */
