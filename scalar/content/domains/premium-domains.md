@@ -7,14 +7,18 @@ transfers, and restores.
 
 ## Identifying premium domains
 
-When you check domain availability with `GET /v1/domains/check`, each result
+When you check domain availability with `POST /v1/domains/check`, each result
 includes an `is_premium` flag and, when applicable, a `premium_pricing` object
 with prices per action.
 
 ```bash
-curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
+curl "$OPUSDNS_API_BASE/v1/domains/check" \
+  --request POST \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --data-urlencode "domains=luxury.com"
+  --header "Content-Type: application/json" \
+  --data '{
+    "domains": ["luxury.com"]
+  }'
 ```
 
 A premium domain returns pricing information in the response:
@@ -67,9 +71,9 @@ charging you a different amount.
 - If `expected_price` is provided for a **non-premium** domain, the API returns
   an error indicating that price confirmation is not applicable.
 
-> **Tip:** Always check `premium_pricing` in the availability response before
-> submitting a registration, transfer, or other operation on a premium domain.
-> Use the returned price as your `expected_price` value.
+<scalar-callout type="warning">
+Always check <code>premium_pricing</code> in the availability response before submitting a registration, transfer, or other operation on a premium domain. Use the returned price as your <code>expected_price</code> value.
+</scalar-callout>
 
 ## Supported operations
 
@@ -77,10 +81,10 @@ Premium pricing and the `expected_price` field are supported on:
 
 | Operation | Endpoint | Notes |
 | --- | --- | --- |
-| Registration | [`POST /v1/domains`](/api-reference) | Include `expected_price` in the request body. |
-| Renewal | [`POST /v1/domains/{domain_reference}/renew`](/api-reference) | Premium renewals may cost more than standard renewals. |
-| Transfer | [`POST /v1/domains/{domain_reference}/transfer`](/api-reference) | The transfer price may differ from the registration price. |
-| Restore | [`POST /v1/domains/{domain_reference}/restore`](/api-reference) | Restore fees for premium domains can be significantly higher. |
+| Registration | [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains) | Include `expected_price` in the request body. |
+| Renewal | [`POST /v1/domains/{domain_reference}/renew`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/renew) | Premium renewals may cost more than standard renewals. |
+| Transfer | [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer) | The transfer price may differ from the registration price. |
+| Restore | [`POST /v1/domains/{domain_reference}/restore`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/restore) | Restore fees for premium domains can be significantly higher. |
 
 ## Registering a premium domain
 
@@ -154,8 +158,8 @@ domains without a separate availability check.
 
 ## Related API Reference
 
-- [`GET /v1/domains/check`](/api-reference)
-- [`POST /v1/domains`](/api-reference)
-- [`POST /v1/domains/{domain_reference}/renew`](/api-reference)
-- [`POST /v1/domains/{domain_reference}/restore`](/api-reference)
-- [`GET /v1/domains`](/api-reference)
+- [`POST /v1/domains/check`](/api-reference#tag/domain/POST/v1/domains/check)
+- [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains)
+- [`POST /v1/domains/{domain_reference}/renew`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/renew)
+- [`POST /v1/domains/{domain_reference}/restore`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/restore)
+- [`GET /v1/domains`](/api-reference#tag/domain/GET/v1/domains)

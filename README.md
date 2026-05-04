@@ -78,7 +78,7 @@ A more sophisticated documentation setup using
 contained in [`scalar/`](./scalar/). The Scalar project config lives at
 [`scalar/scalar.config.json`](./scalar/scalar.config.json), guide content lives
 under [`scalar/content/`](./scalar/content/), and the API reference is
-sourced from local [`src/openapi.yaml`](./src/openapi.yaml).
+fetched from the raw GitHub copy of [`src/openapi.yaml`](./src/openapi.yaml).
 
 To preview locally:
 

@@ -26,7 +26,7 @@ curl "$OPUSDNS_API_BASE/v1/domains/example.com/restore" \
 | --- | --- | --- |
 | `reason` | No | A short explanation for the restore request. Some registries require this. |
 | `additional_info` | No | Extra context about the restore, if needed. |
-| `expected_price` | No | Price confirmation for [premium domains](/domains/premium). Required for premium domains; rejected for standard domains. |
+| `expected_price` | No | Price confirmation for [premium domains](/products/domains/premium). Required for premium domains; rejected for standard domains. |
 
 ### Response
 
@@ -53,14 +53,16 @@ before permanently releasing it.
 | Redemption Period | **Yes** |
 | Pending Purge | No — too late |
 
-> **Tip:** Redemption period length and restore pricing vary by TLD. Check the
-> [TLD specifications](/tlds/specifications) for details on specific extensions.
+<scalar-callout type="info">
+Redemption period length and restore pricing vary by TLD. Check the <a href="/products/tlds/specifications">TLD specifications</a> for details on specific extensions.
+</scalar-callout>
 
-> **Note:** For premium domains, include `expected_price` to confirm the restore
-> price. See [Premium domains](/domains/premium) for details.
+<scalar-callout type="warning">
+For premium domains, include <code>expected_price</code> to confirm the restore price. See <a href="/products/domains/premium">Premium domains</a> for details.
+</scalar-callout>
 
 ## Related API Reference
 
-- [`POST /v1/domains/{domain_reference}/restore`](/api-reference)
-- [`DELETE /v1/domains/{domain_reference}`](/api-reference)
-- [`GET /v1/domains/{domain_reference}`](/api-reference)
+- [`POST /v1/domains/{domain_reference}/restore`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/restore)
+- [`DELETE /v1/domains/{domain_reference}`](/api-reference#tag/domain/DELETE/v1/domains/{domain_reference})
+- [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})
