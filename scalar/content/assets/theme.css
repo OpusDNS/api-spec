@@ -1,0 +1,367 @@
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+	font-display: swap;
+	font-style: normal;
+	font-weight: 100 900;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('fonts/JetBrainsMono[wght].ttf') format('truetype');
+	font-display: swap;
+	font-style: normal;
+	font-weight: 100 900;
+}
+
+@font-face {
+	font-family: 'Onest';
+	src: url('fonts/Onest_VariableFont.ttf') format('truetype');
+	font-display: swap;
+	font-style: normal;
+	font-weight: 100 900;
+}
+
+:root {
+	--scalar-font: 'Open Sans', sans-serif;
+	--scalar-font-code: 'JetBrains Mono', monospace;
+	--scalar-header-height: 72px;
+	--scalar-heading-1: 28px;
+	--opusdns-tabs-height: 50px;
+
+	--opusdns-dark-gray: #3c3c3c;
+	--opusdns-light-blue: #6ecdeb;
+	--opusdns-dark-blue: #5f87c3;
+	--opusdns-yellow: rgb(255, 209, 59);
+	--opusdns-orange: #faa436;
+	--opusdns-pink: #c81e78;
+	--opusdns-footer-background: #171923;
+}
+
+body.scalar-app,
+.scalar-app {
+	font-family: var(--scalar-font);
+}
+
+code,
+pre,
+kbd,
+samp {
+	font-family: var(--scalar-font-code);
+}
+
+.light-mode {
+	--scalar-color-1: black;
+	--scalar-color-2: var(--opusdns-dark-gray);
+	--scalar-color-3: var(--opusdns-pink);
+	--scalar-color-accent: var(--opusdns-dark-blue);
+	--scalar-border-color: #b5b5b5;
+}
+
+.dark-mode {
+	--scalar-color-3: var(--opusdns-light-blue);
+	--scalar-color-accent: var(--opusdns-dark-blue);
+	--scalar-border-color: #575757;
+}
+
+.light-mode .sidebar-heading-chevron {
+	--scalar-color-3: var(--opusdns-orange);
+}
+
+.dark-mode .sidebar-heading-chevron {
+	--scalar-color-3: var(--opusdns-yellow);
+}
+
+.t-header {
+	--scalar-header-background-1: var(--scalar-background-1);
+	--scalar-header-border-color: var(--scalar-border-color);
+}
+
+.light-mode .t-header {
+	--scalar-header-color-1: black;
+	--scalar-header-color-2: var(--opusdns-dark-gray);
+}
+
+.dark-mode .t-header {
+	--scalar-header-color-1: #fff;
+	--scalar-header-color-2: rgba(255, 255, 255, 0.78);
+}
+
+.t-header .logo {
+	display: block;
+	height: 43px !important;
+	max-width: 300px;
+	object-fit: contain;
+	object-position: left center;
+	width: auto;
+	margin-right: 14px;
+}
+
+.sidebar .logo {
+	display: block;
+	height: 38px !important;
+	max-width: 220px;
+	margin: 12px 0 0 12px;
+	object-fit: contain;
+	object-position: left center;
+	width: auto;
+}
+
+.t-header .navigation,
+.t-header .link {
+	font-size: 15px !important;
+}
+
+.t-header .link__button,
+.t-header a[href='https://app.opusdns.com/signup'] {
+	background: var(--opusdns-yellow) !important;
+	border-color: var(--opusdns-yellow) !important;
+	color: black !important;
+}
+
+.t-header .link__button:hover,
+.t-header a[href='https://app.opusdns.com/signup']:hover {
+	background: #ffe06b !important;
+	border-color: #ffe06b !important;
+	color: black !important;
+}
+
+.tabs {
+	font-family: var(--scalar-font);
+	height: var(--opusdns-tabs-height) !important;
+}
+
+.sidebar.sidebar-tabs {
+	top: var(--opusdns-tabs-height) !important;
+	height: calc(100dvh - var(--opusdns-tabs-height)) !important;
+}
+
+.sidebar.sidebar-header {
+	top: var(--scalar-header-height) !important;
+	height: calc(100dvh - var(--scalar-header-height)) !important;
+}
+
+.sidebar.sidebar-tabs-header,
+.toc.sidebar-tabs-header {
+	top: calc(var(--scalar-header-height) + var(--opusdns-tabs-height)) !important;
+	height: calc(100dvh - var(--scalar-header-height) - var(--opusdns-tabs-height)) !important;
+}
+
+.content.content-tabs {
+	padding-top: var(--opusdns-tabs-height) !important;
+	--refs-viewport-height: calc(100dvh - var(--opusdns-tabs-height));
+	--refs-viewport-offset: var(--opusdns-tabs-height);
+}
+
+.content.content-tabs-header {
+	padding-top: calc(var(--scalar-header-height) + var(--opusdns-tabs-height)) !important;
+	--refs-viewport-height: calc(100dvh - var(--scalar-header-height) - var(--opusdns-tabs-height));
+	--refs-viewport-offset: calc(var(--scalar-header-height) + var(--opusdns-tabs-height));
+}
+
+.page-header,
+.page-content .page-header {
+	margin-top: 0 !important;
+	margin-bottom: 10px !important;
+}
+
+.page-content {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+.page-content .page {
+	margin-top: 0 !important;
+	padding-top: 24px !important;
+}
+
+.page-content .page > .content {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+.page-content .t-editor__heading:first-child,
+.page-content .t-editor__page-title:first-child {
+	margin-top: 0 !important;
+}
+
+.tabs .link {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.tabs .link-active {
+	color: var(--scalar-color-accent);
+}
+
+.footer {
+	background: var(--opusdns-footer-background);
+}
+
+.opusdns-footer {
+	background: var(--opusdns-footer-background);
+	color: #fff;
+	font-family: 'Onest', var(--scalar-font);
+	padding: 72px 24px 24px;
+	width: 100%;
+}
+
+.opusdns-footer,
+.opusdns-footer * {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+}
+
+.opusdns-footer__inner {
+	display: grid;
+	gap: 40px;
+	grid-template-columns: minmax(180px, 1.2fr) repeat(5, minmax(120px, 1fr));
+	margin: 0 auto;
+	max-width: 1400px;
+}
+
+.opusdns-footer__brand {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.opusdns-footer__logo {
+	display: block;
+	height: auto;
+	margin-top: -15px;
+	max-width: 220px;
+	width: 220px;
+}
+
+.opusdns-footer__brand img {
+	display: block !important;
+	height: auto !important;
+	margin-top: -15px;
+	max-width: 100%;
+	width: 220px !important;
+}
+
+.opusdns-footer__menu {
+	display: flex;
+	flex-direction: column;
+	gap: 13px;
+	min-width: 0;
+}
+
+.opusdns-footer__category {
+	font-size: 13px;
+	font-variation-settings: 'wght' 600;
+	font-weight: 600;
+	letter-spacing: 1.6px;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.opusdns-footer__link {
+	color: #fff;
+	font-size: 15px;
+	font-variation-settings: 'wght' 300;
+	font-weight: 300;
+	line-height: 1.35;
+	text-decoration: none;
+}
+
+.opusdns-footer__link:hover {
+	opacity: 0.72;
+	text-decoration: none;
+}
+
+.opusdns-footer__social-icon {
+	display: block;
+	height: 18px;
+	width: 18px;
+}
+
+.opusdns-footer__badges {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+	margin: 40px auto 0;
+	max-width: 1400px;
+	width: 100%;
+}
+
+.opusdns-footer__badge {
+	align-items: center;
+	background: #fff;
+	border-radius: 10px;
+	display: flex;
+	height: 52px;
+	justify-content: center;
+	padding: 6px;
+	width: 52px;
+}
+
+.opusdns-footer__badge img {
+	display: block;
+	object-fit: contain;
+	object-position: center;
+}
+
+.opusdns-footer__badge-logo {
+	height: 40px;
+	width: 40px;
+}
+
+.opusdns-footer__copyright {
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 14px;
+	font-variation-settings: 'wght' 300;
+	font-weight: 300;
+	line-height: 1.6;
+	margin: 24px auto 0;
+	max-width: 1400px;
+	text-align: center;
+}
+
+@media (max-width: 1100px) {
+	.opusdns-footer__inner {
+		grid-template-columns: repeat(3, minmax(160px, 1fr));
+	}
+}
+
+@media (max-width: 720px) {
+	:root {
+		--scalar-header-height: 56px;
+	}
+
+	.t-header .logo {
+		height: 29px !important;
+		max-width: 170px;
+	}
+
+	.sidebar .logo {
+		height: 28px !important;
+		max-width: 160px;
+	}
+
+	.opusdns-footer {
+		padding: 48px 20px 24px;
+	}
+
+	.opusdns-footer__inner {
+		grid-template-columns: repeat(2, minmax(130px, 1fr));
+	}
+
+	.opusdns-footer__brand {
+		grid-column: 1 / -1;
+	}
+}
+
+@media (max-width: 460px) {
+	.opusdns-footer__inner {
+		grid-template-columns: 1fr;
+	}
+
+	.opusdns-footer__badges {
+		justify-content: flex-start;
+	}
+}

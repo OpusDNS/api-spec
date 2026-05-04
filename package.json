@@ -31,7 +31,8 @@
   },
   "scripts": {
     "generate:schema": "tsx scripts/generate-schema.ts",
-    "generate:helpers": "tsx scripts/generate-all-helpers.ts"
+    "generate:helpers": "tsx scripts/generate-all-helpers.ts",
+    "docs:preview": "npm --prefix scalar run preview --"
   },
   "homepage": "https://github.com/OpusDNS/api-spec#readme",
   "files": [

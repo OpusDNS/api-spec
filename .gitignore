@@ -1,3 +1,8 @@
 /node_modules
+scalar/node_modules/
 .DS_Store
 openapi.yaml
+
+# Scalar CLI local cache (defensive; current versions cache in ~/.scalar)
+.scalar/
+scalar/.scalar/

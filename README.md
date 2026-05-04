@@ -59,6 +59,39 @@ import {
 - `User` - User type
 - `Contact` - Contact type
 
+## Documentation
+
+There are two documentation setups in this repository:
+
+### Legacy: GitHub Pages API Reference (production)
+
+The `docs/` folder is a static site that embeds
+[`@scalar/api-reference`](https://github.com/scalar/scalar) and is published
+via GitHub Pages on [developers.opusdns.com](https://developers.opusdns.com/).
+Source of truth: [`docs/index.html`](./docs/index.html). Do **not** put
+guides/Markdown content here.
+
+### Scalar Docs 2.0 (local preview)
+
+A more sophisticated documentation setup using
+[Scalar Docs 2.0](https://scalar.com/products/docs/getting-started) is
+contained in [`scalar/`](./scalar/). The Scalar project config lives at
+[`scalar/scalar.config.json`](./scalar/scalar.config.json), guide content lives
+under [`scalar/content/`](./scalar/content/), and the API reference is
+sourced from local [`src/openapi.yaml`](./src/openapi.yaml).
+
+To preview locally:
+
+```bash
+npm install
+npm --prefix scalar install
+npm run docs:preview
+# → http://localhost:7970
+```
+
+> Deployment of the Scalar Docs 2.0 site is intentionally not wired up yet —
+> the legacy GitHub Pages site continues to serve production.
+
 ### Links
 
 - [Main website](https://www.opusdns.com/)
