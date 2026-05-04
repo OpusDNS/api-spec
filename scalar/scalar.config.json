@@ -3,7 +3,7 @@
   "scalar": "2.0.0",
   "assetsDir": "content/assets",
   "info": {
-    "title": "OpusDNS Developer Documentation",
+    "title": "OpusDNS API Docs",
     "description": "Guides and API reference for the OpusDNS API."
   },
   "siteConfig": {
@@ -20,8 +20,12 @@
       "referencePathPattern": "^/api-reference"
     },
     "head": {
+      "title": "OpusDNS API Docs",
       "styles": [
         { "path": "content/assets/theme.css" }
+      ],
+      "scripts": [
+        { "path": "content/assets/title.js" }
       ],
       "links": [
         { "rel": "icon", "type": "image/svg+xml", "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d0eaf4fe96f4a8761da5_icon.svg" },
