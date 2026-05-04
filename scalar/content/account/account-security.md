@@ -1,21 +1,14 @@
 # Account security
 
-OpusDNS uses a dedicated authentication platform to handle user identity,
+OpusDNS uses the OpusDNS Authentication Platform to handle user identity,
 login security, and credential management. These features are managed
 through the [OpusDNS Dashboard](https://app.opusdns.com) — not through
 the API.
 
-## Passwords and password resets
-
-Users set and reset their passwords through the OpusDNS Dashboard login
-flow. When a user forgets their password, they can request a reset link
-from the login page. Admins cannot set or change passwords on behalf of
-other users via the API.
-
 ## Two-factor authentication (2FA)
 
-Users can enable two-factor authentication from their account security
-settings in the Dashboard. OpusDNS supports:
+Every OpusDNS user must configure two-factor authentication in the Dashboard.
+The OpusDNS Authentication Platform enforces 2FA during login and supports:
 
 - **Authenticator apps** — TOTP-based codes from apps like Google
   Authenticator, Authy, or 1Password. After scanning the QR code, the
@@ -38,12 +31,8 @@ Users can register passkeys from their account security settings in the
 Dashboard. Once registered, a passkey can be used as the primary login
 method or as a second factor alongside a password.
 
-## Roles, permissions, and session management
+## Dashboard-only security settings
 
-User roles, permission assignments, and active session management are all
-handled through the Dashboard. Visit the
-[OpusDNS Dashboard](https://app.opusdns.com) to:
-
-- Assign or revoke roles for users in your organization.
-- View and terminate active user sessions.
-- Review login history and security events.
+Credential recovery, access assignments, active sessions, login history, and
+security events are handled through the
+[OpusDNS Dashboard](https://app.opusdns.com), not through the API.

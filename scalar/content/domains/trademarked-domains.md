@@ -20,8 +20,8 @@ for details on a specific TLD's policies.
 
 ## Identifying trademarked domains
 
-When you check domain availability with `POST /v1/domains/check`, a trademarked
-domain returns the status `tmch_claim`:
+When you check domain availability with `GET /v1/domains/check`, a trademarked
+domain returns a `claims_key`:
 
 ```json
 {
@@ -29,46 +29,33 @@ domain returns the status `tmch_claim`:
     {
       "domain": "brandname.shop",
       "available": true,
-      "status": "tmch_claim",
-      "is_premium": false
+      "reason": null,
+      "is_premium": false,
+      "claims_key": "claims_key_from_check_response"
     }
   ]
 }
 ```
 
-The `tmch_claim` status means the domain **is available** for registration, but
-a claims notice must be acknowledged first.
+The `claims_key` field means the domain **is available** for registration, but
+trademark claims must be acknowledged first. Submit the same value as
+`claims_notice_acceptance_hash` after the registrant has accepted the notice.
 
-| Status | Meaning |
-| --- | --- |
-| `available` | Available with no trademark restrictions. |
-| `tmch_claim` | Available, but requires claims notice acceptance. |
-| `unavailable` | Already registered by another party. |
-| `market_available` | Available on the aftermarket. |
-| `error` | The registry could not process the check. |
+```bash
+curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --data-urlencode "domains=brandname.shop"
+```
 
 ## Registration workflow
 
 Registering a trademarked domain requires three steps beyond a normal
 registration:
 
-### 1. Retrieve the claims notice
+### 1. Detect the claims requirement
 
-After the availability check returns `tmch_claim`, retrieve the claims notice
-for the domain:
-
-```bash
-curl "$OPUSDNS_API_BASE/v1/domains/claims/{domain_name}" \
-  --header "X-Api-Key: $OPUSDNS_API_KEY"
-```
-
-The response contains the trademark information that must be presented to the
-registrant, including:
-
-- Trademark holder name and contact details
-- Goods and services description
-- Jurisdiction and registration number
-- Notice expiration timestamp
+After the availability check returns a non-null `claims_key`, keep that value.
+You need it when submitting the registration.
 
 ### 2. Present the notice to the registrant
 
@@ -88,8 +75,8 @@ understand that:
 
 ### 3. Submit the registration with the acceptance hash
 
-Once the registrant has acknowledged the notice, include the
-`claims_notice_acceptance_hash` in your registration request:
+Once the registrant has acknowledged the notice, include the returned
+`claims_key` as `claims_notice_acceptance_hash` in your registration request:
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/domains" \
@@ -103,14 +90,14 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
     },
     "renewal_mode": "renew",
     "period": { "unit": "y", "value": 1 },
-    "claims_notice_acceptance_hash": "abc123...def456"
+    "claims_notice_acceptance_hash": "claims_key_from_check_response"
   }'
 ```
 
 <scalar-callout type="danger">
 Claims notice acceptance hashes expire. If the hash has expired when you
-submit the registration, the request will be rejected and you must retrieve a
-new claims notice.
+submit the registration, the request will be rejected and you must run the
+availability check again to receive a fresh claims key.
 </scalar-callout>
 
 ## Bulk registration with TMCH
@@ -132,11 +119,11 @@ registration, you can include the `claims_notice_acceptance_hash` per instance:
     "instances": [
       {
         "name": "brand-one.shop",
-        "claims_notice_acceptance_hash": "hash1..."
+        "claims_notice_acceptance_hash": "claims_key_for_brand_one"
       },
       {
         "name": "brand-two.store",
-        "claims_notice_acceptance_hash": "hash2..."
+        "claims_notice_acceptance_hash": "claims_key_for_brand_two"
       }
     ]
   }
@@ -152,6 +139,5 @@ registration, you can include the `claims_notice_acceptance_hash` per instance:
 
 ## Related API Reference
 
-- [`POST /v1/domains/check`](/api-reference#tag/domain/POST/v1/domains/check)
+- [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check)
 - [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains)
-- [`GET /v1/domains/claims/{domain_name}`](/api-reference#tag/domain/GET/v1/domains/claims/{domain_name})

@@ -98,35 +98,26 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/at/example.at/withdraw" \
 }
 ```
 
-## .uk — Release (push transfer)
+## .uk — Tag-based transfers
 
-`.uk` domains managed by Nominet use a tag-based transfer system instead of
-auth codes. To transfer a `.uk` domain to another registrar, you release it to
-their Nominet tag.
+`.uk` domains managed by Nominet use registrar tags instead of the standard EPP
+auth code model. To transfer a `.uk` domain into OpusDNS, create the transfer
+with `POST /v1/domains/transfer`, then ask the current registrar to release the
+domain to OpusDNS's Nominet tag.
 
-```bash
-curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/uk/example.uk/release" \
-  --request POST \
-  --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "tag": "TARGET-REGISTRAR-TAG"
-  }'
-```
-
-> **Note:** The receiving registrar's Nominet tag must be known in advance.
-> This is different from a standard auth code transfer — the domain is pushed
-> directly to the target registrar.
+<scalar-callout type="info">
+Transfer-out tag releases for <code>.uk</code> domains are not currently exposed through the public API. Use the dashboard or contact support when you need to push a <code>.uk</code> domain to another registrar.
+</scalar-callout>
 
 ## Supported TLDs
 
 | TLD | Operation | Endpoint |
 | --- | --- | --- |
-| `.eu` | Request auth code | `POST /v1/domains/tld-specific/eu/{domain}/auth_code/request` |
-| `.be` | Request auth code | `POST /v1/domains/tld-specific/be/{domain}/auth_code/request` |
-| `.de` | Transit | `POST /v1/domains/tld-specific/de/{domain}/transit` |
-| `.at` | Withdraw | `POST /v1/domains/tld-specific/at/{domain}/withdraw` |
-| `.uk` | Release | `POST /v1/domains/tld-specific/uk/{domain}/release` |
+| `.eu` | Request auth code | `POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request` |
+| `.be` | Request auth code | `POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request` |
+| `.de` | Transit | `POST /v1/domains/tld-specific/de/{domain_reference}/transit` |
+| `.at` | Withdraw | `POST /v1/domains/tld-specific/at/{domain_reference}/withdraw` |
+| `.uk` | Transfer in | `POST /v1/domains/transfer` |
 
 ## Related API Reference
 
@@ -134,4 +125,4 @@ curl "$OPUSDNS_API_BASE/v1/domains/tld-specific/uk/example.uk/release" \
 - [`POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/be/{domain_reference}/auth_code/request)
 - [`POST /v1/domains/tld-specific/de/{domain_reference}/transit`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/de/{domain_reference}/transit)
 - [`POST /v1/domains/tld-specific/at/{domain_reference}/withdraw`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/at/{domain_reference}/withdraw)
-- [`POST /v1/domains/tld-specific/uk/{domain_reference}/release`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/uk/{domain_reference}/release)
+- [`POST /v1/domains/transfer`](/api-reference#tag/domain/POST/v1/domains/transfer)
