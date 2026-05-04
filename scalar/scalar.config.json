@@ -1,0 +1,127 @@
+{
+  "$schema": "https://cdn.scalar.com/schema/scalar-config-next.json",
+  "scalar": "2.0.0",
+  "assetsDir": "content/assets",
+  "info": {
+    "title": "OpusDNS Developer Documentation",
+    "description": "Guides and API reference for the OpusDNS API."
+  },
+  "siteConfig": {
+    "subdomain": "opusdns",
+    "logo": {
+      "lightMode": "https://cdn.opusdns.com/logos/OpusDNS-Logo-API-Reference-white.png",
+      "darkMode": "https://cdn.opusdns.com/logos/OpusDNS-Logo-API-Reference-dark.png"
+    },
+    "footer": {
+      "filepath": "content/assets/footer.html"
+    },
+    "routing": {
+      "guidePathPattern": "^(?!/api-reference).*",
+      "referencePathPattern": "^/api-reference"
+    },
+    "head": {
+      "styles": [
+        { "path": "content/assets/theme.css" }
+      ]
+      }
+    },
+  "navigation": {
+    "header": [
+      {
+        "type": "link",
+        "title": "Knowledgebase",
+        "to": "https://help.opusdns.com/",
+        "newTab": true
+      },
+      {
+        "type": "link",
+        "title": "Support",
+        "to": "https://support.opusdns.com/",
+        "newTab": true
+      },
+      {
+        "type": "link",
+        "title": "Status",
+        "to": "https://status.opusdns.com/",
+        "newTab": true
+      },
+      {
+        "type": "link",
+        "title": "Dashboard",
+        "to": "https://app.opusdns.com/",
+        "newTab": true
+      },
+      {
+        "type": "link",
+        "title": "Sign up",
+        "to": "https://app.opusdns.com/signup",
+        "style": "button",
+        "newTab": true
+      }
+    ],
+    "tabs": [
+      {
+        "title": "Guides",
+        "to": "/",
+        "newTab": false
+      },
+      {
+        "title": "API Reference",
+        "to": "/api-reference",
+        "newTab": false
+      }
+    ],
+    "routes": {
+      "/": {
+        "type": "group",
+        "title": "Guides",
+        "children": {
+          "/": {
+            "type": "page",
+            "title": "Introduction",
+            "filepath": "content/introduction.md",
+            "showInSidebar": true
+          },
+          "/quickstart": {
+            "type": "page",
+            "title": "Quickstart",
+            "filepath": "content/quickstart.md",
+            "showInSidebar": true
+          },
+          "/authentication": {
+            "type": "page",
+            "title": "Authentication",
+            "filepath": "content/authentication.md",
+            "showInSidebar": true
+          },
+          "/domains": {
+            "type": "group",
+            "title": "Domains",
+            "children": {
+              "/domains/register": {
+                "type": "page",
+                "title": "Register a domain",
+                "filepath": "content/domains/register-domain.md",
+                "showInSidebar": true
+              },
+              "/domains/transfer": {
+                "type": "page",
+                "title": "Transfer a domain",
+                "filepath": "content/domains/transfer-domain.md",
+                "showInSidebar": true
+              }
+            }
+          }
+        }
+      },
+      "/api-reference": {
+        "type": "openapi",
+        "title": "API Reference",
+        "filepath": "../src/openapi.yaml",
+        "mode": "nested",
+        "singlePage": true,
+        "showInSidebar": true
+      }
+    }
+  }
+}

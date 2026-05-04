@@ -1,0 +1,12 @@
+{
+  "name": "@opusdns/api-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "scalar project check-config scalar.config.json",
+    "preview": "scalar project preview"
+  },
+  "devDependencies": {
+    "@scalar/cli": "1.8.8"
+  }
+}
