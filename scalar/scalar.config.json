@@ -22,6 +22,11 @@
     "head": {
       "styles": [
         { "path": "content/assets/theme.css" }
+      ],
+      "links": [
+        { "rel": "icon", "type": "image/svg+xml", "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d0eaf4fe96f4a8761da5_icon.svg" },
+        { "rel": "icon", "type": "image/x-icon", "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d416efebe8f7f580a315_favicon32x32.ico" },
+        { "rel": "apple-touch-icon", "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d0ea718b7b9c0a317864_apple-touch-icon.png" }
       ]
       }
     },
@@ -62,12 +67,20 @@
     "tabs": [
       {
         "title": "Guides",
+        "icon": "line/interface-content-book-open-pages",
         "to": "/",
         "newTab": false
       },
       {
         "title": "API Reference",
+        "icon": "line/programming-script-code",
         "to": "/api-reference",
+        "newTab": false
+      },
+      {
+        "title": "Changelog",
+        "icon": "phosphor/regular/clock-counter-clockwise",
+        "to": "/changelog",
         "newTab": false
       }
     ],
@@ -75,48 +88,433 @@
       "/": {
         "type": "group",
         "title": "Guides",
+        "icon": "line/interface-content-book-open-pages",
         "children": {
-          "/": {
-            "type": "page",
-            "title": "Introduction",
-            "filepath": "content/introduction.md",
-            "showInSidebar": true
-          },
-          "/quickstart": {
-            "type": "page",
-            "title": "Quickstart",
-            "filepath": "content/quickstart.md",
-            "showInSidebar": true
-          },
-          "/authentication": {
-            "type": "page",
-            "title": "Authentication",
-            "filepath": "content/authentication.md",
-            "showInSidebar": true
-          },
-          "/domains": {
+          "/introduction": {
             "type": "group",
-            "title": "Domains",
+            "title": "Introduction",
+            "mode": "flat",
             "children": {
-              "/domains/register": {
+              "/": {
                 "type": "page",
-                "title": "Register a domain",
-                "filepath": "content/domains/register-domain.md",
+                "title": "Overview",
+                "icon": "line/interface-home-house",
+                "filepath": "content/introduction.md",
                 "showInSidebar": true
               },
-              "/domains/transfer": {
+              "/quickstart": {
                 "type": "page",
-                "title": "Transfer a domain",
-                "filepath": "content/domains/transfer-domain.md",
+                "title": "API Quickstart",
+                "icon": "line/interface-share-rocket",
+                "filepath": "content/quickstart.md",
+                "showInSidebar": true
+              },
+              "/authentication": {
+                "type": "page",
+                "title": "Authentication",
+                "icon": "line/interface-login-key",
+                "filepath": "content/authentication.md",
                 "showInSidebar": true
               }
             }
+          },
+          "/account": {
+            "type": "group",
+            "title": "Account Management",
+            "mode": "flat",
+            "children": {
+              "/organizations": {
+                "type": "group",
+                "title": "Organizations",
+                "icon": "phosphor/regular/buildings",
+                "children": {
+                  "/overview": {
+                    "type": "page",
+                    "title": "Organizations",
+                    "icon": "phosphor/regular/buildings",
+                    "filepath": "content/account/organizations.md",
+                    "showInSidebar": true
+                  },
+                  "/manage": {
+                    "type": "page",
+                    "title": "Manage suborganizations",
+                    "icon": "line/interface-setting-cog",
+                    "filepath": "content/account/manage-organizations.md",
+                    "showInSidebar": true
+                  },
+                  "/attributes": {
+                    "type": "page",
+                    "title": "Attributes",
+                    "icon": "line/interface-content-file",
+                    "filepath": "content/account/attributes.md",
+                    "showInSidebar": true
+                  },
+                  "/ip-restrictions": {
+                    "type": "page",
+                    "title": "IP restrictions",
+                    "icon": "line/interface-lock-closed",
+                    "filepath": "content/account/ip-restrictions.md",
+                    "showInSidebar": true
+                  },
+                  "/billing": {
+                    "type": "page",
+                    "title": "Billing & transactions",
+                    "icon": "phosphor/regular/credit-card",
+                    "filepath": "content/account/billing.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/users": {
+                "type": "page",
+                "title": "User management",
+                "icon": "line/interface-users-multiple",
+                "filepath": "content/account/user-management.md",
+                "showInSidebar": true
+              },
+              "/security": {
+                "type": "page",
+                "title": "Account security",
+                "icon": "line/interface-lock-closed",
+                "filepath": "content/account/account-security.md",
+                "showInSidebar": true
+              }
+            }
+          },
+          "/products": {
+            "type": "group",
+            "title": "Products",
+            "mode": "flat",
+            "children": {
+              "/domains": {
+                "type": "group",
+                "title": "Domains",
+                "icon": "line/travel-map-earth-globe",
+                "children": {
+                  "/domain-object": {
+                    "type": "page",
+                    "title": "The domain object",
+                    "icon": "line/interface-content-book-page",
+                    "filepath": "content/domains/domain-object.md",
+                    "showInSidebar": true
+                  },
+                  "/register": {
+                    "type": "page",
+                    "title": "Register a domain",
+                    "icon": "line/interface-add",
+                    "filepath": "content/domains/register-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/transfer": {
+                    "type": "page",
+                    "title": "Transfer a domain",
+                    "icon": "line/arrow-right",
+                    "filepath": "content/domains/transfer-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/manage": {
+                    "type": "page",
+                    "title": "Manage a domain",
+                    "icon": "line/interface-setting-cog",
+                    "filepath": "content/domains/manage-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/renew": {
+                    "type": "page",
+                    "title": "Renew a domain",
+                    "icon": "line/interface-time-clock-circle",
+                    "filepath": "content/domains/renew-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/delete": {
+                    "type": "page",
+                    "title": "Delete a domain",
+                    "icon": "line/interface-delete-bin-trash",
+                    "filepath": "content/domains/delete-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/restore": {
+                    "type": "page",
+                    "title": "Restore a domain",
+                    "icon": "phosphor/regular/arrow-counter-clockwise",
+                    "filepath": "content/domains/restore-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/premium": {
+                    "type": "page",
+                    "title": "Premium domains",
+                    "icon": "line/interface-favorite-star",
+                    "filepath": "content/domains/premium-domains.md",
+                    "showInSidebar": true
+                  },
+                  "/trademarked-domains": {
+                    "type": "page",
+                    "title": "Trademarked domains",
+                    "icon": "phosphor/regular/shield-check",
+                    "filepath": "content/domains/trademarked-domains.md",
+                    "showInSidebar": true
+                  },
+                  "/dnssec": {
+                    "type": "page",
+                    "title": "Managing DNSSEC",
+                    "icon": "line/interface-lock-closed",
+                    "filepath": "content/domains/dnssec.md",
+                    "showInSidebar": true
+                  },
+                  "/registry-attributes": {
+                    "type": "page",
+                    "title": "Registry-specific attributes",
+                    "icon": "line/interface-content-file",
+                    "filepath": "content/domains/registry-attributes.md",
+                    "showInSidebar": true
+                  },
+                  "/nameservers": {
+                    "type": "page",
+                    "title": "Using OpusDNS Nameservers",
+                    "icon": "line/programming-script-code",
+                    "filepath": "content/domains/nameservers.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/tlds": {
+                "type": "group",
+                "title": "TLD Reference",
+                "icon": "line/interface-content-book-open-pages",
+                "children": {
+                  "/specifications": {
+                    "type": "page",
+                    "title": "TLD specifications",
+                    "icon": "line/interface-content-book-page",
+                    "filepath": "content/tlds/tld-specifications.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/tld-operations": {
+                "type": "group",
+                "title": "TLD-specific operations",
+                "icon": "line/travel-map-earth-globe",
+                "children": {
+                  "/eu": {
+                    "type": "page",
+                    "title": ".eu operations",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/tlds/eu-operations.md",
+                    "showInSidebar": true
+                  },
+                  "/be": {
+                    "type": "page",
+                    "title": ".be operations",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/tlds/be-operations.md",
+                    "showInSidebar": true
+                  },
+                  "/de": {
+                    "type": "page",
+                    "title": ".de operations",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/tlds/de-operations.md",
+                    "showInSidebar": true
+                  },
+                  "/at": {
+                    "type": "page",
+                    "title": ".at operations",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/tlds/at-operations.md",
+                    "showInSidebar": true
+                  },
+                  "/uk": {
+                    "type": "page",
+                    "title": ".uk operations",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/tlds/uk-operations.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/dns": {
+                "type": "group",
+                "title": "DNS Management",
+                "icon": "line/programming-script-code",
+                "children": {
+                  "/zone-object": {
+                    "type": "page",
+                    "title": "The zone object",
+                    "icon": "line/interface-content-book-page",
+                    "filepath": "content/dns/zone-object.md",
+                    "showInSidebar": true
+                  },
+                  "/manage-zones": {
+                    "type": "page",
+                    "title": "Manage zones",
+                    "icon": "line/interface-add",
+                    "filepath": "content/dns/manage-zones.md",
+                    "showInSidebar": true
+                  },
+                  "/manage-records": {
+                    "type": "page",
+                    "title": "Manage DNS records",
+                    "icon": "line/interface-setting-cog",
+                    "filepath": "content/dns/manage-records.md",
+                    "showInSidebar": true
+                  },
+                  "/dnssec": {
+                    "type": "page",
+                    "title": "DNSSEC",
+                    "icon": "line/interface-lock-closed",
+                    "filepath": "content/dns/dnssec.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/domain-forwarding": {
+                "type": "group",
+                "title": "Domain Forwarding",
+                "icon": "line/arrow-right",
+                "children": {
+                  "/overview": {
+                    "type": "page",
+                    "title": "Domain forwarding",
+                    "icon": "line/arrow-right",
+                    "filepath": "content/dns/domain-forwarding.md",
+                    "showInSidebar": true
+                  },
+                  "/metrics": {
+                    "type": "page",
+                    "title": "Metrics & analytics",
+                    "icon": "phosphor/regular/chart-bar",
+                    "filepath": "content/dns/domain-forwarding-metrics.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/email-forwarding": {
+                "type": "group",
+                "title": "Email Forwarding",
+                "icon": "line/mail-send-envelope",
+                "children": {
+                  "/overview": {
+                    "type": "page",
+                    "title": "Email forwarding",
+                    "icon": "line/mail-send-envelope",
+                    "filepath": "content/dns/email-forwarding.md",
+                    "showInSidebar": true
+                  },
+                  "/metrics": {
+                    "type": "page",
+                    "title": "Metrics & logs",
+                    "icon": "phosphor/regular/chart-bar",
+                    "filepath": "content/dns/email-forwarding-metrics.md",
+                    "showInSidebar": true
+                  }
+                }
+              }
+            }
+          },
+          "/automation": {
+            "type": "group",
+            "title": "Automation",
+            "mode": "flat",
+            "children": {
+              "/jobs": {
+                "type": "group",
+                "title": "Jobs",
+                "icon": "phosphor/regular/stack",
+                "children": {
+                  "/overview": {
+                    "type": "page",
+                    "title": "Jobs overview",
+                    "icon": "phosphor/regular/stack",
+                    "filepath": "content/jobs/overview.md",
+                    "showInSidebar": true
+                  },
+                  "/domain-commands": {
+                    "type": "page",
+                    "title": "Domain commands",
+                    "icon": "line/travel-map-earth-globe",
+                    "filepath": "content/jobs/domain-commands.md",
+                    "showInSidebar": true
+                  },
+                  "/dns-commands": {
+                    "type": "page",
+                    "title": "DNS & infrastructure commands",
+                    "icon": "line/programming-script-code",
+                    "filepath": "content/jobs/dns-commands.md",
+                    "showInSidebar": true
+                  },
+                  "/managing-batches": {
+                    "type": "page",
+                    "title": "Managing batches",
+                    "icon": "line/interface-setting-cog",
+                    "filepath": "content/jobs/managing-batches.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/events": {
+                "type": "group",
+                "title": "Events",
+                "icon": "phosphor/regular/bell",
+                "children": {
+                  "/overview": {
+                    "type": "page",
+                    "title": "Events overview",
+                    "icon": "phosphor/regular/bell",
+                    "filepath": "content/events/events-overview.md",
+                    "showInSidebar": true
+                  },
+                  "/event-object": {
+                    "type": "page",
+                    "title": "The event object",
+                    "icon": "line/interface-content-book-page",
+                    "filepath": "content/events/event-object.md",
+                    "showInSidebar": true
+                  }
+                }
+              }
+            }
+          },
+          "/get-in-touch": {
+            "type": "group",
+            "title": "Get in touch",
+            "mode": "flat",
+            "children": {
+              "/get-in-touch/support": {
+                "type": "link",
+                "title": "Support",
+                "icon": "line/mail-send-envelope",
+                "url": "mailto:support@opusdns.com"
+              },
+              "/get-in-touch/book-a-demo": {
+                "type": "link",
+                "title": "Book a demo",
+                "icon": "line/interface-calendar-date-one",
+                "url": "https://www.opusdns.com/contact",
+                "newTab": true
+              },
+              "/get-in-touch/sign-up": {
+                "type": "link",
+                "title": "Sign up now",
+                "icon": "line/interface-users-multiple",
+                "url": "https://app.opusdns.com/signup",
+                "newTab": true
+              }
+            }
+          },
+          "/changelog": {
+            "type": "page",
+            "title": "Changelog",
+            "icon": "phosphor/regular/clock-counter-clockwise",
+            "filepath": "content/changelog.md",
+            "showInSidebar": true
           }
         }
       },
       "/api-reference": {
         "type": "openapi",
         "title": "API Reference",
+        "icon": "line/programming-script-code",
         "url": "https://raw.githubusercontent.com/OpusDNS/api-spec/refs/heads/main/src/openapi.yaml",
         "mode": "nested",
         "singlePage": true,
