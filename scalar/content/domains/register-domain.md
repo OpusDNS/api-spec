@@ -14,19 +14,17 @@ from checking availability to confirming the registration is complete.
 ## 1. Check availability
 
 Before submitting a registration, check one or more domains with
-`POST /v1/domains/check`. You can check multiple domains in a single request:
+`GET /v1/domains/check`. You can check multiple domains in a single request:
 
 ```bash
-curl "$OPUSDNS_API_BASE/v1/domains/check" \
-  --request POST \
+curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "domains": ["example.com", "example.net", "example.de"]
-  }'
+  --data-urlencode "domains=example.com" \
+  --data-urlencode "domains=example.net" \
+  --data-urlencode "domains=example.de"
 ```
 
-The response returns one result per domain with an availability status:
+The response returns one result per domain:
 
 ```json
 {
@@ -34,13 +32,13 @@ The response returns one result per domain with an availability status:
     {
       "domain": "example.com",
       "available": true,
-      "status": "available",
+      "reason": null,
       "is_premium": false
     },
     {
       "domain": "example.net",
       "available": false,
-      "status": "unavailable",
+      "reason": "already_registered",
       "is_premium": false
     }
   ]
@@ -49,18 +47,19 @@ The response returns one result per domain with an availability status:
 
 The `is_premium` flag indicates whether the domain carries premium pricing. When `true`, a `premium_pricing` object is included with prices per action — see [Premium domains](/products/domains/premium) for details.
 
-### Availability statuses
+### Availability fields
 
-| Status | Meaning |
+| Field | Meaning |
 | --- | --- |
-| `available` | The domain can be registered immediately. |
-| `unavailable` | The domain is already registered and cannot be registered. |
-| `market_available` | The domain is available through an aftermarket or secondary market. |
-| `tmch_claim` | The domain matches a trademark in the Trademark Clearinghouse. Registration requires a claims notice acceptance. |
-| `error` | The check could not be completed — for example, the TLD is not supported. |
+| `available` | Whether the domain can be registered through OpusDNS. |
+| `reason` | Registry or validation reason when the domain is not available, or `null` when no reason is needed. |
+| `claims_key` | Present when trademark claims acceptance is required. |
+| `is_premium` | Whether the domain carries premium pricing. |
+| `premium_pricing` | Premium prices per action when pricing is available. |
 
-Continue only when the status is `available` (or `tmch_claim` if you intend to
-handle claims).
+Continue only when `available` is `true`. If `claims_key` is present, follow the
+[Trademarked Domains](/products/domains/trademarked-domains) workflow before
+registering.
 
 ## 2. Prepare contacts
 
@@ -172,7 +171,7 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
 | `create_zone` | No | Set to `true` to automatically provision a DNS zone on OpusDNS nameservers. |
 | `expected_price` | No | Price confirmation for [premium domains](/products/domains/premium). |
 | `attributes` | No | [Registry-specific attributes](/products/domains/registry-attributes) required by certain TLDs. |
-| `claims_notice_acceptance_hash` | No | Required when registering a domain with a `tmch_claim` status during a claims phase. |
+| `claims_notice_acceptance_hash` | No | Required when the availability check returns a `claims_key` during a claims phase. |
 
 ### DNS zone and nameserver behavior
 
@@ -182,8 +181,8 @@ The <code>create_zone</code> and <code>nameservers</code> fields are independent
 
 ### Trademark Claims (TMCH)
 
-If the availability check returned `tmch_claim`, the domain matches a
-trademark in the Trademark Clearinghouse. See
+If the availability check returns a `claims_key`, the domain matches a
+trademark in the Trademark Clearinghouse and requires claims acceptance. See
 [Trademarked Domains](/products/domains/trademarked-domains) for the full
 claims notice workflow.
 
@@ -319,7 +318,7 @@ You can always change the renewal mode later. See [Manage a domain](/products/do
 
 ## Related API Reference
 
-- [`POST /v1/domains/check`](/api-reference#tag/domain/POST/v1/domains/check)
+- [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check)
 - [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains)
 - [`POST /v1/contacts`](/api-reference#tag/contact/POST/v1/contacts)
 - [`GET /v1/domains/{domain_reference}`](/api-reference#tag/domain/GET/v1/domains/{domain_reference})

@@ -57,17 +57,14 @@ your account is new):
 Now try checking whether a domain is available for registration:
 
 ```bash
-curl "$OPUSDNS_API_BASE/v1/domains/check" \
-  --request POST \
+curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "domains": ["example.com", "example.net"]
-  }'
+  --data-urlencode "domains=example.com" \
+  --data-urlencode "domains=example.net"
 ```
 
-The response contains one result per domain with a status like `available`,
-`unavailable`, `market_available`, `tmch_claim`, or `error`.
+The response contains one result per domain with `available`, `reason`,
+`is_premium`, and optional `claims_key` or `premium_pricing` fields.
 
 ## 6. Register a domain
 

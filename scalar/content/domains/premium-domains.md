@@ -7,18 +7,14 @@ transfers, and restores.
 
 ## Identifying premium domains
 
-When you check domain availability with `POST /v1/domains/check`, each result
+When you check domain availability with `GET /v1/domains/check`, each result
 includes an `is_premium` flag and, when applicable, a `premium_pricing` object
 with prices per action.
 
 ```bash
-curl "$OPUSDNS_API_BASE/v1/domains/check" \
-  --request POST \
+curl --get "$OPUSDNS_API_BASE/v1/domains/check" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "domains": ["luxury.com"]
-  }'
+  --data-urlencode "domains=luxury.com"
 ```
 
 A premium domain returns pricing information in the response:
@@ -29,6 +25,7 @@ A premium domain returns pricing information in the response:
     {
       "domain": "luxury.com",
       "available": true,
+      "reason": null,
       "is_premium": true,
       "premium_pricing": {
         "prices": [
@@ -158,7 +155,7 @@ domains without a separate availability check.
 
 ## Related API Reference
 
-- [`POST /v1/domains/check`](/api-reference#tag/domain/POST/v1/domains/check)
+- [`GET /v1/domains/check`](/api-reference#tag/domain/GET/v1/domains/check)
 - [`POST /v1/domains`](/api-reference#tag/domain/POST/v1/domains)
 - [`POST /v1/domains/{domain_reference}/renew`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/renew)
 - [`POST /v1/domains/{domain_reference}/restore`](/api-reference#tag/domain/POST/v1/domains/{domain_reference}/restore)

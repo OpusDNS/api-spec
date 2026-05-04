@@ -9,7 +9,7 @@ the domain-level DNSSEC records published at the registry.
 | Level | What it does | API |
 | --- | --- | --- |
 | **Zone signing** | Signs DNS responses from OpusDNS nameservers. | `POST /v1/dns/{zone_name}/dnssec/enable` |
-| **Registry DS records** | Publishes DS records at the parent zone via the domain registrar. | `PUT /v1/domains/{domain}/dnssec` |
+| **Registry DS records** | Publishes DS records at the parent zone via the domain registrar. | `PUT /v1/domains/{domain_reference}/dnssec` |
 
 When you use OpusDNS nameservers, enabling zone signing also handles the DS
 record publication at the registry automatically. You typically only need to

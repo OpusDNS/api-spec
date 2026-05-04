@@ -6,8 +6,8 @@ user created inside a suborganization is scoped to that suborganization only
 — they cannot see or access other organizations.
 
 Each user has a globally unique username and email address, and can hold
-custom attributes for your integration needs. Roles, permissions, passwords,
-and security settings are managed through the
+custom attributes for your integration needs. Access and security settings are
+managed through the
 [OpusDNS Dashboard](https://app.opusdns.com).
 
 ## Creating a user
@@ -83,8 +83,7 @@ Both return the user record:
   "last_name": "Doe",
   "locale": "en",
   "status": "active",
-  "created_on": "2026-01-15T10:00:00Z",
-  "last_login": "2026-05-04T09:30:00Z"
+  "created_on": "2026-01-15T10:00:00Z"
 }
 ```
 
