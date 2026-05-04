@@ -117,7 +117,7 @@
       "/api-reference": {
         "type": "openapi",
         "title": "API Reference",
-        "filepath": "../src/openapi.yaml",
+        "url": "https://raw.githubusercontent.com/OpusDNS/api-spec/refs/heads/main/src/openapi.yaml",
         "mode": "nested",
         "singlePage": true,
         "showInSidebar": true
