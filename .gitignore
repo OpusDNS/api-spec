@@ -6,3 +6,4 @@ openapi.yaml
 # Scalar CLI local cache (defensive; current versions cache in ~/.scalar)
 .scalar/
 scalar/.scalar/
+.idea
