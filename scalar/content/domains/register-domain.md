@@ -73,26 +73,9 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
   }'
 ```
 
-### Premium domains
-
-If the domain is premium-priced, include `expected_price` to confirm the price
-you expect to pay. If the registry price differs, the API can reject the
-request instead of creating a surprise charge.
-
-```json
-{
-  "name": "premium-example.com",
-  "expected_price": "120.00",
-  "contacts": {
-    "registrant": "contact_01h45ytscbebyvny4gc8cr8ma2"
-  },
-  "renewal_mode": "renew",
-  "period": {
-    "unit": "y",
-    "value": 1
-  }
-}
-```
+> **Note:** If the domain has premium pricing, include `expected_price` in your
+> request to confirm the price. See [Premium domains](/domains/premium) for
+> details.
 
 ## 4. Confirm the result
 

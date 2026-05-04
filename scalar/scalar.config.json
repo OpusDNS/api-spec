@@ -62,11 +62,13 @@
     "tabs": [
       {
         "title": "Guides",
+        "icon": "line/interface-content-book-open-pages",
         "to": "/",
         "newTab": false
       },
       {
         "title": "API Reference",
+        "icon": "line/programming-script-code",
         "to": "/api-reference",
         "newTab": false
       }
@@ -75,48 +77,188 @@
       "/": {
         "type": "group",
         "title": "Guides",
+        "icon": "line/interface-content-book-open-pages",
         "children": {
-          "/": {
-            "type": "page",
-            "title": "Introduction",
-            "filepath": "content/introduction.md",
-            "showInSidebar": true
-          },
-          "/quickstart": {
-            "type": "page",
-            "title": "Quickstart",
-            "filepath": "content/quickstart.md",
-            "showInSidebar": true
-          },
-          "/authentication": {
-            "type": "page",
-            "title": "Authentication",
-            "filepath": "content/authentication.md",
-            "showInSidebar": true
-          },
-          "/domains": {
+          "/introduction": {
             "type": "group",
-            "title": "Domains",
+            "title": "Introduction",
+            "mode": "flat",
             "children": {
-              "/domains/register": {
+              "/": {
                 "type": "page",
-                "title": "Register a domain",
-                "filepath": "content/domains/register-domain.md",
+                "title": "Overview",
+                "icon": "line/interface-home-house",
+                "filepath": "content/introduction.md",
                 "showInSidebar": true
               },
-              "/domains/transfer": {
+              "/quickstart": {
                 "type": "page",
-                "title": "Transfer a domain",
-                "filepath": "content/domains/transfer-domain.md",
+                "title": "API Quickstart",
+                "icon": "line/interface-share-rocket",
+                "filepath": "content/quickstart.md",
+                "showInSidebar": true
+              },
+              "/authentication": {
+                "type": "page",
+                "title": "Authentication",
+                "icon": "line/interface-login-key",
+                "filepath": "content/authentication.md",
                 "showInSidebar": true
               }
             }
+          },
+          "/next-steps": {
+            "type": "group",
+            "title": "Products",
+            "mode": "flat",
+            "children": {
+              "/domains": {
+                "type": "group",
+                "title": "Domains",
+                "icon": "line/travel-map-earth-globe",
+                "children": {
+                  "/domains/register": {
+                    "type": "page",
+                    "title": "Register a domain",
+                    "icon": "line/interface-add",
+                    "filepath": "content/domains/register-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/domains/transfer": {
+                    "type": "page",
+                    "title": "Transfer a domain",
+                    "icon": "line/arrow-right",
+                    "filepath": "content/domains/transfer-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/domains/manage": {
+                    "type": "page",
+                    "title": "Manage a domain",
+                    "icon": "line/interface-setting-cog",
+                    "filepath": "content/domains/manage-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/domains/renew": {
+                    "type": "page",
+                    "title": "Renew a domain",
+                    "icon": "line/interface-time-clock-circle",
+                    "filepath": "content/domains/renew-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/domains/delete": {
+                    "type": "page",
+                    "title": "Delete a domain",
+                    "icon": "line/interface-delete-bin",
+                    "filepath": "content/domains/delete-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/domains/restore": {
+                    "type": "page",
+                    "title": "Restore a domain",
+                    "icon": "line/interface-undo",
+                    "filepath": "content/domains/restore-domain.md",
+                    "showInSidebar": true
+                  },
+                  "/domains/premium": {
+                    "type": "page",
+                    "title": "Premium domains",
+                    "icon": "line/interface-star",
+                    "filepath": "content/domains/premium-domains.md",
+                    "showInSidebar": true
+                  },
+                  "/domains/dnssec": {
+                    "type": "page",
+                    "title": "DNSSEC",
+                    "icon": "line/interface-lock",
+                    "filepath": "content/domains/dnssec.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/tlds": {
+                "type": "group",
+                "title": "TLD Reference",
+                "icon": "line/interface-content-book-open-pages",
+                "children": {
+                  "/tlds/specifications": {
+                    "type": "page",
+                    "title": "TLD specifications",
+                    "icon": "line/interface-file-text",
+                    "filepath": "content/tlds/tld-specifications.md",
+                    "showInSidebar": true
+                  },
+                  "/tlds/specific-operations": {
+                    "type": "page",
+                    "title": "TLD-specific operations",
+                    "icon": "line/interface-setting-cog",
+                    "filepath": "content/tlds/tld-specific-operations.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/events": {
+                "type": "group",
+                "title": "Events",
+                "icon": "line/interface-alert-bell",
+                "children": {
+                  "/events/overview": {
+                    "type": "page",
+                    "title": "Events overview",
+                    "icon": "line/interface-alert-bell",
+                    "filepath": "content/events/events-overview.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
+              "/batch-operations": {
+                "type": "page",
+                "title": "Batch operations",
+                "icon": "line/interface-content-stack",
+                "filepath": "content/batch-operations.md",
+                "showInSidebar": true
+              }
+            }
+          },
+          "/get-in-touch": {
+            "type": "group",
+            "title": "Get in touch",
+            "mode": "flat",
+            "children": {
+              "/get-in-touch/support": {
+                "type": "link",
+                "title": "Support",
+                "icon": "line/mail-send-envelope",
+                "url": "mailto:support@opusdns.com"
+              },
+              "/get-in-touch/book-a-demo": {
+                "type": "link",
+                "title": "Book a demo",
+                "icon": "line/interface-calendar-date-one",
+                "url": "https://www.opusdns.com/contact",
+                "newTab": true
+              },
+              "/get-in-touch/sign-up": {
+                "type": "link",
+                "title": "Sign up now",
+                "icon": "line/interface-users-multiple",
+                "url": "https://app.opusdns.com/signup",
+                "newTab": true
+              }
+            }
+          },
+          "/changelog": {
+            "type": "page",
+            "title": "Changelog",
+            "icon": "line/interface-time-clock-circle",
+            "filepath": "content/changelog.md",
+            "showInSidebar": true
           }
         }
       },
       "/api-reference": {
         "type": "openapi",
         "title": "API Reference",
+        "icon": "line/programming-script-code",
         "url": "https://raw.githubusercontent.com/OpusDNS/api-spec/refs/heads/main/src/openapi.yaml",
         "mode": "nested",
         "singlePage": true,
