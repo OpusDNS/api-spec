@@ -3115,6 +3115,16 @@ export interface components {
              */
             type: "contact_create" | "contact_create_bulk";
         };
+        /** ContactCreateWorkerResult */
+        ContactCreateWorkerResult: {
+            /** Contact Id */
+            contact_id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "contact_create" | "contact_create_bulk";
+        };
         /** ContactHandle */
         ContactHandle: {
             /**
@@ -3987,6 +3997,16 @@ export interface components {
             type: "dns_zone_create" | "dns_zone_create_bulk";
             zone: components["schemas"]["DnsZoneCreatePayloadData"];
         };
+        /** DnsZoneCreateWorkerResult */
+        DnsZoneCreateWorkerResult: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "dns_zone_create" | "dns_zone_create_bulk";
+            /** Zone Name */
+            zone_name: string;
+        };
         /** DnsZonePatchRecordsBulkCommand */
         DnsZonePatchRecordsBulkCommand: {
             /**
@@ -4542,6 +4562,16 @@ export interface components {
             domain: components["schemas"]["DomainCreatePayloadData"];
             /** Operation */
             operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "domain_create" | "domain_create_bulk";
+        };
+        /** DomainCreateWorkerResult */
+        DomainCreateWorkerResult: {
+            /** Domain Id */
+            domain_id: string;
             /**
              * @description discriminator enum property added by openapi-typescript
              * @enum {string}
@@ -6730,6 +6760,13 @@ export interface components {
              * @description Resource identifier for this job
              */
             resource_key?: string | null;
+            /**
+             * Result
+             * @description Structured result data from successful job execution (e.g. created entity IDs). Typed when the worker emits a known `type` discriminator; raw dict otherwise.
+             */
+            result?: (components["schemas"]["ContactCreateWorkerResult"] | components["schemas"]["DomainCreateWorkerResult"] | components["schemas"]["DnsZoneCreateWorkerResult"]) | {
+                [key: string]: unknown;
+            } | null;
             /**
              * Started At
              * @description Timestamp when job execution began (UTC)

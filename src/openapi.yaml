@@ -1035,6 +1035,22 @@ components:
       - contact
       title: ContactCreateWorkerPayload
       type: object
+    ContactCreateWorkerResult:
+      properties:
+        contact_id:
+          title: Contact Id
+          type: string
+        type:
+          enum:
+          - contact_create
+          - contact_create_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - contact_id
+      title: ContactCreateWorkerResult
+      type: object
     ContactHandle:
       properties:
         attributes:
@@ -2301,6 +2317,22 @@ components:
       - zone
       title: DnsZoneCreateWorkerPayload
       type: object
+    DnsZoneCreateWorkerResult:
+      properties:
+        type:
+          enum:
+          - dns_zone_create
+          - dns_zone_create_bulk
+          title: Type
+          type: string
+        zone_name:
+          title: Zone Name
+          type: string
+      required:
+      - type
+      - zone_name
+      title: DnsZoneCreateWorkerResult
+      type: object
     DnsZonePatchRecordsBulkCommand:
       properties:
         command:
@@ -3167,6 +3199,22 @@ components:
       - operation
       - domain
       title: DomainCreateWorkerPayload
+      type: object
+    DomainCreateWorkerResult:
+      properties:
+        domain_id:
+          title: Domain Id
+          type: string
+        type:
+          enum:
+          - domain_create
+          - domain_create_bulk
+          title: Type
+          type: string
+      required:
+      - type
+      - domain_id
+      title: DomainCreateWorkerResult
       type: object
     DomainDnssecDataCreate:
       properties:
@@ -6406,6 +6454,28 @@ components:
           - type: 'null'
           description: Resource identifier for this job
           title: Resource Key
+        result:
+          anyOf:
+          - discriminator:
+              mapping:
+                contact_create: '#/components/schemas/ContactCreateWorkerResult'
+                contact_create_bulk: '#/components/schemas/ContactCreateWorkerResult'
+                dns_zone_create: '#/components/schemas/DnsZoneCreateWorkerResult'
+                dns_zone_create_bulk: '#/components/schemas/DnsZoneCreateWorkerResult'
+                domain_create: '#/components/schemas/DomainCreateWorkerResult'
+                domain_create_bulk: '#/components/schemas/DomainCreateWorkerResult'
+              propertyName: type
+            oneOf:
+            - $ref: '#/components/schemas/ContactCreateWorkerResult'
+            - $ref: '#/components/schemas/DomainCreateWorkerResult'
+            - $ref: '#/components/schemas/DnsZoneCreateWorkerResult'
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: Structured result data from successful job execution (e.g.
+            created entity IDs). Typed when the worker emits a known `type` discriminator;
+            raw dict otherwise.
+          title: Result
         started_at:
           anyOf:
           - format: date-time
@@ -10690,7 +10760,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-05-201917
+  version: 2026-05-05-223247
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -571,6 +571,22 @@ export type ContactCreatePayloadData = components['schemas']['ContactCreatePaylo
  */
 export type ContactCreateWorkerPayload = components['schemas']['ContactCreateWorkerPayload'];
 /**
+ * ContactCreateWorkerResult
+ *
+ * @remarks
+ * Type alias for the `ContactCreateWorkerResult` OpenAPI schema.
+ * This type represents contactcreateworkerresult data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactCreateWorkerResult();
+ * const item: ContactCreateWorkerResult = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactCreateWorkerResult = components['schemas']['ContactCreateWorkerResult'];
+/**
  * ContactHandle
  *
  * @remarks
@@ -1259,6 +1275,22 @@ export type DnsZoneCreatePayloadData = components['schemas']['DnsZoneCreatePaylo
  */
 export type DnsZoneCreateWorkerPayload = components['schemas']['DnsZoneCreateWorkerPayload'];
 /**
+ * DnsZoneCreateWorkerResult
+ *
+ * @remarks
+ * Type alias for the `DnsZoneCreateWorkerResult` OpenAPI schema.
+ * This type represents dnszonecreateworkerresult data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDnsZoneCreateWorkerResult();
+ * const item: DnsZoneCreateWorkerResult = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DnsZoneCreateWorkerResult = components['schemas']['DnsZoneCreateWorkerResult'];
+/**
  * DnsZonePatchRecordsBulkCommand
  *
  * @remarks
@@ -1946,6 +1978,22 @@ export type DomainCreatePayloadData = components['schemas']['DomainCreatePayload
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type DomainCreateWorkerPayload = components['schemas']['DomainCreateWorkerPayload'];
+/**
+ * DomainCreateWorkerResult
+ *
+ * @remarks
+ * Type alias for the `DomainCreateWorkerResult` OpenAPI schema.
+ * This type represents domaincreateworkerresult data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainCreateWorkerResult();
+ * const item: DomainCreateWorkerResult = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainCreateWorkerResult = components['schemas']['DomainCreateWorkerResult'];
 /**
  * DomainDnssecDataCreate
  *

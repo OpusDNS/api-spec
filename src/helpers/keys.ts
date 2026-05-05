@@ -52,6 +52,7 @@ import { ContactCreateBulkTemplate } from './schemas';
 import { ContactCreateCommand } from './schemas';
 import { ContactCreatePayloadData } from './schemas';
 import { ContactCreateWorkerPayload } from './schemas';
+import { ContactCreateWorkerResult } from './schemas';
 import { ContactHandle } from './schemas';
 import { Contact } from './schemas';
 import { ContactSchema } from './schemas';
@@ -87,6 +88,7 @@ import { DnsZoneCreateBulkTemplate } from './schemas';
 import { DnsZoneCreateCommand } from './schemas';
 import { DnsZoneCreatePayloadData } from './schemas';
 import { DnsZoneCreateWorkerPayload } from './schemas';
+import { DnsZoneCreateWorkerResult } from './schemas';
 import { DnsZonePatchRecordsBulkCommand } from './schemas';
 import { DnsZonePatchRecordsBulkInstance } from './schemas';
 import { DnsZonePatchRecordsBulkPayload } from './schemas';
@@ -120,6 +122,7 @@ import { DomainCreateBulkTemplate } from './schemas';
 import { DomainCreateCommand } from './schemas';
 import { DomainCreatePayloadData } from './schemas';
 import { DomainCreateWorkerPayload } from './schemas';
+import { DomainCreateWorkerResult } from './schemas';
 import { DomainDnssecDataCreate } from './schemas';
 import { DomainDnssecData } from './schemas';
 import { DomainForward } from './schemas';
@@ -4265,6 +4268,82 @@ export const KEYS_CONTACT_CREATE_WORKER_PAYLOAD = [
   KEY_CONTACT_CREATE_WORKER_PAYLOAD_OPERATION,
   KEY_CONTACT_CREATE_WORKER_PAYLOAD_TYPE,
 ] as const satisfies (keyof ContactCreateWorkerPayload)[];
+
+/**
+ * Contact Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of ContactCreateWorkerResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreateworkerresult[KEY_CONTACT_CREATE_WORKER_RESULT_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_WORKER_RESULT_CONTACT_ID;
+ * const value = contactcreateworkerresult[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateWorkerResult} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_WORKER_RESULT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_WORKER_RESULT_CONTACT_ID: keyof ContactCreateWorkerResult = 'contact_id';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of ContactCreateWorkerResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactcreateworkerresult[KEY_CONTACT_CREATE_WORKER_RESULT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_CREATE_WORKER_RESULT_TYPE;
+ * const value = contactcreateworkerresult[propertyName];
+ * ```
+ *
+ * @see {@link ContactCreateWorkerResult} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_CREATE_WORKER_RESULT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_CREATE_WORKER_RESULT_TYPE: keyof ContactCreateWorkerResult = 'type';
+
+/**
+ * Array of all ContactCreateWorkerResult property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactCreateWorkerResult objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_CREATE_WORKER_RESULT) {
+ *   console.log(`Property: ${key}, Value: ${contactcreateworkerresult[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_CREATE_WORKER_RESULT.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactCreateWorkerResult} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_CREATE_WORKER_RESULT = [
+  KEY_CONTACT_CREATE_WORKER_RESULT_CONTACT_ID,
+  KEY_CONTACT_CREATE_WORKER_RESULT_TYPE,
+] as const satisfies (keyof ContactCreateWorkerResult)[];
 
 /**
  * Attributes
@@ -9737,6 +9816,82 @@ export const KEYS_DNS_ZONE_CREATE_WORKER_PAYLOAD = [
 ] as const satisfies (keyof DnsZoneCreateWorkerPayload)[];
 
 /**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DnsZoneCreateWorkerResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreateworkerresult[KEY_DNS_ZONE_CREATE_WORKER_RESULT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_WORKER_RESULT_TYPE;
+ * const value = dnszonecreateworkerresult[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateWorkerResult} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_WORKER_RESULT} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_WORKER_RESULT_TYPE: keyof DnsZoneCreateWorkerResult = 'type';
+/**
+ * Zone Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `zone_name` property of DnsZoneCreateWorkerResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreateworkerresult[KEY_DNS_ZONE_CREATE_WORKER_RESULT_ZONE_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_WORKER_RESULT_ZONE_NAME;
+ * const value = dnszonecreateworkerresult[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreateWorkerResult} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_WORKER_RESULT} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_WORKER_RESULT_ZONE_NAME: keyof DnsZoneCreateWorkerResult = 'zone_name';
+
+/**
+ * Array of all DnsZoneCreateWorkerResult property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DnsZoneCreateWorkerResult objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DNS_ZONE_CREATE_WORKER_RESULT) {
+ *   console.log(`Property: ${key}, Value: ${dnszonecreateworkerresult[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DNS_ZONE_CREATE_WORKER_RESULT.includes(someKey);
+ * ```
+ *
+ * @see {@link DnsZoneCreateWorkerResult} - The TypeScript type definition
+ */
+export const KEYS_DNS_ZONE_CREATE_WORKER_RESULT = [
+  KEY_DNS_ZONE_CREATE_WORKER_RESULT_TYPE,
+  KEY_DNS_ZONE_CREATE_WORKER_RESULT_ZONE_NAME,
+] as const satisfies (keyof DnsZoneCreateWorkerResult)[];
+
+/**
  * Command
  *
  *
@@ -13350,6 +13505,82 @@ export const KEYS_DOMAIN_CREATE_WORKER_PAYLOAD = [
   KEY_DOMAIN_CREATE_WORKER_PAYLOAD_OPERATION,
   KEY_DOMAIN_CREATE_WORKER_PAYLOAD_TYPE,
 ] as const satisfies (keyof DomainCreateWorkerPayload)[];
+
+/**
+ * Domain Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_id` property of DomainCreateWorkerResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreateworkerresult[KEY_DOMAIN_CREATE_WORKER_RESULT_DOMAIN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_WORKER_RESULT_DOMAIN_ID;
+ * const value = domaincreateworkerresult[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateWorkerResult} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_WORKER_RESULT} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_WORKER_RESULT_DOMAIN_ID: keyof DomainCreateWorkerResult = 'domain_id';
+/**
+ * Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of DomainCreateWorkerResult objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreateworkerresult[KEY_DOMAIN_CREATE_WORKER_RESULT_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_WORKER_RESULT_TYPE;
+ * const value = domaincreateworkerresult[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateWorkerResult} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_WORKER_RESULT} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_WORKER_RESULT_TYPE: keyof DomainCreateWorkerResult = 'type';
+
+/**
+ * Array of all DomainCreateWorkerResult property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainCreateWorkerResult objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_CREATE_WORKER_RESULT) {
+ *   console.log(`Property: ${key}, Value: ${domaincreateworkerresult[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_CREATE_WORKER_RESULT.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainCreateWorkerResult} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_CREATE_WORKER_RESULT = [
+  KEY_DOMAIN_CREATE_WORKER_RESULT_DOMAIN_ID,
+  KEY_DOMAIN_CREATE_WORKER_RESULT_TYPE,
+] as const satisfies (keyof DomainCreateWorkerResult)[];
 
 /**
  * algorithm property
@@ -26666,6 +26897,31 @@ export const KEY_JOB_PAYLOAD: keyof Job = 'payload';
  */
 export const KEY_JOB_RESOURCE_KEY: keyof Job = 'resource_key';
 /**
+ * Result
+ *
+ * Structured result data from successful job execution (e.g. created entity IDs). Typed when the worker emits a known `type` discriminator; raw dict otherwise.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `result` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_RESULT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_RESULT;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_RESULT: keyof Job = 'result';
+/**
  * Started At
  *
  * Timestamp when job execution began (UTC)
@@ -26750,6 +27006,7 @@ export const KEYS_JOB = [
   KEY_JOB_PAUSED_AT,
   KEY_JOB_PAYLOAD,
   KEY_JOB_RESOURCE_KEY,
+  KEY_JOB_RESULT,
   KEY_JOB_STARTED_AT,
   KEY_JOB_STATUS,
 ] as const satisfies (keyof Job)[];
