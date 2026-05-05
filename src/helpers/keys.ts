@@ -34681,7 +34681,7 @@ export const KEYS_PREMIUM_PRICE_ENTRY_RES = [
 /**
  * Action
  *
- * The action (e.g., create, renew, transfer)
+ * The action this price applies to (e.g., create, renew, transfer)
  *
  * @type {string}
  *
@@ -34707,7 +34707,7 @@ export const KEY_PREMIUM_PRICING_ACTION_ACTION: keyof PremiumPricingAction = 'ac
 /**
  * Currency
  *
- * Currency of the price
+ * ISO 4217 currency code
  *
  * @type {string}
  *
@@ -34733,7 +34733,7 @@ export const KEY_PREMIUM_PRICING_ACTION_CURRENCY: keyof PremiumPricingAction = '
 /**
  * Price
  *
- * Customer-facing price after markup
+ * Price for the action
  *
  * @type {string}
  *
@@ -41799,6 +41799,7 @@ export const KEYS_DOMAIN_AVAILABILITY_LIST = [
 /**
  * Available
  *
+ * True if the domain is available for registration
  *
  * @type {boolean}
  *
@@ -41824,7 +41825,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_AVAILABLE: keyof DomainAvailabilityCh
 /**
  * Claims Key
  *
- * Claims key, if claims notice acceptance is required
+ * Trademark claims key returned when the TLD is in its claims phase and the domain matches a TMCH-registered mark. When present, the corresponding claims notice must be retrieved and acknowledged before registration.
  *
  *
  *
@@ -41849,7 +41850,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_CLAIMS_KEY: keyof DomainAvailabilityC
 /**
  * Domain
  *
- * The domain name
+ * The domain name that was checked
  *
  * @type {string}
  *
@@ -41875,7 +41876,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_DOMAIN: keyof DomainAvailabilityCheck
 /**
  * Is Premium
  *
- * Whether this is a premium domain
+ * True if the registry classifies this domain as premium (non-standard pricing)
  *
  * @type {boolean}
  *
@@ -41901,7 +41902,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_IS_PREMIUM: keyof DomainAvailabilityC
 /**
  * premium_pricing property
  *
- * Premium pricing details, present when domain is premium and pricing is available
+ * Premium pricing per action (create / renew / transfer / restore). Present only when `is_premium` is true and the registry returned pricing.
  *
  *
  *
@@ -41926,6 +41927,7 @@ export const KEY_DOMAIN_AVAILABILITY_CHECK_PREMIUM_PRICING: keyof DomainAvailabi
 /**
  * Reason
  *
+ * Registry-supplied reason the domain is unavailable (e.g. 'Domain exists', 'Reserved', 'In Use'). May be null when the domain is available, or when the registry did not provide a reason.
  *
  *
  *

@@ -1028,7 +1028,17 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Check domain availability */
+        /**
+         * Check domain availability and registration metadata
+         * @description Performs a real-time check against the authoritative registry for each domain and returns availability plus any registry-specific metadata needed to register it.
+         *
+         *     For each domain the response includes:
+         *     - **Availability** — whether the domain can be registered, and the registry's reason if not.
+         *     - **Trademark claims (TMCH)** — when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. The corresponding claims notice must be retrieved and acknowledged before the domain can be registered. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
+         *     - **Premium status and pricing** — whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+         *
+         *     Domains are queried in parallel, grouped by registry connection. Availability and metadata reflect the registry's state at the moment of the call and are not cached.
+         */
         get: operations["epp_check_domain_v1_domains_check_get"];
         put?: never;
         post?: never;
@@ -8209,17 +8219,20 @@ export interface components {
         PremiumPricingAction: {
             /**
              * Action
-             * @description The action (e.g., create, renew, transfer)
+             * @description The action this price applies to (e.g., create, renew, transfer)
+             * @example create
              */
             action: string;
             /**
              * Currency
-             * @description Currency of the price
+             * @description ISO 4217 currency code
+             * @example EUR
              */
             currency: string;
             /**
              * Price
-             * @description Customer-facing price after markup
+             * @description Price for the action
+             * @example 625.00
              */
             price: string;
         };
@@ -9482,28 +9495,36 @@ export interface components {
         };
         /** DomainAvailabilityResponse */
         common__models__domain__domain__DomainAvailabilityResponse: {
-            /** Available */
+            /**
+             * Available
+             * @description True if the domain is available for registration
+             */
             available: boolean;
             /**
              * Claims Key
-             * @description Claims key, if claims notice acceptance is required
+             * @description Trademark claims key returned when the TLD is in its claims phase and the domain matches a TMCH-registered mark. When present, the corresponding claims notice must be retrieved and acknowledged before registration.
+             * @example 2013041500/2/6/9/rJ1NrDO92vDsAzf7EQzgjX4R0000000001
              */
             claims_key?: string | null;
             /**
              * Domain
-             * @description The domain name
+             * @description The domain name that was checked
              * @example example.com
              */
             domain: string;
             /**
              * Is Premium
-             * @description Whether this is a premium domain
+             * @description True if the registry classifies this domain as premium (non-standard pricing)
              * @default false
              */
             is_premium: boolean;
-            /** @description Premium pricing details, present when domain is premium and pricing is available */
+            /** @description Premium pricing per action (create / renew / transfer / restore). Present only when `is_premium` is true and the registry returned pricing. */
             premium_pricing?: components["schemas"]["PremiumPricingResponse"] | null;
-            /** Reason */
+            /**
+             * Reason
+             * @description Registry-supplied reason the domain is unavailable (e.g. 'Domain exists', 'Reserved', 'In Use'). May be null when the domain is available, or when the registry did not provide a reason.
+             * @example Domain exists
+             */
             reason: string | null;
         };
     };
@@ -14625,7 +14646,11 @@ export interface operations {
         parameters: {
             query: {
                 /** @description
-                 *     Specify one or more domains to check for availability.
+                 *     One or more fully-qualified domain names to check at the registry.
+                 *
+                 *     Each domain is checked for availability and, when applicable, enriched with
+                 *     trademark claims information and premium pricing. The list of domains may
+                 *     include a mix of TLDs.
                  *      */
                 domains: string[];
             };

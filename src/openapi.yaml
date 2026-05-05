@@ -8704,15 +8704,21 @@ components:
     PremiumPricingAction:
       properties:
         action:
-          description: The action (e.g., create, renew, transfer)
+          description: The action this price applies to (e.g., create, renew, transfer)
+          examples:
+          - create
           title: Action
           type: string
         currency:
-          description: Currency of the price
+          description: ISO 4217 currency code
+          examples:
+          - EUR
           title: Currency
           type: string
         price:
-          description: Customer-facing price after markup
+          description: Price for the action
+          examples:
+          - '625.00'
           pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
           title: Price
           type: string
@@ -10566,35 +10572,47 @@ components:
     common__models__domain__domain__DomainAvailabilityResponse:
       properties:
         available:
+          description: True if the domain is available for registration
           title: Available
           type: boolean
         claims_key:
           anyOf:
           - type: string
           - type: 'null'
-          description: Claims key, if claims notice acceptance is required
+          description: Trademark claims key returned when the TLD is in its claims
+            phase and the domain matches a TMCH-registered mark. When present, the
+            corresponding claims notice must be retrieved and acknowledged before
+            registration.
+          examples:
+          - 2013041500/2/6/9/rJ1NrDO92vDsAzf7EQzgjX4R0000000001
           title: Claims Key
         domain:
-          description: The domain name
+          description: The domain name that was checked
           examples:
           - example.com
           title: Domain
           type: string
         is_premium:
           default: false
-          description: Whether this is a premium domain
+          description: True if the registry classifies this domain as premium (non-standard
+            pricing)
           title: Is Premium
           type: boolean
         premium_pricing:
           anyOf:
           - $ref: '#/components/schemas/PremiumPricingResponse'
           - type: 'null'
-          description: Premium pricing details, present when domain is premium and
-            pricing is available
+          description: Premium pricing per action (create / renew / transfer / restore).
+            Present only when `is_premium` is true and the registry returned pricing.
         reason:
           anyOf:
           - type: string
           - type: 'null'
+          description: Registry-supplied reason the domain is unavailable (e.g. 'Domain
+            exists', 'Reserved', 'In Use'). May be null when the domain is available,
+            or when the registry did not provide a reason.
+          examples:
+          - Domain exists
           title: Reason
       required:
       - domain
@@ -10672,7 +10690,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-05-155048
+  version: 2026-05-05-201917
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -17919,16 +17937,39 @@ paths:
       - domain
   /v1/domains/check:
     get:
+      description: "Performs a real-time check against the authoritative registry\
+        \ for each domain and returns availability plus any registry-specific metadata\
+        \ needed to register it.\n\nFor each domain the response includes:\n- **Availability**\
+        \ \u2014 whether the domain can be registered, and the registry's reason if\
+        \ not.\n- **Trademark claims (TMCH)** \u2014 when the TLD is in its claims\
+        \ phase and the domain matches a trademark in the Trademark Clearinghouse,\
+        \ a `claims_key` is returned. The corresponding claims notice must be retrieved\
+        \ and acknowledged before the domain can be registered. See the [Trademarked\
+        \ domains](/products/domains/trademarked-domains) guide for the full workflow.\n\
+        - **Premium status and pricing** \u2014 whether the domain is classified as\
+        \ premium by the registry, and if so, the price per action (create / renew\
+        \ / transfer / restore). See the [Premium domains](/products/domains/premium)\
+        \ guide for background on how premium domains are priced and registered.\n\
+        \nDomains are queried in parallel, grouped by registry connection. Availability\
+        \ and metadata reflect the registry's state at the moment of the call and\
+        \ are not cached."
       operationId: epp_check_domain_v1_domains_check_get
       parameters:
       - description: '
 
-          Specify one or more domains to check for availability.
+          One or more fully-qualified domain names to check at the registry.
+
+
+          Each domain is checked for availability and, when applicable, enriched with
+
+          trademark claims information and premium pricing. The list of domains may
+
+          include a mix of TLDs.
 
           '
         examples:
           list:
-            summary: A list of domains
+            summary: A list of domain names to check
             value:
             - example.com
             - example.org
@@ -17938,7 +17979,16 @@ paths:
         schema:
           description: '
 
-            Specify one or more domains to check for availability.
+            One or more fully-qualified domain names to check at the registry.
+
+
+            Each domain is checked for availability and, when applicable, enriched
+            with
+
+            trademark claims information and premium pricing. The list of domains
+            may
+
+            include a mix of TLDs.
 
             '
           items:
@@ -17961,7 +18011,7 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Check domain availability
+      summary: Check domain availability and registration metadata
       tags:
       - domain
   /v1/domains/summary:

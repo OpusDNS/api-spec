@@ -3407,7 +3407,15 @@ export type POST_Domains_Request_Body = POST_Domains_Request['requestBody'];
 /**
  * Request type for GET DomainsCheck endpoint
  *
- * Check domain availability
+ * Check domain availability and registration metadata
+ * Performs a real-time check against the authoritative registry for each domain and returns availability plus any registry-specific metadata needed to register it.
+
+For each domain the response includes:
+- **Availability** — whether the domain can be registered, and the registry's reason if not.
+- **Trademark claims (TMCH)** — when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. The corresponding claims notice must be retrieved and acknowledged before the domain can be registered. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
+- **Premium status and pricing** — whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+
+Domains are queried in parallel, grouped by registry connection. Availability and metadata reflect the registry's state at the moment of the call and are not cached.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainsCheck endpoint.
@@ -3419,7 +3427,11 @@ export type POST_Domains_Request_Body = POST_Domains_Request['requestBody'];
  *
  * @path /v1/domains/check
  * @param domains (query) - 
-Specify one or more domains to check for availability.
+One or more fully-qualified domain names to check at the registry.
+
+Each domain is checked for availability and, when applicable, enriched with
+trademark claims information and premium pricing. The list of domains may
+include a mix of TLDs.
 
  *
  * @see {@link GET_DomainsCheck_Request_Query} - Query parameters type
@@ -3443,7 +3455,11 @@ export type GET_DomainsCheck_Request = {
  *
  * @path /v1/domains/check
  * @param domains (query) - 
-Specify one or more domains to check for availability.
+One or more fully-qualified domain names to check at the registry.
+
+Each domain is checked for availability and, when applicable, enriched with
+trademark claims information and premium pricing. The list of domains may
+include a mix of TLDs.
 
  */
 export type GET_DomainsCheck_Request_Query = GET_DomainsCheck_Request['parameters']['query'];
