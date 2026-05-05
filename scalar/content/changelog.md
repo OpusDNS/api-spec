@@ -136,3 +136,12 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Added a TLD-specification list endpoint with `key` and `tld` filters.
 - Increased TXT record support up to 65,535 bytes.
 - Added `namestore` extension support for host commands on supported registries.
+
+### 01 October 2025
+
+- OpusDNS launches! 🚀
+- Added the Domain API for core domain lifecycle operations.
+- Added the DNS API for hosted zones, DNS records, and DNSSEC.
+- Added the Contacts API for domain contact management.
+- Added the Organizations and Users APIs for account management.
+- Added API authentication with API keys and bearer tokens.
