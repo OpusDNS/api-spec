@@ -129,6 +129,20 @@
               }
             }
           },
+          "/upcoming-changes": {
+            "type": "group",
+            "title": "Upcoming Changes",
+            "mode": "flat",
+            "children": {
+              "/event-v1-payloads": {
+                "type": "page",
+                "title": "Event V1 payloads",
+                "icon": "phosphor/regular/bell",
+                "filepath": "content/upcoming-changes/event-v1-payloads.md",
+                "showInSidebar": true
+              }
+            }
+          },
           "/account": {
             "type": "group",
             "title": "Account Management",
