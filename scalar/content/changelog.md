@@ -19,7 +19,6 @@ Track notable updates to the OpusDNS API and developer documentation here.
 - Published authentication documentation covering token retrieval, header usage,
   and credential management.
 - Published the Reports API and Tags API in the public OpenAPI schema.
-- Added Connect and AI Concierge endpoints to the published OpenAPI schema.
 - Documented bulk DNS-zone command behavior in the Jobs guide.
 
 ### 23 April 2026
