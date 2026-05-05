@@ -34,7 +34,669 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ConversationCreateRequest, ConversationPatchRequest, ContextCreateRequest, MessageCreateRequest, MemoryFactCreateRequest, MemoryFactPatchRequest, PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+
+/**
+ * Request type for GET AiConciergeContextsContextId endpoint
+ *
+ * Get a context entry
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET AiConciergeContextsContextId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ *
+ * @see {@link GET_AiConciergeContextsContextId_Request_Query} - Query parameters type
+ * @see {@link GET_AiConciergeContextsContextId_Request_Path} - Path parameters type
+ * @see {@link GET_AiConciergeContextsContextId_Request_Body} - Request body type
+ */
+export type GET_AiConciergeContextsContextId_Request = {
+  parameters: {
+    path: operations['get_context_v1_ai_concierge_contexts__context_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/ai-concierge/contexts/{context_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/ai-concierge/contexts/{context_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ */
+export type GET_AiConciergeContextsContextId_Request_Path = GET_AiConciergeContextsContextId_Request['parameters']['path'];
+
+/**
+ * Request type for GET AiConciergeConversations endpoint
+ *
+ * List AI Concierge conversations
+ * List the authenticated organization's AI Concierge conversations.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET AiConciergeConversations endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ *
+ * @see {@link GET_AiConciergeConversations_Request_Query} - Query parameters type
+ * @see {@link GET_AiConciergeConversations_Request_Path} - Path parameters type
+ * @see {@link GET_AiConciergeConversations_Request_Body} - Request body type
+ */
+export type GET_AiConciergeConversations_Request = {
+  parameters: {
+    query: operations['list_conversations_v1_ai_concierge_conversations_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/ai-concierge/conversations
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/ai-concierge/conversations endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ */
+export type GET_AiConciergeConversations_Request_Query = GET_AiConciergeConversations_Request['parameters']['query'];
+
+/**
+ * Request type for POST AiConciergeConversations endpoint
+ *
+ * Create an AI Concierge conversation
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST AiConciergeConversations endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations
+ *
+ * @see {@link POST_AiConciergeConversations_Request_Query} - Query parameters type
+ * @see {@link POST_AiConciergeConversations_Request_Path} - Path parameters type
+ * @see {@link POST_AiConciergeConversations_Request_Body} - Request body type
+ */
+export type POST_AiConciergeConversations_Request = {
+  requestBody: ConversationCreateRequest;
+}
+/**
+ * Request body for POST /v1/ai-concierge/conversations
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/ai-concierge/conversations endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/ai-concierge/conversations
+ */
+export type POST_AiConciergeConversations_Request_Body = POST_AiConciergeConversations_Request['requestBody'];
+
+/**
+ * Request type for DELETE AiConciergeConversationsConversationId endpoint
+ *
+ * Delete a conversation
+ * Permanently delete a conversation, its messages, and any attached contexts.
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE AiConciergeConversationsConversationId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link DELETE_AiConciergeConversationsConversationId_Request_Query} - Query parameters type
+ * @see {@link DELETE_AiConciergeConversationsConversationId_Request_Path} - Path parameters type
+ * @see {@link DELETE_AiConciergeConversationsConversationId_Request_Body} - Request body type
+ */
+export type DELETE_AiConciergeConversationsConversationId_Request = {
+  parameters: {
+    path: operations['delete_conversation_v1_ai_concierge_conversations__conversation_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/ai-concierge/conversations/{conversation_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ */
+export type DELETE_AiConciergeConversationsConversationId_Request_Path = DELETE_AiConciergeConversationsConversationId_Request['parameters']['path'];
+
+/**
+ * Request type for GET AiConciergeConversationsConversationId endpoint
+ *
+ * Get a conversation
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET AiConciergeConversationsConversationId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link GET_AiConciergeConversationsConversationId_Request_Query} - Query parameters type
+ * @see {@link GET_AiConciergeConversationsConversationId_Request_Path} - Path parameters type
+ * @see {@link GET_AiConciergeConversationsConversationId_Request_Body} - Request body type
+ */
+export type GET_AiConciergeConversationsConversationId_Request = {
+  parameters: {
+    path: operations['get_conversation_v1_ai_concierge_conversations__conversation_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ */
+export type GET_AiConciergeConversationsConversationId_Request_Path = GET_AiConciergeConversationsConversationId_Request['parameters']['path'];
+
+/**
+ * Request type for PATCH AiConciergeConversationsConversationId endpoint
+ *
+ * Update a conversation
+ * Update conversation title or metadata. Supports optimistic concurrency via `If-Match`.
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH AiConciergeConversationsConversationId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link PATCH_AiConciergeConversationsConversationId_Request_Query} - Query parameters type
+ * @see {@link PATCH_AiConciergeConversationsConversationId_Request_Path} - Path parameters type
+ * @see {@link PATCH_AiConciergeConversationsConversationId_Request_Body} - Request body type
+ */
+export type PATCH_AiConciergeConversationsConversationId_Request = {
+  parameters: {
+    path: operations['patch_conversation_v1_ai_concierge_conversations__conversation_id__patch']['parameters']['path'];
+  };
+  requestBody: ConversationPatchRequest;
+}
+/**
+ * Path parameters for PATCH /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the PATCH /v1/ai-concierge/conversations/{conversation_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ */
+export type PATCH_AiConciergeConversationsConversationId_Request_Path = PATCH_AiConciergeConversationsConversationId_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @remarks
+ * This type defines the request body structure for the PATCH /v1/ai-concierge/conversations/{conversation_id} endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ */
+export type PATCH_AiConciergeConversationsConversationId_Request_Body = PATCH_AiConciergeConversationsConversationId_Request['requestBody'];
+
+/**
+ * Request type for GET AiConciergeConversationsConversationIdContexts endpoint
+ *
+ * List contexts attached to a conversation
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET AiConciergeConversationsConversationIdContexts endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link GET_AiConciergeConversationsConversationIdContexts_Request_Query} - Query parameters type
+ * @see {@link GET_AiConciergeConversationsConversationIdContexts_Request_Path} - Path parameters type
+ * @see {@link GET_AiConciergeConversationsConversationIdContexts_Request_Body} - Request body type
+ */
+export type GET_AiConciergeConversationsConversationIdContexts_Request = {
+  parameters: {
+    query: operations['list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get']['parameters']['query'];
+    path: operations['list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ */
+export type GET_AiConciergeConversationsConversationIdContexts_Request_Query = GET_AiConciergeConversationsConversationIdContexts_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ */
+export type GET_AiConciergeConversationsConversationIdContexts_Request_Path = GET_AiConciergeConversationsConversationIdContexts_Request['parameters']['path'];
+
+/**
+ * Request type for POST AiConciergeConversationsConversationIdContexts endpoint
+ *
+ * Attach a context to a conversation
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST AiConciergeConversationsConversationIdContexts endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link POST_AiConciergeConversationsConversationIdContexts_Request_Query} - Query parameters type
+ * @see {@link POST_AiConciergeConversationsConversationIdContexts_Request_Path} - Path parameters type
+ * @see {@link POST_AiConciergeConversationsConversationIdContexts_Request_Body} - Request body type
+ */
+export type POST_AiConciergeConversationsConversationIdContexts_Request = {
+  parameters: {
+    path: operations['create_context_v1_ai_concierge_conversations__conversation_id__contexts_post']['parameters']['path'];
+  };
+  requestBody: ContextCreateRequest;
+}
+/**
+ * Path parameters for POST /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ */
+export type POST_AiConciergeConversationsConversationIdContexts_Request_Path = POST_AiConciergeConversationsConversationIdContexts_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ */
+export type POST_AiConciergeConversationsConversationIdContexts_Request_Body = POST_AiConciergeConversationsConversationIdContexts_Request['requestBody'];
+
+/**
+ * Request type for GET AiConciergeConversationsConversationIdMessages endpoint
+ *
+ * List messages in a conversation
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET AiConciergeConversationsConversationIdMessages endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ *
+ * @see {@link GET_AiConciergeConversationsConversationIdMessages_Request_Query} - Query parameters type
+ * @see {@link GET_AiConciergeConversationsConversationIdMessages_Request_Path} - Path parameters type
+ * @see {@link GET_AiConciergeConversationsConversationIdMessages_Request_Body} - Request body type
+ */
+export type GET_AiConciergeConversationsConversationIdMessages_Request = {
+  parameters: {
+    query: operations['list_messages_v1_ai_concierge_conversations__conversation_id__messages_get']['parameters']['query'];
+    path: operations['list_messages_v1_ai_concierge_conversations__conversation_id__messages_get']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for GET /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ */
+export type GET_AiConciergeConversationsConversationIdMessages_Request_Query = GET_AiConciergeConversationsConversationIdMessages_Request['parameters']['query'];
+/**
+ * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ */
+export type GET_AiConciergeConversationsConversationIdMessages_Request_Path = GET_AiConciergeConversationsConversationIdMessages_Request['parameters']['path'];
+
+/**
+ * Request type for POST AiConciergeConversationsConversationIdMessages endpoint
+ *
+ * Append a message to a conversation
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST AiConciergeConversationsConversationIdMessages endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @see {@link POST_AiConciergeConversationsConversationIdMessages_Request_Query} - Query parameters type
+ * @see {@link POST_AiConciergeConversationsConversationIdMessages_Request_Path} - Path parameters type
+ * @see {@link POST_AiConciergeConversationsConversationIdMessages_Request_Body} - Request body type
+ */
+export type POST_AiConciergeConversationsConversationIdMessages_Request = {
+  parameters: {
+    path: operations['create_message_v1_ai_concierge_conversations__conversation_id__messages_post']['parameters']['path'];
+  };
+  requestBody: MessageCreateRequest;
+}
+/**
+ * Path parameters for POST /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ */
+export type POST_AiConciergeConversationsConversationIdMessages_Request_Path = POST_AiConciergeConversationsConversationIdMessages_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ */
+export type POST_AiConciergeConversationsConversationIdMessages_Request_Body = POST_AiConciergeConversationsConversationIdMessages_Request['requestBody'];
+
+/**
+ * Request type for GET AiConciergeConversationsConversationIdMessagesMessageId endpoint
+ *
+ * Get a message
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET AiConciergeConversationsConversationIdMessagesMessageId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @see {@link GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Query} - Query parameters type
+ * @see {@link GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Path} - Path parameters type
+ * @see {@link GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Body} - Request body type
+ */
+export type GET_AiConciergeConversationsConversationIdMessagesMessageId_Request = {
+  parameters: {
+    path: operations['get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ */
+export type GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Path = GET_AiConciergeConversationsConversationIdMessagesMessageId_Request['parameters']['path'];
+
+/**
+ * Request type for GET AiConciergeMemoryFacts endpoint
+ *
+ * List long-term memory facts
+ * List long-term, organization-scoped memory facts available to the AI Concierge.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET AiConciergeMemoryFacts endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link GET_AiConciergeMemoryFacts_Request_Query} - Query parameters type
+ * @see {@link GET_AiConciergeMemoryFacts_Request_Path} - Path parameters type
+ * @see {@link GET_AiConciergeMemoryFacts_Request_Body} - Request body type
+ */
+export type GET_AiConciergeMemoryFacts_Request = {
+  parameters: {
+    query: operations['list_memory_facts_v1_ai_concierge_memory_facts_get']['parameters']['query'];
+  };
+}
+/**
+ * Query parameters for GET /v1/ai-concierge/memory/facts
+ *
+ * @remarks
+ * This type defines the query parameters for the GET /v1/ai-concierge/memory/facts endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/ai-concierge/memory/facts
+ */
+export type GET_AiConciergeMemoryFacts_Request_Query = GET_AiConciergeMemoryFacts_Request['parameters']['query'];
+
+/**
+ * Request type for POST AiConciergeMemoryFacts endpoint
+ *
+ * Create a long-term memory fact
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST AiConciergeMemoryFacts endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link POST_AiConciergeMemoryFacts_Request_Query} - Query parameters type
+ * @see {@link POST_AiConciergeMemoryFacts_Request_Path} - Path parameters type
+ * @see {@link POST_AiConciergeMemoryFacts_Request_Body} - Request body type
+ */
+export type POST_AiConciergeMemoryFacts_Request = {
+  requestBody: MemoryFactCreateRequest;
+}
+/**
+ * Request body for POST /v1/ai-concierge/memory/facts
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/ai-concierge/memory/facts endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/ai-concierge/memory/facts
+ */
+export type POST_AiConciergeMemoryFacts_Request_Body = POST_AiConciergeMemoryFacts_Request['requestBody'];
+
+/**
+ * Request type for DELETE AiConciergeMemoryFactsFactId endpoint
+ *
+ * Delete a long-term memory fact
+ *
+ * @remarks
+ * This type defines the complete request structure for the DELETE AiConciergeMemoryFactsFactId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link DELETE_AiConciergeMemoryFactsFactId_Request_Query} - Query parameters type
+ * @see {@link DELETE_AiConciergeMemoryFactsFactId_Request_Path} - Path parameters type
+ * @see {@link DELETE_AiConciergeMemoryFactsFactId_Request_Body} - Request body type
+ */
+export type DELETE_AiConciergeMemoryFactsFactId_Request = {
+  parameters: {
+    path: operations['delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for DELETE /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the DELETE /v1/ai-concierge/memory/facts/{fact_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ */
+export type DELETE_AiConciergeMemoryFactsFactId_Request_Path = DELETE_AiConciergeMemoryFactsFactId_Request['parameters']['path'];
+
+/**
+ * Request type for PATCH AiConciergeMemoryFactsFactId endpoint
+ *
+ * Update a long-term memory fact
+ *
+ * @remarks
+ * This type defines the complete request structure for the PATCH AiConciergeMemoryFactsFactId endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link PATCH_AiConciergeMemoryFactsFactId_Request_Query} - Query parameters type
+ * @see {@link PATCH_AiConciergeMemoryFactsFactId_Request_Path} - Path parameters type
+ * @see {@link PATCH_AiConciergeMemoryFactsFactId_Request_Body} - Request body type
+ */
+export type PATCH_AiConciergeMemoryFactsFactId_Request = {
+  parameters: {
+    path: operations['patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch']['parameters']['path'];
+  };
+  requestBody: MemoryFactPatchRequest;
+}
+/**
+ * Path parameters for PATCH /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @remarks
+ * This type defines the path parameters for the PATCH /v1/ai-concierge/memory/facts/{fact_id} endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ */
+export type PATCH_AiConciergeMemoryFactsFactId_Request_Path = PATCH_AiConciergeMemoryFactsFactId_Request['parameters']['path'];
+/**
+ * Request body for PATCH /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @remarks
+ * This type defines the request body structure for the PATCH /v1/ai-concierge/memory/facts/{fact_id} endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ */
+export type PATCH_AiConciergeMemoryFactsFactId_Request_Body = PATCH_AiConciergeMemoryFactsFactId_Request['requestBody'];
 
 /**
  * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint

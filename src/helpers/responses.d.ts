@@ -34,7 +34,1634 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Pagination_EmailForwardLog, HTTPValidationError, Pagination_ObjectLog, Pagination_RequestHistory, Problem, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Context, Problem, HTTPValidationError, ConversationList, Conversation, ContextList, MessageList, Message, MemoryFactList, MemoryFact, Pagination_EmailForwardLog, Pagination_ObjectLog, Pagination_RequestHistory, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+
+/**
+ * Response types for GET AiConciergeContextsByContextId endpoint
+ *
+ * Get a context entry
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AiConciergeContextsByContextId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ *
+ * @see {@link GET_AiConciergeContextsByContextId_Response_200} - 200 response type
+ * @see {@link GET_AiConciergeContextsByContextId_Response_401} - 401 response type
+ * @see {@link GET_AiConciergeContextsByContextId_Response_404} - 404 response type
+ * @see {@link GET_AiConciergeContextsByContextId_Response_422} - 422 response type
+ * @see {@link GET_AiConciergeContextsByContextId_Response_502} - 502 response type
+ *
+
+ */
+export type GET_AiConciergeContextsByContextId_Response = GET_AiConciergeContextsByContextId_Response_200 | GET_AiConciergeContextsByContextId_Response_401 | GET_AiConciergeContextsByContextId_Response_404 | GET_AiConciergeContextsByContextId_Response_422 | GET_AiConciergeContextsByContextId_Response_502;
+
+/**
+ * 200 response for GET AiConciergeContextsByContextId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AiConciergeContextsByContextId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ *
+ * @see {@link GET_AiConciergeContextsByContextId_Response} - The main response type definition
+ * @see {@link Context} - The actual schema type definition
+ */
+export type GET_AiConciergeContextsByContextId_Response_200 = Context
+
+/**
+ * 401 response for GET AiConciergeContextsByContextId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AiConciergeContextsByContextId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ *
+ * @see {@link GET_AiConciergeContextsByContextId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeContextsByContextId_Response_401 = Problem
+
+/**
+ * 404 response for GET AiConciergeContextsByContextId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET AiConciergeContextsByContextId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ *
+ * @see {@link GET_AiConciergeContextsByContextId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeContextsByContextId_Response_404 = Problem
+
+/**
+ * 422 response for GET AiConciergeContextsByContextId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AiConciergeContextsByContextId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ *
+ * @see {@link GET_AiConciergeContextsByContextId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_AiConciergeContextsByContextId_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET AiConciergeContextsByContextId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AiConciergeContextsByContextId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/contexts/{context_id}
+ *
+ * @see {@link GET_AiConciergeContextsByContextId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeContextsByContextId_Response_502 = Problem
+
+/**
+ * Response types for GET AiConciergeConversations endpoint
+ *
+ * List AI Concierge conversations
+ * List the authenticated organization's AI Concierge conversations.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AiConciergeConversations endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ *
+ * @see {@link GET_AiConciergeConversations_Response_200} - 200 response type
+ * @see {@link GET_AiConciergeConversations_Response_401} - 401 response type
+ * @see {@link GET_AiConciergeConversations_Response_404} - 404 response type
+ * @see {@link GET_AiConciergeConversations_Response_422} - 422 response type
+ * @see {@link GET_AiConciergeConversations_Response_502} - 502 response type
+ *
+
+ */
+export type GET_AiConciergeConversations_Response = GET_AiConciergeConversations_Response_200 | GET_AiConciergeConversations_Response_401 | GET_AiConciergeConversations_Response_404 | GET_AiConciergeConversations_Response_422 | GET_AiConciergeConversations_Response_502;
+
+/**
+ * 200 response for GET AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ *
+ * @see {@link GET_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link ConversationList} - The actual schema type definition
+ */
+export type GET_AiConciergeConversations_Response_200 = ConversationList
+
+/**
+ * 401 response for GET AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ *
+ * @see {@link GET_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversations_Response_401 = Problem
+
+/**
+ * 404 response for GET AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ *
+ * @see {@link GET_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversations_Response_404 = Problem
+
+/**
+ * 422 response for GET AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ *
+ * @see {@link GET_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_AiConciergeConversations_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
+ * @param q (query) - Full-text search on title/summary.
+ *
+ * @see {@link GET_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversations_Response_502 = Problem
+
+/**
+ * Response types for POST AiConciergeConversations endpoint
+ *
+ * Create an AI Concierge conversation
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AiConciergeConversations endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ *
+ * @see {@link POST_AiConciergeConversations_Response_201} - 201 response type
+ * @see {@link POST_AiConciergeConversations_Response_401} - 401 response type
+ * @see {@link POST_AiConciergeConversations_Response_404} - 404 response type
+ * @see {@link POST_AiConciergeConversations_Response_422} - 422 response type
+ * @see {@link POST_AiConciergeConversations_Response_502} - 502 response type
+ *
+
+ */
+export type POST_AiConciergeConversations_Response = POST_AiConciergeConversations_Response_201 | POST_AiConciergeConversations_Response_401 | POST_AiConciergeConversations_Response_404 | POST_AiConciergeConversations_Response_422 | POST_AiConciergeConversations_Response_502;
+
+/**
+ * 201 response for POST AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ *
+ * @see {@link POST_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link Conversation} - The actual schema type definition
+ */
+export type POST_AiConciergeConversations_Response_201 = Conversation
+
+/**
+ * 401 response for POST AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ *
+ * @see {@link POST_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversations_Response_401 = Problem
+
+/**
+ * 404 response for POST AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ *
+ * @see {@link POST_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversations_Response_404 = Problem
+
+/**
+ * 422 response for POST AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ *
+ * @see {@link POST_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_AiConciergeConversations_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for POST AiConciergeConversations endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the POST AiConciergeConversations endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations
+ *
+ * @see {@link POST_AiConciergeConversations_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversations_Response_502 = Problem
+
+/**
+ * Response types for DELETE AiConciergeConversationsByConversationId endpoint
+ *
+ * Delete a conversation
+ * Permanently delete a conversation, its messages, and any attached contexts.
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE AiConciergeConversationsByConversationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response_401} - 401 response type
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response_404} - 404 response type
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response_422} - 422 response type
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response_502} - 502 response type
+ *
+
+ */
+export type DELETE_AiConciergeConversationsByConversationId_Response = DELETE_AiConciergeConversationsByConversationId_Response_401 | DELETE_AiConciergeConversationsByConversationId_Response_404 | DELETE_AiConciergeConversationsByConversationId_Response_422 | DELETE_AiConciergeConversationsByConversationId_Response_502;
+
+/**
+ * 401 response for DELETE AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_AiConciergeConversationsByConversationId_Response_401 = Problem
+
+/**
+ * 404 response for DELETE AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_AiConciergeConversationsByConversationId_Response_404 = Problem
+
+/**
+ * 422 response for DELETE AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_AiConciergeConversationsByConversationId_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for DELETE AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the DELETE AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link DELETE_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_AiConciergeConversationsByConversationId_Response_502 = Problem
+
+/**
+ * Response types for GET AiConciergeConversationsByConversationId endpoint
+ *
+ * Get a conversation
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AiConciergeConversationsByConversationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response_200} - 200 response type
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response_401} - 401 response type
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response_404} - 404 response type
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response_422} - 422 response type
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response_502} - 502 response type
+ *
+
+ */
+export type GET_AiConciergeConversationsByConversationId_Response = GET_AiConciergeConversationsByConversationId_Response_200 | GET_AiConciergeConversationsByConversationId_Response_401 | GET_AiConciergeConversationsByConversationId_Response_404 | GET_AiConciergeConversationsByConversationId_Response_422 | GET_AiConciergeConversationsByConversationId_Response_502;
+
+/**
+ * 200 response for GET AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Conversation} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationId_Response_200 = Conversation
+
+/**
+ * 401 response for GET AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationId_Response_401 = Problem
+
+/**
+ * 404 response for GET AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationId_Response_404 = Problem
+
+/**
+ * 422 response for GET AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationId_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationId_Response_502 = Problem
+
+/**
+ * Response types for PATCH AiConciergeConversationsByConversationId endpoint
+ *
+ * Update a conversation
+ * Update conversation title or metadata. Supports optimistic concurrency via `If-Match`.
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH AiConciergeConversationsByConversationId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response_200} - 200 response type
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response_401} - 401 response type
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response_404} - 404 response type
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response_422} - 422 response type
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response_502} - 502 response type
+ *
+
+ */
+export type PATCH_AiConciergeConversationsByConversationId_Response = PATCH_AiConciergeConversationsByConversationId_Response_200 | PATCH_AiConciergeConversationsByConversationId_Response_401 | PATCH_AiConciergeConversationsByConversationId_Response_404 | PATCH_AiConciergeConversationsByConversationId_Response_422 | PATCH_AiConciergeConversationsByConversationId_Response_502;
+
+/**
+ * 200 response for PATCH AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Conversation} - The actual schema type definition
+ */
+export type PATCH_AiConciergeConversationsByConversationId_Response_200 = Conversation
+
+/**
+ * 401 response for PATCH AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_AiConciergeConversationsByConversationId_Response_401 = Problem
+
+/**
+ * 404 response for PATCH AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_AiConciergeConversationsByConversationId_Response_404 = Problem
+
+/**
+ * 422 response for PATCH AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_AiConciergeConversationsByConversationId_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for PATCH AiConciergeConversationsByConversationId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the PATCH AiConciergeConversationsByConversationId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}
+ *
+ * @see {@link PATCH_AiConciergeConversationsByConversationId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_AiConciergeConversationsByConversationId_Response_502 = Problem
+
+/**
+ * Response types for GET AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * List contexts attached to a conversation
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AiConciergeConversationsByConversationIdContexts endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response_200} - 200 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response_401} - 401 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response_404} - 404 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response_422} - 422 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response_502} - 502 response type
+ *
+
+ */
+export type GET_AiConciergeConversationsByConversationIdContexts_Response = GET_AiConciergeConversationsByConversationIdContexts_Response_200 | GET_AiConciergeConversationsByConversationIdContexts_Response_401 | GET_AiConciergeConversationsByConversationIdContexts_Response_404 | GET_AiConciergeConversationsByConversationIdContexts_Response_422 | GET_AiConciergeConversationsByConversationIdContexts_Response_502;
+
+/**
+ * 200 response for GET AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link ContextList} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdContexts_Response_200 = ContextList
+
+/**
+ * 401 response for GET AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdContexts_Response_401 = Problem
+
+/**
+ * 404 response for GET AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdContexts_Response_404 = Problem
+
+/**
+ * 422 response for GET AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdContexts_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdContexts_Response_502 = Problem
+
+/**
+ * Response types for POST AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * Attach a context to a conversation
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AiConciergeConversationsByConversationIdContexts endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response_201} - 201 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response_401} - 401 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response_404} - 404 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response_422} - 422 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response_502} - 502 response type
+ *
+
+ */
+export type POST_AiConciergeConversationsByConversationIdContexts_Response = POST_AiConciergeConversationsByConversationIdContexts_Response_201 | POST_AiConciergeConversationsByConversationIdContexts_Response_401 | POST_AiConciergeConversationsByConversationIdContexts_Response_404 | POST_AiConciergeConversationsByConversationIdContexts_Response_422 | POST_AiConciergeConversationsByConversationIdContexts_Response_502;
+
+/**
+ * 201 response for POST AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link Context} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdContexts_Response_201 = Context
+
+/**
+ * 401 response for POST AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdContexts_Response_401 = Problem
+
+/**
+ * 404 response for POST AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdContexts_Response_404 = Problem
+
+/**
+ * 422 response for POST AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdContexts_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for POST AiConciergeConversationsByConversationIdContexts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the POST AiConciergeConversationsByConversationIdContexts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdContexts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdContexts_Response_502 = Problem
+
+/**
+ * Response types for GET AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * List messages in a conversation
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AiConciergeConversationsByConversationIdMessages endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response_200} - 200 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response_401} - 401 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response_404} - 404 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response_422} - 422 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response_502} - 502 response type
+ *
+
+ */
+export type GET_AiConciergeConversationsByConversationIdMessages_Response = GET_AiConciergeConversationsByConversationIdMessages_Response_200 | GET_AiConciergeConversationsByConversationIdMessages_Response_401 | GET_AiConciergeConversationsByConversationIdMessages_Response_404 | GET_AiConciergeConversationsByConversationIdMessages_Response_422 | GET_AiConciergeConversationsByConversationIdMessages_Response_502;
+
+/**
+ * 200 response for GET AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link MessageList} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessages_Response_200 = MessageList
+
+/**
+ * 401 response for GET AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessages_Response_401 = Problem
+
+/**
+ * 404 response for GET AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessages_Response_404 = Problem
+
+/**
+ * 422 response for GET AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessages_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ * @param recent (query) - If set, returns last N messages and overrides pagination.
+ * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessages_Response_502 = Problem
+
+/**
+ * Response types for POST AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * Append a message to a conversation
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AiConciergeConversationsByConversationIdMessages endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response_201} - 201 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response_401} - 401 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response_404} - 404 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response_422} - 422 response type
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response_502} - 502 response type
+ *
+
+ */
+export type POST_AiConciergeConversationsByConversationIdMessages_Response = POST_AiConciergeConversationsByConversationIdMessages_Response_201 | POST_AiConciergeConversationsByConversationIdMessages_Response_401 | POST_AiConciergeConversationsByConversationIdMessages_Response_404 | POST_AiConciergeConversationsByConversationIdMessages_Response_422 | POST_AiConciergeConversationsByConversationIdMessages_Response_502;
+
+/**
+ * 201 response for POST AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link Message} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdMessages_Response_201 = Message
+
+/**
+ * 401 response for POST AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdMessages_Response_401 = Problem
+
+/**
+ * 404 response for POST AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdMessages_Response_404 = Problem
+
+/**
+ * 422 response for POST AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdMessages_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for POST AiConciergeConversationsByConversationIdMessages endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the POST AiConciergeConversationsByConversationIdMessages endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages
+ *
+ * @see {@link POST_AiConciergeConversationsByConversationIdMessages_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeConversationsByConversationIdMessages_Response_502 = Problem
+
+/**
+ * Response types for GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint
+ *
+ * Get a message
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_200} - 200 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_401} - 401 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_404} - 404 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_422} - 422 response type
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_502} - 502 response type
+ *
+
+ */
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response = GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_200 | GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_401 | GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_404 | GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_422 | GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_502;
+
+/**
+ * 200 response for GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response} - The main response type definition
+ * @see {@link Message} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_200 = Message
+
+/**
+ * 401 response for GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_401 = Problem
+
+/**
+ * 404 response for GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_404 = Problem
+
+/**
+ * 422 response for GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AiConciergeConversationsByConversationIdMessagesByMessageId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
+ *
+ * @see {@link GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Response_502 = Problem
+
+/**
+ * Response types for GET AiConciergeMemoryFacts endpoint
+ *
+ * List long-term memory facts
+ * List long-term, organization-scoped memory facts available to the AI Concierge.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET AiConciergeMemoryFacts endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link GET_AiConciergeMemoryFacts_Response_200} - 200 response type
+ * @see {@link GET_AiConciergeMemoryFacts_Response_401} - 401 response type
+ * @see {@link GET_AiConciergeMemoryFacts_Response_404} - 404 response type
+ * @see {@link GET_AiConciergeMemoryFacts_Response_422} - 422 response type
+ * @see {@link GET_AiConciergeMemoryFacts_Response_502} - 502 response type
+ *
+
+ */
+export type GET_AiConciergeMemoryFacts_Response = GET_AiConciergeMemoryFacts_Response_200 | GET_AiConciergeMemoryFacts_Response_401 | GET_AiConciergeMemoryFacts_Response_404 | GET_AiConciergeMemoryFacts_Response_422 | GET_AiConciergeMemoryFacts_Response_502;
+
+/**
+ * 200 response for GET AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link GET_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link MemoryFactList} - The actual schema type definition
+ */
+export type GET_AiConciergeMemoryFacts_Response_200 = MemoryFactList
+
+/**
+ * 401 response for GET AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link GET_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeMemoryFacts_Response_401 = Problem
+
+/**
+ * 404 response for GET AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link GET_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeMemoryFacts_Response_404 = Problem
+
+/**
+ * 422 response for GET AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link GET_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_AiConciergeMemoryFacts_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link GET_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_AiConciergeMemoryFacts_Response_502 = Problem
+
+/**
+ * Response types for POST AiConciergeMemoryFacts endpoint
+ *
+ * Create a long-term memory fact
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST AiConciergeMemoryFacts endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link POST_AiConciergeMemoryFacts_Response_201} - 201 response type
+ * @see {@link POST_AiConciergeMemoryFacts_Response_401} - 401 response type
+ * @see {@link POST_AiConciergeMemoryFacts_Response_404} - 404 response type
+ * @see {@link POST_AiConciergeMemoryFacts_Response_422} - 422 response type
+ * @see {@link POST_AiConciergeMemoryFacts_Response_502} - 502 response type
+ *
+
+ */
+export type POST_AiConciergeMemoryFacts_Response = POST_AiConciergeMemoryFacts_Response_201 | POST_AiConciergeMemoryFacts_Response_401 | POST_AiConciergeMemoryFacts_Response_404 | POST_AiConciergeMemoryFacts_Response_422 | POST_AiConciergeMemoryFacts_Response_502;
+
+/**
+ * 201 response for POST AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 201 status code
+ * of the POST AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link POST_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link MemoryFact} - The actual schema type definition
+ */
+export type POST_AiConciergeMemoryFacts_Response_201 = MemoryFact
+
+/**
+ * 401 response for POST AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link POST_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeMemoryFacts_Response_401 = Problem
+
+/**
+ * 404 response for POST AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link POST_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeMemoryFacts_Response_404 = Problem
+
+/**
+ * 422 response for POST AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link POST_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_AiConciergeMemoryFacts_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for POST AiConciergeMemoryFacts endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the POST AiConciergeMemoryFacts endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts
+ *
+ * @see {@link POST_AiConciergeMemoryFacts_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_AiConciergeMemoryFacts_Response_502 = Problem
+
+/**
+ * Response types for DELETE AiConciergeMemoryFactsByFactId endpoint
+ *
+ * Delete a long-term memory fact
+ *
+ * @remarks
+ * This type defines all possible response structures for the DELETE AiConciergeMemoryFactsByFactId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response_401} - 401 response type
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response_404} - 404 response type
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response_422} - 422 response type
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response_502} - 502 response type
+ *
+
+ */
+export type DELETE_AiConciergeMemoryFactsByFactId_Response = DELETE_AiConciergeMemoryFactsByFactId_Response_401 | DELETE_AiConciergeMemoryFactsByFactId_Response_404 | DELETE_AiConciergeMemoryFactsByFactId_Response_422 | DELETE_AiConciergeMemoryFactsByFactId_Response_502;
+
+/**
+ * 401 response for DELETE AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the DELETE AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_AiConciergeMemoryFactsByFactId_Response_401 = Problem
+
+/**
+ * 404 response for DELETE AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the DELETE AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_AiConciergeMemoryFactsByFactId_Response_404 = Problem
+
+/**
+ * 422 response for DELETE AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the DELETE AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type DELETE_AiConciergeMemoryFactsByFactId_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for DELETE AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the DELETE AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link DELETE_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type DELETE_AiConciergeMemoryFactsByFactId_Response_502 = Problem
+
+/**
+ * Response types for PATCH AiConciergeMemoryFactsByFactId endpoint
+ *
+ * Update a long-term memory fact
+ *
+ * @remarks
+ * This type defines all possible response structures for the PATCH AiConciergeMemoryFactsByFactId endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response_200} - 200 response type
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response_401} - 401 response type
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response_404} - 404 response type
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response_422} - 422 response type
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response_502} - 502 response type
+ *
+
+ */
+export type PATCH_AiConciergeMemoryFactsByFactId_Response = PATCH_AiConciergeMemoryFactsByFactId_Response_200 | PATCH_AiConciergeMemoryFactsByFactId_Response_401 | PATCH_AiConciergeMemoryFactsByFactId_Response_404 | PATCH_AiConciergeMemoryFactsByFactId_Response_422 | PATCH_AiConciergeMemoryFactsByFactId_Response_502;
+
+/**
+ * 200 response for PATCH AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the PATCH AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link MemoryFact} - The actual schema type definition
+ */
+export type PATCH_AiConciergeMemoryFactsByFactId_Response_200 = MemoryFact
+
+/**
+ * 401 response for PATCH AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the PATCH AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_AiConciergeMemoryFactsByFactId_Response_401 = Problem
+
+/**
+ * 404 response for PATCH AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the PATCH AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_AiConciergeMemoryFactsByFactId_Response_404 = Problem
+
+/**
+ * 422 response for PATCH AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the PATCH AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type PATCH_AiConciergeMemoryFactsByFactId_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for PATCH AiConciergeMemoryFactsByFactId endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the PATCH AiConciergeMemoryFactsByFactId endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/ai-concierge/memory/facts/{fact_id}
+ *
+ * @see {@link PATCH_AiConciergeMemoryFactsByFactId_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type PATCH_AiConciergeMemoryFactsByFactId_Response_502 = Problem
 
 /**
  * Response types for GET ArchiveEmailForwardLogsAliasesByEmailForwardAliasId endpoint

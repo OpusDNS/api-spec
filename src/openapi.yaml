@@ -1585,6 +1585,190 @@ components:
           title: Update Supported Roles
       title: ContactsBase
       type: object
+    Context:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          $ref: '#/components/schemas/MessageContextKind'
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          additionalProperties: true
+          title: Payload
+          type: object
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - kind
+      - created_at
+      title: Context
+      type: object
+    ContextCreateRequest:
+      properties:
+        kind:
+          $ref: '#/components/schemas/MessageContextKind'
+        payload:
+          additionalProperties: true
+          description: Non-empty structured payload. Shape depends on `kind`.
+          minProperties: 1
+          title: Payload
+          type: object
+      required:
+      - kind
+      - payload
+      title: ContextCreateRequest
+      type: object
+    ContextListResponse:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/Context'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: ContextListResponse
+      type: object
+    Conversation:
+      properties:
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        last_message_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Last Message At
+        message_count:
+          default: 0
+          title: Message Count
+          type: integer
+        metadata:
+          additionalProperties: true
+          title: Metadata
+          type: object
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        summary:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Optional rolling summary maintained by the memory service.
+          title: Summary
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Human-readable conversation title.
+          title: Title
+        updated_at:
+          format: date-time
+          title: Updated At
+          type: string
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - updated_at
+      title: Conversation
+      type: object
+    ConversationCreateRequest:
+      properties:
+        metadata:
+          additionalProperties: true
+          title: Metadata
+          type: object
+        title:
+          anyOf:
+          - maxLength: 200
+            type: string
+          - type: 'null'
+          title: Title
+      title: ConversationCreateRequest
+      type: object
+    ConversationListResponse:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/Conversation'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: ConversationListResponse
+      type: object
+    ConversationPatchRequest:
+      properties:
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+        title:
+          anyOf:
+          - maxLength: 200
+            type: string
+          - type: 'null'
+          title: Title
+      title: ConversationPatchRequest
+      type: object
     CreateJobBatchResponse:
       properties:
         batch_id:
@@ -6404,6 +6588,215 @@ components:
       - business_entity
       title: LocalPresenceRequirementType
       type: string
+    MemoryFact:
+      properties:
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        expires_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Expires At
+        fact_id:
+          examples:
+          - fact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^fact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Fact Id
+          type: string
+          x-typeid-prefix: fact
+        key:
+          maxLength: 200
+          title: Key
+          type: string
+        kind:
+          $ref: '#/components/schemas/MemoryFactKind'
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        updated_at:
+          format: date-time
+          title: Updated At
+          type: string
+        value:
+          additionalProperties: true
+          title: Value
+          type: object
+      required:
+      - fact_id
+      - organization_id
+      - kind
+      - key
+      - created_at
+      - updated_at
+      title: MemoryFact
+      type: object
+    MemoryFactCreateRequest:
+      properties:
+        key:
+          maxLength: 200
+          minLength: 1
+          title: Key
+          type: string
+        kind:
+          $ref: '#/components/schemas/MemoryFactKind'
+        ttl_seconds:
+          anyOf:
+          - minimum: 1.0
+            type: integer
+          - type: 'null'
+          description: Optional TTL; if set, the fact expires after this many seconds.
+          title: Ttl Seconds
+        value:
+          additionalProperties: true
+          title: Value
+          type: object
+      required:
+      - kind
+      - key
+      title: MemoryFactCreateRequest
+      type: object
+    MemoryFactKind:
+      enum:
+      - preference
+      - note
+      - other
+      title: MemoryFactKind
+      type: string
+    MemoryFactListResponse:
+      properties:
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+        results:
+          items:
+            $ref: '#/components/schemas/MemoryFact'
+          title: Results
+          type: array
+      required:
+      - results
+      title: MemoryFactListResponse
+      type: object
+    MemoryFactPatchRequest:
+      properties:
+        ttl_seconds:
+          anyOf:
+          - minimum: 1.0
+            type: integer
+          - type: 'null'
+          title: Ttl Seconds
+        value:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Value
+      title: MemoryFactPatchRequest
+      type: object
+    Message:
+      properties:
+        content:
+          title: Content
+          type: string
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        message_id:
+          examples:
+          - msg_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^msg_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Message Id
+          type: string
+          x-typeid-prefix: msg
+        metadata:
+          additionalProperties: true
+          title: Metadata
+          type: object
+        role:
+          $ref: '#/components/schemas/MessageRole'
+      required:
+      - message_id
+      - conversation_id
+      - role
+      - content
+      - created_at
+      title: Message
+      type: object
+    MessageContextKind:
+      enum:
+      - zones
+      - contacts
+      - domains
+      - batch_ids
+      - other
+      title: MessageContextKind
+      type: string
+    MessageCreateRequest:
+      properties:
+        content:
+          title: Content
+          type: string
+        metadata:
+          additionalProperties: true
+          title: Metadata
+          type: object
+        n8n_history_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Optional reference to the originating n8n_chat_histories row.
+          title: N8N History Id
+        role:
+          $ref: '#/components/schemas/MessageRole'
+      required:
+      - role
+      - content
+      title: MessageCreateRequest
+      type: object
+    MessageListResponse:
+      properties:
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+          description: Omitted when the `recent` query parameter is used.
+        results:
+          items:
+            $ref: '#/components/schemas/Message'
+          title: Results
+          type: array
+      required:
+      - results
+      title: MessageListResponse
+      type: object
+    MessageRole:
+      enum:
+      - user
+      - assistant
+      - system
+      - tool
+      title: MessageRole
+      type: string
     MetricsGrouping:
       enum:
       - url
@@ -10279,12 +10672,1183 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-04-30-202536
+  version: 2026-05-05-155048
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
 openapi: 3.1.0
 paths:
+  /v1/ai-concierge/contexts/{context_id}:
+    get:
+      operationId: get_context_v1_ai_concierge_contexts__context_id__get
+      parameters:
+      - in: path
+        name: context_id
+        required: true
+        schema:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get a context entry
+      tags:
+      - ai_concierge
+  /v1/ai-concierge/conversations:
+    get:
+      description: List the authenticated organization's AI Concierge conversations.
+      operationId: list_conversations_v1_ai_concierge_conversations_get
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 20
+          maximum: 200
+          minimum: 1
+          title: Page Size
+          type: integer
+      - description: Comma-separated sort fields. Prefix with `-` for DESC.
+        in: query
+        name: sort
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated sort fields. Prefix with `-` for DESC.
+          title: Sort
+      - description: Full-text search on title/summary.
+        in: query
+        name: q
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Full-text search on title/summary.
+          title: Q
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationListResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List AI Concierge conversations
+      tags:
+      - ai_concierge
+    post:
+      operationId: create_conversation_v1_ai_concierge_conversations_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationCreateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conversation'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create an AI Concierge conversation
+      tags:
+      - ai_concierge
+  /v1/ai-concierge/conversations/{conversation_id}:
+    delete:
+      description: Permanently delete a conversation, its messages, and any attached
+        contexts.
+      operationId: delete_conversation_v1_ai_concierge_conversations__conversation_id__delete
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Delete a conversation
+      tags:
+      - ai_concierge
+    get:
+      operationId: get_conversation_v1_ai_concierge_conversations__conversation_id__get
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conversation'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get a conversation
+      tags:
+      - ai_concierge
+    patch:
+      description: Update conversation title or metadata. Supports optimistic concurrency
+        via `If-Match`.
+      operationId: patch_conversation_v1_ai_concierge_conversations__conversation_id__patch
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      - in: header
+        name: If-Match
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: If-Match
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationPatchRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conversation'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Update a conversation
+      tags:
+      - ai_concierge
+  /v1/ai-concierge/conversations/{conversation_id}/contexts:
+    get:
+      operationId: list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 20
+          maximum: 200
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContextListResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List contexts attached to a conversation
+      tags:
+      - ai_concierge
+    post:
+      operationId: create_context_v1_ai_concierge_conversations__conversation_id__contexts_post
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContextCreateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Attach a context to a conversation
+      tags:
+      - ai_concierge
+  /v1/ai-concierge/conversations/{conversation_id}/messages:
+    get:
+      operationId: list_messages_v1_ai_concierge_conversations__conversation_id__messages_get
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 20
+          maximum: 200
+          minimum: 1
+          title: Page Size
+          type: integer
+      - description: If set, returns last N messages and overrides pagination.
+        in: query
+        name: recent
+        required: false
+        schema:
+          anyOf:
+          - maximum: 200
+            minimum: 1
+            type: integer
+          - type: 'null'
+          description: If set, returns last N messages and overrides pagination.
+          title: Recent
+      - description: Comma-separated tokens to exclude (case-insensitive). Supports
+          `tools`.
+        in: query
+        name: exclude
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Comma-separated tokens to exclude (case-insensitive). Supports
+            `tools`.
+          title: Exclude
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageListResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List messages in a conversation
+      tags:
+      - ai_concierge
+    post:
+      operationId: create_message_v1_ai_concierge_conversations__conversation_id__messages_post
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageCreateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Append a message to a conversation
+      tags:
+      - ai_concierge
+  /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}:
+    get:
+      operationId: get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get
+      parameters:
+      - in: path
+        name: conversation_id
+        required: true
+        schema:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+      - in: path
+        name: message_id
+        required: true
+        schema:
+          examples:
+          - msg_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^msg_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Message Id
+          type: string
+          x-typeid-prefix: msg
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get a message
+      tags:
+      - ai_concierge
+  /v1/ai-concierge/memory/facts:
+    get:
+      description: List long-term, organization-scoped memory facts available to the
+        AI Concierge.
+      operationId: list_memory_facts_v1_ai_concierge_memory_facts_get
+      parameters:
+      - in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          title: Limit
+          type: integer
+      - in: query
+        name: cursor
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cursor
+      - in: query
+        name: kind
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Kind
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryFactListResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List long-term memory facts
+      tags:
+      - ai_concierge
+    post:
+      operationId: create_memory_fact_v1_ai_concierge_memory_facts_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryFactCreateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryFact'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create a long-term memory fact
+      tags:
+      - ai_concierge
+  /v1/ai-concierge/memory/facts/{fact_id}:
+    delete:
+      operationId: delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete
+      parameters:
+      - in: path
+        name: fact_id
+        required: true
+        schema:
+          examples:
+          - fact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^fact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Fact Id
+          type: string
+          x-typeid-prefix: fact
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Delete a long-term memory fact
+      tags:
+      - ai_concierge
+    patch:
+      operationId: patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch
+      parameters:
+      - in: path
+        name: fact_id
+        required: true
+        schema:
+          examples:
+          - fact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^fact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Fact Id
+          type: string
+          x-typeid-prefix: fact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoryFactPatchRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryFact'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory resource not found
+                status: 404
+                title: AI Concierge memory resource not found.
+                type: ai-concierge-memory-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AI_CONCIERGE
+                detail: AI Concierge memory service error
+                status: 502
+                title: AI Concierge memory service error.
+                type: ai-concierge-memory
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Update a long-term memory fact
+      tags:
+      - ai_concierge
   /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}:
     get:
       description: Retrieves a paginated list of email forward logs for a specific

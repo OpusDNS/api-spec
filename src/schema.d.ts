@@ -1,5 +1,160 @@
 import { TypeId } from "typeid-js";
 export interface paths {
+    "/v1/ai-concierge/contexts/{context_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a context entry */
+        get: operations["get_context_v1_ai_concierge_contexts__context_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/ai-concierge/conversations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List AI Concierge conversations
+         * @description List the authenticated organization's AI Concierge conversations.
+         */
+        get: operations["list_conversations_v1_ai_concierge_conversations_get"];
+        put?: never;
+        /** Create an AI Concierge conversation */
+        post: operations["create_conversation_v1_ai_concierge_conversations_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/ai-concierge/conversations/{conversation_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a conversation */
+        get: operations["get_conversation_v1_ai_concierge_conversations__conversation_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a conversation
+         * @description Permanently delete a conversation, its messages, and any attached contexts.
+         */
+        delete: operations["delete_conversation_v1_ai_concierge_conversations__conversation_id__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update a conversation
+         * @description Update conversation title or metadata. Supports optimistic concurrency via `If-Match`.
+         */
+        patch: operations["patch_conversation_v1_ai_concierge_conversations__conversation_id__patch"];
+        trace?: never;
+    };
+    "/v1/ai-concierge/conversations/{conversation_id}/contexts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List contexts attached to a conversation */
+        get: operations["list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get"];
+        put?: never;
+        /** Attach a context to a conversation */
+        post: operations["create_context_v1_ai_concierge_conversations__conversation_id__contexts_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/ai-concierge/conversations/{conversation_id}/messages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List messages in a conversation */
+        get: operations["list_messages_v1_ai_concierge_conversations__conversation_id__messages_get"];
+        put?: never;
+        /** Append a message to a conversation */
+        post: operations["create_message_v1_ai_concierge_conversations__conversation_id__messages_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a message */
+        get: operations["get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/ai-concierge/memory/facts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List long-term memory facts
+         * @description List long-term, organization-scoped memory facts available to the AI Concierge.
+         */
+        get: operations["list_memory_facts_v1_ai_concierge_memory_facts_get"];
+        put?: never;
+        /** Create a long-term memory fact */
+        post: operations["create_memory_fact_v1_ai_concierge_memory_facts_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/ai-concierge/memory/facts/{fact_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete a long-term memory fact */
+        delete: operations["delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update a long-term memory fact */
+        patch: operations["patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch"];
+        trace?: never;
+    };
     "/v1/archive/email-forward-logs/aliases/{email_forward_alias_id}": {
         parameters: {
             query?: never;
@@ -3376,6 +3531,128 @@ export interface components {
              */
             update_supported_roles?: components["schemas"]["ContactConfigBase"][] | null;
         };
+        /** Context */
+        Context: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            kind: components["schemas"]["MessageContextKind"];
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /** Payload */
+            payload?: {
+                [key: string]: unknown;
+            };
+            /** User Id */
+            user_id: string;
+        };
+        /** ContextCreateRequest */
+        ContextCreateRequest: {
+            kind: components["schemas"]["MessageContextKind"];
+            /**
+             * Payload
+             * @description Non-empty structured payload. Shape depends on `kind`.
+             */
+            payload: {
+                [key: string]: unknown;
+            };
+        };
+        /** ContextListResponse */
+        ContextListResponse: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["Context"][];
+        };
+        /** Conversation */
+        Conversation: {
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /** Last Message At */
+            last_message_at?: Date | null;
+            /**
+             * Message Count
+             * @default 0
+             */
+            message_count: number;
+            /** Metadata */
+            metadata?: {
+                [key: string]: unknown;
+            };
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Summary
+             * @description Optional rolling summary maintained by the memory service.
+             */
+            summary?: string | null;
+            /**
+             * Title
+             * @description Human-readable conversation title.
+             */
+            title?: string | null;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: Date;
+            /** User Id */
+            user_id: string;
+        };
+        /** ConversationCreateRequest */
+        ConversationCreateRequest: {
+            /** Metadata */
+            metadata?: {
+                [key: string]: unknown;
+            };
+            /** Title */
+            title?: string | null;
+        };
+        /** ConversationListResponse */
+        ConversationListResponse: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["Conversation"][];
+        };
+        /** ConversationPatchRequest */
+        ConversationPatchRequest: {
+            /** Metadata */
+            metadata?: {
+                [key: string]: unknown;
+            } | null;
+            /** Title */
+            title?: string | null;
+        };
         /** CreateJobBatchResponse */
         CreateJobBatchResponse: {
             /**
@@ -6557,6 +6834,135 @@ export interface components {
          * @enum {string}
          */
         LocalPresenceRequirementType: "physical_address" | "business_entity";
+        /** MemoryFact */
+        MemoryFact: {
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /** Expires At */
+            expires_at?: Date | null;
+            /**
+             * Fact Id
+             * Format: typeid
+             * @example fact_01h45ytscbebyvny4gc8cr8ma2
+             */
+            fact_id: TypeId<"fact">;
+            /** Key */
+            key: string;
+            kind: components["schemas"]["MemoryFactKind"];
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: Date;
+            /** Value */
+            value?: {
+                [key: string]: unknown;
+            };
+        };
+        /** MemoryFactCreateRequest */
+        MemoryFactCreateRequest: {
+            /** Key */
+            key: string;
+            kind: components["schemas"]["MemoryFactKind"];
+            /**
+             * Ttl Seconds
+             * @description Optional TTL; if set, the fact expires after this many seconds.
+             */
+            ttl_seconds?: number | null;
+            /** Value */
+            value?: {
+                [key: string]: unknown;
+            };
+        };
+        /**
+         * MemoryFactKind
+         * @enum {string}
+         */
+        MemoryFactKind: "preference" | "note" | "other";
+        /** MemoryFactListResponse */
+        MemoryFactListResponse: {
+            /** Next Cursor */
+            next_cursor?: string | null;
+            /** Results */
+            results: components["schemas"]["MemoryFact"][];
+        };
+        /** MemoryFactPatchRequest */
+        MemoryFactPatchRequest: {
+            /** Ttl Seconds */
+            ttl_seconds?: number | null;
+            /** Value */
+            value?: {
+                [key: string]: unknown;
+            } | null;
+        };
+        /** Message */
+        Message: {
+            /** Content */
+            content: string;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * Message Id
+             * Format: typeid
+             * @example msg_01h45ytscbebyvny4gc8cr8ma2
+             */
+            message_id: TypeId<"msg">;
+            /** Metadata */
+            metadata?: {
+                [key: string]: unknown;
+            };
+            role: components["schemas"]["MessageRole"];
+        };
+        /**
+         * MessageContextKind
+         * @enum {string}
+         */
+        MessageContextKind: "zones" | "contacts" | "domains" | "batch_ids" | "other";
+        /** MessageCreateRequest */
+        MessageCreateRequest: {
+            /** Content */
+            content: string;
+            /** Metadata */
+            metadata?: {
+                [key: string]: unknown;
+            };
+            /**
+             * N8N History Id
+             * @description Optional reference to the originating n8n_chat_histories row.
+             */
+            n8n_history_id?: number | null;
+            role: components["schemas"]["MessageRole"];
+        };
+        /** MessageListResponse */
+        MessageListResponse: {
+            /** @description Omitted when the `recent` query parameter is used. */
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["Message"][];
+        };
+        /**
+         * MessageRole
+         * @enum {string}
+         */
+        MessageRole: "user" | "assistant" | "system" | "tool";
         /**
          * MetricsGrouping
          * @enum {string}
@@ -9109,6 +9515,1227 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    get_context_v1_ai_concierge_contexts__context_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                context_id: TypeId<"ctx">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Context"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_conversations_v1_ai_concierge_conversations_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+                /** @description Comma-separated sort fields. Prefix with `-` for DESC. */
+                sort?: string | null;
+                /** @description Full-text search on title/summary. */
+                q?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ConversationListResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    create_conversation_v1_ai_concierge_conversations_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ConversationCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Conversation"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_conversation_v1_ai_concierge_conversations__conversation_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: TypeId<"conv">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Conversation"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    delete_conversation_v1_ai_concierge_conversations__conversation_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: TypeId<"conv">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    patch_conversation_v1_ai_concierge_conversations__conversation_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                "If-Match"?: string | null;
+            };
+            path: {
+                conversation_id: TypeId<"conv">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ConversationPatchRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Conversation"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path: {
+                conversation_id: TypeId<"conv">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContextListResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    create_context_v1_ai_concierge_conversations__conversation_id__contexts_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: TypeId<"conv">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContextCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Context"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_messages_v1_ai_concierge_conversations__conversation_id__messages_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+                /** @description If set, returns last N messages and overrides pagination. */
+                recent?: number | null;
+                /** @description Comma-separated tokens to exclude (case-insensitive). Supports `tools`. */
+                exclude?: string | null;
+            };
+            header?: never;
+            path: {
+                conversation_id: TypeId<"conv">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MessageListResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    create_message_v1_ai_concierge_conversations__conversation_id__messages_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: TypeId<"conv">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MessageCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Message"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversation_id: TypeId<"conv">;
+                message_id: TypeId<"msg">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Message"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    list_memory_facts_v1_ai_concierge_memory_facts_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string | null;
+                kind?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MemoryFactListResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    create_memory_fact_v1_ai_concierge_memory_facts_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MemoryFactCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MemoryFact"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                fact_id: TypeId<"fact">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                fact_id: TypeId<"fact">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MemoryFactPatchRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MemoryFact"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory resource not found",
+                     *       "status": 404,
+                     *       "title": "AI Concierge memory resource not found.",
+                     *       "type": "ai-concierge-memory-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AI_CONCIERGE",
+                     *       "detail": "AI Concierge memory service error",
+                     *       "status": 502,
+                     *       "title": "AI Concierge memory service error.",
+                     *       "type": "ai-concierge-memory"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get: {
         parameters: {
             query: {

@@ -731,6 +731,118 @@ export type ContactVerification = components['schemas']['ContactVerificationResp
  */
 export type ContactsBase = components['schemas']['ContactsBase'];
 /**
+ * Context
+ *
+ * @remarks
+ * Type alias for the `Context` OpenAPI schema.
+ * This type represents context data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContext();
+ * const item: Context = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Context = components['schemas']['Context'];
+/**
+ * ContextCreateRequest
+ *
+ * @remarks
+ * Type alias for the `ContextCreateRequest` OpenAPI schema.
+ * This type represents contextcreaterequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContextCreateRequest();
+ * const item: ContextCreateRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContextCreateRequest = components['schemas']['ContextCreateRequest'];
+/**
+ * ContextListResponse
+ *
+ * @remarks
+ * Type alias for the `ContextListResponse` OpenAPI schema.
+ * This type represents contextlistresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContextList();
+ * const item: ContextList = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContextList = components['schemas']['ContextListResponse'];
+/**
+ * Conversation
+ *
+ * @remarks
+ * Type alias for the `Conversation` OpenAPI schema.
+ * This type represents conversation data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getConversation();
+ * const item: Conversation = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Conversation = components['schemas']['Conversation'];
+/**
+ * ConversationCreateRequest
+ *
+ * @remarks
+ * Type alias for the `ConversationCreateRequest` OpenAPI schema.
+ * This type represents conversationcreaterequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getConversationCreateRequest();
+ * const item: ConversationCreateRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ConversationCreateRequest = components['schemas']['ConversationCreateRequest'];
+/**
+ * ConversationListResponse
+ *
+ * @remarks
+ * Type alias for the `ConversationListResponse` OpenAPI schema.
+ * This type represents conversationlistresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getConversationList();
+ * const item: ConversationList = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ConversationList = components['schemas']['ConversationListResponse'];
+/**
+ * ConversationPatchRequest
+ *
+ * @remarks
+ * Type alias for the `ConversationPatchRequest` OpenAPI schema.
+ * This type represents conversationpatchrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getConversationPatchRequest();
+ * const item: ConversationPatchRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ConversationPatchRequest = components['schemas']['ConversationPatchRequest'];
+/**
  * CreateJobBatchResponse
  *
  * @remarks
@@ -3828,6 +3940,166 @@ export type LocalPresenceBase = components['schemas']['LocalPresenceBase'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type LocalPresenceRequirementType = components['schemas']['LocalPresenceRequirementType'];
+/**
+ * MemoryFact
+ *
+ * @remarks
+ * Type alias for the `MemoryFact` OpenAPI schema.
+ * This type represents memoryfact data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMemoryFact();
+ * const item: MemoryFact = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MemoryFact = components['schemas']['MemoryFact'];
+/**
+ * MemoryFactCreateRequest
+ *
+ * @remarks
+ * Type alias for the `MemoryFactCreateRequest` OpenAPI schema.
+ * This type represents memoryfactcreaterequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMemoryFactCreateRequest();
+ * const item: MemoryFactCreateRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MemoryFactCreateRequest = components['schemas']['MemoryFactCreateRequest'];
+/**
+ * MemoryFactKind
+ *
+ * @remarks
+ * Type alias for the `MemoryFactKind` OpenAPI schema.
+ * This type represents memoryfactkind data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMemoryFactKind();
+ * const item: MemoryFactKind = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MemoryFactKind = components['schemas']['MemoryFactKind'];
+/**
+ * MemoryFactListResponse
+ *
+ * @remarks
+ * Type alias for the `MemoryFactListResponse` OpenAPI schema.
+ * This type represents memoryfactlistresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMemoryFactList();
+ * const item: MemoryFactList = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MemoryFactList = components['schemas']['MemoryFactListResponse'];
+/**
+ * MemoryFactPatchRequest
+ *
+ * @remarks
+ * Type alias for the `MemoryFactPatchRequest` OpenAPI schema.
+ * This type represents memoryfactpatchrequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMemoryFactPatchRequest();
+ * const item: MemoryFactPatchRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MemoryFactPatchRequest = components['schemas']['MemoryFactPatchRequest'];
+/**
+ * Message
+ *
+ * @remarks
+ * Type alias for the `Message` OpenAPI schema.
+ * This type represents message data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMessage();
+ * const item: Message = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Message = components['schemas']['Message'];
+/**
+ * MessageContextKind
+ *
+ * @remarks
+ * Type alias for the `MessageContextKind` OpenAPI schema.
+ * This type represents messagecontextkind data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMessageContextKind();
+ * const item: MessageContextKind = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MessageContextKind = components['schemas']['MessageContextKind'];
+/**
+ * MessageCreateRequest
+ *
+ * @remarks
+ * Type alias for the `MessageCreateRequest` OpenAPI schema.
+ * This type represents messagecreaterequest data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMessageCreateRequest();
+ * const item: MessageCreateRequest = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MessageCreateRequest = components['schemas']['MessageCreateRequest'];
+/**
+ * MessageListResponse
+ *
+ * @remarks
+ * Type alias for the `MessageListResponse` OpenAPI schema.
+ * This type represents messagelistresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMessageList();
+ * const item: MessageList = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MessageList = components['schemas']['MessageListResponse'];
+/**
+ * MessageRole
+ *
+ * @remarks
+ * Type alias for the `MessageRole` OpenAPI schema.
+ * This type represents messagerole data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getMessageRole();
+ * const item: MessageRole = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type MessageRole = components['schemas']['MessageRole'];
 /**
  * MetricsGrouping
  *

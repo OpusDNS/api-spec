@@ -59,6 +59,13 @@ import { ContactVerificationApi } from './schemas';
 import { ContactVerificationEmail } from './schemas';
 import { ContactVerification } from './schemas';
 import { ContactsBase } from './schemas';
+import { Context } from './schemas';
+import { ContextCreateRequest } from './schemas';
+import { ContextList } from './schemas';
+import { Conversation } from './schemas';
+import { ConversationCreateRequest } from './schemas';
+import { ConversationList } from './schemas';
+import { ConversationPatchRequest } from './schemas';
 import { CreateJobBatch } from './schemas';
 import { CreateReportReq } from './schemas';
 import { DnsChange } from './schemas';
@@ -210,6 +217,13 @@ import { LaunchPhaseBase } from './schemas';
 import { LaunchPhasesBase } from './schemas';
 import { LegalRequirementBase } from './schemas';
 import { LocalPresenceBase } from './schemas';
+import { MemoryFact } from './schemas';
+import { MemoryFactCreateRequest } from './schemas';
+import { MemoryFactList } from './schemas';
+import { MemoryFactPatchRequest } from './schemas';
+import { Message } from './schemas';
+import { MessageCreateRequest } from './schemas';
+import { MessageList } from './schemas';
 import { Nameserver } from './schemas';
 import { ObjectLog } from './schemas';
 import { ObjectTagChanges } from './schemas';
@@ -6352,6 +6366,869 @@ export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_TRANSFER_SUPPORTED_ROLES,
   KEY_CONTACTS_BASE_UPDATE_SUPPORTED_ROLES,
 ] as const satisfies (keyof ContactsBase)[];
+
+/**
+ * Context Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `context_id` property of Context objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = context[KEY_CONTEXT_CONTEXT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_CONTEXT_ID;
+ * const value = context[propertyName];
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_CONTEXT_ID: keyof Context = 'context_id';
+/**
+ * Conversation Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `conversation_id` property of Context objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = context[KEY_CONTEXT_CONVERSATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_CONVERSATION_ID;
+ * const value = context[propertyName];
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_CONVERSATION_ID: keyof Context = 'conversation_id';
+/**
+ * Created At
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_at` property of Context objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = context[KEY_CONTEXT_CREATED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_CREATED_AT;
+ * const value = context[propertyName];
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_CREATED_AT: keyof Context = 'created_at';
+/**
+ * kind property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `kind` property of Context objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = context[KEY_CONTEXT_KIND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_KIND;
+ * const value = context[propertyName];
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_KIND: keyof Context = 'kind';
+/**
+ * Organization Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of Context objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = context[KEY_CONTEXT_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_ORGANIZATION_ID;
+ * const value = context[propertyName];
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_ORGANIZATION_ID: keyof Context = 'organization_id';
+/**
+ * Payload
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of Context objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = context[KEY_CONTEXT_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_PAYLOAD;
+ * const value = context[propertyName];
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_PAYLOAD: keyof Context = 'payload';
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of Context objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = context[KEY_CONTEXT_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_USER_ID;
+ * const value = context[propertyName];
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_USER_ID: keyof Context = 'user_id';
+
+/**
+ * Array of all Context property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Context objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTEXT) {
+ *   console.log(`Property: ${key}, Value: ${context[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTEXT.includes(someKey);
+ * ```
+ *
+ * @see {@link Context} - The TypeScript type definition
+ */
+export const KEYS_CONTEXT = [
+  KEY_CONTEXT_CONTEXT_ID,
+  KEY_CONTEXT_CONVERSATION_ID,
+  KEY_CONTEXT_CREATED_AT,
+  KEY_CONTEXT_KIND,
+  KEY_CONTEXT_ORGANIZATION_ID,
+  KEY_CONTEXT_PAYLOAD,
+  KEY_CONTEXT_USER_ID,
+] as const satisfies (keyof Context)[];
+
+/**
+ * kind property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `kind` property of ContextCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contextcreaterequest[KEY_CONTEXT_CREATE_REQUEST_KIND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_CREATE_REQUEST_KIND;
+ * const value = contextcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link ContextCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_CREATE_REQUEST_KIND: keyof ContextCreateRequest = 'kind';
+/**
+ * Payload
+ *
+ * Non-empty structured payload. Shape depends on `kind`.
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `payload` property of ContextCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contextcreaterequest[KEY_CONTEXT_CREATE_REQUEST_PAYLOAD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_CREATE_REQUEST_PAYLOAD;
+ * const value = contextcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link ContextCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_CREATE_REQUEST_PAYLOAD: keyof ContextCreateRequest = 'payload';
+
+/**
+ * Array of all ContextCreateRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContextCreateRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTEXT_CREATE_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${contextcreaterequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTEXT_CREATE_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link ContextCreateRequest} - The TypeScript type definition
+ */
+export const KEYS_CONTEXT_CREATE_REQUEST = [
+  KEY_CONTEXT_CREATE_REQUEST_KIND,
+  KEY_CONTEXT_CREATE_REQUEST_PAYLOAD,
+] as const satisfies (keyof ContextCreateRequest)[];
+
+/**
+ * pagination property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `pagination` property of ContextList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contextlist[KEY_CONTEXT_LIST_PAGINATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_LIST_PAGINATION;
+ * const value = contextlist[propertyName];
+ * ```
+ *
+ * @see {@link ContextList} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT_LIST} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_LIST_PAGINATION: keyof ContextList = 'pagination';
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of ContextList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contextlist[KEY_CONTEXT_LIST_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTEXT_LIST_RESULTS;
+ * const value = contextlist[propertyName];
+ * ```
+ *
+ * @see {@link ContextList} - The TypeScript type definition
+ * @see {@link KEYS_CONTEXT_LIST} - Array of all keys for this type
+ */
+export const KEY_CONTEXT_LIST_RESULTS: keyof ContextList = 'results';
+
+/**
+ * Array of all ContextList property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContextList objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTEXT_LIST) {
+ *   console.log(`Property: ${key}, Value: ${contextlist[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTEXT_LIST.includes(someKey);
+ * ```
+ *
+ * @see {@link ContextList} - The TypeScript type definition
+ */
+export const KEYS_CONTEXT_LIST = [
+  KEY_CONTEXT_LIST_PAGINATION,
+  KEY_CONTEXT_LIST_RESULTS,
+] as const satisfies (keyof ContextList)[];
+
+/**
+ * Conversation Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `conversation_id` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_CONVERSATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_CONVERSATION_ID;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_CONVERSATION_ID: keyof Conversation = 'conversation_id';
+/**
+ * Created At
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_at` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_CREATED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_CREATED_AT;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_CREATED_AT: keyof Conversation = 'created_at';
+/**
+ * Last Message At
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `last_message_at` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_LAST_MESSAGE_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_LAST_MESSAGE_AT;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_LAST_MESSAGE_AT: keyof Conversation = 'last_message_at';
+/**
+ * Message Count
+ *
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message_count` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_MESSAGE_COUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_MESSAGE_COUNT;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_MESSAGE_COUNT: keyof Conversation = 'message_count';
+/**
+ * Metadata
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `metadata` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_METADATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_METADATA;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_METADATA: keyof Conversation = 'metadata';
+/**
+ * Organization Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_ORGANIZATION_ID;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_ORGANIZATION_ID: keyof Conversation = 'organization_id';
+/**
+ * Summary
+ *
+ * Optional rolling summary maintained by the memory service.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `summary` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_SUMMARY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_SUMMARY;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_SUMMARY: keyof Conversation = 'summary';
+/**
+ * Title
+ *
+ * Human-readable conversation title.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_TITLE;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_TITLE: keyof Conversation = 'title';
+/**
+ * Updated At
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_at` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_UPDATED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_UPDATED_AT;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_UPDATED_AT: keyof Conversation = 'updated_at';
+/**
+ * User Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `user_id` property of Conversation objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversation[KEY_CONVERSATION_USER_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_USER_ID;
+ * const value = conversation[propertyName];
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_USER_ID: keyof Conversation = 'user_id';
+
+/**
+ * Array of all Conversation property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Conversation objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONVERSATION) {
+ *   console.log(`Property: ${key}, Value: ${conversation[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONVERSATION.includes(someKey);
+ * ```
+ *
+ * @see {@link Conversation} - The TypeScript type definition
+ */
+export const KEYS_CONVERSATION = [
+  KEY_CONVERSATION_CONVERSATION_ID,
+  KEY_CONVERSATION_CREATED_AT,
+  KEY_CONVERSATION_LAST_MESSAGE_AT,
+  KEY_CONVERSATION_MESSAGE_COUNT,
+  KEY_CONVERSATION_METADATA,
+  KEY_CONVERSATION_ORGANIZATION_ID,
+  KEY_CONVERSATION_SUMMARY,
+  KEY_CONVERSATION_TITLE,
+  KEY_CONVERSATION_UPDATED_AT,
+  KEY_CONVERSATION_USER_ID,
+] as const satisfies (keyof Conversation)[];
+
+/**
+ * Metadata
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `metadata` property of ConversationCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversationcreaterequest[KEY_CONVERSATION_CREATE_REQUEST_METADATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_CREATE_REQUEST_METADATA;
+ * const value = conversationcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link ConversationCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_CREATE_REQUEST_METADATA: keyof ConversationCreateRequest = 'metadata';
+/**
+ * Title
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ConversationCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversationcreaterequest[KEY_CONVERSATION_CREATE_REQUEST_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_CREATE_REQUEST_TITLE;
+ * const value = conversationcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link ConversationCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_CREATE_REQUEST_TITLE: keyof ConversationCreateRequest = 'title';
+
+/**
+ * Array of all ConversationCreateRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ConversationCreateRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONVERSATION_CREATE_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${conversationcreaterequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONVERSATION_CREATE_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link ConversationCreateRequest} - The TypeScript type definition
+ */
+export const KEYS_CONVERSATION_CREATE_REQUEST = [
+  KEY_CONVERSATION_CREATE_REQUEST_METADATA,
+  KEY_CONVERSATION_CREATE_REQUEST_TITLE,
+] as const satisfies (keyof ConversationCreateRequest)[];
+
+/**
+ * pagination property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `pagination` property of ConversationList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversationlist[KEY_CONVERSATION_LIST_PAGINATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_LIST_PAGINATION;
+ * const value = conversationlist[propertyName];
+ * ```
+ *
+ * @see {@link ConversationList} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION_LIST} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_LIST_PAGINATION: keyof ConversationList = 'pagination';
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of ConversationList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversationlist[KEY_CONVERSATION_LIST_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_LIST_RESULTS;
+ * const value = conversationlist[propertyName];
+ * ```
+ *
+ * @see {@link ConversationList} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION_LIST} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_LIST_RESULTS: keyof ConversationList = 'results';
+
+/**
+ * Array of all ConversationList property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ConversationList objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONVERSATION_LIST) {
+ *   console.log(`Property: ${key}, Value: ${conversationlist[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONVERSATION_LIST.includes(someKey);
+ * ```
+ *
+ * @see {@link ConversationList} - The TypeScript type definition
+ */
+export const KEYS_CONVERSATION_LIST = [
+  KEY_CONVERSATION_LIST_PAGINATION,
+  KEY_CONVERSATION_LIST_RESULTS,
+] as const satisfies (keyof ConversationList)[];
+
+/**
+ * Metadata
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `metadata` property of ConversationPatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversationpatchrequest[KEY_CONVERSATION_PATCH_REQUEST_METADATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_PATCH_REQUEST_METADATA;
+ * const value = conversationpatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link ConversationPatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION_PATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_PATCH_REQUEST_METADATA: keyof ConversationPatchRequest = 'metadata';
+/**
+ * Title
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `title` property of ConversationPatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = conversationpatchrequest[KEY_CONVERSATION_PATCH_REQUEST_TITLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONVERSATION_PATCH_REQUEST_TITLE;
+ * const value = conversationpatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link ConversationPatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_CONVERSATION_PATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_CONVERSATION_PATCH_REQUEST_TITLE: keyof ConversationPatchRequest = 'title';
+
+/**
+ * Array of all ConversationPatchRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ConversationPatchRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONVERSATION_PATCH_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${conversationpatchrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONVERSATION_PATCH_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link ConversationPatchRequest} - The TypeScript type definition
+ */
+export const KEYS_CONVERSATION_PATCH_REQUEST = [
+  KEY_CONVERSATION_PATCH_REQUEST_METADATA,
+  KEY_CONVERSATION_PATCH_REQUEST_TITLE,
+] as const satisfies (keyof ConversationPatchRequest)[];
 
 /**
  * Batch Id
@@ -26416,6 +27293,894 @@ export const KEYS_LOCAL_PRESENCE_BASE = [
   KEY_LOCAL_PRESENCE_BASE_REQUIREMENT,
   KEY_LOCAL_PRESENCE_BASE_TYPE,
 ] as const satisfies (keyof LocalPresenceBase)[];
+
+/**
+ * Created At
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_at` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_CREATED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_CREATED_AT;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_CREATED_AT: keyof MemoryFact = 'created_at';
+/**
+ * Expires At
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expires_at` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_EXPIRES_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_EXPIRES_AT;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_EXPIRES_AT: keyof MemoryFact = 'expires_at';
+/**
+ * Fact Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `fact_id` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_FACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_FACT_ID;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_FACT_ID: keyof MemoryFact = 'fact_id';
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_KEY;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_KEY: keyof MemoryFact = 'key';
+/**
+ * kind property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `kind` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_KIND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_KIND;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_KIND: keyof MemoryFact = 'kind';
+/**
+ * Organization Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `organization_id` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_ORGANIZATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_ORGANIZATION_ID;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_ORGANIZATION_ID: keyof MemoryFact = 'organization_id';
+/**
+ * Updated At
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `updated_at` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_UPDATED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_UPDATED_AT;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_UPDATED_AT: keyof MemoryFact = 'updated_at';
+/**
+ * Value
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of MemoryFact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfact[KEY_MEMORY_FACT_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_VALUE;
+ * const value = memoryfact[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_VALUE: keyof MemoryFact = 'value';
+
+/**
+ * Array of all MemoryFact property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for MemoryFact objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_MEMORY_FACT) {
+ *   console.log(`Property: ${key}, Value: ${memoryfact[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_MEMORY_FACT.includes(someKey);
+ * ```
+ *
+ * @see {@link MemoryFact} - The TypeScript type definition
+ */
+export const KEYS_MEMORY_FACT = [
+  KEY_MEMORY_FACT_CREATED_AT,
+  KEY_MEMORY_FACT_EXPIRES_AT,
+  KEY_MEMORY_FACT_FACT_ID,
+  KEY_MEMORY_FACT_KEY,
+  KEY_MEMORY_FACT_KIND,
+  KEY_MEMORY_FACT_ORGANIZATION_ID,
+  KEY_MEMORY_FACT_UPDATED_AT,
+  KEY_MEMORY_FACT_VALUE,
+] as const satisfies (keyof MemoryFact)[];
+
+/**
+ * Key
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `key` property of MemoryFactCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactcreaterequest[KEY_MEMORY_FACT_CREATE_REQUEST_KEY];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_CREATE_REQUEST_KEY;
+ * const value = memoryfactcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_CREATE_REQUEST_KEY: keyof MemoryFactCreateRequest = 'key';
+/**
+ * kind property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `kind` property of MemoryFactCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactcreaterequest[KEY_MEMORY_FACT_CREATE_REQUEST_KIND];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_CREATE_REQUEST_KIND;
+ * const value = memoryfactcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_CREATE_REQUEST_KIND: keyof MemoryFactCreateRequest = 'kind';
+/**
+ * Ttl Seconds
+ *
+ * Optional TTL; if set, the fact expires after this many seconds.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ttl_seconds` property of MemoryFactCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactcreaterequest[KEY_MEMORY_FACT_CREATE_REQUEST_TTL_SECONDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_CREATE_REQUEST_TTL_SECONDS;
+ * const value = memoryfactcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_CREATE_REQUEST_TTL_SECONDS: keyof MemoryFactCreateRequest = 'ttl_seconds';
+/**
+ * Value
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of MemoryFactCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactcreaterequest[KEY_MEMORY_FACT_CREATE_REQUEST_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_CREATE_REQUEST_VALUE;
+ * const value = memoryfactcreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_CREATE_REQUEST_VALUE: keyof MemoryFactCreateRequest = 'value';
+
+/**
+ * Array of all MemoryFactCreateRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for MemoryFactCreateRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_MEMORY_FACT_CREATE_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${memoryfactcreaterequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_MEMORY_FACT_CREATE_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link MemoryFactCreateRequest} - The TypeScript type definition
+ */
+export const KEYS_MEMORY_FACT_CREATE_REQUEST = [
+  KEY_MEMORY_FACT_CREATE_REQUEST_KEY,
+  KEY_MEMORY_FACT_CREATE_REQUEST_KIND,
+  KEY_MEMORY_FACT_CREATE_REQUEST_TTL_SECONDS,
+  KEY_MEMORY_FACT_CREATE_REQUEST_VALUE,
+] as const satisfies (keyof MemoryFactCreateRequest)[];
+
+/**
+ * Next Cursor
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `next_cursor` property of MemoryFactList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactlist[KEY_MEMORY_FACT_LIST_NEXT_CURSOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_LIST_NEXT_CURSOR;
+ * const value = memoryfactlist[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactList} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_LIST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_LIST_NEXT_CURSOR: keyof MemoryFactList = 'next_cursor';
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of MemoryFactList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactlist[KEY_MEMORY_FACT_LIST_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_LIST_RESULTS;
+ * const value = memoryfactlist[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactList} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_LIST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_LIST_RESULTS: keyof MemoryFactList = 'results';
+
+/**
+ * Array of all MemoryFactList property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for MemoryFactList objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_MEMORY_FACT_LIST) {
+ *   console.log(`Property: ${key}, Value: ${memoryfactlist[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_MEMORY_FACT_LIST.includes(someKey);
+ * ```
+ *
+ * @see {@link MemoryFactList} - The TypeScript type definition
+ */
+export const KEYS_MEMORY_FACT_LIST = [
+  KEY_MEMORY_FACT_LIST_NEXT_CURSOR,
+  KEY_MEMORY_FACT_LIST_RESULTS,
+] as const satisfies (keyof MemoryFactList)[];
+
+/**
+ * Ttl Seconds
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ttl_seconds` property of MemoryFactPatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactpatchrequest[KEY_MEMORY_FACT_PATCH_REQUEST_TTL_SECONDS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_PATCH_REQUEST_TTL_SECONDS;
+ * const value = memoryfactpatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactPatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_PATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_PATCH_REQUEST_TTL_SECONDS: keyof MemoryFactPatchRequest = 'ttl_seconds';
+/**
+ * Value
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `value` property of MemoryFactPatchRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = memoryfactpatchrequest[KEY_MEMORY_FACT_PATCH_REQUEST_VALUE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MEMORY_FACT_PATCH_REQUEST_VALUE;
+ * const value = memoryfactpatchrequest[propertyName];
+ * ```
+ *
+ * @see {@link MemoryFactPatchRequest} - The TypeScript type definition
+ * @see {@link KEYS_MEMORY_FACT_PATCH_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MEMORY_FACT_PATCH_REQUEST_VALUE: keyof MemoryFactPatchRequest = 'value';
+
+/**
+ * Array of all MemoryFactPatchRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for MemoryFactPatchRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_MEMORY_FACT_PATCH_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${memoryfactpatchrequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_MEMORY_FACT_PATCH_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link MemoryFactPatchRequest} - The TypeScript type definition
+ */
+export const KEYS_MEMORY_FACT_PATCH_REQUEST = [
+  KEY_MEMORY_FACT_PATCH_REQUEST_TTL_SECONDS,
+  KEY_MEMORY_FACT_PATCH_REQUEST_VALUE,
+] as const satisfies (keyof MemoryFactPatchRequest)[];
+
+/**
+ * Content
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `content` property of Message objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = message[KEY_MESSAGE_CONTENT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_CONTENT;
+ * const value = message[propertyName];
+ * ```
+ *
+ * @see {@link Message} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_CONTENT: keyof Message = 'content';
+/**
+ * Conversation Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `conversation_id` property of Message objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = message[KEY_MESSAGE_CONVERSATION_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_CONVERSATION_ID;
+ * const value = message[propertyName];
+ * ```
+ *
+ * @see {@link Message} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_CONVERSATION_ID: keyof Message = 'conversation_id';
+/**
+ * Created At
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `created_at` property of Message objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = message[KEY_MESSAGE_CREATED_AT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_CREATED_AT;
+ * const value = message[propertyName];
+ * ```
+ *
+ * @see {@link Message} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_CREATED_AT: keyof Message = 'created_at';
+/**
+ * Message Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message_id` property of Message objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = message[KEY_MESSAGE_MESSAGE_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_MESSAGE_ID;
+ * const value = message[propertyName];
+ * ```
+ *
+ * @see {@link Message} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_MESSAGE_ID: keyof Message = 'message_id';
+/**
+ * Metadata
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `metadata` property of Message objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = message[KEY_MESSAGE_METADATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_METADATA;
+ * const value = message[propertyName];
+ * ```
+ *
+ * @see {@link Message} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_METADATA: keyof Message = 'metadata';
+/**
+ * role property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `role` property of Message objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = message[KEY_MESSAGE_ROLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_ROLE;
+ * const value = message[propertyName];
+ * ```
+ *
+ * @see {@link Message} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_ROLE: keyof Message = 'role';
+
+/**
+ * Array of all Message property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Message objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_MESSAGE) {
+ *   console.log(`Property: ${key}, Value: ${message[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_MESSAGE.includes(someKey);
+ * ```
+ *
+ * @see {@link Message} - The TypeScript type definition
+ */
+export const KEYS_MESSAGE = [
+  KEY_MESSAGE_CONTENT,
+  KEY_MESSAGE_CONVERSATION_ID,
+  KEY_MESSAGE_CREATED_AT,
+  KEY_MESSAGE_MESSAGE_ID,
+  KEY_MESSAGE_METADATA,
+  KEY_MESSAGE_ROLE,
+] as const satisfies (keyof Message)[];
+
+/**
+ * Content
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `content` property of MessageCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = messagecreaterequest[KEY_MESSAGE_CREATE_REQUEST_CONTENT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_CREATE_REQUEST_CONTENT;
+ * const value = messagecreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MessageCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_CREATE_REQUEST_CONTENT: keyof MessageCreateRequest = 'content';
+/**
+ * Metadata
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `metadata` property of MessageCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = messagecreaterequest[KEY_MESSAGE_CREATE_REQUEST_METADATA];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_CREATE_REQUEST_METADATA;
+ * const value = messagecreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MessageCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_CREATE_REQUEST_METADATA: keyof MessageCreateRequest = 'metadata';
+/**
+ * N8N History Id
+ *
+ * Optional reference to the originating n8n_chat_histories row.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `n8n_history_id` property of MessageCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = messagecreaterequest[KEY_MESSAGE_CREATE_REQUEST_N8N_HISTORY_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_CREATE_REQUEST_N8N_HISTORY_ID;
+ * const value = messagecreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MessageCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_CREATE_REQUEST_N8N_HISTORY_ID: keyof MessageCreateRequest = 'n8n_history_id';
+/**
+ * role property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `role` property of MessageCreateRequest objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = messagecreaterequest[KEY_MESSAGE_CREATE_REQUEST_ROLE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_CREATE_REQUEST_ROLE;
+ * const value = messagecreaterequest[propertyName];
+ * ```
+ *
+ * @see {@link MessageCreateRequest} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE_CREATE_REQUEST} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_CREATE_REQUEST_ROLE: keyof MessageCreateRequest = 'role';
+
+/**
+ * Array of all MessageCreateRequest property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for MessageCreateRequest objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_MESSAGE_CREATE_REQUEST) {
+ *   console.log(`Property: ${key}, Value: ${messagecreaterequest[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_MESSAGE_CREATE_REQUEST.includes(someKey);
+ * ```
+ *
+ * @see {@link MessageCreateRequest} - The TypeScript type definition
+ */
+export const KEYS_MESSAGE_CREATE_REQUEST = [
+  KEY_MESSAGE_CREATE_REQUEST_CONTENT,
+  KEY_MESSAGE_CREATE_REQUEST_METADATA,
+  KEY_MESSAGE_CREATE_REQUEST_N8N_HISTORY_ID,
+  KEY_MESSAGE_CREATE_REQUEST_ROLE,
+] as const satisfies (keyof MessageCreateRequest)[];
+
+/**
+ * pagination property
+ *
+ * Omitted when the `recent` query parameter is used.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `pagination` property of MessageList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = messagelist[KEY_MESSAGE_LIST_PAGINATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_LIST_PAGINATION;
+ * const value = messagelist[propertyName];
+ * ```
+ *
+ * @see {@link MessageList} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE_LIST} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_LIST_PAGINATION: keyof MessageList = 'pagination';
+/**
+ * Results
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `results` property of MessageList objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = messagelist[KEY_MESSAGE_LIST_RESULTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_MESSAGE_LIST_RESULTS;
+ * const value = messagelist[propertyName];
+ * ```
+ *
+ * @see {@link MessageList} - The TypeScript type definition
+ * @see {@link KEYS_MESSAGE_LIST} - Array of all keys for this type
+ */
+export const KEY_MESSAGE_LIST_RESULTS: keyof MessageList = 'results';
+
+/**
+ * Array of all MessageList property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for MessageList objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_MESSAGE_LIST) {
+ *   console.log(`Property: ${key}, Value: ${messagelist[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_MESSAGE_LIST.includes(someKey);
+ * ```
+ *
+ * @see {@link MessageList} - The TypeScript type definition
+ */
+export const KEYS_MESSAGE_LIST = [
+  KEY_MESSAGE_LIST_PAGINATION,
+  KEY_MESSAGE_LIST_RESULTS,
+] as const satisfies (keyof MessageList)[];
 
 /**
  * Hostname

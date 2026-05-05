@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BatchSortField, BatchStatus, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactIncludeField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainIncludeField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, JobStatus, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReportStatus, ReportTriggerType, ReportType, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TagColor, TagFilterMode, TagSortField, TagType, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationType, ZoneIncludeField, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BatchSortField, BatchStatus, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactIncludeField, ContactSortField, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainIncludeField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, HTTPMethod, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, JobStatus, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MemoryFactKind, MessageContextKind, MessageRole, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReportStatus, ReportTriggerType, ReportType, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TagColor, TagFilterMode, TagSortField, TagType, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationType, ZoneIncludeField, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2933,6 +2933,168 @@ export const LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES = [
   'physical_address',
   'business_entity'
 ] as const satisfies [string, ...string[]] | LocalPresenceRequirementType[];
+
+/**
+ * MemoryFactKind. Auto-generated enum for MemoryFactKind
+ *
+ * @remarks
+ * This constant provides both object and array forms for the MemoryFactKind enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = MEMORY_FACT_KIND.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = MEMORY_FACT_KIND_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link MemoryFactKind} - The TypeScript type definition
+ */
+export const MEMORY_FACT_KIND = {
+  PREFERENCE: "preference",
+  NOTE: "note",
+  OTHER: "other",
+} as const satisfies Record<string, MemoryFactKind>;
+
+/**
+ * Array of all MemoryFactKind enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid MemoryFactKind enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of MEMORY_FACT_KIND_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = MEMORY_FACT_KIND_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link MemoryFactKind} - The TypeScript type definition
+ * @see {@link MEMORY_FACT_KIND} - The object form of this enum
+ */
+export const MEMORY_FACT_KIND_VALUES = [
+  'preference',
+  'note',
+  'other'
+] as const satisfies [string, ...string[]] | MemoryFactKind[];
+
+/**
+ * MessageContextKind. Auto-generated enum for MessageContextKind
+ *
+ * @remarks
+ * This constant provides both object and array forms for the MessageContextKind enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = MESSAGE_CONTEXT_KIND.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = MESSAGE_CONTEXT_KIND_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link MessageContextKind} - The TypeScript type definition
+ */
+export const MESSAGE_CONTEXT_KIND = {
+  ZONES: "zones",
+  CONTACTS: "contacts",
+  DOMAINS: "domains",
+  BATCH_IDS: "batch_ids",
+  OTHER: "other",
+} as const satisfies Record<string, MessageContextKind>;
+
+/**
+ * Array of all MessageContextKind enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid MessageContextKind enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of MESSAGE_CONTEXT_KIND_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = MESSAGE_CONTEXT_KIND_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link MessageContextKind} - The TypeScript type definition
+ * @see {@link MESSAGE_CONTEXT_KIND} - The object form of this enum
+ */
+export const MESSAGE_CONTEXT_KIND_VALUES = [
+  'zones',
+  'contacts',
+  'domains',
+  'batch_ids',
+  'other'
+] as const satisfies [string, ...string[]] | MessageContextKind[];
+
+/**
+ * MessageRole. Auto-generated enum for MessageRole
+ *
+ * @remarks
+ * This constant provides both object and array forms for the MessageRole enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = MESSAGE_ROLE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = MESSAGE_ROLE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link MessageRole} - The TypeScript type definition
+ */
+export const MESSAGE_ROLE = {
+  USER: "user",
+  ASSISTANT: "assistant",
+  SYSTEM: "system",
+  TOOL: "tool",
+} as const satisfies Record<string, MessageRole>;
+
+/**
+ * Array of all MessageRole enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid MessageRole enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of MESSAGE_ROLE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = MESSAGE_ROLE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link MessageRole} - The TypeScript type definition
+ * @see {@link MESSAGE_ROLE} - The object form of this enum
+ */
+export const MESSAGE_ROLE_VALUES = [
+  'user',
+  'assistant',
+  'system',
+  'tool'
+] as const satisfies [string, ...string[]] | MessageRole[];
 
 /**
  * MetricsGrouping. Auto-generated enum for MetricsGrouping

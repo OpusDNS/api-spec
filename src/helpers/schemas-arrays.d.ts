@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { ContactIncludeField, ZoneIncludeField, DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, TagEnriched, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, DuplicateCommand, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { ContactIncludeField, ZoneIncludeField, DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, TagEnriched, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, Context, Conversation, DuplicateCommand, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, MemoryFact, Message, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * ContactIncludeField
@@ -317,6 +317,34 @@ export type PostalAddressTypeArray = PostalAddressType[];
  * @see {@link ContactConfigBase} - The individual ContactConfigBase type definition
  */
 export type ContactConfigBaseArray = ContactConfigBase[];
+/**
+ * Context
+ *
+ * @remarks
+ * Array type for Context objects. Used when the API returns a collection of Context instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContextArray = await api.getContexts();
+ * ```
+ *
+ * @see {@link Context} - The individual Context type definition
+ */
+export type ContextArray = Context[];
+/**
+ * Conversation
+ *
+ * @remarks
+ * Array type for Conversation objects. Used when the API returns a collection of Conversation instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ConversationArray = await api.getConversations();
+ * ```
+ *
+ * @see {@link Conversation} - The individual Conversation type definition
+ */
+export type ConversationArray = Conversation[];
 /**
  * DuplicateCommand
  *
@@ -989,6 +1017,34 @@ export type LegalRequirementOperationTypeArray = LegalRequirementOperationType[]
  * @see {@link LocalPresenceRequirementType} - The individual LocalPresenceRequirementType type definition
  */
 export type LocalPresenceRequirementTypeArray = LocalPresenceRequirementType[];
+/**
+ * MemoryFact
+ *
+ * @remarks
+ * Array type for MemoryFact objects. Used when the API returns a collection of MemoryFact instances.
+ *
+ * @example
+ * ```typescript
+ * const items: MemoryFactArray = await api.getMemoryFacts();
+ * ```
+ *
+ * @see {@link MemoryFact} - The individual MemoryFact type definition
+ */
+export type MemoryFactArray = MemoryFact[];
+/**
+ * Message
+ *
+ * @remarks
+ * Array type for Message objects. Used when the API returns a collection of Message instances.
+ *
+ * @example
+ * ```typescript
+ * const items: MessageArray = await api.getMessages();
+ * ```
+ *
+ * @see {@link Message} - The individual Message type definition
+ */
+export type MessageArray = Message[];
 /**
  * OrganizationAttribute
  *
