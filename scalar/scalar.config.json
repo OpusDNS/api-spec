@@ -7,7 +7,7 @@
     "description": "Guides and API reference for the OpusDNS API."
   },
   "siteConfig": {
-    "subdomain": "opusdns",
+    "customDomain": "developers.opusdns.com",
     "logo": {
       "lightMode": "https://cdn.opusdns.com/logos/OpusDNS-Logo-API-Reference-white.png",
       "darkMode": "https://cdn.opusdns.com/logos/OpusDNS-Logo-API-Reference-dark.png"
@@ -21,19 +21,26 @@
     },
     "head": {
       "title": "OpusDNS API Docs",
-      "styles": [
-        { "path": "content/assets/theme.css" }
-      ],
-      "scripts": [
-        { "path": "content/assets/title.js" }
-      ],
+      "styles": [{ "path": "content/assets/theme.css" }],
+      "scripts": [{ "path": "content/assets/title.js" }],
       "links": [
-        { "rel": "icon", "type": "image/svg+xml", "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d0eaf4fe96f4a8761da5_icon.svg" },
-        { "rel": "icon", "type": "image/x-icon", "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d416efebe8f7f580a315_favicon32x32.ico" },
-        { "rel": "apple-touch-icon", "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d0ea718b7b9c0a317864_apple-touch-icon.png" }
+        {
+          "rel": "icon",
+          "type": "image/svg+xml",
+          "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d0eaf4fe96f4a8761da5_icon.svg"
+        },
+        {
+          "rel": "icon",
+          "type": "image/x-icon",
+          "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d416efebe8f7f580a315_favicon32x32.ico"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "https://cdn.prod.website-files.com/66f35e9c0faa52510e6c6d4c/68e8d0ea718b7b9c0a317864_apple-touch-icon.png"
+        }
       ]
-      }
-    },
+    }
+  },
   "navigation": {
     "header": [
       {
