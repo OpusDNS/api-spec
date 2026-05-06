@@ -44,6 +44,9 @@
   "navigation": {
     "header": [
       {
+        "type": "spacer"
+      },
+      {
         "type": "link",
         "title": "Knowledgebase",
         "to": "https://help.opusdns.com/",
