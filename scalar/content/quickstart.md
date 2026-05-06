@@ -76,12 +76,23 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
   --header "X-Api-Key: $OPUSDNS_API_KEY" \
   --header "Content-Type: application/json" \
   --data '{
-    "domain": "my-new-domain.com",
-    "period": 1,
-    "registrant_id": "contact_01jxe1z8atfxpabknqbzhkvr3s",
-    "admin_id": "contact_01jxe1z8atfxpabknqbzhkvr3s",
-    "tech_id": "contact_01jxe1z8atfxpabknqbzhkvr3s",
-    "nameservers": ["ns1.opusdns.com", "ns2.opusdns.net"]
+    "name": "my-new-domain.com",
+    "contacts": {
+      "registrant": "contact_01jxe1z8atfxpabknqbzhkvr3s",
+      "admin": "contact_01jxe1z8atfxpabknqbzhkvr3s",
+      "tech": "contact_01jxe1z8atfxpabknqbzhkvr3s",
+      "billing": "contact_01jxe1z8atfxpabknqbzhkvr3s"
+    },
+    "renewal_mode": "renew",
+    "period": {
+      "unit": "y",
+      "value": 1
+    },
+    "nameservers": [
+      { "hostname": "ns1.opusdns.com" },
+      { "hostname": "ns2.opusdns.net" }
+    ],
+    "create_zone": true
   }'
 ```
 
