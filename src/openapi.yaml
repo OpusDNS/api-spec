@@ -2120,23 +2120,23 @@ components:
       - AAAA
       - ALIAS
       - CAA
-      - CERT
       - CNAME
       - DNSKEY
       - DS
-      - HTTPS
       - MX
-      - NAPTR
       - NS
       - PTR
       - TXT
       - SOA
       - SRV
-      - SMIMEA
-      - SSHFP
-      - SVCB
       - TLSA
+      - SMIMEA
       - URI
+      - HTTPS
+      - SVCB
+      - NAPTR
+      - SSHFP
+      - CERT
       title: DnsRrsetType
       type: string
     DnsRrsetWithOneRecordPatch:
@@ -10760,7 +10760,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-05-223247
+  version: 2026-05-06-130436
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
