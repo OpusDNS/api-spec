@@ -97,7 +97,8 @@ curl "$OPUSDNS_API_BASE/v1/contacts" \
     "city": "Berlin",
     "postal_code": "10115",
     "country": "DE",
-    "org": "Example GmbH"
+    "org": "Example GmbH",
+    "disclose": false 
   }'
 ```
 
