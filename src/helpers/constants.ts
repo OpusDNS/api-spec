@@ -4070,6 +4070,8 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   US_NEXUS_CATEGORY: "US_NEXUS_CATEGORY",
   US_NEXUS_COUNTRY_CODE: "US_NEXUS_COUNTRY_CODE",
   US_APP_PURPOSE: "US_APP_PURPOSE",
+  NIC_IT_ENTITY_TYPE: "NIC_IT_ENTITY_TYPE",
+  NIC_IT_REG_CODE: "NIC_IT_REG_CODE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -4128,7 +4130,9 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'SIDN_LEGAL_REG_NO',
   'US_NEXUS_CATEGORY',
   'US_NEXUS_COUNTRY_CODE',
-  'US_APP_PURPOSE'
+  'US_APP_PURPOSE',
+  'NIC_IT_ENTITY_TYPE',
+  'NIC_IT_REG_CODE'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**
