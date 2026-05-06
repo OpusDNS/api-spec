@@ -6152,57 +6152,57 @@ export type GET_ParkingMetrics_Request = {
 export type GET_ParkingMetrics_Request_Query = GET_ParkingMetrics_Request['parameters']['query'];
 
 /**
- * Request type for GET ParkingParkingIdMetrics endpoint
+ * Request type for GET ParkingParkingReferenceMetrics endpoint
  *
  * Get metrics for a parking entry
- * Retrieves metrics for a specific parking entry by ID.
+ * Retrieves metrics for a specific parking entry by ID or domain name.
  *
  * @remarks
- * This type defines the complete request structure for the GET ParkingParkingIdMetrics endpoint.
+ * This type defines the complete request structure for the GET ParkingParkingReferenceMetrics endpoint.
  * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @example
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  *
- * @see {@link GET_ParkingParkingIdMetrics_Request_Query} - Query parameters type
- * @see {@link GET_ParkingParkingIdMetrics_Request_Path} - Path parameters type
- * @see {@link GET_ParkingParkingIdMetrics_Request_Body} - Request body type
+ * @see {@link GET_ParkingParkingReferenceMetrics_Request_Query} - Query parameters type
+ * @see {@link GET_ParkingParkingReferenceMetrics_Request_Path} - Path parameters type
+ * @see {@link GET_ParkingParkingReferenceMetrics_Request_Body} - Request body type
  */
-export type GET_ParkingParkingIdMetrics_Request = {
+export type GET_ParkingParkingReferenceMetrics_Request = {
   parameters: {
-    query: operations['get_parking_metrics_v1_parking__parking_id__metrics_get']['parameters']['query'];
-    path: operations['get_parking_metrics_v1_parking__parking_id__metrics_get']['parameters']['path'];
+    query: operations['get_parking_metrics_v1_parking__parking_reference__metrics_get']['parameters']['query'];
+    path: operations['get_parking_metrics_v1_parking__parking_reference__metrics_get']['parameters']['path'];
   };
 }
 /**
- * Query parameters for GET /v1/parking/{parking_id}/metrics
+ * Query parameters for GET /v1/parking/{parking_reference}/metrics
  *
  * @remarks
- * This type defines the query parameters for the GET /v1/parking/{parking_id}/metrics endpoint.
+ * This type defines the query parameters for the GET /v1/parking/{parking_reference}/metrics endpoint.
  * It provides type safety for all query parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for query parameters.
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  */
-export type GET_ParkingParkingIdMetrics_Request_Query = GET_ParkingParkingIdMetrics_Request['parameters']['query'];
+export type GET_ParkingParkingReferenceMetrics_Request_Query = GET_ParkingParkingReferenceMetrics_Request['parameters']['query'];
 /**
- * Path parameters for GET /v1/parking/{parking_id}/metrics
+ * Path parameters for GET /v1/parking/{parking_reference}/metrics
  *
  * @remarks
- * This type defines the path parameters for the GET /v1/parking/{parking_id}/metrics endpoint.
+ * This type defines the path parameters for the GET /v1/parking/{parking_reference}/metrics endpoint.
  * It provides type safety for all path parameters as defined in the OpenAPI specification.
  *
  * @example
  * Use this type to ensure type safety for path parameters.
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  */
-export type GET_ParkingParkingIdMetrics_Request_Path = GET_ParkingParkingIdMetrics_Request['parameters']['path'];
+export type GET_ParkingParkingReferenceMetrics_Request_Path = GET_ParkingParkingReferenceMetrics_Request['parameters']['path'];
 
 /**
  * Request type for POST ParkingSignup endpoint

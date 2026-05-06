@@ -2010,7 +2010,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/parking/{parking_id}/metrics": {
+    "/v1/parking/{parking_reference}/metrics": {
         parameters: {
             query?: never;
             header?: never;
@@ -2019,9 +2019,9 @@ export interface paths {
         };
         /**
          * Get metrics for a parking entry
-         * @description Retrieves metrics for a specific parking entry by ID.
+         * @description Retrieves metrics for a specific parking entry by ID or domain name.
          */
-        get: operations["get_parking_metrics_v1_parking__parking_id__metrics_get"];
+        get: operations["get_parking_metrics_v1_parking__parking_reference__metrics_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -7747,8 +7747,8 @@ export interface components {
         };
         /** ParkingActionPayloadData */
         ParkingActionPayloadData: {
-            /** Parking Id */
-            parking_id: string;
+            /** Parking Reference */
+            parking_reference: string;
         };
         /**
          * ParkingAgreementAcceptance
@@ -7870,12 +7870,10 @@ export interface components {
         /** ParkingDeleteBulkInstance */
         ParkingDeleteBulkInstance: {
             /**
-             * Parking Id
-             * Format: typeid
-             * @description The parking ID of the entry to delete
-             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             * Parking Reference
+             * @description The parking ID or domain name of the entry to delete
              */
-            parking_id: TypeId<"parking">;
+            parking_reference: TypeId<"parking"> | string;
         };
         /** ParkingDeleteBulkPayload */
         ParkingDeleteBulkPayload: {
@@ -7920,12 +7918,10 @@ export interface components {
         /** ParkingDisableBulkInstance */
         ParkingDisableBulkInstance: {
             /**
-             * Parking Id
-             * Format: typeid
-             * @description The parking ID of the entry to disable
-             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             * Parking Reference
+             * @description The parking ID or domain name of the entry to disable
              */
-            parking_id: TypeId<"parking">;
+            parking_reference: TypeId<"parking"> | string;
         };
         /** ParkingDisableBulkPayload */
         ParkingDisableBulkPayload: {
@@ -7970,12 +7966,10 @@ export interface components {
         /** ParkingEnableBulkInstance */
         ParkingEnableBulkInstance: {
             /**
-             * Parking Id
-             * Format: typeid
-             * @description The parking ID of the entry to enable
-             * @example parking_01h45ytscbebyvny4gc8cr8ma2
+             * Parking Reference
+             * @description The parking ID or domain name of the entry to enable
              */
-            parking_id: TypeId<"parking">;
+            parking_reference: TypeId<"parking"> | string;
         };
         /** ParkingEnableBulkPayload */
         ParkingEnableBulkPayload: {
@@ -18710,7 +18704,7 @@ export interface operations {
             };
         };
     };
-    get_parking_metrics_v1_parking__parking_id__metrics_get: {
+    get_parking_metrics_v1_parking__parking_reference__metrics_get: {
         parameters: {
             query?: {
                 start_time?: Date | null;
@@ -18718,7 +18712,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                parking_id: TypeId<"parking">;
+                parking_reference: TypeId<"parking"> | string;
             };
             cookie?: never;
         };

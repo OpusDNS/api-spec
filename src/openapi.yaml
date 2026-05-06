@@ -8043,11 +8043,11 @@ components:
       type: object
     ParkingActionPayloadData:
       properties:
-        parking_id:
-          title: Parking Id
+        parking_reference:
+          title: Parking Reference
           type: string
       required:
-      - parking_id
+      - parking_reference
       title: ParkingActionPayloadData
       type: object
     ParkingAgreementAcceptance:
@@ -8199,17 +8199,19 @@ components:
       type: object
     ParkingDeleteBulkInstance:
       properties:
-        parking_id:
-          description: The parking ID of the entry to delete
-          examples:
-          - parking_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Parking Id
-          type: string
-          x-typeid-prefix: parking
+        parking_reference:
+          anyOf:
+          - examples:
+            - parking_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: parking
+          - type: string
+          description: The parking ID or domain name of the entry to delete
+          title: Parking Reference
       required:
-      - parking_id
+      - parking_reference
       title: ParkingDeleteBulkInstance
       type: object
     ParkingDeleteBulkPayload:
@@ -8270,17 +8272,19 @@ components:
       type: object
     ParkingDisableBulkInstance:
       properties:
-        parking_id:
-          description: The parking ID of the entry to disable
-          examples:
-          - parking_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Parking Id
-          type: string
-          x-typeid-prefix: parking
+        parking_reference:
+          anyOf:
+          - examples:
+            - parking_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: parking
+          - type: string
+          description: The parking ID or domain name of the entry to disable
+          title: Parking Reference
       required:
-      - parking_id
+      - parking_reference
       title: ParkingDisableBulkInstance
       type: object
     ParkingDisableBulkPayload:
@@ -8341,17 +8345,19 @@ components:
       type: object
     ParkingEnableBulkInstance:
       properties:
-        parking_id:
-          description: The parking ID of the entry to enable
-          examples:
-          - parking_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Parking Id
-          type: string
-          x-typeid-prefix: parking
+        parking_reference:
+          anyOf:
+          - examples:
+            - parking_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: parking
+          - type: string
+          description: The parking ID or domain name of the entry to enable
+          title: Parking Reference
       required:
-      - parking_id
+      - parking_reference
       title: ParkingEnableBulkInstance
       type: object
     ParkingEnableBulkPayload:
@@ -10760,7 +10766,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-06-130436
+  version: 2026-05-06-134927
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -20665,9 +20671,9 @@ paths:
                     idempotency_key: bulk-parking-delete-2025-01
                     payload:
                       instances:
-                      - parking_id: parking_01kfzcw9vze6crvqd6mhdw8rkc
-                      - parking_id: parking_01kfzcw9w0e3qvme8v2ftq49qd
-                      - parking_id: parking_01kfzcw9w1ebbse9qcrkdxsv6b
+                      - parking_reference: parking_01kfzcw9vze6crvqd6mhdw8rkc
+                      - parking_reference: parked2.com
+                      - parking_reference: parking_01kfzcw9w1ebbse9qcrkdxsv6b
                     version: v1
               bulk_parking_disable:
                 description: Disable multiple parking entries at once by specifying
@@ -20679,9 +20685,9 @@ paths:
                     idempotency_key: bulk-parking-disable-2025-01
                     payload:
                       instances:
-                      - parking_id: parking_01kfzcw9vze6crvqd6mhdw8rkc
-                      - parking_id: parking_01kfzcw9w0e3qvme8v2ftq49qd
-                      - parking_id: parking_01kfzcw9w1ebbse9qcrkdxsv6b
+                      - parking_reference: parking_01kfzcw9vze6crvqd6mhdw8rkc
+                      - parking_reference: parked2.com
+                      - parking_reference: parking_01kfzcw9w1ebbse9qcrkdxsv6b
                     version: v1
               bulk_parking_enable:
                 description: Enable multiple parking entries at once by specifying
@@ -20693,9 +20699,9 @@ paths:
                     idempotency_key: bulk-parking-enable-2025-01
                     payload:
                       instances:
-                      - parking_id: parking_01kfzcw9vze6crvqd6mhdw8rkc
-                      - parking_id: parking_01kfzcw9w0e3qvme8v2ftq49qd
-                      - parking_id: parking_01kfzcw9w1ebbse9qcrkdxsv6b
+                      - parking_reference: parking_01kfzcw9vze6crvqd6mhdw8rkc
+                      - parking_reference: parked2.com
+                      - parking_reference: parking_01kfzcw9w1ebbse9qcrkdxsv6b
                     version: v1
               bulk_updates:
                 description: Submit multiple domain update commands in a single batch
@@ -23062,22 +23068,25 @@ paths:
       summary: Get parking signup status
       tags:
       - parking
-  /v1/parking/{parking_id}/metrics:
+  /v1/parking/{parking_reference}/metrics:
     get:
-      description: Retrieves metrics for a specific parking entry by ID.
-      operationId: get_parking_metrics_v1_parking__parking_id__metrics_get
+      description: Retrieves metrics for a specific parking entry by ID or domain
+        name.
+      operationId: get_parking_metrics_v1_parking__parking_reference__metrics_get
       parameters:
       - in: path
-        name: parking_id
+        name: parking_reference
         required: true
         schema:
-          examples:
-          - parking_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Parking Id
-          type: string
-          x-typeid-prefix: parking
+          anyOf:
+          - examples:
+            - parking_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^parking_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: parking
+          - type: string
+          title: Parking Reference
       - in: query
         name: start_time
         required: false

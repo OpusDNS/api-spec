@@ -12133,114 +12133,114 @@ export type GET_Parking_Response_403 = Problem
 export type GET_Parking_Response_422 = HTTPValidationError
 
 /**
- * Response types for GET ParkingByParkingIdMetrics endpoint
+ * Response types for GET ParkingByParkingReferenceMetrics endpoint
  *
  * Get metrics for a parking entry
- * Retrieves metrics for a specific parking entry by ID.
+ * Retrieves metrics for a specific parking entry by ID or domain name.
  *
  * @remarks
- * This type defines all possible response structures for the GET ParkingByParkingIdMetrics endpoint.
+ * This type defines all possible response structures for the GET ParkingByParkingReferenceMetrics endpoint.
  * Each response code maps to a specific response type as defined in the OpenAPI specification.
  * Use this type to ensure type safety when handling API responses from this endpoint.
  *
 
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  *
- * @see {@link GET_ParkingByParkingIdMetrics_Response_200} - 200 response type
- * @see {@link GET_ParkingByParkingIdMetrics_Response_401} - 401 response type
- * @see {@link GET_ParkingByParkingIdMetrics_Response_403} - 403 response type
- * @see {@link GET_ParkingByParkingIdMetrics_Response_404} - 404 response type
- * @see {@link GET_ParkingByParkingIdMetrics_Response_422} - 422 response type
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response_200} - 200 response type
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response_401} - 401 response type
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response_403} - 403 response type
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response_404} - 404 response type
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response_422} - 422 response type
  *
 
  */
-export type GET_ParkingByParkingIdMetrics_Response = GET_ParkingByParkingIdMetrics_Response_200 | GET_ParkingByParkingIdMetrics_Response_401 | GET_ParkingByParkingIdMetrics_Response_403 | GET_ParkingByParkingIdMetrics_Response_404 | GET_ParkingByParkingIdMetrics_Response_422;
+export type GET_ParkingByParkingReferenceMetrics_Response = GET_ParkingByParkingReferenceMetrics_Response_200 | GET_ParkingByParkingReferenceMetrics_Response_401 | GET_ParkingByParkingReferenceMetrics_Response_403 | GET_ParkingByParkingReferenceMetrics_Response_404 | GET_ParkingByParkingReferenceMetrics_Response_422;
 
 /**
- * 200 response for GET ParkingByParkingIdMetrics endpoint
+ * 200 response for GET ParkingByParkingReferenceMetrics endpoint
  *
  * @remarks
  * This type defines the response structure for the 200 status code
- * of the GET ParkingByParkingIdMetrics endpoint.
+ * of the GET ParkingByParkingReferenceMetrics endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  *
- * @see {@link GET_ParkingByParkingIdMetrics_Response} - The main response type definition
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response} - The main response type definition
  * @see {@link ParkingMetrics} - The actual schema type definition
  */
-export type GET_ParkingByParkingIdMetrics_Response_200 = ParkingMetrics
+export type GET_ParkingByParkingReferenceMetrics_Response_200 = ParkingMetrics
 
 /**
- * 401 response for GET ParkingByParkingIdMetrics endpoint
+ * 401 response for GET ParkingByParkingReferenceMetrics endpoint
  *
  * @remarks
  * This type defines the response structure for the 401 status code
- * of the GET ParkingByParkingIdMetrics endpoint.
+ * of the GET ParkingByParkingReferenceMetrics endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  *
- * @see {@link GET_ParkingByParkingIdMetrics_Response} - The main response type definition
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type GET_ParkingByParkingIdMetrics_Response_401 = Problem
+export type GET_ParkingByParkingReferenceMetrics_Response_401 = Problem
 
 /**
- * 403 response for GET ParkingByParkingIdMetrics endpoint
+ * 403 response for GET ParkingByParkingReferenceMetrics endpoint
  *
  * @remarks
  * This type defines the response structure for the 403 status code
- * of the GET ParkingByParkingIdMetrics endpoint.
+ * of the GET ParkingByParkingReferenceMetrics endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  *
- * @see {@link GET_ParkingByParkingIdMetrics_Response} - The main response type definition
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type GET_ParkingByParkingIdMetrics_Response_403 = Problem
+export type GET_ParkingByParkingReferenceMetrics_Response_403 = Problem
 
 /**
- * 404 response for GET ParkingByParkingIdMetrics endpoint
+ * 404 response for GET ParkingByParkingReferenceMetrics endpoint
  *
  * @remarks
  * This type defines the response structure for the 404 status code
- * of the GET ParkingByParkingIdMetrics endpoint.
+ * of the GET ParkingByParkingReferenceMetrics endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  *
- * @see {@link GET_ParkingByParkingIdMetrics_Response} - The main response type definition
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response} - The main response type definition
  * @see {@link Problem} - The actual schema type definition
  */
-export type GET_ParkingByParkingIdMetrics_Response_404 = Problem
+export type GET_ParkingByParkingReferenceMetrics_Response_404 = Problem
 
 /**
- * 422 response for GET ParkingByParkingIdMetrics endpoint
+ * 422 response for GET ParkingByParkingReferenceMetrics endpoint
  *
  * @remarks
  * This type defines the response structure for the 422 status code
- * of the GET ParkingByParkingIdMetrics endpoint.
+ * of the GET ParkingByParkingReferenceMetrics endpoint.
  * It provides type safety for handling this specific response as defined in the OpenAPI specification.
  *
 
  *
- * @path /v1/parking/{parking_id}/metrics
+ * @path /v1/parking/{parking_reference}/metrics
  *
- * @see {@link GET_ParkingByParkingIdMetrics_Response} - The main response type definition
+ * @see {@link GET_ParkingByParkingReferenceMetrics_Response} - The main response type definition
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
-export type GET_ParkingByParkingIdMetrics_Response_422 = HTTPValidationError
+export type GET_ParkingByParkingReferenceMetrics_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET ParkingMetrics endpoint

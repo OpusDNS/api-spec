@@ -31901,30 +31901,30 @@ export const KEYS_PAGINATION_METADATA = [
 ] as const satisfies (keyof PaginationMetadata)[];
 
 /**
- * Parking Id
+ * Parking Reference
  *
  *
  * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `parking_id` property of ParkingActionPayloadData objects.
+ * This key constant provides type-safe access to the `parking_reference` property of ParkingActionPayloadData objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = parkingactionpayloaddata[KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID];
+ * const value = parkingactionpayloaddata[KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_REFERENCE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID;
+ * const propertyName = KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_REFERENCE;
  * const value = parkingactionpayloaddata[propertyName];
  * ```
  *
  * @see {@link ParkingActionPayloadData} - The TypeScript type definition
  * @see {@link KEYS_PARKING_ACTION_PAYLOAD_DATA} - Array of all keys for this type
  */
-export const KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID: keyof ParkingActionPayloadData = 'parking_id';
+export const KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_REFERENCE: keyof ParkingActionPayloadData = 'parking_reference';
 
 /**
  * Array of all ParkingActionPayloadData property keys
@@ -31947,7 +31947,7 @@ export const KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID: keyof ParkingActionPayl
  * @see {@link ParkingActionPayloadData} - The TypeScript type definition
  */
 export const KEYS_PARKING_ACTION_PAYLOAD_DATA = [
-  KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_ID,
+  KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_REFERENCE,
 ] as const satisfies (keyof ParkingActionPayloadData)[];
 
 /**
@@ -32696,31 +32696,30 @@ export const KEYS_PARKING_DELETE_BULK_COMMAND = [
 ] as const satisfies (keyof ParkingDeleteBulkCommand)[];
 
 /**
- * Parking Id
+ * Parking Reference
  *
- * The parking ID of the entry to delete
+ * The parking ID or domain name of the entry to delete
  *
- * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `parking_id` property of ParkingDeleteBulkInstance objects.
+ * This key constant provides type-safe access to the `parking_reference` property of ParkingDeleteBulkInstance objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = parkingdeletebulkinstance[KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID];
+ * const value = parkingdeletebulkinstance[KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_REFERENCE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID;
+ * const propertyName = KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_REFERENCE;
  * const value = parkingdeletebulkinstance[propertyName];
  * ```
  *
  * @see {@link ParkingDeleteBulkInstance} - The TypeScript type definition
  * @see {@link KEYS_PARKING_DELETE_BULK_INSTANCE} - Array of all keys for this type
  */
-export const KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID: keyof ParkingDeleteBulkInstance = 'parking_id';
+export const KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_REFERENCE: keyof ParkingDeleteBulkInstance = 'parking_reference';
 
 /**
  * Array of all ParkingDeleteBulkInstance property keys
@@ -32743,7 +32742,7 @@ export const KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID: keyof ParkingDeleteBul
  * @see {@link ParkingDeleteBulkInstance} - The TypeScript type definition
  */
 export const KEYS_PARKING_DELETE_BULK_INSTANCE = [
-  KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_ID,
+  KEY_PARKING_DELETE_BULK_INSTANCE_PARKING_REFERENCE,
 ] as const satisfies (keyof ParkingDeleteBulkInstance)[];
 
 /**
@@ -33028,31 +33027,30 @@ export const KEYS_PARKING_DISABLE_BULK_COMMAND = [
 ] as const satisfies (keyof ParkingDisableBulkCommand)[];
 
 /**
- * Parking Id
+ * Parking Reference
  *
- * The parking ID of the entry to disable
+ * The parking ID or domain name of the entry to disable
  *
- * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `parking_id` property of ParkingDisableBulkInstance objects.
+ * This key constant provides type-safe access to the `parking_reference` property of ParkingDisableBulkInstance objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = parkingdisablebulkinstance[KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID];
+ * const value = parkingdisablebulkinstance[KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_REFERENCE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID;
+ * const propertyName = KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_REFERENCE;
  * const value = parkingdisablebulkinstance[propertyName];
  * ```
  *
  * @see {@link ParkingDisableBulkInstance} - The TypeScript type definition
  * @see {@link KEYS_PARKING_DISABLE_BULK_INSTANCE} - Array of all keys for this type
  */
-export const KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID: keyof ParkingDisableBulkInstance = 'parking_id';
+export const KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_REFERENCE: keyof ParkingDisableBulkInstance = 'parking_reference';
 
 /**
  * Array of all ParkingDisableBulkInstance property keys
@@ -33075,7 +33073,7 @@ export const KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID: keyof ParkingDisableB
  * @see {@link ParkingDisableBulkInstance} - The TypeScript type definition
  */
 export const KEYS_PARKING_DISABLE_BULK_INSTANCE = [
-  KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_ID,
+  KEY_PARKING_DISABLE_BULK_INSTANCE_PARKING_REFERENCE,
 ] as const satisfies (keyof ParkingDisableBulkInstance)[];
 
 /**
@@ -33360,31 +33358,30 @@ export const KEYS_PARKING_ENABLE_BULK_COMMAND = [
 ] as const satisfies (keyof ParkingEnableBulkCommand)[];
 
 /**
- * Parking Id
+ * Parking Reference
  *
- * The parking ID of the entry to enable
+ * The parking ID or domain name of the entry to enable
  *
- * @type {string}
  *
  *
  * @remarks
- * This key constant provides type-safe access to the `parking_id` property of ParkingEnableBulkInstance objects.
+ * This key constant provides type-safe access to the `parking_reference` property of ParkingEnableBulkInstance objects.
  * Use this constant when you need to access properties dynamically or ensure type safety.
  *
  * @example
  * ```typescript
  * // Direct property access
- * const value = parkingenablebulkinstance[KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID];
+ * const value = parkingenablebulkinstance[KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_REFERENCE];
  * 
  * // Dynamic property access
- * const propertyName = KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID;
+ * const propertyName = KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_REFERENCE;
  * const value = parkingenablebulkinstance[propertyName];
  * ```
  *
  * @see {@link ParkingEnableBulkInstance} - The TypeScript type definition
  * @see {@link KEYS_PARKING_ENABLE_BULK_INSTANCE} - Array of all keys for this type
  */
-export const KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID: keyof ParkingEnableBulkInstance = 'parking_id';
+export const KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_REFERENCE: keyof ParkingEnableBulkInstance = 'parking_reference';
 
 /**
  * Array of all ParkingEnableBulkInstance property keys
@@ -33407,7 +33404,7 @@ export const KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID: keyof ParkingEnableBul
  * @see {@link ParkingEnableBulkInstance} - The TypeScript type definition
  */
 export const KEYS_PARKING_ENABLE_BULK_INSTANCE = [
-  KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_ID,
+  KEY_PARKING_ENABLE_BULK_INSTANCE_PARKING_REFERENCE,
 ] as const satisfies (keyof ParkingEnableBulkInstance)[];
 
 /**
