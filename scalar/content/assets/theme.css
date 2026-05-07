@@ -23,18 +23,15 @@
 }
 
 :root {
-	--scalar-font: 'Open Sans', sans-serif;
+	--scalar-font: 'Onest', sans-serif;
 	--scalar-font-code: 'JetBrains Mono', monospace;
 	--scalar-header-height: 72px;
 	--scalar-heading-1: 28px;
 	--opusdns-tabs-height: 50px;
 
-	--opusdns-dark-gray: #3c3c3c;
-	--opusdns-light-blue: #6ecdeb;
-	--opusdns-dark-blue: #5f87c3;
-	--opusdns-yellow: rgb(255, 209, 59);
-	--opusdns-orange: #faa436;
-	--opusdns-pink: #c81e78;
+	--opusdns-primary: #000b6e;
+	--opusdns-blue: #4e7fef;
+	--opusdns-secondary: #ffd13a;
 	--opusdns-footer-background: #171923;
 }
 
@@ -51,25 +48,32 @@ samp {
 }
 
 .light-mode {
-	--scalar-color-1: black;
-	--scalar-color-2: var(--opusdns-dark-gray);
-	--scalar-color-3: var(--opusdns-pink);
-	--scalar-color-accent: var(--opusdns-dark-blue);
-	--scalar-border-color: #b5b5b5;
+	--scalar-color-1: #171923;
+	--scalar-color-2: #5b5d67;
+	--scalar-color-3: var(--opusdns-primary);
+	--scalar-color-accent: var(--opusdns-blue);
+	--scalar-border-color: #dfe2ee;
+	--scalar-background-1: #ffffff;
+	--scalar-background-2: #f4f5f9;
+	--scalar-background-3: #eaedfb;
 }
 
 .dark-mode {
-	--scalar-color-3: var(--opusdns-light-blue);
-	--scalar-color-accent: var(--opusdns-dark-blue);
-	--scalar-border-color: #575757;
+	--scalar-color-2: #bec0c9;
+	--scalar-color-3: var(--opusdns-blue);
+	--scalar-color-accent: var(--opusdns-blue);
+	--scalar-border-color: #2e3141;
+	--scalar-background-1: #171923;
+	--scalar-background-2: #212330;
+	--scalar-background-3: #2e3141;
 }
 
 .light-mode .sidebar-heading-chevron {
-	--scalar-color-3: var(--opusdns-orange);
+	--scalar-color-3: var(--opusdns-blue);
 }
 
 .dark-mode .sidebar-heading-chevron {
-	--scalar-color-3: var(--opusdns-yellow);
+	--scalar-color-3: var(--opusdns-secondary);
 }
 
 .t-header {
@@ -78,8 +82,8 @@ samp {
 }
 
 .light-mode .t-header {
-	--scalar-header-color-1: black;
-	--scalar-header-color-2: var(--opusdns-dark-gray);
+	--scalar-header-color-1: #171923;
+	--scalar-header-color-2: #5b5d67;
 }
 
 .dark-mode .t-header {
@@ -114,8 +118,8 @@ samp {
 
 .t-header .link__button,
 .t-header a[href='https://app.opusdns.com/signup'] {
-	background: var(--opusdns-yellow) !important;
-	border-color: var(--opusdns-yellow) !important;
+	background: var(--opusdns-secondary) !important;
+	border-color: var(--opusdns-secondary) !important;
 	color: black !important;
 }
 
