@@ -4161,6 +4161,10 @@ components:
           type: boolean
         price:
           $ref: '#/components/schemas/DomainSearchSuggestionPriceData'
+        renewal_price:
+          anyOf:
+          - $ref: '#/components/schemas/DomainSearchSuggestionPriceData'
+          - type: 'null'
       required:
       - domain
       - available
@@ -10768,7 +10772,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-06-194040
+  version: 2026-05-07-222637
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

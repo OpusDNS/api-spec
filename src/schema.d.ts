@@ -5183,6 +5183,7 @@ export interface components {
             /** Premium */
             premium: boolean;
             price: components["schemas"]["DomainSearchSuggestionPriceData"];
+            renewal_price?: components["schemas"]["DomainSearchSuggestionPriceData"] | null;
         };
         /**
          * DomainSortField

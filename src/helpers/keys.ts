@@ -17732,6 +17732,30 @@ export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM: keyof DomainSearch
  * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
  */
 export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE: keyof DomainSearchSuggestionWithPrice = 'price';
+/**
+ * renewal_price property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `renewal_price` property of DomainSearchSuggestionWithPrice objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsearchsuggestionwithprice[KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE;
+ * const value = domainsearchsuggestionwithprice[propertyName];
+ * ```
+ *
+ * @see {@link DomainSearchSuggestionWithPrice} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE: keyof DomainSearchSuggestionWithPrice = 'renewal_price';
 
 /**
  * Array of all DomainSearchSuggestionWithPrice property keys
@@ -17758,6 +17782,7 @@ export const KEYS_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_DOMAIN,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PREMIUM,
   KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PRICE,
+  KEY_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RENEWAL_PRICE,
 ] as const satisfies (keyof DomainSearchSuggestionWithPrice)[];
 
 /**
