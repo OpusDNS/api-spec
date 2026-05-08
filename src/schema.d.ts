@@ -5085,6 +5085,19 @@ export interface components {
             /** @description The period by which the domain was extended */
             period_extended: components["schemas"]["DomainPeriod"];
         };
+        /** DomainRenewalDetails */
+        DomainRenewalDetails: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            detail_type: "domain_renewal";
+            /**
+             * Expires On
+             * Format: date-time
+             */
+            expires_on: Date;
+        };
         /** DomainResponse */
         DomainResponse: {
             /**
@@ -5795,6 +5808,22 @@ export interface components {
              */
             type: "domain_update" | "domain_update_bulk";
         };
+        /** DomainVerificationDetails */
+        DomainVerificationDetails: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            detail_type: "domain_verification";
+            /** Domain Id */
+            domain_id: string;
+            /** Registrants */
+            registrants?: components["schemas"]["VerificationRegistrantDetails"][];
+            /** Verification Claims */
+            verification_claims?: components["schemas"]["VerificationClaimType"][];
+            /** Verification Deadlines */
+            verification_deadlines?: components["schemas"]["VerificationDeadline"][];
+        };
         /** DomainWithdrawRequest */
         DomainWithdrawRequest: {
             /**
@@ -6183,6 +6212,23 @@ export interface components {
          * @enum {string}
          */
         EmailVerificationStatus: "verified" | "pending" | "canceled";
+        /** EventData */
+        EventData: {
+            /** Details */
+            details?: (components["schemas"]["DomainRenewalDetails"] | components["schemas"]["DomainVerificationDetails"]) | null;
+            error?: components["schemas"]["EventError"] | null;
+            /** Message */
+            message: string;
+            /** @default 1.0 */
+            version: components["schemas"]["EventVersion"];
+        };
+        /** EventError */
+        EventError: {
+            /** Code */
+            code: string;
+            /** Detail */
+            detail: string;
+        };
         /**
          * EventObjectType
          * @enum {string}
@@ -6201,10 +6247,7 @@ export interface components {
              * @description When the event was created
              */
             created_on: Date;
-            /** Event Data */
-            event_data?: {
-                [key: string]: unknown;
-            };
+            event_data: components["schemas"]["EventData"];
             /**
              * Event Id
              * Format: typeid
@@ -6223,62 +6266,6 @@ export interface components {
             object_type: components["schemas"]["EventObjectType"];
             /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
             subtype?: components["schemas"]["EventSubtype"] | null;
-            /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
-            type?: components["schemas"]["EventType"] | null;
-        };
-        /** EventSchema */
-        EventSchema: {
-            /**
-             * Acknowledged On
-             * @description The date/time the event was acknowledged
-             */
-            acknowledged_on?: Date | null;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /** @description Additional details about the action */
-            event_data: components["schemas"]["JsonValue"];
-            /**
-             * Event Id
-             * Format: typeid
-             * @example epp_event_01h45ytscbebyvny4gc8cr8ma2
-             */
-            event_id?: TypeId<"epp_event">;
-            /**
-             * Message Queue Id
-             * @description A composite key with the registry account + message queue ID from the poll operation.
-             */
-            message_queue_id?: string | null;
-            /**
-             * Object Id
-             * @description The id of the object that the event is about
-             */
-            object_id?: string | null;
-            /**
-             * @description The type of object that the event is about
-             * @default RAW
-             */
-            object_type: components["schemas"]["EventObjectType"];
-            /**
-             * Source
-             * @description The source of the event
-             */
-            source: string;
-            /**
-             * Source Event Id
-             * @description The reference of the original registry event (if any) that triggered this customer-facing event
-             */
-            source_event_id?: TypeId<"epp_event"> | null;
-            /** @description The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class) */
-            subtype?: components["schemas"]["EventSubtype"] | null;
-            /**
-             * Target
-             * @description The target of the event
-             */
-            target?: TypeId<"organization"> | null;
             /** @description The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION') */
             type?: components["schemas"]["EventType"] | null;
         };
@@ -6297,6 +6284,11 @@ export interface components {
          * @enum {string}
          */
         EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION";
+        /**
+         * EventVersion
+         * @enum {string}
+         */
+        EventVersion: "1.0";
         /**
          * ExecutingEntity
          * @enum {string}
@@ -9725,6 +9717,34 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
+        };
+        /**
+         * VerificationClaimType
+         * @enum {string}
+         */
+        VerificationClaimType: "name" | "address" | "email" | "phone";
+        /** VerificationDeadline */
+        VerificationDeadline: {
+            /**
+             * Date
+             * Format: date-time
+             */
+            date: Date;
+            type: components["schemas"]["VerificationDeadlineType"];
+        };
+        /**
+         * VerificationDeadlineType
+         * @enum {string}
+         */
+        VerificationDeadlineType: "dedelegation" | "deletion";
+        /** VerificationRegistrantDetails */
+        VerificationRegistrantDetails: {
+            /** Contact Id */
+            contact_id: string;
+            /** Email */
+            email: string;
+            /** Name */
+            name: string;
         };
         /**
          * VerificationType
@@ -16837,7 +16857,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["EventSchema"];
+                    "application/json": components["schemas"]["EventResponse"];
                 };
             };
             /** @description Unauthorized */

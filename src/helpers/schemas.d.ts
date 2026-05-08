@@ -2539,6 +2539,22 @@ export type DomainRenewRequest = components['schemas']['DomainRenewRequest'];
  */
 export type DomainRenew = components['schemas']['DomainRenewResponse'];
 /**
+ * DomainRenewalDetails
+ *
+ * @remarks
+ * Type alias for the `DomainRenewalDetails` OpenAPI schema.
+ * This type represents domainrenewaldetails data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainRenewalDetails();
+ * const item: DomainRenewalDetails = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainRenewalDetails = components['schemas']['DomainRenewalDetails'];
+/**
  * DomainResponse
  *
  * @remarks
@@ -3035,6 +3051,22 @@ export type DomainUpdatePayloadData = components['schemas']['DomainUpdatePayload
  */
 export type DomainUpdateWorkerPayload = components['schemas']['DomainUpdateWorkerPayload'];
 /**
+ * DomainVerificationDetails
+ *
+ * @remarks
+ * Type alias for the `DomainVerificationDetails` OpenAPI schema.
+ * This type represents domainverificationdetails data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getDomainVerificationDetails();
+ * const item: DomainVerificationDetails = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type DomainVerificationDetails = components['schemas']['DomainVerificationDetails'];
+/**
  * DomainWithdrawRequest
  *
  * @remarks
@@ -3371,6 +3403,38 @@ export type EmailForwardZoneSortField = components['schemas']['EmailForwardZoneS
  */
 export type EmailVerificationStatus = components['schemas']['EmailVerificationStatus'];
 /**
+ * EventData
+ *
+ * @remarks
+ * Type alias for the `EventData` OpenAPI schema.
+ * This type represents eventdata data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEventData();
+ * const item: EventData = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EventData = components['schemas']['EventData'];
+/**
+ * EventError
+ *
+ * @remarks
+ * Type alias for the `EventError` OpenAPI schema.
+ * This type represents eventerror data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEventError();
+ * const item: EventError = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EventError = components['schemas']['EventError'];
+/**
  * EventObjectType
  *
  * @remarks
@@ -3402,22 +3466,6 @@ export type EventObjectType = components['schemas']['EventObjectType'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type EventResponse = components['schemas']['EventResponse'];
-/**
- * EventSchema
- *
- * @remarks
- * Type alias for the `EventSchema` OpenAPI schema.
- * This type represents eventschema data structures used in API requests and responses.
- *
- * @example
- * ```typescript
- * const response = await api.getEventSchema();
- * const item: EventSchema = response.results;
- * ```
- *
- * @see {@link components} - The OpenAPI components schema definition
- */
-export type EventSchema = components['schemas']['EventSchema'];
 /**
  * EventSortField
  *
@@ -3466,6 +3514,22 @@ export type EventSubtype = components['schemas']['EventSubtype'];
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type EventType = components['schemas']['EventType'];
+/**
+ * EventVersion
+ *
+ * @remarks
+ * Type alias for the `EventVersion` OpenAPI schema.
+ * This type represents eventversion data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getEventVersion();
+ * const item: EventVersion = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type EventVersion = components['schemas']['EventVersion'];
 /**
  * ExecutingEntity
  *
@@ -6724,6 +6788,70 @@ export type UserWithRelationPermissions = components['schemas']['UserWithRelatio
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ValidationError = components['schemas']['ValidationError'];
+/**
+ * VerificationClaimType
+ *
+ * @remarks
+ * Type alias for the `VerificationClaimType` OpenAPI schema.
+ * This type represents verificationclaimtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getVerificationClaimType();
+ * const item: VerificationClaimType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type VerificationClaimType = components['schemas']['VerificationClaimType'];
+/**
+ * VerificationDeadline
+ *
+ * @remarks
+ * Type alias for the `VerificationDeadline` OpenAPI schema.
+ * This type represents verificationdeadline data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getVerificationDeadline();
+ * const item: VerificationDeadline = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type VerificationDeadline = components['schemas']['VerificationDeadline'];
+/**
+ * VerificationDeadlineType
+ *
+ * @remarks
+ * Type alias for the `VerificationDeadlineType` OpenAPI schema.
+ * This type represents verificationdeadlinetype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getVerificationDeadlineType();
+ * const item: VerificationDeadlineType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type VerificationDeadlineType = components['schemas']['VerificationDeadlineType'];
+/**
+ * VerificationRegistrantDetails
+ *
+ * @remarks
+ * Type alias for the `VerificationRegistrantDetails` OpenAPI schema.
+ * This type represents verificationregistrantdetails data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getVerificationRegistrantDetails();
+ * const item: VerificationRegistrantDetails = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type VerificationRegistrantDetails = components['schemas']['VerificationRegistrantDetails'];
 /**
  * VerificationType
  *

@@ -153,6 +153,7 @@ import { DomainNameParts } from './schemas';
 import { DomainPeriod } from './schemas';
 import { DomainRenewRequest } from './schemas';
 import { DomainRenew } from './schemas';
+import { DomainRenewalDetails } from './schemas';
 import { Domain } from './schemas';
 import { DomainRestoreRequest } from './schemas';
 import { DomainRestore } from './schemas';
@@ -182,6 +183,7 @@ import { DomainUpdateBulkTemplate } from './schemas';
 import { DomainUpdateCommand } from './schemas';
 import { DomainUpdatePayloadData } from './schemas';
 import { DomainUpdateWorkerPayload } from './schemas';
+import { DomainVerificationDetails } from './schemas';
 import { DomainWithdrawRequest } from './schemas';
 import { DomainWithdraw } from './schemas';
 import { DomainsExpiringSoon } from './schemas';
@@ -198,8 +200,9 @@ import { EmailForwardMetricsFilters } from './schemas';
 import { EmailForwardMetricsRates } from './schemas';
 import { EmailForward } from './schemas';
 import { EmailForwardZone } from './schemas';
+import { EventData } from './schemas';
+import { EventError } from './schemas';
 import { EventResponse } from './schemas';
-import { EventSchema } from './schemas';
 import { GeneralAvailabilityBase } from './schemas';
 import { GeoStatsBucket } from './schemas';
 import { GetPrices } from './schemas';
@@ -328,6 +331,8 @@ import { UserToken } from './schemas';
 import { UserUpdate } from './schemas';
 import { UserWithRelationPermissions } from './schemas';
 import { ValidationError } from './schemas';
+import { VerificationDeadline } from './schemas';
+import { VerificationRegistrantDetails } from './schemas';
 import { VisitsByKeyBucket } from './schemas';
 import { WhoisBase } from './schemas';
 import { RequestAuthcode } from './schemas';
@@ -16948,6 +16953,82 @@ export const KEYS_DOMAIN_RENEW = [
 ] as const satisfies (keyof DomainRenew)[];
 
 /**
+ * Detail Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `detail_type` property of DomainRenewalDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrenewaldetails[KEY_DOMAIN_RENEWAL_DETAILS_DETAIL_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEWAL_DETAILS_DETAIL_TYPE;
+ * const value = domainrenewaldetails[propertyName];
+ * ```
+ *
+ * @see {@link DomainRenewalDetails} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RENEWAL_DETAILS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEWAL_DETAILS_DETAIL_TYPE: keyof DomainRenewalDetails = 'detail_type';
+/**
+ * Expires On
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expires_on` property of DomainRenewalDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainrenewaldetails[KEY_DOMAIN_RENEWAL_DETAILS_EXPIRES_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_RENEWAL_DETAILS_EXPIRES_ON;
+ * const value = domainrenewaldetails[propertyName];
+ * ```
+ *
+ * @see {@link DomainRenewalDetails} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_RENEWAL_DETAILS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_RENEWAL_DETAILS_EXPIRES_ON: keyof DomainRenewalDetails = 'expires_on';
+
+/**
+ * Array of all DomainRenewalDetails property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainRenewalDetails objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_RENEWAL_DETAILS) {
+ *   console.log(`Property: ${key}, Value: ${domainrenewaldetails[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_RENEWAL_DETAILS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainRenewalDetails} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_RENEWAL_DETAILS = [
+  KEY_DOMAIN_RENEWAL_DETAILS_DETAIL_TYPE,
+  KEY_DOMAIN_RENEWAL_DETAILS_EXPIRES_ON,
+] as const satisfies (keyof DomainRenewalDetails)[];
+
+/**
  * Auth Code
  *
  * The auth code for the domain
@@ -21267,6 +21348,160 @@ export const KEYS_DOMAIN_UPDATE_WORKER_PAYLOAD = [
 ] as const satisfies (keyof DomainUpdateWorkerPayload)[];
 
 /**
+ * Detail Type
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `detail_type` property of DomainVerificationDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainverificationdetails[KEY_DOMAIN_VERIFICATION_DETAILS_DETAIL_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_VERIFICATION_DETAILS_DETAIL_TYPE;
+ * const value = domainverificationdetails[propertyName];
+ * ```
+ *
+ * @see {@link DomainVerificationDetails} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_VERIFICATION_DETAILS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_VERIFICATION_DETAILS_DETAIL_TYPE: keyof DomainVerificationDetails = 'detail_type';
+/**
+ * Domain Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `domain_id` property of DomainVerificationDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainverificationdetails[KEY_DOMAIN_VERIFICATION_DETAILS_DOMAIN_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_VERIFICATION_DETAILS_DOMAIN_ID;
+ * const value = domainverificationdetails[propertyName];
+ * ```
+ *
+ * @see {@link DomainVerificationDetails} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_VERIFICATION_DETAILS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_VERIFICATION_DETAILS_DOMAIN_ID: keyof DomainVerificationDetails = 'domain_id';
+/**
+ * Registrants
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `registrants` property of DomainVerificationDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainverificationdetails[KEY_DOMAIN_VERIFICATION_DETAILS_REGISTRANTS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_VERIFICATION_DETAILS_REGISTRANTS;
+ * const value = domainverificationdetails[propertyName];
+ * ```
+ *
+ * @see {@link DomainVerificationDetails} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_VERIFICATION_DETAILS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_VERIFICATION_DETAILS_REGISTRANTS: keyof DomainVerificationDetails = 'registrants';
+/**
+ * Verification Claims
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verification_claims` property of DomainVerificationDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainverificationdetails[KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_CLAIMS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_CLAIMS;
+ * const value = domainverificationdetails[propertyName];
+ * ```
+ *
+ * @see {@link DomainVerificationDetails} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_VERIFICATION_DETAILS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_CLAIMS: keyof DomainVerificationDetails = 'verification_claims';
+/**
+ * Verification Deadlines
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verification_deadlines` property of DomainVerificationDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainverificationdetails[KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_DEADLINES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_DEADLINES;
+ * const value = domainverificationdetails[propertyName];
+ * ```
+ *
+ * @see {@link DomainVerificationDetails} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_VERIFICATION_DETAILS} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_DEADLINES: keyof DomainVerificationDetails = 'verification_deadlines';
+
+/**
+ * Array of all DomainVerificationDetails property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for DomainVerificationDetails objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_DOMAIN_VERIFICATION_DETAILS) {
+ *   console.log(`Property: ${key}, Value: ${domainverificationdetails[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_DOMAIN_VERIFICATION_DETAILS.includes(someKey);
+ * ```
+ *
+ * @see {@link DomainVerificationDetails} - The TypeScript type definition
+ */
+export const KEYS_DOMAIN_VERIFICATION_DETAILS = [
+  KEY_DOMAIN_VERIFICATION_DETAILS_DETAIL_TYPE,
+  KEY_DOMAIN_VERIFICATION_DETAILS_DOMAIN_ID,
+  KEY_DOMAIN_VERIFICATION_DETAILS_REGISTRANTS,
+  KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_CLAIMS,
+  KEY_DOMAIN_VERIFICATION_DETAILS_VERIFICATION_DEADLINES,
+] as const satisfies (keyof DomainVerificationDetails)[];
+
+/**
  * Zone Delete
  *
  * Informs the registry whether the zone for that domain has been already deleted - as took from the docs: "(...) the registrar informs the registry that he has stopped the nameservice for the specified domain"
@@ -23482,6 +23717,207 @@ export const KEYS_EMAIL_FORWARD_ZONE = [
 ] as const satisfies (keyof EmailForwardZone)[];
 
 /**
+ * Details
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `details` property of EventData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventdata[KEY_EVENT_DATA_DETAILS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_DATA_DETAILS;
+ * const value = eventdata[propertyName];
+ * ```
+ *
+ * @see {@link EventData} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_DATA} - Array of all keys for this type
+ */
+export const KEY_EVENT_DATA_DETAILS: keyof EventData = 'details';
+/**
+ * error property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `error` property of EventData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventdata[KEY_EVENT_DATA_ERROR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_DATA_ERROR;
+ * const value = eventdata[propertyName];
+ * ```
+ *
+ * @see {@link EventData} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_DATA} - Array of all keys for this type
+ */
+export const KEY_EVENT_DATA_ERROR: keyof EventData = 'error';
+/**
+ * Message
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `message` property of EventData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventdata[KEY_EVENT_DATA_MESSAGE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_DATA_MESSAGE;
+ * const value = eventdata[propertyName];
+ * ```
+ *
+ * @see {@link EventData} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_DATA} - Array of all keys for this type
+ */
+export const KEY_EVENT_DATA_MESSAGE: keyof EventData = 'message';
+/**
+ * version property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `version` property of EventData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventdata[KEY_EVENT_DATA_VERSION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_DATA_VERSION;
+ * const value = eventdata[propertyName];
+ * ```
+ *
+ * @see {@link EventData} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_DATA} - Array of all keys for this type
+ */
+export const KEY_EVENT_DATA_VERSION: keyof EventData = 'version';
+
+/**
+ * Array of all EventData property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EventData objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EVENT_DATA) {
+ *   console.log(`Property: ${key}, Value: ${eventdata[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EVENT_DATA.includes(someKey);
+ * ```
+ *
+ * @see {@link EventData} - The TypeScript type definition
+ */
+export const KEYS_EVENT_DATA = [
+  KEY_EVENT_DATA_DETAILS,
+  KEY_EVENT_DATA_ERROR,
+  KEY_EVENT_DATA_MESSAGE,
+  KEY_EVENT_DATA_VERSION,
+] as const satisfies (keyof EventData)[];
+
+/**
+ * Code
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `code` property of EventError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventerror[KEY_EVENT_ERROR_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_ERROR_CODE;
+ * const value = eventerror[propertyName];
+ * ```
+ *
+ * @see {@link EventError} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_ERROR} - Array of all keys for this type
+ */
+export const KEY_EVENT_ERROR_CODE: keyof EventError = 'code';
+/**
+ * Detail
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `detail` property of EventError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = eventerror[KEY_EVENT_ERROR_DETAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_EVENT_ERROR_DETAIL;
+ * const value = eventerror[propertyName];
+ * ```
+ *
+ * @see {@link EventError} - The TypeScript type definition
+ * @see {@link KEYS_EVENT_ERROR} - Array of all keys for this type
+ */
+export const KEY_EVENT_ERROR_DETAIL: keyof EventError = 'detail';
+
+/**
+ * Array of all EventError property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for EventError objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_EVENT_ERROR) {
+ *   console.log(`Property: ${key}, Value: ${eventerror[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_EVENT_ERROR.includes(someKey);
+ * ```
+ *
+ * @see {@link EventError} - The TypeScript type definition
+ */
+export const KEYS_EVENT_ERROR = [
+  KEY_EVENT_ERROR_CODE,
+  KEY_EVENT_ERROR_DETAIL,
+] as const satisfies (keyof EventError)[];
+
+/**
  * Acknowledged On
  *
  * When the event was acknowledged
@@ -23533,10 +23969,9 @@ export const KEY_EVENT_RESPONSE_ACKNOWLEDGED_ON: keyof EventResponse = 'acknowle
  */
 export const KEY_EVENT_RESPONSE_CREATED_ON: keyof EventResponse = 'created_on';
 /**
- * Event Data
+ * event_data property
  *
  *
- * @type {object}
  *
  *
  * @remarks
@@ -23713,344 +24148,6 @@ export const KEYS_EVENT_RESPONSE = [
   KEY_EVENT_RESPONSE_SUBTYPE,
   KEY_EVENT_RESPONSE_TYPE,
 ] as const satisfies (keyof EventResponse)[];
-
-/**
- * Acknowledged On
- *
- * The date/time the event was acknowledged
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `acknowledged_on` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON: keyof EventSchema = 'acknowledged_on';
-/**
- * Created On
- *
- * The date/time the entry was created on
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `created_on` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_CREATED_ON];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_CREATED_ON;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_CREATED_ON: keyof EventSchema = 'created_on';
-/**
- * event_data property
- *
- * Additional details about the action
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `event_data` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_EVENT_DATA];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_EVENT_DATA;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_EVENT_DATA: keyof EventSchema = 'event_data';
-/**
- * Event Id
- *
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `event_id` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_EVENT_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_EVENT_ID;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_EVENT_ID: keyof EventSchema = 'event_id';
-/**
- * Message Queue Id
- *
- * A composite key with the registry account + message queue ID from the poll operation.
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `message_queue_id` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID: keyof EventSchema = 'message_queue_id';
-/**
- * Object Id
- *
- * The id of the object that the event is about
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `object_id` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_OBJECT_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_OBJECT_ID;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_OBJECT_ID: keyof EventSchema = 'object_id';
-/**
- * object_type property
- *
- * The type of object that the event is about
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `object_type` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_OBJECT_TYPE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_OBJECT_TYPE;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_OBJECT_TYPE: keyof EventSchema = 'object_type';
-/**
- * Source
- *
- * The source of the event
- *
- * @type {string}
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `source` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_SOURCE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_SOURCE;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_SOURCE: keyof EventSchema = 'source';
-/**
- * Source Event Id
- *
- * The reference of the original registry event (if any) that triggered this customer-facing event
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `source_event_id` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_SOURCE_EVENT_ID];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_SOURCE_EVENT_ID;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_SOURCE_EVENT_ID: keyof EventSchema = 'source_event_id';
-/**
- * subtype property
- *
- * The specific type/result of operation (considering the type property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION' class)
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `subtype` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_SUBTYPE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_SUBTYPE;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_SUBTYPE: keyof EventSchema = 'subtype';
-/**
- * Target
- *
- * The target of the event
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `target` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_TARGET];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_TARGET;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_TARGET: keyof EventSchema = 'target';
-/**
- * type property
- *
- * The type of the event - indicates the kind of operation occurring (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION')
- *
- *
- *
- * @remarks
- * This key constant provides type-safe access to the `type` property of EventSchema objects.
- * Use this constant when you need to access properties dynamically or ensure type safety.
- *
- * @example
- * ```typescript
- * // Direct property access
- * const value = eventschema[KEY_EVENT_SCHEMA_TYPE];
- * 
- * // Dynamic property access
- * const propertyName = KEY_EVENT_SCHEMA_TYPE;
- * const value = eventschema[propertyName];
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- * @see {@link KEYS_EVENT_SCHEMA} - Array of all keys for this type
- */
-export const KEY_EVENT_SCHEMA_TYPE: keyof EventSchema = 'type';
-
-/**
- * Array of all EventSchema property keys
- *
- * @remarks
- * This constant provides a readonly array containing all valid property keys for EventSchema objects.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all keys
- * for (const key of KEYS_EVENT_SCHEMA) {
- *   console.log(`Property: ${key}, Value: ${eventschema[key]}`);
- * }
- * 
- * // Validation
- * const isValidKey = KEYS_EVENT_SCHEMA.includes(someKey);
- * ```
- *
- * @see {@link EventSchema} - The TypeScript type definition
- */
-export const KEYS_EVENT_SCHEMA = [
-  KEY_EVENT_SCHEMA_ACKNOWLEDGED_ON,
-  KEY_EVENT_SCHEMA_CREATED_ON,
-  KEY_EVENT_SCHEMA_EVENT_DATA,
-  KEY_EVENT_SCHEMA_EVENT_ID,
-  KEY_EVENT_SCHEMA_MESSAGE_QUEUE_ID,
-  KEY_EVENT_SCHEMA_OBJECT_ID,
-  KEY_EVENT_SCHEMA_OBJECT_TYPE,
-  KEY_EVENT_SCHEMA_SOURCE,
-  KEY_EVENT_SCHEMA_SOURCE_EVENT_ID,
-  KEY_EVENT_SCHEMA_SUBTYPE,
-  KEY_EVENT_SCHEMA_TARGET,
-  KEY_EVENT_SCHEMA_TYPE,
-] as const satisfies (keyof EventSchema)[];
 
 /**
  * Start Date
@@ -43228,6 +43325,183 @@ export const KEYS_VALIDATION_ERROR = [
   KEY_VALIDATION_ERROR_MSG,
   KEY_VALIDATION_ERROR_TYPE,
 ] as const satisfies (keyof ValidationError)[];
+
+/**
+ * Date
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `date` property of VerificationDeadline objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = verificationdeadline[KEY_VERIFICATION_DEADLINE_DATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VERIFICATION_DEADLINE_DATE;
+ * const value = verificationdeadline[propertyName];
+ * ```
+ *
+ * @see {@link VerificationDeadline} - The TypeScript type definition
+ * @see {@link KEYS_VERIFICATION_DEADLINE} - Array of all keys for this type
+ */
+export const KEY_VERIFICATION_DEADLINE_DATE: keyof VerificationDeadline = 'date';
+/**
+ * type property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `type` property of VerificationDeadline objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = verificationdeadline[KEY_VERIFICATION_DEADLINE_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VERIFICATION_DEADLINE_TYPE;
+ * const value = verificationdeadline[propertyName];
+ * ```
+ *
+ * @see {@link VerificationDeadline} - The TypeScript type definition
+ * @see {@link KEYS_VERIFICATION_DEADLINE} - Array of all keys for this type
+ */
+export const KEY_VERIFICATION_DEADLINE_TYPE: keyof VerificationDeadline = 'type';
+
+/**
+ * Array of all VerificationDeadline property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for VerificationDeadline objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_VERIFICATION_DEADLINE) {
+ *   console.log(`Property: ${key}, Value: ${verificationdeadline[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_VERIFICATION_DEADLINE.includes(someKey);
+ * ```
+ *
+ * @see {@link VerificationDeadline} - The TypeScript type definition
+ */
+export const KEYS_VERIFICATION_DEADLINE = [
+  KEY_VERIFICATION_DEADLINE_DATE,
+  KEY_VERIFICATION_DEADLINE_TYPE,
+] as const satisfies (keyof VerificationDeadline)[];
+
+/**
+ * Contact Id
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `contact_id` property of VerificationRegistrantDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = verificationregistrantdetails[KEY_VERIFICATION_REGISTRANT_DETAILS_CONTACT_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VERIFICATION_REGISTRANT_DETAILS_CONTACT_ID;
+ * const value = verificationregistrantdetails[propertyName];
+ * ```
+ *
+ * @see {@link VerificationRegistrantDetails} - The TypeScript type definition
+ * @see {@link KEYS_VERIFICATION_REGISTRANT_DETAILS} - Array of all keys for this type
+ */
+export const KEY_VERIFICATION_REGISTRANT_DETAILS_CONTACT_ID: keyof VerificationRegistrantDetails = 'contact_id';
+/**
+ * Email
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `email` property of VerificationRegistrantDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = verificationregistrantdetails[KEY_VERIFICATION_REGISTRANT_DETAILS_EMAIL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VERIFICATION_REGISTRANT_DETAILS_EMAIL;
+ * const value = verificationregistrantdetails[propertyName];
+ * ```
+ *
+ * @see {@link VerificationRegistrantDetails} - The TypeScript type definition
+ * @see {@link KEYS_VERIFICATION_REGISTRANT_DETAILS} - Array of all keys for this type
+ */
+export const KEY_VERIFICATION_REGISTRANT_DETAILS_EMAIL: keyof VerificationRegistrantDetails = 'email';
+/**
+ * Name
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `name` property of VerificationRegistrantDetails objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = verificationregistrantdetails[KEY_VERIFICATION_REGISTRANT_DETAILS_NAME];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VERIFICATION_REGISTRANT_DETAILS_NAME;
+ * const value = verificationregistrantdetails[propertyName];
+ * ```
+ *
+ * @see {@link VerificationRegistrantDetails} - The TypeScript type definition
+ * @see {@link KEYS_VERIFICATION_REGISTRANT_DETAILS} - Array of all keys for this type
+ */
+export const KEY_VERIFICATION_REGISTRANT_DETAILS_NAME: keyof VerificationRegistrantDetails = 'name';
+
+/**
+ * Array of all VerificationRegistrantDetails property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for VerificationRegistrantDetails objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_VERIFICATION_REGISTRANT_DETAILS) {
+ *   console.log(`Property: ${key}, Value: ${verificationregistrantdetails[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_VERIFICATION_REGISTRANT_DETAILS.includes(someKey);
+ * ```
+ *
+ * @see {@link VerificationRegistrantDetails} - The TypeScript type definition
+ */
+export const KEYS_VERIFICATION_REGISTRANT_DETAILS = [
+  KEY_VERIFICATION_REGISTRANT_DETAILS_CONTACT_ID,
+  KEY_VERIFICATION_REGISTRANT_DETAILS_EMAIL,
+  KEY_VERIFICATION_REGISTRANT_DETAILS_NAME,
+] as const satisfies (keyof VerificationRegistrantDetails)[];
 
 /**
  * Key

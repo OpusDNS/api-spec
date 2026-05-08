@@ -3983,6 +3983,21 @@ components:
       - period_extended
       title: DomainRenewResponse
       type: object
+    DomainRenewalDetails:
+      properties:
+        detail_type:
+          const: domain_renewal
+          default: domain_renewal
+          title: Detail Type
+          type: string
+        expires_on:
+          format: date-time
+          title: Expires On
+          type: string
+      required:
+      - expires_on
+      title: DomainRenewalDetails
+      type: object
     DomainResponse:
       properties:
         auth_code:
@@ -5013,6 +5028,35 @@ components:
       - domain
       title: DomainUpdateWorkerPayload
       type: object
+    DomainVerificationDetails:
+      properties:
+        detail_type:
+          const: domain_verification
+          default: domain_verification
+          title: Detail Type
+          type: string
+        domain_id:
+          title: Domain Id
+          type: string
+        registrants:
+          items:
+            $ref: '#/components/schemas/VerificationRegistrantDetails'
+          title: Registrants
+          type: array
+        verification_claims:
+          items:
+            $ref: '#/components/schemas/VerificationClaimType'
+          title: Verification Claims
+          type: array
+        verification_deadlines:
+          items:
+            $ref: '#/components/schemas/VerificationDeadline'
+          title: Verification Deadlines
+          type: array
+      required:
+      - domain_id
+      title: DomainVerificationDetails
+      type: object
     DomainWithdrawRequest:
       properties:
         zone_delete:
@@ -5539,6 +5583,47 @@ components:
       - canceled
       title: EmailVerificationStatus
       type: string
+    EventData:
+      properties:
+        details:
+          anyOf:
+          - discriminator:
+              mapping:
+                domain_renewal: '#/components/schemas/DomainRenewalDetails'
+                domain_verification: '#/components/schemas/DomainVerificationDetails'
+              propertyName: detail_type
+            oneOf:
+            - $ref: '#/components/schemas/DomainRenewalDetails'
+            - $ref: '#/components/schemas/DomainVerificationDetails'
+          - type: 'null'
+          title: Details
+        error:
+          anyOf:
+          - $ref: '#/components/schemas/EventError'
+          - type: 'null'
+        message:
+          title: Message
+          type: string
+        version:
+          $ref: '#/components/schemas/EventVersion'
+          default: '1.0'
+      required:
+      - message
+      title: EventData
+      type: object
+    EventError:
+      properties:
+        code:
+          title: Code
+          type: string
+        detail:
+          title: Detail
+          type: string
+      required:
+      - code
+      - detail
+      title: EventError
+      type: object
     EventObjectType:
       enum:
       - DOMAIN
@@ -5563,9 +5648,7 @@ components:
           title: Created On
           type: string
         event_data:
-          additionalProperties: true
-          title: Event Data
-          type: object
+          $ref: '#/components/schemas/EventData'
         event_id:
           examples:
           - epp_event_01h45ytscbebyvny4gc8cr8ma2
@@ -5591,93 +5674,6 @@ components:
           description: The specific type/result of operation (considering the type
             property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION'
             class)
-        type:
-          anyOf:
-          - $ref: '#/components/schemas/EventType'
-          - type: 'null'
-          description: The type of the event - indicates the kind of operation occurring
-            (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION')
-      required:
-      - created_on
-      title: EventResponse
-      type: object
-    EventSchema:
-      properties:
-        acknowledged_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the event was acknowledged
-          title: Acknowledged On
-        created_on:
-          description: The date/time the entry was created on
-          format: date-time
-          title: Created On
-          type: string
-        event_data:
-          $ref: '#/components/schemas/JsonValue'
-          description: Additional details about the action
-        event_id:
-          examples:
-          - epp_event_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Event Id
-          type: string
-          x-typeid-prefix: epp_event
-        message_queue_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: A composite key with the registry account + message queue ID
-            from the poll operation.
-          title: Message Queue Id
-        object_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The id of the object that the event is about
-          title: Object Id
-        object_type:
-          $ref: '#/components/schemas/EventObjectType'
-          default: RAW
-          description: The type of object that the event is about
-        source:
-          description: The source of the event
-          maxLength: 64
-          title: Source
-          type: string
-        source_event_id:
-          anyOf:
-          - examples:
-            - epp_event_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: epp_event
-          - type: 'null'
-          description: The reference of the original registry event (if any) that
-            triggered this customer-facing event
-          title: Source Event Id
-        subtype:
-          anyOf:
-          - $ref: '#/components/schemas/EventSubtype'
-          - type: 'null'
-          description: The specific type/result of operation (considering the type
-            property), more detailed (e.g., 'NOTIFICATION' with the 'DOMAIN_MODIFICATION'
-            class)
-        target:
-          anyOf:
-          - examples:
-            - organization_01h45ytscbebyvny4gc8cr8ma2
-            format: typeid
-            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-            type: string
-            x-typeid-prefix: organization
-          - type: 'null'
-          description: The target of the event
-          title: Target
         type:
           anyOf:
           - $ref: '#/components/schemas/EventType'
@@ -5686,8 +5682,8 @@ components:
             (e.g., 'ACCOUNT_CREATE', 'DOMAIN_MODIFICATION')
       required:
       - event_data
-      - source
-      title: EventSchema
+      - created_on
+      title: EventResponse
       type: object
     EventSortField:
       enum:
@@ -5715,6 +5711,11 @@ components:
       - WITHDRAW
       - VERIFICATION
       title: EventType
+      type: string
+    EventVersion:
+      enum:
+      - '1.0'
+      title: EventVersion
       type: string
     ExecutingEntity:
       enum:
@@ -10886,6 +10887,50 @@ components:
       - type
       title: ValidationError
       type: object
+    VerificationClaimType:
+      enum:
+      - name
+      - address
+      - email
+      - phone
+      title: VerificationClaimType
+      type: string
+    VerificationDeadline:
+      properties:
+        date:
+          format: date-time
+          title: Date
+          type: string
+        type:
+          $ref: '#/components/schemas/VerificationDeadlineType'
+      required:
+      - type
+      - date
+      title: VerificationDeadline
+      type: object
+    VerificationDeadlineType:
+      enum:
+      - dedelegation
+      - deletion
+      title: VerificationDeadlineType
+      type: string
+    VerificationRegistrantDetails:
+      properties:
+        contact_id:
+          title: Contact Id
+          type: string
+        email:
+          title: Email
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - contact_id
+      - name
+      - email
+      title: VerificationRegistrantDetails
+      type: object
     VerificationType:
       enum:
       - api
@@ -11122,7 +11167,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-08-115438
+  version: 2026-05-08-122221
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -20579,7 +20624,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventSchema'
+                $ref: '#/components/schemas/EventResponse'
           description: Successful Response
         '401':
           content:

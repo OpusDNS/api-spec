@@ -21,7 +21,7 @@
  * ```
  */
 
-import { AllocationMethodType, AttributeType, BatchSortField, BatchStatus, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactIncludeField, ContactSortField, ContactType, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainIncludeField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, ExecutingEntity, HTTPMethod, HolderEntitlement, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, JobStatus, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MemoryFactKind, MessageContextKind, MessageRole, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReportStatus, ReportTriggerType, ReportType, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TagColor, TagFilterMode, TagSortField, TagType, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationType, ZoneIncludeField, ZoneSortField } from './schemas';
+import { AllocationMethodType, AttributeType, BatchSortField, BatchStatus, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactIncludeField, ContactSortField, ContactType, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainIncludeField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, EventVersion, ExecutingEntity, HTTPMethod, HolderEntitlement, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, JobStatus, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MemoryFactKind, MessageContextKind, MessageRole, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReportStatus, ReportTriggerType, ReportType, RequestHistorySortField, ReservedSourceType, SortOrder, SyncOperationType, TLDType, TagColor, TagFilterMode, TagSortField, TagType, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationClaimType, VerificationDeadlineType, VerificationType, ZoneIncludeField, ZoneSortField } from './schemas';
 
 /**
  * AllocationMethodType. Auto-generated enum for AllocationMethodType
@@ -2324,6 +2324,54 @@ export const EVENT_TYPE_VALUES = [
   'WITHDRAW',
   'VERIFICATION'
 ] as const satisfies [string, ...string[]] | EventType[];
+
+/**
+ * EventVersion. Auto-generated enum for EventVersion
+ *
+ * @remarks
+ * This constant provides both object and array forms for the EventVersion enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = EVENT_VERSION.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = EVENT_VERSION_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link EventVersion} - The TypeScript type definition
+ */
+export const EVENT_VERSION = {
+  "1_0": "1.0",
+} as const satisfies Record<string, EventVersion>;
+
+/**
+ * Array of all EventVersion enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid EventVersion enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of EVENT_VERSION_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = EVENT_VERSION_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link EventVersion} - The TypeScript type definition
+ * @see {@link EVENT_VERSION} - The object form of this enum
+ */
+export const EVENT_VERSION_VALUES = [
+  '1.0'
+] as const satisfies [string, ...string[]] | EventVersion[];
 
 /**
  * ExecutingEntity. Auto-generated enum for ExecutingEntity
@@ -5246,6 +5294,110 @@ export const USER_STATUS_VALUES = [
   'active',
   'inactive'
 ] as const satisfies [string, ...string[]] | UserStatus[];
+
+/**
+ * VerificationClaimType. Auto-generated enum for VerificationClaimType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the VerificationClaimType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = VERIFICATION_CLAIM_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = VERIFICATION_CLAIM_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link VerificationClaimType} - The TypeScript type definition
+ */
+export const VERIFICATION_CLAIM_TYPE = {
+  NAME: "name",
+  ADDRESS: "address",
+  EMAIL: "email",
+  PHONE: "phone",
+} as const satisfies Record<string, VerificationClaimType>;
+
+/**
+ * Array of all VerificationClaimType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid VerificationClaimType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of VERIFICATION_CLAIM_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = VERIFICATION_CLAIM_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link VerificationClaimType} - The TypeScript type definition
+ * @see {@link VERIFICATION_CLAIM_TYPE} - The object form of this enum
+ */
+export const VERIFICATION_CLAIM_TYPE_VALUES = [
+  'name',
+  'address',
+  'email',
+  'phone'
+] as const satisfies [string, ...string[]] | VerificationClaimType[];
+
+/**
+ * VerificationDeadlineType. Auto-generated enum for VerificationDeadlineType
+ *
+ * @remarks
+ * This constant provides both object and array forms for the VerificationDeadlineType enum.
+ * The object form allows key-value access, while the array form enables iteration and validation.
+ *
+ * @example
+ * ```typescript
+ * // Using the object form for key-value access
+ * const status = VERIFICATION_DEADLINE_TYPE.SUCCESS;
+ * 
+ * // Using the array form for iteration
+ * const allStatuses = VERIFICATION_DEADLINE_TYPE_VALUES;
+ * console.log(`Available statuses: ${allStatuses.join(', ')}`);
+ * ```
+ *
+ * @see {@link VerificationDeadlineType} - The TypeScript type definition
+ */
+export const VERIFICATION_DEADLINE_TYPE = {
+  DEDELEGATION: "dedelegation",
+  DELETION: "deletion",
+} as const satisfies Record<string, VerificationDeadlineType>;
+
+/**
+ * Array of all VerificationDeadlineType enum values
+ *
+ * @remarks
+ * This constant provides a array containing all valid VerificationDeadlineType enum values.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all values
+ * for (const value of VERIFICATION_DEADLINE_TYPE_VALUES) {
+ *   console.log(`Processing: ${value}`);
+ * }
+ * 
+ * // Validation
+ * const isValid = VERIFICATION_DEADLINE_TYPE_VALUES.includes(someValue);
+ * ```
+ *
+ * @see {@link VerificationDeadlineType} - The TypeScript type definition
+ * @see {@link VERIFICATION_DEADLINE_TYPE} - The object form of this enum
+ */
+export const VERIFICATION_DEADLINE_TYPE_VALUES = [
+  'dedelegation',
+  'deletion'
+] as const satisfies [string, ...string[]] | VerificationDeadlineType[];
 
 /**
  * VerificationType. Auto-generated enum for VerificationType
