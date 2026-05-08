@@ -2,14 +2,19 @@
 
 Track notable updates to the OpusDNS API and developer documentation here.
 
-## Upcoming changes
-
-- Event payloads are moving to a standardized V1 structure for newly generated
-  customer-facing events. See [Event V1 payloads](/upcoming-changes/event-v1-payloads)
-  for the upcoming response shape, typed renewal and verification details, and
-  migration guidance for clients.
-
 ## 2026
+
+### 08 May 2026
+
+- Released the V1 event payload format. All events now use a standardized
+  `event_data` structure with `version`, `message`, optional `error`, and
+  optional `details` fields. See [the event object](/products/events/event-object)
+  for the full schema.
+- Changed the event ID prefix from `epp_event_` to `event_`.
+- Added typed `details` for renewal events (`expires_on`) and verification
+  events (`verification_deadlines`, `verification_claims`, `registrants`).
+- Migrated all existing production events to the V1 payload format.
+- Removed the `source` field from the event response.
 
 ### 05 May 2026
 

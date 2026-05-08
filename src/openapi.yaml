@@ -5475,12 +5475,12 @@ components:
           type: object
         event_id:
           examples:
-          - epp_event_01h45ytscbebyvny4gc8cr8ma2
+          - event_01h45ytscbebyvny4gc8cr8ma2
           format: typeid
-          pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          pattern: ^event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
           title: Event Id
           type: string
-          x-typeid-prefix: epp_event
+          x-typeid-prefix: event
         object_id:
           anyOf:
           - type: string
@@ -5527,12 +5527,12 @@ components:
           description: Additional details about the action
         event_id:
           examples:
-          - epp_event_01h45ytscbebyvny4gc8cr8ma2
+          - event_01h45ytscbebyvny4gc8cr8ma2
           format: typeid
-          pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          pattern: ^event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
           title: Event Id
           type: string
-          x-typeid-prefix: epp_event
+          x-typeid-prefix: event
         message_queue_id:
           anyOf:
           - type: string
@@ -5558,11 +5558,11 @@ components:
         source_event_id:
           anyOf:
           - examples:
-            - epp_event_01h45ytscbebyvny4gc8cr8ma2
+            - event_01h45ytscbebyvny4gc8cr8ma2
             format: typeid
-            pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            pattern: ^event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
             type: string
-            x-typeid-prefix: epp_event
+            x-typeid-prefix: event
           - type: 'null'
           description: The reference of the original registry event (if any) that
             triggered this customer-facing event
@@ -20097,12 +20097,12 @@ paths:
         required: true
         schema:
           examples:
-          - epp_event_01h45ytscbebyvny4gc8cr8ma2
+          - event_01h45ytscbebyvny4gc8cr8ma2
           format: typeid
-          pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          pattern: ^event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
           title: Event Id
           type: string
-          x-typeid-prefix: epp_event
+          x-typeid-prefix: event
       responses:
         '200':
           content:
@@ -20156,12 +20156,12 @@ paths:
         required: true
         schema:
           examples:
-          - epp_event_01h45ytscbebyvny4gc8cr8ma2
+          - event_01h45ytscbebyvny4gc8cr8ma2
           format: typeid
-          pattern: ^epp_event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          pattern: ^event_[0-7][0-9a-hjkmnpq-tv-z]{25}$
           title: Event Id
           type: string
-          x-typeid-prefix: epp_event
+          x-typeid-prefix: event
       responses:
         '204':
           description: Successful Response
