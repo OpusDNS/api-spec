@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { ContactIncludeField, ZoneIncludeField, DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, TagEnriched, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, Context, Conversation, DuplicateCommand, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, MemoryFact, Message, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { ContactIncludeField, ZoneIncludeField, DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, TmClaim, ClaimsNotice, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, TagEnriched, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, Context, Conversation, DuplicateCommand, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, VerificationRegistrantDetails, VerificationClaimType, VerificationDeadline, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, MemoryFact, Message, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, TmClassDesc, TmContact, TmHolder, TmCourt, TmUdrp, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * ContactIncludeField
@@ -205,6 +205,34 @@ export type TagTypeArray = TagType[];
  * @see {@link TldResponseShort} - The individual TldResponseShort type definition
  */
 export type TldResponseShortArray = TldResponseShort[];
+/**
+ * TmClaim. A single trademark claim within a notice (claimType in RFC 9361)
+ *
+ * @remarks
+ * Array type for TmClaim objects. Used when the API returns a collection of TmClaim instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TmClaimArray = await api.getTmClaims();
+ * ```
+ *
+ * @see {@link TmClaim} - The individual TmClaim type definition
+ */
+export type TmClaimArray = TmClaim[];
+/**
+ * ClaimsNotice
+ *
+ * @remarks
+ * Array type for ClaimsNotice objects. Used when the API returns a collection of ClaimsNotice instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ClaimsNoticeArray = await api.getClaimsNotices();
+ * ```
+ *
+ * @see {@link ClaimsNotice} - The individual ClaimsNotice type definition
+ */
+export type ClaimsNoticeArray = ClaimsNotice[];
 /**
  * AttributeCondition
  *
@@ -878,6 +906,48 @@ export type DomainClientStatusArray = DomainClientStatus[];
  */
 export type DomainUpdateBulkInstanceArray = DomainUpdateBulkInstance[];
 /**
+ * VerificationRegistrantDetails
+ *
+ * @remarks
+ * Array type for VerificationRegistrantDetails objects. Used when the API returns a collection of VerificationRegistrantDetails instances.
+ *
+ * @example
+ * ```typescript
+ * const items: VerificationRegistrantDetailsArray = await api.getVerificationRegistrantDetailss();
+ * ```
+ *
+ * @see {@link VerificationRegistrantDetails} - The individual VerificationRegistrantDetails type definition
+ */
+export type VerificationRegistrantDetailsArray = VerificationRegistrantDetails[];
+/**
+ * VerificationClaimType
+ *
+ * @remarks
+ * Array type for VerificationClaimType objects. Used when the API returns a collection of VerificationClaimType instances.
+ *
+ * @example
+ * ```typescript
+ * const items: VerificationClaimTypeArray = await api.getVerificationClaimTypes();
+ * ```
+ *
+ * @see {@link VerificationClaimType} - The individual VerificationClaimType type definition
+ */
+export type VerificationClaimTypeArray = VerificationClaimType[];
+/**
+ * VerificationDeadline
+ *
+ * @remarks
+ * Array type for VerificationDeadline objects. Used when the API returns a collection of VerificationDeadline instances.
+ *
+ * @example
+ * ```typescript
+ * const items: VerificationDeadlineArray = await api.getVerificationDeadlines();
+ * ```
+ *
+ * @see {@link VerificationDeadline} - The individual VerificationDeadline type definition
+ */
+export type VerificationDeadlineArray = VerificationDeadline[];
+/**
  * EmailForwardAliasCreate
  *
  * @remarks
@@ -1535,6 +1605,76 @@ export type LegalRequirementBaseArray = LegalRequirementBase[];
  * @see {@link TldBase} - The individual TldBase type definition
  */
 export type TldBaseArray = TldBase[];
+/**
+ * TmClassDesc. Nice Classification description (classDescType in RFC 9361)
+ *
+ * @remarks
+ * Array type for TmClassDesc objects. Used when the API returns a collection of TmClassDesc instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TmClassDescArray = await api.getTmClassDescs();
+ * ```
+ *
+ * @see {@link TmClassDesc} - The individual TmClassDesc type definition
+ */
+export type TmClassDescArray = TmClassDesc[];
+/**
+ * TmContact. Contact / representative of the mark (contactType in RFC 9361)
+ *
+ * @remarks
+ * Array type for TmContact objects. Used when the API returns a collection of TmContact instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TmContactArray = await api.getTmContacts();
+ * ```
+ *
+ * @see {@link TmContact} - The individual TmContact type definition
+ */
+export type TmContactArray = TmContact[];
+/**
+ * TmHolder. Holder of the mark (holderType in RFC 9361). name or org must be set.
+ *
+ * @remarks
+ * Array type for TmHolder objects. Used when the API returns a collection of TmHolder instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TmHolderArray = await api.getTmHolders();
+ * ```
+ *
+ * @see {@link TmHolder} - The individual TmHolder type definition
+ */
+export type TmHolderArray = TmHolder[];
+/**
+ * TmCourt. Court resolution reference (courtType in RFC 9361)
+ *
+ * @remarks
+ * Array type for TmCourt objects. Used when the API returns a collection of TmCourt instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TmCourtArray = await api.getTmCourts();
+ * ```
+ *
+ * @see {@link TmCourt} - The individual TmCourt type definition
+ */
+export type TmCourtArray = TmCourt[];
+/**
+ * TmUdrp. UDRP case reference (udrpType in RFC 9361)
+ *
+ * @remarks
+ * Array type for TmUdrp objects. Used when the API returns a collection of TmUdrp instances.
+ *
+ * @example
+ * ```typescript
+ * const items: TmUdrpArray = await api.getTmUdrps();
+ * ```
+ *
+ * @see {@link TmUdrp} - The individual TmUdrp type definition
+ */
+export type TmUdrpArray = TmUdrp[];
 /**
  * PostTransferRequirements
  *

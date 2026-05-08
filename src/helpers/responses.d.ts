@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Context, Problem, HTTPValidationError, ConversationList, Conversation, ContextList, MessageList, Message, MemoryFactList, MemoryFact, Pagination_EmailForwardLog, Pagination_ObjectLog, Pagination_RequestHistory, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventSchema, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Context, Problem, HTTPValidationError, ConversationList, Conversation, ContextList, MessageList, Message, MemoryFactList, MemoryFact, Pagination_EmailForwardLog, Pagination_ObjectLog, Pagination_RequestHistory, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, ClaimsNotices, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventResponse, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AiConciergeContextsByContextId endpoint
@@ -6741,7 +6741,10 @@ export type GET_Domains_Response_422 = HTTPValidationError
  * Response types for POST Domains endpoint
  *
  * Create a domain
- * Registers a new domain
+ * Registers a new domain.
+
+- **Premium domains** - when the registry classifies the domain as premium, an `expected_price` must be supplied to confirm the non-standard price returned by the availability check. See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+- **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_notice_acceptance_hash` must be supplied to acknowledge the corresponding claims notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
  *
  * @remarks
  * This type defines all possible response structures for the POST Domains endpoint.
@@ -6757,10 +6760,11 @@ export type GET_Domains_Response_422 = HTTPValidationError
  * @see {@link POST_Domains_Response_404} - 404 response type
  * @see {@link POST_Domains_Response_409} - 409 response type
  * @see {@link POST_Domains_Response_422} - 422 response type
+ * @see {@link POST_Domains_Response_503} - 503 response type
  *
 
  */
-export type POST_Domains_Response = POST_Domains_Response_201 | POST_Domains_Response_400 | POST_Domains_Response_404 | POST_Domains_Response_409 | POST_Domains_Response_422;
+export type POST_Domains_Response = POST_Domains_Response_201 | POST_Domains_Response_400 | POST_Domains_Response_404 | POST_Domains_Response_409 | POST_Domains_Response_422 | POST_Domains_Response_503;
 
 /**
  * 201 response for POST Domains endpoint
@@ -6843,9 +6847,26 @@ export type POST_Domains_Response_409 = Problem
  * @path /v1/domains
  *
  * @see {@link POST_Domains_Response} - The main response type definition
- * @see {@link HTTPValidationError} - The actual schema type definition
+ * @see {@link Problem} - The actual schema type definition
  */
-export type POST_Domains_Response_422 = HTTPValidationError
+export type POST_Domains_Response_422 = Problem
+
+/**
+ * 503 response for POST Domains endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 503 status code
+ * of the POST Domains endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains
+ *
+ * @see {@link POST_Domains_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_Domains_Response_503 = Problem
 
 /**
  * Response types for DELETE DomainsByDomainReference endpoint
@@ -7601,9 +7622,9 @@ export type DELETE_DomainsByDomainReferenceTransfer_Response_422 = HTTPValidatio
  * Performs a real-time check against the authoritative registry for each domain and returns availability plus any registry-specific metadata needed to register it.
 
 For each domain the response includes:
-- **Availability** — whether the domain can be registered, and the registry's reason if not.
-- **Trademark claims (TMCH)** — when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. The corresponding claims notice must be retrieved and acknowledged before the domain can be registered. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
-- **Premium status and pricing** — whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+- **Availability** - whether the domain can be registered, and the registry's reason if not.
+- **Premium status and pricing** - whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+- **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
 
 Domains are queried in parallel, grouped by registry connection. Availability and metadata reflect the registry's state at the moment of the call and are not cached.
  *
@@ -7677,6 +7698,98 @@ include a mix of TLDs.
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type GET_DomainsCheck_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST DomainsClaimsNotices endpoint
+ *
+ * Retrieve claims notices from claim keys
+ * Retrieves the trademark claims notice for a `claims_key` returned during a domain availability check. The response contains a `claims_notice_acceptance_hash` to acknowledge the notice when registering the domain, a ready-to-display `rendered_html`, and the structured fields needed to render a custom notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST DomainsClaimsNotices endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/domains/claims-notices
+ *
+ * @see {@link POST_DomainsClaimsNotices_Response_200} - 200 response type
+ * @see {@link POST_DomainsClaimsNotices_Response_404} - 404 response type
+ * @see {@link POST_DomainsClaimsNotices_Response_422} - 422 response type
+ * @see {@link POST_DomainsClaimsNotices_Response_503} - 503 response type
+ *
+
+ */
+export type POST_DomainsClaimsNotices_Response = POST_DomainsClaimsNotices_Response_200 | POST_DomainsClaimsNotices_Response_404 | POST_DomainsClaimsNotices_Response_422 | POST_DomainsClaimsNotices_Response_503;
+
+/**
+ * 200 response for POST DomainsClaimsNotices endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST DomainsClaimsNotices endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/claims-notices
+ *
+ * @see {@link POST_DomainsClaimsNotices_Response} - The main response type definition
+ * @see {@link ClaimsNotices} - The actual schema type definition
+ */
+export type POST_DomainsClaimsNotices_Response_200 = ClaimsNotices
+
+/**
+ * 404 response for POST DomainsClaimsNotices endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST DomainsClaimsNotices endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/claims-notices
+ *
+ * @see {@link POST_DomainsClaimsNotices_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainsClaimsNotices_Response_404 = Problem
+
+/**
+ * 422 response for POST DomainsClaimsNotices endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST DomainsClaimsNotices endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/claims-notices
+ *
+ * @see {@link POST_DomainsClaimsNotices_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_DomainsClaimsNotices_Response_422 = HTTPValidationError
+
+/**
+ * 503 response for POST DomainsClaimsNotices endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 503 status code
+ * of the POST DomainsClaimsNotices endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/domains/claims-notices
+ *
+ * @see {@link POST_DomainsClaimsNotices_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_DomainsClaimsNotices_Response_503 = Problem
 
 /**
  * Response types for GET DomainsSummary endpoint
@@ -9331,9 +9444,9 @@ export type GET_EventsByEventId_Response = GET_EventsByEventId_Response_200 | GE
  * @path /v1/events/{event_id}
  *
  * @see {@link GET_EventsByEventId_Response} - The main response type definition
- * @see {@link EventSchema} - The actual schema type definition
+ * @see {@link EventResponse} - The actual schema type definition
  */
-export type GET_EventsByEventId_Response_200 = EventSchema
+export type GET_EventsByEventId_Response_200 = EventResponse
 
 /**
  * 401 response for GET EventsByEventId endpoint
