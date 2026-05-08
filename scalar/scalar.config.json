@@ -139,7 +139,7 @@
             "children": {
               "/event-v1-payloads": {
                 "type": "page",
-                "title": "Event V1 payloads",
+                "title": "Upcoming changes",
                 "icon": "phosphor/regular/bell",
                 "filepath": "content/upcoming-changes/event-v1-payloads.md",
                 "showInSidebar": true

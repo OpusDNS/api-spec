@@ -47,7 +47,7 @@ curl --get "$OPUSDNS_API_BASE/v1/events" \
 Retrieve the full details of an event:
 
 ```bash
-curl "$OPUSDNS_API_BASE/v1/events/epp_event_01h45ytscbebyvny4gc8cr8ma2" \
+curl "$OPUSDNS_API_BASE/v1/events/event_01h45ytscbebyvny4gc8cr8ma2" \
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
@@ -56,7 +56,7 @@ curl "$OPUSDNS_API_BASE/v1/events/epp_event_01h45ytscbebyvny4gc8cr8ma2" \
 Mark an event as processed:
 
 ```bash
-curl "$OPUSDNS_API_BASE/v1/events/epp_event_01h45ytscbebyvny4gc8cr8ma2" \
+curl "$OPUSDNS_API_BASE/v1/events/event_01h45ytscbebyvny4gc8cr8ma2" \
   --request PATCH \
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
