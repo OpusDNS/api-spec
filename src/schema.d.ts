@@ -6251,9 +6251,9 @@ export interface components {
             /**
              * Event Id
              * Format: typeid
-             * @example epp_event_01h45ytscbebyvny4gc8cr8ma2
+             * @example event_01h45ytscbebyvny4gc8cr8ma2
              */
-            event_id?: TypeId<"epp_event">;
+            event_id?: TypeId<"event">;
             /**
              * Object Id
              * @description The id of the object that the event is about
@@ -16845,7 +16845,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                event_id: TypeId<"epp_event">;
+                event_id: TypeId<"event">;
             };
             cookie?: never;
         };
@@ -16909,7 +16909,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                event_id: TypeId<"epp_event">;
+                event_id: TypeId<"event">;
             };
             cookie?: never;
         };
