@@ -1012,7 +1012,10 @@ export interface paths {
         put?: never;
         /**
          * Create a domain
-         * @description Registers a new domain
+         * @description Registers a new domain.
+         *
+         *     - **Premium domains** - when the registry classifies the domain as premium, an `expected_price` must be supplied to confirm the non-standard price returned by the availability check. See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+         *     - **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_notice_acceptance_hash` must be supplied to acknowledge the corresponding claims notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
          */
         post: operations["create_domain_v1_domains_post"];
         delete?: never;
@@ -1033,15 +1036,35 @@ export interface paths {
          * @description Performs a real-time check against the authoritative registry for each domain and returns availability plus any registry-specific metadata needed to register it.
          *
          *     For each domain the response includes:
-         *     - **Availability** — whether the domain can be registered, and the registry's reason if not.
-         *     - **Trademark claims (TMCH)** — when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. The corresponding claims notice must be retrieved and acknowledged before the domain can be registered. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
-         *     - **Premium status and pricing** — whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+         *     - **Availability** - whether the domain can be registered, and the registry's reason if not.
+         *     - **Premium status and pricing** - whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+         *     - **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
          *
          *     Domains are queried in parallel, grouped by registry connection. Availability and metadata reflect the registry's state at the moment of the call and are not cached.
          */
         get: operations["epp_check_domain_v1_domains_check_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/claims-notices": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retrieve claims notices from claim keys
+         * @description Retrieves the trademark claims notice for a `claims_key` returned during a domain availability check. The response contains a `claims_notice_acceptance_hash` to acknowledge the notice when registering the domain, a ready-to-display `rendered_html`, and the structured fields needed to render a custom notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
+         */
+        post: operations["get_claims_notices_v1_domains_claims_notices_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2576,6 +2599,78 @@ export interface components {
             /** @description The object/tag type (e.g. DOMAIN, CONTACT, ZONE) */
             type: components["schemas"]["TagType"];
         };
+        /** ClaimsNotice */
+        ClaimsNotice: {
+            /**
+             * Claims
+             * @description List of trademark claims
+             */
+            claims?: components["schemas"]["TmClaim"][];
+            /**
+             * Claims Key
+             * @description The claims key used to retrieve this claims notice
+             */
+            claims_key: string;
+            /**
+             * Claims Notice Acceptance Hash
+             * @description Hash to accept the claims notice
+             */
+            claims_notice_acceptance_hash: string;
+            /**
+             * Label
+             * @description Domain name label covered by this claims notice
+             */
+            label: string;
+            /**
+             * Notice Footer
+             * @description Claims notice form footer text
+             * @default
+             */
+            notice_footer: string;
+            /**
+             * Notice Footer Url
+             * @description Claims notice form footer URL
+             * @default
+             */
+            notice_footer_url: string;
+            /**
+             * Notice Intro
+             * @description Introductory text for the claims notice
+             * @default
+             */
+            notice_intro: string;
+            /**
+             * Notice Not Exact Match Intro
+             * @description Introductory text for the non-exact match section
+             * @default
+             */
+            notice_not_exact_match_intro: string;
+            /**
+             * Notice Title
+             * @description Title for the claims notice
+             * @default
+             */
+            notice_title: string;
+            /**
+             * Rendered Html
+             * @description The rendered trademark claims notice HTML
+             * @default
+             */
+            rendered_html: string;
+        };
+        /** ClaimsNoticesRequest */
+        ClaimsNoticesRequest: {
+            /**
+             * Claims Keys
+             * @description List of claims keys to retrieve claims notices for, for the time being limited to one claims key
+             */
+            claims_keys: string[];
+        };
+        /** ClaimsNoticesResponse */
+        ClaimsNoticesResponse: {
+            /** Claims Notices */
+            claims_notices: components["schemas"]["ClaimsNotice"][];
+        };
         /** CommandError */
         CommandError: {
             /**
@@ -3348,6 +3443,11 @@ export interface components {
          * @enum {string}
          */
         ContactSortField: "first_name" | "last_name" | "email" | "created_on";
+        /**
+         * ContactType
+         * @enum {string}
+         */
+        ContactType: "owner" | "agent" | "third party";
         /** ContactVerificationApiResponse */
         ContactVerificationApiResponse: {
             /**
@@ -6247,6 +6347,11 @@ export interface components {
             /** Problem type */
             type: string;
         };
+        /**
+         * HolderEntitlement
+         * @enum {string}
+         */
+        HolderEntitlement: "owner" | "assignee" | "licensee";
         /** HostSchema */
         HostSchema: {
             /**
@@ -8848,6 +8953,186 @@ export interface components {
             transfer_policies: components["schemas"]["TransferPoliciesBase"];
             /** @description WHOIS configuration */
             whois?: components["schemas"]["WhoisBase"] | null;
+        };
+        /**
+         * TmAddr
+         * @description Address information (addrType in RFC 9361)
+         */
+        TmAddr: {
+            /**
+             * Cc
+             * @description ISO 3166-2 two-character country code
+             */
+            cc: string;
+            /** City */
+            city: string;
+            /** Pc */
+            pc?: string | null;
+            /** Sp */
+            sp?: string | null;
+            /** Street */
+            street: string[];
+        };
+        /**
+         * TmClaim
+         * @description A single trademark claim within a notice (claimType in RFC 9361)
+         */
+        TmClaim: {
+            /**
+             * Class Descs
+             * @description Nice Classification descriptions
+             */
+            class_descs?: components["schemas"]["TmClassDesc"][];
+            /**
+             * Contacts
+             * @description Zero or more contacts/representatives
+             */
+            contacts?: components["schemas"]["TmContact"][];
+            /**
+             * Goods And Services
+             * @description Full description of goods and services
+             */
+            goods_and_services: string;
+            /**
+             * Holders
+             * @description One or more holders of the mark
+             */
+            holders: components["schemas"]["TmHolder"][];
+            /** @description Jurisdiction where the mark is protected */
+            jur_desc: components["schemas"]["TmJurDesc"];
+            /**
+             * Mark Name
+             * @description Mark text string
+             */
+            mark_name: string;
+            /** @description Present if claim added by non-exact match rule */
+            not_exact_match?: components["schemas"]["TmNotExactMatch"] | null;
+        };
+        /**
+         * TmClassDesc
+         * @description Nice Classification description (classDescType in RFC 9361)
+         */
+        TmClassDesc: {
+            /**
+             * Class Num
+             * @description Nice Classification class number
+             */
+            class_num: number;
+            /**
+             * Description
+             * @description Description of the class in English
+             */
+            description: string;
+        };
+        /**
+         * TmContact
+         * @description Contact / representative of the mark (contactType in RFC 9361)
+         */
+        TmContact: {
+            addr: components["schemas"]["TmAddr"];
+            /** Email */
+            email: string;
+            /** Fax */
+            fax?: string | null;
+            /** Name */
+            name: string;
+            /** Org */
+            org?: string | null;
+            type: components["schemas"]["ContactType"];
+            /** Voice */
+            voice: string;
+        };
+        /**
+         * TmCourt
+         * @description Court resolution reference (courtType in RFC 9361)
+         */
+        TmCourt: {
+            /**
+             * Cc
+             * @description ISO 3166-2 jurisdiction country code
+             */
+            cc: string;
+            /**
+             * Court Name
+             * @description Name of the court
+             */
+            court_name: string;
+            /**
+             * Ref Num
+             * @description Reference number of the court resolution
+             */
+            ref_num: string;
+            /**
+             * Region
+             * @description Region(s) within the jurisdiction
+             */
+            region?: string[];
+        };
+        /**
+         * TmHolder
+         * @description Holder of the mark (holderType in RFC 9361). name or org must be set.
+         */
+        TmHolder: {
+            addr: components["schemas"]["TmAddr"];
+            /** Email */
+            email?: string | null;
+            entitlement: components["schemas"]["HolderEntitlement"];
+            /** Fax */
+            fax?: string | null;
+            /** Name */
+            name?: string | null;
+            /** Org */
+            org?: string | null;
+            /** Voice */
+            voice?: string | null;
+        };
+        /**
+         * TmJurDesc
+         * @description Jurisdiction description (jurDescType in RFC 9361)
+         */
+        TmJurDesc: {
+            /**
+             * Description
+             * @description Name of jurisdiction in English
+             */
+            description: string;
+            /**
+             * Jur Cc
+             * @description WIPO ST.3 two-character jurisdiction code
+             */
+            jur_cc: string;
+        };
+        /**
+         * TmNotExactMatch
+         * @description Signals claim was added by non-exact match rules (noExactMatchType in RFC 9361)
+         */
+        TmNotExactMatch: {
+            /** Court */
+            court?: components["schemas"]["TmCourt"][];
+            /**
+             * Intro
+             * @description Introductory text for the non-exact match section
+             * @default This domain name label has previously been found to be used or registered abusively against the following trademarks according to the referenced decisions:
+             */
+            intro: string;
+            /** Udrp */
+            udrp?: components["schemas"]["TmUdrp"][];
+        };
+        /**
+         * TmUdrp
+         * @description UDRP case reference (udrpType in RFC 9361)
+         */
+        TmUdrp: {
+            /**
+             * Case No
+             * @description UDRP case number
+             */
+            case_no: string;
+            /**
+             * Udrp Provider
+             * @description Name of the UDRP provider
+             */
+            udrp_provider: string;
         };
         /** TrademarkClaimsBase */
         TrademarkClaimsBase: {
@@ -14618,14 +14903,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_TLD_NOT_AVAILABLE",
-                     *       "detail": "This TLD is not available",
-                     *       "status": 400,
-                     *       "title": "Domain Management Error",
-                     *       "tld": "Additional error context.",
-                     *       "type": "domain-tld-not-available"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -14635,14 +14912,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_CONTACT_NOT_FOUND",
-                     *       "contact_id": "Additional error context.",
-                     *       "detail": "Contact not found",
-                     *       "status": 404,
-                     *       "title": "Contact Management Error",
-                     *       "type": "contact-not-found"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
@@ -14652,24 +14921,40 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_DOMAIN_EXISTS",
-                     *       "detail": "Domain already exists",
-                     *       "domain_name": "Additional error context.",
-                     *       "status": 409,
-                     *       "title": "Domain Management Error",
-                     *       "type": "domain-exists"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_CLAIMS_NOTICE_HASH_MISMATCH",
+                     *       "detail": "The provided claims notice acceptance hash does not match",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 422,
+                     *       "title": "Domain Management Error",
+                     *       "type": "claims-notice-hash-mismatch"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CLAIMS_SERVICE_ERROR",
+                     *       "detail": "Additional error context.",
+                     *       "status": 503,
+                     *       "title": "Claims Error",
+                     *       "type": "claims-service"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -14708,6 +14993,71 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_claims_notices_v1_domains_claims_notices_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ClaimsNoticesRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClaimsNoticesResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CLAIMS_NOTICE_NOT_FOUND",
+                     *       "detail": "Claims notice not found for claims key: Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Claims Error",
+                     *       "type": "claims-notice-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CLAIMS_SERVICE_ERROR",
+                     *       "detail": "Additional error context.",
+                     *       "status": 503,
+                     *       "title": "Claims Error",
+                     *       "type": "claims-service"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

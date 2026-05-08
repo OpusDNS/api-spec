@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ConversationCreateRequest, ConversationPatchRequest, ContextCreateRequest, MessageCreateRequest, MemoryFactCreateRequest, MemoryFactPatchRequest, PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ConversationCreateRequest, ConversationPatchRequest, ContextCreateRequest, MessageCreateRequest, MemoryFactCreateRequest, MemoryFactPatchRequest, PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, ClaimsNoticesRequest, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET AiConciergeContextsContextId endpoint
@@ -3371,7 +3371,10 @@ export type GET_Domains_Request_Query = GET_Domains_Request['parameters']['query
  * Request type for POST Domains endpoint
  *
  * Create a domain
- * Registers a new domain
+ * Registers a new domain.
+
+- **Premium domains** - when the registry classifies the domain as premium, an `expected_price` must be supplied to confirm the non-standard price returned by the availability check. See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+- **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_notice_acceptance_hash` must be supplied to acknowledge the corresponding claims notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
  *
  * @remarks
  * This type defines the complete request structure for the POST Domains endpoint.
@@ -3411,9 +3414,9 @@ export type POST_Domains_Request_Body = POST_Domains_Request['requestBody'];
  * Performs a real-time check against the authoritative registry for each domain and returns availability plus any registry-specific metadata needed to register it.
 
 For each domain the response includes:
-- **Availability** — whether the domain can be registered, and the registry's reason if not.
-- **Trademark claims (TMCH)** — when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. The corresponding claims notice must be retrieved and acknowledged before the domain can be registered. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
-- **Premium status and pricing** — whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+- **Availability** - whether the domain can be registered, and the registry's reason if not.
+- **Premium status and pricing** - whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
+- **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
 
 Domains are queried in parallel, grouped by registry connection. Availability and metadata reflect the registry's state at the moment of the call and are not cached.
  *
@@ -3463,6 +3466,43 @@ include a mix of TLDs.
 
  */
 export type GET_DomainsCheck_Request_Query = GET_DomainsCheck_Request['parameters']['query'];
+
+/**
+ * Request type for POST DomainsClaimsNotices endpoint
+ *
+ * Retrieve claims notices from claim keys
+ * Retrieves the trademark claims notice for a `claims_key` returned during a domain availability check. The response contains a `claims_notice_acceptance_hash` to acknowledge the notice when registering the domain, a ready-to-display `rendered_html`, and the structured fields needed to render a custom notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST DomainsClaimsNotices endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/domains/claims-notices
+ *
+ * @see {@link POST_DomainsClaimsNotices_Request_Query} - Query parameters type
+ * @see {@link POST_DomainsClaimsNotices_Request_Path} - Path parameters type
+ * @see {@link POST_DomainsClaimsNotices_Request_Body} - Request body type
+ */
+export type POST_DomainsClaimsNotices_Request = {
+  requestBody: ClaimsNoticesRequest;
+}
+/**
+ * Request body for POST /v1/domains/claims-notices
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/domains/claims-notices endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/domains/claims-notices
+ */
+export type POST_DomainsClaimsNotices_Request_Body = POST_DomainsClaimsNotices_Request['requestBody'];
 
 /**
  * Request type for DELETE DomainsDomainReference endpoint

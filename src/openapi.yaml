@@ -323,6 +323,88 @@ components:
       - objects
       title: BulkObjectTagChanges
       type: object
+    ClaimsNotice:
+      properties:
+        claims:
+          description: List of trademark claims
+          items:
+            $ref: '#/components/schemas/TmClaim'
+          title: Claims
+          type: array
+        claims_key:
+          description: The claims key used to retrieve this claims notice
+          title: Claims Key
+          type: string
+        claims_notice_acceptance_hash:
+          description: Hash to accept the claims notice
+          title: Claims Notice Acceptance Hash
+          type: string
+        label:
+          description: Domain name label covered by this claims notice
+          title: Label
+          type: string
+        notice_footer:
+          default: ''
+          description: Claims notice form footer text
+          title: Notice Footer
+          type: string
+        notice_footer_url:
+          default: ''
+          description: Claims notice form footer URL
+          title: Notice Footer Url
+          type: string
+        notice_intro:
+          default: ''
+          description: Introductory text for the claims notice
+          title: Notice Intro
+          type: string
+        notice_not_exact_match_intro:
+          default: ''
+          description: Introductory text for the non-exact match section
+          title: Notice Not Exact Match Intro
+          type: string
+        notice_title:
+          default: ''
+          description: Title for the claims notice
+          title: Notice Title
+          type: string
+        rendered_html:
+          default: ''
+          description: The rendered trademark claims notice HTML
+          title: Rendered Html
+          type: string
+      required:
+      - claims_key
+      - claims_notice_acceptance_hash
+      - label
+      title: ClaimsNotice
+      type: object
+    ClaimsNoticesRequest:
+      properties:
+        claims_keys:
+          description: List of claims keys to retrieve claims notices for, for the
+            time being limited to one claims key
+          items:
+            type: string
+          maxItems: 1
+          minItems: 1
+          title: Claims Keys
+          type: array
+      required:
+      - claims_keys
+      title: ClaimsNoticesRequest
+      type: object
+    ClaimsNoticesResponse:
+      properties:
+        claims_notices:
+          items:
+            $ref: '#/components/schemas/ClaimsNotice'
+          title: Claims Notices
+          type: array
+      required:
+      - claims_notices
+      title: ClaimsNoticesResponse
+      type: object
     CommandError:
       properties:
         code:
@@ -1340,6 +1422,13 @@ components:
       - email
       - created_on
       title: ContactSortField
+      type: string
+    ContactType:
+      enum:
+      - owner
+      - agent
+      - third party
+      title: ContactType
       type: string
     ContactVerificationApiResponse:
       properties:
@@ -5708,6 +5797,13 @@ components:
       - errors
       title: RequestValidationError
       type: object
+    HolderEntitlement:
+      enum:
+      - owner
+      - assignee
+      - licensee
+      title: HolderEntitlement
+      type: string
     HostSchema:
       properties:
         created_on:
@@ -9739,6 +9835,260 @@ components:
       - transfer_policies
       title: TldSpecificationResponse
       type: object
+    TmAddr:
+      description: Address information (addrType in RFC 9361)
+      properties:
+        cc:
+          description: ISO 3166-2 two-character country code
+          maxLength: 2
+          minLength: 2
+          title: Cc
+          type: string
+        city:
+          title: City
+          type: string
+        pc:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pc
+        sp:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sp
+        street:
+          items:
+            type: string
+          maxItems: 3
+          minItems: 1
+          title: Street
+          type: array
+      required:
+      - street
+      - city
+      - cc
+      title: TmAddr
+      type: object
+    TmClaim:
+      description: A single trademark claim within a notice (claimType in RFC 9361)
+      properties:
+        class_descs:
+          description: Nice Classification descriptions
+          items:
+            $ref: '#/components/schemas/TmClassDesc'
+          title: Class Descs
+          type: array
+        contacts:
+          description: Zero or more contacts/representatives
+          items:
+            $ref: '#/components/schemas/TmContact'
+          title: Contacts
+          type: array
+        goods_and_services:
+          description: Full description of goods and services
+          title: Goods And Services
+          type: string
+        holders:
+          description: One or more holders of the mark
+          items:
+            $ref: '#/components/schemas/TmHolder'
+          minItems: 1
+          title: Holders
+          type: array
+        jur_desc:
+          $ref: '#/components/schemas/TmJurDesc'
+          description: Jurisdiction where the mark is protected
+        mark_name:
+          description: Mark text string
+          title: Mark Name
+          type: string
+        not_exact_match:
+          anyOf:
+          - $ref: '#/components/schemas/TmNotExactMatch'
+          - type: 'null'
+          description: Present if claim added by non-exact match rule
+      required:
+      - mark_name
+      - holders
+      - jur_desc
+      - goods_and_services
+      title: TmClaim
+      type: object
+    TmClassDesc:
+      description: Nice Classification description (classDescType in RFC 9361)
+      properties:
+        class_num:
+          description: Nice Classification class number
+          title: Class Num
+          type: integer
+        description:
+          description: Description of the class in English
+          title: Description
+          type: string
+      required:
+      - class_num
+      - description
+      title: TmClassDesc
+      type: object
+    TmContact:
+      description: Contact / representative of the mark (contactType in RFC 9361)
+      properties:
+        addr:
+          $ref: '#/components/schemas/TmAddr'
+        email:
+          title: Email
+          type: string
+        fax:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fax
+        name:
+          title: Name
+          type: string
+        org:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Org
+        type:
+          $ref: '#/components/schemas/ContactType'
+        voice:
+          title: Voice
+          type: string
+      required:
+      - type
+      - name
+      - addr
+      - voice
+      - email
+      title: TmContact
+      type: object
+    TmCourt:
+      description: Court resolution reference (courtType in RFC 9361)
+      properties:
+        cc:
+          description: ISO 3166-2 jurisdiction country code
+          maxLength: 2
+          minLength: 2
+          title: Cc
+          type: string
+        court_name:
+          description: Name of the court
+          title: Court Name
+          type: string
+        ref_num:
+          description: Reference number of the court resolution
+          title: Ref Num
+          type: string
+        region:
+          description: Region(s) within the jurisdiction
+          items:
+            type: string
+          title: Region
+          type: array
+      required:
+      - ref_num
+      - cc
+      - court_name
+      title: TmCourt
+      type: object
+    TmHolder:
+      description: Holder of the mark (holderType in RFC 9361). name or org must be
+        set.
+      properties:
+        addr:
+          $ref: '#/components/schemas/TmAddr'
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+        entitlement:
+          $ref: '#/components/schemas/HolderEntitlement'
+        fax:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fax
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        org:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Org
+        voice:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Voice
+      required:
+      - entitlement
+      - addr
+      title: TmHolder
+      type: object
+    TmJurDesc:
+      description: Jurisdiction description (jurDescType in RFC 9361)
+      properties:
+        description:
+          description: Name of jurisdiction in English
+          title: Description
+          type: string
+        jur_cc:
+          description: WIPO ST.3 two-character jurisdiction code
+          maxLength: 2
+          minLength: 2
+          title: Jur Cc
+          type: string
+      required:
+      - jur_cc
+      - description
+      title: TmJurDesc
+      type: object
+    TmNotExactMatch:
+      description: Signals claim was added by non-exact match rules (noExactMatchType
+        in RFC 9361)
+      properties:
+        court:
+          items:
+            $ref: '#/components/schemas/TmCourt'
+          title: Court
+          type: array
+        intro:
+          default: 'This domain name label has previously been found to be used or
+            registered abusively against the following trademarks according to the
+            referenced decisions:'
+          description: Introductory text for the non-exact match section
+          title: Intro
+          type: string
+        udrp:
+          items:
+            $ref: '#/components/schemas/TmUdrp'
+          title: Udrp
+          type: array
+      title: TmNotExactMatch
+      type: object
+    TmUdrp:
+      description: UDRP case reference (udrpType in RFC 9361)
+      properties:
+        case_no:
+          description: UDRP case number
+          title: Case No
+          type: string
+        udrp_provider:
+          description: Name of the UDRP provider
+          title: Udrp Provider
+          type: string
+      required:
+      - case_no
+      - udrp_provider
+      title: TmUdrp
+      type: object
     TrademarkClaimsBase:
       properties:
         end_date:
@@ -10772,7 +11122,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-07-222637
+  version: 2026-05-08-115438
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -17951,7 +18301,18 @@ paths:
       tags:
       - domain
     post:
-      description: Registers a new domain
+      description: 'Registers a new domain.
+
+
+        - **Premium domains** - when the registry classifies the domain as premium,
+        an `expected_price` must be supplied to confirm the non-standard price returned
+        by the availability check. See the [Premium domains](/products/domains/premium)
+        guide for background on how premium domains are priced and registered.
+
+        - **Trademark claims (TMCH)** - when the TLD is in its claims phase and the
+        domain matches a trademark in the Trademark Clearinghouse, a `claims_notice_acceptance_hash`
+        must be supplied to acknowledge the corresponding claims notice. See the [Trademarked
+        domains](/products/domains/trademarked-domains) guide for the full workflow.'
       operationId: create_domain_v1_domains_post
       requestBody:
         content:
@@ -17969,48 +18330,87 @@ paths:
         '400':
           content:
             application/problem+json:
-              example:
-                code: ERROR_TLD_NOT_AVAILABLE
-                detail: This TLD is not available
-                status: 400
-                title: Domain Management Error
-                tld: Additional error context.
-                type: domain-tld-not-available
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_PREMIUM_PRICE_NOT_APPLICABLE
+                    detail: 'Domain is not premium-priced; expected_price must not
+                      be supplied. Provided price: 100.00.'
+                    domain_name: example.com
+                    expected_price: '100.00'
+                    status: 400
+                    title: Domain Management Error
+                    type: premium-price-not-applicable
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Bad Request
         '404':
           content:
             application/problem+json:
-              example:
-                code: ERROR_CONTACT_NOT_FOUND
-                contact_id: Additional error context.
-                detail: Contact not found
-                status: 404
-                title: Contact Management Error
-                type: contact-not-found
+              examples:
+                Claims Error:
+                  value:
+                    code: ERROR_CLAIMS_NOTICE_NOT_FOUND
+                    detail: 'Claims notice not found for claims key: Additional error
+                      context.'
+                    status: 404
+                    title: Claims Error
+                    type: claims-notice-not-found
+                Contact Management Error:
+                  value:
+                    code: ERROR_CONTACT_NOT_FOUND
+                    contact_id: Additional error context.
+                    detail: Contact not found
+                    status: 404
+                    title: Contact Management Error
+                    type: contact-not-found
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Not Found
         '409':
           content:
             application/problem+json:
-              example:
-                code: ERROR_DOMAIN_EXISTS
-                detail: Domain already exists
-                domain_name: Additional error context.
-                status: 409
-                title: Domain Management Error
-                type: domain-exists
+              examples:
+                Domain Management Error:
+                  value:
+                    actual_price: '125.00'
+                    code: ERROR_PREMIUM_PRICE_MISMATCH
+                    detail: 'Premium domain requires price confirmation. Provided
+                      price: 100.00, correct price: 125.00. Use the domain check endpoint
+                      to get current premium pricing.'
+                    domain_name: premium.domain
+                    expected_price: '100.00'
+                    status: 409
+                    title: Domain Management Error
+                    type: premium-price-mismatch
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Conflict
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_CLAIMS_NOTICE_HASH_MISMATCH
+                detail: The provided claims notice acceptance hash does not match
+                domain_name: Additional error context.
+                status: 422
+                title: Domain Management Error
+                type: claims-notice-hash-mismatch
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CLAIMS_SERVICE_ERROR
+                detail: Additional error context.
+                status: 503
+                title: Claims Error
+                type: claims-service
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -18019,22 +18419,30 @@ paths:
       - domain
   /v1/domains/check:
     get:
-      description: "Performs a real-time check against the authoritative registry\
-        \ for each domain and returns availability plus any registry-specific metadata\
-        \ needed to register it.\n\nFor each domain the response includes:\n- **Availability**\
-        \ \u2014 whether the domain can be registered, and the registry's reason if\
-        \ not.\n- **Trademark claims (TMCH)** \u2014 when the TLD is in its claims\
-        \ phase and the domain matches a trademark in the Trademark Clearinghouse,\
-        \ a `claims_key` is returned. The corresponding claims notice must be retrieved\
-        \ and acknowledged before the domain can be registered. See the [Trademarked\
-        \ domains](/products/domains/trademarked-domains) guide for the full workflow.\n\
-        - **Premium status and pricing** \u2014 whether the domain is classified as\
-        \ premium by the registry, and if so, the price per action (create / renew\
-        \ / transfer / restore). See the [Premium domains](/products/domains/premium)\
-        \ guide for background on how premium domains are priced and registered.\n\
-        \nDomains are queried in parallel, grouped by registry connection. Availability\
-        \ and metadata reflect the registry's state at the moment of the call and\
-        \ are not cached."
+      description: 'Performs a real-time check against the authoritative registry
+        for each domain and returns availability plus any registry-specific metadata
+        needed to register it.
+
+
+        For each domain the response includes:
+
+        - **Availability** - whether the domain can be registered, and the registry''s
+        reason if not.
+
+        - **Premium status and pricing** - whether the domain is classified as premium
+        by the registry, and if so, the price per action (create / renew / transfer
+        / restore). See the [Premium domains](/products/domains/premium) guide for
+        background on how premium domains are priced and registered.
+
+        - **Trademark claims (TMCH)** - when the TLD is in its claims phase and the
+        domain matches a trademark in the Trademark Clearinghouse, a `claims_key`
+        is returned. See the [Trademarked domains](/products/domains/trademarked-domains)
+        guide for the full workflow.
+
+
+        Domains are queried in parallel, grouped by registry connection. Availability
+        and metadata reflect the registry''s state at the moment of the call and are
+        not cached.'
       operationId: epp_check_domain_v1_domains_check_get
       parameters:
       - description: '
@@ -18094,6 +18502,65 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Check domain availability and registration metadata
+      tags:
+      - domain
+  /v1/domains/claims-notices:
+    post:
+      description: Retrieves the trademark claims notice for a `claims_key` returned
+        during a domain availability check. The response contains a `claims_notice_acceptance_hash`
+        to acknowledge the notice when registering the domain, a ready-to-display
+        `rendered_html`, and the structured fields needed to render a custom notice.
+        See the [Trademarked domains](/products/domains/trademarked-domains) guide
+        for the full workflow.
+      operationId: get_claims_notices_v1_domains_claims_notices_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClaimsNoticesRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimsNoticesResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CLAIMS_NOTICE_NOT_FOUND
+                detail: 'Claims notice not found for claims key: Additional error
+                  context.'
+                status: 404
+                title: Claims Error
+                type: claims-notice-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CLAIMS_SERVICE_ERROR
+                detail: Additional error context.
+                status: 503
+                title: Claims Error
+                type: claims-service
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Retrieve claims notices from claim keys
       tags:
       - domain
   /v1/domains/summary:
