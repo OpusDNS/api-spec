@@ -2201,7 +2201,7 @@ export type POST_AvailabilityStream_Response_422 = HTTPValidationError
 
  *
  * @path /v1/contacts
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Contacts_Response_200} - 200 response type
@@ -2222,7 +2222,7 @@ export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Res
 
  *
  * @path /v1/contacts
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Contacts_Response} - The main response type definition
@@ -2241,7 +2241,7 @@ export type GET_Contacts_Response_200 = Pagination_Contact
 
  *
  * @path /v1/contacts
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Contacts_Response} - The main response type definition
@@ -3486,7 +3486,7 @@ export type GET_ContactsVerify_Response_422 = HTTPValidationError
 
  *
  * @path /v1/dns
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Dns_Response_200} - 200 response type
@@ -3507,7 +3507,7 @@ export type GET_Dns_Response = GET_Dns_Response_200 | GET_Dns_Response_422;
 
  *
  * @path /v1/dns
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Dns_Response} - The main response type definition
@@ -3526,7 +3526,7 @@ export type GET_Dns_Response_200 = Pagination_DnsZone
 
  *
  * @path /v1/dns
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
  * @see {@link GET_Dns_Response} - The main response type definition
@@ -6686,7 +6686,8 @@ export type GET_DomainSearchSuggest_Response_502 = Problem
 
  *
  * @path /v1/domains
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
@@ -6708,7 +6709,8 @@ export type GET_Domains_Response = GET_Domains_Response_200 | GET_Domains_Respon
 
  *
  * @path /v1/domains
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
@@ -6728,7 +6730,8 @@ export type GET_Domains_Response_200 = Pagination_Domain
 
  *
  * @path /v1/domains
- * @param tag_ids (query) - Filter by tag IDs. Can be specified multiple times.
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
+ * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *

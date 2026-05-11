@@ -5204,8 +5204,13 @@ export interface components {
              */
             sld: string;
             /**
+             * Status Tags
+             * @description Status tags assigned to this domain. Only included when ?include=tags is specified.
+             */
+            status_tags?: components["schemas"]["StatusTagResponse"][] | null;
+            /**
              * Tags
-             * @description Tags assigned to this domain. Only included when ?include=tags is specified.
+             * @description User tags assigned to this domain. Only included when ?include=tags is specified.
              */
             tags?: components["schemas"]["TagEnrichedResponse"][] | null;
             /**
@@ -8727,6 +8732,28 @@ export interface components {
             /** Total */
             total: number;
         };
+        /** StatusTagResponse */
+        StatusTagResponse: {
+            /** @description The color of the tag */
+            color: components["schemas"]["TagColor"];
+            /**
+             * Description
+             * @description Additional information about this status tag
+             */
+            description?: string | null;
+            /**
+             * Label
+             * @description The label of the tag
+             */
+            label: string;
+            /** @description The status tag type identifier */
+            tag_type: components["schemas"]["StatusTagType"];
+        };
+        /**
+         * StatusTagType
+         * @enum {string}
+         */
+        StatusTagType: "VERIFICATION_REQUIRED";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
         /**
@@ -11502,7 +11529,7 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["ContactSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                /** @description Filter by tag IDs. Can be specified multiple times. */
+                /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
                 tag_mode?: components["schemas"]["TagFilterMode"];
                 first_name?: string | null;
@@ -12464,7 +12491,7 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["ZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                /** @description Filter by tag IDs. Can be specified multiple times. */
+                /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
                 tag_mode?: components["schemas"]["TagFilterMode"];
                 dnssec_status?: components["schemas"]["DnssecStatus"] | null;
@@ -14842,7 +14869,10 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["DomainSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                /** @description Filter by tag IDs. Can be specified multiple times. */
+                /** @description Filter by status tag types. Can be specified multiple times. */
+                status_tags?: components["schemas"]["StatusTagType"][] | null;
+                status_tag_mode?: components["schemas"]["TagFilterMode"];
+                /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
                 tag_mode?: components["schemas"]["TagFilterMode"];
                 name?: string | null;

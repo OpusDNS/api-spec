@@ -300,6 +300,7 @@ import { SldLength } from './schemas';
 import { SpiceDbRelationshipUpdate } from './schemas';
 import { StatusChanges } from './schemas';
 import { StatusCodeStatsBucket } from './schemas';
+import { StatusTag } from './schemas';
 import { TagCreate } from './schemas';
 import { TagEnriched } from './schemas';
 import { Tag } from './schemas';
@@ -17514,9 +17515,34 @@ export const KEY_DOMAIN_ROID: keyof Domain = 'roid';
  */
 export const KEY_DOMAIN_SLD: keyof Domain = 'sld';
 /**
+ * Status Tags
+ *
+ * Status tags assigned to this domain. Only included when ?include=tags is specified.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_tags` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_STATUS_TAGS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_STATUS_TAGS;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_STATUS_TAGS: keyof Domain = 'status_tags';
+/**
  * Tags
  *
- * Tags assigned to this domain. Only included when ?include=tags is specified.
+ * User tags assigned to this domain. Only included when ?include=tags is specified.
  *
  *
  *
@@ -17657,6 +17683,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_RENEWAL_MODE,
   KEY_DOMAIN_ROID,
   KEY_DOMAIN_SLD,
+  KEY_DOMAIN_STATUS_TAGS,
   KEY_DOMAIN_TAGS,
   KEY_DOMAIN_TLD,
   KEY_DOMAIN_TRANSFER_LOCK,
@@ -37668,6 +37695,135 @@ export const KEYS_STATUS_CODE_STATS_BUCKET = [
   KEY_STATUS_CODE_STATS_BUCKET_KEY,
   KEY_STATUS_CODE_STATS_BUCKET_TOTAL,
 ] as const satisfies (keyof StatusCodeStatsBucket)[];
+
+/**
+ * color property
+ *
+ * The color of the tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `color` property of StatusTag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statustag[KEY_STATUS_TAG_COLOR];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_TAG_COLOR;
+ * const value = statustag[propertyName];
+ * ```
+ *
+ * @see {@link StatusTag} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_TAG} - Array of all keys for this type
+ */
+export const KEY_STATUS_TAG_COLOR: keyof StatusTag = 'color';
+/**
+ * Description
+ *
+ * Additional information about this status tag
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `description` property of StatusTag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statustag[KEY_STATUS_TAG_DESCRIPTION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_TAG_DESCRIPTION;
+ * const value = statustag[propertyName];
+ * ```
+ *
+ * @see {@link StatusTag} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_TAG} - Array of all keys for this type
+ */
+export const KEY_STATUS_TAG_DESCRIPTION: keyof StatusTag = 'description';
+/**
+ * Label
+ *
+ * The label of the tag
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of StatusTag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statustag[KEY_STATUS_TAG_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_TAG_LABEL;
+ * const value = statustag[propertyName];
+ * ```
+ *
+ * @see {@link StatusTag} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_TAG} - Array of all keys for this type
+ */
+export const KEY_STATUS_TAG_LABEL: keyof StatusTag = 'label';
+/**
+ * tag_type property
+ *
+ * The status tag type identifier
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `tag_type` property of StatusTag objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = statustag[KEY_STATUS_TAG_TAG_TYPE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_STATUS_TAG_TAG_TYPE;
+ * const value = statustag[propertyName];
+ * ```
+ *
+ * @see {@link StatusTag} - The TypeScript type definition
+ * @see {@link KEYS_STATUS_TAG} - Array of all keys for this type
+ */
+export const KEY_STATUS_TAG_TAG_TYPE: keyof StatusTag = 'tag_type';
+
+/**
+ * Array of all StatusTag property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for StatusTag objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_STATUS_TAG) {
+ *   console.log(`Property: ${key}, Value: ${statustag[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_STATUS_TAG.includes(someKey);
+ * ```
+ *
+ * @see {@link StatusTag} - The TypeScript type definition
+ */
+export const KEYS_STATUS_TAG = [
+  KEY_STATUS_TAG_COLOR,
+  KEY_STATUS_TAG_DESCRIPTION,
+  KEY_STATUS_TAG_LABEL,
+  KEY_STATUS_TAG_TAG_TYPE,
+] as const satisfies (keyof StatusTag)[];
 
 /**
  * color property

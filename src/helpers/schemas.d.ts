@@ -6117,6 +6117,38 @@ export type StatusChanges = components['schemas']['StatusChanges'];
  */
 export type StatusCodeStatsBucket = components['schemas']['StatusCodeStatsBucket'];
 /**
+ * StatusTagResponse
+ *
+ * @remarks
+ * Type alias for the `StatusTagResponse` OpenAPI schema.
+ * This type represents statustagresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getStatusTag();
+ * const item: StatusTag = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type StatusTag = components['schemas']['StatusTagResponse'];
+/**
+ * StatusTagType
+ *
+ * @remarks
+ * Type alias for the `StatusTagType` OpenAPI schema.
+ * This type represents statustagtype data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getStatusTagType();
+ * const item: StatusTagType = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type StatusTagType = components['schemas']['StatusTagType'];
+/**
  * StrictMoneyDecimal
  *
  * @remarks

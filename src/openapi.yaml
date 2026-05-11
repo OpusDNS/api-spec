@@ -4125,13 +4125,22 @@ components:
           minLength: 1
           title: Sld
           type: string
+        status_tags:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/StatusTagResponse'
+            type: array
+          - type: 'null'
+          description: Status tags assigned to this domain. Only included when ?include=tags
+            is specified.
+          title: Status Tags
         tags:
           anyOf:
           - items:
               $ref: '#/components/schemas/TagEnrichedResponse'
             type: array
           - type: 'null'
-          description: Tags assigned to this domain. Only included when ?include=tags
+          description: User tags assigned to this domain. Only included when ?include=tags
             is specified.
           title: Tags
         tld:
@@ -9504,6 +9513,36 @@ components:
       - total
       title: StatusCodeStatsBucket
       type: object
+    StatusTagResponse:
+      properties:
+        color:
+          $ref: '#/components/schemas/TagColor'
+          description: The color of the tag
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Additional information about this status tag
+          title: Description
+        label:
+          description: The label of the tag
+          minLength: 1
+          title: Label
+          type: string
+        tag_type:
+          $ref: '#/components/schemas/StatusTagType'
+          description: The status tag type identifier
+      required:
+      - tag_type
+      - label
+      - color
+      title: StatusTagResponse
+      type: object
+    StatusTagType:
+      enum:
+      - VERIFICATION_REQUIRED
+      title: StatusTagType
+      type: string
     StrictMoneyDecimal:
       examples:
       - '12.50'
@@ -11167,7 +11206,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-08-130451
+  version: 2026-05-11-075637
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -13189,7 +13228,7 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - description: Filter by tag IDs. Can be specified multiple times.
+      - description: Filter by user tag IDs. Can be specified multiple times.
         in: query
         name: tag_ids
         required: false
@@ -13204,7 +13243,7 @@ paths:
               x-typeid-prefix: tag
             type: array
           - type: 'null'
-          description: Filter by tag IDs. Can be specified multiple times.
+          description: Filter by user tag IDs. Can be specified multiple times.
           title: Tag Ids
       - in: query
         name: tag_mode
@@ -14241,7 +14280,7 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - description: Filter by tag IDs. Can be specified multiple times.
+      - description: Filter by user tag IDs. Can be specified multiple times.
         in: query
         name: tag_ids
         required: false
@@ -14256,7 +14295,7 @@ paths:
               x-typeid-prefix: tag
             type: array
           - type: 'null'
-          description: Filter by tag IDs. Can be specified multiple times.
+          description: Filter by user tag IDs. Can be specified multiple times.
           title: Tag Ids
       - in: query
         name: tag_mode
@@ -18114,7 +18153,25 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - description: Filter by tag IDs. Can be specified multiple times.
+      - description: Filter by status tag types. Can be specified multiple times.
+        in: query
+        name: status_tags
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/StatusTagType'
+            type: array
+          - type: 'null'
+          description: Filter by status tag types. Can be specified multiple times.
+          title: Status Tags
+      - in: query
+        name: status_tag_mode
+        required: false
+        schema:
+          $ref: '#/components/schemas/TagFilterMode'
+          default: match_any
+      - description: Filter by user tag IDs. Can be specified multiple times.
         in: query
         name: tag_ids
         required: false
@@ -18129,7 +18186,7 @@ paths:
               x-typeid-prefix: tag
             type: array
           - type: 'null'
-          description: Filter by tag IDs. Can be specified multiple times.
+          description: Filter by user tag IDs. Can be specified multiple times.
           title: Tag Ids
       - in: query
         name: tag_mode
