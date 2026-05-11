@@ -4523,11 +4523,8 @@ export interface components {
              * @description Override auth code for this domain
              */
             auth_code?: string | null;
-            /**
-             * Contacts
-             * @description Override contacts for this domain
-             */
-            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /** @description Override contacts for this domain */
+            contacts?: components["schemas"]["DomainContactHandles"] | null;
             /**
              * Create Zone
              * @description Override create_zone for this domain
@@ -4567,11 +4564,7 @@ export interface components {
              * @description The auth code used for the domain
              */
             auth_code?: string | null;
-            /**
-             * Contacts
-             * @description The contacts of the domain
-             */
-            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            contacts: components["schemas"]["DomainContactHandles"];
             /**
              * Create Zone
              * @description Create a zone on OpusDNS nameserver infrastructure
@@ -5414,11 +5407,8 @@ export interface components {
              * @description The auth code for this domain (required)
              */
             auth_code: string;
-            /**
-             * Contacts
-             * @description Override contacts for this domain
-             */
-            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /** @description Override contacts for this domain */
+            contacts?: components["schemas"]["DomainContactHandles"] | null;
             /**
              * Create Zone
              * @description Override create_zone for this domain
@@ -5460,11 +5450,7 @@ export interface components {
             attributes?: {
                 [key: string]: string;
             } | null;
-            /**
-             * Contacts
-             * @description The contacts of the domain
-             */
-            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            contacts: components["schemas"]["DomainContactHandles"];
             /**
              * Create Zone
              * @description Create a zone on OpusDNS nameserver infrastructure
@@ -5685,11 +5671,8 @@ export interface components {
              * @description Override auth code for this domain
              */
             auth_code?: string | null;
-            /**
-             * Contacts
-             * @description Override contacts for this domain
-             */
-            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /** @description Override contacts for this domain */
+            contacts?: components["schemas"]["DomainContactHandles"] | null;
             /**
              * Domain Id
              * @description The domain ID to update
@@ -5727,11 +5710,8 @@ export interface components {
         };
         /** DomainUpdateBulkTemplate */
         DomainUpdateBulkTemplate: {
-            /**
-             * Contacts
-             * @description The new contacts of the domain
-             */
-            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"] | null;
+            /** @description The new contacts of the domain */
+            contacts?: components["schemas"]["DomainContactHandles"] | null;
             /**
              * Nameservers
              * @description The new name servers for the domain

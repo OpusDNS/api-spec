@@ -3080,10 +3080,8 @@ components:
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
-          - $ref: '#/components/schemas/ContactIdList'
           - type: 'null'
           description: Override contacts for this domain
-          title: Contacts
         create_zone:
           anyOf:
           - type: boolean
@@ -3152,11 +3150,7 @@ components:
           description: The auth code used for the domain
           title: Auth Code
         contacts:
-          anyOf:
-          - $ref: '#/components/schemas/DomainContactHandles'
-          - $ref: '#/components/schemas/ContactIdList'
-          description: The contacts of the domain
-          title: Contacts
+          $ref: '#/components/schemas/DomainContactHandles'
         create_zone:
           default: false
           description: Create a zone on OpusDNS nameserver infrastructure
@@ -4465,10 +4459,8 @@ components:
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
-          - $ref: '#/components/schemas/ContactIdList'
           - type: 'null'
           description: Override contacts for this domain
-          title: Contacts
         create_zone:
           anyOf:
           - type: boolean
@@ -4540,11 +4532,7 @@ components:
           description: Additional attributes of the domain
           title: Attributes
         contacts:
-          anyOf:
-          - $ref: '#/components/schemas/DomainContactHandles'
-          - $ref: '#/components/schemas/ContactIdList'
-          description: The contacts of the domain
-          title: Contacts
+          $ref: '#/components/schemas/DomainContactHandles'
         create_zone:
           default: false
           description: Create a zone on OpusDNS nameserver infrastructure
@@ -4853,10 +4841,8 @@ components:
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
-          - $ref: '#/components/schemas/ContactIdList'
           - type: 'null'
           description: Override contacts for this domain
-          title: Contacts
         domain_id:
           anyOf:
           - type: string
@@ -4920,10 +4906,8 @@ components:
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
-          - $ref: '#/components/schemas/ContactIdList'
           - type: 'null'
           description: The new contacts of the domain
-          title: Contacts
         nameservers:
           anyOf:
           - items:
@@ -11220,7 +11204,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-11-170616
+  version: 2026-05-11-205618
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21188,10 +21172,18 @@ paths:
                         name: premium-domain.com
                       template:
                         contacts:
-                          admin: contact_01kc433yvre99af2wasxhtpswf
-                          billing: contact_01kc433yvre99af2wasxhtpswf
-                          registrant: contact_01kc433yvre99af2wasxhtpswf
-                          tech: contact_01kc433yvre99af2wasxhtpswf
+                          admin:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
+                          billing:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
+                          registrant:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
+                          tech:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
                         create_zone: true
                         nameservers:
                         - hostname: ns1.example.com
@@ -21225,10 +21217,18 @@ paths:
                         name: premium-transfer.com
                       template:
                         contacts:
-                          admin: contact_01kc433yvre99af2wasxhtpswf
-                          billing: contact_01kc433yvre99af2wasxhtpswf
-                          registrant: contact_01kc433yvre99af2wasxhtpswf
-                          tech: contact_01kc433yvre99af2wasxhtpswf
+                          admin:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
+                          billing:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
+                          registrant:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
+                          tech:
+                          - attributes: {}
+                            contact_id: contact_01kc433yvre99af2wasxhtpswf
                         create_zone: false
                         nameservers:
                         - hostname: ns1.example.com

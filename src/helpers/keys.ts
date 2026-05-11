@@ -12964,7 +12964,7 @@ export const KEYS_DOMAIN_CREATE_BULK_COMMAND = [
  */
 export const KEY_DOMAIN_CREATE_BULK_INSTANCE_AUTH_CODE: keyof DomainCreateBulkInstance = 'auth_code';
 /**
- * Contacts
+ * contacts property
  *
  * Override contacts for this domain
  *
@@ -13274,9 +13274,8 @@ export const KEYS_DOMAIN_CREATE_BULK_PAYLOAD = [
  */
 export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_AUTH_CODE: keyof DomainCreateBulkTemplate = 'auth_code';
 /**
- * Contacts
+ * contacts property
  *
- * The contacts of the domain
  *
  *
  *
@@ -18870,7 +18869,7 @@ export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_ATTRIBUTES: keyof DomainTransferB
  */
 export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_AUTH_CODE: keyof DomainTransferBulkInstance = 'auth_code';
 /**
- * Contacts
+ * contacts property
  *
  * Override contacts for this domain
  *
@@ -19181,9 +19180,8 @@ export const KEYS_DOMAIN_TRANSFER_BULK_PAYLOAD = [
  */
 export const KEY_DOMAIN_TRANSFER_BULK_TEMPLATE_ATTRIBUTES: keyof DomainTransferBulkTemplate = 'attributes';
 /**
- * Contacts
+ * contacts property
  *
- * The contacts of the domain
  *
  *
  *
@@ -20552,7 +20550,7 @@ export const KEYS_DOMAIN_UPDATE_BULK_COMMAND = [
  */
 export const KEY_DOMAIN_UPDATE_BULK_INSTANCE_AUTH_CODE: keyof DomainUpdateBulkInstance = 'auth_code';
 /**
- * Contacts
+ * contacts property
  *
  * Override contacts for this domain
  *
@@ -20836,7 +20834,7 @@ export const KEYS_DOMAIN_UPDATE_BULK_PAYLOAD = [
 ] as const satisfies (keyof DomainUpdateBulkPayload)[];
 
 /**
- * Contacts
+ * contacts property
  *
  * The new contacts of the domain
  *
