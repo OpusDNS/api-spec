@@ -13014,6 +13014,31 @@ export const KEY_DOMAIN_CREATE_BULK_INSTANCE_CONTACTS: keyof DomainCreateBulkIns
  */
 export const KEY_DOMAIN_CREATE_BULK_INSTANCE_CREATE_ZONE: keyof DomainCreateBulkInstance = 'create_zone';
 /**
+ * expected_price property
+ *
+ * Expected price for premium domain confirmation. Required only for premium domains; must be set per-instance because each premium domain has its own price.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expected_price` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_EXPECTED_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_EXPECTED_PRICE;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_EXPECTED_PRICE: keyof DomainCreateBulkInstance = 'expected_price';
+/**
  * Name
  *
  * The domain to be created
@@ -13139,6 +13164,7 @@ export const KEYS_DOMAIN_CREATE_BULK_INSTANCE = [
   KEY_DOMAIN_CREATE_BULK_INSTANCE_AUTH_CODE,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_CONTACTS,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_CREATE_ZONE,
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_EXPECTED_PRICE,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_NAME,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_NAMESERVERS,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_PERIOD,
@@ -18894,6 +18920,31 @@ export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CONTACTS: keyof DomainTransferBul
  */
 export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CREATE_ZONE: keyof DomainTransferBulkInstance = 'create_zone';
 /**
+ * expected_price property
+ *
+ * Expected price for premium domain confirmation. Required only for premium domains; must be set per-instance because each premium domain has its own price.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expected_price` property of DomainTransferBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaintransferbulkinstance[KEY_DOMAIN_TRANSFER_BULK_INSTANCE_EXPECTED_PRICE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_TRANSFER_BULK_INSTANCE_EXPECTED_PRICE;
+ * const value = domaintransferbulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainTransferBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_TRANSFER_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_TRANSFER_BULK_INSTANCE_EXPECTED_PRICE: keyof DomainTransferBulkInstance = 'expected_price';
+/**
  * Name
  *
  * The domain to transfer
@@ -19020,6 +19071,7 @@ export const KEYS_DOMAIN_TRANSFER_BULK_INSTANCE = [
   KEY_DOMAIN_TRANSFER_BULK_INSTANCE_AUTH_CODE,
   KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CONTACTS,
   KEY_DOMAIN_TRANSFER_BULK_INSTANCE_CREATE_ZONE,
+  KEY_DOMAIN_TRANSFER_BULK_INSTANCE_EXPECTED_PRICE,
   KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAME,
   KEY_DOMAIN_TRANSFER_BULK_INSTANCE_NAMESERVERS,
   KEY_DOMAIN_TRANSFER_BULK_INSTANCE_PERIOD,

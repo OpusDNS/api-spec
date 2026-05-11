@@ -4533,6 +4533,8 @@ export interface components {
              * @description Override create_zone for this domain
              */
             create_zone?: boolean | null;
+            /** @description Expected price for premium domain confirmation. Required only for premium domains; must be set per-instance because each premium domain has its own price. */
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
              * @description The domain to be created
@@ -5422,6 +5424,8 @@ export interface components {
              * @description Override create_zone for this domain
              */
             create_zone?: boolean | null;
+            /** @description Expected price for premium domain confirmation. Required only for premium domains; must be set per-instance because each premium domain has its own price. */
+            expected_price?: components["schemas"]["StrictMoneyDecimal"] | null;
             /**
              * Name
              * @description The domain to transfer

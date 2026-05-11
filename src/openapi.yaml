@@ -3090,6 +3090,13 @@ components:
           - type: 'null'
           description: Override create_zone for this domain
           title: Create Zone
+        expected_price:
+          anyOf:
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
+          - type: 'null'
+          description: Expected price for premium domain confirmation. Required only
+            for premium domains; must be set per-instance because each premium domain
+            has its own price.
         name:
           description: The domain to be created
           title: Name
@@ -4468,6 +4475,13 @@ components:
           - type: 'null'
           description: Override create_zone for this domain
           title: Create Zone
+        expected_price:
+          anyOf:
+          - $ref: '#/components/schemas/StrictMoneyDecimal'
+          - type: 'null'
+          description: Expected price for premium domain confirmation. Required only
+            for premium domains; must be set per-instance because each premium domain
+            has its own price.
         name:
           description: The domain to transfer
           title: Name
@@ -11206,7 +11220,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-11-075637
+  version: 2026-05-11-170616
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21170,6 +21184,8 @@ paths:
                         period:
                           unit: y
                           value: 2
+                      - expected_price: '2500.00'
+                        name: premium-domain.com
                       template:
                         contacts:
                           admin: contact_01kc433yvre99af2wasxhtpswf
@@ -21204,6 +21220,9 @@ paths:
                         name: transfer2.com
                       - auth_code: AUTH789GHI
                         name: transfer3.com
+                      - auth_code: AUTHPREM1
+                        expected_price: '1750.00'
+                        name: premium-transfer.com
                       template:
                         contacts:
                           admin: contact_01kc433yvre99af2wasxhtpswf
