@@ -500,6 +500,27 @@
                     "showInSidebar": true
                   }
                 }
+              },
+              "/tags": {
+                "type": "group",
+                "title": "Tags",
+                "icon": "phosphor/regular/tag",
+                "children": {
+                  "/user-tags": {
+                    "type": "page",
+                    "title": "User tags",
+                    "icon": "phosphor/regular/tag",
+                    "filepath": "content/tags/user-tags.md",
+                    "showInSidebar": true
+                  },
+                  "/status-tags": {
+                    "type": "page",
+                    "title": "Status tags",
+                    "icon": "phosphor/regular/flag",
+                    "filepath": "content/tags/status-tags.md",
+                    "showInSidebar": true
+                  }
+                }
               }
             }
           },
