@@ -43431,6 +43431,55 @@ export const KEYS_USER_WITH_RELATION_PERMISSIONS = [
 ] as const satisfies (keyof UserWithRelationPermissions)[];
 
 /**
+ * Context
+ *
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `ctx` property of ValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = validationerror[KEY_VALIDATION_ERROR_CTX];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VALIDATION_ERROR_CTX;
+ * const value = validationerror[propertyName];
+ * ```
+ *
+ * @see {@link ValidationError} - The TypeScript type definition
+ * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_VALIDATION_ERROR_CTX: keyof ValidationError = 'ctx';
+/**
+ * Input
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `input` property of ValidationError objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = validationerror[KEY_VALIDATION_ERROR_INPUT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VALIDATION_ERROR_INPUT;
+ * const value = validationerror[propertyName];
+ * ```
+ *
+ * @see {@link ValidationError} - The TypeScript type definition
+ * @see {@link KEYS_VALIDATION_ERROR} - Array of all keys for this type
+ */
+export const KEY_VALIDATION_ERROR_INPUT: keyof ValidationError = 'input';
+/**
  * Location
  *
  *
@@ -43527,6 +43576,8 @@ export const KEY_VALIDATION_ERROR_TYPE: keyof ValidationError = 'type';
  * @see {@link ValidationError} - The TypeScript type definition
  */
 export const KEYS_VALIDATION_ERROR = [
+  KEY_VALIDATION_ERROR_CTX,
+  KEY_VALIDATION_ERROR_INPUT,
   KEY_VALIDATION_ERROR_LOC,
   KEY_VALIDATION_ERROR_MSG,
   KEY_VALIDATION_ERROR_TYPE,
