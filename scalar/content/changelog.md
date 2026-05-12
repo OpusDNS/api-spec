@@ -4,6 +4,18 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 12 May 2026
+
+- Added **status tags** — system-managed labels that are automatically assigned
+  to domains based on their state. The first status tag type is
+  `VERIFICATION_REQUIRED`, applied when a registry mandates holder verification.
+- Domain list endpoints now support `status_tags` and `status_tag_mode` filters
+  to find domains by their current status conditions.
+- When requesting `include=tags`, domain responses now return both user `tags`
+  and `status_tags` in separate arrays.
+- Published the [User tags](/automation/tags/user-tags) and
+  [Status tags](/automation/tags/status-tags) documentation guides.
+
 ### 08 May 2026
 
 - Released the V1 event payload format. All events now use a standardized

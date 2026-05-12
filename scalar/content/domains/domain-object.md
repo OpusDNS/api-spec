@@ -35,7 +35,8 @@ returned by all domain endpoints — registration, transfer, update, and retriev
   ],
   "hosts": [],
   "registry_statuses": ["ok"],
-  "tags": []
+  "tags": [],
+  "status_tags": []
 }
 ```
 
@@ -177,8 +178,23 @@ These are set by the registrar (OpusDNS) at your request or automatically.
 
 ### Tags
 
-The `tags` array contains tags assigned to this domain. This field is only
-included in the response when you request it with `?include=tags`.
+The `tags` array contains user-created tags assigned to this domain. The
+`status_tags` array contains system-managed status tags that reflect domain
+conditions requiring attention. Both fields are only included in the response
+when you request them with `?include=tags`.
+
+See [User tags](/automation/tags/user-tags) and
+[Status tags](/automation/tags/status-tags) for details.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `tags[].tag_id` | `string` | The tag identifier. |
+| `tags[].label` | `string` | The tag's display name. |
+| `tags[].color` | `string` | The tag's display color (`color-1` through `color-10`). Colors are intentionally generic so that API consumers can map them to values that fit their own branding. |
+| `status_tags[].tag_type` | `string` | The status tag type identifier (e.g. `VERIFICATION_REQUIRED`). |
+| `status_tags[].label` | `string` | Human-readable display label. |
+| `status_tags[].description` | `string` | Optional description of the status condition. |
+| `status_tags[].color` | `string` | Display color for UI rendering. Colors are intentionally generic (e.g. `color-1`) so that API consumers can map them to values that fit their own branding. |
 
 ## Related API Reference
 
