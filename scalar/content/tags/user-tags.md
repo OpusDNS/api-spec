@@ -11,7 +11,7 @@ environment, client, or anything else that fits your workflow.
 | `tag_id` | `string` | Unique identifier for the tag (TypeID format, e.g. `tag_01h45ytscbebyvny4gc8cr8ma2`). |
 | `label` | `string` | The display name of the tag. Must be unique per type within your organization. |
 | `type` | `string` | The resource type this tag applies to: `DOMAIN`, `CONTACT`, or `ZONE`. |
-| `color` | `string` | Display color, from `color-1` through `color-10`. |
+| `color` | `string` | Display color, from `color-1` through `color-10`. Colors are intentionally generic so that API consumers can map them to values that match their own branding and UI. |
 | `description` | `string` | An optional description of what this tag represents. |
 | `object_count` | `integer` | Number of objects currently assigned this tag. |
 

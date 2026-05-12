@@ -48,7 +48,7 @@ When you request `include=tags` on a domain endpoint, each domain includes a
 | `tag_type` | `string` | The status tag type identifier (e.g. `VERIFICATION_REQUIRED`). Use this for programmatic checks. |
 | `label` | `string` | Human-readable display label. |
 | `description` | `string` | Optional description of the status condition. |
-| `color` | `string` | Display color for UI rendering. |
+| `color` | `string` | Display color for UI rendering. Colors are intentionally generic (e.g. `color-1`) so that API consumers can map them to values that fit their own branding. |
 
 ## Include status tags in responses
 
