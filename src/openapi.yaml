@@ -4370,6 +4370,12 @@ components:
       type: object
     DomainSummaryData:
       properties:
+        by_organization:
+          additionalProperties:
+            type: integer
+          description: 'Domain counts by organization name (name: count)'
+          title: By Organization
+          type: object
         by_status:
           additionalProperties:
             type: integer
@@ -4386,13 +4392,14 @@ components:
           $ref: '#/components/schemas/DomainsExpiringSoon'
           description: Domains expiring soon
         total_count:
-          description: Total number of domains
+          description: Total number of domains including sub-organizations
           title: Total Count
           type: integer
       required:
       - total_count
       - by_status
       - by_tld
+      - by_organization
       - expiring_soon
       title: DomainSummaryData
       type: object
@@ -11209,7 +11216,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-12-201002
+  version: 2026-05-13-081105
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

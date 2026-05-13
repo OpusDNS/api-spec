@@ -5339,6 +5339,13 @@ export interface components {
         /** DomainSummaryData */
         DomainSummaryData: {
             /**
+             * By Organization
+             * @description Domain counts by organization name (name: count)
+             */
+            by_organization: {
+                [key: string]: number;
+            };
+            /**
              * By Status
              * @description Domain counts by status (status: count)
              */
@@ -5356,7 +5363,7 @@ export interface components {
             expiring_soon: components["schemas"]["DomainsExpiringSoon"];
             /**
              * Total Count
-             * @description Total number of domains
+             * @description Total number of domains including sub-organizations
              */
             total_count: number;
         };

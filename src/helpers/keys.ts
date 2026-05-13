@@ -18481,6 +18481,32 @@ export const KEYS_DOMAIN_STATUSES_BASE = [
 ] as const satisfies (keyof DomainStatusesBase)[];
 
 /**
+ * By Organization
+ *
+ * Domain counts by organization name (name: count)
+ *
+ * @type {object}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `by_organization` property of DomainSummaryData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domainsummarydata[KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION;
+ * const value = domainsummarydata[propertyName];
+ * ```
+ *
+ * @see {@link DomainSummaryData} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_SUMMARY_DATA} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION: keyof DomainSummaryData = 'by_organization';
+/**
  * By Status
  *
  * Domain counts by status (status: count)
@@ -18560,7 +18586,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON: keyof DomainSummaryData = 'e
 /**
  * Total Count
  *
- * Total number of domains
+ * Total number of domains including sub-organizations
  *
  * @type {integer}
  *
@@ -18605,6 +18631,7 @@ export const KEY_DOMAIN_SUMMARY_DATA_TOTAL_COUNT: keyof DomainSummaryData = 'tot
  * @see {@link DomainSummaryData} - The TypeScript type definition
  */
 export const KEYS_DOMAIN_SUMMARY_DATA = [
+  KEY_DOMAIN_SUMMARY_DATA_BY_ORGANIZATION,
   KEY_DOMAIN_SUMMARY_DATA_BY_STATUS,
   KEY_DOMAIN_SUMMARY_DATA_BY_TLD,
   KEY_DOMAIN_SUMMARY_DATA_EXPIRING_SOON,
