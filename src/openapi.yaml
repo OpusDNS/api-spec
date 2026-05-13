@@ -188,7 +188,8 @@ components:
           type: string
         product_reference:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The reference of the product
@@ -729,6 +730,7 @@ components:
       properties:
         city:
           description: The city of the contact
+          maxLength: 255
           minLength: 1
           title: City
           type: string
@@ -757,17 +759,20 @@ components:
           title: Fax
         first_name:
           description: The first name of the contact
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The last name of the contact
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
         org:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The organization of the contact
@@ -781,24 +786,28 @@ components:
           type: string
         postal_code:
           description: The postal code of the contact
+          maxLength: 255
           minLength: 1
           title: Postal Code
           type: string
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The state of the contact
           title: State
         street:
           description: The address of the contact
+          maxLength: 255
           minLength: 1
           title: Street
           type: string
         title:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The title of the contact
@@ -844,6 +853,7 @@ components:
       properties:
         city:
           description: City
+          maxLength: 255
           minLength: 1
           title: City
           type: string
@@ -874,17 +884,20 @@ components:
           title: Fax
         first_name:
           description: First name of the contact
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: Last name of the contact
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
         org:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Override organization for this contact
@@ -896,24 +909,28 @@ components:
           type: string
         postal_code:
           description: Postal code
+          maxLength: 255
           minLength: 1
           title: Postal Code
           type: string
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Override state for this contact
           title: State
         street:
           description: Street address
+          maxLength: 255
           minLength: 1
           title: Street
           type: string
         title:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Override title for this contact
@@ -959,21 +976,24 @@ components:
           type: boolean
         org:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Organization name
           title: Org
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: State/province
           title: State
         title:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Contact title
@@ -1012,6 +1032,7 @@ components:
       properties:
         city:
           description: The city of the contact
+          maxLength: 255
           minLength: 1
           title: City
           type: string
@@ -1040,17 +1061,20 @@ components:
           title: Fax
         first_name:
           description: The first name of the contact
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The last name of the contact
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
         org:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The organization of the contact
@@ -1064,24 +1088,28 @@ components:
           type: string
         postal_code:
           description: The postal code of the contact
+          maxLength: 255
           minLength: 1
           title: Postal Code
           type: string
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The state of the contact
           title: State
         street:
           description: The address of the contact
+          maxLength: 255
           minLength: 1
           title: Street
           type: string
         title:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The title of the contact
@@ -1185,6 +1213,7 @@ components:
           type: array
         city:
           description: The city of the contact
+          maxLength: 255
           minLength: 1
           title: City
           type: string
@@ -1226,17 +1255,20 @@ components:
           title: Fax
         first_name:
           description: The first name of the contact
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The last name of the contact
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
         org:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The organization of the contact
@@ -1260,18 +1292,21 @@ components:
           type: string
         postal_code:
           description: The postal code of the contact
+          maxLength: 255
           minLength: 1
           title: Postal Code
           type: string
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The state of the contact
           title: State
         street:
           description: The address of the contact
+          maxLength: 255
           minLength: 1
           title: Street
           type: string
@@ -1285,7 +1320,8 @@ components:
           title: Tags
         title:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The title of the contact
@@ -1306,6 +1342,7 @@ components:
       properties:
         city:
           description: The city of the contact
+          maxLength: 255
           minLength: 1
           title: City
           type: string
@@ -1347,17 +1384,20 @@ components:
           title: Fax
         first_name:
           description: The first name of the contact
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The last name of the contact
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
         org:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The organization of the contact
@@ -1381,24 +1421,28 @@ components:
           type: string
         postal_code:
           description: The postal code of the contact
+          maxLength: 255
           minLength: 1
           title: Postal Code
           type: string
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The state of the contact
           title: State
         street:
           description: The address of the contact
+          maxLength: 255
           minLength: 1
           title: Street
           type: string
         title:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The title of the contact
@@ -4003,7 +4047,8 @@ components:
       properties:
         auth_code:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The auth code for the domain
@@ -4123,6 +4168,7 @@ components:
           description: The second level domain
           examples:
           - example
+          maxLength: 255
           minLength: 1
           title: Sld
           type: string
@@ -4148,6 +4194,7 @@ components:
           description: The top level domain of the domain
           examples:
           - com
+          maxLength: 255
           minLength: 1
           title: Tld
           type: string
@@ -4766,7 +4813,8 @@ components:
       properties:
         auth_code:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The new auth code for the domain
@@ -4840,7 +4888,8 @@ components:
       properties:
         auth_code:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Override auth code for this domain
@@ -4972,7 +5021,8 @@ components:
       properties:
         auth_code:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The new auth code for the domain
@@ -7152,14 +7202,16 @@ components:
       properties:
         address_1:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: First line of the organization's address.
           title: Address 1
         address_2:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Second line of the organization's address.
@@ -7180,7 +7232,8 @@ components:
           title: Business Number
         city:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: City of the organization's address.
@@ -7226,6 +7279,7 @@ components:
           title: Keycloak Organization Id
         name:
           description: Name of the organization.
+          maxLength: 255
           minLength: 1
           title: Name
           type: string
@@ -7259,7 +7313,8 @@ components:
           title: Postal Code
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
@@ -7435,14 +7490,16 @@ components:
       properties:
         address_1:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: First line of the organization's address.
           title: Address 1
         address_2:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Second line of the organization's address.
@@ -7464,7 +7521,8 @@ components:
           title: Business Number
         city:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: City of the organization's address.
@@ -7492,6 +7550,7 @@ components:
           title: Default Locale
         name:
           description: Name of the organization.
+          maxLength: 255
           minLength: 1
           title: Name
           type: string
@@ -7516,7 +7575,8 @@ components:
           title: Postal Code
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
@@ -7595,14 +7655,16 @@ components:
       properties:
         address_1:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: First line of the organization's address.
           title: Address 1
         address_2:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Second line of the organization's address.
@@ -7618,7 +7680,8 @@ components:
           title: Business Number
         city:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: City of the organization's address.
@@ -7642,35 +7705,40 @@ components:
           title: Default Locale
         name:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Name of the organization.
           title: Name
         postal_code:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Postal code of the organization's address.
           title: Postal Code
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
           title: State
         tax_id:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Tax ID of the organization.
           title: Tax Id
         tax_id_type:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Type of tax ID for the organization.
@@ -7697,14 +7765,16 @@ components:
           $ref: '#/components/schemas/BillingPlan'
         address_1:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: First line of the organization's address.
           title: Address 1
         address_2:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: Second line of the organization's address.
@@ -7727,7 +7797,8 @@ components:
           title: Business Number
         city:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: City of the organization's address.
@@ -7773,6 +7844,7 @@ components:
           title: Keycloak Organization Id
         name:
           description: Name of the organization.
+          maxLength: 255
           minLength: 1
           title: Name
           type: string
@@ -7806,7 +7878,8 @@ components:
           title: Postal Code
         state:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: State or province of the organization's address.
@@ -9531,6 +9604,7 @@ components:
           title: Description
         label:
           description: The label of the tag
+          maxLength: 255
           minLength: 1
           title: Label
           type: string
@@ -9616,6 +9690,7 @@ components:
           description: The color of the tag
         label:
           description: The label of the tag
+          maxLength: 255
           minLength: 1
           title: Label
           type: string
@@ -9659,6 +9734,7 @@ components:
           title: Description
         label:
           description: The label of the tag
+          maxLength: 255
           minLength: 1
           title: Label
           type: string
@@ -10329,6 +10405,7 @@ components:
           type: string
         first_name:
           description: The user's first name
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
@@ -10340,6 +10417,7 @@ components:
           title: Keycloak User Id
         last_name:
           description: The user's last name
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
@@ -10457,11 +10535,13 @@ components:
           type: string
         first_name:
           description: The user's first name
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The user's last name
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
@@ -10531,11 +10611,13 @@ components:
           type: string
         first_name:
           description: The user's first name
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The user's last name
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
@@ -10616,11 +10698,13 @@ components:
           type: string
         first_name:
           description: The user's first name
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The user's last name
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
@@ -10753,14 +10837,16 @@ components:
           title: Email
         first_name:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The user's first name
           title: First Name
         last_name:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The user's last name
@@ -10790,7 +10876,8 @@ components:
           title: User Attributes
         username:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           description: The user's unique username
@@ -10818,11 +10905,13 @@ components:
           type: string
         first_name:
           description: The user's first name
+          maxLength: 255
           minLength: 1
           title: First Name
           type: string
         last_name:
           description: The user's last name
+          maxLength: 255
           minLength: 1
           title: Last Name
           type: string
@@ -11216,7 +11305,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-13-081105
+  version: 2026-05-13-153000
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -23223,7 +23312,8 @@ paths:
         required: false
         schema:
           anyOf:
-          - minLength: 1
+          - maxLength: 255
+            minLength: 1
             type: string
           - type: 'null'
           title: Product Reference
