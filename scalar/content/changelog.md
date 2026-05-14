@@ -4,6 +4,23 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 14 May 2026
+
+- Added **batch retry** — re-attempt jobs in a batch that ended in `failed` or
+  `dead_letter` state without rebuilding the batch.
+  `POST /v1/jobs/{batch_id}/retry` re-queues all eligible jobs in one call;
+  jobs in any other state are left untouched.
+- Added an optional repeatable `error_class` query parameter on batch retry to
+  re-attempt only specific failure types (for example,
+  `?error_class=BillingInsufficientFundsError` after an account top-up).
+  Multiple values are OR'd.
+- Added **single-job retry** — `POST /v1/job/{job_id}/retry` re-queues an
+  individual `failed` or `dead_letter` job. Retrying a job in any other state
+  returns `409 Conflict`.
+- Updated the [Managing batches](/products/jobs/managing-batches) guide with
+  retry usage, including how `error_class` filtering helps recover from
+  mixed-failure batches.
+
 ### 12 May 2026
 
 - Added **status tags** — system-managed labels that are automatically assigned
