@@ -196,6 +196,79 @@ curl "$OPUSDNS_API_BASE/v1/jobs/batch_01h45ytscbebyvny4gc8cr8ma2" \
 
 Returns `204 No Content` on success.
 
+### Retry failed jobs
+
+Jobs that ended in `failed` or `dead_letter` state can be retried without
+rebuilding the batch. Two endpoints support this — one for individual jobs and
+one for an entire batch.
+
+#### Retry a single job
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/job/job_01h45ytscbebyvny4gc8cr8ma2/retry" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
+
+Returns the updated job. Status resets to `queued`, `attempts` resets to `0`,
+and `error_class` / `error_message` are cleared. Only `failed` and
+`dead_letter` jobs can be retried; jobs in any other status return
+`409 Conflict`.
+
+#### Retry an entire batch
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/jobs/batch_01h45ytscbebyvny4gc8cr8ma2/retry" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
+
+```json
+{
+  "batch_id": "batch_01h45ytscbebyvny4gc8cr8ma2",
+  "retried_count": 5
+}
+```
+
+All `failed` and `dead_letter` jobs in the batch are re-queued in a single
+operation. Jobs in any other state (succeeded, canceled, running, etc.) are
+left untouched. The response reports how many jobs were retried.
+
+#### Filtering retries by error type
+
+A batch may contain a mix of failures — some recoverable (such as
+`BillingInsufficientFundsError` after an account top-up) and some not (such
+as `DomainRegistryPolicyError` from a name the registry rejected). Pass one
+or more `error_class` query parameters to retry only matching jobs:
+
+```bash
+# Retry only insufficient-funds failures
+curl --get "$OPUSDNS_API_BASE/v1/jobs/batch_01h45ytscbebyvny4gc8cr8ma2/retry" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --data-urlencode "error_class=BillingInsufficientFundsError"
+```
+
+```bash
+# Retry insufficient-funds and transient registry errors together
+curl --get "$OPUSDNS_API_BASE/v1/jobs/batch_01h45ytscbebyvny4gc8cr8ma2/retry" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --data-urlencode "error_class=BillingInsufficientFundsError" \
+  --data-urlencode "error_class=DomainRegistryTemporaryError"
+```
+
+Multiple `error_class` values are OR'd — a job is retried if its `error_class`
+matches **any** of the supplied values. Omitting the filter retries all
+`failed` and `dead_letter` jobs in the batch.
+
+The `error_class` for each failed job is visible on the individual job
+response, so a typical flow is:
+
+1. List the failed jobs in the batch and group by `error_class`.
+2. Determine which failures are recoverable.
+3. Call retry with the relevant `error_class` filter.
+
 ### Starting paused
 
 <scalar-callout type="success">
@@ -293,7 +366,7 @@ fields:
 ### Dead letter jobs
 
 A job moves to `dead_letter` when it has exhausted all retry attempts. This
-typically indicates a persistent issue that won't resolve with retries:
+typically indicates a persistent issue:
 
 ```bash
 # Find dead letter jobs
@@ -303,11 +376,16 @@ curl --get "$OPUSDNS_API_BASE/v1/jobs/batch_01h45ytscbebyvny4gc8cr8ma2/jobs" \
 ```
 
 Dead letter jobs require manual investigation. Check the `error_class` and
-`error_message` to understand what went wrong, fix the underlying issue, and
-submit a new batch for the affected resources.
+`error_message` to understand what went wrong.
 
-<scalar-callout type="danger">
-Dead letter jobs will not be retried automatically. You must resolve the underlying issue and submit a new batch for the affected resources.
+For recoverable failures (such as insufficient funds at the time of the
+original attempts), use the [retry endpoints](#retry-failed-jobs) to re-queue
+the affected jobs once the underlying issue is resolved. For failures that
+won't resolve with another attempt (invalid names, registry policy
+rejections, and similar), submit a new batch with corrected resources.
+
+<scalar-callout type="warning">
+Dead letter jobs are not retried automatically. They must be retried explicitly via the retry endpoints once the underlying issue is resolved, or replaced in a new batch.
 </scalar-callout>
 
 ### Handling duplicates
@@ -398,8 +476,11 @@ Build a workflow that polls for completion and handles failures:
 1. Submit the batch and store the `batch_id`.
 2. Poll `GET /v1/jobs/{batch_id}` until `status` is `complete`.
 3. Check `job_counts.failed` and `job_counts.dead_letter`.
-4. If either is non-zero, list failed jobs and take corrective action.
-5. For recoverable failures, build a new batch with just the failed items.
+4. If either is non-zero, list failed jobs and group by `error_class`.
+5. For recoverable failures (e.g. `BillingInsufficientFundsError`), call
+   `POST /v1/jobs/{batch_id}/retry` — optionally with an `error_class` filter —
+   to re-queue just the affected jobs. For failures that won't resolve with
+   another attempt, build a new batch with corrected items.
 
 ## Related API Reference
 
@@ -410,3 +491,5 @@ Build a workflow that polls for completion and handles failures:
 - [`GET /v1/jobs/{batch_id}/jobs`](/api-reference#tag/jobs/GET/v1/jobs/{batch_id}/jobs)
 - [`POST /v1/jobs/{batch_id}/pause`](/api-reference#tag/jobs/POST/v1/jobs/{batch_id}/pause)
 - [`POST /v1/jobs/{batch_id}/resume`](/api-reference#tag/jobs/POST/v1/jobs/{batch_id}/resume)
+- [`POST /v1/jobs/{batch_id}/retry`](/api-reference#tag/jobs/POST/v1/jobs/{batch_id}/retry)
+- [`POST /v1/job/{job_id}/retry`](/api-reference#tag/jobs/POST/v1/job/{job_id}/retry)
