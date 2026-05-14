@@ -2124,6 +2124,7 @@ export const EVENT_OBJECT_TYPE = {
   DOMAIN: "DOMAIN",
   CONTACT: "CONTACT",
   HOST: "HOST",
+  ACCOUNT: "ACCOUNT",
   RAW: "RAW",
   UNKNOWN: "UNKNOWN",
 } as const satisfies Record<string, EventObjectType>;
@@ -2153,6 +2154,7 @@ export const EVENT_OBJECT_TYPE_VALUES = [
   'DOMAIN',
   'CONTACT',
   'HOST',
+  'ACCOUNT',
   'RAW',
   'UNKNOWN'
 ] as const satisfies [string, ...string[]] | EventObjectType[];
@@ -2290,6 +2292,7 @@ export const EVENT_TYPE = {
   TRANSIT: "TRANSIT",
   WITHDRAW: "WITHDRAW",
   VERIFICATION: "VERIFICATION",
+  BALANCE: "BALANCE",
 } as const satisfies Record<string, EventType>;
 
 /**
@@ -2322,7 +2325,8 @@ export const EVENT_TYPE_VALUES = [
   'OUTBOUND_TRANSFER',
   'TRANSIT',
   'WITHDRAW',
-  'VERIFICATION'
+  'VERIFICATION',
+  'BALANCE'
 ] as const satisfies [string, ...string[]] | EventType[];
 
 /**

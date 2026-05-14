@@ -6263,7 +6263,7 @@ export interface components {
          * EventObjectType
          * @enum {string}
          */
-        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "RAW" | "UNKNOWN";
+        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "ACCOUNT" | "RAW" | "UNKNOWN";
         /** EventResponse */
         EventResponse: {
             /**
@@ -6313,7 +6313,7 @@ export interface components {
          * EventType
          * @enum {string}
          */
-        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION";
+        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE";
         /**
          * EventVersion
          * @enum {string}
