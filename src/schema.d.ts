@@ -1580,6 +1580,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/job/{job_id}/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Retry a failed or dead-lettered job */
+        post: operations["retry_job_v1_job__job_id__retry_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/jobs": {
         parameters: {
             query?: never;
@@ -1661,6 +1678,23 @@ export interface paths {
         put?: never;
         /** Resume all paused jobs in a batch */
         post: operations["resume_batch_v1_jobs__batch_id__resume_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/jobs/{batch_id}/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Retry failed and dead-lettered jobs in a batch */
+        post: operations["retry_batch_v1_jobs__batch_id__retry_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6676,6 +6710,21 @@ export interface components {
              * @default false
              */
             paused: boolean;
+        };
+        /** JobBatchRetryResponse */
+        JobBatchRetryResponse: {
+            /**
+             * Batch Id
+             * Format: typeid
+             * @description TypeID identifying this batch
+             * @example batch_01h45ytscbebyvny4gc8cr8ma2
+             */
+            batch_id: TypeId<"batch">;
+            /**
+             * Retried Count
+             * @description Number of FAILED/DEAD_LETTER jobs reset to QUEUED for retry
+             */
+            retried_count: number;
         };
         /** JobBatchStatusResponse */
         JobBatchStatusResponse: {
@@ -17183,6 +17232,71 @@ export interface operations {
             };
         };
     };
+    retry_job_v1_job__job_id__retry_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Job ID */
+                job_id: TypeId<"job">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_JOB_NOT_FOUND",
+                     *       "detail": "No job found with id 'Additional error context.'",
+                     *       "job_id": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "job-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_JOB_STATUS_CONFLICT",
+                     *       "detail": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "job-status-conflict"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_batches_v1_jobs_get: {
         parameters: {
             query?: {
@@ -17540,6 +17654,58 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BATCH_NOT_FOUND",
+                     *       "correlation_id": "Additional error context.",
+                     *       "detail": "No batch found with correlation_id 'Additional error context.'",
+                     *       "status": 404,
+                     *       "title": "Batch Operation Error",
+                     *       "type": "batch-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    retry_batch_v1_jobs__batch_id__retry_post: {
+        parameters: {
+            query?: {
+                /** @description Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch. */
+                error_class?: string[] | null;
+            };
+            header?: never;
+            path: {
+                /** @description Batch ID */
+                batch_id: TypeId<"batch">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobBatchRetryResponse"];
+                };
             };
             /** @description Not Found */
             404: {

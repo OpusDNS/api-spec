@@ -6399,6 +6399,26 @@ components:
       - commands
       title: JobBatchRequest
       type: object
+    JobBatchRetryResponse:
+      properties:
+        batch_id:
+          description: TypeID identifying this batch
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+        retried_count:
+          description: Number of FAILED/DEAD_LETTER jobs reset to QUEUED for retry
+          title: Retried Count
+          type: integer
+      required:
+      - batch_id
+      - retried_count
+      title: JobBatchRetryResponse
+      type: object
     JobBatchStatusResponse:
       properties:
         batch_id:
@@ -11305,7 +11325,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-13-153000
+  version: 2026-05-14-142832
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21067,6 +21087,66 @@ paths:
       summary: Resume a paused job
       tags:
       - jobs
+  /v1/job/{job_id}/retry:
+    post:
+      operationId: retry_job_v1_job__job_id__retry_post
+      parameters:
+      - description: Job ID
+        in: path
+        name: job_id
+        required: true
+        schema:
+          examples:
+          - job_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^job_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Job Id
+          type: string
+          x-typeid-prefix: job
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_JOB_NOT_FOUND
+                detail: No job found with id 'Additional error context.'
+                job_id: Additional error context.
+                status: 404
+                title: Batch Operation Error
+                type: job-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_JOB_STATUS_CONFLICT
+                detail: Additional error context.
+                status: 409
+                title: Batch Operation Error
+                type: job-status-conflict
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Retry a failed or dead-lettered job
+      tags:
+      - jobs
   /v1/jobs:
     get:
       operationId: list_batches_v1_jobs_get
@@ -22126,6 +22206,72 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Resume all paused jobs in a batch
+      tags:
+      - jobs
+  /v1/jobs/{batch_id}/retry:
+    post:
+      operationId: retry_batch_v1_jobs__batch_id__retry_post
+      parameters:
+      - description: Batch ID
+        in: path
+        name: batch_id
+        required: true
+        schema:
+          examples:
+          - batch_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^batch_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Batch Id
+          type: string
+          x-typeid-prefix: batch
+      - description: 'Optional repeatable filter: only retry jobs whose error_class
+          matches one of these values. Example: `?error_class=BillingInsufficientFundsError`
+          to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered
+          jobs in the batch.'
+        in: query
+        name: error_class
+        required: false
+        schema:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          description: 'Optional repeatable filter: only retry jobs whose error_class
+            matches one of these values. Example: `?error_class=BillingInsufficientFundsError`
+            to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered
+            jobs in the batch.'
+          title: Error Class
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobBatchRetryResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_BATCH_NOT_FOUND
+                correlation_id: Additional error context.
+                detail: No batch found with correlation_id 'Additional error context.'
+                status: 404
+                title: Batch Operation Error
+                type: batch-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Retry failed and dead-lettered jobs in a batch
       tags:
       - jobs
   /v1/organizations:
@@ -25021,25 +25167,60 @@ tags:
     \ **Review results** \u2014 `GET /v1/jobs/{batch_id}/jobs` to see individual job\
     \ outcomes\n\n### Managing Batches\n\n- **Pause** \u2014 `POST /v1/jobs/{batch_id}/pause`\
     \ pauses all eligible jobs in the batch\n- **Resume** \u2014 `POST /v1/jobs/{batch_id}/resume`\
-    \ resumes all paused jobs\n- **Cancel** \u2014 `DELETE /v1/jobs/{batch_id}` cancels\
-    \ all pending jobs in the batch\n\nIndividual jobs can also be paused, resumed,\
-    \ or canceled via the `/v1/job/{job_id}` endpoints.\n\n### Limits\n\n- Maximum\
-    \ **50,000 commands** per batch\n- Bulk commands support up to **1,000 instances**\
-    \ per command\n\n### Scheduling\n\nUse `not_before` to schedule batch execution\
-    \ for a future time (UTC timestamp). If not provided, processing begins as soon\
-    \ as a worker is available.\n\n### Idempotency\n\nEach command can include an\
-    \ optional `idempotency_key` to prevent duplicate execution. If a command with\
-    \ the same idempotency key has already been processed, it will be skipped.\n\n\
-    ### Domain Status Updates in Batches\n\nThe `domain_update` and `domain_update_bulk`\
-    \ commands support two mutually exclusive approaches for modifying domain statuses.\
-    \ These work the same way as the `PATCH /v1/domains/{domain_reference}` endpoint\
-    \ \u2014 see the [Domain management](#tag/Domain-management) documentation for\
-    \ full details on `statuses` vs `status_changes`.\n\n#### Using `status_changes`\
-    \ in bulk templates\n\nThe `domain_update_bulk` command is particularly useful\
-    \ with `status_changes` when you need to apply the same relative status change\
-    \ across many domains. Set `status_changes` in the **template** and list the target\
-    \ domains as **instances**. Each instance identifies a domain by either `name`\
-    \ or `domain_id` (but not both):\n\n```json\n{\n  \"command\": \"domain_update_bulk\"\
+    \ resumes all paused jobs\n- **Retry** \u2014 `POST /v1/jobs/{batch_id}/retry`\
+    \ retries failed and dead-lettered jobs in the batch (see [Retrying Failed Jobs](#retrying-failed-jobs))\n\
+    - **Cancel** \u2014 `DELETE /v1/jobs/{batch_id}` cancels all pending jobs in the\
+    \ batch\n\nIndividual jobs can also be paused, resumed, retried, or canceled via\
+    \ the `/v1/job/{job_id}` endpoints.\n\n### Retrying Failed Jobs\n\nIf jobs in\
+    \ a batch end up in `failed` or `dead_letter` state \u2014 for example because\
+    \ the account had insufficient funds at the time the batch was processed \u2014\
+    \ you can re-attempt them without rebuilding the batch from scratch.\n\n- **Single\
+    \ job:** `POST /v1/job/{job_id}/retry`\n- **Whole batch:** `POST /v1/jobs/{batch_id}/retry`\n\
+    \n#### What gets retried\n\nOnly jobs in `failed` or `dead_letter` status are\
+    \ eligible. Jobs in any other status are left unchanged:\n\n- `succeeded` \u2014\
+    \ already complete; retrying returns **409 Conflict**\n- `canceled` \u2014 you\
+    \ explicitly canceled these, so the retry won't undo that; returns **409 Conflict**\
+    \ (single) or is silently skipped (batch)\n- `queued`, `blocked`, `paused`, `running`\
+    \ \u2014 still in progress; not touched\n\nCalling batch retry on a mixed-state\
+    \ batch returns `retried_count` (the number of `failed` / `dead_letter` jobs that\
+    \ were re-queued); everything else is left alone. If the batch has no retryable\
+    \ jobs, `retried_count` is `0`.\n\n#### What happens to a retried job\n\nEach\
+    \ retried job is reset to a fresh attempt:\n\n- `status` \u2192 `queued`\n- `attempts`\
+    \ \u2192 `0`\n- `not_before` \u2192 now\n- `error_class` and `error_message` \u2192\
+    \ cleared\n- The job is republished for worker pickup\n\nThe original `payload`,\
+    \ `idempotency_key`, `correlation_id` (batch id), `max_attempts`, and backoff\
+    \ configuration are preserved. Each retry is processed under the same worker idempotency\
+    \ guarantees as the original \u2014 for billing operations specifically, a retried\
+    \ job will not double-charge an account that was already debited.\n\n#### Filtering\
+    \ by error type\n\nA batch may contain a mix of failures that you do and don't\
+    \ want to retry. For example, after adding funds to your account, you may want\
+    \ to retry only the jobs that failed with `BillingInsufficientFundsError`, while\
+    \ leaving alone jobs that failed for other reasons (e.g. an invalid domain name\
+    \ that should not be re-attempted).\n\nPass one or more `error_class` query parameters\
+    \ to filter:\n\n```\nPOST /v1/jobs/{batch_id}/retry?error_class=BillingInsufficientFundsError\n\
+    POST /v1/jobs/{batch_id}/retry?error_class=BillingInsufficientFundsError&error_class=DomainRegistryTemporaryError\n\
+    ```\n\nMultiple values are OR'd \u2014 a job is retried if its `error_class` matches\
+    \ **any** of the supplied values. Omitting the filter retries all `failed` and\
+    \ `dead_letter` jobs in the batch.\n\nThe `error_class` for each failed job is\
+    \ visible on the individual job response (`GET /v1/jobs/{batch_id}/jobs`), so\
+    \ the typical flow is:\n\n1. List the failed jobs in the batch and group by `error_class`.\n\
+    2. Determine which failures are recoverable.\n3. Call retry with the relevant\
+    \ `error_class` filter.\n\n### Limits\n\n- Maximum **50,000 commands** per batch\n\
+    - Bulk commands support up to **1,000 instances** per command\n\n### Scheduling\n\
+    \nUse `not_before` to schedule batch execution for a future time (UTC timestamp).\
+    \ If not provided, processing begins as soon as a worker is available.\n\n###\
+    \ Idempotency\n\nEach command can include an optional `idempotency_key` to prevent\
+    \ duplicate execution. If a command with the same idempotency key has already\
+    \ been processed, it will be skipped.\n\n### Domain Status Updates in Batches\n\
+    \nThe `domain_update` and `domain_update_bulk` commands support two mutually exclusive\
+    \ approaches for modifying domain statuses. These work the same way as the `PATCH\
+    \ /v1/domains/{domain_reference}` endpoint \u2014 see the [Domain management](#tag/Domain-management)\
+    \ documentation for full details on `statuses` vs `status_changes`.\n\n#### Using\
+    \ `status_changes` in bulk templates\n\nThe `domain_update_bulk` command is particularly\
+    \ useful with `status_changes` when you need to apply the same relative status\
+    \ change across many domains. Set `status_changes` in the **template** and list\
+    \ the target domains as **instances**. Each instance identifies a domain by either\
+    \ `name` or `domain_id` (but not both):\n\n```json\n{\n  \"command\": \"domain_update_bulk\"\
     ,\n  \"payload\": {\n    \"template\": {\n      \"status_changes\": {\n      \
     \  \"add\": [\"clientTransferProhibited\"]\n      }\n    },\n    \"instances\"\
     : [\n      { \"name\": \"example.com\" },\n      { \"name\": \"example.net\" },\n\

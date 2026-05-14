@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Context, Problem, HTTPValidationError, ConversationList, Conversation, ContextList, MessageList, Message, MemoryFactList, MemoryFact, Pagination_EmailForwardLog, Pagination_ObjectLog, Pagination_RequestHistory, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, ClaimsNotices, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventResponse, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Context, Problem, HTTPValidationError, ConversationList, Conversation, ContextList, MessageList, Message, MemoryFactList, MemoryFact, Pagination_EmailForwardLog, Pagination_ObjectLog, Pagination_RequestHistory, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, ClaimsNotices, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventResponse, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, JobBatchRetry, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AiConciergeContextsByContextId endpoint
@@ -9847,6 +9847,102 @@ export type POST_JobByJobIdResume_Response_404 = Problem
 export type POST_JobByJobIdResume_Response_422 = HTTPValidationError
 
 /**
+ * Response types for POST JobByJobIdRetry endpoint
+ *
+ * Retry a failed or dead-lettered job
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST JobByJobIdRetry endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/job/{job_id}/retry
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdRetry_Response_200} - 200 response type
+ * @see {@link POST_JobByJobIdRetry_Response_404} - 404 response type
+ * @see {@link POST_JobByJobIdRetry_Response_409} - 409 response type
+ * @see {@link POST_JobByJobIdRetry_Response_422} - 422 response type
+ *
+
+ */
+export type POST_JobByJobIdRetry_Response = POST_JobByJobIdRetry_Response_200 | POST_JobByJobIdRetry_Response_404 | POST_JobByJobIdRetry_Response_409 | POST_JobByJobIdRetry_Response_422;
+
+/**
+ * 200 response for POST JobByJobIdRetry endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST JobByJobIdRetry endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/retry
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdRetry_Response} - The main response type definition
+ * @see {@link Job} - The actual schema type definition
+ */
+export type POST_JobByJobIdRetry_Response_200 = Job
+
+/**
+ * 404 response for POST JobByJobIdRetry endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST JobByJobIdRetry endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/retry
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdRetry_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_JobByJobIdRetry_Response_404 = Problem
+
+/**
+ * 409 response for POST JobByJobIdRetry endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 409 status code
+ * of the POST JobByJobIdRetry endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/retry
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdRetry_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_JobByJobIdRetry_Response_409 = Problem
+
+/**
+ * 422 response for POST JobByJobIdRetry endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST JobByJobIdRetry endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/job/{job_id}/retry
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobByJobIdRetry_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_JobByJobIdRetry_Response_422 = HTTPValidationError
+
+/**
  * Response types for GET Jobs endpoint
  *
  * List batches for organization
@@ -10381,6 +10477,87 @@ export type POST_JobsByBatchIdResume_Response_404 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type POST_JobsByBatchIdResume_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST JobsByBatchIdRetry endpoint
+ *
+ * Retry failed and dead-lettered jobs in a batch
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST JobsByBatchIdRetry endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/retry
+ * @param batch_id (path) - Batch ID
+ * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
+ *
+ * @see {@link POST_JobsByBatchIdRetry_Response_200} - 200 response type
+ * @see {@link POST_JobsByBatchIdRetry_Response_404} - 404 response type
+ * @see {@link POST_JobsByBatchIdRetry_Response_422} - 422 response type
+ *
+
+ */
+export type POST_JobsByBatchIdRetry_Response = POST_JobsByBatchIdRetry_Response_200 | POST_JobsByBatchIdRetry_Response_404 | POST_JobsByBatchIdRetry_Response_422;
+
+/**
+ * 200 response for POST JobsByBatchIdRetry endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST JobsByBatchIdRetry endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/retry
+ * @param batch_id (path) - Batch ID
+ * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
+ *
+ * @see {@link POST_JobsByBatchIdRetry_Response} - The main response type definition
+ * @see {@link JobBatchRetry} - The actual schema type definition
+ */
+export type POST_JobsByBatchIdRetry_Response_200 = JobBatchRetry
+
+/**
+ * 404 response for POST JobsByBatchIdRetry endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST JobsByBatchIdRetry endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/retry
+ * @param batch_id (path) - Batch ID
+ * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
+ *
+ * @see {@link POST_JobsByBatchIdRetry_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_JobsByBatchIdRetry_Response_404 = Problem
+
+/**
+ * 422 response for POST JobsByBatchIdRetry endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST JobsByBatchIdRetry endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/jobs/{batch_id}/retry
+ * @param batch_id (path) - Batch ID
+ * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
+ *
+ * @see {@link POST_JobsByBatchIdRetry_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_JobsByBatchIdRetry_Response_422 = HTTPValidationError
 
 /**
  * Response types for GET Organizations endpoint

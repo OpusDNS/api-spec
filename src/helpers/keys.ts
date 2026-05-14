@@ -219,6 +219,7 @@ import { IpRestriction } from './schemas';
 import { IpRestrictionUpdate } from './schemas';
 import { JobBatchMetadata } from './schemas';
 import { JobBatchRequest } from './schemas';
+import { JobBatchRetry } from './schemas';
 import { JobBatchStatus } from './schemas';
 import { JobCountsByStatus } from './schemas';
 import { Job } from './schemas';
@@ -26647,6 +26648,84 @@ export const KEYS_JOB_BATCH_REQUEST = [
   KEY_JOB_BATCH_REQUEST_NOT_BEFORE,
   KEY_JOB_BATCH_REQUEST_PAUSED,
 ] as const satisfies (keyof JobBatchRequest)[];
+
+/**
+ * Batch Id
+ *
+ * TypeID identifying this batch
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `batch_id` property of JobBatchRetry objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchretry[KEY_JOB_BATCH_RETRY_BATCH_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_RETRY_BATCH_ID;
+ * const value = jobbatchretry[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchRetry} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_RETRY} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_RETRY_BATCH_ID: keyof JobBatchRetry = 'batch_id';
+/**
+ * Retried Count
+ *
+ * Number of FAILED/DEAD_LETTER jobs reset to QUEUED for retry
+ *
+ * @type {integer}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `retried_count` property of JobBatchRetry objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchretry[KEY_JOB_BATCH_RETRY_RETRIED_COUNT];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_RETRY_RETRIED_COUNT;
+ * const value = jobbatchretry[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchRetry} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_RETRY} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_RETRY_RETRIED_COUNT: keyof JobBatchRetry = 'retried_count';
+
+/**
+ * Array of all JobBatchRetry property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for JobBatchRetry objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_JOB_BATCH_RETRY) {
+ *   console.log(`Property: ${key}, Value: ${jobbatchretry[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_JOB_BATCH_RETRY.includes(someKey);
+ * ```
+ *
+ * @see {@link JobBatchRetry} - The TypeScript type definition
+ */
+export const KEYS_JOB_BATCH_RETRY = [
+  KEY_JOB_BATCH_RETRY_BATCH_ID,
+  KEY_JOB_BATCH_RETRY_RETRIED_COUNT,
+] as const satisfies (keyof JobBatchRetry)[];
 
 /**
  * Batch Id

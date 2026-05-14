@@ -4958,6 +4958,46 @@ export type POST_JobJobIdResume_Request = {
 export type POST_JobJobIdResume_Request_Path = POST_JobJobIdResume_Request['parameters']['path'];
 
 /**
+ * Request type for POST JobJobIdRetry endpoint
+ *
+ * Retry a failed or dead-lettered job
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST JobJobIdRetry endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/job/{job_id}/retry
+ * @param job_id (path) - Job ID
+ *
+ * @see {@link POST_JobJobIdRetry_Request_Query} - Query parameters type
+ * @see {@link POST_JobJobIdRetry_Request_Path} - Path parameters type
+ * @see {@link POST_JobJobIdRetry_Request_Body} - Request body type
+ */
+export type POST_JobJobIdRetry_Request = {
+  parameters: {
+    path: operations['retry_job_v1_job__job_id__retry_post']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for POST /v1/job/{job_id}/retry
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/job/{job_id}/retry endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/job/{job_id}/retry
+ * @param job_id (path) - Job ID
+ */
+export type POST_JobJobIdRetry_Request_Path = POST_JobJobIdRetry_Request['parameters']['path'];
+
+/**
  * Request type for GET Jobs endpoint
  *
  * List batches for organization
@@ -5256,6 +5296,62 @@ export type POST_JobsBatchIdResume_Request = {
  * @param batch_id (path) - Batch ID
  */
 export type POST_JobsBatchIdResume_Request_Path = POST_JobsBatchIdResume_Request['parameters']['path'];
+
+/**
+ * Request type for POST JobsBatchIdRetry endpoint
+ *
+ * Retry failed and dead-lettered jobs in a batch
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST JobsBatchIdRetry endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/jobs/{batch_id}/retry
+ * @param batch_id (path) - Batch ID
+ * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
+ *
+ * @see {@link POST_JobsBatchIdRetry_Request_Query} - Query parameters type
+ * @see {@link POST_JobsBatchIdRetry_Request_Path} - Path parameters type
+ * @see {@link POST_JobsBatchIdRetry_Request_Body} - Request body type
+ */
+export type POST_JobsBatchIdRetry_Request = {
+  parameters: {
+    query: operations['retry_batch_v1_jobs__batch_id__retry_post']['parameters']['query'];
+    path: operations['retry_batch_v1_jobs__batch_id__retry_post']['parameters']['path'];
+  };
+}
+/**
+ * Query parameters for POST /v1/jobs/{batch_id}/retry
+ *
+ * @remarks
+ * This type defines the query parameters for the POST /v1/jobs/{batch_id}/retry endpoint.
+ * It provides type safety for all query parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for query parameters.
+ *
+ * @path /v1/jobs/{batch_id}/retry
+ * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
+ */
+export type POST_JobsBatchIdRetry_Request_Query = POST_JobsBatchIdRetry_Request['parameters']['query'];
+/**
+ * Path parameters for POST /v1/jobs/{batch_id}/retry
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/jobs/{batch_id}/retry endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/jobs/{batch_id}/retry
+ * @param batch_id (path) - Batch ID
+ */
+export type POST_JobsBatchIdRetry_Request_Path = POST_JobsBatchIdRetry_Request['parameters']['path'];
 
 /**
  * Request type for GET Organizations endpoint

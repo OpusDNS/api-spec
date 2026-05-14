@@ -3925,6 +3925,22 @@ export type JobBatchMetadata = components['schemas']['JobBatchMetadataResponse']
  */
 export type JobBatchRequest = components['schemas']['JobBatchRequest'];
 /**
+ * JobBatchRetryResponse
+ *
+ * @remarks
+ * Type alias for the `JobBatchRetryResponse` OpenAPI schema.
+ * This type represents jobbatchretryresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getJobBatchRetry();
+ * const item: JobBatchRetry = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type JobBatchRetry = components['schemas']['JobBatchRetryResponse'];
+/**
  * JobBatchStatusResponse
  *
  * @remarks
