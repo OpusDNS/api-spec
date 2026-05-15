@@ -3113,6 +3113,16 @@ components:
       type: object
     DomainCreateBulkInstance:
       properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Override attributes for this domain
+          title: Attributes
         auth_code:
           anyOf:
           - maxLength: 32
@@ -3185,6 +3195,16 @@ components:
       type: object
     DomainCreateBulkTemplate:
       properties:
+        attributes:
+          anyOf:
+          - additionalProperties:
+              type: string
+            propertyNames:
+              $ref: '#/components/schemas/DomainAttributeKey'
+            type: object
+          - type: 'null'
+          description: Additional attributes of the domain
+          title: Attributes
         auth_code:
           anyOf:
           - maxLength: 32
@@ -11327,7 +11347,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-14-144015
+  version: 2026-05-15-120103
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

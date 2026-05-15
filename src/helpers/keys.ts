@@ -12940,6 +12940,31 @@ export const KEYS_DOMAIN_CREATE_BULK_COMMAND = [
 ] as const satisfies (keyof DomainCreateBulkCommand)[];
 
 /**
+ * Attributes
+ *
+ * Override attributes for this domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainCreateBulkInstance objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulkinstance[KEY_DOMAIN_CREATE_BULK_INSTANCE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_INSTANCE_ATTRIBUTES;
+ * const value = domaincreatebulkinstance[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_INSTANCE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_INSTANCE_ATTRIBUTES: keyof DomainCreateBulkInstance = 'attributes';
+/**
  * Auth Code
  *
  * Override auth code for this domain
@@ -13162,6 +13187,7 @@ export const KEY_DOMAIN_CREATE_BULK_INSTANCE_RENEWAL_MODE: keyof DomainCreateBul
  * @see {@link DomainCreateBulkInstance} - The TypeScript type definition
  */
 export const KEYS_DOMAIN_CREATE_BULK_INSTANCE = [
+  KEY_DOMAIN_CREATE_BULK_INSTANCE_ATTRIBUTES,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_AUTH_CODE,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_CONTACTS,
   KEY_DOMAIN_CREATE_BULK_INSTANCE_CREATE_ZONE,
@@ -13249,6 +13275,31 @@ export const KEYS_DOMAIN_CREATE_BULK_PAYLOAD = [
   KEY_DOMAIN_CREATE_BULK_PAYLOAD_TEMPLATE,
 ] as const satisfies (keyof DomainCreateBulkPayload)[];
 
+/**
+ * Attributes
+ *
+ * Additional attributes of the domain
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attributes` property of DomainCreateBulkTemplate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domaincreatebulktemplate[KEY_DOMAIN_CREATE_BULK_TEMPLATE_ATTRIBUTES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_CREATE_BULK_TEMPLATE_ATTRIBUTES;
+ * const value = domaincreatebulktemplate[propertyName];
+ * ```
+ *
+ * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN_CREATE_BULK_TEMPLATE} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_ATTRIBUTES: keyof DomainCreateBulkTemplate = 'attributes';
 /**
  * Auth Code
  *
@@ -13421,6 +13472,7 @@ export const KEY_DOMAIN_CREATE_BULK_TEMPLATE_RENEWAL_MODE: keyof DomainCreateBul
  * @see {@link DomainCreateBulkTemplate} - The TypeScript type definition
  */
 export const KEYS_DOMAIN_CREATE_BULK_TEMPLATE = [
+  KEY_DOMAIN_CREATE_BULK_TEMPLATE_ATTRIBUTES,
   KEY_DOMAIN_CREATE_BULK_TEMPLATE_AUTH_CODE,
   KEY_DOMAIN_CREATE_BULK_TEMPLATE_CONTACTS,
   KEY_DOMAIN_CREATE_BULK_TEMPLATE_CREATE_ZONE,

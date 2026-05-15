@@ -4553,6 +4553,13 @@ export interface components {
         /** DomainCreateBulkInstance */
         DomainCreateBulkInstance: {
             /**
+             * Attributes
+             * @description Override attributes for this domain
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
+            /**
              * Auth Code
              * @description Override auth code for this domain
              */
@@ -4593,6 +4600,13 @@ export interface components {
         };
         /** DomainCreateBulkTemplate */
         DomainCreateBulkTemplate: {
+            /**
+             * Attributes
+             * @description Additional attributes of the domain
+             */
+            attributes?: {
+                [key: string]: string;
+            } | null;
             /**
              * Auth Code
              * @description The auth code used for the domain
