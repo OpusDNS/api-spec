@@ -6720,6 +6720,25 @@ components:
           - type: 'null'
           description: Error type if the job failed (e.g., ValidationError, TimeoutError)
           title: Error Class
+        error_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Stable semantic error code propagated verbatim from the failing
+            upstream service (e.g. 'ERROR_DOMAIN_TRANSFER_INVALID_AUTH_CODE'). Suitable
+            for i18n / per-error UI branching. Null when the job did not fail or the
+            upstream error did not carry a code.
+          title: Error Code
+        error_details:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: "Full upstream problem-details payload (RFC 9457) preserved\
+            \ verbatim \u2014 e.g. type/title/status/code/detail plus service-specific\
+            \ extras like domain_name, reason. Null when the failure didn't originate\
+            \ from a typed upstream response."
+          title: Error Details
         error_message:
           anyOf:
           - type: string
@@ -11486,7 +11505,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-18-161414
+  version: 2026-05-18-215758
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -22219,8 +22238,18 @@ paths:
                       created_on: '2025-01-15T10:00:00Z'
                       display: Update Domain 'flaky-domain.com'
                       domain_name: flaky-domain.com
-                      error_class: RegistryError
-                      error_message: Registry unavailable after 5 retry attempts
+                      error_class: DomainsClientError
+                      error_code: ERROR_DOMAIN_TRANSFER_INVALID_AUTH_CODE
+                      error_details:
+                        code: ERROR_DOMAIN_TRANSFER_INVALID_AUTH_CODE
+                        detail: There was an error transferring the domain
+                        domain_name: flaky-domain.com
+                        reason: Domain transfer failed, invalid auth code provided
+                        status: 403
+                        title: Domain Transfer Error
+                        type: domain-transfer-invalid-auth
+                      error_message: 'Domains service error: There was an error transferring
+                        the domain'
                       finished_at: '2025-01-15T10:15:30Z'
                       job_id: job_01h45ytscbebyvny4gc8cr8ma7
                       operation: update

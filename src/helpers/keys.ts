@@ -27939,6 +27939,56 @@ export const KEY_JOB_DOMAIN_NAME: keyof Job = 'domain_name';
  */
 export const KEY_JOB_ERROR_CLASS: keyof Job = 'error_class';
 /**
+ * Error Code
+ *
+ * Stable semantic error code propagated verbatim from the failing upstream service (e.g. 'ERROR_DOMAIN_TRANSFER_INVALID_AUTH_CODE'). Suitable for i18n / per-error UI branching. Null when the job did not fail or the upstream error did not carry a code.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `error_code` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_ERROR_CODE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_ERROR_CODE;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_ERROR_CODE: keyof Job = 'error_code';
+/**
+ * Error Details
+ *
+ * Full upstream problem-details payload (RFC 9457) preserved verbatim — e.g. type/title/status/code/detail plus service-specific extras like domain_name, reason. Null when the failure didn't originate from a typed upstream response.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `error_details` property of Job objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = job[KEY_JOB_ERROR_DETAILS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_ERROR_DETAILS;
+ * const value = job[propertyName];
+ * ```
+ *
+ * @see {@link Job} - The TypeScript type definition
+ * @see {@link KEYS_JOB} - Array of all keys for this type
+ */
+export const KEY_JOB_ERROR_DETAILS: keyof Job = 'error_details';
+/**
  * Error Message
  *
  * Detailed error message if the job failed
@@ -28217,6 +28267,8 @@ export const KEYS_JOB = [
   KEY_JOB_DISPLAY,
   KEY_JOB_DOMAIN_NAME,
   KEY_JOB_ERROR_CLASS,
+  KEY_JOB_ERROR_CODE,
+  KEY_JOB_ERROR_DETAILS,
   KEY_JOB_ERROR_MESSAGE,
   KEY_JOB_FINISHED_AT,
   KEY_JOB_JOB_ID,

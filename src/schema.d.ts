@@ -6955,6 +6955,18 @@ export interface components {
              */
             error_class?: string | null;
             /**
+             * Error Code
+             * @description Stable semantic error code propagated verbatim from the failing upstream service (e.g. 'ERROR_DOMAIN_TRANSFER_INVALID_AUTH_CODE'). Suitable for i18n / per-error UI branching. Null when the job did not fail or the upstream error did not carry a code.
+             */
+            error_code?: string | null;
+            /**
+             * Error Details
+             * @description Full upstream problem-details payload (RFC 9457) preserved verbatim — e.g. type/title/status/code/detail plus service-specific extras like domain_name, reason. Null when the failure didn't originate from a typed upstream response.
+             */
+            error_details?: {
+                [key: string]: unknown;
+            } | null;
+            /**
              * Error Message
              * @description Detailed error message if the job failed
              */
