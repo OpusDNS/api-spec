@@ -34,7 +34,7 @@
 
 import { DomainDnssecDataArray, OrganizationAttribute2Array, IpRestrictionArray, TldResponseShortArray } from './schemas-arrays.d';
 
-import { Context, Problem, HTTPValidationError, ConversationList, Conversation, ContextList, MessageList, Message, MemoryFactList, MemoryFact, Pagination_EmailForwardLog, Pagination_ObjectLog, Pagination_RequestHistory, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, ClaimsNotices, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventResponse, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, JobBatchRetry, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
+import { Context, Problem, HTTPValidationError, ConversationList, Conversation, ContextList, MessageList, Message, MemoryFactList, MemoryFact, Pagination_EmailForwardLog, Pagination_ObjectLog, Pagination_RequestHistory, DomainAvailabilityList, Pagination_Contact, ContactSchema, Pagination_ContactAttributeSet, ContactAttributeSet, Contact, ContactAttributeLink, ContactVerification, ContactAttestRes, Pagination_DnsZone, DnsZone, DnsChanges, DomainForwardZone, EmailForwardZone, Pagination_DomainForwardZone, Pagination_EmailForwardZone, DnsZoneSummary, Pagination_DomainForward, DomainForward, DomainForwardSet, DomainForwardMetrics, DomainForwardBrowserStats, DomainForwardGeoStats, DomainForwardPlatformStats, DomainForwardReferrerStats, DomainForwardStatusCodeStats, DomainForwardMetricsTimeSeries, DomainForwardUserAgentStats, DomainForwardVisitsByKey, DomainSearch, Pagination_Domain, Domain, DomainRenew, DomainRestore, DomainCheck, ClaimsNotices, DomainSummary, DomainWithdraw, RequestAuthcode, DomainTransit, RequestAuthcode2, Pagination_EmailForward, EmailForward, EmailForwardAlias, EmailForwardMetrics, Pagination_Event, EventResponse, Job, Pagination_JobBatchMetadata, CreateJobBatch, JobBatchStatus, Pagination_Job, JobBatchRetry, Pagination_Organization, Organization, OrganizationWithBillingData, Pagination_Invoice, GetPrices, Pagination_BillingTransaction, BillingTransaction, IpRestriction, Pagination_UserPublic, Pagination_Parking, ParkingMetrics, ParkingTotalMetrics, ParkingSignup, ParkingSignupStatus, PublicReportListRes, PublicReportRes, Pagination_Tag, Tag, ObjectTagChanges2, TldSpecification, UserPublic, UserPublicWithAttributes, PermissionSet, RelationSet, UserWithRelationPermissions } from './schemas.d';
 
 /**
  * Response types for GET AiConciergeContextsByContextId endpoint
@@ -3256,6 +3256,116 @@ export type PUT_ContactsByContactIdVerification_Response_404 = Problem
  * @see {@link HTTPValidationError} - The actual schema type definition
  */
 export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationError
+
+/**
+ * Response types for POST ContactsByContactIdVerificationsAttest endpoint
+ *
+ * Attest a contact verification
+ * Submit one or more contact-verification attestations. Returns the per-claim verification state.
+ *
+ * @remarks
+ * This type defines all possible response structures for the POST ContactsByContactIdVerificationsAttest endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_200} - 200 response type
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_400} - 400 response type
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_401} - 401 response type
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_422} - 422 response type
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_502} - 502 response type
+ *
+
+ */
+export type POST_ContactsByContactIdVerificationsAttest_Response = POST_ContactsByContactIdVerificationsAttest_Response_200 | POST_ContactsByContactIdVerificationsAttest_Response_400 | POST_ContactsByContactIdVerificationsAttest_Response_401 | POST_ContactsByContactIdVerificationsAttest_Response_422 | POST_ContactsByContactIdVerificationsAttest_Response_502;
+
+/**
+ * 200 response for POST ContactsByContactIdVerificationsAttest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the POST ContactsByContactIdVerificationsAttest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response} - The main response type definition
+ * @see {@link ContactAttestRes} - The actual schema type definition
+ */
+export type POST_ContactsByContactIdVerificationsAttest_Response_200 = ContactAttestRes
+
+/**
+ * 400 response for POST ContactsByContactIdVerificationsAttest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 400 status code
+ * of the POST ContactsByContactIdVerificationsAttest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ContactsByContactIdVerificationsAttest_Response_400 = Problem
+
+/**
+ * 401 response for POST ContactsByContactIdVerificationsAttest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the POST ContactsByContactIdVerificationsAttest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ContactsByContactIdVerificationsAttest_Response_401 = Problem
+
+/**
+ * 422 response for POST ContactsByContactIdVerificationsAttest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the POST ContactsByContactIdVerificationsAttest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type POST_ContactsByContactIdVerificationsAttest_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for POST ContactsByContactIdVerificationsAttest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the POST ContactsByContactIdVerificationsAttest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ContactsByContactIdVerificationsAttest_Response_502 = Problem
 
 /**
  * Response types for GET ContactsVerification endpoint

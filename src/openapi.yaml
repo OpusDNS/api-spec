@@ -468,6 +468,50 @@ components:
       - not_in
       title: ConditionOperator
       type: string
+    ContactAttestReq:
+      properties:
+        attestations:
+          items:
+            $ref: '#/components/schemas/ContactAttestVerificationReq'
+          maxItems: 50
+          minItems: 0
+          title: Attestations
+          type: array
+      required:
+      - attestations
+      title: ContactAttestReq
+      type: object
+    ContactAttestRes:
+      properties:
+        verifications:
+          items:
+            $ref: '#/components/schemas/ContactVerificationStatus'
+          title: Verifications
+          type: array
+      required:
+      - verifications
+      title: ContactAttestRes
+      type: object
+    ContactAttestVerificationReq:
+      properties:
+        attestation_reference:
+          maxLength: 255
+          minLength: 0
+          title: Attestation Reference
+          type: string
+        claim:
+          $ref: '#/components/schemas/ContactVerificationClaim'
+        method:
+          $ref: '#/components/schemas/ContactVerificationMethod'
+        proof:
+          $ref: '#/components/schemas/ContactVerificationProof'
+      required:
+      - claim
+      - method
+      - proof
+      - attestation_reference
+      title: ContactAttestVerificationReq
+      type: object
     ContactAttributeDefinition:
       description: Definition of a possible attribute for a TLD.
       properties:
@@ -1546,6 +1590,15 @@ components:
       - type
       title: ContactVerificationApiResponse
       type: object
+    ContactVerificationClaim:
+      enum:
+      - NAME
+      - ADDRESS
+      - EMAIL
+      - PHONE
+      - LEGAL_ENTITY
+      title: ContactVerificationClaim
+      type: string
     ContactVerificationEmailResponse:
       properties:
         canceled_on:
@@ -1602,6 +1655,40 @@ components:
       - type
       title: ContactVerificationEmailResponse
       type: object
+    ContactVerificationMethod:
+      enum:
+      - AUTH
+      - VDIG
+      - ELECTRONIC_DOCUMENT
+      - PHYSICAL_DOCUMENT
+      - BVR
+      - PVR
+      - DATA
+      - REACHABILITY
+      title: ContactVerificationMethod
+      type: string
+    ContactVerificationProof:
+      enum:
+      - IDCARD
+      - PASSPORT
+      - POPULATION_REGISTER
+      - RESIDENCE_PERMIT
+      - PROOF_OF_ARRIVAL
+      - DRIVERS_LICENCE
+      - COMPANY_REGISTER
+      - COMPANY_STATEMENT
+      - BANK_ACCOUNT
+      - ONLINE_PAYMENT_ACCOUNT
+      - UTILITY_ACCOUNT
+      - BANK_STATEMENT
+      - TAX_STATEMENT
+      - WRITTEN_ATTESTATION
+      - DIGITAL_ATTESTATION
+      - POSTAL_VER_TRANSACTION_LOG
+      - EMAIL_VER_TRANSACTION_LOG
+      - ADDRESS_DATABASE
+      title: ContactVerificationProof
+      type: string
     ContactVerificationResponse:
       properties:
         canceled_on:
@@ -1657,6 +1744,50 @@ components:
       required:
       - type
       title: ContactVerificationResponse
+      type: object
+    ContactVerificationState:
+      enum:
+      - UNVERIFIED
+      - VERIFIED
+      - IN_PROGRESS
+      - EXPIRED
+      title: ContactVerificationState
+      type: string
+    ContactVerificationStatus:
+      properties:
+        attestation_reference:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Attestation Reference
+        claim:
+          $ref: '#/components/schemas/ContactVerificationClaim'
+        expires_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Expires On
+        method:
+          anyOf:
+          - $ref: '#/components/schemas/ContactVerificationMethod'
+          - type: 'null'
+        proof:
+          anyOf:
+          - $ref: '#/components/schemas/ContactVerificationProof'
+          - type: 'null'
+        state:
+          $ref: '#/components/schemas/ContactVerificationState'
+        verified_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          title: Verified On
+      required:
+      - claim
+      - state
+      title: ContactVerificationStatus
       type: object
     ContactsBase:
       properties:
@@ -11355,7 +11486,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-18-155947
+  version: 2026-05-18-161414
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -14429,6 +14560,87 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Complete contact verification by contact ID
+      tags:
+      - contact
+  /v1/contacts/{contact_id}/verifications/attest:
+    post:
+      description: Submit one or more contact-verification attestations. Returns the
+        per-claim verification state.
+      operationId: attest_contact_verification_v1_contacts__contact_id__verifications_attest_post
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactAttestReq'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactAttestRes'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF
+                detail: All attestations in a single submission must share the same
+                  method and proof. Submit separate requests if you used different
+                  methods or proofs.
+                domain_name: Additional error context.
+                status: 400
+                title: Domain Verification Inconsistent Method/Proof
+                type: domain-verification-inconsistent-method-proof
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR
+                detail: Additional error context.
+                status: 502
+                title: Contact Verification Service Error
+                type: contact-verification-upstream
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Attest a contact verification
       tags:
       - contact
   /v1/dns:
@@ -25344,9 +25556,61 @@ tags:
     \n            }\n          }\n        ]\n      }\n    ]\n  }\n}\n```\n"
   name: jobs
   x-displayName: Jobs
-- description: 'Endpoints for creating and managing contacts.
-
-    '
+- description: "Endpoints for creating and managing contacts.\n\n### Contact Verification\
+    \ Attestation\n\n`POST /v1/contacts/{contact_id}/verifications/attest` submits\
+    \ attestations for a contact. The request is forwarded synchronously to the contact-verification\
+    \ service, which is the source of truth for the response. When DENIC is among\
+    \ the registries that flagged the contact for verification, OpusDNS additionally\
+    \ queues a registry-side attest job behind the scenes.\n\n#### Workflow\n\nWhen\
+    \ a registry signals that a contact requires verification (e.g. DENIC's `contactVerificationRequired`\
+    \ notification), OpusDNS marks each affected domain with the `VERIFICATION_REQUIRED`\
+    \ status tag. Submit attestations via this endpoint and the response reports the\
+    \ resulting per-claim verification state.\n\n#### Request format\n\nThe request\
+    \ body wraps the attestations under `attestations`. Fields are snake_case and\
+    \ enum values are UPPERCASE.\n\n```json\n{\n  \"attestations\": [\n    {\n   \
+    \   \"claim\": \"NAME\",\n      \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\"\
+    ,\n      \"attestation_reference\": \"ticket-12345\"\n    }\n  ]\n}\n```\n\n|\
+    \ Field | Type | Notes |\n|-------|------|-------|\n| `claim` | enum | `NAME`,\
+    \ `ADDRESS`, `EMAIL`, `PHONE`, `LEGAL_ENTITY` |\n| `method` | enum | `AUTH`, `VDIG`,\
+    \ `ELECTRONIC_DOCUMENT`, `PHYSICAL_DOCUMENT`, `BVR`, `PVR`, `DATA`, `REACHABILITY`\
+    \ |\n| `proof` | enum | `IDCARD`, `PASSPORT`, `POPULATION_REGISTER`, `RESIDENCE_PERMIT`,\
+    \ `PROOF_OF_ARRIVAL`, `DRIVERS_LICENCE`, `COMPANY_REGISTER`, `COMPANY_STATEMENT`,\
+    \ `BANK_ACCOUNT`, `ONLINE_PAYMENT_ACCOUNT`, `UTILITY_ACCOUNT`, `BANK_STATEMENT`,\
+    \ `TAX_STATEMENT`, `WRITTEN_ATTESTATION`, `DIGITAL_ATTESTATION`, `POSTAL_VER_TRANSACTION_LOG`,\
+    \ `EMAIL_VER_TRANSACTION_LOG`, `ADDRESS_DATABASE` |\n| `attestation_reference`\
+    \ | string | Caller-supplied reference (e.g. internal ticket ID, document hash).\
+    \ Up to 255 chars. |\n\n**DENIC-only constraint:** when the contact has DENIC\
+    \ verification pending, all items in a single request must share the same `method`,\
+    \ `proof`, and `attestation_reference`. DENIC's `contactUPDATE` carries one verification\
+    \ block per call; the API enforces this only when DENIC is in scope so callers\
+    \ see a synchronous 400 instead of a partial-success. Contacts not pending DENIC\
+    \ verification accept heterogeneous batches.\n\n#### Response\n\nThe endpoint\
+    \ returns **HTTP 200 OK** with an object containing the per-claim verification\
+    \ state from the contact-verification service:\n\n```json\n{\n  \"verifications\"\
+    : [\n    {\n      \"claim\": \"NAME\",\n      \"state\": \"VERIFIED\",\n     \
+    \ \"method\": \"AUTH\",\n      \"proof\": \"IDCARD\",\n      \"attestation_reference\"\
+    : \"ticket-12345\",\n      \"verified_on\": \"2026-05-15T12:00:00Z\",\n      \"\
+    expires_on\": null\n    }\n  ]\n}\n```\n\n| Field | Type | Notes |\n|-------|------|-------|\n\
+    | `claim` | enum | The claim this entry describes. |\n| `state` | enum | `UNVERIFIED`,\
+    \ `VERIFIED`, `IN_PROGRESS`, `EXPIRED`. |\n| `method` | enum or null | The method\
+    \ that produced the current state. |\n| `proof` | enum or null | The proof that\
+    \ produced the current state. |\n| `attestation_reference` | string or null |\
+    \ Reference recorded with the current state. |\n| `verified_on` | RFC3339 datetime\
+    \ or null | When the claim entered the `VERIFIED` state. |\n| `expires_on` | RFC3339\
+    \ datetime or null | When the current verification expires. |\n\nWhen DENIC verification\
+    \ was pending for the contact, the registry-side `contactUPDATE` is queued behind\
+    \ the scenes and emits a `CONTACT/VERIFICATION/SUCCESS` or `CONTACT/VERIFICATION/FAILURE`\
+    \ poll-message event keyed on `contact_id`. The `VERIFICATION_REQUIRED` status\
+    \ tag on the affected domains is cleared on success.\n\n#### Error codes\n\n|\
+    \ Code | Status | Meaning |\n|------|--------|---------|\n| `ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF`\
+    \ | 400 | DENIC verification is pending for this contact and items in the request\
+    \ disagree on `method`, `proof`, or `attestation_reference`. |\n| `ERROR_DOMAIN_VERIFICATION_INVALID_COMBINATION`\
+    \ | (async) | The registry rejected the DENIC attestation as an invalid method/proof/reference\
+    \ combination. Surfaces as a `CONTACT/VERIFICATION/FAILURE` poll-message event.\
+    \ |\n| `ERROR_DOMAIN_VERIFICATION_REGISTRY_REJECTED` | (async) | DENIC accepted\
+    \ the submission at the protocol level but indicated the verification attempt\
+    \ itself was not successful. Surfaces as a `CONTACT/VERIFICATION/FAILURE` poll-message\
+    \ event. |\n"
   name: contact
   x-displayName: Contacts
 - description: "Endpoints for managing DNS zones and records.\n\n### Zone, RRset,\

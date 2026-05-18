@@ -471,6 +471,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/contacts/{contact_id}/verifications/attest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Attest a contact verification
+         * @description Submit one or more contact-verification attestations. Returns the per-claim verification state.
+         */
+        post: operations["attest_contact_verification_v1_contacts__contact_id__verifications_attest_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/dns": {
         parameters: {
             query?: never;
@@ -2748,6 +2768,24 @@ export interface components {
          * @enum {string}
          */
         ConditionOperator: "equals" | "not_equals" | "in" | "not_in";
+        /** ContactAttestReq */
+        ContactAttestReq: {
+            /** Attestations */
+            attestations: components["schemas"]["ContactAttestVerificationReq"][];
+        };
+        /** ContactAttestRes */
+        ContactAttestRes: {
+            /** Verifications */
+            verifications: components["schemas"]["ContactVerificationStatus"][];
+        };
+        /** ContactAttestVerificationReq */
+        ContactAttestVerificationReq: {
+            /** Attestation Reference */
+            attestation_reference: string;
+            claim: components["schemas"]["ContactVerificationClaim"];
+            method: components["schemas"]["ContactVerificationMethod"];
+            proof: components["schemas"]["ContactVerificationProof"];
+        };
         /**
          * ContactAttributeDefinition
          * @description Definition of a possible attribute for a TLD.
@@ -3538,6 +3576,11 @@ export interface components {
              */
             verified_on?: Date | null;
         };
+        /**
+         * ContactVerificationClaim
+         * @enum {string}
+         */
+        ContactVerificationClaim: "NAME" | "ADDRESS" | "EMAIL" | "PHONE" | "LEGAL_ENTITY";
         /** ContactVerificationEmailResponse */
         ContactVerificationEmailResponse: {
             /**
@@ -3584,6 +3627,16 @@ export interface components {
              */
             verified_on?: Date | null;
         };
+        /**
+         * ContactVerificationMethod
+         * @enum {string}
+         */
+        ContactVerificationMethod: "AUTH" | "VDIG" | "ELECTRONIC_DOCUMENT" | "PHYSICAL_DOCUMENT" | "BVR" | "PVR" | "DATA" | "REACHABILITY";
+        /**
+         * ContactVerificationProof
+         * @enum {string}
+         */
+        ContactVerificationProof: "IDCARD" | "PASSPORT" | "POPULATION_REGISTER" | "RESIDENCE_PERMIT" | "PROOF_OF_ARRIVAL" | "DRIVERS_LICENCE" | "COMPANY_REGISTER" | "COMPANY_STATEMENT" | "BANK_ACCOUNT" | "ONLINE_PAYMENT_ACCOUNT" | "UTILITY_ACCOUNT" | "BANK_STATEMENT" | "TAX_STATEMENT" | "WRITTEN_ATTESTATION" | "DIGITAL_ATTESTATION" | "POSTAL_VER_TRANSACTION_LOG" | "EMAIL_VER_TRANSACTION_LOG" | "ADDRESS_DATABASE";
         /** ContactVerificationResponse */
         ContactVerificationResponse: {
             /**
@@ -3628,6 +3681,24 @@ export interface components {
              * Verified On
              * @description The date the verification was verified
              */
+            verified_on?: Date | null;
+        };
+        /**
+         * ContactVerificationState
+         * @enum {string}
+         */
+        ContactVerificationState: "UNVERIFIED" | "VERIFIED" | "IN_PROGRESS" | "EXPIRED";
+        /** ContactVerificationStatus */
+        ContactVerificationStatus: {
+            /** Attestation Reference */
+            attestation_reference?: string | null;
+            claim: components["schemas"]["ContactVerificationClaim"];
+            /** Expires On */
+            expires_on?: Date | null;
+            method?: components["schemas"]["ContactVerificationMethod"] | null;
+            proof?: components["schemas"]["ContactVerificationProof"] | null;
+            state: components["schemas"]["ContactVerificationState"];
+            /** Verified On */
             verified_on?: Date | null;
         };
         /** ContactsBase */
@@ -12548,6 +12619,90 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    attest_contact_verification_v1_contacts__contact_id__verifications_attest_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: TypeId<"contact">;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactAttestReq"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactAttestRes"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_VERIFICATION_INCONSISTENT_METHOD_PROOF",
+                     *       "detail": "All attestations in a single submission must share the same method and proof. Submit separate requests if you used different methods or proofs.",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "Domain Verification Inconsistent Method/Proof",
+                     *       "type": "domain-verification-inconsistent-method-proof"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Contact Verification Service Error",
+                     *       "type": "contact-verification-upstream"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

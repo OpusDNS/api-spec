@@ -21,7 +21,7 @@
  * This file is auto-generated from the OpenAPI specification.
  * Do not edit manually.
  */
-import { StatusTagType, ContactIncludeField, ZoneIncludeField, DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, TmClaim, ClaimsNotice, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, StatusTag, TagEnriched, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, Context, Conversation, DuplicateCommand, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, VerificationRegistrantDetails, VerificationClaimType, VerificationDeadline, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, MemoryFact, Message, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, TmClassDesc, TmContact, TmHolder, TmCourt, TmUdrp, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
+import { StatusTagType, ContactIncludeField, ZoneIncludeField, DomainIncludeField, DomainDnssecData, DomainDnssecDataCreate, JobStatus, OrganizationAttribute, OrganizationAttributeUpdate, IpRestriction, ReportType, ReportStatus, TagType, TldResponseShort, TmClaim, ClaimsNotice, ContactAttestVerificationReq, ContactVerificationStatus, AttributeCondition, DomainContactType, ContactCreateBulkInstance, ContactAttributeLinkDetail, StatusTag, TagEnriched, ContactAttributeDefinition, PostalAddressType, ContactConfigBase, Context, Conversation, DuplicateCommand, CommandError, DnsChange, DnsRecordCreate, DnsRecord, DnsRrsetCreate, DnsZoneCreateBulkInstance, DnsRecordPatchOp, DnsZonePatchRecordsBulkInstance, DnsRrsetPatchOp, DnsZonePatchRrsetsBulkInstance, DnsRrset, DnsZoneUpdateBulkInstance, DomainAvailabilityCheck, ContactHandle, Nameserver, DomainCreateBulkInstance, BrowserStatsBucket, GeoStatsBucket, TimeSeriesBucket, DomainForwardPatchOp, PlatformStatsBucket, HttpRedirectRequest, HttpRedirectList, ReferrerStatsBucket, StatusCodeStatsBucket, UserAgentStatsBucket, VisitsByKeyBucket, DomainForward, DeletePolicyType, SyncOperationType, DomainContact, DomainHost, DomainSearchSuggestionWithPrice, DomainStatus, DomainTransferBulkInstance, DomainClientStatus, DomainUpdateBulkInstance, VerificationRegistrantDetails, VerificationClaimType, VerificationDeadline, EmailForwardAliasCreate, EmailForwardLogEvent, EmailForwardAliasMetrics, EmailForwardAlias, EmailForward, PriceInfo, ValidationError, LaunchPhaseBase, LegalRequirementOperationType, LocalPresenceRequirementType, MemoryFact, Message, OrganizationAttribute2, User, OrganizationAttributeCreate, UserCreate, BillingTransaction, ContactAttributeSet, Contact, DnsZone, DomainForwardZone, Domain, EmailForwardLog, EmailForwardZone, EventResponse, Invoice, JobBatchMetadata, Job, ObjectLog, Organization, Parking, RequestHistory, Tag, UserPublic, ParkingCreateBulkInstance, ParkingDeleteBulkInstance, ParkingDisableBulkInstance, ParkingEnableBulkInstance, Period, Permission, PremiumAffectsType, PremiumPriceEntryRes, PremiumPricingAction, PublicReportRes, Relation, LegalRequirementBase, TldBase, TmClassDesc, TmContact, TmHolder, TmCourt, TmUdrp, PostTransferRequirements, UserAttributeBase, DomainAvailability } from './schemas.d';
 
 /**
  * StatusTagType
@@ -247,6 +247,34 @@ export type TmClaimArray = TmClaim[];
  * @see {@link ClaimsNotice} - The individual ClaimsNotice type definition
  */
 export type ClaimsNoticeArray = ClaimsNotice[];
+/**
+ * ContactAttestVerificationReq
+ *
+ * @remarks
+ * Array type for ContactAttestVerificationReq objects. Used when the API returns a collection of ContactAttestVerificationReq instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactAttestVerificationReqArray = await api.getContactAttestVerificationReqs();
+ * ```
+ *
+ * @see {@link ContactAttestVerificationReq} - The individual ContactAttestVerificationReq type definition
+ */
+export type ContactAttestVerificationReqArray = ContactAttestVerificationReq[];
+/**
+ * ContactVerificationStatus
+ *
+ * @remarks
+ * Array type for ContactVerificationStatus objects. Used when the API returns a collection of ContactVerificationStatus instances.
+ *
+ * @example
+ * ```typescript
+ * const items: ContactVerificationStatusArray = await api.getContactVerificationStatuss();
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The individual ContactVerificationStatus type definition
+ */
+export type ContactVerificationStatusArray = ContactVerificationStatus[];
 /**
  * AttributeCondition
  *

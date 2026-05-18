@@ -40,6 +40,9 @@ import { ClaimsNotice } from './schemas';
 import { ClaimsNoticesRequest } from './schemas';
 import { ClaimsNotices } from './schemas';
 import { CommandError } from './schemas';
+import { ContactAttestReq } from './schemas';
+import { ContactAttestRes } from './schemas';
+import { ContactAttestVerificationReq } from './schemas';
 import { ContactAttributeDefinition } from './schemas';
 import { ContactAttributeLinkDetail } from './schemas';
 import { ContactAttributeLink } from './schemas';
@@ -62,6 +65,7 @@ import { ContactSchema } from './schemas';
 import { ContactVerificationApi } from './schemas';
 import { ContactVerificationEmail } from './schemas';
 import { ContactVerification } from './schemas';
+import { ContactVerificationStatus } from './schemas';
 import { ContactsBase } from './schemas';
 import { Context } from './schemas';
 import { ContextCreateRequest } from './schemas';
@@ -2008,6 +2012,231 @@ export const KEYS_COMMAND_ERROR = [
   KEY_COMMAND_ERROR_RESOURCE_KEY,
   KEY_COMMAND_ERROR_TYPE,
 ] as const satisfies (keyof CommandError)[];
+
+/**
+ * Attestations
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attestations` property of ContactAttestReq objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattestreq[KEY_CONTACT_ATTEST_REQ_ATTESTATIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTEST_REQ_ATTESTATIONS;
+ * const value = contactattestreq[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttestReq} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTEST_REQ} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTEST_REQ_ATTESTATIONS: keyof ContactAttestReq = 'attestations';
+
+/**
+ * Array of all ContactAttestReq property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttestReq objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTEST_REQ) {
+ *   console.log(`Property: ${key}, Value: ${contactattestreq[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTEST_REQ.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttestReq} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTEST_REQ = [
+  KEY_CONTACT_ATTEST_REQ_ATTESTATIONS,
+] as const satisfies (keyof ContactAttestReq)[];
+
+/**
+ * Verifications
+ *
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verifications` property of ContactAttestRes objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattestres[KEY_CONTACT_ATTEST_RES_VERIFICATIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTEST_RES_VERIFICATIONS;
+ * const value = contactattestres[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttestRes} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTEST_RES} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTEST_RES_VERIFICATIONS: keyof ContactAttestRes = 'verifications';
+
+/**
+ * Array of all ContactAttestRes property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttestRes objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTEST_RES) {
+ *   console.log(`Property: ${key}, Value: ${contactattestres[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTEST_RES.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttestRes} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTEST_RES = [
+  KEY_CONTACT_ATTEST_RES_VERIFICATIONS,
+] as const satisfies (keyof ContactAttestRes)[];
+
+/**
+ * Attestation Reference
+ *
+ *
+ * @type {string}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attestation_reference` property of ContactAttestVerificationReq objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattestverificationreq[KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE;
+ * const value = contactattestverificationreq[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttestVerificationReq} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTEST_VERIFICATION_REQ} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE: keyof ContactAttestVerificationReq = 'attestation_reference';
+/**
+ * claim property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `claim` property of ContactAttestVerificationReq objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattestverificationreq[KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM;
+ * const value = contactattestverificationreq[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttestVerificationReq} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTEST_VERIFICATION_REQ} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM: keyof ContactAttestVerificationReq = 'claim';
+/**
+ * method property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `method` property of ContactAttestVerificationReq objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattestverificationreq[KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD;
+ * const value = contactattestverificationreq[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttestVerificationReq} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTEST_VERIFICATION_REQ} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD: keyof ContactAttestVerificationReq = 'method';
+/**
+ * proof property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `proof` property of ContactAttestVerificationReq objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactattestverificationreq[KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF;
+ * const value = contactattestverificationreq[propertyName];
+ * ```
+ *
+ * @see {@link ContactAttestVerificationReq} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_ATTEST_VERIFICATION_REQ} - Array of all keys for this type
+ */
+export const KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF: keyof ContactAttestVerificationReq = 'proof';
+
+/**
+ * Array of all ContactAttestVerificationReq property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactAttestVerificationReq objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_ATTEST_VERIFICATION_REQ) {
+ *   console.log(`Property: ${key}, Value: ${contactattestverificationreq[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_ATTEST_VERIFICATION_REQ.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactAttestVerificationReq} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_ATTEST_VERIFICATION_REQ = [
+  KEY_CONTACT_ATTEST_VERIFICATION_REQ_ATTESTATION_REFERENCE,
+  KEY_CONTACT_ATTEST_VERIFICATION_REQ_CLAIM,
+  KEY_CONTACT_ATTEST_VERIFICATION_REQ_METHOD,
+  KEY_CONTACT_ATTEST_VERIFICATION_REQ_PROOF,
+] as const satisfies (keyof ContactAttestVerificationReq)[];
 
 /**
  * Conditions
@@ -6548,6 +6777,205 @@ export const KEYS_CONTACT_VERIFICATION = [
   KEY_CONTACT_VERIFICATION_UPDATED_ON,
   KEY_CONTACT_VERIFICATION_VERIFIED_ON,
 ] as const satisfies (keyof ContactVerification)[];
+
+/**
+ * Attestation Reference
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `attestation_reference` property of ContactVerificationStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationstatus[KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE;
+ * const value = contactverificationstatus[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_STATUS} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE: keyof ContactVerificationStatus = 'attestation_reference';
+/**
+ * claim property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `claim` property of ContactVerificationStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationstatus[KEY_CONTACT_VERIFICATION_STATUS_CLAIM];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS_CLAIM;
+ * const value = contactverificationstatus[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_STATUS} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS_CLAIM: keyof ContactVerificationStatus = 'claim';
+/**
+ * Expires On
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `expires_on` property of ContactVerificationStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationstatus[KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON;
+ * const value = contactverificationstatus[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_STATUS} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON: keyof ContactVerificationStatus = 'expires_on';
+/**
+ * method property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `method` property of ContactVerificationStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationstatus[KEY_CONTACT_VERIFICATION_STATUS_METHOD];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS_METHOD;
+ * const value = contactverificationstatus[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_STATUS} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS_METHOD: keyof ContactVerificationStatus = 'method';
+/**
+ * proof property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `proof` property of ContactVerificationStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationstatus[KEY_CONTACT_VERIFICATION_STATUS_PROOF];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS_PROOF;
+ * const value = contactverificationstatus[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_STATUS} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS_PROOF: keyof ContactVerificationStatus = 'proof';
+/**
+ * state property
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `state` property of ContactVerificationStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationstatus[KEY_CONTACT_VERIFICATION_STATUS_STATE];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS_STATE;
+ * const value = contactverificationstatus[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_STATUS} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS_STATE: keyof ContactVerificationStatus = 'state';
+/**
+ * Verified On
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verified_on` property of ContactVerificationStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contactverificationstatus[KEY_CONTACT_VERIFICATION_STATUS_VERIFIED_ON];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_VERIFICATION_STATUS_VERIFIED_ON;
+ * const value = contactverificationstatus[propertyName];
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT_VERIFICATION_STATUS} - Array of all keys for this type
+ */
+export const KEY_CONTACT_VERIFICATION_STATUS_VERIFIED_ON: keyof ContactVerificationStatus = 'verified_on';
+
+/**
+ * Array of all ContactVerificationStatus property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for ContactVerificationStatus objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_CONTACT_VERIFICATION_STATUS) {
+ *   console.log(`Property: ${key}, Value: ${contactverificationstatus[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_CONTACT_VERIFICATION_STATUS.includes(someKey);
+ * ```
+ *
+ * @see {@link ContactVerificationStatus} - The TypeScript type definition
+ */
+export const KEYS_CONTACT_VERIFICATION_STATUS = [
+  KEY_CONTACT_VERIFICATION_STATUS_ATTESTATION_REFERENCE,
+  KEY_CONTACT_VERIFICATION_STATUS_CLAIM,
+  KEY_CONTACT_VERIFICATION_STATUS_EXPIRES_ON,
+  KEY_CONTACT_VERIFICATION_STATUS_METHOD,
+  KEY_CONTACT_VERIFICATION_STATUS_PROOF,
+  KEY_CONTACT_VERIFICATION_STATUS_STATE,
+  KEY_CONTACT_VERIFICATION_STATUS_VERIFIED_ON,
+] as const satisfies (keyof ContactVerificationStatus)[];
 
 /**
  * Authinfo Required

@@ -363,6 +363,54 @@ export type ComplianceStatus = components['schemas']['ComplianceStatus'];
  */
 export type ConditionOperator = components['schemas']['ConditionOperator'];
 /**
+ * ContactAttestReq
+ *
+ * @remarks
+ * Type alias for the `ContactAttestReq` OpenAPI schema.
+ * This type represents contactattestreq data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttestReq();
+ * const item: ContactAttestReq = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttestReq = components['schemas']['ContactAttestReq'];
+/**
+ * ContactAttestRes
+ *
+ * @remarks
+ * Type alias for the `ContactAttestRes` OpenAPI schema.
+ * This type represents contactattestres data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttestRes();
+ * const item: ContactAttestRes = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttestRes = components['schemas']['ContactAttestRes'];
+/**
+ * ContactAttestVerificationReq
+ *
+ * @remarks
+ * Type alias for the `ContactAttestVerificationReq` OpenAPI schema.
+ * This type represents contactattestverificationreq data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactAttestVerificationReq();
+ * const item: ContactAttestVerificationReq = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactAttestVerificationReq = components['schemas']['ContactAttestVerificationReq'];
+/**
  * ContactAttributeDefinition. Definition of a possible attribute for a TLD.
  *
  * @remarks
@@ -763,6 +811,22 @@ export type ContactType = components['schemas']['ContactType'];
  */
 export type ContactVerificationApi = components['schemas']['ContactVerificationApiResponse'];
 /**
+ * ContactVerificationClaim
+ *
+ * @remarks
+ * Type alias for the `ContactVerificationClaim` OpenAPI schema.
+ * This type represents contactverificationclaim data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactVerificationClaim();
+ * const item: ContactVerificationClaim = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactVerificationClaim = components['schemas']['ContactVerificationClaim'];
+/**
  * ContactVerificationEmailResponse
  *
  * @remarks
@@ -779,6 +843,38 @@ export type ContactVerificationApi = components['schemas']['ContactVerificationA
  */
 export type ContactVerificationEmail = components['schemas']['ContactVerificationEmailResponse'];
 /**
+ * ContactVerificationMethod
+ *
+ * @remarks
+ * Type alias for the `ContactVerificationMethod` OpenAPI schema.
+ * This type represents contactverificationmethod data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactVerificationMethod();
+ * const item: ContactVerificationMethod = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactVerificationMethod = components['schemas']['ContactVerificationMethod'];
+/**
+ * ContactVerificationProof
+ *
+ * @remarks
+ * Type alias for the `ContactVerificationProof` OpenAPI schema.
+ * This type represents contactverificationproof data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactVerificationProof();
+ * const item: ContactVerificationProof = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactVerificationProof = components['schemas']['ContactVerificationProof'];
+/**
  * ContactVerificationResponse
  *
  * @remarks
@@ -794,6 +890,38 @@ export type ContactVerificationEmail = components['schemas']['ContactVerificatio
  * @see {@link components} - The OpenAPI components schema definition
  */
 export type ContactVerification = components['schemas']['ContactVerificationResponse'];
+/**
+ * ContactVerificationState
+ *
+ * @remarks
+ * Type alias for the `ContactVerificationState` OpenAPI schema.
+ * This type represents contactverificationstate data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactVerificationState();
+ * const item: ContactVerificationState = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactVerificationState = components['schemas']['ContactVerificationState'];
+/**
+ * ContactVerificationStatus
+ *
+ * @remarks
+ * Type alias for the `ContactVerificationStatus` OpenAPI schema.
+ * This type represents contactverificationstatus data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getContactVerificationStatus();
+ * const item: ContactVerificationStatus = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type ContactVerificationStatus = components['schemas']['ContactVerificationStatus'];
 /**
  * ContactsBase
  *

@@ -34,7 +34,7 @@ import { operations } from '../schema';
 
 import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
 
-import { ConversationCreateRequest, ConversationPatchRequest, ContextCreateRequest, MessageCreateRequest, MemoryFactCreateRequest, MemoryFactPatchRequest, PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, ClaimsNoticesRequest, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
+import { ConversationCreateRequest, ConversationPatchRequest, ContextCreateRequest, MessageCreateRequest, MemoryFactCreateRequest, MemoryFactPatchRequest, PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, ContactAttestReq, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, ClaimsNoticesRequest, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
 
 /**
  * Request type for GET AiConciergeContextsContextId endpoint
@@ -1690,6 +1690,59 @@ export type PUT_ContactsContactIdVerification_Request_Query = PUT_ContactsContac
  * @path /v1/contacts/{contact_id}/verification
  */
 export type PUT_ContactsContactIdVerification_Request_Path = PUT_ContactsContactIdVerification_Request['parameters']['path'];
+
+/**
+ * Request type for POST ContactsContactIdVerificationsAttest endpoint
+ *
+ * Attest a contact verification
+ * Submit one or more contact-verification attestations. Returns the per-claim verification state.
+ *
+ * @remarks
+ * This type defines the complete request structure for the POST ContactsContactIdVerificationsAttest endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsContactIdVerificationsAttest_Request_Query} - Query parameters type
+ * @see {@link POST_ContactsContactIdVerificationsAttest_Request_Path} - Path parameters type
+ * @see {@link POST_ContactsContactIdVerificationsAttest_Request_Body} - Request body type
+ */
+export type POST_ContactsContactIdVerificationsAttest_Request = {
+  parameters: {
+    path: operations['attest_contact_verification_v1_contacts__contact_id__verifications_attest_post']['parameters']['path'];
+  };
+  requestBody: ContactAttestReq;
+}
+/**
+ * Path parameters for POST /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @remarks
+ * This type defines the path parameters for the POST /v1/contacts/{contact_id}/verifications/attest endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ */
+export type POST_ContactsContactIdVerificationsAttest_Request_Path = POST_ContactsContactIdVerificationsAttest_Request['parameters']['path'];
+/**
+ * Request body for POST /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @remarks
+ * This type defines the request body structure for the POST /v1/contacts/{contact_id}/verifications/attest endpoint.
+ * It provides type safety for the request body as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for request body structure.
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ */
+export type POST_ContactsContactIdVerificationsAttest_Request_Body = POST_ContactsContactIdVerificationsAttest_Request['requestBody'];
 
 /**
  * Request type for GET ContactsVerification endpoint
