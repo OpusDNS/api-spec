@@ -2201,6 +2201,7 @@ export type POST_AvailabilityStream_Response_422 = HTTPValidationError
 
  *
  * @path /v1/contacts
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
  * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
@@ -2222,6 +2223,7 @@ export type GET_Contacts_Response = GET_Contacts_Response_200 | GET_Contacts_Res
 
  *
  * @path /v1/contacts
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
  * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
@@ -2241,6 +2243,7 @@ export type GET_Contacts_Response_200 = Pagination_Contact
 
  *
  * @path /v1/contacts
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
  * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *

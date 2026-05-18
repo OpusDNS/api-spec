@@ -1304,6 +1304,15 @@ components:
           - type: 'null'
           description: The state of the contact
           title: State
+        status_tags:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/StatusTagResponse'
+            type: array
+          - type: 'null'
+          description: Status tags assigned to this contact. Only included when ?include=tags
+            is specified.
+          title: Status Tags
         street:
           description: The address of the contact
           maxLength: 255
@@ -11346,7 +11355,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-18-133136
+  version: 2026-05-18-155947
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -13368,6 +13377,24 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - description: Filter by status tag types. Can be specified multiple times.
+        in: query
+        name: status_tags
+        required: false
+        schema:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/StatusTagType'
+            type: array
+          - type: 'null'
+          description: Filter by status tag types. Can be specified multiple times.
+          title: Status Tags
+      - in: query
+        name: status_tag_mode
+        required: false
+        schema:
+          $ref: '#/components/schemas/TagFilterMode'
+          default: match_any
       - description: Filter by user tag IDs. Can be specified multiple times.
         in: query
         name: tag_ids

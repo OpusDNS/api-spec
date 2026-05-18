@@ -5223,6 +5223,31 @@ export const KEY_CONTACT_POSTAL_CODE: keyof Contact = 'postal_code';
  */
 export const KEY_CONTACT_STATE: keyof Contact = 'state';
 /**
+ * Status Tags
+ *
+ * Status tags assigned to this contact. Only included when ?include=tags is specified.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `status_tags` property of Contact objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = contact[KEY_CONTACT_STATUS_TAGS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_CONTACT_STATUS_TAGS;
+ * const value = contact[propertyName];
+ * ```
+ *
+ * @see {@link Contact} - The TypeScript type definition
+ * @see {@link KEYS_CONTACT} - Array of all keys for this type
+ */
+export const KEY_CONTACT_STATUS_TAGS: keyof Contact = 'status_tags';
+/**
  * Street
  *
  * The address of the contact
@@ -5335,6 +5360,7 @@ export const KEYS_CONTACT = [
   KEY_CONTACT_PHONE,
   KEY_CONTACT_POSTAL_CODE,
   KEY_CONTACT_STATE,
+  KEY_CONTACT_STATUS_TAGS,
   KEY_CONTACT_STREET,
   KEY_CONTACT_TAGS,
   KEY_CONTACT_TITLE,

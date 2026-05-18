@@ -3366,6 +3366,11 @@ export interface components {
              */
             state?: string | null;
             /**
+             * Status Tags
+             * @description Status tags assigned to this contact. Only included when ?include=tags is specified.
+             */
+            status_tags?: components["schemas"]["StatusTagResponse"][] | null;
+            /**
              * Street
              * @description The address of the contact
              */
@@ -11587,6 +11592,9 @@ export interface operations {
             query?: {
                 sort_by?: components["schemas"]["ContactSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Filter by status tag types. Can be specified multiple times. */
+                status_tags?: components["schemas"]["StatusTagType"][] | null;
+                status_tag_mode?: components["schemas"]["TagFilterMode"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
                 tag_ids?: TypeId<"tag">[] | null;
                 tag_mode?: components["schemas"]["TagFilterMode"];

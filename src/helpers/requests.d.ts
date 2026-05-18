@@ -1113,6 +1113,7 @@ export type POST_AvailabilityStream_Request_Body = POST_AvailabilityStream_Reque
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/contacts
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
  * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  *
@@ -1136,6 +1137,7 @@ export type GET_Contacts_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/contacts
+ * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
  * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
  * @param include (query) - Include additional data in the response. Can be specified multiple times.
  */
