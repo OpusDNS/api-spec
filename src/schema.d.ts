@@ -4424,7 +4424,7 @@ export interface components {
          * DomainAttributeKey
          * @enum {string}
          */
-        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "travel_industry_acknowledgement";
+        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "travel_industry_acknowledgement" | "verification_required";
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
