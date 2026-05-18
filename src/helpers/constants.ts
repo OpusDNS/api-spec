@@ -3165,8 +3165,6 @@ export const MESSAGE_CONTEXT_KIND = {
   ZONES: "zones",
   CONTACTS: "contacts",
   DOMAINS: "domains",
-  BATCH_IDS: "batch_ids",
-  OTHER: "other",
 } as const satisfies Record<string, MessageContextKind>;
 
 /**
@@ -3193,9 +3191,7 @@ export const MESSAGE_CONTEXT_KIND = {
 export const MESSAGE_CONTEXT_KIND_VALUES = [
   'zones',
   'contacts',
-  'domains',
-  'batch_ids',
-  'other'
+  'domains'
 ] as const satisfies [string, ...string[]] | MessageContextKind[];
 
 /**

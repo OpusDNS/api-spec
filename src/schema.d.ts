@@ -7139,7 +7139,7 @@ export interface components {
          * MessageContextKind
          * @enum {string}
          */
-        MessageContextKind: "zones" | "contacts" | "domains" | "batch_ids" | "other";
+        MessageContextKind: "zones" | "contacts" | "domains";
         /** MessageCreateRequest */
         MessageCreateRequest: {
             /** Content */
