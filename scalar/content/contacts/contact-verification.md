@@ -28,7 +28,7 @@ Verification deadlines are enforced by the registry. If you do not complete veri
 1. Identify domains requiring verification.
 2. Check which claims need to be attested for the affected contact.
 3. Submit attestations with the appropriate method, proof, and reference.
-4. Monitor until all claims reach `VERIFIED` state.
+4. Confirm the attestation result and track status tag removal.
 
 ## 1. Identify affected domains and contacts
 
@@ -246,14 +246,11 @@ format as the GET endpoint.
 | `404` | `ERROR_CONTACT_VERIFICATION_UPSTREAM_NOT_FOUND` | Contact has not been registered for verification. |
 | `502` | `ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR` | Verification service temporarily unavailable. |
 
-## 4. Monitor progress
+## 4. After attestation
 
-After submitting attestations, poll the verification status to track progress:
-
-```bash
-curl "$OPUSDNS_API_BASE/v1/contacts/$CONTACT_ID/verifications" \
-  --header "X-Api-Key: $OPUSDNS_API_KEY"
-```
+The attest endpoint returns the updated verification state for all claims
+directly in the response. You can immediately see whether each claim moved to
+`VERIFIED` or `IN_PROGRESS`.
 
 Once all claims reach the `VERIFIED` state, the registry clears the deadlines.
 OpusDNS automatically:
@@ -261,6 +258,14 @@ OpusDNS automatically:
 - Removes the `VERIFICATION_REQUIRED` status tag from the **contact** immediately after successful attestation.
 - Removes the `VERIFICATION_REQUIRED` status tag from affected **domains** on the next domain sync.
 - Sets `verification_required` to `null` on affected domain responses.
+
+If any claims are still `IN_PROGRESS` after attestation (awaiting registry
+confirmation), you can check back later using the GET endpoint:
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/contacts/$CONTACT_ID/verifications" \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
 
 You can also monitor verification-related events through the events API:
 
