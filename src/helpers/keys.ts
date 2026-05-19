@@ -339,6 +339,7 @@ import { UserWithRelationPermissions } from './schemas';
 import { ValidationError } from './schemas';
 import { VerificationDeadline } from './schemas';
 import { VerificationRegistrantDetails } from './schemas';
+import { Verification } from './schemas';
 import { VisitsByKeyBucket } from './schemas';
 import { WhoisBase } from './schemas';
 import { RequestAuthcode } from './schemas';
@@ -18174,6 +18175,31 @@ export const KEY_DOMAIN_TRANSFER_LOCK: keyof Domain = 'transfer_lock';
  * @see {@link KEYS_DOMAIN} - Array of all keys for this type
  */
 export const KEY_DOMAIN_UPDATED_ON: keyof Domain = 'updated_on';
+/**
+ * verification_required property
+ *
+ * Verification data for this domain, including pending claims and deadlines.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `verification_required` property of Domain objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = domain[KEY_DOMAIN_VERIFICATION_REQUIRED];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DOMAIN_VERIFICATION_REQUIRED;
+ * const value = domain[propertyName];
+ * ```
+ *
+ * @see {@link Domain} - The TypeScript type definition
+ * @see {@link KEYS_DOMAIN} - Array of all keys for this type
+ */
+export const KEY_DOMAIN_VERIFICATION_REQUIRED: keyof Domain = 'verification_required';
 
 /**
  * Array of all Domain property keys
@@ -18220,6 +18246,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_TLD,
   KEY_DOMAIN_TRANSFER_LOCK,
   KEY_DOMAIN_UPDATED_ON,
+  KEY_DOMAIN_VERIFICATION_REQUIRED,
 ] as const satisfies (keyof Domain)[];
 
 /**
@@ -44423,6 +44450,84 @@ export const KEYS_VERIFICATION_REGISTRANT_DETAILS = [
   KEY_VERIFICATION_REGISTRANT_DETAILS_EMAIL,
   KEY_VERIFICATION_REGISTRANT_DETAILS_NAME,
 ] as const satisfies (keyof VerificationRegistrantDetails)[];
+
+/**
+ * Claims
+ *
+ * Verification claims
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `claims` property of Verification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = verification[KEY_VERIFICATION_CLAIMS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VERIFICATION_CLAIMS;
+ * const value = verification[propertyName];
+ * ```
+ *
+ * @see {@link Verification} - The TypeScript type definition
+ * @see {@link KEYS_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_VERIFICATION_CLAIMS: keyof Verification = 'claims';
+/**
+ * Deadlines
+ *
+ * Verification deadlines
+ *
+ * @type {array}
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `deadlines` property of Verification objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = verification[KEY_VERIFICATION_DEADLINES];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_VERIFICATION_DEADLINES;
+ * const value = verification[propertyName];
+ * ```
+ *
+ * @see {@link Verification} - The TypeScript type definition
+ * @see {@link KEYS_VERIFICATION} - Array of all keys for this type
+ */
+export const KEY_VERIFICATION_DEADLINES: keyof Verification = 'deadlines';
+
+/**
+ * Array of all Verification property keys
+ *
+ * @remarks
+ * This constant provides a readonly array containing all valid property keys for Verification objects.
+ * Useful for iteration, validation, and generating dynamic UI components.
+ *
+ * @example
+ * ```typescript
+ * // Iterating through all keys
+ * for (const key of KEYS_VERIFICATION) {
+ *   console.log(`Property: ${key}, Value: ${verification[key]}`);
+ * }
+ * 
+ * // Validation
+ * const isValidKey = KEYS_VERIFICATION.includes(someKey);
+ * ```
+ *
+ * @see {@link Verification} - The TypeScript type definition
+ */
+export const KEYS_VERIFICATION = [
+  KEY_VERIFICATION_CLAIMS,
+  KEY_VERIFICATION_DEADLINES,
+] as const satisfies (keyof Verification)[];
 
 /**
  * Key

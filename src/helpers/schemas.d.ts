@@ -7029,6 +7029,22 @@ export type VerificationDeadlineType = components['schemas']['VerificationDeadli
  */
 export type VerificationRegistrantDetails = components['schemas']['VerificationRegistrantDetails'];
 /**
+ * VerificationResponse
+ *
+ * @remarks
+ * Type alias for the `VerificationResponse` OpenAPI schema.
+ * This type represents verificationresponse data structures used in API requests and responses.
+ *
+ * @example
+ * ```typescript
+ * const response = await api.getVerification();
+ * const item: Verification = response.results;
+ * ```
+ *
+ * @see {@link components} - The OpenAPI components schema definition
+ */
+export type Verification = components['schemas']['VerificationResponse'];
+/**
  * VerificationType
  *
  * @remarks

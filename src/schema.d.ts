@@ -5350,6 +5350,8 @@ export interface components {
              * @description The date/time the entry was last updated on
              */
             updated_on?: Date;
+            /** @description Verification data for this domain, including pending claims and deadlines. */
+            verification_required?: components["schemas"]["VerificationResponse"] | null;
         };
         /** DomainRestoreRequest */
         DomainRestoreRequest: {
@@ -9918,6 +9920,19 @@ export interface components {
             email: string;
             /** Name */
             name: string;
+        };
+        /** VerificationResponse */
+        VerificationResponse: {
+            /**
+             * Claims
+             * @description Verification claims
+             */
+            claims: components["schemas"]["VerificationClaimType"][];
+            /**
+             * Deadlines
+             * @description Verification deadlines
+             */
+            deadlines?: components["schemas"]["VerificationDeadline"][];
         };
         /**
          * VerificationType

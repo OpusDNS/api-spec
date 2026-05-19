@@ -4369,6 +4369,12 @@ components:
           format: date-time
           title: Updated On
           type: string
+        verification_required:
+          anyOf:
+          - $ref: '#/components/schemas/VerificationResponse'
+          - type: 'null'
+          description: Verification data for this domain, including pending claims
+            and deadlines.
       required:
       - name
       - sld
@@ -11269,6 +11275,24 @@ components:
       - email
       title: VerificationRegistrantDetails
       type: object
+    VerificationResponse:
+      properties:
+        claims:
+          description: Verification claims
+          items:
+            $ref: '#/components/schemas/VerificationClaimType'
+          title: Claims
+          type: array
+        deadlines:
+          description: Verification deadlines
+          items:
+            $ref: '#/components/schemas/VerificationDeadline'
+          title: Deadlines
+          type: array
+      required:
+      - claims
+      title: VerificationResponse
+      type: object
     VerificationType:
       enum:
       - api
@@ -11505,7 +11529,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-18-215758
+  version: 2026-05-19-074018
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
