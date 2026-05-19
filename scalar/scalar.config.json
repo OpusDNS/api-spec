@@ -305,6 +305,20 @@
                   }
                 }
               },
+              "/contacts": {
+                "type": "group",
+                "title": "Contact Verification",
+                "icon": "phosphor/regular/shield-check",
+                "children": {
+                  "/verification": {
+                    "type": "page",
+                    "title": "Contact verification",
+                    "icon": "phosphor/regular/shield-check",
+                    "filepath": "content/contacts/contact-verification.md",
+                    "showInSidebar": true
+                  }
+                }
+              },
               "/tlds": {
                 "type": "group",
                 "title": "TLD Reference",
