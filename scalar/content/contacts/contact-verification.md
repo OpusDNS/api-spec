@@ -13,8 +13,9 @@ are affected, and how to resolve verification requirements through the API.
 1. A registry (e.g., DENIC for `.de` domains) determines that a contact's
    identity needs to be verified.
 2. OpusDNS receives the verification requirement and flags all affected domains.
-3. You receive an email notification with details about the affected contacts
-   and domains.
+3. You receive an email notification and a
+   [`VERIFICATION`](/products/events/overview) event with details about the
+   affected contacts and domains.
 4. You submit attestations via the API to prove the contact's identity claims.
 5. Once all claims are verified, the registry clears the deadlines and OpusDNS
    removes the verification flags automatically.
