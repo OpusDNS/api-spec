@@ -11529,7 +11529,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-19-074018
+  version: 2026-05-19-074821
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -14605,6 +14605,79 @@ paths:
       summary: Complete contact verification by contact ID
       tags:
       - contact
+  /v1/contacts/{contact_id}/verifications:
+    get:
+      description: Retrieve the current verification state for a contact from the
+        contact-verification service.
+      operationId: get_contact_verification_status_v1_contacts__contact_id__verifications_get
+      parameters:
+      - in: path
+        name: contact_id
+        required: true
+        schema:
+          examples:
+          - contact_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Contact Id
+          type: string
+          x-typeid-prefix: contact
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactAttestRes'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_UPSTREAM_NOT_FOUND
+                contact_id: Additional error context.
+                detail: Contact is not registered with the contact-verification service.
+                status: 404
+                title: Contact Not Registered with Verification Service
+                type: contact-verification-upstream-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        '502':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR
+                detail: Additional error context.
+                status: 502
+                title: Contact Verification Service Error
+                type: contact-verification-upstream
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Gateway
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get contact verification status
+      tags:
+      - contact
   /v1/contacts/{contact_id}/verifications/attest:
     post:
       description: Submit one or more contact-verification attestations. Returns the
@@ -14662,6 +14735,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Unauthorized
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_CONTACT_VERIFICATION_UPSTREAM_NOT_FOUND
+                contact_id: Additional error context.
+                detail: Contact is not registered with the contact-verification service.
+                status: 404
+                title: Contact Not Registered with Verification Service
+                type: contact-verification-upstream-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:

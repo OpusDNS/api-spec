@@ -471,6 +471,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/contacts/{contact_id}/verifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get contact verification status
+         * @description Retrieve the current verification state for a contact from the contact-verification service.
+         */
+        get: operations["get_contact_verification_status_v1_contacts__contact_id__verifications_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/contacts/{contact_id}/verifications/attest": {
         parameters: {
             query?: never;
@@ -12650,6 +12670,86 @@ export interface operations {
             };
         };
     };
+    get_contact_verification_status_v1_contacts__contact_id__verifications_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                contact_id: TypeId<"contact">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactAttestRes"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_UPSTREAM_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact is not registered with the contact-verification service.",
+                     *       "status": 404,
+                     *       "title": "Contact Not Registered with Verification Service",
+                     *       "type": "contact-verification-upstream-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_UPSTREAM_ERROR",
+                     *       "detail": "Additional error context.",
+                     *       "status": 502,
+                     *       "title": "Contact Verification Service Error",
+                     *       "type": "contact-verification-upstream"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
     attest_contact_verification_v1_contacts__contact_id__verifications_attest_post: {
         parameters: {
             query?: never;
@@ -12703,6 +12803,23 @@ export interface operations {
                      *       "status": 401,
                      *       "title": "Authentication Error",
                      *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_CONTACT_VERIFICATION_UPSTREAM_NOT_FOUND",
+                     *       "contact_id": "Additional error context.",
+                     *       "detail": "Contact is not registered with the contact-verification service.",
+                     *       "status": 404,
+                     *       "title": "Contact Not Registered with Verification Service",
+                     *       "type": "contact-verification-upstream-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

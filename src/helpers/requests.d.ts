@@ -1692,6 +1692,45 @@ export type PUT_ContactsContactIdVerification_Request_Query = PUT_ContactsContac
 export type PUT_ContactsContactIdVerification_Request_Path = PUT_ContactsContactIdVerification_Request['parameters']['path'];
 
 /**
+ * Request type for GET ContactsContactIdVerifications endpoint
+ *
+ * Get contact verification status
+ * Retrieve the current verification state for a contact from the contact-verification service.
+ *
+ * @remarks
+ * This type defines the complete request structure for the GET ContactsContactIdVerifications endpoint.
+ * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @example
+ * Use this type to ensure type safety when making API requests to this endpoint.
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ *
+ * @see {@link GET_ContactsContactIdVerifications_Request_Query} - Query parameters type
+ * @see {@link GET_ContactsContactIdVerifications_Request_Path} - Path parameters type
+ * @see {@link GET_ContactsContactIdVerifications_Request_Body} - Request body type
+ */
+export type GET_ContactsContactIdVerifications_Request = {
+  parameters: {
+    path: operations['get_contact_verification_status_v1_contacts__contact_id__verifications_get']['parameters']['path'];
+  };
+}
+/**
+ * Path parameters for GET /v1/contacts/{contact_id}/verifications
+ *
+ * @remarks
+ * This type defines the path parameters for the GET /v1/contacts/{contact_id}/verifications endpoint.
+ * It provides type safety for all path parameters as defined in the OpenAPI specification.
+ *
+ * @example
+ * Use this type to ensure type safety for path parameters.
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ */
+export type GET_ContactsContactIdVerifications_Request_Path = GET_ContactsContactIdVerifications_Request['parameters']['path'];
+
+/**
  * Request type for POST ContactsContactIdVerificationsAttest endpoint
  *
  * Attest a contact verification

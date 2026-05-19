@@ -3258,6 +3258,116 @@ export type PUT_ContactsByContactIdVerification_Response_404 = Problem
 export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationError
 
 /**
+ * Response types for GET ContactsByContactIdVerifications endpoint
+ *
+ * Get contact verification status
+ * Retrieve the current verification state for a contact from the contact-verification service.
+ *
+ * @remarks
+ * This type defines all possible response structures for the GET ContactsByContactIdVerifications endpoint.
+ * Each response code maps to a specific response type as defined in the OpenAPI specification.
+ * Use this type to ensure type safety when handling API responses from this endpoint.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ *
+ * @see {@link GET_ContactsByContactIdVerifications_Response_200} - 200 response type
+ * @see {@link GET_ContactsByContactIdVerifications_Response_401} - 401 response type
+ * @see {@link GET_ContactsByContactIdVerifications_Response_404} - 404 response type
+ * @see {@link GET_ContactsByContactIdVerifications_Response_422} - 422 response type
+ * @see {@link GET_ContactsByContactIdVerifications_Response_502} - 502 response type
+ *
+
+ */
+export type GET_ContactsByContactIdVerifications_Response = GET_ContactsByContactIdVerifications_Response_200 | GET_ContactsByContactIdVerifications_Response_401 | GET_ContactsByContactIdVerifications_Response_404 | GET_ContactsByContactIdVerifications_Response_422 | GET_ContactsByContactIdVerifications_Response_502;
+
+/**
+ * 200 response for GET ContactsByContactIdVerifications endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 200 status code
+ * of the GET ContactsByContactIdVerifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ *
+ * @see {@link GET_ContactsByContactIdVerifications_Response} - The main response type definition
+ * @see {@link ContactAttestRes} - The actual schema type definition
+ */
+export type GET_ContactsByContactIdVerifications_Response_200 = ContactAttestRes
+
+/**
+ * 401 response for GET ContactsByContactIdVerifications endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 401 status code
+ * of the GET ContactsByContactIdVerifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ *
+ * @see {@link GET_ContactsByContactIdVerifications_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_ContactsByContactIdVerifications_Response_401 = Problem
+
+/**
+ * 404 response for GET ContactsByContactIdVerifications endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the GET ContactsByContactIdVerifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ *
+ * @see {@link GET_ContactsByContactIdVerifications_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_ContactsByContactIdVerifications_Response_404 = Problem
+
+/**
+ * 422 response for GET ContactsByContactIdVerifications endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 422 status code
+ * of the GET ContactsByContactIdVerifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ *
+ * @see {@link GET_ContactsByContactIdVerifications_Response} - The main response type definition
+ * @see {@link HTTPValidationError} - The actual schema type definition
+ */
+export type GET_ContactsByContactIdVerifications_Response_422 = HTTPValidationError
+
+/**
+ * 502 response for GET ContactsByContactIdVerifications endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 502 status code
+ * of the GET ContactsByContactIdVerifications endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications
+ *
+ * @see {@link GET_ContactsByContactIdVerifications_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type GET_ContactsByContactIdVerifications_Response_502 = Problem
+
+/**
  * Response types for POST ContactsByContactIdVerificationsAttest endpoint
  *
  * Attest a contact verification
@@ -3275,12 +3385,13 @@ export type PUT_ContactsByContactIdVerification_Response_422 = HTTPValidationErr
  * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_200} - 200 response type
  * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_400} - 400 response type
  * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_401} - 401 response type
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_404} - 404 response type
  * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_422} - 422 response type
  * @see {@link POST_ContactsByContactIdVerificationsAttest_Response_502} - 502 response type
  *
 
  */
-export type POST_ContactsByContactIdVerificationsAttest_Response = POST_ContactsByContactIdVerificationsAttest_Response_200 | POST_ContactsByContactIdVerificationsAttest_Response_400 | POST_ContactsByContactIdVerificationsAttest_Response_401 | POST_ContactsByContactIdVerificationsAttest_Response_422 | POST_ContactsByContactIdVerificationsAttest_Response_502;
+export type POST_ContactsByContactIdVerificationsAttest_Response = POST_ContactsByContactIdVerificationsAttest_Response_200 | POST_ContactsByContactIdVerificationsAttest_Response_400 | POST_ContactsByContactIdVerificationsAttest_Response_401 | POST_ContactsByContactIdVerificationsAttest_Response_404 | POST_ContactsByContactIdVerificationsAttest_Response_422 | POST_ContactsByContactIdVerificationsAttest_Response_502;
 
 /**
  * 200 response for POST ContactsByContactIdVerificationsAttest endpoint
@@ -3332,6 +3443,23 @@ export type POST_ContactsByContactIdVerificationsAttest_Response_400 = Problem
  * @see {@link Problem} - The actual schema type definition
  */
 export type POST_ContactsByContactIdVerificationsAttest_Response_401 = Problem
+
+/**
+ * 404 response for POST ContactsByContactIdVerificationsAttest endpoint
+ *
+ * @remarks
+ * This type defines the response structure for the 404 status code
+ * of the POST ContactsByContactIdVerificationsAttest endpoint.
+ * It provides type safety for handling this specific response as defined in the OpenAPI specification.
+ *
+
+ *
+ * @path /v1/contacts/{contact_id}/verifications/attest
+ *
+ * @see {@link POST_ContactsByContactIdVerificationsAttest_Response} - The main response type definition
+ * @see {@link Problem} - The actual schema type definition
+ */
+export type POST_ContactsByContactIdVerificationsAttest_Response_404 = Problem
 
 /**
  * 422 response for POST ContactsByContactIdVerificationsAttest endpoint
