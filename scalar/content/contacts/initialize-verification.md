@@ -5,22 +5,23 @@ This feature is coming soon. The endpoints described below are under active deve
 </scalar-callout>
 
 In addition to responding to registry-initiated verification requests, OpusDNS
-will support **proactively registering contacts for verification** — allowing
-you to verify identity claims before a registry requires it and to manage the
-full verification lifecycle through the API.
+will allow you to **trigger verification processes directly** — initiating
+email confirmations, identity checks, and other verification flows for your
+contacts without waiting for a registry to require them.
 
-## Why initialize verification proactively?
+## Why trigger verification proactively?
 
 When a registry like DENIC flags a contact for verification, you are working
 against a deadline. Proactive verification lets you:
 
-- **Verify contacts ahead of time** — submit attestations before a registry
+- **Verify contacts ahead of time** — complete verification before a registry
   imposes deadlines, so your domains are never at risk of de-delegation or
   deletion.
 - **Stay compliant** — ensure all contacts meet NIS2 identity verification
   requirements without waiting for registry enforcement.
-- **Manage the lifecycle** — keep contact data in sync with the verification
-  system and re-attest when verifications expire.
+- **Automate verification flows** — trigger email reachability checks, identity
+  verification sessions, and other processes directly through the API instead of
+  managing them externally.
 
 ## How it will work
 
@@ -37,23 +38,43 @@ curl "$OPUSDNS_API_BASE/v1/contacts/$CONTACT_ID/verifications/initialize" \
   --header "Content-Type: application/json"
 ```
 
-Once registered, you can immediately submit attestations using the existing
-[attestation workflow](/products/contacts/attestation-workflow) — the same
-`attest` endpoint works for both registry-initiated and proactively initialized
-verifications.
+Once registered, you can trigger verification processes or submit attestations
+for any of the contact's claims.
 
-### Update contact data
+### Trigger verification processes
 
-If contact details change after registration (e.g., a new address or updated
-email), updating the contact through the API may invalidate existing
-verifications for the affected claims. Those claims will revert to `UNVERIFIED`
-and require re-attestation.
+Instead of only submitting external attestations, you will be able to kick off
+verification flows that OpusDNS manages on your behalf:
+
+- **Email verification** — send a confirmation email to the contact's address.
+  Once the registrant confirms, the `EMAIL` claim transitions to `VERIFIED`
+  automatically.
+- **Identity verification** — initiate an identity check session (e.g., video
+  identification or document upload) where the registrant verifies their name
+  and address directly.
+
+These flows handle the verification end-to-end — you trigger them via the API,
+the registrant completes the required steps, and the claim states update
+automatically.
+
+### Combine with attestations
+
+You can use both approaches together:
+
+| Approach | Best for |
+| --- | --- |
+| **Trigger a verification process** | Claims you want OpusDNS to verify directly with the registrant (e.g., email reachability, identity check). |
+| **Submit an attestation** | Claims you have already verified externally (e.g., passport checked in person, address confirmed via utility bill). |
+
+For example, you might trigger an email verification flow for the `EMAIL` claim
+while submitting a `PHYSICAL_DOCUMENT` attestation for the `NAME` claim — both
+in the same verification lifecycle.
 
 ### Verification expiry
 
-Verified claims have an expiration date (typically one year from attestation).
+Verified claims have an expiration date (typically one year from verification).
 When a verification expires, the claim state changes to `EXPIRED` and
-re-attestation is required. You can monitor expiry dates in the verification
+re-verification is required. You can monitor expiry dates in the verification
 status response:
 
 ```json
@@ -68,23 +89,16 @@ status response:
 }
 ```
 
-Plan ahead by tracking `expires_on` dates and re-submitting attestations before
-they lapse.
-
-### Pre-verification vs. post-verification
-
-| Scenario | What to do |
-| --- | --- |
-| **New contact, no registry requirement yet** | Initialize verification and submit attestations proactively. When the registry eventually requires verification, the contact is already verified. |
-| **Registry has flagged a contact** | Follow the [attestation workflow](/products/contacts/attestation-workflow) to respond before the deadline. |
-| **Verification expired** | Re-submit attestations using the same `attest` endpoint. The claim will transition from `EXPIRED` back to `VERIFIED`. |
-| **Contact data changed** | Update the contact. Any affected claims revert to `UNVERIFIED` — re-attest those claims. |
+Plan ahead by tracking `expires_on` dates and re-triggering verification or
+re-submitting attestations before they lapse.
 
 ## What's coming
 
 - **Initialize endpoint** — register any contact for verification proactively.
-- **Contact data sync** — update contact details in the verification system
-  when they change in OpusDNS.
+- **Email verification flow** — trigger email reachability checks directly
+  through the API.
+- **Identity verification flow** — initiate identity check sessions for
+  registrants.
 - **Expiry notifications** — receive events and email notifications when
   verifications are approaching expiry.
 
