@@ -312,9 +312,23 @@
                 "children": {
                   "/verification": {
                     "type": "page",
-                    "title": "Contact verification",
+                    "title": "Overview",
                     "icon": "phosphor/regular/shield-check",
-                    "filepath": "content/contacts/contact-verification.md",
+                    "filepath": "content/contacts/overview.md",
+                    "showInSidebar": true
+                  },
+                  "/attestation-workflow": {
+                    "type": "page",
+                    "title": "Attestation workflow",
+                    "icon": "line/interface-content-book-page",
+                    "filepath": "content/contacts/attestation-workflow.md",
+                    "showInSidebar": true
+                  },
+                  "/initialize-verification": {
+                    "type": "page",
+                    "title": "Initialize verification",
+                    "icon": "line/interface-add",
+                    "filepath": "content/contacts/initialize-verification.md",
                     "showInSidebar": true
                   }
                 }
