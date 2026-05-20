@@ -4480,6 +4480,10 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   US_APP_PURPOSE: "US_APP_PURPOSE",
   NIC_IT_ENTITY_TYPE: "NIC_IT_ENTITY_TYPE",
   NIC_IT_REG_CODE: "NIC_IT_REG_CODE",
+  CZ_NIC_IDENT_TYPE: "CZ_NIC_IDENT_TYPE",
+  CZ_NIC_IDENT_VALUE: "CZ_NIC_IDENT_VALUE",
+  CZ_NIC_VAT: "CZ_NIC_VAT",
+  CZ_NIC_NOTIFY_EMAIL: "CZ_NIC_NOTIFY_EMAIL",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -4540,7 +4544,11 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'US_NEXUS_COUNTRY_CODE',
   'US_APP_PURPOSE',
   'NIC_IT_ENTITY_TYPE',
-  'NIC_IT_REG_CODE'
+  'NIC_IT_REG_CODE',
+  'CZ_NIC_IDENT_TYPE',
+  'CZ_NIC_IDENT_VALUE',
+  'CZ_NIC_VAT',
+  'CZ_NIC_NOTIFY_EMAIL'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**
