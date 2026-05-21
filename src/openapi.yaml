@@ -6618,6 +6618,12 @@ components:
           description: Number of jobs that failed execution
           title: Failed
           type: integer
+        label:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Human-readable label for this batch
+          title: Label
         paused:
           default: 0
           description: Number of jobs in paused state
@@ -11534,7 +11540,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-21-052241
+  version: 2026-05-21-193646
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -22166,6 +22172,7 @@ paths:
                     canceled: 0
                     dead_letter: 0
                     failed: 2
+                    label: Bulk RRset Patch
                     progress_percentage: 100.0
                     queued: 0
                     running: 0
@@ -22180,6 +22187,7 @@ paths:
                     canceled: 0
                     dead_letter: 0
                     failed: 0
+                    label: Bulk Domain Registration
                     progress_percentage: 50.0
                     queued: 3
                     running: 2

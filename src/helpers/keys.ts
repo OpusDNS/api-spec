@@ -27391,6 +27391,31 @@ export const KEY_JOB_BATCH_STATUS_DEAD_LETTER: keyof JobBatchStatus = 'dead_lett
  */
 export const KEY_JOB_BATCH_STATUS_FAILED: keyof JobBatchStatus = 'failed';
 /**
+ * Label
+ *
+ * Human-readable label for this batch
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `label` property of JobBatchStatus objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = jobbatchstatus[KEY_JOB_BATCH_STATUS_LABEL];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_JOB_BATCH_STATUS_LABEL;
+ * const value = jobbatchstatus[propertyName];
+ * ```
+ *
+ * @see {@link JobBatchStatus} - The TypeScript type definition
+ * @see {@link KEYS_JOB_BATCH_STATUS} - Array of all keys for this type
+ */
+export const KEY_JOB_BATCH_STATUS_LABEL: keyof JobBatchStatus = 'label';
+/**
  * Paused
  *
  * Number of jobs in paused state
@@ -27573,6 +27598,7 @@ export const KEYS_JOB_BATCH_STATUS = [
   KEY_JOB_BATCH_STATUS_CANCELED,
   KEY_JOB_BATCH_STATUS_DEAD_LETTER,
   KEY_JOB_BATCH_STATUS_FAILED,
+  KEY_JOB_BATCH_STATUS_LABEL,
   KEY_JOB_BATCH_STATUS_PAUSED,
   KEY_JOB_BATCH_STATUS_PROGRESS_PERCENTAGE,
   KEY_JOB_BATCH_STATUS_QUEUED,

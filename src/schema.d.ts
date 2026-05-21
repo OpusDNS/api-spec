@@ -6869,6 +6869,11 @@ export interface components {
              */
             failed: number;
             /**
+             * Label
+             * @description Human-readable label for this batch
+             */
+            label?: string | null;
+            /**
              * Paused
              * @description Number of jobs in paused state
              * @default 0
