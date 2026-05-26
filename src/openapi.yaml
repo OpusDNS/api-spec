@@ -2445,6 +2445,19 @@ components:
             $ref: '#/components/schemas/DnsRrsetCreate'
           title: Rrsets
           type: array
+        vanity_nameserver_set_id:
+          anyOf:
+          - examples:
+            - vns_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: vns
+          - type: 'null'
+          description: Optional vanity NS set to brand this zone's apex NS + SOA with.
+            When omitted, the org's default ACTIVE set (if any) is used; when no default
+            exists the system default NS is used.
+          title: Vanity Nameserver Set Id
       required:
       - name
       title: DnsZoneCreate
@@ -2567,6 +2580,19 @@ components:
             $ref: '#/components/schemas/DnsRrsetCreate'
           title: Rrsets
           type: array
+        vanity_nameserver_set_id:
+          anyOf:
+          - examples:
+            - vns_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: vns
+          - type: 'null'
+          description: Optional vanity NS set to brand this zone's apex NS + SOA with.
+            When omitted, the org's default ACTIVE set (if any) is used; when no default
+            exists the system default NS is used.
+          title: Vanity Nameserver Set Id
       required:
       - name
       title: DnsZoneCreatePayloadData
@@ -2975,6 +3001,19 @@ components:
             $ref: '#/components/schemas/DnsRrsetCreate'
           title: Rrsets
           type: array
+        vanity_nameserver_set_id:
+          anyOf:
+          - examples:
+            - vns_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: vns
+          - type: 'null'
+          description: Optional vanity NS set to brand this zone's apex NS + SOA with.
+            When omitted, the org's default ACTIVE set (if any) is used; when no default
+            exists the system default NS is used.
+          title: Vanity Nameserver Set Id
       required:
       - name
       title: DnsZoneUpdatePayloadData
@@ -11540,7 +11579,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-21-193646
+  version: 2026-05-26-190947
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

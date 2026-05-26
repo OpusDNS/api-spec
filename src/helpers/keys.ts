@@ -9940,6 +9940,31 @@ export const KEY_DNS_ZONE_CREATE_NAME: keyof DnsZoneCreate = 'name';
  * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
  */
 export const KEY_DNS_ZONE_CREATE_RRSETS: keyof DnsZoneCreate = 'rrsets';
+/**
+ * Vanity Nameserver Set Id
+ *
+ * Optional vanity NS set to brand this zone's apex NS + SOA with. When omitted, the org's default ACTIVE set (if any) is used; when no default exists the system default NS is used.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `vanity_nameserver_set_id` property of DnsZoneCreate objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreate[KEY_DNS_ZONE_CREATE_VANITY_NAMESERVER_SET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_VANITY_NAMESERVER_SET_ID;
+ * const value = dnszonecreate[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreate} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_VANITY_NAMESERVER_SET_ID: keyof DnsZoneCreate = 'vanity_nameserver_set_id';
 
 /**
  * Array of all DnsZoneCreate property keys
@@ -9965,6 +9990,7 @@ export const KEYS_DNS_ZONE_CREATE = [
   KEY_DNS_ZONE_CREATE_DNSSEC_STATUS,
   KEY_DNS_ZONE_CREATE_NAME,
   KEY_DNS_ZONE_CREATE_RRSETS,
+  KEY_DNS_ZONE_CREATE_VANITY_NAMESERVER_SET_ID,
 ] as const satisfies (keyof DnsZoneCreate)[];
 
 /**
@@ -10556,6 +10582,31 @@ export const KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_NAME: keyof DnsZoneCreatePayloadDa
  * @see {@link KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA} - Array of all keys for this type
  */
 export const KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_RRSETS: keyof DnsZoneCreatePayloadData = 'rrsets';
+/**
+ * Vanity Nameserver Set Id
+ *
+ * Optional vanity NS set to brand this zone's apex NS + SOA with. When omitted, the org's default ACTIVE set (if any) is used; when no default exists the system default NS is used.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `vanity_nameserver_set_id` property of DnsZoneCreatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszonecreatepayloaddata[KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID;
+ * const value = dnszonecreatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneCreatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID: keyof DnsZoneCreatePayloadData = 'vanity_nameserver_set_id';
 
 /**
  * Array of all DnsZoneCreatePayloadData property keys
@@ -10581,6 +10632,7 @@ export const KEYS_DNS_ZONE_CREATE_PAYLOAD_DATA = [
   KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_DNSSEC_STATUS,
   KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_NAME,
   KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_RRSETS,
+  KEY_DNS_ZONE_CREATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID,
 ] as const satisfies (keyof DnsZoneCreatePayloadData)[];
 
 /**
@@ -12523,6 +12575,31 @@ export const KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_NAME: keyof DnsZoneUpdatePayloadDa
  * @see {@link KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
  */
 export const KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_RRSETS: keyof DnsZoneUpdatePayloadData = 'rrsets';
+/**
+ * Vanity Nameserver Set Id
+ *
+ * Optional vanity NS set to brand this zone's apex NS + SOA with. When omitted, the org's default ACTIVE set (if any) is used; when no default exists the system default NS is used.
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `vanity_nameserver_set_id` property of DnsZoneUpdatePayloadData objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = dnszoneupdatepayloaddata[KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID;
+ * const value = dnszoneupdatepayloaddata[propertyName];
+ * ```
+ *
+ * @see {@link DnsZoneUpdatePayloadData} - The TypeScript type definition
+ * @see {@link KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA} - Array of all keys for this type
+ */
+export const KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID: keyof DnsZoneUpdatePayloadData = 'vanity_nameserver_set_id';
 
 /**
  * Array of all DnsZoneUpdatePayloadData property keys
@@ -12548,6 +12625,7 @@ export const KEYS_DNS_ZONE_UPDATE_PAYLOAD_DATA = [
   KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_DNSSEC_STATUS,
   KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_NAME,
   KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_RRSETS,
+  KEY_DNS_ZONE_UPDATE_PAYLOAD_DATA_VANITY_NAMESERVER_SET_ID,
 ] as const satisfies (keyof DnsZoneUpdatePayloadData)[];
 
 /**

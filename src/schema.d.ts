@@ -4126,6 +4126,11 @@ export interface components {
             name: string;
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetCreate"][];
+            /**
+             * Vanity Nameserver Set Id
+             * @description Optional vanity NS set to brand this zone's apex NS + SOA with. When omitted, the org's default ACTIVE set (if any) is used; when no default exists the system default NS is used.
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
         /** DnsZoneCreateBulkCommand */
         DnsZoneCreateBulkCommand: {
@@ -4215,6 +4220,11 @@ export interface components {
             name: string;
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetCreate"][];
+            /**
+             * Vanity Nameserver Set Id
+             * @description Optional vanity NS set to brand this zone's apex NS + SOA with. When omitted, the org's default ACTIVE set (if any) is used; when no default exists the system default NS is used.
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
         /** DnsZoneCreateWorkerPayload */
         DnsZoneCreateWorkerPayload: {
@@ -4479,6 +4489,11 @@ export interface components {
             name: string;
             /** Rrsets */
             rrsets?: components["schemas"]["DnsRrsetCreate"][];
+            /**
+             * Vanity Nameserver Set Id
+             * @description Optional vanity NS set to brand this zone's apex NS + SOA with. When omitted, the org's default ACTIVE set (if any) is used; when no default exists the system default NS is used.
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
         /** DnsZoneUpdateWorkerPayload */
         DnsZoneUpdateWorkerPayload: {
