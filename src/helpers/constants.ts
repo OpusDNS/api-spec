@@ -4486,6 +4486,7 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   CZ_NIC_IDENT_VALUE: "CZ_NIC_IDENT_VALUE",
   CZ_NIC_VAT: "CZ_NIC_VAT",
   CZ_NIC_NOTIFY_EMAIL: "CZ_NIC_NOTIFY_EMAIL",
+  DNS_LU_CONTACT_ROLE: "DNS_LU_CONTACT_ROLE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 /**
@@ -4550,7 +4551,8 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'CZ_NIC_IDENT_TYPE',
   'CZ_NIC_IDENT_VALUE',
   'CZ_NIC_VAT',
-  'CZ_NIC_NOTIFY_EMAIL'
+  'CZ_NIC_NOTIFY_EMAIL',
+  'DNS_LU_CONTACT_ROLE'
 ] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
 
 /**
