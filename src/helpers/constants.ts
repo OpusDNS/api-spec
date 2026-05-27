@@ -2381,6 +2381,7 @@ export const EVENT_OBJECT_TYPE = {
   CONTACT: "CONTACT",
   HOST: "HOST",
   ACCOUNT: "ACCOUNT",
+  VANITY_NS_SET: "VANITY_NS_SET",
   RAW: "RAW",
   UNKNOWN: "UNKNOWN",
 } as const satisfies Record<string, EventObjectType>;
@@ -2411,6 +2412,7 @@ export const EVENT_OBJECT_TYPE_VALUES = [
   'CONTACT',
   'HOST',
   'ACCOUNT',
+  'VANITY_NS_SET',
   'RAW',
   'UNKNOWN'
 ] as const satisfies [string, ...string[]] | EventObjectType[];
@@ -2549,6 +2551,7 @@ export const EVENT_TYPE = {
   WITHDRAW: "WITHDRAW",
   VERIFICATION: "VERIFICATION",
   BALANCE: "BALANCE",
+  VANITY_NS_PROVISION: "VANITY_NS_PROVISION",
 } as const satisfies Record<string, EventType>;
 
 /**
@@ -2582,7 +2585,8 @@ export const EVENT_TYPE_VALUES = [
   'TRANSIT',
   'WITHDRAW',
   'VERIFICATION',
-  'BALANCE'
+  'BALANCE',
+  'VANITY_NS_PROVISION'
 ] as const satisfies [string, ...string[]] | EventType[];
 
 /**

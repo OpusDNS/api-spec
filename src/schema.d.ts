@@ -6390,7 +6390,7 @@ export interface components {
          * EventObjectType
          * @enum {string}
          */
-        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "ACCOUNT" | "RAW" | "UNKNOWN";
+        EventObjectType: "DOMAIN" | "CONTACT" | "HOST" | "ACCOUNT" | "VANITY_NS_SET" | "RAW" | "UNKNOWN";
         /** EventResponse */
         EventResponse: {
             /**
@@ -6440,7 +6440,7 @@ export interface components {
          * EventType
          * @enum {string}
          */
-        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE";
+        EventType: "REGISTRATION" | "RENEWAL" | "MODIFICATION" | "DELETION" | "INBOUND_TRANSFER" | "OUTBOUND_TRANSFER" | "TRANSIT" | "WITHDRAW" | "VERIFICATION" | "BALANCE" | "VANITY_NS_PROVISION";
         /**
          * EventVersion
          * @enum {string}
