@@ -2566,7 +2566,7 @@ export interface components {
          * BillingTransactionProductType
          * @enum {string}
          */
-        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet";
+        BillingTransactionProductType: "domain" | "zones" | "email_forward" | "domain_forward" | "account_wallet" | "vanity_nameserver";
         /** BillingTransactionResponse */
         BillingTransactionResponse: {
             /** @description The action performed in the transaction */

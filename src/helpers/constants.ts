@@ -322,6 +322,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   EMAIL_FORWARD: "email_forward",
   DOMAIN_FORWARD: "domain_forward",
   ACCOUNT_WALLET: "account_wallet",
+  VANITY_NAMESERVER: "vanity_nameserver",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 /**
@@ -350,7 +351,8 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'zones',
   'email_forward',
   'domain_forward',
-  'account_wallet'
+  'account_wallet',
+  'vanity_nameserver'
 ] as const satisfies [string, ...string[]] | BillingTransactionProductType[];
 
 /**
