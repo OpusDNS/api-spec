@@ -28849,6 +28849,30 @@ export const KEYS_LEGAL_REQUIREMENT_BASE = [
  */
 export const KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES: keyof LocalPresenceBase = 'eligible_countries';
 /**
+ * Exemptions
+ *
+ *
+ *
+ *
+ * @remarks
+ * This key constant provides type-safe access to the `exemptions` property of LocalPresenceBase objects.
+ * Use this constant when you need to access properties dynamically or ensure type safety.
+ *
+ * @example
+ * ```typescript
+ * // Direct property access
+ * const value = localpresencebase[KEY_LOCAL_PRESENCE_BASE_EXEMPTIONS];
+ * 
+ * // Dynamic property access
+ * const propertyName = KEY_LOCAL_PRESENCE_BASE_EXEMPTIONS;
+ * const value = localpresencebase[propertyName];
+ * ```
+ *
+ * @see {@link LocalPresenceBase} - The TypeScript type definition
+ * @see {@link KEYS_LOCAL_PRESENCE_BASE} - Array of all keys for this type
+ */
+export const KEY_LOCAL_PRESENCE_BASE_EXEMPTIONS: keyof LocalPresenceBase = 'exemptions';
+/**
  * Required
  *
  * Whether a local presence is required to register and maintain a domain name
@@ -28947,6 +28971,7 @@ export const KEY_LOCAL_PRESENCE_BASE_TYPE: keyof LocalPresenceBase = 'type';
  */
 export const KEYS_LOCAL_PRESENCE_BASE = [
   KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES,
+  KEY_LOCAL_PRESENCE_BASE_EXEMPTIONS,
   KEY_LOCAL_PRESENCE_BASE_REQUIRED,
   KEY_LOCAL_PRESENCE_BASE_REQUIREMENT,
   KEY_LOCAL_PRESENCE_BASE_TYPE,

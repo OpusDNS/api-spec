@@ -7048,6 +7048,13 @@ components:
           - type: 'null'
           description: ISO 3166-1 Alpha-2 country code
           title: Eligible Countries
+        exemptions:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/AttributeCondition'
+            type: array
+          - type: 'null'
+          title: Exemptions
         required:
           description: Whether a local presence is required to register and maintain
             a domain name
@@ -11583,7 +11590,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-05-29-142222
+  version: 2026-06-01-184117
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

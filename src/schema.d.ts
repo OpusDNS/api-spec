@@ -7147,6 +7147,8 @@ export interface components {
              * @description ISO 3166-1 Alpha-2 country code
              */
             eligible_countries?: string[] | null;
+            /** Exemptions */
+            exemptions?: components["schemas"]["AttributeCondition"][] | null;
             /**
              * Required
              * @description Whether a local presence is required to register and maintain a domain name
