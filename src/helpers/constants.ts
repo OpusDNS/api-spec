@@ -3534,6 +3534,7 @@ export const METRICS_GROUPING = {
   FQDN: "fqdn",
   DOMAIN: "domain",
   FORWARD: "forward",
+  RULE: "rule",
 } as const satisfies Record<string, MetricsGrouping>;
 
 /**
@@ -3561,7 +3562,8 @@ export const METRICS_GROUPING_VALUES = [
   'url',
   'fqdn',
   'domain',
-  'forward'
+  'forward',
+  'rule'
 ] as const satisfies [string, ...string[]] | MetricsGrouping[];
 
 /**
@@ -5431,6 +5433,7 @@ export const TIME_RANGE = {
   "1D": "1d",
   "7D": "7d",
   "30D": "30d",
+  "1Y": "1y",
 } as const satisfies Record<string, TimeRange>;
 
 /**
@@ -5458,7 +5461,8 @@ export const TIME_RANGE_VALUES = [
   '1h',
   '1d',
   '7d',
-  '30d'
+  '30d',
+  '1y'
 ] as const satisfies [string, ...string[]] | TimeRange[];
 
 /**

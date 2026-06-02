@@ -910,7 +910,7 @@ export interface paths {
         };
         /**
          * Get visits grouped by key
-         * @description Retrieves visit metrics grouped by a specified key (url, fqdn, domain, or forward) with total and unique visit counts.
+         * @description Retrieves visit metrics grouped by a specified key (url, fqdn, domain, forward, or rule) with total and unique visit counts.
          */
         get: operations["visits_by_key_v1_domain_forwards_metrics_visits_by_key_get"];
         put?: never;
@@ -7303,7 +7303,7 @@ export interface components {
          * MetricsGrouping
          * @enum {string}
          */
-        MetricsGrouping: "url" | "fqdn" | "domain" | "forward";
+        MetricsGrouping: "url" | "fqdn" | "domain" | "forward" | "rule";
         /** Nameserver */
         Nameserver: {
             /**
@@ -9070,7 +9070,7 @@ export interface components {
          * TimeRange
          * @enum {string}
          */
-        TimeRange: "1h" | "1d" | "7d" | "30d";
+        TimeRange: "1h" | "1d" | "7d" | "30d" | "1y";
         /** TimeSeriesBucket */
         TimeSeriesBucket: {
             /**
@@ -13821,7 +13821,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -13903,7 +13903,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -13985,7 +13985,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -14067,7 +14067,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -14149,7 +14149,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -14231,7 +14231,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -14313,7 +14313,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -14395,7 +14395,7 @@ export interface operations {
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
@@ -14473,13 +14473,13 @@ export interface operations {
     visits_by_key_v1_domain_forwards_metrics_visits_by_key_get: {
         parameters: {
             query?: {
-                /** @description Grouping key: url, fqdn, domain, or forward */
+                /** @description Grouping key: url, fqdn, domain, forward, or rule */
                 grouping?: components["schemas"]["MetricsGrouping"];
                 hostname?: string | null;
                 domain?: string | null;
                 /** @description Filter by protocol: http or https */
                 protocol?: components["schemas"]["Protocol"] | null;
-                /** @description Time range: 1h, 1d, 7d, or 30d */
+                /** @description Time range: 1h, 1d, 7d, 30d, or 1y */
                 time_range?: components["schemas"]["TimeRange"];
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;

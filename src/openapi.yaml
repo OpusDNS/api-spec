@@ -7299,6 +7299,7 @@ components:
       - fqdn
       - domain
       - forward
+      - rule
       title: MetricsGrouping
       type: string
     Nameserver:
@@ -10080,6 +10081,7 @@ components:
       - 1d
       - 7d
       - 30d
+      - 1y
       title: TimeRange
       type: string
     TimeSeriesBucket:
@@ -11590,7 +11592,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-01-184117
+  version: 2026-06-02-110819
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -16726,14 +16728,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -16844,14 +16846,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -16985,14 +16987,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -17119,14 +17121,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -17258,14 +17260,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -17399,14 +17401,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -17526,14 +17528,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -17699,14 +17701,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots
@@ -17803,17 +17805,17 @@ paths:
   /v1/domain-forwards/metrics/visits-by-key:
     get:
       description: Retrieves visit metrics grouped by a specified key (url, fqdn,
-        domain, or forward) with total and unique visit counts.
+        domain, forward, or rule) with total and unique visit counts.
       operationId: visits_by_key_v1_domain_forwards_metrics_visits_by_key_get
       parameters:
-      - description: 'Grouping key: url, fqdn, domain, or forward'
+      - description: 'Grouping key: url, fqdn, domain, forward, or rule'
         in: query
         name: grouping
         required: false
         schema:
           $ref: '#/components/schemas/MetricsGrouping'
           default: domain
-          description: 'Grouping key: url, fqdn, domain, or forward'
+          description: 'Grouping key: url, fqdn, domain, forward, or rule'
       - in: query
         name: hostname
         required: false
@@ -17840,14 +17842,14 @@ paths:
           - type: 'null'
           description: 'Filter by protocol: http or https'
           title: Protocol
-      - description: 'Time range: 1h, 1d, 7d, or 30d'
+      - description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
         in: query
         name: time_range
         required: false
         schema:
           $ref: '#/components/schemas/TimeRange'
           default: 1d
-          description: 'Time range: 1h, 1d, 7d, or 30d'
+          description: 'Time range: 1h, 1d, 7d, 30d, or 1y'
       - description: 'Exclude platform values: Unknown, Bot'
         in: query
         name: exclude_bots

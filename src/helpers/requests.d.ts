@@ -2978,7 +2978,7 @@ export type PUT_DomainForwardsHostnameProtocol_Request_Body = PUT_DomainForwards
  *
  * @path /v1/domain-forwards/metrics
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetrics_Request_Query} - Query parameters type
@@ -3002,7 +3002,7 @@ export type GET_DomainForwardsMetrics_Request = {
  *
  * @path /v1/domain-forwards/metrics
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetrics_Request_Query = GET_DomainForwardsMetrics_Request['parameters']['query'];
@@ -3023,7 +3023,7 @@ export type GET_DomainForwardsMetrics_Request_Query = GET_DomainForwardsMetrics_
  *
  * @path /v1/domain-forwards/metrics/browser
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsBrowser_Request_Query} - Query parameters type
@@ -3047,7 +3047,7 @@ export type GET_DomainForwardsMetricsBrowser_Request = {
  *
  * @path /v1/domain-forwards/metrics/browser
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsBrowser_Request_Query = GET_DomainForwardsMetricsBrowser_Request['parameters']['query'];
@@ -3068,7 +3068,7 @@ export type GET_DomainForwardsMetricsBrowser_Request_Query = GET_DomainForwardsM
  *
  * @path /v1/domain-forwards/metrics/geo
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsGeo_Request_Query} - Query parameters type
@@ -3092,7 +3092,7 @@ export type GET_DomainForwardsMetricsGeo_Request = {
  *
  * @path /v1/domain-forwards/metrics/geo
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsGeo_Request_Query = GET_DomainForwardsMetricsGeo_Request['parameters']['query'];
@@ -3113,7 +3113,7 @@ export type GET_DomainForwardsMetricsGeo_Request_Query = GET_DomainForwardsMetri
  *
  * @path /v1/domain-forwards/metrics/platform
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsPlatform_Request_Query} - Query parameters type
@@ -3137,7 +3137,7 @@ export type GET_DomainForwardsMetricsPlatform_Request = {
  *
  * @path /v1/domain-forwards/metrics/platform
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsPlatform_Request_Query = GET_DomainForwardsMetricsPlatform_Request['parameters']['query'];
@@ -3158,7 +3158,7 @@ export type GET_DomainForwardsMetricsPlatform_Request_Query = GET_DomainForwards
  *
  * @path /v1/domain-forwards/metrics/referrer
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsReferrer_Request_Query} - Query parameters type
@@ -3182,7 +3182,7 @@ export type GET_DomainForwardsMetricsReferrer_Request = {
  *
  * @path /v1/domain-forwards/metrics/referrer
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsReferrer_Request_Query = GET_DomainForwardsMetricsReferrer_Request['parameters']['query'];
@@ -3203,7 +3203,7 @@ export type GET_DomainForwardsMetricsReferrer_Request_Query = GET_DomainForwards
  *
  * @path /v1/domain-forwards/metrics/status-code
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsStatusCode_Request_Query} - Query parameters type
@@ -3227,7 +3227,7 @@ export type GET_DomainForwardsMetricsStatusCode_Request = {
  *
  * @path /v1/domain-forwards/metrics/status-code
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsStatusCode_Request_Query = GET_DomainForwardsMetricsStatusCode_Request['parameters']['query'];
@@ -3248,7 +3248,7 @@ export type GET_DomainForwardsMetricsStatusCode_Request_Query = GET_DomainForwar
  *
  * @path /v1/domain-forwards/metrics/time-series
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsTimeSeries_Request_Query} - Query parameters type
@@ -3272,7 +3272,7 @@ export type GET_DomainForwardsMetricsTimeSeries_Request = {
  *
  * @path /v1/domain-forwards/metrics/time-series
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsTimeSeries_Request_Query = GET_DomainForwardsMetricsTimeSeries_Request['parameters']['query'];
@@ -3293,7 +3293,7 @@ export type GET_DomainForwardsMetricsTimeSeries_Request_Query = GET_DomainForwar
  *
  * @path /v1/domain-forwards/metrics/user-agent
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsUserAgent_Request_Query} - Query parameters type
@@ -3317,7 +3317,7 @@ export type GET_DomainForwardsMetricsUserAgent_Request = {
  *
  * @path /v1/domain-forwards/metrics/user-agent
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsUserAgent_Request_Query = GET_DomainForwardsMetricsUserAgent_Request['parameters']['query'];
@@ -3326,7 +3326,7 @@ export type GET_DomainForwardsMetricsUserAgent_Request_Query = GET_DomainForward
  * Request type for GET DomainForwardsMetricsVisitsByKey endpoint
  *
  * Get visits grouped by key
- * Retrieves visit metrics grouped by a specified key (url, fqdn, domain, or forward) with total and unique visit counts.
+ * Retrieves visit metrics grouped by a specified key (url, fqdn, domain, forward, or rule) with total and unique visit counts.
  *
  * @remarks
  * This type defines the complete request structure for the GET DomainForwardsMetricsVisitsByKey endpoint.
@@ -3337,9 +3337,9 @@ export type GET_DomainForwardsMetricsUserAgent_Request_Query = GET_DomainForward
  * Use this type to ensure type safety when making API requests to this endpoint.
  *
  * @path /v1/domain-forwards/metrics/visits-by-key
- * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param grouping (query) - Grouping key: url, fqdn, domain, forward, or rule
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  *
  * @see {@link GET_DomainForwardsMetricsVisitsByKey_Request_Query} - Query parameters type
@@ -3362,9 +3362,9 @@ export type GET_DomainForwardsMetricsVisitsByKey_Request = {
  * Use this type to ensure type safety for query parameters.
  *
  * @path /v1/domain-forwards/metrics/visits-by-key
- * @param grouping (query) - Grouping key: url, fqdn, domain, or forward
+ * @param grouping (query) - Grouping key: url, fqdn, domain, forward, or rule
  * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, or 30d
+ * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
  * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
  */
 export type GET_DomainForwardsMetricsVisitsByKey_Request_Query = GET_DomainForwardsMetricsVisitsByKey_Request['parameters']['query'];
