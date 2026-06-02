@@ -1628,6 +1628,7 @@ export const DOMAIN_AVAILABILITY_STATUS = {
   MARKET_AVAILABLE: "market_available",
   TMCH_CLAIM: "tmch_claim",
   ERROR: "error",
+  UNKNOWN: "unknown",
 } as const satisfies Record<string, DomainAvailabilityStatus>;
 
 /**
@@ -1656,7 +1657,8 @@ export const DOMAIN_AVAILABILITY_STATUS_VALUES = [
   'unavailable',
   'market_available',
   'tmch_claim',
-  'error'
+  'error',
+  'unknown'
 ] as const satisfies [string, ...string[]] | DomainAvailabilityStatus[];
 
 /**

@@ -4558,7 +4558,7 @@ export interface components {
          * DomainAvailabilityStatus
          * @enum {string}
          */
-        DomainAvailabilityStatus: "available" | "unavailable" | "market_available" | "tmch_claim" | "error";
+        DomainAvailabilityStatus: "available" | "unavailable" | "market_available" | "tmch_claim" | "error" | "unknown";
         /** DomainCheckResponse */
         DomainCheckResponse: {
             /** Results */
