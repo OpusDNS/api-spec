@@ -1,7436 +1,972 @@
-/**
- * Request parameter types for OpusDNS API endpoints
- *
- * This file contains TypeScript types for API request parameters, bodies, and path parameters.
- * Each type is derived from the OpenAPI operation specification and provides type safety for API calls.
- * These types ensure that request parameters match the expected API contract.
- *
- * @remarks
- * - Request types follow the pattern: `METHOD_EndpointName_Request`
- * - Parameter types are available as: `METHOD_EndpointName_Request_Query`, `METHOD_EndpointName_Request_Path`
- * - Request body types are available as: `METHOD_EndpointName_Request_Body`
- * - All types include comprehensive parameter descriptions from the OpenAPI specification
- * - These types ensure type safety when making API requests
- *
- * @example
- * ```typescript
- * // Using request types for API calls
- * const params: GET_Domains_Request_Query = {
- *   limit: 10,
- *   offset: 0
- * };
- * 
- * const body: POST_Domains_Request_Body = {
- *   domain: 'example.com',
- *   period: 1
- * };
- * ```
- *
- * This file is auto-generated from the OpenAPI specification.
- * Do not edit manually.
- */
+import type { operations } from '../schema';
+import type {
+  BulkObjectTagChanges,
+  ClaimsNoticesRequest,
+  ContactAttestReq,
+  ContactAttributeSetCreate,
+  ContactAttributeSetUpdate,
+  ContactCreate,
+  ContextCreateRequest,
+  ConversationCreateRequest,
+  ConversationPatchRequest,
+  DnsZoneCreate,
+  DnsZoneRecordsPatchOps,
+  DnsZoneRrsetsCreate,
+  DnsZoneRrsetsPatchOps,
+  DomainAvailabilityRequest,
+  DomainCreate,
+  DomainDnssecDataCreate,
+  DomainForwardCreateRequest,
+  DomainForwardPatchOps,
+  DomainForwardSetCreateRequest,
+  DomainForwardSetRequest,
+  DomainRenewRequest,
+  DomainRestoreRequest,
+  DomainTransferIn,
+  DomainTransitRequest,
+  DomainUpdate,
+  DomainWithdrawRequest,
+  EmailForwardAliasCreate,
+  EmailForwardAliasUpdate,
+  EmailForwardCreate,
+  IpRestrictionCreate,
+  IpRestrictionUpdate,
+  JobBatchRequest,
+  MemoryFactCreateRequest,
+  MemoryFactPatchRequest,
+  MessageCreateRequest,
+  ObjectTagChanges,
+  OrganizationAttributeUpdate,
+  OrganizationCreate,
+  OrganizationUpdate,
+  ParkingSignupRequest,
+  PasswordUpdate,
+  PublicAuthRequestForm,
+  SpiceDbRelationshipUpdate,
+  TagCreate,
+  TagUpdate,
+  UserCreate,
+  UserUpdate,
+} from './schemas';
 
-import { operations } from '../schema';
+export type GET_AiConciergeContextsByContextId_Request = {
+  parameters: operations['get_context_v1_ai_concierge_contexts__context_id__get']['parameters'];
+};
+export type GET_AiConciergeContextsByContextId_Request_Path = GET_AiConciergeContextsByContextId_Request['parameters']['path'];
 
-import { DomainDnssecDataCreateArray, OrganizationAttributeUpdateArray } from './schemas-arrays.d';
-
-import { ConversationCreateRequest, ConversationPatchRequest, ContextCreateRequest, MessageCreateRequest, MemoryFactCreateRequest, MemoryFactPatchRequest, PublicAuthRequestForm, DomainAvailabilityRequest, ContactCreate, ContactAttributeSetCreate, ContactAttributeSetUpdate, ContactAttestReq, DnsZoneCreate, DnsZoneRecordsPatchOps, DnsZoneRrsetsPatchOps, DnsZoneRrsetsCreate, DomainForwardPatchOps, DomainForwardCreateRequest, DomainForwardSetCreateRequest, DomainForwardSetRequest, DomainCreate, ClaimsNoticesRequest, DomainUpdate, DomainRenewRequest, DomainRestoreRequest, DomainWithdrawRequest, DomainTransitRequest, DomainTransferIn, EmailForwardCreate, EmailForwardAliasCreate, EmailForwardAliasUpdate, JobBatchRequest, OrganizationCreate, IpRestrictionCreate, IpRestrictionUpdate, OrganizationUpdate, ParkingSignupRequest, TagCreate, BulkObjectTagChanges, TagUpdate, ObjectTagChanges, UserCreate, PasswordUpdate, UserUpdate, SpiceDbRelationshipUpdate } from './schemas.d';
-
-/**
- * Request type for GET AiConciergeContextsContextId endpoint
- *
- * Get a context entry
- *
- * @remarks
- * This type defines the complete request structure for the GET AiConciergeContextsContextId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/contexts/{context_id}
- *
- * @see {@link GET_AiConciergeContextsContextId_Request_Query} - Query parameters type
- * @see {@link GET_AiConciergeContextsContextId_Request_Path} - Path parameters type
- * @see {@link GET_AiConciergeContextsContextId_Request_Body} - Request body type
- */
-export type GET_AiConciergeContextsContextId_Request = {
-  parameters: {
-    path: operations['get_context_v1_ai_concierge_contexts__context_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/ai-concierge/contexts/{context_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/ai-concierge/contexts/{context_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/contexts/{context_id}
- */
-export type GET_AiConciergeContextsContextId_Request_Path = GET_AiConciergeContextsContextId_Request['parameters']['path'];
-
-/**
- * Request type for GET AiConciergeConversations endpoint
- *
- * List AI Concierge conversations
- * List the authenticated organization's AI Concierge conversations.
- *
- * @remarks
- * This type defines the complete request structure for the GET AiConciergeConversations endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations
- * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
- * @param q (query) - Full-text search on title/summary.
- *
- * @see {@link GET_AiConciergeConversations_Request_Query} - Query parameters type
- * @see {@link GET_AiConciergeConversations_Request_Path} - Path parameters type
- * @see {@link GET_AiConciergeConversations_Request_Body} - Request body type
- */
 export type GET_AiConciergeConversations_Request = {
-  parameters: {
-    query: operations['list_conversations_v1_ai_concierge_conversations_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/ai-concierge/conversations
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/ai-concierge/conversations endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/ai-concierge/conversations
- * @param sort (query) - Comma-separated sort fields. Prefix with `-` for DESC.
- * @param q (query) - Full-text search on title/summary.
- */
+  parameters: operations['list_conversations_v1_ai_concierge_conversations_get']['parameters'];
+};
 export type GET_AiConciergeConversations_Request_Query = GET_AiConciergeConversations_Request['parameters']['query'];
 
-/**
- * Request type for POST AiConciergeConversations endpoint
- *
- * Create an AI Concierge conversation
- *
- * @remarks
- * This type defines the complete request structure for the POST AiConciergeConversations endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations
- *
- * @see {@link POST_AiConciergeConversations_Request_Query} - Query parameters type
- * @see {@link POST_AiConciergeConversations_Request_Path} - Path parameters type
- * @see {@link POST_AiConciergeConversations_Request_Body} - Request body type
- */
 export type POST_AiConciergeConversations_Request = {
   requestBody: ConversationCreateRequest;
-}
-/**
- * Request body for POST /v1/ai-concierge/conversations
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/ai-concierge/conversations endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/ai-concierge/conversations
- */
+};
 export type POST_AiConciergeConversations_Request_Body = POST_AiConciergeConversations_Request['requestBody'];
 
-/**
- * Request type for DELETE AiConciergeConversationsConversationId endpoint
- *
- * Delete a conversation
- * Permanently delete a conversation, its messages, and any attached contexts.
- *
- * @remarks
- * This type defines the complete request structure for the DELETE AiConciergeConversationsConversationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}
- *
- * @see {@link DELETE_AiConciergeConversationsConversationId_Request_Query} - Query parameters type
- * @see {@link DELETE_AiConciergeConversationsConversationId_Request_Path} - Path parameters type
- * @see {@link DELETE_AiConciergeConversationsConversationId_Request_Body} - Request body type
- */
-export type DELETE_AiConciergeConversationsConversationId_Request = {
-  parameters: {
-    path: operations['delete_conversation_v1_ai_concierge_conversations__conversation_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/ai-concierge/conversations/{conversation_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/ai-concierge/conversations/{conversation_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}
- */
-export type DELETE_AiConciergeConversationsConversationId_Request_Path = DELETE_AiConciergeConversationsConversationId_Request['parameters']['path'];
+export type DELETE_AiConciergeConversationsByConversationId_Request = {
+  parameters: operations['delete_conversation_v1_ai_concierge_conversations__conversation_id__delete']['parameters'];
+};
+export type DELETE_AiConciergeConversationsByConversationId_Request_Path = DELETE_AiConciergeConversationsByConversationId_Request['parameters']['path'];
 
-/**
- * Request type for GET AiConciergeConversationsConversationId endpoint
- *
- * Get a conversation
- *
- * @remarks
- * This type defines the complete request structure for the GET AiConciergeConversationsConversationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}
- *
- * @see {@link GET_AiConciergeConversationsConversationId_Request_Query} - Query parameters type
- * @see {@link GET_AiConciergeConversationsConversationId_Request_Path} - Path parameters type
- * @see {@link GET_AiConciergeConversationsConversationId_Request_Body} - Request body type
- */
-export type GET_AiConciergeConversationsConversationId_Request = {
-  parameters: {
-    path: operations['get_conversation_v1_ai_concierge_conversations__conversation_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}
- */
-export type GET_AiConciergeConversationsConversationId_Request_Path = GET_AiConciergeConversationsConversationId_Request['parameters']['path'];
+export type GET_AiConciergeConversationsByConversationId_Request = {
+  parameters: operations['get_conversation_v1_ai_concierge_conversations__conversation_id__get']['parameters'];
+};
+export type GET_AiConciergeConversationsByConversationId_Request_Path = GET_AiConciergeConversationsByConversationId_Request['parameters']['path'];
 
-/**
- * Request type for PATCH AiConciergeConversationsConversationId endpoint
- *
- * Update a conversation
- * Update conversation title or metadata. Supports optimistic concurrency via `If-Match`.
- *
- * @remarks
- * This type defines the complete request structure for the PATCH AiConciergeConversationsConversationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}
- *
- * @see {@link PATCH_AiConciergeConversationsConversationId_Request_Query} - Query parameters type
- * @see {@link PATCH_AiConciergeConversationsConversationId_Request_Path} - Path parameters type
- * @see {@link PATCH_AiConciergeConversationsConversationId_Request_Body} - Request body type
- */
-export type PATCH_AiConciergeConversationsConversationId_Request = {
-  parameters: {
-    path: operations['patch_conversation_v1_ai_concierge_conversations__conversation_id__patch']['parameters']['path'];
-  };
+export type PATCH_AiConciergeConversationsByConversationId_Request = {
+  parameters: operations['patch_conversation_v1_ai_concierge_conversations__conversation_id__patch']['parameters'];
   requestBody: ConversationPatchRequest;
-}
-/**
- * Path parameters for PATCH /v1/ai-concierge/conversations/{conversation_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/ai-concierge/conversations/{conversation_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}
- */
-export type PATCH_AiConciergeConversationsConversationId_Request_Path = PATCH_AiConciergeConversationsConversationId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/ai-concierge/conversations/{conversation_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/ai-concierge/conversations/{conversation_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}
- */
-export type PATCH_AiConciergeConversationsConversationId_Request_Body = PATCH_AiConciergeConversationsConversationId_Request['requestBody'];
+};
+export type PATCH_AiConciergeConversationsByConversationId_Request_Path = PATCH_AiConciergeConversationsByConversationId_Request['parameters']['path'];
+export type PATCH_AiConciergeConversationsByConversationId_Request_Body = PATCH_AiConciergeConversationsByConversationId_Request['requestBody'];
 
-/**
- * Request type for GET AiConciergeConversationsConversationIdContexts endpoint
- *
- * List contexts attached to a conversation
- *
- * @remarks
- * This type defines the complete request structure for the GET AiConciergeConversationsConversationIdContexts endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
- *
- * @see {@link GET_AiConciergeConversationsConversationIdContexts_Request_Query} - Query parameters type
- * @see {@link GET_AiConciergeConversationsConversationIdContexts_Request_Path} - Path parameters type
- * @see {@link GET_AiConciergeConversationsConversationIdContexts_Request_Body} - Request body type
- */
-export type GET_AiConciergeConversationsConversationIdContexts_Request = {
-  parameters: {
-    query: operations['list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get']['parameters']['query'];
-    path: operations['list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/ai-concierge/conversations/{conversation_id}/contexts
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
- */
-export type GET_AiConciergeConversationsConversationIdContexts_Request_Query = GET_AiConciergeConversationsConversationIdContexts_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}/contexts
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
- */
-export type GET_AiConciergeConversationsConversationIdContexts_Request_Path = GET_AiConciergeConversationsConversationIdContexts_Request['parameters']['path'];
+export type GET_AiConciergeConversationsByConversationIdContexts_Request = {
+  parameters: operations['list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get']['parameters'];
+};
+export type GET_AiConciergeConversationsByConversationIdContexts_Request_Query = GET_AiConciergeConversationsByConversationIdContexts_Request['parameters']['query'];
+export type GET_AiConciergeConversationsByConversationIdContexts_Request_Path = GET_AiConciergeConversationsByConversationIdContexts_Request['parameters']['path'];
 
-/**
- * Request type for POST AiConciergeConversationsConversationIdContexts endpoint
- *
- * Attach a context to a conversation
- *
- * @remarks
- * This type defines the complete request structure for the POST AiConciergeConversationsConversationIdContexts endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
- *
- * @see {@link POST_AiConciergeConversationsConversationIdContexts_Request_Query} - Query parameters type
- * @see {@link POST_AiConciergeConversationsConversationIdContexts_Request_Path} - Path parameters type
- * @see {@link POST_AiConciergeConversationsConversationIdContexts_Request_Body} - Request body type
- */
-export type POST_AiConciergeConversationsConversationIdContexts_Request = {
-  parameters: {
-    path: operations['create_context_v1_ai_concierge_conversations__conversation_id__contexts_post']['parameters']['path'];
-  };
+export type POST_AiConciergeConversationsByConversationIdContexts_Request = {
+  parameters: operations['create_context_v1_ai_concierge_conversations__conversation_id__contexts_post']['parameters'];
   requestBody: ContextCreateRequest;
-}
-/**
- * Path parameters for POST /v1/ai-concierge/conversations/{conversation_id}/contexts
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
- */
-export type POST_AiConciergeConversationsConversationIdContexts_Request_Path = POST_AiConciergeConversationsConversationIdContexts_Request['parameters']['path'];
-/**
- * Request body for POST /v1/ai-concierge/conversations/{conversation_id}/contexts
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/ai-concierge/conversations/{conversation_id}/contexts endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/contexts
- */
-export type POST_AiConciergeConversationsConversationIdContexts_Request_Body = POST_AiConciergeConversationsConversationIdContexts_Request['requestBody'];
+};
+export type POST_AiConciergeConversationsByConversationIdContexts_Request_Path = POST_AiConciergeConversationsByConversationIdContexts_Request['parameters']['path'];
+export type POST_AiConciergeConversationsByConversationIdContexts_Request_Body = POST_AiConciergeConversationsByConversationIdContexts_Request['requestBody'];
 
-/**
- * Request type for GET AiConciergeConversationsConversationIdMessages endpoint
- *
- * List messages in a conversation
- *
- * @remarks
- * This type defines the complete request structure for the GET AiConciergeConversationsConversationIdMessages endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages
- * @param recent (query) - If set, returns last N messages and overrides pagination.
- * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
- *
- * @see {@link GET_AiConciergeConversationsConversationIdMessages_Request_Query} - Query parameters type
- * @see {@link GET_AiConciergeConversationsConversationIdMessages_Request_Path} - Path parameters type
- * @see {@link GET_AiConciergeConversationsConversationIdMessages_Request_Body} - Request body type
- */
-export type GET_AiConciergeConversationsConversationIdMessages_Request = {
-  parameters: {
-    query: operations['list_messages_v1_ai_concierge_conversations__conversation_id__messages_get']['parameters']['query'];
-    path: operations['list_messages_v1_ai_concierge_conversations__conversation_id__messages_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/ai-concierge/conversations/{conversation_id}/messages
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages
- * @param recent (query) - If set, returns last N messages and overrides pagination.
- * @param exclude (query) - Comma-separated tokens to exclude (case-insensitive). Supports `tools`.
- */
-export type GET_AiConciergeConversationsConversationIdMessages_Request_Query = GET_AiConciergeConversationsConversationIdMessages_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}/messages
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages
- */
-export type GET_AiConciergeConversationsConversationIdMessages_Request_Path = GET_AiConciergeConversationsConversationIdMessages_Request['parameters']['path'];
+export type GET_AiConciergeConversationsByConversationIdMessages_Request = {
+  parameters: operations['list_messages_v1_ai_concierge_conversations__conversation_id__messages_get']['parameters'];
+};
+export type GET_AiConciergeConversationsByConversationIdMessages_Request_Query = GET_AiConciergeConversationsByConversationIdMessages_Request['parameters']['query'];
+export type GET_AiConciergeConversationsByConversationIdMessages_Request_Path = GET_AiConciergeConversationsByConversationIdMessages_Request['parameters']['path'];
 
-/**
- * Request type for POST AiConciergeConversationsConversationIdMessages endpoint
- *
- * Append a message to a conversation
- *
- * @remarks
- * This type defines the complete request structure for the POST AiConciergeConversationsConversationIdMessages endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages
- *
- * @see {@link POST_AiConciergeConversationsConversationIdMessages_Request_Query} - Query parameters type
- * @see {@link POST_AiConciergeConversationsConversationIdMessages_Request_Path} - Path parameters type
- * @see {@link POST_AiConciergeConversationsConversationIdMessages_Request_Body} - Request body type
- */
-export type POST_AiConciergeConversationsConversationIdMessages_Request = {
-  parameters: {
-    path: operations['create_message_v1_ai_concierge_conversations__conversation_id__messages_post']['parameters']['path'];
-  };
+export type POST_AiConciergeConversationsByConversationIdMessages_Request = {
+  parameters: operations['create_message_v1_ai_concierge_conversations__conversation_id__messages_post']['parameters'];
   requestBody: MessageCreateRequest;
-}
-/**
- * Path parameters for POST /v1/ai-concierge/conversations/{conversation_id}/messages
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages
- */
-export type POST_AiConciergeConversationsConversationIdMessages_Request_Path = POST_AiConciergeConversationsConversationIdMessages_Request['parameters']['path'];
-/**
- * Request body for POST /v1/ai-concierge/conversations/{conversation_id}/messages
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/ai-concierge/conversations/{conversation_id}/messages endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages
- */
-export type POST_AiConciergeConversationsConversationIdMessages_Request_Body = POST_AiConciergeConversationsConversationIdMessages_Request['requestBody'];
+};
+export type POST_AiConciergeConversationsByConversationIdMessages_Request_Path = POST_AiConciergeConversationsByConversationIdMessages_Request['parameters']['path'];
+export type POST_AiConciergeConversationsByConversationIdMessages_Request_Body = POST_AiConciergeConversationsByConversationIdMessages_Request['requestBody'];
 
-/**
- * Request type for GET AiConciergeConversationsConversationIdMessagesMessageId endpoint
- *
- * Get a message
- *
- * @remarks
- * This type defines the complete request structure for the GET AiConciergeConversationsConversationIdMessagesMessageId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
- *
- * @see {@link GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Query} - Query parameters type
- * @see {@link GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Path} - Path parameters type
- * @see {@link GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Body} - Request body type
- */
-export type GET_AiConciergeConversationsConversationIdMessagesMessageId_Request = {
-  parameters: {
-    path: operations['get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}
- */
-export type GET_AiConciergeConversationsConversationIdMessagesMessageId_Request_Path = GET_AiConciergeConversationsConversationIdMessagesMessageId_Request['parameters']['path'];
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Request = {
+  parameters: operations['get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get']['parameters'];
+};
+export type GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Request_Path = GET_AiConciergeConversationsByConversationIdMessagesByMessageId_Request['parameters']['path'];
 
-/**
- * Request type for GET AiConciergeMemoryFacts endpoint
- *
- * List long-term memory facts
- * List long-term, organization-scoped memory facts available to the AI Concierge.
- *
- * @remarks
- * This type defines the complete request structure for the GET AiConciergeMemoryFacts endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/memory/facts
- *
- * @see {@link GET_AiConciergeMemoryFacts_Request_Query} - Query parameters type
- * @see {@link GET_AiConciergeMemoryFacts_Request_Path} - Path parameters type
- * @see {@link GET_AiConciergeMemoryFacts_Request_Body} - Request body type
- */
 export type GET_AiConciergeMemoryFacts_Request = {
-  parameters: {
-    query: operations['list_memory_facts_v1_ai_concierge_memory_facts_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/ai-concierge/memory/facts
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/ai-concierge/memory/facts endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/ai-concierge/memory/facts
- */
+  parameters: operations['list_memory_facts_v1_ai_concierge_memory_facts_get']['parameters'];
+};
 export type GET_AiConciergeMemoryFacts_Request_Query = GET_AiConciergeMemoryFacts_Request['parameters']['query'];
 
-/**
- * Request type for POST AiConciergeMemoryFacts endpoint
- *
- * Create a long-term memory fact
- *
- * @remarks
- * This type defines the complete request structure for the POST AiConciergeMemoryFacts endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/memory/facts
- *
- * @see {@link POST_AiConciergeMemoryFacts_Request_Query} - Query parameters type
- * @see {@link POST_AiConciergeMemoryFacts_Request_Path} - Path parameters type
- * @see {@link POST_AiConciergeMemoryFacts_Request_Body} - Request body type
- */
 export type POST_AiConciergeMemoryFacts_Request = {
   requestBody: MemoryFactCreateRequest;
-}
-/**
- * Request body for POST /v1/ai-concierge/memory/facts
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/ai-concierge/memory/facts endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/ai-concierge/memory/facts
- */
+};
 export type POST_AiConciergeMemoryFacts_Request_Body = POST_AiConciergeMemoryFacts_Request['requestBody'];
 
-/**
- * Request type for DELETE AiConciergeMemoryFactsFactId endpoint
- *
- * Delete a long-term memory fact
- *
- * @remarks
- * This type defines the complete request structure for the DELETE AiConciergeMemoryFactsFactId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/memory/facts/{fact_id}
- *
- * @see {@link DELETE_AiConciergeMemoryFactsFactId_Request_Query} - Query parameters type
- * @see {@link DELETE_AiConciergeMemoryFactsFactId_Request_Path} - Path parameters type
- * @see {@link DELETE_AiConciergeMemoryFactsFactId_Request_Body} - Request body type
- */
-export type DELETE_AiConciergeMemoryFactsFactId_Request = {
-  parameters: {
-    path: operations['delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/ai-concierge/memory/facts/{fact_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/ai-concierge/memory/facts/{fact_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/memory/facts/{fact_id}
- */
-export type DELETE_AiConciergeMemoryFactsFactId_Request_Path = DELETE_AiConciergeMemoryFactsFactId_Request['parameters']['path'];
+export type DELETE_AiConciergeMemoryFactsByFactId_Request = {
+  parameters: operations['delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete']['parameters'];
+};
+export type DELETE_AiConciergeMemoryFactsByFactId_Request_Path = DELETE_AiConciergeMemoryFactsByFactId_Request['parameters']['path'];
 
-/**
- * Request type for PATCH AiConciergeMemoryFactsFactId endpoint
- *
- * Update a long-term memory fact
- *
- * @remarks
- * This type defines the complete request structure for the PATCH AiConciergeMemoryFactsFactId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/ai-concierge/memory/facts/{fact_id}
- *
- * @see {@link PATCH_AiConciergeMemoryFactsFactId_Request_Query} - Query parameters type
- * @see {@link PATCH_AiConciergeMemoryFactsFactId_Request_Path} - Path parameters type
- * @see {@link PATCH_AiConciergeMemoryFactsFactId_Request_Body} - Request body type
- */
-export type PATCH_AiConciergeMemoryFactsFactId_Request = {
-  parameters: {
-    path: operations['patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch']['parameters']['path'];
-  };
+export type PATCH_AiConciergeMemoryFactsByFactId_Request = {
+  parameters: operations['patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch']['parameters'];
   requestBody: MemoryFactPatchRequest;
-}
-/**
- * Path parameters for PATCH /v1/ai-concierge/memory/facts/{fact_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/ai-concierge/memory/facts/{fact_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/ai-concierge/memory/facts/{fact_id}
- */
-export type PATCH_AiConciergeMemoryFactsFactId_Request_Path = PATCH_AiConciergeMemoryFactsFactId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/ai-concierge/memory/facts/{fact_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/ai-concierge/memory/facts/{fact_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/ai-concierge/memory/facts/{fact_id}
- */
-export type PATCH_AiConciergeMemoryFactsFactId_Request_Body = PATCH_AiConciergeMemoryFactsFactId_Request['requestBody'];
+};
+export type PATCH_AiConciergeMemoryFactsByFactId_Request_Path = PATCH_AiConciergeMemoryFactsByFactId_Request['parameters']['path'];
+export type PATCH_AiConciergeMemoryFactsByFactId_Request_Body = PATCH_AiConciergeMemoryFactsByFactId_Request['requestBody'];
 
-/**
- * Request type for GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint
- *
- * Retrieve email forward logs by alias
- * Retrieves a paginated list of email forward logs for a specific email forward alias. Only returns logs created after the email forward was created.
- *
- * @remarks
- * This type defines the complete request structure for the GET ArchiveEmailForwardLogsAliasesEmailForwardAliasId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
- *
- * @see {@link GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Query} - Query parameters type
- * @see {@link GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Path} - Path parameters type
- * @see {@link GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Body} - Request body type
- */
-export type GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request = {
-  parameters: {
-    query: operations['get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get']['parameters']['query'];
-    path: operations['get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
- */
-export type GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Query = GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/archive/email-forward-logs/aliases/{email_forward_alias_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}
- */
-export type GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request_Path = GET_ArchiveEmailForwardLogsAliasesEmailForwardAliasId_Request['parameters']['path'];
+export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Request = {
+  parameters: operations['get_email_forward_logs_by_alias_v1_archive_email_forward_logs_aliases__email_forward_alias_id__get']['parameters'];
+};
+export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Request_Query = GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Request['parameters']['query'];
+export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Request_Path = GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Request['parameters']['path'];
 
-/**
- * Request type for GET ArchiveEmailForwardLogsEmailForwardId endpoint
- *
- * Retrieve email forward logs
- * Retrieves a paginated list of email forward logs for a specific email forward. Only returns logs created after the email forward was created.
- *
- * @remarks
- * This type defines the complete request structure for the GET ArchiveEmailForwardLogsEmailForwardId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/archive/email-forward-logs/{email_forward_id}
- *
- * @see {@link GET_ArchiveEmailForwardLogsEmailForwardId_Request_Query} - Query parameters type
- * @see {@link GET_ArchiveEmailForwardLogsEmailForwardId_Request_Path} - Path parameters type
- * @see {@link GET_ArchiveEmailForwardLogsEmailForwardId_Request_Body} - Request body type
- */
-export type GET_ArchiveEmailForwardLogsEmailForwardId_Request = {
-  parameters: {
-    query: operations['get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get']['parameters']['query'];
-    path: operations['get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/archive/email-forward-logs/{email_forward_id}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/archive/email-forward-logs/{email_forward_id} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/archive/email-forward-logs/{email_forward_id}
- */
-export type GET_ArchiveEmailForwardLogsEmailForwardId_Request_Query = GET_ArchiveEmailForwardLogsEmailForwardId_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/archive/email-forward-logs/{email_forward_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/archive/email-forward-logs/{email_forward_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/archive/email-forward-logs/{email_forward_id}
- */
-export type GET_ArchiveEmailForwardLogsEmailForwardId_Request_Path = GET_ArchiveEmailForwardLogsEmailForwardId_Request['parameters']['path'];
+export type GET_ArchiveEmailForwardLogsByEmailForwardId_Request = {
+  parameters: operations['get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get']['parameters'];
+};
+export type GET_ArchiveEmailForwardLogsByEmailForwardId_Request_Query = GET_ArchiveEmailForwardLogsByEmailForwardId_Request['parameters']['query'];
+export type GET_ArchiveEmailForwardLogsByEmailForwardId_Request_Path = GET_ArchiveEmailForwardLogsByEmailForwardId_Request['parameters']['path'];
 
-/**
- * Request type for GET ArchiveObjectLogs endpoint
- *
- * Retrieve all object history
- * Retrieve all paginated audit logs with optional filtering and sorting
- *
- * @remarks
- * This type defines the complete request structure for the GET ArchiveObjectLogs endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/archive/object-logs
- *
- * @see {@link GET_ArchiveObjectLogs_Request_Query} - Query parameters type
- * @see {@link GET_ArchiveObjectLogs_Request_Path} - Path parameters type
- * @see {@link GET_ArchiveObjectLogs_Request_Body} - Request body type
- */
 export type GET_ArchiveObjectLogs_Request = {
-  parameters: {
-    query: operations['get_object_logs_v1_archive_object_logs_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/archive/object-logs
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/archive/object-logs endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/archive/object-logs
- */
+  parameters: operations['get_object_logs_v1_archive_object_logs_get']['parameters'];
+};
 export type GET_ArchiveObjectLogs_Request_Query = GET_ArchiveObjectLogs_Request['parameters']['query'];
 
-/**
- * Request type for GET ArchiveObjectLogsObjectId endpoint
- *
- * Retrieve object history
- * Retrieve paginated audit logs for a specific object with optional filtering and sorting
- *
- * @remarks
- * This type defines the complete request structure for the GET ArchiveObjectLogsObjectId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/archive/object-logs/{object_id}
- *
- * @see {@link GET_ArchiveObjectLogsObjectId_Request_Query} - Query parameters type
- * @see {@link GET_ArchiveObjectLogsObjectId_Request_Path} - Path parameters type
- * @see {@link GET_ArchiveObjectLogsObjectId_Request_Body} - Request body type
- */
-export type GET_ArchiveObjectLogsObjectId_Request = {
-  parameters: {
-    query: operations['get_object_logs_by_object_id_v1_archive_object_logs__object_id__get']['parameters']['query'];
-    path: operations['get_object_logs_by_object_id_v1_archive_object_logs__object_id__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/archive/object-logs/{object_id}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/archive/object-logs/{object_id} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/archive/object-logs/{object_id}
- */
-export type GET_ArchiveObjectLogsObjectId_Request_Query = GET_ArchiveObjectLogsObjectId_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/archive/object-logs/{object_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/archive/object-logs/{object_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/archive/object-logs/{object_id}
- */
-export type GET_ArchiveObjectLogsObjectId_Request_Path = GET_ArchiveObjectLogsObjectId_Request['parameters']['path'];
+export type GET_ArchiveObjectLogsByObjectId_Request = {
+  parameters: operations['get_object_logs_by_object_id_v1_archive_object_logs__object_id__get']['parameters'];
+};
+export type GET_ArchiveObjectLogsByObjectId_Request_Query = GET_ArchiveObjectLogsByObjectId_Request['parameters']['query'];
+export type GET_ArchiveObjectLogsByObjectId_Request_Path = GET_ArchiveObjectLogsByObjectId_Request['parameters']['path'];
 
-/**
- * Request type for GET ArchiveRequestHistory endpoint
- *
- * Retrieve request history logs
- * Retrieves a paginated list of request history logs
- *
- * @remarks
- * This type defines the complete request structure for the GET ArchiveRequestHistory endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/archive/request-history
- *
- * @see {@link GET_ArchiveRequestHistory_Request_Query} - Query parameters type
- * @see {@link GET_ArchiveRequestHistory_Request_Path} - Path parameters type
- * @see {@link GET_ArchiveRequestHistory_Request_Body} - Request body type
- */
 export type GET_ArchiveRequestHistory_Request = {
-  parameters: {
-    query: operations['get_request_history_v1_archive_request_history_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/archive/request-history
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/archive/request-history endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/archive/request-history
- */
+  parameters: operations['get_request_history_v1_archive_request_history_get']['parameters'];
+};
 export type GET_ArchiveRequestHistory_Request_Query = GET_ArchiveRequestHistory_Request['parameters']['query'];
 
-/**
- * Request type for POST AuthToken endpoint
- *
- * Issue Organization Token
- *
- * @remarks
- * This type defines the complete request structure for the POST AuthToken endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/auth/token
- *
- * @see {@link POST_AuthToken_Request_Query} - Query parameters type
- * @see {@link POST_AuthToken_Request_Path} - Path parameters type
- * @see {@link POST_AuthToken_Request_Body} - Request body type
- */
 export type POST_AuthToken_Request = {
   requestBody: PublicAuthRequestForm;
-}
-/**
- * Request body for POST /v1/auth/token
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/auth/token endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/auth/token
- */
+};
 export type POST_AuthToken_Request_Body = POST_AuthToken_Request['requestBody'];
 
-/**
- * Request type for GET Availability endpoint
- *
- * Check domain availability
- * Check the availability of one or more domains.
- *
- * @remarks
- * This type defines the complete request structure for the GET Availability endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/availability
- * @param domains (query) - 
-Specify one or more domains to check for availability.
-
- *
- * @see {@link GET_Availability_Request_Query} - Query parameters type
- * @see {@link GET_Availability_Request_Path} - Path parameters type
- * @see {@link GET_Availability_Request_Body} - Request body type
- */
 export type GET_Availability_Request = {
-  parameters: {
-    query: operations['bulk_availability_v1_availability_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/availability
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/availability endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/availability
- * @param domains (query) - 
-Specify one or more domains to check for availability.
-
- */
+  parameters: operations['bulk_availability_v1_availability_get']['parameters'];
+};
 export type GET_Availability_Request_Query = GET_Availability_Request['parameters']['query'];
 
-/**
- * Request type for GET AvailabilityStream endpoint
- *
- * Stream domain availability results
- * Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
- *
- * @remarks
- * This type defines the complete request structure for the GET AvailabilityStream endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/availability/stream
- * @param domains (query) - 
-Specify one or more domains to check for availability.
-
- *
- * @see {@link GET_AvailabilityStream_Request_Query} - Query parameters type
- * @see {@link GET_AvailabilityStream_Request_Path} - Path parameters type
- * @see {@link GET_AvailabilityStream_Request_Body} - Request body type
- */
 export type GET_AvailabilityStream_Request = {
-  parameters: {
-    query: operations['stream_availability_v1_availability_stream_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/availability/stream
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/availability/stream endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/availability/stream
- * @param domains (query) - 
-Specify one or more domains to check for availability.
-
- */
+  parameters: operations['stream_availability_v1_availability_stream_get']['parameters'];
+};
 export type GET_AvailabilityStream_Request_Query = GET_AvailabilityStream_Request['parameters']['query'];
 
-/**
- * Request type for POST AvailabilityStream endpoint
- *
- * Stream domain availability results
- * Stream domain availability results using Server-Sent Events (SSE) until the `done` event is received.
- *
- * @remarks
- * This type defines the complete request structure for the POST AvailabilityStream endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/availability/stream
- *
- * @see {@link POST_AvailabilityStream_Request_Query} - Query parameters type
- * @see {@link POST_AvailabilityStream_Request_Path} - Path parameters type
- * @see {@link POST_AvailabilityStream_Request_Body} - Request body type
- */
 export type POST_AvailabilityStream_Request = {
   requestBody: DomainAvailabilityRequest;
-}
-/**
- * Request body for POST /v1/availability/stream
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/availability/stream endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/availability/stream
- */
+};
 export type POST_AvailabilityStream_Request_Body = POST_AvailabilityStream_Request['requestBody'];
 
-/**
- * Request type for GET Contacts endpoint
- *
- * List all contacts
- * Retrieves a paginated list of all contacts
- *
- * @remarks
- * This type defines the complete request structure for the GET Contacts endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts
- * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
- * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
- * @param include (query) - Include additional data in the response. Can be specified multiple times.
- *
- * @see {@link GET_Contacts_Request_Query} - Query parameters type
- * @see {@link GET_Contacts_Request_Path} - Path parameters type
- * @see {@link GET_Contacts_Request_Body} - Request body type
- */
 export type GET_Contacts_Request = {
-  parameters: {
-    query: operations['get_contacts_v1_contacts_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/contacts
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/contacts endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts
- * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
- * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
- * @param include (query) - Include additional data in the response. Can be specified multiple times.
- */
+  parameters: operations['get_contacts_v1_contacts_get']['parameters'];
+};
 export type GET_Contacts_Request_Query = GET_Contacts_Request['parameters']['query'];
 
-/**
- * Request type for POST Contacts endpoint
- *
- * Create a contact
- * Create a new contact object to use for domain registration
- *
- * @remarks
- * This type defines the complete request structure for the POST Contacts endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts
- *
- * @see {@link POST_Contacts_Request_Query} - Query parameters type
- * @see {@link POST_Contacts_Request_Path} - Path parameters type
- * @see {@link POST_Contacts_Request_Body} - Request body type
- */
 export type POST_Contacts_Request = {
   requestBody: ContactCreate;
-}
-/**
- * Request body for POST /v1/contacts
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/contacts endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/contacts
- */
+};
 export type POST_Contacts_Request_Body = POST_Contacts_Request['requestBody'];
 
-/**
- * Request type for GET ContactsAttributeSets endpoint
- *
- * List contact attribute sets
- *
- * @remarks
- * This type defines the complete request structure for the GET ContactsAttributeSets endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/attribute-sets
- *
- * @see {@link GET_ContactsAttributeSets_Request_Query} - Query parameters type
- * @see {@link GET_ContactsAttributeSets_Request_Path} - Path parameters type
- * @see {@link GET_ContactsAttributeSets_Request_Body} - Request body type
- */
 export type GET_ContactsAttributeSets_Request = {
-  parameters: {
-    query: operations['list_attribute_sets_v1_contacts_attribute_sets_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/contacts/attribute-sets
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/contacts/attribute-sets endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts/attribute-sets
- */
+  parameters: operations['list_attribute_sets_v1_contacts_attribute_sets_get']['parameters'];
+};
 export type GET_ContactsAttributeSets_Request_Query = GET_ContactsAttributeSets_Request['parameters']['query'];
 
-/**
- * Request type for POST ContactsAttributeSets endpoint
- *
- * Create a contact attribute set
- *
- * @remarks
- * This type defines the complete request structure for the POST ContactsAttributeSets endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/attribute-sets
- *
- * @see {@link POST_ContactsAttributeSets_Request_Query} - Query parameters type
- * @see {@link POST_ContactsAttributeSets_Request_Path} - Path parameters type
- * @see {@link POST_ContactsAttributeSets_Request_Body} - Request body type
- */
 export type POST_ContactsAttributeSets_Request = {
   requestBody: ContactAttributeSetCreate;
-}
-/**
- * Request body for POST /v1/contacts/attribute-sets
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/contacts/attribute-sets endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/contacts/attribute-sets
- */
+};
 export type POST_ContactsAttributeSets_Request_Body = POST_ContactsAttributeSets_Request['requestBody'];
 
-/**
- * Request type for DELETE ContactsAttributeSetsContactAttributeSetId endpoint
- *
- * Delete a contact attribute set
- *
- * @remarks
- * This type defines the complete request structure for the DELETE ContactsAttributeSetsContactAttributeSetId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
- *
- * @see {@link DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Query} - Query parameters type
- * @see {@link DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Path} - Path parameters type
- * @see {@link DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Body} - Request body type
- */
-export type DELETE_ContactsAttributeSetsContactAttributeSetId_Request = {
-  parameters: {
-    path: operations['delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/contacts/attribute-sets/{contact_attribute_set_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
- */
-export type DELETE_ContactsAttributeSetsContactAttributeSetId_Request_Path = DELETE_ContactsAttributeSetsContactAttributeSetId_Request['parameters']['path'];
+export type DELETE_ContactsAttributeSetsByContactAttributeSetId_Request = {
+  parameters: operations['delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete']['parameters'];
+};
+export type DELETE_ContactsAttributeSetsByContactAttributeSetId_Request_Path = DELETE_ContactsAttributeSetsByContactAttributeSetId_Request['parameters']['path'];
 
-/**
- * Request type for GET ContactsAttributeSetsContactAttributeSetId endpoint
- *
- * Retrieve a contact attribute set
- *
- * @remarks
- * This type defines the complete request structure for the GET ContactsAttributeSetsContactAttributeSetId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
- *
- * @see {@link GET_ContactsAttributeSetsContactAttributeSetId_Request_Query} - Query parameters type
- * @see {@link GET_ContactsAttributeSetsContactAttributeSetId_Request_Path} - Path parameters type
- * @see {@link GET_ContactsAttributeSetsContactAttributeSetId_Request_Body} - Request body type
- */
-export type GET_ContactsAttributeSetsContactAttributeSetId_Request = {
-  parameters: {
-    path: operations['get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/contacts/attribute-sets/{contact_attribute_set_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
- */
-export type GET_ContactsAttributeSetsContactAttributeSetId_Request_Path = GET_ContactsAttributeSetsContactAttributeSetId_Request['parameters']['path'];
+export type GET_ContactsAttributeSetsByContactAttributeSetId_Request = {
+  parameters: operations['get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get']['parameters'];
+};
+export type GET_ContactsAttributeSetsByContactAttributeSetId_Request_Path = GET_ContactsAttributeSetsByContactAttributeSetId_Request['parameters']['path'];
 
-/**
- * Request type for PATCH ContactsAttributeSetsContactAttributeSetId endpoint
- *
- * Update a contact attribute set
- *
- * @remarks
- * This type defines the complete request structure for the PATCH ContactsAttributeSetsContactAttributeSetId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
- *
- * @see {@link PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Query} - Query parameters type
- * @see {@link PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Path} - Path parameters type
- * @see {@link PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Body} - Request body type
- */
-export type PATCH_ContactsAttributeSetsContactAttributeSetId_Request = {
-  parameters: {
-    path: operations['update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch']['parameters']['path'];
-  };
+export type PATCH_ContactsAttributeSetsByContactAttributeSetId_Request = {
+  parameters: operations['update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch']['parameters'];
   requestBody: ContactAttributeSetUpdate;
-}
-/**
- * Path parameters for PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
- */
-export type PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Path = PATCH_ContactsAttributeSetsContactAttributeSetId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/contacts/attribute-sets/{contact_attribute_set_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/contacts/attribute-sets/{contact_attribute_set_id}
- */
-export type PATCH_ContactsAttributeSetsContactAttributeSetId_Request_Body = PATCH_ContactsAttributeSetsContactAttributeSetId_Request['requestBody'];
+};
+export type PATCH_ContactsAttributeSetsByContactAttributeSetId_Request_Path = PATCH_ContactsAttributeSetsByContactAttributeSetId_Request['parameters']['path'];
+export type PATCH_ContactsAttributeSetsByContactAttributeSetId_Request_Body = PATCH_ContactsAttributeSetsByContactAttributeSetId_Request['requestBody'];
 
-/**
- * Request type for DELETE ContactsContactId endpoint
- *
- * Delete a contact
- * Deletes a contact object; only possible if the contact is not in use
- *
- * @remarks
- * This type defines the complete request structure for the DELETE ContactsContactId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}
- *
- * @see {@link DELETE_ContactsContactId_Request_Query} - Query parameters type
- * @see {@link DELETE_ContactsContactId_Request_Path} - Path parameters type
- * @see {@link DELETE_ContactsContactId_Request_Body} - Request body type
- */
-export type DELETE_ContactsContactId_Request = {
-  parameters: {
-    path: operations['delete_contact_v1_contacts__contact_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/contacts/{contact_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/contacts/{contact_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}
- */
-export type DELETE_ContactsContactId_Request_Path = DELETE_ContactsContactId_Request['parameters']['path'];
+export type DELETE_ContactsByContactId_Request = {
+  parameters: operations['delete_contact_v1_contacts__contact_id__delete']['parameters'];
+};
+export type DELETE_ContactsByContactId_Request_Path = DELETE_ContactsByContactId_Request['parameters']['path'];
 
-/**
- * Request type for GET ContactsContactId endpoint
- *
- * Retrieve a contact
- *
- * @remarks
- * This type defines the complete request structure for the GET ContactsContactId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}
- *
- * @see {@link GET_ContactsContactId_Request_Query} - Query parameters type
- * @see {@link GET_ContactsContactId_Request_Path} - Path parameters type
- * @see {@link GET_ContactsContactId_Request_Body} - Request body type
- */
-export type GET_ContactsContactId_Request = {
-  parameters: {
-    query: operations['get_contact_v1_contacts__contact_id__get']['parameters']['query'];
-    path: operations['get_contact_v1_contacts__contact_id__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/contacts/{contact_id}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/contacts/{contact_id} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts/{contact_id}
- */
-export type GET_ContactsContactId_Request_Query = GET_ContactsContactId_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/contacts/{contact_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/contacts/{contact_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}
- */
-export type GET_ContactsContactId_Request_Path = GET_ContactsContactId_Request['parameters']['path'];
+export type GET_ContactsByContactId_Request = {
+  parameters: operations['get_contact_v1_contacts__contact_id__get']['parameters'];
+};
+export type GET_ContactsByContactId_Request_Query = GET_ContactsByContactId_Request['parameters']['query'];
+export type GET_ContactsByContactId_Request_Path = GET_ContactsByContactId_Request['parameters']['path'];
 
-/**
- * Request type for PATCH ContactsContactIdLinkContactAttributeSetId endpoint
- *
- * Link a contact to a contact attribute set
- *
- * @remarks
- * This type defines the complete request structure for the PATCH ContactsContactIdLinkContactAttributeSetId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}/link/{contact_attribute_set_id}
- *
- * @see {@link PATCH_ContactsContactIdLinkContactAttributeSetId_Request_Query} - Query parameters type
- * @see {@link PATCH_ContactsContactIdLinkContactAttributeSetId_Request_Path} - Path parameters type
- * @see {@link PATCH_ContactsContactIdLinkContactAttributeSetId_Request_Body} - Request body type
- */
-export type PATCH_ContactsContactIdLinkContactAttributeSetId_Request = {
-  parameters: {
-    path: operations['create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for PATCH /v1/contacts/{contact_id}/link/{contact_attribute_set_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/contacts/{contact_id}/link/{contact_attribute_set_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}/link/{contact_attribute_set_id}
- */
-export type PATCH_ContactsContactIdLinkContactAttributeSetId_Request_Path = PATCH_ContactsContactIdLinkContactAttributeSetId_Request['parameters']['path'];
+export type PATCH_ContactsByContactIdLinkByContactAttributeSetId_Request = {
+  parameters: operations['create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch']['parameters'];
+};
+export type PATCH_ContactsByContactIdLinkByContactAttributeSetId_Request_Path = PATCH_ContactsByContactIdLinkByContactAttributeSetId_Request['parameters']['path'];
 
-/**
- * Request type for DELETE ContactsContactIdVerification endpoint
- *
- * Delete contact verification
- *
- * @remarks
- * This type defines the complete request structure for the DELETE ContactsContactIdVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}/verification
- *
- * @see {@link DELETE_ContactsContactIdVerification_Request_Query} - Query parameters type
- * @see {@link DELETE_ContactsContactIdVerification_Request_Path} - Path parameters type
- * @see {@link DELETE_ContactsContactIdVerification_Request_Body} - Request body type
- */
-export type DELETE_ContactsContactIdVerification_Request = {
-  parameters: {
-    path: operations['cancel_verification_v1_contacts__contact_id__verification_delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/contacts/{contact_id}/verification
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/contacts/{contact_id}/verification endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}/verification
- */
-export type DELETE_ContactsContactIdVerification_Request_Path = DELETE_ContactsContactIdVerification_Request['parameters']['path'];
+export type DELETE_ContactsByContactIdVerification_Request = {
+  parameters: operations['cancel_verification_v1_contacts__contact_id__verification_delete']['parameters'];
+};
+export type DELETE_ContactsByContactIdVerification_Request_Path = DELETE_ContactsByContactIdVerification_Request['parameters']['path'];
 
-/**
- * Request type for GET ContactsContactIdVerification endpoint
- *
- * Retrieve contact verification by contact ID
- *
- * @remarks
- * This type defines the complete request structure for the GET ContactsContactIdVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}/verification
- *
- * @see {@link GET_ContactsContactIdVerification_Request_Query} - Query parameters type
- * @see {@link GET_ContactsContactIdVerification_Request_Path} - Path parameters type
- * @see {@link GET_ContactsContactIdVerification_Request_Body} - Request body type
- */
-export type GET_ContactsContactIdVerification_Request = {
-  parameters: {
-    path: operations['get_verification_status_v1_contacts__contact_id__verification_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/contacts/{contact_id}/verification
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/contacts/{contact_id}/verification endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}/verification
- */
-export type GET_ContactsContactIdVerification_Request_Path = GET_ContactsContactIdVerification_Request['parameters']['path'];
+export type GET_ContactsByContactIdVerification_Request = {
+  parameters: operations['get_verification_status_v1_contacts__contact_id__verification_get']['parameters'];
+};
+export type GET_ContactsByContactIdVerification_Request_Path = GET_ContactsByContactIdVerification_Request['parameters']['path'];
 
-/**
- * Request type for POST ContactsContactIdVerification endpoint
- *
- * Start contact verification
- *
- * @remarks
- * This type defines the complete request structure for the POST ContactsContactIdVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}/verification
- *
- * @see {@link POST_ContactsContactIdVerification_Request_Query} - Query parameters type
- * @see {@link POST_ContactsContactIdVerification_Request_Path} - Path parameters type
- * @see {@link POST_ContactsContactIdVerification_Request_Body} - Request body type
- */
-export type POST_ContactsContactIdVerification_Request = {
-  parameters: {
-    query: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['query'];
-    path: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for POST /v1/contacts/{contact_id}/verification
- *
- * @remarks
- * This type defines the query parameters for the POST /v1/contacts/{contact_id}/verification endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts/{contact_id}/verification
- */
-export type POST_ContactsContactIdVerification_Request_Query = POST_ContactsContactIdVerification_Request['parameters']['query'];
-/**
- * Path parameters for POST /v1/contacts/{contact_id}/verification
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/contacts/{contact_id}/verification endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}/verification
- */
-export type POST_ContactsContactIdVerification_Request_Path = POST_ContactsContactIdVerification_Request['parameters']['path'];
+export type POST_ContactsByContactIdVerification_Request = {
+  parameters: operations['start_contact_verification_v1_contacts__contact_id__verification_post']['parameters'];
+};
+export type POST_ContactsByContactIdVerification_Request_Query = POST_ContactsByContactIdVerification_Request['parameters']['query'];
+export type POST_ContactsByContactIdVerification_Request_Path = POST_ContactsByContactIdVerification_Request['parameters']['path'];
 
-/**
- * Request type for PUT ContactsContactIdVerification endpoint
- *
- * Complete contact verification by contact ID
- *
- * @remarks
- * This type defines the complete request structure for the PUT ContactsContactIdVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}/verification
- *
- * @see {@link PUT_ContactsContactIdVerification_Request_Query} - Query parameters type
- * @see {@link PUT_ContactsContactIdVerification_Request_Path} - Path parameters type
- * @see {@link PUT_ContactsContactIdVerification_Request_Body} - Request body type
- */
-export type PUT_ContactsContactIdVerification_Request = {
-  parameters: {
-    query: operations['update_verification_v1_contacts__contact_id__verification_put']['parameters']['query'];
-    path: operations['update_verification_v1_contacts__contact_id__verification_put']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for PUT /v1/contacts/{contact_id}/verification
- *
- * @remarks
- * This type defines the query parameters for the PUT /v1/contacts/{contact_id}/verification endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts/{contact_id}/verification
- */
-export type PUT_ContactsContactIdVerification_Request_Query = PUT_ContactsContactIdVerification_Request['parameters']['query'];
-/**
- * Path parameters for PUT /v1/contacts/{contact_id}/verification
- *
- * @remarks
- * This type defines the path parameters for the PUT /v1/contacts/{contact_id}/verification endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}/verification
- */
-export type PUT_ContactsContactIdVerification_Request_Path = PUT_ContactsContactIdVerification_Request['parameters']['path'];
+export type PUT_ContactsByContactIdVerification_Request = {
+  parameters: operations['update_verification_v1_contacts__contact_id__verification_put']['parameters'];
+};
+export type PUT_ContactsByContactIdVerification_Request_Query = PUT_ContactsByContactIdVerification_Request['parameters']['query'];
+export type PUT_ContactsByContactIdVerification_Request_Path = PUT_ContactsByContactIdVerification_Request['parameters']['path'];
 
-/**
- * Request type for GET ContactsContactIdVerifications endpoint
- *
- * Get contact verification status
- * Retrieve the current verification state for a contact from the contact-verification service.
- *
- * @remarks
- * This type defines the complete request structure for the GET ContactsContactIdVerifications endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}/verifications
- *
- * @see {@link GET_ContactsContactIdVerifications_Request_Query} - Query parameters type
- * @see {@link GET_ContactsContactIdVerifications_Request_Path} - Path parameters type
- * @see {@link GET_ContactsContactIdVerifications_Request_Body} - Request body type
- */
-export type GET_ContactsContactIdVerifications_Request = {
-  parameters: {
-    path: operations['get_contact_verification_status_v1_contacts__contact_id__verifications_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/contacts/{contact_id}/verifications
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/contacts/{contact_id}/verifications endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}/verifications
- */
-export type GET_ContactsContactIdVerifications_Request_Path = GET_ContactsContactIdVerifications_Request['parameters']['path'];
+export type GET_ContactsByContactIdVerifications_Request = {
+  parameters: operations['get_contact_verification_status_v1_contacts__contact_id__verifications_get']['parameters'];
+};
+export type GET_ContactsByContactIdVerifications_Request_Path = GET_ContactsByContactIdVerifications_Request['parameters']['path'];
 
-/**
- * Request type for POST ContactsContactIdVerificationsAttest endpoint
- *
- * Attest a contact verification
- * Submit one or more contact-verification attestations. Returns the per-claim verification state.
- *
- * @remarks
- * This type defines the complete request structure for the POST ContactsContactIdVerificationsAttest endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/{contact_id}/verifications/attest
- *
- * @see {@link POST_ContactsContactIdVerificationsAttest_Request_Query} - Query parameters type
- * @see {@link POST_ContactsContactIdVerificationsAttest_Request_Path} - Path parameters type
- * @see {@link POST_ContactsContactIdVerificationsAttest_Request_Body} - Request body type
- */
-export type POST_ContactsContactIdVerificationsAttest_Request = {
-  parameters: {
-    path: operations['attest_contact_verification_v1_contacts__contact_id__verifications_attest_post']['parameters']['path'];
-  };
+export type POST_ContactsByContactIdVerificationsAttest_Request = {
+  parameters: operations['attest_contact_verification_v1_contacts__contact_id__verifications_attest_post']['parameters'];
   requestBody: ContactAttestReq;
-}
-/**
- * Path parameters for POST /v1/contacts/{contact_id}/verifications/attest
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/contacts/{contact_id}/verifications/attest endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/contacts/{contact_id}/verifications/attest
- */
-export type POST_ContactsContactIdVerificationsAttest_Request_Path = POST_ContactsContactIdVerificationsAttest_Request['parameters']['path'];
-/**
- * Request body for POST /v1/contacts/{contact_id}/verifications/attest
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/contacts/{contact_id}/verifications/attest endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/contacts/{contact_id}/verifications/attest
- */
-export type POST_ContactsContactIdVerificationsAttest_Request_Body = POST_ContactsContactIdVerificationsAttest_Request['requestBody'];
+};
+export type POST_ContactsByContactIdVerificationsAttest_Request_Path = POST_ContactsByContactIdVerificationsAttest_Request['parameters']['path'];
+export type POST_ContactsByContactIdVerificationsAttest_Request_Body = POST_ContactsByContactIdVerificationsAttest_Request['requestBody'];
 
-/**
- * Request type for GET ContactsVerification endpoint
- *
- * Retrieve contact verification by token
- *
- * @remarks
- * This type defines the complete request structure for the GET ContactsVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/verification
- *
- * @see {@link GET_ContactsVerification_Request_Query} - Query parameters type
- * @see {@link GET_ContactsVerification_Request_Path} - Path parameters type
- * @see {@link GET_ContactsVerification_Request_Body} - Request body type
- */
 export type GET_ContactsVerification_Request = {
-  parameters: {
-    query: operations['get_verification_by_token_v1_contacts_verification_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/contacts/verification
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/contacts/verification endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts/verification
- */
+  parameters: operations['get_verification_by_token_v1_contacts_verification_get']['parameters'];
+};
 export type GET_ContactsVerification_Request_Query = GET_ContactsVerification_Request['parameters']['query'];
 
-/**
- * Request type for PUT ContactsVerification endpoint
- *
- * Complete contact verification with token
- *
- * @remarks
- * This type defines the complete request structure for the PUT ContactsVerification endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/verification
- *
- * @see {@link PUT_ContactsVerification_Request_Query} - Query parameters type
- * @see {@link PUT_ContactsVerification_Request_Path} - Path parameters type
- * @see {@link PUT_ContactsVerification_Request_Body} - Request body type
- */
 export type PUT_ContactsVerification_Request = {
-  parameters: {
-    query: operations['update_verification_by_token_v1_contacts_verification_put']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for PUT /v1/contacts/verification
- *
- * @remarks
- * This type defines the query parameters for the PUT /v1/contacts/verification endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts/verification
- */
+  parameters: operations['update_verification_by_token_v1_contacts_verification_put']['parameters'];
+};
 export type PUT_ContactsVerification_Request_Query = PUT_ContactsVerification_Request['parameters']['query'];
 
-/**
- * Request type for GET ContactsVerify endpoint
- *
- * Email Verify Contact
- *
- * @remarks
- * This type defines the complete request structure for the GET ContactsVerify endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/contacts/verify
- *
- * @see {@link GET_ContactsVerify_Request_Query} - Query parameters type
- * @see {@link GET_ContactsVerify_Request_Path} - Path parameters type
- * @see {@link GET_ContactsVerify_Request_Body} - Request body type
- */
 export type GET_ContactsVerify_Request = {
-  parameters: {
-    query: operations['email_verify_contact_v1_contacts_verify_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/contacts/verify
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/contacts/verify endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/contacts/verify
- */
+  parameters: operations['email_verify_contact_v1_contacts_verify_get']['parameters'];
+};
 export type GET_ContactsVerify_Request_Query = GET_ContactsVerify_Request['parameters']['query'];
 
-/**
- * Request type for GET Dns endpoint
- *
- * List Zones
- *
- * @remarks
- * This type defines the complete request structure for the GET Dns endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns
- * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
- * @param include (query) - Include additional data in the response. Can be specified multiple times.
- *
- * @see {@link GET_Dns_Request_Query} - Query parameters type
- * @see {@link GET_Dns_Request_Path} - Path parameters type
- * @see {@link GET_Dns_Request_Body} - Request body type
- */
 export type GET_Dns_Request = {
-  parameters: {
-    query: operations['list_zones_v1_dns_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/dns
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/dns endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/dns
- * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
- * @param include (query) - Include additional data in the response. Can be specified multiple times.
- */
+  parameters: operations['list_zones_v1_dns_get']['parameters'];
+};
 export type GET_Dns_Request_Query = GET_Dns_Request['parameters']['query'];
 
-/**
- * Request type for POST Dns endpoint
- *
- * Create Zone
- *
- * @remarks
- * This type defines the complete request structure for the POST Dns endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns
- *
- * @see {@link POST_Dns_Request_Query} - Query parameters type
- * @see {@link POST_Dns_Request_Path} - Path parameters type
- * @see {@link POST_Dns_Request_Body} - Request body type
- */
 export type POST_Dns_Request = {
   requestBody: DnsZoneCreate;
-}
-/**
- * Request body for POST /v1/dns
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/dns endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/dns
- */
+};
 export type POST_Dns_Request_Body = POST_Dns_Request['requestBody'];
 
-/**
- * Request type for GET DnsDomainForwards endpoint
- *
- * List domain forwards by zone
- * Retrieves a paginated list of domain forwards grouped by DNS zones.
- *
- * @remarks
- * This type defines the complete request structure for the GET DnsDomainForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/domain-forwards
- *
- * @see {@link GET_DnsDomainForwards_Request_Query} - Query parameters type
- * @see {@link GET_DnsDomainForwards_Request_Path} - Path parameters type
- * @see {@link GET_DnsDomainForwards_Request_Body} - Request body type
- */
+export type DELETE_DnsByZoneName_Request = {
+  parameters: operations['delete_zone_v1_dns__zone_name__delete']['parameters'];
+};
+export type DELETE_DnsByZoneName_Request_Path = DELETE_DnsByZoneName_Request['parameters']['path'];
+
+export type GET_DnsByZoneName_Request = {
+  parameters: operations['get_zone_v1_dns__zone_name__get']['parameters'];
+};
+export type GET_DnsByZoneName_Request_Query = GET_DnsByZoneName_Request['parameters']['query'];
+export type GET_DnsByZoneName_Request_Path = GET_DnsByZoneName_Request['parameters']['path'];
+
+export type POST_DnsByZoneNameDnssecDisable_Request = {
+  parameters: operations['disable_dnssec_v1_dns__zone_name__dnssec_disable_post']['parameters'];
+};
+export type POST_DnsByZoneNameDnssecDisable_Request_Path = POST_DnsByZoneNameDnssecDisable_Request['parameters']['path'];
+
+export type POST_DnsByZoneNameDnssecEnable_Request = {
+  parameters: operations['enable_dnssec_v1_dns__zone_name__dnssec_enable_post']['parameters'];
+};
+export type POST_DnsByZoneNameDnssecEnable_Request_Path = POST_DnsByZoneNameDnssecEnable_Request['parameters']['path'];
+
+export type GET_DnsByZoneNameDomainForwards_Request = {
+  parameters: operations['list_zone_domain_forwards_v1_dns__zone_name__domain_forwards_get']['parameters'];
+};
+export type GET_DnsByZoneNameDomainForwards_Request_Path = GET_DnsByZoneNameDomainForwards_Request['parameters']['path'];
+
+export type GET_DnsByZoneNameEmailForwards_Request = {
+  parameters: operations['list_zone_email_forwards_v1_dns__zone_name__email_forwards_get']['parameters'];
+};
+export type GET_DnsByZoneNameEmailForwards_Request_Path = GET_DnsByZoneNameEmailForwards_Request['parameters']['path'];
+
+export type PATCH_DnsByZoneNameRecords_Request = {
+  parameters: operations['patch_zone_records_v1_dns__zone_name__records_patch']['parameters'];
+  requestBody: DnsZoneRecordsPatchOps;
+};
+export type PATCH_DnsByZoneNameRecords_Request_Path = PATCH_DnsByZoneNameRecords_Request['parameters']['path'];
+export type PATCH_DnsByZoneNameRecords_Request_Body = PATCH_DnsByZoneNameRecords_Request['requestBody'];
+
+export type PATCH_DnsByZoneNameRrsets_Request = {
+  parameters: operations['patch_zone_rrsets_v1_dns__zone_name__rrsets_patch']['parameters'];
+  requestBody: DnsZoneRrsetsPatchOps;
+};
+export type PATCH_DnsByZoneNameRrsets_Request_Path = PATCH_DnsByZoneNameRrsets_Request['parameters']['path'];
+export type PATCH_DnsByZoneNameRrsets_Request_Body = PATCH_DnsByZoneNameRrsets_Request['requestBody'];
+
+export type PUT_DnsByZoneNameRrsets_Request = {
+  parameters: operations['update_zone_rrsets_v1_dns__zone_name__rrsets_put']['parameters'];
+  requestBody: DnsZoneRrsetsCreate;
+};
+export type PUT_DnsByZoneNameRrsets_Request_Path = PUT_DnsByZoneNameRrsets_Request['parameters']['path'];
+export type PUT_DnsByZoneNameRrsets_Request_Body = PUT_DnsByZoneNameRrsets_Request['requestBody'];
+
 export type GET_DnsDomainForwards_Request = {
-  parameters: {
-    query: operations['list_domain_forwards_by_zone_v1_dns_domain_forwards_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/dns/domain-forwards
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/dns/domain-forwards endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/dns/domain-forwards
- */
+  parameters: operations['list_domain_forwards_by_zone_v1_dns_domain_forwards_get']['parameters'];
+};
 export type GET_DnsDomainForwards_Request_Query = GET_DnsDomainForwards_Request['parameters']['query'];
 
-/**
- * Request type for GET DnsEmailForwards endpoint
- *
- * List email forwards by zone
- * Retrieves a paginated list of email forwards grouped by DNS zones.
- *
- * @remarks
- * This type defines the complete request structure for the GET DnsEmailForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/email-forwards
- *
- * @see {@link GET_DnsEmailForwards_Request_Query} - Query parameters type
- * @see {@link GET_DnsEmailForwards_Request_Path} - Path parameters type
- * @see {@link GET_DnsEmailForwards_Request_Body} - Request body type
- */
 export type GET_DnsEmailForwards_Request = {
-  parameters: {
-    query: operations['list_email_forwards_by_zone_v1_dns_email_forwards_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/dns/email-forwards
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/dns/email-forwards endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/dns/email-forwards
- */
+  parameters: operations['list_email_forwards_by_zone_v1_dns_email_forwards_get']['parameters'];
+};
 export type GET_DnsEmailForwards_Request_Query = GET_DnsEmailForwards_Request['parameters']['query'];
 
-/**
- * Request type for GET DnsSummary endpoint
- *
- * Get Zones Summary
- *
- * @remarks
- * This type defines the complete request structure for the GET DnsSummary endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/summary
- *
- * @see {@link GET_DnsSummary_Request_Query} - Query parameters type
- * @see {@link GET_DnsSummary_Request_Path} - Path parameters type
- * @see {@link GET_DnsSummary_Request_Body} - Request body type
- */
 export type GET_DnsSummary_Request = {
-}
+};
 
-/**
- * Request type for DELETE DnsZoneName endpoint
- *
- * Delete Zone
- *
- * @remarks
- * This type defines the complete request structure for the DELETE DnsZoneName endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link DELETE_DnsZoneName_Request_Query} - Query parameters type
- * @see {@link DELETE_DnsZoneName_Request_Path} - Path parameters type
- * @see {@link DELETE_DnsZoneName_Request_Body} - Request body type
- */
-export type DELETE_DnsZoneName_Request = {
-  parameters: {
-    path: operations['delete_zone_v1_dns__zone_name__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/dns/{zone_name}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/dns/{zone_name} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type DELETE_DnsZoneName_Request_Path = DELETE_DnsZoneName_Request['parameters']['path'];
-
-/**
- * Request type for GET DnsZoneName endpoint
- *
- * Get Zone
- *
- * @remarks
- * This type defines the complete request structure for the GET DnsZoneName endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link GET_DnsZoneName_Request_Query} - Query parameters type
- * @see {@link GET_DnsZoneName_Request_Path} - Path parameters type
- * @see {@link GET_DnsZoneName_Request_Body} - Request body type
- */
-export type GET_DnsZoneName_Request = {
-  parameters: {
-    query: operations['get_zone_v1_dns__zone_name__get']['parameters']['query'];
-    path: operations['get_zone_v1_dns__zone_name__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/dns/{zone_name}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/dns/{zone_name} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/dns/{zone_name}
- */
-export type GET_DnsZoneName_Request_Query = GET_DnsZoneName_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/dns/{zone_name}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/dns/{zone_name} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type GET_DnsZoneName_Request_Path = GET_DnsZoneName_Request['parameters']['path'];
-
-/**
- * Request type for POST DnsZoneNameDnssecDisable endpoint
- *
- * Disable Dnssec
- *
- * @remarks
- * This type defines the complete request structure for the POST DnsZoneNameDnssecDisable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}/dnssec/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link POST_DnsZoneNameDnssecDisable_Request_Query} - Query parameters type
- * @see {@link POST_DnsZoneNameDnssecDisable_Request_Path} - Path parameters type
- * @see {@link POST_DnsZoneNameDnssecDisable_Request_Body} - Request body type
- */
-export type POST_DnsZoneNameDnssecDisable_Request = {
-  parameters: {
-    path: operations['disable_dnssec_v1_dns__zone_name__dnssec_disable_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/dns/{zone_name}/dnssec/disable
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/dns/{zone_name}/dnssec/disable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}/dnssec/disable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type POST_DnsZoneNameDnssecDisable_Request_Path = POST_DnsZoneNameDnssecDisable_Request['parameters']['path'];
-
-/**
- * Request type for POST DnsZoneNameDnssecEnable endpoint
- *
- * Enable Dnssec
- *
- * @remarks
- * This type defines the complete request structure for the POST DnsZoneNameDnssecEnable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}/dnssec/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link POST_DnsZoneNameDnssecEnable_Request_Query} - Query parameters type
- * @see {@link POST_DnsZoneNameDnssecEnable_Request_Path} - Path parameters type
- * @see {@link POST_DnsZoneNameDnssecEnable_Request_Body} - Request body type
- */
-export type POST_DnsZoneNameDnssecEnable_Request = {
-  parameters: {
-    path: operations['enable_dnssec_v1_dns__zone_name__dnssec_enable_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/dns/{zone_name}/dnssec/enable
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/dns/{zone_name}/dnssec/enable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}/dnssec/enable
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type POST_DnsZoneNameDnssecEnable_Request_Path = POST_DnsZoneNameDnssecEnable_Request['parameters']['path'];
-
-/**
- * Request type for GET DnsZoneNameDomainForwards endpoint
- *
- * List domain forwards for a zone
- * Retrieves all domain forwards configured for the specified DNS zone, including subdomains.
- *
- * @remarks
- * This type defines the complete request structure for the GET DnsZoneNameDomainForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}/domain-forwards
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link GET_DnsZoneNameDomainForwards_Request_Query} - Query parameters type
- * @see {@link GET_DnsZoneNameDomainForwards_Request_Path} - Path parameters type
- * @see {@link GET_DnsZoneNameDomainForwards_Request_Body} - Request body type
- */
-export type GET_DnsZoneNameDomainForwards_Request = {
-  parameters: {
-    path: operations['list_zone_domain_forwards_v1_dns__zone_name__domain_forwards_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/dns/{zone_name}/domain-forwards
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/dns/{zone_name}/domain-forwards endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}/domain-forwards
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type GET_DnsZoneNameDomainForwards_Request_Path = GET_DnsZoneNameDomainForwards_Request['parameters']['path'];
-
-/**
- * Request type for GET DnsZoneNameEmailForwards endpoint
- *
- * List email forwards for a zone
- * Retrieves all email forwards configured for the specified DNS zone, including subdomains and all aliases.
- *
- * @remarks
- * This type defines the complete request structure for the GET DnsZoneNameEmailForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}/email-forwards
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link GET_DnsZoneNameEmailForwards_Request_Query} - Query parameters type
- * @see {@link GET_DnsZoneNameEmailForwards_Request_Path} - Path parameters type
- * @see {@link GET_DnsZoneNameEmailForwards_Request_Body} - Request body type
- */
-export type GET_DnsZoneNameEmailForwards_Request = {
-  parameters: {
-    path: operations['list_zone_email_forwards_v1_dns__zone_name__email_forwards_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/dns/{zone_name}/email-forwards
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/dns/{zone_name}/email-forwards endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}/email-forwards
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type GET_DnsZoneNameEmailForwards_Request_Path = GET_DnsZoneNameEmailForwards_Request['parameters']['path'];
-
-/**
- * Request type for PATCH DnsZoneNameRecords endpoint
- *
- * Patch Zone Records
- *
- * @remarks
- * This type defines the complete request structure for the PATCH DnsZoneNameRecords endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}/records
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link PATCH_DnsZoneNameRecords_Request_Query} - Query parameters type
- * @see {@link PATCH_DnsZoneNameRecords_Request_Path} - Path parameters type
- * @see {@link PATCH_DnsZoneNameRecords_Request_Body} - Request body type
- */
-export type PATCH_DnsZoneNameRecords_Request = {
-  parameters: {
-    path: operations['patch_zone_records_v1_dns__zone_name__records_patch']['parameters']['path'];
-  };
-  requestBody: DnsZoneRecordsPatchOps;
-}
-/**
- * Path parameters for PATCH /v1/dns/{zone_name}/records
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/dns/{zone_name}/records endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}/records
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type PATCH_DnsZoneNameRecords_Request_Path = PATCH_DnsZoneNameRecords_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/dns/{zone_name}/records
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/dns/{zone_name}/records endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/dns/{zone_name}/records
- */
-export type PATCH_DnsZoneNameRecords_Request_Body = PATCH_DnsZoneNameRecords_Request['requestBody'];
-
-/**
- * Request type for PATCH DnsZoneNameRrsets endpoint
- *
- * Patch Zone Rrsets
- *
- * @remarks
- * This type defines the complete request structure for the PATCH DnsZoneNameRrsets endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}/rrsets
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link PATCH_DnsZoneNameRrsets_Request_Query} - Query parameters type
- * @see {@link PATCH_DnsZoneNameRrsets_Request_Path} - Path parameters type
- * @see {@link PATCH_DnsZoneNameRrsets_Request_Body} - Request body type
- */
-export type PATCH_DnsZoneNameRrsets_Request = {
-  parameters: {
-    path: operations['patch_zone_rrsets_v1_dns__zone_name__rrsets_patch']['parameters']['path'];
-  };
-  requestBody: DnsZoneRrsetsPatchOps;
-}
-/**
- * Path parameters for PATCH /v1/dns/{zone_name}/rrsets
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/dns/{zone_name}/rrsets endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}/rrsets
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type PATCH_DnsZoneNameRrsets_Request_Path = PATCH_DnsZoneNameRrsets_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/dns/{zone_name}/rrsets
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/dns/{zone_name}/rrsets endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/dns/{zone_name}/rrsets
- */
-export type PATCH_DnsZoneNameRrsets_Request_Body = PATCH_DnsZoneNameRrsets_Request['requestBody'];
-
-/**
- * Request type for PUT DnsZoneNameRrsets endpoint
- *
- * Update Zone Rrsets
- *
- * @remarks
- * This type defines the complete request structure for the PUT DnsZoneNameRrsets endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/dns/{zone_name}/rrsets
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- *
- * @see {@link PUT_DnsZoneNameRrsets_Request_Query} - Query parameters type
- * @see {@link PUT_DnsZoneNameRrsets_Request_Path} - Path parameters type
- * @see {@link PUT_DnsZoneNameRrsets_Request_Body} - Request body type
- */
-export type PUT_DnsZoneNameRrsets_Request = {
-  parameters: {
-    path: operations['update_zone_rrsets_v1_dns__zone_name__rrsets_put']['parameters']['path'];
-  };
-  requestBody: DnsZoneRrsetsCreate;
-}
-/**
- * Path parameters for PUT /v1/dns/{zone_name}/rrsets
- *
- * @remarks
- * This type defines the path parameters for the PUT /v1/dns/{zone_name}/rrsets endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/dns/{zone_name}/rrsets
- * @param zone_name (path) - DNS zone name (trailing dot optional)
- */
-export type PUT_DnsZoneNameRrsets_Request_Path = PUT_DnsZoneNameRrsets_Request['parameters']['path'];
-/**
- * Request body for PUT /v1/dns/{zone_name}/rrsets
- *
- * @remarks
- * This type defines the request body structure for the PUT /v1/dns/{zone_name}/rrsets endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/dns/{zone_name}/rrsets
- */
-export type PUT_DnsZoneNameRrsets_Request_Body = PUT_DnsZoneNameRrsets_Request['requestBody'];
-
-/**
- * Request type for GET DomainForwards endpoint
- *
- * List domain forwards
- * Retrieves a paginated list of domain forwards by hostname for the organization
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards
- *
- * @see {@link GET_DomainForwards_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwards_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwards_Request_Body} - Request body type
- */
 export type GET_DomainForwards_Request = {
-  parameters: {
-    query: operations['list_domain_forwards_v1_domain_forwards_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards
- */
+  parameters: operations['list_domain_forwards_v1_domain_forwards_get']['parameters'];
+};
 export type GET_DomainForwards_Request_Query = GET_DomainForwards_Request['parameters']['query'];
 
-/**
- * Request type for PATCH DomainForwards endpoint
- *
- * Patch domain forward redirects
- * Applies patch operations to update or remove redirects across hostnames and protocols. Raises an error if the domain forward or domain forward set does not exist.
- *
- * @remarks
- * This type defines the complete request structure for the PATCH DomainForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards
- *
- * @see {@link PATCH_DomainForwards_Request_Query} - Query parameters type
- * @see {@link PATCH_DomainForwards_Request_Path} - Path parameters type
- * @see {@link PATCH_DomainForwards_Request_Body} - Request body type
- */
 export type PATCH_DomainForwards_Request = {
   requestBody: DomainForwardPatchOps;
-}
-/**
- * Request body for PATCH /v1/domain-forwards
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/domain-forwards endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domain-forwards
- */
+};
 export type PATCH_DomainForwards_Request_Body = PATCH_DomainForwards_Request['requestBody'];
 
-/**
- * Request type for POST DomainForwards endpoint
- *
- * Create a domain forward
- * Creates a new domain forward configuration. Wildcard forwards can be created by using *.hostname (e.g., *.example.com).
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards
- *
- * @see {@link POST_DomainForwards_Request_Query} - Query parameters type
- * @see {@link POST_DomainForwards_Request_Path} - Path parameters type
- * @see {@link POST_DomainForwards_Request_Body} - Request body type
- */
 export type POST_DomainForwards_Request = {
   requestBody: DomainForwardCreateRequest;
-}
-/**
- * Request body for POST /v1/domain-forwards
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domain-forwards endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domain-forwards
- */
+};
 export type POST_DomainForwards_Request_Body = POST_DomainForwards_Request['requestBody'];
 
-/**
- * Request type for DELETE DomainForwardsHostname endpoint
- *
- * Delete a domain forward
- * Deletes the domain forward configuration for the specified hostname
- *
- * @remarks
- * This type defines the complete request structure for the DELETE DomainForwardsHostname endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname
- *
- * @see {@link DELETE_DomainForwardsHostname_Request_Query} - Query parameters type
- * @see {@link DELETE_DomainForwardsHostname_Request_Path} - Path parameters type
- * @see {@link DELETE_DomainForwardsHostname_Request_Body} - Request body type
- */
-export type DELETE_DomainForwardsHostname_Request = {
-  parameters: {
-    path: operations['delete_domain_forward_v1_domain_forwards__hostname__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/domain-forwards/{hostname}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/domain-forwards/{hostname} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname
- */
-export type DELETE_DomainForwardsHostname_Request_Path = DELETE_DomainForwardsHostname_Request['parameters']['path'];
+export type DELETE_DomainForwardsByHostname_Request = {
+  parameters: operations['delete_domain_forward_v1_domain_forwards__hostname__delete']['parameters'];
+};
+export type DELETE_DomainForwardsByHostname_Request_Path = DELETE_DomainForwardsByHostname_Request['parameters']['path'];
 
-/**
- * Request type for GET DomainForwardsHostname endpoint
- *
- * Get a domain forward
- * Retrieves the domain forward configuration for the specified hostname
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsHostname endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname
- *
- * @see {@link GET_DomainForwardsHostname_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsHostname_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsHostname_Request_Body} - Request body type
- */
-export type GET_DomainForwardsHostname_Request = {
-  parameters: {
-    path: operations['get_domain_forward_v1_domain_forwards__hostname__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/domain-forwards/{hostname}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/domain-forwards/{hostname} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname
- */
-export type GET_DomainForwardsHostname_Request_Path = GET_DomainForwardsHostname_Request['parameters']['path'];
+export type GET_DomainForwardsByHostname_Request = {
+  parameters: operations['get_domain_forward_v1_domain_forwards__hostname__get']['parameters'];
+};
+export type GET_DomainForwardsByHostname_Request_Path = GET_DomainForwardsByHostname_Request['parameters']['path'];
 
-/**
- * Request type for POST DomainForwardsHostname endpoint
- *
- * Create domain forward set
- * Creates a new domain forward set for a specific protocol (HTTP or HTTPS). Raises an error if the set already exists.
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainForwardsHostname endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname
- *
- * @see {@link POST_DomainForwardsHostname_Request_Query} - Query parameters type
- * @see {@link POST_DomainForwardsHostname_Request_Path} - Path parameters type
- * @see {@link POST_DomainForwardsHostname_Request_Body} - Request body type
- */
-export type POST_DomainForwardsHostname_Request = {
-  parameters: {
-    path: operations['create_domain_forward_set_v1_domain_forwards__hostname__post']['parameters']['path'];
-  };
+export type POST_DomainForwardsByHostname_Request = {
+  parameters: operations['create_domain_forward_set_v1_domain_forwards__hostname__post']['parameters'];
   requestBody: DomainForwardSetCreateRequest;
-}
-/**
- * Path parameters for POST /v1/domain-forwards/{hostname}
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domain-forwards/{hostname} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}
- * @param hostname (path) - Hostname
- */
-export type POST_DomainForwardsHostname_Request_Path = POST_DomainForwardsHostname_Request['parameters']['path'];
-/**
- * Request body for POST /v1/domain-forwards/{hostname}
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domain-forwards/{hostname} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domain-forwards/{hostname}
- */
-export type POST_DomainForwardsHostname_Request_Body = POST_DomainForwardsHostname_Request['requestBody'];
+};
+export type POST_DomainForwardsByHostname_Request_Path = POST_DomainForwardsByHostname_Request['parameters']['path'];
+export type POST_DomainForwardsByHostname_Request_Body = POST_DomainForwardsByHostname_Request['requestBody'];
 
-/**
- * Request type for PATCH DomainForwardsHostnameDisable endpoint
- *
- * Disable domain forward
- * Disables domain forwarding by removing DNS records. The domain forward configuration is preserved but disabled.
- *
- * @remarks
- * This type defines the complete request structure for the PATCH DomainForwardsHostnameDisable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname
- *
- * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Query} - Query parameters type
- * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Path} - Path parameters type
- * @see {@link PATCH_DomainForwardsHostnameDisable_Request_Body} - Request body type
- */
-export type PATCH_DomainForwardsHostnameDisable_Request = {
-  parameters: {
-    path: operations['disable_domain_forward_v1_domain_forwards__hostname__disable_patch']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for PATCH /v1/domain-forwards/{hostname}/disable
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/domain-forwards/{hostname}/disable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}/disable
- * @param hostname (path) - Hostname
- */
-export type PATCH_DomainForwardsHostnameDisable_Request_Path = PATCH_DomainForwardsHostnameDisable_Request['parameters']['path'];
+export type DELETE_DomainForwardsByHostnameByProtocol_Request = {
+  parameters: operations['delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete']['parameters'];
+};
+export type DELETE_DomainForwardsByHostnameByProtocol_Request_Path = DELETE_DomainForwardsByHostnameByProtocol_Request['parameters']['path'];
 
-/**
- * Request type for PATCH DomainForwardsHostnameEnable endpoint
- *
- * Enable domain forward
- * Enables domain forwarding by creating necessary DNS records
- *
- * @remarks
- * This type defines the complete request structure for the PATCH DomainForwardsHostnameEnable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname
- *
- * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Query} - Query parameters type
- * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Path} - Path parameters type
- * @see {@link PATCH_DomainForwardsHostnameEnable_Request_Body} - Request body type
- */
-export type PATCH_DomainForwardsHostnameEnable_Request = {
-  parameters: {
-    path: operations['enable_domain_forward_v1_domain_forwards__hostname__enable_patch']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for PATCH /v1/domain-forwards/{hostname}/enable
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/domain-forwards/{hostname}/enable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}/enable
- * @param hostname (path) - Hostname
- */
-export type PATCH_DomainForwardsHostnameEnable_Request_Path = PATCH_DomainForwardsHostnameEnable_Request['parameters']['path'];
+export type GET_DomainForwardsByHostnameByProtocol_Request = {
+  parameters: operations['get_domain_forward_set_v1_domain_forwards__hostname___protocol__get']['parameters'];
+};
+export type GET_DomainForwardsByHostnameByProtocol_Request_Path = GET_DomainForwardsByHostnameByProtocol_Request['parameters']['path'];
 
-/**
- * Request type for DELETE DomainForwardsHostnameProtocol endpoint
- *
- * Delete domain forward set
- * Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
- *
- * @remarks
- * This type defines the complete request structure for the DELETE DomainForwardsHostnameProtocol endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- *
- * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
- * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
- * @see {@link DELETE_DomainForwardsHostnameProtocol_Request_Body} - Request body type
- */
-export type DELETE_DomainForwardsHostnameProtocol_Request = {
-  parameters: {
-    path: operations['delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/domain-forwards/{hostname}/{protocol}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/domain-forwards/{hostname}/{protocol} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- */
-export type DELETE_DomainForwardsHostnameProtocol_Request_Path = DELETE_DomainForwardsHostnameProtocol_Request['parameters']['path'];
-
-/**
- * Request type for GET DomainForwardsHostnameProtocol endpoint
- *
- * Get domain forward set
- * Retrieves all redirects for a specific protocol (HTTP or HTTPS) for the specified hostname
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsHostnameProtocol endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- *
- * @see {@link GET_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsHostnameProtocol_Request_Body} - Request body type
- */
-export type GET_DomainForwardsHostnameProtocol_Request = {
-  parameters: {
-    path: operations['get_domain_forward_set_v1_domain_forwards__hostname___protocol__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/domain-forwards/{hostname}/{protocol}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/domain-forwards/{hostname}/{protocol} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- */
-export type GET_DomainForwardsHostnameProtocol_Request_Path = GET_DomainForwardsHostnameProtocol_Request['parameters']['path'];
-
-/**
- * Request type for PUT DomainForwardsHostnameProtocol endpoint
- *
- * Update domain forward set
- * Updates an existing domain forward set for a specific protocol (HTTP or HTTPS). All existing redirects for this protocol are replaced with the provided redirects. Raises an error if the set does not exist.
- *
- * @remarks
- * This type defines the complete request structure for the PUT DomainForwardsHostnameProtocol endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- *
- * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Query} - Query parameters type
- * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Path} - Path parameters type
- * @see {@link PUT_DomainForwardsHostnameProtocol_Request_Body} - Request body type
- */
-export type PUT_DomainForwardsHostnameProtocol_Request = {
-  parameters: {
-    path: operations['update_domain_forward_set_v1_domain_forwards__hostname___protocol__put']['parameters']['path'];
-  };
+export type PUT_DomainForwardsByHostnameByProtocol_Request = {
+  parameters: operations['update_domain_forward_set_v1_domain_forwards__hostname___protocol__put']['parameters'];
   requestBody: DomainForwardSetRequest;
-}
-/**
- * Path parameters for PUT /v1/domain-forwards/{hostname}/{protocol}
- *
- * @remarks
- * This type defines the path parameters for the PUT /v1/domain-forwards/{hostname}/{protocol} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- * @param hostname (path) - Hostname
- */
-export type PUT_DomainForwardsHostnameProtocol_Request_Path = PUT_DomainForwardsHostnameProtocol_Request['parameters']['path'];
-/**
- * Request body for PUT /v1/domain-forwards/{hostname}/{protocol}
- *
- * @remarks
- * This type defines the request body structure for the PUT /v1/domain-forwards/{hostname}/{protocol} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domain-forwards/{hostname}/{protocol}
- */
-export type PUT_DomainForwardsHostnameProtocol_Request_Body = PUT_DomainForwardsHostnameProtocol_Request['requestBody'];
+};
+export type PUT_DomainForwardsByHostnameByProtocol_Request_Path = PUT_DomainForwardsByHostnameByProtocol_Request['parameters']['path'];
+export type PUT_DomainForwardsByHostnameByProtocol_Request_Body = PUT_DomainForwardsByHostnameByProtocol_Request['requestBody'];
 
-/**
- * Request type for GET DomainForwardsMetrics endpoint
- *
- * Get domain forward metrics
- * Retrieves overall metrics for domain forwards including total and unique visit counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetrics endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetrics_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetrics_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetrics_Request_Body} - Request body type
- */
+export type PATCH_DomainForwardsByHostnameDisable_Request = {
+  parameters: operations['disable_domain_forward_v1_domain_forwards__hostname__disable_patch']['parameters'];
+};
+export type PATCH_DomainForwardsByHostnameDisable_Request_Path = PATCH_DomainForwardsByHostnameDisable_Request['parameters']['path'];
+
+export type PATCH_DomainForwardsByHostnameEnable_Request = {
+  parameters: operations['enable_domain_forward_v1_domain_forwards__hostname__enable_patch']['parameters'];
+};
+export type PATCH_DomainForwardsByHostnameEnable_Request_Path = PATCH_DomainForwardsByHostnameEnable_Request['parameters']['path'];
+
 export type GET_DomainForwardsMetrics_Request = {
-  parameters: {
-    query: operations['metrics_v1_domain_forwards_metrics_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['metrics_v1_domain_forwards_metrics_get']['parameters'];
+};
 export type GET_DomainForwardsMetrics_Request_Query = GET_DomainForwardsMetrics_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsBrowser endpoint
- *
- * Get browser statistics
- * Retrieves visitor traffic broken down by browser type (Chrome, Safari, Firefox, etc.) with total and unique visit counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsBrowser endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/browser
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsBrowser_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsBrowser_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsBrowser_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsBrowser_Request = {
-  parameters: {
-    query: operations['browser_stats_v1_domain_forwards_metrics_browser_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/browser
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/browser endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/browser
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['browser_stats_v1_domain_forwards_metrics_browser_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsBrowser_Request_Query = GET_DomainForwardsMetricsBrowser_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsGeo endpoint
- *
- * Get geographic statistics
- * Retrieves visitor traffic broken down by geographic location (country code) with visit counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsGeo endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/geo
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsGeo_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsGeo_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsGeo_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsGeo_Request = {
-  parameters: {
-    query: operations['geo_stats_v1_domain_forwards_metrics_geo_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/geo
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/geo endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/geo
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['geo_stats_v1_domain_forwards_metrics_geo_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsGeo_Request_Query = GET_DomainForwardsMetricsGeo_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsPlatform endpoint
- *
- * Get platform statistics
- * Retrieves visitor traffic broken down by platform (Windows, Macintosh, iOS, Android, Linux) with total and unique visit counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsPlatform endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/platform
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsPlatform_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsPlatform_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsPlatform_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsPlatform_Request = {
-  parameters: {
-    query: operations['platform_stats_v1_domain_forwards_metrics_platform_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/platform
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/platform endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/platform
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['platform_stats_v1_domain_forwards_metrics_platform_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsPlatform_Request_Query = GET_DomainForwardsMetricsPlatform_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsReferrer endpoint
- *
- * Get referrer statistics
- * Retrieves visitor referral sources (where traffic came from) with total and unique visit counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsReferrer endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/referrer
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsReferrer_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsReferrer_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsReferrer_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsReferrer_Request = {
-  parameters: {
-    query: operations['referrer_stats_v1_domain_forwards_metrics_referrer_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/referrer
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/referrer endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/referrer
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['referrer_stats_v1_domain_forwards_metrics_referrer_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsReferrer_Request_Query = GET_DomainForwardsMetricsReferrer_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsStatusCode endpoint
- *
- * Get HTTP status code statistics
- * Retrieves distribution of HTTP redirect status codes (301, 302, 307, 308) used across forwards.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsStatusCode endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/status-code
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsStatusCode_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsStatusCode_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsStatusCode_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsStatusCode_Request = {
-  parameters: {
-    query: operations['status_code_stats_v1_domain_forwards_metrics_status_code_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/status-code
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/status-code endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/status-code
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['status_code_stats_v1_domain_forwards_metrics_status_code_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsStatusCode_Request_Query = GET_DomainForwardsMetricsStatusCode_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsTimeSeries endpoint
- *
- * Get domain forward time series metrics
- * Retrieves visit counts bucketed by time intervals (hourly, daily) for the specified time range.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsTimeSeries endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/time-series
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsTimeSeries_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsTimeSeries_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsTimeSeries_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsTimeSeries_Request = {
-  parameters: {
-    query: operations['time_series_v1_domain_forwards_metrics_time_series_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/time-series
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/time-series endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/time-series
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['time_series_v1_domain_forwards_metrics_time_series_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsTimeSeries_Request_Query = GET_DomainForwardsMetricsTimeSeries_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsUserAgent endpoint
- *
- * Get user agent statistics
- * Retrieves visitor traffic broken down by user agent string with total and unique visit counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsUserAgent endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/user-agent
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsUserAgent_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsUserAgent_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsUserAgent_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsUserAgent_Request = {
-  parameters: {
-    query: operations['user_agent_stats_v1_domain_forwards_metrics_user_agent_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/user-agent
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/user-agent endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/user-agent
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['user_agent_stats_v1_domain_forwards_metrics_user_agent_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsUserAgent_Request_Query = GET_DomainForwardsMetricsUserAgent_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainForwardsMetricsVisitsByKey endpoint
- *
- * Get visits grouped by key
- * Retrieves visit metrics grouped by a specified key (url, fqdn, domain, forward, or rule) with total and unique visit counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainForwardsMetricsVisitsByKey endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-forwards/metrics/visits-by-key
- * @param grouping (query) - Grouping key: url, fqdn, domain, forward, or rule
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- *
- * @see {@link GET_DomainForwardsMetricsVisitsByKey_Request_Query} - Query parameters type
- * @see {@link GET_DomainForwardsMetricsVisitsByKey_Request_Path} - Path parameters type
- * @see {@link GET_DomainForwardsMetricsVisitsByKey_Request_Body} - Request body type
- */
 export type GET_DomainForwardsMetricsVisitsByKey_Request = {
-  parameters: {
-    query: operations['visits_by_key_v1_domain_forwards_metrics_visits_by_key_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-forwards/metrics/visits-by-key
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-forwards/metrics/visits-by-key endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-forwards/metrics/visits-by-key
- * @param grouping (query) - Grouping key: url, fqdn, domain, forward, or rule
- * @param protocol (query) - Filter by protocol: http or https
- * @param time_range (query) - Time range: 1h, 1d, 7d, 30d, or 1y
- * @param exclude_bots (query) - Exclude platform values: Unknown, Bot
- */
+  parameters: operations['visits_by_key_v1_domain_forwards_metrics_visits_by_key_get']['parameters'];
+};
 export type GET_DomainForwardsMetricsVisitsByKey_Request_Query = GET_DomainForwardsMetricsVisitsByKey_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainSearchSuggest endpoint
- *
- * Suggest domains
- * Get a list of domain suggestions based on a search query
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainSearchSuggest endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domain-search/suggest
- * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - The TLDs to include in the search
- * @param limit (query) - The maximum number of domain suggestions to return
- * @param premium (query) - Whether to include premium domains in the suggestions
- *
- * @see {@link GET_DomainSearchSuggest_Request_Query} - Query parameters type
- * @see {@link GET_DomainSearchSuggest_Request_Path} - Path parameters type
- * @see {@link GET_DomainSearchSuggest_Request_Body} - Request body type
- */
-export type GET_DomainSearchSuggest_Request = {
-  parameters: {
-    query: operations['suggest_v1_domain_search_suggest_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domain-search/suggest
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domain-search/suggest endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domain-search/suggest
- * @param query (query) - The primary keyword or phrase for the domain search
- * @param tlds (query) - The TLDs to include in the search
- * @param limit (query) - The maximum number of domain suggestions to return
- * @param premium (query) - Whether to include premium domains in the suggestions
- */
-export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Request['parameters']['query'];
-
-/**
- * Request type for GET Domains endpoint
- *
- * List all domains
- * Retrieves a paginated list of all active domains
- *
- * @remarks
- * This type defines the complete request structure for the GET Domains endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains
- * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
- * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
- * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
- * @param include (query) - Include additional data in the response. Can be specified multiple times.
- *
- * @see {@link GET_Domains_Request_Query} - Query parameters type
- * @see {@link GET_Domains_Request_Path} - Path parameters type
- * @see {@link GET_Domains_Request_Body} - Request body type
- */
 export type GET_Domains_Request = {
-  parameters: {
-    query: operations['get_domains_v1_domains_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domains
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domains endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domains
- * @param status_tags (query) - Filter by status tag types. Can be specified multiple times.
- * @param tag_ids (query) - Filter by user tag IDs. Can be specified multiple times.
- * @param registry_statuses (query) - Filter domains by registry status. Can be specified multiple times (union of all provided values).
- * @param include (query) - Include additional data in the response. Can be specified multiple times.
- */
+  parameters: operations['get_domains_v1_domains_get']['parameters'];
+};
 export type GET_Domains_Request_Query = GET_Domains_Request['parameters']['query'];
 
-/**
- * Request type for POST Domains endpoint
- *
- * Create a domain
- * Registers a new domain.
-
-- **Premium domains** - when the registry classifies the domain as premium, an `expected_price` must be supplied to confirm the non-standard price returned by the availability check. See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
-- **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_notice_acceptance_hash` must be supplied to acknowledge the corresponding claims notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
- *
- * @remarks
- * This type defines the complete request structure for the POST Domains endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains
- *
- * @see {@link POST_Domains_Request_Query} - Query parameters type
- * @see {@link POST_Domains_Request_Path} - Path parameters type
- * @see {@link POST_Domains_Request_Body} - Request body type
- */
 export type POST_Domains_Request = {
   requestBody: DomainCreate;
-}
-/**
- * Request body for POST /v1/domains
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domains endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains
- */
+};
 export type POST_Domains_Request_Body = POST_Domains_Request['requestBody'];
 
-/**
- * Request type for GET DomainsCheck endpoint
- *
- * Check domain availability and registration metadata
- * Performs a real-time check against the authoritative registry for each domain and returns availability plus any registry-specific metadata needed to register it.
+export type DELETE_DomainsByDomainReference_Request = {
+  parameters: operations['delete_domain_v1_domains__domain_reference__delete']['parameters'];
+};
+export type DELETE_DomainsByDomainReference_Request_Path = DELETE_DomainsByDomainReference_Request['parameters']['path'];
 
-For each domain the response includes:
-- **Availability** - whether the domain can be registered, and the registry's reason if not.
-- **Premium status and pricing** - whether the domain is classified as premium by the registry, and if so, the price per action (create / renew / transfer / restore). See the [Premium domains](/products/domains/premium) guide for background on how premium domains are priced and registered.
-- **Trademark claims (TMCH)** - when the TLD is in its claims phase and the domain matches a trademark in the Trademark Clearinghouse, a `claims_key` is returned. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
+export type GET_DomainsByDomainReference_Request = {
+  parameters: operations['get_domain_v1_domains__domain_reference__get']['parameters'];
+};
+export type GET_DomainsByDomainReference_Request_Query = GET_DomainsByDomainReference_Request['parameters']['query'];
+export type GET_DomainsByDomainReference_Request_Path = GET_DomainsByDomainReference_Request['parameters']['path'];
 
-Domains are queried in parallel, grouped by registry connection. Availability and metadata reflect the registry's state at the moment of the call and are not cached.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainsCheck endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/check
- * @param domains (query) - 
-One or more fully-qualified domain names to check at the registry.
+export type PATCH_DomainsByDomainReference_Request = {
+  parameters: operations['update_domain_v1_domains__domain_reference__patch']['parameters'];
+  requestBody: DomainUpdate;
+};
+export type PATCH_DomainsByDomainReference_Request_Path = PATCH_DomainsByDomainReference_Request['parameters']['path'];
+export type PATCH_DomainsByDomainReference_Request_Body = PATCH_DomainsByDomainReference_Request['requestBody'];
 
-Each domain is checked for availability and, when applicable, enriched with
-trademark claims information and premium pricing. The list of domains may
-include a mix of TLDs.
+export type DELETE_DomainsByDomainReferenceDnssec_Request = {
+  parameters: operations['delete_dnssec_v1_domains__domain_reference__dnssec_delete']['parameters'];
+};
+export type DELETE_DomainsByDomainReferenceDnssec_Request_Path = DELETE_DomainsByDomainReferenceDnssec_Request['parameters']['path'];
 
- *
- * @see {@link GET_DomainsCheck_Request_Query} - Query parameters type
- * @see {@link GET_DomainsCheck_Request_Path} - Path parameters type
- * @see {@link GET_DomainsCheck_Request_Body} - Request body type
- */
+export type GET_DomainsByDomainReferenceDnssec_Request = {
+  parameters: operations['get_dnssec_v1_domains__domain_reference__dnssec_get']['parameters'];
+};
+export type GET_DomainsByDomainReferenceDnssec_Request_Path = GET_DomainsByDomainReferenceDnssec_Request['parameters']['path'];
+
+export type PUT_DomainsByDomainReferenceDnssec_Request = {
+  parameters: operations['create_or_update_dnssec_v1_domains__domain_reference__dnssec_put']['parameters'];
+  requestBody: DomainDnssecDataCreate[];
+};
+export type PUT_DomainsByDomainReferenceDnssec_Request_Path = PUT_DomainsByDomainReferenceDnssec_Request['parameters']['path'];
+export type PUT_DomainsByDomainReferenceDnssec_Request_Body = PUT_DomainsByDomainReferenceDnssec_Request['requestBody'];
+
+export type POST_DomainsByDomainReferenceDnssecDisable_Request = {
+  parameters: operations['disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post']['parameters'];
+};
+export type POST_DomainsByDomainReferenceDnssecDisable_Request_Path = POST_DomainsByDomainReferenceDnssecDisable_Request['parameters']['path'];
+
+export type POST_DomainsByDomainReferenceDnssecEnable_Request = {
+  parameters: operations['enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post']['parameters'];
+};
+export type POST_DomainsByDomainReferenceDnssecEnable_Request_Path = POST_DomainsByDomainReferenceDnssecEnable_Request['parameters']['path'];
+
+export type POST_DomainsByDomainReferenceRenew_Request = {
+  parameters: operations['renew_domain_v1_domains__domain_reference__renew_post']['parameters'];
+  requestBody: DomainRenewRequest;
+};
+export type POST_DomainsByDomainReferenceRenew_Request_Path = POST_DomainsByDomainReferenceRenew_Request['parameters']['path'];
+export type POST_DomainsByDomainReferenceRenew_Request_Body = POST_DomainsByDomainReferenceRenew_Request['requestBody'];
+
+export type POST_DomainsByDomainReferenceRestore_Request = {
+  parameters: operations['restore_domain_v1_domains__domain_reference__restore_post']['parameters'];
+  requestBody: DomainRestoreRequest;
+};
+export type POST_DomainsByDomainReferenceRestore_Request_Path = POST_DomainsByDomainReferenceRestore_Request['parameters']['path'];
+export type POST_DomainsByDomainReferenceRestore_Request_Body = POST_DomainsByDomainReferenceRestore_Request['requestBody'];
+
+export type DELETE_DomainsByDomainReferenceTransfer_Request = {
+  parameters: operations['cancel_domain_transfer_v1_domains__domain_reference__transfer_delete']['parameters'];
+};
+export type DELETE_DomainsByDomainReferenceTransfer_Request_Path = DELETE_DomainsByDomainReferenceTransfer_Request['parameters']['path'];
+
 export type GET_DomainsCheck_Request = {
-  parameters: {
-    query: operations['epp_check_domain_v1_domains_check_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/domains/check
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domains/check endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domains/check
- * @param domains (query) - 
-One or more fully-qualified domain names to check at the registry.
-
-Each domain is checked for availability and, when applicable, enriched with
-trademark claims information and premium pricing. The list of domains may
-include a mix of TLDs.
-
- */
+  parameters: operations['epp_check_domain_v1_domains_check_get']['parameters'];
+};
 export type GET_DomainsCheck_Request_Query = GET_DomainsCheck_Request['parameters']['query'];
 
-/**
- * Request type for POST DomainsClaimsNotices endpoint
- *
- * Retrieve claims notices from claim keys
- * Retrieves the trademark claims notice for a `claims_key` returned during a domain availability check. The response contains a `claims_notice_acceptance_hash` to acknowledge the notice when registering the domain, a ready-to-display `rendered_html`, and the structured fields needed to render a custom notice. See the [Trademarked domains](/products/domains/trademarked-domains) guide for the full workflow.
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsClaimsNotices endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/claims-notices
- *
- * @see {@link POST_DomainsClaimsNotices_Request_Query} - Query parameters type
- * @see {@link POST_DomainsClaimsNotices_Request_Path} - Path parameters type
- * @see {@link POST_DomainsClaimsNotices_Request_Body} - Request body type
- */
 export type POST_DomainsClaimsNotices_Request = {
   requestBody: ClaimsNoticesRequest;
-}
-/**
- * Request body for POST /v1/domains/claims-notices
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domains/claims-notices endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/claims-notices
- */
+};
 export type POST_DomainsClaimsNotices_Request_Body = POST_DomainsClaimsNotices_Request['requestBody'];
 
-/**
- * Request type for DELETE DomainsDomainReference endpoint
- *
- * Delete a domain
- * Initiates the deletion process for a domain. The domain will be marked for deletion
-and will enter a redemption period during which it may be restored.
- *
- * @remarks
- * This type defines the complete request structure for the DELETE DomainsDomainReference endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}
- *
- * @see {@link DELETE_DomainsDomainReference_Request_Query} - Query parameters type
- * @see {@link DELETE_DomainsDomainReference_Request_Path} - Path parameters type
- * @see {@link DELETE_DomainsDomainReference_Request_Body} - Request body type
- */
-export type DELETE_DomainsDomainReference_Request = {
-  parameters: {
-    path: operations['delete_domain_v1_domains__domain_reference__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/domains/{domain_reference}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/domains/{domain_reference} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}
- */
-export type DELETE_DomainsDomainReference_Request_Path = DELETE_DomainsDomainReference_Request['parameters']['path'];
+export type GET_DomainSearchSuggest_Request = {
+  parameters: operations['suggest_v1_domain_search_suggest_get']['parameters'];
+};
+export type GET_DomainSearchSuggest_Request_Query = GET_DomainSearchSuggest_Request['parameters']['query'];
 
-/**
- * Request type for GET DomainsDomainReference endpoint
- *
- * Retrieve a domain
- * Retrieves a single active domain by either its name or id
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainsDomainReference endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}
- * @param include (query) - Include additional data in the response.
- *
- * @see {@link GET_DomainsDomainReference_Request_Query} - Query parameters type
- * @see {@link GET_DomainsDomainReference_Request_Path} - Path parameters type
- * @see {@link GET_DomainsDomainReference_Request_Body} - Request body type
- */
-export type GET_DomainsDomainReference_Request = {
-  parameters: {
-    query: operations['get_domain_v1_domains__domain_reference__get']['parameters']['query'];
-    path: operations['get_domain_v1_domains__domain_reference__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/domains/{domain_reference}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/domains/{domain_reference} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/domains/{domain_reference}
- * @param include (query) - Include additional data in the response.
- */
-export type GET_DomainsDomainReference_Request_Query = GET_DomainsDomainReference_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/domains/{domain_reference}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/domains/{domain_reference} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}
- */
-export type GET_DomainsDomainReference_Request_Path = GET_DomainsDomainReference_Request['parameters']['path'];
-
-/**
- * Request type for PATCH DomainsDomainReference endpoint
- *
- * Update a domain
- * Updates various attributes of an existing domain. Only the fields provided in the request
-will be updated; all other fields will remain unchanged. <br>
-Providing `clientTransferProhibited` as a status will set the `transfer_lock` property
- *
- * @remarks
- * This type defines the complete request structure for the PATCH DomainsDomainReference endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}
- *
- * @see {@link PATCH_DomainsDomainReference_Request_Query} - Query parameters type
- * @see {@link PATCH_DomainsDomainReference_Request_Path} - Path parameters type
- * @see {@link PATCH_DomainsDomainReference_Request_Body} - Request body type
- */
-export type PATCH_DomainsDomainReference_Request = {
-  parameters: {
-    path: operations['update_domain_v1_domains__domain_reference__patch']['parameters']['path'];
-  };
-  requestBody: DomainUpdate;
-}
-/**
- * Path parameters for PATCH /v1/domains/{domain_reference}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/domains/{domain_reference} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}
- */
-export type PATCH_DomainsDomainReference_Request_Path = PATCH_DomainsDomainReference_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/domains/{domain_reference}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/domains/{domain_reference} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/{domain_reference}
- */
-export type PATCH_DomainsDomainReference_Request_Body = PATCH_DomainsDomainReference_Request['requestBody'];
-
-/**
- * Request type for DELETE DomainsDomainReferenceDnssec endpoint
- *
- * Delete DNSSEC data
- * Removes all DNSSEC data for a domain
- *
- * @remarks
- * This type defines the complete request structure for the DELETE DomainsDomainReferenceDnssec endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/dnssec
- *
- * @see {@link DELETE_DomainsDomainReferenceDnssec_Request_Query} - Query parameters type
- * @see {@link DELETE_DomainsDomainReferenceDnssec_Request_Path} - Path parameters type
- * @see {@link DELETE_DomainsDomainReferenceDnssec_Request_Body} - Request body type
- */
-export type DELETE_DomainsDomainReferenceDnssec_Request = {
-  parameters: {
-    path: operations['delete_dnssec_v1_domains__domain_reference__dnssec_delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/domains/{domain_reference}/dnssec
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/domains/{domain_reference}/dnssec endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/dnssec
- */
-export type DELETE_DomainsDomainReferenceDnssec_Request_Path = DELETE_DomainsDomainReferenceDnssec_Request['parameters']['path'];
-
-/**
- * Request type for GET DomainsDomainReferenceDnssec endpoint
- *
- * Retrieve DNSSEC data
- * Fetches all DNSSEC records associated with the specified domain.
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainsDomainReferenceDnssec endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/dnssec
- *
- * @see {@link GET_DomainsDomainReferenceDnssec_Request_Query} - Query parameters type
- * @see {@link GET_DomainsDomainReferenceDnssec_Request_Path} - Path parameters type
- * @see {@link GET_DomainsDomainReferenceDnssec_Request_Body} - Request body type
- */
-export type GET_DomainsDomainReferenceDnssec_Request = {
-  parameters: {
-    path: operations['get_dnssec_v1_domains__domain_reference__dnssec_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/domains/{domain_reference}/dnssec
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/domains/{domain_reference}/dnssec endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/dnssec
- */
-export type GET_DomainsDomainReferenceDnssec_Request_Path = GET_DomainsDomainReferenceDnssec_Request['parameters']['path'];
-
-/**
- * Request type for PUT DomainsDomainReferenceDnssec endpoint
- *
- * Update DNSSEC data
- * Replaces all existing DNSSEC records for the domain with the provided records.
- *
- * @remarks
- * This type defines the complete request structure for the PUT DomainsDomainReferenceDnssec endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/dnssec
- *
- * @see {@link PUT_DomainsDomainReferenceDnssec_Request_Query} - Query parameters type
- * @see {@link PUT_DomainsDomainReferenceDnssec_Request_Path} - Path parameters type
- * @see {@link PUT_DomainsDomainReferenceDnssec_Request_Body} - Request body type
- */
-export type PUT_DomainsDomainReferenceDnssec_Request = {
-  parameters: {
-    path: operations['create_or_update_dnssec_v1_domains__domain_reference__dnssec_put']['parameters']['path'];
-  };
-  requestBody: DomainDnssecDataCreateArray;
-}
-/**
- * Path parameters for PUT /v1/domains/{domain_reference}/dnssec
- *
- * @remarks
- * This type defines the path parameters for the PUT /v1/domains/{domain_reference}/dnssec endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/dnssec
- */
-export type PUT_DomainsDomainReferenceDnssec_Request_Path = PUT_DomainsDomainReferenceDnssec_Request['parameters']['path'];
-/**
- * Request body for PUT /v1/domains/{domain_reference}/dnssec
- *
- * @remarks
- * This type defines the request body structure for the PUT /v1/domains/{domain_reference}/dnssec endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/{domain_reference}/dnssec
- */
-export type PUT_DomainsDomainReferenceDnssec_Request_Body = PUT_DomainsDomainReferenceDnssec_Request['requestBody'];
-
-/**
- * Request type for POST DomainsDomainReferenceDnssecDisable endpoint
- *
- * Disable DNSSEC for domains using our nameservers
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsDomainReferenceDnssecDisable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/dnssec/disable
- *
- * @see {@link POST_DomainsDomainReferenceDnssecDisable_Request_Query} - Query parameters type
- * @see {@link POST_DomainsDomainReferenceDnssecDisable_Request_Path} - Path parameters type
- * @see {@link POST_DomainsDomainReferenceDnssecDisable_Request_Body} - Request body type
- */
-export type POST_DomainsDomainReferenceDnssecDisable_Request = {
-  parameters: {
-    path: operations['disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/domains/{domain_reference}/dnssec/disable
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/{domain_reference}/dnssec/disable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/dnssec/disable
- */
-export type POST_DomainsDomainReferenceDnssecDisable_Request_Path = POST_DomainsDomainReferenceDnssecDisable_Request['parameters']['path'];
-
-/**
- * Request type for POST DomainsDomainReferenceDnssecEnable endpoint
- *
- * Enable DNSSEC for domains using our nameservers
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsDomainReferenceDnssecEnable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/dnssec/enable
- *
- * @see {@link POST_DomainsDomainReferenceDnssecEnable_Request_Query} - Query parameters type
- * @see {@link POST_DomainsDomainReferenceDnssecEnable_Request_Path} - Path parameters type
- * @see {@link POST_DomainsDomainReferenceDnssecEnable_Request_Body} - Request body type
- */
-export type POST_DomainsDomainReferenceDnssecEnable_Request = {
-  parameters: {
-    path: operations['enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/domains/{domain_reference}/dnssec/enable
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/{domain_reference}/dnssec/enable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/dnssec/enable
- */
-export type POST_DomainsDomainReferenceDnssecEnable_Request_Path = POST_DomainsDomainReferenceDnssecEnable_Request['parameters']['path'];
-
-/**
- * Request type for POST DomainsDomainReferenceRenew endpoint
- *
- * Renew a domain
- * Extends the registration period of an existing domain. The renewal period is added
-to the current expiration date of the domain.
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsDomainReferenceRenew endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/renew
- *
- * @see {@link POST_DomainsDomainReferenceRenew_Request_Query} - Query parameters type
- * @see {@link POST_DomainsDomainReferenceRenew_Request_Path} - Path parameters type
- * @see {@link POST_DomainsDomainReferenceRenew_Request_Body} - Request body type
- */
-export type POST_DomainsDomainReferenceRenew_Request = {
-  parameters: {
-    path: operations['renew_domain_v1_domains__domain_reference__renew_post']['parameters']['path'];
-  };
-  requestBody: DomainRenewRequest;
-}
-/**
- * Path parameters for POST /v1/domains/{domain_reference}/renew
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/{domain_reference}/renew endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/renew
- */
-export type POST_DomainsDomainReferenceRenew_Request_Path = POST_DomainsDomainReferenceRenew_Request['parameters']['path'];
-/**
- * Request body for POST /v1/domains/{domain_reference}/renew
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domains/{domain_reference}/renew endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/{domain_reference}/renew
- */
-export type POST_DomainsDomainReferenceRenew_Request_Body = POST_DomainsDomainReferenceRenew_Request['requestBody'];
-
-/**
- * Request type for POST DomainsDomainReferenceRestore endpoint
- *
- * Restore an eligible domain (during redemption period)
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsDomainReferenceRestore endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/restore
- *
- * @see {@link POST_DomainsDomainReferenceRestore_Request_Query} - Query parameters type
- * @see {@link POST_DomainsDomainReferenceRestore_Request_Path} - Path parameters type
- * @see {@link POST_DomainsDomainReferenceRestore_Request_Body} - Request body type
- */
-export type POST_DomainsDomainReferenceRestore_Request = {
-  parameters: {
-    path: operations['restore_domain_v1_domains__domain_reference__restore_post']['parameters']['path'];
-  };
-  requestBody: DomainRestoreRequest;
-}
-/**
- * Path parameters for POST /v1/domains/{domain_reference}/restore
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/{domain_reference}/restore endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/restore
- */
-export type POST_DomainsDomainReferenceRestore_Request_Path = POST_DomainsDomainReferenceRestore_Request['parameters']['path'];
-/**
- * Request body for POST /v1/domains/{domain_reference}/restore
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domains/{domain_reference}/restore endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/{domain_reference}/restore
- */
-export type POST_DomainsDomainReferenceRestore_Request_Body = POST_DomainsDomainReferenceRestore_Request['requestBody'];
-
-/**
- * Request type for DELETE DomainsDomainReferenceTransfer endpoint
- *
- * Cancel a domain transfer
- * This will cancel the in-progress domain transfer and delete the domain object
- *
- * @remarks
- * This type defines the complete request structure for the DELETE DomainsDomainReferenceTransfer endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/{domain_reference}/transfer
- *
- * @see {@link DELETE_DomainsDomainReferenceTransfer_Request_Query} - Query parameters type
- * @see {@link DELETE_DomainsDomainReferenceTransfer_Request_Path} - Path parameters type
- * @see {@link DELETE_DomainsDomainReferenceTransfer_Request_Body} - Request body type
- */
-export type DELETE_DomainsDomainReferenceTransfer_Request = {
-  parameters: {
-    path: operations['cancel_domain_transfer_v1_domains__domain_reference__transfer_delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/domains/{domain_reference}/transfer
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/domains/{domain_reference}/transfer endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/{domain_reference}/transfer
- */
-export type DELETE_DomainsDomainReferenceTransfer_Request_Path = DELETE_DomainsDomainReferenceTransfer_Request['parameters']['path'];
-
-/**
- * Request type for GET DomainsSummary endpoint
- *
- * Get domain summary
- * Retrieves a summary of domains including counts by status, TLD, and expiration timeframes
- *
- * @remarks
- * This type defines the complete request structure for the GET DomainsSummary endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/summary
- *
- * @see {@link GET_DomainsSummary_Request_Query} - Query parameters type
- * @see {@link GET_DomainsSummary_Request_Path} - Path parameters type
- * @see {@link GET_DomainsSummary_Request_Body} - Request body type
- */
 export type GET_DomainsSummary_Request = {
-}
+};
 
-/**
- * Request type for POST DomainsTldSpecificAtDomainReferenceWithdraw endpoint
- *
- * Withdraw a nic.at domain
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsTldSpecificAtDomainReferenceWithdraw endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/tld-specific/at/{domain_reference}/withdraw
- *
- * @see {@link POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Query} - Query parameters type
- * @see {@link POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Path} - Path parameters type
- * @see {@link POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Body} - Request body type
- */
-export type POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request = {
-  parameters: {
-    path: operations['withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post']['parameters']['path'];
-  };
+export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Request = {
+  parameters: operations['withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post']['parameters'];
   requestBody: DomainWithdrawRequest;
-}
-/**
- * Path parameters for POST /v1/domains/tld-specific/at/{domain_reference}/withdraw
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/tld-specific/at/{domain_reference}/withdraw endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/tld-specific/at/{domain_reference}/withdraw
- */
-export type POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Path = POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request['parameters']['path'];
-/**
- * Request body for POST /v1/domains/tld-specific/at/{domain_reference}/withdraw
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domains/tld-specific/at/{domain_reference}/withdraw endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/tld-specific/at/{domain_reference}/withdraw
- */
-export type POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request_Body = POST_DomainsTldSpecificAtDomainReferenceWithdraw_Request['requestBody'];
+};
+export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Request_Path = POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Request['parameters']['path'];
+export type POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Request_Body = POST_DomainsTldSpecificAtByDomainReferenceWithdraw_Request['requestBody'];
 
-/**
- * Request type for POST DomainsTldSpecificBeDomainReferenceAuthCodeRequest endpoint
- *
- * Requests your auth code directly from DNS Belgium (registry)
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsTldSpecificBeDomainReferenceAuthCodeRequest endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
- *
- * @see {@link POST_DomainsTldSpecificBeDomainReferenceAuthCodeRequest_Request_Query} - Query parameters type
- * @see {@link POST_DomainsTldSpecificBeDomainReferenceAuthCodeRequest_Request_Path} - Path parameters type
- * @see {@link POST_DomainsTldSpecificBeDomainReferenceAuthCodeRequest_Request_Body} - Request body type
- */
-export type POST_DomainsTldSpecificBeDomainReferenceAuthCodeRequest_Request = {
-  parameters: {
-    path: operations['request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/tld-specific/be/{domain_reference}/auth_code/request endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/tld-specific/be/{domain_reference}/auth_code/request
- */
-export type POST_DomainsTldSpecificBeDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificBeDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificBeByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
 
-/**
- * Request type for POST DomainsTldSpecificDeDomainReferenceTransit endpoint
- *
- * Transit a DENIC domain
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsTldSpecificDeDomainReferenceTransit endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/tld-specific/de/{domain_reference}/transit
- *
- * @see {@link POST_DomainsTldSpecificDeDomainReferenceTransit_Request_Query} - Query parameters type
- * @see {@link POST_DomainsTldSpecificDeDomainReferenceTransit_Request_Path} - Path parameters type
- * @see {@link POST_DomainsTldSpecificDeDomainReferenceTransit_Request_Body} - Request body type
- */
-export type POST_DomainsTldSpecificDeDomainReferenceTransit_Request = {
-  parameters: {
-    path: operations['transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post']['parameters']['path'];
-  };
+export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request = {
+  parameters: operations['transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post']['parameters'];
   requestBody: DomainTransitRequest;
-}
-/**
- * Path parameters for POST /v1/domains/tld-specific/de/{domain_reference}/transit
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/tld-specific/de/{domain_reference}/transit endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/tld-specific/de/{domain_reference}/transit
- */
-export type POST_DomainsTldSpecificDeDomainReferenceTransit_Request_Path = POST_DomainsTldSpecificDeDomainReferenceTransit_Request['parameters']['path'];
-/**
- * Request body for POST /v1/domains/tld-specific/de/{domain_reference}/transit
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domains/tld-specific/de/{domain_reference}/transit endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/tld-specific/de/{domain_reference}/transit
- */
-export type POST_DomainsTldSpecificDeDomainReferenceTransit_Request_Body = POST_DomainsTldSpecificDeDomainReferenceTransit_Request['requestBody'];
+};
+export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request_Path = POST_DomainsTldSpecificDeByDomainReferenceTransit_Request['parameters']['path'];
+export type POST_DomainsTldSpecificDeByDomainReferenceTransit_Request_Body = POST_DomainsTldSpecificDeByDomainReferenceTransit_Request['requestBody'];
 
-/**
- * Request type for POST DomainsTldSpecificEuDomainReferenceAuthCodeRequest endpoint
- *
- * Requests your auth code directly from EURid (registry)
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsTldSpecificEuDomainReferenceAuthCodeRequest endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request
- *
- * @see {@link POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Query} - Query parameters type
- * @see {@link POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Path} - Path parameters type
- * @see {@link POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Body} - Request body type
- */
-export type POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request = {
-  parameters: {
-    path: operations['request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request
- */
-export type POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificEuDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+export type POST_DomainsTldSpecificEuByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificEuByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificEuByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
 
-/**
- * Request type for POST DomainsTransfer endpoint
- *
- * Transfer a domain
- * Start the transfer process for a domain <br>
-The domain will be in state `pending_transfer` until the transfer is completed.
-This process can take up to 5 days, until the transfer is approved
- *
- * @remarks
- * This type defines the complete request structure for the POST DomainsTransfer endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/domains/transfer
- *
- * @see {@link POST_DomainsTransfer_Request_Query} - Query parameters type
- * @see {@link POST_DomainsTransfer_Request_Path} - Path parameters type
- * @see {@link POST_DomainsTransfer_Request_Body} - Request body type
- */
 export type POST_DomainsTransfer_Request = {
   requestBody: DomainTransferIn;
-}
-/**
- * Request body for POST /v1/domains/transfer
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/domains/transfer endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/domains/transfer
- */
+};
 export type POST_DomainsTransfer_Request_Body = POST_DomainsTransfer_Request['requestBody'];
 
-/**
- * Request type for GET EmailForwards endpoint
- *
- * List all email forwards
- * Retrieves a paginated list of all email forwards for the organization.
- *
- * @remarks
- * This type defines the complete request structure for the GET EmailForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards
- *
- * @see {@link GET_EmailForwards_Request_Query} - Query parameters type
- * @see {@link GET_EmailForwards_Request_Path} - Path parameters type
- * @see {@link GET_EmailForwards_Request_Body} - Request body type
- */
 export type GET_EmailForwards_Request = {
-  parameters: {
-    query: operations['list_email_forwards_v1_email_forwards_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/email-forwards
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/email-forwards endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/email-forwards
- */
+  parameters: operations['list_email_forwards_v1_email_forwards_get']['parameters'];
+};
 export type GET_EmailForwards_Request_Query = GET_EmailForwards_Request['parameters']['query'];
 
-/**
- * Request type for POST EmailForwards endpoint
- *
- * Create email forward configuration
- * Creates an email forward configuration with optional aliases. Can be created enabled or disabled (default: disabled). Includes created_on and updated_on timestamps.
- *
- * @remarks
- * This type defines the complete request structure for the POST EmailForwards endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards
- *
- * @see {@link POST_EmailForwards_Request_Query} - Query parameters type
- * @see {@link POST_EmailForwards_Request_Path} - Path parameters type
- * @see {@link POST_EmailForwards_Request_Body} - Request body type
- */
 export type POST_EmailForwards_Request = {
   requestBody: EmailForwardCreate;
-}
-/**
- * Request body for POST /v1/email-forwards
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/email-forwards endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/email-forwards
- */
+};
 export type POST_EmailForwards_Request_Body = POST_EmailForwards_Request['requestBody'];
 
-/**
- * Request type for DELETE EmailForwardsEmailForwardId endpoint
- *
- * Delete email forward configuration
- * Permanently deletes the email forward configuration including all aliases. If enabled, automatically disables first (removes DNS records and unregisters from the email forwarding provider).
- *
- * @remarks
- * This type defines the complete request structure for the DELETE EmailForwardsEmailForwardId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}
- *
- * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Query} - Query parameters type
- * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Path} - Path parameters type
- * @see {@link DELETE_EmailForwardsEmailForwardId_Request_Body} - Request body type
- */
-export type DELETE_EmailForwardsEmailForwardId_Request = {
-  parameters: {
-    path: operations['delete_email_forward_v1_email_forwards__email_forward_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/email-forwards/{email_forward_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/email-forwards/{email_forward_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}
- */
-export type DELETE_EmailForwardsEmailForwardId_Request_Path = DELETE_EmailForwardsEmailForwardId_Request['parameters']['path'];
+export type DELETE_EmailForwardsByEmailForwardId_Request = {
+  parameters: operations['delete_email_forward_v1_email_forwards__email_forward_id__delete']['parameters'];
+};
+export type DELETE_EmailForwardsByEmailForwardId_Request_Path = DELETE_EmailForwardsByEmailForwardId_Request['parameters']['path'];
 
-/**
- * Request type for GET EmailForwardsEmailForwardId endpoint
- *
- * Get email forward configuration
- * Retrieves the email forward configuration for the specified email forward including all aliases
- *
- * @remarks
- * This type defines the complete request structure for the GET EmailForwardsEmailForwardId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}
- *
- * @see {@link GET_EmailForwardsEmailForwardId_Request_Query} - Query parameters type
- * @see {@link GET_EmailForwardsEmailForwardId_Request_Path} - Path parameters type
- * @see {@link GET_EmailForwardsEmailForwardId_Request_Body} - Request body type
- */
-export type GET_EmailForwardsEmailForwardId_Request = {
-  parameters: {
-    path: operations['get_email_forward_v1_email_forwards__email_forward_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/email-forwards/{email_forward_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/email-forwards/{email_forward_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}
- */
-export type GET_EmailForwardsEmailForwardId_Request_Path = GET_EmailForwardsEmailForwardId_Request['parameters']['path'];
+export type GET_EmailForwardsByEmailForwardId_Request = {
+  parameters: operations['get_email_forward_v1_email_forwards__email_forward_id__get']['parameters'];
+};
+export type GET_EmailForwardsByEmailForwardId_Request_Path = GET_EmailForwardsByEmailForwardId_Request['parameters']['path'];
 
-/**
- * Request type for POST EmailForwardsEmailForwardIdAliases endpoint
- *
- * Create email forward alias
- * Creates a new email forward alias for the specified email forward. Use '*' as the alias name to configure a catch-all alias that forwards all unmatched emails for the domain.
- *
- * @remarks
- * This type defines the complete request structure for the POST EmailForwardsEmailForwardIdAliases endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases
- *
- * @see {@link POST_EmailForwardsEmailForwardIdAliases_Request_Query} - Query parameters type
- * @see {@link POST_EmailForwardsEmailForwardIdAliases_Request_Path} - Path parameters type
- * @see {@link POST_EmailForwardsEmailForwardIdAliases_Request_Body} - Request body type
- */
-export type POST_EmailForwardsEmailForwardIdAliases_Request = {
-  parameters: {
-    path: operations['create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post']['parameters']['path'];
-  };
+export type POST_EmailForwardsByEmailForwardIdAliases_Request = {
+  parameters: operations['create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post']['parameters'];
   requestBody: EmailForwardAliasCreate;
-}
-/**
- * Path parameters for POST /v1/email-forwards/{email_forward_id}/aliases
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/email-forwards/{email_forward_id}/aliases endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases
- */
-export type POST_EmailForwardsEmailForwardIdAliases_Request_Path = POST_EmailForwardsEmailForwardIdAliases_Request['parameters']['path'];
-/**
- * Request body for POST /v1/email-forwards/{email_forward_id}/aliases
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/email-forwards/{email_forward_id}/aliases endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases
- */
-export type POST_EmailForwardsEmailForwardIdAliases_Request_Body = POST_EmailForwardsEmailForwardIdAliases_Request['requestBody'];
+};
+export type POST_EmailForwardsByEmailForwardIdAliases_Request_Path = POST_EmailForwardsByEmailForwardIdAliases_Request['parameters']['path'];
+export type POST_EmailForwardsByEmailForwardIdAliases_Request_Body = POST_EmailForwardsByEmailForwardIdAliases_Request['requestBody'];
 
-/**
- * Request type for DELETE EmailForwardsEmailForwardIdAliasesAliasId endpoint
- *
- * Delete email forward alias
- * Deletes a specific email forward alias specified by email_forward_alias_id for the specified email forward
- *
- * @remarks
- * This type defines the complete request structure for the DELETE EmailForwardsEmailForwardIdAliasesAliasId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- *
- * @see {@link DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Query} - Query parameters type
- * @see {@link DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path} - Path parameters type
- * @see {@link DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Body} - Request body type
- */
-export type DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request = {
-  parameters: {
-    path: operations['delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/email-forwards/{email_forward_id}/aliases/{alias_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- */
-export type DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path = DELETE_EmailForwardsEmailForwardIdAliasesAliasId_Request['parameters']['path'];
+export type DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Request = {
+  parameters: operations['delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete']['parameters'];
+};
+export type DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Request_Path = DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Request['parameters']['path'];
 
-/**
- * Request type for PUT EmailForwardsEmailForwardIdAliasesAliasId endpoint
- *
- * Update email forward alias
- * Updates the forward_to address for a specific email forward alias specified by email_forward_alias_id
- *
- * @remarks
- * This type defines the complete request structure for the PUT EmailForwardsEmailForwardIdAliasesAliasId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- *
- * @see {@link PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Query} - Query parameters type
- * @see {@link PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path} - Path parameters type
- * @see {@link PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Body} - Request body type
- */
-export type PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request = {
-  parameters: {
-    path: operations['update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put']['parameters']['path'];
-  };
+export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Request = {
+  parameters: operations['update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put']['parameters'];
   requestBody: EmailForwardAliasUpdate;
-}
-/**
- * Path parameters for PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- *
- * @remarks
- * This type defines the path parameters for the PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- */
-export type PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Path = PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request['parameters']['path'];
-/**
- * Request body for PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- *
- * @remarks
- * This type defines the request body structure for the PUT /v1/email-forwards/{email_forward_id}/aliases/{alias_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/email-forwards/{email_forward_id}/aliases/{alias_id}
- */
-export type PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request_Body = PUT_EmailForwardsEmailForwardIdAliasesAliasId_Request['requestBody'];
+};
+export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Request_Path = PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Request['parameters']['path'];
+export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Request_Body = PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Request['requestBody'];
 
-/**
- * Request type for PATCH EmailForwardsEmailForwardIdDisable endpoint
- *
- * Disable email forwarding
- * Disables email forwarding by removing MX and SPF DNS records and unregistering the domain from the email forwarding provider. The email forward configuration is preserved but disabled.
- *
- * @remarks
- * This type defines the complete request structure for the PATCH EmailForwardsEmailForwardIdDisable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}/disable
- *
- * @see {@link PATCH_EmailForwardsEmailForwardIdDisable_Request_Query} - Query parameters type
- * @see {@link PATCH_EmailForwardsEmailForwardIdDisable_Request_Path} - Path parameters type
- * @see {@link PATCH_EmailForwardsEmailForwardIdDisable_Request_Body} - Request body type
- */
-export type PATCH_EmailForwardsEmailForwardIdDisable_Request = {
-  parameters: {
-    path: operations['disable_email_forward_v1_email_forwards__email_forward_id__disable_patch']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for PATCH /v1/email-forwards/{email_forward_id}/disable
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/email-forwards/{email_forward_id}/disable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}/disable
- */
-export type PATCH_EmailForwardsEmailForwardIdDisable_Request_Path = PATCH_EmailForwardsEmailForwardIdDisable_Request['parameters']['path'];
+export type PATCH_EmailForwardsByEmailForwardIdDisable_Request = {
+  parameters: operations['disable_email_forward_v1_email_forwards__email_forward_id__disable_patch']['parameters'];
+};
+export type PATCH_EmailForwardsByEmailForwardIdDisable_Request_Path = PATCH_EmailForwardsByEmailForwardIdDisable_Request['parameters']['path'];
 
-/**
- * Request type for PATCH EmailForwardsEmailForwardIdEnable endpoint
- *
- * Enable email forwarding
- * Enables email forwarding by creating necessary MX and SPF DNS records and registering the domain with the email forwarding provider.
- *
- * @remarks
- * This type defines the complete request structure for the PATCH EmailForwardsEmailForwardIdEnable endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}/enable
- *
- * @see {@link PATCH_EmailForwardsEmailForwardIdEnable_Request_Query} - Query parameters type
- * @see {@link PATCH_EmailForwardsEmailForwardIdEnable_Request_Path} - Path parameters type
- * @see {@link PATCH_EmailForwardsEmailForwardIdEnable_Request_Body} - Request body type
- */
-export type PATCH_EmailForwardsEmailForwardIdEnable_Request = {
-  parameters: {
-    path: operations['enable_email_forward_v1_email_forwards__email_forward_id__enable_patch']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for PATCH /v1/email-forwards/{email_forward_id}/enable
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/email-forwards/{email_forward_id}/enable endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}/enable
- */
-export type PATCH_EmailForwardsEmailForwardIdEnable_Request_Path = PATCH_EmailForwardsEmailForwardIdEnable_Request['parameters']['path'];
+export type PATCH_EmailForwardsByEmailForwardIdEnable_Request = {
+  parameters: operations['enable_email_forward_v1_email_forwards__email_forward_id__enable_patch']['parameters'];
+};
+export type PATCH_EmailForwardsByEmailForwardIdEnable_Request_Path = PATCH_EmailForwardsByEmailForwardIdEnable_Request['parameters']['path'];
 
-/**
- * Request type for GET EmailForwardsEmailForwardIdMetrics endpoint
- *
- * Retrieve email forward metrics
- * Retrieves metrics and statistics for a specific email forward, including delivery rates and status counts.
- *
- * @remarks
- * This type defines the complete request structure for the GET EmailForwardsEmailForwardIdMetrics endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/email-forwards/{email_forward_id}/metrics
- *
- * @see {@link GET_EmailForwardsEmailForwardIdMetrics_Request_Query} - Query parameters type
- * @see {@link GET_EmailForwardsEmailForwardIdMetrics_Request_Path} - Path parameters type
- * @see {@link GET_EmailForwardsEmailForwardIdMetrics_Request_Body} - Request body type
- */
-export type GET_EmailForwardsEmailForwardIdMetrics_Request = {
-  parameters: {
-    query: operations['get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get']['parameters']['query'];
-    path: operations['get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/email-forwards/{email_forward_id}/metrics
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/email-forwards/{email_forward_id}/metrics endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}/metrics
- */
-export type GET_EmailForwardsEmailForwardIdMetrics_Request_Query = GET_EmailForwardsEmailForwardIdMetrics_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/email-forwards/{email_forward_id}/metrics
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/email-forwards/{email_forward_id}/metrics endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/email-forwards/{email_forward_id}/metrics
- */
-export type GET_EmailForwardsEmailForwardIdMetrics_Request_Path = GET_EmailForwardsEmailForwardIdMetrics_Request['parameters']['path'];
+export type GET_EmailForwardsByEmailForwardIdMetrics_Request = {
+  parameters: operations['get_email_forward_metrics_v1_email_forwards__email_forward_id__metrics_get']['parameters'];
+};
+export type GET_EmailForwardsByEmailForwardIdMetrics_Request_Query = GET_EmailForwardsByEmailForwardIdMetrics_Request['parameters']['query'];
+export type GET_EmailForwardsByEmailForwardIdMetrics_Request_Path = GET_EmailForwardsByEmailForwardIdMetrics_Request['parameters']['path'];
 
-/**
- * Request type for GET Events endpoint
- *
- * Get pending events
- * Retrieves a paginated list of events for the organization
- *
- * @remarks
- * This type defines the complete request structure for the GET Events endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/events
- *
- * @see {@link GET_Events_Request_Query} - Query parameters type
- * @see {@link GET_Events_Request_Path} - Path parameters type
- * @see {@link GET_Events_Request_Body} - Request body type
- */
 export type GET_Events_Request = {
-  parameters: {
-    query: operations['get_events_v1_events_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/events
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/events endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/events
- */
+  parameters: operations['get_events_v1_events_get']['parameters'];
+};
 export type GET_Events_Request_Query = GET_Events_Request['parameters']['query'];
 
-/**
- * Request type for GET EventsEventId endpoint
- *
- * Get event
- * Get an event by its ID
- *
- * @remarks
- * This type defines the complete request structure for the GET EventsEventId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/events/{event_id}
- *
- * @see {@link GET_EventsEventId_Request_Query} - Query parameters type
- * @see {@link GET_EventsEventId_Request_Path} - Path parameters type
- * @see {@link GET_EventsEventId_Request_Body} - Request body type
- */
-export type GET_EventsEventId_Request = {
-  parameters: {
-    path: operations['get_event_v1_events__event_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/events/{event_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/events/{event_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/events/{event_id}
- */
-export type GET_EventsEventId_Request_Path = GET_EventsEventId_Request['parameters']['path'];
+export type GET_EventsByEventId_Request = {
+  parameters: operations['get_event_v1_events__event_id__get']['parameters'];
+};
+export type GET_EventsByEventId_Request_Path = GET_EventsByEventId_Request['parameters']['path'];
 
-/**
- * Request type for PATCH EventsEventId endpoint
- *
- * Acknowledge event
- * Acknowledge an event
- *
- * @remarks
- * This type defines the complete request structure for the PATCH EventsEventId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/events/{event_id}
- *
- * @see {@link PATCH_EventsEventId_Request_Query} - Query parameters type
- * @see {@link PATCH_EventsEventId_Request_Path} - Path parameters type
- * @see {@link PATCH_EventsEventId_Request_Body} - Request body type
- */
-export type PATCH_EventsEventId_Request = {
-  parameters: {
-    path: operations['acknowledge_event_v1_events__event_id__patch']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for PATCH /v1/events/{event_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/events/{event_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/events/{event_id}
- */
-export type PATCH_EventsEventId_Request_Path = PATCH_EventsEventId_Request['parameters']['path'];
+export type PATCH_EventsByEventId_Request = {
+  parameters: operations['acknowledge_event_v1_events__event_id__patch']['parameters'];
+};
+export type PATCH_EventsByEventId_Request_Path = PATCH_EventsByEventId_Request['parameters']['path'];
 
-/**
- * Request type for DELETE JobJobId endpoint
- *
- * Delete (cancel) a queued job
- *
- * @remarks
- * This type defines the complete request structure for the DELETE JobJobId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/job/{job_id}
- * @param job_id (path) - Job ID
- *
- * @see {@link DELETE_JobJobId_Request_Query} - Query parameters type
- * @see {@link DELETE_JobJobId_Request_Path} - Path parameters type
- * @see {@link DELETE_JobJobId_Request_Body} - Request body type
- */
-export type DELETE_JobJobId_Request = {
-  parameters: {
-    path: operations['delete_job_v1_job__job_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/job/{job_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/job/{job_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/job/{job_id}
- * @param job_id (path) - Job ID
- */
-export type DELETE_JobJobId_Request_Path = DELETE_JobJobId_Request['parameters']['path'];
+export type DELETE_JobByJobId_Request = {
+  parameters: operations['delete_job_v1_job__job_id__delete']['parameters'];
+};
+export type DELETE_JobByJobId_Request_Path = DELETE_JobByJobId_Request['parameters']['path'];
 
-/**
- * Request type for GET JobJobId endpoint
- *
- * Get individual job details
- *
- * @remarks
- * This type defines the complete request structure for the GET JobJobId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/job/{job_id}
- * @param job_id (path) - Job ID
- *
- * @see {@link GET_JobJobId_Request_Query} - Query parameters type
- * @see {@link GET_JobJobId_Request_Path} - Path parameters type
- * @see {@link GET_JobJobId_Request_Body} - Request body type
- */
-export type GET_JobJobId_Request = {
-  parameters: {
-    path: operations['get_job_v1_job__job_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/job/{job_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/job/{job_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/job/{job_id}
- * @param job_id (path) - Job ID
- */
-export type GET_JobJobId_Request_Path = GET_JobJobId_Request['parameters']['path'];
+export type GET_JobByJobId_Request = {
+  parameters: operations['get_job_v1_job__job_id__get']['parameters'];
+};
+export type GET_JobByJobId_Request_Path = GET_JobByJobId_Request['parameters']['path'];
 
-/**
- * Request type for POST JobJobIdPause endpoint
- *
- * Pause a job
- *
- * @remarks
- * This type defines the complete request structure for the POST JobJobIdPause endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/job/{job_id}/pause
- * @param job_id (path) - Job ID
- *
- * @see {@link POST_JobJobIdPause_Request_Query} - Query parameters type
- * @see {@link POST_JobJobIdPause_Request_Path} - Path parameters type
- * @see {@link POST_JobJobIdPause_Request_Body} - Request body type
- */
-export type POST_JobJobIdPause_Request = {
-  parameters: {
-    path: operations['pause_job_v1_job__job_id__pause_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/job/{job_id}/pause
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/job/{job_id}/pause endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/job/{job_id}/pause
- * @param job_id (path) - Job ID
- */
-export type POST_JobJobIdPause_Request_Path = POST_JobJobIdPause_Request['parameters']['path'];
+export type POST_JobByJobIdPause_Request = {
+  parameters: operations['pause_job_v1_job__job_id__pause_post']['parameters'];
+};
+export type POST_JobByJobIdPause_Request_Path = POST_JobByJobIdPause_Request['parameters']['path'];
 
-/**
- * Request type for POST JobJobIdResume endpoint
- *
- * Resume a paused job
- *
- * @remarks
- * This type defines the complete request structure for the POST JobJobIdResume endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/job/{job_id}/resume
- * @param job_id (path) - Job ID
- *
- * @see {@link POST_JobJobIdResume_Request_Query} - Query parameters type
- * @see {@link POST_JobJobIdResume_Request_Path} - Path parameters type
- * @see {@link POST_JobJobIdResume_Request_Body} - Request body type
- */
-export type POST_JobJobIdResume_Request = {
-  parameters: {
-    path: operations['resume_job_v1_job__job_id__resume_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/job/{job_id}/resume
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/job/{job_id}/resume endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/job/{job_id}/resume
- * @param job_id (path) - Job ID
- */
-export type POST_JobJobIdResume_Request_Path = POST_JobJobIdResume_Request['parameters']['path'];
+export type POST_JobByJobIdResume_Request = {
+  parameters: operations['resume_job_v1_job__job_id__resume_post']['parameters'];
+};
+export type POST_JobByJobIdResume_Request_Path = POST_JobByJobIdResume_Request['parameters']['path'];
 
-/**
- * Request type for POST JobJobIdRetry endpoint
- *
- * Retry a failed or dead-lettered job
- *
- * @remarks
- * This type defines the complete request structure for the POST JobJobIdRetry endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/job/{job_id}/retry
- * @param job_id (path) - Job ID
- *
- * @see {@link POST_JobJobIdRetry_Request_Query} - Query parameters type
- * @see {@link POST_JobJobIdRetry_Request_Path} - Path parameters type
- * @see {@link POST_JobJobIdRetry_Request_Body} - Request body type
- */
-export type POST_JobJobIdRetry_Request = {
-  parameters: {
-    path: operations['retry_job_v1_job__job_id__retry_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/job/{job_id}/retry
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/job/{job_id}/retry endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/job/{job_id}/retry
- * @param job_id (path) - Job ID
- */
-export type POST_JobJobIdRetry_Request_Path = POST_JobJobIdRetry_Request['parameters']['path'];
+export type POST_JobByJobIdRetry_Request = {
+  parameters: operations['retry_job_v1_job__job_id__retry_post']['parameters'];
+};
+export type POST_JobByJobIdRetry_Request_Path = POST_JobByJobIdRetry_Request['parameters']['path'];
 
-/**
- * Request type for GET Jobs endpoint
- *
- * List batches for organization
- *
- * @remarks
- * This type defines the complete request structure for the GET Jobs endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs
- * @param status (query) - Filter by batch status (pending or complete)
- * @param sort_by (query) - Sort field
- * @param sort_order (query) - Sort order
- *
- * @see {@link GET_Jobs_Request_Query} - Query parameters type
- * @see {@link GET_Jobs_Request_Path} - Path parameters type
- * @see {@link GET_Jobs_Request_Body} - Request body type
- */
 export type GET_Jobs_Request = {
-  parameters: {
-    query: operations['list_batches_v1_jobs_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/jobs
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/jobs endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/jobs
- * @param status (query) - Filter by batch status (pending or complete)
- * @param sort_by (query) - Sort field
- * @param sort_order (query) - Sort order
- */
+  parameters: operations['list_batches_v1_jobs_get']['parameters'];
+};
 export type GET_Jobs_Request_Query = GET_Jobs_Request['parameters']['query'];
 
-/**
- * Request type for POST Jobs endpoint
- *
- * Create a batch of commands for async execution
- *
- * @remarks
- * This type defines the complete request structure for the POST Jobs endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs
- *
- * @see {@link POST_Jobs_Request_Query} - Query parameters type
- * @see {@link POST_Jobs_Request_Path} - Path parameters type
- * @see {@link POST_Jobs_Request_Body} - Request body type
- */
 export type POST_Jobs_Request = {
   requestBody: JobBatchRequest;
-}
-/**
- * Request body for POST /v1/jobs
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/jobs endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/jobs
- */
+};
 export type POST_Jobs_Request_Body = POST_Jobs_Request['requestBody'];
 
-/**
- * Request type for DELETE JobsBatchId endpoint
- *
- * Delete (cancel) all queued jobs in a batch
- *
- * @remarks
- * This type defines the complete request structure for the DELETE JobsBatchId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs/{batch_id}
- * @param batch_id (path) - Batch ID
- *
- * @see {@link DELETE_JobsBatchId_Request_Query} - Query parameters type
- * @see {@link DELETE_JobsBatchId_Request_Path} - Path parameters type
- * @see {@link DELETE_JobsBatchId_Request_Body} - Request body type
- */
-export type DELETE_JobsBatchId_Request = {
-  parameters: {
-    path: operations['delete_batch_v1_jobs__batch_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/jobs/{batch_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/jobs/{batch_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/jobs/{batch_id}
- * @param batch_id (path) - Batch ID
- */
-export type DELETE_JobsBatchId_Request_Path = DELETE_JobsBatchId_Request['parameters']['path'];
+export type DELETE_JobsByBatchId_Request = {
+  parameters: operations['delete_batch_v1_jobs__batch_id__delete']['parameters'];
+};
+export type DELETE_JobsByBatchId_Request_Path = DELETE_JobsByBatchId_Request['parameters']['path'];
 
-/**
- * Request type for GET JobsBatchId endpoint
- *
- * Get batch details and execution status
- *
- * @remarks
- * This type defines the complete request structure for the GET JobsBatchId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs/{batch_id}
- * @param batch_id (path) - Batch ID
- *
- * @see {@link GET_JobsBatchId_Request_Query} - Query parameters type
- * @see {@link GET_JobsBatchId_Request_Path} - Path parameters type
- * @see {@link GET_JobsBatchId_Request_Body} - Request body type
- */
-export type GET_JobsBatchId_Request = {
-  parameters: {
-    path: operations['get_batch_v1_jobs__batch_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/jobs/{batch_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/jobs/{batch_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/jobs/{batch_id}
- * @param batch_id (path) - Batch ID
- */
-export type GET_JobsBatchId_Request_Path = GET_JobsBatchId_Request['parameters']['path'];
+export type GET_JobsByBatchId_Request = {
+  parameters: operations['get_batch_v1_jobs__batch_id__get']['parameters'];
+};
+export type GET_JobsByBatchId_Request_Path = GET_JobsByBatchId_Request['parameters']['path'];
 
-/**
- * Request type for GET JobsBatchIdJobs endpoint
- *
- * Get individual jobs within a batch
- *
- * @remarks
- * This type defines the complete request structure for the GET JobsBatchIdJobs endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs/{batch_id}/jobs
- * @param batch_id (path) - Batch ID
- * @param status (query) - Filter by job status (repeatable)
- * @param sort_by (query) - Sort field
- * @param sort_order (query) - Sort order
- *
- * @see {@link GET_JobsBatchIdJobs_Request_Query} - Query parameters type
- * @see {@link GET_JobsBatchIdJobs_Request_Path} - Path parameters type
- * @see {@link GET_JobsBatchIdJobs_Request_Body} - Request body type
- */
-export type GET_JobsBatchIdJobs_Request = {
-  parameters: {
-    query: operations['get_batch_jobs_v1_jobs__batch_id__jobs_get']['parameters']['query'];
-    path: operations['get_batch_jobs_v1_jobs__batch_id__jobs_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/jobs/{batch_id}/jobs
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/jobs/{batch_id}/jobs endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/jobs/{batch_id}/jobs
- * @param status (query) - Filter by job status (repeatable)
- * @param sort_by (query) - Sort field
- * @param sort_order (query) - Sort order
- */
-export type GET_JobsBatchIdJobs_Request_Query = GET_JobsBatchIdJobs_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/jobs/{batch_id}/jobs
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/jobs/{batch_id}/jobs endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/jobs/{batch_id}/jobs
- * @param batch_id (path) - Batch ID
- */
-export type GET_JobsBatchIdJobs_Request_Path = GET_JobsBatchIdJobs_Request['parameters']['path'];
+export type GET_JobsByBatchIdJobs_Request = {
+  parameters: operations['get_batch_jobs_v1_jobs__batch_id__jobs_get']['parameters'];
+};
+export type GET_JobsByBatchIdJobs_Request_Query = GET_JobsByBatchIdJobs_Request['parameters']['query'];
+export type GET_JobsByBatchIdJobs_Request_Path = GET_JobsByBatchIdJobs_Request['parameters']['path'];
 
-/**
- * Request type for POST JobsBatchIdPause endpoint
- *
- * Pause all eligible jobs in a batch
- *
- * @remarks
- * This type defines the complete request structure for the POST JobsBatchIdPause endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs/{batch_id}/pause
- * @param batch_id (path) - Batch ID
- *
- * @see {@link POST_JobsBatchIdPause_Request_Query} - Query parameters type
- * @see {@link POST_JobsBatchIdPause_Request_Path} - Path parameters type
- * @see {@link POST_JobsBatchIdPause_Request_Body} - Request body type
- */
-export type POST_JobsBatchIdPause_Request = {
-  parameters: {
-    path: operations['pause_batch_v1_jobs__batch_id__pause_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/jobs/{batch_id}/pause
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/jobs/{batch_id}/pause endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/jobs/{batch_id}/pause
- * @param batch_id (path) - Batch ID
- */
-export type POST_JobsBatchIdPause_Request_Path = POST_JobsBatchIdPause_Request['parameters']['path'];
+export type POST_JobsByBatchIdPause_Request = {
+  parameters: operations['pause_batch_v1_jobs__batch_id__pause_post']['parameters'];
+};
+export type POST_JobsByBatchIdPause_Request_Path = POST_JobsByBatchIdPause_Request['parameters']['path'];
 
-/**
- * Request type for POST JobsBatchIdResume endpoint
- *
- * Resume all paused jobs in a batch
- *
- * @remarks
- * This type defines the complete request structure for the POST JobsBatchIdResume endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs/{batch_id}/resume
- * @param batch_id (path) - Batch ID
- *
- * @see {@link POST_JobsBatchIdResume_Request_Query} - Query parameters type
- * @see {@link POST_JobsBatchIdResume_Request_Path} - Path parameters type
- * @see {@link POST_JobsBatchIdResume_Request_Body} - Request body type
- */
-export type POST_JobsBatchIdResume_Request = {
-  parameters: {
-    path: operations['resume_batch_v1_jobs__batch_id__resume_post']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for POST /v1/jobs/{batch_id}/resume
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/jobs/{batch_id}/resume endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/jobs/{batch_id}/resume
- * @param batch_id (path) - Batch ID
- */
-export type POST_JobsBatchIdResume_Request_Path = POST_JobsBatchIdResume_Request['parameters']['path'];
+export type POST_JobsByBatchIdResume_Request = {
+  parameters: operations['resume_batch_v1_jobs__batch_id__resume_post']['parameters'];
+};
+export type POST_JobsByBatchIdResume_Request_Path = POST_JobsByBatchIdResume_Request['parameters']['path'];
 
-/**
- * Request type for POST JobsBatchIdRetry endpoint
- *
- * Retry failed and dead-lettered jobs in a batch
- *
- * @remarks
- * This type defines the complete request structure for the POST JobsBatchIdRetry endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/jobs/{batch_id}/retry
- * @param batch_id (path) - Batch ID
- * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
- *
- * @see {@link POST_JobsBatchIdRetry_Request_Query} - Query parameters type
- * @see {@link POST_JobsBatchIdRetry_Request_Path} - Path parameters type
- * @see {@link POST_JobsBatchIdRetry_Request_Body} - Request body type
- */
-export type POST_JobsBatchIdRetry_Request = {
-  parameters: {
-    query: operations['retry_batch_v1_jobs__batch_id__retry_post']['parameters']['query'];
-    path: operations['retry_batch_v1_jobs__batch_id__retry_post']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for POST /v1/jobs/{batch_id}/retry
- *
- * @remarks
- * This type defines the query parameters for the POST /v1/jobs/{batch_id}/retry endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/jobs/{batch_id}/retry
- * @param error_class (query) - Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch.
- */
-export type POST_JobsBatchIdRetry_Request_Query = POST_JobsBatchIdRetry_Request['parameters']['query'];
-/**
- * Path parameters for POST /v1/jobs/{batch_id}/retry
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/jobs/{batch_id}/retry endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/jobs/{batch_id}/retry
- * @param batch_id (path) - Batch ID
- */
-export type POST_JobsBatchIdRetry_Request_Path = POST_JobsBatchIdRetry_Request['parameters']['path'];
+export type POST_JobsByBatchIdRetry_Request = {
+  parameters: operations['retry_batch_v1_jobs__batch_id__retry_post']['parameters'];
+};
+export type POST_JobsByBatchIdRetry_Request_Query = POST_JobsByBatchIdRetry_Request['parameters']['query'];
+export type POST_JobsByBatchIdRetry_Request_Path = POST_JobsByBatchIdRetry_Request['parameters']['path'];
 
-/**
- * Request type for GET Organizations endpoint
- *
- * List all organizations
- * Retrieves a paginated list of organizations under the current organization
- *
- * @remarks
- * This type defines the complete request structure for the GET Organizations endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations
- *
- * @see {@link GET_Organizations_Request_Query} - Query parameters type
- * @see {@link GET_Organizations_Request_Path} - Path parameters type
- * @see {@link GET_Organizations_Request_Body} - Request body type
- */
 export type GET_Organizations_Request = {
-  parameters: {
-    query: operations['list_organizations_v1_organizations_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations
- */
+  parameters: operations['list_organizations_v1_organizations_get']['parameters'];
+};
 export type GET_Organizations_Request_Query = GET_Organizations_Request['parameters']['query'];
 
-/**
- * Request type for POST Organizations endpoint
- *
- * Create an organization
- * Create a new organization under the current organization
- *
- * @remarks
- * This type defines the complete request structure for the POST Organizations endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations
- *
- * @see {@link POST_Organizations_Request_Query} - Query parameters type
- * @see {@link POST_Organizations_Request_Path} - Path parameters type
- * @see {@link POST_Organizations_Request_Body} - Request body type
- */
 export type POST_Organizations_Request = {
   requestBody: OrganizationCreate;
-}
-/**
- * Request body for POST /v1/organizations
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/organizations endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations
- */
+};
 export type POST_Organizations_Request_Body = POST_Organizations_Request['requestBody'];
 
-/**
- * Request type for GET OrganizationsAttributes endpoint
- *
- * List organization attributes
- * Retrieves a list of organization attributes for the current organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsAttributes endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/attributes
- * @param keys (query) - Optional list of attribute keys to filter
- *
- * @see {@link GET_OrganizationsAttributes_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsAttributes_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsAttributes_Request_Body} - Request body type
- */
 export type GET_OrganizationsAttributes_Request = {
-  parameters: {
-    query: operations['get_current_organization_attributes_v1_organizations_attributes_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations/attributes
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations/attributes endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/attributes
- * @param keys (query) - Optional list of attribute keys to filter
- */
+  parameters: operations['get_current_organization_attributes_v1_organizations_attributes_get']['parameters'];
+};
 export type GET_OrganizationsAttributes_Request_Query = GET_OrganizationsAttributes_Request['parameters']['query'];
 
-/**
- * Request type for PATCH OrganizationsAttributes endpoint
- *
- * Update organization attributes
- * Updates one or more organization attributes for the current organization
- *
- * @remarks
- * This type defines the complete request structure for the PATCH OrganizationsAttributes endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/attributes
- *
- * @see {@link PATCH_OrganizationsAttributes_Request_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsAttributes_Request_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsAttributes_Request_Body} - Request body type
- */
 export type PATCH_OrganizationsAttributes_Request = {
-  requestBody: OrganizationAttributeUpdateArray;
-}
-/**
- * Request body for PATCH /v1/organizations/attributes
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/organizations/attributes endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations/attributes
- */
+  requestBody: OrganizationAttributeUpdate[];
+};
 export type PATCH_OrganizationsAttributes_Request_Body = PATCH_OrganizationsAttributes_Request['requestBody'];
 
-/**
- * Request type for GET OrganizationsIpRestrictions endpoint
- *
- * List IP restrictions
- * List all IP restrictions for the organization.
+export type DELETE_OrganizationsByOrganizationId_Request = {
+  parameters: operations['delete_organization_v1_organizations__organization_id__delete']['parameters'];
+};
+export type DELETE_OrganizationsByOrganizationId_Request_Path = DELETE_OrganizationsByOrganizationId_Request['parameters']['path'];
 
-Returns a list of all IP restrictions configured for your organization.
-Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsIpRestrictions endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/ip-restrictions
- *
- * @see {@link GET_OrganizationsIpRestrictions_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsIpRestrictions_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsIpRestrictions_Request_Body} - Request body type
- */
+export type GET_OrganizationsByOrganizationId_Request = {
+  parameters: operations['get_organization_v1_organizations__organization_id__get']['parameters'];
+};
+export type GET_OrganizationsByOrganizationId_Request_Path = GET_OrganizationsByOrganizationId_Request['parameters']['path'];
+
+export type PATCH_OrganizationsByOrganizationId_Request = {
+  parameters: operations['update_organization_v1_organizations__organization_id__patch']['parameters'];
+  requestBody: OrganizationUpdate;
+};
+export type PATCH_OrganizationsByOrganizationId_Request_Path = PATCH_OrganizationsByOrganizationId_Request['parameters']['path'];
+export type PATCH_OrganizationsByOrganizationId_Request_Body = PATCH_OrganizationsByOrganizationId_Request['requestBody'];
+
+export type GET_OrganizationsByOrganizationIdAttributes_Request = {
+  parameters: operations['get_organization_attributes_v1_organizations__organization_id__attributes_get']['parameters'];
+};
+export type GET_OrganizationsByOrganizationIdAttributes_Request_Query = GET_OrganizationsByOrganizationIdAttributes_Request['parameters']['query'];
+export type GET_OrganizationsByOrganizationIdAttributes_Request_Path = GET_OrganizationsByOrganizationIdAttributes_Request['parameters']['path'];
+
+export type PATCH_OrganizationsByOrganizationIdAttributes_Request = {
+  parameters: operations['update_organization_attributes_v1_organizations__organization_id__attributes_patch']['parameters'];
+  requestBody: OrganizationAttributeUpdate[];
+};
+export type PATCH_OrganizationsByOrganizationIdAttributes_Request_Path = PATCH_OrganizationsByOrganizationIdAttributes_Request['parameters']['path'];
+export type PATCH_OrganizationsByOrganizationIdAttributes_Request_Body = PATCH_OrganizationsByOrganizationIdAttributes_Request['requestBody'];
+
+export type GET_OrganizationsByOrganizationIdBillingInvoices_Request = {
+  parameters: operations['list_invoices_v1_organizations__organization_id__billing_invoices_get']['parameters'];
+};
+export type GET_OrganizationsByOrganizationIdBillingInvoices_Request_Query = GET_OrganizationsByOrganizationIdBillingInvoices_Request['parameters']['query'];
+export type GET_OrganizationsByOrganizationIdBillingInvoices_Request_Path = GET_OrganizationsByOrganizationIdBillingInvoices_Request['parameters']['path'];
+
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request = {
+  parameters: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters'];
+};
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request_Query = GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request['parameters']['query'];
+export type GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request_Path = GET_OrganizationsByOrganizationIdPricingProductTypeByProductType_Request['parameters']['path'];
+
+export type GET_OrganizationsByOrganizationIdTransactions_Request = {
+  parameters: operations['get_transactions_v1_organizations__organization_id__transactions_get']['parameters'];
+};
+export type GET_OrganizationsByOrganizationIdTransactions_Request_Query = GET_OrganizationsByOrganizationIdTransactions_Request['parameters']['query'];
+export type GET_OrganizationsByOrganizationIdTransactions_Request_Path = GET_OrganizationsByOrganizationIdTransactions_Request['parameters']['path'];
+
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Request = {
+  parameters: operations['get_transaction_v1_organizations__organization_id__transactions__transaction_id__get']['parameters'];
+};
+export type GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Request_Path = GET_OrganizationsByOrganizationIdTransactionsByTransactionId_Request['parameters']['path'];
+
 export type GET_OrganizationsIpRestrictions_Request = {
-}
+};
 
-/**
- * Request type for POST OrganizationsIpRestrictions endpoint
- *
- * Create an IP restriction
- * Create a new IP restriction for the organization.
-
-Accepts either a single IP address or a CIDR network range.
-Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
- *
- * @remarks
- * This type defines the complete request structure for the POST OrganizationsIpRestrictions endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/ip-restrictions
- *
- * @see {@link POST_OrganizationsIpRestrictions_Request_Query} - Query parameters type
- * @see {@link POST_OrganizationsIpRestrictions_Request_Path} - Path parameters type
- * @see {@link POST_OrganizationsIpRestrictions_Request_Body} - Request body type
- */
 export type POST_OrganizationsIpRestrictions_Request = {
   requestBody: IpRestrictionCreate;
-}
-/**
- * Request body for POST /v1/organizations/ip-restrictions
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/organizations/ip-restrictions endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations/ip-restrictions
- */
+};
 export type POST_OrganizationsIpRestrictions_Request_Body = POST_OrganizationsIpRestrictions_Request['requestBody'];
 
-/**
- * Request type for DELETE OrganizationsIpRestrictionsIpRestrictionId endpoint
- *
- * Delete an IP restriction
- * Delete an IP restriction.
+export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Request = {
+  parameters: operations['delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete']['parameters'];
+};
+export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Request_Path = DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Request['parameters']['path'];
 
-Permanently removes the specified IP restriction from your organization.
- *
- * @remarks
- * This type defines the complete request structure for the DELETE OrganizationsIpRestrictionsIpRestrictionId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
- *
- * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Query} - Query parameters type
- * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Path} - Path parameters type
- * @see {@link DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Body} - Request body type
- */
-export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request = {
-  parameters: {
-    path: operations['delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/organizations/ip-restrictions/{ip_restriction_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/organizations/ip-restrictions/{ip_restriction_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
- */
-export type DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = DELETE_OrganizationsIpRestrictionsIpRestrictionId_Request['parameters']['path'];
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Request = {
+  parameters: operations['get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get']['parameters'];
+};
+export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Request_Path = GET_OrganizationsIpRestrictionsByIpRestrictionId_Request['parameters']['path'];
 
-/**
- * Request type for GET OrganizationsIpRestrictionsIpRestrictionId endpoint
- *
- * Get an IP restriction
- * Get a specific IP restriction by ID.
-
-Returns the details of a specific IP restriction if it exists and belongs to your organization.
-Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for IPv6).
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsIpRestrictionsIpRestrictionId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
- *
- * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Body} - Request body type
- */
-export type GET_OrganizationsIpRestrictionsIpRestrictionId_Request = {
-  parameters: {
-    path: operations['get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/organizations/ip-restrictions/{ip_restriction_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/ip-restrictions/{ip_restriction_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
- */
-export type GET_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = GET_OrganizationsIpRestrictionsIpRestrictionId_Request['parameters']['path'];
-
-/**
- * Request type for PATCH OrganizationsIpRestrictionsIpRestrictionId endpoint
- *
- * Update an IP restriction
- * Update an existing IP restriction.
-
-You can update the IP network range or the last usage timestamp.
-Individual IP addresses are stored and returned with CIDR notation (/32 for IPv4, /128 for IPv6).
- *
- * @remarks
- * This type defines the complete request structure for the PATCH OrganizationsIpRestrictionsIpRestrictionId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
- *
- * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Body} - Request body type
- */
-export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request = {
-  parameters: {
-    path: operations['update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch']['parameters']['path'];
-  };
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request = {
+  parameters: operations['update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch']['parameters'];
   requestBody: IpRestrictionUpdate;
-}
-/**
- * Path parameters for PATCH /v1/organizations/ip-restrictions/{ip_restriction_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/organizations/ip-restrictions/{ip_restriction_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
- */
-export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Path = PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/organizations/ip-restrictions/{ip_restriction_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/organizations/ip-restrictions/{ip_restriction_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations/ip-restrictions/{ip_restriction_id}
- */
-export type PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request_Body = PATCH_OrganizationsIpRestrictionsIpRestrictionId_Request['requestBody'];
+};
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Path = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['parameters']['path'];
+export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Body = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['requestBody'];
 
-/**
- * Request type for DELETE OrganizationsOrganizationId endpoint
- *
- * Delete an organization
- * Permanently deletes an organization
- *
- * @remarks
- * This type defines the complete request structure for the DELETE OrganizationsOrganizationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}
- *
- * @see {@link DELETE_OrganizationsOrganizationId_Request_Query} - Query parameters type
- * @see {@link DELETE_OrganizationsOrganizationId_Request_Path} - Path parameters type
- * @see {@link DELETE_OrganizationsOrganizationId_Request_Body} - Request body type
- */
-export type DELETE_OrganizationsOrganizationId_Request = {
-  parameters: {
-    path: operations['delete_organization_v1_organizations__organization_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/organizations/{organization_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/organizations/{organization_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}
- */
-export type DELETE_OrganizationsOrganizationId_Request_Path = DELETE_OrganizationsOrganizationId_Request['parameters']['path'];
-
-/**
- * Request type for GET OrganizationsOrganizationId endpoint
- *
- * Get organization details
- * Retrieves details for a specific organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsOrganizationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}
- *
- * @see {@link GET_OrganizationsOrganizationId_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsOrganizationId_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsOrganizationId_Request_Body} - Request body type
- */
-export type GET_OrganizationsOrganizationId_Request = {
-  parameters: {
-    path: operations['get_organization_v1_organizations__organization_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/organizations/{organization_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/{organization_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}
- */
-export type GET_OrganizationsOrganizationId_Request_Path = GET_OrganizationsOrganizationId_Request['parameters']['path'];
-
-/**
- * Request type for PATCH OrganizationsOrganizationId endpoint
- *
- * Update an organization
- * Updates details for a specific organization
- *
- * @remarks
- * This type defines the complete request structure for the PATCH OrganizationsOrganizationId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}
- *
- * @see {@link PATCH_OrganizationsOrganizationId_Request_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsOrganizationId_Request_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsOrganizationId_Request_Body} - Request body type
- */
-export type PATCH_OrganizationsOrganizationId_Request = {
-  parameters: {
-    path: operations['update_organization_v1_organizations__organization_id__patch']['parameters']['path'];
-  };
-  requestBody: OrganizationUpdate;
-}
-/**
- * Path parameters for PATCH /v1/organizations/{organization_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/organizations/{organization_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}
- */
-export type PATCH_OrganizationsOrganizationId_Request_Path = PATCH_OrganizationsOrganizationId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/organizations/{organization_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/organizations/{organization_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations/{organization_id}
- */
-export type PATCH_OrganizationsOrganizationId_Request_Body = PATCH_OrganizationsOrganizationId_Request['requestBody'];
-
-/**
- * Request type for GET OrganizationsOrganizationIdAttributes endpoint
- *
- * List organization attributes
- * Retrieves a list of organization attributes for the specified organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsOrganizationIdAttributes endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}/attributes
- * @param keys (query) - Optional list of attribute keys to filter
- *
- * @see {@link GET_OrganizationsOrganizationIdAttributes_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsOrganizationIdAttributes_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsOrganizationIdAttributes_Request_Body} - Request body type
- */
-export type GET_OrganizationsOrganizationIdAttributes_Request = {
-  parameters: {
-    query: operations['get_organization_attributes_v1_organizations__organization_id__attributes_get']['parameters']['query'];
-    path: operations['get_organization_attributes_v1_organizations__organization_id__attributes_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations/{organization_id}/attributes
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations/{organization_id}/attributes endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/{organization_id}/attributes
- * @param keys (query) - Optional list of attribute keys to filter
- */
-export type GET_OrganizationsOrganizationIdAttributes_Request_Query = GET_OrganizationsOrganizationIdAttributes_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/organizations/{organization_id}/attributes
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/{organization_id}/attributes endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}/attributes
- */
-export type GET_OrganizationsOrganizationIdAttributes_Request_Path = GET_OrganizationsOrganizationIdAttributes_Request['parameters']['path'];
-
-/**
- * Request type for PATCH OrganizationsOrganizationIdAttributes endpoint
- *
- * Update organization attributes
- * Updates one or more organization attributes for the specified organization
- *
- * @remarks
- * This type defines the complete request structure for the PATCH OrganizationsOrganizationIdAttributes endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}/attributes
- *
- * @see {@link PATCH_OrganizationsOrganizationIdAttributes_Request_Query} - Query parameters type
- * @see {@link PATCH_OrganizationsOrganizationIdAttributes_Request_Path} - Path parameters type
- * @see {@link PATCH_OrganizationsOrganizationIdAttributes_Request_Body} - Request body type
- */
-export type PATCH_OrganizationsOrganizationIdAttributes_Request = {
-  parameters: {
-    path: operations['update_organization_attributes_v1_organizations__organization_id__attributes_patch']['parameters']['path'];
-  };
-  requestBody: OrganizationAttributeUpdateArray;
-}
-/**
- * Path parameters for PATCH /v1/organizations/{organization_id}/attributes
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/organizations/{organization_id}/attributes endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}/attributes
- */
-export type PATCH_OrganizationsOrganizationIdAttributes_Request_Path = PATCH_OrganizationsOrganizationIdAttributes_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/organizations/{organization_id}/attributes
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/organizations/{organization_id}/attributes endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/organizations/{organization_id}/attributes
- */
-export type PATCH_OrganizationsOrganizationIdAttributes_Request_Body = PATCH_OrganizationsOrganizationIdAttributes_Request['requestBody'];
-
-/**
- * Request type for GET OrganizationsOrganizationIdBillingInvoices endpoint
- *
- * List all invoices for the organization
- * Retrieves a paginated list of all invoices for the organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsOrganizationIdBillingInvoices endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}/billing/invoices
- *
- * @see {@link GET_OrganizationsOrganizationIdBillingInvoices_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsOrganizationIdBillingInvoices_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsOrganizationIdBillingInvoices_Request_Body} - Request body type
- */
-export type GET_OrganizationsOrganizationIdBillingInvoices_Request = {
-  parameters: {
-    query: operations['list_invoices_v1_organizations__organization_id__billing_invoices_get']['parameters']['query'];
-    path: operations['list_invoices_v1_organizations__organization_id__billing_invoices_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations/{organization_id}/billing/invoices
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations/{organization_id}/billing/invoices endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/{organization_id}/billing/invoices
- */
-export type GET_OrganizationsOrganizationIdBillingInvoices_Request_Query = GET_OrganizationsOrganizationIdBillingInvoices_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/organizations/{organization_id}/billing/invoices
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/{organization_id}/billing/invoices endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}/billing/invoices
- */
-export type GET_OrganizationsOrganizationIdBillingInvoices_Request_Path = GET_OrganizationsOrganizationIdBillingInvoices_Request['parameters']['path'];
-
-/**
- * Request type for GET OrganizationsOrganizationIdPricingProductTypeProductType endpoint
- *
- * List product prices
- * Retrieves pricing data for a specific product type. If a product action/class are specified, only prices for those are returned, if any.
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsOrganizationIdPricingProductTypeProductType endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
- *
- * @see {@link GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Body} - Request body type
- */
-export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request = {
-  parameters: {
-    query: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters']['query'];
-    path: operations['get_pricing_plans_v1_organizations__organization_id__pricing_product_type__product_type__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations/{organization_id}/pricing/product-type/{product_type}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations/{organization_id}/pricing/product-type/{product_type} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
- */
-export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Query = GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/organizations/{organization_id}/pricing/product-type/{product_type}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/{organization_id}/pricing/product-type/{product_type} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}/pricing/product-type/{product_type}
- */
-export type GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request_Path = GET_OrganizationsOrganizationIdPricingProductTypeProductType_Request['parameters']['path'];
-
-/**
- * Request type for GET OrganizationsOrganizationIdTransactions endpoint
- *
- * List all transactions
- * Retrieves a paginated list of transactions for an organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsOrganizationIdTransactions endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}/transactions
- *
- * @see {@link GET_OrganizationsOrganizationIdTransactions_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsOrganizationIdTransactions_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsOrganizationIdTransactions_Request_Body} - Request body type
- */
-export type GET_OrganizationsOrganizationIdTransactions_Request = {
-  parameters: {
-    query: operations['get_transactions_v1_organizations__organization_id__transactions_get']['parameters']['query'];
-    path: operations['get_transactions_v1_organizations__organization_id__transactions_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations/{organization_id}/transactions
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations/{organization_id}/transactions endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/{organization_id}/transactions
- */
-export type GET_OrganizationsOrganizationIdTransactions_Request_Query = GET_OrganizationsOrganizationIdTransactions_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/organizations/{organization_id}/transactions
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/{organization_id}/transactions endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}/transactions
- */
-export type GET_OrganizationsOrganizationIdTransactions_Request_Path = GET_OrganizationsOrganizationIdTransactions_Request['parameters']['path'];
-
-/**
- * Request type for GET OrganizationsOrganizationIdTransactionsTransactionId endpoint
- *
- * Get a specific transaction
- * Retrieves details for a specific transaction for an organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsOrganizationIdTransactionsTransactionId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
- *
- * @see {@link GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Body} - Request body type
- */
-export type GET_OrganizationsOrganizationIdTransactionsTransactionId_Request = {
-  parameters: {
-    path: operations['get_transaction_v1_organizations__organization_id__transactions__transaction_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/organizations/{organization_id}/transactions/{transaction_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/organizations/{organization_id}/transactions/{transaction_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/organizations/{organization_id}/transactions/{transaction_id}
- */
-export type GET_OrganizationsOrganizationIdTransactionsTransactionId_Request_Path = GET_OrganizationsOrganizationIdTransactionsTransactionId_Request['parameters']['path'];
-
-/**
- * Request type for GET OrganizationsRoles endpoint
- *
- * List all roles
- * Retrieves a list of roles for the current organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsRoles endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/roles
- *
- * @see {@link GET_OrganizationsRoles_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsRoles_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsRoles_Request_Body} - Request body type
- */
 export type GET_OrganizationsRoles_Request = {
-}
+};
 
-/**
- * Request type for GET OrganizationsUsers endpoint
- *
- * List all users
- * Retrieves a paginated list of users under the current organization
- *
- * @remarks
- * This type defines the complete request structure for the GET OrganizationsUsers endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/organizations/users
- *
- * @see {@link GET_OrganizationsUsers_Request_Query} - Query parameters type
- * @see {@link GET_OrganizationsUsers_Request_Path} - Path parameters type
- * @see {@link GET_OrganizationsUsers_Request_Body} - Request body type
- */
 export type GET_OrganizationsUsers_Request = {
-  parameters: {
-    query: operations['list_users_v1_organizations_users_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/organizations/users
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/organizations/users endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/organizations/users
- */
+  parameters: operations['list_users_v1_organizations_users_get']['parameters'];
+};
 export type GET_OrganizationsUsers_Request_Query = GET_OrganizationsUsers_Request['parameters']['query'];
 
-/**
- * Request type for GET Parking endpoint
- *
- * List parking entries
- * Retrieves a paginated list of parking entries for the organization
- *
- * @remarks
- * This type defines the complete request structure for the GET Parking endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/parking
- *
- * @see {@link GET_Parking_Request_Query} - Query parameters type
- * @see {@link GET_Parking_Request_Path} - Path parameters type
- * @see {@link GET_Parking_Request_Body} - Request body type
- */
 export type GET_Parking_Request = {
-  parameters: {
-    query: operations['list_parking_v1_parking_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/parking
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/parking endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/parking
- */
+  parameters: operations['list_parking_v1_parking_get']['parameters'];
+};
 export type GET_Parking_Request_Query = GET_Parking_Request['parameters']['query'];
 
-/**
- * Request type for GET ParkingMetrics endpoint
- *
- * Get total metrics for all parking entries
- * Retrieves aggregated metrics for all parking entries of the organization.
- *
- * @remarks
- * This type defines the complete request structure for the GET ParkingMetrics endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/parking/metrics
- *
- * @see {@link GET_ParkingMetrics_Request_Query} - Query parameters type
- * @see {@link GET_ParkingMetrics_Request_Path} - Path parameters type
- * @see {@link GET_ParkingMetrics_Request_Body} - Request body type
- */
+export type GET_ParkingByParkingReferenceMetrics_Request = {
+  parameters: operations['get_parking_metrics_v1_parking__parking_reference__metrics_get']['parameters'];
+};
+export type GET_ParkingByParkingReferenceMetrics_Request_Query = GET_ParkingByParkingReferenceMetrics_Request['parameters']['query'];
+export type GET_ParkingByParkingReferenceMetrics_Request_Path = GET_ParkingByParkingReferenceMetrics_Request['parameters']['path'];
+
 export type GET_ParkingMetrics_Request = {
-  parameters: {
-    query: operations['get_total_parking_metrics_v1_parking_metrics_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/parking/metrics
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/parking/metrics endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/parking/metrics
- */
+  parameters: operations['get_total_parking_metrics_v1_parking_metrics_get']['parameters'];
+};
 export type GET_ParkingMetrics_Request_Query = GET_ParkingMetrics_Request['parameters']['query'];
 
-/**
- * Request type for GET ParkingParkingReferenceMetrics endpoint
- *
- * Get metrics for a parking entry
- * Retrieves metrics for a specific parking entry by ID or domain name.
- *
- * @remarks
- * This type defines the complete request structure for the GET ParkingParkingReferenceMetrics endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/parking/{parking_reference}/metrics
- *
- * @see {@link GET_ParkingParkingReferenceMetrics_Request_Query} - Query parameters type
- * @see {@link GET_ParkingParkingReferenceMetrics_Request_Path} - Path parameters type
- * @see {@link GET_ParkingParkingReferenceMetrics_Request_Body} - Request body type
- */
-export type GET_ParkingParkingReferenceMetrics_Request = {
-  parameters: {
-    query: operations['get_parking_metrics_v1_parking__parking_reference__metrics_get']['parameters']['query'];
-    path: operations['get_parking_metrics_v1_parking__parking_reference__metrics_get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/parking/{parking_reference}/metrics
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/parking/{parking_reference}/metrics endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/parking/{parking_reference}/metrics
- */
-export type GET_ParkingParkingReferenceMetrics_Request_Query = GET_ParkingParkingReferenceMetrics_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/parking/{parking_reference}/metrics
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/parking/{parking_reference}/metrics endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/parking/{parking_reference}/metrics
- */
-export type GET_ParkingParkingReferenceMetrics_Request_Path = GET_ParkingParkingReferenceMetrics_Request['parameters']['path'];
-
-/**
- * Request type for POST ParkingSignup endpoint
- *
- * Sign up for parking
- * Accept the parking agreement to enable parking features for your organization.
- *
- * @remarks
- * This type defines the complete request structure for the POST ParkingSignup endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/parking/signup
- *
- * @see {@link POST_ParkingSignup_Request_Query} - Query parameters type
- * @see {@link POST_ParkingSignup_Request_Path} - Path parameters type
- * @see {@link POST_ParkingSignup_Request_Body} - Request body type
- */
 export type POST_ParkingSignup_Request = {
   requestBody: ParkingSignupRequest;
-}
-/**
- * Request body for POST /v1/parking/signup
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/parking/signup endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/parking/signup
- */
+};
 export type POST_ParkingSignup_Request_Body = POST_ParkingSignup_Request['requestBody'];
 
-/**
- * Request type for GET ParkingSignupStatus endpoint
- *
- * Get parking signup status
- * Check if your organization has accepted the parking agreement.
- *
- * @remarks
- * This type defines the complete request structure for the GET ParkingSignupStatus endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/parking/signup/status
- *
- * @see {@link GET_ParkingSignupStatus_Request_Query} - Query parameters type
- * @see {@link GET_ParkingSignupStatus_Request_Path} - Path parameters type
- * @see {@link GET_ParkingSignupStatus_Request_Body} - Request body type
- */
 export type GET_ParkingSignupStatus_Request = {
-}
+};
 
-/**
- * Request type for GET Reports endpoint
- *
- * List Reports
- *
- * @remarks
- * This type defines the complete request structure for the GET Reports endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/reports
- *
- * @see {@link GET_Reports_Request_Query} - Query parameters type
- * @see {@link GET_Reports_Request_Path} - Path parameters type
- * @see {@link GET_Reports_Request_Body} - Request body type
- */
 export type GET_Reports_Request = {
-  parameters: {
-    query: operations['list_reports_v1_reports_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/reports
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/reports endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/reports
- */
+  parameters: operations['list_reports_v1_reports_get']['parameters'];
+};
 export type GET_Reports_Request_Query = GET_Reports_Request['parameters']['query'];
 
-/**
- * Request type for POST Reports endpoint
- *
- * Create Report
- *
- * @remarks
- * This type defines the complete request structure for the POST Reports endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/reports
- *
- * @see {@link POST_Reports_Request_Query} - Query parameters type
- * @see {@link POST_Reports_Request_Path} - Path parameters type
- * @see {@link POST_Reports_Request_Body} - Request body type
- */
 export type POST_Reports_Request = {
-  requestBody: unknown;
-}
-/**
- * Request body for POST /v1/reports
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/reports endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/reports
- */
-export type POST_Reports_Request_Body = POST_Reports_Request['requestBody'];
+};
 
-/**
- * Request type for GET ReportsReportId endpoint
- *
- * Get Report
- *
- * @remarks
- * This type defines the complete request structure for the GET ReportsReportId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/reports/{report_id}
- *
- * @see {@link GET_ReportsReportId_Request_Query} - Query parameters type
- * @see {@link GET_ReportsReportId_Request_Path} - Path parameters type
- * @see {@link GET_ReportsReportId_Request_Body} - Request body type
- */
-export type GET_ReportsReportId_Request = {
-  parameters: {
-    path: operations['get_report_v1_reports__report_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/reports/{report_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/reports/{report_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/reports/{report_id}
- */
-export type GET_ReportsReportId_Request_Path = GET_ReportsReportId_Request['parameters']['path'];
+export type GET_ReportsByReportId_Request = {
+  parameters: operations['get_report_v1_reports__report_id__get']['parameters'];
+};
+export type GET_ReportsByReportId_Request_Path = GET_ReportsByReportId_Request['parameters']['path'];
 
-/**
- * Request type for GET ReportsReportIdDownload endpoint
- *
- * Download Report
- *
- * @remarks
- * This type defines the complete request structure for the GET ReportsReportIdDownload endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/reports/{report_id}/download
- *
- * @see {@link GET_ReportsReportIdDownload_Request_Query} - Query parameters type
- * @see {@link GET_ReportsReportIdDownload_Request_Path} - Path parameters type
- * @see {@link GET_ReportsReportIdDownload_Request_Body} - Request body type
- */
-export type GET_ReportsReportIdDownload_Request = {
-  parameters: {
-    path: operations['download_report_v1_reports__report_id__download_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/reports/{report_id}/download
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/reports/{report_id}/download endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/reports/{report_id}/download
- */
-export type GET_ReportsReportIdDownload_Request_Path = GET_ReportsReportIdDownload_Request['parameters']['path'];
+export type GET_ReportsByReportIdDownload_Request = {
+  parameters: operations['download_report_v1_reports__report_id__download_get']['parameters'];
+};
+export type GET_ReportsByReportIdDownload_Request_Path = GET_ReportsByReportIdDownload_Request['parameters']['path'];
 
-/**
- * Request type for GET Tags endpoint
- *
- * List tags
- * Retrieves a paginated list of tags
- *
- * @remarks
- * This type defines the complete request structure for the GET Tags endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tags
- * @param tag_types (query) - Filter by tag types (OR semantics)
- *
- * @see {@link GET_Tags_Request_Query} - Query parameters type
- * @see {@link GET_Tags_Request_Path} - Path parameters type
- * @see {@link GET_Tags_Request_Body} - Request body type
- */
 export type GET_Tags_Request = {
-  parameters: {
-    query: operations['list_tags_v1_tags_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/tags
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/tags endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/tags
- * @param tag_types (query) - Filter by tag types (OR semantics)
- */
+  parameters: operations['list_tags_v1_tags_get']['parameters'];
+};
 export type GET_Tags_Request_Query = GET_Tags_Request['parameters']['query'];
 
-/**
- * Request type for POST Tags endpoint
- *
- * Create a tag
- * Create a new tag
- *
- * @remarks
- * This type defines the complete request structure for the POST Tags endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tags
- *
- * @see {@link POST_Tags_Request_Query} - Query parameters type
- * @see {@link POST_Tags_Request_Path} - Path parameters type
- * @see {@link POST_Tags_Request_Body} - Request body type
- */
 export type POST_Tags_Request = {
   requestBody: TagCreate;
-}
-/**
- * Request body for POST /v1/tags
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/tags endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/tags
- */
+};
 export type POST_Tags_Request_Body = POST_Tags_Request['requestBody'];
 
-/**
- * Request type for POST TagsObjects endpoint
- *
- * Bulk tag or untag objects
- * Add, remove, or replace tags on multiple objects at once. 'replace' is mutually exclusive with 'add' and 'remove'.
- *
- * @remarks
- * This type defines the complete request structure for the POST TagsObjects endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tags/objects
- *
- * @see {@link POST_TagsObjects_Request_Query} - Query parameters type
- * @see {@link POST_TagsObjects_Request_Path} - Path parameters type
- * @see {@link POST_TagsObjects_Request_Body} - Request body type
- */
+export type DELETE_TagsByTagId_Request = {
+  parameters: operations['delete_tag_v1_tags__tag_id__delete']['parameters'];
+};
+export type DELETE_TagsByTagId_Request_Path = DELETE_TagsByTagId_Request['parameters']['path'];
+
+export type GET_TagsByTagId_Request = {
+  parameters: operations['get_tag_v1_tags__tag_id__get']['parameters'];
+};
+export type GET_TagsByTagId_Request_Path = GET_TagsByTagId_Request['parameters']['path'];
+
+export type PATCH_TagsByTagId_Request = {
+  parameters: operations['update_tag_v1_tags__tag_id__patch']['parameters'];
+  requestBody: TagUpdate;
+};
+export type PATCH_TagsByTagId_Request_Path = PATCH_TagsByTagId_Request['parameters']['path'];
+export type PATCH_TagsByTagId_Request_Body = PATCH_TagsByTagId_Request['requestBody'];
+
+export type POST_TagsByTagIdObjects_Request = {
+  parameters: operations['update_tag_objects_v1_tags__tag_id__objects_post']['parameters'];
+  requestBody: ObjectTagChanges;
+};
+export type POST_TagsByTagIdObjects_Request_Path = POST_TagsByTagIdObjects_Request['parameters']['path'];
+export type POST_TagsByTagIdObjects_Request_Body = POST_TagsByTagIdObjects_Request['requestBody'];
+
 export type POST_TagsObjects_Request = {
   requestBody: BulkObjectTagChanges;
-}
-/**
- * Request body for POST /v1/tags/objects
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/tags/objects endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/tags/objects
- */
+};
 export type POST_TagsObjects_Request_Body = POST_TagsObjects_Request['requestBody'];
 
-/**
- * Request type for DELETE TagsTagId endpoint
- *
- * Delete a tag
- * Delete a tag
- *
- * @remarks
- * This type defines the complete request structure for the DELETE TagsTagId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tags/{tag_id}
- *
- * @see {@link DELETE_TagsTagId_Request_Query} - Query parameters type
- * @see {@link DELETE_TagsTagId_Request_Path} - Path parameters type
- * @see {@link DELETE_TagsTagId_Request_Body} - Request body type
- */
-export type DELETE_TagsTagId_Request = {
-  parameters: {
-    path: operations['delete_tag_v1_tags__tag_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/tags/{tag_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/tags/{tag_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/tags/{tag_id}
- */
-export type DELETE_TagsTagId_Request_Path = DELETE_TagsTagId_Request['parameters']['path'];
-
-/**
- * Request type for GET TagsTagId endpoint
- *
- * Get a tag
- * Retrieve a single tag by its ID
- *
- * @remarks
- * This type defines the complete request structure for the GET TagsTagId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tags/{tag_id}
- *
- * @see {@link GET_TagsTagId_Request_Query} - Query parameters type
- * @see {@link GET_TagsTagId_Request_Path} - Path parameters type
- * @see {@link GET_TagsTagId_Request_Body} - Request body type
- */
-export type GET_TagsTagId_Request = {
-  parameters: {
-    path: operations['get_tag_v1_tags__tag_id__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/tags/{tag_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/tags/{tag_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/tags/{tag_id}
- */
-export type GET_TagsTagId_Request_Path = GET_TagsTagId_Request['parameters']['path'];
-
-/**
- * Request type for PATCH TagsTagId endpoint
- *
- * Update a tag
- * Update a tag's label, description, or color
- *
- * @remarks
- * This type defines the complete request structure for the PATCH TagsTagId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tags/{tag_id}
- *
- * @see {@link PATCH_TagsTagId_Request_Query} - Query parameters type
- * @see {@link PATCH_TagsTagId_Request_Path} - Path parameters type
- * @see {@link PATCH_TagsTagId_Request_Body} - Request body type
- */
-export type PATCH_TagsTagId_Request = {
-  parameters: {
-    path: operations['update_tag_v1_tags__tag_id__patch']['parameters']['path'];
-  };
-  requestBody: TagUpdate;
-}
-/**
- * Path parameters for PATCH /v1/tags/{tag_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/tags/{tag_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/tags/{tag_id}
- */
-export type PATCH_TagsTagId_Request_Path = PATCH_TagsTagId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/tags/{tag_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/tags/{tag_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/tags/{tag_id}
- */
-export type PATCH_TagsTagId_Request_Body = PATCH_TagsTagId_Request['requestBody'];
-
-/**
- * Request type for POST TagsTagIdObjects endpoint
- *
- * Tag or untag objects
- * Add or remove objects from a tag. Objects are matched by the tag's type (e.g. a DOMAIN tag only accepts domain IDs).
- *
- * @remarks
- * This type defines the complete request structure for the POST TagsTagIdObjects endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tags/{tag_id}/objects
- *
- * @see {@link POST_TagsTagIdObjects_Request_Query} - Query parameters type
- * @see {@link POST_TagsTagIdObjects_Request_Path} - Path parameters type
- * @see {@link POST_TagsTagIdObjects_Request_Body} - Request body type
- */
-export type POST_TagsTagIdObjects_Request = {
-  parameters: {
-    path: operations['update_tag_objects_v1_tags__tag_id__objects_post']['parameters']['path'];
-  };
-  requestBody: ObjectTagChanges;
-}
-/**
- * Path parameters for POST /v1/tags/{tag_id}/objects
- *
- * @remarks
- * This type defines the path parameters for the POST /v1/tags/{tag_id}/objects endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/tags/{tag_id}/objects
- */
-export type POST_TagsTagIdObjects_Request_Path = POST_TagsTagIdObjects_Request['parameters']['path'];
-/**
- * Request body for POST /v1/tags/{tag_id}/objects
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/tags/{tag_id}/objects endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/tags/{tag_id}/objects
- */
-export type POST_TagsTagIdObjects_Request_Body = POST_TagsTagIdObjects_Request['requestBody'];
-
-/**
- * Request type for GET Tlds endpoint
- *
- * Get list of Specifications for all TLDs we support
- * Retrieves a list of TLD Specifications we have support for
- *
- * @remarks
- * This type defines the complete request structure for the GET Tlds endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tlds/
- *
- * @see {@link GET_Tlds_Request_Query} - Query parameters type
- * @see {@link GET_Tlds_Request_Path} - Path parameters type
- * @see {@link GET_Tlds_Request_Body} - Request body type
- */
 export type GET_Tlds_Request = {
-  parameters: {
-    query: operations['get_tld_specifications_v1_tlds__get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/tlds/
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/tlds/ endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/tlds/
- */
+  parameters: operations['get_tld_specifications_v1_tlds__get']['parameters'];
+};
 export type GET_Tlds_Request_Query = GET_Tlds_Request['parameters']['query'];
 
-/**
- * Request type for GET TldsPortfolio endpoint
- *
- * Get the list of TLDs we support
- * Retrieves a list of TLDs we have support for
- *
- * @remarks
- * This type defines the complete request structure for the GET TldsPortfolio endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tlds/portfolio
- *
- * @see {@link GET_TldsPortfolio_Request_Query} - Query parameters type
- * @see {@link GET_TldsPortfolio_Request_Path} - Path parameters type
- * @see {@link GET_TldsPortfolio_Request_Body} - Request body type
- */
+export type GET_TldsByTld_Request = {
+  parameters: operations['get_tld_spec_v1_tlds__tld__get']['parameters'];
+};
+export type GET_TldsByTld_Request_Path = GET_TldsByTld_Request['parameters']['path'];
+
 export type GET_TldsPortfolio_Request = {
-}
+};
 
-/**
- * Request type for GET TldsTld endpoint
- *
- * Get the TLD specification
- * Retrieves the TLD specification for a given TLD
- *
- * @remarks
- * This type defines the complete request structure for the GET TldsTld endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/tlds/{tld}
- *
- * @see {@link GET_TldsTld_Request_Query} - Query parameters type
- * @see {@link GET_TldsTld_Request_Path} - Path parameters type
- * @see {@link GET_TldsTld_Request_Body} - Request body type
- */
-export type GET_TldsTld_Request = {
-  parameters: {
-    path: operations['get_tld_spec_v1_tlds__tld__get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/tlds/{tld}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/tlds/{tld} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/tlds/{tld}
- */
-export type GET_TldsTld_Request_Path = GET_TldsTld_Request['parameters']['path'];
-
-/**
- * Request type for POST Users endpoint
- *
- * Create a user
- * Create a new user
- *
- * @remarks
- * This type defines the complete request structure for the POST Users endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users
- *
- * @see {@link POST_Users_Request_Query} - Query parameters type
- * @see {@link POST_Users_Request_Path} - Path parameters type
- * @see {@link POST_Users_Request_Body} - Request body type
- */
 export type POST_Users_Request = {
   requestBody: UserCreate;
-}
-/**
- * Request body for POST /v1/users
- *
- * @remarks
- * This type defines the request body structure for the POST /v1/users endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/users
- */
+};
 export type POST_Users_Request_Body = POST_Users_Request['requestBody'];
 
-/**
- * Request type for GET UsersMe endpoint
- *
- * Get current user
- * Get the current user
- *
- * @remarks
- * This type defines the complete request structure for the GET UsersMe endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/me
- *
- * @see {@link GET_UsersMe_Request_Query} - Query parameters type
- * @see {@link GET_UsersMe_Request_Path} - Path parameters type
- * @see {@link GET_UsersMe_Request_Body} - Request body type
- */
+export type DELETE_UsersByUserId_Request = {
+  parameters: operations['delete_user_v1_users__user_id__delete']['parameters'];
+};
+export type DELETE_UsersByUserId_Request_Path = DELETE_UsersByUserId_Request['parameters']['path'];
+
+export type GET_UsersByUserId_Request = {
+  parameters: operations['get_user_v1_users__user_id__get']['parameters'];
+};
+export type GET_UsersByUserId_Request_Query = GET_UsersByUserId_Request['parameters']['query'];
+export type GET_UsersByUserId_Request_Path = GET_UsersByUserId_Request['parameters']['path'];
+
+export type PATCH_UsersByUserId_Request = {
+  parameters: operations['update_user_v1_users__user_id__patch']['parameters'];
+  requestBody: UserUpdate;
+};
+export type PATCH_UsersByUserId_Request_Path = PATCH_UsersByUserId_Request['parameters']['path'];
+export type PATCH_UsersByUserId_Request_Body = PATCH_UsersByUserId_Request['requestBody'];
+
+export type GET_UsersByUserIdPermissions_Request = {
+  parameters: operations['get_user_permissions_v1_users__user_id__permissions_get']['parameters'];
+};
+export type GET_UsersByUserIdPermissions_Request_Path = GET_UsersByUserIdPermissions_Request['parameters']['path'];
+
+export type GET_UsersByUserIdRoles_Request = {
+  parameters: operations['list_roles_v1_users__user_id__roles_get']['parameters'];
+};
+export type GET_UsersByUserIdRoles_Request_Path = GET_UsersByUserIdRoles_Request['parameters']['path'];
+
+export type PATCH_UsersByUserIdRoles_Request = {
+  parameters: operations['update_user_relations_v1_users__user_id__roles_patch']['parameters'];
+  requestBody: SpiceDbRelationshipUpdate;
+};
+export type PATCH_UsersByUserIdRoles_Request_Path = PATCH_UsersByUserIdRoles_Request['parameters']['path'];
+export type PATCH_UsersByUserIdRoles_Request_Body = PATCH_UsersByUserIdRoles_Request['requestBody'];
+
 export type GET_UsersMe_Request = {
-  parameters: {
-    query: operations['get_current_user_v1_users_me_get']['parameters']['query'];
-  };
-}
-/**
- * Query parameters for GET /v1/users/me
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/users/me endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/users/me
- */
+  parameters: operations['get_current_user_v1_users_me_get']['parameters'];
+};
 export type GET_UsersMe_Request_Query = GET_UsersMe_Request['parameters']['query'];
 
-/**
- * Request type for PATCH UsersMePasswordReset endpoint
- *
- * Change Password
- *
- * @remarks
- * This type defines the complete request structure for the PATCH UsersMePasswordReset endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/me/password-reset
- *
- * @see {@link PATCH_UsersMePasswordReset_Request_Query} - Query parameters type
- * @see {@link PATCH_UsersMePasswordReset_Request_Path} - Path parameters type
- * @see {@link PATCH_UsersMePasswordReset_Request_Body} - Request body type
- */
 export type PATCH_UsersMePasswordReset_Request = {
   requestBody: PasswordUpdate;
-}
-/**
- * Request body for PATCH /v1/users/me/password-reset
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/users/me/password-reset endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/users/me/password-reset
- */
+};
 export type PATCH_UsersMePasswordReset_Request_Body = PATCH_UsersMePasswordReset_Request['requestBody'];
-
-/**
- * Request type for DELETE UsersUserId endpoint
- *
- * Delete a user
- * Delete a user by ID
- *
- * @remarks
- * This type defines the complete request structure for the DELETE UsersUserId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/{user_id}
- *
- * @see {@link DELETE_UsersUserId_Request_Query} - Query parameters type
- * @see {@link DELETE_UsersUserId_Request_Path} - Path parameters type
- * @see {@link DELETE_UsersUserId_Request_Body} - Request body type
- */
-export type DELETE_UsersUserId_Request = {
-  parameters: {
-    path: operations['delete_user_v1_users__user_id__delete']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for DELETE /v1/users/{user_id}
- *
- * @remarks
- * This type defines the path parameters for the DELETE /v1/users/{user_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/users/{user_id}
- */
-export type DELETE_UsersUserId_Request_Path = DELETE_UsersUserId_Request['parameters']['path'];
-
-/**
- * Request type for GET UsersUserId endpoint
- *
- * Get a user
- * Get a user by ID
- *
- * @remarks
- * This type defines the complete request structure for the GET UsersUserId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/{user_id}
- *
- * @see {@link GET_UsersUserId_Request_Query} - Query parameters type
- * @see {@link GET_UsersUserId_Request_Path} - Path parameters type
- * @see {@link GET_UsersUserId_Request_Body} - Request body type
- */
-export type GET_UsersUserId_Request = {
-  parameters: {
-    query: operations['get_user_v1_users__user_id__get']['parameters']['query'];
-    path: operations['get_user_v1_users__user_id__get']['parameters']['path'];
-  };
-}
-/**
- * Query parameters for GET /v1/users/{user_id}
- *
- * @remarks
- * This type defines the query parameters for the GET /v1/users/{user_id} endpoint.
- * It provides type safety for all query parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for query parameters.
- *
- * @path /v1/users/{user_id}
- */
-export type GET_UsersUserId_Request_Query = GET_UsersUserId_Request['parameters']['query'];
-/**
- * Path parameters for GET /v1/users/{user_id}
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/users/{user_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/users/{user_id}
- */
-export type GET_UsersUserId_Request_Path = GET_UsersUserId_Request['parameters']['path'];
-
-/**
- * Request type for PATCH UsersUserId endpoint
- *
- * Update a user
- * Update a user by ID
- *
- * @remarks
- * This type defines the complete request structure for the PATCH UsersUserId endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/{user_id}
- *
- * @see {@link PATCH_UsersUserId_Request_Query} - Query parameters type
- * @see {@link PATCH_UsersUserId_Request_Path} - Path parameters type
- * @see {@link PATCH_UsersUserId_Request_Body} - Request body type
- */
-export type PATCH_UsersUserId_Request = {
-  parameters: {
-    path: operations['update_user_v1_users__user_id__patch']['parameters']['path'];
-  };
-  requestBody: UserUpdate;
-}
-/**
- * Path parameters for PATCH /v1/users/{user_id}
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/users/{user_id} endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/users/{user_id}
- */
-export type PATCH_UsersUserId_Request_Path = PATCH_UsersUserId_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/users/{user_id}
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/users/{user_id} endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/users/{user_id}
- */
-export type PATCH_UsersUserId_Request_Body = PATCH_UsersUserId_Request['requestBody'];
-
-/**
- * Request type for GET UsersUserIdPermissions endpoint
- *
- * Get user permissions
- * Get the permissions for a user
- *
- * @remarks
- * This type defines the complete request structure for the GET UsersUserIdPermissions endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/{user_id}/permissions
- *
- * @see {@link GET_UsersUserIdPermissions_Request_Query} - Query parameters type
- * @see {@link GET_UsersUserIdPermissions_Request_Path} - Path parameters type
- * @see {@link GET_UsersUserIdPermissions_Request_Body} - Request body type
- */
-export type GET_UsersUserIdPermissions_Request = {
-  parameters: {
-    path: operations['get_user_permissions_v1_users__user_id__permissions_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/users/{user_id}/permissions
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/users/{user_id}/permissions endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/users/{user_id}/permissions
- */
-export type GET_UsersUserIdPermissions_Request_Path = GET_UsersUserIdPermissions_Request['parameters']['path'];
-
-/**
- * Request type for GET UsersUserIdRoles endpoint
- *
- * Get user roles
- * Get the roles for a user
- *
- * @remarks
- * This type defines the complete request structure for the GET UsersUserIdRoles endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/{user_id}/roles
- *
- * @see {@link GET_UsersUserIdRoles_Request_Query} - Query parameters type
- * @see {@link GET_UsersUserIdRoles_Request_Path} - Path parameters type
- * @see {@link GET_UsersUserIdRoles_Request_Body} - Request body type
- */
-export type GET_UsersUserIdRoles_Request = {
-  parameters: {
-    path: operations['list_roles_v1_users__user_id__roles_get']['parameters']['path'];
-  };
-}
-/**
- * Path parameters for GET /v1/users/{user_id}/roles
- *
- * @remarks
- * This type defines the path parameters for the GET /v1/users/{user_id}/roles endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/users/{user_id}/roles
- */
-export type GET_UsersUserIdRoles_Request_Path = GET_UsersUserIdRoles_Request['parameters']['path'];
-
-/**
- * Request type for PATCH UsersUserIdRoles endpoint
- *
- * Update user roles
- * Update the roles for a user
- *
- * @remarks
- * This type defines the complete request structure for the PATCH UsersUserIdRoles endpoint.
- * It includes all parameters (query, path) and request body types as defined in the OpenAPI specification.
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @example
- * Use this type to ensure type safety when making API requests to this endpoint.
- *
- * @path /v1/users/{user_id}/roles
- *
- * @see {@link PATCH_UsersUserIdRoles_Request_Query} - Query parameters type
- * @see {@link PATCH_UsersUserIdRoles_Request_Path} - Path parameters type
- * @see {@link PATCH_UsersUserIdRoles_Request_Body} - Request body type
- */
-export type PATCH_UsersUserIdRoles_Request = {
-  parameters: {
-    path: operations['update_user_relations_v1_users__user_id__roles_patch']['parameters']['path'];
-  };
-  requestBody: SpiceDbRelationshipUpdate;
-}
-/**
- * Path parameters for PATCH /v1/users/{user_id}/roles
- *
- * @remarks
- * This type defines the path parameters for the PATCH /v1/users/{user_id}/roles endpoint.
- * It provides type safety for all path parameters as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for path parameters.
- *
- * @path /v1/users/{user_id}/roles
- */
-export type PATCH_UsersUserIdRoles_Request_Path = PATCH_UsersUserIdRoles_Request['parameters']['path'];
-/**
- * Request body for PATCH /v1/users/{user_id}/roles
- *
- * @remarks
- * This type defines the request body structure for the PATCH /v1/users/{user_id}/roles endpoint.
- * It provides type safety for the request body as defined in the OpenAPI specification.
- *
- * @example
- * Use this type to ensure type safety for request body structure.
- *
- * @path /v1/users/{user_id}/roles
- */
-export type PATCH_UsersUserIdRoles_Request_Body = PATCH_UsersUserIdRoles_Request['requestBody'];
-

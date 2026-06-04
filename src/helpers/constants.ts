@@ -1,99 +1,122 @@
-/**
- * Auto-generated const objects and arrays from OpenAPI specification
- *
- * This file contains constant objects and arrays derived from OpenAPI schema enums.
- * Each constant provides both an object form (for key-value access) and an array form (for iteration/validation).
- * These constants use existing types from schemas.ts to avoid duplication and ensure type safety.
- *
- * @remarks
- * - String enums generate both objects and arrays with proper type annotations
- * - Integer enums generate typed arrays only
- * - All constants use 'as const' for maximum type safety
- * - Keys follow SCREAMING_SNAKE_CASE convention for consistency
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BULK_OPERATION_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BULK_OPERATION_STATUS_VALUES;
- * ```
- */
+import type {
+  AllocationMethodType,
+  AttributeType,
+  BatchSortField,
+  BatchStatus,
+  BillingTransactionAction,
+  BillingTransactionProductType,
+  BillingTransactionSortField,
+  BillingTransactionStatus,
+  ComplianceStatus,
+  ConditionOperator,
+  ContactAttributeSetSortField,
+  ContactIncludeField,
+  ContactSortField,
+  ContactType,
+  ContactVerificationClaim,
+  ContactVerificationMethod,
+  ContactVerificationProof,
+  ContactVerificationState,
+  Currency,
+  DeletePolicyType,
+  DnsChangeAction,
+  DnsProtectedReason,
+  DnsRrsetType,
+  DnssecAlgorithm,
+  DnssecDigestType,
+  DnssecModeType,
+  DnssecRecordType,
+  DnssecStatus,
+  DomainAttributeKey,
+  DomainAvailabilityStatus,
+  DomainClientStatus,
+  DomainContactType,
+  DomainForwardSortField,
+  DomainForwardZoneSortField,
+  DomainIncludeField,
+  DomainSortField,
+  DomainStatus,
+  EmailForwardLogSortField,
+  EmailForwardLogStatus,
+  EmailForwardSortField,
+  EmailForwardZoneSortField,
+  EmailVerificationStatus,
+  EventObjectType,
+  EventSortField,
+  EventSubtype,
+  EventType,
+  EventVersion,
+  ExecutingEntity,
+  HTTPMethod,
+  HolderEntitlement,
+  HostStatus,
+  HttpProtocol,
+  InvoiceResponsePaymentStatus,
+  InvoiceResponseStatus,
+  InvoiceResponseType,
+  JobStatus,
+  LaunchPhaseType,
+  LegalRequirementOperationType,
+  LegalRequirementType,
+  LocalPresenceRequirementType,
+  MemoryFactKind,
+  MessageContextKind,
+  MessageRole,
+  MetricsGrouping,
+  ObjectEventType,
+  ObjectLogSortField,
+  OrganizationSortField,
+  OrganizationStatus,
+  ParkingSortField,
+  PatchOp,
+  PeriodUnit,
+  Permission,
+  PostTransferRequirements,
+  PostalAddressType,
+  PremiumAffectsType,
+  PremiumSourceType,
+  Protocol,
+  RedirectCode,
+  RegistrantChangeType,
+  RegistryHandleAttributeType,
+  Relation,
+  RenewalMode,
+  ReportStatus,
+  ReportTriggerType,
+  ReportType,
+  RequestHistorySortField,
+  ReservedSourceType,
+  SortOrder,
+  StatusTagType,
+  SyncOperationType,
+  TLDType,
+  TagColor,
+  TagFilterMode,
+  TagSortField,
+  TagType,
+  TimeRange,
+  TransferAckType,
+  UserSortField,
+  UserStatus,
+  VerificationClaimType,
+  VerificationDeadlineType,
+  VerificationType,
+  ZoneIncludeField,
+  ZoneSortField,
+} from './schemas';
 
-import { AllocationMethodType, AttributeType, BatchSortField, BatchStatus, BillingTransactionAction, BillingTransactionProductType, BillingTransactionSortField, BillingTransactionStatus, ComplianceStatus, ConditionOperator, ContactAttributeSetSortField, ContactIncludeField, ContactSortField, ContactType, ContactVerificationClaim, ContactVerificationMethod, ContactVerificationProof, ContactVerificationState, Currency, DeletePolicyType, DnsChangeAction, DnsProtectedReason, DnsRrsetType, DnssecAlgorithm, DnssecDigestType, DnssecModeType, DnssecRecordType, DnssecStatus, DomainAttributeKey, DomainAvailabilityStatus, DomainClientStatus, DomainContactType, DomainForwardSortField, DomainForwardZoneSortField, DomainIncludeField, DomainSortField, DomainStatus, EmailForwardLogSortField, EmailForwardLogStatus, EmailForwardSortField, EmailForwardZoneSortField, EmailVerificationStatus, EventObjectType, EventSortField, EventSubtype, EventType, EventVersion, ExecutingEntity, HTTPMethod, HolderEntitlement, HostStatus, HttpProtocol, InvoiceResponsePaymentStatus, InvoiceResponseStatus, InvoiceResponseType, JobStatus, LaunchPhaseType, LegalRequirementOperationType, LegalRequirementType, LocalPresenceRequirementType, MemoryFactKind, MessageContextKind, MessageRole, MetricsGrouping, ObjectEventType, ObjectLogSortField, OrganizationSortField, OrganizationStatus, ParkingSortField, PatchOp, PeriodUnit, Permission, PostTransferRequirements, PostalAddressType, PremiumAffectsType, PremiumSourceType, Protocol, RedirectCode, RegistrantChangeType, RegistryHandleAttributeType, Relation, RenewalMode, ReportStatus, ReportTriggerType, ReportType, RequestHistorySortField, ReservedSourceType, SortOrder, StatusTagType, SyncOperationType, TLDType, TagColor, TagFilterMode, TagSortField, TagType, TimeRange, TransferAckType, UserSortField, UserStatus, VerificationClaimType, VerificationDeadlineType, VerificationType, ZoneIncludeField, ZoneSortField } from './schemas';
-
-/**
- * AllocationMethodType. Auto-generated enum for AllocationMethodType
- *
- * @remarks
- * This constant provides both object and array forms for the AllocationMethodType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = ALLOCATION_METHOD_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = ALLOCATION_METHOD_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link AllocationMethodType} - The TypeScript type definition
- */
 export const ALLOCATION_METHOD_TYPE = {
   FCFS: "fcfs",
   AUCTION: "auction",
   LOTTERY: "lottery",
 } as const satisfies Record<string, AllocationMethodType>;
 
-/**
- * Array of all AllocationMethodType enum values
- *
- * @remarks
- * This constant provides a array containing all valid AllocationMethodType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of ALLOCATION_METHOD_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = ALLOCATION_METHOD_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link AllocationMethodType} - The TypeScript type definition
- * @see {@link ALLOCATION_METHOD_TYPE} - The object form of this enum
- */
 export const ALLOCATION_METHOD_TYPE_VALUES = [
   'fcfs',
   'auction',
-  'lottery'
-] as const satisfies [string, ...string[]] | AllocationMethodType[];
+  'lottery',
+] as const satisfies ReadonlyArray<AllocationMethodType>;
 
-/**
- * AttributeType. Auto-generated enum for AttributeType
- *
- * @remarks
- * This constant provides both object and array forms for the AttributeType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = ATTRIBUTE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = ATTRIBUTE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link AttributeType} - The TypeScript type definition
- */
 export const ATTRIBUTE_TYPE = {
   ENUM: "enum",
   STRING: "string",
@@ -103,157 +126,37 @@ export const ATTRIBUTE_TYPE = {
   COUNTRY_CODE: "country_code",
 } as const satisfies Record<string, AttributeType>;
 
-/**
- * Array of all AttributeType enum values
- *
- * @remarks
- * This constant provides a array containing all valid AttributeType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of ATTRIBUTE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = ATTRIBUTE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link AttributeType} - The TypeScript type definition
- * @see {@link ATTRIBUTE_TYPE} - The object form of this enum
- */
 export const ATTRIBUTE_TYPE_VALUES = [
   'enum',
   'string',
   'boolean',
   'datetime',
   'integer',
-  'country_code'
-] as const satisfies [string, ...string[]] | AttributeType[];
+  'country_code',
+] as const satisfies ReadonlyArray<AttributeType>;
 
-/**
- * BatchSortField. Auto-generated enum for BatchSortField
- *
- * @remarks
- * This constant provides both object and array forms for the BatchSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BATCH_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BATCH_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link BatchSortField} - The TypeScript type definition
- */
 export const BATCH_SORT_FIELD = {
   CREATED_ON: "created_on",
   STARTED_AT: "started_at",
   FINISHED_AT: "finished_at",
 } as const satisfies Record<string, BatchSortField>;
 
-/**
- * Array of all BatchSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid BatchSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of BATCH_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = BATCH_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link BatchSortField} - The TypeScript type definition
- * @see {@link BATCH_SORT_FIELD} - The object form of this enum
- */
 export const BATCH_SORT_FIELD_VALUES = [
   'created_on',
   'started_at',
-  'finished_at'
-] as const satisfies [string, ...string[]] | BatchSortField[];
+  'finished_at',
+] as const satisfies ReadonlyArray<BatchSortField>;
 
-/**
- * BatchStatus. Auto-generated enum for BatchStatus
- *
- * @remarks
- * This constant provides both object and array forms for the BatchStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BATCH_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BATCH_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link BatchStatus} - The TypeScript type definition
- */
 export const BATCH_STATUS = {
   PENDING: "pending",
   COMPLETE: "complete",
 } as const satisfies Record<string, BatchStatus>;
 
-/**
- * Array of all BatchStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid BatchStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of BATCH_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = BATCH_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link BatchStatus} - The TypeScript type definition
- * @see {@link BATCH_STATUS} - The object form of this enum
- */
 export const BATCH_STATUS_VALUES = [
   'pending',
-  'complete'
-] as const satisfies [string, ...string[]] | BatchStatus[];
+  'complete',
+] as const satisfies ReadonlyArray<BatchStatus>;
 
-/**
- * BillingTransactionAction. Auto-generated enum for BillingTransactionAction
- *
- * @remarks
- * This constant provides both object and array forms for the BillingTransactionAction enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BILLING_TRANSACTION_ACTION.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BILLING_TRANSACTION_ACTION_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link BillingTransactionAction} - The TypeScript type definition
- */
 export const BILLING_TRANSACTION_ACTION = {
   CREATE: "create",
   TRANSFER: "transfer",
@@ -265,27 +168,6 @@ export const BILLING_TRANSACTION_ACTION = {
   WALLET_TOP_UP: "wallet_top_up",
 } as const satisfies Record<string, BillingTransactionAction>;
 
-/**
- * Array of all BillingTransactionAction enum values
- *
- * @remarks
- * This constant provides a array containing all valid BillingTransactionAction enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of BILLING_TRANSACTION_ACTION_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = BILLING_TRANSACTION_ACTION_VALUES.includes(someValue);
- * ```
- *
- * @see {@link BillingTransactionAction} - The TypeScript type definition
- * @see {@link BILLING_TRANSACTION_ACTION} - The object form of this enum
- */
 export const BILLING_TRANSACTION_ACTION_VALUES = [
   'create',
   'transfer',
@@ -294,28 +176,9 @@ export const BILLING_TRANSACTION_ACTION_VALUES = [
   'trade',
   'application',
   'service_fee',
-  'wallet_top_up'
-] as const satisfies [string, ...string[]] | BillingTransactionAction[];
+  'wallet_top_up',
+] as const satisfies ReadonlyArray<BillingTransactionAction>;
 
-/**
- * BillingTransactionProductType. Auto-generated enum for BillingTransactionProductType
- *
- * @remarks
- * This constant provides both object and array forms for the BillingTransactionProductType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BILLING_TRANSACTION_PRODUCT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BILLING_TRANSACTION_PRODUCT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link BillingTransactionProductType} - The TypeScript type definition
- */
 export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   DOMAIN: "domain",
   ZONES: "zones",
@@ -325,55 +188,15 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   VANITY_NAMESERVER: "vanity_nameserver",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
-/**
- * Array of all BillingTransactionProductType enum values
- *
- * @remarks
- * This constant provides a array containing all valid BillingTransactionProductType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of BILLING_TRANSACTION_PRODUCT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = BILLING_TRANSACTION_PRODUCT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link BillingTransactionProductType} - The TypeScript type definition
- * @see {@link BILLING_TRANSACTION_PRODUCT_TYPE} - The object form of this enum
- */
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'domain',
   'zones',
   'email_forward',
   'domain_forward',
   'account_wallet',
-  'vanity_nameserver'
-] as const satisfies [string, ...string[]] | BillingTransactionProductType[];
+  'vanity_nameserver',
+] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
-/**
- * BillingTransactionSortField. Auto-generated enum for BillingTransactionSortField
- *
- * @remarks
- * This constant provides both object and array forms for the BillingTransactionSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BILLING_TRANSACTION_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BILLING_TRANSACTION_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link BillingTransactionSortField} - The TypeScript type definition
- */
 export const BILLING_TRANSACTION_SORT_FIELD = {
   PRODUCT_TYPE: "product_type",
   ACTION: "action",
@@ -382,54 +205,14 @@ export const BILLING_TRANSACTION_SORT_FIELD = {
   COMPLETED_ON: "completed_on",
 } as const satisfies Record<string, BillingTransactionSortField>;
 
-/**
- * Array of all BillingTransactionSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid BillingTransactionSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of BILLING_TRANSACTION_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = BILLING_TRANSACTION_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link BillingTransactionSortField} - The TypeScript type definition
- * @see {@link BILLING_TRANSACTION_SORT_FIELD} - The object form of this enum
- */
 export const BILLING_TRANSACTION_SORT_FIELD_VALUES = [
   'product_type',
   'action',
   'status',
   'created_on',
-  'completed_on'
-] as const satisfies [string, ...string[]] | BillingTransactionSortField[];
+  'completed_on',
+] as const satisfies ReadonlyArray<BillingTransactionSortField>;
 
-/**
- * BillingTransactionStatus. Auto-generated enum for BillingTransactionStatus
- *
- * @remarks
- * This constant provides both object and array forms for the BillingTransactionStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = BILLING_TRANSACTION_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = BILLING_TRANSACTION_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link BillingTransactionStatus} - The TypeScript type definition
- */
 export const BILLING_TRANSACTION_STATUS = {
   PENDING: "pending",
   SUCCEEDED: "succeeded",
@@ -437,53 +220,13 @@ export const BILLING_TRANSACTION_STATUS = {
   CANCELED: "canceled",
 } as const satisfies Record<string, BillingTransactionStatus>;
 
-/**
- * Array of all BillingTransactionStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid BillingTransactionStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of BILLING_TRANSACTION_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = BILLING_TRANSACTION_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link BillingTransactionStatus} - The TypeScript type definition
- * @see {@link BILLING_TRANSACTION_STATUS} - The object form of this enum
- */
 export const BILLING_TRANSACTION_STATUS_VALUES = [
   'pending',
   'succeeded',
   'failed',
-  'canceled'
-] as const satisfies [string, ...string[]] | BillingTransactionStatus[];
+  'canceled',
+] as const satisfies ReadonlyArray<BillingTransactionStatus>;
 
-/**
- * ComplianceStatus. Auto-generated enum for ComplianceStatus
- *
- * @remarks
- * This constant provides both object and array forms for the ComplianceStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = COMPLIANCE_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = COMPLIANCE_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ComplianceStatus} - The TypeScript type definition
- */
 export const COMPLIANCE_STATUS = {
   PREPARING: "preparing",
   PENDING: "pending",
@@ -492,54 +235,14 @@ export const COMPLIANCE_STATUS = {
   EXPIRED: "expired",
 } as const satisfies Record<string, ComplianceStatus>;
 
-/**
- * Array of all ComplianceStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid ComplianceStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of COMPLIANCE_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = COMPLIANCE_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ComplianceStatus} - The TypeScript type definition
- * @see {@link COMPLIANCE_STATUS} - The object form of this enum
- */
 export const COMPLIANCE_STATUS_VALUES = [
   'preparing',
   'pending',
   'approved',
   'disapproved',
-  'expired'
-] as const satisfies [string, ...string[]] | ComplianceStatus[];
+  'expired',
+] as const satisfies ReadonlyArray<ComplianceStatus>;
 
-/**
- * ConditionOperator. Auto-generated enum for ConditionOperator
- *
- * @remarks
- * This constant provides both object and array forms for the ConditionOperator enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONDITION_OPERATOR.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONDITION_OPERATOR_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ConditionOperator} - The TypeScript type definition
- */
 export const CONDITION_OPERATOR = {
   EQUALS: "equals",
   NOT_EQUALS: "not_equals",
@@ -547,53 +250,13 @@ export const CONDITION_OPERATOR = {
   NOT_IN: "not_in",
 } as const satisfies Record<string, ConditionOperator>;
 
-/**
- * Array of all ConditionOperator enum values
- *
- * @remarks
- * This constant provides a array containing all valid ConditionOperator enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONDITION_OPERATOR_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONDITION_OPERATOR_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ConditionOperator} - The TypeScript type definition
- * @see {@link CONDITION_OPERATOR} - The object form of this enum
- */
 export const CONDITION_OPERATOR_VALUES = [
   'equals',
   'not_equals',
   'in',
-  'not_in'
-] as const satisfies [string, ...string[]] | ConditionOperator[];
+  'not_in',
+] as const satisfies ReadonlyArray<ConditionOperator>;
 
-/**
- * ContactAttributeSetSortField. Auto-generated enum for ContactAttributeSetSortField
- *
- * @remarks
- * This constant provides both object and array forms for the ContactAttributeSetSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_ATTRIBUTE_SET_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_ATTRIBUTE_SET_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactAttributeSetSortField} - The TypeScript type definition
- */
 export const CONTACT_ATTRIBUTE_SET_SORT_FIELD = {
   LABEL: "label",
   TLD: "tld",
@@ -601,101 +264,21 @@ export const CONTACT_ATTRIBUTE_SET_SORT_FIELD = {
   UPDATED_ON: "updated_on",
 } as const satisfies Record<string, ContactAttributeSetSortField>;
 
-/**
- * Array of all ContactAttributeSetSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactAttributeSetSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_ATTRIBUTE_SET_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_ATTRIBUTE_SET_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactAttributeSetSortField} - The TypeScript type definition
- * @see {@link CONTACT_ATTRIBUTE_SET_SORT_FIELD} - The object form of this enum
- */
 export const CONTACT_ATTRIBUTE_SET_SORT_FIELD_VALUES = [
   'label',
   'tld',
   'created_on',
-  'updated_on'
-] as const satisfies [string, ...string[]] | ContactAttributeSetSortField[];
+  'updated_on',
+] as const satisfies ReadonlyArray<ContactAttributeSetSortField>;
 
-/**
- * ContactIncludeField. Auto-generated enum for ContactIncludeField
- *
- * @remarks
- * This constant provides both object and array forms for the ContactIncludeField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_INCLUDE_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_INCLUDE_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactIncludeField} - The TypeScript type definition
- */
 export const CONTACT_INCLUDE_FIELD = {
   TAGS: "tags",
 } as const satisfies Record<string, ContactIncludeField>;
 
-/**
- * Array of all ContactIncludeField enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactIncludeField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_INCLUDE_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_INCLUDE_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactIncludeField} - The TypeScript type definition
- * @see {@link CONTACT_INCLUDE_FIELD} - The object form of this enum
- */
 export const CONTACT_INCLUDE_FIELD_VALUES = [
-  'tags'
-] as const satisfies [string, ...string[]] | ContactIncludeField[];
+  'tags',
+] as const satisfies ReadonlyArray<ContactIncludeField>;
 
-/**
- * ContactSortField. Auto-generated enum for ContactSortField
- *
- * @remarks
- * This constant provides both object and array forms for the ContactSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactSortField} - The TypeScript type definition
- */
 export const CONTACT_SORT_FIELD = {
   FIRST_NAME: "first_name",
   LAST_NAME: "last_name",
@@ -703,105 +286,25 @@ export const CONTACT_SORT_FIELD = {
   CREATED_ON: "created_on",
 } as const satisfies Record<string, ContactSortField>;
 
-/**
- * Array of all ContactSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactSortField} - The TypeScript type definition
- * @see {@link CONTACT_SORT_FIELD} - The object form of this enum
- */
 export const CONTACT_SORT_FIELD_VALUES = [
   'first_name',
   'last_name',
   'email',
-  'created_on'
-] as const satisfies [string, ...string[]] | ContactSortField[];
+  'created_on',
+] as const satisfies ReadonlyArray<ContactSortField>;
 
-/**
- * ContactType. Auto-generated enum for ContactType
- *
- * @remarks
- * This constant provides both object and array forms for the ContactType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactType} - The TypeScript type definition
- */
 export const CONTACT_TYPE = {
   OWNER: "owner",
   AGENT: "agent",
   THIRD_PARTY: "third party",
 } as const satisfies Record<string, ContactType>;
 
-/**
- * Array of all ContactType enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactType} - The TypeScript type definition
- * @see {@link CONTACT_TYPE} - The object form of this enum
- */
 export const CONTACT_TYPE_VALUES = [
   'owner',
   'agent',
-  'third party'
-] as const satisfies [string, ...string[]] | ContactType[];
+  'third party',
+] as const satisfies ReadonlyArray<ContactType>;
 
-/**
- * ContactVerificationClaim. Auto-generated enum for ContactVerificationClaim
- *
- * @remarks
- * This constant provides both object and array forms for the ContactVerificationClaim enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_VERIFICATION_CLAIM.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_VERIFICATION_CLAIM_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactVerificationClaim} - The TypeScript type definition
- */
 export const CONTACT_VERIFICATION_CLAIM = {
   NAME: "NAME",
   ADDRESS: "ADDRESS",
@@ -810,54 +313,14 @@ export const CONTACT_VERIFICATION_CLAIM = {
   LEGAL_ENTITY: "LEGAL_ENTITY",
 } as const satisfies Record<string, ContactVerificationClaim>;
 
-/**
- * Array of all ContactVerificationClaim enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactVerificationClaim enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_VERIFICATION_CLAIM_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_VERIFICATION_CLAIM_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactVerificationClaim} - The TypeScript type definition
- * @see {@link CONTACT_VERIFICATION_CLAIM} - The object form of this enum
- */
 export const CONTACT_VERIFICATION_CLAIM_VALUES = [
   'NAME',
   'ADDRESS',
   'EMAIL',
   'PHONE',
-  'LEGAL_ENTITY'
-] as const satisfies [string, ...string[]] | ContactVerificationClaim[];
+  'LEGAL_ENTITY',
+] as const satisfies ReadonlyArray<ContactVerificationClaim>;
 
-/**
- * ContactVerificationMethod. Auto-generated enum for ContactVerificationMethod
- *
- * @remarks
- * This constant provides both object and array forms for the ContactVerificationMethod enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_VERIFICATION_METHOD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_VERIFICATION_METHOD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactVerificationMethod} - The TypeScript type definition
- */
 export const CONTACT_VERIFICATION_METHOD = {
   AUTH: "AUTH",
   VDIG: "VDIG",
@@ -869,27 +332,6 @@ export const CONTACT_VERIFICATION_METHOD = {
   REACHABILITY: "REACHABILITY",
 } as const satisfies Record<string, ContactVerificationMethod>;
 
-/**
- * Array of all ContactVerificationMethod enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactVerificationMethod enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_VERIFICATION_METHOD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_VERIFICATION_METHOD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactVerificationMethod} - The TypeScript type definition
- * @see {@link CONTACT_VERIFICATION_METHOD} - The object form of this enum
- */
 export const CONTACT_VERIFICATION_METHOD_VALUES = [
   'AUTH',
   'VDIG',
@@ -898,28 +340,9 @@ export const CONTACT_VERIFICATION_METHOD_VALUES = [
   'BVR',
   'PVR',
   'DATA',
-  'REACHABILITY'
-] as const satisfies [string, ...string[]] | ContactVerificationMethod[];
+  'REACHABILITY',
+] as const satisfies ReadonlyArray<ContactVerificationMethod>;
 
-/**
- * ContactVerificationProof. Auto-generated enum for ContactVerificationProof
- *
- * @remarks
- * This constant provides both object and array forms for the ContactVerificationProof enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_VERIFICATION_PROOF.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_VERIFICATION_PROOF_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactVerificationProof} - The TypeScript type definition
- */
 export const CONTACT_VERIFICATION_PROOF = {
   IDCARD: "IDCARD",
   PASSPORT: "PASSPORT",
@@ -941,27 +364,6 @@ export const CONTACT_VERIFICATION_PROOF = {
   ADDRESS_DATABASE: "ADDRESS_DATABASE",
 } as const satisfies Record<string, ContactVerificationProof>;
 
-/**
- * Array of all ContactVerificationProof enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactVerificationProof enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_VERIFICATION_PROOF_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_VERIFICATION_PROOF_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactVerificationProof} - The TypeScript type definition
- * @see {@link CONTACT_VERIFICATION_PROOF} - The object form of this enum
- */
 export const CONTACT_VERIFICATION_PROOF_VALUES = [
   'IDCARD',
   'PASSPORT',
@@ -980,28 +382,9 @@ export const CONTACT_VERIFICATION_PROOF_VALUES = [
   'DIGITAL_ATTESTATION',
   'POSTAL_VER_TRANSACTION_LOG',
   'EMAIL_VER_TRANSACTION_LOG',
-  'ADDRESS_DATABASE'
-] as const satisfies [string, ...string[]] | ContactVerificationProof[];
+  'ADDRESS_DATABASE',
+] as const satisfies ReadonlyArray<ContactVerificationProof>;
 
-/**
- * ContactVerificationState. Auto-generated enum for ContactVerificationState
- *
- * @remarks
- * This constant provides both object and array forms for the ContactVerificationState enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CONTACT_VERIFICATION_STATE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CONTACT_VERIFICATION_STATE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ContactVerificationState} - The TypeScript type definition
- */
 export const CONTACT_VERIFICATION_STATE = {
   UNVERIFIED: "UNVERIFIED",
   VERIFIED: "VERIFIED",
@@ -1009,153 +392,33 @@ export const CONTACT_VERIFICATION_STATE = {
   EXPIRED: "EXPIRED",
 } as const satisfies Record<string, ContactVerificationState>;
 
-/**
- * Array of all ContactVerificationState enum values
- *
- * @remarks
- * This constant provides a array containing all valid ContactVerificationState enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CONTACT_VERIFICATION_STATE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CONTACT_VERIFICATION_STATE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ContactVerificationState} - The TypeScript type definition
- * @see {@link CONTACT_VERIFICATION_STATE} - The object form of this enum
- */
 export const CONTACT_VERIFICATION_STATE_VALUES = [
   'UNVERIFIED',
   'VERIFIED',
   'IN_PROGRESS',
-  'EXPIRED'
-] as const satisfies [string, ...string[]] | ContactVerificationState[];
+  'EXPIRED',
+] as const satisfies ReadonlyArray<ContactVerificationState>;
 
-/**
- * Currency. Auto-generated enum for Currency
- *
- * @remarks
- * This constant provides both object and array forms for the Currency enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = CURRENCY.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = CURRENCY_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link Currency} - The TypeScript type definition
- */
 export const CURRENCY = {
   USD: "USD",
   EUR: "EUR",
 } as const satisfies Record<string, Currency>;
 
-/**
- * Array of all Currency enum values
- *
- * @remarks
- * This constant provides a array containing all valid Currency enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of CURRENCY_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = CURRENCY_VALUES.includes(someValue);
- * ```
- *
- * @see {@link Currency} - The TypeScript type definition
- * @see {@link CURRENCY} - The object form of this enum
- */
 export const CURRENCY_VALUES = [
   'USD',
-  'EUR'
-] as const satisfies [string, ...string[]] | Currency[];
+  'EUR',
+] as const satisfies ReadonlyArray<Currency>;
 
-/**
- * DeletePolicyType. Auto-generated enum for DeletePolicyType
- *
- * @remarks
- * This constant provides both object and array forms for the DeletePolicyType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DELETE_POLICY_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DELETE_POLICY_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DeletePolicyType} - The TypeScript type definition
- */
 export const DELETE_POLICY_TYPE = {
   IMMEDIATE: "immediate",
   EXPIRATION: "expiration",
 } as const satisfies Record<string, DeletePolicyType>;
 
-/**
- * Array of all DeletePolicyType enum values
- *
- * @remarks
- * This constant provides a array containing all valid DeletePolicyType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DELETE_POLICY_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DELETE_POLICY_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DeletePolicyType} - The TypeScript type definition
- * @see {@link DELETE_POLICY_TYPE} - The object form of this enum
- */
 export const DELETE_POLICY_TYPE_VALUES = [
   'immediate',
-  'expiration'
-] as const satisfies [string, ...string[]] | DeletePolicyType[];
+  'expiration',
+] as const satisfies ReadonlyArray<DeletePolicyType>;
 
-/**
- * DnsChangeAction. Auto-generated enum for DnsChangeAction
- *
- * @remarks
- * This constant provides both object and array forms for the DnsChangeAction enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DNS_CHANGE_ACTION.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DNS_CHANGE_ACTION_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DnsChangeAction} - The TypeScript type definition
- */
 export const DNS_CHANGE_ACTION = {
   CREATE_ZONE: "create_zone",
   DELETE_ZONE: "delete_zone",
@@ -1165,55 +428,15 @@ export const DNS_CHANGE_ACTION = {
   DISABLE_DNSSEC: "disable_dnssec",
 } as const satisfies Record<string, DnsChangeAction>;
 
-/**
- * Array of all DnsChangeAction enum values
- *
- * @remarks
- * This constant provides a array containing all valid DnsChangeAction enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DNS_CHANGE_ACTION_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DNS_CHANGE_ACTION_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DnsChangeAction} - The TypeScript type definition
- * @see {@link DNS_CHANGE_ACTION} - The object form of this enum
- */
 export const DNS_CHANGE_ACTION_VALUES = [
   'create_zone',
   'delete_zone',
   'create_record',
   'delete_record',
   'enable_dnssec',
-  'disable_dnssec'
-] as const satisfies [string, ...string[]] | DnsChangeAction[];
+  'disable_dnssec',
+] as const satisfies ReadonlyArray<DnsChangeAction>;
 
-/**
- * DnsProtectedReason. Auto-generated enum for DnsProtectedReason
- *
- * @remarks
- * This constant provides both object and array forms for the DnsProtectedReason enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DNS_PROTECTED_REASON.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DNS_PROTECTED_REASON_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DnsProtectedReason} - The TypeScript type definition
- */
 export const DNS_PROTECTED_REASON = {
   SYSTEM_MANAGED_SOA: "SYSTEM_MANAGED_SOA",
   SYSTEM_MANAGED_NS: "SYSTEM_MANAGED_NS",
@@ -1222,54 +445,14 @@ export const DNS_PROTECTED_REASON = {
   GENERIC: "GENERIC",
 } as const satisfies Record<string, DnsProtectedReason>;
 
-/**
- * Array of all DnsProtectedReason enum values
- *
- * @remarks
- * This constant provides a array containing all valid DnsProtectedReason enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DNS_PROTECTED_REASON_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DNS_PROTECTED_REASON_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DnsProtectedReason} - The TypeScript type definition
- * @see {@link DNS_PROTECTED_REASON} - The object form of this enum
- */
 export const DNS_PROTECTED_REASON_VALUES = [
   'SYSTEM_MANAGED_SOA',
   'SYSTEM_MANAGED_NS',
   'EMAIL_FORWARD',
   'DOMAIN_FORWARD',
-  'GENERIC'
-] as const satisfies [string, ...string[]] | DnsProtectedReason[];
+  'GENERIC',
+] as const satisfies ReadonlyArray<DnsProtectedReason>;
 
-/**
- * DnsRrsetType. Auto-generated enum for DnsRrsetType
- *
- * @remarks
- * This constant provides both object and array forms for the DnsRrsetType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DNS_RRSET_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DNS_RRSET_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DnsRrsetType} - The TypeScript type definition
- */
 export const DNS_RRSET_TYPE = {
   A: "A",
   AAAA: "AAAA",
@@ -1294,27 +477,6 @@ export const DNS_RRSET_TYPE = {
   CERT: "CERT",
 } as const satisfies Record<string, DnsRrsetType>;
 
-/**
- * Array of all DnsRrsetType enum values
- *
- * @remarks
- * This constant provides a array containing all valid DnsRrsetType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DNS_RRSET_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DNS_RRSET_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DnsRrsetType} - The TypeScript type definition
- * @see {@link DNS_RRSET_TYPE} - The object form of this enum
- */
 export const DNS_RRSET_TYPE_VALUES = [
   'A',
   'AAAA',
@@ -1336,25 +498,9 @@ export const DNS_RRSET_TYPE_VALUES = [
   'SVCB',
   'NAPTR',
   'SSHFP',
-  'CERT'
-] as const satisfies [string, ...string[]] | DnsRrsetType[];
+  'CERT',
+] as const satisfies ReadonlyArray<DnsRrsetType>;
 
-/**
- * DnssecAlgorithm. Auto-generated enum for DnssecAlgorithm
- *
- * @remarks
- * This constant provides an array of integer values for the DnssecAlgorithm enum.
- * Integer enums are represented as typed arrays for efficient iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the array for iteration
- * const algorithms = DNSSEC_ALGORITHM;
- * console.log(`Available algorithms: ${algorithms.join(', ')}`);
- * ```
- *
- * @see {@link DnssecAlgorithm} - The TypeScript type definition
- */
 export const DNSSEC_ALGORITHM = [
   1,
   2,
@@ -1371,203 +517,48 @@ export const DNSSEC_ALGORITHM = [
   15,
   16,
   17,
-  23
-] as const satisfies DnssecAlgorithm[];
+  23,
+] as const satisfies ReadonlyArray<DnssecAlgorithm>;
 
-/**
- * DnssecDigestType. Auto-generated enum for DnssecDigestType
- *
- * @remarks
- * This constant provides an array of integer values for the DnssecDigestType enum.
- * Integer enums are represented as typed arrays for efficient iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the array for iteration
- * const algorithms = DNSSEC_ALGORITHM;
- * console.log(`Available algorithms: ${algorithms.join(', ')}`);
- * ```
- *
- * @see {@link DnssecDigestType} - The TypeScript type definition
- */
 export const DNSSEC_DIGEST_TYPE = [
   1,
   2,
   3,
   4,
   5,
-  6
-] as const satisfies DnssecDigestType[];
+  6,
+] as const satisfies ReadonlyArray<DnssecDigestType>;
 
-/**
- * DnssecModeType. Auto-generated enum for DnssecModeType
- *
- * @remarks
- * This constant provides both object and array forms for the DnssecModeType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DNSSEC_MODE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DNSSEC_MODE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DnssecModeType} - The TypeScript type definition
- */
 export const DNSSEC_MODE_TYPE = {
   DS: "DS",
   DNSKEY: "DNSKEY",
 } as const satisfies Record<string, DnssecModeType>;
 
-/**
- * Array of all DnssecModeType enum values
- *
- * @remarks
- * This constant provides a array containing all valid DnssecModeType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DNSSEC_MODE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DNSSEC_MODE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DnssecModeType} - The TypeScript type definition
- * @see {@link DNSSEC_MODE_TYPE} - The object form of this enum
- */
 export const DNSSEC_MODE_TYPE_VALUES = [
   'DS',
-  'DNSKEY'
-] as const satisfies [string, ...string[]] | DnssecModeType[];
+  'DNSKEY',
+] as const satisfies ReadonlyArray<DnssecModeType>;
 
-/**
- * DnssecRecordType. Auto-generated enum for DnssecRecordType
- *
- * @remarks
- * This constant provides both object and array forms for the DnssecRecordType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DNSSEC_RECORD_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DNSSEC_RECORD_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DnssecRecordType} - The TypeScript type definition
- */
 export const DNSSEC_RECORD_TYPE = {
   DS_DATA: "ds_data",
   KEY_DATA: "key_data",
 } as const satisfies Record<string, DnssecRecordType>;
 
-/**
- * Array of all DnssecRecordType enum values
- *
- * @remarks
- * This constant provides a array containing all valid DnssecRecordType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DNSSEC_RECORD_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DNSSEC_RECORD_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DnssecRecordType} - The TypeScript type definition
- * @see {@link DNSSEC_RECORD_TYPE} - The object form of this enum
- */
 export const DNSSEC_RECORD_TYPE_VALUES = [
   'ds_data',
-  'key_data'
-] as const satisfies [string, ...string[]] | DnssecRecordType[];
+  'key_data',
+] as const satisfies ReadonlyArray<DnssecRecordType>;
 
-/**
- * DnssecStatus. Auto-generated enum for DnssecStatus
- *
- * @remarks
- * This constant provides both object and array forms for the DnssecStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DNSSEC_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DNSSEC_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DnssecStatus} - The TypeScript type definition
- */
 export const DNSSEC_STATUS = {
   ENABLED: "enabled",
   DISABLED: "disabled",
 } as const satisfies Record<string, DnssecStatus>;
 
-/**
- * Array of all DnssecStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid DnssecStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DNSSEC_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DNSSEC_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DnssecStatus} - The TypeScript type definition
- * @see {@link DNSSEC_STATUS} - The object form of this enum
- */
 export const DNSSEC_STATUS_VALUES = [
   'enabled',
-  'disabled'
-] as const satisfies [string, ...string[]] | DnssecStatus[];
+  'disabled',
+] as const satisfies ReadonlyArray<DnssecStatus>;
 
-/**
- * DomainAttributeKey. Auto-generated enum for DomainAttributeKey
- *
- * @remarks
- * This constant provides both object and array forms for the DomainAttributeKey enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_ATTRIBUTE_KEY.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_ATTRIBUTE_KEY_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainAttributeKey} - The TypeScript type definition
- */
 export const DOMAIN_ATTRIBUTE_KEY = {
   AUTO_RENEW_PERIOD: "auto_renew_period",
   MUSIC_REGISTRANT_ATTESTATION: "music_registrant_attestation",
@@ -1575,53 +566,13 @@ export const DOMAIN_ATTRIBUTE_KEY = {
   VERIFICATION_REQUIRED: "verification_required",
 } as const satisfies Record<string, DomainAttributeKey>;
 
-/**
- * Array of all DomainAttributeKey enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainAttributeKey enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_ATTRIBUTE_KEY_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_ATTRIBUTE_KEY_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainAttributeKey} - The TypeScript type definition
- * @see {@link DOMAIN_ATTRIBUTE_KEY} - The object form of this enum
- */
 export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'auto_renew_period',
   'music_registrant_attestation',
   'travel_industry_acknowledgement',
-  'verification_required'
-] as const satisfies [string, ...string[]] | DomainAttributeKey[];
+  'verification_required',
+] as const satisfies ReadonlyArray<DomainAttributeKey>;
 
-/**
- * DomainAvailabilityStatus. Auto-generated enum for DomainAvailabilityStatus
- *
- * @remarks
- * This constant provides both object and array forms for the DomainAvailabilityStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_AVAILABILITY_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_AVAILABILITY_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainAvailabilityStatus} - The TypeScript type definition
- */
 export const DOMAIN_AVAILABILITY_STATUS = {
   AVAILABLE: "available",
   UNAVAILABLE: "unavailable",
@@ -1631,55 +582,15 @@ export const DOMAIN_AVAILABILITY_STATUS = {
   UNKNOWN: "unknown",
 } as const satisfies Record<string, DomainAvailabilityStatus>;
 
-/**
- * Array of all DomainAvailabilityStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainAvailabilityStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_AVAILABILITY_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_AVAILABILITY_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainAvailabilityStatus} - The TypeScript type definition
- * @see {@link DOMAIN_AVAILABILITY_STATUS} - The object form of this enum
- */
 export const DOMAIN_AVAILABILITY_STATUS_VALUES = [
   'available',
   'unavailable',
   'market_available',
   'tmch_claim',
   'error',
-  'unknown'
-] as const satisfies [string, ...string[]] | DomainAvailabilityStatus[];
+  'unknown',
+] as const satisfies ReadonlyArray<DomainAvailabilityStatus>;
 
-/**
- * DomainClientStatus. Auto-generated enum for DomainClientStatus
- *
- * @remarks
- * This constant provides both object and array forms for the DomainClientStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_CLIENT_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_CLIENT_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainClientStatus} - The TypeScript type definition
- */
 export const DOMAIN_CLIENT_STATUS = {
   CLIENT_TRANSFER_PROHIBITED: "clientTransferProhibited",
   CLIENT_UPDATE_PROHIBITED: "clientUpdateProhibited",
@@ -1688,54 +599,14 @@ export const DOMAIN_CLIENT_STATUS = {
   CLIENT_HOLD: "clientHold",
 } as const satisfies Record<string, DomainClientStatus>;
 
-/**
- * Array of all DomainClientStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainClientStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_CLIENT_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_CLIENT_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainClientStatus} - The TypeScript type definition
- * @see {@link DOMAIN_CLIENT_STATUS} - The object form of this enum
- */
 export const DOMAIN_CLIENT_STATUS_VALUES = [
   'clientTransferProhibited',
   'clientUpdateProhibited',
   'clientDeleteProhibited',
   'clientRenewProhibited',
-  'clientHold'
-] as const satisfies [string, ...string[]] | DomainClientStatus[];
+  'clientHold',
+] as const satisfies ReadonlyArray<DomainClientStatus>;
 
-/**
- * DomainContactType. Auto-generated enum for DomainContactType
- *
- * @remarks
- * This constant provides both object and array forms for the DomainContactType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_CONTACT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_CONTACT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainContactType} - The TypeScript type definition
- */
 export const DOMAIN_CONTACT_TYPE = {
   REGISTRANT: "registrant",
   ADMIN: "admin",
@@ -1743,53 +614,13 @@ export const DOMAIN_CONTACT_TYPE = {
   BILLING: "billing",
 } as const satisfies Record<string, DomainContactType>;
 
-/**
- * Array of all DomainContactType enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainContactType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_CONTACT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_CONTACT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainContactType} - The TypeScript type definition
- * @see {@link DOMAIN_CONTACT_TYPE} - The object form of this enum
- */
 export const DOMAIN_CONTACT_TYPE_VALUES = [
   'registrant',
   'admin',
   'tech',
-  'billing'
-] as const satisfies [string, ...string[]] | DomainContactType[];
+  'billing',
+] as const satisfies ReadonlyArray<DomainContactType>;
 
-/**
- * DomainForwardSortField. Auto-generated enum for DomainForwardSortField
- *
- * @remarks
- * This constant provides both object and array forms for the DomainForwardSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_FORWARD_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_FORWARD_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainForwardSortField} - The TypeScript type definition
- */
 export const DOMAIN_FORWARD_SORT_FIELD = {
   HOSTNAME: "hostname",
   ENABLED: "enabled",
@@ -1797,153 +628,33 @@ export const DOMAIN_FORWARD_SORT_FIELD = {
   UPDATED_ON: "updated_on",
 } as const satisfies Record<string, DomainForwardSortField>;
 
-/**
- * Array of all DomainForwardSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainForwardSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_FORWARD_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_FORWARD_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainForwardSortField} - The TypeScript type definition
- * @see {@link DOMAIN_FORWARD_SORT_FIELD} - The object form of this enum
- */
 export const DOMAIN_FORWARD_SORT_FIELD_VALUES = [
   'hostname',
   'enabled',
   'created_on',
-  'updated_on'
-] as const satisfies [string, ...string[]] | DomainForwardSortField[];
+  'updated_on',
+] as const satisfies ReadonlyArray<DomainForwardSortField>;
 
-/**
- * DomainForwardZoneSortField. Auto-generated enum for DomainForwardZoneSortField
- *
- * @remarks
- * This constant provides both object and array forms for the DomainForwardZoneSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_FORWARD_ZONE_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainForwardZoneSortField} - The TypeScript type definition
- */
 export const DOMAIN_FORWARD_ZONE_SORT_FIELD = {
   NAME: "name",
   CREATED_ON: "created_on",
   UPDATED_ON: "updated_on",
 } as const satisfies Record<string, DomainForwardZoneSortField>;
 
-/**
- * Array of all DomainForwardZoneSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainForwardZoneSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainForwardZoneSortField} - The TypeScript type definition
- * @see {@link DOMAIN_FORWARD_ZONE_SORT_FIELD} - The object form of this enum
- */
 export const DOMAIN_FORWARD_ZONE_SORT_FIELD_VALUES = [
   'name',
   'created_on',
-  'updated_on'
-] as const satisfies [string, ...string[]] | DomainForwardZoneSortField[];
+  'updated_on',
+] as const satisfies ReadonlyArray<DomainForwardZoneSortField>;
 
-/**
- * DomainIncludeField. Auto-generated enum for DomainIncludeField
- *
- * @remarks
- * This constant provides both object and array forms for the DomainIncludeField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_INCLUDE_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_INCLUDE_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainIncludeField} - The TypeScript type definition
- */
 export const DOMAIN_INCLUDE_FIELD = {
   TAGS: "tags",
 } as const satisfies Record<string, DomainIncludeField>;
 
-/**
- * Array of all DomainIncludeField enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainIncludeField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_INCLUDE_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_INCLUDE_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainIncludeField} - The TypeScript type definition
- * @see {@link DOMAIN_INCLUDE_FIELD} - The object form of this enum
- */
 export const DOMAIN_INCLUDE_FIELD_VALUES = [
-  'tags'
-] as const satisfies [string, ...string[]] | DomainIncludeField[];
+  'tags',
+] as const satisfies ReadonlyArray<DomainIncludeField>;
 
-/**
- * DomainSortField. Auto-generated enum for DomainSortField
- *
- * @remarks
- * This constant provides both object and array forms for the DomainSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainSortField} - The TypeScript type definition
- */
 export const DOMAIN_SORT_FIELD = {
   NAME: "name",
   CREATED_ON: "created_on",
@@ -1952,54 +663,14 @@ export const DOMAIN_SORT_FIELD = {
   REGISTERED_ON: "registered_on",
 } as const satisfies Record<string, DomainSortField>;
 
-/**
- * Array of all DomainSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainSortField} - The TypeScript type definition
- * @see {@link DOMAIN_SORT_FIELD} - The object form of this enum
- */
 export const DOMAIN_SORT_FIELD_VALUES = [
   'name',
   'created_on',
   'updated_on',
   'expires_on',
-  'registered_on'
-] as const satisfies [string, ...string[]] | DomainSortField[];
+  'registered_on',
+] as const satisfies ReadonlyArray<DomainSortField>;
 
-/**
- * DomainStatus. Auto-generated enum for DomainStatus
- *
- * @remarks
- * This constant provides both object and array forms for the DomainStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = DOMAIN_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = DOMAIN_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link DomainStatus} - The TypeScript type definition
- */
 export const DOMAIN_STATUS = {
   OK: "ok",
   SERVER_TRANSFER_PROHIBITED: "serverTransferProhibited",
@@ -2032,27 +703,6 @@ export const DOMAIN_STATUS = {
   INVALID: "invalid",
 } as const satisfies Record<string, DomainStatus>;
 
-/**
- * Array of all DomainStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid DomainStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of DOMAIN_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = DOMAIN_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link DomainStatus} - The TypeScript type definition
- * @see {@link DOMAIN_STATUS} - The object form of this enum
- */
 export const DOMAIN_STATUS_VALUES = [
   'ok',
   'serverTransferProhibited',
@@ -2082,28 +732,9 @@ export const DOMAIN_STATUS_VALUES = [
   'free',
   'connect',
   'failed',
-  'invalid'
-] as const satisfies [string, ...string[]] | DomainStatus[];
+  'invalid',
+] as const satisfies ReadonlyArray<DomainStatus>;
 
-/**
- * EmailForwardLogSortField. Auto-generated enum for EmailForwardLogSortField
- *
- * @remarks
- * This constant provides both object and array forms for the EmailForwardLogSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EMAIL_FORWARD_LOG_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EMAIL_FORWARD_LOG_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EmailForwardLogSortField} - The TypeScript type definition
- */
 export const EMAIL_FORWARD_LOG_SORT_FIELD = {
   LOG_ID: "log_id",
   SENDER_EMAIL: "sender_email",
@@ -2114,27 +745,6 @@ export const EMAIL_FORWARD_LOG_SORT_FIELD = {
   SYNCED_ON: "synced_on",
 } as const satisfies Record<string, EmailForwardLogSortField>;
 
-/**
- * Array of all EmailForwardLogSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid EmailForwardLogSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EMAIL_FORWARD_LOG_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EMAIL_FORWARD_LOG_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EmailForwardLogSortField} - The TypeScript type definition
- * @see {@link EMAIL_FORWARD_LOG_SORT_FIELD} - The object form of this enum
- */
 export const EMAIL_FORWARD_LOG_SORT_FIELD_VALUES = [
   'log_id',
   'sender_email',
@@ -2142,28 +752,9 @@ export const EMAIL_FORWARD_LOG_SORT_FIELD_VALUES = [
   'forward_email',
   'final_status',
   'created_on',
-  'synced_on'
-] as const satisfies [string, ...string[]] | EmailForwardLogSortField[];
+  'synced_on',
+] as const satisfies ReadonlyArray<EmailForwardLogSortField>;
 
-/**
- * EmailForwardLogStatus. Auto-generated enum for EmailForwardLogStatus
- *
- * @remarks
- * This constant provides both object and array forms for the EmailForwardLogStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EMAIL_FORWARD_LOG_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EMAIL_FORWARD_LOG_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EmailForwardLogStatus} - The TypeScript type definition
- */
 export const EMAIL_FORWARD_LOG_STATUS = {
   UNKNOWN: "UNKNOWN",
   QUEUED: "QUEUED",
@@ -2173,55 +764,15 @@ export const EMAIL_FORWARD_LOG_STATUS = {
   HARD_BOUNCE: "HARD-BOUNCE",
 } as const satisfies Record<string, EmailForwardLogStatus>;
 
-/**
- * Array of all EmailForwardLogStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid EmailForwardLogStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EMAIL_FORWARD_LOG_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EMAIL_FORWARD_LOG_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EmailForwardLogStatus} - The TypeScript type definition
- * @see {@link EMAIL_FORWARD_LOG_STATUS} - The object form of this enum
- */
 export const EMAIL_FORWARD_LOG_STATUS_VALUES = [
   'UNKNOWN',
   'QUEUED',
   'DELIVERED',
   'REFUSED',
   'SOFT-BOUNCE',
-  'HARD-BOUNCE'
-] as const satisfies [string, ...string[]] | EmailForwardLogStatus[];
+  'HARD-BOUNCE',
+] as const satisfies ReadonlyArray<EmailForwardLogStatus>;
 
-/**
- * EmailForwardSortField. Auto-generated enum for EmailForwardSortField
- *
- * @remarks
- * This constant provides both object and array forms for the EmailForwardSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EMAIL_FORWARD_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EMAIL_FORWARD_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EmailForwardSortField} - The TypeScript type definition
- */
 export const EMAIL_FORWARD_SORT_FIELD = {
   HOSTNAME: "hostname",
   ENABLED: "enabled",
@@ -2229,157 +780,37 @@ export const EMAIL_FORWARD_SORT_FIELD = {
   UPDATED_ON: "updated_on",
 } as const satisfies Record<string, EmailForwardSortField>;
 
-/**
- * Array of all EmailForwardSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid EmailForwardSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EMAIL_FORWARD_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EMAIL_FORWARD_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EmailForwardSortField} - The TypeScript type definition
- * @see {@link EMAIL_FORWARD_SORT_FIELD} - The object form of this enum
- */
 export const EMAIL_FORWARD_SORT_FIELD_VALUES = [
   'hostname',
   'enabled',
   'created_on',
-  'updated_on'
-] as const satisfies [string, ...string[]] | EmailForwardSortField[];
+  'updated_on',
+] as const satisfies ReadonlyArray<EmailForwardSortField>;
 
-/**
- * EmailForwardZoneSortField. Auto-generated enum for EmailForwardZoneSortField
- *
- * @remarks
- * This constant provides both object and array forms for the EmailForwardZoneSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EMAIL_FORWARD_ZONE_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EmailForwardZoneSortField} - The TypeScript type definition
- */
 export const EMAIL_FORWARD_ZONE_SORT_FIELD = {
   NAME: "name",
   CREATED_ON: "created_on",
   UPDATED_ON: "updated_on",
 } as const satisfies Record<string, EmailForwardZoneSortField>;
 
-/**
- * Array of all EmailForwardZoneSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid EmailForwardZoneSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EmailForwardZoneSortField} - The TypeScript type definition
- * @see {@link EMAIL_FORWARD_ZONE_SORT_FIELD} - The object form of this enum
- */
 export const EMAIL_FORWARD_ZONE_SORT_FIELD_VALUES = [
   'name',
   'created_on',
-  'updated_on'
-] as const satisfies [string, ...string[]] | EmailForwardZoneSortField[];
+  'updated_on',
+] as const satisfies ReadonlyArray<EmailForwardZoneSortField>;
 
-/**
- * EmailVerificationStatus. Auto-generated enum for EmailVerificationStatus
- *
- * @remarks
- * This constant provides both object and array forms for the EmailVerificationStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EMAIL_VERIFICATION_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EMAIL_VERIFICATION_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EmailVerificationStatus} - The TypeScript type definition
- */
 export const EMAIL_VERIFICATION_STATUS = {
   VERIFIED: "verified",
   PENDING: "pending",
   CANCELED: "canceled",
 } as const satisfies Record<string, EmailVerificationStatus>;
 
-/**
- * Array of all EmailVerificationStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid EmailVerificationStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EMAIL_VERIFICATION_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EMAIL_VERIFICATION_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EmailVerificationStatus} - The TypeScript type definition
- * @see {@link EMAIL_VERIFICATION_STATUS} - The object form of this enum
- */
 export const EMAIL_VERIFICATION_STATUS_VALUES = [
   'verified',
   'pending',
-  'canceled'
-] as const satisfies [string, ...string[]] | EmailVerificationStatus[];
+  'canceled',
+] as const satisfies ReadonlyArray<EmailVerificationStatus>;
 
-/**
- * EventObjectType. Auto-generated enum for EventObjectType
- *
- * @remarks
- * This constant provides both object and array forms for the EventObjectType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EVENT_OBJECT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EVENT_OBJECT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EventObjectType} - The TypeScript type definition
- */
 export const EVENT_OBJECT_TYPE = {
   DOMAIN: "DOMAIN",
   CONTACT: "CONTACT",
@@ -2390,27 +821,6 @@ export const EVENT_OBJECT_TYPE = {
   UNKNOWN: "UNKNOWN",
 } as const satisfies Record<string, EventObjectType>;
 
-/**
- * Array of all EventObjectType enum values
- *
- * @remarks
- * This constant provides a array containing all valid EventObjectType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EVENT_OBJECT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EVENT_OBJECT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EventObjectType} - The TypeScript type definition
- * @see {@link EVENT_OBJECT_TYPE} - The object form of this enum
- */
 export const EVENT_OBJECT_TYPE_VALUES = [
   'DOMAIN',
   'CONTACT',
@@ -2418,78 +828,19 @@ export const EVENT_OBJECT_TYPE_VALUES = [
   'ACCOUNT',
   'VANITY_NS_SET',
   'RAW',
-  'UNKNOWN'
-] as const satisfies [string, ...string[]] | EventObjectType[];
+  'UNKNOWN',
+] as const satisfies ReadonlyArray<EventObjectType>;
 
-/**
- * EventSortField. Auto-generated enum for EventSortField
- *
- * @remarks
- * This constant provides both object and array forms for the EventSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EVENT_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EVENT_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EventSortField} - The TypeScript type definition
- */
 export const EVENT_SORT_FIELD = {
   OBJECT_ID: "object_id",
   CREATED_ON: "created_on",
 } as const satisfies Record<string, EventSortField>;
 
-/**
- * Array of all EventSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid EventSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EVENT_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EVENT_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EventSortField} - The TypeScript type definition
- * @see {@link EVENT_SORT_FIELD} - The object form of this enum
- */
 export const EVENT_SORT_FIELD_VALUES = [
   'object_id',
-  'created_on'
-] as const satisfies [string, ...string[]] | EventSortField[];
+  'created_on',
+] as const satisfies ReadonlyArray<EventSortField>;
 
-/**
- * EventSubtype. Auto-generated enum for EventSubtype
- *
- * @remarks
- * This constant provides both object and array forms for the EventSubtype enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EVENT_SUBTYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EVENT_SUBTYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EventSubtype} - The TypeScript type definition
- */
 export const EVENT_SUBTYPE = {
   NOTIFICATION: "NOTIFICATION",
   SUCCESS: "SUCCESS",
@@ -2497,53 +848,13 @@ export const EVENT_SUBTYPE = {
   CANCELED: "CANCELED",
 } as const satisfies Record<string, EventSubtype>;
 
-/**
- * Array of all EventSubtype enum values
- *
- * @remarks
- * This constant provides a array containing all valid EventSubtype enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EVENT_SUBTYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EVENT_SUBTYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EventSubtype} - The TypeScript type definition
- * @see {@link EVENT_SUBTYPE} - The object form of this enum
- */
 export const EVENT_SUBTYPE_VALUES = [
   'NOTIFICATION',
   'SUCCESS',
   'FAILURE',
-  'CANCELED'
-] as const satisfies [string, ...string[]] | EventSubtype[];
+  'CANCELED',
+] as const satisfies ReadonlyArray<EventSubtype>;
 
-/**
- * EventType. Auto-generated enum for EventType
- *
- * @remarks
- * This constant provides both object and array forms for the EventType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EVENT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EVENT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EventType} - The TypeScript type definition
- */
 export const EVENT_TYPE = {
   REGISTRATION: "REGISTRATION",
   RENEWAL: "RENEWAL",
@@ -2560,27 +871,6 @@ export const EVENT_TYPE = {
   VANITY_NS_RESTORATION: "VANITY_NS_RESTORATION",
 } as const satisfies Record<string, EventType>;
 
-/**
- * Array of all EventType enum values
- *
- * @remarks
- * This constant provides a array containing all valid EventType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EVENT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EVENT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EventType} - The TypeScript type definition
- * @see {@link EVENT_TYPE} - The object form of this enum
- */
 export const EVENT_TYPE_VALUES = [
   'REGISTRATION',
   'RENEWAL',
@@ -2594,133 +884,29 @@ export const EVENT_TYPE_VALUES = [
   'BALANCE',
   'VANITY_NS_PROVISION',
   'VANITY_NS_SUSPENSION',
-  'VANITY_NS_RESTORATION'
-] as const satisfies [string, ...string[]] | EventType[];
+  'VANITY_NS_RESTORATION',
+] as const satisfies ReadonlyArray<EventType>;
 
-/**
- * EventVersion. Auto-generated enum for EventVersion
- *
- * @remarks
- * This constant provides both object and array forms for the EventVersion enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EVENT_VERSION.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EVENT_VERSION_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link EventVersion} - The TypeScript type definition
- */
 export const EVENT_VERSION = {
   "1_0": "1.0",
 } as const satisfies Record<string, EventVersion>;
 
-/**
- * Array of all EventVersion enum values
- *
- * @remarks
- * This constant provides a array containing all valid EventVersion enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EVENT_VERSION_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EVENT_VERSION_VALUES.includes(someValue);
- * ```
- *
- * @see {@link EventVersion} - The TypeScript type definition
- * @see {@link EVENT_VERSION} - The object form of this enum
- */
 export const EVENT_VERSION_VALUES = [
-  '1.0'
-] as const satisfies [string, ...string[]] | EventVersion[];
+  '1.0',
+] as const satisfies ReadonlyArray<EventVersion>;
 
-/**
- * ExecutingEntity. Auto-generated enum for ExecutingEntity
- *
- * @remarks
- * This constant provides both object and array forms for the ExecutingEntity enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = EXECUTING_ENTITY.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = EXECUTING_ENTITY_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ExecutingEntity} - The TypeScript type definition
- */
 export const EXECUTING_ENTITY = {
   USER: "user",
   ORGANIZATION: "organization",
   SYSTEM: "system",
 } as const satisfies Record<string, ExecutingEntity>;
 
-/**
- * Array of all ExecutingEntity enum values
- *
- * @remarks
- * This constant provides a array containing all valid ExecutingEntity enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of EXECUTING_ENTITY_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = EXECUTING_ENTITY_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ExecutingEntity} - The TypeScript type definition
- * @see {@link EXECUTING_ENTITY} - The object form of this enum
- */
 export const EXECUTING_ENTITY_VALUES = [
   'user',
   'organization',
-  'system'
-] as const satisfies [string, ...string[]] | ExecutingEntity[];
+  'system',
+] as const satisfies ReadonlyArray<ExecutingEntity>;
 
-/**
- * HTTPMethod. HTTP methods and descriptions
-
-Methods from the following RFCs are all observed:
-
-    * RFC 9110: HTTP Semantics, obsoletes 7231, which obsoleted 2616
-    * RFC 5789: PATCH Method for HTTP
- *
- * @remarks
- * This constant provides both object and array forms for the HTTPMethod enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = HTTP_METHOD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = HTTP_METHOD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link HTTPMethod} - The TypeScript type definition
- */
 export const HTTP_METHOD = {
   CONNECT: "CONNECT",
   DELETE: "DELETE",
@@ -2733,27 +919,6 @@ export const HTTP_METHOD = {
   TRACE: "TRACE",
 } as const satisfies Record<string, HTTPMethod>;
 
-/**
- * Array of all HTTPMethod enum values
- *
- * @remarks
- * This constant provides a array containing all valid HTTPMethod enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of HTTP_METHOD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = HTTP_METHOD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link HTTPMethod} - The TypeScript type definition
- * @see {@link HTTP_METHOD} - The object form of this enum
- */
 export const HTTP_METHOD_VALUES = [
   'CONNECT',
   'DELETE',
@@ -2763,80 +928,21 @@ export const HTTP_METHOD_VALUES = [
   'PATCH',
   'POST',
   'PUT',
-  'TRACE'
-] as const satisfies [string, ...string[]] | HTTPMethod[];
+  'TRACE',
+] as const satisfies ReadonlyArray<HTTPMethod>;
 
-/**
- * HolderEntitlement. Auto-generated enum for HolderEntitlement
- *
- * @remarks
- * This constant provides both object and array forms for the HolderEntitlement enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = HOLDER_ENTITLEMENT.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = HOLDER_ENTITLEMENT_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link HolderEntitlement} - The TypeScript type definition
- */
 export const HOLDER_ENTITLEMENT = {
   OWNER: "owner",
   ASSIGNEE: "assignee",
   LICENSEE: "licensee",
 } as const satisfies Record<string, HolderEntitlement>;
 
-/**
- * Array of all HolderEntitlement enum values
- *
- * @remarks
- * This constant provides a array containing all valid HolderEntitlement enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of HOLDER_ENTITLEMENT_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = HOLDER_ENTITLEMENT_VALUES.includes(someValue);
- * ```
- *
- * @see {@link HolderEntitlement} - The TypeScript type definition
- * @see {@link HOLDER_ENTITLEMENT} - The object form of this enum
- */
 export const HOLDER_ENTITLEMENT_VALUES = [
   'owner',
   'assignee',
-  'licensee'
-] as const satisfies [string, ...string[]] | HolderEntitlement[];
+  'licensee',
+] as const satisfies ReadonlyArray<HolderEntitlement>;
 
-/**
- * HostStatus. Auto-generated enum for HostStatus
- *
- * @remarks
- * This constant provides both object and array forms for the HostStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = HOST_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = HOST_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link HostStatus} - The TypeScript type definition
- */
 export const HOST_STATUS = {
   REQUESTED_CREATE: "requested_create",
   PENDING_CREATE: "pending_create",
@@ -2845,156 +951,36 @@ export const HOST_STATUS = {
   PENDING_DELETE: "pending_delete",
 } as const satisfies Record<string, HostStatus>;
 
-/**
- * Array of all HostStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid HostStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of HOST_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = HOST_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link HostStatus} - The TypeScript type definition
- * @see {@link HOST_STATUS} - The object form of this enum
- */
 export const HOST_STATUS_VALUES = [
   'requested_create',
   'pending_create',
   'active',
   'inactive',
-  'pending_delete'
-] as const satisfies [string, ...string[]] | HostStatus[];
+  'pending_delete',
+] as const satisfies ReadonlyArray<HostStatus>;
 
-/**
- * HttpProtocol. Auto-generated enum for HttpProtocol
- *
- * @remarks
- * This constant provides both object and array forms for the HttpProtocol enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = HTTP_PROTOCOL.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = HTTP_PROTOCOL_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link HttpProtocol} - The TypeScript type definition
- */
 export const HTTP_PROTOCOL = {
   HTTP: "http",
   HTTPS: "https",
 } as const satisfies Record<string, HttpProtocol>;
 
-/**
- * Array of all HttpProtocol enum values
- *
- * @remarks
- * This constant provides a array containing all valid HttpProtocol enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of HTTP_PROTOCOL_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = HTTP_PROTOCOL_VALUES.includes(someValue);
- * ```
- *
- * @see {@link HttpProtocol} - The TypeScript type definition
- * @see {@link HTTP_PROTOCOL} - The object form of this enum
- */
 export const HTTP_PROTOCOL_VALUES = [
   'http',
-  'https'
-] as const satisfies [string, ...string[]] | HttpProtocol[];
+  'https',
+] as const satisfies ReadonlyArray<HttpProtocol>;
 
-/**
- * InvoiceResponsePaymentStatus. Auto-generated enum for InvoiceResponsePaymentStatus
- *
- * @remarks
- * This constant provides both object and array forms for the InvoiceResponsePaymentStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = INVOICE_RESPONSE_PAYMENT_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = INVOICE_RESPONSE_PAYMENT_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link InvoiceResponsePaymentStatus} - The TypeScript type definition
- */
 export const INVOICE_RESPONSE_PAYMENT_STATUS = {
   PENDING: "pending",
   FAILED: "failed",
   SUCCEEDED: "succeeded",
 } as const satisfies Record<string, InvoiceResponsePaymentStatus>;
 
-/**
- * Array of all InvoiceResponsePaymentStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid InvoiceResponsePaymentStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of INVOICE_RESPONSE_PAYMENT_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = INVOICE_RESPONSE_PAYMENT_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link InvoiceResponsePaymentStatus} - The TypeScript type definition
- * @see {@link INVOICE_RESPONSE_PAYMENT_STATUS} - The object form of this enum
- */
 export const INVOICE_RESPONSE_PAYMENT_STATUS_VALUES = [
   'pending',
   'failed',
-  'succeeded'
-] as const satisfies [string, ...string[]] | InvoiceResponsePaymentStatus[];
+  'succeeded',
+] as const satisfies ReadonlyArray<InvoiceResponsePaymentStatus>;
 
-/**
- * InvoiceResponseStatus. Auto-generated enum for InvoiceResponseStatus
- *
- * @remarks
- * This constant provides both object and array forms for the InvoiceResponseStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = INVOICE_RESPONSE_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = INVOICE_RESPONSE_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link InvoiceResponseStatus} - The TypeScript type definition
- */
 export const INVOICE_RESPONSE_STATUS = {
   DRAFT: "draft",
   FINALIZED: "finalized",
@@ -3003,54 +989,14 @@ export const INVOICE_RESPONSE_STATUS = {
   VOIDED: "voided",
 } as const satisfies Record<string, InvoiceResponseStatus>;
 
-/**
- * Array of all InvoiceResponseStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid InvoiceResponseStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of INVOICE_RESPONSE_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = INVOICE_RESPONSE_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link InvoiceResponseStatus} - The TypeScript type definition
- * @see {@link INVOICE_RESPONSE_STATUS} - The object form of this enum
- */
 export const INVOICE_RESPONSE_STATUS_VALUES = [
   'draft',
   'finalized',
   'failed',
   'pending',
-  'voided'
-] as const satisfies [string, ...string[]] | InvoiceResponseStatus[];
+  'voided',
+] as const satisfies ReadonlyArray<InvoiceResponseStatus>;
 
-/**
- * InvoiceResponseType. Auto-generated enum for InvoiceResponseType
- *
- * @remarks
- * This constant provides both object and array forms for the InvoiceResponseType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = INVOICE_RESPONSE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = INVOICE_RESPONSE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link InvoiceResponseType} - The TypeScript type definition
- */
 export const INVOICE_RESPONSE_TYPE = {
   SUBSCRIPTION: "subscription",
   ADD_ON: "add_on",
@@ -3060,55 +1006,15 @@ export const INVOICE_RESPONSE_TYPE = {
   PROGRESSIVE_BILLING: "progressive_billing",
 } as const satisfies Record<string, InvoiceResponseType>;
 
-/**
- * Array of all InvoiceResponseType enum values
- *
- * @remarks
- * This constant provides a array containing all valid InvoiceResponseType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of INVOICE_RESPONSE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = INVOICE_RESPONSE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link InvoiceResponseType} - The TypeScript type definition
- * @see {@link INVOICE_RESPONSE_TYPE} - The object form of this enum
- */
 export const INVOICE_RESPONSE_TYPE_VALUES = [
   'subscription',
   'add_on',
   'credit',
   'one_off',
   'advance_charges',
-  'progressive_billing'
-] as const satisfies [string, ...string[]] | InvoiceResponseType[];
+  'progressive_billing',
+] as const satisfies ReadonlyArray<InvoiceResponseType>;
 
-/**
- * JobStatus. Auto-generated enum for JobStatus
- *
- * @remarks
- * This constant provides both object and array forms for the JobStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = JOB_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = JOB_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link JobStatus} - The TypeScript type definition
- */
 export const JOB_STATUS = {
   BLOCKED: "blocked",
   QUEUED: "queued",
@@ -3120,27 +1026,6 @@ export const JOB_STATUS = {
   DEAD_LETTER: "dead_letter",
 } as const satisfies Record<string, JobStatus>;
 
-/**
- * Array of all JobStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid JobStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of JOB_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = JOB_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link JobStatus} - The TypeScript type definition
- * @see {@link JOB_STATUS} - The object form of this enum
- */
 export const JOB_STATUS_VALUES = [
   'blocked',
   'queued',
@@ -3149,80 +1034,21 @@ export const JOB_STATUS_VALUES = [
   'succeeded',
   'failed',
   'canceled',
-  'dead_letter'
-] as const satisfies [string, ...string[]] | JobStatus[];
+  'dead_letter',
+] as const satisfies ReadonlyArray<JobStatus>;
 
-/**
- * LaunchPhaseType. Auto-generated enum for LaunchPhaseType
- *
- * @remarks
- * This constant provides both object and array forms for the LaunchPhaseType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = LAUNCH_PHASE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = LAUNCH_PHASE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link LaunchPhaseType} - The TypeScript type definition
- */
 export const LAUNCH_PHASE_TYPE = {
   SUNRISE: "sunrise",
   LANDRUSH: "landrush",
   EAP: "eap",
 } as const satisfies Record<string, LaunchPhaseType>;
 
-/**
- * Array of all LaunchPhaseType enum values
- *
- * @remarks
- * This constant provides a array containing all valid LaunchPhaseType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of LAUNCH_PHASE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = LAUNCH_PHASE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link LaunchPhaseType} - The TypeScript type definition
- * @see {@link LAUNCH_PHASE_TYPE} - The object form of this enum
- */
 export const LAUNCH_PHASE_TYPE_VALUES = [
   'sunrise',
   'landrush',
-  'eap'
-] as const satisfies [string, ...string[]] | LaunchPhaseType[];
+  'eap',
+] as const satisfies ReadonlyArray<LaunchPhaseType>;
 
-/**
- * LegalRequirementOperationType. Auto-generated enum for LegalRequirementOperationType
- *
- * @remarks
- * This constant provides both object and array forms for the LegalRequirementOperationType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = LEGAL_REQUIREMENT_OPERATION_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link LegalRequirementOperationType} - The TypeScript type definition
- */
 export const LEGAL_REQUIREMENT_OPERATION_TYPE = {
   REGISTRATION: "registration",
   TRANSFER: "transfer",
@@ -3230,257 +1056,57 @@ export const LEGAL_REQUIREMENT_OPERATION_TYPE = {
   REGISTRANT_CHANGE: "registrant_change",
 } as const satisfies Record<string, LegalRequirementOperationType>;
 
-/**
- * Array of all LegalRequirementOperationType enum values
- *
- * @remarks
- * This constant provides a array containing all valid LegalRequirementOperationType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link LegalRequirementOperationType} - The TypeScript type definition
- * @see {@link LEGAL_REQUIREMENT_OPERATION_TYPE} - The object form of this enum
- */
 export const LEGAL_REQUIREMENT_OPERATION_TYPE_VALUES = [
   'registration',
   'transfer',
   'renewal',
-  'registrant_change'
-] as const satisfies [string, ...string[]] | LegalRequirementOperationType[];
+  'registrant_change',
+] as const satisfies ReadonlyArray<LegalRequirementOperationType>;
 
-/**
- * LegalRequirementType. Auto-generated enum for LegalRequirementType
- *
- * @remarks
- * This constant provides both object and array forms for the LegalRequirementType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = LEGAL_REQUIREMENT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = LEGAL_REQUIREMENT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link LegalRequirementType} - The TypeScript type definition
- */
 export const LEGAL_REQUIREMENT_TYPE = {
   NOTICE: "notice",
   CONFIRMATION: "confirmation",
 } as const satisfies Record<string, LegalRequirementType>;
 
-/**
- * Array of all LegalRequirementType enum values
- *
- * @remarks
- * This constant provides a array containing all valid LegalRequirementType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of LEGAL_REQUIREMENT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = LEGAL_REQUIREMENT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link LegalRequirementType} - The TypeScript type definition
- * @see {@link LEGAL_REQUIREMENT_TYPE} - The object form of this enum
- */
 export const LEGAL_REQUIREMENT_TYPE_VALUES = [
   'notice',
-  'confirmation'
-] as const satisfies [string, ...string[]] | LegalRequirementType[];
+  'confirmation',
+] as const satisfies ReadonlyArray<LegalRequirementType>;
 
-/**
- * LocalPresenceRequirementType. Auto-generated enum for LocalPresenceRequirementType
- *
- * @remarks
- * This constant provides both object and array forms for the LocalPresenceRequirementType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = LOCAL_PRESENCE_REQUIREMENT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link LocalPresenceRequirementType} - The TypeScript type definition
- */
 export const LOCAL_PRESENCE_REQUIREMENT_TYPE = {
   PHYSICAL_ADDRESS: "physical_address",
   BUSINESS_ENTITY: "business_entity",
 } as const satisfies Record<string, LocalPresenceRequirementType>;
 
-/**
- * Array of all LocalPresenceRequirementType enum values
- *
- * @remarks
- * This constant provides a array containing all valid LocalPresenceRequirementType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link LocalPresenceRequirementType} - The TypeScript type definition
- * @see {@link LOCAL_PRESENCE_REQUIREMENT_TYPE} - The object form of this enum
- */
 export const LOCAL_PRESENCE_REQUIREMENT_TYPE_VALUES = [
   'physical_address',
-  'business_entity'
-] as const satisfies [string, ...string[]] | LocalPresenceRequirementType[];
+  'business_entity',
+] as const satisfies ReadonlyArray<LocalPresenceRequirementType>;
 
-/**
- * MemoryFactKind. Auto-generated enum for MemoryFactKind
- *
- * @remarks
- * This constant provides both object and array forms for the MemoryFactKind enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = MEMORY_FACT_KIND.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = MEMORY_FACT_KIND_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link MemoryFactKind} - The TypeScript type definition
- */
 export const MEMORY_FACT_KIND = {
   PREFERENCE: "preference",
   NOTE: "note",
   OTHER: "other",
 } as const satisfies Record<string, MemoryFactKind>;
 
-/**
- * Array of all MemoryFactKind enum values
- *
- * @remarks
- * This constant provides a array containing all valid MemoryFactKind enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of MEMORY_FACT_KIND_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = MEMORY_FACT_KIND_VALUES.includes(someValue);
- * ```
- *
- * @see {@link MemoryFactKind} - The TypeScript type definition
- * @see {@link MEMORY_FACT_KIND} - The object form of this enum
- */
 export const MEMORY_FACT_KIND_VALUES = [
   'preference',
   'note',
-  'other'
-] as const satisfies [string, ...string[]] | MemoryFactKind[];
+  'other',
+] as const satisfies ReadonlyArray<MemoryFactKind>;
 
-/**
- * MessageContextKind. Auto-generated enum for MessageContextKind
- *
- * @remarks
- * This constant provides both object and array forms for the MessageContextKind enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = MESSAGE_CONTEXT_KIND.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = MESSAGE_CONTEXT_KIND_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link MessageContextKind} - The TypeScript type definition
- */
 export const MESSAGE_CONTEXT_KIND = {
   ZONES: "zones",
   CONTACTS: "contacts",
   DOMAINS: "domains",
 } as const satisfies Record<string, MessageContextKind>;
 
-/**
- * Array of all MessageContextKind enum values
- *
- * @remarks
- * This constant provides a array containing all valid MessageContextKind enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of MESSAGE_CONTEXT_KIND_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = MESSAGE_CONTEXT_KIND_VALUES.includes(someValue);
- * ```
- *
- * @see {@link MessageContextKind} - The TypeScript type definition
- * @see {@link MESSAGE_CONTEXT_KIND} - The object form of this enum
- */
 export const MESSAGE_CONTEXT_KIND_VALUES = [
   'zones',
   'contacts',
-  'domains'
-] as const satisfies [string, ...string[]] | MessageContextKind[];
+  'domains',
+] as const satisfies ReadonlyArray<MessageContextKind>;
 
-/**
- * MessageRole. Auto-generated enum for MessageRole
- *
- * @remarks
- * This constant provides both object and array forms for the MessageRole enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = MESSAGE_ROLE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = MESSAGE_ROLE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link MessageRole} - The TypeScript type definition
- */
 export const MESSAGE_ROLE = {
   USER: "user",
   ASSISTANT: "assistant",
@@ -3488,53 +1114,13 @@ export const MESSAGE_ROLE = {
   TOOL: "tool",
 } as const satisfies Record<string, MessageRole>;
 
-/**
- * Array of all MessageRole enum values
- *
- * @remarks
- * This constant provides a array containing all valid MessageRole enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of MESSAGE_ROLE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = MESSAGE_ROLE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link MessageRole} - The TypeScript type definition
- * @see {@link MESSAGE_ROLE} - The object form of this enum
- */
 export const MESSAGE_ROLE_VALUES = [
   'user',
   'assistant',
   'system',
-  'tool'
-] as const satisfies [string, ...string[]] | MessageRole[];
+  'tool',
+] as const satisfies ReadonlyArray<MessageRole>;
 
-/**
- * MetricsGrouping. Auto-generated enum for MetricsGrouping
- *
- * @remarks
- * This constant provides both object and array forms for the MetricsGrouping enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = METRICS_GROUPING.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = METRICS_GROUPING_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link MetricsGrouping} - The TypeScript type definition
- */
 export const METRICS_GROUPING = {
   URL: "url",
   FQDN: "fqdn",
@@ -3543,54 +1129,14 @@ export const METRICS_GROUPING = {
   RULE: "rule",
 } as const satisfies Record<string, MetricsGrouping>;
 
-/**
- * Array of all MetricsGrouping enum values
- *
- * @remarks
- * This constant provides a array containing all valid MetricsGrouping enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of METRICS_GROUPING_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = METRICS_GROUPING_VALUES.includes(someValue);
- * ```
- *
- * @see {@link MetricsGrouping} - The TypeScript type definition
- * @see {@link METRICS_GROUPING} - The object form of this enum
- */
 export const METRICS_GROUPING_VALUES = [
   'url',
   'fqdn',
   'domain',
   'forward',
-  'rule'
-] as const satisfies [string, ...string[]] | MetricsGrouping[];
+  'rule',
+] as const satisfies ReadonlyArray<MetricsGrouping>;
 
-/**
- * ObjectEventType. Auto-generated enum for ObjectEventType
- *
- * @remarks
- * This constant provides both object and array forms for the ObjectEventType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = OBJECT_EVENT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = OBJECT_EVENT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ObjectEventType} - The TypeScript type definition
- */
 export const OBJECT_EVENT_TYPE = {
   CREATED: "CREATED",
   UPDATED: "UPDATED",
@@ -3608,27 +1154,6 @@ export const OBJECT_EVENT_TYPE = {
   BILLING_TRANSACTION_CANCELLED: "BILLING_TRANSACTION_CANCELLED",
 } as const satisfies Record<string, ObjectEventType>;
 
-/**
- * Array of all ObjectEventType enum values
- *
- * @remarks
- * This constant provides a array containing all valid ObjectEventType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of OBJECT_EVENT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = OBJECT_EVENT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ObjectEventType} - The TypeScript type definition
- * @see {@link OBJECT_EVENT_TYPE} - The object form of this enum
- */
 export const OBJECT_EVENT_TYPE_VALUES = [
   'CREATED',
   'UPDATED',
@@ -3643,28 +1168,9 @@ export const OBJECT_EVENT_TYPE_VALUES = [
   'BILLING_TRANSACTION_RESERVED',
   'BILLING_TRANSACTION_SUCCEEDED',
   'BILLING_TRANSACTION_FAILED',
-  'BILLING_TRANSACTION_CANCELLED'
-] as const satisfies [string, ...string[]] | ObjectEventType[];
+  'BILLING_TRANSACTION_CANCELLED',
+] as const satisfies ReadonlyArray<ObjectEventType>;
 
-/**
- * ObjectLogSortField. Auto-generated enum for ObjectLogSortField
- *
- * @remarks
- * This constant provides both object and array forms for the ObjectLogSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = OBJECT_LOG_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = OBJECT_LOG_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ObjectLogSortField} - The TypeScript type definition
- */
 export const OBJECT_LOG_SORT_FIELD = {
   OBJECT_LOG_ID: "object_log_id",
   OBJECT_ID: "object_id",
@@ -3676,27 +1182,6 @@ export const OBJECT_LOG_SORT_FIELD = {
   PERFORMED_BY_ID: "performed_by_id",
 } as const satisfies Record<string, ObjectLogSortField>;
 
-/**
- * Array of all ObjectLogSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid ObjectLogSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of OBJECT_LOG_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = OBJECT_LOG_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ObjectLogSortField} - The TypeScript type definition
- * @see {@link OBJECT_LOG_SORT_FIELD} - The object form of this enum
- */
 export const OBJECT_LOG_SORT_FIELD_VALUES = [
   'object_log_id',
   'object_id',
@@ -3705,284 +1190,65 @@ export const OBJECT_LOG_SORT_FIELD_VALUES = [
   'created_on',
   'server_request_id',
   'performed_by_type',
-  'performed_by_id'
-] as const satisfies [string, ...string[]] | ObjectLogSortField[];
+  'performed_by_id',
+] as const satisfies ReadonlyArray<ObjectLogSortField>;
 
-/**
- * OrganizationSortField. Auto-generated enum for OrganizationSortField
- *
- * @remarks
- * This constant provides both object and array forms for the OrganizationSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = ORGANIZATION_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = ORGANIZATION_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link OrganizationSortField} - The TypeScript type definition
- */
 export const ORGANIZATION_SORT_FIELD = {
   CREATED_ON: "created_on",
   NAME: "name",
   COUNTRY_CODE: "country_code",
 } as const satisfies Record<string, OrganizationSortField>;
 
-/**
- * Array of all OrganizationSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid OrganizationSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of ORGANIZATION_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = ORGANIZATION_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link OrganizationSortField} - The TypeScript type definition
- * @see {@link ORGANIZATION_SORT_FIELD} - The object form of this enum
- */
 export const ORGANIZATION_SORT_FIELD_VALUES = [
   'created_on',
   'name',
-  'country_code'
-] as const satisfies [string, ...string[]] | OrganizationSortField[];
+  'country_code',
+] as const satisfies ReadonlyArray<OrganizationSortField>;
 
-/**
- * OrganizationStatus. Auto-generated enum for OrganizationStatus
- *
- * @remarks
- * This constant provides both object and array forms for the OrganizationStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = ORGANIZATION_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = ORGANIZATION_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link OrganizationStatus} - The TypeScript type definition
- */
 export const ORGANIZATION_STATUS = {
   ACTIVE: "active",
   INACTIVE: "inactive",
 } as const satisfies Record<string, OrganizationStatus>;
 
-/**
- * Array of all OrganizationStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid OrganizationStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of ORGANIZATION_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = ORGANIZATION_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link OrganizationStatus} - The TypeScript type definition
- * @see {@link ORGANIZATION_STATUS} - The object form of this enum
- */
 export const ORGANIZATION_STATUS_VALUES = [
   'active',
-  'inactive'
-] as const satisfies [string, ...string[]] | OrganizationStatus[];
+  'inactive',
+] as const satisfies ReadonlyArray<OrganizationStatus>;
 
-/**
- * ParkingSortField. Auto-generated enum for ParkingSortField
- *
- * @remarks
- * This constant provides both object and array forms for the ParkingSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PARKING_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PARKING_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ParkingSortField} - The TypeScript type definition
- */
 export const PARKING_SORT_FIELD = {
   DOMAIN: "domain",
   CREATED_ON: "created_on",
   UPDATED_ON: "updated_on",
 } as const satisfies Record<string, ParkingSortField>;
 
-/**
- * Array of all ParkingSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid ParkingSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PARKING_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PARKING_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ParkingSortField} - The TypeScript type definition
- * @see {@link PARKING_SORT_FIELD} - The object form of this enum
- */
 export const PARKING_SORT_FIELD_VALUES = [
   'domain',
   'created_on',
-  'updated_on'
-] as const satisfies [string, ...string[]] | ParkingSortField[];
+  'updated_on',
+] as const satisfies ReadonlyArray<ParkingSortField>;
 
-/**
- * PatchOp. Auto-generated enum for PatchOp
- *
- * @remarks
- * This constant provides both object and array forms for the PatchOp enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PATCH_OP.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PATCH_OP_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PatchOp} - The TypeScript type definition
- */
 export const PATCH_OP = {
   UPSERT: "upsert",
   REMOVE: "remove",
 } as const satisfies Record<string, PatchOp>;
 
-/**
- * Array of all PatchOp enum values
- *
- * @remarks
- * This constant provides a array containing all valid PatchOp enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PATCH_OP_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PATCH_OP_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PatchOp} - The TypeScript type definition
- * @see {@link PATCH_OP} - The object form of this enum
- */
 export const PATCH_OP_VALUES = [
   'upsert',
-  'remove'
-] as const satisfies [string, ...string[]] | PatchOp[];
+  'remove',
+] as const satisfies ReadonlyArray<PatchOp>;
 
-/**
- * PeriodUnit. Auto-generated enum for PeriodUnit
- *
- * @remarks
- * This constant provides both object and array forms for the PeriodUnit enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PERIOD_UNIT.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PERIOD_UNIT_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PeriodUnit} - The TypeScript type definition
- */
 export const PERIOD_UNIT = {
   Y: "y",
   M: "m",
   D: "d",
 } as const satisfies Record<string, PeriodUnit>;
 
-/**
- * Array of all PeriodUnit enum values
- *
- * @remarks
- * This constant provides a array containing all valid PeriodUnit enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PERIOD_UNIT_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PERIOD_UNIT_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PeriodUnit} - The TypeScript type definition
- * @see {@link PERIOD_UNIT} - The object form of this enum
- */
 export const PERIOD_UNIT_VALUES = [
   'y',
   'm',
-  'd'
-] as const satisfies [string, ...string[]] | PeriodUnit[];
+  'd',
+] as const satisfies ReadonlyArray<PeriodUnit>;
 
-/**
- * Permission. Auto-generated enum for Permission
- *
- * @remarks
- * This constant provides both object and array forms for the Permission enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PERMISSION.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PERMISSION_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link Permission} - The TypeScript type definition
- */
 export const PERMISSION = {
   BULK_CREATE: "bulk_create",
   BULK_DELETE: "bulk_delete",
@@ -4032,27 +1298,6 @@ export const PERMISSION = {
   VIEW_PARKING: "view_parking",
 } as const satisfies Record<string, Permission>;
 
-/**
- * Array of all Permission enum values
- *
- * @remarks
- * This constant provides a array containing all valid Permission enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PERMISSION_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PERMISSION_VALUES.includes(someValue);
- * ```
- *
- * @see {@link Permission} - The TypeScript type definition
- * @see {@link PERMISSION} - The object form of this enum
- */
 export const PERMISSION_VALUES = [
   'bulk_create',
   'bulk_delete',
@@ -4099,128 +1344,29 @@ export const PERMISSION_VALUES = [
   'view_domain_forwards',
   'view_email_forwards',
   'view_events',
-  'view_parking'
-] as const satisfies [string, ...string[]] | Permission[];
+  'view_parking',
+] as const satisfies ReadonlyArray<Permission>;
 
-/**
- * PostTransferRequirements. Auto-generated enum for PostTransferRequirements
- *
- * @remarks
- * This constant provides both object and array forms for the PostTransferRequirements enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = POST_TRANSFER_REQUIREMENTS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = POST_TRANSFER_REQUIREMENTS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PostTransferRequirements} - The TypeScript type definition
- */
 export const POST_TRANSFER_REQUIREMENTS = {
   UPDATE_CONTACTS: "update_contacts",
   TLD_SPECIFIC: "tld_specific",
 } as const satisfies Record<string, PostTransferRequirements>;
 
-/**
- * Array of all PostTransferRequirements enum values
- *
- * @remarks
- * This constant provides a array containing all valid PostTransferRequirements enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of POST_TRANSFER_REQUIREMENTS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = POST_TRANSFER_REQUIREMENTS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PostTransferRequirements} - The TypeScript type definition
- * @see {@link POST_TRANSFER_REQUIREMENTS} - The object form of this enum
- */
 export const POST_TRANSFER_REQUIREMENTS_VALUES = [
   'update_contacts',
-  'tld_specific'
-] as const satisfies [string, ...string[]] | PostTransferRequirements[];
+  'tld_specific',
+] as const satisfies ReadonlyArray<PostTransferRequirements>;
 
-/**
- * PostalAddressType. Auto-generated enum for PostalAddressType
- *
- * @remarks
- * This constant provides both object and array forms for the PostalAddressType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = POSTAL_ADDRESS_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = POSTAL_ADDRESS_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PostalAddressType} - The TypeScript type definition
- */
 export const POSTAL_ADDRESS_TYPE = {
   LOC: "loc",
   INT: "int",
 } as const satisfies Record<string, PostalAddressType>;
 
-/**
- * Array of all PostalAddressType enum values
- *
- * @remarks
- * This constant provides a array containing all valid PostalAddressType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of POSTAL_ADDRESS_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = POSTAL_ADDRESS_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PostalAddressType} - The TypeScript type definition
- * @see {@link POSTAL_ADDRESS_TYPE} - The object form of this enum
- */
 export const POSTAL_ADDRESS_TYPE_VALUES = [
   'loc',
-  'int'
-] as const satisfies [string, ...string[]] | PostalAddressType[];
+  'int',
+] as const satisfies ReadonlyArray<PostalAddressType>;
 
-/**
- * PremiumAffectsType. Auto-generated enum for PremiumAffectsType
- *
- * @remarks
- * This constant provides both object and array forms for the PremiumAffectsType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PREMIUM_AFFECTS_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PREMIUM_AFFECTS_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PremiumAffectsType} - The TypeScript type definition
- */
 export const PREMIUM_AFFECTS_TYPE = {
   REGISTRATION: "registration",
   DELETE: "delete",
@@ -4231,27 +1377,6 @@ export const PREMIUM_AFFECTS_TYPE = {
   CUSTOM: "custom",
 } as const satisfies Record<string, PremiumAffectsType>;
 
-/**
- * Array of all PremiumAffectsType enum values
- *
- * @remarks
- * This constant provides a array containing all valid PremiumAffectsType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PREMIUM_AFFECTS_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PREMIUM_AFFECTS_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PremiumAffectsType} - The TypeScript type definition
- * @see {@link PREMIUM_AFFECTS_TYPE} - The object form of this enum
- */
 export const PREMIUM_AFFECTS_TYPE_VALUES = [
   'registration',
   'delete',
@@ -4259,28 +1384,9 @@ export const PREMIUM_AFFECTS_TYPE_VALUES = [
   'update',
   'transfer',
   'restore',
-  'custom'
-] as const satisfies [string, ...string[]] | PremiumAffectsType[];
+  'custom',
+] as const satisfies ReadonlyArray<PremiumAffectsType>;
 
-/**
- * PremiumSourceType. Auto-generated enum for PremiumSourceType
- *
- * @remarks
- * This constant provides both object and array forms for the PremiumSourceType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PREMIUM_SOURCE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PREMIUM_SOURCE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link PremiumSourceType} - The TypeScript type definition
- */
 export const PREMIUM_SOURCE_TYPE = {
   EPP: "EPP",
   API: "API",
@@ -4288,176 +1394,40 @@ export const PREMIUM_SOURCE_TYPE = {
   MANUAL: "manual",
 } as const satisfies Record<string, PremiumSourceType>;
 
-/**
- * Array of all PremiumSourceType enum values
- *
- * @remarks
- * This constant provides a array containing all valid PremiumSourceType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PREMIUM_SOURCE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PREMIUM_SOURCE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link PremiumSourceType} - The TypeScript type definition
- * @see {@link PREMIUM_SOURCE_TYPE} - The object form of this enum
- */
 export const PREMIUM_SOURCE_TYPE_VALUES = [
   'EPP',
   'API',
   'CSV',
-  'manual'
-] as const satisfies [string, ...string[]] | PremiumSourceType[];
+  'manual',
+] as const satisfies ReadonlyArray<PremiumSourceType>;
 
-/**
- * Protocol. Auto-generated enum for Protocol
- *
- * @remarks
- * This constant provides both object and array forms for the Protocol enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = PROTOCOL.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = PROTOCOL_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link Protocol} - The TypeScript type definition
- */
 export const PROTOCOL = {
   HTTP: "http",
   HTTPS: "https",
 } as const satisfies Record<string, Protocol>;
 
-/**
- * Array of all Protocol enum values
- *
- * @remarks
- * This constant provides a array containing all valid Protocol enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of PROTOCOL_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = PROTOCOL_VALUES.includes(someValue);
- * ```
- *
- * @see {@link Protocol} - The TypeScript type definition
- * @see {@link PROTOCOL} - The object form of this enum
- */
 export const PROTOCOL_VALUES = [
   'http',
-  'https'
-] as const satisfies [string, ...string[]] | Protocol[];
+  'https',
+] as const satisfies ReadonlyArray<Protocol>;
 
-/**
- * RedirectCode. Auto-generated enum for RedirectCode
- *
- * @remarks
- * This constant provides an array of integer values for the RedirectCode enum.
- * Integer enums are represented as typed arrays for efficient iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the array for iteration
- * const algorithms = DNSSEC_ALGORITHM;
- * console.log(`Available algorithms: ${algorithms.join(', ')}`);
- * ```
- *
- * @see {@link RedirectCode} - The TypeScript type definition
- */
 export const REDIRECT_CODE = [
   301,
   302,
   307,
-  308
-] as const satisfies RedirectCode[];
+  308,
+] as const satisfies ReadonlyArray<RedirectCode>;
 
-/**
- * RegistrantChangeType. Auto-generated enum for RegistrantChangeType
- *
- * @remarks
- * This constant provides both object and array forms for the RegistrantChangeType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = REGISTRANT_CHANGE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = REGISTRANT_CHANGE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link RegistrantChangeType} - The TypeScript type definition
- */
 export const REGISTRANT_CHANGE_TYPE = {
   UPDATE: "update",
   TRADE: "trade",
 } as const satisfies Record<string, RegistrantChangeType>;
 
-/**
- * Array of all RegistrantChangeType enum values
- *
- * @remarks
- * This constant provides a array containing all valid RegistrantChangeType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of REGISTRANT_CHANGE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = REGISTRANT_CHANGE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link RegistrantChangeType} - The TypeScript type definition
- * @see {@link REGISTRANT_CHANGE_TYPE} - The object form of this enum
- */
 export const REGISTRANT_CHANGE_TYPE_VALUES = [
   'update',
-  'trade'
-] as const satisfies [string, ...string[]] | RegistrantChangeType[];
+  'trade',
+] as const satisfies ReadonlyArray<RegistrantChangeType>;
 
-/**
- * RegistryHandleAttributeType. Registry handle attribute types for type-safe attribute key access.
- *
- * @remarks
- * This constant provides both object and array forms for the RegistryHandleAttributeType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = REGISTRY_HANDLE_ATTRIBUTE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link RegistryHandleAttributeType} - The TypeScript type definition
- */
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   AT_EXT_CONTACT_TYPE: "at-ext-contact:type",
   DE_CONTACT_TYPE: "DE_CONTACT_TYPE",
@@ -4503,27 +1473,6 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   DNS_LU_CONTACT_ROLE: "DNS_LU_CONTACT_ROLE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
-/**
- * Array of all RegistryHandleAttributeType enum values
- *
- * @remarks
- * This constant provides a array containing all valid RegistryHandleAttributeType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link RegistryHandleAttributeType} - The TypeScript type definition
- * @see {@link REGISTRY_HANDLE_ATTRIBUTE_TYPE} - The object form of this enum
- */
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'at-ext-contact:type',
   'DE_CONTACT_TYPE',
@@ -4566,28 +1515,9 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'CZ_NIC_IDENT_VALUE',
   'CZ_NIC_VAT',
   'CZ_NIC_NOTIFY_EMAIL',
-  'DNS_LU_CONTACT_ROLE'
-] as const satisfies [string, ...string[]] | RegistryHandleAttributeType[];
+  'DNS_LU_CONTACT_ROLE',
+] as const satisfies ReadonlyArray<RegistryHandleAttributeType>;
 
-/**
- * Relation. Auto-generated enum for Relation
- *
- * @remarks
- * This constant provides both object and array forms for the Relation enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = RELATION.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = RELATION_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link Relation} - The TypeScript type definition
- */
 export const RELATION = {
   ACCEPTED_TOS: "accepted_tos",
   ADMIN: "admin",
@@ -4614,27 +1544,6 @@ export const RELATION = {
   SELF: "self",
 } as const satisfies Record<string, Relation>;
 
-/**
- * Array of all Relation enum values
- *
- * @remarks
- * This constant provides a array containing all valid Relation enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of RELATION_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = RELATION_VALUES.includes(someValue);
- * ```
- *
- * @see {@link Relation} - The TypeScript type definition
- * @see {@link RELATION} - The object form of this enum
- */
 export const RELATION_VALUES = [
   'accepted_tos',
   'admin',
@@ -4658,78 +1567,19 @@ export const RELATION_VALUES = [
   'registrar_credential_manager',
   'reseller_manager',
   'root_admin',
-  'self'
-] as const satisfies [string, ...string[]] | Relation[];
+  'self',
+] as const satisfies ReadonlyArray<Relation>;
 
-/**
- * RenewalMode. Auto-generated enum for RenewalMode
- *
- * @remarks
- * This constant provides both object and array forms for the RenewalMode enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = RENEWAL_MODE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = RENEWAL_MODE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link RenewalMode} - The TypeScript type definition
- */
 export const RENEWAL_MODE = {
   RENEW: "renew",
   EXPIRE: "expire",
 } as const satisfies Record<string, RenewalMode>;
 
-/**
- * Array of all RenewalMode enum values
- *
- * @remarks
- * This constant provides a array containing all valid RenewalMode enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of RENEWAL_MODE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = RENEWAL_MODE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link RenewalMode} - The TypeScript type definition
- * @see {@link RENEWAL_MODE} - The object form of this enum
- */
 export const RENEWAL_MODE_VALUES = [
   'renew',
-  'expire'
-] as const satisfies [string, ...string[]] | RenewalMode[];
+  'expire',
+] as const satisfies ReadonlyArray<RenewalMode>;
 
-/**
- * ReportStatus. Auto-generated enum for ReportStatus
- *
- * @remarks
- * This constant provides both object and array forms for the ReportStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = REPORT_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = REPORT_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ReportStatus} - The TypeScript type definition
- */
 export const REPORT_STATUS = {
   PENDING: "pending",
   GENERATING: "generating",
@@ -4737,103 +1587,23 @@ export const REPORT_STATUS = {
   FAILED: "failed",
 } as const satisfies Record<string, ReportStatus>;
 
-/**
- * Array of all ReportStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid ReportStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of REPORT_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = REPORT_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ReportStatus} - The TypeScript type definition
- * @see {@link REPORT_STATUS} - The object form of this enum
- */
 export const REPORT_STATUS_VALUES = [
   'pending',
   'generating',
   'completed',
-  'failed'
-] as const satisfies [string, ...string[]] | ReportStatus[];
+  'failed',
+] as const satisfies ReadonlyArray<ReportStatus>;
 
-/**
- * ReportTriggerType. Auto-generated enum for ReportTriggerType
- *
- * @remarks
- * This constant provides both object and array forms for the ReportTriggerType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = REPORT_TRIGGER_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = REPORT_TRIGGER_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ReportTriggerType} - The TypeScript type definition
- */
 export const REPORT_TRIGGER_TYPE = {
   ON_DEMAND: "on_demand",
   SCHEDULED: "scheduled",
 } as const satisfies Record<string, ReportTriggerType>;
 
-/**
- * Array of all ReportTriggerType enum values
- *
- * @remarks
- * This constant provides a array containing all valid ReportTriggerType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of REPORT_TRIGGER_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = REPORT_TRIGGER_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ReportTriggerType} - The TypeScript type definition
- * @see {@link REPORT_TRIGGER_TYPE} - The object form of this enum
- */
 export const REPORT_TRIGGER_TYPE_VALUES = [
   'on_demand',
-  'scheduled'
-] as const satisfies [string, ...string[]] | ReportTriggerType[];
+  'scheduled',
+] as const satisfies ReadonlyArray<ReportTriggerType>;
 
-/**
- * ReportType. Auto-generated enum for ReportType
- *
- * @remarks
- * This constant provides both object and array forms for the ReportType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = REPORT_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = REPORT_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ReportType} - The TypeScript type definition
- */
 export const REPORT_TYPE = {
   DOMAIN_INVENTORY: "domain_inventory",
   DNS_ZONE_SUMMARY: "dns_zone_summary",
@@ -4845,27 +1615,6 @@ export const REPORT_TYPE = {
   BILLING_TRANSACTIONS_MONTHLY: "billing_transactions_monthly",
 } as const satisfies Record<string, ReportType>;
 
-/**
- * Array of all ReportType enum values
- *
- * @remarks
- * This constant provides a array containing all valid ReportType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of REPORT_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = REPORT_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ReportType} - The TypeScript type definition
- * @see {@link REPORT_TYPE} - The object form of this enum
- */
 export const REPORT_TYPE_VALUES = [
   'domain_inventory',
   'dns_zone_summary',
@@ -4874,28 +1623,9 @@ export const REPORT_TYPE_VALUES = [
   'expiring_domains',
   'email_forwards',
   'billing_transactions',
-  'billing_transactions_monthly'
-] as const satisfies [string, ...string[]] | ReportType[];
+  'billing_transactions_monthly',
+] as const satisfies ReadonlyArray<ReportType>;
 
-/**
- * RequestHistorySortField. Auto-generated enum for RequestHistorySortField
- *
- * @remarks
- * This constant provides both object and array forms for the RequestHistorySortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = REQUEST_HISTORY_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = REQUEST_HISTORY_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link RequestHistorySortField} - The TypeScript type definition
- */
 export const REQUEST_HISTORY_SORT_FIELD = {
   METHOD: "method",
   PATH: "path",
@@ -4909,27 +1639,6 @@ export const REQUEST_HISTORY_SORT_FIELD = {
   REQUEST_COMPLETED_AT: "request_completed_at",
 } as const satisfies Record<string, RequestHistorySortField>;
 
-/**
- * Array of all RequestHistorySortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid RequestHistorySortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of REQUEST_HISTORY_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = REQUEST_HISTORY_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link RequestHistorySortField} - The TypeScript type definition
- * @see {@link REQUEST_HISTORY_SORT_FIELD} - The object form of this enum
- */
 export const REQUEST_HISTORY_SORT_FIELD_VALUES = [
   'method',
   'path',
@@ -4940,280 +1649,61 @@ export const REQUEST_HISTORY_SORT_FIELD_VALUES = [
   'performed_by_id',
   'created_on',
   'request_started_at',
-  'request_completed_at'
-] as const satisfies [string, ...string[]] | RequestHistorySortField[];
+  'request_completed_at',
+] as const satisfies ReadonlyArray<RequestHistorySortField>;
 
-/**
- * ReservedSourceType. Auto-generated enum for ReservedSourceType
- *
- * @remarks
- * This constant provides both object and array forms for the ReservedSourceType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = RESERVED_SOURCE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = RESERVED_SOURCE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ReservedSourceType} - The TypeScript type definition
- */
 export const RESERVED_SOURCE_TYPE = {
   API: "API",
   CSV: "CSV",
   MANUAL: "manual",
 } as const satisfies Record<string, ReservedSourceType>;
 
-/**
- * Array of all ReservedSourceType enum values
- *
- * @remarks
- * This constant provides a array containing all valid ReservedSourceType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of RESERVED_SOURCE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = RESERVED_SOURCE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ReservedSourceType} - The TypeScript type definition
- * @see {@link RESERVED_SOURCE_TYPE} - The object form of this enum
- */
 export const RESERVED_SOURCE_TYPE_VALUES = [
   'API',
   'CSV',
-  'manual'
-] as const satisfies [string, ...string[]] | ReservedSourceType[];
+  'manual',
+] as const satisfies ReadonlyArray<ReservedSourceType>;
 
-/**
- * SortOrder. Auto-generated enum for SortOrder
- *
- * @remarks
- * This constant provides both object and array forms for the SortOrder enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = SORT_ORDER.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = SORT_ORDER_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link SortOrder} - The TypeScript type definition
- */
 export const SORT_ORDER = {
   ASC: "asc",
   DESC: "desc",
 } as const satisfies Record<string, SortOrder>;
 
-/**
- * Array of all SortOrder enum values
- *
- * @remarks
- * This constant provides a array containing all valid SortOrder enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of SORT_ORDER_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = SORT_ORDER_VALUES.includes(someValue);
- * ```
- *
- * @see {@link SortOrder} - The TypeScript type definition
- * @see {@link SORT_ORDER} - The object form of this enum
- */
 export const SORT_ORDER_VALUES = [
   'asc',
-  'desc'
-] as const satisfies [string, ...string[]] | SortOrder[];
+  'desc',
+] as const satisfies ReadonlyArray<SortOrder>;
 
-/**
- * StatusTagType. Auto-generated enum for StatusTagType
- *
- * @remarks
- * This constant provides both object and array forms for the StatusTagType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = STATUS_TAG_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = STATUS_TAG_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link StatusTagType} - The TypeScript type definition
- */
 export const STATUS_TAG_TYPE = {
   VERIFICATION_REQUIRED: "VERIFICATION_REQUIRED",
 } as const satisfies Record<string, StatusTagType>;
 
-/**
- * Array of all StatusTagType enum values
- *
- * @remarks
- * This constant provides a array containing all valid StatusTagType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of STATUS_TAG_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = STATUS_TAG_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link StatusTagType} - The TypeScript type definition
- * @see {@link STATUS_TAG_TYPE} - The object form of this enum
- */
 export const STATUS_TAG_TYPE_VALUES = [
-  'VERIFICATION_REQUIRED'
-] as const satisfies [string, ...string[]] | StatusTagType[];
+  'VERIFICATION_REQUIRED',
+] as const satisfies ReadonlyArray<StatusTagType>;
 
-/**
- * SyncOperationType. Auto-generated enum for SyncOperationType
- *
- * @remarks
- * This constant provides both object and array forms for the SyncOperationType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = SYNC_OPERATION_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = SYNC_OPERATION_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link SyncOperationType} - The TypeScript type definition
- */
 export const SYNC_OPERATION_TYPE = {
   REGISTRATION: "registration",
   RENEWAL: "renewal",
   TRANSFER: "transfer",
 } as const satisfies Record<string, SyncOperationType>;
 
-/**
- * Array of all SyncOperationType enum values
- *
- * @remarks
- * This constant provides a array containing all valid SyncOperationType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of SYNC_OPERATION_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = SYNC_OPERATION_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link SyncOperationType} - The TypeScript type definition
- * @see {@link SYNC_OPERATION_TYPE} - The object form of this enum
- */
 export const SYNC_OPERATION_TYPE_VALUES = [
   'registration',
   'renewal',
-  'transfer'
-] as const satisfies [string, ...string[]] | SyncOperationType[];
+  'transfer',
+] as const satisfies ReadonlyArray<SyncOperationType>;
 
-/**
- * TLDType. Auto-generated enum for TLDType
- *
- * @remarks
- * This constant provides both object and array forms for the TLDType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = TLD_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = TLD_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link TLDType} - The TypeScript type definition
- */
 export const TLD_TYPE = {
   G_TLD: "gTLD",
   CC_TLD: "ccTLD",
 } as const satisfies Record<string, TLDType>;
 
-/**
- * Array of all TLDType enum values
- *
- * @remarks
- * This constant provides a array containing all valid TLDType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of TLD_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = TLD_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link TLDType} - The TypeScript type definition
- * @see {@link TLD_TYPE} - The object form of this enum
- */
 export const TLD_TYPE_VALUES = [
   'gTLD',
-  'ccTLD'
-] as const satisfies [string, ...string[]] | TLDType[];
+  'ccTLD',
+] as const satisfies ReadonlyArray<TLDType>;
 
-/**
- * TagColor. Auto-generated enum for TagColor
- *
- * @remarks
- * This constant provides both object and array forms for the TagColor enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = TAG_COLOR.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = TAG_COLOR_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link TagColor} - The TypeScript type definition
- */
 export const TAG_COLOR = {
   COLOR_1: "color-1",
   COLOR_2: "color-2",
@@ -5227,27 +1717,6 @@ export const TAG_COLOR = {
   COLOR_10: "color-10",
 } as const satisfies Record<string, TagColor>;
 
-/**
- * Array of all TagColor enum values
- *
- * @remarks
- * This constant provides a array containing all valid TagColor enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of TAG_COLOR_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = TAG_COLOR_VALUES.includes(someValue);
- * ```
- *
- * @see {@link TagColor} - The TypeScript type definition
- * @see {@link TAG_COLOR} - The object form of this enum
- */
 export const TAG_COLOR_VALUES = [
   'color-1',
   'color-2',
@@ -5258,182 +1727,43 @@ export const TAG_COLOR_VALUES = [
   'color-7',
   'color-8',
   'color-9',
-  'color-10'
-] as const satisfies [string, ...string[]] | TagColor[];
+  'color-10',
+] as const satisfies ReadonlyArray<TagColor>;
 
-/**
- * TagFilterMode. Auto-generated enum for TagFilterMode
- *
- * @remarks
- * This constant provides both object and array forms for the TagFilterMode enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = TAG_FILTER_MODE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = TAG_FILTER_MODE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link TagFilterMode} - The TypeScript type definition
- */
 export const TAG_FILTER_MODE = {
   MATCH_ANY: "match_any",
   MATCH_ALL: "match_all",
 } as const satisfies Record<string, TagFilterMode>;
 
-/**
- * Array of all TagFilterMode enum values
- *
- * @remarks
- * This constant provides a array containing all valid TagFilterMode enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of TAG_FILTER_MODE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = TAG_FILTER_MODE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link TagFilterMode} - The TypeScript type definition
- * @see {@link TAG_FILTER_MODE} - The object form of this enum
- */
 export const TAG_FILTER_MODE_VALUES = [
   'match_any',
-  'match_all'
-] as const satisfies [string, ...string[]] | TagFilterMode[];
+  'match_all',
+] as const satisfies ReadonlyArray<TagFilterMode>;
 
-/**
- * TagSortField. Auto-generated enum for TagSortField
- *
- * @remarks
- * This constant provides both object and array forms for the TagSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = TAG_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = TAG_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link TagSortField} - The TypeScript type definition
- */
 export const TAG_SORT_FIELD = {
   LABEL: "label",
   CREATED_ON: "created_on",
   UPDATED_ON: "updated_on",
 } as const satisfies Record<string, TagSortField>;
 
-/**
- * Array of all TagSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid TagSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of TAG_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = TAG_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link TagSortField} - The TypeScript type definition
- * @see {@link TAG_SORT_FIELD} - The object form of this enum
- */
 export const TAG_SORT_FIELD_VALUES = [
   'label',
   'created_on',
-  'updated_on'
-] as const satisfies [string, ...string[]] | TagSortField[];
+  'updated_on',
+] as const satisfies ReadonlyArray<TagSortField>;
 
-/**
- * TagType. Auto-generated enum for TagType
- *
- * @remarks
- * This constant provides both object and array forms for the TagType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = TAG_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = TAG_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link TagType} - The TypeScript type definition
- */
 export const TAG_TYPE = {
   DOMAIN: "DOMAIN",
   CONTACT: "CONTACT",
   ZONE: "ZONE",
 } as const satisfies Record<string, TagType>;
 
-/**
- * Array of all TagType enum values
- *
- * @remarks
- * This constant provides a array containing all valid TagType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of TAG_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = TAG_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link TagType} - The TypeScript type definition
- * @see {@link TAG_TYPE} - The object form of this enum
- */
 export const TAG_TYPE_VALUES = [
   'DOMAIN',
   'CONTACT',
-  'ZONE'
-] as const satisfies [string, ...string[]] | TagType[];
+  'ZONE',
+] as const satisfies ReadonlyArray<TagType>;
 
-/**
- * TimeRange. Auto-generated enum for TimeRange
- *
- * @remarks
- * This constant provides both object and array forms for the TimeRange enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = TIME_RANGE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = TIME_RANGE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link TimeRange} - The TypeScript type definition
- */
 export const TIME_RANGE = {
   "1H": "1h",
   "1D": "1d",
@@ -5442,54 +1772,14 @@ export const TIME_RANGE = {
   "1Y": "1y",
 } as const satisfies Record<string, TimeRange>;
 
-/**
- * Array of all TimeRange enum values
- *
- * @remarks
- * This constant provides a array containing all valid TimeRange enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of TIME_RANGE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = TIME_RANGE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link TimeRange} - The TypeScript type definition
- * @see {@link TIME_RANGE} - The object form of this enum
- */
 export const TIME_RANGE_VALUES = [
   '1h',
   '1d',
   '7d',
   '30d',
-  '1y'
-] as const satisfies [string, ...string[]] | TimeRange[];
+  '1y',
+] as const satisfies ReadonlyArray<TimeRange>;
 
-/**
- * TransferAckType. Auto-generated enum for TransferAckType
- *
- * @remarks
- * This constant provides both object and array forms for the TransferAckType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = TRANSFER_ACK_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = TRANSFER_ACK_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link TransferAckType} - The TypeScript type definition
- */
 export const TRANSFER_ACK_TYPE = {
   NONE: "none",
   REGISTRAR: "registrar",
@@ -5497,155 +1787,35 @@ export const TRANSFER_ACK_TYPE = {
   BOTH: "both",
 } as const satisfies Record<string, TransferAckType>;
 
-/**
- * Array of all TransferAckType enum values
- *
- * @remarks
- * This constant provides a array containing all valid TransferAckType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of TRANSFER_ACK_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = TRANSFER_ACK_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link TransferAckType} - The TypeScript type definition
- * @see {@link TRANSFER_ACK_TYPE} - The object form of this enum
- */
 export const TRANSFER_ACK_TYPE_VALUES = [
   'none',
   'registrar',
   'registrant',
-  'both'
-] as const satisfies [string, ...string[]] | TransferAckType[];
+  'both',
+] as const satisfies ReadonlyArray<TransferAckType>;
 
-/**
- * UserSortField. Auto-generated enum for UserSortField
- *
- * @remarks
- * This constant provides both object and array forms for the UserSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = USER_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = USER_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link UserSortField} - The TypeScript type definition
- */
 export const USER_SORT_FIELD = {
   CREATED_ON: "created_on",
   USERNAME: "username",
   EMAIL: "email",
 } as const satisfies Record<string, UserSortField>;
 
-/**
- * Array of all UserSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid UserSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of USER_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = USER_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link UserSortField} - The TypeScript type definition
- * @see {@link USER_SORT_FIELD} - The object form of this enum
- */
 export const USER_SORT_FIELD_VALUES = [
   'created_on',
   'username',
-  'email'
-] as const satisfies [string, ...string[]] | UserSortField[];
+  'email',
+] as const satisfies ReadonlyArray<UserSortField>;
 
-/**
- * UserStatus. Auto-generated enum for UserStatus
- *
- * @remarks
- * This constant provides both object and array forms for the UserStatus enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = USER_STATUS.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = USER_STATUS_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link UserStatus} - The TypeScript type definition
- */
 export const USER_STATUS = {
   ACTIVE: "active",
   INACTIVE: "inactive",
 } as const satisfies Record<string, UserStatus>;
 
-/**
- * Array of all UserStatus enum values
- *
- * @remarks
- * This constant provides a array containing all valid UserStatus enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of USER_STATUS_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = USER_STATUS_VALUES.includes(someValue);
- * ```
- *
- * @see {@link UserStatus} - The TypeScript type definition
- * @see {@link USER_STATUS} - The object form of this enum
- */
 export const USER_STATUS_VALUES = [
   'active',
-  'inactive'
-] as const satisfies [string, ...string[]] | UserStatus[];
+  'inactive',
+] as const satisfies ReadonlyArray<UserStatus>;
 
-/**
- * VerificationClaimType. Auto-generated enum for VerificationClaimType
- *
- * @remarks
- * This constant provides both object and array forms for the VerificationClaimType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = VERIFICATION_CLAIM_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = VERIFICATION_CLAIM_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link VerificationClaimType} - The TypeScript type definition
- */
 export const VERIFICATION_CLAIM_TYPE = {
   NAME: "name",
   ADDRESS: "address",
@@ -5653,201 +1823,41 @@ export const VERIFICATION_CLAIM_TYPE = {
   PHONE: "phone",
 } as const satisfies Record<string, VerificationClaimType>;
 
-/**
- * Array of all VerificationClaimType enum values
- *
- * @remarks
- * This constant provides a array containing all valid VerificationClaimType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of VERIFICATION_CLAIM_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = VERIFICATION_CLAIM_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link VerificationClaimType} - The TypeScript type definition
- * @see {@link VERIFICATION_CLAIM_TYPE} - The object form of this enum
- */
 export const VERIFICATION_CLAIM_TYPE_VALUES = [
   'name',
   'address',
   'email',
-  'phone'
-] as const satisfies [string, ...string[]] | VerificationClaimType[];
+  'phone',
+] as const satisfies ReadonlyArray<VerificationClaimType>;
 
-/**
- * VerificationDeadlineType. Auto-generated enum for VerificationDeadlineType
- *
- * @remarks
- * This constant provides both object and array forms for the VerificationDeadlineType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = VERIFICATION_DEADLINE_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = VERIFICATION_DEADLINE_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link VerificationDeadlineType} - The TypeScript type definition
- */
 export const VERIFICATION_DEADLINE_TYPE = {
   DEDELEGATION: "dedelegation",
   DELETION: "deletion",
 } as const satisfies Record<string, VerificationDeadlineType>;
 
-/**
- * Array of all VerificationDeadlineType enum values
- *
- * @remarks
- * This constant provides a array containing all valid VerificationDeadlineType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of VERIFICATION_DEADLINE_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = VERIFICATION_DEADLINE_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link VerificationDeadlineType} - The TypeScript type definition
- * @see {@link VERIFICATION_DEADLINE_TYPE} - The object form of this enum
- */
 export const VERIFICATION_DEADLINE_TYPE_VALUES = [
   'dedelegation',
-  'deletion'
-] as const satisfies [string, ...string[]] | VerificationDeadlineType[];
+  'deletion',
+] as const satisfies ReadonlyArray<VerificationDeadlineType>;
 
-/**
- * VerificationType. Auto-generated enum for VerificationType
- *
- * @remarks
- * This constant provides both object and array forms for the VerificationType enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = VERIFICATION_TYPE.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = VERIFICATION_TYPE_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link VerificationType} - The TypeScript type definition
- */
 export const VERIFICATION_TYPE = {
   API: "api",
   EMAIL: "email",
 } as const satisfies Record<string, VerificationType>;
 
-/**
- * Array of all VerificationType enum values
- *
- * @remarks
- * This constant provides a array containing all valid VerificationType enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of VERIFICATION_TYPE_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = VERIFICATION_TYPE_VALUES.includes(someValue);
- * ```
- *
- * @see {@link VerificationType} - The TypeScript type definition
- * @see {@link VERIFICATION_TYPE} - The object form of this enum
- */
 export const VERIFICATION_TYPE_VALUES = [
   'api',
-  'email'
-] as const satisfies [string, ...string[]] | VerificationType[];
+  'email',
+] as const satisfies ReadonlyArray<VerificationType>;
 
-/**
- * ZoneIncludeField. Auto-generated enum for ZoneIncludeField
- *
- * @remarks
- * This constant provides both object and array forms for the ZoneIncludeField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = ZONE_INCLUDE_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = ZONE_INCLUDE_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ZoneIncludeField} - The TypeScript type definition
- */
 export const ZONE_INCLUDE_FIELD = {
   TAGS: "tags",
 } as const satisfies Record<string, ZoneIncludeField>;
 
-/**
- * Array of all ZoneIncludeField enum values
- *
- * @remarks
- * This constant provides a array containing all valid ZoneIncludeField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of ZONE_INCLUDE_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = ZONE_INCLUDE_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ZoneIncludeField} - The TypeScript type definition
- * @see {@link ZONE_INCLUDE_FIELD} - The object form of this enum
- */
 export const ZONE_INCLUDE_FIELD_VALUES = [
-  'tags'
-] as const satisfies [string, ...string[]] | ZoneIncludeField[];
+  'tags',
+] as const satisfies ReadonlyArray<ZoneIncludeField>;
 
-/**
- * ZoneSortField. Auto-generated enum for ZoneSortField
- *
- * @remarks
- * This constant provides both object and array forms for the ZoneSortField enum.
- * The object form allows key-value access, while the array form enables iteration and validation.
- *
- * @example
- * ```typescript
- * // Using the object form for key-value access
- * const status = ZONE_SORT_FIELD.SUCCESS;
- * 
- * // Using the array form for iteration
- * const allStatuses = ZONE_SORT_FIELD_VALUES;
- * console.log(`Available statuses: ${allStatuses.join(', ')}`);
- * ```
- *
- * @see {@link ZoneSortField} - The TypeScript type definition
- */
 export const ZONE_SORT_FIELD = {
   NAME: "name",
   CREATED_ON: "created_on",
@@ -5855,31 +1865,9 @@ export const ZONE_SORT_FIELD = {
   DNSSEC_STATUS: "dnssec_status",
 } as const satisfies Record<string, ZoneSortField>;
 
-/**
- * Array of all ZoneSortField enum values
- *
- * @remarks
- * This constant provides a array containing all valid ZoneSortField enum values.
- * Useful for iteration, validation, and generating dynamic UI components.
- *
- * @example
- * ```typescript
- * // Iterating through all values
- * for (const value of ZONE_SORT_FIELD_VALUES) {
- *   console.log(`Processing: ${value}`);
- * }
- * 
- * // Validation
- * const isValid = ZONE_SORT_FIELD_VALUES.includes(someValue);
- * ```
- *
- * @see {@link ZoneSortField} - The TypeScript type definition
- * @see {@link ZONE_SORT_FIELD} - The object form of this enum
- */
 export const ZONE_SORT_FIELD_VALUES = [
   'name',
   'created_on',
   'updated_on',
-  'dnssec_status'
-] as const satisfies [string, ...string[]] | ZoneSortField[];
-
+  'dnssec_status',
+] as const satisfies ReadonlyArray<ZoneSortField>;
