@@ -4859,11 +4859,13 @@ components:
           description: Additional attributes of the domain
           title: Attributes
         auth_code:
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
           description: The auth code for the domain
-          maxLength: 32
-          minLength: 6
           title: Auth Code
-          type: string
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
@@ -4906,7 +4908,6 @@ components:
       - name
       - contacts
       - renewal_mode
-      - auth_code
       title: DomainTransferIn
       type: object
     DomainTransferPayloadData:
@@ -4922,11 +4923,13 @@ components:
           description: Additional attributes of the domain
           title: Attributes
         auth_code:
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
           description: The auth code for the domain
-          maxLength: 32
-          minLength: 6
           title: Auth Code
-          type: string
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
@@ -4969,7 +4972,6 @@ components:
       - name
       - contacts
       - renewal_mode
-      - auth_code
       title: DomainTransferPayloadData
       type: object
     DomainTransferWorkerPayload:
@@ -11596,7 +11598,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-04-192653
+  version: 2026-06-05-190914
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

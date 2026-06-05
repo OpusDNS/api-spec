@@ -5669,7 +5669,7 @@ export interface components {
              * Auth Code
              * @description The auth code for the domain
              */
-            auth_code: string;
+            auth_code?: string | null;
             /**
              * Contacts
              * @description The contacts of the domain
@@ -5714,7 +5714,7 @@ export interface components {
              * Auth Code
              * @description The auth code for the domain
              */
-            auth_code: string;
+            auth_code?: string | null;
             /**
              * Contacts
              * @description The contacts of the domain
