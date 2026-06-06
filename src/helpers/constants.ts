@@ -1259,6 +1259,7 @@ export const PERMISSION = {
   BULK_UPDATE: "bulk_update",
   CORPORATE_PLAN: "corporate_plan",
   CREATE: "create",
+  CREATE_VANITY_NS: "create_vanity_ns",
   DELETE: "delete",
   DELETE_DOMAIN_FORWARDS: "delete_domain_forwards",
   ENTERPRISE_PLAN: "enterprise_plan",
@@ -1284,6 +1285,7 @@ export const PERMISSION = {
   MANAGE_TAGS: "manage_tags",
   MANAGE_USERS: "manage_users",
   MANAGE_USER_RELATIONS: "manage_user_relations",
+  MANAGE_VANITY_NS: "manage_vanity_ns",
   PLAN_MANAGER: "plan_manager",
   PREMIUM_PLAN: "premium_plan",
   RENEW_EXPIRE: "renew_expire",
@@ -1298,6 +1300,7 @@ export const PERMISSION = {
   VIEW_EMAIL_FORWARDS: "view_email_forwards",
   VIEW_EVENTS: "view_events",
   VIEW_PARKING: "view_parking",
+  VIEW_VANITY_NS: "view_vanity_ns",
 } as const satisfies Record<string, Permission>;
 
 export const PERMISSION_VALUES = [
@@ -1308,6 +1311,7 @@ export const PERMISSION_VALUES = [
   'bulk_update',
   'corporate_plan',
   'create',
+  'create_vanity_ns',
   'delete',
   'delete_domain_forwards',
   'enterprise_plan',
@@ -1333,6 +1337,7 @@ export const PERMISSION_VALUES = [
   'manage_tags',
   'manage_users',
   'manage_user_relations',
+  'manage_vanity_ns',
   'plan_manager',
   'premium_plan',
   'renew_expire',
@@ -1347,6 +1352,7 @@ export const PERMISSION_VALUES = [
   'view_email_forwards',
   'view_events',
   'view_parking',
+  'view_vanity_ns',
 ] as const satisfies ReadonlyArray<Permission>;
 
 export const POST_TRANSFER_REQUIREMENTS = {
