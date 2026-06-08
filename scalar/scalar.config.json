@@ -596,7 +596,6 @@
               "/nl": {
                 "type": "page",
                 "title": "\ud83c\uddf3\ud83c\uddf1 .nl",
-                "icon": "line/travel-map-earth-globe",
                 "filepath": "content/tld-knowledge-base/nl.md",
                 "showInSidebar": true
               }
