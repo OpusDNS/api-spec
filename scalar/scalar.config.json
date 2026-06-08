@@ -588,12 +588,25 @@
         "title": "TLD Knowledge Base",
         "icon": "line/travel-map-earth-globe",
         "children": {
-          "/nl": {
-            "type": "page",
-            "title": ".nl",
+          "/cctlds": {
+            "type": "group",
+            "title": "ccTLDs",
             "icon": "line/travel-map-earth-globe",
-            "filepath": "content/tld-knowledge-base/nl.md",
-            "showInSidebar": true
+            "children": {
+              "/nl": {
+                "type": "page",
+                "title": "\ud83c\uddf3\ud83c\uddf1 .nl",
+                "icon": "line/travel-map-earth-globe",
+                "filepath": "content/tld-knowledge-base/nl.md",
+                "showInSidebar": true
+              }
+            }
+          },
+          "/gtlds": {
+            "type": "group",
+            "title": "gTLDs",
+            "icon": "line/travel-map-earth-globe",
+            "children": {}
           }
         }
       }
