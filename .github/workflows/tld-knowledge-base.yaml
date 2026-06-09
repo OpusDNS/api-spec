@@ -35,6 +35,7 @@ jobs:
         with:
           repository: OpusDNS/tld-specifications
           path: tld-specifications
+          ssh-key: ${{ secrets.TLD_SPECS_DEPLOY_KEY }}
           ref: >-
             ${{ github.event.inputs.tld_specifications_ref
                 || github.event.client_payload.ref
