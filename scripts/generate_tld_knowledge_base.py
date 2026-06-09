@@ -88,6 +88,38 @@ def load_specs(
     return specs
 
 
+NOTES_DIRNAME = "_notes"
+DEFAULT_NOTES_NAME = "_default.md"
+
+
+def load_notes(output_dir: Path, slug: str) -> str:
+    """Return the trailing notes block for a TLD, or "".
+
+    Looks for a per-TLD ``_notes/<slug>.md`` and falls back to
+    ``_notes/_default.md``. A file counts as present only when it has
+    non-whitespace content; an existing-but-blank per-TLD file is treated as a
+    mistake (it warns and falls back to the default) rather than silently
+    suppressing notes. The returned text is normalised so it always starts on
+    its own blank line and ends with a single trailing newline, keeping page
+    output idempotent regardless of the source file's surrounding whitespace.
+    """
+    notes_dir = output_dir / NOTES_DIRNAME
+    per_tld = notes_dir / f"{slug}.md"
+    for candidate in (per_tld, notes_dir / DEFAULT_NOTES_NAME):
+        if not candidate.exists():
+            continue
+        raw = candidate.read_text(encoding="utf-8")
+        if raw.strip():
+            return f"\n{raw.strip(chr(10))}\n"
+        if candidate == per_tld:
+            print(
+                f"::warning::{candidate} exists but is empty; "
+                f"falling back to {DEFAULT_NOTES_NAME}",
+                file=sys.stderr,
+            )
+    return ""
+
+
 def write_pages(
     specs: Iterable[tuple[Path, dict]],
     output_dir: Path,
@@ -102,7 +134,7 @@ def write_pages(
             continue
         category = render.page_category(spec)
         title = render.page_title(spec)
-        markdown = render.render(spec)
+        markdown = render.render(spec) + load_notes(output_dir, slug)
         target = output_dir / category / f"{slug}.md"
         if dry_run:
             print(f"[dry-run] would write {target.relative_to(output_dir.parent)}")
@@ -144,6 +176,13 @@ def main(argv: list[str] | None = None) -> int:
     if not specs:
         print("No matching compiled spec files found.", file=sys.stderr)
         return 1
+
+    if not (args.output / NOTES_DIRNAME / DEFAULT_NOTES_NAME).exists():
+        print(
+            f"::warning::{args.output / NOTES_DIRNAME / DEFAULT_NOTES_NAME} not found; "
+            "pages without their own _notes file will have no closing notes section",
+            file=sys.stderr,
+        )
 
     entries = write_pages(specs, args.output, dry_run=args.dry_run)
     keep = {(category, slug) for category, slug, _ in entries}

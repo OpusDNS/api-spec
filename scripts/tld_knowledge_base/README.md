@@ -22,9 +22,27 @@ Generated content lives in:
 
 ```
 scalar/content/tld-knowledge-base/
-├── cctlds/<tld>.md   # country-code TLDs
-└── gtlds/<tld>.md    # generic TLDs
+├── cctlds/<tld>.md   # country-code TLDs (generated)
+├── gtlds/<tld>.md    # generic TLDs (generated)
+└── _notes/           # hand-authored, appended to each page (not generated)
+    ├── _default.md   # used when a TLD has no notes file of its own
+    └── <tld>.md      # per-TLD override (e.g. ca.md)
 ```
+
+## Notes (the closing section of each page)
+
+The generated tables are spec-derived and overwritten on every run, so they are
+not the place for prose. Instead, each page's closing section is sourced from a
+hand-authored Markdown file under `_notes/` and appended verbatim during
+generation:
+
+- `_notes/<tld>.md` if it exists, otherwise `_notes/_default.md`.
+- Files in `_notes/` are inputs — they are never pruned or regenerated, and they
+  are not registered as Scalar routes, so they only ever appear *inside* the TLD
+  page they are merged into.
+- Author whatever `##` sections you like (e.g. `ca.md` documents the
+  `CIRA_CPR` Canadian Presence Requirement legal types). A per-TLD file fully
+  replaces the default — it does not stack on top of it.
 
 ## Local usage
 
