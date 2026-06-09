@@ -48,7 +48,7 @@
 | Property | Value |
 | --- | --- |
 | Domain Length | 1–63 characters |
-| IDN Support | ✅ Yes |
+| IDN Support | ✅ Yes (1 tables) |
 | Premium Domains | ❌ No |
 | Reserved Domains | ❌ No |
 | Registry Lock | ✅ Yes |
