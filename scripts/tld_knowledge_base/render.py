@@ -66,9 +66,12 @@ def page_title(spec: dict[str, Any]) -> str:
 
 def _country_code(info: TLDInfo) -> str:
     """Best-available ISO-3166-1 alpha-2 country code for a ccTLD."""
+    code = countries.tld_to_country_code(info.name)
+    if code:
+        return code
     if info.registry_country and countries.country_name(info.registry_country):
         return info.registry_country
-    return countries.tld_to_country_code(info.name)
+    return ""
 
 
 def _icon_for(info: TLDInfo) -> str:

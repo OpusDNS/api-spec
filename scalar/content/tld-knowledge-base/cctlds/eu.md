@@ -1,4 +1,4 @@
-# 🇧🇪 .eu — Belgium
+# 🇪🇺 .eu — European Union
 
 > The **.eu** is a country-code top-level domain (ccTLD) operated by EURid vzw/asbl. This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 

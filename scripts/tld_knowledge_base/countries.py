@@ -124,6 +124,7 @@ COUNTRY_NAMES: dict[str, str] = {
     "PH": "Philippines",
     "PK": "Pakistan",
     "PL": "Poland",
+    "PM": "Saint Pierre and Miquelon",
     "PR": "Puerto Rico",
     "PT": "Portugal",
     "PW": "Palau",
