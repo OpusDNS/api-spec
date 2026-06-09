@@ -7,3 +7,6 @@ openapi.yaml
 .scalar/
 scalar/.scalar/
 .idea
+# Python build artefacts (TLD knowledge base generator)
+__pycache__/
+*.py[cod]
