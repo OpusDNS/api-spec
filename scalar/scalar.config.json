@@ -595,13 +595,13 @@
             "children": {
               "/ag": {
                 "type": "page",
-                "title": "🇺🇸 .ag",
+                "title": "🇦🇬 .ag",
                 "filepath": "content/tld-knowledge-base/cctlds/ag.md",
                 "showInSidebar": true
               },
               "/ai": {
                 "type": "page",
-                "title": "🇺🇸 .ai",
+                "title": "🇦🇮 .ai",
                 "filepath": "content/tld-knowledge-base/cctlds/ai.md",
                 "showInSidebar": true
               },
@@ -619,7 +619,7 @@
               },
               "/bz": {
                 "type": "page",
-                "title": "🇺🇸 .bz",
+                "title": "🇧🇿 .bz",
                 "filepath": "content/tld-knowledge-base/cctlds/bz.md",
                 "showInSidebar": true
               },
@@ -631,7 +631,7 @@
               },
               "/cc": {
                 "type": "page",
-                "title": "🇦🇺 .cc",
+                "title": "🇨🇨 .cc",
                 "filepath": "content/tld-knowledge-base/cctlds/cc.md",
                 "showInSidebar": true
               },
@@ -643,19 +643,19 @@
               },
               "/co": {
                 "type": "page",
-                "title": "🇬🇧 .co",
+                "title": "🇨🇴 .co",
                 "filepath": "content/tld-knowledge-base/cctlds/co.md",
                 "showInSidebar": true
               },
               "/com.de": {
                 "type": "page",
-                "title": "🇬🇧 .com.de",
+                "title": "🇩🇪 .com.de",
                 "filepath": "content/tld-knowledge-base/cctlds/com.de.md",
                 "showInSidebar": true
               },
               "/com.se": {
                 "type": "page",
-                "title": "🇬🇧 .com.se",
+                "title": "🇸🇪 .com.se",
                 "filepath": "content/tld-knowledge-base/cctlds/com.se.md",
                 "showInSidebar": true
               },
@@ -679,7 +679,7 @@
               },
               "/eu": {
                 "type": "page",
-                "title": "🇧🇪 .eu",
+                "title": "🇪🇺 .eu",
                 "filepath": "content/tld-knowledge-base/cctlds/eu.md",
                 "showInSidebar": true
               },
@@ -691,7 +691,7 @@
               },
               "/io": {
                 "type": "page",
-                "title": "🇺🇸 .io",
+                "title": "🇮🇴 .io",
                 "filepath": "content/tld-knowledge-base/cctlds/io.md",
                 "showInSidebar": true
               },
@@ -703,13 +703,13 @@
               },
               "/lc": {
                 "type": "page",
-                "title": "🇺🇸 .lc",
+                "title": "🇱🇨 .lc",
                 "filepath": "content/tld-knowledge-base/cctlds/lc.md",
                 "showInSidebar": true
               },
               "/li": {
                 "type": "page",
-                "title": "🇨🇭 .li",
+                "title": "🇱🇮 .li",
                 "filepath": "content/tld-knowledge-base/cctlds/li.md",
                 "showInSidebar": true
               },
@@ -727,13 +727,13 @@
               },
               "/me": {
                 "type": "page",
-                "title": "🇺🇸 .me",
+                "title": "🇲🇪 .me",
                 "filepath": "content/tld-knowledge-base/cctlds/me.md",
                 "showInSidebar": true
               },
               "/mn": {
                 "type": "page",
-                "title": "🇺🇸 .mn",
+                "title": "🇲🇳 .mn",
                 "filepath": "content/tld-knowledge-base/cctlds/mn.md",
                 "showInSidebar": true
               },
@@ -757,13 +757,13 @@
               },
               "/pr": {
                 "type": "page",
-                "title": "🇺🇸 .pr",
+                "title": "🇵🇷 .pr",
                 "filepath": "content/tld-knowledge-base/cctlds/pr.md",
                 "showInSidebar": true
               },
               "/re": {
                 "type": "page",
-                "title": "🇫🇷 .re",
+                "title": "🇷🇪 .re",
                 "filepath": "content/tld-knowledge-base/cctlds/re.md",
                 "showInSidebar": true
               },
@@ -775,13 +775,13 @@
               },
               "/sc": {
                 "type": "page",
-                "title": "🇺🇸 .sc",
+                "title": "🇸🇨 .sc",
                 "filepath": "content/tld-knowledge-base/cctlds/sc.md",
                 "showInSidebar": true
               },
               "/tf": {
                 "type": "page",
-                "title": "🇫🇷 .tf",
+                "title": "🇹🇫 .tf",
                 "filepath": "content/tld-knowledge-base/cctlds/tf.md",
                 "showInSidebar": true
               },
@@ -789,6 +789,12 @@
                 "type": "page",
                 "title": "🇹🇻 .tv",
                 "filepath": "content/tld-knowledge-base/cctlds/tv.md",
+                "showInSidebar": true
+              },
+              "/ua": {
+                "type": "page",
+                "title": "🇺🇦 .ua",
+                "filepath": "content/tld-knowledge-base/cctlds/ua.md",
                 "showInSidebar": true
               },
               "/uk": {
@@ -805,7 +811,7 @@
               },
               "/vc": {
                 "type": "page",
-                "title": "🇺🇸 .vc",
+                "title": "🇻🇨 .vc",
                 "filepath": "content/tld-knowledge-base/cctlds/vc.md",
                 "showInSidebar": true
               },
@@ -817,13 +823,13 @@
               },
               "/wf": {
                 "type": "page",
-                "title": "🇫🇷 .wf",
+                "title": "🇼🇫 .wf",
                 "filepath": "content/tld-knowledge-base/cctlds/wf.md",
                 "showInSidebar": true
               },
               "/yt": {
                 "type": "page",
-                "title": "🇫🇷 .yt",
+                "title": "🇾🇹 .yt",
                 "filepath": "content/tld-knowledge-base/cctlds/yt.md",
                 "showInSidebar": true
               }
