@@ -164,7 +164,6 @@ COUNTRY_NAMES: dict[str, str] = {
     "TZ": "Tanzania",
     "UA": "Ukraine",
     "UG": "Uganda",
-    "UK": "United Kingdom",
     "US": "United States",
     "UY": "Uruguay",
     "UZ": "Uzbekistan",

@@ -613,7 +613,7 @@
               },
               "/uk": {
                 "type": "page",
-                "title": "🇺🇰 .uk",
+                "title": "🇬🇧 .uk",
                 "filepath": "content/tld-knowledge-base/cctlds/uk.md",
                 "showInSidebar": true
               }

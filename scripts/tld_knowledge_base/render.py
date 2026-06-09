@@ -21,16 +21,20 @@ class TLDInfo:
     name: str  # bare TLD label, e.g. "nl"
     type: str  # "gTLD" | "ccTLD" | ...
     registry: str
+    registry_country: str  # ISO-3166-1 alpha-2 from registry.address.country
 
 
 def _tld_info(spec: dict[str, Any]) -> TLDInfo:
     config = spec.get("tld_configuration", {}) or {}
     tlds = config.get("tlds") or []
     first = tlds[0] if tlds else {}
+    registry = config.get("registry") or {}
+    address = registry.get("address") or {}
     return TLDInfo(
         name=str(first.get("name", "") or "").lower(),
         type=str(first.get("type", "") or ""),
-        registry=str((config.get("registry") or {}).get("name", "") or ""),
+        registry=str(registry.get("name", "") or ""),
+        registry_country=str(address.get("country", "") or "").upper(),
     )
 
 
@@ -60,9 +64,16 @@ def page_title(spec: dict[str, Any]) -> str:
 # ---------------------------------------------------------------------------
 
 
+def _country_code(info: TLDInfo) -> str:
+    """Best-available ISO-3166-1 alpha-2 country code for a ccTLD."""
+    if info.registry_country and countries.country_name(info.registry_country):
+        return info.registry_country
+    return countries.tld_to_country_code(info.name)
+
+
 def _icon_for(info: TLDInfo) -> str:
     if info.type.lower() == "cctld":
-        code = countries.tld_to_country_code(info.name)
+        code = _country_code(info)
         if code:
             flag = countries.flag_emoji(code)
             if flag:
@@ -73,7 +84,7 @@ def _icon_for(info: TLDInfo) -> str:
 def _heading_country(info: TLDInfo) -> str:
     """Suffix appended to the H1: country name (ccTLD) or registry (gTLD)."""
     if info.type.lower() == "cctld":
-        return countries.country_name(countries.tld_to_country_code(info.name))
+        return countries.country_name(_country_code(info))
     return info.registry
 
 
