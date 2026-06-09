@@ -388,31 +388,6 @@ def _local_presence(config: dict[str, Any]) -> list[str]:
     return _section("Local Presence", rows)
 
 
-def _implementation_notes(config: dict[str, Any]) -> list[str]:
-    dns = config.get("dns_configuration") or {}
-    transfer = config.get("transfer_policies") or {}
-    info_type = (_first(config.get("tlds")) or {}).get("type", "").lower()
-
-    notes: list[str] = ["- Ensure complete TLS/SSL configuration in all environments."]
-
-    if dns.get("dnssec_mandatory"):
-        notes.append("- DNSSEC is mandatory and must be configured at registration time.")
-    elif dns.get("dnssec_allowed"):
-        notes.append("- DNSSEC should be actively used when supported.")
-
-    min_len = transfer.get("authinfo_min_length")
-    if min_len:
-        notes.append(f"- AuthInfo must meet minimum requirements (≥ {min_len} characters).")
-
-    if info_type == "cctld":
-        notes.append("- Note different status codes or dispute policies for ccTLDs.")
-        notes.append(
-            "- Check if third-level structures (`co.uk`, etc.) need separate documentation."
-        )
-
-    return ["## Implementation Notes", "", *notes, ""]
-
-
 # ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
@@ -438,7 +413,6 @@ def render(spec: dict[str, Any]) -> str:
     lines.extend(_whois_and_rdap(config))
     lines.extend(_dispute_resolution(config))
     lines.extend(_local_presence(config))
-    lines.extend(_implementation_notes(config))
 
     # Normalise: collapse trailing blank lines and ensure a single newline EOF.
     while lines and lines[-1] == "":

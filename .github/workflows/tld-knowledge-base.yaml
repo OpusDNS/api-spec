@@ -12,6 +12,14 @@ on:
         default: main
   repository_dispatch:
     types: [tld_specifications_updated]
+  push:
+    branches: [main]
+    # Regenerate when the api-spec inputs to generation change (notes files or
+    # the generator itself). Spec changes are covered by repository_dispatch.
+    paths:
+      - 'scalar/content/tld-knowledge-base/_notes/**'
+      - 'scripts/tld_knowledge_base/**'
+      - 'scripts/generate_tld_knowledge_base.py'
   schedule:
     - cron: "0 5 * * 1"  # weekly safety net (Mondays 05:00 UTC)
 
