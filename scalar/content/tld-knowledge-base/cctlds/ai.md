@@ -1,4 +1,4 @@
-# 🇺🇸 .ai — United States
+# 🇦🇮 .ai — Anguilla
 
 > The **.ai** is a country-code top-level domain (ccTLD) operated by Identity Digital Inc.. This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 

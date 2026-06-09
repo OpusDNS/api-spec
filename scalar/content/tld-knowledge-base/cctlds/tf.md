@@ -1,4 +1,4 @@
-# 🇫🇷 .tf — France
+# 🇹🇫 .tf — French Southern Territories
 
 > The **.tf** is a country-code top-level domain (ccTLD) operated by AFNIC (Association Française pour le Nommage Internet en Coopération). This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 

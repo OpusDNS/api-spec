@@ -1,4 +1,4 @@
-# 🇨🇭 .li — Switzerland
+# 🇱🇮 .li — Liechtenstein
 
 > The **.li** is a country-code top-level domain (ccTLD) operated by Switch. This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 

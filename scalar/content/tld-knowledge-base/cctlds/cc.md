@@ -1,4 +1,4 @@
-# 🇦🇺 .cc — Australia
+# 🇨🇨 .cc — Cocos (Keeling) Islands
 
 > The **.cc** is a country-code top-level domain (ccTLD) operated by eNIC Cocos (Keeling) Islands Pty.. This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 
