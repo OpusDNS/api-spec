@@ -791,12 +791,6 @@
                 "filepath": "content/tld-knowledge-base/cctlds/tv.md",
                 "showInSidebar": true
               },
-              "/ua": {
-                "type": "page",
-                "title": "🇺🇦 .ua",
-                "filepath": "content/tld-knowledge-base/cctlds/ua.md",
-                "showInSidebar": true
-              },
               "/uk": {
                 "type": "page",
                 "title": "🇬🇧 .uk",
