@@ -21,8 +21,16 @@
     },
     "head": {
       "title": "OpusDNS API Docs",
-      "styles": [{ "path": "content/assets/theme.css" }],
-      "scripts": [{ "path": "content/assets/title.js" }],
+      "styles": [
+        {
+          "path": "content/assets/theme.css"
+        }
+      ],
+      "scripts": [
+        {
+          "path": "content/assets/title.js"
+        }
+      ],
       "links": [
         {
           "rel": "icon",
@@ -95,6 +103,12 @@
         "title": "Changelog",
         "icon": "phosphor/regular/clock-counter-clockwise",
         "to": "/changelog",
+        "newTab": false
+      },
+      {
+        "title": "TLD Knowledge Base",
+        "icon": "line/travel-map-earth-globe",
+        "to": "/tld-knowledge-base",
         "newTab": false
       }
     ],
@@ -568,6 +582,32 @@
         "mode": "nested",
         "singlePage": true,
         "showInSidebar": true
+      },
+      "/tld-knowledge-base": {
+        "type": "group",
+        "title": "TLD Knowledge Base",
+        "icon": "line/travel-map-earth-globe",
+        "children": {
+          "/cctlds": {
+            "type": "group",
+            "title": "ccTLDs",
+            "icon": "line/travel-map-earth-globe",
+            "children": {
+              "/nl": {
+                "type": "page",
+                "title": "\ud83c\uddf3\ud83c\uddf1 .nl",
+                "filepath": "content/tld-knowledge-base/nl.md",
+                "showInSidebar": true
+              }
+            }
+          },
+          "/gtlds": {
+            "type": "group",
+            "title": "gTLDs",
+            "icon": "line/travel-map-earth-globe",
+            "children": {}
+          }
+        }
       }
     }
   }
