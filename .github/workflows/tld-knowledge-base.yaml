@@ -28,10 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout api-spec
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Checkout tld-specifications
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: OpusDNS/tld-specifications
           path: tld-specifications
@@ -42,7 +42,7 @@ jobs:
                 || 'main' }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
@@ -75,7 +75,7 @@ jobs:
 
       - name: Open pull request
         if: steps.diff.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           add-paths: |
             scalar/content/tld-knowledge-base/**

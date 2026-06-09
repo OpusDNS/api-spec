@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download OpenAPI Spec
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v11
         with:
           workflow: generate-openapi-spec.yaml
           repo: OpusDNS/opusdns-api
@@ -29,7 +29,7 @@ jobs:
           github_token: ${{secrets.GH_PAT_OPENAPI_OPUSDNS_API}}
 
       - name: Get current OpenAPI version
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@v4
         id: currentOpenApiVersion
         with:
           cmd: yq '.info.version' src/openapi.yaml
@@ -46,7 +46,7 @@ jobs:
         run: |
           mv openapi-ignore-version.yaml src/openapi.yaml
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           registry-url: 'https://registry.npmjs.org/'
