@@ -593,10 +593,28 @@
             "title": "ccTLDs",
             "icon": "line/travel-map-earth-globe",
             "children": {
+              "/at": {
+                "type": "page",
+                "title": "🇦🇹 .at",
+                "filepath": "content/tld-knowledge-base/cctlds/at.md",
+                "showInSidebar": true
+              },
+              "/de": {
+                "type": "page",
+                "title": "🇩🇪 .de",
+                "filepath": "content/tld-knowledge-base/cctlds/de.md",
+                "showInSidebar": true
+              },
               "/nl": {
                 "type": "page",
-                "title": "\ud83c\uddf3\ud83c\uddf1 .nl",
-                "filepath": "content/tld-knowledge-base/nl.md",
+                "title": "🇳🇱 .nl",
+                "filepath": "content/tld-knowledge-base/cctlds/nl.md",
+                "showInSidebar": true
+              },
+              "/uk": {
+                "type": "page",
+                "title": "🇬🇧 .uk",
+                "filepath": "content/tld-knowledge-base/cctlds/uk.md",
                 "showInSidebar": true
               }
             }
@@ -605,7 +623,20 @@
             "type": "group",
             "title": "gTLDs",
             "icon": "line/travel-map-earth-globe",
-            "children": {}
+            "children": {
+              "/academy": {
+                "type": "page",
+                "title": "🌐 .academy",
+                "filepath": "content/tld-knowledge-base/gtlds/academy.md",
+                "showInSidebar": true
+              },
+              "/berlin": {
+                "type": "page",
+                "title": "🌐 .berlin",
+                "filepath": "content/tld-knowledge-base/gtlds/berlin.md",
+                "showInSidebar": true
+              }
+            }
           }
         }
       }
