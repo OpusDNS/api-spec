@@ -73,6 +73,18 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Rebase on latest main
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          # Avoid pushing a bot branch whose base lags behind origin/main,
+          # which would otherwise look like the bot is reverting unrelated
+          # commits (e.g. workflow file updates) and be rejected by GitHub.
+          git fetch origin main
+          git stash push --include-untracked -- \
+            scalar/content/tld-knowledge-base scalar/scalar.config.json
+          git reset --hard origin/main
+          git stash pop
+
       - name: Open pull request
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
