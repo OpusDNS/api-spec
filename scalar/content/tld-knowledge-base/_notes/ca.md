@@ -5,7 +5,7 @@
 | Attribute | Type | Required | Applies to | Allowed values |
 | --- | --- | --- | --- | --- |
 | `CIRA_CPR` | Enum | ✅ Required | Domain Owner | Any code in the table below |
-| `CIRA_CPR` | Enum | ❌ Optional | Administrator | `CCT`, `RES`, `LGR`, `ABO` |
+| `CIRA_CPR` | Enum | ➖ Optional | Administrator | `CCT`, `RES`, `LGR`, `ABO` |
 
 CIRA requires the administrator contact to be an **individual**, so its optional `CIRA_CPR` value is limited to the four individual categories (`CCT`, `RES`, `LGR`, `ABO`). The domain owner may use any category.
 
