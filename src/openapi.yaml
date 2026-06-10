@@ -23,6 +23,15 @@ components:
       - max
       title: AllowedNumberOfNameserverBase
       type: object
+    AssignablePublicRole:
+      enum:
+      - admin
+      - viewer
+      - domain_manager
+      - dns_manager
+      - billing_manager
+      title: AssignablePublicRole
+      type: string
     AttributeCondition:
       properties:
         field:
@@ -9449,6 +9458,7 @@ components:
       type: string
     PublicRole:
       enum:
+      - owner
       - admin
       - viewer
       - domain_manager
@@ -9463,6 +9473,14 @@ components:
           - $ref: '#/components/schemas/PublicRole'
           - type: 'null'
       title: PublicRoleAssignment
+      type: object
+    PublicRoleAssignmentRequest:
+      properties:
+        role:
+          anyOf:
+          - $ref: '#/components/schemas/AssignablePublicRole'
+          - type: 'null'
+      title: PublicRoleAssignmentRequest
       type: object
     PublicScope:
       enum:
@@ -11537,7 +11555,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-10-075045
+  version: 2026-06-10-102008
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -25696,7 +25714,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PublicRoleAssignment'
+              $ref: '#/components/schemas/PublicRoleAssignmentRequest'
         required: true
       responses:
         '200':
@@ -25705,6 +25723,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/PublicRoleAssignment'
           description: Successful Response
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ONLY_OWNER_CAN_MANAGE_ADMIN_ROLE
+                detail: Additional error context.
+                status: 403
+                title: User Management Error
+                type: only-owner-can-manage-admin-role
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
         '422':
           content:
             application/problem+json:
@@ -25713,7 +25743,6 @@ paths:
           description: Validation Error
       security:
       - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
       summary: Set user role
       tags:
       - user

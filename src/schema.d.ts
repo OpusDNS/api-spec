@@ -2462,6 +2462,11 @@ export interface components {
              */
             min: number;
         };
+        /**
+         * AssignablePublicRole
+         * @enum {string}
+         */
+        AssignablePublicRole: "admin" | "viewer" | "domain_manager" | "dns_manager" | "billing_manager";
         /** AttributeCondition */
         AttributeCondition: {
             /** @description The attribute key to evaluate */
@@ -8673,10 +8678,14 @@ export interface components {
          * PublicRole
          * @enum {string}
          */
-        PublicRole: "admin" | "viewer" | "domain_manager" | "dns_manager" | "billing_manager";
+        PublicRole: "owner" | "admin" | "viewer" | "domain_manager" | "dns_manager" | "billing_manager";
         /** PublicRoleAssignment */
         PublicRoleAssignment: {
             role?: components["schemas"]["PublicRole"] | null;
+        };
+        /** PublicRoleAssignmentRequest */
+        PublicRoleAssignmentRequest: {
+            role?: components["schemas"]["AssignablePublicRole"] | null;
         };
         /**
          * PublicScope
@@ -20649,7 +20658,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["PublicRoleAssignment"];
+                "application/json": components["schemas"]["PublicRoleAssignmentRequest"];
             };
         };
         responses: {
@@ -20660,6 +20669,22 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PublicRoleAssignment"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ONLY_OWNER_CAN_MANAGE_ADMIN_ROLE",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "User Management Error",
+                     *       "type": "only-owner-can-manage-admin-role"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */

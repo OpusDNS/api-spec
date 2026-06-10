@@ -1,5 +1,6 @@
 import type {
   AllocationMethodType,
+  AssignablePublicRole,
   AttributeType,
   BatchSortField,
   BatchStatus,
@@ -117,6 +118,22 @@ export const ALLOCATION_METHOD_TYPE_VALUES = [
   'auction',
   'lottery',
 ] as const satisfies ReadonlyArray<AllocationMethodType>;
+
+export const ASSIGNABLE_PUBLIC_ROLE = {
+  ADMIN: "admin",
+  VIEWER: "viewer",
+  DOMAIN_MANAGER: "domain_manager",
+  DNS_MANAGER: "dns_manager",
+  BILLING_MANAGER: "billing_manager",
+} as const satisfies Record<string, AssignablePublicRole>;
+
+export const ASSIGNABLE_PUBLIC_ROLE_VALUES = [
+  'admin',
+  'viewer',
+  'domain_manager',
+  'dns_manager',
+  'billing_manager',
+] as const satisfies ReadonlyArray<AssignablePublicRole>;
 
 export const ATTRIBUTE_TYPE = {
   ENUM: "enum",
@@ -1355,6 +1372,7 @@ export const PUBLIC_RESOURCE_VALUES = [
 ] as const satisfies ReadonlyArray<PublicResource>;
 
 export const PUBLIC_ROLE = {
+  OWNER: "owner",
   ADMIN: "admin",
   VIEWER: "viewer",
   DOMAIN_MANAGER: "domain_manager",
@@ -1363,6 +1381,7 @@ export const PUBLIC_ROLE = {
 } as const satisfies Record<string, PublicRole>;
 
 export const PUBLIC_ROLE_VALUES = [
+  'owner',
   'admin',
   'viewer',
   'domain_manager',

@@ -1197,7 +1197,8 @@ export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_403 = Pro
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_404 = Problem;
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_422 = HTTPValidationError;
 
-export type PUT_UsersByUserIdRole_Response = PUT_UsersByUserIdRole_Response_200 | PUT_UsersByUserIdRole_Response_422;
+export type PUT_UsersByUserIdRole_Response = PUT_UsersByUserIdRole_Response_200 | PUT_UsersByUserIdRole_Response_403 | PUT_UsersByUserIdRole_Response_422;
 
 export type PUT_UsersByUserIdRole_Response_200 = PublicRoleAssignment;
+export type PUT_UsersByUserIdRole_Response_403 = Problem;
 export type PUT_UsersByUserIdRole_Response_422 = HTTPValidationError;

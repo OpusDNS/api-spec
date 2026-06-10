@@ -42,7 +42,7 @@ import type {
   ParkingSignupRequest,
   PasswordUpdate,
   PublicAuthRequestForm,
-  PublicRoleAssignment,
+  PublicRoleAssignmentRequest,
   TagCreate,
   TagUpdate,
   UserCreate,
@@ -953,7 +953,7 @@ export type GET_UsersByUserIdRole_Request_Path = GET_UsersByUserIdRole_Request['
 
 export type PUT_UsersByUserIdRole_Request = {
   parameters: operations['set_user_role_v1_users__user_id__role_put']['parameters'];
-  requestBody: PublicRoleAssignment;
+  requestBody: PublicRoleAssignmentRequest;
 };
 export type PUT_UsersByUserIdRole_Request_Path = PUT_UsersByUserIdRole_Request['parameters']['path'];
 export type PUT_UsersByUserIdRole_Request_Body = PUT_UsersByUserIdRole_Request['requestBody'];

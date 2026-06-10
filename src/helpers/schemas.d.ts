@@ -2,6 +2,7 @@ import { components } from '../schema';
 
 export type AllocationMethodType = components['schemas']['AllocationMethodType'];
 export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
+export type AssignablePublicRole = components['schemas']['AssignablePublicRole'];
 export type AttributeCondition = components['schemas']['AttributeCondition'];
 export type AttributeType = components['schemas']['AttributeType'];
 export type BatchSortField = components['schemas']['BatchSortField'];
@@ -370,6 +371,7 @@ export type PublicReportRes = components['schemas']['PublicReportRes'];
 export type PublicResource = components['schemas']['PublicResource'];
 export type PublicRole = components['schemas']['PublicRole'];
 export type PublicRoleAssignment = components['schemas']['PublicRoleAssignment'];
+export type PublicRoleAssignmentRequest = components['schemas']['PublicRoleAssignmentRequest'];
 export type PublicScope = components['schemas']['PublicScope'];
 export type RdapBase = components['schemas']['RdapBase'];
 export type RedirectCode = components['schemas']['RedirectCode'];

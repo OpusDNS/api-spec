@@ -265,6 +265,7 @@ import type {
   PublicReportListRes,
   PublicReportRes,
   PublicRoleAssignment,
+  PublicRoleAssignmentRequest,
   RdapBase,
   ReferrerStatsBucket,
   RegistryLockBase,
@@ -3724,6 +3725,12 @@ export const KEY_PUBLIC_ROLE_ASSIGNMENT_ROLE = 'role' satisfies keyof PublicRole
 export const KEYS_PUBLIC_ROLE_ASSIGNMENT = [
   KEY_PUBLIC_ROLE_ASSIGNMENT_ROLE,
 ] as const satisfies (keyof PublicRoleAssignment)[];
+
+export const KEY_PUBLIC_ROLE_ASSIGNMENT_REQUEST_ROLE = 'role' satisfies keyof PublicRoleAssignmentRequest;
+
+export const KEYS_PUBLIC_ROLE_ASSIGNMENT_REQUEST = [
+  KEY_PUBLIC_ROLE_ASSIGNMENT_REQUEST_ROLE,
+] as const satisfies (keyof PublicRoleAssignmentRequest)[];
 
 export const KEY_RDAP_BASE_RDAP_SERVER = 'rdap_server' satisfies keyof RdapBase;
 
