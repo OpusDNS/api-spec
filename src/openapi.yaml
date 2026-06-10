@@ -11537,7 +11537,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-10-074321
+  version: 2026-06-10-075045
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -12817,6 +12817,8 @@ paths:
       summary: Retrieve email forward logs by alias
       tags:
       - archive
+      x-required-permissions:
+      - email_forwards:read
   /v1/archive/email-forward-logs/{email_forward_id}:
     get:
       description: Retrieves a paginated list of email forward logs for a specific
@@ -12908,6 +12910,8 @@ paths:
       summary: Retrieve email forward logs
       tags:
       - archive
+      x-required-permissions:
+      - email_forwards:read
   /v1/archive/object-logs:
     get:
       description: Retrieve all paginated audit logs with optional filtering and sorting
@@ -13708,6 +13712,8 @@ paths:
       summary: List all contacts
       tags:
       - contact
+      x-required-permissions:
+      - contacts:read
     post:
       description: Create a new contact object to use for domain registration
       operationId: create_contact_v1_contacts_post
@@ -13736,6 +13742,8 @@ paths:
       summary: Create a contact
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
   /v1/contacts/attribute-sets:
     get:
       operationId: list_attribute_sets_v1_contacts_attribute_sets_get
@@ -13804,6 +13812,8 @@ paths:
       summary: List contact attribute sets
       tags:
       - contact
+      x-required-permissions:
+      - contacts:read
     post:
       operationId: create_attribute_set_v1_contacts_attribute_sets_post
       requestBody:
@@ -13845,6 +13855,8 @@ paths:
       summary: Create a contact attribute set
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
   /v1/contacts/attribute-sets/{contact_attribute_set_id}:
     delete:
       operationId: delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete
@@ -13888,6 +13900,8 @@ paths:
       summary: Delete a contact attribute set
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
     get:
       operationId: get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get
       parameters:
@@ -13934,6 +13948,8 @@ paths:
       summary: Retrieve a contact attribute set
       tags:
       - contact
+      x-required-permissions:
+      - contacts:read
     patch:
       operationId: update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch
       parameters:
@@ -14000,6 +14016,8 @@ paths:
       summary: Update a contact attribute set
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
   /v1/contacts/verification:
     get:
       operationId: get_verification_by_token_v1_contacts_verification_get
@@ -14194,6 +14212,8 @@ paths:
       summary: Delete a contact
       tags:
       - contact
+      x-required-permissions:
+      - contacts:delete
     get:
       operationId: get_contact_v1_contacts__contact_id__get
       parameters:
@@ -14250,6 +14270,8 @@ paths:
       summary: Retrieve a contact
       tags:
       - contact
+      x-required-permissions:
+      - contacts:read
   /v1/contacts/{contact_id}/link/{contact_attribute_set_id}:
     patch:
       operationId: create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch
@@ -14333,6 +14355,8 @@ paths:
       summary: Link a contact to a contact attribute set
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
   /v1/contacts/{contact_id}/verification:
     delete:
       operationId: cancel_verification_v1_contacts__contact_id__verification_delete
@@ -14388,6 +14412,8 @@ paths:
       summary: Delete contact verification
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
     get:
       operationId: get_verification_status_v1_contacts__contact_id__verification_get
       parameters:
@@ -14446,6 +14472,8 @@ paths:
       summary: Retrieve contact verification by contact ID
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
     post:
       operationId: start_contact_verification_v1_contacts__contact_id__verification_post
       parameters:
@@ -14525,6 +14553,8 @@ paths:
       summary: Start contact verification
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
     put:
       operationId: update_verification_v1_contacts__contact_id__verification_put
       parameters:
@@ -14613,6 +14643,8 @@ paths:
       summary: Complete contact verification by contact ID
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
   /v1/contacts/{contact_id}/verifications:
     get:
       description: Retrieve the current verification state for a contact from the
@@ -14686,6 +14718,8 @@ paths:
       summary: Get contact verification status
       tags:
       - contact
+      x-required-permissions:
+      - contacts:read
   /v1/contacts/{contact_id}/verifications/attest:
     post:
       description: Submit one or more contact-verification attestations. Returns the
@@ -14780,6 +14814,8 @@ paths:
       summary: Attest a contact verification
       tags:
       - contact
+      x-required-permissions:
+      - contacts:manage
   /v1/dns:
     get:
       operationId: list_zones_v1_dns_get
@@ -14977,6 +15013,8 @@ paths:
       summary: List Zones
       tags:
       - dns
+      x-required-permissions:
+      - dns:read
     post:
       operationId: create_zone_v1_dns_post
       requestBody:
@@ -15231,6 +15269,8 @@ paths:
       summary: Create Zone
       tags:
       - dns
+      x-required-permissions:
+      - dns:manage
   /v1/dns/domain-forwards:
     get:
       description: Retrieves a paginated list of domain forwards grouped by DNS zones.
@@ -15350,6 +15390,8 @@ paths:
       summary: List domain forwards by zone
       tags:
       - dns
+      x-required-permissions:
+      - dns:read
   /v1/dns/email-forwards:
     get:
       description: Retrieves a paginated list of email forwards grouped by DNS zones.
@@ -15435,6 +15477,8 @@ paths:
       summary: List email forwards by zone
       tags:
       - dns
+      x-required-permissions:
+      - dns:read
   /v1/dns/summary:
     get:
       operationId: get_zones_summary_v1_dns_summary_get
@@ -15466,6 +15510,8 @@ paths:
       summary: Get Zones Summary
       tags:
       - dns
+      x-required-permissions:
+      - dns:read
   /v1/dns/{zone_name}:
     delete:
       operationId: delete_zone_v1_dns__zone_name__delete
@@ -15493,6 +15539,8 @@ paths:
       summary: Delete Zone
       tags:
       - dns
+      x-required-permissions:
+      - dns:delete
     get:
       operationId: get_zone_v1_dns__zone_name__get
       parameters:
@@ -15533,6 +15581,8 @@ paths:
       summary: Get Zone
       tags:
       - dns
+      x-required-permissions:
+      - dns:read
   /v1/dns/{zone_name}/dnssec/disable:
     post:
       operationId: disable_dnssec_v1_dns__zone_name__dnssec_disable_post
@@ -15619,6 +15669,8 @@ paths:
       summary: Disable Dnssec
       tags:
       - dns
+      x-required-permissions:
+      - dns:manage
   /v1/dns/{zone_name}/dnssec/enable:
     post:
       operationId: enable_dnssec_v1_dns__zone_name__dnssec_enable_post
@@ -15705,6 +15757,8 @@ paths:
       summary: Enable Dnssec
       tags:
       - dns
+      x-required-permissions:
+      - dns:manage
   /v1/dns/{zone_name}/domain-forwards:
     get:
       description: Retrieves all domain forwards configured for the specified DNS
@@ -15788,6 +15842,8 @@ paths:
       summary: List domain forwards for a zone
       tags:
       - dns
+      x-required-permissions:
+      - dns:read
   /v1/dns/{zone_name}/email-forwards:
     get:
       description: Retrieves all email forwards configured for the specified DNS zone,
@@ -15845,6 +15901,8 @@ paths:
       summary: List email forwards for a zone
       tags:
       - dns
+      x-required-permissions:
+      - dns:read
   /v1/dns/{zone_name}/records:
     patch:
       operationId: patch_zone_records_v1_dns__zone_name__records_patch
@@ -15944,6 +16002,8 @@ paths:
       summary: Patch Zone Records
       tags:
       - dns
+      x-required-permissions:
+      - dns:manage
   /v1/dns/{zone_name}/rrsets:
     patch:
       operationId: patch_zone_rrsets_v1_dns__zone_name__rrsets_patch
@@ -16089,6 +16149,8 @@ paths:
       summary: Patch Zone Rrsets
       tags:
       - dns
+      x-required-permissions:
+      - dns:manage
     put:
       operationId: update_zone_rrsets_v1_dns__zone_name__rrsets_put
       parameters:
@@ -16221,6 +16283,8 @@ paths:
       summary: Update Zone Rrsets
       tags:
       - dns
+      x-required-permissions:
+      - dns:manage
   /v1/domain-forwards:
     get:
       description: Retrieves a paginated list of domain forwards by hostname for the
@@ -16404,6 +16468,8 @@ paths:
       summary: List domain forwards
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
     patch:
       description: Applies patch operations to update or remove redirects across hostnames
         and protocols. Raises an error if the domain forward or domain forward set
@@ -16466,6 +16532,8 @@ paths:
       summary: Patch domain forward redirects
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:manage
     post:
       description: Creates a new domain forward configuration. Wildcard forwards can
         be created by using *.hostname (e.g., *.example.com).
@@ -16641,6 +16709,8 @@ paths:
       summary: Create a domain forward
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:manage
   /v1/domain-forwards/metrics:
     get:
       description: Retrieves overall metrics for domain forwards including total and
@@ -16759,6 +16829,8 @@ paths:
       summary: Get domain forward metrics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/browser:
     get:
       description: Retrieves visitor traffic broken down by browser type (Chrome,
@@ -16900,6 +16972,8 @@ paths:
       summary: Get browser statistics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/geo:
     get:
       description: Retrieves visitor traffic broken down by geographic location (country
@@ -17034,6 +17108,8 @@ paths:
       summary: Get geographic statistics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/platform:
     get:
       description: Retrieves visitor traffic broken down by platform (Windows, Macintosh,
@@ -17173,6 +17249,8 @@ paths:
       summary: Get platform statistics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/referrer:
     get:
       description: Retrieves visitor referral sources (where traffic came from) with
@@ -17314,6 +17392,8 @@ paths:
       summary: Get referrer statistics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/status-code:
     get:
       description: Retrieves distribution of HTTP redirect status codes (301, 302,
@@ -17441,6 +17521,8 @@ paths:
       summary: Get HTTP status code statistics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/time-series:
     get:
       description: Retrieves visit counts bucketed by time intervals (hourly, daily)
@@ -17614,6 +17696,8 @@ paths:
       summary: Get domain forward time series metrics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/user-agent:
     get:
       description: Retrieves visitor traffic broken down by user agent string with
@@ -17747,6 +17831,8 @@ paths:
       summary: Get user agent statistics
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/metrics/visits-by-key:
     get:
       description: Retrieves visit metrics grouped by a specified key (url, fqdn,
@@ -17901,6 +17987,8 @@ paths:
       summary: Get visits grouped by key
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
   /v1/domain-forwards/{hostname}:
     delete:
       description: Deletes the domain forward configuration for the specified hostname
@@ -17965,6 +18053,8 @@ paths:
       summary: Delete a domain forward
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:delete
     get:
       description: Retrieves the domain forward configuration for the specified hostname
       operationId: get_domain_forward_v1_domain_forwards__hostname__get
@@ -18067,6 +18157,8 @@ paths:
       summary: Get a domain forward
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
     post:
       description: Creates a new domain forward set for a specific protocol (HTTP
         or HTTPS). Raises an error if the set already exists.
@@ -18171,6 +18263,8 @@ paths:
       summary: Create domain forward set
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:manage
   /v1/domain-forwards/{hostname}/disable:
     patch:
       description: Disables domain forwarding by removing DNS records. The domain
@@ -18225,6 +18319,8 @@ paths:
       summary: Disable domain forward
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:manage
   /v1/domain-forwards/{hostname}/enable:
     patch:
       description: Enables domain forwarding by creating necessary DNS records
@@ -18278,6 +18374,8 @@ paths:
       summary: Enable domain forward
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:manage
   /v1/domain-forwards/{hostname}/{protocol}:
     delete:
       description: Deletes a domain forward set for a specific protocol (HTTP or HTTPS).
@@ -18348,6 +18446,8 @@ paths:
       summary: Delete domain forward set
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:delete
     get:
       description: Retrieves all redirects for a specific protocol (HTTP or HTTPS)
         for the specified hostname
@@ -18456,6 +18556,8 @@ paths:
       summary: Get domain forward set
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:read
     put:
       description: Updates an existing domain forward set for a specific protocol
         (HTTP or HTTPS). All existing redirects for this protocol are replaced with
@@ -18555,6 +18657,8 @@ paths:
       summary: Update domain forward set
       tags:
       - domain_forward
+      x-required-permissions:
+      - domain_forwards:manage
   /v1/domain-search/suggest:
     get:
       description: Get a list of domain suggestions based on a search query
@@ -18918,6 +19022,8 @@ paths:
       summary: List all domains
       tags:
       - domain
+      x-required-permissions:
+      - domains:read
     post:
       description: 'Registers a new domain.
 
@@ -19035,6 +19141,8 @@ paths:
       summary: Create a domain
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/check:
     get:
       description: 'Performs a real-time check against the authoritative registry
@@ -19122,6 +19230,8 @@ paths:
       summary: Check domain availability and registration metadata
       tags:
       - domain
+      x-required-permissions:
+      - domains:read
   /v1/domains/claims-notices:
     post:
       description: Retrieves the trademark claims notice for a `claims_key` returned
@@ -19181,6 +19291,8 @@ paths:
       summary: Retrieve claims notices from claim keys
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/summary:
     get:
       description: Retrieves a summary of domains including counts by status, TLD,
@@ -19205,6 +19317,8 @@ paths:
       summary: Get domain summary
       tags:
       - domain
+      x-required-permissions:
+      - domains:read
   /v1/domains/tld-specific/at/{domain_reference}/withdraw:
     post:
       operationId: withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post
@@ -19261,6 +19375,8 @@ paths:
       tags:
       - domain
       - domain_tld_specific
+      x-required-permissions:
+      - domains:manage
   /v1/domains/tld-specific/be/{domain_reference}/auth_code/request:
     post:
       operationId: request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post
@@ -19325,6 +19441,8 @@ paths:
       tags:
       - domain
       - domain_tld_specific
+      x-required-permissions:
+      - domains:manage
   /v1/domains/tld-specific/de/{domain_reference}/transit:
     post:
       operationId: transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post
@@ -19381,6 +19499,8 @@ paths:
       tags:
       - domain
       - domain_tld_specific
+      x-required-permissions:
+      - domains:manage
   /v1/domains/tld-specific/eu/{domain_reference}/auth_code/request:
     post:
       operationId: request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post
@@ -19445,6 +19565,8 @@ paths:
       tags:
       - domain
       - domain_tld_specific
+      x-required-permissions:
+      - domains:manage
   /v1/domains/transfer:
     post:
       description: 'Start the transfer process for a domain <br>
@@ -19588,6 +19710,8 @@ paths:
       summary: Transfer a domain
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/{domain_reference}:
     delete:
       description: 'Initiates the deletion process for a domain. The domain will be
@@ -19651,6 +19775,8 @@ paths:
       summary: Delete a domain
       tags:
       - domain
+      x-required-permissions:
+      - domains:delete
     get:
       description: Retrieves a single active domain by either its name or id
       operationId: get_domain_v1_domains__domain_reference__get
@@ -19712,6 +19838,8 @@ paths:
       summary: Retrieve a domain
       tags:
       - domain
+      x-required-permissions:
+      - domains:read
     patch:
       description: 'Updates various attributes of an existing domain. Only the fields
         provided in the request
@@ -19783,6 +19911,8 @@ paths:
       summary: Update a domain
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/{domain_reference}/dnssec:
     delete:
       description: Removes all DNSSEC data for a domain
@@ -19829,6 +19959,8 @@ paths:
       summary: Delete DNSSEC data
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
     get:
       description: Fetches all DNSSEC records associated with the specified domain.
       operationId: get_dnssec_v1_domains__domain_reference__dnssec_get
@@ -19881,6 +20013,8 @@ paths:
       summary: Retrieve DNSSEC data
       tags:
       - domain
+      x-required-permissions:
+      - domains:read
     put:
       description: Replaces all existing DNSSEC records for the domain with the provided
         records.
@@ -19950,6 +20084,8 @@ paths:
       summary: Update DNSSEC data
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/{domain_reference}/dnssec/disable:
     post:
       operationId: disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post
@@ -19995,6 +20131,8 @@ paths:
       summary: Disable DNSSEC for domains using our nameservers
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/{domain_reference}/dnssec/enable:
     post:
       operationId: enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post
@@ -20048,6 +20186,8 @@ paths:
       summary: Enable DNSSEC for domains using our nameservers
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/{domain_reference}/renew:
     post:
       description: 'Extends the registration period of an existing domain. The renewal
@@ -20094,6 +20234,8 @@ paths:
       summary: Renew a domain
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/{domain_reference}/restore:
     post:
       operationId: restore_domain_v1_domains__domain_reference__restore_post
@@ -20136,6 +20278,8 @@ paths:
       summary: Restore an eligible domain (during redemption period)
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/domains/{domain_reference}/transfer:
     delete:
       description: This will cancel the in-progress domain transfer and delete the
@@ -20197,6 +20341,8 @@ paths:
       summary: Cancel a domain transfer
       tags:
       - domain
+      x-required-permissions:
+      - domains:manage
   /v1/email-forwards:
     get:
       description: Retrieves a paginated list of all email forwards for the organization.
@@ -20290,6 +20436,8 @@ paths:
       summary: List all email forwards
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:read
     post:
       description: 'Creates an email forward configuration with optional aliases.
         Can be created enabled or disabled (default: disabled). Includes created_on
@@ -20431,6 +20579,9 @@ paths:
       summary: Create email forward configuration
       tags:
       - email_forward
+      x-required-permissions:
+      - dns:manage
+      - email_forwards:manage
   /v1/email-forwards/{email_forward_id}:
     delete:
       description: Permanently deletes the email forward configuration including all
@@ -20488,6 +20639,8 @@ paths:
       summary: Delete email forward configuration
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:delete
     get:
       description: Retrieves the email forward configuration for the specified email
         forward including all aliases
@@ -20559,6 +20712,8 @@ paths:
       summary: Get email forward configuration
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:read
   /v1/email-forwards/{email_forward_id}/aliases:
     post:
       description: Creates a new email forward alias for the specified email forward.
@@ -20684,6 +20839,8 @@ paths:
       summary: Create email forward alias
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:manage
   /v1/email-forwards/{email_forward_id}/aliases/{alias_id}:
     delete:
       description: Deletes a specific email forward alias specified by email_forward_alias_id
@@ -20764,6 +20921,8 @@ paths:
       summary: Delete email forward alias
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:manage
     put:
       description: Updates the forward_to address for a specific email forward alias
         specified by email_forward_alias_id
@@ -20853,6 +21012,8 @@ paths:
       summary: Update email forward alias
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:manage
   /v1/email-forwards/{email_forward_id}/disable:
     patch:
       description: Disables email forwarding by removing MX and SPF DNS records and
@@ -20922,6 +21083,8 @@ paths:
       summary: Disable email forwarding
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:manage
   /v1/email-forwards/{email_forward_id}/enable:
     patch:
       description: Enables email forwarding by creating necessary MX and SPF DNS records
@@ -20990,6 +21153,8 @@ paths:
       summary: Enable email forwarding
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:manage
   /v1/email-forwards/{email_forward_id}/metrics:
     get:
       description: Retrieves metrics and statistics for a specific email forward,
@@ -21080,6 +21245,8 @@ paths:
       summary: Retrieve email forward metrics
       tags:
       - email_forward
+      x-required-permissions:
+      - email_forwards:read
   /v1/events:
     get:
       description: Retrieves a paginated list of events for the organization
@@ -21186,6 +21353,8 @@ paths:
       summary: Get pending events
       tags:
       - event
+      x-required-permissions:
+      - events:read
   /v1/events/{event_id}:
     get:
       description: Get an event by its ID
@@ -21246,6 +21415,8 @@ paths:
       summary: Get event
       tags:
       - event
+      x-required-permissions:
+      - events:read
     patch:
       description: Acknowledge an event
       operationId: acknowledge_event_v1_events__event_id__patch
@@ -21301,6 +21472,8 @@ paths:
       summary: Acknowledge event
       tags:
       - event
+      x-required-permissions:
+      - events:manage
   /v1/job/{job_id}:
     delete:
       operationId: delete_job_v1_job__job_id__delete
@@ -21345,6 +21518,8 @@ paths:
       summary: Delete (cancel) a queued job
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
     get:
       operationId: get_job_v1_job__job_id__get
       parameters:
@@ -21392,6 +21567,8 @@ paths:
       summary: Get individual job details
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:read
   /v1/job/{job_id}/pause:
     post:
       operationId: pause_job_v1_job__job_id__pause_post
@@ -21436,6 +21613,8 @@ paths:
       summary: Pause a job
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
   /v1/job/{job_id}/resume:
     post:
       operationId: resume_job_v1_job__job_id__resume_post
@@ -21484,6 +21663,8 @@ paths:
       summary: Resume a paused job
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
   /v1/job/{job_id}/retry:
     post:
       operationId: retry_job_v1_job__job_id__retry_post
@@ -21544,6 +21725,8 @@ paths:
       summary: Retry a failed or dead-lettered job
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
   /v1/jobs:
     get:
       operationId: list_batches_v1_jobs_get
@@ -21610,6 +21793,8 @@ paths:
       summary: List batches for organization
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:read
     post:
       operationId: create_batch_v1_jobs_post
       requestBody:
@@ -22096,6 +22281,12 @@ paths:
       summary: Create a batch of commands for async execution
       tags:
       - jobs
+      x-required-permissions:
+      - contacts:manage
+      - dns:manage
+      - domains:manage
+      - jobs:manage
+      - parking:manage
   /v1/jobs/{batch_id}:
     delete:
       operationId: delete_batch_v1_jobs__batch_id__delete
@@ -22140,6 +22331,8 @@ paths:
       summary: Delete (cancel) all queued jobs in a batch
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
     get:
       operationId: get_batch_v1_jobs__batch_id__get
       parameters:
@@ -22246,6 +22439,8 @@ paths:
       summary: Get batch details and execution status
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:read
   /v1/jobs/{batch_id}/jobs:
     get:
       operationId: get_batch_jobs_v1_jobs__batch_id__jobs_get
@@ -22529,6 +22724,8 @@ paths:
       summary: Get individual jobs within a batch
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:read
   /v1/jobs/{batch_id}/pause:
     post:
       operationId: pause_batch_v1_jobs__batch_id__pause_post
@@ -22573,6 +22770,8 @@ paths:
       summary: Pause all eligible jobs in a batch
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
   /v1/jobs/{batch_id}/resume:
     post:
       operationId: resume_batch_v1_jobs__batch_id__resume_post
@@ -22617,6 +22816,8 @@ paths:
       summary: Resume all paused jobs in a batch
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
   /v1/jobs/{batch_id}/retry:
     post:
       operationId: retry_batch_v1_jobs__batch_id__retry_post
@@ -22683,6 +22884,8 @@ paths:
       summary: Retry failed and dead-lettered jobs in a batch
       tags:
       - jobs
+      x-required-permissions:
+      - jobs:manage
   /v1/organizations:
     get:
       description: Retrieves a paginated list of organizations under the current organization
@@ -23707,6 +23910,8 @@ paths:
       summary: List all invoices for the organization
       tags:
       - organization
+      x-required-permissions:
+      - billing:manage
   /v1/organizations/{organization_id}/pricing/product-type/{product_type}:
     get:
       description: Retrieves pricing data for a specific product type. If a product
@@ -24117,6 +24322,8 @@ paths:
       summary: List parking entries
       tags:
       - parking
+      x-required-permissions:
+      - parking:read
   /v1/parking/metrics:
     get:
       description: Retrieves aggregated metrics for all parking entries of the organization.
@@ -24183,6 +24390,8 @@ paths:
       summary: Get total metrics for all parking entries
       tags:
       - parking
+      x-required-permissions:
+      - parking:read
   /v1/parking/signup:
     post:
       description: Accept the parking agreement to enable parking features for your
@@ -24236,6 +24445,8 @@ paths:
       summary: Sign up for parking
       tags:
       - parking
+      x-required-permissions:
+      - parking:manage
   /v1/parking/signup/status:
     get:
       description: Check if your organization has accepted the parking agreement.
@@ -24283,6 +24494,8 @@ paths:
       summary: Get parking signup status
       tags:
       - parking
+      x-required-permissions:
+      - parking:read
   /v1/parking/{parking_reference}/metrics:
     get:
       description: Retrieves metrics for a specific parking entry by ID or domain
@@ -24375,6 +24588,8 @@ paths:
       summary: Get metrics for a parking entry
       tags:
       - parking
+      x-required-permissions:
+      - parking:read
   /v1/reports:
     get:
       operationId: list_reports_v1_reports_get
@@ -24631,6 +24846,8 @@ paths:
       summary: List tags
       tags:
       - tag
+      x-required-permissions:
+      - tags:read
     post:
       description: Create a new tag
       operationId: create_tag_v1_tags_post
@@ -24684,6 +24901,8 @@ paths:
       summary: Create a tag
       tags:
       - tag
+      x-required-permissions:
+      - tags:manage
   /v1/tags/objects:
     post:
       description: Add, remove, or replace tags on multiple objects at once. 'replace'
@@ -24752,6 +24971,8 @@ paths:
       summary: Bulk tag or untag objects
       tags:
       - tag
+      x-required-permissions:
+      - tags:manage
   /v1/tags/{tag_id}:
     delete:
       description: Delete a tag
@@ -24808,6 +25029,8 @@ paths:
       summary: Delete a tag
       tags:
       - tag
+      x-required-permissions:
+      - tags:delete
     get:
       description: Retrieve a single tag by its ID
       operationId: get_tag_v1_tags__tag_id__get
@@ -24867,6 +25090,8 @@ paths:
       summary: Get a tag
       tags:
       - tag
+      x-required-permissions:
+      - tags:read
     patch:
       description: Update a tag's label, description, or color
       operationId: update_tag_v1_tags__tag_id__patch
@@ -24945,6 +25170,8 @@ paths:
       summary: Update a tag
       tags:
       - tag
+      x-required-permissions:
+      - tags:manage
   /v1/tags/{tag_id}/objects:
     post:
       description: Add or remove objects from a tag. Objects are matched by the tag's
@@ -25012,6 +25239,8 @@ paths:
       summary: Tag or untag objects
       tags:
       - tag
+      x-required-permissions:
+      - tags:manage
   /v1/tlds/:
     get:
       description: Retrieves a list of TLD Specifications we have support for
@@ -25155,6 +25384,8 @@ paths:
       summary: Create a user
       tags:
       - user
+      x-required-permissions:
+      - users:manage
   /v1/users/me:
     get:
       description: Get the current user
@@ -25188,6 +25419,8 @@ paths:
       summary: Get current user
       tags:
       - user
+      x-required-permissions:
+      - users:read
   /v1/users/me/password-reset:
     patch:
       operationId: change_password_v1_users_me_password_reset_patch
@@ -25223,6 +25456,8 @@ paths:
       summary: Change Password
       tags:
       - user
+      x-required-permissions:
+      - users:manage
   /v1/users/{user_id}:
     delete:
       description: Delete a user by ID
@@ -25278,6 +25513,8 @@ paths:
       summary: Delete a user
       tags:
       - user
+      x-required-permissions:
+      - users:delete
     get:
       description: Get a user by ID
       operationId: get_user_v1_users__user_id__get
@@ -25322,6 +25559,8 @@ paths:
       summary: Get a user
       tags:
       - user
+      x-required-permissions:
+      - users:read
     patch:
       description: Update a user by ID
       operationId: update_user_v1_users__user_id__patch
@@ -25362,6 +25601,8 @@ paths:
       summary: Update a user
       tags:
       - user
+      x-required-permissions:
+      - users:manage
   /v1/users/{user_id}/permissions:
     get:
       description: Get the permissions for a user
@@ -25397,6 +25638,8 @@ paths:
       summary: Get user permissions
       tags:
       - user
+      x-required-permissions:
+      - users:read
   /v1/users/{user_id}/role:
     get:
       description: Get the role for a user
@@ -25432,6 +25675,8 @@ paths:
       summary: Get user role
       tags:
       - user
+      x-required-permissions:
+      - users:read
     put:
       description: Set the role for a user, replacing any existing role
       operationId: set_user_role_v1_users__user_id__role_put
