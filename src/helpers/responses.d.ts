@@ -80,11 +80,11 @@ import type {
   ParkingSignup,
   ParkingSignupStatus,
   ParkingTotalMetrics,
-  PermissionSet,
   Problem,
+  PublicPermissionSet,
   PublicReportListRes,
   PublicReportRes,
-  RelationSet,
+  PublicRoleAssignment,
   RequestAuthcode,
   RequestAuthcode2,
   Tag,
@@ -92,7 +92,7 @@ import type {
   TldSpecification,
   UserPublic,
   UserPublicWithAttributes,
-  UserWithRelationPermissions,
+  UserWithPermissions,
 } from './schemas';
 
 export type DELETE_AiConciergeConversationsByConversationId_Response = DELETE_AiConciergeConversationsByConversationId_Response_401 | DELETE_AiConciergeConversationsByConversationId_Response_404 | DELETE_AiConciergeConversationsByConversationId_Response_422 | DELETE_AiConciergeConversationsByConversationId_Response_502;
@@ -640,12 +640,6 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Prob
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem;
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError;
 
-export type GET_OrganizationsRoles_Response = GET_OrganizationsRoles_Response_401 | GET_OrganizationsRoles_Response_403 | GET_OrganizationsRoles_Response_422;
-
-export type GET_OrganizationsRoles_Response_401 = Problem;
-export type GET_OrganizationsRoles_Response_403 = Problem;
-export type GET_OrganizationsRoles_Response_422 = HTTPValidationError;
-
 export type GET_OrganizationsUsers_Response = GET_OrganizationsUsers_Response_200 | GET_OrganizationsUsers_Response_401 | GET_OrganizationsUsers_Response_403 | GET_OrganizationsUsers_Response_422;
 
 export type GET_OrganizationsUsers_Response_200 = Pagination_UserPublic;
@@ -731,17 +725,17 @@ export type GET_UsersByUserId_Response_422 = HTTPValidationError;
 
 export type GET_UsersByUserIdPermissions_Response = GET_UsersByUserIdPermissions_Response_200 | GET_UsersByUserIdPermissions_Response_422;
 
-export type GET_UsersByUserIdPermissions_Response_200 = PermissionSet;
+export type GET_UsersByUserIdPermissions_Response_200 = PublicPermissionSet;
 export type GET_UsersByUserIdPermissions_Response_422 = HTTPValidationError;
 
-export type GET_UsersByUserIdRoles_Response = GET_UsersByUserIdRoles_Response_200 | GET_UsersByUserIdRoles_Response_422;
+export type GET_UsersByUserIdRole_Response = GET_UsersByUserIdRole_Response_200 | GET_UsersByUserIdRole_Response_422;
 
-export type GET_UsersByUserIdRoles_Response_200 = RelationSet;
-export type GET_UsersByUserIdRoles_Response_422 = HTTPValidationError;
+export type GET_UsersByUserIdRole_Response_200 = PublicRoleAssignment;
+export type GET_UsersByUserIdRole_Response_422 = HTTPValidationError;
 
 export type GET_UsersMe_Response = GET_UsersMe_Response_200 | GET_UsersMe_Response_422;
 
-export type GET_UsersMe_Response_200 = UserWithRelationPermissions;
+export type GET_UsersMe_Response_200 = UserWithPermissions;
 export type GET_UsersMe_Response_422 = HTTPValidationError;
 
 export type PATCH_AiConciergeConversationsByConversationId_Response = PATCH_AiConciergeConversationsByConversationId_Response_200 | PATCH_AiConciergeConversationsByConversationId_Response_401 | PATCH_AiConciergeConversationsByConversationId_Response_404 | PATCH_AiConciergeConversationsByConversationId_Response_422 | PATCH_AiConciergeConversationsByConversationId_Response_502;
@@ -869,11 +863,6 @@ export type PATCH_UsersByUserId_Response = PATCH_UsersByUserId_Response_200 | PA
 
 export type PATCH_UsersByUserId_Response_200 = UserPublicWithAttributes;
 export type PATCH_UsersByUserId_Response_422 = HTTPValidationError;
-
-export type PATCH_UsersByUserIdRoles_Response = PATCH_UsersByUserIdRoles_Response_200 | PATCH_UsersByUserIdRoles_Response_422;
-
-export type PATCH_UsersByUserIdRoles_Response_200 = RelationSet;
-export type PATCH_UsersByUserIdRoles_Response_422 = HTTPValidationError;
 
 export type PATCH_UsersMePasswordReset_Response = PATCH_UsersMePasswordReset_Response_401 | PATCH_UsersMePasswordReset_Response_422;
 
@@ -1207,3 +1196,8 @@ export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_401 = Pro
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_403 = Problem;
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_404 = Problem;
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_422 = HTTPValidationError;
+
+export type PUT_UsersByUserIdRole_Response = PUT_UsersByUserIdRole_Response_200 | PUT_UsersByUserIdRole_Response_422;
+
+export type PUT_UsersByUserIdRole_Response_200 = PublicRoleAssignment;
+export type PUT_UsersByUserIdRole_Response_422 = HTTPValidationError;

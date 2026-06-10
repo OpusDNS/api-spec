@@ -251,7 +251,6 @@ import type {
   ParkingTotalMetrics,
   PasswordUpdate,
   Period,
-  PermissionSet,
   PlatformStatsBucket,
   PremiumDomainsBase,
   PremiumPriceEntryRes,
@@ -262,17 +261,17 @@ import type {
   PricingPeriod,
   Problem,
   PublicAuthRequestForm,
+  PublicPermissionSet,
   PublicReportListRes,
   PublicReportRes,
+  PublicRoleAssignment,
   RdapBase,
   ReferrerStatsBucket,
   RegistryLockBase,
-  RelationSet,
   RequestHistory,
   ReservedDomainsBase,
   RgpOperations,
   SldLength,
-  SpiceDbRelationshipUpdate,
   StatusChanges,
   StatusCodeStatsBucket,
   StatusTag,
@@ -305,7 +304,7 @@ import type {
   UserPublicWithAttributes,
   UserToken,
   UserUpdate,
-  UserWithRelationPermissions,
+  UserWithPermissions,
   ValidationError,
   VerificationDeadline,
   VerificationRegistrantDetails,
@@ -3584,12 +3583,6 @@ export const KEYS_PERIOD = [
   KEY_PERIOD_VALUE,
 ] as const satisfies (keyof Period)[];
 
-export const KEY_PERMISSION_SET_PERMISSIONS = 'permissions' satisfies keyof PermissionSet;
-
-export const KEYS_PERMISSION_SET = [
-  KEY_PERMISSION_SET_PERMISSIONS,
-] as const satisfies (keyof PermissionSet)[];
-
 export const KEY_PLATFORM_STATS_BUCKET_KEY = 'key' satisfies keyof PlatformStatsBucket;
 export const KEY_PLATFORM_STATS_BUCKET_TOTAL = 'total' satisfies keyof PlatformStatsBucket;
 export const KEY_PLATFORM_STATS_BUCKET_UNIQUE = 'unique' satisfies keyof PlatformStatsBucket;
@@ -3688,6 +3681,12 @@ export const KEYS_PUBLIC_AUTH_REQUEST_FORM = [
   KEY_PUBLIC_AUTH_REQUEST_FORM_GRANT_TYPE,
 ] as const satisfies (keyof PublicAuthRequestForm)[];
 
+export const KEY_PUBLIC_PERMISSION_SET_PERMISSIONS = 'permissions' satisfies keyof PublicPermissionSet;
+
+export const KEYS_PUBLIC_PERMISSION_SET = [
+  KEY_PUBLIC_PERMISSION_SET_PERMISSIONS,
+] as const satisfies (keyof PublicPermissionSet)[];
+
 export const KEY_PUBLIC_REPORT_LIST_RES_PAGINATION = 'pagination' satisfies keyof PublicReportListRes;
 export const KEY_PUBLIC_REPORT_LIST_RES_RESULTS = 'results' satisfies keyof PublicReportListRes;
 
@@ -3720,6 +3719,12 @@ export const KEYS_PUBLIC_REPORT_RES = [
   KEY_PUBLIC_REPORT_RES_UPDATED_ON,
 ] as const satisfies (keyof PublicReportRes)[];
 
+export const KEY_PUBLIC_ROLE_ASSIGNMENT_ROLE = 'role' satisfies keyof PublicRoleAssignment;
+
+export const KEYS_PUBLIC_ROLE_ASSIGNMENT = [
+  KEY_PUBLIC_ROLE_ASSIGNMENT_ROLE,
+] as const satisfies (keyof PublicRoleAssignment)[];
+
 export const KEY_RDAP_BASE_RDAP_SERVER = 'rdap_server' satisfies keyof RdapBase;
 
 export const KEYS_RDAP_BASE = [
@@ -3747,12 +3752,6 @@ export const KEYS_REGISTRY_LOCK_BASE = [
   KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST,
   KEY_REGISTRY_LOCK_BASE_SUPPORTED,
 ] as const satisfies (keyof RegistryLockBase)[];
-
-export const KEY_RELATION_SET_RELATIONS = 'relations' satisfies keyof RelationSet;
-
-export const KEYS_RELATION_SET = [
-  KEY_RELATION_SET_RELATIONS,
-] as const satisfies (keyof RelationSet)[];
 
 export const KEY_REQUEST_HISTORY_CLIENT_IP = 'client_ip' satisfies keyof RequestHistory;
 export const KEY_REQUEST_HISTORY_DURATION = 'duration' satisfies keyof RequestHistory;
@@ -3807,14 +3806,6 @@ export const KEYS_SLD_LENGTH = [
   KEY_SLD_LENGTH_MAX,
   KEY_SLD_LENGTH_MIN,
 ] as const satisfies (keyof SldLength)[];
-
-export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD = 'add' satisfies keyof SpiceDbRelationshipUpdate;
-export const KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE = 'remove' satisfies keyof SpiceDbRelationshipUpdate;
-
-export const KEYS_SPICE_DB_RELATIONSHIP_UPDATE = [
-  KEY_SPICE_DB_RELATIONSHIP_UPDATE_ADD,
-  KEY_SPICE_DB_RELATIONSHIP_UPDATE_REMOVE,
-] as const satisfies (keyof SpiceDbRelationshipUpdate)[];
 
 export const KEY_STATUS_CHANGES_ADD = 'add' satisfies keyof StatusChanges;
 export const KEY_STATUS_CHANGES_REMOVE = 'remove' satisfies keyof StatusChanges;
@@ -4298,39 +4289,37 @@ export const KEYS_USER_UPDATE = [
   KEY_USER_UPDATE_USERNAME,
 ] as const satisfies (keyof UserUpdate)[];
 
-export const KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON = 'created_on' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON = 'deleted_on' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL = 'email' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME = 'first_name' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME = 'last_name' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE = 'locale' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID = 'organization_id' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS = 'permissions' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_PHONE = 'phone' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS = 'relations' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_STATUS = 'status' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON = 'updated_on' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID = 'user_id' satisfies keyof UserWithRelationPermissions;
-export const KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME = 'username' satisfies keyof UserWithRelationPermissions;
+export const KEY_USER_WITH_PERMISSIONS_CREATED_ON = 'created_on' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_DELETED_ON = 'deleted_on' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_EMAIL = 'email' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_FIRST_NAME = 'first_name' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_LAST_NAME = 'last_name' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_LOCALE = 'locale' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_ORGANIZATION_ID = 'organization_id' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_PERMISSIONS = 'permissions' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_PHONE = 'phone' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_STATUS = 'status' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_UPDATED_ON = 'updated_on' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_USER_ID = 'user_id' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_PERMISSIONS_USERNAME = 'username' satisfies keyof UserWithPermissions;
 
-export const KEYS_USER_WITH_RELATION_PERMISSIONS = [
-  KEY_USER_WITH_RELATION_PERMISSIONS_CREATED_ON,
-  KEY_USER_WITH_RELATION_PERMISSIONS_DELETED_ON,
-  KEY_USER_WITH_RELATION_PERMISSIONS_EMAIL,
-  KEY_USER_WITH_RELATION_PERMISSIONS_FIRST_NAME,
-  KEY_USER_WITH_RELATION_PERMISSIONS_LAST_NAME,
-  KEY_USER_WITH_RELATION_PERMISSIONS_LOCALE,
-  KEY_USER_WITH_RELATION_PERMISSIONS_ORGANIZATION_ID,
-  KEY_USER_WITH_RELATION_PERMISSIONS_PERMISSIONS,
-  KEY_USER_WITH_RELATION_PERMISSIONS_PHONE,
-  KEY_USER_WITH_RELATION_PERMISSIONS_RELATIONS,
-  KEY_USER_WITH_RELATION_PERMISSIONS_STATUS,
-  KEY_USER_WITH_RELATION_PERMISSIONS_UPDATED_ON,
-  KEY_USER_WITH_RELATION_PERMISSIONS_USER_ATTRIBUTES,
-  KEY_USER_WITH_RELATION_PERMISSIONS_USER_ID,
-  KEY_USER_WITH_RELATION_PERMISSIONS_USERNAME,
-] as const satisfies (keyof UserWithRelationPermissions)[];
+export const KEYS_USER_WITH_PERMISSIONS = [
+  KEY_USER_WITH_PERMISSIONS_CREATED_ON,
+  KEY_USER_WITH_PERMISSIONS_DELETED_ON,
+  KEY_USER_WITH_PERMISSIONS_EMAIL,
+  KEY_USER_WITH_PERMISSIONS_FIRST_NAME,
+  KEY_USER_WITH_PERMISSIONS_LAST_NAME,
+  KEY_USER_WITH_PERMISSIONS_LOCALE,
+  KEY_USER_WITH_PERMISSIONS_ORGANIZATION_ID,
+  KEY_USER_WITH_PERMISSIONS_PERMISSIONS,
+  KEY_USER_WITH_PERMISSIONS_PHONE,
+  KEY_USER_WITH_PERMISSIONS_STATUS,
+  KEY_USER_WITH_PERMISSIONS_UPDATED_ON,
+  KEY_USER_WITH_PERMISSIONS_USER_ATTRIBUTES,
+  KEY_USER_WITH_PERMISSIONS_USER_ID,
+  KEY_USER_WITH_PERMISSIONS_USERNAME,
+] as const satisfies (keyof UserWithPermissions)[];
 
 export const KEY_VALIDATION_ERROR_CTX = 'ctx' satisfies keyof ValidationError;
 export const KEY_VALIDATION_ERROR_INPUT = 'input' satisfies keyof ValidationError;

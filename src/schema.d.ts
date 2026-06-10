@@ -1855,26 +1855,6 @@ export interface paths {
         patch: operations["update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch"];
         trace?: never;
     };
-    "/v1/organizations/roles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List all roles
-         * @description Retrieves a list of roles for the current organization
-         */
-        get: operations["list_roles_v1_organizations_roles_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/organizations/users": {
         parameters: {
             query?: never;
@@ -2436,7 +2416,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/users/{user_id}/roles": {
+    "/v1/users/{user_id}/role": {
         parameters: {
             query?: never;
             header?: never;
@@ -2444,20 +2424,20 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get user roles
-         * @description Get the roles for a user
+         * Get user role
+         * @description Get the role for a user
          */
-        get: operations["list_roles_v1_users__user_id__roles_get"];
-        put?: never;
+        get: operations["get_role_v1_users__user_id__role_get"];
+        /**
+         * Set user role
+         * @description Set the role for a user, replacing any existing role
+         */
+        put: operations["set_user_role_v1_users__user_id__role_put"];
         post?: never;
         delete?: never;
         options?: never;
         head?: never;
-        /**
-         * Update user roles
-         * @description Update the roles for a user
-         */
-        patch: operations["update_user_relations_v1_users__user_id__roles_patch"];
+        patch?: never;
         trace?: never;
     };
 }
@@ -8465,16 +8445,6 @@ export interface components {
          * @enum {string}
          */
         PeriodUnit: "y" | "m" | "d";
-        /**
-         * Permission
-         * @enum {string}
-         */
-        Permission: "bulk_create" | "bulk_delete" | "bulk_renew_expire" | "bulk_transfer_trade" | "bulk_update" | "corporate_plan" | "create" | "create_vanity_ns" | "delete" | "delete_api_keys" | "delete_contacts" | "delete_dns_zones" | "delete_domains" | "delete_domain_forwards" | "delete_email_forwards" | "delete_events" | "delete_hosts" | "delete_jobs" | "delete_parking" | "delete_registrar_credentials" | "delete_tags" | "delete_users" | "enterprise_plan" | "has_accepted_tos" | "manage_api_keys" | "manage_billing" | "manage_chats" | "manage_cms_content" | "manage_contacts" | "manage_dns_zones" | "manage_domains" | "manage_domain_forwards" | "manage_email_forwards" | "manage_events" | "manage_hosts" | "manage_jobs" | "manage_opusdns_api_keys" | "manage_parking" | "manage_products" | "manage_registrar_credentials" | "manage_reseller" | "manage_sub_zones" | "manage_tags" | "manage_users" | "manage_user_relations" | "manage_vanity_ns" | "plan_manager" | "premium_plan" | "renew_expire" | "starter_plan" | "transfer_trade" | "update" | "update_domain_forwards" | "verify" | "view" | "view_api_keys" | "view_audit_logs" | "view_billing" | "view_contacts" | "view_dns_zones" | "view_domains" | "view_domain_forwards" | "view_email_forwards" | "view_events" | "view_hosts" | "view_jobs" | "view_parking" | "view_registrar_credentials" | "view_tags" | "view_users" | "view_vanity_ns";
-        /** PermissionSet */
-        PermissionSet: {
-            /** Permissions */
-            permissions?: components["schemas"]["Permission"][];
-        };
         /** PlatformStatsBucket */
         PlatformStatsBucket: {
             /** Key */
@@ -8643,6 +8613,17 @@ export interface components {
              */
             grant_type: string;
         };
+        /**
+         * @example domains:read
+         * @example domains:manage
+         * @example domains:delete
+         */
+        PublicPermission: string;
+        /** PublicPermissionSet */
+        PublicPermissionSet: {
+            /** Permissions */
+            permissions?: components["schemas"]["PublicPermission"][];
+        };
         /** PublicReportListRes */
         PublicReportListRes: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -8683,6 +8664,25 @@ export interface components {
              */
             updated_on: Date;
         };
+        /**
+         * PublicResource
+         * @enum {string}
+         */
+        PublicResource: "domains" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "audit_logs" | "vanity_ns";
+        /**
+         * PublicRole
+         * @enum {string}
+         */
+        PublicRole: "admin" | "viewer" | "domain_manager" | "dns_manager" | "billing_manager";
+        /** PublicRoleAssignment */
+        PublicRoleAssignment: {
+            role?: components["schemas"]["PublicRole"] | null;
+        };
+        /**
+         * PublicScope
+         * @enum {string}
+         */
+        PublicScope: "read" | "manage" | "delete";
         /** RdapBase */
         RdapBase: {
             /**
@@ -8738,16 +8738,6 @@ export interface components {
              * @description Whether the registry provides a Registry Lock feature
              */
             supported: boolean;
-        };
-        /**
-         * Relation
-         * @enum {string}
-         */
-        Relation: "accepted_tos" | "root_admin" | "owner" | "parent" | "admin" | "member" | "client_api_key" | "opusdns_internal_api_key" | "reseller_manager" | "chat_manager" | "domain_view" | "domain_manage" | "domain_delete" | "contact_view" | "contact_manage" | "contact_delete" | "dns_zone_view" | "dns_zone_manage" | "dns_zone_delete" | "host_view" | "host_manage" | "host_delete" | "email_forward_view" | "email_forward_manage" | "email_forward_delete" | "domain_forward_view" | "domain_forward_manage" | "domain_forward_delete" | "parking_view" | "parking_manage" | "parking_delete" | "events_view" | "events_manage" | "events_delete" | "jobs_view" | "jobs_manage" | "jobs_delete" | "tag_view" | "tag_manage" | "tag_delete" | "registrar_credential_view" | "registrar_credential_manage" | "registrar_credential_delete" | "user_view" | "user_manage" | "user_delete" | "api_key_view" | "api_key_manage" | "api_key_delete" | "billing_view" | "billing_manage" | "audit_log_view";
-        /** RelationSet */
-        RelationSet: {
-            /** Relations */
-            relations?: components["schemas"]["Relation"][];
         };
         /**
          * RenewalMode
@@ -8891,13 +8881,6 @@ export interface components {
          * @enum {string}
          */
         SortOrder: "asc" | "desc";
-        /** SpiceDbRelationshipUpdate */
-        SpiceDbRelationshipUpdate: {
-            /** Add */
-            add?: components["schemas"]["Relation"][] | null;
-            /** Remove */
-            remove?: components["schemas"]["Relation"][] | null;
-        };
         /** StatusChanges */
         StatusChanges: {
             /**
@@ -9834,8 +9817,8 @@ export interface components {
              */
             username?: string | null;
         };
-        /** UserWithRelationPermissions */
-        UserWithRelationPermissions: {
+        /** UserWithPermissions */
+        UserWithPermissions: {
             /**
              * Created On
              * Format: date-time
@@ -9877,15 +9860,13 @@ export interface components {
              */
             organization_id: TypeId<"organization">;
             /** Permissions */
-            permissions?: components["schemas"]["Permission"][] | null;
+            permissions?: components["schemas"]["PublicPermission"][] | null;
             /**
              * Phone
              * @description The user's phone number
              * @example +1.2125552368
              */
             phone?: string | null;
-            /** Relations */
-            relations?: components["schemas"]["Relation"][] | null;
             readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
@@ -18657,67 +18638,6 @@ export interface operations {
             };
         };
     };
-    list_roles_v1_organizations_roles_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Forbidden */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_PERMISSION_DENIED",
-                     *       "detail": "Insufficient permissions to perform this action",
-                     *       "status": 403,
-                     *       "title": "Permission Denied",
-                     *       "type": "permission-denied"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     list_users_v1_organizations_users_get: {
         parameters: {
             query?: {
@@ -20466,7 +20386,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithRelationPermissions"];
+                    "application/json": components["schemas"]["UserWithPermissions"];
                 };
             };
             /** @description Validation Error */
@@ -20673,7 +20593,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["PermissionSet"];
+                    "application/json": components["schemas"]["PublicPermissionSet"];
                 };
             };
             /** @description Validation Error */
@@ -20687,7 +20607,7 @@ export interface operations {
             };
         };
     };
-    list_roles_v1_users__user_id__roles_get: {
+    get_role_v1_users__user_id__role_get: {
         parameters: {
             query?: never;
             header?: never;
@@ -20704,7 +20624,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["RelationSet"];
+                    "application/json": components["schemas"]["PublicRoleAssignment"];
                 };
             };
             /** @description Validation Error */
@@ -20718,7 +20638,7 @@ export interface operations {
             };
         };
     };
-    update_user_relations_v1_users__user_id__roles_patch: {
+    set_user_role_v1_users__user_id__role_put: {
         parameters: {
             query?: never;
             header?: never;
@@ -20729,7 +20649,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["SpiceDbRelationshipUpdate"];
+                "application/json": components["schemas"]["PublicRoleAssignment"];
             };
         };
         responses: {
@@ -20739,7 +20659,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["RelationSet"];
+                    "application/json": components["schemas"]["PublicRoleAssignment"];
                 };
             };
             /** @description Validation Error */

@@ -42,7 +42,7 @@ import type {
   ParkingSignupRequest,
   PasswordUpdate,
   PublicAuthRequestForm,
-  SpiceDbRelationshipUpdate,
+  PublicRoleAssignment,
   TagCreate,
   TagUpdate,
   UserCreate,
@@ -819,9 +819,6 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request = {
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Path = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['parameters']['path'];
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Body = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['requestBody'];
 
-export type GET_OrganizationsRoles_Request = {
-};
-
 export type GET_OrganizationsUsers_Request = {
   parameters: operations['list_users_v1_organizations_users_get']['parameters'];
 };
@@ -949,17 +946,17 @@ export type GET_UsersByUserIdPermissions_Request = {
 };
 export type GET_UsersByUserIdPermissions_Request_Path = GET_UsersByUserIdPermissions_Request['parameters']['path'];
 
-export type GET_UsersByUserIdRoles_Request = {
-  parameters: operations['list_roles_v1_users__user_id__roles_get']['parameters'];
+export type GET_UsersByUserIdRole_Request = {
+  parameters: operations['get_role_v1_users__user_id__role_get']['parameters'];
 };
-export type GET_UsersByUserIdRoles_Request_Path = GET_UsersByUserIdRoles_Request['parameters']['path'];
+export type GET_UsersByUserIdRole_Request_Path = GET_UsersByUserIdRole_Request['parameters']['path'];
 
-export type PATCH_UsersByUserIdRoles_Request = {
-  parameters: operations['update_user_relations_v1_users__user_id__roles_patch']['parameters'];
-  requestBody: SpiceDbRelationshipUpdate;
+export type PUT_UsersByUserIdRole_Request = {
+  parameters: operations['set_user_role_v1_users__user_id__role_put']['parameters'];
+  requestBody: PublicRoleAssignment;
 };
-export type PATCH_UsersByUserIdRoles_Request_Path = PATCH_UsersByUserIdRoles_Request['parameters']['path'];
-export type PATCH_UsersByUserIdRoles_Request_Body = PATCH_UsersByUserIdRoles_Request['requestBody'];
+export type PUT_UsersByUserIdRole_Request_Path = PUT_UsersByUserIdRole_Request['parameters']['path'];
+export type PUT_UsersByUserIdRole_Request_Body = PUT_UsersByUserIdRole_Request['requestBody'];
 
 export type GET_UsersMe_Request = {
   parameters: operations['get_current_user_v1_users_me_get']['parameters'];

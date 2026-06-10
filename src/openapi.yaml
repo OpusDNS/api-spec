@@ -9090,90 +9090,6 @@ components:
       - d
       title: PeriodUnit
       type: string
-    Permission:
-      enum:
-      - bulk_create
-      - bulk_delete
-      - bulk_renew_expire
-      - bulk_transfer_trade
-      - bulk_update
-      - corporate_plan
-      - create
-      - create_vanity_ns
-      - delete
-      - delete_api_keys
-      - delete_contacts
-      - delete_dns_zones
-      - delete_domains
-      - delete_domain_forwards
-      - delete_email_forwards
-      - delete_events
-      - delete_hosts
-      - delete_jobs
-      - delete_parking
-      - delete_registrar_credentials
-      - delete_tags
-      - delete_users
-      - enterprise_plan
-      - has_accepted_tos
-      - manage_api_keys
-      - manage_billing
-      - manage_chats
-      - manage_cms_content
-      - manage_contacts
-      - manage_dns_zones
-      - manage_domains
-      - manage_domain_forwards
-      - manage_email_forwards
-      - manage_events
-      - manage_hosts
-      - manage_jobs
-      - manage_opusdns_api_keys
-      - manage_parking
-      - manage_products
-      - manage_registrar_credentials
-      - manage_reseller
-      - manage_sub_zones
-      - manage_tags
-      - manage_users
-      - manage_user_relations
-      - manage_vanity_ns
-      - plan_manager
-      - premium_plan
-      - renew_expire
-      - starter_plan
-      - transfer_trade
-      - update
-      - update_domain_forwards
-      - verify
-      - view
-      - view_api_keys
-      - view_audit_logs
-      - view_billing
-      - view_contacts
-      - view_dns_zones
-      - view_domains
-      - view_domain_forwards
-      - view_email_forwards
-      - view_events
-      - view_hosts
-      - view_jobs
-      - view_parking
-      - view_registrar_credentials
-      - view_tags
-      - view_users
-      - view_vanity_ns
-      title: Permission
-      type: string
-    PermissionSet:
-      properties:
-        permissions:
-          items:
-            $ref: '#/components/schemas/Permission'
-          title: Permissions
-          type: array
-      title: PermissionSet
-      type: object
     PlatformStatsBucket:
       properties:
         key:
@@ -9424,6 +9340,21 @@ components:
       - client_secret
       title: PublicAuthRequestForm
       type: object
+    PublicPermission:
+      examples:
+      - domains:read
+      - domains:manage
+      - domains:delete
+      type: string
+    PublicPermissionSet:
+      properties:
+        permissions:
+          items:
+            $ref: '#/components/schemas/PublicPermission'
+          title: Permissions
+          type: array
+      title: PublicPermissionSet
+      type: object
     PublicReportListRes:
       properties:
         pagination:
@@ -9496,6 +9427,50 @@ components:
       - updated_on
       title: PublicReportRes
       type: object
+    PublicResource:
+      enum:
+      - domains
+      - contacts
+      - dns
+      - hosts
+      - email_forwards
+      - domain_forwards
+      - parking
+      - events
+      - jobs
+      - billing
+      - users
+      - api_keys
+      - registrar_credentials
+      - tags
+      - audit_logs
+      - vanity_ns
+      title: PublicResource
+      type: string
+    PublicRole:
+      enum:
+      - admin
+      - viewer
+      - domain_manager
+      - dns_manager
+      - billing_manager
+      title: PublicRole
+      type: string
+    PublicRoleAssignment:
+      properties:
+        role:
+          anyOf:
+          - $ref: '#/components/schemas/PublicRole'
+          - type: 'null'
+      title: PublicRoleAssignment
+      type: object
+    PublicScope:
+      enum:
+      - read
+      - manage
+      - delete
+      title: PublicScope
+      type: string
     RdapBase:
       properties:
         rdap_server:
@@ -9616,71 +9591,6 @@ components:
       required:
       - supported
       title: RegistryLockBase
-      type: object
-    Relation:
-      enum:
-      - accepted_tos
-      - root_admin
-      - owner
-      - parent
-      - admin
-      - member
-      - client_api_key
-      - opusdns_internal_api_key
-      - reseller_manager
-      - chat_manager
-      - domain_view
-      - domain_manage
-      - domain_delete
-      - contact_view
-      - contact_manage
-      - contact_delete
-      - dns_zone_view
-      - dns_zone_manage
-      - dns_zone_delete
-      - host_view
-      - host_manage
-      - host_delete
-      - email_forward_view
-      - email_forward_manage
-      - email_forward_delete
-      - domain_forward_view
-      - domain_forward_manage
-      - domain_forward_delete
-      - parking_view
-      - parking_manage
-      - parking_delete
-      - events_view
-      - events_manage
-      - events_delete
-      - jobs_view
-      - jobs_manage
-      - jobs_delete
-      - tag_view
-      - tag_manage
-      - tag_delete
-      - registrar_credential_view
-      - registrar_credential_manage
-      - registrar_credential_delete
-      - user_view
-      - user_manage
-      - user_delete
-      - api_key_view
-      - api_key_manage
-      - api_key_delete
-      - billing_view
-      - billing_manage
-      - audit_log_view
-      title: Relation
-      type: string
-    RelationSet:
-      properties:
-        relations:
-          items:
-            $ref: '#/components/schemas/Relation'
-          title: Relations
-          type: array
-      title: RelationSet
       type: object
     RenewalMode:
       enum:
@@ -9872,24 +9782,6 @@ components:
       - desc
       title: SortOrder
       type: string
-    SpiceDbRelationshipUpdate:
-      properties:
-        add:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Relation'
-            type: array
-          - type: 'null'
-          title: Add
-        remove:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Relation'
-            type: array
-          - type: 'null'
-          title: Remove
-      title: SpiceDbRelationshipUpdate
-      type: object
     StatusChanges:
       properties:
         add:
@@ -11213,7 +11105,7 @@ components:
           title: Username
       title: UserUpdate
       type: object
-    UserWithRelationPermissions:
+    UserWithPermissions:
       properties:
         created_on:
           description: The date/time the entry was created on
@@ -11262,7 +11154,7 @@ components:
         permissions:
           anyOf:
           - items:
-              $ref: '#/components/schemas/Permission'
+              $ref: '#/components/schemas/PublicPermission'
             type: array
           - type: 'null'
           title: Permissions
@@ -11275,13 +11167,6 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
-        relations:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/Relation'
-            type: array
-          - type: 'null'
-          title: Relations
         status:
           $ref: '#/components/schemas/UserStatus'
           readOnly: true
@@ -11326,7 +11211,7 @@ components:
       - email
       - locale
       - status
-      title: UserWithRelationPermissions
+      title: UserWithPermissions
       type: object
     ValidationError:
       properties:
@@ -11652,7 +11537,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-08-154726
+  version: 2026-06-10-074321
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -23361,52 +23246,6 @@ paths:
       summary: Update an IP restriction
       tags:
       - organization
-  /v1/organizations/roles:
-    get:
-      description: Retrieves a list of roles for the current organization
-      operationId: list_roles_v1_organizations_roles_get
-      responses:
-        '200':
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '403':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_PERMISSION_DENIED
-                detail: Insufficient permissions to perform this action
-                status: 403
-                title: Permission Denied
-                type: permission-denied
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Forbidden
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      - APIKeyHeader: []
-      summary: List all roles
-      tags:
-      - organization
   /v1/organizations/users:
     get:
       description: Retrieves a paginated list of users under the current organization
@@ -25336,7 +25175,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserWithRelationPermissions'
+                $ref: '#/components/schemas/UserWithPermissions'
           description: Successful Response
         '422':
           content:
@@ -25544,7 +25383,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PermissionSet'
+                $ref: '#/components/schemas/PublicPermissionSet'
           description: Successful Response
         '422':
           content:
@@ -25558,10 +25397,10 @@ paths:
       summary: Get user permissions
       tags:
       - user
-  /v1/users/{user_id}/roles:
+  /v1/users/{user_id}/role:
     get:
-      description: Get the roles for a user
-      operationId: list_roles_v1_users__user_id__roles_get
+      description: Get the role for a user
+      operationId: get_role_v1_users__user_id__role_get
       parameters:
       - in: path
         name: user_id
@@ -25579,7 +25418,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RelationSet'
+                $ref: '#/components/schemas/PublicRoleAssignment'
           description: Successful Response
         '422':
           content:
@@ -25590,12 +25429,12 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Get user roles
+      summary: Get user role
       tags:
       - user
-    patch:
-      description: Update the roles for a user
-      operationId: update_user_relations_v1_users__user_id__roles_patch
+    put:
+      description: Set the role for a user, replacing any existing role
+      operationId: set_user_role_v1_users__user_id__role_put
       parameters:
       - in: path
         name: user_id
@@ -25612,14 +25451,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SpiceDbRelationshipUpdate'
+              $ref: '#/components/schemas/PublicRoleAssignment'
         required: true
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RelationSet'
+                $ref: '#/components/schemas/PublicRoleAssignment'
           description: Successful Response
         '422':
           content:
@@ -25630,7 +25469,7 @@ paths:
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
-      summary: Update user roles
+      summary: Set user role
       tags:
       - user
 servers:
