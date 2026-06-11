@@ -1364,6 +1364,7 @@ export const KEY_DNS_ZONE_NAME = 'name' satisfies keyof DnsZone;
 export const KEY_DNS_ZONE_RRSETS = 'rrsets' satisfies keyof DnsZone;
 export const KEY_DNS_ZONE_TAGS = 'tags' satisfies keyof DnsZone;
 export const KEY_DNS_ZONE_UPDATED_ON = 'updated_on' satisfies keyof DnsZone;
+export const KEY_DNS_ZONE_VANITY_NAMESERVER_SET_ID = 'vanity_nameserver_set_id' satisfies keyof DnsZone;
 
 export const KEYS_DNS_ZONE = [
   KEY_DNS_ZONE_CREATED_ON,
@@ -1374,6 +1375,7 @@ export const KEYS_DNS_ZONE = [
   KEY_DNS_ZONE_RRSETS,
   KEY_DNS_ZONE_TAGS,
   KEY_DNS_ZONE_UPDATED_ON,
+  KEY_DNS_ZONE_VANITY_NAMESERVER_SET_ID,
 ] as const satisfies (keyof DnsZone)[];
 
 export const KEY_DNS_ZONE_RRSETS_CREATE_RRSETS = 'rrsets' satisfies keyof DnsZoneRrsetsCreate;

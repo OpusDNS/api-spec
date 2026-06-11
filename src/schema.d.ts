@@ -4364,6 +4364,11 @@ export interface components {
              * @description The date/time the entry was last updated on
              */
             updated_on?: Date;
+            /**
+             * Vanity Nameserver Set Id
+             * @description Vanity NS set whose apex NS + SOA brand this zone, or null when the zone uses the system default nameservers.
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
         /** DnsZoneRrsetsCreate */
         DnsZoneRrsetsCreate: {
