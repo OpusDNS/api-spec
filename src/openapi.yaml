@@ -3747,99 +3747,6 @@ components:
       - results
       title: DomainForwardBrowserStatsResponse
       type: object
-    DomainForwardCreateBulkCommand:
-      properties:
-        command:
-          const: domain_forward_create_bulk
-          default: domain_forward_create_bulk
-          title: Command
-          type: string
-        idempotency_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Idempotency key for this bulk command
-          title: Idempotency Key
-        payload:
-          $ref: '#/components/schemas/DomainForwardCreateBulkPayload'
-          description: Bulk domain forward create payload
-        version:
-          default: v1
-          description: Command version
-          title: Version
-          type: string
-      required:
-      - payload
-      title: DomainForwardCreateBulkCommand
-      type: object
-    DomainForwardCreateBulkInstance:
-      properties:
-        enabled:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          description: Override enabled setting for this hostname
-          title: Enabled
-        hostname:
-          description: Hostname to create forward for
-          title: Hostname
-          type: string
-        http:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: Override HTTP redirects
-        https:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: Override HTTPS redirects
-      required:
-      - hostname
-      title: DomainForwardCreateBulkInstance
-      type: object
-    DomainForwardCreateBulkPayload:
-      properties:
-        instances:
-          description: List of domain forwards to create (1-1000)
-          items:
-            $ref: '#/components/schemas/DomainForwardCreateBulkInstance'
-          maxItems: 1000
-          minItems: 1
-          title: Instances
-          type: array
-        template:
-          $ref: '#/components/schemas/DomainForwardCreateBulkTemplate'
-          description: Shared settings for all domain forwards
-      required:
-      - template
-      - instances
-      title: DomainForwardCreateBulkPayload
-      type: object
-    DomainForwardCreateBulkTemplate:
-      properties:
-        auto_create_zone:
-          default: false
-          description: Create apex DNS zone automatically when missing
-          title: Auto Create Zone
-          type: boolean
-        enabled:
-          default: false
-          description: Whether domain forward should be enabled
-          title: Enabled
-          type: boolean
-        http:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: HTTP redirect definitions
-        https:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: HTTPS redirect definitions
-      title: DomainForwardCreateBulkTemplate
-      type: object
     DomainForwardCreateRequest:
       properties:
         enabled:
@@ -3860,153 +3767,6 @@ components:
       required:
       - hostname
       title: DomainForwardCreateRequest
-      type: object
-    DomainForwardDeleteBulkCommand:
-      properties:
-        command:
-          const: domain_forward_delete_bulk
-          default: domain_forward_delete_bulk
-          title: Command
-          type: string
-        idempotency_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Idempotency key for this bulk command
-          title: Idempotency Key
-        payload:
-          $ref: '#/components/schemas/DomainForwardDeleteBulkPayload'
-          description: Bulk domain forward delete payload
-        version:
-          default: v1
-          description: Command version
-          title: Version
-          type: string
-      required:
-      - payload
-      title: DomainForwardDeleteBulkCommand
-      type: object
-    DomainForwardDeleteBulkInstance:
-      properties:
-        hostname:
-          description: Hostname to delete forwarding for
-          title: Hostname
-          type: string
-      required:
-      - hostname
-      title: DomainForwardDeleteBulkInstance
-      type: object
-    DomainForwardDeleteBulkPayload:
-      properties:
-        instances:
-          description: List of hostnames to delete forwarding for (1-1000)
-          items:
-            $ref: '#/components/schemas/DomainForwardDeleteBulkInstance'
-          maxItems: 1000
-          minItems: 1
-          title: Instances
-          type: array
-      required:
-      - instances
-      title: DomainForwardDeleteBulkPayload
-      type: object
-    DomainForwardDisableBulkCommand:
-      properties:
-        command:
-          const: domain_forward_disable_bulk
-          default: domain_forward_disable_bulk
-          title: Command
-          type: string
-        idempotency_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Idempotency key for this bulk command
-          title: Idempotency Key
-        payload:
-          $ref: '#/components/schemas/DomainForwardDisableBulkPayload'
-          description: Bulk domain forward disable payload
-        version:
-          default: v1
-          description: Command version
-          title: Version
-          type: string
-      required:
-      - payload
-      title: DomainForwardDisableBulkCommand
-      type: object
-    DomainForwardDisableBulkInstance:
-      properties:
-        hostname:
-          description: Hostname to disable forwarding for
-          title: Hostname
-          type: string
-      required:
-      - hostname
-      title: DomainForwardDisableBulkInstance
-      type: object
-    DomainForwardDisableBulkPayload:
-      properties:
-        instances:
-          description: List of hostnames to disable forwarding for (1-1000)
-          items:
-            $ref: '#/components/schemas/DomainForwardDisableBulkInstance'
-          maxItems: 1000
-          minItems: 1
-          title: Instances
-          type: array
-      required:
-      - instances
-      title: DomainForwardDisableBulkPayload
-      type: object
-    DomainForwardEnableBulkCommand:
-      properties:
-        command:
-          const: domain_forward_enable_bulk
-          default: domain_forward_enable_bulk
-          title: Command
-          type: string
-        idempotency_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Idempotency key for this bulk command
-          title: Idempotency Key
-        payload:
-          $ref: '#/components/schemas/DomainForwardEnableBulkPayload'
-          description: Bulk domain forward enable payload
-        version:
-          default: v1
-          description: Command version
-          title: Version
-          type: string
-      required:
-      - payload
-      title: DomainForwardEnableBulkCommand
-      type: object
-    DomainForwardEnableBulkInstance:
-      properties:
-        hostname:
-          description: Hostname to enable forwarding for
-          title: Hostname
-          type: string
-      required:
-      - hostname
-      title: DomainForwardEnableBulkInstance
-      type: object
-    DomainForwardEnableBulkPayload:
-      properties:
-        instances:
-          description: List of hostnames to enable forwarding for (1-1000)
-          items:
-            $ref: '#/components/schemas/DomainForwardEnableBulkInstance'
-          maxItems: 1000
-          minItems: 1
-          title: Instances
-          type: array
-      required:
-      - instances
-      title: DomainForwardEnableBulkPayload
       type: object
     DomainForwardGeoStatsResponse:
       properties:
@@ -4201,95 +3961,6 @@ components:
       required:
       - results
       title: DomainForwardStatusCodeStatsResponse
-      type: object
-    DomainForwardUpdateBulkCommand:
-      properties:
-        command:
-          const: domain_forward_update_bulk
-          default: domain_forward_update_bulk
-          title: Command
-          type: string
-        idempotency_key:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Idempotency key for this bulk command
-          title: Idempotency Key
-        payload:
-          $ref: '#/components/schemas/DomainForwardUpdateBulkPayload'
-          description: Bulk domain forward update payload
-        version:
-          default: v1
-          description: Command version
-          title: Version
-          type: string
-      required:
-      - payload
-      title: DomainForwardUpdateBulkCommand
-      type: object
-    DomainForwardUpdateBulkInstance:
-      properties:
-        enabled:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          description: Override enabled setting for this hostname
-          title: Enabled
-        hostname:
-          description: Hostname to update forward for
-          title: Hostname
-          type: string
-        http:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: Override HTTP redirects
-        https:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: Override HTTPS redirects
-      required:
-      - hostname
-      title: DomainForwardUpdateBulkInstance
-      type: object
-    DomainForwardUpdateBulkPayload:
-      properties:
-        instances:
-          description: List of domain forwards to update (1-1000)
-          items:
-            $ref: '#/components/schemas/DomainForwardUpdateBulkInstance'
-          maxItems: 1000
-          minItems: 1
-          title: Instances
-          type: array
-        template:
-          $ref: '#/components/schemas/DomainForwardUpdateBulkTemplate'
-          description: Shared settings for all domain forwards
-      required:
-      - template
-      - instances
-      title: DomainForwardUpdateBulkPayload
-      type: object
-    DomainForwardUpdateBulkTemplate:
-      properties:
-        enabled:
-          description: Whether domain forward should be enabled
-          title: Enabled
-          type: boolean
-        http:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: HTTP redirect definitions
-        https:
-          anyOf:
-          - $ref: '#/components/schemas/DomainForwardProtocolSetRequest'
-          - type: 'null'
-          description: HTTPS redirect definitions
-      required:
-      - enabled
-      title: DomainForwardUpdateBulkTemplate
       type: object
     DomainForwardUserAgentStatsResponse:
       properties:
@@ -6899,11 +6570,6 @@ components:
                 dns_zone_update_bulk: '#/components/schemas/DnsZoneUpdateBulkCommand'
                 domain_create: '#/components/schemas/DomainCreateCommand'
                 domain_create_bulk: '#/components/schemas/DomainCreateBulkCommand'
-                domain_forward_create_bulk: '#/components/schemas/DomainForwardCreateBulkCommand'
-                domain_forward_delete_bulk: '#/components/schemas/DomainForwardDeleteBulkCommand'
-                domain_forward_disable_bulk: '#/components/schemas/DomainForwardDisableBulkCommand'
-                domain_forward_enable_bulk: '#/components/schemas/DomainForwardEnableBulkCommand'
-                domain_forward_update_bulk: '#/components/schemas/DomainForwardUpdateBulkCommand'
                 domain_transfer: '#/components/schemas/DomainTransferCommand'
                 domain_transfer_bulk: '#/components/schemas/DomainTransferBulkCommand'
                 domain_update: '#/components/schemas/DomainUpdateCommand'
@@ -6932,11 +6598,6 @@ components:
             - $ref: '#/components/schemas/ParkingEnableBulkCommand'
             - $ref: '#/components/schemas/ParkingDisableBulkCommand'
             - $ref: '#/components/schemas/ParkingDeleteBulkCommand'
-            - $ref: '#/components/schemas/DomainForwardCreateBulkCommand'
-            - $ref: '#/components/schemas/DomainForwardUpdateBulkCommand'
-            - $ref: '#/components/schemas/DomainForwardEnableBulkCommand'
-            - $ref: '#/components/schemas/DomainForwardDisableBulkCommand'
-            - $ref: '#/components/schemas/DomainForwardDeleteBulkCommand'
           maxItems: 50000
           title: Commands
           type: array
@@ -8832,19 +8493,19 @@ components:
       - pagination
       title: Pagination[TagResponse]
       type: object
-    Pagination_UserPublicWithRole_:
+    Pagination_UserPublic_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/UserPublicWithRole'
+            $ref: '#/components/schemas/UserPublic'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[UserPublicWithRole]
+      title: Pagination[UserPublic]
       type: object
     ParkingActionPayloadData:
       properties:
@@ -11356,97 +11017,6 @@ components:
       - status
       title: UserPublicWithAttributes
       type: object
-    UserPublicWithRole:
-      properties:
-        created_on:
-          description: The date/time the entry was created on
-          format: date-time
-          title: Created On
-          type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
-        email:
-          description: The user's email address
-          format: email
-          title: Email
-          type: string
-        first_name:
-          description: The user's first name
-          maxLength: 255
-          minLength: 1
-          title: First Name
-          type: string
-        last_name:
-          description: The user's last name
-          maxLength: 255
-          minLength: 1
-          title: Last Name
-          type: string
-        locale:
-          examples:
-          - en_US
-          title: Locale
-          type: string
-        organization_id:
-          default: None
-          description: The user's organization id
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-        phone:
-          anyOf:
-          - format: phone
-            type: string
-          - type: 'null'
-          description: The user's phone number
-          examples:
-          - '+1.2125552368'
-          title: Phone
-        role:
-          anyOf:
-          - $ref: '#/components/schemas/PublicRole'
-          - type: 'null'
-        status:
-          $ref: '#/components/schemas/UserStatus'
-          readOnly: true
-        updated_on:
-          description: The date/time the entry was last updated on
-          format: date-time
-          title: Updated On
-          type: string
-        user_id:
-          examples:
-          - user_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: User Id
-          type: string
-          x-typeid-prefix: user
-        username:
-          description: The user's unique username
-          maxLength: 128
-          minLength: 3
-          pattern: ^[a-zA-Z0-9\-+_@.]+$
-          title: Username
-          type: string
-      required:
-      - username
-      - first_name
-      - last_name
-      - email
-      - locale
-      - status
-      title: UserPublicWithRole
-      type: object
     UserSortField:
       enum:
       - created_on
@@ -11553,7 +11123,7 @@ components:
           title: Username
       title: UserUpdate
       type: object
-    UserWithAuthorization:
+    UserWithPermissions:
       properties:
         created_on:
           description: The date/time the entry was created on
@@ -11615,10 +11185,6 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
-        role:
-          anyOf:
-          - $ref: '#/components/schemas/PublicRole'
-          - type: 'null'
         status:
           $ref: '#/components/schemas/UserStatus'
           readOnly: true
@@ -11663,7 +11229,7 @@ components:
       - email
       - locale
       - status
-      title: UserWithAuthorization
+      title: UserWithPermissions
       type: object
     ValidationError:
       properties:
@@ -11989,7 +11555,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-11-121808
+  version: 2026-06-11-130907
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -23949,7 +23515,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_UserPublicWithRole_'
+                $ref: '#/components/schemas/Pagination_UserPublic_'
           description: Successful Response
         '401':
           content:
@@ -25858,7 +25424,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserWithAuthorization'
+                $ref: '#/components/schemas/UserWithPermissions'
           description: Successful Response
         '422':
           content:
