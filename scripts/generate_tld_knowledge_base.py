@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate the OpusDNS TLD Knowledge Base from compiled TLD specs.
 
-Reads compiled YAML specifications, writes one Markdown page per enabled TLD
-into ``scalar/content/tld-knowledge-base/{cctlds,gtlds}/<tld>.md`` and
-refreshes the sidebar in ``scalar/scalar.config.json``.
+Reads compiled YAML specifications, writes one Markdown page per enabled,
+non-manual TLD into ``scalar/content/tld-knowledge-base/{cctlds,gtlds}/<tld>.md``
+and refreshes the sidebar in ``scalar/scalar.config.json``.
 """
 
 from __future__ import annotations
@@ -23,6 +23,25 @@ from tld_knowledge_base import render, scalar_config  # noqa: E402
 DEFAULT_INPUT = REPO_ROOT.parent / "tld-specifications" / "compiled_specifications"
 DEFAULT_OUTPUT = REPO_ROOT / "scalar" / "content" / "tld-knowledge-base"
 DEFAULT_CONFIG = REPO_ROOT / "scalar" / "scalar.config.json"
+
+# Manually-provisioned TLDs (specifications/ras_manual in OpusDNS/tld-specifications)
+# are enabled in the API but should not be published in the knowledge base.
+MANUAL_PROVISIONING_PROTOCOL = "Custom"
+# Must stay in sync with the provisioning_protocol enum in
+# OpusDNS/tld-specifications specifications/schema.json; an unknown value means
+# this script can no longer tell manual TLDs apart, so it fails fast.
+PROVISIONING_PROTOCOLS = {"EPP", "RRI", "RRP", MANUAL_PROVISIONING_PROTOCOL}
+
+
+def is_manual(config: dict, source: str) -> bool:
+    registry = config.get("registry") or {}
+    protocol = registry.get("provisioning_protocol")
+    if protocol is not None and protocol not in PROVISIONING_PROTOCOLS:
+        raise SystemExit(
+            f"{source}: unknown registry.provisioning_protocol {protocol!r}; "
+            f"expected one of {sorted(PROVISIONING_PROTOCOLS)}"
+        )
+    return protocol == MANUAL_PROVISIONING_PROTOCOL
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -51,6 +70,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Also render TLDs whose tld_configuration.enabled is false",
     )
     parser.add_argument(
+        "--include-manual",
+        action="store_true",
+        help=(
+            "Also render manually-provisioned TLDs "
+            f"(registry provisioning_protocol {MANUAL_PROVISIONING_PROTOCOL!r})"
+        ),
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Render and diff but do not write any files",
@@ -67,11 +94,13 @@ def load_specs(
     input_dir: Path,
     *,
     include_disabled: bool,
+    include_manual: bool,
     allowlist: set[str] | None,
 ) -> list[tuple[Path, dict]]:
     if not input_dir.exists():
         raise SystemExit(f"Input directory does not exist: {input_dir}")
     specs: list[tuple[Path, dict]] = []
+    skipped_manual = 0
     for path in sorted(input_dir.glob("*.yaml")):
         try:
             data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
@@ -81,10 +110,19 @@ def load_specs(
         config = data.get("tld_configuration") or {}
         if not include_disabled and not config.get("enabled"):
             continue
+        if not include_manual and is_manual(config, path.name):
+            skipped_manual += 1
+            continue
         slug = render.page_slug(data)
         if allowlist is not None and slug not in allowlist:
             continue
         specs.append((path, data))
+    if skipped_manual:
+        print(
+            f"skipped {skipped_manual} manually-provisioned spec(s); "
+            "use --include-manual to render them",
+            file=sys.stderr,
+        )
     return specs
 
 
@@ -172,7 +210,12 @@ def prune_stale_pages(
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     allowlist = set(args.tld) if args.tld else None
-    specs = load_specs(args.input, include_disabled=args.include_disabled, allowlist=allowlist)
+    specs = load_specs(
+        args.input,
+        include_disabled=args.include_disabled,
+        include_manual=args.include_manual,
+        allowlist=allowlist,
+    )
     if not specs:
         print("No matching compiled spec files found.", file=sys.stderr)
         return 1
