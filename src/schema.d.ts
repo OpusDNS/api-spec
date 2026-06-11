@@ -8013,11 +8013,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["TagResponse"][];
         };
-        /** Pagination[UserPublic] */
-        Pagination_UserPublic_: {
+        /** Pagination[UserPublicWithRole] */
+        Pagination_UserPublicWithRole_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["UserPublic"][];
+            results: components["schemas"]["UserPublicWithRole"][];
         };
         /** ParkingActionPayloadData */
         ParkingActionPayloadData: {
@@ -9749,6 +9749,74 @@ export interface components {
              */
             username: string;
         };
+        /** UserPublicWithRole */
+        UserPublicWithRole: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
+            /**
+             * First Name
+             * @description The user's first name
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The user's last name
+             */
+            last_name: string;
+            /**
+             * Locale
+             * @example en_US
+             */
+            locale: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The user's organization id
+             * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Phone
+             * @description The user's phone number
+             * @example +1.2125552368
+             */
+            phone?: string | null;
+            role?: components["schemas"]["PublicRole"] | null;
+            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * User Id
+             * Format: typeid
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
+             */
+            user_id?: TypeId<"user">;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
+        };
         /**
          * UserSortField
          * @enum {string}
@@ -9826,8 +9894,8 @@ export interface components {
              */
             username?: string | null;
         };
-        /** UserWithPermissions */
-        UserWithPermissions: {
+        /** UserWithAuthorization */
+        UserWithAuthorization: {
             /**
              * Created On
              * Format: date-time
@@ -9876,6 +9944,7 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
+            role?: components["schemas"]["PublicRole"] | null;
             readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
@@ -18668,7 +18737,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_UserPublic_"];
+                    "application/json": components["schemas"]["Pagination_UserPublicWithRole_"];
                 };
             };
             /** @description Unauthorized */
@@ -20395,7 +20464,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithPermissions"];
+                    "application/json": components["schemas"]["UserWithAuthorization"];
                 };
             };
             /** @description Validation Error */

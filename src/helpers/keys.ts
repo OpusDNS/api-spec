@@ -303,9 +303,10 @@ import type {
   UserCreate,
   UserPublic,
   UserPublicWithAttributes,
+  UserPublicWithRole,
   UserToken,
   UserUpdate,
-  UserWithPermissions,
+  UserWithAuthorization,
   ValidationError,
   VerificationDeadline,
   VerificationRegistrantDetails,
@@ -4264,6 +4265,36 @@ export const KEYS_USER_PUBLIC_WITH_ATTRIBUTES = [
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_USERNAME,
 ] as const satisfies (keyof UserPublicWithAttributes)[];
 
+export const KEY_USER_PUBLIC_WITH_ROLE_CREATED_ON = 'created_on' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_DELETED_ON = 'deleted_on' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_EMAIL = 'email' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_FIRST_NAME = 'first_name' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_LAST_NAME = 'last_name' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_LOCALE = 'locale' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_ORGANIZATION_ID = 'organization_id' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_PHONE = 'phone' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_ROLE = 'role' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_STATUS = 'status' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_UPDATED_ON = 'updated_on' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_USER_ID = 'user_id' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_USERNAME = 'username' satisfies keyof UserPublicWithRole;
+
+export const KEYS_USER_PUBLIC_WITH_ROLE = [
+  KEY_USER_PUBLIC_WITH_ROLE_CREATED_ON,
+  KEY_USER_PUBLIC_WITH_ROLE_DELETED_ON,
+  KEY_USER_PUBLIC_WITH_ROLE_EMAIL,
+  KEY_USER_PUBLIC_WITH_ROLE_FIRST_NAME,
+  KEY_USER_PUBLIC_WITH_ROLE_LAST_NAME,
+  KEY_USER_PUBLIC_WITH_ROLE_LOCALE,
+  KEY_USER_PUBLIC_WITH_ROLE_ORGANIZATION_ID,
+  KEY_USER_PUBLIC_WITH_ROLE_PHONE,
+  KEY_USER_PUBLIC_WITH_ROLE_ROLE,
+  KEY_USER_PUBLIC_WITH_ROLE_STATUS,
+  KEY_USER_PUBLIC_WITH_ROLE_UPDATED_ON,
+  KEY_USER_PUBLIC_WITH_ROLE_USER_ID,
+  KEY_USER_PUBLIC_WITH_ROLE_USERNAME,
+] as const satisfies (keyof UserPublicWithRole)[];
+
 export const KEY_USER_TOKEN_ACCESS_TOKEN = 'access_token' satisfies keyof UserToken;
 export const KEY_USER_TOKEN_EXPIRES_IN = 'expires_in' satisfies keyof UserToken;
 export const KEY_USER_TOKEN_REFRESH_EXPIRES_IN = 'refresh_expires_in' satisfies keyof UserToken;
@@ -4296,37 +4327,39 @@ export const KEYS_USER_UPDATE = [
   KEY_USER_UPDATE_USERNAME,
 ] as const satisfies (keyof UserUpdate)[];
 
-export const KEY_USER_WITH_PERMISSIONS_CREATED_ON = 'created_on' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_DELETED_ON = 'deleted_on' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_EMAIL = 'email' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_FIRST_NAME = 'first_name' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_LAST_NAME = 'last_name' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_LOCALE = 'locale' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_ORGANIZATION_ID = 'organization_id' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_PERMISSIONS = 'permissions' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_PHONE = 'phone' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_STATUS = 'status' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_UPDATED_ON = 'updated_on' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_USER_ID = 'user_id' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_USERNAME = 'username' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_AUTHORIZATION_CREATED_ON = 'created_on' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_DELETED_ON = 'deleted_on' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_EMAIL = 'email' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_FIRST_NAME = 'first_name' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_LAST_NAME = 'last_name' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_LOCALE = 'locale' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_ORGANIZATION_ID = 'organization_id' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_PERMISSIONS = 'permissions' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_PHONE = 'phone' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_ROLE = 'role' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_STATUS = 'status' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_UPDATED_ON = 'updated_on' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_USER_ID = 'user_id' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_USERNAME = 'username' satisfies keyof UserWithAuthorization;
 
-export const KEYS_USER_WITH_PERMISSIONS = [
-  KEY_USER_WITH_PERMISSIONS_CREATED_ON,
-  KEY_USER_WITH_PERMISSIONS_DELETED_ON,
-  KEY_USER_WITH_PERMISSIONS_EMAIL,
-  KEY_USER_WITH_PERMISSIONS_FIRST_NAME,
-  KEY_USER_WITH_PERMISSIONS_LAST_NAME,
-  KEY_USER_WITH_PERMISSIONS_LOCALE,
-  KEY_USER_WITH_PERMISSIONS_ORGANIZATION_ID,
-  KEY_USER_WITH_PERMISSIONS_PERMISSIONS,
-  KEY_USER_WITH_PERMISSIONS_PHONE,
-  KEY_USER_WITH_PERMISSIONS_STATUS,
-  KEY_USER_WITH_PERMISSIONS_UPDATED_ON,
-  KEY_USER_WITH_PERMISSIONS_USER_ATTRIBUTES,
-  KEY_USER_WITH_PERMISSIONS_USER_ID,
-  KEY_USER_WITH_PERMISSIONS_USERNAME,
-] as const satisfies (keyof UserWithPermissions)[];
+export const KEYS_USER_WITH_AUTHORIZATION = [
+  KEY_USER_WITH_AUTHORIZATION_CREATED_ON,
+  KEY_USER_WITH_AUTHORIZATION_DELETED_ON,
+  KEY_USER_WITH_AUTHORIZATION_EMAIL,
+  KEY_USER_WITH_AUTHORIZATION_FIRST_NAME,
+  KEY_USER_WITH_AUTHORIZATION_LAST_NAME,
+  KEY_USER_WITH_AUTHORIZATION_LOCALE,
+  KEY_USER_WITH_AUTHORIZATION_ORGANIZATION_ID,
+  KEY_USER_WITH_AUTHORIZATION_PERMISSIONS,
+  KEY_USER_WITH_AUTHORIZATION_PHONE,
+  KEY_USER_WITH_AUTHORIZATION_ROLE,
+  KEY_USER_WITH_AUTHORIZATION_STATUS,
+  KEY_USER_WITH_AUTHORIZATION_UPDATED_ON,
+  KEY_USER_WITH_AUTHORIZATION_USER_ATTRIBUTES,
+  KEY_USER_WITH_AUTHORIZATION_USER_ID,
+  KEY_USER_WITH_AUTHORIZATION_USERNAME,
+] as const satisfies (keyof UserWithAuthorization)[];
 
 export const KEY_VALIDATION_ERROR_CTX = 'ctx' satisfies keyof ValidationError;
 export const KEY_VALIDATION_ERROR_INPUT = 'input' satisfies keyof ValidationError;

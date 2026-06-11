@@ -8493,19 +8493,19 @@ components:
       - pagination
       title: Pagination[TagResponse]
       type: object
-    Pagination_UserPublic_:
+    Pagination_UserPublicWithRole_:
       properties:
         pagination:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/UserPublic'
+            $ref: '#/components/schemas/UserPublicWithRole'
           title: Results
           type: array
       required:
       - results
       - pagination
-      title: Pagination[UserPublic]
+      title: Pagination[UserPublicWithRole]
       type: object
     ParkingActionPayloadData:
       properties:
@@ -11017,6 +11017,97 @@ components:
       - status
       title: UserPublicWithAttributes
       type: object
+    UserPublicWithRole:
+      properties:
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        deleted_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date/time the entry was deleted on
+          title: Deleted On
+        email:
+          description: The user's email address
+          format: email
+          title: Email
+          type: string
+        first_name:
+          description: The user's first name
+          maxLength: 255
+          minLength: 1
+          title: First Name
+          type: string
+        last_name:
+          description: The user's last name
+          maxLength: 255
+          minLength: 1
+          title: Last Name
+          type: string
+        locale:
+          examples:
+          - en_US
+          title: Locale
+          type: string
+        organization_id:
+          default: None
+          description: The user's organization id
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        phone:
+          anyOf:
+          - format: phone
+            type: string
+          - type: 'null'
+          description: The user's phone number
+          examples:
+          - '+1.2125552368'
+          title: Phone
+        role:
+          anyOf:
+          - $ref: '#/components/schemas/PublicRole'
+          - type: 'null'
+        status:
+          $ref: '#/components/schemas/UserStatus'
+          readOnly: true
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+        user_id:
+          examples:
+          - user_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: User Id
+          type: string
+          x-typeid-prefix: user
+        username:
+          description: The user's unique username
+          maxLength: 128
+          minLength: 3
+          pattern: ^[a-zA-Z0-9\-+_@.]+$
+          title: Username
+          type: string
+      required:
+      - username
+      - first_name
+      - last_name
+      - email
+      - locale
+      - status
+      title: UserPublicWithRole
+      type: object
     UserSortField:
       enum:
       - created_on
@@ -11123,7 +11214,7 @@ components:
           title: Username
       title: UserUpdate
       type: object
-    UserWithPermissions:
+    UserWithAuthorization:
       properties:
         created_on:
           description: The date/time the entry was created on
@@ -11185,6 +11276,10 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
+        role:
+          anyOf:
+          - $ref: '#/components/schemas/PublicRole'
+          - type: 'null'
         status:
           $ref: '#/components/schemas/UserStatus'
           readOnly: true
@@ -11229,7 +11324,7 @@ components:
       - email
       - locale
       - status
-      title: UserWithPermissions
+      title: UserWithAuthorization
       type: object
     ValidationError:
       properties:
@@ -11555,7 +11650,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-10-102008
+  version: 2026-06-11-084702
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -23515,7 +23610,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_UserPublic_'
+                $ref: '#/components/schemas/Pagination_UserPublicWithRole_'
           description: Successful Response
         '401':
           content:
@@ -25424,7 +25519,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserWithPermissions'
+                $ref: '#/components/schemas/UserWithAuthorization'
           description: Successful Response
         '422':
           content:
