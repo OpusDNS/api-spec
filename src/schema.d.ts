@@ -4943,6 +4943,73 @@ export interface components {
             /** Results */
             results: components["schemas"]["BrowserStatsBucket"][];
         };
+        /** DomainForwardCreateBulkCommand */
+        DomainForwardCreateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_forward_create_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain forward create payload */
+            payload: components["schemas"]["DomainForwardCreateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainForwardCreateBulkInstance */
+        DomainForwardCreateBulkInstance: {
+            /**
+             * Enabled
+             * @description Override enabled setting for this hostname
+             */
+            enabled?: boolean | null;
+            /**
+             * Hostname
+             * @description Hostname to create forward for
+             */
+            hostname: string;
+            /** @description Override HTTP redirects */
+            http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+            /** @description Override HTTPS redirects */
+            https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+        };
+        /** DomainForwardCreateBulkPayload */
+        DomainForwardCreateBulkPayload: {
+            /**
+             * Instances
+             * @description List of domain forwards to create (1-1000)
+             */
+            instances: components["schemas"]["DomainForwardCreateBulkInstance"][];
+            /** @description Shared settings for all domain forwards */
+            template: components["schemas"]["DomainForwardCreateBulkTemplate"];
+        };
+        /** DomainForwardCreateBulkTemplate */
+        DomainForwardCreateBulkTemplate: {
+            /**
+             * Auto Create Zone
+             * @description Create apex DNS zone automatically when missing
+             * @default false
+             */
+            auto_create_zone: boolean;
+            /**
+             * Enabled
+             * @description Whether domain forward should be enabled
+             * @default false
+             */
+            enabled: boolean;
+            /** @description HTTP redirect definitions */
+            http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+            /** @description HTTPS redirect definitions */
+            https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+        };
         /** DomainForwardCreateRequest */
         DomainForwardCreateRequest: {
             /**
@@ -4954,6 +5021,117 @@ export interface components {
             hostname: string;
             http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
             https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+        };
+        /** DomainForwardDeleteBulkCommand */
+        DomainForwardDeleteBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_forward_delete_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain forward delete payload */
+            payload: components["schemas"]["DomainForwardDeleteBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainForwardDeleteBulkInstance */
+        DomainForwardDeleteBulkInstance: {
+            /**
+             * Hostname
+             * @description Hostname to delete forwarding for
+             */
+            hostname: string;
+        };
+        /** DomainForwardDeleteBulkPayload */
+        DomainForwardDeleteBulkPayload: {
+            /**
+             * Instances
+             * @description List of hostnames to delete forwarding for (1-1000)
+             */
+            instances: components["schemas"]["DomainForwardDeleteBulkInstance"][];
+        };
+        /** DomainForwardDisableBulkCommand */
+        DomainForwardDisableBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_forward_disable_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain forward disable payload */
+            payload: components["schemas"]["DomainForwardDisableBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainForwardDisableBulkInstance */
+        DomainForwardDisableBulkInstance: {
+            /**
+             * Hostname
+             * @description Hostname to disable forwarding for
+             */
+            hostname: string;
+        };
+        /** DomainForwardDisableBulkPayload */
+        DomainForwardDisableBulkPayload: {
+            /**
+             * Instances
+             * @description List of hostnames to disable forwarding for (1-1000)
+             */
+            instances: components["schemas"]["DomainForwardDisableBulkInstance"][];
+        };
+        /** DomainForwardEnableBulkCommand */
+        DomainForwardEnableBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_forward_enable_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain forward enable payload */
+            payload: components["schemas"]["DomainForwardEnableBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainForwardEnableBulkInstance */
+        DomainForwardEnableBulkInstance: {
+            /**
+             * Hostname
+             * @description Hostname to enable forwarding for
+             */
+            hostname: string;
+        };
+        /** DomainForwardEnableBulkPayload */
+        DomainForwardEnableBulkPayload: {
+            /**
+             * Instances
+             * @description List of hostnames to enable forwarding for (1-1000)
+             */
+            instances: components["schemas"]["DomainForwardEnableBulkInstance"][];
         };
         /** DomainForwardGeoStatsResponse */
         DomainForwardGeoStatsResponse: {
@@ -5055,6 +5233,66 @@ export interface components {
         DomainForwardStatusCodeStatsResponse: {
             /** Results */
             results: components["schemas"]["StatusCodeStatsBucket"][];
+        };
+        /** DomainForwardUpdateBulkCommand */
+        DomainForwardUpdateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "domain_forward_update_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk domain forward update payload */
+            payload: components["schemas"]["DomainForwardUpdateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DomainForwardUpdateBulkInstance */
+        DomainForwardUpdateBulkInstance: {
+            /**
+             * Enabled
+             * @description Override enabled setting for this hostname
+             */
+            enabled?: boolean | null;
+            /**
+             * Hostname
+             * @description Hostname to update forward for
+             */
+            hostname: string;
+            /** @description Override HTTP redirects */
+            http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+            /** @description Override HTTPS redirects */
+            https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+        };
+        /** DomainForwardUpdateBulkPayload */
+        DomainForwardUpdateBulkPayload: {
+            /**
+             * Instances
+             * @description List of domain forwards to update (1-1000)
+             */
+            instances: components["schemas"]["DomainForwardUpdateBulkInstance"][];
+            /** @description Shared settings for all domain forwards */
+            template: components["schemas"]["DomainForwardUpdateBulkTemplate"];
+        };
+        /** DomainForwardUpdateBulkTemplate */
+        DomainForwardUpdateBulkTemplate: {
+            /**
+             * Enabled
+             * @description Whether domain forward should be enabled
+             */
+            enabled: boolean;
+            /** @description HTTP redirect definitions */
+            http?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
+            /** @description HTTPS redirect definitions */
+            https?: components["schemas"]["DomainForwardProtocolSetRequest"] | null;
         };
         /** DomainForwardUserAgentStatsResponse */
         DomainForwardUserAgentStatsResponse: {
@@ -6805,7 +7043,7 @@ export interface components {
              * Commands
              * @description List of commands to execute
              */
-            commands: (components["schemas"]["DomainCreateCommand"] | components["schemas"]["DomainUpdateCommand"] | components["schemas"]["DomainTransferCommand"] | components["schemas"]["DnsZoneCreateCommand"] | components["schemas"]["DnsZoneUpdateCommand"] | components["schemas"]["DomainCreateBulkCommand"] | components["schemas"]["DomainTransferBulkCommand"] | components["schemas"]["DomainUpdateBulkCommand"] | components["schemas"]["DnsZoneCreateBulkCommand"] | components["schemas"]["DnsZoneUpdateBulkCommand"] | components["schemas"]["DnsZonePatchRrsetsBulkCommand"] | components["schemas"]["DnsZonePatchRecordsBulkCommand"] | components["schemas"]["ContactCreateBulkCommand"] | components["schemas"]["ContactCreateCommand"] | components["schemas"]["ParkingCreateBulkCommand"] | components["schemas"]["ParkingEnableBulkCommand"] | components["schemas"]["ParkingDisableBulkCommand"] | components["schemas"]["ParkingDeleteBulkCommand"])[];
+            commands: (components["schemas"]["DomainCreateCommand"] | components["schemas"]["DomainUpdateCommand"] | components["schemas"]["DomainTransferCommand"] | components["schemas"]["DnsZoneCreateCommand"] | components["schemas"]["DnsZoneUpdateCommand"] | components["schemas"]["DomainCreateBulkCommand"] | components["schemas"]["DomainTransferBulkCommand"] | components["schemas"]["DomainUpdateBulkCommand"] | components["schemas"]["DnsZoneCreateBulkCommand"] | components["schemas"]["DnsZoneUpdateBulkCommand"] | components["schemas"]["DnsZonePatchRrsetsBulkCommand"] | components["schemas"]["DnsZonePatchRecordsBulkCommand"] | components["schemas"]["ContactCreateBulkCommand"] | components["schemas"]["ContactCreateCommand"] | components["schemas"]["ParkingCreateBulkCommand"] | components["schemas"]["ParkingEnableBulkCommand"] | components["schemas"]["ParkingDisableBulkCommand"] | components["schemas"]["ParkingDeleteBulkCommand"] | components["schemas"]["DomainForwardCreateBulkCommand"] | components["schemas"]["DomainForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardEnableBulkCommand"] | components["schemas"]["DomainForwardDisableBulkCommand"] | components["schemas"]["DomainForwardDeleteBulkCommand"])[];
             /**
              * Label
              * @description Human-readable label for this batch
@@ -8013,11 +8251,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["TagResponse"][];
         };
-        /** Pagination[UserPublic] */
-        Pagination_UserPublic_: {
+        /** Pagination[UserPublicWithRole] */
+        Pagination_UserPublicWithRole_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["UserPublic"][];
+            results: components["schemas"]["UserPublicWithRole"][];
         };
         /** ParkingActionPayloadData */
         ParkingActionPayloadData: {
@@ -9749,6 +9987,74 @@ export interface components {
              */
             username: string;
         };
+        /** UserPublicWithRole */
+        UserPublicWithRole: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
+            /**
+             * First Name
+             * @description The user's first name
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The user's last name
+             */
+            last_name: string;
+            /**
+             * Locale
+             * @example en_US
+             */
+            locale: string;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The user's organization id
+             * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Phone
+             * @description The user's phone number
+             * @example +1.2125552368
+             */
+            phone?: string | null;
+            role?: components["schemas"]["PublicRole"] | null;
+            readonly status: components["schemas"]["UserStatus"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * User Id
+             * Format: typeid
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
+             */
+            user_id?: TypeId<"user">;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
+        };
         /**
          * UserSortField
          * @enum {string}
@@ -9826,8 +10132,8 @@ export interface components {
              */
             username?: string | null;
         };
-        /** UserWithPermissions */
-        UserWithPermissions: {
+        /** UserWithAuthorization */
+        UserWithAuthorization: {
             /**
              * Created On
              * Format: date-time
@@ -9876,6 +10182,7 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
+            role?: components["schemas"]["PublicRole"] | null;
             readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
@@ -18668,7 +18975,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_UserPublic_"];
+                    "application/json": components["schemas"]["Pagination_UserPublicWithRole_"];
                 };
             };
             /** @description Unauthorized */
@@ -20395,7 +20702,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithPermissions"];
+                    "application/json": components["schemas"]["UserWithAuthorization"];
                 };
             };
             /** @description Validation Error */

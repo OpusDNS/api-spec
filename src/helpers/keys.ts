@@ -104,7 +104,20 @@ import type {
   DomainDnssecData,
   DomainForward,
   DomainForwardBrowserStats,
+  DomainForwardCreateBulkCommand,
+  DomainForwardCreateBulkInstance,
+  DomainForwardCreateBulkPayload,
+  DomainForwardCreateBulkTemplate,
   DomainForwardCreateRequest,
+  DomainForwardDeleteBulkCommand,
+  DomainForwardDeleteBulkInstance,
+  DomainForwardDeleteBulkPayload,
+  DomainForwardDisableBulkCommand,
+  DomainForwardDisableBulkInstance,
+  DomainForwardDisableBulkPayload,
+  DomainForwardEnableBulkCommand,
+  DomainForwardEnableBulkInstance,
+  DomainForwardEnableBulkPayload,
   DomainForwardGeoStats,
   DomainForwardMetrics,
   DomainForwardMetricsTimeSeries,
@@ -118,6 +131,10 @@ import type {
   DomainForwardSetRequest,
   DomainForwardSet,
   DomainForwardStatusCodeStats,
+  DomainForwardUpdateBulkCommand,
+  DomainForwardUpdateBulkInstance,
+  DomainForwardUpdateBulkPayload,
+  DomainForwardUpdateBulkTemplate,
   DomainForwardUserAgentStats,
   DomainForwardVisitsByKey,
   DomainForwardZone,
@@ -303,9 +320,10 @@ import type {
   UserCreate,
   UserPublic,
   UserPublicWithAttributes,
+  UserPublicWithRole,
   UserToken,
   UserUpdate,
-  UserWithPermissions,
+  UserWithAuthorization,
   ValidationError,
   VerificationDeadline,
   VerificationRegistrantDetails,
@@ -1698,6 +1716,50 @@ export const KEYS_DOMAIN_FORWARD_BROWSER_STATS = [
   KEY_DOMAIN_FORWARD_BROWSER_STATS_RESULTS,
 ] as const satisfies (keyof DomainForwardBrowserStats)[];
 
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_COMMAND = 'command' satisfies keyof DomainForwardCreateBulkCommand;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DomainForwardCreateBulkCommand;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DomainForwardCreateBulkCommand;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_VERSION = 'version' satisfies keyof DomainForwardCreateBulkCommand;
+
+export const KEYS_DOMAIN_FORWARD_CREATE_BULK_COMMAND = [
+  KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainForwardCreateBulkCommand)[];
+
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_ENABLED = 'enabled' satisfies keyof DomainForwardCreateBulkInstance;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof DomainForwardCreateBulkInstance;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_HTTP = 'http' satisfies keyof DomainForwardCreateBulkInstance;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_HTTPS = 'https' satisfies keyof DomainForwardCreateBulkInstance;
+
+export const KEYS_DOMAIN_FORWARD_CREATE_BULK_INSTANCE = [
+  KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_ENABLED,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_HOSTNAME,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_HTTP,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_INSTANCE_HTTPS,
+] as const satisfies (keyof DomainForwardCreateBulkInstance)[];
+
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof DomainForwardCreateBulkPayload;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_PAYLOAD_TEMPLATE = 'template' satisfies keyof DomainForwardCreateBulkPayload;
+
+export const KEYS_DOMAIN_FORWARD_CREATE_BULK_PAYLOAD = [
+  KEY_DOMAIN_FORWARD_CREATE_BULK_PAYLOAD_INSTANCES,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DomainForwardCreateBulkPayload)[];
+
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_AUTO_CREATE_ZONE = 'auto_create_zone' satisfies keyof DomainForwardCreateBulkTemplate;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_ENABLED = 'enabled' satisfies keyof DomainForwardCreateBulkTemplate;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_HTTP = 'http' satisfies keyof DomainForwardCreateBulkTemplate;
+export const KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_HTTPS = 'https' satisfies keyof DomainForwardCreateBulkTemplate;
+
+export const KEYS_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE = [
+  KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_AUTO_CREATE_ZONE,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_ENABLED,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_HTTP,
+  KEY_DOMAIN_FORWARD_CREATE_BULK_TEMPLATE_HTTPS,
+] as const satisfies (keyof DomainForwardCreateBulkTemplate)[];
+
 export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_ENABLED = 'enabled' satisfies keyof DomainForwardCreateRequest;
 export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HOSTNAME = 'hostname' satisfies keyof DomainForwardCreateRequest;
 export const KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP = 'http' satisfies keyof DomainForwardCreateRequest;
@@ -1709,6 +1771,78 @@ export const KEYS_DOMAIN_FORWARD_CREATE_REQUEST = [
   KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTP,
   KEY_DOMAIN_FORWARD_CREATE_REQUEST_HTTPS,
 ] as const satisfies (keyof DomainForwardCreateRequest)[];
+
+export const KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_COMMAND = 'command' satisfies keyof DomainForwardDeleteBulkCommand;
+export const KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DomainForwardDeleteBulkCommand;
+export const KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DomainForwardDeleteBulkCommand;
+export const KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_VERSION = 'version' satisfies keyof DomainForwardDeleteBulkCommand;
+
+export const KEYS_DOMAIN_FORWARD_DELETE_BULK_COMMAND = [
+  KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_FORWARD_DELETE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainForwardDeleteBulkCommand)[];
+
+export const KEY_DOMAIN_FORWARD_DELETE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof DomainForwardDeleteBulkInstance;
+
+export const KEYS_DOMAIN_FORWARD_DELETE_BULK_INSTANCE = [
+  KEY_DOMAIN_FORWARD_DELETE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof DomainForwardDeleteBulkInstance)[];
+
+export const KEY_DOMAIN_FORWARD_DELETE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof DomainForwardDeleteBulkPayload;
+
+export const KEYS_DOMAIN_FORWARD_DELETE_BULK_PAYLOAD = [
+  KEY_DOMAIN_FORWARD_DELETE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof DomainForwardDeleteBulkPayload)[];
+
+export const KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_COMMAND = 'command' satisfies keyof DomainForwardDisableBulkCommand;
+export const KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DomainForwardDisableBulkCommand;
+export const KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DomainForwardDisableBulkCommand;
+export const KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_VERSION = 'version' satisfies keyof DomainForwardDisableBulkCommand;
+
+export const KEYS_DOMAIN_FORWARD_DISABLE_BULK_COMMAND = [
+  KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_FORWARD_DISABLE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainForwardDisableBulkCommand)[];
+
+export const KEY_DOMAIN_FORWARD_DISABLE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof DomainForwardDisableBulkInstance;
+
+export const KEYS_DOMAIN_FORWARD_DISABLE_BULK_INSTANCE = [
+  KEY_DOMAIN_FORWARD_DISABLE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof DomainForwardDisableBulkInstance)[];
+
+export const KEY_DOMAIN_FORWARD_DISABLE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof DomainForwardDisableBulkPayload;
+
+export const KEYS_DOMAIN_FORWARD_DISABLE_BULK_PAYLOAD = [
+  KEY_DOMAIN_FORWARD_DISABLE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof DomainForwardDisableBulkPayload)[];
+
+export const KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_COMMAND = 'command' satisfies keyof DomainForwardEnableBulkCommand;
+export const KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DomainForwardEnableBulkCommand;
+export const KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DomainForwardEnableBulkCommand;
+export const KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_VERSION = 'version' satisfies keyof DomainForwardEnableBulkCommand;
+
+export const KEYS_DOMAIN_FORWARD_ENABLE_BULK_COMMAND = [
+  KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_FORWARD_ENABLE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainForwardEnableBulkCommand)[];
+
+export const KEY_DOMAIN_FORWARD_ENABLE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof DomainForwardEnableBulkInstance;
+
+export const KEYS_DOMAIN_FORWARD_ENABLE_BULK_INSTANCE = [
+  KEY_DOMAIN_FORWARD_ENABLE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof DomainForwardEnableBulkInstance)[];
+
+export const KEY_DOMAIN_FORWARD_ENABLE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof DomainForwardEnableBulkPayload;
+
+export const KEYS_DOMAIN_FORWARD_ENABLE_BULK_PAYLOAD = [
+  KEY_DOMAIN_FORWARD_ENABLE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof DomainForwardEnableBulkPayload)[];
 
 export const KEY_DOMAIN_FORWARD_GEO_STATS_RESULTS = 'results' satisfies keyof DomainForwardGeoStats;
 
@@ -1809,6 +1943,48 @@ export const KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS = 'results' satisfies 
 export const KEYS_DOMAIN_FORWARD_STATUS_CODE_STATS = [
   KEY_DOMAIN_FORWARD_STATUS_CODE_STATS_RESULTS,
 ] as const satisfies (keyof DomainForwardStatusCodeStats)[];
+
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_COMMAND = 'command' satisfies keyof DomainForwardUpdateBulkCommand;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DomainForwardUpdateBulkCommand;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DomainForwardUpdateBulkCommand;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_VERSION = 'version' satisfies keyof DomainForwardUpdateBulkCommand;
+
+export const KEYS_DOMAIN_FORWARD_UPDATE_BULK_COMMAND = [
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_COMMAND,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_PAYLOAD,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DomainForwardUpdateBulkCommand)[];
+
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_ENABLED = 'enabled' satisfies keyof DomainForwardUpdateBulkInstance;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof DomainForwardUpdateBulkInstance;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_HTTP = 'http' satisfies keyof DomainForwardUpdateBulkInstance;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_HTTPS = 'https' satisfies keyof DomainForwardUpdateBulkInstance;
+
+export const KEYS_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE = [
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_ENABLED,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_HOSTNAME,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_HTTP,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_INSTANCE_HTTPS,
+] as const satisfies (keyof DomainForwardUpdateBulkInstance)[];
+
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof DomainForwardUpdateBulkPayload;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_PAYLOAD_TEMPLATE = 'template' satisfies keyof DomainForwardUpdateBulkPayload;
+
+export const KEYS_DOMAIN_FORWARD_UPDATE_BULK_PAYLOAD = [
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_PAYLOAD_INSTANCES,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DomainForwardUpdateBulkPayload)[];
+
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_ENABLED = 'enabled' satisfies keyof DomainForwardUpdateBulkTemplate;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_HTTP = 'http' satisfies keyof DomainForwardUpdateBulkTemplate;
+export const KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_HTTPS = 'https' satisfies keyof DomainForwardUpdateBulkTemplate;
+
+export const KEYS_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE = [
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_ENABLED,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_HTTP,
+  KEY_DOMAIN_FORWARD_UPDATE_BULK_TEMPLATE_HTTPS,
+] as const satisfies (keyof DomainForwardUpdateBulkTemplate)[];
 
 export const KEY_DOMAIN_FORWARD_USER_AGENT_STATS_RESULTS = 'results' satisfies keyof DomainForwardUserAgentStats;
 
@@ -4264,6 +4440,36 @@ export const KEYS_USER_PUBLIC_WITH_ATTRIBUTES = [
   KEY_USER_PUBLIC_WITH_ATTRIBUTES_USERNAME,
 ] as const satisfies (keyof UserPublicWithAttributes)[];
 
+export const KEY_USER_PUBLIC_WITH_ROLE_CREATED_ON = 'created_on' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_DELETED_ON = 'deleted_on' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_EMAIL = 'email' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_FIRST_NAME = 'first_name' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_LAST_NAME = 'last_name' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_LOCALE = 'locale' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_ORGANIZATION_ID = 'organization_id' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_PHONE = 'phone' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_ROLE = 'role' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_STATUS = 'status' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_UPDATED_ON = 'updated_on' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_USER_ID = 'user_id' satisfies keyof UserPublicWithRole;
+export const KEY_USER_PUBLIC_WITH_ROLE_USERNAME = 'username' satisfies keyof UserPublicWithRole;
+
+export const KEYS_USER_PUBLIC_WITH_ROLE = [
+  KEY_USER_PUBLIC_WITH_ROLE_CREATED_ON,
+  KEY_USER_PUBLIC_WITH_ROLE_DELETED_ON,
+  KEY_USER_PUBLIC_WITH_ROLE_EMAIL,
+  KEY_USER_PUBLIC_WITH_ROLE_FIRST_NAME,
+  KEY_USER_PUBLIC_WITH_ROLE_LAST_NAME,
+  KEY_USER_PUBLIC_WITH_ROLE_LOCALE,
+  KEY_USER_PUBLIC_WITH_ROLE_ORGANIZATION_ID,
+  KEY_USER_PUBLIC_WITH_ROLE_PHONE,
+  KEY_USER_PUBLIC_WITH_ROLE_ROLE,
+  KEY_USER_PUBLIC_WITH_ROLE_STATUS,
+  KEY_USER_PUBLIC_WITH_ROLE_UPDATED_ON,
+  KEY_USER_PUBLIC_WITH_ROLE_USER_ID,
+  KEY_USER_PUBLIC_WITH_ROLE_USERNAME,
+] as const satisfies (keyof UserPublicWithRole)[];
+
 export const KEY_USER_TOKEN_ACCESS_TOKEN = 'access_token' satisfies keyof UserToken;
 export const KEY_USER_TOKEN_EXPIRES_IN = 'expires_in' satisfies keyof UserToken;
 export const KEY_USER_TOKEN_REFRESH_EXPIRES_IN = 'refresh_expires_in' satisfies keyof UserToken;
@@ -4296,37 +4502,39 @@ export const KEYS_USER_UPDATE = [
   KEY_USER_UPDATE_USERNAME,
 ] as const satisfies (keyof UserUpdate)[];
 
-export const KEY_USER_WITH_PERMISSIONS_CREATED_ON = 'created_on' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_DELETED_ON = 'deleted_on' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_EMAIL = 'email' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_FIRST_NAME = 'first_name' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_LAST_NAME = 'last_name' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_LOCALE = 'locale' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_ORGANIZATION_ID = 'organization_id' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_PERMISSIONS = 'permissions' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_PHONE = 'phone' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_STATUS = 'status' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_UPDATED_ON = 'updated_on' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_USER_ID = 'user_id' satisfies keyof UserWithPermissions;
-export const KEY_USER_WITH_PERMISSIONS_USERNAME = 'username' satisfies keyof UserWithPermissions;
+export const KEY_USER_WITH_AUTHORIZATION_CREATED_ON = 'created_on' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_DELETED_ON = 'deleted_on' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_EMAIL = 'email' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_FIRST_NAME = 'first_name' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_LAST_NAME = 'last_name' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_LOCALE = 'locale' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_ORGANIZATION_ID = 'organization_id' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_PERMISSIONS = 'permissions' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_PHONE = 'phone' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_ROLE = 'role' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_STATUS = 'status' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_UPDATED_ON = 'updated_on' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_USER_ATTRIBUTES = 'user_attributes' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_USER_ID = 'user_id' satisfies keyof UserWithAuthorization;
+export const KEY_USER_WITH_AUTHORIZATION_USERNAME = 'username' satisfies keyof UserWithAuthorization;
 
-export const KEYS_USER_WITH_PERMISSIONS = [
-  KEY_USER_WITH_PERMISSIONS_CREATED_ON,
-  KEY_USER_WITH_PERMISSIONS_DELETED_ON,
-  KEY_USER_WITH_PERMISSIONS_EMAIL,
-  KEY_USER_WITH_PERMISSIONS_FIRST_NAME,
-  KEY_USER_WITH_PERMISSIONS_LAST_NAME,
-  KEY_USER_WITH_PERMISSIONS_LOCALE,
-  KEY_USER_WITH_PERMISSIONS_ORGANIZATION_ID,
-  KEY_USER_WITH_PERMISSIONS_PERMISSIONS,
-  KEY_USER_WITH_PERMISSIONS_PHONE,
-  KEY_USER_WITH_PERMISSIONS_STATUS,
-  KEY_USER_WITH_PERMISSIONS_UPDATED_ON,
-  KEY_USER_WITH_PERMISSIONS_USER_ATTRIBUTES,
-  KEY_USER_WITH_PERMISSIONS_USER_ID,
-  KEY_USER_WITH_PERMISSIONS_USERNAME,
-] as const satisfies (keyof UserWithPermissions)[];
+export const KEYS_USER_WITH_AUTHORIZATION = [
+  KEY_USER_WITH_AUTHORIZATION_CREATED_ON,
+  KEY_USER_WITH_AUTHORIZATION_DELETED_ON,
+  KEY_USER_WITH_AUTHORIZATION_EMAIL,
+  KEY_USER_WITH_AUTHORIZATION_FIRST_NAME,
+  KEY_USER_WITH_AUTHORIZATION_LAST_NAME,
+  KEY_USER_WITH_AUTHORIZATION_LOCALE,
+  KEY_USER_WITH_AUTHORIZATION_ORGANIZATION_ID,
+  KEY_USER_WITH_AUTHORIZATION_PERMISSIONS,
+  KEY_USER_WITH_AUTHORIZATION_PHONE,
+  KEY_USER_WITH_AUTHORIZATION_ROLE,
+  KEY_USER_WITH_AUTHORIZATION_STATUS,
+  KEY_USER_WITH_AUTHORIZATION_UPDATED_ON,
+  KEY_USER_WITH_AUTHORIZATION_USER_ATTRIBUTES,
+  KEY_USER_WITH_AUTHORIZATION_USER_ID,
+  KEY_USER_WITH_AUTHORIZATION_USERNAME,
+] as const satisfies (keyof UserWithAuthorization)[];
 
 export const KEY_VALIDATION_ERROR_CTX = 'ctx' satisfies keyof ValidationError;
 export const KEY_VALIDATION_ERROR_INPUT = 'input' satisfies keyof ValidationError;
