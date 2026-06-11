@@ -671,12 +671,6 @@
                 "filepath": "content/tld-knowledge-base/cctlds/de.md",
                 "showInSidebar": true
               },
-              "/dk": {
-                "type": "page",
-                "title": "🇩🇰 .dk",
-                "filepath": "content/tld-knowledge-base/cctlds/dk.md",
-                "showInSidebar": true
-              },
               "/eu": {
                 "type": "page",
                 "title": "🇪🇺 .eu",
@@ -713,12 +707,6 @@
                 "filepath": "content/tld-knowledge-base/cctlds/li.md",
                 "showInSidebar": true
               },
-              "/lt": {
-                "type": "page",
-                "title": "🇱🇹 .lt",
-                "filepath": "content/tld-knowledge-base/cctlds/lt.md",
-                "showInSidebar": true
-              },
               "/lu": {
                 "type": "page",
                 "title": "🇱🇺 .lu",
@@ -741,12 +729,6 @@
                 "type": "page",
                 "title": "🇳🇱 .nl",
                 "filepath": "content/tld-knowledge-base/cctlds/nl.md",
-                "showInSidebar": true
-              },
-              "/pl": {
-                "type": "page",
-                "title": "🇵🇱 .pl",
-                "filepath": "content/tld-knowledge-base/cctlds/pl.md",
                 "showInSidebar": true
               },
               "/pm": {
@@ -948,34 +930,16 @@
                 "filepath": "content/tld-knowledge-base/gtlds/band.md",
                 "showInSidebar": true
               },
-              "/bar": {
-                "type": "page",
-                "title": "🌐 .bar",
-                "filepath": "content/tld-knowledge-base/gtlds/bar.md",
-                "showInSidebar": true
-              },
               "/bargains": {
                 "type": "page",
                 "title": "🌐 .bargains",
                 "filepath": "content/tld-knowledge-base/gtlds/bargains.md",
                 "showInSidebar": true
               },
-              "/bayern": {
-                "type": "page",
-                "title": "🌐 .bayern",
-                "filepath": "content/tld-knowledge-base/gtlds/bayern.md",
-                "showInSidebar": true
-              },
               "/beer": {
                 "type": "page",
                 "title": "🌐 .beer",
                 "filepath": "content/tld-knowledge-base/gtlds/beer.md",
-                "showInSidebar": true
-              },
-              "/berlin": {
-                "type": "page",
-                "title": "🌐 .berlin",
-                "filepath": "content/tld-knowledge-base/gtlds/berlin.md",
                 "showInSidebar": true
               },
               "/bet": {
@@ -1018,12 +982,6 @@
                 "type": "page",
                 "title": "🌐 .blackfriday",
                 "filepath": "content/tld-knowledge-base/gtlds/blackfriday.md",
-                "showInSidebar": true
-              },
-              "/blog": {
-                "type": "page",
-                "title": "🌐 .blog",
-                "filepath": "content/tld-knowledge-base/gtlds/blog.md",
                 "showInSidebar": true
               },
               "/blue": {
@@ -1248,12 +1206,6 @@
                 "filepath": "content/tld-knowledge-base/gtlds/cleaning.md",
                 "showInSidebar": true
               },
-              "/click": {
-                "type": "page",
-                "title": "🌐 .click",
-                "filepath": "content/tld-knowledge-base/gtlds/click.md",
-                "showInSidebar": true
-              },
               "/clinic": {
                 "type": "page",
                 "title": "🌐 .clinic",
@@ -1264,12 +1216,6 @@
                 "type": "page",
                 "title": "🌐 .clothing",
                 "filepath": "content/tld-knowledge-base/gtlds/clothing.md",
-                "showInSidebar": true
-              },
-              "/cloud": {
-                "type": "page",
-                "title": "🌐 .cloud",
-                "filepath": "content/tld-knowledge-base/gtlds/cloud.md",
                 "showInSidebar": true
               },
               "/club": {
@@ -1306,12 +1252,6 @@
                 "type": "page",
                 "title": "🌐 .college",
                 "filepath": "content/tld-knowledge-base/gtlds/college.md",
-                "showInSidebar": true
-              },
-              "/cologne": {
-                "type": "page",
-                "title": "🌐 .cologne",
-                "filepath": "content/tld-knowledge-base/gtlds/cologne.md",
                 "showInSidebar": true
               },
               "/com": {
@@ -1554,12 +1494,6 @@
                 "filepath": "content/tld-knowledge-base/gtlds/domains.md",
                 "showInSidebar": true
               },
-              "/earth": {
-                "type": "page",
-                "title": "🌐 .earth",
-                "filepath": "content/tld-knowledge-base/gtlds/earth.md",
-                "showInSidebar": true
-              },
               "/education": {
                 "type": "page",
                 "title": "🌐 .education",
@@ -1654,12 +1588,6 @@
                 "type": "page",
                 "title": "🌐 .fail",
                 "filepath": "content/tld-knowledge-base/gtlds/fail.md",
-                "showInSidebar": true
-              },
-              "/faith": {
-                "type": "page",
-                "title": "🌐 .faith",
-                "filepath": "content/tld-knowledge-base/gtlds/faith.md",
                 "showInSidebar": true
               },
               "/family": {
@@ -1944,12 +1872,6 @@
                 "filepath": "content/tld-knowledge-base/gtlds/hair.md",
                 "showInSidebar": true
               },
-              "/hamburg": {
-                "type": "page",
-                "title": "🌐 .hamburg",
-                "filepath": "content/tld-knowledge-base/gtlds/hamburg.md",
-                "showInSidebar": true
-              },
               "/haus": {
                 "type": "page",
                 "title": "🌐 .haus",
@@ -1966,12 +1888,6 @@
                 "type": "page",
                 "title": "🌐 .healthcare",
                 "filepath": "content/tld-knowledge-base/gtlds/healthcare.md",
-                "showInSidebar": true
-              },
-              "/help": {
-                "type": "page",
-                "title": "🌐 .help",
-                "filepath": "content/tld-knowledge-base/gtlds/help.md",
                 "showInSidebar": true
               },
               "/hockey": {
@@ -2160,12 +2076,6 @@
                 "filepath": "content/tld-knowledge-base/gtlds/kitchen.md",
                 "showInSidebar": true
               },
-              "/koeln": {
-                "type": "page",
-                "title": "🌐 .koeln",
-                "filepath": "content/tld-knowledge-base/gtlds/koeln.md",
-                "showInSidebar": true
-              },
               "/land": {
                 "type": "page",
                 "title": "🌐 .land",
@@ -2272,12 +2182,6 @@
                 "type": "page",
                 "title": "🌐 .lotto",
                 "filepath": "content/tld-knowledge-base/gtlds/lotto.md",
-                "showInSidebar": true
-              },
-              "/love": {
-                "type": "page",
-                "title": "🌐 .love",
-                "filepath": "content/tld-knowledge-base/gtlds/love.md",
                 "showInSidebar": true
               },
               "/ltd": {
@@ -2482,18 +2386,6 @@
                 "type": "page",
                 "title": "🌐 .ninja",
                 "filepath": "content/tld-knowledge-base/gtlds/ninja.md",
-                "showInSidebar": true
-              },
-              "/nrw": {
-                "type": "page",
-                "title": "🌐 .nrw",
-                "filepath": "content/tld-knowledge-base/gtlds/nrw.md",
-                "showInSidebar": true
-              },
-              "/one": {
-                "type": "page",
-                "title": "🌐 .one",
-                "filepath": "content/tld-knowledge-base/gtlds/one.md",
                 "showInSidebar": true
               },
               "/ong": {
@@ -2778,12 +2670,6 @@
                 "filepath": "content/tld-knowledge-base/gtlds/ru.com.md",
                 "showInSidebar": true
               },
-              "/ruhr": {
-                "type": "page",
-                "title": "🌐 .ruhr",
-                "filepath": "content/tld-knowledge-base/gtlds/ruhr.md",
-                "showInSidebar": true
-              },
               "/run": {
                 "type": "page",
                 "title": "🌐 .run",
@@ -2794,12 +2680,6 @@
                 "type": "page",
                 "title": "🌐 .sa.com",
                 "filepath": "content/tld-knowledge-base/gtlds/sa.com.md",
-                "showInSidebar": true
-              },
-              "/saarland": {
-                "type": "page",
-                "title": "🌐 .saarland",
-                "filepath": "content/tld-knowledge-base/gtlds/saarland.md",
                 "showInSidebar": true
               },
               "/sale": {
@@ -2860,12 +2740,6 @@
                 "type": "page",
                 "title": "🌐 .services",
                 "filepath": "content/tld-knowledge-base/gtlds/services.md",
-                "showInSidebar": true
-              },
-              "/sexy": {
-                "type": "page",
-                "title": "🌐 .sexy",
-                "filepath": "content/tld-knowledge-base/gtlds/sexy.md",
                 "showInSidebar": true
               },
               "/shiksha": {
@@ -3066,12 +2940,6 @@
                 "filepath": "content/tld-knowledge-base/gtlds/technology.md",
                 "showInSidebar": true
               },
-              "/tel": {
-                "type": "page",
-                "title": "🌐 .tel",
-                "filepath": "content/tld-knowledge-base/gtlds/tel.md",
-                "showInSidebar": true
-              },
               "/tennis": {
                 "type": "page",
                 "title": "🌐 .tennis",
@@ -3142,12 +3010,6 @@
                 "type": "page",
                 "title": "🌐 .toys",
                 "filepath": "content/tld-knowledge-base/gtlds/toys.md",
-                "showInSidebar": true
-              },
-              "/trade": {
-                "type": "page",
-                "title": "🌐 .trade",
-                "filepath": "content/tld-knowledge-base/gtlds/trade.md",
                 "showInSidebar": true
               },
               "/trading": {
