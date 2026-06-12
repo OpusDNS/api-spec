@@ -9,7 +9,7 @@ zone it serves.
 
 ## When you need a host object
 
-You need a host object when you want to use your own (vanity) nameservers
+You need a host object when you want to use your own nameservers
 whose hostnames sit under a domain you manage with OpusDNS:
 
 1. Create the host object with its IP addresses (`POST /v1/hosts`).
