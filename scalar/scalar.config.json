@@ -100,15 +100,15 @@
         "newTab": false
       },
       {
-        "title": "Changelog",
-        "icon": "phosphor/regular/clock-counter-clockwise",
-        "to": "/changelog",
-        "newTab": false
-      },
-      {
         "title": "TLD Info",
         "icon": "line/travel-map-earth-globe",
         "to": "/tld-knowledge-base",
+        "newTab": false
+      },
+      {
+        "title": "Changelog",
+        "icon": "phosphor/regular/clock-counter-clockwise",
+        "to": "/changelog",
         "newTab": false
       }
     ],
