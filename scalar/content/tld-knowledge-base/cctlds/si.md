@@ -30,7 +30,7 @@
 
 | Period | Duration |
 | --- | --- |
-| Add Grace Period | 16 days |
+| Add Grace Period | 0 days |
 | Standard Grace Period | 30 days |
 | Redemption Period | 30 days |
 | Pending Restore | 0 days |
