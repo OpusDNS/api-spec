@@ -43,6 +43,15 @@ sandbox should use these instead:
 Production and sandbox nameservers are not interchangeable. Using production nameservers in the sandbox (or vice versa) will result in DNS resolution failures.
 </scalar-callout>
 
+## Using your own nameservers
+
+You are not limited to OpusDNS nameservers — any nameserver hostname can be
+set on a domain. If the nameserver hostname is subordinate to a domain in your
+account (e.g. `ns1.example.com` serving `example.com`), the registry requires
+a host object with glue records before domains can reference it. Create one
+with the host endpoints first — see
+[Host objects (glue records)](/products/domains/host-objects).
+
 ## When to set nameservers
 
 You can set nameservers at several points:

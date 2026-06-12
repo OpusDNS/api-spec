@@ -4,6 +4,16 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 12 June 2026
+
+- Added **host object management** — create, retrieve, update, and delete
+  nameserver host objects (glue records) for hostnames subordinate to domains
+  in your account: `POST /v1/hosts` and
+  `GET`/`PUT`/`DELETE /v1/hosts/{host_reference}`. Hosts can be referenced by
+  ID or hostname.
+- Published the [Host objects (glue records)](/products/domains/host-objects)
+  guide and linked it from the nameservers, registration, and transfer guides.
+
 ### 14 May 2026
 
 - Added **batch retry** — re-attempt jobs in a batch that ended in `failed` or

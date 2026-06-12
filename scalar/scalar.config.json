@@ -316,6 +316,13 @@
                     "icon": "line/programming-script-code",
                     "filepath": "content/domains/nameservers.md",
                     "showInSidebar": true
+                  },
+                  "/host-objects": {
+                    "type": "page",
+                    "title": "Host objects (glue records)",
+                    "icon": "line/programming-script-code",
+                    "filepath": "content/domains/host-objects.md",
+                    "showInSidebar": true
                   }
                 }
               },
