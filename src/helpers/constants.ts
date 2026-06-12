@@ -52,6 +52,7 @@ import type {
   HolderEntitlement,
   HostStatus,
   HttpProtocol,
+  IPAddressType,
   InvoiceResponsePaymentStatus,
   InvoiceResponseStatus,
   InvoiceResponseType,
@@ -988,6 +989,16 @@ export const HTTP_PROTOCOL_VALUES = [
   'http',
   'https',
 ] as const satisfies ReadonlyArray<HttpProtocol>;
+
+export const IP_ADDRESS_TYPE = {
+  V4: "v4",
+  V6: "v6",
+} as const satisfies Record<string, IPAddressType>;
+
+export const IP_ADDRESS_TYPE_VALUES = [
+  'v4',
+  'v6',
+] as const satisfies ReadonlyArray<IPAddressType>;
 
 export const INVOICE_RESPONSE_PAYMENT_STATUS = {
   PENDING: "pending",

@@ -1568,6 +1568,54 @@ export interface paths {
         patch: operations["acknowledge_event_v1_events__event_id__patch"];
         trace?: never;
     };
+    "/v1/hosts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create a Host Object
+         * @description Create a new host object
+         */
+        post: operations["create_host_v1_hosts_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/hosts/{host_reference}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve a Host Object
+         * @description Retrieves a host object by either its ID or hostname
+         */
+        get: operations["get_host_v1_hosts__host_reference__get"];
+        /**
+         * Update a Host Object
+         * @description Updates the IP addresses of a host object, referenced by either its ID or hostname
+         */
+        put: operations["update_host_v1_hosts__host_reference__put"];
+        post?: never;
+        /**
+         * Delete a Host Object
+         * @description Deletes a host object; only possible if the host is not in use
+         */
+        delete: operations["delete_host_v1_hosts__host_reference__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/job/{job_id}": {
         parameters: {
             query?: never;
@@ -6731,6 +6779,93 @@ export interface components {
          * @enum {string}
          */
         HolderEntitlement: "owner" | "assignee" | "licensee";
+        /** HostCreate */
+        HostCreate: {
+            /**
+             * Hostname
+             * @description Hostname of the host object
+             * @example ns1.example.com
+             */
+            hostname: string;
+            /**
+             * Ip Addresses
+             * @description List of IP addresses for the host object
+             * @example [
+             *       "192.0.2.53",
+             *       "2001:db8::53"
+             *     ]
+             */
+            ip_addresses: string[];
+        };
+        /** HostIpSchema */
+        HostIpSchema: {
+            /**
+             * Address
+             * Format: ipvanyaddress
+             * @description IP address of the host object
+             */
+            address: string;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Host Id
+             * Format: typeid
+             * @default None
+             * @example host_01h45ytscbebyvny4gc8cr8ma2
+             */
+            host_id: TypeId<"host">;
+            /**
+             * Host Ip Id
+             * Format: typeid
+             * @example host_ip_01h45ytscbebyvny4gc8cr8ma2
+             */
+            host_ip_id?: TypeId<"host_ip">;
+            /** @description IP address type */
+            type: components["schemas"]["IPAddressType"];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+        };
+        /** HostResponse */
+        HostResponse: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description Timestamp when the host was created
+             */
+            created_on: Date;
+            /**
+             * Host Id
+             * Format: typeid
+             * @description Unique identifier of the host object
+             * @example host_01h45ytscbebyvny4gc8cr8ma2
+             */
+            host_id: TypeId<"host">;
+            /**
+             * Hostname
+             * @description Hostname of the host object
+             * @example ns1.example.com
+             */
+            hostname: string;
+            /**
+             * Ip Addresses
+             * @description The ip addresses of the Host Object
+             */
+            ip_addresses?: string[];
+            /**
+             * Updated On
+             * Format: date-time
+             * @description Timestamp when the host was last updated
+             */
+            updated_on: Date;
+        };
         /** HostSchema */
         HostSchema: {
             /**
@@ -6780,6 +6915,18 @@ export interface components {
          * @enum {string}
          */
         HostStatus: "requested_create" | "pending_create" | "active" | "inactive" | "pending_delete";
+        /** HostUpdate */
+        HostUpdate: {
+            /**
+             * Ip Addresses
+             * @description List of IP addresses for the host object
+             * @example [
+             *       "192.0.2.53",
+             *       "2001:db8::53"
+             *     ]
+             */
+            ip_addresses: string[];
+        };
         /**
          * HttpProtocol
          * @enum {string}
@@ -6843,6 +6990,11 @@ export interface components {
             target_path: string;
             target_protocol: components["schemas"]["HttpProtocol"];
         };
+        /**
+         * IPAddressType
+         * @enum {string}
+         */
+        IPAddressType: "v4" | "v6";
         /** IdnBase */
         IdnBase: {
             /**
@@ -17672,6 +17824,349 @@ export interface operations {
                      *       "status": 404,
                      *       "title": "Event Error",
                      *       "type": "event-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_host_v1_hosts_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["HostCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HostResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PARENT_DOMAIN_NOT_FOUND",
+                     *       "detail": "Parent domain not found for host 'Additional error context.'",
+                     *       "hostname": "Additional error context.",
+                     *       "parent_domain": "",
+                     *       "status": 404,
+                     *       "title": "Host Management Error",
+                     *       "type": "parent-domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_HOST_ALREADY_EXISTS",
+                     *       "detail": "Host already exists",
+                     *       "hostname": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Host Management Error",
+                     *       "type": "host-already-exists"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_HOST_OBJECTS_NOT_SUPPORTED",
+                     *       "detail": "Host objects are not supported for this tld",
+                     *       "status": 422,
+                     *       "title": "Host Management Error",
+                     *       "tld": "Additional error context.",
+                     *       "type": "host-object-not-supported"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_host_v1_hosts__host_reference__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                host_reference: TypeId<"host"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HostResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_host_v1_hosts__host_reference__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                host_reference: TypeId<"host"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["HostUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HostResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_host_v1_hosts__host_reference__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                host_reference: TypeId<"host"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Additional error context.",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_HOST_IN_USE",
+                     *       "detail": "Host is linked to one or more domains",
+                     *       "host_reference": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Host Management Error",
+                     *       "type": "host-in-use"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

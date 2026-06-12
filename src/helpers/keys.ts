@@ -198,7 +198,11 @@ import type {
   GeoStatsBucket,
   GetPrices,
   HTTPValidationError,
+  HostCreate,
+  HostIpSchema,
+  Host,
   HostSchema,
+  HostUpdate,
   HttpRedirectList,
   HttpRedirectRemove,
   HttpRedirectRequest,
@@ -2786,6 +2790,44 @@ export const KEYS_HTTP_VALIDATION_ERROR = [
   KEY_HTTP_VALIDATION_ERROR_TYPE,
 ] as const satisfies (keyof HTTPValidationError)[];
 
+export const KEY_HOST_CREATE_HOSTNAME = 'hostname' satisfies keyof HostCreate;
+export const KEY_HOST_CREATE_IP_ADDRESSES = 'ip_addresses' satisfies keyof HostCreate;
+
+export const KEYS_HOST_CREATE = [
+  KEY_HOST_CREATE_HOSTNAME,
+  KEY_HOST_CREATE_IP_ADDRESSES,
+] as const satisfies (keyof HostCreate)[];
+
+export const KEY_HOST_IP_SCHEMA_ADDRESS = 'address' satisfies keyof HostIpSchema;
+export const KEY_HOST_IP_SCHEMA_CREATED_ON = 'created_on' satisfies keyof HostIpSchema;
+export const KEY_HOST_IP_SCHEMA_HOST_ID = 'host_id' satisfies keyof HostIpSchema;
+export const KEY_HOST_IP_SCHEMA_HOST_IP_ID = 'host_ip_id' satisfies keyof HostIpSchema;
+export const KEY_HOST_IP_SCHEMA_TYPE = 'type' satisfies keyof HostIpSchema;
+export const KEY_HOST_IP_SCHEMA_UPDATED_ON = 'updated_on' satisfies keyof HostIpSchema;
+
+export const KEYS_HOST_IP_SCHEMA = [
+  KEY_HOST_IP_SCHEMA_ADDRESS,
+  KEY_HOST_IP_SCHEMA_CREATED_ON,
+  KEY_HOST_IP_SCHEMA_HOST_ID,
+  KEY_HOST_IP_SCHEMA_HOST_IP_ID,
+  KEY_HOST_IP_SCHEMA_TYPE,
+  KEY_HOST_IP_SCHEMA_UPDATED_ON,
+] as const satisfies (keyof HostIpSchema)[];
+
+export const KEY_HOST_CREATED_ON = 'created_on' satisfies keyof Host;
+export const KEY_HOST_HOST_ID = 'host_id' satisfies keyof Host;
+export const KEY_HOST_HOSTNAME = 'hostname' satisfies keyof Host;
+export const KEY_HOST_IP_ADDRESSES = 'ip_addresses' satisfies keyof Host;
+export const KEY_HOST_UPDATED_ON = 'updated_on' satisfies keyof Host;
+
+export const KEYS_HOST = [
+  KEY_HOST_CREATED_ON,
+  KEY_HOST_HOST_ID,
+  KEY_HOST_HOSTNAME,
+  KEY_HOST_IP_ADDRESSES,
+  KEY_HOST_UPDATED_ON,
+] as const satisfies (keyof Host)[];
+
 export const KEY_HOST_SCHEMA_CREATED_ON = 'created_on' satisfies keyof HostSchema;
 export const KEY_HOST_SCHEMA_DOMAIN_ID = 'domain_id' satisfies keyof HostSchema;
 export const KEY_HOST_SCHEMA_HOST_ID = 'host_id' satisfies keyof HostSchema;
@@ -2803,6 +2845,12 @@ export const KEYS_HOST_SCHEMA = [
   KEY_HOST_SCHEMA_STATUS,
   KEY_HOST_SCHEMA_UPDATED_ON,
 ] as const satisfies (keyof HostSchema)[];
+
+export const KEY_HOST_UPDATE_IP_ADDRESSES = 'ip_addresses' satisfies keyof HostUpdate;
+
+export const KEYS_HOST_UPDATE = [
+  KEY_HOST_UPDATE_IP_ADDRESSES,
+] as const satisfies (keyof HostUpdate)[];
 
 export const KEY_HTTP_REDIRECT_LIST_PROTECTED = 'protected' satisfies keyof HttpRedirectList;
 export const KEY_HTTP_REDIRECT_LIST_REDIRECT_CODE = 'redirect_code' satisfies keyof HttpRedirectList;

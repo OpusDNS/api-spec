@@ -6446,6 +6446,113 @@ components:
       - licensee
       title: HolderEntitlement
       type: string
+    HostCreate:
+      properties:
+        hostname:
+          description: Hostname of the host object
+          examples:
+          - ns1.example.com
+          title: Hostname
+          type: string
+        ip_addresses:
+          description: List of IP addresses for the host object
+          examples:
+          - - 192.0.2.53
+            - 2001:db8::53
+          items:
+            format: ipvanyaddress
+            type: string
+          minItems: 1
+          title: Ip Addresses
+          type: array
+      required:
+      - hostname
+      - ip_addresses
+      title: HostCreate
+      type: object
+    HostIpSchema:
+      properties:
+        address:
+          description: IP address of the host object
+          format: ipvanyaddress
+          title: Address
+          type: string
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        host_id:
+          default: None
+          examples:
+          - host_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^host_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Host Id
+          type: string
+          x-typeid-prefix: host
+        host_ip_id:
+          examples:
+          - host_ip_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^host_ip_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Host Ip Id
+          type: string
+          x-typeid-prefix: host_ip
+        type:
+          $ref: '#/components/schemas/IPAddressType'
+          description: IP address type
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - address
+      - type
+      title: HostIpSchema
+      type: object
+    HostResponse:
+      properties:
+        created_on:
+          description: Timestamp when the host was created
+          format: date-time
+          title: Created On
+          type: string
+        host_id:
+          description: Unique identifier of the host object
+          examples:
+          - host_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^host_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Host Id
+          type: string
+          x-typeid-prefix: host
+        hostname:
+          description: Hostname of the host object
+          examples:
+          - ns1.example.com
+          title: Hostname
+          type: string
+        ip_addresses:
+          description: The ip addresses of the Host Object
+          items:
+            format: ipvanyaddress
+            type: string
+          title: Ip Addresses
+          type: array
+        updated_on:
+          description: Timestamp when the host was last updated
+          format: date-time
+          title: Updated On
+          type: string
+      required:
+      - host_id
+      - hostname
+      - created_on
+      - updated_on
+      title: HostResponse
+      type: object
     HostSchema:
       properties:
         created_on:
@@ -6508,6 +6615,23 @@ components:
       - pending_delete
       title: HostStatus
       type: string
+    HostUpdate:
+      properties:
+        ip_addresses:
+          description: List of IP addresses for the host object
+          examples:
+          - - 192.0.2.53
+            - 2001:db8::53
+          items:
+            format: ipvanyaddress
+            type: string
+          minItems: 1
+          title: Ip Addresses
+          type: array
+      required:
+      - ip_addresses
+      title: HostUpdate
+      type: object
     HttpProtocol:
       enum:
       - http
@@ -6632,6 +6756,12 @@ components:
       - request_hostname
       title: HttpRedirectUpsert
       type: object
+    IPAddressType:
+      enum:
+      - v4
+      - v6
+      title: IPAddressType
+      type: string
     IdnBase:
       properties:
         idn_capable:
@@ -12012,7 +12142,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-12-154603
+  version: 2026-06-12-181220
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -21949,6 +22079,346 @@ paths:
       - event
       x-required-permissions:
       - events:manage
+  /v1/hosts:
+    post:
+      description: Create a new host object
+      operationId: create_host_v1_hosts_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostCreate'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Additional error context.
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PARENT_DOMAIN_NOT_FOUND
+                detail: Parent domain not found for host 'Additional error context.'
+                hostname: Additional error context.
+                parent_domain: ''
+                status: 404
+                title: Host Management Error
+                type: parent-domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_HOST_ALREADY_EXISTS
+                detail: Host already exists
+                hostname: Additional error context.
+                status: 409
+                title: Host Management Error
+                type: host-already-exists
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_HOST_OBJECTS_NOT_SUPPORTED
+                detail: Host objects are not supported for this tld
+                status: 422
+                title: Host Management Error
+                tld: Additional error context.
+                type: host-object-not-supported
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create a Host Object
+      tags:
+      - host
+      x-required-permissions:
+      - hosts:manage
+  /v1/hosts/{host_reference}:
+    delete:
+      description: Deletes a host object; only possible if the host is not in use
+      operationId: delete_host_v1_hosts__host_reference__delete
+      parameters:
+      - in: path
+        name: host_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - host_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^host_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: host
+          - type: string
+          title: Host Reference
+      responses:
+        '204':
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Additional error context.
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              examples:
+                Host Management Error:
+                  value:
+                    code: ERROR_PARENT_DOMAIN_NOT_FOUND
+                    detail: Parent domain not found for host 'Additional error context.'
+                    hostname: Additional error context.
+                    parent_domain: ''
+                    status: 404
+                    title: Host Management Error
+                    type: parent-domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_HOST_IN_USE
+                detail: Host is linked to one or more domains
+                host_reference: Additional error context.
+                status: 409
+                title: Host Management Error
+                type: host-in-use
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Delete a Host Object
+      tags:
+      - host
+      x-required-permissions:
+      - hosts:delete
+    get:
+      description: Retrieves a host object by either its ID or hostname
+      operationId: get_host_v1_hosts__host_reference__get
+      parameters:
+      - in: path
+        name: host_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - host_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^host_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: host
+          - type: string
+          title: Host Reference
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Additional error context.
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              examples:
+                Host Management Error:
+                  value:
+                    code: ERROR_PARENT_DOMAIN_NOT_FOUND
+                    detail: Parent domain not found for host 'Additional error context.'
+                    hostname: Additional error context.
+                    parent_domain: ''
+                    status: 404
+                    title: Host Management Error
+                    type: parent-domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Retrieve a Host Object
+      tags:
+      - host
+      x-required-permissions:
+      - hosts:read
+    put:
+      description: Updates the IP addresses of a host object, referenced by either
+        its ID or hostname
+      operationId: update_host_v1_hosts__host_reference__put
+      parameters:
+      - in: path
+        name: host_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - host_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^host_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: host
+          - type: string
+          title: Host Reference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostUpdate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostResponse'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '403':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_PERMISSION_DENIED
+                detail: Additional error context.
+                status: 403
+                title: Permission Denied
+                type: permission-denied
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              examples:
+                Host Management Error:
+                  value:
+                    code: ERROR_PARENT_DOMAIN_NOT_FOUND
+                    detail: Parent domain not found for host 'Additional error context.'
+                    hostname: Additional error context.
+                    parent_domain: ''
+                    status: 404
+                    title: Host Management Error
+                    type: parent-domain-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Update a Host Object
+      tags:
+      - host
+      x-required-permissions:
+      - hosts:manage
   /v1/job/{job_id}:
     delete:
       operationId: delete_job_v1_job__job_id__delete
@@ -26557,6 +27027,31 @@ tags:
     '
   name: domain_search
   x-displayName: Domain search
+- description: "Endpoints for managing host objects (nameserver glue records).\n\n\
+    ### What is a host object?\n\nA host object represents a nameserver hostname registered\
+    \ at a registry. When a nameserver hostname is subordinate to a domain in your\
+    \ portfolio (e.g. `ns1.example.com` under `example.com`), the registry requires\
+    \ a host object carrying one or more IP addresses \u2014 commonly known as glue\
+    \ records \u2014 so that resolvers can reach the nameserver even though its address\
+    \ lives inside the zone it serves.\n\nThese endpoints manage **subordinate** host\
+    \ objects: the parent domain of the hostname must be managed in your OpusDNS account.\
+    \ Hostnames whose parent domain is not in your account are rejected with `ERROR_PARENT_DOMAIN_NOT_FOUND`.\
+    \ External nameservers (e.g. your DNS provider's hostnames) do not need host objects\
+    \ \u2014 simply reference them by hostname when setting a domain's nameservers.\n\
+    \n### Referencing a host\n\n`GET`, `PUT` and `DELETE` accept either the host ID\
+    \ (`host_...`) or the hostname as the `{host_reference}` path parameter.\n\n###\
+    \ Lifecycle\n\n- **Create** \u2014 `POST /v1/hosts` with the hostname and at least\
+    \ one IP address. The host object is created at the registry of the parent domain.\
+    \ Creating a host that already exists returns `ERROR_HOST_ALREADY_EXISTS`.\n-\
+    \ **Update** \u2014 `PUT /v1/hosts/{host_reference}` replaces the host's IP addresses\
+    \ with the provided list. If the provided addresses match the current state at\
+    \ the registry, the request succeeds without performing a registry update.\n-\
+    \ **Delete** \u2014 `DELETE /v1/hosts/{host_reference}` removes the host object.\
+    \ A host that is still in use as a nameserver by one or more domains cannot be\
+    \ deleted and returns `ERROR_HOST_IN_USE`.\n\nNot all TLDs use host objects; for\
+    \ TLDs without host object support, creation is rejected with `ERROR_HOST_OBJECTS_NOT_SUPPORTED`.\n"
+  name: host
+  x-displayName: Hosts
 - description: 'Endpoints for creating and managing email forwards.
 
     '
@@ -26682,6 +27177,7 @@ x-tagGroups:
   - domain
   - domain_tld_specific
   - tld
+  - host
   - contact
   - event
   - availability

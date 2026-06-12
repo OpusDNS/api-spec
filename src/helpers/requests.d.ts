@@ -29,6 +29,8 @@ import type {
   EmailForwardAliasCreate,
   EmailForwardAliasUpdate,
   EmailForwardCreate,
+  HostCreate,
+  HostUpdate,
   IpRestrictionCreate,
   IpRestrictionUpdate,
   JobBatchRequest,
@@ -653,6 +655,28 @@ export type PATCH_EventsByEventId_Request = {
   parameters: operations['acknowledge_event_v1_events__event_id__patch']['parameters'];
 };
 export type PATCH_EventsByEventId_Request_Path = PATCH_EventsByEventId_Request['parameters']['path'];
+
+export type POST_Hosts_Request = {
+  requestBody: HostCreate;
+};
+export type POST_Hosts_Request_Body = POST_Hosts_Request['requestBody'];
+
+export type DELETE_HostsByHostReference_Request = {
+  parameters: operations['delete_host_v1_hosts__host_reference__delete']['parameters'];
+};
+export type DELETE_HostsByHostReference_Request_Path = DELETE_HostsByHostReference_Request['parameters']['path'];
+
+export type GET_HostsByHostReference_Request = {
+  parameters: operations['get_host_v1_hosts__host_reference__get']['parameters'];
+};
+export type GET_HostsByHostReference_Request_Path = GET_HostsByHostReference_Request['parameters']['path'];
+
+export type PUT_HostsByHostReference_Request = {
+  parameters: operations['update_host_v1_hosts__host_reference__put']['parameters'];
+  requestBody: HostUpdate;
+};
+export type PUT_HostsByHostReference_Request_Path = PUT_HostsByHostReference_Request['parameters']['path'];
+export type PUT_HostsByHostReference_Request_Body = PUT_HostsByHostReference_Request['requestBody'];
 
 export type DELETE_JobByJobId_Request = {
   parameters: operations['delete_job_v1_job__job_id__delete']['parameters'];

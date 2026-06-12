@@ -44,6 +44,7 @@ import type {
   EventResponse,
   GetPrices,
   HTTPValidationError,
+  Host,
   IpRestriction,
   Job,
   JobBatchRetry,
@@ -173,6 +174,14 @@ export type DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_401 = 
 export type DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_403 = Problem;
 export type DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_404 = Problem;
 export type DELETE_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_422 = HTTPValidationError;
+
+export type DELETE_HostsByHostReference_Response = DELETE_HostsByHostReference_Response_401 | DELETE_HostsByHostReference_Response_403 | DELETE_HostsByHostReference_Response_404 | DELETE_HostsByHostReference_Response_409 | DELETE_HostsByHostReference_Response_422;
+
+export type DELETE_HostsByHostReference_Response_401 = Problem;
+export type DELETE_HostsByHostReference_Response_403 = Problem;
+export type DELETE_HostsByHostReference_Response_404 = Problem;
+export type DELETE_HostsByHostReference_Response_409 = Problem;
+export type DELETE_HostsByHostReference_Response_422 = HTTPValidationError;
 
 export type DELETE_JobByJobId_Response = DELETE_JobByJobId_Response_404 | DELETE_JobByJobId_Response_422;
 
@@ -546,6 +555,14 @@ export type GET_EventsByEventId_Response_200 = EventResponse;
 export type GET_EventsByEventId_Response_401 = Problem;
 export type GET_EventsByEventId_Response_404 = Problem;
 export type GET_EventsByEventId_Response_422 = HTTPValidationError;
+
+export type GET_HostsByHostReference_Response = GET_HostsByHostReference_Response_200 | GET_HostsByHostReference_Response_401 | GET_HostsByHostReference_Response_403 | GET_HostsByHostReference_Response_404 | GET_HostsByHostReference_Response_422;
+
+export type GET_HostsByHostReference_Response_200 = Host;
+export type GET_HostsByHostReference_Response_401 = Problem;
+export type GET_HostsByHostReference_Response_403 = Problem;
+export type GET_HostsByHostReference_Response_404 = Problem;
+export type GET_HostsByHostReference_Response_422 = HTTPValidationError;
 
 export type GET_JobByJobId_Response = GET_JobByJobId_Response_200 | GET_JobByJobId_Response_404 | GET_JobByJobId_Response_422;
 
@@ -1062,6 +1079,15 @@ export type POST_EmailForwardsByEmailForwardIdAliases_Response_404 = Problem;
 export type POST_EmailForwardsByEmailForwardIdAliases_Response_409 = Problem;
 export type POST_EmailForwardsByEmailForwardIdAliases_Response_422 = HTTPValidationError;
 
+export type POST_Hosts_Response = POST_Hosts_Response_201 | POST_Hosts_Response_401 | POST_Hosts_Response_403 | POST_Hosts_Response_404 | POST_Hosts_Response_409 | POST_Hosts_Response_422;
+
+export type POST_Hosts_Response_201 = Host;
+export type POST_Hosts_Response_401 = Problem;
+export type POST_Hosts_Response_403 = Problem;
+export type POST_Hosts_Response_404 = Problem;
+export type POST_Hosts_Response_409 = Problem;
+export type POST_Hosts_Response_422 = Problem;
+
 export type POST_JobByJobIdPause_Response = POST_JobByJobIdPause_Response_404 | POST_JobByJobIdPause_Response_422;
 
 export type POST_JobByJobIdPause_Response_404 = Problem;
@@ -1196,6 +1222,14 @@ export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_401 = Pro
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_403 = Problem;
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_404 = Problem;
 export type PUT_EmailForwardsByEmailForwardIdAliasesByAliasId_Response_422 = HTTPValidationError;
+
+export type PUT_HostsByHostReference_Response = PUT_HostsByHostReference_Response_200 | PUT_HostsByHostReference_Response_401 | PUT_HostsByHostReference_Response_403 | PUT_HostsByHostReference_Response_404 | PUT_HostsByHostReference_Response_422;
+
+export type PUT_HostsByHostReference_Response_200 = Host;
+export type PUT_HostsByHostReference_Response_401 = Problem;
+export type PUT_HostsByHostReference_Response_403 = Problem;
+export type PUT_HostsByHostReference_Response_404 = Problem;
+export type PUT_HostsByHostReference_Response_422 = HTTPValidationError;
 
 export type PUT_UsersByUserIdRole_Response = PUT_UsersByUserIdRole_Response_200 | PUT_UsersByUserIdRole_Response_403 | PUT_UsersByUserIdRole_Response_422;
 
