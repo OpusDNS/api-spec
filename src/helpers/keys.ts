@@ -1048,9 +1048,11 @@ export const KEYS_CREATE_JOB_BATCH = [
   KEY_CREATE_JOB_BATCH_TOTAL_COMMANDS,
 ] as const satisfies (keyof CreateJobBatch)[];
 
+export const KEY_CREATE_REPORT_REQ_REGISTRAR_CREDENTIAL_ID = 'registrar_credential_id' satisfies keyof CreateReportReq;
 export const KEY_CREATE_REPORT_REQ_REPORT_TYPE = 'report_type' satisfies keyof CreateReportReq;
 
 export const KEYS_CREATE_REPORT_REQ = [
+  KEY_CREATE_REPORT_REQ_REGISTRAR_CREDENTIAL_ID,
   KEY_CREATE_REPORT_REQ_REPORT_TYPE,
 ] as const satisfies (keyof CreateReportReq)[];
 

@@ -1549,6 +1549,7 @@ export const REPORT_TYPE = {
   DOMAIN_FORWARDS: "domain_forwards",
   EXPIRING_DOMAINS: "expiring_domains",
   EMAIL_FORWARDS: "email_forwards",
+  REGISTRAR_PORTFOLIO_PDF: "registrar_portfolio_pdf",
   BILLING_TRANSACTIONS: "billing_transactions",
   BILLING_TRANSACTIONS_MONTHLY: "billing_transactions_monthly",
 } as const satisfies Record<string, ReportType>;
@@ -1560,6 +1561,7 @@ export const REPORT_TYPE_VALUES = [
   'domain_forwards',
   'expiring_domains',
   'email_forwards',
+  'registrar_portfolio_pdf',
   'billing_transactions',
   'billing_transactions_monthly',
 ] as const satisfies ReadonlyArray<ReportType>;

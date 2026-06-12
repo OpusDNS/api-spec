@@ -2125,6 +2125,16 @@ components:
       type: object
     CreateReportReq:
       properties:
+        registrar_credential_id:
+          anyOf:
+          - examples:
+            - registrar_credential_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^registrar_credential_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: registrar_credential
+          - type: 'null'
+          title: Registrar Credential Id
         report_type:
           $ref: '#/components/schemas/ReportType'
           default: domain_inventory
@@ -9989,6 +9999,7 @@ components:
       - domain_forwards
       - expiring_domains
       - email_forwards
+      - registrar_portfolio_pdf
       - billing_transactions
       - billing_transactions_monthly
       title: ReportType
@@ -12001,7 +12012,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-11-173831
+  version: 2026-06-12-154603
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -26594,50 +26605,67 @@ tags:
     \ | Summary of all DNS zones and their configuration |\n| `dns_zone_records` |\
     \ Detailed export of all DNS records across zones |\n| `billing_transactions`\
     \ | Billing transactions for the current month to date |\n| `billing_transactions_monthly`\
-    \ | Billing transactions for the previous calendar month |\n\n### Billing Transaction\
-    \ Reports\n\nBilling transaction reports export all completed transactions as\
-    \ a CSV with the following columns: `product_reference`, `action`, `period`, `product_type`,\
-    \ `amount`, `currency`, `completed_on`.\n\nThere are two billing report types:\n\
-    \n- **`billing_transactions`** \u2014 On-demand report covering the current month\
-    \ to date (1st of the month through the time of the request). Request this via\
-    \ the API like any other report type.\n- **`billing_transactions_monthly`** \u2014\
-    \ Automatically generated on the 1st of each month at 5 AM UTC, covering the full\
-    \ previous calendar month. These are scheduled reports and do not need to be manually\
-    \ requested.\n\nBoth types maintain their own retention of 30 reports each, so\
-    \ requesting on-demand reports will not displace the monthly archive.\n\n### Report\
-    \ Lifecycle\n\nA report transitions through the following statuses:\n\n1. **pending**\
-    \ \u2014 Report has been queued for generation\n2. **generating** \u2014 Report\
-    \ is being built\n3. **completed** \u2014 Report is ready for download\n4. **failed**\
-    \ \u2014 Generation failed\n\n### Usage Pattern\n\n1. **Request a report** \u2014\
-    \ `POST /v1/reports` with the desired `report_type`\n2. **Poll for completion**\
-    \ \u2014 `GET /v1/reports/{report_id}` until `status` is `completed`\n3. **Download**\
-    \ \u2014 `GET /v1/reports/{report_id}/download` returns the report as a streamed\
-    \ ZIP file\n\n### Downloading Reports\n\n`GET /v1/reports/{report_id}/download`\
-    \ streams the report file directly to the client. The report **must** have status\
-    \ `completed` before it can be downloaded \u2014 calling this endpoint on a report\
-    \ that is still `pending` or `generating` returns `409 Conflict`.\n\n**Response\
-    \ details:**\n\n| Header | Value |\n|--------|-------|\n| `Content-Type` | `application/zip`\
-    \ |\n| `Content-Disposition` | `attachment; filename={report_type}-{report_id}.zip`\
-    \ |\n| `Content-Length` | File size in bytes (included when known) |\n\nThe response\
-    \ body is streamed in chunks, so clients should read the body incrementally rather\
-    \ than buffering it entirely in memory. When `Content-Length` is present, it can\
-    \ be used to display download progress.\n\n### Trigger Types\n\n| Type | Description\
-    \ |\n|------|-------------|\n| `on_demand` | Manually requested via the API |\n\
-    | `scheduled` | Automatically generated on a recurring schedule |\n\n### Rate\
-    \ Limiting\n\nReport creation is rate-limited at two levels:\n\n- **Cooldown**\
-    \ \u2014 After creating a report, you must wait **5 minutes** before requesting\
-    \ another report of the same type. Requests during the cooldown return `429 Too\
-    \ Many Requests` with a `Retry-After` header.\n- **Hourly limit** \u2014 Only\
-    \ **one report per type per organization per clock hour** (UTC) can be generated.\
-    \ Duplicate requests within the same hour will not produce an additional report.\n\
-    \n### Retention\n\nThe **30 most recent reports** of each type are kept per organization.\
-    \ Older reports and their associated files are automatically deleted when a new\
-    \ report is generated.\n\n### Listing Reports\n\nUse `GET /v1/reports` to list\
-    \ reports with optional filters:\n\n| Parameter | Description |\n|-----------|-------------|\n\
-    | `report_type` | Filter by report type (repeatable) |\n| `status` | Filter by\
-    \ report status (repeatable) |\n| `trigger_type` | Filter by trigger type |\n\
-    | `created_after` | Only reports created after this timestamp |\n| `created_before`\
-    \ | Only reports created before this timestamp |\n"
+    \ | Billing transactions for the previous calendar month |\n| `registrar_portfolio_pdf`\
+    \ | Credential-scoped registrar portfolio report as a PDF inside the ZIP download\
+    \ |\n\n### Billing Transaction Reports\n\nBilling transaction reports export all\
+    \ completed transactions as a CSV with the following columns: `product_reference`,\
+    \ `action`, `period`, `product_type`, `amount`, `currency`, `completed_on`.\n\n\
+    There are two billing report types:\n\n- **`billing_transactions`** \u2014 On-demand\
+    \ report covering the current month to date (1st of the month through the time\
+    \ of the request). Request this via the API like any other report type.\n- **`billing_transactions_monthly`**\
+    \ \u2014 Automatically generated on the 1st of each month at 5 AM UTC, covering\
+    \ the full previous calendar month. These are scheduled reports and do not need\
+    \ to be manually requested.\n\nBoth types maintain their own retention of 30 reports\
+    \ each, so requesting on-demand reports will not displace the monthly archive.\n\
+    \n### Registrar Portfolio PDF Reports\n\nRegistrar portfolio reports are requested\
+    \ with `POST /v1/reports` and require `registrar_credential_id`:\n\n```json\n\
+    {\n  \"report_type\": \"registrar_portfolio_pdf\",\n  \"registrar_credential_id\"\
+    : \"registrar_credential_...\"\n}\n```\n\nThe report uses registrar data from\
+    \ the registrar-elements OpenSearch index, populated by the scheduled daily registrar\
+    \ syncs. Report generation does not trigger a sync; it uses the most recently\
+    \ synced data as-is. If the credential has no portfolio data yet (for example,\
+    \ a credential created since the last sync), generation fails with an error indicating\
+    \ the credential is too new to report on.\n\nThe downloaded ZIP contains `registrar-portfolio-{report_typeid}.pdf`.\
+    \ Before each PDF generation, the report service loads the organization's current\
+    \ available TLD list from the backend and uses it to mark TLDs in the portfolio\
+    \ as available or unavailable. The first version includes the sections backed\
+    \ by indexed data: portfolio overview, domains/statuses/TLDs/nameservers, TLD\
+    \ availability, expiry summaries, contact validation summary, and DNS record summaries.\
+    \ Additional sections that require new OpenSearch fields will be added explicitly\
+    \ when those fields are indexed.\n\n### Report Lifecycle\n\nA report transitions\
+    \ through the following statuses:\n\n1. **pending** \u2014 Report has been queued\
+    \ for generation\n2. **generating** \u2014 Report is being built\n3. **completed**\
+    \ \u2014 Report is ready for download\n4. **failed** \u2014 Generation failed\n\
+    \n### Usage Pattern\n\n1. **Request a report** \u2014 `POST /v1/reports` with\
+    \ the desired `report_type`\n2. **Poll for completion** \u2014 `GET /v1/reports/{report_id}`\
+    \ until `status` is `completed`\n3. **Download** \u2014 `GET /v1/reports/{report_id}/download`\
+    \ returns the report as a streamed ZIP file\n\n### Downloading Reports\n\n`GET\
+    \ /v1/reports/{report_id}/download` streams the report file directly to the client.\
+    \ The report **must** have status `completed` before it can be downloaded \u2014\
+    \ calling this endpoint on a report that is still `pending` or `generating` returns\
+    \ `409 Conflict`.\n\n**Response details:**\n\n| Header | Value |\n|--------|-------|\n\
+    | `Content-Type` | `application/zip` |\n| `Content-Disposition` | `attachment;\
+    \ filename={report_type}-{report_id}.zip` |\n| `Content-Length` | File size in\
+    \ bytes (included when known) |\n\nThe response body is streamed in chunks, so\
+    \ clients should read the body incrementally rather than buffering it entirely\
+    \ in memory. When `Content-Length` is present, it can be used to display download\
+    \ progress.\n\n### Trigger Types\n\n| Type | Description |\n|------|-------------|\n\
+    | `on_demand` | Manually requested via the API |\n| `scheduled` | Automatically\
+    \ generated on a recurring schedule |\n\n### Rate Limiting\n\nReport creation\
+    \ is rate-limited at two levels:\n\n- **Cooldown** \u2014 After creating a report,\
+    \ you must wait **5 minutes** before requesting another report of the same type.\
+    \ Requests during the cooldown return `429 Too Many Requests` with a `Retry-After`\
+    \ header.\n- **Hourly limit** \u2014 Only **one report per type per organization\
+    \ per clock hour** (UTC) can be generated. Duplicate requests within the same\
+    \ hour will not produce an additional report.\n\n### Retention\n\nThe **30 most\
+    \ recent reports** of each type are kept per organization. Older reports and their\
+    \ associated files are automatically deleted when a new report is generated.\n\
+    \n### Listing Reports\n\nUse `GET /v1/reports` to list reports with optional filters:\n\
+    \n| Parameter | Description |\n|-----------|-------------|\n| `report_type` |\
+    \ Filter by report type (repeatable) |\n| `status` | Filter by report status (repeatable)\
+    \ |\n| `trigger_type` | Filter by trigger type |\n| `created_after` | Only reports\
+    \ created after this timestamp |\n| `created_before` | Only reports created before\
+    \ this timestamp |\n"
   name: report
   x-displayName: Reports
 - description: Endpoints for creating new Tags

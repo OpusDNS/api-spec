@@ -3936,6 +3936,8 @@ export interface components {
         };
         /** CreateReportReq */
         CreateReportReq: {
+            /** Registrar Credential Id */
+            registrar_credential_id?: TypeId<"registrar_credential"> | null;
             /** @default domain_inventory */
             report_type: components["schemas"]["ReportType"];
         };
@@ -9010,7 +9012,7 @@ export interface components {
          * ReportType
          * @enum {string}
          */
-        ReportType: "domain_inventory" | "dns_zone_summary" | "dns_zone_records" | "domain_forwards" | "expiring_domains" | "email_forwards" | "billing_transactions" | "billing_transactions_monthly";
+        ReportType: "domain_inventory" | "dns_zone_summary" | "dns_zone_records" | "domain_forwards" | "expiring_domains" | "email_forwards" | "registrar_portfolio_pdf" | "billing_transactions" | "billing_transactions_monthly";
         /** RequestHistory */
         RequestHistory: {
             /**
