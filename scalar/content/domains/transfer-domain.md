@@ -105,7 +105,7 @@ curl "$OPUSDNS_API_BASE/v1/domains/transfer" \
 | `contacts` | Yes | Contact IDs keyed by role. At minimum, a `registrant` is always required. |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | No | Additional registration period added on transfer completion. If omitted, the registry default policy applies. |
-| `nameservers` | No | Nameservers to set after transfer completes. If omitted, the existing nameservers from the previous registrar are imported. See [Nameservers](/products/domains/nameservers) for the OpusDNS nameserver hostnames. |
+| `nameservers` | No | Nameservers to set after transfer completes. If omitted, the existing nameservers from the previous registrar are imported. See [Nameservers](/products/domains/nameservers) for the OpusDNS nameserver hostnames. Hostnames subordinate to a domain in your account must exist as [host objects](/products/domains/host-objects) first. |
 | `create_zone` | No | Set to `true` to provision a DNS zone on OpusDNS nameservers after transfer. |
 | `expected_price` | No | Price confirmation for [premium domains](/products/domains/premium). |
 | `attributes` | No | [Registry-specific attributes](/products/domains/registry-attributes) required by certain TLDs. |

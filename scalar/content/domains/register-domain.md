@@ -168,7 +168,7 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
 | `contacts` | Yes | Contact IDs keyed by role. At minimum, a `registrant` is always required. |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | Yes | Registration length. Uses `unit` (`y` for years, `m` for months, `d` for days) and `value`. |
-| `nameservers` | No | Array of nameserver objects with `hostname`. If omitted, the domain is registered without nameservers. See [Using OpusDNS Nameservers](/products/domains/nameservers) for the OpusDNS nameserver hostnames. |
+| `nameservers` | No | Array of nameserver objects with `hostname`. If omitted, the domain is registered without nameservers. See [Using OpusDNS Nameservers](/products/domains/nameservers) for the OpusDNS nameserver hostnames. Hostnames subordinate to a domain in your account must exist as [host objects](/products/domains/host-objects) first. |
 | `create_zone` | No | Set to `true` to automatically provision a DNS zone on OpusDNS nameservers. |
 | `expected_price` | No | Price confirmation for [premium domains](/products/domains/premium). |
 | `attributes` | No | [Registry-specific attributes](/products/domains/registry-attributes) required by certain TLDs. |
