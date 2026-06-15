@@ -211,10 +211,9 @@ export type DELETE_TagsByTagId_Response_401 = Problem;
 export type DELETE_TagsByTagId_Response_404 = Problem;
 export type DELETE_TagsByTagId_Response_422 = HTTPValidationError;
 
-export type DELETE_UsersByUserId_Response = DELETE_UsersByUserId_Response_403 | DELETE_UsersByUserId_Response_409 | DELETE_UsersByUserId_Response_422;
+export type DELETE_UsersByUserId_Response = DELETE_UsersByUserId_Response_403 | DELETE_UsersByUserId_Response_422;
 
 export type DELETE_UsersByUserId_Response_403 = Problem;
-export type DELETE_UsersByUserId_Response_409 = Problem;
 export type DELETE_UsersByUserId_Response_422 = HTTPValidationError;
 
 export type GET_AiConciergeContextsByContextId_Response = GET_AiConciergeContextsByContextId_Response_200 | GET_AiConciergeContextsByContextId_Response_401 | GET_AiConciergeContextsByContextId_Response_404 | GET_AiConciergeContextsByContextId_Response_422 | GET_AiConciergeContextsByContextId_Response_502;

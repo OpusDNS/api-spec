@@ -21322,29 +21322,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    /** @example {
-                     *       "code": "ERROR_USER_CANNOT_DELETE_SELF",
-                     *       "detail": "Additional error context.",
-                     *       "status": 403,
-                     *       "title": "User Management Error",
-                     *       "type": "user-cannot-delete-self"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_USER_IS_LAST_ADMIN",
-                     *       "detail": "User is the last admin for the organization",
-                     *       "status": 409,
-                     *       "title": "User Management Error",
-                     *       "type": "user-is-last-admin"
-                     *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
