@@ -60,6 +60,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Cache compiled IDN tables to avoid re-downloading ~1900 from IANA each run.
+      - name: Cache compiled IDN tables
+        uses: actions/cache@v4
+        with:
+          path: tld-specifications/idn_tables
+          key: idn-tables-${{ hashFiles('tld-specifications/specifications/**/*.yaml') }}
+          restore-keys: |
+            idn-tables-
+
       - name: Compile TLD specifications
         working-directory: tld-specifications
         run: |
