@@ -70,7 +70,15 @@ def test_load_excluded_missing_file_is_empty(tmp_path: Path) -> None:
 def test_load_excluded_strips_comments_blanks_and_yaml_suffix(tmp_path: Path) -> None:
     target = tmp_path / "excluded_tlds.txt"
     target.write_text(
-        "# header\nsi\nit  # in OTE\n\ncn.com.yaml\n  lu  \n",
+        "\n".join([
+            "# header",
+            "si",
+            "it  # in OTE",
+            "",
+            "cn.com.yaml",
+            "  lu  ",
+            "",
+        ]),
         encoding="utf-8",
     )
     assert load_excluded(target) == {"si", "it", "cn.com", "lu"}
