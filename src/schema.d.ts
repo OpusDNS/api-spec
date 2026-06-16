@@ -1903,6 +1903,78 @@ export interface paths {
         patch: operations["update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch"];
         trace?: never;
     };
+    "/v1/organizations/role-permissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List grantable role permissions
+         * @description Retrieves the catalog of `resource:scope` permissions a custom role may grant
+         */
+        get: operations["list_role_permissions_v1_organizations_role_permissions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List roles
+         * @description Retrieves all roles assignable in the current organization: the built-in roles plus the organization's custom roles
+         */
+        get: operations["list_roles_v1_organizations_roles_get"];
+        put?: never;
+        /**
+         * Create a custom role
+         * @description Creates an organization-owned custom role granting the requested permissions. The escalation-bearing admin/owner permissions cannot be granted.
+         */
+        post: operations["create_role_v1_organizations_roles_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/roles/{label}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get a role
+         * @description Retrieves a single role (built-in or custom) by its name
+         */
+        get: operations["get_role_v1_organizations_roles__label__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a custom role
+         * @description Deletes a custom role. Refused while the role is still assigned to any subject, and for built-in roles.
+         */
+        delete: operations["delete_role_v1_organizations_roles__label__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update a custom role
+         * @description Updates a custom role's name, description and/or permission set. Permission changes apply to every subject holding the role instantly. Built-in roles are immutable.
+         */
+        patch: operations["update_role_v1_organizations_roles__label__patch"];
+        trace?: never;
+    };
     "/v1/organizations/users": {
         parameters: {
             query?: never;
@@ -3994,6 +4066,49 @@ export interface components {
          * @enum {string}
          */
         Currency: "USD" | "EUR";
+        /**
+         * CustomRoleCreate
+         * @description Request body for creating a custom role.
+         */
+        CustomRoleCreate: {
+            /**
+             * Description
+             * @description Description of the custom role.
+             */
+            description?: string | null;
+            /**
+             * Name
+             * @description Display name of the custom role as provided by the user (e.g. 'Support Staff').
+             */
+            name: string;
+            /**
+             * Permissions
+             * @description Permissions the role grants, as `resource:scope` (e.g. `domains:read`). The escalation-bearing admin/owner permissions cannot be granted.
+             */
+            permissions: components["schemas"]["PublicPermission"][];
+        };
+        /**
+         * CustomRoleUpdate
+         * @description Request body for updating a custom role. Omitted fields are left unchanged; `permissions`
+         *     is a full replacement set when provided.
+         */
+        CustomRoleUpdate: {
+            /**
+             * Description
+             * @description New description.
+             */
+            description?: string | null;
+            /**
+             * Name
+             * @description New display name.
+             */
+            name?: string | null;
+            /**
+             * Permissions
+             * @description Full replacement set of `resource:scope` permissions the role grants.
+             */
+            permissions?: components["schemas"]["PublicPermission"][] | null;
+        };
         /**
          * DeletePolicyType
          * @enum {string}
@@ -9070,7 +9185,7 @@ export interface components {
          * PublicResource
          * @enum {string}
          */
-        PublicResource: "domains" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "audit_logs" | "vanity_ns";
+        PublicResource: "organization" | "domains" | "contacts" | "dns" | "hosts" | "email_forwards" | "domain_forwards" | "parking" | "events" | "jobs" | "billing" | "users" | "api_keys" | "registrar_credentials" | "tags" | "audit_logs" | "vanity_ns";
         /**
          * PublicRole
          * @enum {string}
@@ -9083,6 +9198,47 @@ export interface components {
         /** PublicRoleAssignmentRequest */
         PublicRoleAssignmentRequest: {
             role?: components["schemas"]["AssignablePublicRole"] | null;
+        };
+        /**
+         * PublicRoleDefinition
+         * @description A role as listed/read through the public API — built-in or custom.
+         */
+        PublicRoleDefinition: {
+            /**
+             * Built In
+             * @description Built-in roles are immutable; custom roles are organization-owned.
+             */
+            built_in: boolean;
+            /**
+             * Created On
+             * @description Creation time (custom roles only).
+             */
+            created_on?: Date | null;
+            /**
+             * Description
+             * @description Description of the role.
+             */
+            description?: string | null;
+            /**
+             * Label
+             * @description Per-organization unique identifier (snake_case, e.g. 'support_staff'). Used as the URL path parameter.
+             */
+            label: string;
+            /**
+             * Name
+             * @description Display name of the role (e.g. 'Support Staff').
+             */
+            name: string;
+            /**
+             * Permissions
+             * @description Permissions the role grants, as `resource:scope` strings.
+             */
+            permissions: components["schemas"]["PublicPermission"][];
+            /**
+             * Updated On
+             * @description Last update time (custom roles only).
+             */
+            updated_on?: Date | null;
         };
         /**
          * PublicScope
@@ -19441,6 +19597,486 @@ export interface operations {
                      *       "status": 403,
                      *       "title": "Permission Denied",
                      *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_role_permissions_v1_organizations_role_permissions_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicPermissionSet"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_roles_v1_organizations_roles_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicRoleDefinition"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_role_v1_organizations_roles_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CustomRoleCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicRoleDefinition"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DUPLICATE_ROLE_NAME",
+                     *       "detail": "A role named 'support' already exists in this organization",
+                     *       "status": 409,
+                     *       "title": "Role Management Error",
+                     *       "type": "duplicate-role-name"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_role_v1_organizations_roles__label__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                label: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicRoleDefinition"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ROLE_NOT_FOUND",
+                     *       "detail": "Role not found",
+                     *       "role_name": "support",
+                     *       "status": 404,
+                     *       "title": "Role Management Error",
+                     *       "type": "role-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_role_v1_organizations_roles__label__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                label: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ROLE_NOT_FOUND",
+                     *       "detail": "Role not found",
+                     *       "role_name": "support",
+                     *       "status": 404,
+                     *       "title": "Role Management Error",
+                     *       "type": "role-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "binding_count": 1,
+                     *       "code": "ERROR_ROLE_IN_USE",
+                     *       "detail": "Role is still assigned to one or more subjects and cannot be deleted",
+                     *       "role_name": "support",
+                     *       "status": 409,
+                     *       "title": "Role Management Error",
+                     *       "type": "role-in-use"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_role_v1_organizations_roles__label__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                label: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CustomRoleUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PublicRoleDefinition"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ROLE_NOT_FOUND",
+                     *       "detail": "Role not found",
+                     *       "role_name": "support",
+                     *       "status": 404,
+                     *       "title": "Role Management Error",
+                     *       "type": "role-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_BUILT_IN_ROLE_IMMUTABLE",
+                     *       "detail": "Built-in roles cannot be modified or deleted",
+                     *       "role_name": "viewer",
+                     *       "status": 409,
+                     *       "title": "Role Management Error",
+                     *       "type": "built-in-role-immutable"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

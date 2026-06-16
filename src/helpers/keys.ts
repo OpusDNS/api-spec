@@ -46,6 +46,8 @@ import type {
   ConversationPatchRequest,
   CreateJobBatch,
   CreateReportReq,
+  CustomRoleCreate,
+  CustomRoleUpdate,
   DnsChange,
   DnsChanges,
   DnsConfigurationBase,
@@ -287,6 +289,7 @@ import type {
   PublicReportRes,
   PublicRoleAssignment,
   PublicRoleAssignmentRequest,
+  PublicRoleDefinition,
   RdapBase,
   ReferrerStatsBucket,
   RegistryLockBase,
@@ -1059,6 +1062,26 @@ export const KEYS_CREATE_REPORT_REQ = [
   KEY_CREATE_REPORT_REQ_REGISTRAR_CREDENTIAL_ID,
   KEY_CREATE_REPORT_REQ_REPORT_TYPE,
 ] as const satisfies (keyof CreateReportReq)[];
+
+export const KEY_CUSTOM_ROLE_CREATE_DESCRIPTION = 'description' satisfies keyof CustomRoleCreate;
+export const KEY_CUSTOM_ROLE_CREATE_NAME = 'name' satisfies keyof CustomRoleCreate;
+export const KEY_CUSTOM_ROLE_CREATE_PERMISSIONS = 'permissions' satisfies keyof CustomRoleCreate;
+
+export const KEYS_CUSTOM_ROLE_CREATE = [
+  KEY_CUSTOM_ROLE_CREATE_DESCRIPTION,
+  KEY_CUSTOM_ROLE_CREATE_NAME,
+  KEY_CUSTOM_ROLE_CREATE_PERMISSIONS,
+] as const satisfies (keyof CustomRoleCreate)[];
+
+export const KEY_CUSTOM_ROLE_UPDATE_DESCRIPTION = 'description' satisfies keyof CustomRoleUpdate;
+export const KEY_CUSTOM_ROLE_UPDATE_NAME = 'name' satisfies keyof CustomRoleUpdate;
+export const KEY_CUSTOM_ROLE_UPDATE_PERMISSIONS = 'permissions' satisfies keyof CustomRoleUpdate;
+
+export const KEYS_CUSTOM_ROLE_UPDATE = [
+  KEY_CUSTOM_ROLE_UPDATE_DESCRIPTION,
+  KEY_CUSTOM_ROLE_UPDATE_NAME,
+  KEY_CUSTOM_ROLE_UPDATE_PERMISSIONS,
+] as const satisfies (keyof CustomRoleUpdate)[];
 
 export const KEY_DNS_CHANGE_ACTION = 'action' satisfies keyof DnsChange;
 export const KEY_DNS_CHANGE_RECORD_DATA = 'record_data' satisfies keyof DnsChange;
@@ -3959,6 +3982,24 @@ export const KEY_PUBLIC_ROLE_ASSIGNMENT_REQUEST_ROLE = 'role' satisfies keyof Pu
 export const KEYS_PUBLIC_ROLE_ASSIGNMENT_REQUEST = [
   KEY_PUBLIC_ROLE_ASSIGNMENT_REQUEST_ROLE,
 ] as const satisfies (keyof PublicRoleAssignmentRequest)[];
+
+export const KEY_PUBLIC_ROLE_DEFINITION_BUILT_IN = 'built_in' satisfies keyof PublicRoleDefinition;
+export const KEY_PUBLIC_ROLE_DEFINITION_CREATED_ON = 'created_on' satisfies keyof PublicRoleDefinition;
+export const KEY_PUBLIC_ROLE_DEFINITION_DESCRIPTION = 'description' satisfies keyof PublicRoleDefinition;
+export const KEY_PUBLIC_ROLE_DEFINITION_LABEL = 'label' satisfies keyof PublicRoleDefinition;
+export const KEY_PUBLIC_ROLE_DEFINITION_NAME = 'name' satisfies keyof PublicRoleDefinition;
+export const KEY_PUBLIC_ROLE_DEFINITION_PERMISSIONS = 'permissions' satisfies keyof PublicRoleDefinition;
+export const KEY_PUBLIC_ROLE_DEFINITION_UPDATED_ON = 'updated_on' satisfies keyof PublicRoleDefinition;
+
+export const KEYS_PUBLIC_ROLE_DEFINITION = [
+  KEY_PUBLIC_ROLE_DEFINITION_BUILT_IN,
+  KEY_PUBLIC_ROLE_DEFINITION_CREATED_ON,
+  KEY_PUBLIC_ROLE_DEFINITION_DESCRIPTION,
+  KEY_PUBLIC_ROLE_DEFINITION_LABEL,
+  KEY_PUBLIC_ROLE_DEFINITION_NAME,
+  KEY_PUBLIC_ROLE_DEFINITION_PERMISSIONS,
+  KEY_PUBLIC_ROLE_DEFINITION_UPDATED_ON,
+] as const satisfies (keyof PublicRoleDefinition)[];
 
 export const KEY_RDAP_BASE_RDAP_SERVER = 'rdap_server' satisfies keyof RdapBase;
 

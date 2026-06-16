@@ -9,6 +9,8 @@ import type {
   ContextCreateRequest,
   ConversationCreateRequest,
   ConversationPatchRequest,
+  CustomRoleCreate,
+  CustomRoleUpdate,
   DnsZoneCreate,
   DnsZoneRecordsPatchOps,
   DnsZoneRrsetsCreate,
@@ -842,6 +844,34 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request = {
 };
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Path = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['parameters']['path'];
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request_Body = PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Request['requestBody'];
+
+export type GET_OrganizationsRolePermissions_Request = {
+};
+
+export type GET_OrganizationsRoles_Request = {
+};
+
+export type POST_OrganizationsRoles_Request = {
+  requestBody: CustomRoleCreate;
+};
+export type POST_OrganizationsRoles_Request_Body = POST_OrganizationsRoles_Request['requestBody'];
+
+export type DELETE_OrganizationsRolesByLabel_Request = {
+  parameters: operations['delete_role_v1_organizations_roles__label__delete']['parameters'];
+};
+export type DELETE_OrganizationsRolesByLabel_Request_Path = DELETE_OrganizationsRolesByLabel_Request['parameters']['path'];
+
+export type GET_OrganizationsRolesByLabel_Request = {
+  parameters: operations['get_role_v1_organizations_roles__label__get']['parameters'];
+};
+export type GET_OrganizationsRolesByLabel_Request_Path = GET_OrganizationsRolesByLabel_Request['parameters']['path'];
+
+export type PATCH_OrganizationsRolesByLabel_Request = {
+  parameters: operations['update_role_v1_organizations_roles__label__patch']['parameters'];
+  requestBody: CustomRoleUpdate;
+};
+export type PATCH_OrganizationsRolesByLabel_Request_Path = PATCH_OrganizationsRolesByLabel_Request['parameters']['path'];
+export type PATCH_OrganizationsRolesByLabel_Request_Body = PATCH_OrganizationsRolesByLabel_Request['requestBody'];
 
 export type GET_OrganizationsUsers_Request = {
   parameters: operations['list_users_v1_organizations_users_get']['parameters'];

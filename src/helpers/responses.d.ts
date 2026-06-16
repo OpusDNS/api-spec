@@ -86,6 +86,7 @@ import type {
   PublicReportListRes,
   PublicReportRes,
   PublicRoleAssignment,
+  PublicRoleDefinition,
   RequestAuthcode,
   RequestAuthcode2,
   Tag,
@@ -204,6 +205,14 @@ export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response = DELET
 export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Problem;
 export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem;
 export type DELETE_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError;
+
+export type DELETE_OrganizationsRolesByLabel_Response = DELETE_OrganizationsRolesByLabel_Response_401 | DELETE_OrganizationsRolesByLabel_Response_403 | DELETE_OrganizationsRolesByLabel_Response_404 | DELETE_OrganizationsRolesByLabel_Response_409 | DELETE_OrganizationsRolesByLabel_Response_422;
+
+export type DELETE_OrganizationsRolesByLabel_Response_401 = Problem;
+export type DELETE_OrganizationsRolesByLabel_Response_403 = Problem;
+export type DELETE_OrganizationsRolesByLabel_Response_404 = Problem;
+export type DELETE_OrganizationsRolesByLabel_Response_409 = Problem;
+export type DELETE_OrganizationsRolesByLabel_Response_422 = HTTPValidationError;
 
 export type DELETE_TagsByTagId_Response = DELETE_TagsByTagId_Response_401 | DELETE_TagsByTagId_Response_404 | DELETE_TagsByTagId_Response_422;
 
@@ -656,6 +665,28 @@ export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Prob
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem;
 export type GET_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError;
 
+export type GET_OrganizationsRolePermissions_Response = GET_OrganizationsRolePermissions_Response_200 | GET_OrganizationsRolePermissions_Response_401 | GET_OrganizationsRolePermissions_Response_403 | GET_OrganizationsRolePermissions_Response_422;
+
+export type GET_OrganizationsRolePermissions_Response_200 = PublicPermissionSet;
+export type GET_OrganizationsRolePermissions_Response_401 = Problem;
+export type GET_OrganizationsRolePermissions_Response_403 = Problem;
+export type GET_OrganizationsRolePermissions_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsRoles_Response = GET_OrganizationsRoles_Response_200 | GET_OrganizationsRoles_Response_401 | GET_OrganizationsRoles_Response_403 | GET_OrganizationsRoles_Response_422;
+
+export type GET_OrganizationsRoles_Response_200 = PublicRoleDefinition[];
+export type GET_OrganizationsRoles_Response_401 = Problem;
+export type GET_OrganizationsRoles_Response_403 = Problem;
+export type GET_OrganizationsRoles_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsRolesByLabel_Response = GET_OrganizationsRolesByLabel_Response_200 | GET_OrganizationsRolesByLabel_Response_401 | GET_OrganizationsRolesByLabel_Response_403 | GET_OrganizationsRolesByLabel_Response_404 | GET_OrganizationsRolesByLabel_Response_422;
+
+export type GET_OrganizationsRolesByLabel_Response_200 = PublicRoleDefinition;
+export type GET_OrganizationsRolesByLabel_Response_401 = Problem;
+export type GET_OrganizationsRolesByLabel_Response_403 = Problem;
+export type GET_OrganizationsRolesByLabel_Response_404 = Problem;
+export type GET_OrganizationsRolesByLabel_Response_422 = HTTPValidationError;
+
 export type GET_OrganizationsUsers_Response = GET_OrganizationsUsers_Response_200 | GET_OrganizationsUsers_Response_401 | GET_OrganizationsUsers_Response_403 | GET_OrganizationsUsers_Response_422;
 
 export type GET_OrganizationsUsers_Response_200 = Pagination_UserPublicWithRole;
@@ -866,6 +897,15 @@ export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_200 = Ip
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_401 = Problem;
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_403 = Problem;
 export type PATCH_OrganizationsIpRestrictionsByIpRestrictionId_Response_422 = HTTPValidationError;
+
+export type PATCH_OrganizationsRolesByLabel_Response = PATCH_OrganizationsRolesByLabel_Response_200 | PATCH_OrganizationsRolesByLabel_Response_401 | PATCH_OrganizationsRolesByLabel_Response_403 | PATCH_OrganizationsRolesByLabel_Response_404 | PATCH_OrganizationsRolesByLabel_Response_409 | PATCH_OrganizationsRolesByLabel_Response_422;
+
+export type PATCH_OrganizationsRolesByLabel_Response_200 = PublicRoleDefinition;
+export type PATCH_OrganizationsRolesByLabel_Response_401 = Problem;
+export type PATCH_OrganizationsRolesByLabel_Response_403 = Problem;
+export type PATCH_OrganizationsRolesByLabel_Response_404 = Problem;
+export type PATCH_OrganizationsRolesByLabel_Response_409 = Problem;
+export type PATCH_OrganizationsRolesByLabel_Response_422 = HTTPValidationError;
 
 export type PATCH_TagsByTagId_Response = PATCH_TagsByTagId_Response_200 | PATCH_TagsByTagId_Response_401 | PATCH_TagsByTagId_Response_404 | PATCH_TagsByTagId_Response_409 | PATCH_TagsByTagId_Response_422;
 
@@ -1141,6 +1181,14 @@ export type POST_OrganizationsIpRestrictions_Response_200 = IpRestriction;
 export type POST_OrganizationsIpRestrictions_Response_401 = Problem;
 export type POST_OrganizationsIpRestrictions_Response_403 = Problem;
 export type POST_OrganizationsIpRestrictions_Response_422 = HTTPValidationError;
+
+export type POST_OrganizationsRoles_Response = POST_OrganizationsRoles_Response_201 | POST_OrganizationsRoles_Response_401 | POST_OrganizationsRoles_Response_403 | POST_OrganizationsRoles_Response_409 | POST_OrganizationsRoles_Response_422;
+
+export type POST_OrganizationsRoles_Response_201 = PublicRoleDefinition;
+export type POST_OrganizationsRoles_Response_401 = Problem;
+export type POST_OrganizationsRoles_Response_403 = Problem;
+export type POST_OrganizationsRoles_Response_409 = Problem;
+export type POST_OrganizationsRoles_Response_422 = HTTPValidationError;
 
 export type POST_ParkingSignup_Response = POST_ParkingSignup_Response_200 | POST_ParkingSignup_Response_401 | POST_ParkingSignup_Response_403 | POST_ParkingSignup_Response_422;
 

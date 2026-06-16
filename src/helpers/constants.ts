@@ -1345,6 +1345,7 @@ export const PROTOCOL_VALUES = [
 ] as const satisfies ReadonlyArray<Protocol>;
 
 export const PUBLIC_RESOURCE = {
+  ORGANIZATION: "organization",
   DOMAINS: "domains",
   CONTACTS: "contacts",
   DNS: "dns",
@@ -1364,6 +1365,7 @@ export const PUBLIC_RESOURCE = {
 } as const satisfies Record<string, PublicResource>;
 
 export const PUBLIC_RESOURCE_VALUES = [
+  'organization',
   'domains',
   'contacts',
   'dns',
