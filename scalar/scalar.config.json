@@ -703,12 +703,6 @@
                 "filepath": "content/tld-knowledge-base/cctlds/io.md",
                 "showInSidebar": true
               },
-              "/it": {
-                "type": "page",
-                "title": "🇮🇹 .it",
-                "filepath": "content/tld-knowledge-base/cctlds/it.md",
-                "showInSidebar": true
-              },
               "/lc": {
                 "type": "page",
                 "title": "🇱🇨 .lc",
@@ -719,12 +713,6 @@
                 "type": "page",
                 "title": "🇱🇮 .li",
                 "filepath": "content/tld-knowledge-base/cctlds/li.md",
-                "showInSidebar": true
-              },
-              "/lu": {
-                "type": "page",
-                "title": "🇱🇺 .lu",
-                "filepath": "content/tld-knowledge-base/cctlds/lu.md",
                 "showInSidebar": true
               },
               "/me": {
@@ -773,12 +761,6 @@
                 "type": "page",
                 "title": "🇸🇨 .sc",
                 "filepath": "content/tld-knowledge-base/cctlds/sc.md",
-                "showInSidebar": true
-              },
-              "/si": {
-                "type": "page",
-                "title": "🇸🇮 .si",
-                "filepath": "content/tld-knowledge-base/cctlds/si.md",
                 "showInSidebar": true
               },
               "/tf": {
@@ -2352,12 +2334,6 @@
                 "type": "page",
                 "title": "🌐 .music",
                 "filepath": "content/tld-knowledge-base/gtlds/music.md",
-                "showInSidebar": true
-              },
-              "/name": {
-                "type": "page",
-                "title": "🌐 .name",
-                "filepath": "content/tld-knowledge-base/gtlds/name.md",
                 "showInSidebar": true
               },
               "/navy": {
