@@ -177,6 +177,13 @@
                     "filepath": "content/account/organizations.md",
                     "showInSidebar": true
                   },
+                  "/roles": {
+                    "type": "page",
+                    "title": "Roles & permissions",
+                    "icon": "phosphor/regular/shield-check",
+                    "filepath": "content/account/roles.md",
+                    "showInSidebar": true
+                  },
                   "/manage": {
                     "type": "page",
                     "title": "Manage suborganizations",
