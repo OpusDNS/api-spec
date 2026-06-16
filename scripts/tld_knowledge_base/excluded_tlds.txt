@@ -6,4 +6,6 @@ si # no pricing yet
 it # WIP
 lu # WIP
 lt # WIP
+ua # WIP
 cloud # no pricing yet
+name # doesn't fully work, some domain:check cmds fail
