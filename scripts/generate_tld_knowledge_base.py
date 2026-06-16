@@ -23,6 +23,7 @@ from tld_knowledge_base import render, scalar_config  # noqa: E402
 DEFAULT_INPUT = REPO_ROOT.parent / "tld-specifications" / "compiled_specifications"
 DEFAULT_OUTPUT = REPO_ROOT / "scalar" / "content" / "tld-knowledge-base"
 DEFAULT_CONFIG = REPO_ROOT / "scalar" / "scalar.config.json"
+DEFAULT_EXCLUDE_FILE = REPO_ROOT / "scripts" / "tld_knowledge_base" / "excluded_tlds.txt"
 
 # Manually-provisioned TLDs (specifications/ras_manual in OpusDNS/tld-specifications)
 # are enabled in the API but should not be published in the knowledge base.
@@ -78,6 +79,17 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--exclude-file",
+        type=Path,
+        default=DEFAULT_EXCLUDE_FILE,
+        help="File listing TLD spec names to exclude from the knowledge base (default: %(default)s)",
+    )
+    parser.add_argument(
+        "--include-excluded",
+        action="store_true",
+        help="Also render TLDs listed in the exclude file",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Render and diff but do not write any files",
@@ -88,6 +100,44 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Limit generation to specific TLD(s); may be repeated",
     )
     return parser.parse_args(argv)
+
+
+def load_excluded(path: Path) -> set[str]:
+    """TLD names to keep out of the knowledge base, read from ``path``.
+
+    One TLD name per line (e.g. ``si``, ``cn.com``); a trailing ``.yaml`` is
+    tolerated. Anything after ``#`` is a comment. A missing file means nothing
+    is excluded.
+    """
+    if not path.exists():
+        return set()
+    names: set[str] = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        entry = line.split("#", 1)[0].strip()
+        if entry:
+            names.add(entry.removesuffix(".yaml"))
+    return names
+
+
+def tld_name(spec: dict) -> str:
+    tlds = (spec.get("tld_configuration") or {}).get("tlds") or []
+    return tlds[0].get("name", "") if tlds else ""
+
+
+def apply_exclusions(
+    specs: list[tuple[Path, dict]],
+    excluded: set[str],
+) -> list[tuple[Path, dict]]:
+    if not excluded:
+        return specs
+    present = {tld_name(spec) for _path, spec in specs}
+    for missing in sorted(excluded - present):
+        print(
+            f"::warning::excluded TLD '{missing}' matches no spec; "
+            "remove it from the exclude file or fix the name",
+            file=sys.stderr,
+        )
+    return [(path, spec) for path, spec in specs if tld_name(spec) not in excluded]
 
 
 def load_specs(
@@ -216,6 +266,8 @@ def main(argv: list[str] | None = None) -> int:
         include_manual=args.include_manual,
         allowlist=allowlist,
     )
+    if not args.include_excluded:
+        specs = apply_exclusions(specs, load_excluded(args.exclude_file))
     if not specs:
         print("No matching compiled spec files found.", file=sys.stderr)
         return 1

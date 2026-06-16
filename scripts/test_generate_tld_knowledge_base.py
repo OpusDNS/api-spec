@@ -12,6 +12,7 @@ from generate_tld_knowledge_base import (
     DEFAULT_NOTES_NAME,
     NOTES_DIRNAME,
     is_manual,
+    load_excluded,
     load_notes,
     load_specs,
 )
@@ -60,6 +61,27 @@ def test_append_is_idempotent_against_render_output(tmp_path: Path) -> None:
     merged = page + load_notes(tmp_path, "xyz")
     assert merged == "# Title\n\n## Section\n\nrow\n\n## Notes\n\nbody\n"
     assert merged == page + load_notes(tmp_path, "xyz")
+
+
+def test_load_excluded_missing_file_is_empty(tmp_path: Path) -> None:
+    assert load_excluded(tmp_path / "nope.txt") == set()
+
+
+def test_load_excluded_strips_comments_blanks_and_yaml_suffix(tmp_path: Path) -> None:
+    target = tmp_path / "excluded_tlds.txt"
+    target.write_text(
+        "\n".join([
+            "# header",
+            "si",
+            "it  # in OTE",
+            "",
+            "cn.com.yaml",
+            "  lu  ",
+            "",
+        ]),
+        encoding="utf-8",
+    )
+    assert load_excluded(target) == {"si", "it", "cn.com", "lu"}
 
 
 def _write_spec(
