@@ -28,12 +28,21 @@ curl "$OPUSDNS_API_BASE/v1/domains" \
    [API Credentials](https://app.opusdns.com/developer/api-credentials).
 2. Click **Create API Credential**.
 3. Give the credential a name and description, then choose an expiration date.
+4. Select the **role** that governs what the key can do — a built-in role (such
+   as `admin` or `viewer`) or one of your organization's custom roles. The role
+   defaults to `admin` (full access). See
+   [Roles & permissions](/account/organizations/roles) for what each role
+   grants.
 
 ![Create API credential dialog](/images/auth-create-api-credential.png)
 
 After creation, copy the **client ID**, **API key**, and **client secret**
 immediately. The API key and client secret are only displayed once — they
 cannot be retrieved later.
+
+<scalar-callout type="info">
+An API key carries its own role, independently of the user who created it. Grant each key the narrowest role it needs — for example, a deployment script that only edits DNS can use a key with the `dns_manager` role instead of `admin`.
+</scalar-callout>
 
 <img src="/images/auth-api-credential-created.png" alt="API credential created dialog" width="500" />
 

@@ -87,15 +87,10 @@ request. You can also create users later via the
 
 ## Roles
 
-Roles determine what permissions users have within an organization. List the
-available roles:
-
-```bash
-curl "$OPUSDNS_API_BASE/v1/organizations/roles" \
-  --header "X-Api-Key: $OPUSDNS_API_KEY"
-```
-
-See [User management](/account/users) for how to assign roles to users.
+Roles determine what permissions users and API keys have within an organization
+— through built-in roles or your own custom roles. See
+[Roles & permissions](/account/organizations/roles) for the full guide, and
+[User management](/account/users) for how to assign a role to a user.
 
 ## Related API Reference
 

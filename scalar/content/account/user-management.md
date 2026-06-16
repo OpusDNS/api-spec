@@ -115,6 +115,45 @@ curl "$OPUSDNS_API_BASE/v1/users/user_01h45ytscbebyvny4gc8cr8ma2" \
 
 Only include the fields you want to change.
 
+## Roles
+
+Each user holds a single role that determines what they can do within the
+organization. See [Roles & permissions](/account/organizations/roles) for how
+roles and permissions work, and the list of built-in roles.
+
+### Getting a user's role
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/users/user_01h45ytscbebyvny4gc8cr8ma2/role" \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
+
+```json
+{
+  "role": "domain_manager"
+}
+```
+
+### Setting a user's role
+
+Assign a role with a `PUT` request, replacing any existing role. Pass either a
+built-in role name (for example `viewer`) or the label of a custom role owned by
+the user's organization (for example `support_staff`):
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/users/user_01h45ytscbebyvny4gc8cr8ma2/role" \
+  --request PUT \
+  --header "X-Api-Key: $OPUSDNS_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "role": "support_staff"
+  }'
+```
+
+<scalar-callout type="info">
+The `owner` role cannot be assigned through this endpoint — it is report-only and established when the organization is created. Sending `owner` returns a validation error.
+</scalar-callout>
+
 ## Deleting a user
 
 Remove a user from the organization:
@@ -136,3 +175,5 @@ You cannot delete yourself or the last admin user in an organization. These oper
 - [`GET /v1/users/{user_id}`](/api-reference#tag/user/GET/v1/users/{user_id})
 - [`PATCH /v1/users/{user_id}`](/api-reference#tag/user/PATCH/v1/users/{user_id})
 - [`DELETE /v1/users/{user_id}`](/api-reference#tag/user/DELETE/v1/users/{user_id})
+- [`GET /v1/users/{user_id}/role`](/api-reference#tag/user/GET/v1/users/{user_id}/role)
+- [`PUT /v1/users/{user_id}/role`](/api-reference#tag/user/PUT/v1/users/{user_id}/role)

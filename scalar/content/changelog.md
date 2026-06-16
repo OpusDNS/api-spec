@@ -4,6 +4,22 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 16 June 2026
+
+- Released the **role-based permissions** system. Access is now governed by
+  roles built from `resource:scope` permissions (scopes: `read`, `manage`,
+  `delete`).
+- Added **built-in roles** — `admin`, `viewer`, `domain_manager`, `dns_manager`,
+  and `billing_manager` — available in every organization.
+- Added **custom roles** — define organization-owned roles with exactly the
+  permissions you need via `POST /v1/organizations/roles`, and manage them with
+  `GET`/`PATCH`/`DELETE /v1/organizations/roles/{label}`. Retrieve the grantable
+  permission catalog from `GET /v1/organizations/role-permissions`.
+- Added **per-user role assignment** — `GET` and `PUT /v1/users/{user_id}/role`
+  set a user's built-in or custom role. API keys are granted a role at issuance.
+- Published the [Roles & permissions](/account/organizations/roles) guide and a
+  roles section in [User management](/account/users).
+
 ### 12 June 2026
 
 - Added **host object management** — create, retrieve, update, and delete
@@ -13,8 +29,6 @@ Track notable updates to the OpusDNS API and developer documentation here.
   ID or hostname.
 - Published the [Host objects (glue records)](/products/domains/host-objects)
   guide and linked it from the nameservers, registration, and transfer guides.
-
-### 14 May 2026
 
 - Added **batch retry** — re-attempt jobs in a batch that ended in `failed` or
   `dead_letter` state without rebuilding the batch.
