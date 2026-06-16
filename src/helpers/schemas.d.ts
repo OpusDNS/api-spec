@@ -69,6 +69,7 @@ export type CreateJobBatch = components['schemas']['CreateJobBatchResponse'];
 export type CreateReportReq = components['schemas']['CreateReportReq'];
 export type Currency = components['schemas']['Currency'];
 export type CustomRoleCreate = components['schemas']['CustomRoleCreate'];
+export type CustomRoleLabel = components['schemas']['CustomRoleLabel'];
 export type CustomRoleUpdate = components['schemas']['CustomRoleUpdate'];
 export type DeletePolicyType = components['schemas']['DeletePolicyType'];
 export type DnsChangeAction = components['schemas']['DnsChangeAction'];

@@ -2550,7 +2550,7 @@ export interface paths {
         get: operations["get_role_v1_users__user_id__role_get"];
         /**
          * Set user role
-         * @description Set the role for a user, replacing any existing role
+         * @description Set the role for a user, replacing any existing role. Accepts a built-in role name or the label of a custom role owned by the user's organization
          */
         put: operations["set_user_role_v1_users__user_id__role_put"];
         post?: never;
@@ -4087,6 +4087,7 @@ export interface components {
              */
             permissions: components["schemas"]["PublicPermission"][];
         };
+        CustomRoleLabel: string;
         /**
          * CustomRoleUpdate
          * @description Request body for updating a custom role. Omitted fields are left unchanged; `permissions`
@@ -9193,11 +9194,13 @@ export interface components {
         PublicRole: "owner" | "admin" | "viewer" | "domain_manager" | "dns_manager" | "billing_manager";
         /** PublicRoleAssignment */
         PublicRoleAssignment: {
-            role?: components["schemas"]["PublicRole"] | null;
+            /** Role */
+            role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
         };
         /** PublicRoleAssignmentRequest */
         PublicRoleAssignmentRequest: {
-            role?: components["schemas"]["AssignablePublicRole"] | null;
+            /** Role */
+            role?: components["schemas"]["AssignablePublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
         };
         /**
          * PublicRoleDefinition
@@ -9219,11 +9222,8 @@ export interface components {
              * @description Description of the role.
              */
             description?: string | null;
-            /**
-             * Label
-             * @description Per-organization unique identifier (snake_case, e.g. 'support_staff'). Used as the URL path parameter.
-             */
-            label: string;
+            /** @description Per-organization unique identifier (snake_case, e.g. 'support_staff'). Used as the URL path parameter. */
+            label: components["schemas"]["CustomRoleLabel"];
             /**
              * Name
              * @description Display name of the role (e.g. 'Support Staff').
@@ -10350,7 +10350,8 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
-            role?: components["schemas"]["PublicRole"] | null;
+            /** Role */
+            role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
             readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
@@ -10497,7 +10498,8 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
-            role?: components["schemas"]["PublicRole"] | null;
+            /** Role */
+            role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
             readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
@@ -22105,6 +22107,23 @@ export interface operations {
                      *       "status": 403,
                      *       "title": "User Management Error",
                      *       "type": "only-owner-can-manage-admin-role"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_ROLE_NOT_FOUND",
+                     *       "detail": "Role not found",
+                     *       "role_name": "support_staff",
+                     *       "status": 404,
+                     *       "title": "Role Management Error",
+                     *       "type": "role-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

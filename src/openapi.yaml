@@ -2174,6 +2174,8 @@ components:
       - permissions
       title: CustomRoleCreate
       type: object
+    CustomRoleLabel:
+      type: string
     CustomRoleUpdate:
       description: 'Request body for updating a custom role. Omitted fields are left
         unchanged; `permissions`
@@ -10022,7 +10024,9 @@ components:
         role:
           anyOf:
           - $ref: '#/components/schemas/PublicRole'
+          - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
+          title: Role
       title: PublicRoleAssignment
       type: object
     PublicRoleAssignmentRequest:
@@ -10030,7 +10034,9 @@ components:
         role:
           anyOf:
           - $ref: '#/components/schemas/AssignablePublicRole'
+          - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
+          title: Role
       title: PublicRoleAssignmentRequest
       type: object
     PublicRoleDefinition:
@@ -10055,10 +10061,9 @@ components:
           description: Description of the role.
           title: Description
         label:
+          $ref: '#/components/schemas/CustomRoleLabel'
           description: Per-organization unique identifier (snake_case, e.g. 'support_staff').
             Used as the URL path parameter.
-          title: Label
-          type: string
         name:
           description: Display name of the role (e.g. 'Support Staff').
           title: Name
@@ -11677,7 +11682,9 @@ components:
         role:
           anyOf:
           - $ref: '#/components/schemas/PublicRole'
+          - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
+          title: Role
         status:
           $ref: '#/components/schemas/UserStatus'
           readOnly: true
@@ -11881,7 +11888,9 @@ components:
         role:
           anyOf:
           - $ref: '#/components/schemas/PublicRole'
+          - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
+          title: Role
         status:
           $ref: '#/components/schemas/UserStatus'
           readOnly: true
@@ -12252,7 +12261,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-16-085537
+  version: 2026-06-16-093305
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -27119,7 +27128,8 @@ paths:
       x-required-permissions:
       - users:read
     put:
-      description: Set the role for a user, replacing any existing role
+      description: Set the role for a user, replacing any existing role. Accepts a
+        built-in role name or the label of a custom role owned by the user's organization
       operationId: set_user_role_v1_users__user_id__role_put
       parameters:
       - in: path
@@ -27158,6 +27168,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
           description: Forbidden
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_ROLE_NOT_FOUND
+                detail: Role not found
+                role_name: support_staff
+                status: 404
+                title: Role Management Error
+                type: role-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
         '422':
           content:
             application/problem+json:
