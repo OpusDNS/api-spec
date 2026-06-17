@@ -34,7 +34,7 @@ curl "$OPUSDNS_API_BASE/v1/organizations/organization_01h45ytscbebyvny4gc8cr8ma2
 Get full details for a specific transaction:
 
 ```bash
-curl "$OPUSDNS_API_BASE/v1/organizations/organization_01h45ytscbebyvny4gc8cr8ma2/transactions/transaction_01h45ytscbebyvny4gc8cr8ma2" \
+curl "$OPUSDNS_API_BASE/v1/organizations/organization_01h45ytscbebyvny4gc8cr8ma2/transactions/billing_transaction_01h45ytscbebyvny4gc8cr8ma2" \
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
