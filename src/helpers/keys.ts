@@ -241,6 +241,7 @@ import type {
   OrganizationAttribute2,
   OrganizationAttributeUpdate,
   OrganizationCreate,
+  OrganizationCredential,
   OrganizationToken,
   OrganizationUpdate,
   OrganizationWithBillingData,
@@ -3462,6 +3463,30 @@ export const KEYS_ORGANIZATION_CREATE = [
   KEY_ORGANIZATION_CREATE_TAX_RATE,
   KEY_ORGANIZATION_CREATE_USERS,
 ] as const satisfies (keyof OrganizationCreate)[];
+
+export const KEY_ORGANIZATION_CREDENTIAL_API_KEY_DESCRIPTION = 'api_key_description' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_API_KEY_ID = 'api_key_id' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_API_KEY_NAME = 'api_key_name' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_CREATED_ON = 'created_on' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_DELETED_ON = 'deleted_on' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_EXPIRES_AT = 'expires_at' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_LAST_USED_ON = 'last_used_on' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_ORGANIZATION_ID = 'organization_id' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_ROLE = 'role' satisfies keyof OrganizationCredential;
+export const KEY_ORGANIZATION_CREDENTIAL_STATUS = 'status' satisfies keyof OrganizationCredential;
+
+export const KEYS_ORGANIZATION_CREDENTIAL = [
+  KEY_ORGANIZATION_CREDENTIAL_API_KEY_DESCRIPTION,
+  KEY_ORGANIZATION_CREDENTIAL_API_KEY_ID,
+  KEY_ORGANIZATION_CREDENTIAL_API_KEY_NAME,
+  KEY_ORGANIZATION_CREDENTIAL_CREATED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_DELETED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_EXPIRES_AT,
+  KEY_ORGANIZATION_CREDENTIAL_LAST_USED_ON,
+  KEY_ORGANIZATION_CREDENTIAL_ORGANIZATION_ID,
+  KEY_ORGANIZATION_CREDENTIAL_ROLE,
+  KEY_ORGANIZATION_CREDENTIAL_STATUS,
+] as const satisfies (keyof OrganizationCredential)[];
 
 export const KEY_ORGANIZATION_TOKEN_ACCESS_TOKEN = 'access_token' satisfies keyof OrganizationToken;
 export const KEY_ORGANIZATION_TOKEN_EXPIRES_IN = 'expires_in' satisfies keyof OrganizationToken;

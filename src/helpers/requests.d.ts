@@ -166,6 +166,9 @@ export type GET_ArchiveRequestHistory_Request = {
 };
 export type GET_ArchiveRequestHistory_Request_Query = GET_ArchiveRequestHistory_Request['parameters']['query'];
 
+export type GET_AuthClientCredentialsIntrospect_Request = {
+};
+
 export type POST_AuthToken_Request = {
   requestBody: PublicAuthRequestForm;
 };

@@ -8445,6 +8445,87 @@ components:
       - name
       title: OrganizationCreate
       type: object
+    OrganizationCredential:
+      properties:
+        api_key_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Description of the organization credential.
+          title: Api Key Description
+        api_key_id:
+          description: Unique identifier of the organization credential.
+          examples:
+          - api_key_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^api_key_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Api Key Id
+          type: string
+          x-typeid-prefix: api_key
+        api_key_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Name of the organization credential. Only a-z, A-Z, 0-9, underscore,
+            and hyphen are allowed.
+          title: Api Key Name
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        deleted_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date/time the entry was deleted on
+          title: Deleted On
+        expires_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date and time the credential expiration.
+          title: Expires At
+        last_used_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: The date/time the entry was deleted on
+          title: Last Used On
+        organization_id:
+          default: None
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        role:
+          anyOf:
+          - $ref: '#/components/schemas/PublicRole'
+          - $ref: '#/components/schemas/CustomRoleLabel'
+          - type: 'null'
+          title: Role
+        status:
+          $ref: '#/components/schemas/OrganizationCredentialStatus'
+          description: The status of the organization credential.
+          readOnly: true
+      required:
+      - api_key_id
+      - status
+      title: OrganizationCredential
+      type: object
+    OrganizationCredentialStatus:
+      enum:
+      - active
+      - expired
+      - revoked
+      title: OrganizationCredentialStatus
+      type: string
     OrganizationSortField:
       enum:
       - created_on
@@ -12261,7 +12342,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-16-093305
+  version: 2026-06-17-145023
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -14049,6 +14130,43 @@ paths:
       summary: Retrieve request history logs
       tags:
       - archive
+  /v1/auth/client_credentials/introspect:
+    get:
+      description: Returns the stored record for the API key (or organization token)
+        used to authenticate the request, including its organization. Requires API-key
+        or organization-token authentication; user tokens are rejected.
+      operationId: introspect_client_credential_v1_auth_client_credentials_introspect_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationCredential'
+          description: Successful Response
+        '401':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_AUTHENTICATION
+                detail: Additional error context.
+                status: 401
+                title: Authentication Error
+                type: authentication
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unauthorized
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Introspect the current API key
+      tags:
+      - authentication
   /v1/auth/token:
     post:
       operationId: issue_organization_token_v1_auth_token_post

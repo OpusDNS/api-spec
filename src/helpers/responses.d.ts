@@ -56,6 +56,7 @@ import type {
   ObjectTagChanges2,
   Organization,
   OrganizationAttribute2,
+  OrganizationCredential,
   OrganizationWithBillingData,
   Pagination_BillingTransaction,
   Pagination_Contact,
@@ -305,6 +306,12 @@ export type GET_ArchiveRequestHistory_Response = GET_ArchiveRequestHistory_Respo
 
 export type GET_ArchiveRequestHistory_Response_200 = Pagination_RequestHistory;
 export type GET_ArchiveRequestHistory_Response_422 = HTTPValidationError;
+
+export type GET_AuthClientCredentialsIntrospect_Response = GET_AuthClientCredentialsIntrospect_Response_200 | GET_AuthClientCredentialsIntrospect_Response_401 | GET_AuthClientCredentialsIntrospect_Response_422;
+
+export type GET_AuthClientCredentialsIntrospect_Response_200 = OrganizationCredential;
+export type GET_AuthClientCredentialsIntrospect_Response_401 = Problem;
+export type GET_AuthClientCredentialsIntrospect_Response_422 = HTTPValidationError;
 
 export type GET_Availability_Response = GET_Availability_Response_200 | GET_Availability_Response_401 | GET_Availability_Response_422;
 

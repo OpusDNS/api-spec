@@ -255,6 +255,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/auth/client_credentials/introspect": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Introspect the current API key
+         * @description Returns the stored record for the API key (or organization token) used to authenticate the request, including its organization. Requires API-key or organization-token authentication; user tokens are rejected.
+         */
+        get: operations["introspect_client_credential_v1_auth_client_credentials_introspect_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/auth/token": {
         parameters: {
             query?: never;
@@ -8202,6 +8222,63 @@ export interface components {
              */
             users?: components["schemas"]["UserCreate"][];
         };
+        /** OrganizationCredential */
+        OrganizationCredential: {
+            /**
+             * Api Key Description
+             * @description Description of the organization credential.
+             */
+            api_key_description?: string | null;
+            /**
+             * Api Key Id
+             * Format: typeid
+             * @description Unique identifier of the organization credential.
+             * @example api_key_01h45ytscbebyvny4gc8cr8ma2
+             */
+            api_key_id: TypeId<"api_key">;
+            /**
+             * Api Key Name
+             * @description Name of the organization credential. Only a-z, A-Z, 0-9, underscore, and hyphen are allowed.
+             */
+            api_key_name?: string | null;
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Deleted On
+             * @description The date/time the entry was deleted on
+             */
+            deleted_on?: Date | null;
+            /**
+             * Expires At
+             * @description The date and time the credential expiration.
+             */
+            expires_at?: Date | null;
+            /**
+             * Last Used On
+             * @description The date/time the entry was deleted on
+             */
+            last_used_on?: Date | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /** Role */
+            role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
+            /** @description The status of the organization credential. */
+            readonly status: components["schemas"]["OrganizationCredentialStatus"];
+        };
+        /**
+         * OrganizationCredentialStatus
+         * @enum {string}
+         */
+        OrganizationCredentialStatus: "active" | "expired" | "revoked";
         /**
          * OrganizationSortField
          * @enum {string}
@@ -12138,6 +12215,51 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pagination_RequestHistory_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    introspect_client_credential_v1_auth_client_credentials_introspect_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationCredential"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */

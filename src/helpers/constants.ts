@@ -67,6 +67,7 @@ import type {
   MetricsGrouping,
   ObjectEventType,
   ObjectLogSortField,
+  OrganizationCredentialStatus,
   OrganizationSortField,
   OrganizationStatus,
   ParkingSortField,
@@ -1223,6 +1224,18 @@ export const OBJECT_LOG_SORT_FIELD_VALUES = [
   'performed_by_type',
   'performed_by_id',
 ] as const satisfies ReadonlyArray<ObjectLogSortField>;
+
+export const ORGANIZATION_CREDENTIAL_STATUS = {
+  ACTIVE: "active",
+  EXPIRED: "expired",
+  REVOKED: "revoked",
+} as const satisfies Record<string, OrganizationCredentialStatus>;
+
+export const ORGANIZATION_CREDENTIAL_STATUS_VALUES = [
+  'active',
+  'expired',
+  'revoked',
+] as const satisfies ReadonlyArray<OrganizationCredentialStatus>;
 
 export const ORGANIZATION_SORT_FIELD = {
   CREATED_ON: "created_on",
