@@ -3182,6 +3182,7 @@ components:
       enum:
       - auto_renew_period
       - music_registrant_attestation
+      - nic_it_compliance_confirmation
       - travel_industry_acknowledgement
       - verification_required
       title: DomainAttributeKey
@@ -12342,7 +12343,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-17-145023
+  version: 2026-06-17-220249
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

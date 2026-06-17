@@ -582,6 +582,7 @@ export const DNSSEC_STATUS_VALUES = [
 export const DOMAIN_ATTRIBUTE_KEY = {
   AUTO_RENEW_PERIOD: "auto_renew_period",
   MUSIC_REGISTRANT_ATTESTATION: "music_registrant_attestation",
+  NIC_IT_COMPLIANCE_CONFIRMATION: "nic_it_compliance_confirmation",
   TRAVEL_INDUSTRY_ACKNOWLEDGEMENT: "travel_industry_acknowledgement",
   VERIFICATION_REQUIRED: "verification_required",
 } as const satisfies Record<string, DomainAttributeKey>;
@@ -589,6 +590,7 @@ export const DOMAIN_ATTRIBUTE_KEY = {
 export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'auto_renew_period',
   'music_registrant_attestation',
+  'nic_it_compliance_confirmation',
   'travel_industry_acknowledgement',
   'verification_required',
 ] as const satisfies ReadonlyArray<DomainAttributeKey>;
