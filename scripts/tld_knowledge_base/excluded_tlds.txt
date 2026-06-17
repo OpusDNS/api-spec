@@ -8,6 +8,5 @@ lu # WIP
 lt # WIP
 ua # WIP
 sk # WIP
-cloud # no pricing yet
 name # doesn't fully work, some domain:check cmds fail
 latino # no pricing yet
