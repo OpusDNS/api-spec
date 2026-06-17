@@ -1220,6 +1220,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/clothing.md",
                 "showInSidebar": true
               },
+              "/cloud": {
+                "type": "page",
+                "title": "🌐 .cloud",
+                "filepath": "content/tld-knowledge-base/gtlds/cloud.md",
+                "showInSidebar": true
+              },
               "/club": {
                 "type": "page",
                 "title": "🌐 .club",
