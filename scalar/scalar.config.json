@@ -763,6 +763,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/sc.md",
                 "showInSidebar": true
               },
+              "/sk": {
+                "type": "page",
+                "title": "🇸🇰 .sk",
+                "filepath": "content/tld-knowledge-base/cctlds/sk.md",
+                "showInSidebar": true
+              },
               "/tf": {
                 "type": "page",
                 "title": "🇹🇫 .tf",
