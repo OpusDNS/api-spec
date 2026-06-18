@@ -703,6 +703,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/io.md",
                 "showInSidebar": true
               },
+              "/it": {
+                "type": "page",
+                "title": "🇮🇹 .it",
+                "filepath": "content/tld-knowledge-base/cctlds/it.md",
+                "showInSidebar": true
+              },
               "/lc": {
                 "type": "page",
                 "title": "🇱🇨 .lc",
