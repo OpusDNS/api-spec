@@ -57,11 +57,11 @@
 
 | Property | Value |
 | --- | --- |
-| Required Contacts | Domain Owner, Administrator, Technical Contact |
+| Required Contacts | Domain Owner, Administrator, Technical Contact, Billing Contact |
 | Supported Roles | Domain Owner, Administrator, Technical Contact, Billing Contact |
 | Thick WHOIS | ✅ Yes |
 | Privacy Proxy Allowed | ❌ No |
-| Contacts Transferable | ✅ Yes |
+| Contacts Transferable | ❌ No |
 | Allowed Postal Types | Local, International |
 | AuthInfo Required | ✅ Yes (16–63 characters) |
 
