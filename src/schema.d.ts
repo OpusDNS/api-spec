@@ -2748,11 +2748,21 @@ export interface components {
              */
             tax_rate: string;
             /**
+             * Unit
+             * @description The unit for `volume` (e.g. 'y' for years when renewing a domain); null when not applicable
+             */
+            unit?: string | null;
+            /**
              * Updated On
              * Format: date-time
              * @description The date/time the transaction was updated
              */
             updated_on?: Date;
+            /**
+             * Volume
+             * @description The quantity the transaction covers, expressed in `unit` (e.g. 1 for a one-year domain renewal)
+             */
+            volume: string;
         };
         /**
          * BillingTransactionSortField

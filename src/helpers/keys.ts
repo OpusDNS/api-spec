@@ -417,7 +417,9 @@ export const KEY_BILLING_TRANSACTION_PRODUCT_TYPE = 'product_type' satisfies key
 export const KEY_BILLING_TRANSACTION_STATUS = 'status' satisfies keyof BillingTransaction;
 export const KEY_BILLING_TRANSACTION_TAX_AMOUNT = 'tax_amount' satisfies keyof BillingTransaction;
 export const KEY_BILLING_TRANSACTION_TAX_RATE = 'tax_rate' satisfies keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_UNIT = 'unit' satisfies keyof BillingTransaction;
 export const KEY_BILLING_TRANSACTION_UPDATED_ON = 'updated_on' satisfies keyof BillingTransaction;
+export const KEY_BILLING_TRANSACTION_VOLUME = 'volume' satisfies keyof BillingTransaction;
 
 export const KEYS_BILLING_TRANSACTION = [
   KEY_BILLING_TRANSACTION_ACTION,
@@ -432,7 +434,9 @@ export const KEYS_BILLING_TRANSACTION = [
   KEY_BILLING_TRANSACTION_STATUS,
   KEY_BILLING_TRANSACTION_TAX_AMOUNT,
   KEY_BILLING_TRANSACTION_TAX_RATE,
+  KEY_BILLING_TRANSACTION_UNIT,
   KEY_BILLING_TRANSACTION_UPDATED_ON,
+  KEY_BILLING_TRANSACTION_VOLUME,
 ] as const satisfies (keyof BillingTransaction)[];
 
 export const KEY_BROWSER_STATS_BUCKET_KEY = 'key' satisfies keyof BrowserStatsBucket;
