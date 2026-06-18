@@ -153,8 +153,7 @@ The registrant's standard fields are constrained by the entity type:
 
 `.it` is a thick registry with a registrant, admin, and tech contact. A few cross-role rules are enforced before the request reaches the registry:
 
-- **registrant** and **admin** contacts are required for registrations
-- **tech** contact is required on both create and update
+- the **tech** contact is required, on both create and update
 - for a `natural_person` registrant, the **admin** contact must reference the same contact as the registrant
 - the registrant is immutable through a normal update: omit it and the existing registrant is kept; it cannot be replaced via `update`
 
