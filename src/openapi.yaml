@@ -221,15 +221,31 @@ components:
           pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
           title: Tax Rate
           type: string
+        unit:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          description: The unit for `volume` (e.g. 'y' for years when renewing a domain);
+            null when not applicable
+          title: Unit
         updated_on:
           description: The date/time the transaction was updated
           format: date-time
           title: Updated On
           type: string
+        volume:
+          description: The quantity the transaction covers, expressed in `unit` (e.g.
+            1 for a one-year domain renewal)
+          pattern: ^(?!^[-+.]*$)[+-]?0*(?:\d{0,8}|(?=[\d.]{1,11}0*$)\d{0,8}\.\d{0,2}0*$)
+          title: Volume
+          type: string
       required:
       - product_type
       - product_reference
       - action
+      - volume
       - amount
       - price
       - tax_rate
