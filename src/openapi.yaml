@@ -10639,6 +10639,8 @@ components:
       - CZ_NIC_VAT
       - CZ_NIC_NOTIFY_EMAIL
       - DNS_LU_CONTACT_ROLE
+      - SK_NIC_LEGAL_FORM
+      - SK_NIC_IDENT_VALUE
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -12716,7 +12718,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-18-104959
+  version: 2026-06-18-152327
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

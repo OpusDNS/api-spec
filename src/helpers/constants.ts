@@ -1489,6 +1489,8 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   CZ_NIC_VAT: "CZ_NIC_VAT",
   CZ_NIC_NOTIFY_EMAIL: "CZ_NIC_NOTIFY_EMAIL",
   DNS_LU_CONTACT_ROLE: "DNS_LU_CONTACT_ROLE",
+  SK_NIC_LEGAL_FORM: "SK_NIC_LEGAL_FORM",
+  SK_NIC_IDENT_VALUE: "SK_NIC_IDENT_VALUE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
@@ -1534,6 +1536,8 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'CZ_NIC_VAT',
   'CZ_NIC_NOTIFY_EMAIL',
   'DNS_LU_CONTACT_ROLE',
+  'SK_NIC_LEGAL_FORM',
+  'SK_NIC_IDENT_VALUE',
 ] as const satisfies ReadonlyArray<RegistryHandleAttributeType>;
 
 export const RENEWAL_MODE = {
