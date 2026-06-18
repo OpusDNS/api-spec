@@ -1,3 +1,96 @@
+## Contact Attributes
+
+`.it` carries two registry-specific attributes on the **registrant** contact, beyond the standard EPP fields. Both are required on registrations and inbound transfers:
+
+| Attribute | Type | Required | Applies to | Allowed values |
+| --- | --- | --- | --- | --- |
+| `NIC_IT_ENTITY_TYPE` | Enum | ✅ Required | Registrant | See the entity-type table below |
+| `NIC_IT_REG_CODE` | String | ✅ Required | Registrant | Tax or registration code, 1-36 chars (format depends on the entity type) |
+
+### Entity types (`NIC_IT_ENTITY_TYPE`)
+
+The registrant declares its legal nature through `NIC_IT_ENTITY_TYPE`. That value drives the nationality, organization, and registration-code rules below. The registry code is the number NIC.it echoes back in policy errors (e.g. "entity type = 1").
+
+| Value | Legal nature | Registry code | Natural person |
+| --- | --- | --- | --- |
+| `natural_person` | Natural person | 1 | ✅ |
+| `company` | Company / one-person company | 2 | ❌ |
+| `individual_firm` | Freelancer / sole proprietor | 3 | ❌ |
+| `non_profit` | Non-profit organization | 4 | ❌ |
+| `public_org` | Public organization | 5 | ❌ |
+| `other` | Other entity | 6 | ❌ |
+| `foreign_legal_entity` | Foreign (non-Italian) legal entity | 7 | ❌ |
+
+### Registration code (`NIC_IT_REG_CODE`)
+
+The expected format depends on the entity type and nationality:
+
+| Entity type | Expected code |
+| --- | --- |
+| `natural_person` (Italian) | 16-character Codice Fiscale |
+| `natural_person` (non-Italian) | Home-country identifier (no format check) |
+| `company`, `public_org`, `other` | 11-digit Partita IVA |
+| `individual_firm` | Codice Fiscale or Partita IVA |
+| `non_profit` | Partita IVA, or the literal `N.A.` when none exists |
+| `foreign_legal_entity` | Home-country identifier (no format check) |
+
+### Nationality, province, and organization
+
+The registrant's standard fields are constrained by the entity type:
+
+- **Country** (`contact.country`):
+   - Italian legal types (`company`, `individual_firm`, `non_profit`, `public_org`, `other`) must be `IT`
+   - `foreign_legal_entity` must be a non-`IT` country in the EEA plus Vatican, San Marino, Switzerland, and the UK
+   - `natural_person` may be any country in that same EEA-plus set, including `IT`
+- **Province** (`contact.state`): required and must be a valid 2-letter Italian province code (e.g. `RM`, `MI`, `NA`) whenever the country is `IT`
+- **Organization** (`contact.org`):
+   - required for every legal-entity type
+   - for `natural_person` it must be omitted or equal the contact's full name
+
+### Per-role rules
+
+`.it` is a thick registry with a registrant, admin, and tech contact. A few cross-role rules are enforced before the request reaches the registry:
+
+- the **tech** contact is required, on both create and update
+- for a `natural_person` registrant, the **admin** contact must reference the same contact as the registrant
+- the registrant is immutable through a normal update: omit it and the existing registrant is kept; it cannot be replaced via `update`
+
+> ⚠️ **Reusing one contact for every role?** For a `natural_person` registrant the admin has to be that same contact, and any contacts update must still carry a tech. The two failures integrators hit most:
+>
+> ```json
+> {
+>   "type": "policy-validation-error",
+>   "title": "Policy Validation Error",
+>   "status": 422,
+>   "code": "ERROR_POLICY_VALIDATION",
+>   "errors": [
+>     {
+>       "detail": "For 'natural_person' registrant, the admin contact must reference the same contact as the registrant",
+>       "pointer": "contacts.admin[0].contact_id"
+>     }
+>   ],
+>   "detail": "Policy validation failed"
+> }
+> ```
+>
+> ```json
+> {
+>   "type": "policy-validation-error",
+>   "title": "Policy Validation Error",
+>   "status": 422,
+>   "code": "ERROR_POLICY_VALIDATION",
+>   "errors": [
+>     {
+>       "detail": "Tech contact is required",
+>       "pointer": "contacts.tech"
+>     }
+>   ],
+>   "detail": "Policy validation failed"
+> }
+> ```
+
+The attribute constraints are machine-readable: each `possible_attributes` entry returned by [`GET /v1/tlds/it`](/api-reference#tag/tld/GET/v1/tlds/{tld}) carries its own `values`, `required`, and `contact_roles` fields.
+
 ## Registrant Policy Acknowledgement
 
 `.it` registrations and inbound transfers require the registrar to confirm — on the registrant's behalf — compliance with the Registro .it (IIT-CNR) policies, and to pass those policies on to the domain owner. Surface the acknowledgement below to the end user **before** submitting a `.it` create or transfer; the confirmation is mandatory for both operations.
