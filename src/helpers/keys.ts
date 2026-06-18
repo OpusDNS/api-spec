@@ -186,12 +186,29 @@ import type {
   EmailForwardAliasMetrics,
   EmailForwardAliasUpdate,
   EmailForwardCreate,
+  EmailForwardCreateBulkCommand,
+  EmailForwardCreateBulkInstance,
+  EmailForwardCreateBulkPayload,
+  EmailForwardCreateBulkTemplate,
+  EmailForwardDeleteBulkCommand,
+  EmailForwardDeleteBulkInstance,
+  EmailForwardDeleteBulkPayload,
+  EmailForwardDisableBulkCommand,
+  EmailForwardDisableBulkInstance,
+  EmailForwardDisableBulkPayload,
+  EmailForwardEnableBulkCommand,
+  EmailForwardEnableBulkInstance,
+  EmailForwardEnableBulkPayload,
   EmailForwardLog,
   EmailForwardLogEvent,
   EmailForwardMetrics,
   EmailForwardMetricsFilters,
   EmailForwardMetricsRates,
   EmailForward,
+  EmailForwardUpdateBulkCommand,
+  EmailForwardUpdateBulkInstance,
+  EmailForwardUpdateBulkPayload,
+  EmailForwardUpdateBulkTemplate,
   EmailForwardZone,
   EventData,
   EventError,
@@ -2622,6 +2639,124 @@ export const KEYS_EMAIL_FORWARD_CREATE = [
   KEY_EMAIL_FORWARD_CREATE_HOSTNAME,
 ] as const satisfies (keyof EmailForwardCreate)[];
 
+export const KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_COMMAND = 'command' satisfies keyof EmailForwardCreateBulkCommand;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof EmailForwardCreateBulkCommand;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof EmailForwardCreateBulkCommand;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_VERSION = 'version' satisfies keyof EmailForwardCreateBulkCommand;
+
+export const KEYS_EMAIL_FORWARD_CREATE_BULK_COMMAND = [
+  KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_COMMAND,
+  KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_PAYLOAD,
+  KEY_EMAIL_FORWARD_CREATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof EmailForwardCreateBulkCommand)[];
+
+export const KEY_EMAIL_FORWARD_CREATE_BULK_INSTANCE_ALIASES = 'aliases' satisfies keyof EmailForwardCreateBulkInstance;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_INSTANCE_ENABLED = 'enabled' satisfies keyof EmailForwardCreateBulkInstance;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof EmailForwardCreateBulkInstance;
+
+export const KEYS_EMAIL_FORWARD_CREATE_BULK_INSTANCE = [
+  KEY_EMAIL_FORWARD_CREATE_BULK_INSTANCE_ALIASES,
+  KEY_EMAIL_FORWARD_CREATE_BULK_INSTANCE_ENABLED,
+  KEY_EMAIL_FORWARD_CREATE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof EmailForwardCreateBulkInstance)[];
+
+export const KEY_EMAIL_FORWARD_CREATE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof EmailForwardCreateBulkPayload;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_PAYLOAD_TEMPLATE = 'template' satisfies keyof EmailForwardCreateBulkPayload;
+
+export const KEYS_EMAIL_FORWARD_CREATE_BULK_PAYLOAD = [
+  KEY_EMAIL_FORWARD_CREATE_BULK_PAYLOAD_INSTANCES,
+  KEY_EMAIL_FORWARD_CREATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof EmailForwardCreateBulkPayload)[];
+
+export const KEY_EMAIL_FORWARD_CREATE_BULK_TEMPLATE_ALIASES = 'aliases' satisfies keyof EmailForwardCreateBulkTemplate;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_TEMPLATE_AUTO_CREATE_ZONE = 'auto_create_zone' satisfies keyof EmailForwardCreateBulkTemplate;
+export const KEY_EMAIL_FORWARD_CREATE_BULK_TEMPLATE_ENABLED = 'enabled' satisfies keyof EmailForwardCreateBulkTemplate;
+
+export const KEYS_EMAIL_FORWARD_CREATE_BULK_TEMPLATE = [
+  KEY_EMAIL_FORWARD_CREATE_BULK_TEMPLATE_ALIASES,
+  KEY_EMAIL_FORWARD_CREATE_BULK_TEMPLATE_AUTO_CREATE_ZONE,
+  KEY_EMAIL_FORWARD_CREATE_BULK_TEMPLATE_ENABLED,
+] as const satisfies (keyof EmailForwardCreateBulkTemplate)[];
+
+export const KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_COMMAND = 'command' satisfies keyof EmailForwardDeleteBulkCommand;
+export const KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof EmailForwardDeleteBulkCommand;
+export const KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof EmailForwardDeleteBulkCommand;
+export const KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_VERSION = 'version' satisfies keyof EmailForwardDeleteBulkCommand;
+
+export const KEYS_EMAIL_FORWARD_DELETE_BULK_COMMAND = [
+  KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_COMMAND,
+  KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_PAYLOAD,
+  KEY_EMAIL_FORWARD_DELETE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof EmailForwardDeleteBulkCommand)[];
+
+export const KEY_EMAIL_FORWARD_DELETE_BULK_INSTANCE_EMAIL_FORWARD_ID = 'email_forward_id' satisfies keyof EmailForwardDeleteBulkInstance;
+export const KEY_EMAIL_FORWARD_DELETE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof EmailForwardDeleteBulkInstance;
+
+export const KEYS_EMAIL_FORWARD_DELETE_BULK_INSTANCE = [
+  KEY_EMAIL_FORWARD_DELETE_BULK_INSTANCE_EMAIL_FORWARD_ID,
+  KEY_EMAIL_FORWARD_DELETE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof EmailForwardDeleteBulkInstance)[];
+
+export const KEY_EMAIL_FORWARD_DELETE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof EmailForwardDeleteBulkPayload;
+
+export const KEYS_EMAIL_FORWARD_DELETE_BULK_PAYLOAD = [
+  KEY_EMAIL_FORWARD_DELETE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof EmailForwardDeleteBulkPayload)[];
+
+export const KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_COMMAND = 'command' satisfies keyof EmailForwardDisableBulkCommand;
+export const KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof EmailForwardDisableBulkCommand;
+export const KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof EmailForwardDisableBulkCommand;
+export const KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_VERSION = 'version' satisfies keyof EmailForwardDisableBulkCommand;
+
+export const KEYS_EMAIL_FORWARD_DISABLE_BULK_COMMAND = [
+  KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_COMMAND,
+  KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_PAYLOAD,
+  KEY_EMAIL_FORWARD_DISABLE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof EmailForwardDisableBulkCommand)[];
+
+export const KEY_EMAIL_FORWARD_DISABLE_BULK_INSTANCE_EMAIL_FORWARD_ID = 'email_forward_id' satisfies keyof EmailForwardDisableBulkInstance;
+export const KEY_EMAIL_FORWARD_DISABLE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof EmailForwardDisableBulkInstance;
+
+export const KEYS_EMAIL_FORWARD_DISABLE_BULK_INSTANCE = [
+  KEY_EMAIL_FORWARD_DISABLE_BULK_INSTANCE_EMAIL_FORWARD_ID,
+  KEY_EMAIL_FORWARD_DISABLE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof EmailForwardDisableBulkInstance)[];
+
+export const KEY_EMAIL_FORWARD_DISABLE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof EmailForwardDisableBulkPayload;
+
+export const KEYS_EMAIL_FORWARD_DISABLE_BULK_PAYLOAD = [
+  KEY_EMAIL_FORWARD_DISABLE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof EmailForwardDisableBulkPayload)[];
+
+export const KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_COMMAND = 'command' satisfies keyof EmailForwardEnableBulkCommand;
+export const KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof EmailForwardEnableBulkCommand;
+export const KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof EmailForwardEnableBulkCommand;
+export const KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_VERSION = 'version' satisfies keyof EmailForwardEnableBulkCommand;
+
+export const KEYS_EMAIL_FORWARD_ENABLE_BULK_COMMAND = [
+  KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_COMMAND,
+  KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_PAYLOAD,
+  KEY_EMAIL_FORWARD_ENABLE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof EmailForwardEnableBulkCommand)[];
+
+export const KEY_EMAIL_FORWARD_ENABLE_BULK_INSTANCE_EMAIL_FORWARD_ID = 'email_forward_id' satisfies keyof EmailForwardEnableBulkInstance;
+export const KEY_EMAIL_FORWARD_ENABLE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof EmailForwardEnableBulkInstance;
+
+export const KEYS_EMAIL_FORWARD_ENABLE_BULK_INSTANCE = [
+  KEY_EMAIL_FORWARD_ENABLE_BULK_INSTANCE_EMAIL_FORWARD_ID,
+  KEY_EMAIL_FORWARD_ENABLE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof EmailForwardEnableBulkInstance)[];
+
+export const KEY_EMAIL_FORWARD_ENABLE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof EmailForwardEnableBulkPayload;
+
+export const KEYS_EMAIL_FORWARD_ENABLE_BULK_PAYLOAD = [
+  KEY_EMAIL_FORWARD_ENABLE_BULK_PAYLOAD_INSTANCES,
+] as const satisfies (keyof EmailForwardEnableBulkPayload)[];
+
 export const KEY_EMAIL_FORWARD_LOG_CREATED_ON = 'created_on' satisfies keyof EmailForwardLog;
 export const KEY_EMAIL_FORWARD_LOG_DOMAIN = 'domain' satisfies keyof EmailForwardLog;
 export const KEY_EMAIL_FORWARD_LOG_EVENTS = 'events' satisfies keyof EmailForwardLog;
@@ -2731,6 +2866,46 @@ export const KEYS_EMAIL_FORWARD = [
   KEY_EMAIL_FORWARD_HOSTNAME,
   KEY_EMAIL_FORWARD_UPDATED_ON,
 ] as const satisfies (keyof EmailForward)[];
+
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_COMMAND = 'command' satisfies keyof EmailForwardUpdateBulkCommand;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof EmailForwardUpdateBulkCommand;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof EmailForwardUpdateBulkCommand;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_VERSION = 'version' satisfies keyof EmailForwardUpdateBulkCommand;
+
+export const KEYS_EMAIL_FORWARD_UPDATE_BULK_COMMAND = [
+  KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_COMMAND,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_PAYLOAD,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_COMMAND_VERSION,
+] as const satisfies (keyof EmailForwardUpdateBulkCommand)[];
+
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_ALIASES = 'aliases' satisfies keyof EmailForwardUpdateBulkInstance;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_EMAIL_FORWARD_ID = 'email_forward_id' satisfies keyof EmailForwardUpdateBulkInstance;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_ENABLED = 'enabled' satisfies keyof EmailForwardUpdateBulkInstance;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_HOSTNAME = 'hostname' satisfies keyof EmailForwardUpdateBulkInstance;
+
+export const KEYS_EMAIL_FORWARD_UPDATE_BULK_INSTANCE = [
+  KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_ALIASES,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_EMAIL_FORWARD_ID,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_ENABLED,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_INSTANCE_HOSTNAME,
+] as const satisfies (keyof EmailForwardUpdateBulkInstance)[];
+
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof EmailForwardUpdateBulkPayload;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_PAYLOAD_TEMPLATE = 'template' satisfies keyof EmailForwardUpdateBulkPayload;
+
+export const KEYS_EMAIL_FORWARD_UPDATE_BULK_PAYLOAD = [
+  KEY_EMAIL_FORWARD_UPDATE_BULK_PAYLOAD_INSTANCES,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof EmailForwardUpdateBulkPayload)[];
+
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_TEMPLATE_ALIASES = 'aliases' satisfies keyof EmailForwardUpdateBulkTemplate;
+export const KEY_EMAIL_FORWARD_UPDATE_BULK_TEMPLATE_ENABLED = 'enabled' satisfies keyof EmailForwardUpdateBulkTemplate;
+
+export const KEYS_EMAIL_FORWARD_UPDATE_BULK_TEMPLATE = [
+  KEY_EMAIL_FORWARD_UPDATE_BULK_TEMPLATE_ALIASES,
+  KEY_EMAIL_FORWARD_UPDATE_BULK_TEMPLATE_ENABLED,
+] as const satisfies (keyof EmailForwardUpdateBulkTemplate)[];
 
 export const KEY_EMAIL_FORWARD_ZONE_EMAIL_FORWARDS = 'email_forwards' satisfies keyof EmailForwardZone;
 export const KEY_EMAIL_FORWARD_ZONE_ZONE_ID = 'zone_id' satisfies keyof EmailForwardZone;

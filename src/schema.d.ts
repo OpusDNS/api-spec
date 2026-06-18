@@ -6524,6 +6524,201 @@ export interface components {
             /** Hostname */
             hostname: string;
         };
+        /** EmailForwardCreateBulkCommand */
+        EmailForwardCreateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "email_forward_create_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk email forward create payload */
+            payload: components["schemas"]["EmailForwardCreateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** EmailForwardCreateBulkInstance */
+        EmailForwardCreateBulkInstance: {
+            /**
+             * Aliases
+             * @description Override aliases
+             */
+            aliases?: components["schemas"]["EmailForwardAliasCreate"][] | null;
+            /**
+             * Enabled
+             * @description Override enabled setting for this hostname
+             */
+            enabled?: boolean | null;
+            /**
+             * Hostname
+             * @description Hostname to create email forwarding for
+             */
+            hostname: string;
+        };
+        /** EmailForwardCreateBulkPayload */
+        EmailForwardCreateBulkPayload: {
+            /**
+             * Instances
+             * @description List of email forwards to create (1-1000)
+             */
+            instances: components["schemas"]["EmailForwardCreateBulkInstance"][];
+            /** @description Shared settings for all email forwards */
+            template: components["schemas"]["EmailForwardCreateBulkTemplate"];
+        };
+        /** EmailForwardCreateBulkTemplate */
+        EmailForwardCreateBulkTemplate: {
+            /**
+             * Aliases
+             * @description Aliases to create
+             */
+            aliases?: components["schemas"]["EmailForwardAliasCreate"][];
+            /**
+             * Auto Create Zone
+             * @description Create apex DNS zone automatically when missing
+             * @default false
+             */
+            auto_create_zone: boolean;
+            /**
+             * Enabled
+             * @description Whether email forwarding should be enabled
+             * @default false
+             */
+            enabled: boolean;
+        };
+        /** EmailForwardDeleteBulkCommand */
+        EmailForwardDeleteBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "email_forward_delete_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk email forward delete payload */
+            payload: components["schemas"]["EmailForwardDeleteBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** EmailForwardDeleteBulkInstance */
+        EmailForwardDeleteBulkInstance: {
+            /**
+             * Email Forward Id
+             * @description Email forward ID to target
+             */
+            email_forward_id?: TypeId<"email_forward"> | null;
+            /**
+             * Hostname
+             * @description Hostname to target
+             */
+            hostname?: string | null;
+        };
+        /** EmailForwardDeleteBulkPayload */
+        EmailForwardDeleteBulkPayload: {
+            /**
+             * Instances
+             * @description List of email forwards to delete (1-1000)
+             */
+            instances: components["schemas"]["EmailForwardDeleteBulkInstance"][];
+        };
+        /** EmailForwardDisableBulkCommand */
+        EmailForwardDisableBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "email_forward_disable_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk email forward disable payload */
+            payload: components["schemas"]["EmailForwardDisableBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** EmailForwardDisableBulkInstance */
+        EmailForwardDisableBulkInstance: {
+            /**
+             * Email Forward Id
+             * @description Email forward ID to target
+             */
+            email_forward_id?: TypeId<"email_forward"> | null;
+            /**
+             * Hostname
+             * @description Hostname to target
+             */
+            hostname?: string | null;
+        };
+        /** EmailForwardDisableBulkPayload */
+        EmailForwardDisableBulkPayload: {
+            /**
+             * Instances
+             * @description List of email forwards to disable (1-1000)
+             */
+            instances: components["schemas"]["EmailForwardDisableBulkInstance"][];
+        };
+        /** EmailForwardEnableBulkCommand */
+        EmailForwardEnableBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "email_forward_enable_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk email forward enable payload */
+            payload: components["schemas"]["EmailForwardEnableBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** EmailForwardEnableBulkInstance */
+        EmailForwardEnableBulkInstance: {
+            /**
+             * Email Forward Id
+             * @description Email forward ID to target
+             */
+            email_forward_id?: TypeId<"email_forward"> | null;
+            /**
+             * Hostname
+             * @description Hostname to target
+             */
+            hostname?: string | null;
+        };
+        /** EmailForwardEnableBulkPayload */
+        EmailForwardEnableBulkPayload: {
+            /**
+             * Instances
+             * @description List of email forwards to enable (1-1000)
+             */
+            instances: components["schemas"]["EmailForwardEnableBulkInstance"][];
+        };
         /** EmailForwardLog */
         EmailForwardLog: {
             /**
@@ -6760,6 +6955,73 @@ export interface components {
          * @enum {string}
          */
         EmailForwardSortField: "hostname" | "enabled" | "created_on" | "updated_on";
+        /** EmailForwardUpdateBulkCommand */
+        EmailForwardUpdateBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "email_forward_update_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk email forward update payload */
+            payload: components["schemas"]["EmailForwardUpdateBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** EmailForwardUpdateBulkInstance */
+        EmailForwardUpdateBulkInstance: {
+            /**
+             * Aliases
+             * @description Override aliases (replace-all)
+             */
+            aliases?: components["schemas"]["EmailForwardAliasCreate"][] | null;
+            /**
+             * Email Forward Id
+             * @description Email forward ID to target
+             */
+            email_forward_id?: TypeId<"email_forward"> | null;
+            /**
+             * Enabled
+             * @description Override enabled setting
+             */
+            enabled?: boolean | null;
+            /**
+             * Hostname
+             * @description Hostname to target
+             */
+            hostname?: string | null;
+        };
+        /** EmailForwardUpdateBulkPayload */
+        EmailForwardUpdateBulkPayload: {
+            /**
+             * Instances
+             * @description List of email forwards to update (1-1000)
+             */
+            instances: components["schemas"]["EmailForwardUpdateBulkInstance"][];
+            /** @description Shared settings for all email forwards */
+            template: components["schemas"]["EmailForwardUpdateBulkTemplate"];
+        };
+        /** EmailForwardUpdateBulkTemplate */
+        EmailForwardUpdateBulkTemplate: {
+            /**
+             * Aliases
+             * @description Aliases to set (replace-all)
+             */
+            aliases?: components["schemas"]["EmailForwardAliasCreate"][] | null;
+            /**
+             * Enabled
+             * @description Whether email forwarding should be enabled
+             */
+            enabled: boolean;
+        };
         /** EmailForwardZone */
         EmailForwardZone: {
             /** Email Forwards */
@@ -7338,7 +7600,7 @@ export interface components {
              * Commands
              * @description List of commands to execute
              */
-            commands: (components["schemas"]["DomainCreateCommand"] | components["schemas"]["DomainUpdateCommand"] | components["schemas"]["DomainTransferCommand"] | components["schemas"]["DnsZoneCreateCommand"] | components["schemas"]["DnsZoneUpdateCommand"] | components["schemas"]["DomainCreateBulkCommand"] | components["schemas"]["DomainTransferBulkCommand"] | components["schemas"]["DomainUpdateBulkCommand"] | components["schemas"]["DnsZoneCreateBulkCommand"] | components["schemas"]["DnsZoneUpdateBulkCommand"] | components["schemas"]["DnsZonePatchRrsetsBulkCommand"] | components["schemas"]["DnsZonePatchRecordsBulkCommand"] | components["schemas"]["ContactCreateBulkCommand"] | components["schemas"]["ContactCreateCommand"] | components["schemas"]["ParkingCreateBulkCommand"] | components["schemas"]["ParkingEnableBulkCommand"] | components["schemas"]["ParkingDisableBulkCommand"] | components["schemas"]["ParkingDeleteBulkCommand"] | components["schemas"]["DomainForwardCreateBulkCommand"] | components["schemas"]["DomainForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardEnableBulkCommand"] | components["schemas"]["DomainForwardDisableBulkCommand"] | components["schemas"]["DomainForwardDeleteBulkCommand"])[];
+            commands: (components["schemas"]["DomainCreateCommand"] | components["schemas"]["DomainUpdateCommand"] | components["schemas"]["DomainTransferCommand"] | components["schemas"]["DnsZoneCreateCommand"] | components["schemas"]["DnsZoneUpdateCommand"] | components["schemas"]["DomainCreateBulkCommand"] | components["schemas"]["DomainTransferBulkCommand"] | components["schemas"]["DomainUpdateBulkCommand"] | components["schemas"]["DnsZoneCreateBulkCommand"] | components["schemas"]["DnsZoneUpdateBulkCommand"] | components["schemas"]["DnsZonePatchRrsetsBulkCommand"] | components["schemas"]["DnsZonePatchRecordsBulkCommand"] | components["schemas"]["ContactCreateBulkCommand"] | components["schemas"]["ContactCreateCommand"] | components["schemas"]["ParkingCreateBulkCommand"] | components["schemas"]["ParkingEnableBulkCommand"] | components["schemas"]["ParkingDisableBulkCommand"] | components["schemas"]["ParkingDeleteBulkCommand"] | components["schemas"]["EmailForwardCreateBulkCommand"] | components["schemas"]["EmailForwardEnableBulkCommand"] | components["schemas"]["EmailForwardDisableBulkCommand"] | components["schemas"]["EmailForwardDeleteBulkCommand"] | components["schemas"]["EmailForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardCreateBulkCommand"] | components["schemas"]["DomainForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardEnableBulkCommand"] | components["schemas"]["DomainForwardDisableBulkCommand"] | components["schemas"]["DomainForwardDeleteBulkCommand"])[];
             /**
              * Label
              * @description Human-readable label for this batch

@@ -5947,6 +5947,273 @@ components:
       - hostname
       title: EmailForwardCreate
       type: object
+    EmailForwardCreateBulkCommand:
+      properties:
+        command:
+          const: email_forward_create_bulk
+          default: email_forward_create_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/EmailForwardCreateBulkPayload'
+          description: Bulk email forward create payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: EmailForwardCreateBulkCommand
+      type: object
+    EmailForwardCreateBulkInstance:
+      properties:
+        aliases:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/EmailForwardAliasCreate'
+            type: array
+          - type: 'null'
+          description: Override aliases
+          title: Aliases
+        enabled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Override enabled setting for this hostname
+          title: Enabled
+        hostname:
+          description: Hostname to create email forwarding for
+          title: Hostname
+          type: string
+      required:
+      - hostname
+      title: EmailForwardCreateBulkInstance
+      type: object
+    EmailForwardCreateBulkPayload:
+      properties:
+        instances:
+          description: List of email forwards to create (1-1000)
+          items:
+            $ref: '#/components/schemas/EmailForwardCreateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/EmailForwardCreateBulkTemplate'
+          description: Shared settings for all email forwards
+      required:
+      - template
+      - instances
+      title: EmailForwardCreateBulkPayload
+      type: object
+    EmailForwardCreateBulkTemplate:
+      properties:
+        aliases:
+          description: Aliases to create
+          items:
+            $ref: '#/components/schemas/EmailForwardAliasCreate'
+          title: Aliases
+          type: array
+        auto_create_zone:
+          default: false
+          description: Create apex DNS zone automatically when missing
+          title: Auto Create Zone
+          type: boolean
+        enabled:
+          default: false
+          description: Whether email forwarding should be enabled
+          title: Enabled
+          type: boolean
+      title: EmailForwardCreateBulkTemplate
+      type: object
+    EmailForwardDeleteBulkCommand:
+      properties:
+        command:
+          const: email_forward_delete_bulk
+          default: email_forward_delete_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/EmailForwardDeleteBulkPayload'
+          description: Bulk email forward delete payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: EmailForwardDeleteBulkCommand
+      type: object
+    EmailForwardDeleteBulkInstance:
+      properties:
+        email_forward_id:
+          anyOf:
+          - examples:
+            - email_forward_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: email_forward
+          - type: 'null'
+          description: Email forward ID to target
+          title: Email Forward Id
+        hostname:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Hostname to target
+          title: Hostname
+      title: EmailForwardDeleteBulkInstance
+      type: object
+    EmailForwardDeleteBulkPayload:
+      properties:
+        instances:
+          description: List of email forwards to delete (1-1000)
+          items:
+            $ref: '#/components/schemas/EmailForwardDeleteBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: EmailForwardDeleteBulkPayload
+      type: object
+    EmailForwardDisableBulkCommand:
+      properties:
+        command:
+          const: email_forward_disable_bulk
+          default: email_forward_disable_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/EmailForwardDisableBulkPayload'
+          description: Bulk email forward disable payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: EmailForwardDisableBulkCommand
+      type: object
+    EmailForwardDisableBulkInstance:
+      properties:
+        email_forward_id:
+          anyOf:
+          - examples:
+            - email_forward_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: email_forward
+          - type: 'null'
+          description: Email forward ID to target
+          title: Email Forward Id
+        hostname:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Hostname to target
+          title: Hostname
+      title: EmailForwardDisableBulkInstance
+      type: object
+    EmailForwardDisableBulkPayload:
+      properties:
+        instances:
+          description: List of email forwards to disable (1-1000)
+          items:
+            $ref: '#/components/schemas/EmailForwardDisableBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: EmailForwardDisableBulkPayload
+      type: object
+    EmailForwardEnableBulkCommand:
+      properties:
+        command:
+          const: email_forward_enable_bulk
+          default: email_forward_enable_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/EmailForwardEnableBulkPayload'
+          description: Bulk email forward enable payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: EmailForwardEnableBulkCommand
+      type: object
+    EmailForwardEnableBulkInstance:
+      properties:
+        email_forward_id:
+          anyOf:
+          - examples:
+            - email_forward_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: email_forward
+          - type: 'null'
+          description: Email forward ID to target
+          title: Email Forward Id
+        hostname:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Hostname to target
+          title: Hostname
+      title: EmailForwardEnableBulkInstance
+      type: object
+    EmailForwardEnableBulkPayload:
+      properties:
+        instances:
+          description: List of email forwards to enable (1-1000)
+          items:
+            $ref: '#/components/schemas/EmailForwardEnableBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+      required:
+      - instances
+      title: EmailForwardEnableBulkPayload
+      type: object
     EmailForwardLog:
       properties:
         created_on:
@@ -6241,6 +6508,102 @@ components:
       - updated_on
       title: EmailForwardSortField
       type: string
+    EmailForwardUpdateBulkCommand:
+      properties:
+        command:
+          const: email_forward_update_bulk
+          default: email_forward_update_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/EmailForwardUpdateBulkPayload'
+          description: Bulk email forward update payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: EmailForwardUpdateBulkCommand
+      type: object
+    EmailForwardUpdateBulkInstance:
+      properties:
+        aliases:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/EmailForwardAliasCreate'
+            type: array
+          - type: 'null'
+          description: Override aliases (replace-all)
+          title: Aliases
+        email_forward_id:
+          anyOf:
+          - examples:
+            - email_forward_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^email_forward_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: email_forward
+          - type: 'null'
+          description: Email forward ID to target
+          title: Email Forward Id
+        enabled:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Override enabled setting
+          title: Enabled
+        hostname:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Hostname to target
+          title: Hostname
+      title: EmailForwardUpdateBulkInstance
+      type: object
+    EmailForwardUpdateBulkPayload:
+      properties:
+        instances:
+          description: List of email forwards to update (1-1000)
+          items:
+            $ref: '#/components/schemas/EmailForwardUpdateBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/EmailForwardUpdateBulkTemplate'
+          description: Shared settings for all email forwards
+      required:
+      - template
+      - instances
+      title: EmailForwardUpdateBulkPayload
+      type: object
+    EmailForwardUpdateBulkTemplate:
+      properties:
+        aliases:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/EmailForwardAliasCreate'
+            type: array
+          - type: 'null'
+          description: Aliases to set (replace-all)
+          title: Aliases
+        enabled:
+          description: Whether email forwarding should be enabled
+          title: Enabled
+          type: boolean
+      required:
+      - enabled
+      title: EmailForwardUpdateBulkTemplate
+      type: object
     EmailForwardZone:
       properties:
         email_forwards:
@@ -7122,6 +7485,11 @@ components:
                 domain_transfer_bulk: '#/components/schemas/DomainTransferBulkCommand'
                 domain_update: '#/components/schemas/DomainUpdateCommand'
                 domain_update_bulk: '#/components/schemas/DomainUpdateBulkCommand'
+                email_forward_create_bulk: '#/components/schemas/EmailForwardCreateBulkCommand'
+                email_forward_delete_bulk: '#/components/schemas/EmailForwardDeleteBulkCommand'
+                email_forward_disable_bulk: '#/components/schemas/EmailForwardDisableBulkCommand'
+                email_forward_enable_bulk: '#/components/schemas/EmailForwardEnableBulkCommand'
+                email_forward_update_bulk: '#/components/schemas/EmailForwardUpdateBulkCommand'
                 parking_create_bulk: '#/components/schemas/ParkingCreateBulkCommand'
                 parking_delete_bulk: '#/components/schemas/ParkingDeleteBulkCommand'
                 parking_disable_bulk: '#/components/schemas/ParkingDisableBulkCommand'
@@ -7146,6 +7514,11 @@ components:
             - $ref: '#/components/schemas/ParkingEnableBulkCommand'
             - $ref: '#/components/schemas/ParkingDisableBulkCommand'
             - $ref: '#/components/schemas/ParkingDeleteBulkCommand'
+            - $ref: '#/components/schemas/EmailForwardCreateBulkCommand'
+            - $ref: '#/components/schemas/EmailForwardEnableBulkCommand'
+            - $ref: '#/components/schemas/EmailForwardDisableBulkCommand'
+            - $ref: '#/components/schemas/EmailForwardDeleteBulkCommand'
+            - $ref: '#/components/schemas/EmailForwardUpdateBulkCommand'
             - $ref: '#/components/schemas/DomainForwardCreateBulkCommand'
             - $ref: '#/components/schemas/DomainForwardUpdateBulkCommand'
             - $ref: '#/components/schemas/DomainForwardEnableBulkCommand'
@@ -12343,7 +12716,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-17-220249
+  version: 2026-06-18-104959
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
