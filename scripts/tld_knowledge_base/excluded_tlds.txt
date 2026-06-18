@@ -9,4 +9,3 @@ lt # WIP
 ua # WIP
 sk # WIP
 name # doesn't fully work, some domain:check cmds fail
-latino # no pricing yet

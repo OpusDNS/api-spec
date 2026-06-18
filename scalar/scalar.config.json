@@ -2096,6 +2096,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/lat.md",
                 "showInSidebar": true
               },
+              "/latino": {
+                "type": "page",
+                "title": "🌐 .latino",
+                "filepath": "content/tld-knowledge-base/gtlds/latino.md",
+                "showInSidebar": true
+              },
               "/law": {
                 "type": "page",
                 "title": "🌐 .law",
