@@ -7,3 +7,41 @@ lu # WIP
 lt # WIP
 ua # WIP
 name # doesn't fully work, some domain:check cmds fail
+
+blog # WIP
+
+# centralnic WIP TLDs
+best
+bh
+biz.bh
+cam
+case
+cc.bh
+co.com
+co.nl
+co.no
+com.bh
+dealer
+edu.bh
+fans
+fm
+fo
+frl
+gd
+gl
+help
+inc
+info.bh
+kred
+luxury
+me.bh
+name.bh
+net.bh
+ooo
+org.bh
+radio.am
+radio.fm
+reit
+saarland
+vg
+xn--mgbcpq6gpa1a
