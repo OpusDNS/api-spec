@@ -633,13 +633,13 @@
               },
               "/bh": {
                 "type": "page",
-                "title": "🌐 .bh",
+                "title": "🇧🇭 .bh",
                 "filepath": "content/tld-knowledge-base/cctlds/bh.md",
                 "showInSidebar": true
               },
               "/biz.bh": {
                 "type": "page",
-                "title": "🇬🇧 .biz.bh",
+                "title": "🇧🇭 .biz.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/biz.bh.md",
                 "showInSidebar": true
               },
@@ -663,7 +663,7 @@
               },
               "/cc.bh": {
                 "type": "page",
-                "title": "🇨🇨 .cc.bh",
+                "title": "🇧🇭 .cc.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/cc.bh.md",
                 "showInSidebar": true
               },
@@ -693,7 +693,7 @@
               },
               "/com.bh": {
                 "type": "page",
-                "title": "🇬🇧 .com.bh",
+                "title": "🇧🇭 .com.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/com.bh.md",
                 "showInSidebar": true
               },
@@ -723,7 +723,7 @@
               },
               "/edu.bh": {
                 "type": "page",
-                "title": "🇬🇧 .edu.bh",
+                "title": "🇧🇭 .edu.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/edu.bh.md",
                 "showInSidebar": true
               },
@@ -765,7 +765,7 @@
               },
               "/info.bh": {
                 "type": "page",
-                "title": "🇬🇧 .info.bh",
+                "title": "🇧🇭 .info.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/info.bh.md",
                 "showInSidebar": true
               },
@@ -801,7 +801,7 @@
               },
               "/me.bh": {
                 "type": "page",
-                "title": "🇲🇪 .me.bh",
+                "title": "🇧🇭 .me.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/me.bh.md",
                 "showInSidebar": true
               },
@@ -813,13 +813,13 @@
               },
               "/name.bh": {
                 "type": "page",
-                "title": "🇬🇧 .name.bh",
+                "title": "🇧🇭 .name.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/name.bh.md",
                 "showInSidebar": true
               },
               "/net.bh": {
                 "type": "page",
-                "title": "🇬🇧 .net.bh",
+                "title": "🇧🇭 .net.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/net.bh.md",
                 "showInSidebar": true
               },
@@ -831,7 +831,7 @@
               },
               "/org.bh": {
                 "type": "page",
-                "title": "🇬🇧 .org.bh",
+                "title": "🇧🇭 .org.bh",
                 "filepath": "content/tld-knowledge-base/cctlds/org.bh.md",
                 "showInSidebar": true
               },

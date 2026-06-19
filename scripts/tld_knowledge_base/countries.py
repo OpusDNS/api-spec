@@ -25,6 +25,7 @@ COUNTRY_NAMES: dict[str, str] = {
     "BA": "Bosnia and Herzegovina",
     "BE": "Belgium",
     "BG": "Bulgaria",
+    "BH": "Bahrain",
     "BR": "Brazil",
     "BS": "Bahamas",
     "BY": "Belarus",
