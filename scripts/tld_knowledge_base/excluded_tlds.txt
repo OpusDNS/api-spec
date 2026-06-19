@@ -12,7 +12,7 @@ blog # WIP
 
 # centralnic WIP TLDs
 best
- cam
+cam
 case
 dealer
 fans
