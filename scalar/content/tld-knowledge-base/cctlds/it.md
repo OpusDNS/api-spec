@@ -21,7 +21,7 @@
 | Registration Period | 1 year |
 | Renewal Period | 1 year |
 | Transfer Renewal Period | 1 year |
-| Deletion Policy | At expiration |
+| Deletion Policy | Immediate, At expiration |
 | Auto-Renew Enabled | ✅ Yes |
 | Auto-Renewal Before Expiry | On expiration |
 | Sync After Operations | registration |
@@ -84,7 +84,7 @@
 | Transfer Lock Enabled | ❌ No |
 | Transfer Duration | 1 day |
 | Transfer Extends Domain | ❌ No |
-| Transfer via AuthInfo | ❌ No |
+| Transfer via AuthInfo | ✅ Yes |
 | Confirmation Required | ✅ Yes (Both parties) |
 
 ## WHOIS & RDAP

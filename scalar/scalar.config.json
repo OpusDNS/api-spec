@@ -631,6 +631,18 @@
                 "filepath": "content/tld-knowledge-base/cctlds/be.md",
                 "showInSidebar": true
               },
+              "/bh": {
+                "type": "page",
+                "title": "🌐 .bh",
+                "filepath": "content/tld-knowledge-base/cctlds/bh.md",
+                "showInSidebar": true
+              },
+              "/biz.bh": {
+                "type": "page",
+                "title": "🇬🇧 .biz.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/biz.bh.md",
+                "showInSidebar": true
+              },
               "/bz": {
                 "type": "page",
                 "title": "🇧🇿 .bz",
@@ -649,6 +661,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/cc.md",
                 "showInSidebar": true
               },
+              "/cc.bh": {
+                "type": "page",
+                "title": "🇨🇨 .cc.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/cc.bh.md",
+                "showInSidebar": true
+              },
               "/ch": {
                 "type": "page",
                 "title": "🇨🇭 .ch",
@@ -659,6 +677,24 @@
                 "type": "page",
                 "title": "🇨🇴 .co",
                 "filepath": "content/tld-knowledge-base/cctlds/co.md",
+                "showInSidebar": true
+              },
+              "/co.nl": {
+                "type": "page",
+                "title": "🇳🇱 .co.nl",
+                "filepath": "content/tld-knowledge-base/cctlds/co.nl.md",
+                "showInSidebar": true
+              },
+              "/co.no": {
+                "type": "page",
+                "title": "🇳🇴 .co.no",
+                "filepath": "content/tld-knowledge-base/cctlds/co.no.md",
+                "showInSidebar": true
+              },
+              "/com.bh": {
+                "type": "page",
+                "title": "🇬🇧 .com.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/com.bh.md",
                 "showInSidebar": true
               },
               "/com.de": {
@@ -685,16 +721,52 @@
                 "filepath": "content/tld-knowledge-base/cctlds/de.md",
                 "showInSidebar": true
               },
+              "/edu.bh": {
+                "type": "page",
+                "title": "🇬🇧 .edu.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/edu.bh.md",
+                "showInSidebar": true
+              },
               "/eu": {
                 "type": "page",
                 "title": "🇪🇺 .eu",
                 "filepath": "content/tld-knowledge-base/cctlds/eu.md",
                 "showInSidebar": true
               },
+              "/fm": {
+                "type": "page",
+                "title": "🇫🇲 .fm",
+                "filepath": "content/tld-knowledge-base/cctlds/fm.md",
+                "showInSidebar": true
+              },
+              "/fo": {
+                "type": "page",
+                "title": "🇫🇴 .fo",
+                "filepath": "content/tld-knowledge-base/cctlds/fo.md",
+                "showInSidebar": true
+              },
               "/fr": {
                 "type": "page",
                 "title": "🇫🇷 .fr",
                 "filepath": "content/tld-knowledge-base/cctlds/fr.md",
+                "showInSidebar": true
+              },
+              "/gd": {
+                "type": "page",
+                "title": "🇬🇩 .gd",
+                "filepath": "content/tld-knowledge-base/cctlds/gd.md",
+                "showInSidebar": true
+              },
+              "/gl": {
+                "type": "page",
+                "title": "🇬🇱 .gl",
+                "filepath": "content/tld-knowledge-base/cctlds/gl.md",
+                "showInSidebar": true
+              },
+              "/info.bh": {
+                "type": "page",
+                "title": "🇬🇧 .info.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/info.bh.md",
                 "showInSidebar": true
               },
               "/io": {
@@ -727,16 +799,40 @@
                 "filepath": "content/tld-knowledge-base/cctlds/me.md",
                 "showInSidebar": true
               },
+              "/me.bh": {
+                "type": "page",
+                "title": "🇲🇪 .me.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/me.bh.md",
+                "showInSidebar": true
+              },
               "/mn": {
                 "type": "page",
                 "title": "🇲🇳 .mn",
                 "filepath": "content/tld-knowledge-base/cctlds/mn.md",
                 "showInSidebar": true
               },
+              "/name.bh": {
+                "type": "page",
+                "title": "🇬🇧 .name.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/name.bh.md",
+                "showInSidebar": true
+              },
+              "/net.bh": {
+                "type": "page",
+                "title": "🇬🇧 .net.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/net.bh.md",
+                "showInSidebar": true
+              },
               "/nl": {
                 "type": "page",
                 "title": "🇳🇱 .nl",
                 "filepath": "content/tld-knowledge-base/cctlds/nl.md",
+                "showInSidebar": true
+              },
+              "/org.bh": {
+                "type": "page",
+                "title": "🇬🇧 .org.bh",
+                "filepath": "content/tld-knowledge-base/cctlds/org.bh.md",
                 "showInSidebar": true
               },
               "/pm": {
@@ -749,6 +845,18 @@
                 "type": "page",
                 "title": "🇵🇷 .pr",
                 "filepath": "content/tld-knowledge-base/cctlds/pr.md",
+                "showInSidebar": true
+              },
+              "/radio.am": {
+                "type": "page",
+                "title": "🇦🇲 .radio.am",
+                "filepath": "content/tld-knowledge-base/cctlds/radio.am.md",
+                "showInSidebar": true
+              },
+              "/radio.fm": {
+                "type": "page",
+                "title": "🇫🇲 .radio.fm",
+                "filepath": "content/tld-knowledge-base/cctlds/radio.fm.md",
                 "showInSidebar": true
               },
               "/re": {
@@ -803,6 +911,12 @@
                 "type": "page",
                 "title": "🇻🇨 .vc",
                 "filepath": "content/tld-knowledge-base/cctlds/vc.md",
+                "showInSidebar": true
+              },
+              "/vg": {
+                "type": "page",
+                "title": "🇻🇬 .vg",
+                "filepath": "content/tld-knowledge-base/cctlds/vg.md",
                 "showInSidebar": true
               },
               "/vu": {
@@ -1248,6 +1362,12 @@
                 "type": "page",
                 "title": "🌐 .cn.com",
                 "filepath": "content/tld-knowledge-base/gtlds/cn.com.md",
+                "showInSidebar": true
+              },
+              "/co.com": {
+                "type": "page",
+                "title": "🌐 .co.com",
+                "filepath": "content/tld-knowledge-base/gtlds/co.com.md",
                 "showInSidebar": true
               },
               "/coach": {
@@ -3234,6 +3354,12 @@
                 "type": "page",
                 "title": "🌐 .xn--i1b6b1a6a2e",
                 "filepath": "content/tld-knowledge-base/gtlds/xn--i1b6b1a6a2e.md",
+                "showInSidebar": true
+              },
+              "/xn--mgbcpq6gpa1a": {
+                "type": "page",
+                "title": "🌐 .xn--mgbcpq6gpa1a",
+                "filepath": "content/tld-knowledge-base/gtlds/xn--mgbcpq6gpa1a.md",
                 "showInSidebar": true
               },
               "/xn--nqv7f": {
