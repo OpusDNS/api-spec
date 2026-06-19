@@ -1,4 +1,4 @@
-# 🌐 .bh
+# 🇧🇭 .bh — Bahrain
 
 > The **.bh** is a country-code top-level domain (ccTLD) operated by Telecommunications Regulatory Authority (TRA). This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 
@@ -8,7 +8,7 @@
 | --- | --- |
 | TLD Type | ccTLD |
 | Registry | Telecommunications Regulatory Authority (TRA) |
-| Registry Country | BH |
+| Registry Country | Bahrain |
 | Registry Website | [domains.bh](https://domains.bh/) |
 | Provisioning Protocol | EPP |
 | Second-Level Registration | ✅ Yes |

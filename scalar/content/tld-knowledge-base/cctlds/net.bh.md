@@ -1,4 +1,4 @@
-# 🇬🇧 .net.bh — United Kingdom
+# 🇧🇭 .net.bh — Bahrain
 
 > The **.net.bh** is a country-code top-level domain (ccTLD) operated by CentralNic Group PLC. This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 
