@@ -13893,6 +13893,7 @@ export interface operations {
                 name?: string | null;
                 search?: string | null;
                 suffix?: string | null;
+                vanity_nameserver_set_id?: TypeId<"vns"> | null;
                 created_after?: Date | null;
                 created_before?: Date | null;
                 updated_after?: Date | null;
