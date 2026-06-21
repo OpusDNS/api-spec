@@ -121,6 +121,10 @@ A <code>failed</code> set is <strong>not</strong> permanent. Once the prerequisi
 
 ## The anycast addresses to publish
 
+<scalar-callout type="success">
+If your parent domain is <strong>registered with OpusDNS</strong>, you do not need to publish anything — OpusDNS sets up the nameserver <code>A</code> / <code>AAAA</code> records and registers the glue at the registry automatically. The rest of this section applies only when your parent domain is registered elsewhere.
+</scalar-callout>
+
 If your parent domain is registered elsewhere, point **every** nameserver
 hostname in the set at OpusDNS's shared anycast pool. Publish all of the
 following records for **each** hostname (e.g. for both `ns1.example.com` and
