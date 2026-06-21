@@ -119,13 +119,27 @@ A set has one of the following statuses:
 A <code>failed</code> set is <strong>not</strong> permanent. Once the prerequisites are in place — for example, after you finish publishing your records — OpusDNS re-runs activation for the same set. There is no need to delete it and start over. Use <code>/check</code> to see what is still missing.
 </scalar-callout>
 
-## Find your anycast addresses
+## The anycast addresses to publish
 
-Each nameserver hostname is assigned a pair of anycast addresses (one IPv4, one
-IPv6). If your parent domain is registered elsewhere, you need these to publish
-your `A` / `AAAA` records and to register glue. They are reported by the
-`/check` diagnostic, under each nameserver's required records — see
-[Check the status of a set](#check-the-status-of-a-set).
+If your parent domain is registered elsewhere, point **every** nameserver
+hostname in the set at OpusDNS's shared anycast pool. Publish all of the
+following records for **each** hostname (e.g. for both `ns1.example.com` and
+`ns2.example.com`), and use the same addresses when you register glue at your
+registrar:
+
+| Type | Value |
+| --- | --- |
+| `A` | `192.174.68.145` |
+| `A` | `176.97.158.145` |
+| `AAAA` | `2001:67c:1bc::145` |
+| `AAAA` | `2001:67c:10b8::145` |
+
+So each nameserver hostname resolves to both IPv4 addresses (two `A` records)
+and both IPv6 addresses (two `AAAA` records).
+
+<scalar-callout type="info">
+The <a href="#check-the-status-of-a-set"><code>/check</code> diagnostic</a> reports the exact addresses your set must publish under each check's <code>observed.required_records</code>. If that output ever differs from the list above, treat <code>/check</code> as authoritative.
+</scalar-callout>
 
 ## Use a set for your DNS zones
 
@@ -253,7 +267,10 @@ The response carries an overall `summary` and a list of individual `checks`:
       "confidence": "authoritative",
       "detail": "Vanity NS hostnames are not yet resolving to the assigned anycast addresses.",
       "observed": {
-        "required_records": { "A": ["134.199.190.235", "46.101.123.145"] }
+        "required_records": {
+          "A": ["192.174.68.145", "176.97.158.145"],
+          "AAAA": ["2001:67c:1bc::145", "2001:67c:10b8::145"]
+        }
       },
       "remediation": "Publish A (and AAAA) records for each nameserver hostname pointing at the addresses in required_records."
     }

@@ -4,6 +4,20 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 21 June 2026
+
+- Added **vanity nameservers** — serve your DNS zones under your own branded
+  nameserver names (for example `ns1.example.com`) while OpusDNS continues to
+  answer the DNS. Create and manage vanity nameserver sets with
+  `POST`/`GET`/`DELETE /v1/vanity-nameserver-sets`, choose an organization
+  default with `PATCH /v1/vanity-nameserver-sets/{set_id}/default`, and brand
+  individual zones via `vanity_nameserver_set_id` (on zone creation, or with
+  `PATCH /v1/dns/{zone_name}/vanity-set`).
+- Added the **`/check` diagnostic** — `POST /v1/vanity-nameserver-sets/check`
+  reports whether a set's nameservers resolve to the anycast pool, whether glue
+  is in place, and what (if anything) still needs publishing.
+- Published the [Vanity nameservers](/products/dns/vanity-nameservers) guide.
+
 ### 16 June 2026
 
 - Released the **role-based permissions** system. Access is now governed by
