@@ -52,9 +52,11 @@ import type {
   DnsChanges,
   DnsConfigurationBase,
   DnsRecordCreate,
+  DnsRecordDTO,
   DnsRecordPatchOp,
   DnsRecord,
   DnsRrsetCreate,
+  DnsRrsetDTO,
   DnsRrsetPatch,
   DnsRrsetPatchOp,
   DnsRrset,
@@ -68,6 +70,7 @@ import type {
   DnsZoneCreatePayloadData,
   DnsZoneCreateWorkerPayload,
   DnsZoneCreateWorkerResult,
+  DnsZoneDTO,
   DnsZonePatchRecordsBulkCommand,
   DnsZonePatchRecordsBulkInstance,
   DnsZonePatchRecordsBulkPayload,
@@ -88,6 +91,7 @@ import type {
   DnsZoneUpdateCommand,
   DnsZoneUpdatePayloadData,
   DnsZoneUpdateWorkerPayload,
+  DnsZoneVanitySetUpdateRes,
   DomainAvailability,
   DomainAvailabilityMeta,
   DomainAvailabilityRequest,
@@ -355,6 +359,7 @@ import type {
   Verification,
   VisitsByKeyBucket,
   WhoisBase,
+  ZoneVanitySetUpdate,
   RequestAuthcode,
   RequestAuthcode2,
   DomainAvailabilityList,
@@ -1159,6 +1164,12 @@ export const KEYS_DNS_RECORD_CREATE = [
   KEY_DNS_RECORD_CREATE_RDATA,
 ] as const satisfies (keyof DnsRecordCreate)[];
 
+export const KEY_DNS_RECORD_DTO_RDATA = 'rdata' satisfies keyof DnsRecordDTO;
+
+export const KEYS_DNS_RECORD_DTO = [
+  KEY_DNS_RECORD_DTO_RDATA,
+] as const satisfies (keyof DnsRecordDTO)[];
+
 export const KEY_DNS_RECORD_PATCH_OP_OP = 'op' satisfies keyof DnsRecordPatchOp;
 export const KEY_DNS_RECORD_PATCH_OP_RECORD = 'record' satisfies keyof DnsRecordPatchOp;
 
@@ -1188,6 +1199,18 @@ export const KEYS_DNS_RRSET_CREATE = [
   KEY_DNS_RRSET_CREATE_TTL,
   KEY_DNS_RRSET_CREATE_TYPE,
 ] as const satisfies (keyof DnsRrsetCreate)[];
+
+export const KEY_DNS_RRSET_DTO_NAME = 'name' satisfies keyof DnsRrsetDTO;
+export const KEY_DNS_RRSET_DTO_RECORDS = 'records' satisfies keyof DnsRrsetDTO;
+export const KEY_DNS_RRSET_DTO_TTL = 'ttl' satisfies keyof DnsRrsetDTO;
+export const KEY_DNS_RRSET_DTO_TYPE = 'type' satisfies keyof DnsRrsetDTO;
+
+export const KEYS_DNS_RRSET_DTO = [
+  KEY_DNS_RRSET_DTO_NAME,
+  KEY_DNS_RRSET_DTO_RECORDS,
+  KEY_DNS_RRSET_DTO_TTL,
+  KEY_DNS_RRSET_DTO_TYPE,
+] as const satisfies (keyof DnsRrsetDTO)[];
 
 export const KEY_DNS_RRSET_PATCH_NAME = 'name' satisfies keyof DnsRrsetPatch;
 export const KEY_DNS_RRSET_PATCH_RECORDS = 'records' satisfies keyof DnsRrsetPatch;
@@ -1328,6 +1351,22 @@ export const KEYS_DNS_ZONE_CREATE_WORKER_RESULT = [
   KEY_DNS_ZONE_CREATE_WORKER_RESULT_TYPE,
   KEY_DNS_ZONE_CREATE_WORKER_RESULT_ZONE_NAME,
 ] as const satisfies (keyof DnsZoneCreateWorkerResult)[];
+
+export const KEY_DNS_ZONE_DTO_CREATED_ON = 'created_on' satisfies keyof DnsZoneDTO;
+export const KEY_DNS_ZONE_DTO_DNSSEC_STATUS = 'dnssec_status' satisfies keyof DnsZoneDTO;
+export const KEY_DNS_ZONE_DTO_NAME = 'name' satisfies keyof DnsZoneDTO;
+export const KEY_DNS_ZONE_DTO_RRSETS = 'rrsets' satisfies keyof DnsZoneDTO;
+export const KEY_DNS_ZONE_DTO_UPDATED_ON = 'updated_on' satisfies keyof DnsZoneDTO;
+export const KEY_DNS_ZONE_DTO_VANITY_NAMESERVER_SET_ID = 'vanity_nameserver_set_id' satisfies keyof DnsZoneDTO;
+
+export const KEYS_DNS_ZONE_DTO = [
+  KEY_DNS_ZONE_DTO_CREATED_ON,
+  KEY_DNS_ZONE_DTO_DNSSEC_STATUS,
+  KEY_DNS_ZONE_DTO_NAME,
+  KEY_DNS_ZONE_DTO_RRSETS,
+  KEY_DNS_ZONE_DTO_UPDATED_ON,
+  KEY_DNS_ZONE_DTO_VANITY_NAMESERVER_SET_ID,
+] as const satisfies (keyof DnsZoneDTO)[];
 
 export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_COMMAND = 'command' satisfies keyof DnsZonePatchRecordsBulkCommand;
 export const KEY_DNS_ZONE_PATCH_RECORDS_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DnsZonePatchRecordsBulkCommand;
@@ -1520,6 +1559,12 @@ export const KEYS_DNS_ZONE_UPDATE_WORKER_PAYLOAD = [
   KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_TYPE,
   KEY_DNS_ZONE_UPDATE_WORKER_PAYLOAD_ZONE,
 ] as const satisfies (keyof DnsZoneUpdateWorkerPayload)[];
+
+export const KEY_DNS_ZONE_VANITY_SET_UPDATE_RES_ZONE = 'zone' satisfies keyof DnsZoneVanitySetUpdateRes;
+
+export const KEYS_DNS_ZONE_VANITY_SET_UPDATE_RES = [
+  KEY_DNS_ZONE_VANITY_SET_UPDATE_RES_ZONE,
+] as const satisfies (keyof DnsZoneVanitySetUpdateRes)[];
 
 export const KEY_DOMAIN_AVAILABILITY_DOMAIN = 'domain' satisfies keyof DomainAvailability;
 export const KEY_DOMAIN_AVAILABILITY_STATUS = 'status' satisfies keyof DomainAvailability;
@@ -4888,6 +4933,12 @@ export const KEY_WHOIS_BASE_WHOIS_SERVER = 'whois_server' satisfies keyof WhoisB
 export const KEYS_WHOIS_BASE = [
   KEY_WHOIS_BASE_WHOIS_SERVER,
 ] as const satisfies (keyof WhoisBase)[];
+
+export const KEY_ZONE_VANITY_SET_UPDATE_VANITY_NAMESERVER_SET_ID = 'vanity_nameserver_set_id' satisfies keyof ZoneVanitySetUpdate;
+
+export const KEYS_ZONE_VANITY_SET_UPDATE = [
+  KEY_ZONE_VANITY_SET_UPDATE_VANITY_NAMESERVER_SET_ID,
+] as const satisfies (keyof ZoneVanitySetUpdate)[];
 
 export const KEY_REQUEST_AUTHCODE_DETAIL = 'detail' satisfies keyof RequestAuthcode;
 export const KEY_REQUEST_AUTHCODE_NAME = 'name' satisfies keyof RequestAuthcode;

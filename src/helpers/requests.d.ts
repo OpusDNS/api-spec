@@ -51,6 +51,7 @@ import type {
   TagUpdate,
   UserCreate,
   UserUpdate,
+  ZoneVanitySetUpdate,
 } from './schemas';
 
 export type GET_AiConciergeContextsByContextId_Request = {
@@ -352,6 +353,13 @@ export type PUT_DnsByZoneNameRrsets_Request = {
 };
 export type PUT_DnsByZoneNameRrsets_Request_Path = PUT_DnsByZoneNameRrsets_Request['parameters']['path'];
 export type PUT_DnsByZoneNameRrsets_Request_Body = PUT_DnsByZoneNameRrsets_Request['requestBody'];
+
+export type PATCH_DnsByZoneNameVanitySet_Request = {
+  parameters: operations['update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch']['parameters'];
+  requestBody: ZoneVanitySetUpdate;
+};
+export type PATCH_DnsByZoneNameVanitySet_Request_Path = PATCH_DnsByZoneNameVanitySet_Request['parameters']['path'];
+export type PATCH_DnsByZoneNameVanitySet_Request_Body = PATCH_DnsByZoneNameVanitySet_Request['requestBody'];
 
 export type GET_DnsDomainForwards_Request = {
   parameters: operations['list_domain_forwards_by_zone_v1_dns_domain_forwards_get']['parameters'];

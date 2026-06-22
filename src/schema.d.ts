@@ -733,6 +733,23 @@ export interface paths {
         patch: operations["patch_zone_rrsets_v1_dns__zone_name__rrsets_patch"];
         trace?: never;
     };
+    "/v1/dns/{zone_name}/vanity-set": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Assign or clear a zone's vanity nameserver set */
+        patch: operations["update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch"];
+        trace?: never;
+    };
     "/v1/domain-forwards": {
         parameters: {
             query?: never;
@@ -4223,6 +4240,14 @@ export interface components {
             /** Rdata */
             rdata: string;
         };
+        /** DnsRecordDTO */
+        DnsRecordDTO: {
+            /**
+             * Rdata
+             * @description The record data (e.g., IP address, domain name)
+             */
+            rdata: string;
+        };
         /** DnsRecordPatchOp */
         DnsRecordPatchOp: {
             op: components["schemas"]["PatchOp"];
@@ -4249,6 +4274,26 @@ export interface components {
             records: components["schemas"]["DnsRecordCreate"][];
             /** Ttl */
             ttl: number;
+            type: components["schemas"]["DnsRrsetType"];
+        };
+        /** DnsRrsetDTO */
+        DnsRrsetDTO: {
+            /**
+             * Name
+             * @description The RRset name (e.g., '@', 'www')
+             */
+            name: string;
+            /**
+             * Records
+             * @description List of records in this RRset
+             */
+            records?: components["schemas"]["DnsRecordDTO"][];
+            /**
+             * Ttl
+             * @description Time to live in seconds
+             */
+            ttl: number;
+            /** @description The RRset type */
             type: components["schemas"]["DnsRrsetType"];
         };
         /** DnsRrsetPatch */
@@ -4427,6 +4472,39 @@ export interface components {
             type: "dns_zone_create" | "dns_zone_create_bulk";
             /** Zone Name */
             zone_name: string;
+        };
+        /** DnsZoneDTO */
+        DnsZoneDTO: {
+            /**
+             * Created On
+             * @description Zone creation timestamp
+             */
+            created_on?: Date | null;
+            /**
+             * @description DNSSEC status
+             * @default disabled
+             */
+            dnssec_status: components["schemas"]["DnssecStatus"];
+            /**
+             * Name
+             * @description The zone name (e.g., 'example.com')
+             */
+            name: string;
+            /**
+             * Rrsets
+             * @description List of RRsets in the zone
+             */
+            rrsets?: components["schemas"]["DnsRrsetDTO"][];
+            /**
+             * Updated On
+             * @description Zone last update timestamp
+             */
+            updated_on?: Date | null;
+            /**
+             * Vanity Nameserver Set Id
+             * @description Vanity NS set branding this zone's apex, or null for system default NS
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
         /** DnsZonePatchRecordsBulkCommand */
         DnsZonePatchRecordsBulkCommand: {
@@ -4691,6 +4769,11 @@ export interface components {
              */
             type: "dns_zone_update" | "dns_zone_update_bulk";
             zone: components["schemas"]["DnsZoneUpdatePayloadData"];
+        };
+        /** DnsZoneVanitySetUpdateRes */
+        DnsZoneVanitySetUpdateRes: {
+            /** @description The zone after restamping */
+            zone: components["schemas"]["DnsZoneDTO"];
         };
         /**
          * DnssecAlgorithm
@@ -10971,6 +11054,17 @@ export interface components {
          * @enum {string}
          */
         ZoneSortField: "name" | "created_on" | "updated_on" | "dnssec_status";
+        /**
+         * ZoneVanitySetUpdate
+         * @description Public request body for assigning/clearing a zone's vanity NS branding.
+         */
+        ZoneVanitySetUpdate: {
+            /**
+             * Vanity Nameserver Set Id
+             * @description Vanity NS set to brand the zone's apex NS + SOA with, or null to unassign and restamp the apex back to OpusDNS system defaults.
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
+        };
         /** RequestAuthcodeResponse */
         api__domain__tld_specific__be__models__RequestAuthcodeResponse: {
             /**
@@ -14551,6 +14645,58 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DNS",
+                     *       "detail": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "DNS Error",
+                     *       "type": "dns"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description DNS zone name (trailing dot optional) */
+                zone_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ZoneVanitySetUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DnsZoneVanitySetUpdateRes"];
+                };
             };
             /** @description Bad Request */
             400: {

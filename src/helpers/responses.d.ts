@@ -15,6 +15,7 @@ import type {
   DnsChanges,
   DnsZone,
   DnsZoneSummary,
+  DnsZoneVanitySetUpdateRes,
   Domain,
   DomainAvailabilityList,
   DomainCheck,
@@ -831,6 +832,12 @@ export type PATCH_DnsByZoneNameRrsets_Response = PATCH_DnsByZoneNameRrsets_Respo
 
 export type PATCH_DnsByZoneNameRrsets_Response_400 = Problem;
 export type PATCH_DnsByZoneNameRrsets_Response_422 = HTTPValidationError;
+
+export type PATCH_DnsByZoneNameVanitySet_Response = PATCH_DnsByZoneNameVanitySet_Response_200 | PATCH_DnsByZoneNameVanitySet_Response_400 | PATCH_DnsByZoneNameVanitySet_Response_422;
+
+export type PATCH_DnsByZoneNameVanitySet_Response_200 = DnsZoneVanitySetUpdateRes;
+export type PATCH_DnsByZoneNameVanitySet_Response_400 = Problem;
+export type PATCH_DnsByZoneNameVanitySet_Response_422 = HTTPValidationError;
 
 export type PATCH_DomainForwards_Response = PATCH_DomainForwards_Response_401 | PATCH_DomainForwards_Response_403 | PATCH_DomainForwards_Response_404 | PATCH_DomainForwards_Response_422;
 

@@ -2368,6 +2368,16 @@ components:
       - rdata
       title: DnsRecordCreate
       type: object
+    DnsRecordDTO:
+      properties:
+        rdata:
+          description: The record data (e.g., IP address, domain name)
+          title: Rdata
+          type: string
+      required:
+      - rdata
+      title: DnsRecordDTO
+      type: object
     DnsRecordPatchOp:
       properties:
         op:
@@ -2419,6 +2429,31 @@ components:
       - ttl
       - records
       title: DnsRrsetCreate
+      type: object
+    DnsRrsetDTO:
+      properties:
+        name:
+          description: The RRset name (e.g., '@', 'www')
+          title: Name
+          type: string
+        records:
+          description: List of records in this RRset
+          items:
+            $ref: '#/components/schemas/DnsRecordDTO'
+          title: Records
+          type: array
+        ttl:
+          description: Time to live in seconds
+          title: Ttl
+          type: integer
+        type:
+          $ref: '#/components/schemas/DnsRrsetType'
+          description: The RRset type
+      required:
+      - name
+      - type
+      - ttl
+      title: DnsRrsetDTO
       type: object
     DnsRrsetPatch:
       properties:
@@ -2728,6 +2763,52 @@ components:
       - type
       - zone_name
       title: DnsZoneCreateWorkerResult
+      type: object
+    DnsZoneDTO:
+      properties:
+        created_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Zone creation timestamp
+          title: Created On
+        dnssec_status:
+          $ref: '#/components/schemas/DnssecStatus'
+          default: disabled
+          description: DNSSEC status
+        name:
+          description: The zone name (e.g., 'example.com')
+          title: Name
+          type: string
+        rrsets:
+          description: List of RRsets in the zone
+          items:
+            $ref: '#/components/schemas/DnsRrsetDTO'
+          title: Rrsets
+          type: array
+        updated_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: Zone last update timestamp
+          title: Updated On
+        vanity_nameserver_set_id:
+          anyOf:
+          - examples:
+            - vns_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: vns
+          - type: 'null'
+          description: Vanity NS set branding this zone's apex, or null for system
+            default NS
+          title: Vanity Nameserver Set Id
+      required:
+      - name
+      title: DnsZoneDTO
       type: object
     DnsZonePatchRecordsBulkCommand:
       properties:
@@ -3145,6 +3226,15 @@ components:
       - operation
       - zone
       title: DnsZoneUpdateWorkerPayload
+      type: object
+    DnsZoneVanitySetUpdateRes:
+      properties:
+        zone:
+          $ref: '#/components/schemas/DnsZoneDTO'
+          description: The zone after restamping
+      required:
+      - zone
+      title: DnsZoneVanitySetUpdateRes
       type: object
     DnssecAlgorithm:
       enum:
@@ -12545,6 +12635,23 @@ components:
       - dnssec_status
       title: ZoneSortField
       type: string
+    ZoneVanitySetUpdate:
+      description: Public request body for assigning/clearing a zone's vanity NS branding.
+      properties:
+        vanity_nameserver_set_id:
+          anyOf:
+          - examples:
+            - vns_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: vns
+          - type: 'null'
+          description: Vanity NS set to brand the zone's apex NS + SOA with, or null
+            to unassign and restamp the apex back to OpusDNS system defaults.
+          title: Vanity Nameserver Set Id
+      title: ZoneVanitySetUpdate
+      type: object
     api__domain__tld_specific__be__models__RequestAuthcodeResponse:
       properties:
         detail:
@@ -12735,7 +12842,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-22-103725
+  version: 2026-06-22-123800
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -17563,6 +17670,58 @@ paths:
       - dns
       x-required-permissions:
       - dns:manage
+  /v1/dns/{zone_name}/vanity-set:
+    patch:
+      operationId: update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch
+      parameters:
+      - description: DNS zone name (trailing dot optional)
+        in: path
+        name: zone_name
+        required: true
+        schema:
+          description: DNS zone name (trailing dot optional)
+          title: Zone Name
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ZoneVanitySetUpdate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnsZoneVanitySetUpdateRes'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DNS
+                detail: Additional error context.
+                status: 400
+                title: DNS Error
+                type: dns
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Assign or clear a zone's vanity nameserver set
+      tags:
+      - dns
+      x-required-permissions:
+      - dns:manage
+      - vanity_ns:manage
   /v1/domain-forwards:
     get:
       description: Retrieves a paginated list of domain forwards by hostname for the
