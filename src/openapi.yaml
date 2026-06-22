@@ -10478,6 +10478,7 @@ components:
       - tags
       - audit_logs
       - vanity_ns
+      - ai_concierge
       title: PublicResource
       type: string
     PublicRole:
@@ -12734,7 +12735,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-20-135648
+  version: 2026-06-22-090758
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -12810,6 +12811,8 @@ paths:
       summary: Get a context entry
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/ai-concierge/conversations:
     get:
       description: List the authenticated organization's AI Concierge conversations.
@@ -12907,6 +12910,8 @@ paths:
       summary: List AI Concierge conversations
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
     post:
       operationId: create_conversation_v1_ai_concierge_conversations_post
       requestBody:
@@ -12970,6 +12975,8 @@ paths:
       summary: Create an AI Concierge conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/ai-concierge/conversations/{conversation_id}:
     delete:
       description: Permanently delete a conversation, its messages, and any attached
@@ -13038,6 +13045,8 @@ paths:
       summary: Delete a conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
     get:
       operationId: get_conversation_v1_ai_concierge_conversations__conversation_id__get
       parameters:
@@ -13107,6 +13116,8 @@ paths:
       summary: Get a conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
     patch:
       description: Update conversation title or metadata. Supports optimistic concurrency
         via `If-Match`.
@@ -13192,6 +13203,8 @@ paths:
       summary: Update a conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/ai-concierge/conversations/{conversation_id}/contexts:
     get:
       operationId: list_contexts_v1_ai_concierge_conversations__conversation_id__contexts_get
@@ -13279,6 +13292,8 @@ paths:
       summary: List contexts attached to a conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
     post:
       operationId: create_context_v1_ai_concierge_conversations__conversation_id__contexts_post
       parameters:
@@ -13354,6 +13369,8 @@ paths:
       summary: Attach a context to a conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/ai-concierge/conversations/{conversation_id}/messages:
     get:
       operationId: list_messages_v1_ai_concierge_conversations__conversation_id__messages_get
@@ -13465,6 +13482,8 @@ paths:
       summary: List messages in a conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
     post:
       operationId: create_message_v1_ai_concierge_conversations__conversation_id__messages_post
       parameters:
@@ -13540,6 +13559,8 @@ paths:
       summary: Append a message to a conversation
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/ai-concierge/conversations/{conversation_id}/messages/{message_id}:
     get:
       operationId: get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get
@@ -13621,6 +13642,8 @@ paths:
       summary: Get a message
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/ai-concierge/memory/facts:
     get:
       description: List long-term, organization-scoped memory facts available to the
@@ -13707,6 +13730,8 @@ paths:
       summary: List long-term memory facts
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
     post:
       operationId: create_memory_fact_v1_ai_concierge_memory_facts_post
       requestBody:
@@ -13770,6 +13795,8 @@ paths:
       summary: Create a long-term memory fact
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/ai-concierge/memory/facts/{fact_id}:
     delete:
       operationId: delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete
@@ -13836,6 +13863,8 @@ paths:
       summary: Delete a long-term memory fact
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
     patch:
       operationId: patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch
       parameters:
@@ -13911,6 +13940,8 @@ paths:
       summary: Update a long-term memory fact
       tags:
       - ai_concierge
+      x-required-permissions:
+      - ai_concierge:manage
   /v1/archive/email-forward-logs/aliases/{email_forward_alias_id}:
     get:
       description: Retrieves a paginated list of email forward logs for a specific

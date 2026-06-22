@@ -1377,6 +1377,7 @@ export const PUBLIC_RESOURCE = {
   TAGS: "tags",
   AUDIT_LOGS: "audit_logs",
   VANITY_NS: "vanity_ns",
+  AI_CONCIERGE: "ai_concierge",
 } as const satisfies Record<string, PublicResource>;
 
 export const PUBLIC_RESOURCE_VALUES = [
@@ -1397,6 +1398,7 @@ export const PUBLIC_RESOURCE_VALUES = [
   'tags',
   'audit_logs',
   'vanity_ns',
+  'ai_concierge',
 ] as const satisfies ReadonlyArray<PublicResource>;
 
 export const PUBLIC_ROLE = {
