@@ -2701,6 +2701,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/vanity-nameserver-sets/{set_id}/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Retry activation for a failed vanity nameserver set */
+        post: operations["retry_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__retry_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/vanity-nameserver-sets/{set_id}/zones": {
         parameters: {
             query?: never;
@@ -23339,6 +23356,37 @@ export interface operations {
         responses: {
             /** @description Successful Response */
             200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VanityNameserverSetSummaryDTO"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    retry_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__retry_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                set_id: TypeId<"vns">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
                 headers: {
                     [name: string]: unknown;
                 };

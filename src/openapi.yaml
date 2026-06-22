@@ -13243,7 +13243,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-22-130722
+  version: 2026-06-22-232128
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -28701,6 +28701,42 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Restore a suspended vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:manage
+  /v1/vanity-nameserver-sets/{set_id}/retry:
+    post:
+      operationId: retry_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__retry_post
+      parameters:
+      - in: path
+        name: set_id
+        required: true
+        schema:
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VanityNameserverSetSummaryDTO'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Retry activation for a failed vanity nameserver set
       tags:
       - nameserver
       x-required-permissions:

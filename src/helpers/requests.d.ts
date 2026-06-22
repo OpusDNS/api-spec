@@ -1065,6 +1065,11 @@ export type POST_VanityNameserverSetsBySetIdRestore_Request = {
 };
 export type POST_VanityNameserverSetsBySetIdRestore_Request_Path = POST_VanityNameserverSetsBySetIdRestore_Request['parameters']['path'];
 
+export type POST_VanityNameserverSetsBySetIdRetry_Request = {
+  parameters: operations['retry_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__retry_post']['parameters'];
+};
+export type POST_VanityNameserverSetsBySetIdRetry_Request_Path = POST_VanityNameserverSetsBySetIdRetry_Request['parameters']['path'];
+
 export type GET_VanityNameserverSetsBySetIdZones_Request = {
   parameters: operations['list_zones_referencing_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__zones_get']['parameters'];
 };

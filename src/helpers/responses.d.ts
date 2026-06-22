@@ -1287,6 +1287,11 @@ export type POST_VanityNameserverSetsBySetIdRestore_Response = POST_VanityNamese
 export type POST_VanityNameserverSetsBySetIdRestore_Response_200 = VanityNameserverSetSummaryDTO;
 export type POST_VanityNameserverSetsBySetIdRestore_Response_422 = HTTPValidationError;
 
+export type POST_VanityNameserverSetsBySetIdRetry_Response = POST_VanityNameserverSetsBySetIdRetry_Response_202 | POST_VanityNameserverSetsBySetIdRetry_Response_422;
+
+export type POST_VanityNameserverSetsBySetIdRetry_Response_202 = VanityNameserverSetSummaryDTO;
+export type POST_VanityNameserverSetsBySetIdRetry_Response_422 = HTTPValidationError;
+
 export type POST_VanityNameserverSetsCheck_Response = POST_VanityNameserverSetsCheck_Response_200 | POST_VanityNameserverSetsCheck_Response_422;
 
 export type POST_VanityNameserverSetsCheck_Response_200 = VanityNsCheckRes;
