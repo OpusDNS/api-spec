@@ -51,6 +51,8 @@ import type {
   TagUpdate,
   UserCreate,
   UserUpdate,
+  VanityNameserverSetCreate,
+  VanityNsCheckPublicReq,
   ZoneVanitySetUpdate,
 } from './schemas';
 
@@ -1032,3 +1034,47 @@ export type PATCH_UsersMePasswordReset_Request = {
   requestBody: PasswordUpdate;
 };
 export type PATCH_UsersMePasswordReset_Request_Body = PATCH_UsersMePasswordReset_Request['requestBody'];
+
+export type GET_VanityNameserverSets_Request = {
+  parameters: operations['list_vanity_nameserver_sets_v1_vanity_nameserver_sets_get']['parameters'];
+};
+export type GET_VanityNameserverSets_Request_Query = GET_VanityNameserverSets_Request['parameters']['query'];
+
+export type POST_VanityNameserverSets_Request = {
+  requestBody: VanityNameserverSetCreate;
+};
+export type POST_VanityNameserverSets_Request_Body = POST_VanityNameserverSets_Request['requestBody'];
+
+export type DELETE_VanityNameserverSetsBySetId_Request = {
+  parameters: operations['delete_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__delete']['parameters'];
+};
+export type DELETE_VanityNameserverSetsBySetId_Request_Path = DELETE_VanityNameserverSetsBySetId_Request['parameters']['path'];
+
+export type GET_VanityNameserverSetsBySetId_Request = {
+  parameters: operations['get_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__get']['parameters'];
+};
+export type GET_VanityNameserverSetsBySetId_Request_Path = GET_VanityNameserverSetsBySetId_Request['parameters']['path'];
+
+export type PATCH_VanityNameserverSetsBySetIdDefault_Request = {
+  parameters: operations['set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch']['parameters'];
+};
+export type PATCH_VanityNameserverSetsBySetIdDefault_Request_Path = PATCH_VanityNameserverSetsBySetIdDefault_Request['parameters']['path'];
+
+export type POST_VanityNameserverSetsBySetIdRestore_Request = {
+  parameters: operations['restore_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__restore_post']['parameters'];
+};
+export type POST_VanityNameserverSetsBySetIdRestore_Request_Path = POST_VanityNameserverSetsBySetIdRestore_Request['parameters']['path'];
+
+export type GET_VanityNameserverSetsBySetIdZones_Request = {
+  parameters: operations['list_zones_referencing_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__zones_get']['parameters'];
+};
+export type GET_VanityNameserverSetsBySetIdZones_Request_Query = GET_VanityNameserverSetsBySetIdZones_Request['parameters']['query'];
+export type GET_VanityNameserverSetsBySetIdZones_Request_Path = GET_VanityNameserverSetsBySetIdZones_Request['parameters']['path'];
+
+export type POST_VanityNameserverSetsCheck_Request = {
+  requestBody: VanityNsCheckPublicReq;
+};
+export type POST_VanityNameserverSetsCheck_Request_Body = POST_VanityNameserverSetsCheck_Request['requestBody'];
+
+export type DELETE_VanityNameserverSetsDefault_Request = {
+};

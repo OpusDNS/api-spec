@@ -2597,6 +2597,127 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/vanity-nameserver-sets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List vanity nameserver sets */
+        get: operations["list_vanity_nameserver_sets_v1_vanity_nameserver_sets_get"];
+        put?: never;
+        /** Create a vanity nameserver set */
+        post: operations["create_vanity_nameserver_set_v1_vanity_nameserver_sets_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/vanity-nameserver-sets/check": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Run a read-only diagnostic on a vanity nameserver set */
+        post: operations["check_vanity_nameserver_set_v1_vanity_nameserver_sets_check_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/vanity-nameserver-sets/default": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Unset the organization's default vanity nameserver set */
+        delete: operations["clear_vanity_nameserver_set_default_v1_vanity_nameserver_sets_default_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/vanity-nameserver-sets/{set_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a vanity nameserver set */
+        get: operations["get_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__get"];
+        put?: never;
+        post?: never;
+        /** Delete a vanity nameserver set */
+        delete: operations["delete_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/vanity-nameserver-sets/{set_id}/default": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Set a vanity nameserver set as the org default */
+        patch: operations["set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch"];
+        trace?: never;
+    };
+    "/v1/vanity-nameserver-sets/{set_id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore a suspended vanity nameserver set */
+        post: operations["restore_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__restore_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/vanity-nameserver-sets/{set_id}/zones": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List DNS zones referencing a vanity nameserver set */
+        get: operations["list_zones_referencing_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__zones_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -2896,6 +3017,14 @@ export interface components {
         ClaimsNoticesResponse: {
             /** Claims Notices */
             claims_notices: components["schemas"]["ClaimsNotice"][];
+        };
+        /** ClearVanityNameserverSetDefaultRes */
+        ClearVanityNameserverSetDefaultRes: {
+            /**
+             * Cleared
+             * @description True if an ACTIVE default was unset; False on an idempotent no-op (org had no default).
+             */
+            cleared: boolean;
         };
         /** CommandError */
         CommandError: {
@@ -8013,6 +8142,26 @@ export interface components {
          * @enum {string}
          */
         LegalRequirementType: "notice" | "confirmation";
+        /** ListVanityNameserverSetsRes */
+        ListVanityNameserverSetsRes: {
+            /** @description Pagination metadata */
+            pagination: components["schemas"]["PaginationMetadataDTO"];
+            /**
+             * Results
+             * @description Sets owned by the org, newest first; includes non-ACTIVE rows
+             */
+            results?: components["schemas"]["VanityNameserverSetSummaryDTO"][];
+        };
+        /** ListZonesReferencingSetRes */
+        ListZonesReferencingSetRes: {
+            /** @description Pagination metadata */
+            pagination: components["schemas"]["PaginationMetadataDTO"];
+            /**
+             * Results
+             * @description Zones whose apex is branded by the set, ordered by zone name
+             */
+            results?: components["schemas"]["DnsZoneDTO"][];
+        };
         /** LocalPresenceBase */
         LocalPresenceBase: {
             /**
@@ -8842,6 +8991,39 @@ export interface components {
             /** Total Items */
             total_items: number;
             /** Total Pages */
+            total_pages: number;
+        };
+        /** PaginationMetadataDTO */
+        PaginationMetadataDTO: {
+            /**
+             * Current Page
+             * @description Current page number
+             */
+            current_page: number;
+            /**
+             * Has Next Page
+             * @description Whether there is a next page
+             */
+            has_next_page: boolean;
+            /**
+             * Has Previous Page
+             * @description Whether there is a previous page
+             */
+            has_previous_page: boolean;
+            /**
+             * Page Size
+             * @description Items per page
+             */
+            page_size: number;
+            /**
+             * Total Items
+             * @description Total number of items
+             */
+            total_items: number;
+            /**
+             * Total Pages
+             * @description Total number of pages
+             */
             total_pages: number;
         };
         /** Pagination[BillingTransactionResponse] */
@@ -9856,6 +10038,11 @@ export interface components {
              * @default true
              */
             request: boolean;
+        };
+        /** SetVanityNameserverSetDefaultRes */
+        SetVanityNameserverSetDefaultRes: {
+            /** @description The set that is now the org's default (or unchanged set on a no-op 200). */
+            vanity_nameserver_set: components["schemas"]["VanityNameserverSetDTO"];
         };
         /** SldLength */
         SldLength: {
@@ -10981,6 +11168,244 @@ export interface components {
             /** Error Type */
             type: string;
         };
+        /** VanityNameserverDTO */
+        VanityNameserverDTO: {
+            /**
+             * Hostname
+             * @description Fully-qualified hostname of the vanity nameserver
+             */
+            hostname: string;
+            /**
+             * Position
+             * @description Ordering within the set; lowest position becomes SOA MNAME
+             */
+            position: number;
+        };
+        /**
+         * VanityNameserverSetCreate
+         * @description Public create request body. The owning org comes from auth context, and the
+         *     anycast IPs are allocated server-side from `VanityNameserversConfig`, so neither is
+         *     accepted here.
+         */
+        VanityNameserverSetCreate: {
+            /**
+             * Hostnames
+             * @description Fully-qualified vanity NS hostnames, ordered by intended position.
+             */
+            hostnames: string[];
+            /**
+             * Name
+             * @description Human-readable name for the set
+             */
+            name: string;
+            /**
+             * Parent Domain Name
+             * @description Apex domain of the vanity NS zone; all hostnames must be subdomains.
+             */
+            parent_domain_name: string;
+            /**
+             * Soa Rname
+             * @description SOA RNAME stamped verbatim into the vanity NS zone
+             */
+            soa_rname: string;
+        };
+        /** VanityNameserverSetDTO */
+        VanityNameserverSetDTO: {
+            /**
+             * Name
+             * @description Human-readable name for the vanity NS set
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description Nameservers in the set, ordered by position
+             */
+            nameservers?: components["schemas"]["VanityNameserverDTO"][];
+            /**
+             * Parent Domain Name
+             * @description Parent domain used as the apex of the vanity NS zone
+             */
+            parent_domain_name: string;
+            /**
+             * Set Id
+             * Format: typeid
+             * @description Stable identifier for the vanity NS set
+             * @example vns_01h45ytscbebyvny4gc8cr8ma2
+             */
+            set_id: TypeId<"vns">;
+            /**
+             * Soa Rname
+             * @description SOA RNAME used verbatim when creating vanity-branded zones
+             */
+            soa_rname: string;
+        };
+        /**
+         * VanityNameserverSetStatusDTO
+         * @description Wire mirror of `VanityNameserverSetStatus` — local so dns_client doesn't
+         *     pull schema imports.
+         * @enum {string}
+         */
+        VanityNameserverSetStatusDTO: "provisioning" | "active" | "suspended" | "failed" | "deleting";
+        /**
+         * VanityNameserverSetSummaryDTO
+         * @description Status-aware variant of `VanityNameserverSetDTO` for list/get endpoints.
+         *     `VanityNameserverSetDTO` stays the brandable-only read shape (always ACTIVE).
+         */
+        VanityNameserverSetSummaryDTO: {
+            /**
+             * Is Default
+             * @description Whether this is the org's default vanity NS set
+             */
+            is_default: boolean;
+            /**
+             * Name
+             * @description Human-readable name for the vanity NS set
+             */
+            name: string;
+            /**
+             * Nameservers
+             * @description Nameservers in the set, ordered by position
+             */
+            nameservers?: components["schemas"]["VanityNameserverDTO"][];
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description Owning organization
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /**
+             * Parent Domain Name
+             * @description Parent domain used as the apex of the vanity NS zone
+             */
+            parent_domain_name: string;
+            /**
+             * Set Id
+             * Format: typeid
+             * @description Stable identifier for the vanity NS set
+             * @example vns_01h45ytscbebyvny4gc8cr8ma2
+             */
+            set_id: TypeId<"vns">;
+            /**
+             * Soa Rname
+             * @description SOA RNAME used verbatim when creating vanity-branded zones
+             */
+            soa_rname: string;
+            /** @description Lifecycle status of the set */
+            status: components["schemas"]["VanityNameserverSetStatusDTO"];
+        };
+        /**
+         * VanityNsCheckConfidence
+         * @enum {string}
+         */
+        VanityNsCheckConfidence: "authoritative" | "best_effort";
+        /**
+         * VanityNsCheckPublicReq
+         * @description Public `/check` request body. The owning org comes from auth context, so only
+         *     the set identifier is accepted here.
+         */
+        VanityNsCheckPublicReq: {
+            /**
+             * Set Id
+             * Format: typeid
+             * @description The vanity NS set to diagnose
+             * @example vns_01h45ytscbebyvny4gc8cr8ma2
+             */
+            set_id: TypeId<"vns">;
+        };
+        /** VanityNsCheckRes */
+        VanityNsCheckRes: {
+            /**
+             * Checks
+             * @description Individual diagnostic checks
+             */
+            checks?: components["schemas"]["VanityNsCheckResultDTO"][];
+            /**
+             * Parent Domain Name
+             * @description Parent domain of the set's vanity NS hostnames
+             */
+            parent_domain_name: string;
+            /**
+             * Set Id
+             * Format: typeid
+             * @description The diagnosed set
+             * @example vns_01h45ytscbebyvny4gc8cr8ma2
+             */
+            set_id: TypeId<"vns">;
+            /** @description Lifecycle status of the set at check time */
+            status: components["schemas"]["VanityNameserverSetStatusDTO"];
+            /** @description Synthesized overall verdict */
+            summary: components["schemas"]["VanityNsCheckSummaryDTO"];
+        };
+        /** VanityNsCheckResultDTO */
+        VanityNsCheckResultDTO: {
+            /** @description How authoritative the observation is */
+            confidence: components["schemas"]["VanityNsCheckConfidence"];
+            /**
+             * Detail
+             * @description Customer-facing explanation of the result
+             */
+            detail: string;
+            /**
+             * Id
+             * @description Stable identifier for the individual check
+             */
+            id: string;
+            /**
+             * Label
+             * @description Human-readable check name
+             */
+            label: string;
+            /**
+             * Observed
+             * @description Structured observation (e.g. addresses seen, mismatches) for the customer
+             */
+            observed?: {
+                [key: string]: unknown;
+            } | null;
+            /**
+             * Remediation
+             * @description Suggested next step when the check did not pass
+             */
+            remediation?: string | null;
+            /** @description How much this check matters to the overall verdict */
+            severity: components["schemas"]["VanityNsCheckSeverity"];
+            /** @description Where the observation came from */
+            source: components["schemas"]["VanityNsCheckSource"];
+            /** @description Per-check verdict */
+            status: components["schemas"]["VanityNsCheckStatus"];
+        };
+        /**
+         * VanityNsCheckSeverity
+         * @enum {string}
+         */
+        VanityNsCheckSeverity: "required" | "recommended" | "optional";
+        /**
+         * VanityNsCheckSource
+         * @enum {string}
+         */
+        VanityNsCheckSource: "public_dns" | "authoritative_dns" | "registry_epp";
+        /**
+         * VanityNsCheckStatus
+         * @enum {string}
+         */
+        VanityNsCheckStatus: "pass" | "fail" | "warn" | "info";
+        /** VanityNsCheckSummaryDTO */
+        VanityNsCheckSummaryDTO: {
+            /**
+             * Detail
+             * @description Customer-facing summary of the overall verdict
+             */
+            detail: string;
+            /** @description Overall verdict synthesized from the checks */
+            state: components["schemas"]["VanityNsCheckSummaryState"];
+        };
+        /**
+         * VanityNsCheckSummaryState
+         * @description Top-level verdict synthesized from the individual checks.
+         * @enum {string}
+         */
+        VanityNsCheckSummaryState: "ready" | "propagating" | "action_required" | "degraded";
         /**
          * VerificationClaimType
          * @enum {string}
@@ -22668,6 +23093,291 @@ export interface operations {
                      *       "type": "role-not-found"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_vanity_nameserver_sets_v1_vanity_nameserver_sets_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListVanityNameserverSetsRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_vanity_nameserver_set_v1_vanity_nameserver_sets_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VanityNameserverSetCreate"];
+            };
+        };
+        responses: {
+            /** @description The set was accepted and is provisioning asynchronously. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VanityNameserverSetSummaryDTO"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    check_vanity_nameserver_set_v1_vanity_nameserver_sets_check_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VanityNsCheckPublicReq"];
+            };
+        };
+        responses: {
+            /** @description Diagnostic report for the set. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VanityNsCheckRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    clear_vanity_nameserver_set_default_v1_vanity_nameserver_sets_default_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClearVanityNameserverSetDefaultRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                set_id: TypeId<"vns">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VanityNameserverSetSummaryDTO"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                set_id: TypeId<"vns">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                set_id: TypeId<"vns">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SetVanityNameserverSetDefaultRes"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    restore_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__restore_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                set_id: TypeId<"vns">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VanityNameserverSetSummaryDTO"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_zones_referencing_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__zones_get: {
+        parameters: {
+            query?: {
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path: {
+                set_id: TypeId<"vns">;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ListZonesReferencingSetRes"];
                 };
             };
             /** @description Validation Error */

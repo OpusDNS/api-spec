@@ -9,6 +9,7 @@ import type {
   ClaimsNotice,
   ClaimsNoticesRequest,
   ClaimsNotices,
+  ClearVanityNameserverSetDefaultRes,
   CommandError,
   ContactAttestReq,
   ContactAttestRes,
@@ -244,6 +245,8 @@ import type {
   LaunchPhaseBase,
   LaunchPhasesBase,
   LegalRequirementBase,
+  ListVanityNameserverSetsRes,
+  ListZonesReferencingSetRes,
   LocalPresenceBase,
   MemoryFact,
   MemoryFactCreateRequest,
@@ -267,6 +270,7 @@ import type {
   OrganizationUpdate,
   OrganizationWithBillingData,
   PaginationMetadata,
+  PaginationMetadataDTO,
   ParkingActionPayloadData,
   ParkingAgreementAcceptance,
   ParkingCreateBulkCommand,
@@ -318,6 +322,7 @@ import type {
   RequestHistory,
   ReservedDomainsBase,
   RgpOperations,
+  SetVanityNameserverSetDefaultRes,
   SldLength,
   StatusChanges,
   StatusCodeStatsBucket,
@@ -354,6 +359,14 @@ import type {
   UserUpdate,
   UserWithAuthorization,
   ValidationError,
+  VanityNameserverDTO,
+  VanityNameserverSetCreate,
+  VanityNameserverSetDTO,
+  VanityNameserverSetSummaryDTO,
+  VanityNsCheckPublicReq,
+  VanityNsCheckRes,
+  VanityNsCheckResultDTO,
+  VanityNsCheckSummaryDTO,
   VerificationDeadline,
   VerificationRegistrantDetails,
   Verification,
@@ -503,6 +516,12 @@ export const KEY_CLAIMS_NOTICES_CLAIMS_NOTICES = 'claims_notices' satisfies keyo
 export const KEYS_CLAIMS_NOTICES = [
   KEY_CLAIMS_NOTICES_CLAIMS_NOTICES,
 ] as const satisfies (keyof ClaimsNotices)[];
+
+export const KEY_CLEAR_VANITY_NAMESERVER_SET_DEFAULT_RES_CLEARED = 'cleared' satisfies keyof ClearVanityNameserverSetDefaultRes;
+
+export const KEYS_CLEAR_VANITY_NAMESERVER_SET_DEFAULT_RES = [
+  KEY_CLEAR_VANITY_NAMESERVER_SET_DEFAULT_RES_CLEARED,
+] as const satisfies (keyof ClearVanityNameserverSetDefaultRes)[];
 
 export const KEY_COMMAND_ERROR_CODE = 'code' satisfies keyof CommandError;
 export const KEY_COMMAND_ERROR_ERROR = 'error' satisfies keyof CommandError;
@@ -3402,6 +3421,22 @@ export const KEYS_LEGAL_REQUIREMENT_BASE = [
   KEY_LEGAL_REQUIREMENT_BASE_URL,
 ] as const satisfies (keyof LegalRequirementBase)[];
 
+export const KEY_LIST_VANITY_NAMESERVER_SETS_RES_PAGINATION = 'pagination' satisfies keyof ListVanityNameserverSetsRes;
+export const KEY_LIST_VANITY_NAMESERVER_SETS_RES_RESULTS = 'results' satisfies keyof ListVanityNameserverSetsRes;
+
+export const KEYS_LIST_VANITY_NAMESERVER_SETS_RES = [
+  KEY_LIST_VANITY_NAMESERVER_SETS_RES_PAGINATION,
+  KEY_LIST_VANITY_NAMESERVER_SETS_RES_RESULTS,
+] as const satisfies (keyof ListVanityNameserverSetsRes)[];
+
+export const KEY_LIST_ZONES_REFERENCING_SET_RES_PAGINATION = 'pagination' satisfies keyof ListZonesReferencingSetRes;
+export const KEY_LIST_ZONES_REFERENCING_SET_RES_RESULTS = 'results' satisfies keyof ListZonesReferencingSetRes;
+
+export const KEYS_LIST_ZONES_REFERENCING_SET_RES = [
+  KEY_LIST_ZONES_REFERENCING_SET_RES_PAGINATION,
+  KEY_LIST_ZONES_REFERENCING_SET_RES_RESULTS,
+] as const satisfies (keyof ListZonesReferencingSetRes)[];
+
 export const KEY_LOCAL_PRESENCE_BASE_ELIGIBLE_COUNTRIES = 'eligible_countries' satisfies keyof LocalPresenceBase;
 export const KEY_LOCAL_PRESENCE_BASE_EXEMPTIONS = 'exemptions' satisfies keyof LocalPresenceBase;
 export const KEY_LOCAL_PRESENCE_BASE_REQUIRED = 'required' satisfies keyof LocalPresenceBase;
@@ -3817,6 +3852,22 @@ export const KEYS_PAGINATION_METADATA = [
   KEY_PAGINATION_METADATA_TOTAL_ITEMS,
   KEY_PAGINATION_METADATA_TOTAL_PAGES,
 ] as const satisfies (keyof PaginationMetadata)[];
+
+export const KEY_PAGINATION_METADATA_DTO_CURRENT_PAGE = 'current_page' satisfies keyof PaginationMetadataDTO;
+export const KEY_PAGINATION_METADATA_DTO_HAS_NEXT_PAGE = 'has_next_page' satisfies keyof PaginationMetadataDTO;
+export const KEY_PAGINATION_METADATA_DTO_HAS_PREVIOUS_PAGE = 'has_previous_page' satisfies keyof PaginationMetadataDTO;
+export const KEY_PAGINATION_METADATA_DTO_PAGE_SIZE = 'page_size' satisfies keyof PaginationMetadataDTO;
+export const KEY_PAGINATION_METADATA_DTO_TOTAL_ITEMS = 'total_items' satisfies keyof PaginationMetadataDTO;
+export const KEY_PAGINATION_METADATA_DTO_TOTAL_PAGES = 'total_pages' satisfies keyof PaginationMetadataDTO;
+
+export const KEYS_PAGINATION_METADATA_DTO = [
+  KEY_PAGINATION_METADATA_DTO_CURRENT_PAGE,
+  KEY_PAGINATION_METADATA_DTO_HAS_NEXT_PAGE,
+  KEY_PAGINATION_METADATA_DTO_HAS_PREVIOUS_PAGE,
+  KEY_PAGINATION_METADATA_DTO_PAGE_SIZE,
+  KEY_PAGINATION_METADATA_DTO_TOTAL_ITEMS,
+  KEY_PAGINATION_METADATA_DTO_TOTAL_PAGES,
+] as const satisfies (keyof PaginationMetadataDTO)[];
 
 export const KEY_PARKING_ACTION_PAYLOAD_DATA_PARKING_REFERENCE = 'parking_reference' satisfies keyof ParkingActionPayloadData;
 
@@ -4323,6 +4374,12 @@ export const KEYS_RGP_OPERATIONS = [
   KEY_RGP_OPERATIONS_REPORT,
   KEY_RGP_OPERATIONS_REQUEST,
 ] as const satisfies (keyof RgpOperations)[];
+
+export const KEY_SET_VANITY_NAMESERVER_SET_DEFAULT_RES_VANITY_NAMESERVER_SET = 'vanity_nameserver_set' satisfies keyof SetVanityNameserverSetDefaultRes;
+
+export const KEYS_SET_VANITY_NAMESERVER_SET_DEFAULT_RES = [
+  KEY_SET_VANITY_NAMESERVER_SET_DEFAULT_RES_VANITY_NAMESERVER_SET,
+] as const satisfies (keyof SetVanityNameserverSetDefaultRes)[];
 
 export const KEY_SLD_LENGTH_MAX = 'max' satisfies keyof SldLength;
 export const KEY_SLD_LENGTH_MIN = 'min' satisfies keyof SldLength;
@@ -4891,6 +4948,110 @@ export const KEYS_VALIDATION_ERROR = [
   KEY_VALIDATION_ERROR_MSG,
   KEY_VALIDATION_ERROR_TYPE,
 ] as const satisfies (keyof ValidationError)[];
+
+export const KEY_VANITY_NAMESERVER_DTO_HOSTNAME = 'hostname' satisfies keyof VanityNameserverDTO;
+export const KEY_VANITY_NAMESERVER_DTO_POSITION = 'position' satisfies keyof VanityNameserverDTO;
+
+export const KEYS_VANITY_NAMESERVER_DTO = [
+  KEY_VANITY_NAMESERVER_DTO_HOSTNAME,
+  KEY_VANITY_NAMESERVER_DTO_POSITION,
+] as const satisfies (keyof VanityNameserverDTO)[];
+
+export const KEY_VANITY_NAMESERVER_SET_CREATE_HOSTNAMES = 'hostnames' satisfies keyof VanityNameserverSetCreate;
+export const KEY_VANITY_NAMESERVER_SET_CREATE_NAME = 'name' satisfies keyof VanityNameserverSetCreate;
+export const KEY_VANITY_NAMESERVER_SET_CREATE_PARENT_DOMAIN_NAME = 'parent_domain_name' satisfies keyof VanityNameserverSetCreate;
+export const KEY_VANITY_NAMESERVER_SET_CREATE_SOA_RNAME = 'soa_rname' satisfies keyof VanityNameserverSetCreate;
+
+export const KEYS_VANITY_NAMESERVER_SET_CREATE = [
+  KEY_VANITY_NAMESERVER_SET_CREATE_HOSTNAMES,
+  KEY_VANITY_NAMESERVER_SET_CREATE_NAME,
+  KEY_VANITY_NAMESERVER_SET_CREATE_PARENT_DOMAIN_NAME,
+  KEY_VANITY_NAMESERVER_SET_CREATE_SOA_RNAME,
+] as const satisfies (keyof VanityNameserverSetCreate)[];
+
+export const KEY_VANITY_NAMESERVER_SET_DTO_NAME = 'name' satisfies keyof VanityNameserverSetDTO;
+export const KEY_VANITY_NAMESERVER_SET_DTO_NAMESERVERS = 'nameservers' satisfies keyof VanityNameserverSetDTO;
+export const KEY_VANITY_NAMESERVER_SET_DTO_PARENT_DOMAIN_NAME = 'parent_domain_name' satisfies keyof VanityNameserverSetDTO;
+export const KEY_VANITY_NAMESERVER_SET_DTO_SET_ID = 'set_id' satisfies keyof VanityNameserverSetDTO;
+export const KEY_VANITY_NAMESERVER_SET_DTO_SOA_RNAME = 'soa_rname' satisfies keyof VanityNameserverSetDTO;
+
+export const KEYS_VANITY_NAMESERVER_SET_DTO = [
+  KEY_VANITY_NAMESERVER_SET_DTO_NAME,
+  KEY_VANITY_NAMESERVER_SET_DTO_NAMESERVERS,
+  KEY_VANITY_NAMESERVER_SET_DTO_PARENT_DOMAIN_NAME,
+  KEY_VANITY_NAMESERVER_SET_DTO_SET_ID,
+  KEY_VANITY_NAMESERVER_SET_DTO_SOA_RNAME,
+] as const satisfies (keyof VanityNameserverSetDTO)[];
+
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_IS_DEFAULT = 'is_default' satisfies keyof VanityNameserverSetSummaryDTO;
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_NAME = 'name' satisfies keyof VanityNameserverSetSummaryDTO;
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_NAMESERVERS = 'nameservers' satisfies keyof VanityNameserverSetSummaryDTO;
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_ORGANIZATION_ID = 'organization_id' satisfies keyof VanityNameserverSetSummaryDTO;
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_PARENT_DOMAIN_NAME = 'parent_domain_name' satisfies keyof VanityNameserverSetSummaryDTO;
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_SET_ID = 'set_id' satisfies keyof VanityNameserverSetSummaryDTO;
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_SOA_RNAME = 'soa_rname' satisfies keyof VanityNameserverSetSummaryDTO;
+export const KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_STATUS = 'status' satisfies keyof VanityNameserverSetSummaryDTO;
+
+export const KEYS_VANITY_NAMESERVER_SET_SUMMARY_DTO = [
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_IS_DEFAULT,
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_NAME,
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_NAMESERVERS,
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_ORGANIZATION_ID,
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_PARENT_DOMAIN_NAME,
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_SET_ID,
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_SOA_RNAME,
+  KEY_VANITY_NAMESERVER_SET_SUMMARY_DTO_STATUS,
+] as const satisfies (keyof VanityNameserverSetSummaryDTO)[];
+
+export const KEY_VANITY_NS_CHECK_PUBLIC_REQ_SET_ID = 'set_id' satisfies keyof VanityNsCheckPublicReq;
+
+export const KEYS_VANITY_NS_CHECK_PUBLIC_REQ = [
+  KEY_VANITY_NS_CHECK_PUBLIC_REQ_SET_ID,
+] as const satisfies (keyof VanityNsCheckPublicReq)[];
+
+export const KEY_VANITY_NS_CHECK_RES_CHECKS = 'checks' satisfies keyof VanityNsCheckRes;
+export const KEY_VANITY_NS_CHECK_RES_PARENT_DOMAIN_NAME = 'parent_domain_name' satisfies keyof VanityNsCheckRes;
+export const KEY_VANITY_NS_CHECK_RES_SET_ID = 'set_id' satisfies keyof VanityNsCheckRes;
+export const KEY_VANITY_NS_CHECK_RES_STATUS = 'status' satisfies keyof VanityNsCheckRes;
+export const KEY_VANITY_NS_CHECK_RES_SUMMARY = 'summary' satisfies keyof VanityNsCheckRes;
+
+export const KEYS_VANITY_NS_CHECK_RES = [
+  KEY_VANITY_NS_CHECK_RES_CHECKS,
+  KEY_VANITY_NS_CHECK_RES_PARENT_DOMAIN_NAME,
+  KEY_VANITY_NS_CHECK_RES_SET_ID,
+  KEY_VANITY_NS_CHECK_RES_STATUS,
+  KEY_VANITY_NS_CHECK_RES_SUMMARY,
+] as const satisfies (keyof VanityNsCheckRes)[];
+
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_CONFIDENCE = 'confidence' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_DETAIL = 'detail' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_ID = 'id' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_LABEL = 'label' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_OBSERVED = 'observed' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_REMEDIATION = 'remediation' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_SEVERITY = 'severity' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_SOURCE = 'source' satisfies keyof VanityNsCheckResultDTO;
+export const KEY_VANITY_NS_CHECK_RESULT_DTO_STATUS = 'status' satisfies keyof VanityNsCheckResultDTO;
+
+export const KEYS_VANITY_NS_CHECK_RESULT_DTO = [
+  KEY_VANITY_NS_CHECK_RESULT_DTO_CONFIDENCE,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_DETAIL,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_ID,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_LABEL,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_OBSERVED,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_REMEDIATION,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_SEVERITY,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_SOURCE,
+  KEY_VANITY_NS_CHECK_RESULT_DTO_STATUS,
+] as const satisfies (keyof VanityNsCheckResultDTO)[];
+
+export const KEY_VANITY_NS_CHECK_SUMMARY_DTO_DETAIL = 'detail' satisfies keyof VanityNsCheckSummaryDTO;
+export const KEY_VANITY_NS_CHECK_SUMMARY_DTO_STATE = 'state' satisfies keyof VanityNsCheckSummaryDTO;
+
+export const KEYS_VANITY_NS_CHECK_SUMMARY_DTO = [
+  KEY_VANITY_NS_CHECK_SUMMARY_DTO_DETAIL,
+  KEY_VANITY_NS_CHECK_SUMMARY_DTO_STATE,
+] as const satisfies (keyof VanityNsCheckSummaryDTO)[];
 
 export const KEY_VERIFICATION_DEADLINE_DATE = 'date' satisfies keyof VerificationDeadline;
 export const KEY_VERIFICATION_DEADLINE_TYPE = 'type' satisfies keyof VerificationDeadline;

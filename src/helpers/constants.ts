@@ -102,6 +102,12 @@ import type {
   TransferAckType,
   UserSortField,
   UserStatus,
+  VanityNameserverSetStatusDTO,
+  VanityNsCheckConfidence,
+  VanityNsCheckSeverity,
+  VanityNsCheckSource,
+  VanityNsCheckStatus,
+  VanityNsCheckSummaryState,
   VerificationClaimType,
   VerificationDeadlineType,
   VerificationType,
@@ -1789,6 +1795,84 @@ export const USER_STATUS_VALUES = [
   'active',
   'inactive',
 ] as const satisfies ReadonlyArray<UserStatus>;
+
+export const VANITY_NAMESERVER_SET_STATUS_DTO = {
+  PROVISIONING: "provisioning",
+  ACTIVE: "active",
+  SUSPENDED: "suspended",
+  FAILED: "failed",
+  DELETING: "deleting",
+} as const satisfies Record<string, VanityNameserverSetStatusDTO>;
+
+export const VANITY_NAMESERVER_SET_STATUS_DTO_VALUES = [
+  'provisioning',
+  'active',
+  'suspended',
+  'failed',
+  'deleting',
+] as const satisfies ReadonlyArray<VanityNameserverSetStatusDTO>;
+
+export const VANITY_NS_CHECK_CONFIDENCE = {
+  AUTHORITATIVE: "authoritative",
+  BEST_EFFORT: "best_effort",
+} as const satisfies Record<string, VanityNsCheckConfidence>;
+
+export const VANITY_NS_CHECK_CONFIDENCE_VALUES = [
+  'authoritative',
+  'best_effort',
+] as const satisfies ReadonlyArray<VanityNsCheckConfidence>;
+
+export const VANITY_NS_CHECK_SEVERITY = {
+  REQUIRED: "required",
+  RECOMMENDED: "recommended",
+  OPTIONAL: "optional",
+} as const satisfies Record<string, VanityNsCheckSeverity>;
+
+export const VANITY_NS_CHECK_SEVERITY_VALUES = [
+  'required',
+  'recommended',
+  'optional',
+] as const satisfies ReadonlyArray<VanityNsCheckSeverity>;
+
+export const VANITY_NS_CHECK_SOURCE = {
+  PUBLIC_DNS: "public_dns",
+  AUTHORITATIVE_DNS: "authoritative_dns",
+  REGISTRY_EPP: "registry_epp",
+} as const satisfies Record<string, VanityNsCheckSource>;
+
+export const VANITY_NS_CHECK_SOURCE_VALUES = [
+  'public_dns',
+  'authoritative_dns',
+  'registry_epp',
+] as const satisfies ReadonlyArray<VanityNsCheckSource>;
+
+export const VANITY_NS_CHECK_STATUS = {
+  PASS: "pass",
+  FAIL: "fail",
+  WARN: "warn",
+  INFO: "info",
+} as const satisfies Record<string, VanityNsCheckStatus>;
+
+export const VANITY_NS_CHECK_STATUS_VALUES = [
+  'pass',
+  'fail',
+  'warn',
+  'info',
+] as const satisfies ReadonlyArray<VanityNsCheckStatus>;
+
+export const VANITY_NS_CHECK_SUMMARY_STATE = {
+  READY: "ready",
+  PROPAGATING: "propagating",
+  ACTION_REQUIRED: "action_required",
+  DEGRADED: "degraded",
+} as const satisfies Record<string, VanityNsCheckSummaryState>;
+
+export const VANITY_NS_CHECK_SUMMARY_STATE_VALUES = [
+  'ready',
+  'propagating',
+  'action_required',
+  'degraded',
+] as const satisfies ReadonlyArray<VanityNsCheckSummaryState>;
 
 export const VERIFICATION_CLAIM_TYPE = {
   NAME: "name",

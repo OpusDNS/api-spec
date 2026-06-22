@@ -1,6 +1,7 @@
 import type {
   BillingTransaction,
   ClaimsNotices,
+  ClearVanityNameserverSetDefaultRes,
   Contact,
   ContactAttestRes,
   ContactAttributeLink,
@@ -50,6 +51,8 @@ import type {
   Job,
   JobBatchRetry,
   JobBatchStatus,
+  ListVanityNameserverSetsRes,
+  ListZonesReferencingSetRes,
   MemoryFact,
   MemoryFactList,
   Message,
@@ -91,12 +94,15 @@ import type {
   PublicRoleDefinition,
   RequestAuthcode,
   RequestAuthcode2,
+  SetVanityNameserverSetDefaultRes,
   Tag,
   TldResponseShort,
   TldSpecification,
   UserPublic,
   UserPublicWithAttributes,
   UserWithAuthorization,
+  VanityNameserverSetSummaryDTO,
+  VanityNsCheckRes,
 } from './schemas';
 
 export type DELETE_AiConciergeConversationsByConversationId_Response = DELETE_AiConciergeConversationsByConversationId_Response_401 | DELETE_AiConciergeConversationsByConversationId_Response_404 | DELETE_AiConciergeConversationsByConversationId_Response_422 | DELETE_AiConciergeConversationsByConversationId_Response_502;
@@ -226,6 +232,15 @@ export type DELETE_UsersByUserId_Response = DELETE_UsersByUserId_Response_403 | 
 
 export type DELETE_UsersByUserId_Response_403 = Problem;
 export type DELETE_UsersByUserId_Response_422 = HTTPValidationError;
+
+export type DELETE_VanityNameserverSetsBySetId_Response = DELETE_VanityNameserverSetsBySetId_Response_422;
+
+export type DELETE_VanityNameserverSetsBySetId_Response_422 = HTTPValidationError;
+
+export type DELETE_VanityNameserverSetsDefault_Response = DELETE_VanityNameserverSetsDefault_Response_200 | DELETE_VanityNameserverSetsDefault_Response_422;
+
+export type DELETE_VanityNameserverSetsDefault_Response_200 = ClearVanityNameserverSetDefaultRes;
+export type DELETE_VanityNameserverSetsDefault_Response_422 = HTTPValidationError;
 
 export type GET_AiConciergeContextsByContextId_Response = GET_AiConciergeContextsByContextId_Response_200 | GET_AiConciergeContextsByContextId_Response_401 | GET_AiConciergeContextsByContextId_Response_404 | GET_AiConciergeContextsByContextId_Response_422 | GET_AiConciergeContextsByContextId_Response_502;
 
@@ -793,6 +808,21 @@ export type GET_UsersMe_Response = GET_UsersMe_Response_200 | GET_UsersMe_Respon
 export type GET_UsersMe_Response_200 = UserWithAuthorization;
 export type GET_UsersMe_Response_422 = HTTPValidationError;
 
+export type GET_VanityNameserverSets_Response = GET_VanityNameserverSets_Response_200 | GET_VanityNameserverSets_Response_422;
+
+export type GET_VanityNameserverSets_Response_200 = ListVanityNameserverSetsRes;
+export type GET_VanityNameserverSets_Response_422 = HTTPValidationError;
+
+export type GET_VanityNameserverSetsBySetId_Response = GET_VanityNameserverSetsBySetId_Response_200 | GET_VanityNameserverSetsBySetId_Response_422;
+
+export type GET_VanityNameserverSetsBySetId_Response_200 = VanityNameserverSetSummaryDTO;
+export type GET_VanityNameserverSetsBySetId_Response_422 = HTTPValidationError;
+
+export type GET_VanityNameserverSetsBySetIdZones_Response = GET_VanityNameserverSetsBySetIdZones_Response_200 | GET_VanityNameserverSetsBySetIdZones_Response_422;
+
+export type GET_VanityNameserverSetsBySetIdZones_Response_200 = ListZonesReferencingSetRes;
+export type GET_VanityNameserverSetsBySetIdZones_Response_422 = HTTPValidationError;
+
 export type PATCH_AiConciergeConversationsByConversationId_Response = PATCH_AiConciergeConversationsByConversationId_Response_200 | PATCH_AiConciergeConversationsByConversationId_Response_401 | PATCH_AiConciergeConversationsByConversationId_Response_404 | PATCH_AiConciergeConversationsByConversationId_Response_422 | PATCH_AiConciergeConversationsByConversationId_Response_502;
 
 export type PATCH_AiConciergeConversationsByConversationId_Response_200 = Conversation;
@@ -938,6 +968,11 @@ export type PATCH_UsersMePasswordReset_Response = PATCH_UsersMePasswordReset_Res
 
 export type PATCH_UsersMePasswordReset_Response_401 = Problem;
 export type PATCH_UsersMePasswordReset_Response_422 = HTTPValidationError;
+
+export type PATCH_VanityNameserverSetsBySetIdDefault_Response = PATCH_VanityNameserverSetsBySetIdDefault_Response_200 | PATCH_VanityNameserverSetsBySetIdDefault_Response_422;
+
+export type PATCH_VanityNameserverSetsBySetIdDefault_Response_200 = SetVanityNameserverSetDefaultRes;
+export type PATCH_VanityNameserverSetsBySetIdDefault_Response_422 = HTTPValidationError;
 
 export type POST_AiConciergeConversations_Response = POST_AiConciergeConversations_Response_201 | POST_AiConciergeConversations_Response_401 | POST_AiConciergeConversations_Response_404 | POST_AiConciergeConversations_Response_422 | POST_AiConciergeConversations_Response_502;
 
@@ -1241,6 +1276,21 @@ export type POST_Users_Response = POST_Users_Response_200 | POST_Users_Response_
 
 export type POST_Users_Response_200 = UserPublic;
 export type POST_Users_Response_422 = HTTPValidationError;
+
+export type POST_VanityNameserverSets_Response = POST_VanityNameserverSets_Response_202 | POST_VanityNameserverSets_Response_422;
+
+export type POST_VanityNameserverSets_Response_202 = VanityNameserverSetSummaryDTO;
+export type POST_VanityNameserverSets_Response_422 = HTTPValidationError;
+
+export type POST_VanityNameserverSetsBySetIdRestore_Response = POST_VanityNameserverSetsBySetIdRestore_Response_200 | POST_VanityNameserverSetsBySetIdRestore_Response_422;
+
+export type POST_VanityNameserverSetsBySetIdRestore_Response_200 = VanityNameserverSetSummaryDTO;
+export type POST_VanityNameserverSetsBySetIdRestore_Response_422 = HTTPValidationError;
+
+export type POST_VanityNameserverSetsCheck_Response = POST_VanityNameserverSetsCheck_Response_200 | POST_VanityNameserverSetsCheck_Response_422;
+
+export type POST_VanityNameserverSetsCheck_Response_200 = VanityNsCheckRes;
+export type POST_VanityNameserverSetsCheck_Response_422 = HTTPValidationError;
 
 export type PUT_ContactsByContactIdVerification_Response = PUT_ContactsByContactIdVerification_Response_400 | PUT_ContactsByContactIdVerification_Response_401 | PUT_ContactsByContactIdVerification_Response_403 | PUT_ContactsByContactIdVerification_Response_404 | PUT_ContactsByContactIdVerification_Response_422;
 

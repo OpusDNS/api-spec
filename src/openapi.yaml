@@ -432,6 +432,17 @@ components:
       - claims_notices
       title: ClaimsNoticesResponse
       type: object
+    ClearVanityNameserverSetDefaultRes:
+      properties:
+        cleared:
+          description: True if an ACTIVE default was unset; False on an idempotent
+            no-op (org had no default).
+          title: Cleared
+          type: boolean
+      required:
+      - cleared
+      title: ClearVanityNameserverSetDefaultRes
+      type: object
     CommandError:
       properties:
         code:
@@ -8084,6 +8095,36 @@ components:
       - confirmation
       title: LegalRequirementType
       type: string
+    ListVanityNameserverSetsRes:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDTO'
+          description: Pagination metadata
+        results:
+          description: Sets owned by the org, newest first; includes non-ACTIVE rows
+          items:
+            $ref: '#/components/schemas/VanityNameserverSetSummaryDTO'
+          title: Results
+          type: array
+      required:
+      - pagination
+      title: ListVanityNameserverSetsRes
+      type: object
+    ListZonesReferencingSetRes:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadataDTO'
+          description: Pagination metadata
+        results:
+          description: Zones whose apex is branded by the set, ordered by zone name
+          items:
+            $ref: '#/components/schemas/DnsZoneDTO'
+          title: Results
+          type: array
+      required:
+      - pagination
+      title: ListZonesReferencingSetRes
+      type: object
     LocalPresenceBase:
       properties:
         eligible_countries:
@@ -9339,6 +9380,41 @@ components:
       - has_next_page
       - has_previous_page
       title: PaginationMetadata
+      type: object
+    PaginationMetadataDTO:
+      properties:
+        current_page:
+          description: Current page number
+          title: Current Page
+          type: integer
+        has_next_page:
+          description: Whether there is a next page
+          title: Has Next Page
+          type: boolean
+        has_previous_page:
+          description: Whether there is a previous page
+          title: Has Previous Page
+          type: boolean
+        page_size:
+          description: Items per page
+          title: Page Size
+          type: integer
+        total_items:
+          description: Total number of items
+          title: Total Items
+          type: integer
+        total_pages:
+          description: Total number of pages
+          title: Total Pages
+          type: integer
+      required:
+      - total_pages
+      - total_items
+      - current_page
+      - page_size
+      - has_next_page
+      - has_previous_page
+      title: PaginationMetadataDTO
       type: object
     Pagination_BillingTransactionResponse_:
       properties:
@@ -10948,6 +11024,16 @@ components:
           type: boolean
       title: RgpOperations
       type: object
+    SetVanityNameserverSetDefaultRes:
+      properties:
+        vanity_nameserver_set:
+          $ref: '#/components/schemas/VanityNameserverSetDTO'
+          description: The set that is now the org's default (or unchanged set on
+            a no-op 200).
+      required:
+      - vanity_nameserver_set
+      title: SetVanityNameserverSetDefaultRes
+      type: object
     SldLength:
       properties:
         max:
@@ -12527,6 +12613,321 @@ components:
       - type
       title: ValidationError
       type: object
+    VanityNameserverDTO:
+      properties:
+        hostname:
+          description: Fully-qualified hostname of the vanity nameserver
+          title: Hostname
+          type: string
+        position:
+          description: Ordering within the set; lowest position becomes SOA MNAME
+          minimum: 0.0
+          title: Position
+          type: integer
+      required:
+      - hostname
+      - position
+      title: VanityNameserverDTO
+      type: object
+    VanityNameserverSetCreate:
+      description: 'Public create request body. The owning org comes from auth context,
+        and the
+
+        anycast IPs are allocated server-side from `VanityNameserversConfig`, so neither
+        is
+
+        accepted here.'
+      properties:
+        hostnames:
+          description: Fully-qualified vanity NS hostnames, ordered by intended position.
+          items:
+            type: string
+          minItems: 1
+          title: Hostnames
+          type: array
+        name:
+          description: Human-readable name for the set
+          maxLength: 255
+          minLength: 1
+          title: Name
+          type: string
+        parent_domain_name:
+          description: Apex domain of the vanity NS zone; all hostnames must be subdomains.
+          title: Parent Domain Name
+          type: string
+        soa_rname:
+          description: SOA RNAME stamped verbatim into the vanity NS zone
+          maxLength: 255
+          minLength: 1
+          title: Soa Rname
+          type: string
+      required:
+      - name
+      - parent_domain_name
+      - soa_rname
+      - hostnames
+      title: VanityNameserverSetCreate
+      type: object
+    VanityNameserverSetDTO:
+      properties:
+        name:
+          description: Human-readable name for the vanity NS set
+          title: Name
+          type: string
+        nameservers:
+          description: Nameservers in the set, ordered by position
+          items:
+            $ref: '#/components/schemas/VanityNameserverDTO'
+          title: Nameservers
+          type: array
+        parent_domain_name:
+          description: Parent domain used as the apex of the vanity NS zone
+          title: Parent Domain Name
+          type: string
+        set_id:
+          description: Stable identifier for the vanity NS set
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+        soa_rname:
+          description: SOA RNAME used verbatim when creating vanity-branded zones
+          title: Soa Rname
+          type: string
+      required:
+      - set_id
+      - name
+      - parent_domain_name
+      - soa_rname
+      title: VanityNameserverSetDTO
+      type: object
+    VanityNameserverSetStatusDTO:
+      description: "Wire mirror of `VanityNameserverSetStatus` \u2014 local so dns_client\
+        \ doesn't\npull schema imports."
+      enum:
+      - provisioning
+      - active
+      - suspended
+      - failed
+      - deleting
+      title: VanityNameserverSetStatusDTO
+      type: string
+    VanityNameserverSetSummaryDTO:
+      description: 'Status-aware variant of `VanityNameserverSetDTO` for list/get
+        endpoints.
+
+        `VanityNameserverSetDTO` stays the brandable-only read shape (always ACTIVE).'
+      properties:
+        is_default:
+          description: Whether this is the org's default vanity NS set
+          title: Is Default
+          type: boolean
+        name:
+          description: Human-readable name for the vanity NS set
+          title: Name
+          type: string
+        nameservers:
+          description: Nameservers in the set, ordered by position
+          items:
+            $ref: '#/components/schemas/VanityNameserverDTO'
+          title: Nameservers
+          type: array
+        organization_id:
+          description: Owning organization
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        parent_domain_name:
+          description: Parent domain used as the apex of the vanity NS zone
+          title: Parent Domain Name
+          type: string
+        set_id:
+          description: Stable identifier for the vanity NS set
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+        soa_rname:
+          description: SOA RNAME used verbatim when creating vanity-branded zones
+          title: Soa Rname
+          type: string
+        status:
+          $ref: '#/components/schemas/VanityNameserverSetStatusDTO'
+          description: Lifecycle status of the set
+      required:
+      - set_id
+      - organization_id
+      - name
+      - parent_domain_name
+      - soa_rname
+      - status
+      - is_default
+      title: VanityNameserverSetSummaryDTO
+      type: object
+    VanityNsCheckConfidence:
+      enum:
+      - authoritative
+      - best_effort
+      title: VanityNsCheckConfidence
+      type: string
+    VanityNsCheckPublicReq:
+      description: 'Public `/check` request body. The owning org comes from auth context,
+        so only
+
+        the set identifier is accepted here.'
+      properties:
+        set_id:
+          description: The vanity NS set to diagnose
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      required:
+      - set_id
+      title: VanityNsCheckPublicReq
+      type: object
+    VanityNsCheckRes:
+      properties:
+        checks:
+          description: Individual diagnostic checks
+          items:
+            $ref: '#/components/schemas/VanityNsCheckResultDTO'
+          title: Checks
+          type: array
+        parent_domain_name:
+          description: Parent domain of the set's vanity NS hostnames
+          title: Parent Domain Name
+          type: string
+        set_id:
+          description: The diagnosed set
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+        status:
+          $ref: '#/components/schemas/VanityNameserverSetStatusDTO'
+          description: Lifecycle status of the set at check time
+        summary:
+          $ref: '#/components/schemas/VanityNsCheckSummaryDTO'
+          description: Synthesized overall verdict
+      required:
+      - set_id
+      - parent_domain_name
+      - status
+      - summary
+      title: VanityNsCheckRes
+      type: object
+    VanityNsCheckResultDTO:
+      properties:
+        confidence:
+          $ref: '#/components/schemas/VanityNsCheckConfidence'
+          description: How authoritative the observation is
+        detail:
+          description: Customer-facing explanation of the result
+          title: Detail
+          type: string
+        id:
+          description: Stable identifier for the individual check
+          title: Id
+          type: string
+        label:
+          description: Human-readable check name
+          title: Label
+          type: string
+        observed:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          description: Structured observation (e.g. addresses seen, mismatches) for
+            the customer
+          title: Observed
+        remediation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Suggested next step when the check did not pass
+          title: Remediation
+        severity:
+          $ref: '#/components/schemas/VanityNsCheckSeverity'
+          description: How much this check matters to the overall verdict
+        source:
+          $ref: '#/components/schemas/VanityNsCheckSource'
+          description: Where the observation came from
+        status:
+          $ref: '#/components/schemas/VanityNsCheckStatus'
+          description: Per-check verdict
+      required:
+      - id
+      - label
+      - status
+      - severity
+      - source
+      - confidence
+      - detail
+      title: VanityNsCheckResultDTO
+      type: object
+    VanityNsCheckSeverity:
+      enum:
+      - required
+      - recommended
+      - optional
+      title: VanityNsCheckSeverity
+      type: string
+    VanityNsCheckSource:
+      enum:
+      - public_dns
+      - authoritative_dns
+      - registry_epp
+      title: VanityNsCheckSource
+      type: string
+    VanityNsCheckStatus:
+      enum:
+      - pass
+      - fail
+      - warn
+      - info
+      title: VanityNsCheckStatus
+      type: string
+    VanityNsCheckSummaryDTO:
+      properties:
+        detail:
+          description: Customer-facing summary of the overall verdict
+          title: Detail
+          type: string
+        state:
+          $ref: '#/components/schemas/VanityNsCheckSummaryState'
+          description: Overall verdict synthesized from the checks
+      required:
+      - state
+      - detail
+      title: VanityNsCheckSummaryDTO
+      type: object
+    VanityNsCheckSummaryState:
+      description: Top-level verdict synthesized from the individual checks.
+      enum:
+      - ready
+      - propagating
+      - action_required
+      - degraded
+      title: VanityNsCheckSummaryState
+      type: string
     VerificationClaimType:
       enum:
       - name
@@ -12842,7 +13243,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-22-123800
+  version: 2026-06-22-124913
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -27913,6 +28314,450 @@ paths:
       summary: Set user role
       tags:
       - user
+  /v1/vanity-nameserver-sets:
+    get:
+      operationId: list_vanity_nameserver_sets_v1_vanity_nameserver_sets_get
+      parameters:
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVanityNameserverSetsRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List vanity nameserver sets
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:read
+    post:
+      operationId: create_vanity_nameserver_set_v1_vanity_nameserver_sets_post
+      requestBody:
+        content:
+          application/json:
+            examples:
+              three_nameservers:
+                description: A set with three branded hostnames under a different
+                  parent domain.
+                summary: Three-nameserver set
+                value:
+                  hostnames:
+                  - ns1.acme.example
+                  - ns2.acme.example
+                  - ns3.acme.example
+                  name: Acme nameservers
+                  parent_domain_name: acme.example
+                  soa_rname: hostmaster.acme.example
+              two_nameservers:
+                description: Create a vanity NS set with two branded hostnames under
+                  example.com.
+                summary: Two-nameserver set
+                value:
+                  hostnames:
+                  - ns1.example.com
+                  - ns2.example.com
+                  name: Example brand nameservers
+                  parent_domain_name: example.com
+                  soa_rname: hostmaster.example.com
+            schema:
+              $ref: '#/components/schemas/VanityNameserverSetCreate'
+        required: true
+      responses:
+        '202':
+          content:
+            application/json:
+              examples:
+                provisioning:
+                  description: The set is accepted and activates once its prerequisites
+                    check out.
+                  summary: Newly created set (provisioning)
+                  value:
+                    is_default: false
+                    name: Example brand nameservers
+                    nameservers:
+                    - hostname: ns1.example.com
+                      position: 0
+                    - hostname: ns2.example.com
+                      position: 1
+                    organization_id: organization_01kvn2kr34e9ts01z1330tkvfx
+                    parent_domain_name: example.com
+                    set_id: vns_01kvn2kr1qep2bd7e60tt65fxn
+                    soa_rname: hostmaster.example.com
+                    status: provisioning
+              schema:
+                $ref: '#/components/schemas/VanityNameserverSetSummaryDTO'
+          description: The set was accepted and is provisioning asynchronously.
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create a vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:manage
+  /v1/vanity-nameserver-sets/check:
+    post:
+      operationId: check_vanity_nameserver_set_v1_vanity_nameserver_sets_check_post
+      requestBody:
+        content:
+          application/json:
+            examples:
+              by_set_id:
+                description: Run the read-only diagnostic for a vanity NS set by its
+                  set_id.
+                summary: Diagnose a set
+                value:
+                  set_id: vns_01kvn2kr1qep2bd7e60tt65fxn
+            schema:
+              $ref: '#/components/schemas/VanityNsCheckPublicReq'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                action_required:
+                  description: An externally-registered parent domain whose nameserver
+                    A/AAAA records are not yet in place.
+                  summary: "Action required \u2014 records not yet published"
+                  value:
+                    checks:
+                    - confidence: authoritative
+                      detail: Vanity NS hostnames are not yet resolving to the assigned
+                        anycast addresses.
+                      id: ns_a_records
+                      label: Nameserver A/AAAA records
+                      observed:
+                        required_records:
+                          A:
+                          - 192.174.68.145
+                          - 176.97.158.145
+                          AAAA:
+                          - 2001:67c:1bc::145
+                          - 2001:67c:10b8::145
+                      remediation: Publish A (and AAAA) records for each nameserver
+                        hostname pointing at the addresses in required_records.
+                      severity: required
+                      source: public_dns
+                      status: fail
+                    parent_domain_name: example.com
+                    set_id: vns_01kvn2kr1qep2bd7e60tt65fxn
+                    status: provisioning
+                    summary:
+                      detail: Nameserver A/AAAA records are not yet published for
+                        ns1.example.com, ns2.example.com.
+                      state: action_required
+                ready:
+                  description: The vanity nameservers resolve and glue is in place.
+                  summary: "Ready \u2014 all checks pass"
+                  value:
+                    checks:
+                    - confidence: authoritative
+                      detail: All nameserver hostnames resolve to the assigned anycast
+                        addresses.
+                      id: ns_a_records
+                      label: Nameserver A/AAAA records
+                      observed:
+                        required_records:
+                          A:
+                          - 192.174.68.145
+                          - 176.97.158.145
+                          AAAA:
+                          - 2001:67c:1bc::145
+                          - 2001:67c:10b8::145
+                      severity: required
+                      source: public_dns
+                      status: pass
+                    - confidence: authoritative
+                      detail: Every nameserver is registered as a host object at the
+                        registry.
+                      id: registry_glue_registered
+                      label: Glue registered at registry
+                      severity: recommended
+                      source: registry_epp
+                      status: pass
+                    - confidence: best_effort
+                      detail: The parent zone publishes glue for every nameserver.
+                      id: registry_glue_visible
+                      label: Glue visible in parent zone
+                      severity: recommended
+                      source: authoritative_dns
+                      status: pass
+                    parent_domain_name: example.com
+                    set_id: vns_01kvn2kr1qep2bd7e60tt65fxn
+                    status: active
+                    summary:
+                      detail: All required checks passed; the vanity nameservers are
+                        live.
+                      state: ready
+              schema:
+                $ref: '#/components/schemas/VanityNsCheckRes'
+          description: Diagnostic report for the set.
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Run a read-only diagnostic on a vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:read
+  /v1/vanity-nameserver-sets/default:
+    delete:
+      operationId: clear_vanity_nameserver_set_default_v1_vanity_nameserver_sets_default_delete
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClearVanityNameserverSetDefaultRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Unset the organization's default vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:manage
+  /v1/vanity-nameserver-sets/{set_id}:
+    delete:
+      operationId: delete_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__delete
+      parameters:
+      - in: path
+        name: set_id
+        required: true
+        schema:
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      responses:
+        '202':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Delete a vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:manage
+    get:
+      operationId: get_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__get
+      parameters:
+      - in: path
+        name: set_id
+        required: true
+        schema:
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VanityNameserverSetSummaryDTO'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get a vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:read
+  /v1/vanity-nameserver-sets/{set_id}/default:
+    patch:
+      operationId: set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch
+      parameters:
+      - in: path
+        name: set_id
+        required: true
+        schema:
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetVanityNameserverSetDefaultRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Set a vanity nameserver set as the org default
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:manage
+  /v1/vanity-nameserver-sets/{set_id}/restore:
+    post:
+      operationId: restore_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__restore_post
+      parameters:
+      - in: path
+        name: set_id
+        required: true
+        schema:
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VanityNameserverSetSummaryDTO'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Restore a suspended vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:manage
+  /v1/vanity-nameserver-sets/{set_id}/zones:
+    get:
+      operationId: list_zones_referencing_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__zones_get
+      parameters:
+      - in: path
+        name: set_id
+        required: true
+        schema:
+          examples:
+          - vns_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Set Id
+          type: string
+          x-typeid-prefix: vns
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListZonesReferencingSetRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: List DNS zones referencing a vanity nameserver set
+      tags:
+      - nameserver
+      x-required-permissions:
+      - vanity_ns:read
 servers:
 - description: Production environment
   url: https://api.opusdns.com
@@ -28425,6 +29270,7 @@ x-tagGroups:
 - name: Services
   tags:
   - dns
+  - nameserver
   - email_forward
   - domain_forward
   - parking
