@@ -421,6 +421,13 @@
                     "icon": "line/interface-lock-closed",
                     "filepath": "content/dns/dnssec.md",
                     "showInSidebar": true
+                  },
+                  "/vanity-nameservers": {
+                    "type": "page",
+                    "title": "Vanity nameservers",
+                    "icon": "line/programming-script-code",
+                    "filepath": "content/dns/vanity-nameservers.md",
+                    "showInSidebar": true
                   }
                 }
               },
