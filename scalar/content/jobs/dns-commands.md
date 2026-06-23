@@ -281,6 +281,40 @@ while record patches use `record` with a single `rdata` string.
 Up to 100 operations per instance for record-level patches.
 </scalar-callout>
 
+### dns_zone_restamp_vanity_ns_bulk
+
+Re-brand multiple zones onto a [vanity nameserver set](/products/dns/vanity-nameservers),
+or reset them to the standard OpusDNS nameservers. This is the bulk equivalent
+of `PATCH /v1/dns/{zone_name}/vanity-set`: each zone's apex `NS` and `SOA` are
+rewritten to the set's nameservers (and the zone is re-signed if DNSSEC is
+enabled).
+
+The template's `vanity_nameserver_set_id` applies to every zone; an instance may
+override it, including `null` to unbrand just that zone:
+
+| Value | Behavior |
+| --- | --- |
+| A `set_id` | Brand the zone with that vanity nameserver set. |
+| `null` | Unbrand the zone — reset its apex to the standard OpusDNS nameservers. |
+
+```json
+{
+  "type": "dns_zone_restamp_vanity_ns_bulk",
+  "payload": {
+    "template": { "vanity_nameserver_set_id": "vns_01kvn2kr1qep2bd7e60tt65fxn" },
+    "instances": [
+      { "name": "example.com" },
+      { "name": "example.net" },
+      { "name": "example.org", "vanity_nameserver_set_id": null }
+    ]
+  }
+}
+```
+
+<scalar-callout type="info">
+The target set must be <code>active</code> and belong to your organization. For a single zone, use the <code>PATCH /v1/dns/{zone_name}/vanity-set</code> endpoint instead.
+</scalar-callout>
+
 ### Choosing the right DNS command
 
 | Command | Operates on | Use when |
@@ -288,6 +322,7 @@ Up to 100 operations per instance for record-level patches.
 | `dns_zone_update_bulk` | Whole zone | Resetting all RRsets or toggling DNSSEC across zones. |
 | `dns_zone_patch_rrsets_bulk` | Whole RRsets by `(name, type)` | Replacing all records of a given type at a given name. |
 | `dns_zone_patch_records_bulk` | Individual rdata values | Adding or removing a single record without touching siblings. |
+| `dns_zone_restamp_vanity_ns_bulk` | Apex `NS` / `SOA` branding | Pointing many zones at a vanity nameserver set (or back to OpusDNS defaults). |
 
 **Example scenario:** You're migrating mail to a new provider across 200
 domains.
