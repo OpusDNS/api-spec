@@ -3038,6 +3038,106 @@ components:
       - dns_zone_id
       title: DnsZoneResponse
       type: object
+    DnsZoneRestampVanityNsBulkCommand:
+      properties:
+        command:
+          const: dns_zone_restamp_vanity_ns_bulk
+          default: dns_zone_restamp_vanity_ns_bulk
+          title: Command
+          type: string
+        idempotency_key:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Idempotency key for this bulk command
+          title: Idempotency Key
+        payload:
+          $ref: '#/components/schemas/DnsZoneRestampVanityNsBulkPayload'
+          description: Bulk DNS zone vanity NS restamp payload
+        version:
+          default: v1
+          description: Command version
+          title: Version
+          type: string
+      required:
+      - payload
+      title: DnsZoneRestampVanityNsBulkCommand
+      type: object
+    DnsZoneRestampVanityNsBulkInstance:
+      properties:
+        name:
+          description: The DNS zone name to restamp (e.g., example.com)
+          title: Name
+          type: string
+        vanity_nameserver_set_id:
+          anyOf:
+          - examples:
+            - vns_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: vns
+          - type: 'null'
+          description: 'Override the template''s set for this zone: a set id to brand
+            with, or null to unbrand this zone to system defaults. Omit the field
+            entirely to inherit the template''s value.'
+          title: Vanity Nameserver Set Id
+      required:
+      - name
+      title: DnsZoneRestampVanityNsBulkInstance
+      type: object
+    DnsZoneRestampVanityNsBulkPayload:
+      properties:
+        instances:
+          description: List of zones to restamp (1-1000)
+          items:
+            $ref: '#/components/schemas/DnsZoneRestampVanityNsBulkInstance'
+          maxItems: 1000
+          minItems: 1
+          title: Instances
+          type: array
+        template:
+          $ref: '#/components/schemas/DnsZoneRestampVanityNsBulkTemplate'
+          description: Shared vanity NS set for all zones
+      required:
+      - template
+      - instances
+      title: DnsZoneRestampVanityNsBulkPayload
+      type: object
+    DnsZoneRestampVanityNsBulkTemplate:
+      properties:
+        vanity_nameserver_set_id:
+          anyOf:
+          - examples:
+            - vns_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^vns_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: vns
+          - type: 'null'
+          description: Vanity NS set to restamp every zone's apex NS + SOA with, or
+            null to unbrand all zones back to OpusDNS system default nameservers.
+            An instance may override this.
+          title: Vanity Nameserver Set Id
+      title: DnsZoneRestampVanityNsBulkTemplate
+      type: object
+    DnsZoneRestampVanityNsWorkerPayload:
+      properties:
+        operation:
+          title: Operation
+          type: string
+        type:
+          const: dns_zone_restamp_vanity_ns_bulk
+          title: Type
+          type: string
+        zone:
+          $ref: '#/components/schemas/DnsZoneRestampVanityNsBulkInstance'
+      required:
+      - type
+      - operation
+      - zone
+      title: DnsZoneRestampVanityNsWorkerPayload
+      type: object
     DnsZoneRrsetsCreate:
       properties:
         rrsets:
@@ -7592,6 +7692,7 @@ components:
                 dns_zone_create_bulk: '#/components/schemas/DnsZoneCreateBulkCommand'
                 dns_zone_patch_records_bulk: '#/components/schemas/DnsZonePatchRecordsBulkCommand'
                 dns_zone_patch_rrsets_bulk: '#/components/schemas/DnsZonePatchRrsetsBulkCommand'
+                dns_zone_restamp_vanity_ns_bulk: '#/components/schemas/DnsZoneRestampVanityNsBulkCommand'
                 dns_zone_update: '#/components/schemas/DnsZoneUpdateCommand'
                 dns_zone_update_bulk: '#/components/schemas/DnsZoneUpdateBulkCommand'
                 domain_create: '#/components/schemas/DomainCreateCommand'
@@ -7628,6 +7729,7 @@ components:
             - $ref: '#/components/schemas/DnsZoneUpdateBulkCommand'
             - $ref: '#/components/schemas/DnsZonePatchRrsetsBulkCommand'
             - $ref: '#/components/schemas/DnsZonePatchRecordsBulkCommand'
+            - $ref: '#/components/schemas/DnsZoneRestampVanityNsBulkCommand'
             - $ref: '#/components/schemas/ContactCreateBulkCommand'
             - $ref: '#/components/schemas/ContactCreateCommand'
             - $ref: '#/components/schemas/ParkingCreateBulkCommand'
@@ -7899,6 +8001,7 @@ components:
                 dns_zone_create_bulk: '#/components/schemas/DnsZoneCreateWorkerPayload'
                 dns_zone_patch_records_bulk: '#/components/schemas/DnsZonePatchRecordsWorkerPayload'
                 dns_zone_patch_rrsets_bulk: '#/components/schemas/DnsZonePatchRrsetsWorkerPayload'
+                dns_zone_restamp_vanity_ns_bulk: '#/components/schemas/DnsZoneRestampVanityNsWorkerPayload'
                 dns_zone_update: '#/components/schemas/DnsZoneUpdateWorkerPayload'
                 dns_zone_update_bulk: '#/components/schemas/DnsZoneUpdateWorkerPayload'
                 domain_create: '#/components/schemas/DomainCreateWorkerPayload'
@@ -7920,6 +8023,7 @@ components:
             - $ref: '#/components/schemas/DnsZoneUpdateWorkerPayload'
             - $ref: '#/components/schemas/DnsZonePatchRrsetsWorkerPayload'
             - $ref: '#/components/schemas/DnsZonePatchRecordsWorkerPayload'
+            - $ref: '#/components/schemas/DnsZoneRestampVanityNsWorkerPayload'
             - $ref: '#/components/schemas/ContactCreateWorkerPayload'
             - $ref: '#/components/schemas/ParkingCreateWorkerPayload'
             - $ref: '#/components/schemas/ParkingEnableWorkerPayload'
@@ -13246,7 +13350,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-23-123609
+  version: 2026-06-23-185512
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -24079,6 +24183,24 @@ paths:
                             type: A
                         zone_name: zone2.com
                     version: v1
+              bulk_dns_zone_restamp_vanity_ns:
+                description: Restamp multiple zones' apex NS + SOA onto a vanity nameserver
+                  set, or unbrand them to OpusDNS system defaults. The template's
+                  vanity_nameserver_set_id applies to every zone; an instance may
+                  override it (set null to unbrand just that zone).
+                summary: Bulk DNS zone vanity NS restamp
+                value:
+                  commands:
+                  - command: dns_zone_restamp_vanity_ns_bulk
+                    idempotency_key: bulk-restamp-vanity-ns-2050-01
+                    payload:
+                      instances:
+                      - name: zone1.com
+                      - name: zone2.com
+                      - name: zone3.com
+                      template:
+                        vanity_nameserver_set_id: vns_01h9xk4p2e2v8q9r5t7w0c3m6n
+                    version: v1
               bulk_dns_zone_update:
                 description: Update multiple DNS zones with the same RRsets. Useful
                   for applying identical DNS record changes across many zones.
@@ -24468,6 +24590,7 @@ paths:
       - domains:manage
       - jobs:manage
       - parking:manage
+      - vanity_ns:manage
   /v1/jobs/{batch_id}:
     delete:
       operationId: delete_batch_v1_jobs__batch_id__delete

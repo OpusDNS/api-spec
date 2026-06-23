@@ -4790,6 +4790,69 @@ export interface components {
              */
             vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
+        /** DnsZoneRestampVanityNsBulkCommand */
+        DnsZoneRestampVanityNsBulkCommand: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            command: "dns_zone_restamp_vanity_ns_bulk";
+            /**
+             * Idempotency Key
+             * @description Idempotency key for this bulk command
+             */
+            idempotency_key?: string | null;
+            /** @description Bulk DNS zone vanity NS restamp payload */
+            payload: components["schemas"]["DnsZoneRestampVanityNsBulkPayload"];
+            /**
+             * Version
+             * @description Command version
+             * @default v1
+             */
+            version: string;
+        };
+        /** DnsZoneRestampVanityNsBulkInstance */
+        DnsZoneRestampVanityNsBulkInstance: {
+            /**
+             * Name
+             * @description The DNS zone name to restamp (e.g., example.com)
+             */
+            name: string;
+            /**
+             * Vanity Nameserver Set Id
+             * @description Override the template's set for this zone: a set id to brand with, or null to unbrand this zone to system defaults. Omit the field entirely to inherit the template's value.
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
+        };
+        /** DnsZoneRestampVanityNsBulkPayload */
+        DnsZoneRestampVanityNsBulkPayload: {
+            /**
+             * Instances
+             * @description List of zones to restamp (1-1000)
+             */
+            instances: components["schemas"]["DnsZoneRestampVanityNsBulkInstance"][];
+            /** @description Shared vanity NS set for all zones */
+            template: components["schemas"]["DnsZoneRestampVanityNsBulkTemplate"];
+        };
+        /** DnsZoneRestampVanityNsBulkTemplate */
+        DnsZoneRestampVanityNsBulkTemplate: {
+            /**
+             * Vanity Nameserver Set Id
+             * @description Vanity NS set to restamp every zone's apex NS + SOA with, or null to unbrand all zones back to OpusDNS system default nameservers. An instance may override this.
+             */
+            vanity_nameserver_set_id?: TypeId<"vns"> | null;
+        };
+        /** DnsZoneRestampVanityNsWorkerPayload */
+        DnsZoneRestampVanityNsWorkerPayload: {
+            /** Operation */
+            operation: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "dns_zone_restamp_vanity_ns_bulk";
+            zone: components["schemas"]["DnsZoneRestampVanityNsBulkInstance"];
+        };
         /** DnsZoneRrsetsCreate */
         DnsZoneRrsetsCreate: {
             /** Rrsets */
@@ -7839,7 +7902,7 @@ export interface components {
              * Commands
              * @description List of commands to execute
              */
-            commands: (components["schemas"]["DomainCreateCommand"] | components["schemas"]["DomainUpdateCommand"] | components["schemas"]["DomainTransferCommand"] | components["schemas"]["DnsZoneCreateCommand"] | components["schemas"]["DnsZoneUpdateCommand"] | components["schemas"]["DomainCreateBulkCommand"] | components["schemas"]["DomainTransferBulkCommand"] | components["schemas"]["DomainUpdateBulkCommand"] | components["schemas"]["DnsZoneCreateBulkCommand"] | components["schemas"]["DnsZoneUpdateBulkCommand"] | components["schemas"]["DnsZonePatchRrsetsBulkCommand"] | components["schemas"]["DnsZonePatchRecordsBulkCommand"] | components["schemas"]["ContactCreateBulkCommand"] | components["schemas"]["ContactCreateCommand"] | components["schemas"]["ParkingCreateBulkCommand"] | components["schemas"]["ParkingEnableBulkCommand"] | components["schemas"]["ParkingDisableBulkCommand"] | components["schemas"]["ParkingDeleteBulkCommand"] | components["schemas"]["EmailForwardCreateBulkCommand"] | components["schemas"]["EmailForwardEnableBulkCommand"] | components["schemas"]["EmailForwardDisableBulkCommand"] | components["schemas"]["EmailForwardDeleteBulkCommand"] | components["schemas"]["EmailForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardCreateBulkCommand"] | components["schemas"]["DomainForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardEnableBulkCommand"] | components["schemas"]["DomainForwardDisableBulkCommand"] | components["schemas"]["DomainForwardDeleteBulkCommand"])[];
+            commands: (components["schemas"]["DomainCreateCommand"] | components["schemas"]["DomainUpdateCommand"] | components["schemas"]["DomainTransferCommand"] | components["schemas"]["DnsZoneCreateCommand"] | components["schemas"]["DnsZoneUpdateCommand"] | components["schemas"]["DomainCreateBulkCommand"] | components["schemas"]["DomainTransferBulkCommand"] | components["schemas"]["DomainUpdateBulkCommand"] | components["schemas"]["DnsZoneCreateBulkCommand"] | components["schemas"]["DnsZoneUpdateBulkCommand"] | components["schemas"]["DnsZonePatchRrsetsBulkCommand"] | components["schemas"]["DnsZonePatchRecordsBulkCommand"] | components["schemas"]["DnsZoneRestampVanityNsBulkCommand"] | components["schemas"]["ContactCreateBulkCommand"] | components["schemas"]["ContactCreateCommand"] | components["schemas"]["ParkingCreateBulkCommand"] | components["schemas"]["ParkingEnableBulkCommand"] | components["schemas"]["ParkingDisableBulkCommand"] | components["schemas"]["ParkingDeleteBulkCommand"] | components["schemas"]["EmailForwardCreateBulkCommand"] | components["schemas"]["EmailForwardEnableBulkCommand"] | components["schemas"]["EmailForwardDisableBulkCommand"] | components["schemas"]["EmailForwardDeleteBulkCommand"] | components["schemas"]["EmailForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardCreateBulkCommand"] | components["schemas"]["DomainForwardUpdateBulkCommand"] | components["schemas"]["DomainForwardEnableBulkCommand"] | components["schemas"]["DomainForwardDisableBulkCommand"] | components["schemas"]["DomainForwardDeleteBulkCommand"])[];
             /**
              * Label
              * @description Human-readable label for this batch
@@ -8058,7 +8121,7 @@ export interface components {
              * Payload
              * @description The original request payload for this job
              */
-            payload?: (components["schemas"]["DomainCreateWorkerPayload"] | components["schemas"]["DomainUpdateWorkerPayload"] | components["schemas"]["DomainTransferWorkerPayload"] | components["schemas"]["DnsZoneCreateWorkerPayload"] | components["schemas"]["DnsZoneUpdateWorkerPayload"] | components["schemas"]["DnsZonePatchRrsetsWorkerPayload"] | components["schemas"]["DnsZonePatchRecordsWorkerPayload"] | components["schemas"]["ContactCreateWorkerPayload"] | components["schemas"]["ParkingCreateWorkerPayload"] | components["schemas"]["ParkingEnableWorkerPayload"] | components["schemas"]["ParkingDisableWorkerPayload"] | components["schemas"]["ParkingDeleteWorkerPayload"]) | {
+            payload?: (components["schemas"]["DomainCreateWorkerPayload"] | components["schemas"]["DomainUpdateWorkerPayload"] | components["schemas"]["DomainTransferWorkerPayload"] | components["schemas"]["DnsZoneCreateWorkerPayload"] | components["schemas"]["DnsZoneUpdateWorkerPayload"] | components["schemas"]["DnsZonePatchRrsetsWorkerPayload"] | components["schemas"]["DnsZonePatchRecordsWorkerPayload"] | components["schemas"]["DnsZoneRestampVanityNsWorkerPayload"] | components["schemas"]["ContactCreateWorkerPayload"] | components["schemas"]["ParkingCreateWorkerPayload"] | components["schemas"]["ParkingEnableWorkerPayload"] | components["schemas"]["ParkingDisableWorkerPayload"] | components["schemas"]["ParkingDeleteWorkerPayload"]) | {
                 [key: string]: unknown;
             } | null;
             /**

@@ -82,6 +82,11 @@ import type {
   DnsZonePatchRrsetsWorkerPayload,
   DnsZoneRecordsPatchOps,
   DnsZone,
+  DnsZoneRestampVanityNsBulkCommand,
+  DnsZoneRestampVanityNsBulkInstance,
+  DnsZoneRestampVanityNsBulkPayload,
+  DnsZoneRestampVanityNsBulkTemplate,
+  DnsZoneRestampVanityNsWorkerPayload,
   DnsZoneRrsetsCreate,
   DnsZoneRrsetsPatchOps,
   DnsZoneSummary,
@@ -1486,6 +1491,50 @@ export const KEYS_DNS_ZONE = [
   KEY_DNS_ZONE_UPDATED_ON,
   KEY_DNS_ZONE_VANITY_NAMESERVER_SET_ID,
 ] as const satisfies (keyof DnsZone)[];
+
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_COMMAND = 'command' satisfies keyof DnsZoneRestampVanityNsBulkCommand;
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_IDEMPOTENCY_KEY = 'idempotency_key' satisfies keyof DnsZoneRestampVanityNsBulkCommand;
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_PAYLOAD = 'payload' satisfies keyof DnsZoneRestampVanityNsBulkCommand;
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_VERSION = 'version' satisfies keyof DnsZoneRestampVanityNsBulkCommand;
+
+export const KEYS_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND = [
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_COMMAND,
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_IDEMPOTENCY_KEY,
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_PAYLOAD,
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_COMMAND_VERSION,
+] as const satisfies (keyof DnsZoneRestampVanityNsBulkCommand)[];
+
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_INSTANCE_NAME = 'name' satisfies keyof DnsZoneRestampVanityNsBulkInstance;
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_INSTANCE_VANITY_NAMESERVER_SET_ID = 'vanity_nameserver_set_id' satisfies keyof DnsZoneRestampVanityNsBulkInstance;
+
+export const KEYS_DNS_ZONE_RESTAMP_VANITY_NS_BULK_INSTANCE = [
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_INSTANCE_NAME,
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_INSTANCE_VANITY_NAMESERVER_SET_ID,
+] as const satisfies (keyof DnsZoneRestampVanityNsBulkInstance)[];
+
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_PAYLOAD_INSTANCES = 'instances' satisfies keyof DnsZoneRestampVanityNsBulkPayload;
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_PAYLOAD_TEMPLATE = 'template' satisfies keyof DnsZoneRestampVanityNsBulkPayload;
+
+export const KEYS_DNS_ZONE_RESTAMP_VANITY_NS_BULK_PAYLOAD = [
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_PAYLOAD_INSTANCES,
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_PAYLOAD_TEMPLATE,
+] as const satisfies (keyof DnsZoneRestampVanityNsBulkPayload)[];
+
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_TEMPLATE_VANITY_NAMESERVER_SET_ID = 'vanity_nameserver_set_id' satisfies keyof DnsZoneRestampVanityNsBulkTemplate;
+
+export const KEYS_DNS_ZONE_RESTAMP_VANITY_NS_BULK_TEMPLATE = [
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_BULK_TEMPLATE_VANITY_NAMESERVER_SET_ID,
+] as const satisfies (keyof DnsZoneRestampVanityNsBulkTemplate)[];
+
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_WORKER_PAYLOAD_OPERATION = 'operation' satisfies keyof DnsZoneRestampVanityNsWorkerPayload;
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_WORKER_PAYLOAD_TYPE = 'type' satisfies keyof DnsZoneRestampVanityNsWorkerPayload;
+export const KEY_DNS_ZONE_RESTAMP_VANITY_NS_WORKER_PAYLOAD_ZONE = 'zone' satisfies keyof DnsZoneRestampVanityNsWorkerPayload;
+
+export const KEYS_DNS_ZONE_RESTAMP_VANITY_NS_WORKER_PAYLOAD = [
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_WORKER_PAYLOAD_OPERATION,
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_WORKER_PAYLOAD_TYPE,
+  KEY_DNS_ZONE_RESTAMP_VANITY_NS_WORKER_PAYLOAD_ZONE,
+] as const satisfies (keyof DnsZoneRestampVanityNsWorkerPayload)[];
 
 export const KEY_DNS_ZONE_RRSETS_CREATE_RRSETS = 'rrsets' satisfies keyof DnsZoneRrsetsCreate;
 
