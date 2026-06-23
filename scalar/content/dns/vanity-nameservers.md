@@ -224,7 +224,7 @@ The target set must be <code>active</code> and belong to your organization. A su
 </scalar-callout>
 
 <scalar-callout type="info">
-To re-brand (or unbrand) <strong>many zones at once</strong>, use the bulk jobs API with the <code>dns_zone_restamp_vanity_ns_bulk</code> command — see <a href="/products/jobs/dns-commands">DNS bulk commands</a>.
+To re-brand (or unbrand) <strong>many zones at once</strong>, use the bulk jobs API with the <code>dns_zone_restamp_vanity_ns_bulk</code> command — see <a href="/automation/jobs/dns-commands">DNS bulk commands</a>.
 </scalar-callout>
 
 ### List the zones using a set
