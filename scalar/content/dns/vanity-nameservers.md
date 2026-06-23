@@ -116,7 +116,7 @@ A set has one of the following statuses:
 | `deleting` | Being torn down. |
 
 <scalar-callout type="info">
-A <code>failed</code> set is <strong>not</strong> permanent. Once the prerequisites are in place — for example, after you finish publishing your records — OpusDNS re-runs activation for the same set. There is no need to delete it and start over. Use <code>/check</code> to see what is still missing.
+A <code>failed</code> set is <strong>not</strong> permanent. Once the prerequisites are in place — for example, after you finish publishing your records — <a href="#retry-a-failed-set">retry the set</a> to re-run activation for the same set, with no need to delete it and start over. Use <code>/check</code> first to confirm what was missing is now resolved.
 </scalar-callout>
 
 ## The anycast addresses to publish
@@ -307,6 +307,27 @@ relevant — a `remediation` hint.
 A common and <strong>healthy</strong> situation is <code>registry_glue_registered = pass</code> with <code>registry_glue_visible = warn</code> and an overall state of <code>propagating</code>: the glue is registered correctly and DNS just hasn't caught up yet. It clears on its own.
 </scalar-callout>
 
+## Retry a failed set
+
+A `failed` set means activation did not complete within its window — usually
+because the nameserver `A` / `AAAA` records or registry glue were not in place in
+time. Once you have fixed what was missing, re-run activation for the **same**
+set instead of recreating it:
+
+```bash
+curl "$OPUSDNS_API_BASE/v1/vanity-nameserver-sets/$SET_ID/retry" \
+  --request POST \
+  --header "X-Api-Key: $OPUSDNS_API_KEY"
+```
+
+The call returns **`202 Accepted`**; the set returns to `provisioning` and
+activation runs again, asynchronously, exactly as it did on create. Retry applies
+only to `failed` sets — calling it on a set in any other status returns `409`.
+
+<scalar-callout type="info">
+Run <a href="#check-the-status-of-a-set"><code>/check</code></a> before retrying to confirm the prerequisites are now satisfied, so the re-run succeeds instead of failing again.
+</scalar-callout>
+
 ## Glue records
 
 **Glue records** are the IP addresses attached to a nameserver at the
@@ -392,6 +413,7 @@ Deleting a set takes down the vanity NS configuration, but does <strong>not</str
 | `PATCH /v1/vanity-nameserver-sets/{set_id}/default` | Make the set your organization default. |
 | `DELETE /v1/vanity-nameserver-sets/default` | Clear the organization default. |
 | `POST /v1/vanity-nameserver-sets/{set_id}/restore` | Restore a suspended set during its grace period. |
+| `POST /v1/vanity-nameserver-sets/{set_id}/retry` | Re-run activation for a `failed` set. Returns `202`. |
 | `DELETE /v1/vanity-nameserver-sets/{set_id}` | Delete a set (must be out of use first). Returns `202`. |
 | `PATCH /v1/dns/{zone_name}/vanity-set` | Re-brand an existing zone with a set, or clear it (`null`) back to OpusDNS defaults. |
 
@@ -403,7 +425,7 @@ time.
 
 <scalar-callout type="info">
 <strong>"My set has been provisioning for a while, or it went to <code>failed</code>."</strong><br/>
-Activation only completes once the prerequisites check out, within a limited window. If your records or glue were not in place in time, the set is marked <code>failed</code> — but it re-runs once everything is ready, without recreating it. Run <code>/check</code> to see what is missing.
+Activation only completes once the prerequisites check out, within a limited window. If your records or glue were not in place in time, the set is marked <code>failed</code>. Run <code>/check</code> to see what is missing, fix it, then <a href="#retry-a-failed-set">retry the set</a> to re-run activation — no need to recreate it.
 </scalar-callout>
 
 <scalar-callout type="info">
