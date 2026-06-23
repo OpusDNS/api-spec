@@ -6225,9 +6225,9 @@ export interface components {
             } | null;
             /**
              * Auth Code
-             * @description The auth code for this domain (required)
+             * @description The auth code for this domain (required by some TLDs)
              */
-            auth_code: string;
+            auth_code?: string | null;
             /** @description Override contacts for this domain */
             contacts?: components["schemas"]["DomainContactHandles"] | null;
             /**

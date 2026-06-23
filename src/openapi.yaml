@@ -5254,9 +5254,13 @@ components:
           description: Override attributes for this domain
           title: Attributes
         auth_code:
-          description: The auth code for this domain (required)
+          anyOf:
+          - maxLength: 32
+            minLength: 6
+            type: string
+          - type: 'null'
+          description: The auth code for this domain (required by some TLDs)
           title: Auth Code
-          type: string
         contacts:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
@@ -5299,7 +5303,6 @@ components:
           description: Override renewal mode for this domain
       required:
       - name
-      - auth_code
       title: DomainTransferBulkInstance
       type: object
     DomainTransferBulkPayload:
@@ -13243,7 +13246,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-22-232128
+  version: 2026-06-23-123609
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
