@@ -6062,6 +6062,11 @@ export interface components {
             /** @description The renewal mode of the domain */
             renewal_mode?: components["schemas"]["RenewalMode"];
             /**
+             * Renewal Period
+             * @description Renewal period of the domain as an ISO 8601 duration (e.g. 'P1M', 'P1Y'). Null when the domain is not set to renew (renewal mode 'expire') or has no active subscription.
+             */
+            renewal_period?: string | null;
+            /**
              * Roid
              * @description The registry object id of the domain
              * @example D123456789-EXAMPLE-TEST

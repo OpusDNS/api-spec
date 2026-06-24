@@ -5002,6 +5002,14 @@ components:
         renewal_mode:
           $ref: '#/components/schemas/RenewalMode'
           description: The renewal mode of the domain
+        renewal_period:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Renewal period of the domain as an ISO 8601 duration (e.g.
+            'P1M', 'P1Y'). Null when the domain is not set to renew (renewal mode
+            'expire') or has no active subscription.
+          title: Renewal Period
         roid:
           description: The registry object id of the domain
           examples:
@@ -13375,7 +13383,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-24-105749
+  version: 2026-06-24-134115
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
