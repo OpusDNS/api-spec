@@ -6393,9 +6393,9 @@ export interface components {
             auth_code?: string | null;
             /**
              * Contacts
-             * @description The contacts of the domain
+             * @description The contacts of the domain. Optional for transfers when all supported contact roles have a minimum of 0 in the TLD specification.
              */
-            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
             /**
              * Create Zone
              * @description Create a zone for the domain on OpusDNS nameserver infrastructure
@@ -6438,9 +6438,9 @@ export interface components {
             auth_code?: string | null;
             /**
              * Contacts
-             * @description The contacts of the domain
+             * @description The contacts of the domain. Optional for transfers when all supported contact roles have a minimum of 0 in the TLD specification.
              */
-            contacts: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
+            contacts?: components["schemas"]["DomainContactHandles"] | components["schemas"]["ContactIdList"];
             /**
              * Create Zone
              * @description Create a zone for the domain on OpusDNS nameserver infrastructure

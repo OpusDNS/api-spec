@@ -3576,8 +3576,8 @@ components:
           description: The renewal mode of the domain
       required:
       - name
-      - contacts
       - renewal_mode
+      - contacts
       - period
       title: DomainCreate
       type: object
@@ -3825,8 +3825,8 @@ components:
           description: The renewal mode of the domain
       required:
       - name
-      - contacts
       - renewal_mode
+      - contacts
       - period
       title: DomainCreatePayloadData
       type: object
@@ -5523,7 +5523,8 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
           - $ref: '#/components/schemas/ContactIdList'
-          description: The contacts of the domain
+          description: The contacts of the domain. Optional for transfers when all
+            supported contact roles have a minimum of 0 in the TLD specification.
           title: Contacts
         create_zone:
           default: false
@@ -5559,7 +5560,6 @@ components:
           description: The renewal mode of the domain
       required:
       - name
-      - contacts
       - renewal_mode
       title: DomainTransferIn
       type: object
@@ -5587,7 +5587,8 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DomainContactHandles'
           - $ref: '#/components/schemas/ContactIdList'
-          description: The contacts of the domain
+          description: The contacts of the domain. Optional for transfers when all
+            supported contact roles have a minimum of 0 in the TLD specification.
           title: Contacts
         create_zone:
           default: false
@@ -5623,7 +5624,6 @@ components:
           description: The renewal mode of the domain
       required:
       - name
-      - contacts
       - renewal_mode
       title: DomainTransferPayloadData
       type: object
@@ -13383,7 +13383,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-24-134115
+  version: 2026-06-24-161025
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
