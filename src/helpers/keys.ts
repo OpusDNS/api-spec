@@ -2550,6 +2550,7 @@ export const KEYS_DOMAIN_TRANSIT = [
   KEY_DOMAIN_TRANSIT_SUCCESS,
 ] as const satisfies (keyof DomainTransit)[];
 
+export const KEY_DOMAIN_UPDATE_ATTRIBUTES = 'attributes' satisfies keyof DomainUpdate;
 export const KEY_DOMAIN_UPDATE_AUTH_CODE = 'auth_code' satisfies keyof DomainUpdate;
 export const KEY_DOMAIN_UPDATE_CONTACTS = 'contacts' satisfies keyof DomainUpdate;
 export const KEY_DOMAIN_UPDATE_NAMESERVERS = 'nameservers' satisfies keyof DomainUpdate;
@@ -2558,6 +2559,7 @@ export const KEY_DOMAIN_UPDATE_STATUS_CHANGES = 'status_changes' satisfies keyof
 export const KEY_DOMAIN_UPDATE_STATUSES = 'statuses' satisfies keyof DomainUpdate;
 
 export const KEYS_DOMAIN_UPDATE = [
+  KEY_DOMAIN_UPDATE_ATTRIBUTES,
   KEY_DOMAIN_UPDATE_AUTH_CODE,
   KEY_DOMAIN_UPDATE_CONTACTS,
   KEY_DOMAIN_UPDATE_NAMESERVERS,
@@ -2632,6 +2634,7 @@ export const KEYS_DOMAIN_UPDATE_COMMAND = [
   KEY_DOMAIN_UPDATE_COMMAND_VERSION,
 ] as const satisfies (keyof DomainUpdateCommand)[];
 
+export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_ATTRIBUTES = 'attributes' satisfies keyof DomainUpdatePayloadData;
 export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_AUTH_CODE = 'auth_code' satisfies keyof DomainUpdatePayloadData;
 export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_CONTACTS = 'contacts' satisfies keyof DomainUpdatePayloadData;
 export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_DOMAIN_ID = 'domain_id' satisfies keyof DomainUpdatePayloadData;
@@ -2641,6 +2644,7 @@ export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUS_CHANGES = 'status_changes' sa
 export const KEY_DOMAIN_UPDATE_PAYLOAD_DATA_STATUSES = 'statuses' satisfies keyof DomainUpdatePayloadData;
 
 export const KEYS_DOMAIN_UPDATE_PAYLOAD_DATA = [
+  KEY_DOMAIN_UPDATE_PAYLOAD_DATA_ATTRIBUTES,
   KEY_DOMAIN_UPDATE_PAYLOAD_DATA_AUTH_CODE,
   KEY_DOMAIN_UPDATE_PAYLOAD_DATA_CONTACTS,
   KEY_DOMAIN_UPDATE_PAYLOAD_DATA_DOMAIN_ID,

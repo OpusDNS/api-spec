@@ -150,6 +150,7 @@ export const ATTRIBUTE_TYPE = {
   DATETIME: "datetime",
   INTEGER: "integer",
   COUNTRY_CODE: "country_code",
+  URI_TEMPLATE: "uri_template",
 } as const satisfies Record<string, AttributeType>;
 
 export const ATTRIBUTE_TYPE_VALUES = [
@@ -159,6 +160,7 @@ export const ATTRIBUTE_TYPE_VALUES = [
   'datetime',
   'integer',
   'country_code',
+  'uri_template',
 ] as const satisfies ReadonlyArray<AttributeType>;
 
 export const BATCH_SORT_FIELD = {
@@ -591,6 +593,8 @@ export const DOMAIN_ATTRIBUTE_KEY = {
   NIC_IT_COMPLIANCE_CONFIRMATION: "nic_it_compliance_confirmation",
   TRAVEL_INDUSTRY_ACKNOWLEDGEMENT: "travel_industry_acknowledgement",
   VERIFICATION_REQUIRED: "verification_required",
+  DE_GENERAL_REQUEST_CONTACT: "de_general_request_contact",
+  DE_ABUSE_CONTACT: "de_abuse_contact",
 } as const satisfies Record<string, DomainAttributeKey>;
 
 export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
@@ -599,6 +603,8 @@ export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'nic_it_compliance_confirmation',
   'travel_industry_acknowledgement',
   'verification_required',
+  'de_general_request_contact',
+  'de_abuse_contact',
 ] as const satisfies ReadonlyArray<DomainAttributeKey>;
 
 export const DOMAIN_AVAILABILITY_STATUS = {
@@ -1457,6 +1463,8 @@ export const REGISTRANT_CHANGE_TYPE_VALUES = [
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   AT_EXT_CONTACT_TYPE: "at-ext-contact:type",
   DE_CONTACT_TYPE: "DE_CONTACT_TYPE",
+  DE_GENERAL_REQUEST_URI_TEMPLATE: "DE_GENERAL_REQUEST_URI_TEMPLATE",
+  DE_ABUSE_URI_TEMPLATE: "DE_ABUSE_URI_TEMPLATE",
   DNSBE_TYPE: "dnsbe:type",
   EURID_TYPE: "eurid:type",
   AFNIC_CONTACT_TYPE: "AFNIC_CONTACT_TYPE",
@@ -1504,6 +1512,8 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'at-ext-contact:type',
   'DE_CONTACT_TYPE',
+  'DE_GENERAL_REQUEST_URI_TEMPLATE',
+  'DE_ABUSE_URI_TEMPLATE',
   'dnsbe:type',
   'eurid:type',
   'AFNIC_CONTACT_TYPE',
