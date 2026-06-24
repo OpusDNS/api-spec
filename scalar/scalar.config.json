@@ -1119,6 +1119,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/blackfriday.md",
                 "showInSidebar": true
               },
+              "/blog": {
+                "type": "page",
+                "title": "🌐 .blog",
+                "filepath": "content/tld-knowledge-base/gtlds/blog.md",
+                "showInSidebar": true
+              },
               "/blue": {
                 "type": "page",
                 "title": "🌐 .blue",
