@@ -16943,7 +16943,8 @@ export interface operations {
                 tag_mode?: components["schemas"]["TagFilterMode"];
                 name?: string | null;
                 search?: string | null;
-                tld?: string | null;
+                /** @description Filter by top-level domain (e.g., 'com', 'org'). Can be specified multiple times (union of all provided values). */
+                tld?: string[] | null;
                 sld?: string | null;
                 transfer_lock?: boolean | null;
                 is_premium?: boolean | null;

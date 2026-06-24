@@ -13383,7 +13383,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-24-161025
+  version: 2026-06-24-164613
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -20808,13 +20808,19 @@ paths:
           - type: string
           - type: 'null'
           title: Search
-      - in: query
+      - description: Filter by top-level domain (e.g., 'com', 'org'). Can be specified
+          multiple times (union of all provided values).
+        in: query
         name: tld
         required: false
         schema:
           anyOf:
-          - type: string
+          - items:
+              type: string
+            type: array
           - type: 'null'
+          description: Filter by top-level domain (e.g., 'com', 'org'). Can be specified
+            multiple times (union of all provided values).
           title: Tld
       - in: query
         name: sld
