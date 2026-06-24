@@ -8,8 +8,6 @@ lt # WIP
 ua # WIP
 name # doesn't fully work, some domain:check cmds fail
 
-blog # WIP
-
 # centralnic WIP TLDs
 best
 cam
