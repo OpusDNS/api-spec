@@ -89,10 +89,6 @@ npm run docs:preview
 # → http://localhost:7970
 ```
 
-> Deployment of the Scalar Docs 2.0 site is intentionally not wired up yet —
-> the legacy GitHub Pages site continues to serve production.
-
-
 ### Links
 
 - [Main website](https://www.opusdns.com/)
