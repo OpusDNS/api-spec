@@ -44,3 +44,12 @@ A `.lv` domain is managed with a registrant and an administrative contact. Two r
 >   "detail": "Policy validation failed"
 > }
 > ```
+
+## Transfers
+
+On an inbound transfer the registrant and administrative contact are preserved as they already are on the domain — they cannot be set in the transfer request:
+
+- the **registrant** cannot be changed through a transfer or a domain update;
+- the **administrative contact** is kept during the transfer. When the registrant is an organization, the admin is a separate individual and can be changed with a domain update afterwards. When the registrant is a natural person, the admin is the same contact as the registrant, so it changes only when the registrant changes.
+
+The billing and technical contacts are managed automatically and are set when the transfer completes; they are not part of the transfer request.
