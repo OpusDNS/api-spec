@@ -1912,7 +1912,7 @@ components:
           title: Update Supported Roles
       title: ContactsBase
       type: object
-    Context:
+    ContactsContext:
       properties:
         context_id:
           examples:
@@ -1935,7 +1935,10 @@ components:
           title: Created At
           type: string
         kind:
-          $ref: '#/components/schemas/MessageContextKind'
+          const: contacts
+          default: contacts
+          title: Kind
+          type: string
         organization_id:
           examples:
           - organization_01h45ytscbebyvny4gc8cr8ma2
@@ -1945,9 +1948,7 @@ components:
           type: string
           x-typeid-prefix: organization
         payload:
-          additionalProperties: true
-          title: Payload
-          type: object
+          $ref: '#/components/schemas/ContextPayload_RegistrarContact_'
         user_id:
           title: User Id
           type: string
@@ -1956,24 +1957,22 @@ components:
       - conversation_id
       - organization_id
       - user_id
-      - kind
       - created_at
-      title: Context
+      - payload
+      title: ContactsContext
       type: object
-    ContextCreateRequest:
+    ContactsContextCreate:
       properties:
         kind:
-          $ref: '#/components/schemas/MessageContextKind'
+          const: contacts
+          default: contacts
+          title: Kind
+          type: string
         payload:
-          additionalProperties: true
-          description: Non-empty structured payload. Shape depends on `kind`.
-          minProperties: 1
-          title: Payload
-          type: object
+          $ref: '#/components/schemas/ContextPayload_RegistrarContact_'
       required:
-      - kind
       - payload
-      title: ContextCreateRequest
+      title: ContactsContextCreate
       type: object
     ContextListResponse:
       properties:
@@ -1981,13 +1980,156 @@ components:
           $ref: '#/components/schemas/PaginationMetadata'
         results:
           items:
-            $ref: '#/components/schemas/Context'
+            discriminator:
+              mapping:
+                contacts: '#/components/schemas/ContactsContext'
+                domain_forwards: '#/components/schemas/DomainForwardsContext'
+                domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
+                domains: '#/components/schemas/DomainsContext'
+                email_forwards: '#/components/schemas/EmailForwardsContext'
+                zones: '#/components/schemas/ZonesContext'
+              propertyName: kind
+            oneOf:
+            - $ref: '#/components/schemas/ZonesContext'
+            - $ref: '#/components/schemas/ContactsContext'
+            - $ref: '#/components/schemas/DomainsContext'
+            - $ref: '#/components/schemas/DomainForwardsContext'
+            - $ref: '#/components/schemas/EmailForwardsContext'
+            - $ref: '#/components/schemas/DomainRecommendationsContext'
           title: Results
           type: array
       required:
       - results
       - pagination
       title: ContextListResponse
+      type: object
+    ContextMeta:
+      properties:
+        processing_time_ms:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Processing Time Ms
+        total:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Total
+      title: ContextMeta
+      type: object
+    ContextPayload_DomainForward_:
+      properties:
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/ContextMeta'
+          - type: 'null'
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/DomainForward'
+          title: Results
+          type: array
+      required:
+      - results
+      title: ContextPayload[DomainForward]
+      type: object
+    ContextPayload_DomainSearchSuggestionWithPrice_:
+      properties:
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/ContextMeta'
+          - type: 'null'
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/DomainSearchSuggestionWithPrice'
+          title: Results
+          type: array
+      required:
+      - results
+      title: ContextPayload[DomainSearchSuggestionWithPrice]
+      type: object
+    ContextPayload_EmailForwardResponse_:
+      properties:
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/ContextMeta'
+          - type: 'null'
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/EmailForwardResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      title: ContextPayload[EmailForwardResponse]
+      type: object
+    ContextPayload_RegistrarContact_:
+      properties:
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/ContextMeta'
+          - type: 'null'
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/RegistrarContact'
+          title: Results
+          type: array
+      required:
+      - results
+      title: ContextPayload[RegistrarContact]
+      type: object
+    ContextPayload_RegistrarDomain_:
+      properties:
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/ContextMeta'
+          - type: 'null'
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/RegistrarDomain'
+          title: Results
+          type: array
+      required:
+      - results
+      title: ContextPayload[RegistrarDomain]
+      type: object
+    ContextPayload_RegistrarZone_:
+      properties:
+        meta:
+          anyOf:
+          - $ref: '#/components/schemas/ContextMeta'
+          - type: 'null'
+        pagination:
+          anyOf:
+          - $ref: '#/components/schemas/PaginationMetadata'
+          - type: 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/RegistrarZone'
+          title: Results
+          type: array
+      required:
+      - results
+      title: ContextPayload[RegistrarZone]
       type: object
     Conversation:
       properties:
@@ -4037,7 +4179,6 @@ components:
       - enabled
       - updated_on
       - created_on
-      - parking_id
       title: DomainForward
       type: object
     DomainForwardBrowserStatsResponse:
@@ -4648,6 +4789,68 @@ components:
       - updated_on
       title: DomainForwardZoneSortField
       type: string
+    DomainForwardsContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: domain_forwards
+          default: domain_forwards
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/ContextPayload_DomainForward_'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: DomainForwardsContext
+      type: object
+    DomainForwardsContextCreate:
+      properties:
+        kind:
+          const: domain_forwards
+          default: domain_forwards
+          title: Kind
+          type: string
+        payload:
+          $ref: '#/components/schemas/ContextPayload_DomainForward_'
+      required:
+      - payload
+      title: DomainForwardsContextCreate
+      type: object
     DomainHostResponse:
       properties:
         host_id:
@@ -4830,6 +5033,68 @@ components:
       - value
       - unit
       title: DomainPeriod
+      type: object
+    DomainRecommendationsContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: domain_recommendations
+          default: domain_recommendations
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/ContextPayload_DomainSearchSuggestionWithPrice_'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: DomainRecommendationsContext
+      type: object
+    DomainRecommendationsContextCreate:
+      properties:
+        kind:
+          const: domain_recommendations
+          default: domain_recommendations
+          title: Kind
+          type: string
+        payload:
+          $ref: '#/components/schemas/ContextPayload_DomainSearchSuggestionWithPrice_'
+      required:
+      - payload
+      title: DomainRecommendationsContextCreate
       type: object
     DomainRenewRequest:
       properties:
@@ -6031,6 +6296,68 @@ components:
       - success
       title: DomainWithdrawResponse
       type: object
+    DomainsContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: domains
+          default: domains
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/ContextPayload_RegistrarDomain_'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: DomainsContext
+      type: object
+    DomainsContextCreate:
+      properties:
+        kind:
+          const: domains
+          default: domains
+          title: Kind
+          type: string
+        payload:
+          $ref: '#/components/schemas/ContextPayload_RegistrarDomain_'
+      required:
+      - payload
+      title: DomainsContextCreate
+      type: object
     DomainsExpiringSoon:
       properties:
         next_30_days:
@@ -6886,6 +7213,68 @@ components:
       - updated_on
       title: EmailForwardZoneSortField
       type: string
+    EmailForwardsContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: email_forwards
+          default: email_forwards
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/ContextPayload_EmailForwardResponse_'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: EmailForwardsContext
+      type: object
+    EmailForwardsContextCreate:
+      properties:
+        kind:
+          const: email_forwards
+          default: email_forwards
+          title: Kind
+          type: string
+        payload:
+          $ref: '#/components/schemas/ContextPayload_EmailForwardResponse_'
+      required:
+      - payload
+      title: EmailForwardsContextCreate
+      type: object
     EmailVerificationStatus:
       enum:
       - verified
@@ -8466,13 +8855,6 @@ components:
       - created_at
       title: Message
       type: object
-    MessageContextKind:
-      enum:
-      - zones
-      - contacts
-      - domains
-      title: MessageContextKind
-      type: string
     MessageCreateRequest:
       properties:
         content:
@@ -10915,6 +11297,175 @@ components:
       - trade
       title: RegistrantChangeType
       type: string
+    RegistrarContact:
+      properties:
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+        fax:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fax
+        first_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: First Name
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Contact ID (required for OpusDNS-native contacts, may be null
+            for registrar-sourced)
+          title: Id
+        last_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Name
+        org:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Org
+        phone:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone
+        postal_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Postal Code
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+        street:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Street
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+      title: RegistrarContact
+      type: object
+    RegistrarDomain:
+      properties:
+        contacts:
+          additionalProperties:
+            $ref: '#/components/schemas/RegistrarContact'
+          default: {}
+          title: Contacts
+          type: object
+        contacts_dedup:
+          default: []
+          items:
+            $ref: '#/components/schemas/RegistrarContact'
+          title: Contacts Dedup
+          type: array
+        expiry_date:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expiry Date
+        name:
+          title: Name
+          type: string
+        nameservers:
+          default: []
+          items:
+            type: string
+          title: Nameservers
+          type: array
+        registrar:
+          title: Registrar
+          type: string
+        statuses:
+          default: []
+          items:
+            type: string
+          title: Statuses
+          type: array
+        zone:
+          anyOf:
+          - $ref: '#/components/schemas/RegistrarZone'
+          - type: 'null'
+      required:
+      - name
+      - registrar
+      title: RegistrarDomain
+      type: object
+    RegistrarRRSet:
+      properties:
+        name:
+          title: Name
+          type: string
+        priority:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Priority
+        record:
+          default: []
+          items:
+            $ref: '#/components/schemas/RegistrarRecord'
+          title: Record
+          type: array
+        ttl:
+          title: Ttl
+          type: integer
+        type:
+          title: Type
+          type: string
+      required:
+      - name
+      - ttl
+      - type
+      title: RegistrarRRSet
+      type: object
+    RegistrarRecord:
+      properties:
+        rdata:
+          title: Rdata
+          type: string
+      required:
+      - rdata
+      title: RegistrarRecord
+      type: object
+    RegistrarZone:
+      properties:
+        name:
+          title: Name
+          type: string
+        rrsets:
+          default: []
+          items:
+            $ref: '#/components/schemas/RegistrarRRSet'
+          title: Rrsets
+          type: array
+      required:
+      - name
+      title: RegistrarZone
+      type: object
     RegistryHandleAttributeType:
       description: Registry handle attribute types for type-safe attribute key access.
       enum:
@@ -13193,6 +13744,68 @@ components:
           title: Vanity Nameserver Set Id
       title: ZoneVanitySetUpdate
       type: object
+    ZonesContext:
+      properties:
+        context_id:
+          examples:
+          - ctx_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^ctx_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Context Id
+          type: string
+          x-typeid-prefix: ctx
+        conversation_id:
+          examples:
+          - conv_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^conv_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Conversation Id
+          type: string
+          x-typeid-prefix: conv
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        kind:
+          const: zones
+          default: zones
+          title: Kind
+          type: string
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        payload:
+          $ref: '#/components/schemas/ContextPayload_RegistrarZone_'
+        user_id:
+          title: User Id
+          type: string
+      required:
+      - context_id
+      - conversation_id
+      - organization_id
+      - user_id
+      - created_at
+      - payload
+      title: ZonesContext
+      type: object
+    ZonesContextCreate:
+      properties:
+        kind:
+          const: zones
+          default: zones
+          title: Kind
+          type: string
+        payload:
+          $ref: '#/components/schemas/ContextPayload_RegistrarZone_'
+      required:
+      - payload
+      title: ZonesContextCreate
+      type: object
     api__domain__tld_specific__be__models__RequestAuthcodeResponse:
       properties:
         detail:
@@ -13383,7 +13996,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-24-164613
+  version: 2026-06-25-140028
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -13409,7 +14022,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Context'
+                discriminator:
+                  mapping:
+                    contacts: '#/components/schemas/ContactsContext'
+                    domain_forwards: '#/components/schemas/DomainForwardsContext'
+                    domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
+                    domains: '#/components/schemas/DomainsContext'
+                    email_forwards: '#/components/schemas/EmailForwardsContext'
+                    zones: '#/components/schemas/ZonesContext'
+                  propertyName: kind
+                oneOf:
+                - $ref: '#/components/schemas/ZonesContext'
+                - $ref: '#/components/schemas/ContactsContext'
+                - $ref: '#/components/schemas/DomainsContext'
+                - $ref: '#/components/schemas/DomainForwardsContext'
+                - $ref: '#/components/schemas/EmailForwardsContext'
+                - $ref: '#/components/schemas/DomainRecommendationsContext'
+                title: Response Get Context V1 Ai Concierge Contexts  Context Id  Get
           description: Successful Response
         '401':
           content:
@@ -13960,14 +14589,47 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ContextCreateRequest'
+              discriminator:
+                mapping:
+                  contacts: '#/components/schemas/ContactsContextCreate'
+                  domain_forwards: '#/components/schemas/DomainForwardsContextCreate'
+                  domain_recommendations: '#/components/schemas/DomainRecommendationsContextCreate'
+                  domains: '#/components/schemas/DomainsContextCreate'
+                  email_forwards: '#/components/schemas/EmailForwardsContextCreate'
+                  zones: '#/components/schemas/ZonesContextCreate'
+                propertyName: kind
+              oneOf:
+              - $ref: '#/components/schemas/ZonesContextCreate'
+              - $ref: '#/components/schemas/ContactsContextCreate'
+              - $ref: '#/components/schemas/DomainsContextCreate'
+              - $ref: '#/components/schemas/DomainForwardsContextCreate'
+              - $ref: '#/components/schemas/EmailForwardsContextCreate'
+              - $ref: '#/components/schemas/DomainRecommendationsContextCreate'
+              title: Request Body
         required: true
       responses:
         '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Context'
+                discriminator:
+                  mapping:
+                    contacts: '#/components/schemas/ContactsContext'
+                    domain_forwards: '#/components/schemas/DomainForwardsContext'
+                    domain_recommendations: '#/components/schemas/DomainRecommendationsContext'
+                    domains: '#/components/schemas/DomainsContext'
+                    email_forwards: '#/components/schemas/EmailForwardsContext'
+                    zones: '#/components/schemas/ZonesContext'
+                  propertyName: kind
+                oneOf:
+                - $ref: '#/components/schemas/ZonesContext'
+                - $ref: '#/components/schemas/ContactsContext'
+                - $ref: '#/components/schemas/DomainsContext'
+                - $ref: '#/components/schemas/DomainForwardsContext'
+                - $ref: '#/components/schemas/EmailForwardsContext'
+                - $ref: '#/components/schemas/DomainRecommendationsContext'
+                title: Response Create Context V1 Ai Concierge Conversations  Conversation
+                  Id  Contexts Post
           description: Successful Response
         '401':
           content:

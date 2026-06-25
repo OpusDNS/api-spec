@@ -4079,8 +4079,8 @@ export interface components {
              */
             update_supported_roles?: components["schemas"]["ContactConfigBase"][] | null;
         };
-        /** Context */
-        Context: {
+        /** ContactsContext */
+        ContactsContext: {
             /**
              * Context Id
              * Format: typeid
@@ -4098,36 +4098,84 @@ export interface components {
              * Format: date-time
              */
             created_at: Date;
-            kind: components["schemas"]["MessageContextKind"];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "contacts";
             /**
              * Organization Id
              * Format: typeid
              * @example organization_01h45ytscbebyvny4gc8cr8ma2
              */
             organization_id: TypeId<"organization">;
-            /** Payload */
-            payload?: {
-                [key: string]: unknown;
-            };
+            payload: components["schemas"]["ContextPayload_RegistrarContact_"];
             /** User Id */
             user_id: string;
         };
-        /** ContextCreateRequest */
-        ContextCreateRequest: {
-            kind: components["schemas"]["MessageContextKind"];
+        /** ContactsContextCreate */
+        ContactsContextCreate: {
             /**
-             * Payload
-             * @description Non-empty structured payload. Shape depends on `kind`.
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
              */
-            payload: {
-                [key: string]: unknown;
-            };
+            kind: "contacts";
+            payload: components["schemas"]["ContextPayload_RegistrarContact_"];
         };
         /** ContextListResponse */
         ContextListResponse: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
-            results: components["schemas"]["Context"][];
+            results: (components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"])[];
+        };
+        /** ContextMeta */
+        ContextMeta: {
+            /** Processing Time Ms */
+            processing_time_ms?: number | null;
+            /** Total */
+            total?: number | null;
+        };
+        /** ContextPayload[DomainForward] */
+        ContextPayload_DomainForward_: {
+            meta?: components["schemas"]["ContextMeta"] | null;
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["DomainForward"][];
+        };
+        /** ContextPayload[DomainSearchSuggestionWithPrice] */
+        ContextPayload_DomainSearchSuggestionWithPrice_: {
+            meta?: components["schemas"]["ContextMeta"] | null;
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["DomainSearchSuggestionWithPrice"][];
+        };
+        /** ContextPayload[EmailForwardResponse] */
+        ContextPayload_EmailForwardResponse_: {
+            meta?: components["schemas"]["ContextMeta"] | null;
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["EmailForwardResponse"][];
+        };
+        /** ContextPayload[RegistrarContact] */
+        ContextPayload_RegistrarContact_: {
+            meta?: components["schemas"]["ContextMeta"] | null;
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["RegistrarContact"][];
+        };
+        /** ContextPayload[RegistrarDomain] */
+        ContextPayload_RegistrarDomain_: {
+            meta?: components["schemas"]["ContextMeta"] | null;
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["RegistrarDomain"][];
+        };
+        /** ContextPayload[RegistrarZone] */
+        ContextPayload_RegistrarZone_: {
+            meta?: components["schemas"]["ContextMeta"] | null;
+            pagination?: components["schemas"]["PaginationMetadata"] | null;
+            /** Results */
+            results: components["schemas"]["RegistrarZone"][];
         };
         /** Conversation */
         Conversation: {
@@ -5424,7 +5472,7 @@ export interface components {
             http?: components["schemas"]["DomainForwardProtocolSetResponse"] | null;
             https?: components["schemas"]["DomainForwardProtocolSetResponse"] | null;
             /** Parking Id */
-            parking_id: TypeId<"parking"> | null;
+            parking_id?: TypeId<"parking"> | null;
             /**
              * Updated On
              * Format: date-time
@@ -5815,6 +5863,49 @@ export interface components {
          * @enum {string}
          */
         DomainForwardZoneSortField: "name" | "created_on" | "updated_on";
+        /** DomainForwardsContext */
+        DomainForwardsContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "domain_forwards";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["ContextPayload_DomainForward_"];
+            /** User Id */
+            user_id: string;
+        };
+        /** DomainForwardsContextCreate */
+        DomainForwardsContextCreate: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "domain_forwards";
+            payload: components["schemas"]["ContextPayload_DomainForward_"];
+        };
         /** DomainHostResponse */
         DomainHostResponse: {
             /**
@@ -5922,6 +6013,49 @@ export interface components {
              * @description Amount of time in the unit
              */
             value: number;
+        };
+        /** DomainRecommendationsContext */
+        DomainRecommendationsContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "domain_recommendations";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["ContextPayload_DomainSearchSuggestionWithPrice_"];
+            /** User Id */
+            user_id: string;
+        };
+        /** DomainRecommendationsContextCreate */
+        DomainRecommendationsContextCreate: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "domain_recommendations";
+            payload: components["schemas"]["ContextPayload_DomainSearchSuggestionWithPrice_"];
         };
         /** DomainRenewRequest */
         DomainRenewRequest: {
@@ -6737,6 +6871,49 @@ export interface components {
              */
             success: boolean;
         };
+        /** DomainsContext */
+        DomainsContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "domains";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["ContextPayload_RegistrarDomain_"];
+            /** User Id */
+            user_id: string;
+        };
+        /** DomainsContextCreate */
+        DomainsContextCreate: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "domains";
+            payload: components["schemas"]["ContextPayload_RegistrarDomain_"];
+        };
         /** DomainsExpiringSoon */
         DomainsExpiringSoon: {
             /**
@@ -7361,6 +7538,49 @@ export interface components {
          * @enum {string}
          */
         EmailForwardZoneSortField: "name" | "created_on" | "updated_on";
+        /** EmailForwardsContext */
+        EmailForwardsContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "email_forwards";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["ContextPayload_EmailForwardResponse_"];
+            /** User Id */
+            user_id: string;
+        };
+        /** EmailForwardsContextCreate */
+        EmailForwardsContextCreate: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "email_forwards";
+            payload: components["schemas"]["ContextPayload_EmailForwardResponse_"];
+        };
         /**
          * EmailVerificationStatus
          * @enum {string}
@@ -8388,11 +8608,6 @@ export interface components {
             };
             role: components["schemas"]["MessageRole"];
         };
-        /**
-         * MessageContextKind
-         * @enum {string}
-         */
-        MessageContextKind: "zones" | "contacts" | "domains";
         /** MessageCreateRequest */
         MessageCreateRequest: {
             /** Content */
@@ -9985,6 +10200,101 @@ export interface components {
          * @enum {string}
          */
         RegistrantChangeType: "update" | "trade";
+        /** RegistrarContact */
+        RegistrarContact: {
+            /** City */
+            city?: string | null;
+            /** Country */
+            country?: string | null;
+            /** Email */
+            email?: string | null;
+            /** Fax */
+            fax?: string | null;
+            /** First Name */
+            first_name?: string | null;
+            /**
+             * Id
+             * @description Contact ID (required for OpusDNS-native contacts, may be null for registrar-sourced)
+             */
+            id?: string | null;
+            /** Last Name */
+            last_name?: string | null;
+            /** Org */
+            org?: string | null;
+            /** Phone */
+            phone?: string | null;
+            /** Postal Code */
+            postal_code?: string | null;
+            /** State */
+            state?: string | null;
+            /** Street */
+            street?: string | null;
+            /** Title */
+            title?: string | null;
+        };
+        /** RegistrarDomain */
+        RegistrarDomain: {
+            /**
+             * Contacts
+             * @default {}
+             */
+            contacts: {
+                [key: string]: components["schemas"]["RegistrarContact"];
+            };
+            /**
+             * Contacts Dedup
+             * @default []
+             */
+            contacts_dedup: components["schemas"]["RegistrarContact"][];
+            /** Expiry Date */
+            expiry_date?: string | null;
+            /** Name */
+            name: string;
+            /**
+             * Nameservers
+             * @default []
+             */
+            nameservers: string[];
+            /** Registrar */
+            registrar: string;
+            /**
+             * Statuses
+             * @default []
+             */
+            statuses: string[];
+            zone?: components["schemas"]["RegistrarZone"] | null;
+        };
+        /** RegistrarRRSet */
+        RegistrarRRSet: {
+            /** Name */
+            name: string;
+            /** Priority */
+            priority?: number | null;
+            /**
+             * Record
+             * @default []
+             */
+            record: components["schemas"]["RegistrarRecord"][];
+            /** Ttl */
+            ttl: number;
+            /** Type */
+            type: string;
+        };
+        /** RegistrarRecord */
+        RegistrarRecord: {
+            /** Rdata */
+            rdata: string;
+        };
+        /** RegistrarZone */
+        RegistrarZone: {
+            /** Name */
+            name: string;
+            /**
+             * Rrsets
+             * @default []
+             */
+            rrsets: components["schemas"]["RegistrarRRSet"][];
+        };
         /**
          * RegistryHandleAttributeType
          * @description Registry handle attribute types for type-safe attribute key access.
@@ -11589,6 +11899,49 @@ export interface components {
              */
             vanity_nameserver_set_id?: TypeId<"vns"> | null;
         };
+        /** ZonesContext */
+        ZonesContext: {
+            /**
+             * Context Id
+             * Format: typeid
+             * @example ctx_01h45ytscbebyvny4gc8cr8ma2
+             */
+            context_id: TypeId<"ctx">;
+            /**
+             * Conversation Id
+             * Format: typeid
+             * @example conv_01h45ytscbebyvny4gc8cr8ma2
+             */
+            conversation_id: TypeId<"conv">;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: Date;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "zones";
+            /**
+             * Organization Id
+             * Format: typeid
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            payload: components["schemas"]["ContextPayload_RegistrarZone_"];
+            /** User Id */
+            user_id: string;
+        };
+        /** ZonesContextCreate */
+        ZonesContextCreate: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "zones";
+            payload: components["schemas"]["ContextPayload_RegistrarZone_"];
+        };
         /** RequestAuthcodeResponse */
         api__domain__tld_specific__be__models__RequestAuthcodeResponse: {
             /**
@@ -11701,7 +12054,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Context"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"];
                 };
             };
             /** @description Unauthorized */
@@ -12262,7 +12615,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["ContextCreateRequest"];
+                "application/json": components["schemas"]["ZonesContextCreate"] | components["schemas"]["ContactsContextCreate"] | components["schemas"]["DomainsContextCreate"] | components["schemas"]["DomainForwardsContextCreate"] | components["schemas"]["EmailForwardsContextCreate"] | components["schemas"]["DomainRecommendationsContextCreate"];
             };
         };
         responses: {
@@ -12272,7 +12625,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Context"];
+                    "application/json": components["schemas"]["ZonesContext"] | components["schemas"]["ContactsContext"] | components["schemas"]["DomainsContext"] | components["schemas"]["DomainForwardsContext"] | components["schemas"]["EmailForwardsContext"] | components["schemas"]["DomainRecommendationsContext"];
                 };
             };
             /** @description Unauthorized */

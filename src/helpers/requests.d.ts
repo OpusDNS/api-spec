@@ -6,7 +6,6 @@ import type {
   ContactAttributeSetCreate,
   ContactAttributeSetUpdate,
   ContactCreate,
-  ContextCreateRequest,
   ConversationCreateRequest,
   ConversationPatchRequest,
   CustomRoleCreate,
@@ -96,10 +95,8 @@ export type GET_AiConciergeConversationsByConversationIdContexts_Request_Path = 
 
 export type POST_AiConciergeConversationsByConversationIdContexts_Request = {
   parameters: operations['create_context_v1_ai_concierge_conversations__conversation_id__contexts_post']['parameters'];
-  requestBody: ContextCreateRequest;
 };
 export type POST_AiConciergeConversationsByConversationIdContexts_Request_Path = POST_AiConciergeConversationsByConversationIdContexts_Request['parameters']['path'];
-export type POST_AiConciergeConversationsByConversationIdContexts_Request_Body = POST_AiConciergeConversationsByConversationIdContexts_Request['requestBody'];
 
 export type GET_AiConciergeConversationsByConversationIdMessages_Request = {
   parameters: operations['list_messages_v1_ai_concierge_conversations__conversation_id__messages_get']['parameters'];

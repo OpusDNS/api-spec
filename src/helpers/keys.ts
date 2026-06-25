@@ -38,9 +38,16 @@ import type {
   ContactVerification,
   ContactVerificationStatus,
   ContactsBase,
-  Context,
-  ContextCreateRequest,
+  ContactsContext,
+  ContactsContextCreate,
   ContextList,
+  ContextMeta,
+  ContextPayload_DomainForward,
+  ContextPayload_DomainSearchSuggestionWithPrice,
+  ContextPayload_EmailForward,
+  ContextPayload_RegistrarContact,
+  ContextPayload_RegistrarDomain,
+  ContextPayload_RegistrarZone,
   Conversation,
   ConversationCreateRequest,
   ConversationList,
@@ -150,10 +157,14 @@ import type {
   DomainForwardUserAgentStats,
   DomainForwardVisitsByKey,
   DomainForwardZone,
+  DomainForwardsContext,
+  DomainForwardsContextCreate,
   DomainHost,
   DomainLifecycleBase,
   DomainNameParts,
   DomainPeriod,
+  DomainRecommendationsContext,
+  DomainRecommendationsContextCreate,
   DomainRenewRequest,
   DomainRenew,
   DomainRenewalDetails,
@@ -189,6 +200,8 @@ import type {
   DomainVerificationDetails,
   DomainWithdrawRequest,
   DomainWithdraw,
+  DomainsContext,
+  DomainsContextCreate,
   DomainsExpiringSoon,
   DuplicateCommand,
   EmailForwardAlias,
@@ -220,6 +233,8 @@ import type {
   EmailForwardUpdateBulkPayload,
   EmailForwardUpdateBulkTemplate,
   EmailForwardZone,
+  EmailForwardsContext,
+  EmailForwardsContextCreate,
   EventData,
   EventError,
   EventResponse,
@@ -323,6 +338,11 @@ import type {
   PublicRoleDefinition,
   RdapBase,
   ReferrerStatsBucket,
+  RegistrarContact,
+  RegistrarDomain,
+  RegistrarRRSet,
+  RegistrarRecord,
+  RegistrarZone,
   RegistryLockBase,
   RequestHistory,
   ReservedDomainsBase,
@@ -378,6 +398,8 @@ import type {
   VisitsByKeyBucket,
   WhoisBase,
   ZoneVanitySetUpdate,
+  ZonesContext,
+  ZonesContextCreate,
   RequestAuthcode,
   RequestAuthcode2,
   DomainAvailabilityList,
@@ -1004,31 +1026,31 @@ export const KEYS_CONTACTS_BASE = [
   KEY_CONTACTS_BASE_UPDATE_SUPPORTED_ROLES,
 ] as const satisfies (keyof ContactsBase)[];
 
-export const KEY_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof Context;
-export const KEY_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof Context;
-export const KEY_CONTEXT_CREATED_AT = 'created_at' satisfies keyof Context;
-export const KEY_CONTEXT_KIND = 'kind' satisfies keyof Context;
-export const KEY_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof Context;
-export const KEY_CONTEXT_PAYLOAD = 'payload' satisfies keyof Context;
-export const KEY_CONTEXT_USER_ID = 'user_id' satisfies keyof Context;
+export const KEY_CONTACTS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof ContactsContext;
+export const KEY_CONTACTS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof ContactsContext;
+export const KEY_CONTACTS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof ContactsContext;
+export const KEY_CONTACTS_CONTEXT_KIND = 'kind' satisfies keyof ContactsContext;
+export const KEY_CONTACTS_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof ContactsContext;
+export const KEY_CONTACTS_CONTEXT_PAYLOAD = 'payload' satisfies keyof ContactsContext;
+export const KEY_CONTACTS_CONTEXT_USER_ID = 'user_id' satisfies keyof ContactsContext;
 
-export const KEYS_CONTEXT = [
-  KEY_CONTEXT_CONTEXT_ID,
-  KEY_CONTEXT_CONVERSATION_ID,
-  KEY_CONTEXT_CREATED_AT,
-  KEY_CONTEXT_KIND,
-  KEY_CONTEXT_ORGANIZATION_ID,
-  KEY_CONTEXT_PAYLOAD,
-  KEY_CONTEXT_USER_ID,
-] as const satisfies (keyof Context)[];
+export const KEYS_CONTACTS_CONTEXT = [
+  KEY_CONTACTS_CONTEXT_CONTEXT_ID,
+  KEY_CONTACTS_CONTEXT_CONVERSATION_ID,
+  KEY_CONTACTS_CONTEXT_CREATED_AT,
+  KEY_CONTACTS_CONTEXT_KIND,
+  KEY_CONTACTS_CONTEXT_ORGANIZATION_ID,
+  KEY_CONTACTS_CONTEXT_PAYLOAD,
+  KEY_CONTACTS_CONTEXT_USER_ID,
+] as const satisfies (keyof ContactsContext)[];
 
-export const KEY_CONTEXT_CREATE_REQUEST_KIND = 'kind' satisfies keyof ContextCreateRequest;
-export const KEY_CONTEXT_CREATE_REQUEST_PAYLOAD = 'payload' satisfies keyof ContextCreateRequest;
+export const KEY_CONTACTS_CONTEXT_CREATE_KIND = 'kind' satisfies keyof ContactsContextCreate;
+export const KEY_CONTACTS_CONTEXT_CREATE_PAYLOAD = 'payload' satisfies keyof ContactsContextCreate;
 
-export const KEYS_CONTEXT_CREATE_REQUEST = [
-  KEY_CONTEXT_CREATE_REQUEST_KIND,
-  KEY_CONTEXT_CREATE_REQUEST_PAYLOAD,
-] as const satisfies (keyof ContextCreateRequest)[];
+export const KEYS_CONTACTS_CONTEXT_CREATE = [
+  KEY_CONTACTS_CONTEXT_CREATE_KIND,
+  KEY_CONTACTS_CONTEXT_CREATE_PAYLOAD,
+] as const satisfies (keyof ContactsContextCreate)[];
 
 export const KEY_CONTEXT_LIST_PAGINATION = 'pagination' satisfies keyof ContextList;
 export const KEY_CONTEXT_LIST_RESULTS = 'results' satisfies keyof ContextList;
@@ -1037,6 +1059,74 @@ export const KEYS_CONTEXT_LIST = [
   KEY_CONTEXT_LIST_PAGINATION,
   KEY_CONTEXT_LIST_RESULTS,
 ] as const satisfies (keyof ContextList)[];
+
+export const KEY_CONTEXT_META_PROCESSING_TIME_MS = 'processing_time_ms' satisfies keyof ContextMeta;
+export const KEY_CONTEXT_META_TOTAL = 'total' satisfies keyof ContextMeta;
+
+export const KEYS_CONTEXT_META = [
+  KEY_CONTEXT_META_PROCESSING_TIME_MS,
+  KEY_CONTEXT_META_TOTAL,
+] as const satisfies (keyof ContextMeta)[];
+
+export const KEY_CONTEXT_PAYLOAD_DOMAIN_FORWARD_META = 'meta' satisfies keyof ContextPayload_DomainForward;
+export const KEY_CONTEXT_PAYLOAD_DOMAIN_FORWARD_PAGINATION = 'pagination' satisfies keyof ContextPayload_DomainForward;
+export const KEY_CONTEXT_PAYLOAD_DOMAIN_FORWARD_RESULTS = 'results' satisfies keyof ContextPayload_DomainForward;
+
+export const KEYS_CONTEXT_PAYLOAD_DOMAIN_FORWARD = [
+  KEY_CONTEXT_PAYLOAD_DOMAIN_FORWARD_META,
+  KEY_CONTEXT_PAYLOAD_DOMAIN_FORWARD_PAGINATION,
+  KEY_CONTEXT_PAYLOAD_DOMAIN_FORWARD_RESULTS,
+] as const satisfies (keyof ContextPayload_DomainForward)[];
+
+export const KEY_CONTEXT_PAYLOAD_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_META = 'meta' satisfies keyof ContextPayload_DomainSearchSuggestionWithPrice;
+export const KEY_CONTEXT_PAYLOAD_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PAGINATION = 'pagination' satisfies keyof ContextPayload_DomainSearchSuggestionWithPrice;
+export const KEY_CONTEXT_PAYLOAD_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RESULTS = 'results' satisfies keyof ContextPayload_DomainSearchSuggestionWithPrice;
+
+export const KEYS_CONTEXT_PAYLOAD_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE = [
+  KEY_CONTEXT_PAYLOAD_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_META,
+  KEY_CONTEXT_PAYLOAD_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_PAGINATION,
+  KEY_CONTEXT_PAYLOAD_DOMAIN_SEARCH_SUGGESTION_WITH_PRICE_RESULTS,
+] as const satisfies (keyof ContextPayload_DomainSearchSuggestionWithPrice)[];
+
+export const KEY_CONTEXT_PAYLOAD_EMAIL_FORWARD_META = 'meta' satisfies keyof ContextPayload_EmailForward;
+export const KEY_CONTEXT_PAYLOAD_EMAIL_FORWARD_PAGINATION = 'pagination' satisfies keyof ContextPayload_EmailForward;
+export const KEY_CONTEXT_PAYLOAD_EMAIL_FORWARD_RESULTS = 'results' satisfies keyof ContextPayload_EmailForward;
+
+export const KEYS_CONTEXT_PAYLOAD_EMAIL_FORWARD = [
+  KEY_CONTEXT_PAYLOAD_EMAIL_FORWARD_META,
+  KEY_CONTEXT_PAYLOAD_EMAIL_FORWARD_PAGINATION,
+  KEY_CONTEXT_PAYLOAD_EMAIL_FORWARD_RESULTS,
+] as const satisfies (keyof ContextPayload_EmailForward)[];
+
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_CONTACT_META = 'meta' satisfies keyof ContextPayload_RegistrarContact;
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_CONTACT_PAGINATION = 'pagination' satisfies keyof ContextPayload_RegistrarContact;
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_CONTACT_RESULTS = 'results' satisfies keyof ContextPayload_RegistrarContact;
+
+export const KEYS_CONTEXT_PAYLOAD_REGISTRAR_CONTACT = [
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_CONTACT_META,
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_CONTACT_PAGINATION,
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_CONTACT_RESULTS,
+] as const satisfies (keyof ContextPayload_RegistrarContact)[];
+
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_META = 'meta' satisfies keyof ContextPayload_RegistrarDomain;
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_PAGINATION = 'pagination' satisfies keyof ContextPayload_RegistrarDomain;
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_RESULTS = 'results' satisfies keyof ContextPayload_RegistrarDomain;
+
+export const KEYS_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN = [
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_META,
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_PAGINATION,
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_DOMAIN_RESULTS,
+] as const satisfies (keyof ContextPayload_RegistrarDomain)[];
+
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_META = 'meta' satisfies keyof ContextPayload_RegistrarZone;
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_PAGINATION = 'pagination' satisfies keyof ContextPayload_RegistrarZone;
+export const KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_RESULTS = 'results' satisfies keyof ContextPayload_RegistrarZone;
+
+export const KEYS_CONTEXT_PAYLOAD_REGISTRAR_ZONE = [
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_META,
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_PAGINATION,
+  KEY_CONTEXT_PAYLOAD_REGISTRAR_ZONE_RESULTS,
+] as const satisfies (keyof ContextPayload_RegistrarZone)[];
 
 export const KEY_CONVERSATION_CONVERSATION_ID = 'conversation_id' satisfies keyof Conversation;
 export const KEY_CONVERSATION_CREATED_AT = 'created_at' satisfies keyof Conversation;
@@ -2174,6 +2264,32 @@ export const KEYS_DOMAIN_FORWARD_ZONE = [
   KEY_DOMAIN_FORWARD_ZONE_ZONE_NAME,
 ] as const satisfies (keyof DomainForwardZone)[];
 
+export const KEY_DOMAIN_FORWARDS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof DomainForwardsContext;
+export const KEY_DOMAIN_FORWARDS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof DomainForwardsContext;
+export const KEY_DOMAIN_FORWARDS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof DomainForwardsContext;
+export const KEY_DOMAIN_FORWARDS_CONTEXT_KIND = 'kind' satisfies keyof DomainForwardsContext;
+export const KEY_DOMAIN_FORWARDS_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof DomainForwardsContext;
+export const KEY_DOMAIN_FORWARDS_CONTEXT_PAYLOAD = 'payload' satisfies keyof DomainForwardsContext;
+export const KEY_DOMAIN_FORWARDS_CONTEXT_USER_ID = 'user_id' satisfies keyof DomainForwardsContext;
+
+export const KEYS_DOMAIN_FORWARDS_CONTEXT = [
+  KEY_DOMAIN_FORWARDS_CONTEXT_CONTEXT_ID,
+  KEY_DOMAIN_FORWARDS_CONTEXT_CONVERSATION_ID,
+  KEY_DOMAIN_FORWARDS_CONTEXT_CREATED_AT,
+  KEY_DOMAIN_FORWARDS_CONTEXT_KIND,
+  KEY_DOMAIN_FORWARDS_CONTEXT_ORGANIZATION_ID,
+  KEY_DOMAIN_FORWARDS_CONTEXT_PAYLOAD,
+  KEY_DOMAIN_FORWARDS_CONTEXT_USER_ID,
+] as const satisfies (keyof DomainForwardsContext)[];
+
+export const KEY_DOMAIN_FORWARDS_CONTEXT_CREATE_KIND = 'kind' satisfies keyof DomainForwardsContextCreate;
+export const KEY_DOMAIN_FORWARDS_CONTEXT_CREATE_PAYLOAD = 'payload' satisfies keyof DomainForwardsContextCreate;
+
+export const KEYS_DOMAIN_FORWARDS_CONTEXT_CREATE = [
+  KEY_DOMAIN_FORWARDS_CONTEXT_CREATE_KIND,
+  KEY_DOMAIN_FORWARDS_CONTEXT_CREATE_PAYLOAD,
+] as const satisfies (keyof DomainForwardsContextCreate)[];
+
 export const KEY_DOMAIN_HOST_HOST_ID = 'host_id' satisfies keyof DomainHost;
 
 export const KEYS_DOMAIN_HOST = [
@@ -2231,6 +2347,32 @@ export const KEYS_DOMAIN_PERIOD = [
   KEY_DOMAIN_PERIOD_UNIT,
   KEY_DOMAIN_PERIOD_VALUE,
 ] as const satisfies (keyof DomainPeriod)[];
+
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof DomainRecommendationsContext;
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof DomainRecommendationsContext;
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof DomainRecommendationsContext;
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_KIND = 'kind' satisfies keyof DomainRecommendationsContext;
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof DomainRecommendationsContext;
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_PAYLOAD = 'payload' satisfies keyof DomainRecommendationsContext;
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_USER_ID = 'user_id' satisfies keyof DomainRecommendationsContext;
+
+export const KEYS_DOMAIN_RECOMMENDATIONS_CONTEXT = [
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CONTEXT_ID,
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CONVERSATION_ID,
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATED_AT,
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_KIND,
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_ORGANIZATION_ID,
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_PAYLOAD,
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_USER_ID,
+] as const satisfies (keyof DomainRecommendationsContext)[];
+
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE_KIND = 'kind' satisfies keyof DomainRecommendationsContextCreate;
+export const KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE_PAYLOAD = 'payload' satisfies keyof DomainRecommendationsContextCreate;
+
+export const KEYS_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE = [
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE_KIND,
+  KEY_DOMAIN_RECOMMENDATIONS_CONTEXT_CREATE_PAYLOAD,
+] as const satisfies (keyof DomainRecommendationsContextCreate)[];
 
 export const KEY_DOMAIN_RENEW_REQUEST_CURRENT_EXPIRY_DATE = 'current_expiry_date' satisfies keyof DomainRenewRequest;
 export const KEY_DOMAIN_RENEW_REQUEST_EXPECTED_PRICE = 'expected_price' satisfies keyof DomainRenewRequest;
@@ -2694,6 +2836,32 @@ export const KEYS_DOMAIN_WITHDRAW = [
   KEY_DOMAIN_WITHDRAW_SUCCESS,
 ] as const satisfies (keyof DomainWithdraw)[];
 
+export const KEY_DOMAINS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof DomainsContext;
+export const KEY_DOMAINS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof DomainsContext;
+export const KEY_DOMAINS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof DomainsContext;
+export const KEY_DOMAINS_CONTEXT_KIND = 'kind' satisfies keyof DomainsContext;
+export const KEY_DOMAINS_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof DomainsContext;
+export const KEY_DOMAINS_CONTEXT_PAYLOAD = 'payload' satisfies keyof DomainsContext;
+export const KEY_DOMAINS_CONTEXT_USER_ID = 'user_id' satisfies keyof DomainsContext;
+
+export const KEYS_DOMAINS_CONTEXT = [
+  KEY_DOMAINS_CONTEXT_CONTEXT_ID,
+  KEY_DOMAINS_CONTEXT_CONVERSATION_ID,
+  KEY_DOMAINS_CONTEXT_CREATED_AT,
+  KEY_DOMAINS_CONTEXT_KIND,
+  KEY_DOMAINS_CONTEXT_ORGANIZATION_ID,
+  KEY_DOMAINS_CONTEXT_PAYLOAD,
+  KEY_DOMAINS_CONTEXT_USER_ID,
+] as const satisfies (keyof DomainsContext)[];
+
+export const KEY_DOMAINS_CONTEXT_CREATE_KIND = 'kind' satisfies keyof DomainsContextCreate;
+export const KEY_DOMAINS_CONTEXT_CREATE_PAYLOAD = 'payload' satisfies keyof DomainsContextCreate;
+
+export const KEYS_DOMAINS_CONTEXT_CREATE = [
+  KEY_DOMAINS_CONTEXT_CREATE_KIND,
+  KEY_DOMAINS_CONTEXT_CREATE_PAYLOAD,
+] as const satisfies (keyof DomainsContextCreate)[];
+
 export const KEY_DOMAINS_EXPIRING_SOON_NEXT_30_DAYS = 'next_30_days' satisfies keyof DomainsExpiringSoon;
 export const KEY_DOMAINS_EXPIRING_SOON_NEXT_60_DAYS = 'next_60_days' satisfies keyof DomainsExpiringSoon;
 export const KEY_DOMAINS_EXPIRING_SOON_NEXT_90_DAYS = 'next_90_days' satisfies keyof DomainsExpiringSoon;
@@ -3039,6 +3207,32 @@ export const KEYS_EMAIL_FORWARD_ZONE = [
   KEY_EMAIL_FORWARD_ZONE_ZONE_ID,
   KEY_EMAIL_FORWARD_ZONE_ZONE_NAME,
 ] as const satisfies (keyof EmailForwardZone)[];
+
+export const KEY_EMAIL_FORWARDS_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof EmailForwardsContext;
+export const KEY_EMAIL_FORWARDS_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof EmailForwardsContext;
+export const KEY_EMAIL_FORWARDS_CONTEXT_CREATED_AT = 'created_at' satisfies keyof EmailForwardsContext;
+export const KEY_EMAIL_FORWARDS_CONTEXT_KIND = 'kind' satisfies keyof EmailForwardsContext;
+export const KEY_EMAIL_FORWARDS_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof EmailForwardsContext;
+export const KEY_EMAIL_FORWARDS_CONTEXT_PAYLOAD = 'payload' satisfies keyof EmailForwardsContext;
+export const KEY_EMAIL_FORWARDS_CONTEXT_USER_ID = 'user_id' satisfies keyof EmailForwardsContext;
+
+export const KEYS_EMAIL_FORWARDS_CONTEXT = [
+  KEY_EMAIL_FORWARDS_CONTEXT_CONTEXT_ID,
+  KEY_EMAIL_FORWARDS_CONTEXT_CONVERSATION_ID,
+  KEY_EMAIL_FORWARDS_CONTEXT_CREATED_AT,
+  KEY_EMAIL_FORWARDS_CONTEXT_KIND,
+  KEY_EMAIL_FORWARDS_CONTEXT_ORGANIZATION_ID,
+  KEY_EMAIL_FORWARDS_CONTEXT_PAYLOAD,
+  KEY_EMAIL_FORWARDS_CONTEXT_USER_ID,
+] as const satisfies (keyof EmailForwardsContext)[];
+
+export const KEY_EMAIL_FORWARDS_CONTEXT_CREATE_KIND = 'kind' satisfies keyof EmailForwardsContextCreate;
+export const KEY_EMAIL_FORWARDS_CONTEXT_CREATE_PAYLOAD = 'payload' satisfies keyof EmailForwardsContextCreate;
+
+export const KEYS_EMAIL_FORWARDS_CONTEXT_CREATE = [
+  KEY_EMAIL_FORWARDS_CONTEXT_CREATE_KIND,
+  KEY_EMAIL_FORWARDS_CONTEXT_CREATE_PAYLOAD,
+] as const satisfies (keyof EmailForwardsContextCreate)[];
 
 export const KEY_EVENT_DATA_DETAILS = 'details' satisfies keyof EventData;
 export const KEY_EVENT_DATA_ERROR = 'error' satisfies keyof EventData;
@@ -4372,6 +4566,84 @@ export const KEYS_REFERRER_STATS_BUCKET = [
   KEY_REFERRER_STATS_BUCKET_UNIQUE,
 ] as const satisfies (keyof ReferrerStatsBucket)[];
 
+export const KEY_REGISTRAR_CONTACT_CITY = 'city' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_COUNTRY = 'country' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_EMAIL = 'email' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_FAX = 'fax' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_FIRST_NAME = 'first_name' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_ID = 'id' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_LAST_NAME = 'last_name' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_ORG = 'org' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_PHONE = 'phone' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_POSTAL_CODE = 'postal_code' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_STATE = 'state' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_STREET = 'street' satisfies keyof RegistrarContact;
+export const KEY_REGISTRAR_CONTACT_TITLE = 'title' satisfies keyof RegistrarContact;
+
+export const KEYS_REGISTRAR_CONTACT = [
+  KEY_REGISTRAR_CONTACT_CITY,
+  KEY_REGISTRAR_CONTACT_COUNTRY,
+  KEY_REGISTRAR_CONTACT_EMAIL,
+  KEY_REGISTRAR_CONTACT_FAX,
+  KEY_REGISTRAR_CONTACT_FIRST_NAME,
+  KEY_REGISTRAR_CONTACT_ID,
+  KEY_REGISTRAR_CONTACT_LAST_NAME,
+  KEY_REGISTRAR_CONTACT_ORG,
+  KEY_REGISTRAR_CONTACT_PHONE,
+  KEY_REGISTRAR_CONTACT_POSTAL_CODE,
+  KEY_REGISTRAR_CONTACT_STATE,
+  KEY_REGISTRAR_CONTACT_STREET,
+  KEY_REGISTRAR_CONTACT_TITLE,
+] as const satisfies (keyof RegistrarContact)[];
+
+export const KEY_REGISTRAR_DOMAIN_CONTACTS = 'contacts' satisfies keyof RegistrarDomain;
+export const KEY_REGISTRAR_DOMAIN_CONTACTS_DEDUP = 'contacts_dedup' satisfies keyof RegistrarDomain;
+export const KEY_REGISTRAR_DOMAIN_EXPIRY_DATE = 'expiry_date' satisfies keyof RegistrarDomain;
+export const KEY_REGISTRAR_DOMAIN_NAME = 'name' satisfies keyof RegistrarDomain;
+export const KEY_REGISTRAR_DOMAIN_NAMESERVERS = 'nameservers' satisfies keyof RegistrarDomain;
+export const KEY_REGISTRAR_DOMAIN_REGISTRAR = 'registrar' satisfies keyof RegistrarDomain;
+export const KEY_REGISTRAR_DOMAIN_STATUSES = 'statuses' satisfies keyof RegistrarDomain;
+export const KEY_REGISTRAR_DOMAIN_ZONE = 'zone' satisfies keyof RegistrarDomain;
+
+export const KEYS_REGISTRAR_DOMAIN = [
+  KEY_REGISTRAR_DOMAIN_CONTACTS,
+  KEY_REGISTRAR_DOMAIN_CONTACTS_DEDUP,
+  KEY_REGISTRAR_DOMAIN_EXPIRY_DATE,
+  KEY_REGISTRAR_DOMAIN_NAME,
+  KEY_REGISTRAR_DOMAIN_NAMESERVERS,
+  KEY_REGISTRAR_DOMAIN_REGISTRAR,
+  KEY_REGISTRAR_DOMAIN_STATUSES,
+  KEY_REGISTRAR_DOMAIN_ZONE,
+] as const satisfies (keyof RegistrarDomain)[];
+
+export const KEY_REGISTRAR_RR_SET_NAME = 'name' satisfies keyof RegistrarRRSet;
+export const KEY_REGISTRAR_RR_SET_PRIORITY = 'priority' satisfies keyof RegistrarRRSet;
+export const KEY_REGISTRAR_RR_SET_RECORD = 'record' satisfies keyof RegistrarRRSet;
+export const KEY_REGISTRAR_RR_SET_TTL = 'ttl' satisfies keyof RegistrarRRSet;
+export const KEY_REGISTRAR_RR_SET_TYPE = 'type' satisfies keyof RegistrarRRSet;
+
+export const KEYS_REGISTRAR_RR_SET = [
+  KEY_REGISTRAR_RR_SET_NAME,
+  KEY_REGISTRAR_RR_SET_PRIORITY,
+  KEY_REGISTRAR_RR_SET_RECORD,
+  KEY_REGISTRAR_RR_SET_TTL,
+  KEY_REGISTRAR_RR_SET_TYPE,
+] as const satisfies (keyof RegistrarRRSet)[];
+
+export const KEY_REGISTRAR_RECORD_RDATA = 'rdata' satisfies keyof RegistrarRecord;
+
+export const KEYS_REGISTRAR_RECORD = [
+  KEY_REGISTRAR_RECORD_RDATA,
+] as const satisfies (keyof RegistrarRecord)[];
+
+export const KEY_REGISTRAR_ZONE_NAME = 'name' satisfies keyof RegistrarZone;
+export const KEY_REGISTRAR_ZONE_RRSETS = 'rrsets' satisfies keyof RegistrarZone;
+
+export const KEYS_REGISTRAR_ZONE = [
+  KEY_REGISTRAR_ZONE_NAME,
+  KEY_REGISTRAR_ZONE_RRSETS,
+] as const satisfies (keyof RegistrarZone)[];
+
 export const KEY_REGISTRY_LOCK_BASE_PREVENTS = 'prevents' satisfies keyof RegistryLockBase;
 export const KEY_REGISTRY_LOCK_BASE_REMOVAL_PROCESS = 'removal_process' satisfies keyof RegistryLockBase;
 export const KEY_REGISTRY_LOCK_BASE_REQUIRES_MANUAL_REQUEST = 'requires_manual_request' satisfies keyof RegistryLockBase;
@@ -5155,6 +5427,32 @@ export const KEY_ZONE_VANITY_SET_UPDATE_VANITY_NAMESERVER_SET_ID = 'vanity_names
 export const KEYS_ZONE_VANITY_SET_UPDATE = [
   KEY_ZONE_VANITY_SET_UPDATE_VANITY_NAMESERVER_SET_ID,
 ] as const satisfies (keyof ZoneVanitySetUpdate)[];
+
+export const KEY_ZONES_CONTEXT_CONTEXT_ID = 'context_id' satisfies keyof ZonesContext;
+export const KEY_ZONES_CONTEXT_CONVERSATION_ID = 'conversation_id' satisfies keyof ZonesContext;
+export const KEY_ZONES_CONTEXT_CREATED_AT = 'created_at' satisfies keyof ZonesContext;
+export const KEY_ZONES_CONTEXT_KIND = 'kind' satisfies keyof ZonesContext;
+export const KEY_ZONES_CONTEXT_ORGANIZATION_ID = 'organization_id' satisfies keyof ZonesContext;
+export const KEY_ZONES_CONTEXT_PAYLOAD = 'payload' satisfies keyof ZonesContext;
+export const KEY_ZONES_CONTEXT_USER_ID = 'user_id' satisfies keyof ZonesContext;
+
+export const KEYS_ZONES_CONTEXT = [
+  KEY_ZONES_CONTEXT_CONTEXT_ID,
+  KEY_ZONES_CONTEXT_CONVERSATION_ID,
+  KEY_ZONES_CONTEXT_CREATED_AT,
+  KEY_ZONES_CONTEXT_KIND,
+  KEY_ZONES_CONTEXT_ORGANIZATION_ID,
+  KEY_ZONES_CONTEXT_PAYLOAD,
+  KEY_ZONES_CONTEXT_USER_ID,
+] as const satisfies (keyof ZonesContext)[];
+
+export const KEY_ZONES_CONTEXT_CREATE_KIND = 'kind' satisfies keyof ZonesContextCreate;
+export const KEY_ZONES_CONTEXT_CREATE_PAYLOAD = 'payload' satisfies keyof ZonesContextCreate;
+
+export const KEYS_ZONES_CONTEXT_CREATE = [
+  KEY_ZONES_CONTEXT_CREATE_KIND,
+  KEY_ZONES_CONTEXT_CREATE_PAYLOAD,
+] as const satisfies (keyof ZonesContextCreate)[];
 
 export const KEY_REQUEST_AUTHCODE_DETAIL = 'detail' satisfies keyof RequestAuthcode;
 export const KEY_REQUEST_AUTHCODE_NAME = 'name' satisfies keyof RequestAuthcode;

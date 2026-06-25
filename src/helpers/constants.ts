@@ -62,7 +62,6 @@ import type {
   LegalRequirementType,
   LocalPresenceRequirementType,
   MemoryFactKind,
-  MessageContextKind,
   MessageRole,
   MetricsGrouping,
   ObjectEventType,
@@ -1140,18 +1139,6 @@ export const MEMORY_FACT_KIND_VALUES = [
   'note',
   'other',
 ] as const satisfies ReadonlyArray<MemoryFactKind>;
-
-export const MESSAGE_CONTEXT_KIND = {
-  ZONES: "zones",
-  CONTACTS: "contacts",
-  DOMAINS: "domains",
-} as const satisfies Record<string, MessageContextKind>;
-
-export const MESSAGE_CONTEXT_KIND_VALUES = [
-  'zones',
-  'contacts',
-  'domains',
-] as const satisfies ReadonlyArray<MessageContextKind>;
 
 export const MESSAGE_ROLE = {
   USER: "user",
