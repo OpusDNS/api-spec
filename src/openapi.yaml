@@ -3667,7 +3667,7 @@ components:
           title: Attributes
         auth_code:
           anyOf:
-          - maxLength: 32
+          - maxLength: 255
             minLength: 6
             type: string
           - type: 'null'
@@ -3762,7 +3762,7 @@ components:
           title: Attributes
         auth_code:
           anyOf:
-          - maxLength: 32
+          - maxLength: 255
             minLength: 6
             type: string
           - type: 'null'
@@ -3844,7 +3844,7 @@ components:
           title: Attributes
         auth_code:
           anyOf:
-          - maxLength: 32
+          - maxLength: 255
             minLength: 6
             type: string
           - type: 'null'
@@ -3916,7 +3916,7 @@ components:
           title: Attributes
         auth_code:
           anyOf:
-          - maxLength: 32
+          - maxLength: 255
             minLength: 6
             type: string
           - type: 'null'
@@ -5631,7 +5631,7 @@ components:
           title: Attributes
         auth_code:
           anyOf:
-          - maxLength: 32
+          - maxLength: 255
             minLength: 6
             type: string
           - type: 'null'
@@ -5778,7 +5778,7 @@ components:
           title: Attributes
         auth_code:
           anyOf:
-          - maxLength: 32
+          - maxLength: 255
             minLength: 6
             type: string
           - type: 'null'
@@ -5842,7 +5842,7 @@ components:
           title: Attributes
         auth_code:
           anyOf:
-          - maxLength: 32
+          - maxLength: 255
             minLength: 6
             type: string
           - type: 'null'
@@ -11515,6 +11515,8 @@ components:
       - DNS_LU_CONTACT_ROLE
       - SK_NIC_LEGAL_FORM
       - SK_NIC_IDENT_VALUE
+      - NIC_LV_REG_NR
+      - NIC_LV_VAT_NR
       title: RegistryHandleAttributeType
       type: string
     RegistryLockBase:
@@ -13935,7 +13937,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-25-181920
+  version: 2026-06-25-204413
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
