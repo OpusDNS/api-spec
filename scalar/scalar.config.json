@@ -2493,6 +2493,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/music.md",
                 "showInSidebar": true
               },
+              "/name": {
+                "type": "page",
+                "title": "🌐 .name",
+                "filepath": "content/tld-knowledge-base/gtlds/name.md",
+                "showInSidebar": true
+              },
               "/navy": {
                 "type": "page",
                 "title": "🌐 .navy",
