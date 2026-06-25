@@ -21519,7 +21519,6 @@ export interface operations {
                 sort_by?: components["schemas"]["UserSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 search?: string | null;
-                status?: components["schemas"]["UserStatus"] | null;
                 page?: number;
                 page_size?: number;
             };
