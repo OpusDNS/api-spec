@@ -36,10 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout api-spec
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Checkout tld-specifications
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: OpusDNS/tld-specifications
           path: tld-specifications
@@ -62,7 +62,7 @@ jobs:
 
       # Cache compiled IDN tables to avoid re-downloading ~1900 from IANA each run.
       - name: Cache compiled IDN tables
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: tld-specifications/idn_tables
           key: idn-tables-${{ hashFiles('tld-specifications/specifications/**/*.yaml') }}
