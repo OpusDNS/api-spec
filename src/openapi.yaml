@@ -12578,13 +12578,6 @@ components:
           format: date-time
           title: Created On
           type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
         email:
           description: The user's email address
           format: email
@@ -12632,9 +12625,6 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
-        status:
-          $ref: '#/components/schemas/UserStatus'
-          readOnly: true
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -12661,7 +12651,6 @@ components:
       - last_name
       - email
       - locale
-      - status
       title: User
       type: object
     UserAgentStatsBucket:
@@ -12784,13 +12773,6 @@ components:
           format: date-time
           title: Created On
           type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
         email:
           description: The user's email address
           format: email
@@ -12832,9 +12814,6 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
-        status:
-          $ref: '#/components/schemas/UserStatus'
-          readOnly: true
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -12861,7 +12840,6 @@ components:
       - last_name
       - email
       - locale
-      - status
       title: UserPublic
       type: object
     UserPublicWithAttributes:
@@ -12871,13 +12849,6 @@ components:
           format: date-time
           title: Created On
           type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
         email:
           description: The user's email address
           format: email
@@ -12919,9 +12890,6 @@ components:
           examples:
           - '+1.2125552368'
           title: Phone
-        status:
-          $ref: '#/components/schemas/UserStatus'
-          readOnly: true
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -12962,7 +12930,6 @@ components:
       - last_name
       - email
       - locale
-      - status
       title: UserPublicWithAttributes
       type: object
     UserPublicWithRole:
@@ -12972,13 +12939,6 @@ components:
           format: date-time
           title: Created On
           type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
         email:
           description: The user's email address
           format: email
@@ -13026,9 +12986,6 @@ components:
           - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
           title: Role
-        status:
-          $ref: '#/components/schemas/UserStatus'
-          readOnly: true
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -13055,7 +13012,6 @@ components:
       - last_name
       - email
       - locale
-      - status
       title: UserPublicWithRole
       type: object
     UserSortField:
@@ -13064,12 +13020,6 @@ components:
       - username
       - email
       title: UserSortField
-      type: string
-    UserStatus:
-      enum:
-      - active
-      - inactive
-      title: UserStatus
       type: string
     UserTokenResponse:
       properties:
@@ -13171,13 +13121,6 @@ components:
           format: date-time
           title: Created On
           type: string
-        deleted_on:
-          anyOf:
-          - format: date-time
-            type: string
-          - type: 'null'
-          description: The date/time the entry was deleted on
-          title: Deleted On
         email:
           description: The user's email address
           format: email
@@ -13232,9 +13175,6 @@ components:
           - $ref: '#/components/schemas/CustomRoleLabel'
           - type: 'null'
           title: Role
-        status:
-          $ref: '#/components/schemas/UserStatus'
-          readOnly: true
         updated_on:
           description: The date/time the entry was last updated on
           format: date-time
@@ -13275,7 +13215,6 @@ components:
       - last_name
       - email
       - locale
-      - status
       title: UserWithAuthorization
       type: object
     ValidationError:
@@ -13996,7 +13935,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-25-145633
+  version: 2026-06-25-181920
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -100,7 +100,6 @@ import type {
   TimeRange,
   TransferAckType,
   UserSortField,
-  UserStatus,
   VanityNameserverSetStatusDTO,
   VanityNsCheckConfidence,
   VanityNsCheckSeverity,
@@ -1782,16 +1781,6 @@ export const USER_SORT_FIELD_VALUES = [
   'username',
   'email',
 ] as const satisfies ReadonlyArray<UserSortField>;
-
-export const USER_STATUS = {
-  ACTIVE: "active",
-  INACTIVE: "inactive",
-} as const satisfies Record<string, UserStatus>;
-
-export const USER_STATUS_VALUES = [
-  'active',
-  'inactive',
-] as const satisfies ReadonlyArray<UserStatus>;
 
 export const VANITY_NAMESERVER_SET_STATUS_DTO = {
   PROVISIONING: "provisioning",

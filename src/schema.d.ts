@@ -11042,11 +11042,6 @@ export interface components {
              */
             created_on?: Date;
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
              * Email
              * Format: email
              * @description The user's email address
@@ -11086,7 +11081,6 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
-            readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
              * Format: date-time
@@ -11188,11 +11182,6 @@ export interface components {
              */
             created_on?: Date;
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
              * Email
              * Format: email
              * @description The user's email address
@@ -11227,7 +11216,6 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
-            readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
              * Format: date-time
@@ -11255,11 +11243,6 @@ export interface components {
              */
             created_on?: Date;
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
              * Email
              * Format: email
              * @description The user's email address
@@ -11294,7 +11277,6 @@ export interface components {
              * @example +1.2125552368
              */
             phone?: string | null;
-            readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
              * Format: date-time
@@ -11339,11 +11321,6 @@ export interface components {
              */
             created_on?: Date;
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
              * Email
              * Format: email
              * @description The user's email address
@@ -11380,7 +11357,6 @@ export interface components {
             phone?: string | null;
             /** Role */
             role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
-            readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
              * Format: date-time
@@ -11404,11 +11380,6 @@ export interface components {
          * @enum {string}
          */
         UserSortField: "created_on" | "username" | "email";
-        /**
-         * UserStatus
-         * @enum {string}
-         */
-        UserStatus: "active" | "inactive";
         /** UserTokenResponse */
         UserTokenResponse: {
             /**
@@ -11485,11 +11456,6 @@ export interface components {
              */
             created_on?: Date;
             /**
-             * Deleted On
-             * @description The date/time the entry was deleted on
-             */
-            deleted_on?: Date | null;
-            /**
              * Email
              * Format: email
              * @description The user's email address
@@ -11528,7 +11494,6 @@ export interface components {
             phone?: string | null;
             /** Role */
             role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
-            readonly status: components["schemas"]["UserStatus"];
             /**
              * Updated On
              * Format: date-time

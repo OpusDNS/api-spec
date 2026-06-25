@@ -510,7 +510,6 @@ export type UserPublic = components['schemas']['UserPublic'];
 export type UserPublicWithAttributes = components['schemas']['UserPublicWithAttributes'];
 export type UserPublicWithRole = components['schemas']['UserPublicWithRole'];
 export type UserSortField = components['schemas']['UserSortField'];
-export type UserStatus = components['schemas']['UserStatus'];
 export type UserToken = components['schemas']['UserTokenResponse'];
 export type UserUpdate = components['schemas']['UserUpdate'];
 export type UserWithAuthorization = components['schemas']['UserWithAuthorization'];
