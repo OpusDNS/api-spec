@@ -6,7 +6,6 @@ si # no pricing yet
 lu # WIP
 lt # WIP
 ua # WIP
-name # doesn't fully work, some domain:check cmds fail
 lv # WIP
 # centralnic WIP TLDs
 best
