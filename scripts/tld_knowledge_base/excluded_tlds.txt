@@ -7,17 +7,3 @@ lu # WIP
 lt # WIP
 ua # WIP
 lv # WIP
-# centralnic WIP TLDs
-best
-cam
-case
-dealer
-fans
-frl
-help
-inc
-kred
-luxury
-ooo
-reit
-saarland
