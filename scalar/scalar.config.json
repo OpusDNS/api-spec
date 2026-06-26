@@ -1077,6 +1077,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/beer.md",
                 "showInSidebar": true
               },
+              "/best": {
+                "type": "page",
+                "title": "🌐 .best",
+                "filepath": "content/tld-knowledge-base/gtlds/best.md",
+                "showInSidebar": true
+              },
               "/bet": {
                 "type": "page",
                 "title": "🌐 .bet",
@@ -1203,6 +1209,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/cafe.md",
                 "showInSidebar": true
               },
+              "/cam": {
+                "type": "page",
+                "title": "🌐 .cam",
+                "filepath": "content/tld-knowledge-base/gtlds/cam.md",
+                "showInSidebar": true
+              },
               "/camera": {
                 "type": "page",
                 "title": "🌐 .camera",
@@ -1255,6 +1267,12 @@
                 "type": "page",
                 "title": "🌐 .casa",
                 "filepath": "content/tld-knowledge-base/gtlds/casa.md",
+                "showInSidebar": true
+              },
+              "/case": {
+                "type": "page",
+                "title": "🌐 .case",
+                "filepath": "content/tld-knowledge-base/gtlds/case.md",
                 "showInSidebar": true
               },
               "/cash": {
@@ -1545,6 +1563,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/de.com.md",
                 "showInSidebar": true
               },
+              "/dealer": {
+                "type": "page",
+                "title": "🌐 .dealer",
+                "filepath": "content/tld-knowledge-base/gtlds/dealer.md",
+                "showInSidebar": true
+              },
               "/deals": {
                 "type": "page",
                 "title": "🌐 .deals",
@@ -1755,6 +1779,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/fan.md",
                 "showInSidebar": true
               },
+              "/fans": {
+                "type": "page",
+                "title": "🌐 .fans",
+                "filepath": "content/tld-knowledge-base/gtlds/fans.md",
+                "showInSidebar": true
+              },
               "/farm": {
                 "type": "page",
                 "title": "🌐 .farm",
@@ -1849,6 +1879,12 @@
                 "type": "page",
                 "title": "🌐 .foundation",
                 "filepath": "content/tld-knowledge-base/gtlds/foundation.md",
+                "showInSidebar": true
+              },
+              "/frl": {
+                "type": "page",
+                "title": "🌐 .frl",
+                "filepath": "content/tld-knowledge-base/gtlds/frl.md",
                 "showInSidebar": true
               },
               "/fun": {
@@ -2043,6 +2079,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/healthcare.md",
                 "showInSidebar": true
               },
+              "/help": {
+                "type": "page",
+                "title": "🌐 .help",
+                "filepath": "content/tld-knowledge-base/gtlds/help.md",
+                "showInSidebar": true
+              },
               "/hockey": {
                 "type": "page",
                 "title": "🌐 .hockey",
@@ -2125,6 +2167,12 @@
                 "type": "page",
                 "title": "🌐 .immobilien",
                 "filepath": "content/tld-knowledge-base/gtlds/immobilien.md",
+                "showInSidebar": true
+              },
+              "/inc": {
+                "type": "page",
+                "title": "🌐 .inc",
+                "filepath": "content/tld-knowledge-base/gtlds/inc.md",
                 "showInSidebar": true
               },
               "/industries": {
@@ -2227,6 +2275,12 @@
                 "type": "page",
                 "title": "🌐 .kitchen",
                 "filepath": "content/tld-knowledge-base/gtlds/kitchen.md",
+                "showInSidebar": true
+              },
+              "/kred": {
+                "type": "page",
+                "title": "🌐 .kred",
+                "filepath": "content/tld-knowledge-base/gtlds/kred.md",
                 "showInSidebar": true
               },
               "/land": {
@@ -2353,6 +2407,12 @@
                 "type": "page",
                 "title": "🌐 .luxe",
                 "filepath": "content/tld-knowledge-base/gtlds/luxe.md",
+                "showInSidebar": true
+              },
+              "/luxury": {
+                "type": "page",
+                "title": "🌐 .luxury",
+                "filepath": "content/tld-knowledge-base/gtlds/luxury.md",
                 "showInSidebar": true
               },
               "/maison": {
@@ -2559,6 +2619,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/online.md",
                 "showInSidebar": true
               },
+              "/ooo": {
+                "type": "page",
+                "title": "🌐 .ooo",
+                "filepath": "content/tld-knowledge-base/gtlds/ooo.md",
+                "showInSidebar": true
+              },
               "/org": {
                 "type": "page",
                 "title": "🌐 .org",
@@ -2757,6 +2823,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/reisen.md",
                 "showInSidebar": true
               },
+              "/reit": {
+                "type": "page",
+                "title": "🌐 .reit",
+                "filepath": "content/tld-knowledge-base/gtlds/reit.md",
+                "showInSidebar": true
+              },
               "/rent": {
                 "type": "page",
                 "title": "🌐 .rent",
@@ -2839,6 +2911,12 @@
                 "type": "page",
                 "title": "🌐 .sa.com",
                 "filepath": "content/tld-knowledge-base/gtlds/sa.com.md",
+                "showInSidebar": true
+              },
+              "/saarland": {
+                "type": "page",
+                "title": "🌐 .saarland",
+                "filepath": "content/tld-knowledge-base/gtlds/saarland.md",
                 "showInSidebar": true
               },
               "/sale": {
