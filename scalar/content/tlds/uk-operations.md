@@ -5,6 +5,10 @@ and `.net.uk`) are managed by [Nominet](https://www.nominet.uk). The `.uk`
 namespace uses a tag-based transfer system that differs from the standard EPP
 auth code model used by most other TLDs.
 
+<scalar-callout type="info">
+OpusDNS's Nominet tag is <strong>OPUSDNS</strong>.
+</scalar-callout>
+
 ## Transfer in
 
 To transfer a `.uk` domain into OpusDNS, the process works differently from
@@ -22,7 +26,6 @@ curl "$OPUSDNS_API_BASE/v1/domains/transfer" \
   --header "Content-Type: application/json" \
   --data '{
     "name": "example.co.uk",
-    "auth_code": "AUTH-CODE",
     "contacts": {
       "registrant": "contact_01h45ytscbebyvny4gc8cr8ma2"
     },
@@ -31,11 +34,15 @@ curl "$OPUSDNS_API_BASE/v1/domains/transfer" \
   }'
 ```
 
+<scalar-callout type="info">
+For <code>.uk</code> domains no auth code is needed because Nominet uses a tag-based transfer system.
+</scalar-callout>
+
 ### Step 2: Request the tag release
 
-Ask the current registrar to release the domain to OpusDNS's Nominet tag. Once
-they push the domain to our tag, the transfer completes and the domain appears
-in your account.
+Ask the current registrar to release the domain to OpusDNS's Nominet tag,
+**`OPUSDNS`**. Once they push the domain to our tag, the transfer completes and
+the domain appears in your account.
 
 > **Note:** `.uk` transfers are typically **immediate** — once the domain is
 > released to OpusDNS's tag, it moves to your account without a pending period.
