@@ -6,7 +6,6 @@ import type {
   ContactAttestRes,
   ContactAttributeLink,
   ContactAttributeSet,
-  ContactSchema,
   ContactVerification,
   ContextList,
   Conversation,
@@ -1009,7 +1008,7 @@ export type POST_AvailabilityStream_Response_422 = HTTPValidationError;
 
 export type POST_Contacts_Response = POST_Contacts_Response_201 | POST_Contacts_Response_422;
 
-export type POST_Contacts_Response_201 = ContactSchema;
+export type POST_Contacts_Response_201 = Contact;
 export type POST_Contacts_Response_422 = HTTPValidationError;
 
 export type POST_ContactsAttributeSets_Response = POST_ContactsAttributeSets_Response_201 | POST_ContactsAttributeSets_Response_409 | POST_ContactsAttributeSets_Response_422;

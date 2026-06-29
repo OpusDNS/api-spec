@@ -47,7 +47,6 @@ export type ContactHandle = components['schemas']['ContactHandle'];
 export type ContactIdList = components['schemas']['ContactIdList'];
 export type ContactIncludeField = components['schemas']['ContactIncludeField'];
 export type Contact = components['schemas']['ContactResponse'];
-export type ContactSchema = components['schemas']['ContactSchema'];
 export type ContactSortField = components['schemas']['ContactSortField'];
 export type ContactType = components['schemas']['ContactType'];
 export type ContactVerificationApi = components['schemas']['ContactVerificationApiResponse'];

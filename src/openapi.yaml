@@ -828,7 +828,7 @@ components:
           title: Disclose
           type: boolean
         email:
-          description: The email of the contact
+          description: Contact email address (as submitted)
           format: email
           title: Email
           type: string
@@ -1130,7 +1130,7 @@ components:
           title: Disclose
           type: boolean
         email:
-          description: The email of the contact
+          description: Contact email address (as submitted)
           format: email
           title: Email
           type: string
@@ -1324,7 +1324,7 @@ components:
           title: Disclose
           type: boolean
         email:
-          description: The email of the contact
+          description: Contact email address (as submitted)
           format: email
           title: Email
           type: string
@@ -1428,127 +1428,6 @@ components:
       - country
       - disclose
       title: ContactResponse
-      type: object
-    ContactSchema:
-      properties:
-        city:
-          description: The city of the contact
-          maxLength: 255
-          minLength: 1
-          title: City
-          type: string
-        contact_id:
-          examples:
-          - contact_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^contact_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Contact Id
-          type: string
-          x-typeid-prefix: contact
-        country:
-          description: The country of the contact
-          pattern: ^\w{2}$
-          title: Country
-          type: string
-        created_on:
-          description: The date/time the entry was created on
-          format: date-time
-          title: Created On
-          type: string
-        disclose:
-          description: Whether the contact details should be disclosed. The Disclose
-            function may not work with all TLDs. Some registries still display the
-            data in Whois if, for example, the organization field is filled in.
-          title: Disclose
-          type: boolean
-        email:
-          description: The email of the contact
-          format: email
-          title: Email
-          type: string
-        fax:
-          anyOf:
-          - format: phone
-            type: string
-          - type: 'null'
-          description: The contacts's fax number
-          title: Fax
-        first_name:
-          description: The first name of the contact
-          maxLength: 255
-          minLength: 1
-          title: First Name
-          type: string
-        last_name:
-          description: The last name of the contact
-          maxLength: 255
-          minLength: 1
-          title: Last Name
-          type: string
-        org:
-          anyOf:
-          - maxLength: 255
-            minLength: 1
-            type: string
-          - type: 'null'
-          description: The organization of the contact
-          title: Org
-        organization_id:
-          default: None
-          description: The organization that owns the domain
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-        phone:
-          description: The contact's phone number
-          examples:
-          - '+1.2125552368'
-          format: phone
-          title: Phone
-          type: string
-        postal_code:
-          description: The postal code of the contact
-          maxLength: 255
-          minLength: 1
-          title: Postal Code
-          type: string
-        state:
-          anyOf:
-          - maxLength: 255
-            minLength: 1
-            type: string
-          - type: 'null'
-          description: The state of the contact
-          title: State
-        street:
-          description: The address of the contact
-          maxLength: 255
-          minLength: 1
-          title: Street
-          type: string
-        title:
-          anyOf:
-          - maxLength: 255
-            minLength: 1
-            type: string
-          - type: 'null'
-          description: The title of the contact
-          title: Title
-      required:
-      - first_name
-      - last_name
-      - email
-      - phone
-      - street
-      - city
-      - postal_code
-      - country
-      - disclose
-      title: ContactSchema
       type: object
     ContactSortField:
       enum:
@@ -13926,7 +13805,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-29-123437
+  version: 2026-06-29-142706
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -16233,7 +16112,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactSchema'
+                $ref: '#/components/schemas/ContactResponse'
           description: Successful Response
         '422':
           content:
@@ -25115,6 +24994,7 @@ paths:
                       country: US
                       disclose: false
                       email: john.doe@example.com
+                      email_ace: john.doe@example.com
                       first_name: John
                       last_name: Doe
                       phone: +1 212-555-1234

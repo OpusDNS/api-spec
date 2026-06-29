@@ -3300,7 +3300,7 @@ export interface components {
             /**
              * Email
              * Format: email
-             * @description The email of the contact
+             * @description Contact email address (as submitted)
              */
             email: string;
             /**
@@ -3521,7 +3521,7 @@ export interface components {
             /**
              * Email
              * Format: email
-             * @description The email of the contact
+             * @description Contact email address (as submitted)
              */
             email: string;
             /**
@@ -3656,7 +3656,7 @@ export interface components {
             /**
              * Email
              * Format: email
-             * @description The email of the contact
+             * @description Contact email address (as submitted)
              */
             email: string;
             /**
@@ -3719,97 +3719,6 @@ export interface components {
              * @description Tags assigned to this contact
              */
             tags?: components["schemas"]["TagEnrichedResponse"][] | null;
-            /**
-             * Title
-             * @description The title of the contact
-             */
-            title?: string | null;
-        };
-        /** ContactSchema */
-        ContactSchema: {
-            /**
-             * City
-             * @description The city of the contact
-             */
-            city: string;
-            /**
-             * Contact Id
-             * Format: typeid
-             * @example contact_01h45ytscbebyvny4gc8cr8ma2
-             */
-            contact_id?: TypeId<"contact">;
-            /**
-             * Country
-             * @description The country of the contact
-             */
-            country: string;
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Disclose
-             * @description Whether the contact details should be disclosed. The Disclose function may not work with all TLDs. Some registries still display the data in Whois if, for example, the organization field is filled in.
-             */
-            disclose: boolean;
-            /**
-             * Email
-             * Format: email
-             * @description The email of the contact
-             */
-            email: string;
-            /**
-             * Fax
-             * @description The contacts's fax number
-             */
-            fax?: string | null;
-            /**
-             * First Name
-             * @description The first name of the contact
-             */
-            first_name: string;
-            /**
-             * Last Name
-             * @description The last name of the contact
-             */
-            last_name: string;
-            /**
-             * Org
-             * @description The organization of the contact
-             */
-            org?: string | null;
-            /**
-             * Organization Id
-             * Format: typeid
-             * @description The organization that owns the domain
-             * @default None
-             * @example organization_01h45ytscbebyvny4gc8cr8ma2
-             */
-            organization_id: TypeId<"organization">;
-            /**
-             * Phone
-             * Format: phone
-             * @description The contact's phone number
-             * @example +1.2125552368
-             */
-            phone: string;
-            /**
-             * Postal Code
-             * @description The postal code of the contact
-             */
-            postal_code: string;
-            /**
-             * State
-             * @description The state of the contact
-             */
-            state?: string | null;
-            /**
-             * Street
-             * @description The address of the contact
-             */
-            street: string;
             /**
              * Title
              * @description The title of the contact
@@ -13714,7 +13623,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ContactSchema"];
+                    "application/json": components["schemas"]["ContactResponse"];
                 };
             };
             /** @description Validation Error */

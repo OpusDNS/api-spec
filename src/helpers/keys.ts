@@ -32,7 +32,6 @@ import type {
   ContactCreateWorkerResult,
   ContactHandle,
   Contact,
-  ContactSchema,
   ContactVerificationApi,
   ContactVerificationEmail,
   ContactVerification,
@@ -880,42 +879,6 @@ export const KEYS_CONTACT = [
   KEY_CONTACT_TAGS,
   KEY_CONTACT_TITLE,
 ] as const satisfies (keyof Contact)[];
-
-export const KEY_CONTACT_SCHEMA_CITY = 'city' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_CONTACT_ID = 'contact_id' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_COUNTRY = 'country' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_CREATED_ON = 'created_on' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_DISCLOSE = 'disclose' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_EMAIL = 'email' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_FAX = 'fax' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_FIRST_NAME = 'first_name' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_LAST_NAME = 'last_name' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_ORG = 'org' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_ORGANIZATION_ID = 'organization_id' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_PHONE = 'phone' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_POSTAL_CODE = 'postal_code' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_STATE = 'state' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_STREET = 'street' satisfies keyof ContactSchema;
-export const KEY_CONTACT_SCHEMA_TITLE = 'title' satisfies keyof ContactSchema;
-
-export const KEYS_CONTACT_SCHEMA = [
-  KEY_CONTACT_SCHEMA_CITY,
-  KEY_CONTACT_SCHEMA_CONTACT_ID,
-  KEY_CONTACT_SCHEMA_COUNTRY,
-  KEY_CONTACT_SCHEMA_CREATED_ON,
-  KEY_CONTACT_SCHEMA_DISCLOSE,
-  KEY_CONTACT_SCHEMA_EMAIL,
-  KEY_CONTACT_SCHEMA_FAX,
-  KEY_CONTACT_SCHEMA_FIRST_NAME,
-  KEY_CONTACT_SCHEMA_LAST_NAME,
-  KEY_CONTACT_SCHEMA_ORG,
-  KEY_CONTACT_SCHEMA_ORGANIZATION_ID,
-  KEY_CONTACT_SCHEMA_PHONE,
-  KEY_CONTACT_SCHEMA_POSTAL_CODE,
-  KEY_CONTACT_SCHEMA_STATE,
-  KEY_CONTACT_SCHEMA_STREET,
-  KEY_CONTACT_SCHEMA_TITLE,
-] as const satisfies (keyof ContactSchema)[];
 
 export const KEY_CONTACT_VERIFICATION_API_CANCELED_ON = 'canceled_on' satisfies keyof ContactVerificationApi;
 export const KEY_CONTACT_VERIFICATION_API_CONTACT_ID = 'contact_id' satisfies keyof ContactVerificationApi;
