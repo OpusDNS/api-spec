@@ -2508,23 +2508,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/users/me/password-reset": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Change Password */
-        patch: operations["change_password_v1_users_me_password_reset_patch"];
-        trace?: never;
-    };
     "/v1/users/{user_id}": {
         parameters: {
             query?: never;
@@ -9860,14 +9843,6 @@ export interface components {
             total_count: number;
             /** @description Aggregated metrics for all parking entries */
             total_metrics: components["schemas"]["ParkingStatistics"];
-        };
-        /** PasswordUpdate */
-        PasswordUpdate: {
-            /**
-             * New Password
-             * @example correcthorsebatterystaple
-             */
-            new_password: string;
         };
         /**
          * PatchOp
@@ -23227,53 +23202,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UserWithAuthorization"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    change_password_v1_users_me_password_reset_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PasswordUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Unauthorized */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /** @example {
-                     *       "code": "ERROR_AUTHENTICATION",
-                     *       "detail": "Additional error context.",
-                     *       "status": 401,
-                     *       "title": "Authentication Error",
-                     *       "type": "authentication"
-                     *     } */
-                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
             /** @description Validation Error */

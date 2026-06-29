@@ -43,7 +43,6 @@ import type {
   OrganizationCreate,
   OrganizationUpdate,
   ParkingSignupRequest,
-  PasswordUpdate,
   PublicAuthRequestForm,
   PublicRoleAssignmentRequest,
   TagCreate,
@@ -1026,11 +1025,6 @@ export type GET_UsersMe_Request = {
   parameters: operations['get_current_user_v1_users_me_get']['parameters'];
 };
 export type GET_UsersMe_Request_Query = GET_UsersMe_Request['parameters']['query'];
-
-export type PATCH_UsersMePasswordReset_Request = {
-  requestBody: PasswordUpdate;
-};
-export type PATCH_UsersMePasswordReset_Request_Body = PATCH_UsersMePasswordReset_Request['requestBody'];
 
 export type GET_VanityNameserverSets_Request = {
   parameters: operations['list_vanity_nameserver_sets_v1_vanity_nameserver_sets_get']['parameters'];

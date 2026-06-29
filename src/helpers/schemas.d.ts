@@ -414,7 +414,6 @@ export type ParkingSignupStatus = components['schemas']['ParkingSignupStatusResp
 export type ParkingSortField = components['schemas']['ParkingSortField'];
 export type ParkingStatistics = components['schemas']['ParkingStatistics'];
 export type ParkingTotalMetrics = components['schemas']['ParkingTotalMetricsResponse'];
-export type PasswordUpdate = components['schemas']['PasswordUpdate'];
 export type PatchOp = components['schemas']['PatchOp'];
 export type Period = components['schemas']['Period'];
 export type PeriodList = components['schemas']['PeriodList'];

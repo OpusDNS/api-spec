@@ -962,11 +962,6 @@ export type PATCH_UsersByUserId_Response = PATCH_UsersByUserId_Response_200 | PA
 export type PATCH_UsersByUserId_Response_200 = UserPublicWithAttributes;
 export type PATCH_UsersByUserId_Response_422 = HTTPValidationError;
 
-export type PATCH_UsersMePasswordReset_Response = PATCH_UsersMePasswordReset_Response_401 | PATCH_UsersMePasswordReset_Response_422;
-
-export type PATCH_UsersMePasswordReset_Response_401 = Problem;
-export type PATCH_UsersMePasswordReset_Response_422 = HTTPValidationError;
-
 export type PATCH_VanityNameserverSetsBySetIdDefault_Response = PATCH_VanityNameserverSetsBySetIdDefault_Response_200 | PATCH_VanityNameserverSetsBySetIdDefault_Response_422;
 
 export type PATCH_VanityNameserverSetsBySetIdDefault_Response_200 = SetVanityNameserverSetDefaultRes;

@@ -318,7 +318,6 @@ import type {
   ParkingSignupStatus,
   ParkingStatistics,
   ParkingTotalMetrics,
-  PasswordUpdate,
   Period,
   PlatformStatsBucket,
   PremiumDomainsBase,
@@ -4369,12 +4368,6 @@ export const KEYS_PARKING_TOTAL_METRICS = [
   KEY_PARKING_TOTAL_METRICS_TOTAL_COUNT,
   KEY_PARKING_TOTAL_METRICS_TOTAL_METRICS,
 ] as const satisfies (keyof ParkingTotalMetrics)[];
-
-export const KEY_PASSWORD_UPDATE_NEW_PASSWORD = 'new_password' satisfies keyof PasswordUpdate;
-
-export const KEYS_PASSWORD_UPDATE = [
-  KEY_PASSWORD_UPDATE_NEW_PASSWORD,
-] as const satisfies (keyof PasswordUpdate)[];
 
 export const KEY_PERIOD_UNIT = 'unit' satisfies keyof Period;
 export const KEY_PERIOD_VALUE = 'value' satisfies keyof Period;

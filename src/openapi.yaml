@@ -10759,17 +10759,6 @@ components:
       - total_metrics
       title: ParkingTotalMetricsResponse
       type: object
-    PasswordUpdate:
-      properties:
-        new_password:
-          examples:
-          - correcthorsebatterystaple
-          title: New Password
-          type: string
-      required:
-      - new_password
-      title: PasswordUpdate
-      type: object
     PatchOp:
       enum:
       - upsert
@@ -13937,7 +13926,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-25-204413
+  version: 2026-06-29-123437
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -28763,43 +28752,6 @@ paths:
       - user
       x-required-permissions:
       - users:read
-  /v1/users/me/password-reset:
-    patch:
-      operationId: change_password_v1_users_me_password_reset_patch
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PasswordUpdate'
-        required: true
-      responses:
-        '204':
-          description: Successful Response
-        '401':
-          content:
-            application/problem+json:
-              example:
-                code: ERROR_AUTHENTICATION
-                detail: Additional error context.
-                status: 401
-                title: Authentication Error
-                type: authentication
-              schema:
-                $ref: '#/components/schemas/Problem'
-          description: Unauthorized
-        '422':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      security:
-      - OAuth2PasswordBearer: []
-      summary: Change Password
-      tags:
-      - user
-      x-required-permissions:
-      - users:manage
   /v1/users/{user_id}:
     delete:
       description: Delete a user by ID
