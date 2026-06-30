@@ -13806,7 +13806,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-30-085121
+  version: 2026-06-30-103725
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15387,6 +15387,8 @@ paths:
       summary: Retrieve all object history
       tags:
       - archive
+      x-required-permissions:
+      - organization:read
   /v1/archive/object-logs/{object_id}:
     get:
       description: Retrieve paginated audit logs for a specific object with optional
@@ -15513,6 +15515,8 @@ paths:
       summary: Retrieve object history
       tags:
       - archive
+      x-required-permissions:
+      - organization:read
   /v1/archive/request-history:
     get:
       description: Retrieves a paginated list of request history logs
@@ -15673,6 +15677,8 @@ paths:
       summary: Retrieve request history logs
       tags:
       - archive
+      x-required-permissions:
+      - organization:read
   /v1/auth/client_credentials/introspect:
     get:
       description: Returns the stored record for the API key (or organization token)
@@ -25797,6 +25803,8 @@ paths:
       summary: List all organizations
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     post:
       description: Create a new organization under the current organization
       operationId: create_organization_v1_organizations_post
@@ -25913,6 +25921,8 @@ paths:
       summary: List organization attributes
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     patch:
       description: Updates one or more organization attributes for the current organization
       operationId: update_current_organization_attributes_v1_organizations_attributes_patch
@@ -26029,6 +26039,8 @@ paths:
       summary: List IP restrictions
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     post:
       description: 'Create a new IP restriction for the organization.
 
@@ -26200,6 +26212,8 @@ paths:
       summary: Get an IP restriction
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     patch:
       description: 'Update an existing IP restriction.
 
@@ -26313,6 +26327,8 @@ paths:
       summary: List grantable role permissions
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
   /v1/organizations/roles:
     get:
       description: 'Retrieves all roles assignable in the current organization: the
@@ -26364,6 +26380,8 @@ paths:
       summary: List roles
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     post:
       description: Creates an organization-owned custom role granting the requested
         permissions. The escalation-bearing admin/owner permissions cannot be granted.
@@ -26574,6 +26592,8 @@ paths:
       summary: Get a role
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     patch:
       description: Updates a custom role's name, description and/or permission set.
         Permission changes apply to every subject holding the role instantly. Built-in
@@ -26747,6 +26767,8 @@ paths:
       summary: List all users
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
   /v1/organizations/{organization_id}:
     delete:
       description: Permanently deletes an organization
@@ -26860,6 +26882,8 @@ paths:
       summary: Get organization details
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     patch:
       description: Updates details for a specific organization
       operationId: update_organization_v1_organizations__organization_id__patch
@@ -26999,6 +27023,8 @@ paths:
       summary: List organization attributes
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
     patch:
       description: Updates one or more organization attributes for the specified organization
       operationId: update_organization_attributes_v1_organizations__organization_id__attributes_patch
@@ -27205,6 +27231,8 @@ paths:
       summary: List product prices
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
   /v1/organizations/{organization_id}/transactions:
     get:
       description: Retrieves a paginated list of transactions for an organization
@@ -27363,6 +27391,8 @@ paths:
       summary: List all transactions
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
   /v1/organizations/{organization_id}/transactions/{transaction_id}:
     get:
       description: Retrieves details for a specific transaction for an organization
@@ -27433,6 +27463,8 @@ paths:
       summary: Get a specific transaction
       tags:
       - organization
+      x-required-permissions:
+      - organization:read
   /v1/parking:
     get:
       description: Retrieves a paginated list of parking entries for the organization
@@ -27888,6 +27920,8 @@ paths:
       summary: List Reports
       tags:
       - report
+      x-required-permissions:
+      - organization:read
     post:
       operationId: create_report_v1_reports_post
       requestBody:
@@ -27916,6 +27950,8 @@ paths:
       summary: Create Report
       tags:
       - report
+      x-required-permissions:
+      - organization:read
   /v1/reports/{report_id}:
     get:
       operationId: get_report_v1_reports__report_id__get
@@ -27945,6 +27981,8 @@ paths:
       summary: Get Report
       tags:
       - report
+      x-required-permissions:
+      - organization:read
   /v1/reports/{report_id}/download:
     get:
       operationId: download_report_v1_reports__report_id__download_get
@@ -27973,6 +28011,8 @@ paths:
       summary: Download Report
       tags:
       - report
+      x-required-permissions:
+      - organization:read
   /v1/tags:
     get:
       description: Retrieves a paginated list of tags
@@ -28499,6 +28539,8 @@ paths:
       summary: Get list of Specifications for all TLDs we support
       tags:
       - tld
+      x-required-permissions:
+      - organization:read
   /v1/tlds/portfolio:
     get:
       description: Retrieves a list of TLDs we have support for
@@ -28525,6 +28567,8 @@ paths:
       summary: Get the list of TLDs we support
       tags:
       - tld
+      x-required-permissions:
+      - organization:read
   /v1/tlds/{tld}:
     get:
       description: Retrieves the TLD specification for a given TLD
@@ -28567,6 +28611,8 @@ paths:
       summary: Get the TLD specification
       tags:
       - tld
+      x-required-permissions:
+      - organization:read
   /v1/users:
     post:
       description: Create a new user
