@@ -5592,6 +5592,8 @@ components:
           title: Attributes
         contacts:
           $ref: '#/components/schemas/DomainContactHandles'
+          description: The contacts of the domain. Optional for transfers when all
+            supported contact roles have a minimum of 0 in the TLD specification.
         create_zone:
           default: false
           description: Create a zone on OpusDNS nameserver infrastructure
@@ -5614,7 +5616,6 @@ components:
           $ref: '#/components/schemas/RenewalMode'
           description: The renewal mode of the domain
       required:
-      - contacts
       - renewal_mode
       title: DomainTransferBulkTemplate
       type: object
@@ -13805,7 +13806,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-29-142706
+  version: 2026-06-30-085121
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -6365,7 +6365,8 @@ export interface components {
             attributes?: {
                 [key: string]: string;
             } | null;
-            contacts: components["schemas"]["DomainContactHandles"];
+            /** @description The contacts of the domain. Optional for transfers when all supported contact roles have a minimum of 0 in the TLD specification. */
+            contacts?: components["schemas"]["DomainContactHandles"];
             /**
              * Create Zone
              * @description Create a zone on OpusDNS nameserver infrastructure
