@@ -1213,7 +1213,7 @@ export type POST_Organizations_Response = POST_Organizations_Response_200 | POST
 export type POST_Organizations_Response_200 = Organization;
 export type POST_Organizations_Response_401 = Problem;
 export type POST_Organizations_Response_403 = Problem;
-export type POST_Organizations_Response_422 = HTTPValidationError;
+export type POST_Organizations_Response_422 = Problem;
 
 export type POST_OrganizationsIpRestrictions_Response = POST_OrganizationsIpRestrictions_Response_200 | POST_OrganizationsIpRestrictions_Response_401 | POST_OrganizationsIpRestrictions_Response_403 | POST_OrganizationsIpRestrictions_Response_422;
 

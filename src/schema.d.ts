@@ -8881,6 +8881,11 @@ export interface components {
              */
             attributes?: components["schemas"]["OrganizationAttributeCreate"][];
             /**
+             * @description Whether the organization is billed on its own account (INDEPENDENT) or rolled up to its parent (CONSOLIDATED). INDEPENDENT is only permitted for eligible sub-organizations. Cannot be changed after creation.
+             * @default consolidated
+             */
+            billing_mode: components["schemas"]["BillingMode"];
+            /**
              * Business Number
              * @description Government issued business identifier for the organization issued.
              */
@@ -20441,13 +20446,20 @@ export interface operations {
                     "application/problem+json": components["schemas"]["Problem"];
                 };
             };
-            /** @description Validation Error */
+            /** @description Unprocessable Content */
             422: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                    /** @example {
+                     *       "code": "ERROR_INDEPENDENT_BILLING_NOT_ALLOWED",
+                     *       "detail": "Independent billing mode is only allowed for sub-organizations of a billing organization.",
+                     *       "status": 422,
+                     *       "title": "Organization Management Error",
+                     *       "type": "independent-billing-not-allowed"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };

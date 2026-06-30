@@ -3903,6 +3903,7 @@ export const KEYS_ORGANIZATION_ATTRIBUTE_UPDATE = [
 export const KEY_ORGANIZATION_CREATE_ADDRESS_1 = 'address_1' satisfies keyof OrganizationCreate;
 export const KEY_ORGANIZATION_CREATE_ADDRESS_2 = 'address_2' satisfies keyof OrganizationCreate;
 export const KEY_ORGANIZATION_CREATE_ATTRIBUTES = 'attributes' satisfies keyof OrganizationCreate;
+export const KEY_ORGANIZATION_CREATE_BILLING_MODE = 'billing_mode' satisfies keyof OrganizationCreate;
 export const KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER = 'business_number' satisfies keyof OrganizationCreate;
 export const KEY_ORGANIZATION_CREATE_CITY = 'city' satisfies keyof OrganizationCreate;
 export const KEY_ORGANIZATION_CREATE_COUNTRY_CODE = 'country_code' satisfies keyof OrganizationCreate;
@@ -3921,6 +3922,7 @@ export const KEYS_ORGANIZATION_CREATE = [
   KEY_ORGANIZATION_CREATE_ADDRESS_1,
   KEY_ORGANIZATION_CREATE_ADDRESS_2,
   KEY_ORGANIZATION_CREATE_ATTRIBUTES,
+  KEY_ORGANIZATION_CREATE_BILLING_MODE,
   KEY_ORGANIZATION_CREATE_BUSINESS_NUMBER,
   KEY_ORGANIZATION_CREATE_CITY,
   KEY_ORGANIZATION_CREATE_COUNTRY_CODE,

@@ -9272,6 +9272,12 @@ components:
             $ref: '#/components/schemas/OrganizationAttributeCreate'
           title: Attributes
           type: array
+        billing_mode:
+          $ref: '#/components/schemas/BillingMode'
+          default: consolidated
+          description: Whether the organization is billed on its own account (INDEPENDENT)
+            or rolled up to its parent (CONSOLIDATED). INDEPENDENT is only permitted
+            for eligible sub-organizations. Cannot be changed after creation.
         business_number:
           anyOf:
           - maxLength: 100
@@ -13822,7 +13828,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-30-170126
+  version: 2026-06-30-185809
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -25864,9 +25870,16 @@ paths:
         '422':
           content:
             application/problem+json:
+              example:
+                code: ERROR_INDEPENDENT_BILLING_NOT_ALLOWED
+                detail: Independent billing mode is only allowed for sub-organizations
+                  of a billing organization.
+                status: 422
+                title: Organization Management Error
+                type: independent-billing-not-allowed
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
