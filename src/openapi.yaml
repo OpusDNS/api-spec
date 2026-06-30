@@ -100,6 +100,12 @@ components:
           title: Customer Number
       title: BillingMetadata
       type: object
+    BillingMode:
+      enum:
+      - consolidated
+      - independent
+      title: BillingMode
+      type: string
     BillingPlan:
       properties:
         amount:
@@ -8972,6 +8978,11 @@ components:
             $ref: '#/components/schemas/OrganizationAttribute'
           title: Attributes
           type: array
+        billing_mode:
+          $ref: '#/components/schemas/BillingMode'
+          default: consolidated
+          description: Whether the organization is billed on its own account (INDEPENDENT)
+            or rolled up to its parent (CONSOLIDATED).
         business_number:
           anyOf:
           - maxLength: 100
@@ -9618,6 +9629,11 @@ components:
           type: array
         billing_metadata:
           $ref: '#/components/schemas/BillingMetadata'
+        billing_mode:
+          $ref: '#/components/schemas/BillingMode'
+          default: consolidated
+          description: Whether the organization is billed on its own account (INDEPENDENT)
+            or rolled up to its parent (CONSOLIDATED).
         business_number:
           anyOf:
           - maxLength: 100
@@ -13806,7 +13822,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-30-103725
+  version: 2026-06-30-170126
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

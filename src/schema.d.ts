@@ -2790,6 +2790,11 @@ export interface components {
              */
             customer_number?: number | null;
         };
+        /**
+         * BillingMode
+         * @enum {string}
+         */
+        BillingMode: "consolidated" | "independent";
         /** BillingPlan */
         BillingPlan: {
             /**
@@ -8656,6 +8661,11 @@ export interface components {
             /** Attributes */
             attributes?: components["schemas"]["OrganizationAttribute"][];
             /**
+             * @description Whether the organization is billed on its own account (INDEPENDENT) or rolled up to its parent (CONSOLIDATED).
+             * @default consolidated
+             */
+            billing_mode: components["schemas"]["BillingMode"];
+            /**
              * Business Number
              * @description Government issued business identifier for the organization issued.
              */
@@ -9097,6 +9107,11 @@ export interface components {
             /** Attributes */
             attributes?: components["schemas"]["OrganizationAttribute"][];
             billing_metadata?: components["schemas"]["BillingMetadata"];
+            /**
+             * @description Whether the organization is billed on its own account (INDEPENDENT) or rolled up to its parent (CONSOLIDATED).
+             * @default consolidated
+             */
+            billing_mode: components["schemas"]["BillingMode"];
             /**
              * Business Number
              * @description Government issued business identifier for the organization issued.

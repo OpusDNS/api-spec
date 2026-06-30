@@ -3797,6 +3797,7 @@ export const KEYS_OBJECT_TAG_CHANGES2 = [
 export const KEY_ORGANIZATION_ADDRESS_1 = 'address_1' satisfies keyof Organization;
 export const KEY_ORGANIZATION_ADDRESS_2 = 'address_2' satisfies keyof Organization;
 export const KEY_ORGANIZATION_ATTRIBUTES = 'attributes' satisfies keyof Organization;
+export const KEY_ORGANIZATION_BILLING_MODE = 'billing_mode' satisfies keyof Organization;
 export const KEY_ORGANIZATION_BUSINESS_NUMBER = 'business_number' satisfies keyof Organization;
 export const KEY_ORGANIZATION_CITY = 'city' satisfies keyof Organization;
 export const KEY_ORGANIZATION_COUNTRY_CODE = 'country_code' satisfies keyof Organization;
@@ -3820,6 +3821,7 @@ export const KEYS_ORGANIZATION = [
   KEY_ORGANIZATION_ADDRESS_1,
   KEY_ORGANIZATION_ADDRESS_2,
   KEY_ORGANIZATION_ATTRIBUTES,
+  KEY_ORGANIZATION_BILLING_MODE,
   KEY_ORGANIZATION_BUSINESS_NUMBER,
   KEY_ORGANIZATION_CITY,
   KEY_ORGANIZATION_COUNTRY_CODE,
@@ -4002,6 +4004,7 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1 = 'address_1' satisfie
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2 = 'address_2' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES = 'attributes' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA = 'billing_metadata' satisfies keyof OrganizationWithBillingData;
+export const KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_MODE = 'billing_mode' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER = 'business_number' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_CITY = 'city' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE = 'country_code' satisfies keyof OrganizationWithBillingData;
@@ -4028,6 +4031,7 @@ export const KEYS_ORGANIZATION_WITH_BILLING_DATA = [
   KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2,
   KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES,
   KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_METADATA,
+  KEY_ORGANIZATION_WITH_BILLING_DATA_BILLING_MODE,
   KEY_ORGANIZATION_WITH_BILLING_DATA_BUSINESS_NUMBER,
   KEY_ORGANIZATION_WITH_BILLING_DATA_CITY,
   KEY_ORGANIZATION_WITH_BILLING_DATA_COUNTRY_CODE,

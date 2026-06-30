@@ -4,6 +4,7 @@ import type {
   AttributeType,
   BatchSortField,
   BatchStatus,
+  BillingMode,
   BillingTransactionAction,
   BillingTransactionProductType,
   BillingTransactionSortField,
@@ -182,6 +183,16 @@ export const BATCH_STATUS_VALUES = [
   'pending',
   'complete',
 ] as const satisfies ReadonlyArray<BatchStatus>;
+
+export const BILLING_MODE = {
+  CONSOLIDATED: "consolidated",
+  INDEPENDENT: "independent",
+} as const satisfies Record<string, BillingMode>;
+
+export const BILLING_MODE_VALUES = [
+  'consolidated',
+  'independent',
+] as const satisfies ReadonlyArray<BillingMode>;
 
 export const BILLING_TRANSACTION_ACTION = {
   CREATE: "create",
