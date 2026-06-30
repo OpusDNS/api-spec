@@ -287,7 +287,7 @@ Initiate an inbound transfer for a single domain:
 | --- | --- | --- |
 | `name` | Yes | Domain name to transfer. |
 | `auth_code` | Yes | Authorization code from the current registrar (6–32 characters). |
-| `contacts` | Yes | Contact handles or IDs. |
+| `contacts` | Conditional | Contact handles or IDs. Required for most TLDs, but optional for TLDs where every supported contact role has a minimum of `0` (e.g. `.ca`, `.ch`). |
 | `renewal_mode` | Yes | Renewal mode after transfer. |
 | `period` | No | Transfer period. |
 | `nameservers` | No | Nameservers to set after transfer completes. |
@@ -323,7 +323,9 @@ Transfer multiple domains using the template + instances pattern:
 
 Each instance must include its own `auth_code` since authorization codes are
 unique per domain. Shared settings like contacts, renewal mode, and zone
-creation go in the template.
+creation go in the template. The `contacts` block can be omitted entirely for
+TLDs that do not require any contacts on transfer (every supported contact role
+has a minimum of `0`, e.g. `.ca`, `.ch`).
 
 ## Full batch example
 

@@ -40,8 +40,12 @@ code proves you have the right to transfer the domain.
 
 ## 2. Prepare contacts
 
-Like registrations, transfers require `contacts` and `renewal_mode`. You can
+Most transfers require `contacts` alongside `renewal_mode`. You can
 reuse existing contacts or create new ones with `POST /v1/contacts`.
+
+<scalar-callout type="info">
+The <code>contacts</code> section is <strong>optional</strong> for TLDs that do not require any contacts to be supplied for an inbound transfer (i.e. every supported contact role has a minimum of <code>0</code> in the TLD specification, for example <code>.ca</code> and <code>.ch</code>). For those TLDs you can omit <code>contacts</code> entirely. TLDs that require one or more contact roles still reject transfers submitted without them.
+</scalar-callout>
 
 ```bash
 curl "$OPUSDNS_API_BASE/v1/contacts" \
@@ -102,7 +106,7 @@ curl "$OPUSDNS_API_BASE/v1/domains/transfer" \
 | --- | --- | --- |
 | `name` | Yes | The fully qualified domain name to transfer (e.g., `example.com`). |
 | `auth_code` | Yes | The authorization code from the current registrar. |
-| `contacts` | Yes | Contact IDs keyed by role. At minimum, a `registrant` is always required. |
+| `contacts` | Conditional | Contact IDs keyed by role. Required for most TLDs (a `registrant` is the minimum). Optional for TLDs where every supported contact role has a minimum of `0` (e.g. `.ca`, `.ch`). |
 | `renewal_mode` | Yes | `"renew"` for automatic renewal or `"expire"` to let the domain expire. |
 | `period` | No | Additional registration period added on transfer completion. If omitted, the registry default policy applies. |
 | `nameservers` | No | Nameservers to set after transfer completes. If omitted, the existing nameservers from the previous registrar are imported. See [Nameservers](/products/domains/nameservers) for the OpusDNS nameserver hostnames. Hostnames subordinate to a domain in your account must exist as [host objects](/products/domains/host-objects) first. |

@@ -4,6 +4,17 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 30 June 2026
+
+- Made the **`contacts` section optional on domain transfers**. For TLDs that do
+  not require any contacts on an inbound transfer - where every supported contact
+  role has a minimum of `0` in the TLD specification (for example `.ca` and
+  `.ch`) - you can
+  now omit `contacts` entirely instead of sending an empty object. This applies to
+  `POST /v1/domains/transfer` as well as the `domain_transfer` and
+  `domain_transfer_bulk` job commands. TLDs that require one or more contact roles
+  still reject transfers submitted without them.
+
 ### 21 June 2026
 
 - Added **vanity nameservers** — serve your DNS zones under your own branded
