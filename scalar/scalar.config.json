@@ -896,6 +896,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/tf.md",
                 "showInSidebar": true
               },
+              "/to": {
+                "type": "page",
+                "title": "🇹🇴 .to",
+                "filepath": "content/tld-knowledge-base/cctlds/to.md",
+                "showInSidebar": true
+              },
               "/tv": {
                 "type": "page",
                 "title": "🇹🇻 .tv",
@@ -1497,6 +1503,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/cool.md",
                 "showInSidebar": true
               },
+              "/country": {
+                "type": "page",
+                "title": "🌐 .country",
+                "filepath": "content/tld-knowledge-base/gtlds/country.md",
+                "showInSidebar": true
+              },
               "/coupons": {
                 "type": "page",
                 "title": "🌐 .coupons",
@@ -1651,6 +1663,12 @@
                 "type": "page",
                 "title": "🌐 .discount",
                 "filepath": "content/tld-knowledge-base/gtlds/discount.md",
+                "showInSidebar": true
+              },
+              "/diy": {
+                "type": "page",
+                "title": "🌐 .diy",
+                "filepath": "content/tld-knowledge-base/gtlds/diy.md",
                 "showInSidebar": true
               },
               "/doctor": {
@@ -1855,6 +1873,12 @@
                 "type": "page",
                 "title": "🌐 .foo",
                 "filepath": "content/tld-knowledge-base/gtlds/foo.md",
+                "showInSidebar": true
+              },
+              "/food": {
+                "type": "page",
+                "title": "🌐 .food",
+                "filepath": "content/tld-knowledge-base/gtlds/food.md",
                 "showInSidebar": true
               },
               "/football": {
@@ -2083,6 +2107,12 @@
                 "type": "page",
                 "title": "🌐 .help",
                 "filepath": "content/tld-knowledge-base/gtlds/help.md",
+                "showInSidebar": true
+              },
+              "/hiv": {
+                "type": "page",
+                "title": "🌐 .hiv",
+                "filepath": "content/tld-knowledge-base/gtlds/hiv.md",
                 "showInSidebar": true
               },
               "/hockey": {
@@ -2337,6 +2367,12 @@
                 "filepath": "content/tld-knowledge-base/gtlds/life.md",
                 "showInSidebar": true
               },
+              "/lifestyle": {
+                "type": "page",
+                "title": "🌐 .lifestyle",
+                "filepath": "content/tld-knowledge-base/gtlds/lifestyle.md",
+                "showInSidebar": true
+              },
               "/lighting": {
                 "type": "page",
                 "title": "🌐 .lighting",
@@ -2365,6 +2401,12 @@
                 "type": "page",
                 "title": "🌐 .live",
                 "filepath": "content/tld-knowledge-base/gtlds/live.md",
+                "showInSidebar": true
+              },
+              "/living": {
+                "type": "page",
+                "title": "🌐 .living",
+                "filepath": "content/tld-knowledge-base/gtlds/living.md",
                 "showInSidebar": true
               },
               "/llc": {
@@ -2977,6 +3019,12 @@
                 "type": "page",
                 "title": "🌐 .services",
                 "filepath": "content/tld-knowledge-base/gtlds/services.md",
+                "showInSidebar": true
+              },
+              "/sexy": {
+                "type": "page",
+                "title": "🌐 .sexy",
+                "filepath": "content/tld-knowledge-base/gtlds/sexy.md",
                 "showInSidebar": true
               },
               "/shiksha": {
