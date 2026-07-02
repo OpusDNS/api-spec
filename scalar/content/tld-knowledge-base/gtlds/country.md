@@ -57,8 +57,8 @@
 
 | Property | Value |
 | --- | --- |
-| Required Contacts | Domain Owner, Administrator, Technical Contact |
-| Supported Roles | Domain Owner, Administrator, Technical Contact |
+| Required Contacts | Domain Owner |
+| Supported Roles | Domain Owner, Administrator, Technical Contact, Billing Contact |
 | Thick WHOIS | ❌ No |
 | Privacy Proxy Allowed | ✅ Yes |
 | Contacts Transferable | ❌ No |
