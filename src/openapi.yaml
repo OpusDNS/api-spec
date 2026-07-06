@@ -12659,6 +12659,133 @@ components:
       - locale
       title: UserCreate
       type: object
+    UserOrganizationMeta:
+      properties:
+        currency:
+          anyOf:
+          - $ref: '#/components/schemas/Currency'
+          - type: 'null'
+          description: Currency used by the user's organization.
+        parent_organization_id:
+          anyOf:
+          - examples:
+            - organization_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: organization
+          - type: 'null'
+          description: ID of the parent organization, if any.
+          title: Parent Organization Id
+      title: UserOrganizationMeta
+      type: object
+    UserProfile:
+      properties:
+        created_on:
+          description: The date/time the entry was created on
+          format: date-time
+          title: Created On
+          type: string
+        email:
+          description: The user's email address
+          format: email
+          title: Email
+          type: string
+        first_name:
+          description: The user's first name
+          maxLength: 255
+          minLength: 1
+          title: First Name
+          type: string
+        last_name:
+          description: The user's last name
+          maxLength: 255
+          minLength: 1
+          title: Last Name
+          type: string
+        locale:
+          examples:
+          - en_US
+          title: Locale
+          type: string
+        organization:
+          anyOf:
+          - $ref: '#/components/schemas/UserOrganizationMeta'
+          - type: 'null'
+        organization_id:
+          default: None
+          description: The user's organization id
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        permissions:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PublicPermission'
+            type: array
+          - type: 'null'
+          title: Permissions
+        phone:
+          anyOf:
+          - format: phone
+            type: string
+          - type: 'null'
+          description: The user's phone number
+          examples:
+          - '+1.2125552368'
+          title: Phone
+        role:
+          anyOf:
+          - $ref: '#/components/schemas/PublicRole'
+          - $ref: '#/components/schemas/CustomRoleLabel'
+          - type: 'null'
+          title: Role
+        updated_on:
+          description: The date/time the entry was last updated on
+          format: date-time
+          title: Updated On
+          type: string
+        user_attributes:
+          additionalProperties:
+            $ref: '#/components/schemas/JsonValue'
+          description: All of the user attributes
+          examples:
+          - array:
+            - 1
+            - 2
+            - 3
+            bool: true
+            number: 1
+            string: value2
+          title: User Attributes
+          type: object
+        user_id:
+          examples:
+          - user_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: User Id
+          type: string
+          x-typeid-prefix: user
+        username:
+          description: The user's unique username
+          maxLength: 128
+          minLength: 3
+          pattern: ^[a-zA-Z0-9\-+_@.]+$
+          title: Username
+          type: string
+      required:
+      - username
+      - first_name
+      - last_name
+      - email
+      - locale
+      title: UserProfile
+      type: object
     UserPublic:
       properties:
         created_on:
@@ -13006,109 +13133,6 @@ components:
           description: The user's unique username
           title: Username
       title: UserUpdate
-      type: object
-    UserWithAuthorization:
-      properties:
-        created_on:
-          description: The date/time the entry was created on
-          format: date-time
-          title: Created On
-          type: string
-        email:
-          description: The user's email address
-          format: email
-          title: Email
-          type: string
-        first_name:
-          description: The user's first name
-          maxLength: 255
-          minLength: 1
-          title: First Name
-          type: string
-        last_name:
-          description: The user's last name
-          maxLength: 255
-          minLength: 1
-          title: Last Name
-          type: string
-        locale:
-          examples:
-          - en_US
-          title: Locale
-          type: string
-        organization_id:
-          default: None
-          description: The user's organization id
-          examples:
-          - organization_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: Organization Id
-          type: string
-          x-typeid-prefix: organization
-        permissions:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PublicPermission'
-            type: array
-          - type: 'null'
-          title: Permissions
-        phone:
-          anyOf:
-          - format: phone
-            type: string
-          - type: 'null'
-          description: The user's phone number
-          examples:
-          - '+1.2125552368'
-          title: Phone
-        role:
-          anyOf:
-          - $ref: '#/components/schemas/PublicRole'
-          - $ref: '#/components/schemas/CustomRoleLabel'
-          - type: 'null'
-          title: Role
-        updated_on:
-          description: The date/time the entry was last updated on
-          format: date-time
-          title: Updated On
-          type: string
-        user_attributes:
-          additionalProperties:
-            $ref: '#/components/schemas/JsonValue'
-          description: All of the user attributes
-          examples:
-          - array:
-            - 1
-            - 2
-            - 3
-            bool: true
-            number: 1
-            string: value2
-          title: User Attributes
-          type: object
-        user_id:
-          examples:
-          - user_01h45ytscbebyvny4gc8cr8ma2
-          format: typeid
-          pattern: ^user_[0-7][0-9a-hjkmnpq-tv-z]{25}$
-          title: User Id
-          type: string
-          x-typeid-prefix: user
-        username:
-          description: The user's unique username
-          maxLength: 128
-          minLength: 3
-          pattern: ^[a-zA-Z0-9\-+_@.]+$
-          title: Username
-          type: string
-      required:
-      - username
-      - first_name
-      - last_name
-      - email
-      - locale
-      title: UserWithAuthorization
       type: object
     ValidationError:
       properties:
@@ -13828,7 +13852,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-06-30-185809
+  version: 2026-07-06-082943
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -28693,7 +28717,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserWithAuthorization'
+                $ref: '#/components/schemas/UserProfile'
           description: Successful Response
         '422':
           content:

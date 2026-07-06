@@ -96,9 +96,9 @@ import type {
   Tag,
   TldResponseShort,
   TldSpecification,
+  UserProfile,
   UserPublic,
   UserPublicWithAttributes,
-  UserWithAuthorization,
   VanityNameserverSetSummaryDTO,
   VanityNsCheckRes,
 } from './schemas';
@@ -802,7 +802,7 @@ export type GET_UsersByUserIdRole_Response_422 = HTTPValidationError;
 
 export type GET_UsersMe_Response = GET_UsersMe_Response_200 | GET_UsersMe_Response_422;
 
-export type GET_UsersMe_Response_200 = UserWithAuthorization;
+export type GET_UsersMe_Response_200 = UserProfile;
 export type GET_UsersMe_Response_422 = HTTPValidationError;
 
 export type GET_VanityNameserverSets_Response = GET_VanityNameserverSets_Response_200 | GET_VanityNameserverSets_Response_422;

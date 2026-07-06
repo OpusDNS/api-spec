@@ -11078,6 +11078,99 @@ export interface components {
              */
             username: string;
         };
+        /** UserOrganizationMeta */
+        UserOrganizationMeta: {
+            /** @description Currency used by the user's organization. */
+            currency?: components["schemas"]["Currency"] | null;
+            /**
+             * Parent Organization Id
+             * @description ID of the parent organization, if any.
+             */
+            parent_organization_id?: TypeId<"organization"> | null;
+        };
+        /** UserProfile */
+        UserProfile: {
+            /**
+             * Created On
+             * Format: date-time
+             * @description The date/time the entry was created on
+             */
+            created_on?: Date;
+            /**
+             * Email
+             * Format: email
+             * @description The user's email address
+             */
+            email: string;
+            /**
+             * First Name
+             * @description The user's first name
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description The user's last name
+             */
+            last_name: string;
+            /**
+             * Locale
+             * @example en_US
+             */
+            locale: string;
+            organization?: components["schemas"]["UserOrganizationMeta"] | null;
+            /**
+             * Organization Id
+             * Format: typeid
+             * @description The user's organization id
+             * @default None
+             * @example organization_01h45ytscbebyvny4gc8cr8ma2
+             */
+            organization_id: TypeId<"organization">;
+            /** Permissions */
+            permissions?: components["schemas"]["PublicPermission"][] | null;
+            /**
+             * Phone
+             * @description The user's phone number
+             * @example +1.2125552368
+             */
+            phone?: string | null;
+            /** Role */
+            role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
+            /**
+             * Updated On
+             * Format: date-time
+             * @description The date/time the entry was last updated on
+             */
+            updated_on?: Date;
+            /**
+             * User Attributes
+             * @description All of the user attributes
+             * @example {
+             *       "array": [
+             *         1,
+             *         2,
+             *         3
+             *       ],
+             *       "bool": true,
+             *       "number": 1,
+             *       "string": "value2"
+             *     }
+             */
+            user_attributes?: {
+                [key: string]: components["schemas"]["JsonValue"];
+            };
+            /**
+             * User Id
+             * Format: typeid
+             * @example user_01h45ytscbebyvny4gc8cr8ma2
+             */
+            user_id?: TypeId<"user">;
+            /**
+             * Username
+             * @description The user's unique username
+             */
+            username: string;
+        };
         /** UserPublic */
         UserPublic: {
             /**
@@ -11351,88 +11444,6 @@ export interface components {
              * @description The user's unique username
              */
             username?: string | null;
-        };
-        /** UserWithAuthorization */
-        UserWithAuthorization: {
-            /**
-             * Created On
-             * Format: date-time
-             * @description The date/time the entry was created on
-             */
-            created_on?: Date;
-            /**
-             * Email
-             * Format: email
-             * @description The user's email address
-             */
-            email: string;
-            /**
-             * First Name
-             * @description The user's first name
-             */
-            first_name: string;
-            /**
-             * Last Name
-             * @description The user's last name
-             */
-            last_name: string;
-            /**
-             * Locale
-             * @example en_US
-             */
-            locale: string;
-            /**
-             * Organization Id
-             * Format: typeid
-             * @description The user's organization id
-             * @default None
-             * @example organization_01h45ytscbebyvny4gc8cr8ma2
-             */
-            organization_id: TypeId<"organization">;
-            /** Permissions */
-            permissions?: components["schemas"]["PublicPermission"][] | null;
-            /**
-             * Phone
-             * @description The user's phone number
-             * @example +1.2125552368
-             */
-            phone?: string | null;
-            /** Role */
-            role?: components["schemas"]["PublicRole"] | components["schemas"]["CustomRoleLabel"] | null;
-            /**
-             * Updated On
-             * Format: date-time
-             * @description The date/time the entry was last updated on
-             */
-            updated_on?: Date;
-            /**
-             * User Attributes
-             * @description All of the user attributes
-             * @example {
-             *       "array": [
-             *         1,
-             *         2,
-             *         3
-             *       ],
-             *       "bool": true,
-             *       "number": 1,
-             *       "string": "value2"
-             *     }
-             */
-            user_attributes?: {
-                [key: string]: components["schemas"]["JsonValue"];
-            };
-            /**
-             * User Id
-             * Format: typeid
-             * @example user_01h45ytscbebyvny4gc8cr8ma2
-             */
-            user_id?: TypeId<"user">;
-            /**
-             * Username
-             * @description The user's unique username
-             */
-            username: string;
         };
         /** ValidationError */
         ValidationError: {
@@ -23138,7 +23149,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserWithAuthorization"];
+                    "application/json": components["schemas"]["UserProfile"];
                 };
             };
             /** @description Validation Error */
