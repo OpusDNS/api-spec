@@ -69,7 +69,7 @@
 
 | Property | Value |
 | --- | --- |
-| Nameserver Count | 2–13 |
+| Nameserver Count | 2–6 |
 | Host Objects Allowed | ❌ No |
 | Registry Nameserver Check | ✅ Yes |
 | DNSSEC Allowed | ✅ Yes |

@@ -800,6 +800,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/li.md",
                 "showInSidebar": true
               },
+              "/lu": {
+                "type": "page",
+                "title": "🇱🇺 .lu",
+                "filepath": "content/tld-knowledge-base/cctlds/lu.md",
+                "showInSidebar": true
+              },
               "/me": {
                 "type": "page",
                 "title": "🇲🇪 .me",
