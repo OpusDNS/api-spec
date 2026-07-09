@@ -11056,6 +11056,7 @@ components:
       - tags
       - audit_logs
       - vanity_ns
+      - whitelabel_branding
       - ai_concierge
       title: PublicResource
       type: string
@@ -13854,7 +13855,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-09-112921
+  version: 2026-07-09-135915
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29892,6 +29893,11 @@ tags:
     '
   name: nameserver
   x-displayName: Vanity Nameservers
+- description: 'Endpoints for managing an organization''s whitelabel branding configuration.
+
+    '
+  name: whitelabel
+  x-displayName: Whitelabel Branding
 - description: 'Endpoints for creating and managing organizations.
 
     '
@@ -30001,6 +30007,7 @@ x-tagGroups:
   tags:
   - dns
   - nameserver
+  - whitelabel
   - email_forward
   - domain_forward
   - parking

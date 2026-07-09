@@ -1388,6 +1388,7 @@ export const PUBLIC_RESOURCE = {
   TAGS: "tags",
   AUDIT_LOGS: "audit_logs",
   VANITY_NS: "vanity_ns",
+  WHITELABEL_BRANDING: "whitelabel_branding",
   AI_CONCIERGE: "ai_concierge",
 } as const satisfies Record<string, PublicResource>;
 
@@ -1409,6 +1410,7 @@ export const PUBLIC_RESOURCE_VALUES = [
   'tags',
   'audit_logs',
   'vanity_ns',
+  'whitelabel_branding',
   'ai_concierge',
 ] as const satisfies ReadonlyArray<PublicResource>;
 
