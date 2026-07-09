@@ -4,23 +4,16 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
-### 09 July 2026
+### 07 July 2026
 
-- Onboarded **50 new TLDs**:
-  - **ccTLDs**: `.it` (Italy), `.lu` (Luxembourg), `.sk` (Slovakia), `.to` (Tonga), `.cc` (Cocos Islands)
-  - **Bahrain ccTLD bundle**: `.bh`, `.biz.bh`, `.cc.bh`, `.com.bh`, `.edu.bh`,
-    `.info.bh`, `.me.bh`, `.name.bh`, `.net.bh`, `.org.bh`, and the Arabic-script
-    `.xn--mgbcpq6gpa1a`
-  - **Other regional domains**: `.co.nl`, `.co.no`, `.fm` (Micronesia),
-    `.fo` (Faroe Islands), `.gd` (Grenada), `.gl` (Greenland), `.radio.am`,
-    `.radio.fm`, `.vg` (British Virgin Islands)
-  - **gTLDs**: `.name`, `.best`, `.blog`, `.cam`, `.case`, `.cloud`, `.co.com`, `.country`,
-    `.dealer`, `.diy`, `.fans`, `.food`, `.frl`, `.help`, `.hiv`, `.inc`, `.kred`,
-    `.latino`, `.lifestyle`, `.living`, `.luxury`, `.ooo`, `.reit`, `.saarland`,
-    `.sexy`
-- Published [TLD Knowledge Base](/tld-knowledge-base) pages for every newly
-  onboarded TLD, covering domain lifecycle, transfer policy, DNS configuration,
-  and contact requirements.
+- Onboarded **`.lu`** (Luxembourg). Published its
+  [TLD Knowledge Base](/tld-knowledge-base) page.
+
+### 02 July 2026
+
+- Onboarded **8 new gTLDs**: `.to` (Tonga), `.country`, `.diy`, `.food`, `.hiv`,
+  `.lifestyle`, `.living`, and `.sexy`. Published their
+  [TLD Knowledge Base](/tld-knowledge-base) pages.
 
 ### 30 June 2026
 
@@ -32,6 +25,22 @@ Track notable updates to the OpusDNS API and developer documentation here.
   `POST /v1/domains/transfer` as well as the `domain_transfer` and
   `domain_transfer_bulk` job commands. TLDs that require one or more contact roles
   still reject transfers submitted without them.
+
+### 26 June 2026
+
+- Onboarded **13 new gTLDs**: `.best`, `.cam`, `.case`, `.dealer`, `.fans`,
+  `.frl`, `.help`, `.inc`, `.kred`, `.luxury`, `.ooo`, `.reit`, and `.saarland`.
+  Published their [TLD Knowledge Base](/tld-knowledge-base) pages.
+
+### 25 June 2026
+
+- Onboarded **`.name`** and **`.cc`**. Published their
+  [TLD Knowledge Base](/tld-knowledge-base) pages.
+
+### 24 June 2026
+
+- Onboarded **`.blog`**. Published its
+  [TLD Knowledge Base](/tld-knowledge-base) page.
 
 ### 21 June 2026
 
@@ -46,6 +55,27 @@ Track notable updates to the OpusDNS API and developer documentation here.
   reports whether a set's nameservers resolve to the anycast pool, whether glue
   is in place, and what (if anything) still needs publishing.
 - Published the [Vanity nameservers](/products/dns/vanity-nameservers) guide.
+
+### 19 June 2026
+
+- Onboarded **21 new TLDs**, including the Bahrain ccTLD bundle and its
+  Arabic-script variant:
+  - `.bh`, `.biz.bh`, `.cc.bh`, `.com.bh`, `.edu.bh`, `.info.bh`, `.me.bh`,
+    `.name.bh`, `.net.bh`, `.org.bh`, and `.xn--mgbcpq6gpa1a` (Bahrain)
+  - `.co.nl`, `.co.no`, `.co.com`
+  - `.fm` (Micronesia), `.fo` (Faroe Islands), `.gd` (Grenada),
+    `.gl` (Greenland), `.radio.am`, `.radio.fm`, `.vg` (British Virgin Islands)
+- Published their [TLD Knowledge Base](/tld-knowledge-base) pages.
+
+### 18 June 2026
+
+- Onboarded **`.it`** (Italy), **`.sk`** (Slovakia), and **`.latino`**.
+  Published their [TLD Knowledge Base](/tld-knowledge-base) pages.
+
+### 17 June 2026
+
+- Onboarded **`.cloud`**. Published its
+  [TLD Knowledge Base](/tld-knowledge-base) page.
 
 ### 16 June 2026
 
