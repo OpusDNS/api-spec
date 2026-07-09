@@ -223,6 +223,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE = {
   DOMAIN_FORWARD: "domain_forward",
   ACCOUNT_WALLET: "account_wallet",
   VANITY_NAMESERVER: "vanity_nameserver",
+  WHITELABEL_BRANDING: "whitelabel_branding",
 } as const satisfies Record<string, BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
@@ -232,6 +233,7 @@ export const BILLING_TRANSACTION_PRODUCT_TYPE_VALUES = [
   'domain_forward',
   'account_wallet',
   'vanity_nameserver',
+  'whitelabel_branding',
 ] as const satisfies ReadonlyArray<BillingTransactionProductType>;
 
 export const BILLING_TRANSACTION_SORT_FIELD = {

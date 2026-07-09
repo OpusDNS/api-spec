@@ -163,6 +163,7 @@ components:
       - domain_forward
       - account_wallet
       - vanity_nameserver
+      - whitelabel_branding
       title: BillingTransactionProductType
       type: string
     BillingTransactionResponse:
@@ -13852,7 +13853,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-06-082943
+  version: 2026-07-09-072826
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
