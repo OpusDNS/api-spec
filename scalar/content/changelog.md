@@ -6,7 +6,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ### 09 July 2026
 
-- Onboarded **48 new TLDs**:
+- Onboarded **50 new TLDs**:
   - **ccTLDs**: `.it` (Italy), `.lu` (Luxembourg), `.sk` (Slovakia), `.to` (Tonga), `.cc` (Cocos Islands)
   - **Bahrain ccTLD bundle**: `.bh`, `.biz.bh`, `.cc.bh`, `.com.bh`, `.edu.bh`,
     `.info.bh`, `.me.bh`, `.name.bh`, `.net.bh`, `.org.bh`, and the Arabic-script
