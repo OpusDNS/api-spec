@@ -7,14 +7,14 @@ Track notable updates to the OpusDNS API and developer documentation here.
 ### 09 July 2026
 
 - Onboarded **48 new TLDs**:
-  - **ccTLDs**: `.it` (Italy), `.lu` (Luxembourg), `.sk` (Slovakia), `.to` (Tonga)
+  - **ccTLDs**: `.it` (Italy), `.lu` (Luxembourg), `.sk` (Slovakia), `.to` (Tonga), `.cc` (Cocos Islands)
   - **Bahrain ccTLD bundle**: `.bh`, `.biz.bh`, `.cc.bh`, `.com.bh`, `.edu.bh`,
     `.info.bh`, `.me.bh`, `.name.bh`, `.net.bh`, `.org.bh`, and the Arabic-script
     `.xn--mgbcpq6gpa1a`
   - **Other regional domains**: `.co.nl`, `.co.no`, `.fm` (Micronesia),
     `.fo` (Faroe Islands), `.gd` (Grenada), `.gl` (Greenland), `.radio.am`,
     `.radio.fm`, `.vg` (British Virgin Islands)
-  - **gTLDs**: `.best`, `.blog`, `.cam`, `.case`, `.cloud`, `.co.com`, `.country`,
+  - **gTLDs**: `.name`, `.best`, `.blog`, `.cam`, `.case`, `.cloud`, `.co.com`, `.country`,
     `.dealer`, `.diy`, `.fans`, `.food`, `.frl`, `.help`, `.hiv`, `.inc`, `.kred`,
     `.latino`, `.lifestyle`, `.living`, `.luxury`, `.ooo`, `.reit`, `.saarland`,
     `.sexy`
