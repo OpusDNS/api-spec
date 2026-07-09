@@ -10161,7 +10161,7 @@ export interface components {
              */
             nameservers: string[];
             /** Registrar */
-            registrar: string;
+            registrar?: string | null;
             /**
              * Statuses
              * @default []

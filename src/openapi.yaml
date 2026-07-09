@@ -11289,8 +11289,10 @@ components:
           title: Nameservers
           type: array
         registrar:
+          anyOf:
+          - type: string
+          - type: 'null'
           title: Registrar
-          type: string
         statuses:
           default: []
           items:
@@ -11303,7 +11305,6 @@ components:
           - type: 'null'
       required:
       - name
-      - registrar
       title: RegistrarDomain
       type: object
     RegistrarRRSet:
@@ -13853,7 +13854,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-09-072826
+  version: 2026-07-09-112921
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
