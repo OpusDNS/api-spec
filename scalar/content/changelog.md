@@ -4,6 +4,24 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 09 July 2026
+
+- Onboarded **48 new TLDs**:
+  - **ccTLDs**: `.it` (Italy), `.lu` (Luxembourg), `.sk` (Slovakia), `.to` (Tonga)
+  - **Bahrain ccTLD bundle**: `.bh`, `.biz.bh`, `.cc.bh`, `.com.bh`, `.edu.bh`,
+    `.info.bh`, `.me.bh`, `.name.bh`, `.net.bh`, `.org.bh`, and the Arabic-script
+    `.xn--mgbcpq6gpa1a`
+  - **Other regional domains**: `.co.nl`, `.co.no`, `.fm` (Micronesia),
+    `.fo` (Faroe Islands), `.gd` (Grenada), `.gl` (Greenland), `.radio.am`,
+    `.radio.fm`, `.vg` (British Virgin Islands)
+  - **gTLDs**: `.best`, `.blog`, `.cam`, `.case`, `.cloud`, `.co.com`, `.country`,
+    `.dealer`, `.diy`, `.fans`, `.food`, `.frl`, `.help`, `.hiv`, `.inc`, `.kred`,
+    `.latino`, `.lifestyle`, `.living`, `.luxury`, `.ooo`, `.reit`, `.saarland`,
+    `.sexy`
+- Published [TLD Knowledge Base](/tld-knowledge-base) pages for every newly
+  onboarded TLD, covering domain lifecycle, transfer policy, DNS configuration,
+  and contact requirements.
+
 ### 30 June 2026
 
 - Made the **`contacts` section optional on domain transfers**. For TLDs that do
