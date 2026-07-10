@@ -400,6 +400,7 @@ import type {
   ZonesContextCreate,
   RequestAuthcode,
   RequestAuthcode2,
+  RequestAuthcode3,
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
@@ -5411,6 +5412,20 @@ export const KEYS_REQUEST_AUTHCODE2 = [
   KEY_REQUEST_AUTHCODE2_NAME,
   KEY_REQUEST_AUTHCODE2_SUCCESS,
 ] as const satisfies (keyof RequestAuthcode2)[];
+
+export const KEY_REQUEST_AUTHCODE3_AUTH_CODE = 'auth_code' satisfies keyof RequestAuthcode3;
+export const KEY_REQUEST_AUTHCODE3_AUTH_CODE_EXPIRES_ON = 'auth_code_expires_on' satisfies keyof RequestAuthcode3;
+export const KEY_REQUEST_AUTHCODE3_DETAIL = 'detail' satisfies keyof RequestAuthcode3;
+export const KEY_REQUEST_AUTHCODE3_NAME = 'name' satisfies keyof RequestAuthcode3;
+export const KEY_REQUEST_AUTHCODE3_SUCCESS = 'success' satisfies keyof RequestAuthcode3;
+
+export const KEYS_REQUEST_AUTHCODE3 = [
+  KEY_REQUEST_AUTHCODE3_AUTH_CODE,
+  KEY_REQUEST_AUTHCODE3_AUTH_CODE_EXPIRES_ON,
+  KEY_REQUEST_AUTHCODE3_DETAIL,
+  KEY_REQUEST_AUTHCODE3_NAME,
+  KEY_REQUEST_AUTHCODE3_SUCCESS,
+] as const satisfies (keyof RequestAuthcode3)[];
 
 export const KEY_DOMAIN_AVAILABILITY_LIST_META = 'meta' satisfies keyof DomainAvailabilityList;
 export const KEY_DOMAIN_AVAILABILITY_LIST_RESULTS = 'results' satisfies keyof DomainAvailabilityList;

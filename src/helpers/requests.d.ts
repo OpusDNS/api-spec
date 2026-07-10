@@ -592,6 +592,11 @@ export type POST_DomainsTldSpecificEuByDomainReferenceAuthCodeRequest_Request = 
 };
 export type POST_DomainsTldSpecificEuByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificEuByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
 
+export type POST_DomainsTldSpecificLtByDomainReferenceAuthCodeRequest_Request = {
+  parameters: operations['request_auth_code_v1_domains_tld_specific_lt__domain_reference__auth_code_request_post']['parameters'];
+};
+export type POST_DomainsTldSpecificLtByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificLtByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
 export type POST_DomainsTransfer_Request = {
   requestBody: DomainTransferIn;
 };
