@@ -190,6 +190,11 @@ Once the transfer completes:
 - Contacts are set to those provided in the transfer request.
 - Nameservers are updated if provided, otherwise the existing nameservers are imported from the previous registrar.
 - A DNS zone is created if `create_zone` was set to `true`.
+- Registry DNSSEC data is reconciled automatically: if the domain ends up on
+  OpusDNS nameservers, stale DS records imported from the previous provider are
+  removed or replaced so DNS resolution is not disrupted. Domains on external
+  nameservers are left untouched. See
+  [Automatic DNSSEC reconciliation](/products/domains/dnssec#automatic-dnssec-reconciliation).
 - A transfer event is created (check `/v1/events`).
 
 ## Troubleshooting

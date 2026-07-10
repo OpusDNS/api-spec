@@ -61,6 +61,11 @@ You can set nameservers at several points:
 - **After registration** — update nameservers with `PATCH /v1/domains/{domain_reference}`. See [Manage a domain](/products/domains/manage).
 - **In bulk** — use `domain_create_bulk`, `domain_transfer_bulk`, or `domain_update_bulk` in the [Jobs API](/automation/jobs/overview).
 
+When a domain's nameservers change, OpusDNS automatically reconciles the
+DNSSEC data published at the registry with the zone's DNSSEC state, so stale
+records from a previous provider cannot break resolution. See
+[Automatic DNSSEC reconciliation](/products/domains/dnssec#automatic-dnssec-reconciliation).
+
 ## Nameservers vs. zones
 
 Setting nameservers and creating a DNS zone are independent operations:
