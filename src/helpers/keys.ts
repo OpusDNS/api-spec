@@ -2,7 +2,6 @@ import type {
   AllowedNumberOfNameserverBase,
   AttributeCondition,
   BillingMetadata,
-  BillingPlan,
   BillingTransaction,
   BrowserStatsBucket,
   BulkObjectTagChanges,
@@ -432,22 +431,6 @@ export const KEYS_BILLING_METADATA = [
   KEY_BILLING_METADATA_CREDIT_LIMIT,
   KEY_BILLING_METADATA_CUSTOMER_NUMBER,
 ] as const satisfies (keyof BillingMetadata)[];
-
-export const KEY_BILLING_PLAN_AMOUNT = 'amount' satisfies keyof BillingPlan;
-export const KEY_BILLING_PLAN_CURRENCY = 'currency' satisfies keyof BillingPlan;
-export const KEY_BILLING_PLAN_NAME = 'name' satisfies keyof BillingPlan;
-export const KEY_BILLING_PLAN_PLAN_ID = 'plan_id' satisfies keyof BillingPlan;
-export const KEY_BILLING_PLAN_PLAN_LEVEL = 'plan_level' satisfies keyof BillingPlan;
-export const KEY_BILLING_PLAN_TYPE = 'type' satisfies keyof BillingPlan;
-
-export const KEYS_BILLING_PLAN = [
-  KEY_BILLING_PLAN_AMOUNT,
-  KEY_BILLING_PLAN_CURRENCY,
-  KEY_BILLING_PLAN_NAME,
-  KEY_BILLING_PLAN_PLAN_ID,
-  KEY_BILLING_PLAN_PLAN_LEVEL,
-  KEY_BILLING_PLAN_TYPE,
-] as const satisfies (keyof BillingPlan)[];
 
 export const KEY_BILLING_TRANSACTION_ACTION = 'action' satisfies keyof BillingTransaction;
 export const KEY_BILLING_TRANSACTION_AMOUNT = 'amount' satisfies keyof BillingTransaction;
@@ -4002,7 +3985,6 @@ export const KEYS_ORGANIZATION_UPDATE = [
 ] as const satisfies (keyof OrganizationUpdate)[];
 
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE = 'account_balance' satisfies keyof OrganizationWithBillingData;
-export const KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN = 'active_plan' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1 = 'address_1' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2 = 'address_2' satisfies keyof OrganizationWithBillingData;
 export const KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES = 'attributes' satisfies keyof OrganizationWithBillingData;
@@ -4029,7 +4011,6 @@ export const KEY_ORGANIZATION_WITH_BILLING_DATA_USERS = 'users' satisfies keyof 
 
 export const KEYS_ORGANIZATION_WITH_BILLING_DATA = [
   KEY_ORGANIZATION_WITH_BILLING_DATA_ACCOUNT_BALANCE,
-  KEY_ORGANIZATION_WITH_BILLING_DATA_ACTIVE_PLAN,
   KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_1,
   KEY_ORGANIZATION_WITH_BILLING_DATA_ADDRESS_2,
   KEY_ORGANIZATION_WITH_BILLING_DATA_ATTRIBUTES,

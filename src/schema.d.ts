@@ -2795,36 +2795,6 @@ export interface components {
          * @enum {string}
          */
         BillingMode: "consolidated" | "independent";
-        /** BillingPlan */
-        BillingPlan: {
-            /**
-             * Amount
-             * @description Price of the billing plan.
-             */
-            amount?: string;
-            /** @description Currency of the billing plan. */
-            currency?: components["schemas"]["Currency"] | null;
-            /**
-             * Name
-             * @description Name of the billing plan.
-             */
-            name?: string | null;
-            /**
-             * Plan Id
-             * @description Billing plan ID for the organization.
-             */
-            plan_id?: string | null;
-            /**
-             * Plan Level
-             * @description Plan level such as 'basic', 'premium' or 'enterprise'.
-             */
-            plan_level?: string | null;
-            /**
-             * Type
-             * @description Plan type or billing interval.
-             */
-            type?: string | null;
-        };
         /**
          * BillingTransactionAction
          * @enum {string}
@@ -9098,7 +9068,6 @@ export interface components {
         OrganizationWithBillingData: {
             /** Account Balance */
             account_balance?: string | null;
-            active_plan?: components["schemas"]["BillingPlan"];
             /**
              * Address 1
              * @description First line of the organization's address.

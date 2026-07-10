@@ -9,7 +9,6 @@ export type BatchSortField = components['schemas']['BatchSortField'];
 export type BatchStatus = components['schemas']['BatchStatus'];
 export type BillingMetadata = components['schemas']['BillingMetadata'];
 export type BillingMode = components['schemas']['BillingMode'];
-export type BillingPlan = components['schemas']['BillingPlan'];
 export type BillingTransactionAction = components['schemas']['BillingTransactionAction'];
 export type BillingTransactionProductType = components['schemas']['BillingTransactionProductType'];
 export type BillingTransaction = components['schemas']['BillingTransactionResponse'];
