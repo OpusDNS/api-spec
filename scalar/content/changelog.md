@@ -4,6 +4,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 10 July 2026
+
+- Added **automatic DNSSEC reconciliation** on inbound transfers and nameserver
+  changes. Stale DS records imported from a previous DNS provider — which could
+  previously break resolution (`SERVFAIL`) once a domain moved to OpusDNS
+  nameservers — are now removed or replaced automatically. Domains on external
+  nameservers are never touched. See
+  [Automatic DNSSEC reconciliation](/products/domains/dnssec#automatic-dnssec-reconciliation).
+
 ### 07 July 2026
 
 - Onboarded **`.lu`** (Luxembourg). Published its

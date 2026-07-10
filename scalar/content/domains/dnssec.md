@@ -97,6 +97,33 @@ curl "$OPUSDNS_API_BASE/v1/domains/example.com/dnssec" \
   --header "X-Api-Key: $OPUSDNS_API_KEY"
 ```
 
+## Automatic DNSSEC reconciliation
+
+When a domain transfers to OpusDNS, any DNSSEC records already published at
+the registry are imported along with the rest of the domain data. If those
+records point to keys held by a previous DNS provider, resolvers expect
+DNSSEC-signed responses that the new nameservers cannot produce, and the
+domain stops resolving (`SERVFAIL`).
+
+To prevent this, OpusDNS automatically reconciles the registry DNSSEC data
+with your zone's DNSSEC state after an inbound transfer completes and after
+a domain's nameservers change:
+
+| Nameservers | Zone DNSSEC status | Action |
+| --- | --- | --- |
+| External (not OpusDNS) | — | DNSSEC data is left untouched — you manage it yourself. |
+| OpusDNS | Enabled | The zone's current DNSSEC data is published to the registry, replacing any stale records. |
+| OpusDNS | Disabled, or no zone exists | All DNSSEC data is removed from the registry. |
+
+Reconciliation runs asynchronously after the transfer or nameserver update
+completes, so there may be a short delay before the registry records reflect
+the final state. It is skipped for TLDs that do not support DNSSEC.
+
+If reconciliation fails, a domain event with type `MODIFICATION` and subtype
+`FAILURE` is created — see the [Events overview](/products/events/overview).
+You can always inspect the current registry records with
+`GET /v1/domains/{domain_reference}/dnssec` and correct them manually.
+
 ## TLD support
 
 Not all TLDs support DNSSEC. The TLD specification includes:
