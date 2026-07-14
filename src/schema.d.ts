@@ -10145,7 +10145,7 @@ export interface components {
              * Nameservers
              * @default []
              */
-            nameservers: string[];
+            nameservers: components["schemas"]["RegistrarNameserver"][];
             /** Registrar */
             registrar?: string | null;
             /**
@@ -10154,6 +10154,19 @@ export interface components {
              */
             statuses: string[];
             zone?: components["schemas"]["RegistrarZone"] | null;
+        };
+        /** RegistrarNameserver */
+        RegistrarNameserver: {
+            /**
+             * Hostname
+             * @default
+             */
+            hostname: string;
+            /**
+             * Ip Addresses
+             * @default []
+             */
+            ip_addresses: string[];
         };
         /** RegistrarRRSet */
         RegistrarRRSet: {

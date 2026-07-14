@@ -449,6 +449,7 @@ export type ReferrerStatsBucket = components['schemas']['ReferrerStatsBucket'];
 export type RegistrantChangeType = components['schemas']['RegistrantChangeType'];
 export type RegistrarContact = components['schemas']['RegistrarContact'];
 export type RegistrarDomain = components['schemas']['RegistrarDomain'];
+export type RegistrarNameserver = components['schemas']['RegistrarNameserver'];
 export type RegistrarRRSet = components['schemas']['RegistrarRRSet'];
 export type RegistrarRecord = components['schemas']['RegistrarRecord'];
 export type RegistrarZone = components['schemas']['RegistrarZone'];

@@ -337,6 +337,7 @@ import type {
   ReferrerStatsBucket,
   RegistrarContact,
   RegistrarDomain,
+  RegistrarNameserver,
   RegistrarRRSet,
   RegistrarRecord,
   RegistrarZone,
@@ -4560,6 +4561,14 @@ export const KEYS_REGISTRAR_DOMAIN = [
   KEY_REGISTRAR_DOMAIN_STATUSES,
   KEY_REGISTRAR_DOMAIN_ZONE,
 ] as const satisfies (keyof RegistrarDomain)[];
+
+export const KEY_REGISTRAR_NAMESERVER_HOSTNAME = 'hostname' satisfies keyof RegistrarNameserver;
+export const KEY_REGISTRAR_NAMESERVER_IP_ADDRESSES = 'ip_addresses' satisfies keyof RegistrarNameserver;
+
+export const KEYS_REGISTRAR_NAMESERVER = [
+  KEY_REGISTRAR_NAMESERVER_HOSTNAME,
+  KEY_REGISTRAR_NAMESERVER_IP_ADDRESSES,
+] as const satisfies (keyof RegistrarNameserver)[];
 
 export const KEY_REGISTRAR_RR_SET_NAME = 'name' satisfies keyof RegistrarRRSet;
 export const KEY_REGISTRAR_RR_SET_PRIORITY = 'priority' satisfies keyof RegistrarRRSet;

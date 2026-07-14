@@ -11247,7 +11247,7 @@ components:
         nameservers:
           default: []
           items:
-            type: string
+            $ref: '#/components/schemas/RegistrarNameserver'
           title: Nameservers
           type: array
         registrar:
@@ -11268,6 +11268,20 @@ components:
       required:
       - name
       title: RegistrarDomain
+      type: object
+    RegistrarNameserver:
+      properties:
+        hostname:
+          default: ''
+          title: Hostname
+          type: string
+        ip_addresses:
+          default: []
+          items:
+            type: string
+          title: Ip Addresses
+          type: array
+      title: RegistrarNameserver
       type: object
     RegistrarRRSet:
       properties:
@@ -13852,7 +13866,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-10-174839
+  version: 2026-07-14-104145
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
