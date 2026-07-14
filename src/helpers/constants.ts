@@ -1611,7 +1611,7 @@ export const REPORT_TYPE = {
   REGISTRAR_PORTFOLIO_PDF: "registrar_portfolio_pdf",
   BILLING_TRANSACTIONS: "billing_transactions",
   BILLING_TRANSACTIONS_MONTHLY: "billing_transactions_monthly",
-  BILLING_ROLLUP_MONTHLY: "billing_rollup_monthly",
+  SUBORG_BILLING_TRANSACTIONS_MONTHLY: "suborg_billing_transactions_monthly",
 } as const satisfies Record<string, ReportType>;
 
 export const REPORT_TYPE_VALUES = [
@@ -1624,7 +1624,7 @@ export const REPORT_TYPE_VALUES = [
   'registrar_portfolio_pdf',
   'billing_transactions',
   'billing_transactions_monthly',
-  'billing_rollup_monthly',
+  'suborg_billing_transactions_monthly',
 ] as const satisfies ReadonlyArray<ReportType>;
 
 export const REQUEST_HISTORY_SORT_FIELD = {
