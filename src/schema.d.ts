@@ -10247,7 +10247,7 @@ export interface components {
          * ReportType
          * @enum {string}
          */
-        ReportType: "domain_inventory" | "dns_zone_summary" | "dns_zone_records" | "domain_forwards" | "expiring_domains" | "email_forwards" | "registrar_portfolio_pdf" | "billing_transactions" | "billing_transactions_monthly";
+        ReportType: "domain_inventory" | "dns_zone_summary" | "dns_zone_records" | "domain_forwards" | "expiring_domains" | "email_forwards" | "registrar_portfolio_pdf" | "billing_transactions" | "billing_transactions_monthly" | "billing_rollup_monthly";
         /** RequestHistory */
         RequestHistory: {
             /**
