@@ -9736,6 +9736,90 @@ components:
       - name
       title: OrganizationWithBillingData
       type: object
+    PageResponse_EmailForwardLog_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/EmailForwardLog'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: PageResponse[EmailForwardLog]
+      type: object
+    PageResponse_JobBatchMetadataResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/JobBatchMetadataResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: PageResponse[JobBatchMetadataResponse]
+      type: object
+    PageResponse_JobResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/JobResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: PageResponse[JobResponse]
+      type: object
+    PageResponse_ObjectLog_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/ObjectLog'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: PageResponse[ObjectLog]
+      type: object
+    PageResponse_ParkingResponse_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/ParkingResponse'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: PageResponse[ParkingResponse]
+      type: object
+    PageResponse_RequestHistory_:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+        results:
+          items:
+            $ref: '#/components/schemas/RequestHistory'
+          title: Results
+          type: array
+      required:
+      - results
+      - pagination
+      title: PageResponse[RequestHistory]
+      type: object
     PaginationMetadata:
       properties:
         current_page:
@@ -9898,20 +9982,6 @@ components:
       - pagination
       title: Pagination[DomainResponse]
       type: object
-    Pagination_EmailForwardLog_:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-        results:
-          items:
-            $ref: '#/components/schemas/EmailForwardLog'
-          title: Results
-          type: array
-      required:
-      - results
-      - pagination
-      title: Pagination[EmailForwardLog]
-      type: object
     Pagination_EmailForwardResponse_:
       properties:
         pagination:
@@ -9968,48 +10038,6 @@ components:
       - pagination
       title: Pagination[InvoiceResponse]
       type: object
-    Pagination_JobBatchMetadataResponse_:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-        results:
-          items:
-            $ref: '#/components/schemas/JobBatchMetadataResponse'
-          title: Results
-          type: array
-      required:
-      - results
-      - pagination
-      title: Pagination[JobBatchMetadataResponse]
-      type: object
-    Pagination_JobResponse_:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-        results:
-          items:
-            $ref: '#/components/schemas/JobResponse'
-          title: Results
-          type: array
-      required:
-      - results
-      - pagination
-      title: Pagination[JobResponse]
-      type: object
-    Pagination_ObjectLog_:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-        results:
-          items:
-            $ref: '#/components/schemas/ObjectLog'
-          title: Results
-          type: array
-      required:
-      - results
-      - pagination
-      title: Pagination[ObjectLog]
-      type: object
     Pagination_Organization_:
       properties:
         pagination:
@@ -10023,34 +10051,6 @@ components:
       - results
       - pagination
       title: Pagination[Organization]
-      type: object
-    Pagination_ParkingResponse_:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-        results:
-          items:
-            $ref: '#/components/schemas/ParkingResponse'
-          title: Results
-          type: array
-      required:
-      - results
-      - pagination
-      title: Pagination[ParkingResponse]
-      type: object
-    Pagination_RequestHistory_:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-        results:
-          items:
-            $ref: '#/components/schemas/RequestHistory'
-          title: Results
-          type: array
-      required:
-      - results
-      - pagination
-      title: Pagination[RequestHistory]
       type: object
     Pagination_TagResponse_:
       properties:
@@ -13867,7 +13867,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-15-161454
+  version: 2026-07-15-161550
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15153,23 +15153,6 @@ paths:
           type: string
           x-typeid-prefix: email_forward
       - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 50
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
         name: sort_by
         required: false
         schema:
@@ -15181,6 +15164,23 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
       - in: query
         name: final_status
         required: false
@@ -15212,7 +15212,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_EmailForwardLog_'
+                $ref: '#/components/schemas/PageResponse_EmailForwardLog_'
           description: Successful Response
         '422':
           content:
@@ -15246,23 +15246,6 @@ paths:
           type: string
           x-typeid-prefix: email_forward
       - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 50
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
         name: sort_by
         required: false
         schema:
@@ -15274,6 +15257,23 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
       - in: query
         name: final_status
         required: false
@@ -15305,7 +15305,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_EmailForwardLog_'
+                $ref: '#/components/schemas/PageResponse_EmailForwardLog_'
           description: Successful Response
         '422':
           content:
@@ -15327,23 +15327,6 @@ paths:
       operationId: get_object_logs_v1_archive_object_logs_get
       parameters:
       - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 50
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
         name: sort_by
         required: false
         schema:
@@ -15355,6 +15338,23 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
       - in: query
         name: object_log_id
         required: false
@@ -15434,7 +15434,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ObjectLog_'
+                $ref: '#/components/schemas/PageResponse_ObjectLog_'
           description: Successful Response
         '422':
           content:
@@ -15463,23 +15463,6 @@ paths:
           title: Object Id
           type: string
       - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 50
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
         name: sort_by
         required: false
         schema:
@@ -15491,6 +15474,23 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
       - in: query
         name: object_log_id
         required: false
@@ -15562,7 +15562,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ObjectLog_'
+                $ref: '#/components/schemas/PageResponse_ObjectLog_'
           description: Successful Response
         '422':
           content:
@@ -15584,23 +15584,6 @@ paths:
       operationId: get_request_history_v1_archive_request_history_get
       parameters:
       - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 50
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
         name: sort_by
         required: false
         schema:
@@ -15612,6 +15595,23 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
       - in: query
         name: method
         required: false
@@ -15724,7 +15724,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_RequestHistory_'
+                $ref: '#/components/schemas/PageResponse_RequestHistory_'
           description: Successful Response
         '422':
           content:
@@ -24686,20 +24686,24 @@ paths:
           $ref: '#/components/schemas/SortOrder'
           default: desc
           description: Sort order
-      - in: query
+      - description: Page number (1-indexed)
+        in: query
         name: page
         required: false
         schema:
           default: 1
+          description: Page number (1-indexed)
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: Number of batches per page
+        in: query
         name: page_size
         required: false
         schema:
-          default: 10
-          maximum: 1000
+          default: 50
+          description: Number of batches per page
+          maximum: 100
           minimum: 1
           title: Page Size
           type: integer
@@ -24708,7 +24712,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_JobBatchMetadataResponse_'
+                $ref: '#/components/schemas/PageResponse_JobBatchMetadataResponse_'
           description: Successful Response
         '422':
           content:
@@ -25438,19 +25442,23 @@ paths:
           - type: 'null'
           description: Sort order
           title: Sort Order
-      - in: query
+      - description: Page number (1-indexed)
+        in: query
         name: page
         required: false
         schema:
           default: 1
+          description: Page number (1-indexed)
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: Number of jobs per page
+        in: query
         name: page_size
         required: false
         schema:
-          default: 10
+          default: 100
+          description: Number of jobs per page
           maximum: 1000
           minimum: 1
           title: Page Size
@@ -25632,7 +25640,7 @@ paths:
                       resource_key: example.net
                       status: queued
               schema:
-                $ref: '#/components/schemas/Pagination_JobResponse_'
+                $ref: '#/components/schemas/PageResponse_JobResponse_'
           description: Batch jobs retrieved successfully
         '404':
           content:
@@ -27604,19 +27612,23 @@ paths:
       description: Retrieves a paginated list of parking entries for the organization
       operationId: list_parking_v1_parking_get
       parameters:
-      - in: query
+      - description: Page number
+        in: query
         name: page
         required: false
         schema:
           default: 1
+          description: Page number
           minimum: 1
           title: Page
           type: integer
-      - in: query
+      - description: Page size
+        in: query
         name: page_size
         required: false
         schema:
           default: 10
+          description: Page size
           maximum: 1000
           minimum: 1
           title: Page Size
@@ -27662,7 +27674,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ParkingResponse_'
+                $ref: '#/components/schemas/PageResponse_ParkingResponse_'
           description: Successful Response
         '401':
           content:

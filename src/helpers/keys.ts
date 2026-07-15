@@ -287,6 +287,12 @@ import type {
   OrganizationToken,
   OrganizationUpdate,
   OrganizationWithBillingData,
+  PageResponse_EmailForwardLog,
+  PageResponse_JobBatchMetadata,
+  PageResponse_Job,
+  PageResponse_ObjectLog,
+  PageResponse_Parking,
+  PageResponse_RequestHistory,
   PaginationMetadata,
   PaginationMetadataDTO,
   ParkingActionPayloadData,
@@ -4037,6 +4043,54 @@ export const KEYS_ORGANIZATION_WITH_BILLING_DATA = [
   KEY_ORGANIZATION_WITH_BILLING_DATA_TAX_RATE,
   KEY_ORGANIZATION_WITH_BILLING_DATA_USERS,
 ] as const satisfies (keyof OrganizationWithBillingData)[];
+
+export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_PAGINATION = 'pagination' satisfies keyof PageResponse_EmailForwardLog;
+export const KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_RESULTS = 'results' satisfies keyof PageResponse_EmailForwardLog;
+
+export const KEYS_PAGE_RESPONSE_EMAIL_FORWARD_LOG = [
+  KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_PAGINATION,
+  KEY_PAGE_RESPONSE_EMAIL_FORWARD_LOG_RESULTS,
+] as const satisfies (keyof PageResponse_EmailForwardLog)[];
+
+export const KEY_PAGE_RESPONSE_JOB_BATCH_METADATA_PAGINATION = 'pagination' satisfies keyof PageResponse_JobBatchMetadata;
+export const KEY_PAGE_RESPONSE_JOB_BATCH_METADATA_RESULTS = 'results' satisfies keyof PageResponse_JobBatchMetadata;
+
+export const KEYS_PAGE_RESPONSE_JOB_BATCH_METADATA = [
+  KEY_PAGE_RESPONSE_JOB_BATCH_METADATA_PAGINATION,
+  KEY_PAGE_RESPONSE_JOB_BATCH_METADATA_RESULTS,
+] as const satisfies (keyof PageResponse_JobBatchMetadata)[];
+
+export const KEY_PAGE_RESPONSE_JOB_PAGINATION = 'pagination' satisfies keyof PageResponse_Job;
+export const KEY_PAGE_RESPONSE_JOB_RESULTS = 'results' satisfies keyof PageResponse_Job;
+
+export const KEYS_PAGE_RESPONSE_JOB = [
+  KEY_PAGE_RESPONSE_JOB_PAGINATION,
+  KEY_PAGE_RESPONSE_JOB_RESULTS,
+] as const satisfies (keyof PageResponse_Job)[];
+
+export const KEY_PAGE_RESPONSE_OBJECT_LOG_PAGINATION = 'pagination' satisfies keyof PageResponse_ObjectLog;
+export const KEY_PAGE_RESPONSE_OBJECT_LOG_RESULTS = 'results' satisfies keyof PageResponse_ObjectLog;
+
+export const KEYS_PAGE_RESPONSE_OBJECT_LOG = [
+  KEY_PAGE_RESPONSE_OBJECT_LOG_PAGINATION,
+  KEY_PAGE_RESPONSE_OBJECT_LOG_RESULTS,
+] as const satisfies (keyof PageResponse_ObjectLog)[];
+
+export const KEY_PAGE_RESPONSE_PARKING_PAGINATION = 'pagination' satisfies keyof PageResponse_Parking;
+export const KEY_PAGE_RESPONSE_PARKING_RESULTS = 'results' satisfies keyof PageResponse_Parking;
+
+export const KEYS_PAGE_RESPONSE_PARKING = [
+  KEY_PAGE_RESPONSE_PARKING_PAGINATION,
+  KEY_PAGE_RESPONSE_PARKING_RESULTS,
+] as const satisfies (keyof PageResponse_Parking)[];
+
+export const KEY_PAGE_RESPONSE_REQUEST_HISTORY_PAGINATION = 'pagination' satisfies keyof PageResponse_RequestHistory;
+export const KEY_PAGE_RESPONSE_REQUEST_HISTORY_RESULTS = 'results' satisfies keyof PageResponse_RequestHistory;
+
+export const KEYS_PAGE_RESPONSE_REQUEST_HISTORY = [
+  KEY_PAGE_RESPONSE_REQUEST_HISTORY_PAGINATION,
+  KEY_PAGE_RESPONSE_REQUEST_HISTORY_RESULTS,
+] as const satisfies (keyof PageResponse_RequestHistory)[];
 
 export const KEY_PAGINATION_METADATA_CURRENT_PAGE = 'current_page' satisfies keyof PaginationMetadata;
 export const KEY_PAGINATION_METADATA_HAS_NEXT_PAGE = 'has_next_page' satisfies keyof PaginationMetadata;

@@ -9191,6 +9191,42 @@ export interface components {
             /** Users */
             users?: components["schemas"]["User"][];
         };
+        /** PageResponse[EmailForwardLog] */
+        PageResponse_EmailForwardLog_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["EmailForwardLog"][];
+        };
+        /** PageResponse[JobBatchMetadataResponse] */
+        PageResponse_JobBatchMetadataResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["JobBatchMetadataResponse"][];
+        };
+        /** PageResponse[JobResponse] */
+        PageResponse_JobResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["JobResponse"][];
+        };
+        /** PageResponse[ObjectLog] */
+        PageResponse_ObjectLog_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["ObjectLog"][];
+        };
+        /** PageResponse[ParkingResponse] */
+        PageResponse_ParkingResponse_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["ParkingResponse"][];
+        };
+        /** PageResponse[RequestHistory] */
+        PageResponse_RequestHistory_: {
+            pagination: components["schemas"]["PaginationMetadata"];
+            /** Results */
+            results: components["schemas"]["RequestHistory"][];
+        };
         /** PaginationMetadata */
         PaginationMetadata: {
             /** Current Page */
@@ -9281,12 +9317,6 @@ export interface components {
             /** Results */
             results: components["schemas"]["DomainResponse"][];
         };
-        /** Pagination[EmailForwardLog] */
-        Pagination_EmailForwardLog_: {
-            pagination: components["schemas"]["PaginationMetadata"];
-            /** Results */
-            results: components["schemas"]["EmailForwardLog"][];
-        };
         /** Pagination[EmailForwardResponse] */
         Pagination_EmailForwardResponse_: {
             pagination: components["schemas"]["PaginationMetadata"];
@@ -9311,41 +9341,11 @@ export interface components {
             /** Results */
             results: components["schemas"]["InvoiceResponse"][];
         };
-        /** Pagination[JobBatchMetadataResponse] */
-        Pagination_JobBatchMetadataResponse_: {
-            pagination: components["schemas"]["PaginationMetadata"];
-            /** Results */
-            results: components["schemas"]["JobBatchMetadataResponse"][];
-        };
-        /** Pagination[JobResponse] */
-        Pagination_JobResponse_: {
-            pagination: components["schemas"]["PaginationMetadata"];
-            /** Results */
-            results: components["schemas"]["JobResponse"][];
-        };
-        /** Pagination[ObjectLog] */
-        Pagination_ObjectLog_: {
-            pagination: components["schemas"]["PaginationMetadata"];
-            /** Results */
-            results: components["schemas"]["ObjectLog"][];
-        };
         /** Pagination[Organization] */
         Pagination_Organization_: {
             pagination: components["schemas"]["PaginationMetadata"];
             /** Results */
             results: components["schemas"]["Organization"][];
-        };
-        /** Pagination[ParkingResponse] */
-        Pagination_ParkingResponse_: {
-            pagination: components["schemas"]["PaginationMetadata"];
-            /** Results */
-            results: components["schemas"]["ParkingResponse"][];
-        };
-        /** Pagination[RequestHistory] */
-        Pagination_RequestHistory_: {
-            pagination: components["schemas"]["PaginationMetadata"];
-            /** Results */
-            results: components["schemas"]["RequestHistory"][];
         };
         /** Pagination[TagResponse] */
         Pagination_TagResponse_: {
@@ -13170,10 +13170,10 @@ export interface operations {
         parameters: {
             query: {
                 email_forward_id: TypeId<"email_forward">;
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
@@ -13192,7 +13192,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_EmailForwardLog_"];
+                    "application/json": components["schemas"]["PageResponse_EmailForwardLog_"];
                 };
             };
             /** @description Validation Error */
@@ -13209,10 +13209,10 @@ export interface operations {
     get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
@@ -13231,7 +13231,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_EmailForwardLog_"];
+                    "application/json": components["schemas"]["PageResponse_EmailForwardLog_"];
                 };
             };
             /** @description Validation Error */
@@ -13248,10 +13248,10 @@ export interface operations {
     get_object_logs_v1_archive_object_logs_get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["ObjectLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
                 object_log_id?: string | null;
                 object_type?: string | null;
                 action?: components["schemas"]["ObjectEventType"] | null;
@@ -13274,7 +13274,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_ObjectLog_"];
+                    "application/json": components["schemas"]["PageResponse_ObjectLog_"];
                 };
             };
             /** @description Validation Error */
@@ -13291,10 +13291,10 @@ export interface operations {
     get_object_logs_by_object_id_v1_archive_object_logs__object_id__get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["ObjectLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
                 object_log_id?: string | null;
                 object_type?: string | null;
                 action?: components["schemas"]["ObjectEventType"] | null;
@@ -13318,7 +13318,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_ObjectLog_"];
+                    "application/json": components["schemas"]["PageResponse_ObjectLog_"];
                 };
             };
             /** @description Validation Error */
@@ -13335,10 +13335,10 @@ export interface operations {
     get_request_history_v1_archive_request_history_get: {
         parameters: {
             query?: {
-                page?: number;
-                page_size?: number;
                 sort_by?: components["schemas"]["RequestHistorySortField"];
                 sort_order?: components["schemas"]["SortOrder"];
+                page_size?: number;
+                page?: number;
                 method?: components["schemas"]["HTTPMethod"] | null;
                 path?: string | null;
                 status_code?: number | null;
@@ -13365,7 +13365,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_RequestHistory_"];
+                    "application/json": components["schemas"]["PageResponse_RequestHistory_"];
                 };
             };
             /** @description Validation Error */
@@ -19999,7 +19999,9 @@ export interface operations {
                 sort_by?: components["schemas"]["BatchSortField"];
                 /** @description Sort order */
                 sort_order?: components["schemas"]["SortOrder"];
+                /** @description Page number (1-indexed) */
                 page?: number;
+                /** @description Number of batches per page */
                 page_size?: number;
             };
             header?: never;
@@ -20014,7 +20016,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_JobBatchMetadataResponse_"];
+                    "application/json": components["schemas"]["PageResponse_JobBatchMetadataResponse_"];
                 };
             };
             /** @description Validation Error */
@@ -20216,7 +20218,9 @@ export interface operations {
                 sort_by?: components["schemas"]["BatchSortField"] | null;
                 /** @description Sort order */
                 sort_order?: components["schemas"]["SortOrder"] | null;
+                /** @description Page number (1-indexed) */
                 page?: number;
+                /** @description Number of jobs per page */
                 page_size?: number;
             };
             header?: never;
@@ -20234,7 +20238,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_JobResponse_"];
+                    "application/json": components["schemas"]["PageResponse_JobResponse_"];
                 };
             };
             /** @description Not Found */
@@ -22129,7 +22133,9 @@ export interface operations {
     list_parking_v1_parking_get: {
         parameters: {
             query?: {
+                /** @description Page number */
                 page?: number;
+                /** @description Page size */
                 page_size?: number;
                 sort_by?: components["schemas"]["ParkingSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
@@ -22149,7 +22155,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Pagination_ParkingResponse_"];
+                    "application/json": components["schemas"]["PageResponse_ParkingResponse_"];
                 };
             };
             /** @description Unauthorized */

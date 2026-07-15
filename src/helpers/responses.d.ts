@@ -60,6 +60,12 @@ import type {
   OrganizationAttribute2,
   OrganizationCredential,
   OrganizationWithBillingData,
+  PageResponse_EmailForwardLog,
+  PageResponse_Job,
+  PageResponse_JobBatchMetadata,
+  PageResponse_ObjectLog,
+  PageResponse_Parking,
+  PageResponse_RequestHistory,
   Pagination_BillingTransaction,
   Pagination_Contact,
   Pagination_ContactAttributeSet,
@@ -68,16 +74,10 @@ import type {
   Pagination_DomainForward,
   Pagination_DomainForwardZone,
   Pagination_EmailForward,
-  Pagination_EmailForwardLog,
   Pagination_EmailForwardZone,
   Pagination_Event,
   Pagination_Invoice,
-  Pagination_Job,
-  Pagination_JobBatchMetadata,
-  Pagination_ObjectLog,
   Pagination_Organization,
-  Pagination_Parking,
-  Pagination_RequestHistory,
   Pagination_Tag,
   Pagination_UserPublicWithRole,
   ParkingMetrics,
@@ -298,27 +298,27 @@ export type GET_AiConciergeMemoryFacts_Response_502 = Problem;
 
 export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response = GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_200 | GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_422;
 
-export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_200 = Pagination_EmailForwardLog;
+export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_200 = PageResponse_EmailForwardLog;
 export type GET_ArchiveEmailForwardLogsAliasesByEmailForwardAliasId_Response_422 = HTTPValidationError;
 
 export type GET_ArchiveEmailForwardLogsByEmailForwardId_Response = GET_ArchiveEmailForwardLogsByEmailForwardId_Response_200 | GET_ArchiveEmailForwardLogsByEmailForwardId_Response_422;
 
-export type GET_ArchiveEmailForwardLogsByEmailForwardId_Response_200 = Pagination_EmailForwardLog;
+export type GET_ArchiveEmailForwardLogsByEmailForwardId_Response_200 = PageResponse_EmailForwardLog;
 export type GET_ArchiveEmailForwardLogsByEmailForwardId_Response_422 = HTTPValidationError;
 
 export type GET_ArchiveObjectLogs_Response = GET_ArchiveObjectLogs_Response_200 | GET_ArchiveObjectLogs_Response_422;
 
-export type GET_ArchiveObjectLogs_Response_200 = Pagination_ObjectLog;
+export type GET_ArchiveObjectLogs_Response_200 = PageResponse_ObjectLog;
 export type GET_ArchiveObjectLogs_Response_422 = HTTPValidationError;
 
 export type GET_ArchiveObjectLogsByObjectId_Response = GET_ArchiveObjectLogsByObjectId_Response_200 | GET_ArchiveObjectLogsByObjectId_Response_422;
 
-export type GET_ArchiveObjectLogsByObjectId_Response_200 = Pagination_ObjectLog;
+export type GET_ArchiveObjectLogsByObjectId_Response_200 = PageResponse_ObjectLog;
 export type GET_ArchiveObjectLogsByObjectId_Response_422 = HTTPValidationError;
 
 export type GET_ArchiveRequestHistory_Response = GET_ArchiveRequestHistory_Response_200 | GET_ArchiveRequestHistory_Response_422;
 
-export type GET_ArchiveRequestHistory_Response_200 = Pagination_RequestHistory;
+export type GET_ArchiveRequestHistory_Response_200 = PageResponse_RequestHistory;
 export type GET_ArchiveRequestHistory_Response_422 = HTTPValidationError;
 
 export type GET_AuthClientCredentialsIntrospect_Response = GET_AuthClientCredentialsIntrospect_Response_200 | GET_AuthClientCredentialsIntrospect_Response_401 | GET_AuthClientCredentialsIntrospect_Response_422;
@@ -601,7 +601,7 @@ export type GET_JobByJobId_Response_422 = HTTPValidationError;
 
 export type GET_Jobs_Response = GET_Jobs_Response_200 | GET_Jobs_Response_422;
 
-export type GET_Jobs_Response_200 = Pagination_JobBatchMetadata;
+export type GET_Jobs_Response_200 = PageResponse_JobBatchMetadata;
 export type GET_Jobs_Response_422 = HTTPValidationError;
 
 export type GET_JobsByBatchId_Response = GET_JobsByBatchId_Response_200 | GET_JobsByBatchId_Response_404 | GET_JobsByBatchId_Response_422 | GET_JobsByBatchId_Response_503;
@@ -613,7 +613,7 @@ export type GET_JobsByBatchId_Response_503 = Problem;
 
 export type GET_JobsByBatchIdJobs_Response = GET_JobsByBatchIdJobs_Response_200 | GET_JobsByBatchIdJobs_Response_404 | GET_JobsByBatchIdJobs_Response_422 | GET_JobsByBatchIdJobs_Response_503;
 
-export type GET_JobsByBatchIdJobs_Response_200 = Pagination_Job;
+export type GET_JobsByBatchIdJobs_Response_200 = PageResponse_Job;
 export type GET_JobsByBatchIdJobs_Response_404 = Problem;
 export type GET_JobsByBatchIdJobs_Response_422 = HTTPValidationError;
 export type GET_JobsByBatchIdJobs_Response_503 = Problem;
@@ -717,7 +717,7 @@ export type GET_OrganizationsUsers_Response_422 = HTTPValidationError;
 
 export type GET_Parking_Response = GET_Parking_Response_200 | GET_Parking_Response_401 | GET_Parking_Response_403 | GET_Parking_Response_422;
 
-export type GET_Parking_Response_200 = Pagination_Parking;
+export type GET_Parking_Response_200 = PageResponse_Parking;
 export type GET_Parking_Response_401 = Problem;
 export type GET_Parking_Response_403 = Problem;
 export type GET_Parking_Response_422 = HTTPValidationError;
