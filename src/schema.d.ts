@@ -13170,10 +13170,10 @@ export interface operations {
         parameters: {
             query: {
                 email_forward_id: TypeId<"email_forward">;
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page_size?: number;
-                page?: number;
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
@@ -13209,10 +13209,10 @@ export interface operations {
     get_email_forward_logs_v1_archive_email_forward_logs__email_forward_id__get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["EmailForwardLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page_size?: number;
-                page?: number;
                 final_status?: components["schemas"]["EmailForwardLogStatus"] | null;
                 start_time?: Date | null;
                 end_time?: Date | null;
@@ -13248,10 +13248,10 @@ export interface operations {
     get_object_logs_v1_archive_object_logs_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["ObjectLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page_size?: number;
-                page?: number;
                 object_log_id?: string | null;
                 object_type?: string | null;
                 action?: components["schemas"]["ObjectEventType"] | null;
@@ -13291,10 +13291,10 @@ export interface operations {
     get_object_logs_by_object_id_v1_archive_object_logs__object_id__get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["ObjectLogSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page_size?: number;
-                page?: number;
                 object_log_id?: string | null;
                 object_type?: string | null;
                 action?: components["schemas"]["ObjectEventType"] | null;
@@ -13335,10 +13335,10 @@ export interface operations {
     get_request_history_v1_archive_request_history_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["RequestHistorySortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page_size?: number;
-                page?: number;
                 method?: components["schemas"]["HTTPMethod"] | null;
                 path?: string | null;
                 status_code?: number | null;
@@ -13617,6 +13617,8 @@ export interface operations {
     get_contacts_v1_contacts_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["ContactSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by status tag types. Can be specified multiple times. */
@@ -13634,8 +13636,6 @@ export interface operations {
                 created_before?: Date | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ContactIncludeField"][] | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -13699,12 +13699,12 @@ export interface operations {
     list_attribute_sets_v1_contacts_attribute_sets_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["ContactAttributeSetSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 tld?: string | null;
                 label?: string | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -14763,6 +14763,8 @@ export interface operations {
     list_zones_v1_dns_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["ZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by user tag IDs. Can be specified multiple times. */
@@ -14779,8 +14781,6 @@ export interface operations {
                 updated_before?: Date | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ZoneIncludeField"][] | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -14860,11 +14860,11 @@ export interface operations {
     list_domain_forwards_by_zone_v1_dns_domain_forwards_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 search?: string | null;
                 sort_by?: components["schemas"]["DomainForwardZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -14927,11 +14927,11 @@ export interface operations {
     list_email_forwards_by_zone_v1_dns_email_forwards_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 search?: string | null;
                 sort_by?: components["schemas"]["EmailForwardZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -15513,11 +15513,11 @@ export interface operations {
     list_domain_forwards_v1_domain_forwards_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 search?: string | null;
                 sort_by?: components["schemas"]["DomainForwardSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -17194,6 +17194,8 @@ export interface operations {
     get_domains_v1_domains_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["DomainSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by status tag types. Can be specified multiple times. */
@@ -17224,8 +17226,6 @@ export interface operations {
                 registry_statuses?: string[] | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -18407,12 +18407,12 @@ export interface operations {
     list_email_forwards_v1_email_forwards_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 search?: string | null;
                 enabled?: boolean | null;
                 sort_by?: components["schemas"]["EmailForwardSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -19212,6 +19212,8 @@ export interface operations {
     get_events_v1_events_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["EventSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 object_type?: components["schemas"]["EventObjectType"] | null;
@@ -19219,8 +19221,6 @@ export interface operations {
                 type?: components["schemas"]["EventType"] | null;
                 subtype?: components["schemas"]["EventSubtype"] | null;
                 acknowledged?: boolean | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -20431,12 +20431,12 @@ export interface operations {
     list_organizations_v1_organizations_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["OrganizationSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 search?: string | null;
                 country_code?: string | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -21497,11 +21497,11 @@ export interface operations {
     list_users_v1_organizations_users_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["UserSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 search?: string | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -21989,6 +21989,8 @@ export interface operations {
     get_transactions_v1_organizations__organization_id__transactions_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["BillingTransactionSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 product_reference?: string | null;
@@ -21999,8 +22001,6 @@ export interface operations {
                 created_before?: Date | null;
                 completed_after?: Date | null;
                 completed_before?: Date | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path: {
@@ -22602,13 +22602,13 @@ export interface operations {
     list_tags_v1_tags_get: {
         parameters: {
             query?: {
+                page?: number;
+                page_size?: number;
                 sort_by?: components["schemas"]["TagSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
                 /** @description Filter by tag types (OR semantics) */
                 tag_types?: components["schemas"]["TagType"][] | null;
                 search?: string | null;
-                page?: number;
-                page_size?: number;
             };
             header?: never;
             path?: never;

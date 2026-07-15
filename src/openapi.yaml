@@ -13867,7 +13867,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-14-201005
+  version: 2026-07-15-161454
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -15153,6 +15153,23 @@ paths:
           type: string
           x-typeid-prefix: email_forward
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -15164,23 +15181,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
       - in: query
         name: final_status
         required: false
@@ -15246,6 +15246,23 @@ paths:
           type: string
           x-typeid-prefix: email_forward
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -15257,23 +15274,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
       - in: query
         name: final_status
         required: false
@@ -15327,6 +15327,23 @@ paths:
       operationId: get_object_logs_v1_archive_object_logs_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -15338,23 +15355,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
       - in: query
         name: object_log_id
         required: false
@@ -15463,6 +15463,23 @@ paths:
           title: Object Id
           type: string
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -15474,23 +15491,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
       - in: query
         name: object_log_id
         required: false
@@ -15584,6 +15584,23 @@ paths:
       operationId: get_request_history_v1_archive_request_history_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 50
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -15595,23 +15612,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
       - in: query
         name: method
         required: false
@@ -16004,6 +16004,23 @@ paths:
       operationId: get_contacts_v1_contacts_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -16128,23 +16145,6 @@ paths:
           description: Include additional data in the response. Can be specified multiple
             times.
           title: Include
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -16201,6 +16201,23 @@ paths:
       operationId: list_attribute_sets_v1_contacts_attribute_sets_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -16228,23 +16245,6 @@ paths:
           - type: string
           - type: 'null'
           title: Label
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -17273,6 +17273,23 @@ paths:
       operationId: list_zones_v1_dns_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -17402,23 +17419,6 @@ paths:
           description: Include additional data in the response. Can be specified multiple
             times.
           title: Include
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -17742,6 +17742,23 @@ paths:
       operationId: list_domain_forwards_by_zone_v1_dns_domain_forwards_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: search
         required: false
         schema:
@@ -17761,23 +17778,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -17863,6 +17863,23 @@ paths:
       operationId: list_email_forwards_by_zone_v1_dns_email_forwards_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: search
         required: false
         schema:
@@ -17882,23 +17899,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -18809,6 +18809,23 @@ paths:
       operationId: list_domain_forwards_v1_domain_forwards_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: search
         required: false
         schema:
@@ -18828,23 +18845,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -21279,6 +21279,23 @@ paths:
       operationId: get_domains_v1_domains_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -21509,23 +21526,6 @@ paths:
           description: Include additional data in the response. Can be specified multiple
             times.
           title: Include
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -22938,6 +22938,23 @@ paths:
       operationId: list_email_forwards_v1_email_forwards_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: search
         required: false
         schema:
@@ -22965,23 +22982,6 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -23842,6 +23842,23 @@ paths:
       operationId: get_events_v1_events_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -23894,23 +23911,6 @@ paths:
           - type: 'null'
           default: false
           title: Acknowledged
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -25841,6 +25841,23 @@ paths:
       operationId: list_organizations_v1_organizations_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -25870,23 +25887,6 @@ paths:
             type: string
           - type: 'null'
           title: Country Code
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -26821,6 +26821,23 @@ paths:
       operationId: list_users_v1_organizations_users_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -26841,23 +26858,6 @@ paths:
             type: string
           - type: 'null'
           title: Search
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -27384,6 +27384,23 @@ paths:
           type: string
           x-typeid-prefix: organization
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -27465,23 +27482,6 @@ paths:
             type: string
           - type: 'null'
           title: Completed Before
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
@@ -28153,6 +28153,23 @@ paths:
       operationId: list_tags_v1_tags_get
       parameters:
       - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          default: 10
+          maximum: 1000
+          minimum: 1
+          title: Page Size
+          type: integer
+      - in: query
         name: sort_by
         required: false
         schema:
@@ -28184,23 +28201,6 @@ paths:
           - type: string
           - type: 'null'
           title: Search
-      - in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          default: 10
-          maximum: 1000
-          minimum: 1
-          title: Page Size
-          type: integer
       responses:
         '200':
           content:
