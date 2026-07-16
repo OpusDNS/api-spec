@@ -13867,7 +13867,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-15-161550
+  version: 2026-07-16-094724
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -19340,6 +19340,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -19483,6 +19496,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -19619,6 +19645,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -19760,6 +19799,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -19903,6 +19955,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -20032,6 +20097,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -20207,6 +20285,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -20342,6 +20433,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
@@ -20498,6 +20602,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+        '503':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE
+                detail: Domain forward metrics are currently unavailable. Please try
+                  again later.
+                status: 503
+                title: Domain Forward Metrics Temporarily Unavailable
+                type: domain-forward-metrics-temporarily-unavailable
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
       security:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []

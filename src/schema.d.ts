@@ -15834,6 +15834,22 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     browser_stats_v1_domain_forwards_metrics_browser_get: {
@@ -15914,6 +15930,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -15998,6 +16030,22 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     platform_stats_v1_domain_forwards_metrics_platform_get: {
@@ -16078,6 +16126,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -16162,6 +16226,22 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     status_code_stats_v1_domain_forwards_metrics_status_code_get: {
@@ -16242,6 +16322,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -16326,6 +16422,22 @@ export interface operations {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
         };
     };
     user_agent_stats_v1_domain_forwards_metrics_user_agent_get: {
@@ -16406,6 +16518,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
@@ -16490,6 +16618,22 @@ export interface operations {
                 };
                 content: {
                     "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_DOMAIN_FORWARD_METRICS_TEMPORARILY_UNAVAILABLE",
+                     *       "detail": "Domain forward metrics are currently unavailable. Please try again later.",
+                     *       "status": 503,
+                     *       "title": "Domain Forward Metrics Temporarily Unavailable",
+                     *       "type": "domain-forward-metrics-temporarily-unavailable"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
                 };
             };
         };
