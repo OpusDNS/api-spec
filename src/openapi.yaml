@@ -13170,6 +13170,7 @@ components:
           description: Fully-qualified vanity NS hostnames, ordered by intended position.
           items:
             type: string
+          maxItems: 4
           minItems: 1
           title: Hostnames
           type: array
@@ -13867,7 +13868,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-16-094724
+  version: 2026-07-16-172809
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
