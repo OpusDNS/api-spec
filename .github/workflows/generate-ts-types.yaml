@@ -73,6 +73,8 @@ jobs:
             npm run generate:helpers
             git add .
             git commit -m "Update OpenAPI spec and types"
+            git fetch origin main
+            git rebase origin/main
             npm version minor
             git push
             npm publish --access public
