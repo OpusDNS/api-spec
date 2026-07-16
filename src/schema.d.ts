@@ -10416,7 +10416,7 @@ export interface components {
          * StatusTagType
          * @enum {string}
          */
-        StatusTagType: "VERIFICATION_REQUIRED";
+        StatusTagType: "VERIFICATION_REQUIRED" | "CREATE_REQUESTED";
         /** @example 12.50 */
         StrictMoneyDecimal: string;
         /**

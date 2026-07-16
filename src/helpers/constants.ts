@@ -1677,10 +1677,12 @@ export const SORT_ORDER_VALUES = [
 
 export const STATUS_TAG_TYPE = {
   VERIFICATION_REQUIRED: "VERIFICATION_REQUIRED",
+  CREATE_REQUESTED: "CREATE_REQUESTED",
 } as const satisfies Record<string, StatusTagType>;
 
 export const STATUS_TAG_TYPE_VALUES = [
   'VERIFICATION_REQUIRED',
+  'CREATE_REQUESTED',
 ] as const satisfies ReadonlyArray<StatusTagType>;
 
 export const SYNC_OPERATION_TYPE = {
