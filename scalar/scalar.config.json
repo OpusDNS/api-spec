@@ -157,6 +157,13 @@
                 "icon": "phosphor/regular/bell",
                 "filepath": "content/upcoming-changes/event-v1-payloads.md",
                 "showInSidebar": true
+              },
+              "/rfc3339-datetimes": {
+                "type": "page",
+                "title": "RFC 3339 datetimes",
+                "icon": "phosphor/regular/clock",
+                "filepath": "content/upcoming-changes/rfc3339-datetimes.md",
+                "showInSidebar": true
               }
             }
           },
