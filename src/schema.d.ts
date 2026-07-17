@@ -1253,6 +1253,64 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/domains/tld-specific/no/applicant-declaration": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieve the .no applicant declaration by token */
+        get: operations["get_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_get"];
+        /**
+         * Sign the .no applicant declaration with token
+         * @description Records the applicant declaration signature (`acceptName` + `acceptDate`) and queues the actual registration at Norid.
+         */
+        put: operations["confirm_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/tld-specific/no/{domain_reference}/applicant-declaration": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Submit the .no applicant declaration on behalf of the subscriber
+         * @description Records the applicant declaration signature collected by the registrar (e.g. via Norid's own signing tool) and queues the actual registration at Norid, without the registrant email round-trip.
+         */
+        post: operations["submit_norid_declaration_v1_domains_tld_specific_no__domain_reference__applicant_declaration_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/domains/tld-specific/no/{domain_reference}/resend-declaration-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resend the .no applicant declaration email to the registrant */
+        post: operations["resend_norid_declaration_email_v1_domains_tld_specific_no__domain_reference__resend_declaration_email_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/domains/transfer": {
         parameters: {
             query?: never;
@@ -4945,7 +5003,7 @@ export interface components {
          * DomainAttributeKey
          * @enum {string}
          */
-        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date";
+        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date" | "nor_id_declaration" | "nor_id_declaration_token";
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -8558,6 +8616,83 @@ export interface components {
              *     ]
              */
             ip_addresses?: string[];
+        };
+        /** NorIdDeclarationConfirmRequest */
+        NorIdDeclarationConfirmRequest: {
+            /**
+             * Accept Name
+             * @description The full name of the person signing the applicant declaration. For private individuals this is the subscriber personally; for organizations it must be an authorized representative.
+             */
+            accept_name: string;
+        };
+        /** NorIdDeclarationResponse */
+        NorIdDeclarationResponse: {
+            /**
+             * Declaration Contract Text
+             * @description The fixed Norwegian declaration contract text
+             */
+            declaration_contract_text: string;
+            /**
+             * Declaration Header
+             * @description The fixed Norwegian declaration header
+             */
+            declaration_header: string;
+            /**
+             * Declaration Introduction
+             * @description The fixed Norwegian declaration introduction
+             */
+            declaration_introduction: string;
+            /**
+             * Declaration Version
+             * @description The applicant declaration text version
+             */
+            declaration_version: string;
+            /**
+             * Domain Name
+             * @description The domain name the declaration applies to
+             */
+            domain_name: string;
+            /**
+             * Expires On
+             * Format: date-time
+             * @description When the unconfirmed create request expires
+             */
+            expires_on: Date;
+            /**
+             * Identity Type
+             * @description The subscriber identity type
+             */
+            identity_type?: string | null;
+            /**
+             * Identity Value
+             * @description The subscriber identity (organization number or Person-ID)
+             */
+            identity_value?: string | null;
+            /** @description The declaration status */
+            status: components["schemas"]["NorIdDeclarationStatus"];
+            /**
+             * Subscriber Name
+             * @description The domain name subscriber (registrant)
+             */
+            subscriber_name: string;
+        };
+        /**
+         * NorIdDeclarationStatus
+         * @enum {string}
+         */
+        NorIdDeclarationStatus: "pending" | "confirmed" | "completed" | "expired" | "failed";
+        /** NorIdResellerDeclarationRequest */
+        NorIdResellerDeclarationRequest: {
+            /**
+             * Accept Date
+             * @description UTC timestamp of the declaration signature. Only provide it when the declaration was signed out-of-band (e.g. via Norid's own tool); defaults to the submission time.
+             */
+            accept_date?: Date | null;
+            /**
+             * Accept Name
+             * @description The full name of the person signing the applicant declaration. For private individuals this is the subscriber personally; for organizations it must be an authorized representative.
+             */
+            accept_name: string;
         };
         /**
          * ObjectEventType
@@ -18457,6 +18592,293 @@ export interface operations {
                      *       "status": 404,
                      *       "title": "Domain Management Error",
                      *       "type": "domain-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NorIdDeclarationResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_NORID_DECLARATION_NOT_FOUND",
+                     *       "detail": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "nor-id-declaration-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    confirm_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_put: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NorIdDeclarationConfirmRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_NORID_DECLARATION_EXPIRED",
+                     *       "detail": "The applicant declaration request has expired",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "Domain Management Error",
+                     *       "type": "nor-id-declaration-expired"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_NORID_DECLARATION_NOT_FOUND",
+                     *       "detail": "Additional error context.",
+                     *       "status": 404,
+                     *       "title": "Domain Management Error",
+                     *       "type": "nor-id-declaration-not-found"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_NORID_DECLARATION_STATE",
+                     *       "detail": "The applicant declaration is not in a valid state",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "nor-id-declaration-state"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    submit_norid_declaration_v1_domains_tld_specific_no__domain_reference__applicant_declaration_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NorIdResellerDeclarationRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NorIdDeclarationResponse"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_NORID_DECLARATION_EXPIRED",
+                     *       "detail": "The applicant declaration request has expired",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 400,
+                     *       "title": "Domain Management Error",
+                     *       "type": "nor-id-declaration-expired"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_NORID_DECLARATION_STATE",
+                     *       "detail": "The applicant declaration is not in a valid state",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "nor-id-declaration-state"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resend_norid_declaration_email_v1_domains_tld_specific_no__domain_reference__resend_declaration_email_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path: {
+                domain_reference: TypeId<"domain"> | string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_NORID_DECLARATION_STATE",
+                     *       "detail": "The applicant declaration is not in a valid state",
+                     *       "domain_name": "Additional error context.",
+                     *       "status": 409,
+                     *       "title": "Domain Management Error",
+                     *       "type": "nor-id-declaration-state"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
                 };

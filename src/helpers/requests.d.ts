@@ -38,6 +38,8 @@ import type {
   MemoryFactCreateRequest,
   MemoryFactPatchRequest,
   MessageCreateRequest,
+  NorIdDeclarationConfirmRequest,
+  NorIdResellerDeclarationRequest,
   ObjectTagChanges,
   OrganizationAttributeUpdate,
   OrganizationCreate,
@@ -596,6 +598,30 @@ export type POST_DomainsTldSpecificLtByDomainReferenceAuthCodeRequest_Request = 
   parameters: operations['request_auth_code_v1_domains_tld_specific_lt__domain_reference__auth_code_request_post']['parameters'];
 };
 export type POST_DomainsTldSpecificLtByDomainReferenceAuthCodeRequest_Request_Path = POST_DomainsTldSpecificLtByDomainReferenceAuthCodeRequest_Request['parameters']['path'];
+
+export type GET_DomainsTldSpecificNoApplicantDeclaration_Request = {
+  parameters: operations['get_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_get']['parameters'];
+};
+export type GET_DomainsTldSpecificNoApplicantDeclaration_Request_Query = GET_DomainsTldSpecificNoApplicantDeclaration_Request['parameters']['query'];
+
+export type PUT_DomainsTldSpecificNoApplicantDeclaration_Request = {
+  parameters: operations['confirm_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_put']['parameters'];
+  requestBody: NorIdDeclarationConfirmRequest;
+};
+export type PUT_DomainsTldSpecificNoApplicantDeclaration_Request_Query = PUT_DomainsTldSpecificNoApplicantDeclaration_Request['parameters']['query'];
+export type PUT_DomainsTldSpecificNoApplicantDeclaration_Request_Body = PUT_DomainsTldSpecificNoApplicantDeclaration_Request['requestBody'];
+
+export type POST_DomainsTldSpecificNoByDomainReferenceApplicantDeclaration_Request = {
+  parameters: operations['submit_norid_declaration_v1_domains_tld_specific_no__domain_reference__applicant_declaration_post']['parameters'];
+  requestBody: NorIdResellerDeclarationRequest;
+};
+export type POST_DomainsTldSpecificNoByDomainReferenceApplicantDeclaration_Request_Path = POST_DomainsTldSpecificNoByDomainReferenceApplicantDeclaration_Request['parameters']['path'];
+export type POST_DomainsTldSpecificNoByDomainReferenceApplicantDeclaration_Request_Body = POST_DomainsTldSpecificNoByDomainReferenceApplicantDeclaration_Request['requestBody'];
+
+export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Request = {
+  parameters: operations['resend_norid_declaration_email_v1_domains_tld_specific_no__domain_reference__resend_declaration_email_post']['parameters'];
+};
+export type POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Request_Path = POST_DomainsTldSpecificNoByDomainReferenceResendDeclarationEmail_Request['parameters']['path'];
 
 export type POST_DomainsTransfer_Request = {
   requestBody: DomainTransferIn;

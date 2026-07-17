@@ -3415,6 +3415,8 @@ components:
       - nor_id_applicant_version
       - nor_id_applicant_accept_name
       - nor_id_applicant_accept_date
+      - nor_id_declaration
+      - nor_id_declaration_token
       title: DomainAttributeKey
       type: string
     DomainAvailability:
@@ -8814,6 +8816,109 @@ components:
       - hostname
       title: Nameserver
       type: object
+    NorIdDeclarationConfirmRequest:
+      properties:
+        accept_name:
+          description: The full name of the person signing the applicant declaration.
+            For private individuals this is the subscriber personally; for organizations
+            it must be an authorized representative.
+          maxLength: 255
+          minLength: 1
+          title: Accept Name
+          type: string
+      required:
+      - accept_name
+      title: NorIdDeclarationConfirmRequest
+      type: object
+    NorIdDeclarationResponse:
+      properties:
+        declaration_contract_text:
+          description: The fixed Norwegian declaration contract text
+          title: Declaration Contract Text
+          type: string
+        declaration_header:
+          description: The fixed Norwegian declaration header
+          title: Declaration Header
+          type: string
+        declaration_introduction:
+          description: The fixed Norwegian declaration introduction
+          title: Declaration Introduction
+          type: string
+        declaration_version:
+          description: The applicant declaration text version
+          title: Declaration Version
+          type: string
+        domain_name:
+          description: The domain name the declaration applies to
+          title: Domain Name
+          type: string
+        expires_on:
+          description: When the unconfirmed create request expires
+          format: date-time
+          title: Expires On
+          type: string
+        identity_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The subscriber identity type
+          title: Identity Type
+        identity_value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The subscriber identity (organization number or Person-ID)
+          title: Identity Value
+        status:
+          $ref: '#/components/schemas/NorIdDeclarationStatus'
+          description: The declaration status
+        subscriber_name:
+          description: The domain name subscriber (registrant)
+          title: Subscriber Name
+          type: string
+      required:
+      - domain_name
+      - subscriber_name
+      - declaration_version
+      - declaration_header
+      - declaration_introduction
+      - declaration_contract_text
+      - status
+      - expires_on
+      title: NorIdDeclarationResponse
+      type: object
+    NorIdDeclarationStatus:
+      enum:
+      - pending
+      - confirmed
+      - completed
+      - expired
+      - failed
+      title: NorIdDeclarationStatus
+      type: string
+    NorIdResellerDeclarationRequest:
+      properties:
+        accept_date:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: UTC timestamp of the declaration signature. Only provide it
+            when the declaration was signed out-of-band (e.g. via Norid's own tool);
+            defaults to the submission time.
+          title: Accept Date
+        accept_name:
+          description: The full name of the person signing the applicant declaration.
+            For private individuals this is the subscriber personally; for organizations
+            it must be an authorized representative.
+          maxLength: 255
+          minLength: 1
+          title: Accept Name
+          type: string
+      required:
+      - accept_name
+      title: NorIdResellerDeclarationRequest
+      type: object
     ObjectEventType:
       enum:
       - CREATED
@@ -13902,7 +14007,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-17-185529
+  version: 2026-07-17-222747
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -22407,6 +22512,267 @@ paths:
       - OAuth2PasswordBearer: []
       - APIKeyHeader: []
       summary: Requests your auth code directly from DOMREG (registry)
+      tags:
+      - domain
+      - domain_tld_specific
+      x-required-permissions:
+      - domains:manage
+  /v1/domains/tld-specific/no/applicant-declaration:
+    get:
+      operationId: get_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_get
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          title: Token
+          type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NorIdDeclarationResponse'
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_NORID_DECLARATION_NOT_FOUND
+                detail: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: nor-id-declaration-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Retrieve the .no applicant declaration by token
+      tags:
+      - domain
+      - domain_tld_specific
+    put:
+      description: Records the applicant declaration signature (`acceptName` + `acceptDate`)
+        and queues the actual registration at Norid.
+      operationId: confirm_norid_declaration_by_token_v1_domains_tld_specific_no_applicant_declaration_put
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          title: Token
+          type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NorIdDeclarationConfirmRequest'
+        required: true
+      responses:
+        '204':
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_NORID_DECLARATION_EXPIRED
+                detail: The applicant declaration request has expired
+                domain_name: Additional error context.
+                status: 400
+                title: Domain Management Error
+                type: nor-id-declaration-expired
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '404':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_NORID_DECLARATION_NOT_FOUND
+                detail: Additional error context.
+                status: 404
+                title: Domain Management Error
+                type: nor-id-declaration-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_NORID_DECLARATION_STATE
+                detail: The applicant declaration is not in a valid state
+                domain_name: Additional error context.
+                status: 409
+                title: Domain Management Error
+                type: nor-id-declaration-state
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Sign the .no applicant declaration with token
+      tags:
+      - domain
+      - domain_tld_specific
+  /v1/domains/tld-specific/no/{domain_reference}/applicant-declaration:
+    post:
+      description: Records the applicant declaration signature collected by the registrar
+        (e.g. via Norid's own signing tool) and queues the actual registration at
+        Norid, without the registrant email round-trip.
+      operationId: submit_norid_declaration_v1_domains_tld_specific_no__domain_reference__applicant_declaration_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NorIdResellerDeclarationRequest'
+        required: true
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NorIdDeclarationResponse'
+          description: Successful Response
+        '400':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_NORID_DECLARATION_EXPIRED
+                detail: The applicant declaration request has expired
+                domain_name: Additional error context.
+                status: 400
+                title: Domain Management Error
+                type: nor-id-declaration-expired
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Bad Request
+        '404':
+          content:
+            application/problem+json:
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_NORID_DECLARATION_NOT_FOUND
+                    detail: Additional error context.
+                    status: 404
+                    title: Domain Management Error
+                    type: nor-id-declaration-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_NORID_DECLARATION_STATE
+                detail: The applicant declaration is not in a valid state
+                domain_name: Additional error context.
+                status: 409
+                title: Domain Management Error
+                type: nor-id-declaration-state
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Submit the .no applicant declaration on behalf of the subscriber
+      tags:
+      - domain
+      - domain_tld_specific
+      x-required-permissions:
+      - domains:manage
+  /v1/domains/tld-specific/no/{domain_reference}/resend-declaration-email:
+    post:
+      operationId: resend_norid_declaration_email_v1_domains_tld_specific_no__domain_reference__resend_declaration_email_post
+      parameters:
+      - in: path
+        name: domain_reference
+        required: true
+        schema:
+          anyOf:
+          - examples:
+            - domain_01h45ytscbebyvny4gc8cr8ma2
+            format: typeid
+            pattern: ^domain_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+            type: string
+            x-typeid-prefix: domain
+          - type: string
+          title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '204':
+          description: Successful Response
+        '404':
+          content:
+            application/problem+json:
+              examples:
+                Domain Management Error:
+                  value:
+                    code: ERROR_NORID_DECLARATION_NOT_FOUND
+                    detail: Additional error context.
+                    status: 404
+                    title: Domain Management Error
+                    type: nor-id-declaration-not-found
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '409':
+          content:
+            application/problem+json:
+              example:
+                code: ERROR_NORID_DECLARATION_STATE
+                detail: The applicant declaration is not in a valid state
+                domain_name: Additional error context.
+                status: 409
+                title: Domain Management Error
+                type: nor-id-declaration-state
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Conflict
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Resend the .no applicant declaration email to the registrant
       tags:
       - domain
       - domain_tld_specific

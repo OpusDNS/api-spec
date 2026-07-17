@@ -65,6 +65,7 @@ import type {
   MemoryFactKind,
   MessageRole,
   MetricsGrouping,
+  NorIdDeclarationStatus,
   ObjectEventType,
   ObjectLogSortField,
   OrganizationCredentialStatus,
@@ -611,6 +612,8 @@ export const DOMAIN_ATTRIBUTE_KEY = {
   NOR_ID_APPLICANT_VERSION: "nor_id_applicant_version",
   NOR_ID_APPLICANT_ACCEPT_NAME: "nor_id_applicant_accept_name",
   NOR_ID_APPLICANT_ACCEPT_DATE: "nor_id_applicant_accept_date",
+  NOR_ID_DECLARATION: "nor_id_declaration",
+  NOR_ID_DECLARATION_TOKEN: "nor_id_declaration_token",
 } as const satisfies Record<string, DomainAttributeKey>;
 
 export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
@@ -624,6 +627,8 @@ export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'nor_id_applicant_version',
   'nor_id_applicant_accept_name',
   'nor_id_applicant_accept_date',
+  'nor_id_declaration',
+  'nor_id_declaration_token',
 ] as const satisfies ReadonlyArray<DomainAttributeKey>;
 
 export const DOMAIN_AVAILABILITY_STATUS = {
@@ -1189,6 +1194,22 @@ export const METRICS_GROUPING_VALUES = [
   'forward',
   'rule',
 ] as const satisfies ReadonlyArray<MetricsGrouping>;
+
+export const NOR_ID_DECLARATION_STATUS = {
+  PENDING: "pending",
+  CONFIRMED: "confirmed",
+  COMPLETED: "completed",
+  EXPIRED: "expired",
+  FAILED: "failed",
+} as const satisfies Record<string, NorIdDeclarationStatus>;
+
+export const NOR_ID_DECLARATION_STATUS_VALUES = [
+  'pending',
+  'confirmed',
+  'completed',
+  'expired',
+  'failed',
+] as const satisfies ReadonlyArray<NorIdDeclarationStatus>;
 
 export const OBJECT_EVENT_TYPE = {
   CREATED: "CREATED",

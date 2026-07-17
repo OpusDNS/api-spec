@@ -274,6 +274,9 @@ import type {
   MessageCreateRequest,
   MessageList,
   Nameserver,
+  NorIdDeclarationConfirmRequest,
+  NorIdDeclaration,
+  NorIdResellerDeclarationRequest,
   ObjectLog,
   ObjectTagChanges,
   ObjectTagChanges2,
@@ -3749,6 +3752,44 @@ export const KEYS_NAMESERVER = [
   KEY_NAMESERVER_HOSTNAME,
   KEY_NAMESERVER_IP_ADDRESSES,
 ] as const satisfies (keyof Nameserver)[];
+
+export const KEY_NOR_ID_DECLARATION_CONFIRM_REQUEST_ACCEPT_NAME = 'accept_name' satisfies keyof NorIdDeclarationConfirmRequest;
+
+export const KEYS_NOR_ID_DECLARATION_CONFIRM_REQUEST = [
+  KEY_NOR_ID_DECLARATION_CONFIRM_REQUEST_ACCEPT_NAME,
+] as const satisfies (keyof NorIdDeclarationConfirmRequest)[];
+
+export const KEY_NOR_ID_DECLARATION_DECLARATION_CONTRACT_TEXT = 'declaration_contract_text' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_DECLARATION_HEADER = 'declaration_header' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_DECLARATION_INTRODUCTION = 'declaration_introduction' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_DECLARATION_VERSION = 'declaration_version' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_DOMAIN_NAME = 'domain_name' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_EXPIRES_ON = 'expires_on' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_IDENTITY_TYPE = 'identity_type' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_IDENTITY_VALUE = 'identity_value' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_STATUS = 'status' satisfies keyof NorIdDeclaration;
+export const KEY_NOR_ID_DECLARATION_SUBSCRIBER_NAME = 'subscriber_name' satisfies keyof NorIdDeclaration;
+
+export const KEYS_NOR_ID_DECLARATION = [
+  KEY_NOR_ID_DECLARATION_DECLARATION_CONTRACT_TEXT,
+  KEY_NOR_ID_DECLARATION_DECLARATION_HEADER,
+  KEY_NOR_ID_DECLARATION_DECLARATION_INTRODUCTION,
+  KEY_NOR_ID_DECLARATION_DECLARATION_VERSION,
+  KEY_NOR_ID_DECLARATION_DOMAIN_NAME,
+  KEY_NOR_ID_DECLARATION_EXPIRES_ON,
+  KEY_NOR_ID_DECLARATION_IDENTITY_TYPE,
+  KEY_NOR_ID_DECLARATION_IDENTITY_VALUE,
+  KEY_NOR_ID_DECLARATION_STATUS,
+  KEY_NOR_ID_DECLARATION_SUBSCRIBER_NAME,
+] as const satisfies (keyof NorIdDeclaration)[];
+
+export const KEY_NOR_ID_RESELLER_DECLARATION_REQUEST_ACCEPT_DATE = 'accept_date' satisfies keyof NorIdResellerDeclarationRequest;
+export const KEY_NOR_ID_RESELLER_DECLARATION_REQUEST_ACCEPT_NAME = 'accept_name' satisfies keyof NorIdResellerDeclarationRequest;
+
+export const KEYS_NOR_ID_RESELLER_DECLARATION_REQUEST = [
+  KEY_NOR_ID_RESELLER_DECLARATION_REQUEST_ACCEPT_DATE,
+  KEY_NOR_ID_RESELLER_DECLARATION_REQUEST_ACCEPT_NAME,
+] as const satisfies (keyof NorIdResellerDeclarationRequest)[];
 
 export const KEY_OBJECT_LOG_ACTION = 'action' satisfies keyof ObjectLog;
 export const KEY_OBJECT_LOG_CREATED_ON = 'created_on' satisfies keyof ObjectLog;
