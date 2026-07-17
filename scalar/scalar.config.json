@@ -813,6 +813,12 @@
                 "filepath": "content/tld-knowledge-base/cctlds/lu.md",
                 "showInSidebar": true
               },
+              "/lv": {
+                "type": "page",
+                "title": "🇱🇻 .lv",
+                "filepath": "content/tld-knowledge-base/cctlds/lv.md",
+                "showInSidebar": true
+              },
               "/me": {
                 "type": "page",
                 "title": "🇲🇪 .me",
