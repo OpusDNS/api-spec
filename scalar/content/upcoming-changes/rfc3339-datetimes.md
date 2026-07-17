@@ -97,11 +97,10 @@ required. The header keeps working after cutover and simply becomes a no-op (it 
 always accepted and never causes an error). Adopt the header before your target date
 so the switch is a no-op for you.
 
-| Environment        | Default cutover date |
-| ------------------ | -------------------- |
-| Preview1 / Staging | Monday, 2026-08-04   |
-| Sandbox            | Monday, 2026-08-18   |
-| Production         | Monday, 2026-09-01   |
+| Environment | Default cutover date |
+| ----------- | -------------------- |
+| Sandbox     | Monday, 2026-08-18   |
+| Production  | Monday, 2026-09-01   |
 
 ## Scope
 
