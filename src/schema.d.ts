@@ -8054,8 +8054,20 @@ export interface components {
              */
             batch_id: TypeId<"batch">;
             /**
+             * Blocked Count
+             * @description Number of retried jobs held behind the topic rate limit or backlog (BLOCKED)
+             * @default 0
+             */
+            blocked_count: number;
+            /**
+             * Queued Count
+             * @description Number of retried jobs dispatched immediately (QUEUED)
+             * @default 0
+             */
+            queued_count: number;
+            /**
              * Retried Count
-             * @description Number of FAILED/DEAD_LETTER jobs reset to QUEUED for retry
+             * @description Number of FAILED/DEAD_LETTER jobs reset for retry
              */
             retried_count: number;
         };
@@ -8265,7 +8277,7 @@ export interface components {
              * @description Timestamp when job execution began (UTC)
              */
             started_at?: Date | null;
-            /** @description Current job status: queued, running, succeeded, failed, canceled, or dead_letter */
+            /** @description Current job status: blocked, queued, paused, running, succeeded, failed, canceled, or dead_letter */
             status: components["schemas"]["JobStatus"];
         };
         /**

@@ -3491,10 +3491,14 @@ export const KEYS_JOB_BATCH_REQUEST = [
 ] as const satisfies (keyof JobBatchRequest)[];
 
 export const KEY_JOB_BATCH_RETRY_BATCH_ID = 'batch_id' satisfies keyof JobBatchRetry;
+export const KEY_JOB_BATCH_RETRY_BLOCKED_COUNT = 'blocked_count' satisfies keyof JobBatchRetry;
+export const KEY_JOB_BATCH_RETRY_QUEUED_COUNT = 'queued_count' satisfies keyof JobBatchRetry;
 export const KEY_JOB_BATCH_RETRY_RETRIED_COUNT = 'retried_count' satisfies keyof JobBatchRetry;
 
 export const KEYS_JOB_BATCH_RETRY = [
   KEY_JOB_BATCH_RETRY_BATCH_ID,
+  KEY_JOB_BATCH_RETRY_BLOCKED_COUNT,
+  KEY_JOB_BATCH_RETRY_QUEUED_COUNT,
   KEY_JOB_BATCH_RETRY_RETRIED_COUNT,
 ] as const satisfies (keyof JobBatchRetry)[];
 

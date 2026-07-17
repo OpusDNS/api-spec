@@ -8055,8 +8055,19 @@ components:
           title: Batch Id
           type: string
           x-typeid-prefix: batch
+        blocked_count:
+          default: 0
+          description: Number of retried jobs held behind the topic rate limit or
+            backlog (BLOCKED)
+          title: Blocked Count
+          type: integer
+        queued_count:
+          default: 0
+          description: Number of retried jobs dispatched immediately (QUEUED)
+          title: Queued Count
+          type: integer
         retried_count:
-          description: Number of FAILED/DEAD_LETTER jobs reset to QUEUED for retry
+          description: Number of FAILED/DEAD_LETTER jobs reset for retry
           title: Retried Count
           type: integer
       required:
@@ -8342,8 +8353,8 @@ components:
           title: Started At
         status:
           $ref: '#/components/schemas/JobStatus'
-          description: 'Current job status: queued, running, succeeded, failed, canceled,
-            or dead_letter'
+          description: 'Current job status: blocked, queued, paused, running, succeeded,
+            failed, canceled, or dead_letter'
       required:
       - job_id
       - status
@@ -13870,7 +13881,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-17-094205
+  version: 2026-07-17-134537
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -29773,21 +29784,26 @@ tags:
     \ (single) or is silently skipped (batch)\n- `queued`, `blocked`, `paused`, `running`\
     \ \u2014 still in progress; not touched\n\nCalling batch retry on a mixed-state\
     \ batch returns `retried_count` (the number of `failed` / `dead_letter` jobs that\
-    \ were re-queued); everything else is left alone. If the batch has no retryable\
-    \ jobs, `retried_count` is `0`.\n\n#### What happens to a retried job\n\nEach\
-    \ retried job is reset to a fresh attempt:\n\n- `status` \u2192 `queued`\n- `attempts`\
-    \ \u2192 `0`\n- `not_before` \u2192 now\n- `error_class` and `error_message` \u2192\
-    \ cleared\n- The job is republished for worker pickup\n\nThe original `payload`,\
-    \ `idempotency_key`, `correlation_id` (batch id), `max_attempts`, and backoff\
-    \ configuration are preserved. Each retry is processed under the same worker idempotency\
-    \ guarantees as the original \u2014 for billing operations specifically, a retried\
-    \ job will not double-charge an account that was already debited.\n\n#### Filtering\
-    \ by error type\n\nA batch may contain a mix of failures that you do and don't\
-    \ want to retry. For example, after adding funds to your account, you may want\
-    \ to retry only the jobs that failed with `BillingInsufficientFundsError`, while\
-    \ leaving alone jobs that failed for other reasons (e.g. an invalid domain name\
-    \ that should not be re-attempted).\n\nPass one or more `error_class` query parameters\
-    \ to filter:\n\n```\nPOST /v1/jobs/{batch_id}/retry?error_class=BillingInsufficientFundsError\n\
+    \ were reset for retry); everything else is left alone. If the batch has no retryable\
+    \ jobs, `retried_count` is `0`. The response also splits that total into `queued_count`\
+    \ (jobs dispatched immediately) and `blocked_count` (jobs held behind the topic's\
+    \ rate limit or backlog \u2014 these are released automatically as capacity frees\
+    \ up).\n\n#### What happens to a retried job\n\nEach retried job is reset to a\
+    \ fresh attempt:\n\n- `status` \u2192 `queued`, or `blocked` if the job's topic\
+    \ is rate-limited and has no capacity (or a higher-priority backlog is waiting)\
+    \ \u2014 a blocked job is released to `queued` automatically as capacity frees\
+    \ up\n- `attempts` \u2192 `0`\n- `not_before` \u2192 now\n- `error_class` and\
+    \ `error_message` \u2192 cleared\n- The job is republished for worker pickup once\
+    \ it is `queued`\n\nThe original `payload`, `idempotency_key`, `correlation_id`\
+    \ (batch id), `max_attempts`, and backoff configuration are preserved. Each retry\
+    \ is processed under the same worker idempotency guarantees as the original \u2014\
+    \ for billing operations specifically, a retried job will not double-charge an\
+    \ account that was already debited.\n\n#### Filtering by error type\n\nA batch\
+    \ may contain a mix of failures that you do and don't want to retry. For example,\
+    \ after adding funds to your account, you may want to retry only the jobs that\
+    \ failed with `BillingInsufficientFundsError`, while leaving alone jobs that failed\
+    \ for other reasons (e.g. an invalid domain name that should not be re-attempted).\n\
+    \nPass one or more `error_class` query parameters to filter:\n\n```\nPOST /v1/jobs/{batch_id}/retry?error_class=BillingInsufficientFundsError\n\
     POST /v1/jobs/{batch_id}/retry?error_class=BillingInsufficientFundsError&error_class=DomainRegistryTemporaryError\n\
     ```\n\nMultiple values are OR'd \u2014 a job is retried if its `error_class` matches\
     \ **any** of the supplied values. Omitting the filter retries all `failed` and\
