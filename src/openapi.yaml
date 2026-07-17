@@ -9410,7 +9410,7 @@ components:
           - format: date-time
             type: string
           - type: 'null'
-          description: The date/time the entry was deleted on
+          description: The date/time the entry was last used on
           title: Last Used On
         organization_id:
           default: None
@@ -13887,7 +13887,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-17-145127
+  version: 2026-07-17-173601
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

@@ -8984,7 +8984,7 @@ export interface components {
             expires_at?: Date | null;
             /**
              * Last Used On
-             * @description The date/time the entry was deleted on
+             * @description The date/time the entry was last used on
              */
             last_used_on?: Date | null;
             /**
