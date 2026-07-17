@@ -4,7 +4,7 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
-### 16 July 2026
+### 17 July 2026
 
 - Added **independent billing for suborganizations**: create a suborganization
   with `billing_mode: "independent"` and it gets its own wallet, invoices, and
