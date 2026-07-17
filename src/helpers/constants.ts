@@ -608,6 +608,9 @@ export const DOMAIN_ATTRIBUTE_KEY = {
   VERIFICATION_REQUIRED: "verification_required",
   DE_GENERAL_REQUEST_CONTACT: "de_general_request_contact",
   DE_ABUSE_CONTACT: "de_abuse_contact",
+  NOR_ID_APPLICANT_VERSION: "nor_id_applicant_version",
+  NOR_ID_APPLICANT_ACCEPT_NAME: "nor_id_applicant_accept_name",
+  NOR_ID_APPLICANT_ACCEPT_DATE: "nor_id_applicant_accept_date",
 } as const satisfies Record<string, DomainAttributeKey>;
 
 export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
@@ -618,6 +621,9 @@ export const DOMAIN_ATTRIBUTE_KEY_VALUES = [
   'verification_required',
   'de_general_request_contact',
   'de_abuse_contact',
+  'nor_id_applicant_version',
+  'nor_id_applicant_accept_name',
+  'nor_id_applicant_accept_date',
 ] as const satisfies ReadonlyArray<DomainAttributeKey>;
 
 export const DOMAIN_AVAILABILITY_STATUS = {
@@ -1514,6 +1520,9 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE = {
   NIC_LV_VAT_NR: "NIC_LV_VAT_NR",
   DOMREG_LT_CONTACT_ROLE: "DOMREG_LT_CONTACT_ROLE",
   DOMREG_LT_ORG_CODE: "DOMREG_LT_ORG_CODE",
+  NOR_ID_CONTACT_TYPE: "NOR_ID_CONTACT_TYPE",
+  NOR_ID_IDENTITY_TYPE: "NOR_ID_IDENTITY_TYPE",
+  NOR_ID_IDENTITY_VALUE: "NOR_ID_IDENTITY_VALUE",
 } as const satisfies Record<string, RegistryHandleAttributeType>;
 
 export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
@@ -1567,6 +1576,9 @@ export const REGISTRY_HANDLE_ATTRIBUTE_TYPE_VALUES = [
   'NIC_LV_VAT_NR',
   'DOMREG_LT_CONTACT_ROLE',
   'DOMREG_LT_ORG_CODE',
+  'NOR_ID_CONTACT_TYPE',
+  'NOR_ID_IDENTITY_TYPE',
+  'NOR_ID_IDENTITY_VALUE',
 ] as const satisfies ReadonlyArray<RegistryHandleAttributeType>;
 
 export const RENEWAL_MODE = {

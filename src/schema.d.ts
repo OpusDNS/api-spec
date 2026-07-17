@@ -4945,7 +4945,7 @@ export interface components {
          * DomainAttributeKey
          * @enum {string}
          */
-        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact";
+        DomainAttributeKey: "auto_renew_period" | "music_registrant_attestation" | "nic_it_compliance_confirmation" | "travel_industry_acknowledgement" | "verification_required" | "de_general_request_contact" | "de_abuse_contact" | "nor_id_applicant_version" | "nor_id_applicant_accept_name" | "nor_id_applicant_accept_date";
         /** DomainAvailability */
         DomainAvailability: {
             /** Domain */
@@ -10216,7 +10216,7 @@ export interface components {
          * @description Registry handle attribute types for type-safe attribute key access.
          * @enum {string}
          */
-        RegistryHandleAttributeType: "at-ext-contact:type" | "DE_CONTACT_TYPE" | "DE_GENERAL_REQUEST_URI_TEMPLATE" | "DE_ABUSE_URI_TEMPLATE" | "dnsbe:type" | "eurid:type" | "AFNIC_CONTACT_TYPE" | "AFNIC_PP_FIRST_NAME" | "AFNIC_PM_LEGAL_STATUS" | "AFNIC_PM_SIREN" | "AFNIC_PM_VAT" | "AFNIC_PM_TRADEMARK" | "AFNIC_PM_ASSOC_WALDEC" | "AFNIC_PM_ASSOC_PUBL_DATE" | "AFNIC_PM_ASSOC_PUBL_ANNOUNCE" | "AFNIC_PM_ASSOC_PUBL_PAGE" | "AFNIC_PM_ASSOC_DECL" | "AFNIC_PM_DUNS" | "AFNIC_PM_LOCAL" | "AFNIC_ID_STATUS" | "AFNIC_REACHABLE_MEDIA" | "AFNIC_REACHABLE_STATUS" | "AFNIC_RESTRICTED_PUBLICATION" | "ROTLD_CONTACT_TYPE" | "ROTLD_CNP_FISCAL_CODE" | "ROTLD_ID_NUMBER" | "ROTLD_REGISTRATION_NUMBER" | "ROTLD_DOMAIN_NAME" | "NOMINET_CONTACT_TYPE" | "NOMINET_CO_NO" | "NOMINET_TRAD_NAME" | "CIRA_CPR" | "SIDN_LEGAL_FORM" | "SIDN_LEGAL_REG_NO" | "US_NEXUS_CATEGORY" | "US_NEXUS_COUNTRY_CODE" | "US_APP_PURPOSE" | "NIC_IT_ENTITY_TYPE" | "NIC_IT_REG_CODE" | "CZ_NIC_IDENT_TYPE" | "CZ_NIC_IDENT_VALUE" | "CZ_NIC_VAT" | "CZ_NIC_NOTIFY_EMAIL" | "DNS_LU_CONTACT_ROLE" | "SK_NIC_LEGAL_FORM" | "SK_NIC_IDENT_VALUE" | "NIC_LV_REG_NR" | "NIC_LV_VAT_NR" | "DOMREG_LT_CONTACT_ROLE" | "DOMREG_LT_ORG_CODE";
+        RegistryHandleAttributeType: "at-ext-contact:type" | "DE_CONTACT_TYPE" | "DE_GENERAL_REQUEST_URI_TEMPLATE" | "DE_ABUSE_URI_TEMPLATE" | "dnsbe:type" | "eurid:type" | "AFNIC_CONTACT_TYPE" | "AFNIC_PP_FIRST_NAME" | "AFNIC_PM_LEGAL_STATUS" | "AFNIC_PM_SIREN" | "AFNIC_PM_VAT" | "AFNIC_PM_TRADEMARK" | "AFNIC_PM_ASSOC_WALDEC" | "AFNIC_PM_ASSOC_PUBL_DATE" | "AFNIC_PM_ASSOC_PUBL_ANNOUNCE" | "AFNIC_PM_ASSOC_PUBL_PAGE" | "AFNIC_PM_ASSOC_DECL" | "AFNIC_PM_DUNS" | "AFNIC_PM_LOCAL" | "AFNIC_ID_STATUS" | "AFNIC_REACHABLE_MEDIA" | "AFNIC_REACHABLE_STATUS" | "AFNIC_RESTRICTED_PUBLICATION" | "ROTLD_CONTACT_TYPE" | "ROTLD_CNP_FISCAL_CODE" | "ROTLD_ID_NUMBER" | "ROTLD_REGISTRATION_NUMBER" | "ROTLD_DOMAIN_NAME" | "NOMINET_CONTACT_TYPE" | "NOMINET_CO_NO" | "NOMINET_TRAD_NAME" | "CIRA_CPR" | "SIDN_LEGAL_FORM" | "SIDN_LEGAL_REG_NO" | "US_NEXUS_CATEGORY" | "US_NEXUS_COUNTRY_CODE" | "US_APP_PURPOSE" | "NIC_IT_ENTITY_TYPE" | "NIC_IT_REG_CODE" | "CZ_NIC_IDENT_TYPE" | "CZ_NIC_IDENT_VALUE" | "CZ_NIC_VAT" | "CZ_NIC_NOTIFY_EMAIL" | "DNS_LU_CONTACT_ROLE" | "SK_NIC_LEGAL_FORM" | "SK_NIC_IDENT_VALUE" | "NIC_LV_REG_NR" | "NIC_LV_VAT_NR" | "DOMREG_LT_CONTACT_ROLE" | "DOMREG_LT_ORG_CODE" | "NOR_ID_CONTACT_TYPE" | "NOR_ID_IDENTITY_TYPE" | "NOR_ID_IDENTITY_VALUE";
         /** RegistryLockBase */
         RegistryLockBase: {
             /**
