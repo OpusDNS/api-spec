@@ -38,20 +38,28 @@ Each suborganization has its own:
 - **Contacts** — contacts are per-organization.
 - **Settings** — custom attributes, locale, and configuration.
 
-### What's shared
+### Billing: consolidated or independent
 
-**Billing flows through the parent.** When a suborganization registers a
-domain, renews, or uses any paid service, the cost is charged to the parent
-organization's account balance. Suborganizations don't have their own payment
-methods — the parent pays for everything.
+Each suborganization has one of two **billing modes**, chosen at creation and
+permanent thereafter:
 
-This model is designed for resellers and hosting providers: you manage your
-customers as suborganizations, and all charges consolidate on your single
-reseller account. See [Billing & transactions](/account/organizations/billing)
-for details on tracking spending.
+- **Consolidated** (default) — billing flows through the parent. When the
+  suborganization registers a domain, renews, or uses any paid service, the
+  cost is charged to the parent organization's account balance. Consolidated
+  suborganizations don't have their own payment methods — the parent pays for
+  everything. This is the classic reseller model: all charges consolidate on
+  your single reseller account.
+- **Independent** — the suborganization is its own billing customer, with its
+  own account balance, payment methods, and invoices. Its charges never touch
+  the parent's balance. Ideal when a suborganization is a separate legal
+  entity that pays for itself.
+
+See [Billing modes](/account/organizations/manage#billing-modes) for how to
+create each kind, and [Billing & transactions](/account/organizations/billing)
+for tracking spending.
 
 <scalar-callout type="warning">
-All charges from suborganizations are billed to the parent organization. Monitor your account balance to prevent failed operations.
+Charges from **consolidated** suborganizations are billed to the parent organization — monitor your account balance to prevent failed operations. **Independent** suborganizations fund themselves: a spending problem there fails their operations, not yours.
 </scalar-callout>
 
 ### Users and access
