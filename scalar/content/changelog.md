@@ -4,6 +4,16 @@ Track notable updates to the OpusDNS API and developer documentation here.
 
 ## 2026
 
+### 17 July 2026
+
+- Added **independent billing for suborganizations**: create a suborganization
+  with `billing_mode: "independent"` and it gets its own wallet, invoices, and
+  payment methods instead of rolling up to your account. Consolidated billing
+  remains the default and is unchanged. Also added the monthly
+  **suborganization billing transactions report** covering spend across your
+  whole organization tree. See
+  [Billing modes](/account/organizations/manage#billing-modes).
+
 ### 10 July 2026
 
 - Added **automatic DNSSEC reconciliation** on inbound transfers and nameserver
