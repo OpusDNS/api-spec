@@ -14,6 +14,15 @@ Track notable updates to the OpusDNS API and developer documentation here.
   whole organization tree. See
   [Billing modes](/account/organizations/manage#billing-modes).
 
+- Added **opt-in RFC 3339 datetimes**: send the `X-Datetime-Format: rfc3339`
+  request header on any public `/v1` endpoint and every datetime in the response
+  is returned as timezone-aware UTC with a trailing `Z`. This fixes clients (such
+  as JavaScript's `new Date()`) that misparse today's marker-less timestamps as
+  local time. The tz-aware format becomes the default per environment on a staged
+  schedule, after which the header is a no-op. See
+  [Timezone-aware datetimes (RFC 3339)](/upcoming-changes/rfc3339-datetimes) for
+  the cutover dates and migration guidance.
+
 ### 10 July 2026
 
 - Added **automatic DNSSEC reconciliation** on inbound transfers and nameserver
