@@ -481,6 +481,7 @@ export const DNS_PROTECTED_REASON = {
   SYSTEM_MANAGED_NS: "SYSTEM_MANAGED_NS",
   EMAIL_FORWARD: "EMAIL_FORWARD",
   DOMAIN_FORWARD: "DOMAIN_FORWARD",
+  WHITELABEL: "WHITELABEL",
   GENERIC: "GENERIC",
 } as const satisfies Record<string, DnsProtectedReason>;
 
@@ -489,6 +490,7 @@ export const DNS_PROTECTED_REASON_VALUES = [
   'SYSTEM_MANAGED_NS',
   'EMAIL_FORWARD',
   'DOMAIN_FORWARD',
+  'WHITELABEL',
   'GENERIC',
 ] as const satisfies ReadonlyArray<DnsProtectedReason>;
 

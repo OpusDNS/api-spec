@@ -4312,7 +4312,7 @@ export interface components {
          * DnsProtectedReason
          * @enum {string}
          */
-        DnsProtectedReason: "SYSTEM_MANAGED_SOA" | "SYSTEM_MANAGED_NS" | "EMAIL_FORWARD" | "DOMAIN_FORWARD" | "GENERIC";
+        DnsProtectedReason: "SYSTEM_MANAGED_SOA" | "SYSTEM_MANAGED_NS" | "EMAIL_FORWARD" | "DOMAIN_FORWARD" | "WHITELABEL" | "GENERIC";
         /** DnsRecordCreate */
         DnsRecordCreate: {
             /** Rdata */
