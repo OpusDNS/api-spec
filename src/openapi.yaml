@@ -1,4 +1,19 @@
 components:
+  parameters:
+    DatetimeFormatHeader:
+      description: Opt in to RFC 3339 datetime serialization. When set to `rfc3339`,
+        response datetimes are normalized to UTC and serialized with a `Z` suffix.
+        This is opt-in until the announced default cutover date, after which RFC 3339
+        becomes the default and this header is accepted as a no-op. Any other value
+        or omission uses the current default serialization.
+      example: rfc3339
+      in: header
+      name: X-Datetime-Format
+      required: false
+      schema:
+        enum:
+        - rfc3339
+        type: string
   schemas:
     AllocationMethodType:
       enum:
@@ -13887,7 +13902,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-17-173601
+  version: 2026-07-17-185529
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -13908,6 +13923,7 @@ paths:
           title: Context Id
           type: string
           x-typeid-prefix: ctx
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -14023,6 +14039,7 @@ paths:
           - type: 'null'
           description: Full-text search on title/summary.
           title: Q
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -14082,6 +14099,8 @@ paths:
       - ai_concierge:manage
     post:
       operationId: create_conversation_v1_ai_concierge_conversations_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -14162,6 +14181,7 @@ paths:
           title: Conversation Id
           type: string
           x-typeid-prefix: conv
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -14229,6 +14249,7 @@ paths:
           title: Conversation Id
           type: string
           x-typeid-prefix: conv
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -14310,6 +14331,7 @@ paths:
           - type: string
           - type: 'null'
           title: If-Match
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -14405,6 +14427,7 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -14476,6 +14499,7 @@ paths:
           title: Conversation Id
           type: string
           x-typeid-prefix: conv
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -14628,6 +14652,7 @@ paths:
           description: Comma-separated tokens to exclude (case-insensitive). Supports
             `tools`.
           title: Exclude
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -14699,6 +14724,7 @@ paths:
           title: Conversation Id
           type: string
           x-typeid-prefix: conv
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -14788,6 +14814,7 @@ paths:
           title: Message Id
           type: string
           x-typeid-prefix: msg
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -14876,6 +14903,7 @@ paths:
           - type: string
           - type: 'null'
           title: Kind
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -14935,6 +14963,8 @@ paths:
       - ai_concierge:manage
     post:
       operationId: create_memory_fact_v1_ai_concierge_memory_facts_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -15013,6 +15043,7 @@ paths:
           title: Fact Id
           type: string
           x-typeid-prefix: fact
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -15080,6 +15111,7 @@ paths:
           title: Fact Id
           type: string
           x-typeid-prefix: fact
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -15227,6 +15259,7 @@ paths:
             type: string
           - type: 'null'
           title: End Time
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15320,6 +15353,7 @@ paths:
             type: string
           - type: 'null'
           title: End Time
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15449,6 +15483,7 @@ paths:
           - type: string
           - type: 'null'
           title: Object Id
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15577,6 +15612,7 @@ paths:
             type: string
           - type: 'null'
           title: Created After
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15739,6 +15775,7 @@ paths:
             type: string
           - type: 'null'
           title: Request Started After
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15766,6 +15803,8 @@ paths:
         used to authenticate the request, including its organization. Requires API-key
         or organization-token authentication; user tokens are rejected.
       operationId: introspect_client_credential_v1_auth_client_credentials_introspect_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15800,6 +15839,8 @@ paths:
   /v1/auth/token:
     post:
       operationId: issue_organization_token_v1_auth_token_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -15865,6 +15906,7 @@ paths:
           maxItems: 50
           title: Domains
           type: array
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15928,6 +15970,7 @@ paths:
           maxItems: 1000
           title: Domains
           type: array
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -15972,6 +16015,8 @@ paths:
       description: Stream domain availability results using Server-Sent Events (SSE)
         until the `done` event is received.
       operationId: stream_availability_post_v1_availability_stream_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -16165,6 +16210,7 @@ paths:
           description: Include additional data in the response. Can be specified multiple
             times.
           title: Include
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16189,6 +16235,8 @@ paths:
     post:
       description: Create a new contact object to use for domain registration
       operationId: create_contact_v1_contacts_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -16265,6 +16313,7 @@ paths:
           - type: string
           - type: 'null'
           title: Label
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16288,6 +16337,8 @@ paths:
       - contacts:read
     post:
       operationId: create_attribute_set_v1_contacts_attribute_sets_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -16344,6 +16395,7 @@ paths:
           title: Contact Attribute Set Id
           type: string
           x-typeid-prefix: contact_attribute_set
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -16388,6 +16440,7 @@ paths:
           title: Contact Attribute Set Id
           type: string
           x-typeid-prefix: contact_attribute_set
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16436,6 +16489,7 @@ paths:
           title: Contact Attribute Set Id
           type: string
           x-typeid-prefix: contact_attribute_set
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -16500,6 +16554,7 @@ paths:
         schema:
           title: Token
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16550,6 +16605,7 @@ paths:
         schema:
           title: Token
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -16612,6 +16668,7 @@ paths:
         schema:
           title: Token
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16644,6 +16701,7 @@ paths:
           title: Contact Id
           type: string
           x-typeid-prefix: contact
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -16710,6 +16768,7 @@ paths:
             type: array
           - type: 'null'
           title: Include
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16770,6 +16829,7 @@ paths:
           title: Contact Attribute Set Id
           type: string
           x-typeid-prefix: contact_attribute_set
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16844,6 +16904,7 @@ paths:
           title: Contact Id
           type: string
           x-typeid-prefix: contact
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -16900,6 +16961,7 @@ paths:
           title: Contact Id
           type: string
           x-typeid-prefix: contact
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -16965,6 +17027,7 @@ paths:
         required: true
         schema:
           $ref: '#/components/schemas/VerificationType'
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '201':
           content:
@@ -17047,6 +17110,7 @@ paths:
         schema:
           title: Token
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -17134,6 +17198,7 @@ paths:
           title: Contact Id
           type: string
           x-typeid-prefix: contact
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -17209,6 +17274,7 @@ paths:
           title: Contact Id
           type: string
           x-typeid-prefix: contact
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -17439,6 +17505,7 @@ paths:
           description: Include additional data in the response. Can be specified multiple
             times.
           title: Include
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -17502,6 +17569,8 @@ paths:
       - dns:read
     post:
       operationId: create_zone_v1_dns_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -17798,6 +17867,7 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -17919,6 +17989,7 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -17967,6 +18038,8 @@ paths:
   /v1/dns/summary:
     get:
       operationId: get_zones_summary_v1_dns_summary_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -18009,6 +18082,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -18047,6 +18121,7 @@ paths:
             type: array
           - type: 'null'
           title: Include
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -18080,6 +18155,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -18168,6 +18244,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -18258,6 +18335,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -18343,6 +18421,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -18400,6 +18479,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -18501,6 +18581,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -18647,6 +18728,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -18782,6 +18864,7 @@ paths:
           description: DNS zone name (trailing dot optional)
           title: Zone Name
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -18865,6 +18948,7 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -19012,6 +19096,8 @@ paths:
         and protocols. Raises an error if the domain forward or domain forward set
         does not exist.
       operationId: patch_redirects_v1_domain_forwards_patch
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -19075,6 +19161,8 @@ paths:
       description: Creates a new domain forward configuration. Wildcard forwards can
         be created by using *.hostname (e.g., *.example.com).
       operationId: create_domain_forward_v2_v1_domain_forwards_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -19297,6 +19385,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -19430,6 +19519,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -19586,6 +19676,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -19735,6 +19826,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -19889,6 +19981,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -20045,6 +20138,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -20187,6 +20281,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -20375,6 +20470,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -20531,6 +20627,7 @@ paths:
           description: 'Exclude platform values: Unknown, Bot'
           title: Exclude Bots
           type: boolean
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -20656,6 +20753,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Domain forward deleted successfully. No content returned.
@@ -20721,6 +20819,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -20826,6 +20925,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -20933,6 +21033,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Domain forward disabled successfully. DNS records have been
@@ -20988,6 +21089,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Domain forward enabled successfully. DNS records have been
@@ -21048,6 +21150,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Domain forward protocol set deleted successfully. No content
@@ -21120,6 +21223,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -21231,6 +21335,7 @@ paths:
           description: Hostname
           title: Hostname
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -21367,6 +21472,7 @@ paths:
           - type: 'null'
           description: Whether to include premium domains in the suggestions
           title: Premium
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -21663,6 +21769,7 @@ paths:
           description: Include additional data in the response. Can be specified multiple
             times.
           title: Include
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -21698,6 +21805,8 @@ paths:
         must be supplied to acknowledge the corresponding claims notice. See the [Trademarked
         domains](/products/domains/trademarked-domains) guide for the full workflow.'
       operationId: create_domain_v1_domains_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -21871,6 +21980,7 @@ paths:
             type: string
           title: Domains
           type: array
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -21901,6 +22011,8 @@ paths:
         See the [Trademarked domains](/products/domains/trademarked-domains) guide
         for the full workflow.
       operationId: get_claims_notices_v1_domains_claims_notices_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -21958,6 +22070,8 @@ paths:
       description: Retrieves a summary of domains including counts by status, TLD,
         and expiration timeframes
       operationId: get_domain_summary_v1_domains_summary_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -21996,6 +22110,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -22054,6 +22169,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -22120,6 +22236,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -22178,6 +22295,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -22244,6 +22362,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -22301,6 +22420,8 @@ paths:
 
         This process can take up to 5 days, until the transfer is approved'
       operationId: transfer_domain_v1_domains_transfer_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -22459,6 +22580,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -22532,6 +22654,7 @@ paths:
           - type: 'null'
           description: Include additional data in the response.
           title: Include
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -22589,6 +22712,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -22657,6 +22781,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -22704,6 +22829,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -22759,6 +22885,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -22829,6 +22956,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -22876,6 +23004,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -22935,6 +23064,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -22979,6 +23109,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -23025,6 +23156,7 @@ paths:
             x-typeid-prefix: domain
           - type: string
           title: Domain Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -23119,6 +23251,7 @@ paths:
         schema:
           $ref: '#/components/schemas/SortOrder'
           default: desc
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -23169,6 +23302,8 @@ paths:
         Can be created enabled or disabled (default: disabled). Includes created_on
         and updated_on timestamps.'
       operationId: create_email_forward_v1_email_forwards_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -23326,6 +23461,7 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -23383,6 +23519,7 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -23458,6 +23595,7 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -23595,6 +23733,7 @@ paths:
           title: Alias Id
           type: string
           x-typeid-prefix: email_forward_alias
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -23676,6 +23815,7 @@ paths:
           title: Alias Id
           type: string
           x-typeid-prefix: email_forward_alias
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -23758,6 +23898,7 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -23828,6 +23969,7 @@ paths:
           title: Email Forward Id
           type: string
           x-typeid-prefix: email_forward
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -23916,6 +24058,7 @@ paths:
             type: string
           - type: 'null'
           title: End Time
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24048,6 +24191,7 @@ paths:
           - type: 'null'
           default: false
           title: Acknowledged
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24097,6 +24241,7 @@ paths:
           title: Event Id
           type: string
           x-typeid-prefix: event
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24158,6 +24303,7 @@ paths:
           title: Event Id
           type: string
           x-typeid-prefix: event
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -24204,6 +24350,8 @@ paths:
     post:
       description: Create a new host object
       operationId: create_host_v1_hosts_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -24307,6 +24455,7 @@ paths:
             x-typeid-prefix: host
           - type: string
           title: Host Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -24394,6 +24543,7 @@ paths:
             x-typeid-prefix: host
           - type: string
           title: Host Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24473,6 +24623,7 @@ paths:
             x-typeid-prefix: host
           - type: string
           title: Host Reference
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -24556,6 +24707,7 @@ paths:
           title: Job Id
           type: string
           x-typeid-prefix: job
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -24601,6 +24753,7 @@ paths:
           title: Job Id
           type: string
           x-typeid-prefix: job
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24651,6 +24804,7 @@ paths:
           title: Job Id
           type: string
           x-typeid-prefix: job
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -24697,6 +24851,7 @@ paths:
           title: Job Id
           type: string
           x-typeid-prefix: job
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24747,6 +24902,7 @@ paths:
           title: Job Id
           type: string
           x-typeid-prefix: job
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24844,6 +25000,7 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -24867,6 +25024,8 @@ paths:
       - jobs:read
     post:
       operationId: create_batch_v1_jobs_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -25393,6 +25552,7 @@ paths:
           title: Batch Id
           type: string
           x-typeid-prefix: batch
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -25438,6 +25598,7 @@ paths:
           title: Batch Id
           type: string
           x-typeid-prefix: batch
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -25600,6 +25761,7 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -25836,6 +25998,7 @@ paths:
           title: Batch Id
           type: string
           x-typeid-prefix: batch
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -25882,6 +26045,7 @@ paths:
           title: Batch Id
           type: string
           x-typeid-prefix: batch
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -25946,6 +26110,7 @@ paths:
             to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered
             jobs in the batch.'
           title: Error Class
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26032,6 +26197,7 @@ paths:
             type: string
           - type: 'null'
           title: Country Code
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26080,6 +26246,8 @@ paths:
     post:
       description: Create a new organization under the current organization
       operationId: create_organization_v1_organizations_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -26153,6 +26321,7 @@ paths:
           - type: 'null'
           description: Optional list of attribute keys to filter
           title: Keys
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26205,6 +26374,8 @@ paths:
     patch:
       description: Updates one or more organization attributes for the current organization
       operationId: update_current_organization_attributes_v1_organizations_attributes_patch
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -26271,6 +26442,8 @@ paths:
         Single IP addresses are returned with CIDR notation (/32 for IPv4, /128 for
         IPv6).'
       operationId: list_ip_restrictions_v1_organizations_ip_restrictions_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26329,6 +26502,8 @@ paths:
         Individual IP addresses are stored and returned with CIDR notation (/32 for
         IPv4, /128 for IPv6).'
       operationId: create_ip_restriction_v1_organizations_ip_restrictions_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -26392,6 +26567,7 @@ paths:
         schema:
           title: Ip Restriction Id
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -26448,6 +26624,7 @@ paths:
         schema:
           title: Ip Restriction Id
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26509,6 +26686,7 @@ paths:
         schema:
           title: Ip Restriction Id
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -26563,6 +26741,8 @@ paths:
       description: Retrieves the catalog of `resource:scope` permissions a custom
         role may grant
       operationId: list_role_permissions_v1_organizations_role_permissions_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26613,6 +26793,8 @@ paths:
       description: 'Retrieves all roles assignable in the current organization: the
         built-in roles plus the organization''s custom roles'
       operationId: list_roles_v1_organizations_roles_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26665,6 +26847,8 @@ paths:
       description: Creates an organization-owned custom role granting the requested
         permissions. The escalation-bearing admin/owner permissions cannot be granted.
       operationId: create_role_v1_organizations_roles_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -26738,6 +26922,7 @@ paths:
         schema:
           title: Label
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -26815,6 +27000,7 @@ paths:
         schema:
           title: Label
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -26885,6 +27071,7 @@ paths:
         schema:
           title: Label
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -27003,6 +27190,7 @@ paths:
             type: string
           - type: 'null'
           title: Search
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27064,6 +27252,7 @@ paths:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -27118,6 +27307,7 @@ paths:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27178,6 +27368,7 @@ paths:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -27255,6 +27446,7 @@ paths:
           - type: 'null'
           description: Optional list of attribute keys to filter
           title: Keys
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27319,6 +27511,7 @@ paths:
           title: Organization Id
           type: string
           x-typeid-prefix: organization
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -27408,6 +27601,7 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27467,6 +27661,7 @@ paths:
           - type: string
           - type: 'null'
           title: Product Class
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27627,6 +27822,7 @@ paths:
             type: string
           - type: 'null'
           title: Completed Before
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27699,6 +27895,7 @@ paths:
           title: Transaction Id
           type: string
           x-typeid-prefix: billing_transaction
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27806,6 +28003,7 @@ paths:
           - $ref: '#/components/schemas/ComplianceStatus'
           - type: 'null'
           title: Compliance Status
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27874,6 +28072,7 @@ paths:
             type: string
           - type: 'null'
           title: End Time
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -27924,6 +28123,8 @@ paths:
       description: Accept the parking agreement to enable parking features for your
         organization.
       operationId: signup_for_parking_v1_parking_signup_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -27978,6 +28179,8 @@ paths:
     get:
       description: Check if your organization has accepted the parking agreement.
       operationId: get_parking_signup_status_v1_parking_signup_status_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28060,6 +28263,7 @@ paths:
             type: string
           - type: 'null'
           title: End Time
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28184,6 +28388,7 @@ paths:
             type: string
           - type: 'null'
           title: Created Before
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28207,6 +28412,8 @@ paths:
       - organization:read
     post:
       operationId: create_report_v1_reports_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -28245,6 +28452,7 @@ paths:
         schema:
           title: Report Id
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28276,6 +28484,7 @@ paths:
         schema:
           title: Report Id
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28350,6 +28559,7 @@ paths:
           - type: string
           - type: 'null'
           title: Search
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28386,6 +28596,8 @@ paths:
     post:
       description: Create a new tag
       operationId: create_tag_v1_tags_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -28443,6 +28655,8 @@ paths:
       description: Add, remove, or replace tags on multiple objects at once. 'replace'
         is mutually exclusive with 'add' and 'remove'.
       operationId: bulk_update_object_tags_v1_tags_objects_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -28524,6 +28738,7 @@ paths:
           title: Tag Id
           type: string
           x-typeid-prefix: tag
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -28581,6 +28796,7 @@ paths:
           title: Tag Id
           type: string
           x-typeid-prefix: tag
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28642,6 +28858,7 @@ paths:
           title: Tag Id
           type: string
           x-typeid-prefix: tag
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -28724,6 +28941,7 @@ paths:
           title: Tag Id
           type: string
           x-typeid-prefix: tag
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -28797,6 +29015,7 @@ paths:
           - type: string
           - type: 'null'
           title: Tlds
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28828,6 +29047,8 @@ paths:
     get:
       description: Retrieves a list of TLDs we have support for
       operationId: get_tld_portfolio_v1_tlds_portfolio_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28863,6 +29084,7 @@ paths:
         schema:
           title: Tld
           type: string
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28900,6 +29122,8 @@ paths:
     post:
       description: Create a new user
       operationId: create_user_v1_users_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -28942,6 +29166,7 @@ paths:
             type: array
           - type: 'null'
           title: Attributes
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -28978,6 +29203,7 @@ paths:
           title: User Id
           type: string
           x-typeid-prefix: user
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '204':
           description: Successful Response
@@ -29034,6 +29260,7 @@ paths:
             type: array
           - type: 'null'
           title: Attributes
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29070,6 +29297,7 @@ paths:
           title: User Id
           type: string
           x-typeid-prefix: user
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -29113,6 +29341,7 @@ paths:
           title: User Id
           type: string
           x-typeid-prefix: user
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29150,6 +29379,7 @@ paths:
           title: User Id
           type: string
           x-typeid-prefix: user
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29187,6 +29417,7 @@ paths:
           title: User Id
           type: string
           x-typeid-prefix: user
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -29257,6 +29488,7 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29280,6 +29512,8 @@ paths:
       - vanity_ns:read
     post:
       operationId: create_vanity_nameserver_set_v1_vanity_nameserver_sets_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -29352,6 +29586,8 @@ paths:
   /v1/vanity-nameserver-sets/check:
     post:
       operationId: check_vanity_nameserver_set_v1_vanity_nameserver_sets_check_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       requestBody:
         content:
           application/json:
@@ -29464,6 +29700,8 @@ paths:
   /v1/vanity-nameserver-sets/default:
     delete:
       operationId: clear_vanity_nameserver_set_default_v1_vanity_nameserver_sets_default_delete
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29500,6 +29738,7 @@ paths:
           title: Set Id
           type: string
           x-typeid-prefix: vns
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '202':
           content:
@@ -29534,6 +29773,7 @@ paths:
           title: Set Id
           type: string
           x-typeid-prefix: vns
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29570,6 +29810,7 @@ paths:
           title: Set Id
           type: string
           x-typeid-prefix: vns
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29606,6 +29847,7 @@ paths:
           title: Set Id
           type: string
           x-typeid-prefix: vns
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:
@@ -29642,6 +29884,7 @@ paths:
           title: Set Id
           type: string
           x-typeid-prefix: vns
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '202':
           content:
@@ -29695,6 +29938,7 @@ paths:
           minimum: 1
           title: Page Size
           type: integer
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
       responses:
         '200':
           content:

@@ -11950,7 +11950,13 @@ export interface components {
         };
     };
     responses: never;
-    parameters: never;
+    parameters: {
+        /**
+         * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+         * @example rfc3339
+         */
+        DatetimeFormatHeader: "rfc3339";
+    };
     requestBodies: never;
     headers: never;
     pathItems: never;
@@ -11960,7 +11966,13 @@ export interface operations {
     get_context_v1_ai_concierge_contexts__context_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 context_id: TypeId<"ctx">;
             };
@@ -12046,7 +12058,13 @@ export interface operations {
                 /** @description Full-text search on title/summary. */
                 q?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -12123,7 +12141,13 @@ export interface operations {
     create_conversation_v1_ai_concierge_conversations_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -12204,7 +12228,13 @@ export interface operations {
     get_conversation_v1_ai_concierge_conversations__conversation_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 conversation_id: TypeId<"conv">;
             };
@@ -12283,7 +12313,13 @@ export interface operations {
     delete_conversation_v1_ai_concierge_conversations__conversation_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 conversation_id: TypeId<"conv">;
             };
@@ -12362,6 +12398,11 @@ export interface operations {
             query?: never;
             header?: {
                 "If-Match"?: string | null;
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
             };
             path: {
                 conversation_id: TypeId<"conv">;
@@ -12448,7 +12489,13 @@ export interface operations {
                 page?: number;
                 page_size?: number;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 conversation_id: TypeId<"conv">;
             };
@@ -12527,7 +12574,13 @@ export interface operations {
     create_context_v1_ai_concierge_conversations__conversation_id__contexts_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 conversation_id: TypeId<"conv">;
             };
@@ -12617,7 +12670,13 @@ export interface operations {
                 /** @description Comma-separated tokens to exclude (case-insensitive). Supports `tools`. */
                 exclude?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 conversation_id: TypeId<"conv">;
             };
@@ -12696,7 +12755,13 @@ export interface operations {
     create_message_v1_ai_concierge_conversations__conversation_id__messages_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 conversation_id: TypeId<"conv">;
             };
@@ -12779,7 +12844,13 @@ export interface operations {
     get_message_v1_ai_concierge_conversations__conversation_id__messages__message_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 conversation_id: TypeId<"conv">;
                 message_id: TypeId<"msg">;
@@ -12863,7 +12934,13 @@ export interface operations {
                 cursor?: string | null;
                 kind?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -12940,7 +13017,13 @@ export interface operations {
     create_memory_fact_v1_ai_concierge_memory_facts_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13021,7 +13104,13 @@ export interface operations {
     delete_memory_fact_v1_ai_concierge_memory_facts__fact_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 fact_id: TypeId<"fact">;
             };
@@ -13098,7 +13187,13 @@ export interface operations {
     patch_memory_fact_v1_ai_concierge_memory_facts__fact_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 fact_id: TypeId<"fact">;
             };
@@ -13190,7 +13285,13 @@ export interface operations {
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_alias_id: TypeId<"email_forward_alias">;
             };
@@ -13229,7 +13330,13 @@ export interface operations {
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
             };
@@ -13274,7 +13381,13 @@ export interface operations {
                 created_after?: Date | null;
                 object_id?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13316,7 +13429,13 @@ export interface operations {
                 created_before?: Date | null;
                 created_after?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 object_id: string;
             };
@@ -13365,7 +13484,13 @@ export interface operations {
                 request_started_before?: Date | null;
                 request_started_after?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13394,7 +13519,13 @@ export interface operations {
     introspect_client_credential_v1_auth_client_credentials_introspect_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13439,7 +13570,13 @@ export interface operations {
     issue_organization_token_v1_auth_token_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13485,7 +13622,13 @@ export interface operations {
                  *      */
                 domains: string[];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13535,7 +13678,13 @@ export interface operations {
                  *      */
                 domains: string[];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13580,7 +13729,13 @@ export interface operations {
     stream_availability_post_v1_availability_stream_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13649,7 +13804,13 @@ export interface operations {
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ContactIncludeField"][] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13678,7 +13839,13 @@ export interface operations {
     create_contact_v1_contacts_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13718,7 +13885,13 @@ export interface operations {
                 tld?: string | null;
                 label?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13747,7 +13920,13 @@ export interface operations {
     create_attribute_set_v1_contacts_attribute_sets_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -13797,7 +13976,13 @@ export interface operations {
     get_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_attribute_set_id: TypeId<"contact_attribute_set">;
             };
@@ -13845,7 +14030,13 @@ export interface operations {
     delete_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_attribute_set_id: TypeId<"contact_attribute_set">;
             };
@@ -13891,7 +14082,13 @@ export interface operations {
     update_attribute_set_v1_contacts_attribute_sets__contact_attribute_set_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_attribute_set_id: TypeId<"contact_attribute_set">;
             };
@@ -13962,7 +14159,13 @@ export interface operations {
             query: {
                 token: string;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -14026,7 +14229,13 @@ export interface operations {
             query: {
                 token: string;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -14097,7 +14306,13 @@ export interface operations {
             query: {
                 token: string;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -14128,7 +14343,13 @@ export interface operations {
             query?: {
                 include?: components["schemas"]["ContactIncludeField"][] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14176,7 +14397,13 @@ export interface operations {
     delete_contact_v1_contacts__contact_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14238,7 +14465,13 @@ export interface operations {
     create_attribute_link_v1_contacts__contact_id__link__contact_attribute_set_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
                 contact_attribute_set_id: TypeId<"contact_attribute_set">;
@@ -14297,7 +14530,13 @@ export interface operations {
     get_verification_status_v1_contacts__contact_id__verification_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14363,7 +14602,13 @@ export interface operations {
             query: {
                 token: string;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14452,7 +14697,13 @@ export interface operations {
             query: {
                 type: components["schemas"]["VerificationType"];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14532,7 +14783,13 @@ export interface operations {
     cancel_verification_v1_contacts__contact_id__verification_delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14594,7 +14851,13 @@ export interface operations {
     get_contact_verification_status_v1_contacts__contact_id__verifications_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14674,7 +14937,13 @@ export interface operations {
     attest_contact_verification_v1_contacts__contact_id__verifications_attest_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 contact_id: TypeId<"contact">;
             };
@@ -14794,7 +15063,13 @@ export interface operations {
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["ZoneIncludeField"][] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -14823,7 +15098,13 @@ export interface operations {
     create_zone_v1_dns_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -14878,7 +15159,13 @@ export interface operations {
                 sort_by?: components["schemas"]["DomainForwardZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -14945,7 +15232,13 @@ export interface operations {
                 sort_by?: components["schemas"]["EmailForwardZoneSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -15006,7 +15299,13 @@ export interface operations {
     get_zones_summary_v1_dns_summary_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -15037,7 +15336,13 @@ export interface operations {
             query?: {
                 include?: components["schemas"]["ZoneIncludeField"][] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15069,7 +15374,13 @@ export interface operations {
     delete_zone_v1_dns__zone_name__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15099,7 +15410,13 @@ export interface operations {
     disable_dnssec_v1_dns__zone_name__dnssec_disable_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15147,7 +15464,13 @@ export interface operations {
     enable_dnssec_v1_dns__zone_name__dnssec_enable_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15195,7 +15518,13 @@ export interface operations {
     list_zone_domain_forwards_v1_dns__zone_name__domain_forwards_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15259,7 +15588,13 @@ export interface operations {
     list_zone_email_forwards_v1_dns__zone_name__email_forwards_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15323,7 +15658,13 @@ export interface operations {
     patch_zone_records_v1_dns__zone_name__records_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15373,7 +15714,13 @@ export interface operations {
     update_zone_rrsets_v1_dns__zone_name__rrsets_put: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15423,7 +15770,13 @@ export interface operations {
     patch_zone_rrsets_v1_dns__zone_name__rrsets_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15473,7 +15826,13 @@ export interface operations {
     update_zone_vanity_set_v1_dns__zone_name__vanity_set_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description DNS zone name (trailing dot optional) */
                 zone_name: string;
@@ -15531,7 +15890,13 @@ export interface operations {
                 sort_by?: components["schemas"]["DomainForwardSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -15592,7 +15957,13 @@ export interface operations {
     create_domain_forward_v2_v1_domain_forwards_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -15690,7 +16061,13 @@ export interface operations {
     patch_redirects_v1_domain_forwards_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -15778,7 +16155,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -15876,7 +16259,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -15974,7 +16363,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -16072,7 +16467,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -16170,7 +16571,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -16268,7 +16675,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -16366,7 +16779,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -16464,7 +16883,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -16564,7 +16989,13 @@ export interface operations {
                 /** @description Exclude platform values: Unknown, Bot */
                 exclude_bots?: boolean;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -16653,7 +17084,13 @@ export interface operations {
     get_domain_forward_v1_domain_forwards__hostname__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Hostname */
                 hostname: string;
@@ -16733,7 +17170,13 @@ export interface operations {
     create_domain_forward_set_v1_domain_forwards__hostname__post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Hostname */
                 hostname: string;
@@ -16833,7 +17276,13 @@ export interface operations {
     delete_domain_forward_v1_domain_forwards__hostname__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Hostname */
                 hostname: string;
@@ -16911,7 +17360,13 @@ export interface operations {
     disable_domain_forward_v1_domain_forwards__hostname__disable_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Hostname */
                 hostname: string;
@@ -16973,7 +17428,13 @@ export interface operations {
     enable_domain_forward_v1_domain_forwards__hostname__enable_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Hostname */
                 hostname: string;
@@ -17035,7 +17496,13 @@ export interface operations {
     get_domain_forward_set_v1_domain_forwards__hostname___protocol__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 protocol: components["schemas"]["HttpProtocol"];
                 /** @description Hostname */
@@ -17116,7 +17583,13 @@ export interface operations {
     update_domain_forward_set_v1_domain_forwards__hostname___protocol__put: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 protocol: components["schemas"]["HttpProtocol"];
                 /** @description Hostname */
@@ -17201,7 +17674,13 @@ export interface operations {
     delete_domain_forward_set_v1_domain_forwards__hostname___protocol__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 protocol: components["schemas"]["HttpProtocol"];
                 /** @description Hostname */
@@ -17289,7 +17768,13 @@ export interface operations {
                 /** @description Whether to include premium domains in the suggestions */
                 premium?: boolean | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -17383,7 +17868,13 @@ export interface operations {
                 /** @description Include additional data in the response. Can be specified multiple times. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -17412,7 +17903,13 @@ export interface operations {
     create_domain_v1_domains_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -17505,7 +18002,13 @@ export interface operations {
                  *      */
                 domains: string[];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -17534,7 +18037,13 @@ export interface operations {
     get_claims_notices_v1_domains_claims_notices_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -17599,7 +18108,13 @@ export interface operations {
     get_domain_summary_v1_domains_summary_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -17628,7 +18143,13 @@ export interface operations {
     withdraw_domain_v1_domains_tld_specific_at__domain_reference__withdraw_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -17680,7 +18201,13 @@ export interface operations {
     request_auth_code_v1_domains_tld_specific_be__domain_reference__auth_code_request_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -17746,7 +18273,13 @@ export interface operations {
     transit_domain_v1_domains_tld_specific_de__domain_reference__transit_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -17798,7 +18331,13 @@ export interface operations {
     request_auth_code_v1_domains_tld_specific_eu__domain_reference__auth_code_request_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -17864,7 +18403,13 @@ export interface operations {
     request_auth_code_v1_domains_tld_specific_lt__domain_reference__auth_code_request_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -17930,7 +18475,13 @@ export interface operations {
     transfer_domain_v1_domains_transfer_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -18026,7 +18577,13 @@ export interface operations {
                 /** @description Include additional data in the response. */
                 include?: components["schemas"]["DomainIncludeField"][] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18074,7 +18631,13 @@ export interface operations {
     delete_domain_v1_domains__domain_reference__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18138,7 +18701,13 @@ export interface operations {
     update_domain_v1_domains__domain_reference__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18182,7 +18751,13 @@ export interface operations {
     get_dnssec_v1_domains__domain_reference__dnssec_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18230,7 +18805,13 @@ export interface operations {
     create_or_update_dnssec_v1_domains__domain_reference__dnssec_put: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18289,7 +18870,13 @@ export interface operations {
     delete_dnssec_v1_domains__domain_reference__dnssec_delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18335,7 +18922,13 @@ export interface operations {
     disable_and_unpublish_dnssec_records_v1_domains__domain_reference__dnssec_disable_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18381,7 +18974,13 @@ export interface operations {
     enable_and_publish_dnssec_records_v1_domains__domain_reference__dnssec_enable_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18429,7 +19028,13 @@ export interface operations {
     renew_domain_v1_domains__domain_reference__renew_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18464,7 +19069,13 @@ export interface operations {
     restore_domain_v1_domains__domain_reference__restore_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18499,7 +19110,13 @@ export interface operations {
     cancel_domain_transfer_v1_domains__domain_reference__transfer_delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 domain_reference: TypeId<"domain"> | string;
             };
@@ -18570,7 +19187,13 @@ export interface operations {
                 sort_by?: components["schemas"]["EmailForwardSortField"];
                 sort_order?: components["schemas"]["SortOrder"];
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -18631,7 +19254,13 @@ export interface operations {
     create_email_forward_v1_email_forwards_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -18729,7 +19358,13 @@ export interface operations {
     get_email_forward_v1_email_forwards__email_forward_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
             };
@@ -18808,7 +19443,13 @@ export interface operations {
     delete_email_forward_v1_email_forwards__email_forward_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
             };
@@ -18869,7 +19510,13 @@ export interface operations {
     create_email_forward_alias_v1_email_forwards__email_forward_id__aliases_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
             };
@@ -18968,7 +19615,13 @@ export interface operations {
     update_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__put: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
                 alias_id: TypeId<"email_forward_alias">;
@@ -19053,7 +19706,13 @@ export interface operations {
     delete_email_forward_alias_v1_email_forwards__email_forward_id__aliases__alias_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
                 alias_id: TypeId<"email_forward_alias">;
@@ -19132,7 +19791,13 @@ export interface operations {
     disable_email_forward_v1_email_forwards__email_forward_id__disable_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
             };
@@ -19209,7 +19874,13 @@ export interface operations {
     enable_email_forward_v1_email_forwards__email_forward_id__enable_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
             };
@@ -19289,7 +19960,13 @@ export interface operations {
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 email_forward_id: TypeId<"email_forward">;
             };
@@ -19378,7 +20055,13 @@ export interface operations {
                 subtype?: components["schemas"]["EventSubtype"] | null;
                 acknowledged?: boolean | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -19423,7 +20106,13 @@ export interface operations {
     get_event_v1_events__event_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 event_id: TypeId<"event">;
             };
@@ -19487,7 +20176,13 @@ export interface operations {
     acknowledge_event_v1_events__event_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 event_id: TypeId<"event">;
             };
@@ -19549,7 +20244,13 @@ export interface operations {
     create_host_v1_hosts_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -19657,7 +20358,13 @@ export interface operations {
     get_host_v1_hosts__host_reference__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 host_reference: TypeId<"host"> | string;
             };
@@ -19729,7 +20436,13 @@ export interface operations {
     update_host_v1_hosts__host_reference__put: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 host_reference: TypeId<"host"> | string;
             };
@@ -19805,7 +20518,13 @@ export interface operations {
     delete_host_v1_hosts__host_reference__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 host_reference: TypeId<"host"> | string;
             };
@@ -19892,7 +20611,13 @@ export interface operations {
     get_job_v1_job__job_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Job ID */
                 job_id: TypeId<"job">;
@@ -19941,7 +20666,13 @@ export interface operations {
     delete_job_v1_job__job_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Job ID */
                 job_id: TypeId<"job">;
@@ -19988,7 +20719,13 @@ export interface operations {
     pause_job_v1_job__job_id__pause_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Job ID */
                 job_id: TypeId<"job">;
@@ -20035,7 +20772,13 @@ export interface operations {
     resume_job_v1_job__job_id__resume_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Job ID */
                 job_id: TypeId<"job">;
@@ -20084,7 +20827,13 @@ export interface operations {
     retry_job_v1_job__job_id__retry_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Job ID */
                 job_id: TypeId<"job">;
@@ -20160,7 +20909,13 @@ export interface operations {
                 /** @description Number of batches per page */
                 page_size?: number;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20189,7 +20944,13 @@ export interface operations {
     create_batch_v1_jobs_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20255,7 +21016,13 @@ export interface operations {
     get_batch_v1_jobs__batch_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Batch ID */
                 batch_id: TypeId<"batch">;
@@ -20321,7 +21088,13 @@ export interface operations {
     delete_batch_v1_jobs__batch_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Batch ID */
                 batch_id: TypeId<"batch">;
@@ -20379,7 +21152,13 @@ export interface operations {
                 /** @description Number of jobs per page */
                 page_size?: number;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Batch ID */
                 batch_id: TypeId<"batch">;
@@ -20445,7 +21224,13 @@ export interface operations {
     pause_batch_v1_jobs__batch_id__pause_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Batch ID */
                 batch_id: TypeId<"batch">;
@@ -20492,7 +21277,13 @@ export interface operations {
     resume_batch_v1_jobs__batch_id__resume_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Batch ID */
                 batch_id: TypeId<"batch">;
@@ -20542,7 +21333,13 @@ export interface operations {
                 /** @description Optional repeatable filter: only retry jobs whose error_class matches one of these values. Example: `?error_class=BillingInsufficientFundsError` to retry only insufficient-funds failures. Omit to retry all failed/dead-lettered jobs in the batch. */
                 error_class?: string[] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 /** @description Batch ID */
                 batch_id: TypeId<"batch">;
@@ -20598,7 +21395,13 @@ export interface operations {
                 search?: string | null;
                 country_code?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20659,7 +21462,13 @@ export interface operations {
     create_organization_v1_organizations_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20734,7 +21543,13 @@ export interface operations {
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20795,7 +21610,13 @@ export interface operations {
     update_current_organization_attributes_v1_organizations_attributes_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20860,7 +21681,13 @@ export interface operations {
     list_ip_restrictions_v1_organizations_ip_restrictions_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20921,7 +21748,13 @@ export interface operations {
     create_ip_restriction_v1_organizations_ip_restrictions_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -20986,7 +21819,13 @@ export interface operations {
     get_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 ip_restriction_id: number;
             };
@@ -21049,7 +21888,13 @@ export interface operations {
     delete_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 ip_restriction_id: number;
             };
@@ -21110,7 +21955,13 @@ export interface operations {
     update_ip_restriction_v1_organizations_ip_restrictions__ip_restriction_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 ip_restriction_id: number;
             };
@@ -21177,7 +22028,13 @@ export interface operations {
     list_role_permissions_v1_organizations_role_permissions_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -21238,7 +22095,13 @@ export interface operations {
     list_roles_v1_organizations_roles_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -21299,7 +22162,13 @@ export interface operations {
     create_role_v1_organizations_roles_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -21380,7 +22249,13 @@ export interface operations {
     get_role_v1_organizations_roles__label__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 label: string;
             };
@@ -21460,7 +22335,13 @@ export interface operations {
     delete_role_v1_organizations_roles__label__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 label: string;
             };
@@ -21556,7 +22437,13 @@ export interface operations {
     update_role_v1_organizations_roles__label__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 label: string;
             };
@@ -21663,7 +22550,13 @@ export interface operations {
                 sort_order?: components["schemas"]["SortOrder"];
                 search?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -21724,7 +22617,13 @@ export interface operations {
     get_organization_v1_organizations__organization_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
             };
@@ -21787,7 +22686,13 @@ export interface operations {
     delete_organization_v1_organizations__organization_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
             };
@@ -21848,7 +22753,13 @@ export interface operations {
     update_organization_v1_organizations__organization_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
             };
@@ -21918,7 +22829,13 @@ export interface operations {
                 /** @description Optional list of attribute keys to filter */
                 keys?: string[] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
             };
@@ -21981,7 +22898,13 @@ export interface operations {
     update_organization_attributes_v1_organizations__organization_id__attributes_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
             };
@@ -22051,7 +22974,13 @@ export interface operations {
                 page?: number;
                 page_size?: number;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
             };
@@ -22085,7 +23014,13 @@ export interface operations {
                 product_action?: components["schemas"]["BillingTransactionAction"] | null;
                 product_class?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
                 product_type: components["schemas"]["BillingTransactionProductType"];
@@ -22162,7 +23097,13 @@ export interface operations {
                 completed_after?: Date | null;
                 completed_before?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
             };
@@ -22225,7 +23166,13 @@ export interface operations {
     get_transaction_v1_organizations__organization_id__transactions__transaction_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 organization_id: TypeId<"organization">;
                 transaction_id: TypeId<"billing_transaction">;
@@ -22299,7 +23246,13 @@ export interface operations {
                 enabled?: boolean | null;
                 compliance_status?: components["schemas"]["ComplianceStatus"] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22363,7 +23316,13 @@ export interface operations {
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22424,7 +23383,13 @@ export interface operations {
     signup_for_parking_v1_parking_signup_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22489,7 +23454,13 @@ export interface operations {
     get_parking_signup_status_v1_parking_signup_status_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22553,7 +23524,13 @@ export interface operations {
                 start_time?: Date | null;
                 end_time?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 parking_reference: TypeId<"parking"> | string;
             };
@@ -22640,7 +23617,13 @@ export interface operations {
                 created_after?: Date | null;
                 created_before?: Date | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22669,7 +23652,13 @@ export interface operations {
     create_report_v1_reports_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22702,7 +23691,13 @@ export interface operations {
     get_report_v1_reports__report_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 report_id: string;
             };
@@ -22733,7 +23728,13 @@ export interface operations {
     download_report_v1_reports__report_id__download_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 report_id: string;
             };
@@ -22772,7 +23773,13 @@ export interface operations {
                 tag_types?: components["schemas"]["TagType"][] | null;
                 search?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22817,7 +23824,13 @@ export interface operations {
     create_tag_v1_tags_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22883,7 +23896,13 @@ export interface operations {
     bulk_update_object_tags_v1_tags_objects_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -22966,7 +23985,13 @@ export interface operations {
     get_tag_v1_tags__tag_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 tag_id: TypeId<"tag">;
             };
@@ -23030,7 +24055,13 @@ export interface operations {
     delete_tag_v1_tags__tag_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 tag_id: TypeId<"tag">;
             };
@@ -23092,7 +24123,13 @@ export interface operations {
     update_tag_v1_tags__tag_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 tag_id: TypeId<"tag">;
             };
@@ -23177,7 +24214,13 @@ export interface operations {
     update_tag_objects_v1_tags__tag_id__objects_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 tag_id: TypeId<"tag">;
             };
@@ -23248,7 +24291,13 @@ export interface operations {
                 fields?: string | null;
                 tlds?: string | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23281,7 +24330,13 @@ export interface operations {
     get_tld_portfolio_v1_tlds_portfolio_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23310,7 +24365,13 @@ export interface operations {
     get_tld_spec_v1_tlds__tld__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 tld: string;
             };
@@ -23357,7 +24418,13 @@ export interface operations {
     create_user_v1_users_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23392,7 +24459,13 @@ export interface operations {
             query?: {
                 attributes?: string[] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23423,7 +24496,13 @@ export interface operations {
             query?: {
                 attributes?: string[] | null;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 user_id: TypeId<"user">;
             };
@@ -23454,7 +24533,13 @@ export interface operations {
     delete_user_v1_users__user_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 user_id: TypeId<"user">;
             };
@@ -23492,7 +24577,13 @@ export interface operations {
     update_user_v1_users__user_id__patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 user_id: TypeId<"user">;
             };
@@ -23527,7 +24618,13 @@ export interface operations {
     get_user_permissions_v1_users__user_id__permissions_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 user_id: TypeId<"user">;
             };
@@ -23558,7 +24655,13 @@ export interface operations {
     get_role_v1_users__user_id__role_get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 user_id: TypeId<"user">;
             };
@@ -23589,7 +24692,13 @@ export interface operations {
     set_user_role_v1_users__user_id__role_put: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 user_id: TypeId<"user">;
             };
@@ -23660,7 +24769,13 @@ export interface operations {
                 page?: number;
                 page_size?: number;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23689,7 +24804,13 @@ export interface operations {
     create_vanity_nameserver_set_v1_vanity_nameserver_sets_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23722,7 +24843,13 @@ export interface operations {
     check_vanity_nameserver_set_v1_vanity_nameserver_sets_check_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23755,7 +24882,13 @@ export interface operations {
     clear_vanity_nameserver_set_default_v1_vanity_nameserver_sets_default_delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path?: never;
             cookie?: never;
         };
@@ -23784,7 +24917,13 @@ export interface operations {
     get_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__get: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 set_id: TypeId<"vns">;
             };
@@ -23815,7 +24954,13 @@ export interface operations {
     delete_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__delete: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 set_id: TypeId<"vns">;
             };
@@ -23846,7 +24991,13 @@ export interface operations {
     set_vanity_nameserver_set_default_v1_vanity_nameserver_sets__set_id__default_patch: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 set_id: TypeId<"vns">;
             };
@@ -23877,7 +25028,13 @@ export interface operations {
     restore_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__restore_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 set_id: TypeId<"vns">;
             };
@@ -23908,7 +25065,13 @@ export interface operations {
     retry_vanity_nameserver_set_v1_vanity_nameserver_sets__set_id__retry_post: {
         parameters: {
             query?: never;
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 set_id: TypeId<"vns">;
             };
@@ -23942,7 +25105,13 @@ export interface operations {
                 page?: number;
                 page_size?: number;
             };
-            header?: never;
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
             path: {
                 set_id: TypeId<"vns">;
             };
