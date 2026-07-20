@@ -9,19 +9,19 @@ If the declaration is not signed within **30 days**, the request is cancelled an
 
 | Attribute | Type | Required | Applies to | Allowed values |
 | --- | --- | --- | --- | --- |
-| `NOR_ID_IDENTITY_TYPE` | Enum | ✅ Yes | Registrant | `organizationNumber`, `anonymousPersonIdentifier`, `localIdentity` |
+| `NOR_ID_IDENTITY_TYPE` | Enum | ✅ Yes | Registrant | `ORGANIZATION_NUMBER`, `ANONYMOUS_PERSON_IDENTIFIER`, `LOCAL_IDENTITY` |
 | `NOR_ID_IDENTITY_VALUE` | String | ✅ Yes | Registrant | See below |
-| `NOR_ID_CONTACT_TYPE` | Enum | ➖ Optional | Any | `person`, `organization`, `role` (derived automatically when omitted) |
+| `NOR_ID_CONTACT_TYPE` | Enum | ➖ Optional | Any | `PERSON`, `ORGANIZATION`, `ROLE` (derived automatically when omitted) |
 
-- `organizationNumber`:
+- `ORGANIZATION_NUMBER` (sent to Norid as `organizationNumber`):
   - a 9-digit organization number registered in the [Brønnøysund register](https://www.brreg.no/) (MOD11 check digit). 
   - Requires an **organization** contact (`org` field set).
-- `anonymousPersonIdentifier`: 
+- `ANONYMOUS_PERSON_IDENTIFIER` (sent to Norid as `anonymousPersonIdentifier`): 
   - a Norid person ID in the `N.PRI.xxxxxxxx` format, created by the registrant with [Norid's personal ID tool](https://pid.norid.no/). 
   - Requires a **person** contact (no `org`).
 - The contact type is derived from the contact: 
-  - `org` set → `organization`, otherwise `person`. 
-  - Technical contacts are always created as `role` contacts (Norid requirement) and carry no identity.
+  - `org` set → `ORGANIZATION`, otherwise `PERSON`. 
+  - Technical contacts are always created as `ROLE` contacts (Norid requirement) and carry no identity.
 
 ## Identity verification by the registry
 
