@@ -1,10 +1,10 @@
 ## Registration model
 
-`.no` registrations are **deferred**: `POST /v1/domains` validates the request, reserves billing and creates the registry contacts, but the domain is only registered at Norid after the **applicant declaration** is signed. The registrant receives an email with a signing link; the declaration expires after **30 days** (with reminder emails), at which point the request is cancelled and refunded.
+`.no` registrations are **two-step**: `POST /v1/domains` accepts the registration request, but the domain is only registered at Norid once the **applicant declaration** is signed. The registrant receives an email with a signing link (plus periodic reminders); if the declaration is not signed within **30 days**, the request is cancelled and refunded.
 
 ## Contact Attributes
 
-`.no` registrations identify the **registrant** (subscriber) through a registry-verified identity:
+`.no` registrations identify the **registrant** (called *subscriber* by Norid) through a registry-verified identity:
 
 | Attribute | Type | Required | Applies to | Allowed values |
 | --- | --- | --- | --- | --- |
@@ -31,7 +31,7 @@ Norid cross-checks the contact data against the official Norwegian registers at 
 
 ## Registrant address
 
-The subscriber must have a **Norwegian postal address**: country `NO` and a 4-digit Norwegian postcode matching the Norwegian postal service's address lists. Both are validated before any registry contact is created:
+The registrant must have a **Norwegian postal address**: country `NO` and a 4-digit Norwegian postcode matching the Norwegian postal service's address lists. Both are validated upfront:
 
 - a non-`NO` registrant country is rejected (local presence policy);
 - a postcode that is not a 4-digit Norwegian postcode is rejected with a `422` pointing at `contacts.registrant[0].postal_code`.
@@ -40,8 +40,8 @@ Technical contacts may have foreign addresses.
 
 ## Applicant declaration
 
-- The declaration is signed on a hosted page linked from the registrant email - resellers can also submit a signed declaration through the API.
-- For **person** registrants the declaration must be signed by the subscriber: 
+- The declaration is signed on a hosted page linked from the registrant email - resellers can also submit an already-signed declaration through [`POST /v1/domains/tld-specific/no/{domain}/applicant-declaration`](/api-reference#tag/domain_tld_specific/POST/v1/domains/tld-specific/no/{domain_reference}/applicant-declaration).
+- For **person** registrants the declaration must be signed by the registrant themselves: 
   - the signed name must match the registrant contact name;
   - it gets compared case-insensitively, accepting transliterated Norwegian letters; 
   - A mismatch returns `400`, `ERROR_NORID_DECLARATION_NAME_MISMATCH`.
