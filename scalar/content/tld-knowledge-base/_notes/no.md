@@ -12,9 +12,15 @@
 | `NOR_ID_IDENTITY_VALUE` | String | ✅ Yes | Registrant | See below |
 | `NOR_ID_CONTACT_TYPE` | Enum | ➖ Optional | Any | `person`, `organization`, `role` (derived automatically when omitted) |
 
-- `organizationNumber`: a 9-digit organization number registered in the [Brønnøysund register](https://www.brreg.no/) (MOD11 check digit). Requires an **organization** contact (`org` field set).
-- `anonymousPersonIdentifier`: a Norid person ID in the `N.PRI.xxxxxxxx` format, created by the registrant with [Norid's personal ID tool](https://pid.norid.no/). Requires a **person** contact (no `org`).
-- The contact type is derived from the contact: `org` set → `organization`, otherwise `person`. Technical contacts are always created as `role` contacts (Norid requirement) and carry no identity.
+- `organizationNumber`:
+  - a 9-digit organization number registered in the [Brønnøysund register](https://www.brreg.no/) (MOD11 check digit). 
+  - Requires an **organization** contact (`org` field set).
+- `anonymousPersonIdentifier`: 
+  - a Norid person ID in the `N.PRI.xxxxxxxx` format, created by the registrant with [Norid's personal ID tool](https://pid.norid.no/). 
+  - Requires a **person** contact (no `org`).
+- The contact type is derived from the contact: 
+  - `org` set → `organization`, otherwise `person`. 
+  - Technical contacts are always created as `role` contacts (Norid requirement) and carry no identity.
 
 ## Identity verification by the registry
 
@@ -34,7 +40,10 @@ Technical contacts may have foreign addresses.
 
 ## Applicant declaration
 
-- The declaration is signed on a hosted page linked from the registrant email; resellers can also submit a signed declaration through the API.
-- For **person** registrants the declaration must be signed by the subscriber: the signed name must match the registrant contact name (compared case-insensitively, accepting transliterated Norwegian letters). A mismatch returns `400 ERROR_NORID_DECLARATION_NAME_MISMATCH`.
+- The declaration is signed on a hosted page linked from the registrant email - resellers can also submit a signed declaration through the API.
+- For **person** registrants the declaration must be signed by the subscriber: 
+  - the signed name must match the registrant contact name;
+  - it gets compared case-insensitively, accepting transliterated Norwegian letters; 
+  - A mismatch returns `400`, `ERROR_NORID_DECLARATION_NAME_MISMATCH`.
 - For **organization** registrants the signer is any person authorized by the organization, so the signed name is free text.
-- The signature (name, date, IP, user agent) is stored for auditing and sent to Norid verbatim in the `applicantDataset`; the registrant receives a copy by email.
+- The signature (name, date, IP, user agent) is stored for auditing and sent to Norid. The registrant receives a copy of the data by email.
