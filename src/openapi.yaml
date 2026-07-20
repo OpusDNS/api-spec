@@ -11010,6 +11010,31 @@ components:
       - status
       title: Problem
       type: object
+    ProductCreateRes:
+      properties:
+        product_name:
+          description: The product name
+          title: Product Name
+          type: string
+        subscribable_id:
+          description: The created resource ID
+          title: Subscribable Id
+          type: string
+        subscription_id:
+          description: The created subscription ID
+          examples:
+          - subscription_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^subscription_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Subscription Id
+          type: string
+          x-typeid-prefix: subscription
+      required:
+      - subscription_id
+      - subscribable_id
+      - product_name
+      title: ProductCreateRes
+      type: object
     Protocol:
       enum:
       - http
@@ -13681,6 +13706,111 @@ components:
       - unique
       title: VisitsByKeyBucket
       type: object
+    WhitelabelBrandingCreate:
+      description: 'Public create request body. The owning org comes from auth context,
+        and
+
+        `verification_domain` is derived server-side (the registrable domain of `hostname`),
+
+        so neither is accepted here. Both hostnames must resolve to the same registrable
+
+        domain (checked server-side in WhitelabelBrandingService.create).'
+      properties:
+        auth_hostname:
+          description: Auth/login hostname served by Keycloak (e.g. auth.customer.com)
+          maxLength: 255
+          minLength: 1
+          title: Auth Hostname
+          type: string
+        hostname:
+          description: Dashboard hostname the customer wants to brand (e.g. dash.customer.com)
+          maxLength: 255
+          minLength: 1
+          title: Hostname
+          type: string
+      required:
+      - hostname
+      - auth_hostname
+      title: WhitelabelBrandingCreate
+      type: object
+    WhitelabelBrandingResponse:
+      description: Public read shape for an organization's whitelabel branding config.
+      properties:
+        auth_hostname:
+          maxLength: 255
+          minLength: 1
+          title: Auth Hostname
+          type: string
+        created_on:
+          format: date-time
+          title: Created On
+          type: string
+        failure_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Failure Reason
+        hostname:
+          maxLength: 255
+          minLength: 1
+          title: Hostname
+          type: string
+        keycloak_client_id:
+          anyOf:
+          - maxLength: 255
+            minLength: 1
+            type: string
+          - type: 'null'
+          title: Keycloak Client Id
+        onboarding_status:
+          $ref: '#/components/schemas/WhitelabelOnboardingStatus'
+        organization_id:
+          examples:
+          - organization_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^organization_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Organization Id
+          type: string
+          x-typeid-prefix: organization
+        updated_on:
+          format: date-time
+          title: Updated On
+          type: string
+        verification_domain:
+          maxLength: 255
+          minLength: 1
+          title: Verification Domain
+          type: string
+        whitelabel_branding_id:
+          examples:
+          - wlb_01h45ytscbebyvny4gc8cr8ma2
+          format: typeid
+          pattern: ^wlb_[0-7][0-9a-hjkmnpq-tv-z]{25}$
+          title: Whitelabel Branding Id
+          type: string
+          x-typeid-prefix: wlb
+      required:
+      - whitelabel_branding_id
+      - organization_id
+      - onboarding_status
+      - hostname
+      - auth_hostname
+      - verification_domain
+      - keycloak_client_id
+      - failure_reason
+      - created_on
+      - updated_on
+      title: WhitelabelBrandingResponse
+      type: object
+    WhitelabelOnboardingStatus:
+      enum:
+      - pending_domain_verification
+      - verifying
+      - provisioning
+      - active
+      - failed
+      title: WhitelabelOnboardingStatus
+      type: string
     WhoisBase:
       properties:
         whois_server:
@@ -14007,7 +14137,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-17-222747
+  version: 2026-07-20-111052
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg
@@ -30326,6 +30456,89 @@ paths:
       - nameserver
       x-required-permissions:
       - vanity_ns:read
+  /v1/whitelabel-branding:
+    get:
+      operationId: get_whitelabel_branding_v1_whitelabel_branding_get
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelBrandingResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Get the organization's whitelabel branding config
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:read
+    post:
+      operationId: create_whitelabel_branding_v1_whitelabel_branding_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelabelBrandingCreate'
+        required: true
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCreateRes'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Create the organization's whitelabel branding config
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
+  /v1/whitelabel-branding/recheck:
+    post:
+      operationId: recheck_whitelabel_branding_v1_whitelabel_branding_recheck_post
+      parameters:
+      - $ref: '#/components/parameters/DatetimeFormatHeader'
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhitelabelBrandingResponse'
+          description: Successful Response
+        '422':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - OAuth2PasswordBearer: []
+      - APIKeyHeader: []
+      summary: Re-run onboarding for the organization's whitelabel branding config
+      tags:
+      - whitelabel
+      x-required-permissions:
+      - whitelabel_branding:manage
 servers:
 - description: Production environment
   url: https://api.opusdns.com

@@ -111,6 +111,7 @@ import type {
   VerificationClaimType,
   VerificationDeadlineType,
   VerificationType,
+  WhitelabelOnboardingStatus,
   ZoneIncludeField,
   ZoneSortField,
 } from './schemas';
@@ -1955,6 +1956,22 @@ export const VERIFICATION_TYPE_VALUES = [
   'api',
   'email',
 ] as const satisfies ReadonlyArray<VerificationType>;
+
+export const WHITELABEL_ONBOARDING_STATUS = {
+  PENDING_DOMAIN_VERIFICATION: "pending_domain_verification",
+  VERIFYING: "verifying",
+  PROVISIONING: "provisioning",
+  ACTIVE: "active",
+  FAILED: "failed",
+} as const satisfies Record<string, WhitelabelOnboardingStatus>;
+
+export const WHITELABEL_ONBOARDING_STATUS_VALUES = [
+  'pending_domain_verification',
+  'verifying',
+  'provisioning',
+  'active',
+  'failed',
+] as const satisfies ReadonlyArray<WhitelabelOnboardingStatus>;
 
 export const ZONE_INCLUDE_FIELD = {
   TAGS: "tags",

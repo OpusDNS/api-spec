@@ -335,6 +335,7 @@ import type {
   PriceInfo,
   PricingPeriod,
   Problem,
+  ProductCreateRes,
   PublicAuthRequestForm,
   PublicPermissionSet,
   PublicReportListRes,
@@ -404,6 +405,8 @@ import type {
   VerificationRegistrantDetails,
   Verification,
   VisitsByKeyBucket,
+  WhitelabelBrandingCreate,
+  WhitelabelBranding,
   WhoisBase,
   ZoneVanitySetUpdate,
   ZonesContext,
@@ -4517,6 +4520,16 @@ export const KEYS_PROBLEM = [
   KEY_PROBLEM_TYPE,
 ] as const satisfies (keyof Problem)[];
 
+export const KEY_PRODUCT_CREATE_RES_PRODUCT_NAME = 'product_name' satisfies keyof ProductCreateRes;
+export const KEY_PRODUCT_CREATE_RES_SUBSCRIBABLE_ID = 'subscribable_id' satisfies keyof ProductCreateRes;
+export const KEY_PRODUCT_CREATE_RES_SUBSCRIPTION_ID = 'subscription_id' satisfies keyof ProductCreateRes;
+
+export const KEYS_PRODUCT_CREATE_RES = [
+  KEY_PRODUCT_CREATE_RES_PRODUCT_NAME,
+  KEY_PRODUCT_CREATE_RES_SUBSCRIBABLE_ID,
+  KEY_PRODUCT_CREATE_RES_SUBSCRIPTION_ID,
+] as const satisfies (keyof ProductCreateRes)[];
+
 export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_ID = 'client_id' satisfies keyof PublicAuthRequestForm;
 export const KEY_PUBLIC_AUTH_REQUEST_FORM_CLIENT_SECRET = 'client_secret' satisfies keyof PublicAuthRequestForm;
 export const KEY_PUBLIC_AUTH_REQUEST_FORM_GRANT_TYPE = 'grant_type' satisfies keyof PublicAuthRequestForm;
@@ -5458,6 +5471,38 @@ export const KEYS_VISITS_BY_KEY_BUCKET = [
   KEY_VISITS_BY_KEY_BUCKET_TOTAL,
   KEY_VISITS_BY_KEY_BUCKET_UNIQUE,
 ] as const satisfies (keyof VisitsByKeyBucket)[];
+
+export const KEY_WHITELABEL_BRANDING_CREATE_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBrandingCreate;
+export const KEY_WHITELABEL_BRANDING_CREATE_HOSTNAME = 'hostname' satisfies keyof WhitelabelBrandingCreate;
+
+export const KEYS_WHITELABEL_BRANDING_CREATE = [
+  KEY_WHITELABEL_BRANDING_CREATE_AUTH_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_CREATE_HOSTNAME,
+] as const satisfies (keyof WhitelabelBrandingCreate)[];
+
+export const KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME = 'auth_hostname' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_CREATED_ON = 'created_on' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_FAILURE_REASON = 'failure_reason' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_HOSTNAME = 'hostname' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_KEYCLOAK_CLIENT_ID = 'keycloak_client_id' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_ONBOARDING_STATUS = 'onboarding_status' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_ORGANIZATION_ID = 'organization_id' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_UPDATED_ON = 'updated_on' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_VERIFICATION_DOMAIN = 'verification_domain' satisfies keyof WhitelabelBranding;
+export const KEY_WHITELABEL_BRANDING_WHITELABEL_BRANDING_ID = 'whitelabel_branding_id' satisfies keyof WhitelabelBranding;
+
+export const KEYS_WHITELABEL_BRANDING = [
+  KEY_WHITELABEL_BRANDING_AUTH_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_CREATED_ON,
+  KEY_WHITELABEL_BRANDING_FAILURE_REASON,
+  KEY_WHITELABEL_BRANDING_HOSTNAME,
+  KEY_WHITELABEL_BRANDING_KEYCLOAK_CLIENT_ID,
+  KEY_WHITELABEL_BRANDING_ONBOARDING_STATUS,
+  KEY_WHITELABEL_BRANDING_ORGANIZATION_ID,
+  KEY_WHITELABEL_BRANDING_UPDATED_ON,
+  KEY_WHITELABEL_BRANDING_VERIFICATION_DOMAIN,
+  KEY_WHITELABEL_BRANDING_WHITELABEL_BRANDING_ID,
+] as const satisfies (keyof WhitelabelBranding)[];
 
 export const KEY_WHOIS_BASE_WHOIS_SERVER = 'whois_server' satisfies keyof WhoisBase;
 

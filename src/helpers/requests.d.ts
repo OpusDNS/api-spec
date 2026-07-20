@@ -53,6 +53,7 @@ import type {
   UserUpdate,
   VanityNameserverSetCreate,
   VanityNsCheckPublicReq,
+  WhitelabelBrandingCreate,
   ZoneVanitySetUpdate,
 } from './schemas';
 
@@ -1104,4 +1105,15 @@ export type POST_VanityNameserverSetsCheck_Request = {
 export type POST_VanityNameserverSetsCheck_Request_Body = POST_VanityNameserverSetsCheck_Request['requestBody'];
 
 export type DELETE_VanityNameserverSetsDefault_Request = {
+};
+
+export type GET_WhitelabelBranding_Request = {
+};
+
+export type POST_WhitelabelBranding_Request = {
+  requestBody: WhitelabelBrandingCreate;
+};
+export type POST_WhitelabelBranding_Request_Body = POST_WhitelabelBranding_Request['requestBody'];
+
+export type POST_WhitelabelBrandingRecheck_Request = {
 };
