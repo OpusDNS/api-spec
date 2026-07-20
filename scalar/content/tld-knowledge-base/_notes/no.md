@@ -1,6 +1,7 @@
 ## Registration model
 
-`.no` registrations are **two-step**: `POST /v1/domains` accepts the registration request, but the domain is only registered at Norid once the **applicant declaration** is signed. The registrant receives an email with a signing link (plus periodic reminders); if the declaration is not signed within **30 days**, the request is cancelled and refunded.
+`.no` registrations are **two-step**: `POST /v1/domains` accepts the registration request, but the domain is only registered at Norid once the **applicant declaration** is signed. The registrant receives an email with a signing link, with reminders on days **7, 14, 21 and 27**. 
+If the declaration is not signed within **30 days**, the request is cancelled and refunded.
 
 ## Contact Attributes
 
