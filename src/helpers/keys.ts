@@ -2438,6 +2438,7 @@ export const KEY_DOMAIN_STATUS_TAGS = 'status_tags' satisfies keyof Domain;
 export const KEY_DOMAIN_TAGS = 'tags' satisfies keyof Domain;
 export const KEY_DOMAIN_TLD = 'tld' satisfies keyof Domain;
 export const KEY_DOMAIN_TRANSFER_LOCK = 'transfer_lock' satisfies keyof Domain;
+export const KEY_DOMAIN_TRANSFERRED_ON = 'transferred_on' satisfies keyof Domain;
 export const KEY_DOMAIN_UPDATED_ON = 'updated_on' satisfies keyof Domain;
 export const KEY_DOMAIN_VERIFICATION_REQUIRED = 'verification_required' satisfies keyof Domain;
 
@@ -2466,6 +2467,7 @@ export const KEYS_DOMAIN = [
   KEY_DOMAIN_TAGS,
   KEY_DOMAIN_TLD,
   KEY_DOMAIN_TRANSFER_LOCK,
+  KEY_DOMAIN_TRANSFERRED_ON,
   KEY_DOMAIN_UPDATED_ON,
   KEY_DOMAIN_VERIFICATION_REQUIRED,
 ] as const satisfies (keyof Domain)[];

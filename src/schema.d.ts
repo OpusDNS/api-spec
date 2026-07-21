@@ -6322,6 +6322,11 @@ export interface components {
              */
             transfer_lock: boolean;
             /**
+             * Transferred On
+             * @description When the domain was last transferred to us
+             */
+            transferred_on?: Date | null;
+            /**
              * Updated On
              * Format: date-time
              * @description The date/time the entry was last updated on
