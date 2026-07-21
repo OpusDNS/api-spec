@@ -1,4 +1,5 @@
 import type {
+  AiUsageGranularity,
   AllocationMethodType,
   AssignablePublicRole,
   AttributeType,
@@ -115,6 +116,18 @@ import type {
   ZoneIncludeField,
   ZoneSortField,
 } from './schemas';
+
+export const AI_USAGE_GRANULARITY = {
+  DAY: "day",
+  WEEK: "week",
+  MONTH: "month",
+} as const satisfies Record<string, AiUsageGranularity>;
+
+export const AI_USAGE_GRANULARITY_VALUES = [
+  'day',
+  'week',
+  'month',
+] as const satisfies ReadonlyArray<AiUsageGranularity>;
 
 export const ALLOCATION_METHOD_TYPE = {
   FCFS: "fcfs",

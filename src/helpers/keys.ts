@@ -1,4 +1,8 @@
 import type {
+  AiUsageModelBreakdown,
+  AiUsageSeries,
+  AiUsageSummary,
+  AiUsageTimeBucket,
   AllowedNumberOfNameserverBase,
   AttributeCondition,
   BillingMetadata,
@@ -417,6 +421,52 @@ import type {
   DomainAvailabilityList,
   DomainAvailabilityCheck,
 } from './schemas';
+
+export const KEY_AI_USAGE_MODEL_BREAKDOWN_CACHE_READ_TOKENS = 'cache_read_tokens' satisfies keyof AiUsageModelBreakdown;
+export const KEY_AI_USAGE_MODEL_BREAKDOWN_CACHE_WRITE_TOKENS = 'cache_write_tokens' satisfies keyof AiUsageModelBreakdown;
+export const KEY_AI_USAGE_MODEL_BREAKDOWN_INPUT_TOKENS = 'input_tokens' satisfies keyof AiUsageModelBreakdown;
+export const KEY_AI_USAGE_MODEL_BREAKDOWN_MODEL = 'model' satisfies keyof AiUsageModelBreakdown;
+export const KEY_AI_USAGE_MODEL_BREAKDOWN_OUTPUT_TOKENS = 'output_tokens' satisfies keyof AiUsageModelBreakdown;
+export const KEY_AI_USAGE_MODEL_BREAKDOWN_REQUEST_COUNT = 'request_count' satisfies keyof AiUsageModelBreakdown;
+
+export const KEYS_AI_USAGE_MODEL_BREAKDOWN = [
+  KEY_AI_USAGE_MODEL_BREAKDOWN_CACHE_READ_TOKENS,
+  KEY_AI_USAGE_MODEL_BREAKDOWN_CACHE_WRITE_TOKENS,
+  KEY_AI_USAGE_MODEL_BREAKDOWN_INPUT_TOKENS,
+  KEY_AI_USAGE_MODEL_BREAKDOWN_MODEL,
+  KEY_AI_USAGE_MODEL_BREAKDOWN_OUTPUT_TOKENS,
+  KEY_AI_USAGE_MODEL_BREAKDOWN_REQUEST_COUNT,
+] as const satisfies (keyof AiUsageModelBreakdown)[];
+
+export const KEY_AI_USAGE_SERIES_BUCKETS = 'buckets' satisfies keyof AiUsageSeries;
+export const KEY_AI_USAGE_SERIES_END_DATE = 'end_date' satisfies keyof AiUsageSeries;
+export const KEY_AI_USAGE_SERIES_GRANULARITY = 'granularity' satisfies keyof AiUsageSeries;
+export const KEY_AI_USAGE_SERIES_START_DATE = 'start_date' satisfies keyof AiUsageSeries;
+
+export const KEYS_AI_USAGE_SERIES = [
+  KEY_AI_USAGE_SERIES_BUCKETS,
+  KEY_AI_USAGE_SERIES_END_DATE,
+  KEY_AI_USAGE_SERIES_GRANULARITY,
+  KEY_AI_USAGE_SERIES_START_DATE,
+] as const satisfies (keyof AiUsageSeries)[];
+
+export const KEY_AI_USAGE_SUMMARY_BY_MODEL = 'by_model' satisfies keyof AiUsageSummary;
+export const KEY_AI_USAGE_SUMMARY_END_DATE = 'end_date' satisfies keyof AiUsageSummary;
+export const KEY_AI_USAGE_SUMMARY_START_DATE = 'start_date' satisfies keyof AiUsageSummary;
+
+export const KEYS_AI_USAGE_SUMMARY = [
+  KEY_AI_USAGE_SUMMARY_BY_MODEL,
+  KEY_AI_USAGE_SUMMARY_END_DATE,
+  KEY_AI_USAGE_SUMMARY_START_DATE,
+] as const satisfies (keyof AiUsageSummary)[];
+
+export const KEY_AI_USAGE_TIME_BUCKET_BY_MODEL = 'by_model' satisfies keyof AiUsageTimeBucket;
+export const KEY_AI_USAGE_TIME_BUCKET_PERIOD_START = 'period_start' satisfies keyof AiUsageTimeBucket;
+
+export const KEYS_AI_USAGE_TIME_BUCKET = [
+  KEY_AI_USAGE_TIME_BUCKET_BY_MODEL,
+  KEY_AI_USAGE_TIME_BUCKET_PERIOD_START,
+] as const satisfies (keyof AiUsageTimeBucket)[];
 
 export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MAX = 'max' satisfies keyof AllowedNumberOfNameserverBase;
 export const KEY_ALLOWED_NUMBER_OF_NAMESERVER_BASE_MIN = 'min' satisfies keyof AllowedNumberOfNameserverBase;

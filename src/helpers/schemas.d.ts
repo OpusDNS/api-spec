@@ -1,5 +1,10 @@
 import { components } from '../schema';
 
+export type AiUsageGranularity = components['schemas']['AiUsageGranularity'];
+export type AiUsageModelBreakdown = components['schemas']['AiUsageModelBreakdown'];
+export type AiUsageSeries = components['schemas']['AiUsageSeriesResponse'];
+export type AiUsageSummary = components['schemas']['AiUsageSummaryResponse'];
+export type AiUsageTimeBucket = components['schemas']['AiUsageTimeBucket'];
 export type AllocationMethodType = components['schemas']['AllocationMethodType'];
 export type AllowedNumberOfNameserverBase = components['schemas']['AllowedNumberOfNameserverBase'];
 export type AssignablePublicRole = components['schemas']['AssignablePublicRole'];

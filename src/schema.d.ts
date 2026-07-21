@@ -1925,6 +1925,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/organizations/ai-usage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * AI usage over time
+         * @description Retrieves the current organization's AI token usage as a time series, bucketed by the requested granularity and broken down per model. Reports token counts and request volumes only.
+         */
+        get: operations["get_ai_usage_series_v1_organizations_ai_usage_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/ai-usage/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * AI usage summary
+         * @description Retrieves the current organization's total AI token usage over a date range, broken down per model. Reports token counts and request volumes only.
+         */
+        get: operations["get_ai_usage_summary_v1_organizations_ai_usage_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/organizations/attributes": {
         parameters: {
             query?: never;
@@ -2832,6 +2872,71 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * AiUsageGranularity
+         * @enum {string}
+         */
+        AiUsageGranularity: "day" | "week" | "month";
+        /**
+         * AiUsageModelBreakdown
+         * @description Public per-model AI token usage. Deliberately excludes billing-gateway's
+         *     internal COGS fields (cost_amount, per-million rates, has_rate).
+         */
+        AiUsageModelBreakdown: {
+            /** Cache Read Tokens */
+            cache_read_tokens: number;
+            /** Cache Write Tokens */
+            cache_write_tokens: number;
+            /** Input Tokens */
+            input_tokens: number;
+            /** Model */
+            model: string;
+            /** Output Tokens */
+            output_tokens: number;
+            /** Request Count */
+            request_count: number;
+        };
+        /** AiUsageSeriesResponse */
+        AiUsageSeriesResponse: {
+            /** Buckets */
+            buckets: components["schemas"]["AiUsageTimeBucket"][];
+            /**
+             * End Date
+             * Format: date
+             */
+            end_date: string;
+            granularity: components["schemas"]["AiUsageGranularity"];
+            /**
+             * Start Date
+             * Format: date
+             */
+            start_date: string;
+        };
+        /** AiUsageSummaryResponse */
+        AiUsageSummaryResponse: {
+            /** By Model */
+            by_model: components["schemas"]["AiUsageModelBreakdown"][];
+            /**
+             * End Date
+             * Format: date
+             */
+            end_date: string;
+            /**
+             * Start Date
+             * Format: date
+             */
+            start_date: string;
+        };
+        /** AiUsageTimeBucket */
+        AiUsageTimeBucket: {
+            /** By Model */
+            by_model: components["schemas"]["AiUsageModelBreakdown"][];
+            /**
+             * Period Start
+             * Format: date
+             */
+            period_start: string;
+        };
         /**
          * AllocationMethodType
          * @enum {string}
@@ -22078,6 +22183,149 @@ export interface operations {
                      *       "type": "independent-billing-not-allowed"
                      *     } */
                     "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    get_ai_usage_series_v1_organizations_ai_usage_get: {
+        parameters: {
+            query: {
+                start_date: string;
+                end_date: string;
+                model?: string | null;
+                granularity?: components["schemas"]["AiUsageGranularity"];
+            };
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AiUsageSeriesResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_ai_usage_summary_v1_organizations_ai_usage_summary_get: {
+        parameters: {
+            query: {
+                start_date: string;
+                end_date: string;
+                model?: string | null;
+            };
+            header?: {
+                /**
+                 * @description Opt in to RFC 3339 datetime serialization. When set to `rfc3339`, response datetimes are normalized to UTC and serialized with a `Z` suffix. This is opt-in until the announced default cutover date, after which RFC 3339 becomes the default and this header is accepted as a no-op. Any other value or omission uses the current default serialization.
+                 * @example rfc3339
+                 */
+                "X-Datetime-Format"?: components["parameters"]["DatetimeFormatHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AiUsageSummaryResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_AUTHENTICATION",
+                     *       "detail": "Additional error context.",
+                     *       "status": 401,
+                     *       "title": "Authentication Error",
+                     *       "type": "authentication"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example {
+                     *       "code": "ERROR_PERMISSION_DENIED",
+                     *       "detail": "Insufficient permissions to perform this action",
+                     *       "status": 403,
+                     *       "title": "Permission Denied",
+                     *       "type": "permission-denied"
+                     *     } */
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

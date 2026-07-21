@@ -1,4 +1,6 @@
 import type {
+  AiUsageSeries,
+  AiUsageSummary,
   BillingTransaction,
   ClaimsNotices,
   ClearVanityNameserverSetDefaultRes,
@@ -642,6 +644,20 @@ export type GET_Organizations_Response_200 = Pagination_Organization;
 export type GET_Organizations_Response_401 = Problem;
 export type GET_Organizations_Response_403 = Problem;
 export type GET_Organizations_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsAiUsage_Response = GET_OrganizationsAiUsage_Response_200 | GET_OrganizationsAiUsage_Response_401 | GET_OrganizationsAiUsage_Response_403 | GET_OrganizationsAiUsage_Response_422;
+
+export type GET_OrganizationsAiUsage_Response_200 = AiUsageSeries;
+export type GET_OrganizationsAiUsage_Response_401 = Problem;
+export type GET_OrganizationsAiUsage_Response_403 = Problem;
+export type GET_OrganizationsAiUsage_Response_422 = HTTPValidationError;
+
+export type GET_OrganizationsAiUsageSummary_Response = GET_OrganizationsAiUsageSummary_Response_200 | GET_OrganizationsAiUsageSummary_Response_401 | GET_OrganizationsAiUsageSummary_Response_403 | GET_OrganizationsAiUsageSummary_Response_422;
+
+export type GET_OrganizationsAiUsageSummary_Response_200 = AiUsageSummary;
+export type GET_OrganizationsAiUsageSummary_Response_401 = Problem;
+export type GET_OrganizationsAiUsageSummary_Response_403 = Problem;
+export type GET_OrganizationsAiUsageSummary_Response_422 = HTTPValidationError;
 
 export type GET_OrganizationsAttributes_Response = GET_OrganizationsAttributes_Response_200 | GET_OrganizationsAttributes_Response_401 | GET_OrganizationsAttributes_Response_403 | GET_OrganizationsAttributes_Response_422;
 

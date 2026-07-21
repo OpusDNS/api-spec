@@ -798,6 +798,16 @@ export type POST_Organizations_Request = {
 };
 export type POST_Organizations_Request_Body = POST_Organizations_Request['requestBody'];
 
+export type GET_OrganizationsAiUsage_Request = {
+  parameters: operations['get_ai_usage_series_v1_organizations_ai_usage_get']['parameters'];
+};
+export type GET_OrganizationsAiUsage_Request_Query = GET_OrganizationsAiUsage_Request['parameters']['query'];
+
+export type GET_OrganizationsAiUsageSummary_Request = {
+  parameters: operations['get_ai_usage_summary_v1_organizations_ai_usage_summary_get']['parameters'];
+};
+export type GET_OrganizationsAiUsageSummary_Request_Query = GET_OrganizationsAiUsageSummary_Request['parameters']['query'];
+
 export type GET_OrganizationsAttributes_Request = {
   parameters: operations['get_current_organization_attributes_v1_organizations_attributes_get']['parameters'];
 };
