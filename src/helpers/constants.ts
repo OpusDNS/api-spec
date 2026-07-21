@@ -733,6 +733,7 @@ export const DOMAIN_SORT_FIELD = {
   UPDATED_ON: "updated_on",
   EXPIRES_ON: "expires_on",
   REGISTERED_ON: "registered_on",
+  TRANSFERRED_ON: "transferred_on",
 } as const satisfies Record<string, DomainSortField>;
 
 export const DOMAIN_SORT_FIELD_VALUES = [
@@ -741,6 +742,7 @@ export const DOMAIN_SORT_FIELD_VALUES = [
   'updated_on',
   'expires_on',
   'registered_on',
+  'transferred_on',
 ] as const satisfies ReadonlyArray<DomainSortField>;
 
 export const DOMAIN_STATUS = {

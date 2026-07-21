@@ -6410,7 +6410,7 @@ export interface components {
          * DomainSortField
          * @enum {string}
          */
-        DomainSortField: "name" | "created_on" | "updated_on" | "expires_on" | "registered_on";
+        DomainSortField: "name" | "created_on" | "updated_on" | "expires_on" | "registered_on" | "transferred_on";
         /**
          * DomainStatus
          * @enum {string}
@@ -18231,6 +18231,8 @@ export interface operations {
                 expires_in_90_days?: boolean | null;
                 registered_after?: Date | null;
                 registered_before?: Date | null;
+                transferred_after?: Date | null;
+                transferred_before?: Date | null;
                 /** @description Filter domains by registry status. Can be specified multiple times (union of all provided values). */
                 registry_statuses?: string[] | null;
                 /** @description Include additional data in the response. Can be specified multiple times. */
