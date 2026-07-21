@@ -2270,6 +2270,7 @@ export const KEY_DOMAIN_LIFECYCLE_BASE_REGISTRY_AUTO_RENEW = 'registry_auto_rene
 export const KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS = 'renewal_periods' satisfies keyof DomainLifecycleBase;
 export const KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS = 'rgp_operations' satisfies keyof DomainLifecycleBase;
 export const KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS = 'sync_after_operations' satisfies keyof DomainLifecycleBase;
+export const KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_GRACE_PERIOD = 'transfer_grace_period' satisfies keyof DomainLifecycleBase;
 export const KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS = 'transfer_renewal_periods' satisfies keyof DomainLifecycleBase;
 
 export const KEYS_DOMAIN_LIFECYCLE_BASE = [
@@ -2287,6 +2288,7 @@ export const KEYS_DOMAIN_LIFECYCLE_BASE = [
   KEY_DOMAIN_LIFECYCLE_BASE_RENEWAL_PERIODS,
   KEY_DOMAIN_LIFECYCLE_BASE_RGP_OPERATIONS,
   KEY_DOMAIN_LIFECYCLE_BASE_SYNC_AFTER_OPERATIONS,
+  KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_GRACE_PERIOD,
   KEY_DOMAIN_LIFECYCLE_BASE_TRANSFER_RENEWAL_PERIODS,
 ] as const satisfies (keyof DomainLifecycleBase)[];
 

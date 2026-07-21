@@ -5960,6 +5960,11 @@ export interface components {
              * @description Operations that trigger a sync with the registry
              */
             sync_after_operations?: components["schemas"]["SyncOperationType"][] | null;
+            /**
+             * Transfer Grace Period
+             * @description Transfer grace period after a transfer in ISO 8601 format (e.g., 5D, 3D)
+             */
+            transfer_grace_period?: string | null;
             /** @description List of allowed transfer renewal periods (eg. '1y') */
             transfer_renewal_periods?: components["schemas"]["PeriodList"];
         };
