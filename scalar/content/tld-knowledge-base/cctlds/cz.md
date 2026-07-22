@@ -18,8 +18,8 @@
 
 | Property | Value |
 | --- | --- |
-| Registration Period | 1–10 years |
-| Renewal Period | 1–10 years |
+| Registration Period | 1 year |
+| Renewal Period | 1 year |
 | Transfer Renewal Period | 1 year |
 | Deletion Policy | Immediate |
 | Auto-Renew Enabled | ❌ No |
