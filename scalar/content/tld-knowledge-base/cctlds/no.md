@@ -1,39 +1,39 @@
-# 🇹🇫 .tf — French Southern Territories
+# 🇳🇴 .no — Norway
 
-> The **.tf** is a country-code top-level domain (ccTLD) operated by AFNIC (Association Française pour le Nommage Internet en Coopération). This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
+> The **.no** is a country-code top-level domain (ccTLD) operated by Norid AS. This article documents the technical, operational, and contractual requirements for the TLD, along with special considerations for registry, registrar, and domain management.
 
 ## General Information
 
 | Property | Value |
 | --- | --- |
 | TLD Type | ccTLD |
-| Registry | AFNIC (Association Française pour le Nommage Internet en Coopération) |
-| Registry Country | France |
-| Registry Website | [www.afnic.fr](https://www.afnic.fr) |
+| Registry | Norid AS |
+| Registry Country | Norway |
+| Registry Website | [www.norid.no](https://www.norid.no) |
 | Provisioning Protocol | EPP |
-| Second-Level Registration | ✅ Yes |
+| Second-Level Registration | ❌ No |
 | Accreditation Required | ✅ Yes |
 
 ## Domain Lifecycle
 
 | Property | Value |
 | --- | --- |
-| Registration Period | 1–10 years |
-| Renewal Period | 1–10 years |
+| Registration Period | 1 year |
+| Renewal Period | 1 year |
 | Transfer Renewal Period | 1 year |
 | Deletion Policy | Immediate |
-| Auto-Renew Enabled | ✅ Yes |
-| Auto-Renewal Before Expiry | 7 days before expiration |
-| Sync After Operations | registration, renewal, transfer |
+| Auto-Renew Enabled | ❌ No |
+| Auto-Renewal Before Expiry | On expiration |
+| Sync After Operations | registration, transfer |
 
 **Grace periods**
 
 | Period | Duration |
 | --- | --- |
-| Add Grace Period | 5 days |
+| Add Grace Period | 0 days |
 | Standard Grace Period | 0 days |
-| Redemption Period | 30 days |
-| Pending Restore | 7 days |
+| Redemption Period | 0 days |
+| Pending Restore | 0 days |
 | Pending Delete | 0 days |
 
 ## Launch Phases & Availability
@@ -47,8 +47,8 @@
 
 | Property | Value |
 | --- | --- |
-| Domain Length | 1–63 characters |
-| IDN Support | ✅ Yes |
+| Domain Length | 2–63 characters |
+| IDN Support | ❌ No |
 | Premium Domains | ❌ No |
 | Reserved Domains | ❌ No |
 | Registry Lock | ❌ No |
@@ -57,21 +57,21 @@
 
 | Property | Value |
 | --- | --- |
-| Required Contacts | Domain Owner, Administrator, Technical Contact |
-| Supported Roles | Domain Owner, Administrator, Technical Contact |
+| Required Contacts | Domain Owner, Technical Contact |
+| Supported Roles | Domain Owner, Technical Contact |
 | Thick WHOIS | ✅ Yes |
 | Privacy Proxy Allowed | ❌ No |
 | Contacts Transferable | ❌ No |
 | Allowed Postal Types | Local |
-| AuthInfo Required | ✅ Yes (12–63 characters) |
+| AuthInfo Required | ✅ Yes (8–64 characters) |
 
 ## Nameservers & DNS
 
 | Property | Value |
 | --- | --- |
-| Nameserver Count | 0–8 |
+| Nameserver Count | 2–10 |
 | Host Objects Allowed | ✅ Yes |
-| Registry Nameserver Check | ❌ No |
+| Registry Nameserver Check | ✅ Yes |
 | DNSSEC Allowed | ✅ Yes |
 | DNSSEC Required | ❌ No |
 | DNSSEC Mode | DS |
@@ -81,24 +81,32 @@
 
 | Property | Value |
 | --- | --- |
-| Transfer Lock Enabled | ✅ Yes (60 days after registration; 60 days after transfer) |
-| Transfer Duration | 8 days |
-| Transfer Extends Domain | ✅ Yes (+1 year) |
+| Transfer Lock Enabled | ✅ Yes (0 days after registration; 0 days after transfer) |
+| Transfer Duration | 0 days |
+| Transfer Extends Domain | ❌ No |
 | Transfer via AuthInfo | ✅ Yes |
-| Confirmation Required | ✅ Yes (registrar) |
+| Confirmation Required | ❌ No |
 
 ## WHOIS & RDAP
 
 | Property | Value |
 | --- | --- |
-| WHOIS Server | `whois.nic.tf` |
-| RDAP Server | [rdap.nic.tf](https://rdap.nic.tf) |
+| WHOIS Server | `whois.norid.no` |
 
 ## Dispute Resolution
 
 | Property | Value |
 | --- | --- |
 | Dispute Resolution Available | ❌ No |
+
+## Local Presence
+
+| Property | Value |
+| --- | --- |
+| Local Presence Required | ✅ Yes |
+| Applies To Roles | Domain Owner |
+| Requirements | Physical Address, Business Entity |
+| Eligible Countries | NO |
 
 ## Implementation Notes
 
