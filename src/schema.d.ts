@@ -10723,6 +10723,14 @@ export interface components {
          */
         RenewalMode: "renew" | "expire";
         /**
+         * RenewalModeDTO
+         * @description Wire mirror of the domain `RenewalMode` vocabulary — local so dns_client doesn't
+         *     pull schema imports. The subscription itself has no renewal_mode column; api-nameserver
+         *     derives this from whether a renewal is scheduled.
+         * @enum {string}
+         */
+        RenewalModeDTO: "renew" | "expire";
+        /**
          * ReportStatus
          * @enum {string}
          */
@@ -12049,6 +12057,16 @@ export interface components {
          */
         VanityNameserverSetSummaryDTO: {
             /**
+             * Expires On
+             * @description When the vanity nameserver set's current service period ends (renews or lapses)
+             */
+            expires_on?: Date | null;
+            /**
+             * Grace Period Ends At
+             * @description When the grace period ends, or null when the set is not in a grace period
+             */
+            grace_period_ends_at?: Date | null;
+            /**
              * Is Default
              * @description Whether this is the org's default vanity NS set
              */
@@ -12075,6 +12093,13 @@ export interface components {
              * @description Parent domain used as the apex of the vanity NS zone
              */
             parent_domain_name: string;
+            /**
+             * Renew Scheduled At
+             * @description When the next automatic renewal is scheduled. Null when the set will not renew.
+             */
+            renew_scheduled_at?: Date | null;
+            /** @description Whether the set is set to renew or expire at the end of the current period */
+            renewal_mode?: components["schemas"]["RenewalModeDTO"] | null;
             /**
              * Set Id
              * Format: typeid

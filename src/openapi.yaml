@@ -12063,6 +12063,16 @@ components:
       - expire
       title: RenewalMode
       type: string
+    RenewalModeDTO:
+      description: "Wire mirror of the domain `RenewalMode` vocabulary \u2014 local\
+        \ so dns_client doesn't\npull schema imports. The subscription itself has\
+        \ no renewal_mode column; api-nameserver\nderives this from whether a renewal\
+        \ is scheduled."
+      enum:
+      - renew
+      - expire
+      title: RenewalModeDTO
+      type: string
     ReportStatus:
       enum:
       - pending
@@ -13932,6 +13942,22 @@ components:
 
         `VanityNameserverSetDTO` stays the brandable-only read shape (always ACTIVE).'
       properties:
+        expires_on:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the vanity nameserver set's current service period ends
+            (renews or lapses)
+          title: Expires On
+        grace_period_ends_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the grace period ends, or null when the set is not in
+            a grace period
+          title: Grace Period Ends At
         is_default:
           description: Whether this is the org's default vanity NS set
           title: Is Default
@@ -13959,6 +13985,20 @@ components:
           description: Parent domain used as the apex of the vanity NS zone
           title: Parent Domain Name
           type: string
+        renew_scheduled_at:
+          anyOf:
+          - format: date-time
+            type: string
+          - type: 'null'
+          description: When the next automatic renewal is scheduled. Null when the
+            set will not renew.
+          title: Renew Scheduled At
+        renewal_mode:
+          anyOf:
+          - $ref: '#/components/schemas/RenewalModeDTO'
+          - type: 'null'
+          description: Whether the set is set to renew or expire at the end of the
+            current period
         set_id:
           description: Stable identifier for the vanity NS set
           examples:
@@ -14655,7 +14695,7 @@ info:
     \n\n"
   summary: OpusDNS - your gateway to a seamless domain management experience.
   title: OpusDNS API
-  version: 2026-07-22-134959
+  version: 2026-07-22-211713
   x-logo:
     altText: OpusDNS API Reference
     url: https://d24lr4zqs1tgqh.cloudfront.net/c9505a20-5ae1-406c-b060-d392569caebf.jpg

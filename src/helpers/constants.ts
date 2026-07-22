@@ -87,6 +87,7 @@ import type {
   RegistrantChangeType,
   RegistryHandleAttributeType,
   RenewalMode,
+  RenewalModeDTO,
   ReportStatus,
   ReportTriggerType,
   ReportType,
@@ -1627,6 +1628,16 @@ export const RENEWAL_MODE_VALUES = [
   'renew',
   'expire',
 ] as const satisfies ReadonlyArray<RenewalMode>;
+
+export const RENEWAL_MODE_DTO = {
+  RENEW: "renew",
+  EXPIRE: "expire",
+} as const satisfies Record<string, RenewalModeDTO>;
+
+export const RENEWAL_MODE_DTO_VALUES = [
+  'renew',
+  'expire',
+] as const satisfies ReadonlyArray<RenewalModeDTO>;
 
 export const REPORT_STATUS = {
   PENDING: "pending",

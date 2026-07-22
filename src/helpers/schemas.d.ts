@@ -476,6 +476,7 @@ export type RegistrarZone = components['schemas']['RegistrarZone'];
 export type RegistryHandleAttributeType = components['schemas']['RegistryHandleAttributeType'];
 export type RegistryLockBase = components['schemas']['RegistryLockBase'];
 export type RenewalMode = components['schemas']['RenewalMode'];
+export type RenewalModeDTO = components['schemas']['RenewalModeDTO'];
 export type ReportStatus = components['schemas']['ReportStatus'];
 export type ReportTriggerType = components['schemas']['ReportTriggerType'];
 export type ReportType = components['schemas']['ReportType'];
