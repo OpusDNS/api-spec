@@ -2,6 +2,5 @@
 # One TLD name per line (e.g. "si" or "cn.com"). Anything after # is a comment.
 # Remove a line to publish that TLD again.
 # Excluded TLDs stay fully usable at runtime; this only hides the docs page.
-si # no pricing yet
 lt # WIP
 ua # WIP
